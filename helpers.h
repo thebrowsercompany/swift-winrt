@@ -1017,4 +1017,36 @@ namespace swiftwinrt
 
         return settings.component_filter.includes(class_name);
     }
+
+    auto get_property_methods(Property const& prop)
+    {
+        MethodDef get_method{}, set_method{};
+
+        for (auto&& method_semantic : prop.MethodSemantic())
+        {
+            auto semantic = method_semantic.Semantic();
+
+            if (semantic.Getter())
+            {
+                get_method = method_semantic.Method();
+            }
+            else if (semantic.Setter())
+            {
+                set_method = method_semantic.Method();
+            }
+            else
+            {
+                throw_invalid("Properties can only have get and set methods");
+            }
+        }
+
+        XLANG_ASSERT(get_method || set_method);
+
+        if (get_method && set_method)
+        {
+            XLANG_ASSERT(get_method.Flags().Static() == set_method.Flags().Static());
+        }
+
+        return std::make_tuple(get_method, set_method);
+    }
 }

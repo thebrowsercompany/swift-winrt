@@ -314,7 +314,7 @@ namespace swiftwinrt
     {
         struct indent_guard
         {
-            indent_guard(indented_writer_base<T>& w, int32_t offset = 1) noexcept : m_writer(w), m_offset(offset)
+            indent_guard(indented_writer_base<T>& w, size_t offset = 1) noexcept : m_writer(w), m_offset(offset)
             {
                 m_writer.m_indent += m_offset;
             }
@@ -326,13 +326,17 @@ namespace swiftwinrt
 
         private:
             indented_writer_base<T>& m_writer;
-            int32_t m_offset{};
+            size_t m_offset{};
         };
 
+        auto push_indent(indent indent)
+        {
+            return indent_guard(*this, indent.additional_indentation);
+        }
 
         void write_indent()
         {
-            for (int32_t i = 0; i < m_indent; i++)
+            for (size_t i = 0; i < m_indent; i++)
             {
                 writer_base<T>::write_impl("    ");
             }

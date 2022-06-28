@@ -169,7 +169,7 @@ namespace swiftwinrt
         w.write(" __%Size", param.Name());
     }
 
-    static void write_convert_to_abi_arg(writer& w, Param const& param, TypeSig const& type)
+    static void write_convert_to_abi_arg(writer& w, std::string_view const& param_name, TypeSig const& type)
     {
         if (std::holds_alternative<GenericTypeIndex>(type.Type()))
         {
@@ -177,18 +177,19 @@ namespace swiftwinrt
         }
         else if (is_interface(type))
         {
-            w.write("RawPointer(%)", param.Name());
+            w.write("RawPointer(%)", param_name);
         }
         else if (is_class(type))
         {
-            w.write("RawPointer(%.interface)", param.Name());
+            w.write("RawPointer(%.interface)", param_name);
         }
         else
         {
             auto guard = w.push_abi_types(true);
-            w.write("%(from: %)", type, param.Name());
+            w.write("%(from: %)", type, param_name);
         }
     }
+
 
     static void write_abi_arg_in(writer& w, Param const& param, TypeSig const& type)
     {
@@ -967,25 +968,30 @@ get_type_name(default_interface));
          because the underlying buffers are differnet, we have to allocate a new HString to hold the
          memory.
         */
+        indent extra_indent{ 0 };
         for (auto&& [param, param_signature] : signature.params())
         {
             if (get_category(param_signature->Type()) == param_category::string_type)
             {
-                w.write("        let _% = try! HString(%)\n",
+                w.write("let _% = try! HString(%)\n",
                     param.Name(),
                     param.Name());
+
+                extra_indent = { 1 };
             }
         }
 
         if (return_sig)
         {
-            w.write("        let % = try! interface.%(",
+            w.write("%let % = try! interface.%(",
+                extra_indent,
                 signature.return_param_name(),
                 funcName);
         }
         else
         {
-            w.write("        try! interface.%(",
+            w.write("%try! interface.%(",
+                extra_indent,
                 funcName);
         }
 
@@ -1003,7 +1009,7 @@ get_type_name(default_interface));
             {
                 w.write("%%",
                     prefix,
-                    bind<write_convert_to_abi_arg>(param, param_signature->Type()));
+                    bind<write_convert_to_abi_arg>(param.Name(), param_signature->Type()));
             }
             else
             {
@@ -1014,23 +1020,72 @@ get_type_name(default_interface));
 
         }
 
-        w.write(")\n");
+        w.write(")");
 
         if (return_sig)
         {
-            w.write("        return %\n", bind<write_consume_return_type>(signature, false));
+            w.write(R"(
+    return % )", bind<write_consume_return_type>(signature, false));
         }
+    }
+
+    static void write_class_impl_property(writer& w, winmd::reader::Property prop)
+    {
+        auto format = "    public var % : % {\n";
+
+        auto [getter, setter] = get_property_methods(prop);
+        w.write(format,
+            prop.Name(),
+            prop.Type().Type());
+
+        if (getter)
+        {
+            auto format = R"(get {
+    let value = try! interface.%()
+    return %
+}
+
+)";
+            auto guard = w.push_indent(indent{ 2 });
+            method_signature signature{ getter };
+            w.write(format,
+                getter.Name(),
+                bind<write_consume_return_type>(signature, false));
+        }
+
+        if (setter)
+        {
+            auto format = R"(set {
+    try! interface.%(%) 
+}
+)";
+            auto guard = w.push_indent(indent{ 2 });
+
+            w.write(format,
+                setter.Name(),
+                bind<write_convert_to_abi_arg>("newValue", prop.Type().Type()));
+        }
+        
+        w.write("    }\n");
     }
 
     static void write_class_impl_func(writer& w, winmd::reader::MethodDef method)
     {
-        auto format = R"(   public func %(%) %{
-%    }
+        if (method.SpecialName())
+        {
+            // don't write methods which are really properties
+            return;
+        }
+
+        auto format = R"(public func %(%) %{
+    %
+}
 
 )";
         method_signature signature{ method };
 
         auto return_sig = signature.return_signature();
+        auto guard = w.push_indent(indent{ 1 });
         w.write(format,
             method.Name(), 
             bind<write_swift_params>(signature),
@@ -1054,6 +1109,11 @@ get_type_name(default_interface));
                 for (auto&& method : info.type.MethodList())
                 {
                     write_class_impl_func(w, method);
+                }
+
+                for (auto&& prop : info.type.PropertyList())
+                {
+                    write_class_impl_property(w, prop);
                 }
 
             }

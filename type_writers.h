@@ -126,7 +126,7 @@ namespace swiftwinrt
         return false;
     }
 
-    struct writer : writer_base<writer>
+    struct writer : indented_writer_base<writer>
     {
         using writer_base<writer>::write;
 
