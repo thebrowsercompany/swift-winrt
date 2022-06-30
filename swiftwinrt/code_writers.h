@@ -18,7 +18,7 @@ namespace swiftwinrt
     {
     }
 
-    static void write_preamble(writer& w)
+    static void write_preamble(writer& w, std::string_view c_import)
     {
         if (settings.license)
         {
@@ -35,7 +35,7 @@ namespace swiftwinrt
 )", SWIFTWINRT_VERSION_STRING);
         }
 
-        w.write("import CWinRT\n\n");
+        w.write("import %\n\n", c_import);
     }
 
     static void write_version_assert(writer& w)

@@ -3,12 +3,12 @@
 namespace swiftwinrt
 {
 
-    static void write_namespace_abi(std::string_view const& ns, cache::namespace_members const& members, ns_prefix nsprefix)
+    static void write_namespace_abi(std::string_view const& ns, cache::namespace_members const& members, settings_type const& settings)
     {
         writer w;
         w.type_namespace = ns;
-        w.ns_prefix_state = nsprefix;
-        write_preamble(w);
+        w.ns_prefix_state = settings.nsprefix;
+        write_preamble(w, settings.c_import);
 
         w.write_each<write_guid>(members.interfaces);
         w.write_each<write_interface_abi>(members.interfaces);
@@ -18,11 +18,11 @@ namespace swiftwinrt
         w.save_file("ABI");
     }
 
-    static void write_namespace_wrapper(std::string_view const& ns, cache::namespace_members const& members)
+    static void write_namespace_wrapper(std::string_view const& ns, cache::namespace_members const& members, settings_type const& settings)
     {
         writer w;
         w.type_namespace = ns;
-        write_preamble(w);
+        write_preamble(w, settings.c_import);
 
 
         w.write_each<write_enum>(members.enums);

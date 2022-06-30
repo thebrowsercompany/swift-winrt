@@ -1,0 +1,4 @@
+module TestComponent_CWinRT {
+  header "CWinRT.h"
+  export *
+}

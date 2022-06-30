@@ -1,0 +1,240 @@
+import "Windows.Foundation.Numerics.idl";
+
+
+//namespace Windows.Foundation.Metadata
+//{
+//    [attributeusage(target_method, target_property)]
+//    [attributename("noexcept2")]
+//    attribute NoExceptionAttribute
+//    {
+//    }
+//}
+
+
+namespace test_component
+    {
+        struct Struct
+        {
+            String First;
+            String Second;
+        };
+
+        //namespace Delegates
+        //{
+        //    delegate void AgileDelegate();
+        //    delegate void InDelegate(String value);
+        //    delegate String ReturnStringDelegate();
+        //    delegate Int32 ReturnInt32Delegate();
+        //    delegate void OutStringDelegate(out String value);
+        //    delegate void OutInt32Delegate(out Int32 value);
+        //    delegate String[] ReturnStringArrayDelegate();
+        //    delegate void OutStringArrayDelegate(out String[] value);
+        //    delegate void RefStringArrayDelegate(ref String[] value);
+        //    delegate test_component.Struct[] StructDelegate();
+        //}   
+
+        enum Signed
+        {
+            First = -1,
+            Second = 0,
+            Third = 1
+        };
+
+        [flags]
+        enum Unsigned
+        {
+            First = 0,
+            Second = 1,
+            Third = 2
+        };
+
+        runtimeclass Simple
+        {
+            Simple();
+
+            void Method();
+            
+            //Windows.Foundation.IReference<Int32> Reference(Windows.Foundation.DateTime value);
+            //Windows.Foundation.IAsyncOperation<Int32> Operation(Windows.Foundation.DateTime value);
+            //Windows.Foundation.IAsyncAction Action(Windows.Foundation.DateTime value);
+            //Object Object(Windows.Foundation.DateTime value);
+            //static event Windows.Foundation.EventHandler<Object> StaticEvent;
+
+            Windows.Foundation.Numerics.Vector2 ReturnVector2();
+        }
+
+        //untimeclass DeferrableEventArgs
+        //
+        //   Windows.Foundation.Deferral GetDeferral();
+        //   void IncrementCounter();
+        //
+
+        //untimeclass Optional
+        //
+        //   Optional();
+        //   Windows.Foundation.IReference<Int32> Property;
+        //
+
+        //untimeclass Class
+        //
+        //   Class();
+        //   Class(String name);
+        //   static void StaticTest();
+        //   static Int32 StaticTestReturn();
+        //   static Int32 StaticProperty{ get; };
+
+        //   Class(Windows.Foundation.Collections.IIterable<String> arg, Int32 dummy1);
+        //   Class(Windows.Foundation.Collections.IIterable<Windows.Foundation.Collections.IKeyValuePair<String, String> > arg, Int32 dummy1, Int32 dummy2);
+        //   Class(Windows.Foundation.Collections.IMap<String, String> arg, Int32 dummy1, Int32 dummy2, Int32 dummy3);
+        //   Class(Windows.Foundation.Collections.IMapView<String, String> arg, Int32 dummy1, Int32 dummy2, Int32 dummy3, Int32 dummy4);
+        //   Class(Windows.Foundation.Collections.IVector<String> arg, Int32 dummy1, Int32 dummy2, Int32 dummy3, Int32 dummy4, Int32 dummy5);
+        //   Class(Windows.Foundation.Collections.IVectorView<String> arg, Int32 dummy1, Int32 dummy2, Int32 dummy3, Int32 dummy4, Int32 dummy5, Int32 dummy6);
+
+        //   static String InIterable(Windows.Foundation.Collections.IIterable<String> value);
+        //   static String InIterablePair(Windows.Foundation.Collections.IIterable<Windows.Foundation.Collections.IKeyValuePair<String, String> > value);
+        //   static Windows.Foundation.IAsyncOperation<String> InAsyncIterable(Windows.Foundation.Collections.IIterable<String> value);
+        //   static Windows.Foundation.IAsyncOperation<String> InAsyncIterablePair(Windows.Foundation.Collections.IIterable<Windows.Foundation.Collections.IKeyValuePair<String, String> > value);
+        //   static String InMap(Windows.Foundation.Collections.IMap<String, String> value);
+        //   static String InMapView(Windows.Foundation.Collections.IMapView<String, String> value);
+        //   static Windows.Foundation.IAsyncOperation<String> InAsyncMapView(Windows.Foundation.Collections.IMapView<String, String> value);
+        //   static String InVector(Windows.Foundation.Collections.IVector<String> value);
+        //   static String InVectorView(Windows.Foundation.Collections.IVectorView<String> value);
+        //   static Windows.Foundation.IAsyncOperation<String> InAsyncVectorView(Windows.Foundation.Collections.IVectorView<String> value);
+
+        //   void Fail(Boolean value);
+
+        //   String InInt32(Int32 value);
+        //   String InString(String value);
+        //   String InObject(Object value);
+        //   String InStringable(Windows.Foundation.IStringable value);
+        //   String InStruct(Struct value);
+        //   String InStructRef(ref const Struct value);
+        //   String InEnum(Signed value);
+
+        //   void OutInt32(out Int32 value);
+        //   void OutString(out String value);
+        //   void OutObject(out Object value);
+        //   void OutStringable(out Windows.Foundation.IStringable value);
+        //   void OutStruct(out Struct value);
+        //   void OutEnum(out Signed value);
+
+        //   Int32 ReturnInt32();
+        //   String ReturnString();
+        //   Object ReturnObject();
+        //   Windows.Foundation.IStringable ReturnStringable();
+        //   Struct ReturnStruct();
+        //   Signed ReturnEnum();
+
+        //   String InInt32Array(Int32[] value);
+        //   String InStringArray(String[] value);
+        //   String InObjectArray(Object[] value);
+        //   String InStringableArray(Windows.Foundation.IStringable[] value);
+        //   String InStructArray(Struct[] value);
+        //   String InEnumArray(Signed[] value);
+
+        //   void OutInt32Array(out Int32[] value);
+        //   void OutStringArray(out String[] value);
+        //   void OutObjectArray(out Object[] value);
+        //   void OutStringableArray(out Windows.Foundation.IStringable[] value);
+        //   void OutStructArray(out Struct[] value);
+        //   void OutEnumArray(out Signed[] value);
+
+        //   void RefInt32Array(ref Int32[] value);
+        //   void RefStringArray(ref String[] value);
+        //   void RefObjectArray(ref Object[] value);
+        //   void RefStringableArray(ref Windows.Foundation.IStringable[] value);
+        //   void RefStructArray(ref Struct[] value);
+        //   void RefEnumArray(ref Signed[] value);
+
+        //   Int32[] ReturnInt32Array();
+        //   String[] ReturnStringArray();
+        //   Object[] ReturnObjectArray();
+        //   Windows.Foundation.IStringable[] ReturnStringableArray();
+        //   Struct[] ReturnStructArray();
+        //   Signed[] ReturnEnumArray();
+
+        //   [noexcept2] void NoexceptVoid();
+        //   [noexcept2] Int32 NoexceptInt32();
+        //   [noexcept2] String NoexceptString();
+
+        //   event Windows.Foundation.TypedEventHandler<Class, DeferrableEventArgs> DeferrableEvent;
+        //   Windows.Foundation.IAsyncOperation<Int32> RaiseDeferrableEventAsync();
+
+        //   static Boolean TestNoMakeDetection();
+        //   static Int32 StaticPropertyWithAsyncSetter;
+        //   static void StaticMethodWithAsyncReturn();
+        //
+
+        //amespace Structs
+        //
+        //   struct All
+        //   {
+        //       Windows.Foundation.Numerics.Matrix3x2 A;
+        //       Windows.Foundation.Numerics.Matrix4x4 B;
+        //       Windows.Foundation.Numerics.Plane C;
+        //       Windows.Foundation.Numerics.Quaternion D;
+        //       Windows.Foundation.Numerics.Vector2 E;
+        //       Windows.Foundation.Numerics.Vector3 F;
+        //       Windows.Foundation.Numerics.Vector4 G;
+        //       Guid H;
+
+        //       // TODO: uncomment when build server has newer version of midlrt.
+        //       //HRESULT I;
+        //       //EventRegistrationToken J;
+        //   };
+
+        //   struct Inner
+        //   {
+        //       Int32 InnerValue;
+        //   };
+
+        //   namespace Nested
+        //   {
+        //       struct Outer
+        //       {
+        //           test_component.Structs.Inner Depends;
+        //           Int32 OuterValue;
+        //       };
+        //   }
+
+        //       // structs can contain nullable types (IReference<>) as well as strings. These are the only non-POD types
+        //       // Alphabetical sorting of names below is important to validate sort order in generated code. Metadata will
+        //       // sort to alphabetical order. cppwinrt needs to re-establish dependencies in the IReference types to produce
+        //       // correct output.
+        //       struct NullableC
+        //       {
+        //           Single a1;
+        //           Windows.Foundation.IReference<Single> a2;
+        //       };
+
+        //       struct NullableB
+        //       {
+        //           Windows.Foundation.IReference<NullableC> a1;
+        //       };
+
+        //       struct NullableA
+        //       {
+        //           Windows.Foundation.IReference<NullableB> a1;
+        //       };
+        //   }
+
+        //   namespace Parent
+        //   {
+        //       // This validates namespace inclusion rules. The "...Three.h" header must include the 
+        //       // "...Parent.h" header but skip over the intermediate namespaces as they are empty
+        //       // and won't be generated and those won't exist.
+
+        //       struct ParentStruct
+        //       {
+        //           Int32 Value;
+        //       };
+
+        //       namespace One.Two.Three
+        //       {
+        //           struct ThreeStruct
+        //           {
+        //               Int32 Value;
+        //           };
+        //       }
+        //   } 
+    }

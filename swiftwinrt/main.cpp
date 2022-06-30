@@ -25,7 +25,7 @@ namespace swiftwinrt
         { "verbose", 0, 0, {}, "Show detailed progress information" },
         { "ns-prefix", 0, 1, "<always|optional|never>", "Sets policy for prefixing type names with 'ABI' namespace (default: never)" },
         { "overwrite", 0, 0, {}, "Overwrite generated component files" },
-        { "prefix", 0, 0, {}, "Use dotted namespace convention for component files (defaults to folders)" },
+        { "import", 0, 1, "<import>", "c module to import" },
         { "include", 0, option::no_max, "<prefix>", "One or more prefixes to include in input" },
         { "exclude", 0, option::no_max, "<prefix>", "One or more prefixes to exclude from input" },
         { "help", 0, option::no_max, {}, "Show detailed help with examples" },
@@ -89,6 +89,9 @@ Where <spec> is one or more of:
         settings.brackets = args.exists("brackets");
 
         path output_folder = args.value("output", ".");
+        
+        settings.c_import = args.value("import", "CWinRT");
+        
         create_directories(output_folder / "winrt/impl");
         settings.output_folder = canonical(output_folder).string();
         settings.output_folder += '\\';
@@ -318,7 +321,7 @@ Where <spec> is one or more of:
             task_group group;
             group.synchronous(args.exists("synchronous"));
             writer swift;
-            write_preamble(swift);
+            write_preamble(swift, settings.c_import);
 
             for (auto&&[ns, members] : c.namespaces())
             {
@@ -327,12 +330,10 @@ Where <spec> is one or more of:
                     continue;
                 }
 
-                swift.write("import CWinRT\n");
-
                 group.add([&, &ns = ns, &members = members]
                 {
-                    write_namespace_abi(ns, members, settings.nsprefix);
-                    write_namespace_wrapper(ns, members);
+                    write_namespace_abi(ns, members, settings);
+                    write_namespace_wrapper(ns, members, settings);
                 });
             }
 

@@ -16,6 +16,7 @@ namespace swiftwinrt
         std::set<std::string> reference;
 
         std::string output_folder;
+        std::string c_import;
         ns_prefix nsprefix = ns_prefix::always;
         bool license{};
         bool brackets{};
