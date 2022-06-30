@@ -494,7 +494,7 @@ bind<write_abi_args>(signature));
 
         //if (empty(generics))
         {
-            auto format = R"(public class % : IInspectable {
+            auto format = R"(open class %: IInspectable {
 )";
             w.write(format, type);
         }
@@ -1066,7 +1066,7 @@ get_type_name(default_interface));
                 bind<write_convert_to_abi_arg>("newValue", prop.Type().Type()));
         }
         
-        w.write("    }\n");
+        w.write("    }\n\n");
     }
 
     static void write_class_impl_func(writer& w, winmd::reader::MethodDef method)
@@ -1092,15 +1092,23 @@ get_type_name(default_interface));
             bind<write_return_type_declaration>(signature),
             bind<write_class_func_body>(method));
     }
+    
+    static void write_equatable(writer& w, std::string_view const& type_name) {
+      auto format =  R"(    public static func == (_ lhs: %, _ rhs: %) -> Bool {
+        return lhs.interface == rhs.interface
+    }
+)";
+      w.write(format, type_name, type_name);
+    }
 
     static void write_class_impl(writer& w, TypeDef const& type, coded_index<TypeDefOrRef> const& base_type)
     {
         if (auto default_interface = get_default_interface(type))
         {
             auto type_name = type.TypeName();
-            w.write("public class % {\n", type_name);
+            w.write("public class %: Equatable {\n", type_name);
 
-            w.write("   internal var interface : %\n\n", get_type_name(default_interface));
+            w.write("    internal var interface: %\n\n", get_type_name(default_interface));
 
             write_constructor_declarations(w, type);
 
@@ -1115,8 +1123,9 @@ get_type_name(default_interface));
                 {
                     write_class_impl_property(w, prop);
                 }
-
             }
+
+            write_equatable(w, type_name);
 
             w.write("}\n\n");
         }
