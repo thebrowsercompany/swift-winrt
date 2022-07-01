@@ -114,18 +114,6 @@ namespace swiftwinrt
         return result;
     }
 
-    static bool transform_special_numeric_type(std::string_view& name)
-    {
-        if (name == "Matrix3x2") { name = "float3x2"; return true; }
-        else if (name == "Matrix4x4") { name = "float4x4"; return true; }
-        else if (name == "Plane") { name = "plane"; return true; }
-        else if (name == "Quaternion") { name = "quaternion"; return true; }
-        else if (name == "Vector2") { name = "float2"; return true; }
-        else if (name == "Vector3") { name = "float3"; return true; }
-        else if (name == "Vector4") { name = "float4"; return true; }
-        return false;
-    }
-
     struct writer : indented_writer_base<writer>
     {
         using writer_base<writer>::write;
@@ -323,30 +311,7 @@ namespace swiftwinrt
             {
                 auto category = get_category(type);
 
-                if (ns == "Windows.Foundation.Numerics" && transform_special_numeric_type(name))
-                {
-                    write("winrt::@::%", ns, name);
-                }
-                else if (category == category::struct_type)
-                {
-                    if ((name == "DateTime" || name == "TimeSpan") && ns == "Windows.Foundation")
-                    {
-                        write("int64_t");
-                    }
-                    else if ((name == "Point" || name == "Size" || name == "Rect") && ns == "Windows.Foundation")
-                    {
-                        write("winrt::@::%", ns, name);
-                    }
-                    else if (delegate_types)
-                    {
-                        write("struct impl::struct_%_%", get_impl_name(ns), name);
-                    }
-                    else
-                    {
-                        write("struct struct_%_%", get_impl_name(ns), name);
-                    }
-                }
-                else if (category == category::enum_type)
+                if (category == category::enum_type)
                 {
                     write(type.FieldList().first.Signature().Type());
                 }
@@ -357,22 +322,7 @@ namespace swiftwinrt
             }
             else
             {
-                if (ns == "Windows.Foundation.Numerics")
-                {
-                    if (name == "Matrix3x2") { name = "float3x2"; }
-                    else if (name == "Matrix4x4") { name = "float4x4"; }
-                    else if (name == "Plane") { name = "plane"; }
-                    else if (name == "Quaternion") { name = "quaternion"; }
-                    else if (name == "Vector2") { name = "float2"; }
-                    else if (name == "Vector3") { name = "float3"; }
-                    else if (name == "Vector4") { name = "float4"; }
-
-                    write("winrt::@::%", ns, name);
-                }
-                else
-                {
-                    write("%", name);
-                }
+                write("%", name);
             }
         }
 

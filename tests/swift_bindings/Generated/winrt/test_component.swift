@@ -2,8 +2,8 @@
 
 import TestComponent_CWinRT
 
-public class Simple {
-   internal var interface : ISimple
+public class Simple: Equatable {
+    internal var interface: ISimple
 
     public init() {
         try! interface = RoActivateInstance(HString("test_component.Simple"))
@@ -17,10 +17,37 @@ public class Simple {
         try! interface.Method()
     }
 
-    public func ReturnVector2() -> winrt::Windows.Foundation.Numerics::float2 {
-        let result = try! interface.ReturnVector2()
-        return winrt::Windows.Foundation.Numerics::float2(from: result) 
+    public func ReturnBlittableStruct() -> BlittableStruct {
+        let result = try! interface.ReturnBlittableStruct()
+        return unsafeBitCast(result, to: BlittableStruct.self) 
     }
 
+    public func TakeBlittableStruct(_ value: BlittableStruct) {
+        try! interface.TakeBlittableStruct(unsafeBitCast(value, to: __x_ABI_Ctest__component_CBlittableStruct.self))
+    }
+
+    public var BlittableStructProperty : BlittableStruct {
+        get {
+            let value = try! interface.get_BlittableStructProperty()
+            return unsafeBitCast(value, to: BlittableStruct.self)
+        }
+
+        set {
+            try! interface.put_BlittableStructProperty(unsafeBitCast(newValue, to: __x_ABI_Ctest__component_CBlittableStruct.self)) 
+        }
+    }
+
+    public static func == (_ lhs: Simple, _ rhs: Simple) -> Bool {
+        return lhs.interface == rhs.interface
+    }
+}
+
+public struct BlittableStruct {
+    public var First: Int32 = 0
+    public var Second: Int32 = 0
+    public init(First: Int32, Second: Int32) {
+        self.First = First
+        self.Second = Second
+    }
 }
 

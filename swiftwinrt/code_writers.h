@@ -183,13 +183,25 @@ namespace swiftwinrt
         {
             w.write("RawPointer(%.interface)", param_name);
         }
+        else if (is_struct(type))
+        {
+            if (is_type_blittable(type))
+            {
+                auto guard = w.push_abi_types(true);
+                w.write("unsafeBitCast(%, to: %.self)", param_name, type);
+            }
+            else
+            {
+                XLANG_ASSERT("**TODO: implement non-blittable structs**");
+            }
+            
+        }
         else
         {
             auto guard = w.push_abi_types(true);
             w.write("%(from: %)", type, param_name);
         }
     }
-
 
     static void write_abi_arg_in(writer& w, Param const& param, TypeSig const& type)
     {
@@ -262,7 +274,7 @@ namespace swiftwinrt
 
     }
 
-    static void write_swift_arg_in(writer& w, Param const& param, TypeSig const& type)
+    static void write_swift_arg_in(writer& w, std::string_view const& param_name, TypeSig const& type)
     {
         if (std::holds_alternative<GenericTypeIndex>(type.Type()))
         {
@@ -270,11 +282,11 @@ namespace swiftwinrt
         }
         else
         {
-            w.write("_ %: %", param.Name(), type);
+            w.write("_ %: %", param_name, type);
         }
     }
 
-    static void write_swift_arg_out(writer& w, Param const& param, TypeSig const& type)
+    static void write_swift_arg_out(writer& w, std::string_view const& param_name, TypeSig const& type)
     {
         if (std::holds_alternative<GenericTypeIndex>(type.Type()))
         {
@@ -282,7 +294,7 @@ namespace swiftwinrt
         }
         else
         {
-            w.write("inout %: %", param.Name(), type);
+            w.write("inout %: %", param_name, type);
         }
     }
 
@@ -302,11 +314,11 @@ namespace swiftwinrt
             {
                 if (param.Flags().In())
                 {
-                    write_swift_arg_in(w, param, param_signature->Type());
+                    write_swift_arg_in(w, param.Name(), param_signature->Type());
                 }
                 else
                 {
-                    write_swift_arg_out(w, param, param_signature->Type());
+                    write_swift_arg_out(w, param.Name(), param_signature->Type());
                 }
             }
         }
@@ -405,6 +417,18 @@ namespace swiftwinrt
         {
             XLANG_ASSERT("**TODO: implement generic type in write_consume_return_type");
         }
+        else if (category == param_category::struct_type)
+        {
+            if (is_type_blittable(return_type))
+            {
+                auto format = "unsafeBitCast(%, to: %.self)";
+                w.write(format, signature.return_param_name(), return_type);
+            }
+            else
+            {
+                XLANG_ASSERT("**TODO: implement non-blittable structs**");
+            }
+        }
         else
         {
             auto format = "%(from: %)";
@@ -418,6 +442,12 @@ namespace swiftwinrt
         if (category == param_category::object_type || category == param_category::string_type)
         {
             w.write(signature);
+        }
+        else if (category == param_category::struct_type)
+        {
+                auto format = "% = .init()";
+                w.write(format,
+                    signature.Type());
         }
         else
         {
@@ -545,7 +575,7 @@ bind<write_abi_args>(signature));
 
     static void write_struct_abi(writer& w, TypeDef const& type)
     {
-    
+
     }
 
     static void write_consume_params(writer& w, method_signature const& signature)
@@ -1149,14 +1179,58 @@ get_type_name(default_interface));
         }
     }
 
-    static void write_std_hash(writer& w, TypeDef const& type)
+    static void write_struct_initializer_params(writer& w, TypeDef const& type)
     {
-        auto generics = type.GenericParam();
+        separator s{ w };
 
-        w.write("    template<%> struct hash<%> : winrt::impl::hash_base {};\n",
-            bind<write_generic_typenames>(generics),
-            type);
+        for (auto&& field : type.FieldList())
+        {
+            s();
+
+            w.write("%: %", field.Name(), field.Signature().Type());
+        }
     }
 
+    static void write_struct(writer& w, TypeDef const& type)
+    {
+        w.write("public struct % {\n", type);
+        {
+            auto indent = w.push_indent({ 1 });
+            for (auto&& field : type.FieldList())
+            {
+                auto field_type = field.Signature().Type();
+                auto category = get_category(field_type);
+                if (category == param_category::object_type || category == param_category::string_type)
+                {
+                    auto format = "public let %: %\n";
+                    w.write(format, field.Name(), field_type);
+                }
+                else if (category == param_category::struct_type)
+                {
+                    auto format = "public var %: % = .init()\n";
+                    w.write(format, field.Name(), field_type);
+                }
+                else
+                {
+                    auto format = "public var %: % = %\n";
+                    w.write(format,
+                        field.Name(),
+                        field_type,
+                        is_floating_point(field_type) ? "0.0" : "0");
+                }
+            }
 
+            w.write("public init(%) {\n", bind<write_struct_initializer_params>(type));
+            {
+                auto indent = w.push_indent({ 1 });
+                for (auto&& field : type.FieldList())
+                {
+                    w.write("self.% = %\n", field.Name(), field.Name());
+                }
+            }
+            w.write("}\n");
+ 
+        }
+        w.write("}\n\n");
+    }
 }

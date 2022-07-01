@@ -40,3 +40,20 @@ extension _GUID: CustomStringConvertible {
     }
   }
 }
+
+extension IInspectable : Equatable {
+  // Test for COM-style equality.
+  public static func ==(_ lhs: IInspectable, _ rhs: IInspectable) -> Bool {
+    var iid: IID = IID_IUnknown
+    var lhsUnknown: UnsafeMutableRawPointer?
+    try! lhs.QueryInterface(&iid, &lhsUnknown)
+    var rhsUnknown: UnsafeMutableRawPointer?
+    try! rhs.QueryInterface(&iid, &rhsUnknown)
+    let equals = (lhsUnknown == rhsUnknown)
+
+    _ = IUnknown(lhsUnknown).Release()
+    _ = IUnknown(rhsUnknown).Release()
+
+    return equals
+  }
+}

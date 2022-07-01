@@ -109,6 +109,7 @@ target_sources(test_component PRIVATE
     pch.h
     Simple.cpp
     Simple.h
+    exports.def
     #Windows.Class.cpp
     #Windows.Class.h
     ${MIDL_FILE}

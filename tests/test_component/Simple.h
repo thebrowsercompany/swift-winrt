@@ -17,10 +17,35 @@ namespace winrt::test_component::implementation
         static event_token StaticEvent(Windows::Foundation::EventHandler<IInspectable> const&) { return {}; }
         static void StaticEvent(event_token) { }
 
-        winrt::Windows::Foundation::Numerics::float2 ReturnVector2()
+        test_component::BlittableStruct ReturnBlittableStruct()
         {
-            return { 123.0, 456.0 };
+            return { 123, 456 };
         }
+
+        void TakeBlittableStruct(test_component::BlittableStruct const& value)
+        {
+            if (value.First == 654 && value.Second == 321)
+            {
+                OutputDebugStringW(L"Accepted");
+            }
+            else
+            {
+                assert(false);
+            }
+        }
+
+        test_component::BlittableStruct BlittableStructProperty()
+        {
+            return m_blittableStruct;
+        }
+
+        void BlittableStructProperty(test_component::BlittableStruct const& value)
+        {
+            m_blittableStruct = value;
+        }
+
+        private:
+        test_component::BlittableStruct m_blittableStruct{};
     };
 }
 namespace winrt::test_component::factory_implementation

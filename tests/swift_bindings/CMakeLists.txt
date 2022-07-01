@@ -1,4 +1,6 @@
 add_library(WinRT_Test SHARED
+  Generated/winrt/test_component.swift
+  Generated/winrt/test_component+ABI.swift
   Support/IUnknown.swift
   Support/IUnknown+Swift.Swift
   Support/IUnknownRef.swift

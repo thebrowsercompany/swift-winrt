@@ -28,6 +28,7 @@ namespace swiftwinrt
         w.write_each<write_enum>(members.enums);
         w.write_each<write_class>(members.classes);
         w.write_each<write_delegate>(members.delegates);
+        w.write_each<write_struct>(members.structs);
 
         w.save_file();
     }

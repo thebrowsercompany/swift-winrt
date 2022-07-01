@@ -292,4 +292,83 @@ namespace swiftwinrt
     {
         return is_category_type(signature, category::class_type);
     }
+
+    static bool is_struct(TypeSig const& signature)
+    {
+        return is_category_type(signature, category::struct_type);
+    }
+
+    bool is_type_blittable(TypeSig const& signature, bool for_array = false)
+    {
+        if (signature.is_szarray())
+        {
+            return false;
+        }
+
+        return call(signature.Type(),
+            [&](ElementType type)
+            {
+                switch (type)
+                {
+                    case ElementType::I1:
+                    case ElementType::I2:
+                    case ElementType::I4:
+                    case ElementType::I8:
+                    case ElementType::U1:
+                    case ElementType::U2:
+                    case ElementType::U4:
+                    case ElementType::U8:
+                        return true;
+                    case ElementType::Enum:
+                        return !for_array;
+                    case ElementType::Boolean:
+                    case ElementType::String:
+                    case ElementType::GenericInst:
+                    case ElementType::Char:
+                        return false;
+                }
+            },
+            [&](coded_index<TypeDefOrRef> const& type)
+            {
+                TypeDef type_def;
+
+                if (type.type() == TypeDefOrRef::TypeDef)
+                {
+                    type_def = type.TypeDef();
+                }
+                else
+                {
+                    type_def = find_required(type.TypeRef());
+                }
+
+                switch (get_category(type_def))
+                {
+                case category::interface_type:
+                case category::class_type:
+                case category::delegate_type:
+                    return false;
+                case category::struct_type:
+                    for (auto&& field : type_def.FieldList())
+                    {
+                        if (!is_type_blittable(field.Signature().Type()))
+                        {
+                            return false;
+                        }
+                    }
+                    return true;
+                case category::enum_type:
+                    return !for_array;
+                }
+            },
+                [&](GenericTypeInstSig const&)
+            {
+                return false;
+            },
+                [&](auto&&)
+            {
+                return true;
+            });
+
+    }
+
 }

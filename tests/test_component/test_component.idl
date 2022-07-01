@@ -12,11 +12,11 @@ import "Windows.Foundation.Numerics.idl";
 
 
 namespace test_component
-    {
-        struct Struct
+{
+        struct BlittableStruct
         {
-            String First;
-            String Second;
+            Int32 First;
+            Int32 Second;
         };
 
         //namespace Delegates
@@ -60,7 +60,10 @@ namespace test_component
             //Object Object(Windows.Foundation.DateTime value);
             //static event Windows.Foundation.EventHandler<Object> StaticEvent;
 
-            Windows.Foundation.Numerics.Vector2 ReturnVector2();
+            //Windows.Foundation.Numerics.Vector2 ReturnVector2();
+            BlittableStruct ReturnBlittableStruct();
+            void TakeBlittableStruct(BlittableStruct value);
+            BlittableStruct BlittableStructProperty;
         }
 
         //untimeclass DeferrableEventArgs
