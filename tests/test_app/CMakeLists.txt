@@ -24,7 +24,7 @@ add_custom_command(TARGET test_app POST_BUILD
   COMMAND
   ${CMAKE_COMMAND} -E copy
   ${CMAKE_CURRENT_SOURCE_DIR}/test_app.exe.manifest
-  ${CMAKE_BINARY_DIR}/test_app.exe.manifest)
+  ${CMAKE_BINARY_DIR}/bin/test_app.exe.manifest)
 
 # Add the manifest as a resource. You need VS2019 tools in your path for mt.exe.
 # add_custom_command(TARGET test_app POST_BUILD
