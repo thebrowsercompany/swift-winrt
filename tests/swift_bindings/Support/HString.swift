@@ -23,4 +23,8 @@ public class HString {
   }
 
   public func get() -> HSTRING? { hRef.hString }
+
+  public func detach() -> HSTRING? {
+    return hRef.detach()
+  }
 }

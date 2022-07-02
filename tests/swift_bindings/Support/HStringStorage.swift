@@ -21,6 +21,12 @@ final public class HStringStorage {
                                     &self.hString))
   }
 
+  public func detach() -> HSTRING? {
+    let tempString = hString
+    hString = nil
+    return tempString
+  }
+  
   deinit {
     try! CHECKED(WindowsDeleteString(self.hString))
   }

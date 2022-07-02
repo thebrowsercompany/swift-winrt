@@ -3,7 +3,7 @@
 import TestComponent_CWinRT
 
 private var IID___x_ABI_Ctest__component_CISimple: IID {
-    IID(Data1: 0x99F69C9D, Data2: 0xC141, Data3: 0x5A50, Data4: ( 0x9B,0x1F,0xAD,0x38,0xDA,0x38,0x44,0xC6 ))// 99F69C9D-C141-5A50-9B1F-AD38DA3844C6
+    IID(Data1: 0x86F19B35, Data2: 0x7712, Data3: 0x5667, Data4: ( 0xA6,0x2D,0xA8,0xB2,0x42,0x5A,0x2E,0x9B ))// 86F19B35-7712-5667-A62D-A8B2425A2E9B
 }
 
 open class ISimple: IInspectable {
@@ -38,5 +38,68 @@ open class ISimple: IInspectable {
             try CHECKED(pThis.pointee.lpVtbl.pointee.put_BlittableStructProperty(pThis, value))
         }
     }
+    public func ReturnNonBlittableStruct() throws -> __x_ABI_Ctest__component_CNonBlittableStruct {
+        var result: __x_ABI_Ctest__component_CNonBlittableStruct = .init()
+        _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnNonBlittableStruct(pThis, &result))
+        }
+        return result
+    }
+    public func TakeNonBlittableStruct(_ value: __x_ABI_Ctest__component_CNonBlittableStruct) throws {
+        _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.TakeNonBlittableStruct(pThis, value))
+        }
+    }
+    public func get_NonBlittableStructProperty() throws -> __x_ABI_Ctest__component_CNonBlittableStruct {
+        var value: __x_ABI_Ctest__component_CNonBlittableStruct = .init()
+        _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_NonBlittableStructProperty(pThis, &value))
+        }
+        return value
+    }
+    public func put_NonBlittableStructProperty(_ value: __x_ABI_Ctest__component_CNonBlittableStruct) throws {
+        _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.put_NonBlittableStructProperty(pThis, value))
+        }
+    }
+    public func get_StringProperty() throws -> HSTRING? {
+        var value: HSTRING?
+        _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_StringProperty(pThis, &value))
+        }
+        return value
+    }
+    public func put_StringProperty(_ value: HSTRING?) throws {
+        _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.put_StringProperty(pThis, value))
+        }
+    }
 }
 
+class _ABI_NonBlittableBoolStruct {
+    internal var val: __x_ABI_Ctest__component_CNonBlittableBoolStruct = .init()
+    internal init(from swift: NonBlittableBoolStruct) {
+        val.First = .init(from: swift.First)
+        val.Second = .init(from: swift.Second)
+        val.Third = .init(from: swift.Third)
+        val.Fourth = .init(from: swift.Fourth)
+    }
+
+    deinit {
+    }
+}
+class _ABI_NonBlittableStruct {
+    internal var val: __x_ABI_Ctest__component_CNonBlittableStruct = .init()
+    internal init(from swift: NonBlittableStruct) {
+        val.First = try! HString(swift.First).detach()
+        val.Second = try! HString(swift.Second).detach()
+        val.Third = swift.Third
+        val.Fourth = try! HString(swift.Fourth).detach()
+    }
+
+    deinit {
+        WindowsDeleteString(val.First)
+        WindowsDeleteString(val.Second)
+        WindowsDeleteString(val.Fourth)
+    }
+}

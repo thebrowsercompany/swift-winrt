@@ -370,5 +370,4 @@ namespace swiftwinrt
             });
 
     }
-
 }

@@ -183,23 +183,33 @@ namespace swiftwinrt
         {
             w.write("RawPointer(%.interface)", param_name);
         }
-        else if (is_struct(type))
+        else if (is_type_blittable(type))
         {
-            if (is_type_blittable(type))
+            if (is_struct(type))
             {
                 auto guard = w.push_abi_types(true);
                 w.write("unsafeBitCast(%, to: %.self)", param_name, type);
             }
             else
             {
-                XLANG_ASSERT("**TODO: implement non-blittable structs**");
+                w.write(param_name);
             }
-            
         }
         else
         {
-            auto guard = w.push_abi_types(true);
-            w.write("%(from: %)", type, param_name);
+            auto category = get_category(type);
+            if (category == param_category::string_type)
+            {
+                w.write("_%.get()", param_name);
+            }
+            else if (category == param_category::struct_type)
+            {
+                w.write("_%.val", param_name);
+            }
+            else
+            {
+                w.write(".init(from: %)", param_name);
+            }
         }
     }
 
@@ -393,15 +403,9 @@ namespace swiftwinrt
         }
     }
 
-    static void write_consume_return_type(writer& w, method_signature const& signature, bool delegate_types)
+    static void write_consume_type(writer& w, TypeSig const& type, std::string_view const& name)
     {
-        if (!signature.return_signature())
-        {
-            return;
-        }
-
-        auto return_type = signature.return_signature().Type();
-        auto category = get_category(return_type);
+        auto category = get_category(type);
 
         if (category == param_category::array_type)
         {
@@ -410,30 +414,48 @@ namespace swiftwinrt
         else if (category == param_category::object_type)
         {
             auto format = "%(%(consuming: %))";
-            auto default_interface = get_default_interface(return_type);
-            w.write(format, return_type, default_interface, signature.return_param_name());
+            auto default_interface = get_default_interface(type);
+            w.write(format, type, default_interface, name);
         }
         else if (category == param_category::generic_type)
         {
             XLANG_ASSERT("**TODO: implement generic type in write_consume_return_type");
         }
-        else if (category == param_category::struct_type)
+        else if (is_type_blittable(type))
         {
-            if (is_type_blittable(return_type))
+            if (category == param_category::struct_type)
             {
                 auto format = "unsafeBitCast(%, to: %.self)";
-                w.write(format, signature.return_param_name(), return_type);
+                w.write(format, name, type);
             }
             else
             {
-                XLANG_ASSERT("**TODO: implement non-blittable structs**");
+                // fundamental types can just be simply copied to since the types match
+                w.write(name);
             }
+        }
+        else if (w.abi_types && category == param_category::string_type)
+        {
+            auto format = "try! HString(%).detach()";
+            w.write(format, name);
         }
         else
         {
-            auto format = "%(from: %)";
-            w.write(format, signature.return_signature(), signature.return_param_name());
+            auto format = ".init(from: %)";
+            w.write(format, name);
         }
+    }
+
+    static void write_consume_return_type(writer& w, method_signature const& signature, bool delegate_types)
+    {
+        if (!signature.return_signature())
+        {
+            return;
+        }
+
+        auto return_type = signature.return_signature().Type();
+
+        write_consume_type(w, return_type, signature.return_param_name());
     }
 
     static void write_init_return_val(writer& w, RetTypeSig const& signature)
@@ -496,25 +518,9 @@ bind<write_abi_args>(signature));
             return;
         }
 
-        /*if (w.abi_types && get_category(return_sig.Type()) == param_category::object_type)
-        {
-            auto format = "-> UnsafeMutablePointer<%> ";
-
-            if (auto default_interface = get_default_interface(return_sig.Type()))
-            {
-                w.write(format, default_interface);
-            }
-            else
-            {
-                w.write(format, return_sig);
-            }
-        }
-        else*/
-        {
-            auto format = "-> % ";
-            w.write(format,
-                return_sig);
-        }
+        auto format = "-> % ";
+        w.write(format,
+            return_sig);
     }
 
     static void write_interface_abi(writer& w, TypeDef const& type)
@@ -572,10 +578,64 @@ bind<write_abi_args>(signature));
     {
         w.write("        % %;\n", get_field_abi(w, field), field.Name());
     }
+    
+    static void write_type_abi(writer& w, TypeDef const& type)
+    {
+        auto push_abi = w.push_abi_types(true);
+        w.write("%", type);
+    }
 
     static void write_struct_abi(writer& w, TypeDef const& type)
     {
+        bool is_blittable = true;
+        for (auto&& field : type.FieldList())
+        {
+            if (!is_type_blittable(field.Signature().Type()))
+            {
+                is_blittable = false;
+                break;
+            }   
+        }
 
+        if (is_blittable)
+        {
+            return;
+        }
+
+        w.write("class _ABI_% {\n", type);
+        {
+            auto push_indent = w.push_indent({ 1 });
+            w.write("internal var val: % = .init()\n", bind<write_type_abi>(type));
+            w.write("internal init(from swift: %) {\n", type);
+            {
+                auto push_abi = w.push_abi_types(true);
+                auto indent = w.push_indent({ 1 });
+                for (auto&& field : type.FieldList())
+                {
+                    std::string from = std::string("swift.").append(field.Name());
+                    w.write("val.% = %\n",
+                        field.Name(),
+                        bind<write_consume_type>(field.Signature().Type(), from)
+                    );
+                }
+            }
+            w.write("}\n\n");
+
+            w.write("deinit {\n");
+            {
+                auto indent = w.push_indent({ 1 });
+                for (auto&& field : type.FieldList())
+                {
+                    if (get_category(field.Signature().Type()) == param_category::string_type)
+                    {
+                        w.write("WindowsDeleteString(val.%)\n", field.Name());
+                    }
+                }
+            }
+            w.write("}\n");
+        }
+        w.write("}\n");
+        
     }
 
     static void write_consume_params(writer& w, method_signature const& signature)
@@ -1001,12 +1061,20 @@ get_type_name(default_interface));
         indent extra_indent{ 0 };
         for (auto&& [param, param_signature] : signature.params())
         {
-            if (get_category(param_signature->Type()) == param_category::string_type)
+            auto category = get_category(param_signature->Type());
+            if (category == param_category::string_type)
             {
                 w.write("let _% = try! HString(%)\n",
                     param.Name(),
                     param.Name());
-
+                extra_indent = { 1 };
+            }
+            else if (category == param_category::struct_type && !is_type_blittable(param_signature->Type()))
+            {
+                w.write("let _% = _ABI_%(from: %)\n",
+                    param.Name(),
+                    param_signature->Type(),
+                    param.Name());
                 extra_indent = { 1 };
             }
         }
@@ -1029,13 +1097,7 @@ get_type_name(default_interface));
 
         for (auto&& [param, param_signature] : signature.params())
         {
-            if (get_category(param_signature->Type()) == param_category::string_type)
-            {
-                w.write("%_%.get()",
-                    prefix,
-                    param.Name());
-            }
-            else if (param.Flags().In())
+            if (param.Flags().In())
             {
                 w.write("%%",
                     prefix,
@@ -1086,12 +1148,28 @@ get_type_name(default_interface));
         if (setter)
         {
             auto format = R"(set {
-    try! interface.%(%) 
+    %try! interface.%(%) 
 }
 )";
             auto guard = w.push_indent(indent{ 2 });
+            std::string extra_init;
+
+            if (!is_type_blittable(prop.Type().Type()))
+            {
+                TypeDef signature_type{};
+                auto category = get_category(prop.Type().Type(), &signature_type);
+                if (category == param_category::string_type)
+                {
+                    extra_init = "let _newValue = try! HString(newValue)\n    ";
+                }
+                else if (category == param_category::struct_type)
+                {
+                    extra_init = std::string("let _newValue = _ABI_").append(signature_type.TypeName()).append("(from: newValue)\n    ");
+                }
+            }
 
             w.write(format,
+                extra_init,
                 setter.Name(),
                 bind<write_convert_to_abi_arg>("newValue", prop.Type().Type()));
         }
@@ -1195,10 +1273,12 @@ get_type_name(default_interface));
     {
         w.write("public struct % {\n", type);
         {
+            bool is_blittable = true;
             auto indent = w.push_indent({ 1 });
             for (auto&& field : type.FieldList())
             {
                 auto field_type = field.Signature().Type();
+                is_blittable = is_blittable && is_type_blittable(field_type);
                 auto category = get_category(field_type);
                 if (category == param_category::object_type || category == param_category::string_type)
                 {
@@ -1212,11 +1292,10 @@ get_type_name(default_interface));
                 }
                 else
                 {
-                    auto format = "public var %: % = %\n";
+                    auto format = "public var %: %\n";
                     w.write(format,
                         field.Name(),
-                        field_type,
-                        is_floating_point(field_type) ? "0.0" : "0");
+                        field_type);
                 }
             }
 
@@ -1229,6 +1308,23 @@ get_type_name(default_interface));
                 }
             }
             w.write("}\n");
+
+            if (!is_blittable)
+            {
+                w.write("internal init(from abi: %) {\n", bind<write_type_abi>(type));
+                {
+                    auto indent = w.push_indent({ 1 });
+                    for (auto&& field : type.FieldList())
+                    {
+                        std::string from = std::string("abi.").append(field.Name());
+                        w.write("self.% = %\n", 
+                            field.Name(),
+                            bind<write_consume_type>(field.Signature().Type(), from)
+                        );
+                    }
+                }
+                w.write("}\n");
+            }
  
         }
         w.write("}\n\n");

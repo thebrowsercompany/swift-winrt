@@ -16,9 +16,3 @@ extension Bool {
     self.init(booleanLiteral: val != 0)
   }
 }
-
-extension UInt64 {
-  internal init(from val: UINT64) {
-    self.init(val)
-  }
-}

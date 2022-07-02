@@ -26,6 +26,16 @@ public class Simple: Equatable {
         try! interface.TakeBlittableStruct(unsafeBitCast(value, to: __x_ABI_Ctest__component_CBlittableStruct.self))
     }
 
+    public func ReturnNonBlittableStruct() -> NonBlittableStruct {
+        let result = try! interface.ReturnNonBlittableStruct()
+        return .init(from: result) 
+    }
+
+    public func TakeNonBlittableStruct(_ value: NonBlittableStruct) {
+        let _value = _ABI_NonBlittableStruct(from: value)
+        try! interface.TakeNonBlittableStruct(_value.val)
+    }
+
     public var BlittableStructProperty : BlittableStruct {
         get {
             let value = try! interface.get_BlittableStructProperty()
@@ -37,17 +47,79 @@ public class Simple: Equatable {
         }
     }
 
+    public var NonBlittableStructProperty : NonBlittableStruct {
+        get {
+            let value = try! interface.get_NonBlittableStructProperty()
+            return .init(from: value)
+        }
+
+        set {
+            let _newValue = _ABI_NonBlittableStruct(from: newValue)
+            try! interface.put_NonBlittableStructProperty(_newValue.val) 
+        }
+    }
+
+    public var StringProperty : String {
+        get {
+            let value = try! interface.get_StringProperty()
+            return .init(from: value)
+        }
+
+        set {
+            let _newValue = try! HString(newValue)
+            try! interface.put_StringProperty(_newValue.get()) 
+        }
+    }
+
     public static func == (_ lhs: Simple, _ rhs: Simple) -> Bool {
         return lhs.interface == rhs.interface
     }
 }
 
 public struct BlittableStruct {
-    public var First: Int32 = 0
-    public var Second: Int32 = 0
+    public var First: Int32
+    public var Second: Int32
     public init(First: Int32, Second: Int32) {
         self.First = First
         self.Second = Second
+    }
+}
+
+public struct NonBlittableBoolStruct {
+    public var First: Bool
+    public var Second: Bool
+    public var Third: Bool
+    public var Fourth: Bool
+    public init(First: Bool, Second: Bool, Third: Bool, Fourth: Bool) {
+        self.First = First
+        self.Second = Second
+        self.Third = Third
+        self.Fourth = Fourth
+    }
+    internal init(from abi: __x_ABI_Ctest__component_CNonBlittableBoolStruct) {
+        self.First = .init(from: abi.First)
+        self.Second = .init(from: abi.Second)
+        self.Third = .init(from: abi.Third)
+        self.Fourth = .init(from: abi.Fourth)
+    }
+}
+
+public struct NonBlittableStruct {
+    public let First: String
+    public let Second: String
+    public var Third: Int32
+    public let Fourth: String
+    public init(First: String, Second: String, Third: Int32, Fourth: String) {
+        self.First = First
+        self.Second = Second
+        self.Third = Third
+        self.Fourth = Fourth
+    }
+    internal init(from abi: __x_ABI_Ctest__component_CNonBlittableStruct) {
+        self.First = .init(from: abi.First)
+        self.Second = .init(from: abi.Second)
+        self.Third = abi.Third
+        self.Fourth = .init(from: abi.Fourth)
     }
 }
 

@@ -19,6 +19,22 @@ namespace test_component
             Int32 Second;
         };
 
+        struct NonBlittableStruct
+        {
+            String First;
+            String Second;
+            Int32 Third;
+            String Fourth;
+        };
+
+        struct NonBlittableBoolStruct
+        {
+            Boolean First;
+            Boolean Second;
+            Boolean Third;
+            Boolean Fourth;
+        };
+
         //namespace Delegates
         //{
         //    delegate void AgileDelegate();
@@ -64,22 +80,28 @@ namespace test_component
             BlittableStruct ReturnBlittableStruct();
             void TakeBlittableStruct(BlittableStruct value);
             BlittableStruct BlittableStructProperty;
+
+            NonBlittableStruct ReturnNonBlittableStruct();
+            void TakeNonBlittableStruct(NonBlittableStruct value);
+            NonBlittableStruct NonBlittableStructProperty;
+
+            String StringProperty;
         }
 
-        //untimeclass DeferrableEventArgs
-        //
+        //runtimeclass DeferrableEventArgs
+        //{
         //   Windows.Foundation.Deferral GetDeferral();
         //   void IncrementCounter();
-        //
+        //}
 
-        //untimeclass Optional
-        //
+        //runtimeclass Optional
+        //{
         //   Optional();
         //   Windows.Foundation.IReference<Int32> Property;
-        //
+        //}
 
-        //untimeclass Class
-        //
+        //runtimeclass Class
+        //{
         //   Class();
         //   Class(String name);
         //   static void StaticTest();
@@ -166,9 +188,9 @@ namespace test_component
         //   static Boolean TestNoMakeDetection();
         //   static Int32 StaticPropertyWithAsyncSetter;
         //   static void StaticMethodWithAsyncReturn();
-        //
+        //}
 
-        //amespace Structs
+        //namespace Structs
         //
         //   struct All
         //   {
@@ -239,5 +261,6 @@ namespace test_component
         //               Int32 Value;
         //           };
         //       }
-        //   } 
+        //   }
+        //}
     }
