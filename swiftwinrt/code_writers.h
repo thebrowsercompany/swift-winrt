@@ -47,21 +47,34 @@ namespace swiftwinrt
         w.write(format, SWIFTWINRT_VERSION_STRING, SWIFTWINRT_VERSION_STRING);
     }
 
-
-    static void write_enum_field(writer& w, Field const& field)
+    static void write_type_abi(writer& w, TypeDef const& type)
     {
-        auto format = R"(        % = %,
-)";
-
-        if (auto constant = field.Constant())
-        {
-            w.write(format, field.Name(), *constant);
-        }
+        auto push_abi = w.push_abi_types(true);
+        w.write("%", type);
     }
 
     static void write_enum(writer& w, TypeDef const& type)
     {
+        w.write("extension % {\n", type);
+        {
+            auto format = R"(    public static var % : % {
+        %_%
+    }
+)";
+            for (auto&& field : type.FieldList())
+            {
+                if (field.Constant())
+                {
+                    w.write(format, field.Name(), type, type, field.Name());
+                }
+            }
+        }
+        w.write("}\n\n");
+    }
 
+    static void write_enum_abi(writer& w, TypeDef const& type)
+    {
+        w.write("public typealias % = %\n", type, bind<write_type_abi>(type));
     }
 
     static void write_generic_typenames(writer& w, std::pair<GenericParam, GenericParam> const& params)
@@ -471,6 +484,12 @@ namespace swiftwinrt
                 w.write(format,
                     signature.Type());
         }
+        else if (category == param_category::enum_type)
+        {
+            auto format = "% = .init(0)";
+            w.write(format,
+                signature.Type());
+        }
         else
         {
             auto format = "% = %";
@@ -579,12 +598,6 @@ bind<write_abi_args>(signature));
         w.write("        % %;\n", get_field_abi(w, field), field.Name());
     }
     
-    static void write_type_abi(writer& w, TypeDef const& type)
-    {
-        auto push_abi = w.push_abi_types(true);
-        w.write("%", type);
-    }
-
     static void write_struct_abi(writer& w, TypeDef const& type)
     {
         bool is_blittable = true;

@@ -14,7 +14,7 @@ namespace swiftwinrt
         w.write_each<write_interface_abi>(members.interfaces);
         w.write_each<write_delegate_abi>(members.delegates);
         w.write_each<write_struct_abi>(members.structs);
-        
+        w.write_each<write_enum_abi>(members.enums);
         w.save_file("ABI");
     }
 

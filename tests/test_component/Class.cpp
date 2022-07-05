@@ -43,16 +43,6 @@ namespace winrt::test_component::implementation
         return value.ToString();
     }
 
-    hstring Class::InStruct(Struct const& value)
-    {
-        return value.First + value.Second;
-    }
-
-    hstring Class::InStructRef(Struct const& value)
-    {
-        return value.First + value.Second + L"ref";
-    }
-
     hstring Class::InEnum(Signed const& value)
     {
         switch (value)
@@ -116,14 +106,14 @@ namespace winrt::test_component::implementation
     {
         return value.First().Current().Key();
     }
-    Windows::Foundation::IAsyncOperation<hstring> Class::InAsyncIterable(Windows::Foundation::Collections::IIterable<hstring> value)
+    /*Windows::Foundation::IAsyncOperation<hstring> Class::InAsyncIterable(Windows::Foundation::Collections::IIterable<hstring> value)
     {
         co_return value.First().Current();
     }
     Windows::Foundation::IAsyncOperation<hstring> Class::InAsyncIterablePair(Windows::Foundation::Collections::IIterable<Windows::Foundation::Collections::IKeyValuePair<hstring, hstring>> value)
     {
         co_return value.First().Current().Key();
-    }
+    }*/
     hstring Class::InMap(Windows::Foundation::Collections::IMap<hstring, hstring> const& value)
     {
         return value.Lookup(L"test");
@@ -132,10 +122,10 @@ namespace winrt::test_component::implementation
     {
         return value.Lookup(L"test");
     }
-    Windows::Foundation::IAsyncOperation<hstring> Class::InAsyncMapView(Windows::Foundation::Collections::IMapView<hstring, hstring> value)
+   /* Windows::Foundation::IAsyncOperation<hstring> Class::InAsyncMapView(Windows::Foundation::Collections::IMapView<hstring, hstring> value)
     {
         co_return value.Lookup(L"test");
-    }
+    }*/
     hstring Class::InVector(Windows::Foundation::Collections::IVector<hstring> const& value)
     {
         return value.GetAt(0);
@@ -144,10 +134,10 @@ namespace winrt::test_component::implementation
     {
         return value.GetAt(0);
     }
-    Windows::Foundation::IAsyncOperation<hstring> Class::InAsyncVectorView(Windows::Foundation::Collections::IVectorView<hstring> value)
+    /*Windows::Foundation::IAsyncOperation<hstring> Class::InAsyncVectorView(Windows::Foundation::Collections::IVectorView<hstring> value)
     {
         co_return value.GetAt(0);
-    }
+    }*/
 
     void Class::OutInt32(int32_t& value)
     {
@@ -167,12 +157,6 @@ namespace winrt::test_component::implementation
     void Class::OutStringable(Windows::Foundation::IStringable& value)
     {
         value = make<Value>(123);
-    }
-
-    void Class::OutStruct(Struct& value)
-    {
-        value.First = L"1";
-        value.Second = L"2";
     }
 
     void Class::OutEnum(Signed& value)
@@ -196,10 +180,7 @@ namespace winrt::test_component::implementation
     {
         return make<Value>(123);
     }
-    Struct Class::ReturnStruct()
-    {
-        return { L"1", L"2" };
-    }
+
     Signed Class::ReturnEnum()
     {
         return Signed::First;
@@ -257,19 +238,7 @@ namespace winrt::test_component::implementation
 
         return result;
     }
-    hstring Class::InStructArray(array_view<Struct const> value)
-    {
-        simulate_rpc_behavior(value);
 
-        hstring result;
-
-        for (auto&& v : value)
-        {
-            result = result + v.First + v.Second;
-        }
-
-        return result;
-    }
     hstring Class::InEnumArray(array_view<Signed const> value)
     {
         simulate_rpc_behavior(value);
@@ -302,11 +271,6 @@ namespace winrt::test_component::implementation
     void Class::OutStringableArray(com_array<Windows::Foundation::IStringable>& value)
     {
         value = { make<Value>(1), make<Value>(2), make<Value>(3) };
-    }
-
-    void Class::OutStructArray(com_array<Struct>& value)
-    {
-        value = { { L"1", L"2" }, { L"10", L"20" } };
     }
 
     void Class::OutEnumArray(com_array<Signed>& value)
@@ -374,25 +338,6 @@ namespace winrt::test_component::implementation
         }
     }
 
-    void Class::RefStructArray(array_view<Struct> value)
-    {
-        simulate_rpc_behavior(value);
-
-        if (value.size())
-        {
-            int32_t counter{};
-
-            std::generate(value.begin(), value.end() - 1, [&]
-                {
-                    return Struct
-                    {
-                        hstring{ std::to_wstring(++counter) },
-                        hstring{ std::to_wstring(++counter) }
-                    };
-                });
-        }
-    }
-
     void Class::RefEnumArray(array_view<Signed> value)
     {
         simulate_rpc_behavior(value);
@@ -430,11 +375,6 @@ namespace winrt::test_component::implementation
         return { make<Value>(1), make<Value>(2), make<Value>(3) };
     }
 
-    com_array<Struct> Class::ReturnStructArray()
-    {
-        return { { L"1", L"2" }, { L"10", L"20" } };
-    }
-
     com_array<Signed> Class::ReturnEnumArray()
     {
         return { Signed::First, Signed::Second };
@@ -454,6 +394,7 @@ namespace winrt::test_component::implementation
         return L"123";
     }
 
+    /* TODO: COR-762 once we enable async/await we can bring this back
     event_token Class::DeferrableEvent(TypedEventHandler<test_component::Class, test_component::DeferrableEventArgs> const& handler)
     {
         return m_deferrableEvent.add(handler);
@@ -471,12 +412,12 @@ namespace winrt::test_component::implementation
         co_await args->wait_for_deferrals();
         co_return args->m_counter;
     }
-
+*/
     // This test validates that defining WINRT_NO_MAKE_DETECTION actually
     // allows an implementation to be final and have a private destructor.
     // This is *not* recommended as there are no safeguards for direct and
     // invalid allocations, but is provided for compatibility.
-
+/*
     bool Class::TestNoMakeDetection()
     {
         static bool Destroyed{};
@@ -515,11 +456,14 @@ namespace winrt::test_component::implementation
         }
         return pass;
     }
+    */
 }
 
+/*
 namespace
 {
     void ValidateStaticEventAutoRevoke() {
         auto x = winrt::test_component::Simple::StaticEvent(winrt::auto_revoke, [](auto&&, auto&&) {});
     }
 }
+*/

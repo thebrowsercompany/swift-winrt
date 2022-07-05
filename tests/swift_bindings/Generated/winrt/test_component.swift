@@ -2,6 +2,93 @@
 
 import TestComponent_CWinRT
 
+extension Fruit {
+    public static var Banana : Fruit {
+        Fruit_Banana
+    }
+    public static var Apple : Fruit {
+        Fruit_Apple
+    }
+    public static var Orange : Fruit {
+        Fruit_Orange
+    }
+    public static var Pineapple : Fruit {
+        Fruit_Pineapple
+    }
+}
+
+extension Signed {
+    public static var First : Signed {
+        Signed_First
+    }
+    public static var Second : Signed {
+        Signed_Second
+    }
+    public static var Third : Signed {
+        Signed_Third
+    }
+}
+
+extension Unsigned {
+    public static var First : Unsigned {
+        Unsigned_First
+    }
+    public static var Second : Unsigned {
+        Unsigned_Second
+    }
+    public static var Third : Unsigned {
+        Unsigned_Third
+    }
+}
+
+public class Class: Equatable {
+    internal var interface: IClass
+
+    public init() {
+        try! interface = RoActivateInstance(HString("test_component.Class"))
+    }
+
+    internal init(_ fromInterface: IClass) {
+        interface = fromInterface
+    }
+
+    public func InInt32(_ value: Int32) -> String {
+        let result = try! interface.InInt32(value)
+        return .init(from: result) 
+    }
+
+    public func InString(_ value: String) -> String {
+        let _value = try! HString(value)
+        let result = try! interface.InString(_value.get())
+        return .init(from: result) 
+    }
+
+    public func InEnum(_ value: Signed) -> String {
+        let result = try! interface.InEnum(value)
+        return .init(from: result) 
+    }
+
+    public func ReturnEnum() -> Signed {
+        let result = try! interface.ReturnEnum()
+        return result 
+    }
+
+    public var EnumProperty : Fruit {
+        get {
+            let value = try! interface.get_EnumProperty()
+            return value
+        }
+
+        set {
+            try! interface.put_EnumProperty(newValue) 
+        }
+    }
+
+    public static func == (_ lhs: Class, _ rhs: Class) -> Bool {
+        return lhs.interface == rhs.interface
+    }
+}
+
 public class Simple: Equatable {
     internal var interface: ISimple
 

@@ -309,16 +309,7 @@ namespace swiftwinrt
             }
             else if (abi_types)
             {
-                auto category = get_category(type);
-
-                if (category == category::enum_type)
-                {
-                    write(type.FieldList().first.Signature().Type());
-                }
-                else
-                {
-                    write(mangled_name<false>(type, ns_prefix_state));
-                }
+                write(mangled_name<false>(type, ns_prefix_state));
             }
             else
             {

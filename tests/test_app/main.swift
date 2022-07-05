@@ -78,9 +78,35 @@ class SwiftWinRTTests {
 
     print("  ** Test passed! **")
   }
+
+  public func TestEnums()
+  {
+    print("  ** Starting test case:TestEnums **")
+    let classy = Class()
+
+    var enumVal = Signed.Second
+    let returned = classy.InEnum(enumVal);
+    assert(returned == "Second", "improper value returned")
+
+    enumVal = classy.ReturnEnum()
+    assert(enumVal == Signed.First, "improper value returned")
+
+    var enumProp = classy.EnumProperty
+    print("class has: ", enumProp)
+    assert(enumProp == Fruit.Banana, "fruit should be b-a-n-a-n-a-s")
+
+    print("setting enum to Apple")
+    classy.EnumProperty = Fruit.Apple
+    enumProp = classy.EnumProperty
+    print("an", enumProp, "a day keeps the bugs away")
+    assert(enumProp == Fruit.Apple, "fruit should be apple")
+    
+    print("  ** Test passed! **")
+  }
 }
 
 RoInitialize(RO_INIT_SINGLETHREADED)
 let tests = SwiftWinRTTests()
 tests.TestBlittableStruct()
-tests.TestNonBlittableStruct()  
+tests.TestNonBlittableStruct()
+tests.TestEnums()

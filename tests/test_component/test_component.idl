@@ -64,6 +64,14 @@ namespace test_component
             Third = 2
         };
 
+        enum Fruit
+        {
+            Banana,
+            Apple,
+            Orange,
+            Pineapple
+        };
+
         runtimeclass Simple
         {
             Simple();
@@ -100,9 +108,9 @@ namespace test_component
         //   Windows.Foundation.IReference<Int32> Property;
         //}
 
-        //runtimeclass Class
-        //{
-        //   Class();
+        runtimeclass Class
+        {
+           Class();
         //   Class(String name);
         //   static void StaticTest();
         //   static Int32 StaticTestReturn();
@@ -128,13 +136,13 @@ namespace test_component
 
         //   void Fail(Boolean value);
 
-        //   String InInt32(Int32 value);
-        //   String InString(String value);
-        //   String InObject(Object value);
-        //   String InStringable(Windows.Foundation.IStringable value);
-        //   String InStruct(Struct value);
-        //   String InStructRef(ref const Struct value);
-        //   String InEnum(Signed value);
+            String InInt32(Int32 value);
+            String InString(String value);
+        //    String InObject(Object value);
+        //    String InStringable(Windows.Foundation.IStringable value);
+        //    String InStruct(Struct value);
+        //    String InStructRef(ref const Struct value);
+            String InEnum(Signed value);
 
         //   void OutInt32(out Int32 value);
         //   void OutString(out String value);
@@ -148,7 +156,9 @@ namespace test_component
         //   Object ReturnObject();
         //   Windows.Foundation.IStringable ReturnStringable();
         //   Struct ReturnStruct();
-        //   Signed ReturnEnum();
+            Signed ReturnEnum();
+
+            Fruit EnumProperty;
 
         //   String InInt32Array(Int32[] value);
         //   String InStringArray(String[] value);
@@ -188,7 +198,7 @@ namespace test_component
         //   static Boolean TestNoMakeDetection();
         //   static Int32 StaticPropertyWithAsyncSetter;
         //   static void StaticMethodWithAsyncReturn();
-        //}
+        }
 
         //namespace Structs
         //

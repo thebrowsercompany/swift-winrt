@@ -99,8 +99,8 @@ install(TARGETS test_component
   COMPONENT lib)
 
 target_sources(test_component PRIVATE 
-    #Class.cpp
-    #Class.h
+    Class.cpp
+    Class.h
     module.cpp
     ${CPPWINRT_OUTPUT}
     #Optional.cpp

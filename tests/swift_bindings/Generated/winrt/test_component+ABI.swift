@@ -2,8 +2,57 @@
 
 import TestComponent_CWinRT
 
+private var IID___x_ABI_Ctest__component_CIClass: IID {
+    IID(Data1: 0x9328DE77, Data2: 0xC1D0, Data3: 0x5949, Data4: ( 0xA6,0xD4,0x1D,0xBA,0x14,0xBE,0xC2,0xE0 ))// 9328DE77-C1D0-5949-A6D4-1DBA14BEC2E0
+}
+
 private var IID___x_ABI_Ctest__component_CISimple: IID {
     IID(Data1: 0x86F19B35, Data2: 0x7712, Data3: 0x5667, Data4: ( 0xA6,0x2D,0xA8,0xB2,0x42,0x5A,0x2E,0x9B ))// 86F19B35-7712-5667-A62D-A8B2425A2E9B
+}
+
+open class IClass: IInspectable {
+    override public class var IID: IID { IID___x_ABI_Ctest__component_CIClass }
+
+    public func InInt32(_ value: INT32) throws -> HSTRING? {
+        var result: HSTRING?
+        _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.InInt32(pThis, value, &result))
+        }
+        return result
+    }
+    public func InString(_ value: HSTRING?) throws -> HSTRING? {
+        var result: HSTRING?
+        _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.InString(pThis, value, &result))
+        }
+        return result
+    }
+    public func InEnum(_ value: __x_ABI_Ctest__component_CSigned) throws -> HSTRING? {
+        var result: HSTRING?
+        _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.InEnum(pThis, value, &result))
+        }
+        return result
+    }
+    public func ReturnEnum() throws -> __x_ABI_Ctest__component_CSigned {
+        var result: __x_ABI_Ctest__component_CSigned = .init(0)
+        _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnEnum(pThis, &result))
+        }
+        return result
+    }
+    public func get_EnumProperty() throws -> __x_ABI_Ctest__component_CFruit {
+        var value: __x_ABI_Ctest__component_CFruit = .init(0)
+        _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_EnumProperty(pThis, &value))
+        }
+        return value
+    }
+    public func put_EnumProperty(_ value: __x_ABI_Ctest__component_CFruit) throws {
+        _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.put_EnumProperty(pThis, value))
+        }
+    }
 }
 
 open class ISimple: IInspectable {
@@ -103,3 +152,6 @@ class _ABI_NonBlittableStruct {
         WindowsDeleteString(val.Fourth)
     }
 }
+public typealias Fruit = __x_ABI_Ctest__component_CFruit
+public typealias Signed = __x_ABI_Ctest__component_CSigned
+public typealias Unsigned = __x_ABI_Ctest__component_CUnsigned

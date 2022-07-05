@@ -1,7 +1,6 @@
 ﻿#pragma once
 #include "Class.g.h"
-#include "DeferrableEventArgs.g.h"
-
+//#include "DeferrableEventArgs.g.h"
 namespace winrt::test_component::implementation
 {
     struct Class : ClassT<Class>
@@ -45,11 +44,11 @@ namespace winrt::test_component::implementation
 
         static hstring InIterable(Windows::Foundation::Collections::IIterable<hstring> const& value);
         static hstring InIterablePair(Windows::Foundation::Collections::IIterable<Windows::Foundation::Collections::IKeyValuePair<hstring, hstring>> const& value);
-        static Windows::Foundation::IAsyncOperation<hstring> InAsyncIterable(Windows::Foundation::Collections::IIterable<hstring> value);
-        static Windows::Foundation::IAsyncOperation<hstring> InAsyncIterablePair(Windows::Foundation::Collections::IIterable<Windows::Foundation::Collections::IKeyValuePair<hstring, hstring>> value);
+        // Windows::Foundation::IAsyncOperation<hstring> InAsyncIterable(Windows::Foundation::Collections::IIterable<hstring> value);
+        // Windows::Foundation::IAsyncOperation<hstring> InAsyncIterablePair(Windows::Foundation::Collections::IIterable<Windows::Foundation::Collections::IKeyValuePair<hstring, hstring>> value);
         static hstring InMap(Windows::Foundation::Collections::IMap<hstring, hstring> const& value);
         static hstring InMapView(Windows::Foundation::Collections::IMapView<hstring, hstring> const& value);
-        static Windows::Foundation::IAsyncOperation<hstring> InAsyncMapView(Windows::Foundation::Collections::IMapView<hstring, hstring> value);
+        //static Windows::Foundation::IAsyncOperation<hstring> InAsyncMapView(Windows::Foundation::Collections::IMapView<hstring, hstring> value);
         static hstring InVector(Windows::Foundation::Collections::IVector<hstring> const& value);
         static hstring InVectorView(Windows::Foundation::Collections::IVectorView<hstring> const& value);
         static Windows::Foundation::IAsyncOperation<hstring> InAsyncVectorView(Windows::Foundation::Collections::IVectorView<hstring> value);
@@ -58,59 +57,54 @@ namespace winrt::test_component::implementation
         hstring InString(hstring const& value);
         hstring InObject(Windows::Foundation::IInspectable const& value);
         hstring InStringable(Windows::Foundation::IStringable const& value);
-        hstring InStruct(Struct const& value);
-        hstring InStructRef(Struct const& value);
         hstring InEnum(Signed const& value);
 
         void OutInt32(int32_t& value);
         void OutString(hstring& value);
         void OutObject(Windows::Foundation::IInspectable& value);
         void OutStringable(Windows::Foundation::IStringable& value);
-        void OutStruct(Struct& value);
         void OutEnum(Signed& value);
 
         int32_t ReturnInt32();
         hstring ReturnString();
         Windows::Foundation::IInspectable ReturnObject();
         Windows::Foundation::IStringable ReturnStringable();
-        Struct ReturnStruct();
         Signed ReturnEnum();
 
         hstring InInt32Array(array_view<int32_t const> value);
         hstring InStringArray(array_view<hstring const> value);
         hstring InObjectArray(array_view<Windows::Foundation::IInspectable const> value);
         hstring InStringableArray(array_view<Windows::Foundation::IStringable const> value);
-        hstring InStructArray(array_view<Struct const> value);
         hstring InEnumArray(array_view<Signed const> value);
 
         void OutInt32Array(com_array<int32_t>& value);
         void OutStringArray(com_array<hstring>& value);
         void OutObjectArray(com_array<Windows::Foundation::IInspectable>& value);
         void OutStringableArray(com_array<Windows::Foundation::IStringable>& value);
-        void OutStructArray(com_array<Struct>& value);
         void OutEnumArray(com_array<Signed>& value);
 
         void RefInt32Array(array_view<int32_t> value);
         void RefStringArray(array_view<hstring> value);
         void RefObjectArray(array_view<Windows::Foundation::IInspectable> value);
         void RefStringableArray(array_view<Windows::Foundation::IStringable> value);
-        void RefStructArray(array_view<Struct> value);
         void RefEnumArray(array_view<Signed> value);
 
         com_array<int32_t> ReturnInt32Array();
         com_array<hstring> ReturnStringArray();
         com_array<Windows::Foundation::IInspectable> ReturnObjectArray();
         com_array<Windows::Foundation::IStringable> ReturnStringableArray();
-        com_array<Struct> ReturnStructArray();
         com_array<Signed> ReturnEnumArray();
 
+        Fruit EnumProperty() const { return m_fruit; }
+        void EnumProperty(Fruit const& value) { m_fruit = value; }
+        
         void NoexceptVoid() noexcept;
         int32_t NoexceptInt32() noexcept;
         hstring NoexceptString() noexcept;
 
-        event_token DeferrableEvent(Windows::Foundation::TypedEventHandler<test_component::Class, test_component::DeferrableEventArgs> const& handler);
-        void DeferrableEvent(event_token const& token);
-        Windows::Foundation::IAsyncOperation<int> RaiseDeferrableEventAsync();
+        //event_token DeferrableEvent(Windows::Foundation::TypedEventHandler<test_component::Class, test_component::DeferrableEventArgs> const& handler);
+        //void DeferrableEvent(event_token const& token);
+        //Windows::Foundation::IAsyncOperation<int> RaiseDeferrableEventAsync();
 
         static bool TestNoMakeDetection();
 
@@ -132,7 +126,7 @@ namespace winrt::test_component::implementation
     private:
 
         bool m_fail{};
-        event<Windows::Foundation::TypedEventHandler<test_component::Class, test_component::DeferrableEventArgs>> m_deferrableEvent;
+        //event<Windows::Foundation::TypedEventHandler<test_component::Class, test_component::DeferrableEventArgs>> m_deferrableEvent;
 
         template<typename T>
         static void simulate_rpc_behavior(array_view<T> const& value)
@@ -143,14 +137,18 @@ namespace winrt::test_component::implementation
                 throw hresult_error(static_cast<hresult>(0x800706f4)); // HRESULT_FROM_WIN32(RPC_X_NULL_REF_POINTER)
             }
         }
+
+        test_component::Fruit m_fruit{ test_component::Fruit::Banana };
     };
 
+    /*
     struct DeferrableEventArgs : DeferrableEventArgsT<DeferrableEventArgs>, deferrable_event_args<DeferrableEventArgs>
     {
         DeferrableEventArgs() = default;
         void IncrementCounter() { ++m_counter; }
         std::atomic<int> m_counter = 0;
     };
+    */
 
 }
 namespace winrt::test_component::factory_implementation
