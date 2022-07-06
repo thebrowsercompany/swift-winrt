@@ -103,6 +103,18 @@ class SwiftWinRTTests {
     
     print("  ** Test passed! **")
   }
+
+  public func TestCustomConstructors()
+  {
+      print("  ** Starting test case:TestCustomConstructors **")
+      var classy = Class("hello")
+      assert(classy.EnumProperty == Fruit.Banana, "fruit should be bananas")
+
+      classy = Class("world", Fruit.Pineapple)
+      assert(classy.EnumProperty == Fruit.Pineapple, "fruit should be Pineapple")
+
+      print("  ** Test passed! **")
+  }
 }
 
 RoInitialize(RO_INIT_SINGLETHREADED)
@@ -110,3 +122,4 @@ let tests = SwiftWinRTTests()
 tests.TestBlittableStruct()
 tests.TestNonBlittableStruct()
 tests.TestEnums()
+tests.TestCustomConstructors()

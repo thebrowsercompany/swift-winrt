@@ -6,6 +6,10 @@ private var IID___x_ABI_Ctest__component_CIClass: IID {
     IID(Data1: 0x9328DE77, Data2: 0xC1D0, Data3: 0x5949, Data4: ( 0xA6,0xD4,0x1D,0xBA,0x14,0xBE,0xC2,0xE0 ))// 9328DE77-C1D0-5949-A6D4-1DBA14BEC2E0
 }
 
+private var IID___x_ABI_Ctest__component_CIClassFactory: IID {
+    IID(Data1: 0x44D80DD3, Data2: 0x3375, Data3: 0x5BC4, Data4: ( 0xBB,0xF6,0xAE,0x61,0x3D,0xE0,0x19,0x70 ))// 44D80DD3-3375-5BC4-BBF6-AE613DE01970
+}
+
 private var IID___x_ABI_Ctest__component_CISimple: IID {
     IID(Data1: 0x86F19B35, Data2: 0x7712, Data3: 0x5667, Data4: ( 0xA6,0x2D,0xA8,0xB2,0x42,0x5A,0x2E,0x9B ))// 86F19B35-7712-5667-A62D-A8B2425A2E9B
 }
@@ -52,6 +56,25 @@ open class IClass: IInspectable {
         _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.put_EnumProperty(pThis, value))
         }
+    }
+}
+
+open class IClassFactory: IInspectable {
+    override public class var IID: IID { IID___x_ABI_Ctest__component_CIClassFactory }
+
+    public func CreateInstance(_ name: HSTRING?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>? {
+        var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>?
+        _ = try perform(as: __x_ABI_Ctest__component_CIClassFactory.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, name, &value))
+        }
+        return value
+    }
+    public func CreateInstance2(_ name: HSTRING?, _ fruit: __x_ABI_Ctest__component_CFruit) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>? {
+        var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>?
+        _ = try perform(as: __x_ABI_Ctest__component_CIClassFactory.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance2(pThis, name, fruit, &value))
+        }
+        return value
     }
 }
 

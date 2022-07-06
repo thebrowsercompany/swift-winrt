@@ -459,18 +459,6 @@ namespace swiftwinrt
         }
     }
 
-    static void write_consume_return_type(writer& w, method_signature const& signature, bool delegate_types)
-    {
-        if (!signature.return_signature())
-        {
-            return;
-        }
-
-        auto return_type = signature.return_signature().Type();
-
-        write_consume_type(w, return_type, signature.return_param_name());
-    }
-
     static void write_init_return_val(writer& w, RetTypeSig const& signature)
     {
         auto category = get_category(signature.Type());
@@ -781,25 +769,8 @@ bind<write_abi_args>(signature));
             return;
         }
 
-        auto category = get_category(signature.return_signature().Type());
-
-        if (category == param_category::array_type)
-        {
-            w.write("\n        return %{ %, %_impl_size, take_ownership_from_abi };",
-                signature.return_signature(),
-                signature.return_param_name(),
-                signature.return_param_name());
-        }
-        else if (category == param_category::object_type || category == param_category::string_type)
-        {
-            w.write("\n        return %{ %, take_ownership_from_abi };",
-                signature.return_signature(),
-                signature.return_param_name());
-        }
-        else
-        {
-            w.write("\n        return %;", signature.return_param_name());
-        }
+        auto return_type = signature.return_signature().Type();
+        w.write("return %", bind<write_consume_type>(return_type, signature.return_param_name()));
     }
 
     static void write_consume_args(writer& w, method_signature const& signature)
@@ -845,62 +816,6 @@ bind<write_abi_args>(signature));
                 w.write_each<write_interface_override_method>(info.type.MethodList(), name);
             }
         };
-    }
-
-
-    static void write_call_factory(writer& w, TypeDef const& type, TypeDef const& factory)
-    {
-        std::string factory_name;
-
-        if (type.TypeNamespace() == factory.TypeNamespace())
-        {
-            factory_name = factory.TypeName();
-        }
-        else
-        {
-            factory_name = w.write_temp("%", factory);
-        }
-
-        auto format = "impl::call_factory<%, %>([&](% const& f)";
-
-        w.write(format,
-            type.TypeName(),
-            factory_name,
-            factory_name);
-    }
-
-    static void write_class_override_constructors(writer& w, TypeDef const& type, std::map<std::string, factory_info> const& factories)
-    {
-        auto type_name = type.TypeName();
-
-        auto format = R"(        %T(%)
-        {
-            % { [[maybe_unused]] auto winrt_impl_discarded = f.%(%%*this, this->m_inner); });
-        }
-)";
-
-        for (auto&& [factory_name, factory] : factories)
-        {
-            if (!factory.composable)
-            {
-                continue;
-            }
-
-            for (auto&& method : factory.type.MethodList())
-            {
-                method_signature signature{ method };
-                auto& params = signature.params();
-                params.resize(params.size() - 2);
-
-                w.write(format,
-                    type_name,
-                    bind<write_consume_params>(signature),
-                    bind<write_call_factory>(type, factory.type),
-                    get_name(method),
-                    bind<write_consume_args>(signature),
-                    signature.params().empty() ? "" : ", ");
-            }
-        }
     }
 
 
@@ -969,52 +884,96 @@ bind<write_abi_args>(signature));
       
     }
 
-
-    static void write_class_requires(writer& w, TypeDef const& type)
+    static void write_factory_body(writer& w, MethodDef const& method, coded_index<TypeDefOrRef> const& default_interface)
     {
-        bool first{ true };
+        std::string_view funcName = method.Name();
+        method_signature signature{ method };
 
-        for (auto&& [interface_name, info] : get_interfaces(w, type))
+        auto return_sig = signature.return_signature();
+        /*
+        This code isn't ideal, but due to the difference in strings between Swift and WinRT
+        we need to allocate an HString on the stack so that the lifetime is properly handled.
+        If we pass the HString in directly to a function like this:
+               interface.load(HString(url).get()).
+        It doesn't work because the lifetime of the HString is shorter than the method
+        it's passed into and so the string is destroyed before the load method is called.
+
+         Also because the strings are different, we can't create something like an HStringReference,
+         because the underlying buffers are differnet, we have to allocate a new HString to hold the
+         memory.
+        */
+        indent extra_indent{ 0 };
+        for (auto&& [param, param_signature] : signature.params())
         {
-            if (!info.defaulted || info.base)
+            auto category = get_category(param_signature->Type());
+            if (category == param_category::string_type)
             {
-                if (first)
-                {
-                    first = false;
-                    w.write(",\n        impl::require<%", type.TypeName());
-                }
-
-                w.write(", %", interface_name);
+                w.write("let _% = try! HString(%)\n",
+                    param.Name(),
+                    param.Name());
+                extra_indent = { 1 };
+            }
+            else if (category == param_category::struct_type && !is_type_blittable(param_signature->Type()))
+            {
+                w.write("let _% = _ABI_%(from: %)\n",
+                    param.Name(),
+                    param_signature->Type(),
+                    param.Name());
+                extra_indent = { 1 };
             }
         }
 
-        if (!first)
-        {
-            w.write('>');
-        }
-    }
+        w.write("%let % = try! factory.%(",
+                extra_indent,
+                signature.return_param_name(),
+                funcName);
 
-    static void write_class_base(writer& w, TypeDef const& type)
-    {
-        bool first{ true };
 
-        for (auto&& base : get_bases(type))
+        separator s { w };
+        for (auto&& [param, param_signature] : signature.params())
         {
-            if (first)
+            s();
+            if (param.Flags().In())
             {
-                first = false;
-                w.write(",\n        impl::base<%", type.TypeName());
+                w.write("%",
+                    bind<write_convert_to_abi_arg>(param.Name(), param_signature->Type()));
             }
-
-            w.write(", %", base);
+            else
+            {
+                XLANG_ASSERT("**TODO: write_factory_body**");
+            }
         }
 
-        if (!first)
-        {
-            w.write('>');
-        }
+        w.write(")\n");
+
+        w.write("    interface = %(consuming: %)", default_interface, signature.return_param_name());
     }
 
+    static void write_factory_constructors(writer& w, TypeDef const& factory, TypeDef const& type, coded_index<TypeDefOrRef> const& default_interface)
+    {
+        if (factory)
+        {
+            auto guard = w.push_indent(indent{ 1 });
+
+            for (auto&& method : factory.MethodList())
+            {
+
+                method_signature signature{ method };
+                w.write(R"(public init(%) {
+    let factory: % = try! RoGetActivationFactory(HString("%"))
+    %
+}
+
+)", 
+                    bind<write_swift_params>(signature),
+                    factory,
+                    get_full_type_name(type),
+                    bind<write_factory_body>(method, default_interface)
+                    );
+            }
+        }
+        
+    }
 
     static void write_constructor_declarations(writer& w, TypeDef const& type)
     {
@@ -1035,12 +994,14 @@ get_full_type_name(type));
 )^-^",
 get_type_name(default_interface));
 
+            for (auto&& [interface_name, factory] : get_attributed_types(type))
+            {
+                if (factory.activatable)
+                {
+                    write_factory_constructors(w, factory.type, type, default_interface);
+                }
+            }
         }
-    }
-
-    static void write_constructor_definition(writer& w, MethodDef const& method, TypeDef const& type, TypeDef const& factory)
-    {
-
     }
 
     static void write_class_definitions(writer& w, TypeDef const& type)
@@ -1106,31 +1067,26 @@ get_type_name(default_interface));
                 funcName);
         }
 
-        std::string_view prefix = ""sv;
-
+        separator s { w };
         for (auto&& [param, param_signature] : signature.params())
         {
+            s();
             if (param.Flags().In())
             {
-                w.write("%%",
-                    prefix,
+                w.write("%",
                     bind<write_convert_to_abi_arg>(param.Name(), param_signature->Type()));
             }
             else
             {
                 XLANG_ASSERT("**TODO: write_class_func_body**");
             }
-
-            prefix = ", ";
-
         }
 
         w.write(")");
 
         if (return_sig)
         {
-            w.write(R"(
-    return % )", bind<write_consume_return_type>(signature, false));
+            w.write("\n    %", bind<write_consume_return_statement>(signature));
         }
     }
 
@@ -1147,7 +1103,7 @@ get_type_name(default_interface));
         {
             auto format = R"(get {
     let value = try! interface.%()
-    return %
+    %
 }
 
 )";
@@ -1155,7 +1111,7 @@ get_type_name(default_interface));
             method_signature signature{ getter };
             w.write(format,
                 getter.Name(),
-                bind<write_consume_return_type>(signature, false));
+                bind<write_consume_return_statement>(signature));
         }
 
         if (setter)

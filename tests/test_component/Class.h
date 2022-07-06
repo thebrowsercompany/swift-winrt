@@ -7,6 +7,7 @@ namespace winrt::test_component::implementation
     {
         Class() = default;
         Class(hstring const&) {}
+        Class(hstring const&, Fruit const& fruit) : m_fruit(fruit){}
 
         static void StaticTest()
         {

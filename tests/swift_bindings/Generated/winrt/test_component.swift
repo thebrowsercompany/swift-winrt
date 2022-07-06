@@ -52,25 +52,39 @@ public class Class: Equatable {
         interface = fromInterface
     }
 
+    public init(_ name: String) {
+        let factory: IClassFactory = try! RoGetActivationFactory(HString("test_component.Class"))
+        let _name = try! HString(name)
+        let value = try! factory.CreateInstance(_name.get())
+        interface = IClass(consuming: value)
+    }
+
+    public init(_ name: String, _ fruit: Fruit) {
+        let factory: IClassFactory = try! RoGetActivationFactory(HString("test_component.Class"))
+        let _name = try! HString(name)
+        let value = try! factory.CreateInstance2(_name.get(), fruit)
+        interface = IClass(consuming: value)
+    }
+
     public func InInt32(_ value: Int32) -> String {
         let result = try! interface.InInt32(value)
-        return .init(from: result) 
+        return .init(from: result)
     }
 
     public func InString(_ value: String) -> String {
         let _value = try! HString(value)
         let result = try! interface.InString(_value.get())
-        return .init(from: result) 
+        return .init(from: result)
     }
 
     public func InEnum(_ value: Signed) -> String {
         let result = try! interface.InEnum(value)
-        return .init(from: result) 
+        return .init(from: result)
     }
 
     public func ReturnEnum() -> Signed {
         let result = try! interface.ReturnEnum()
-        return result 
+        return result
     }
 
     public var EnumProperty : Fruit {
@@ -106,7 +120,7 @@ public class Simple: Equatable {
 
     public func ReturnBlittableStruct() -> BlittableStruct {
         let result = try! interface.ReturnBlittableStruct()
-        return unsafeBitCast(result, to: BlittableStruct.self) 
+        return unsafeBitCast(result, to: BlittableStruct.self)
     }
 
     public func TakeBlittableStruct(_ value: BlittableStruct) {
@@ -115,7 +129,7 @@ public class Simple: Equatable {
 
     public func ReturnNonBlittableStruct() -> NonBlittableStruct {
         let result = try! interface.ReturnNonBlittableStruct()
-        return .init(from: result) 
+        return .init(from: result)
     }
 
     public func TakeNonBlittableStruct(_ value: NonBlittableStruct) {

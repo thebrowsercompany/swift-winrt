@@ -111,7 +111,8 @@ namespace test_component
         runtimeclass Class
         {
            Class();
-        //   Class(String name);
+           Class(String name);
+           Class(String name, Fruit fruit);
         //   static void StaticTest();
         //   static Int32 StaticTestReturn();
         //   static Int32 StaticProperty{ get; };
