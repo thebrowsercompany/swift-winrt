@@ -14,5 +14,9 @@
             name="test_component.Optional"
             threadingModel="both"
             xmlns="urn:schemas-microsoft-com:winrt.v1" />
+		<activatableClass
+            name="test_component.StaticClass"
+            threadingModel="both"
+            xmlns="urn:schemas-microsoft-com:winrt.v1" />
 	</file>
 </assembly>

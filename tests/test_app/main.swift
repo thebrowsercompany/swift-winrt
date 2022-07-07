@@ -115,6 +115,40 @@ class SwiftWinRTTests {
 
       print("  ** Test passed! **")
   }
+
+  public func TestStaticMethods()
+  {
+      print("  ** Starting test case:TestStaticMethods **")
+      Class.StaticTest()
+
+      var result = Class.StaticTestReturn()
+      print("result: ", result);
+      assert(result == 42);
+
+      result = Class.StaticProperty
+      print("result: ", result);
+      assert(result == 18);
+
+      print("calling static class methods")
+      let output = StaticClass.InEnum(Signed.First)
+      print("result: ", output)
+      assert(output == "First")
+
+      let fruit = StaticClass.EnumProperty
+      print("result: ", fruit)
+      assert(fruit == Fruit.Orange, "expected Orange!")
+
+      StaticClass.EnumProperty = Fruit.Banana
+      assert(StaticClass.EnumProperty == Fruit.Banana, "expected Banana!")
+
+      let putNonBlittableStruct = NonBlittableStruct(First: "From", Second: "Swift!", Third: 1, Fourth: "Yay!")
+
+      let putStructResult = StaticClass.InNonBlittableStruct(putNonBlittableStruct)
+      print("result: ", putStructResult)
+      assert(putStructResult == "FromSwift!Yay!")
+
+      print("  ** Test passed! **")
+  }
 }
 
 RoInitialize(RO_INIT_SINGLETHREADED)
@@ -123,3 +157,4 @@ tests.TestBlittableStruct()
 tests.TestNonBlittableStruct()
 tests.TestEnums()
 tests.TestCustomConstructors()
+tests.TestStaticMethods()

@@ -15,12 +15,12 @@ namespace winrt::test_component::implementation
 
         static int32_t StaticTestReturn()
         {
-            return 0;
+            return 42;
         }
 
         static int32_t StaticProperty()
         {
-            return 0;
+            return 18;
         }
 
         void Fail(bool fail)

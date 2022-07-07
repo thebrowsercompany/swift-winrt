@@ -98,7 +98,9 @@ install(TARGETS test_component
   RUNTIME DESTINATION bin
   COMPONENT lib)
 
-target_sources(test_component PRIVATE 
+target_sources(test_component PRIVATE
+    StaticClass.cpp
+    StaticClass.h
     Class.cpp
     Class.h
     module.cpp

@@ -113,9 +113,9 @@ namespace test_component
            Class();
            Class(String name);
            Class(String name, Fruit fruit);
-        //   static void StaticTest();
-        //   static Int32 StaticTestReturn();
-        //   static Int32 StaticProperty{ get; };
+           static void StaticTest();
+           static Int32 StaticTestReturn();
+           static Int32 StaticProperty{ get; };
 
         //   Class(Windows.Foundation.Collections.IIterable<String> arg, Int32 dummy1);
         //   Class(Windows.Foundation.Collections.IIterable<Windows.Foundation.Collections.IKeyValuePair<String, String> > arg, Int32 dummy1, Int32 dummy2);
@@ -200,7 +200,13 @@ namespace test_component
         //   static Int32 StaticPropertyWithAsyncSetter;
         //   static void StaticMethodWithAsyncReturn();
         }
-
+        
+        static runtimeclass StaticClass
+        {
+            static Fruit EnumProperty;
+            static String InEnum(Signed value);
+            static String InNonBlittableStruct(NonBlittableStruct value);
+        }
         //namespace Structs
         //
         //   struct All

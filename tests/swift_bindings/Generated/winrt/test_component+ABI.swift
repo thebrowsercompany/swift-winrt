@@ -10,8 +10,16 @@ private var IID___x_ABI_Ctest__component_CIClassFactory: IID {
     IID(Data1: 0x44D80DD3, Data2: 0x3375, Data3: 0x5BC4, Data4: ( 0xBB,0xF6,0xAE,0x61,0x3D,0xE0,0x19,0x70 ))// 44D80DD3-3375-5BC4-BBF6-AE613DE01970
 }
 
+private var IID___x_ABI_Ctest__component_CIClassStatics: IID {
+    IID(Data1: 0x2E573677, Data2: 0xD7B8, Data3: 0x5305, Data4: ( 0x8F,0x9D,0x1B,0x23,0x15,0xE3,0x77,0x8B ))// 2E573677-D7B8-5305-8F9D-1B2315E3778B
+}
+
 private var IID___x_ABI_Ctest__component_CISimple: IID {
     IID(Data1: 0x86F19B35, Data2: 0x7712, Data3: 0x5667, Data4: ( 0xA6,0x2D,0xA8,0xB2,0x42,0x5A,0x2E,0x9B ))// 86F19B35-7712-5667-A62D-A8B2425A2E9B
+}
+
+private var IID___x_ABI_Ctest__component_CIStaticClassStatics: IID {
+    IID(Data1: 0xC983253D, Data2: 0x876D, Data3: 0x55EE, Data4: ( 0x82,0x4B,0x01,0x24,0x6E,0xDC,0x61,0x2D ))// C983253D-876D-55EE-824B-01246EDC612D
 }
 
 open class IClass: IInspectable {
@@ -73,6 +81,30 @@ open class IClassFactory: IInspectable {
         var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>?
         _ = try perform(as: __x_ABI_Ctest__component_CIClassFactory.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance2(pThis, name, fruit, &value))
+        }
+        return value
+    }
+}
+
+open class IClassStatics: IInspectable {
+    override public class var IID: IID { IID___x_ABI_Ctest__component_CIClassStatics }
+
+    public func StaticTest() throws {
+        _ = try perform(as: __x_ABI_Ctest__component_CIClassStatics.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.StaticTest(pThis))
+        }
+    }
+    public func StaticTestReturn() throws -> INT32 {
+        var result: INT32 = 0
+        _ = try perform(as: __x_ABI_Ctest__component_CIClassStatics.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.StaticTestReturn(pThis, &result))
+        }
+        return result
+    }
+    public func get_StaticProperty() throws -> INT32 {
+        var value: INT32 = 0
+        _ = try perform(as: __x_ABI_Ctest__component_CIClassStatics.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_StaticProperty(pThis, &value))
         }
         return value
     }
@@ -145,6 +177,37 @@ open class ISimple: IInspectable {
         _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.put_StringProperty(pThis, value))
         }
+    }
+}
+
+open class IStaticClassStatics: IInspectable {
+    override public class var IID: IID { IID___x_ABI_Ctest__component_CIStaticClassStatics }
+
+    public func get_EnumProperty() throws -> __x_ABI_Ctest__component_CFruit {
+        var value: __x_ABI_Ctest__component_CFruit = .init(0)
+        _ = try perform(as: __x_ABI_Ctest__component_CIStaticClassStatics.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_EnumProperty(pThis, &value))
+        }
+        return value
+    }
+    public func put_EnumProperty(_ value: __x_ABI_Ctest__component_CFruit) throws {
+        _ = try perform(as: __x_ABI_Ctest__component_CIStaticClassStatics.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.put_EnumProperty(pThis, value))
+        }
+    }
+    public func InEnum(_ value: __x_ABI_Ctest__component_CSigned) throws -> HSTRING? {
+        var result: HSTRING?
+        _ = try perform(as: __x_ABI_Ctest__component_CIStaticClassStatics.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.InEnum(pThis, value, &result))
+        }
+        return result
+    }
+    public func InNonBlittableStruct(_ value: __x_ABI_Ctest__component_CNonBlittableStruct) throws -> HSTRING? {
+        var result: HSTRING?
+        _ = try perform(as: __x_ABI_Ctest__component_CIStaticClassStatics.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.InNonBlittableStruct(pThis, value, &result))
+        }
+        return result
     }
 }
 

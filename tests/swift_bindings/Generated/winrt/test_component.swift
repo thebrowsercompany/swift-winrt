@@ -66,6 +66,24 @@ public class Class: Equatable {
         interface = IClass(consuming: value)
     }
 
+    private static let statics: IClassStatics = try! RoGetActivationFactory(HString("test_component.Class"))
+    public static func StaticTest() {
+        try! statics.StaticTest()
+    }
+
+    public static func StaticTestReturn() -> Int32 {
+        let result = try! statics.StaticTestReturn()
+        return result
+    }
+
+    public static var StaticProperty : Int32 {
+        get {
+            let value = try! statics.get_StaticProperty()
+            return value
+        }
+
+    }
+
     public func InInt32(_ value: Int32) -> String {
         let result = try! interface.InInt32(value)
         return .init(from: result)
@@ -175,6 +193,32 @@ public class Simple: Equatable {
     public static func == (_ lhs: Simple, _ rhs: Simple) -> Bool {
         return lhs.interface == rhs.interface
     }
+}
+
+public class StaticClass {
+    private static let statics: IStaticClassStatics = try! RoGetActivationFactory(HString("test_component.StaticClass"))
+    public static func InEnum(_ value: Signed) -> String {
+        let result = try! statics.InEnum(value)
+        return .init(from: result)
+    }
+
+    public static func InNonBlittableStruct(_ value: NonBlittableStruct) -> String {
+        let _value = _ABI_NonBlittableStruct(from: value)
+        let result = try! statics.InNonBlittableStruct(_value.val)
+        return .init(from: result)
+    }
+
+    public static var EnumProperty : Fruit {
+        get {
+            let value = try! statics.get_EnumProperty()
+            return value
+        }
+
+        set {
+            try! statics.put_EnumProperty(newValue) 
+        }
+    }
+
 }
 
 public struct BlittableStruct {

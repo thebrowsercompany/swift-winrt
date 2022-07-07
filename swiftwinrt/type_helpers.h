@@ -451,4 +451,13 @@ namespace swiftwinrt
         return result;
     }
 
+    bool is_static(TypeDef const& type)
+    {
+        return get_category(type) == category::class_type && type.Flags().Abstract();
+    }
+
+    bool is_static(MethodDef const& method)
+    {
+        return method.Flags().Static();
+    }
 }
