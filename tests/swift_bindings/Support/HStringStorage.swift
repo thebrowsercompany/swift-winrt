@@ -15,6 +15,7 @@ final public class HStringStorage {
     self.hString = hString
   }
 
+  public init() { }
   public init(_ buffer: UnsafeBufferPointer<WCHAR>?) throws {
     try CHECKED(WindowsCreateString(buffer?.baseAddress ?? nil,
                                     UINT32(buffer?.count ?? 0),

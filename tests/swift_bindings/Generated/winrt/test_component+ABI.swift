@@ -3,7 +3,7 @@
 import TestComponent_CWinRT
 
 private var IID___x_ABI_Ctest__component_CIClass: IID {
-    IID(Data1: 0x9328DE77, Data2: 0xC1D0, Data3: 0x5949, Data4: ( 0xA6,0xD4,0x1D,0xBA,0x14,0xBE,0xC2,0xE0 ))// 9328DE77-C1D0-5949-A6D4-1DBA14BEC2E0
+    IID(Data1: 0x0196B36C, Data2: 0x5E3E, Data3: 0x5D86, Data4: ( 0xA7,0x00,0xCC,0xE7,0x83,0x37,0x5E,0x1F ))// 0196B36C-5E3E-5D86-A700-CCE783375E1F
 }
 
 private var IID___x_ABI_Ctest__component_CIClassFactory: IID {
@@ -45,6 +45,31 @@ open class IClass: IInspectable {
             try CHECKED(pThis.pointee.lpVtbl.pointee.InEnum(pThis, value, &result))
         }
         return result
+    }
+    public func OutInt32(_ value: inout INT32) throws {
+        _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.OutInt32(pThis, &value))
+        }
+    }
+    public func OutString(_ value: inout HSTRING?) throws {
+        _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.OutString(pThis, &value))
+        }
+    }
+    public func OutBlittableStruct(_ value: inout __x_ABI_Ctest__component_CBlittableStruct) throws {
+        _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.OutBlittableStruct(pThis, &value))
+        }
+    }
+    public func OutNonBlittableStruct(_ value: inout __x_ABI_Ctest__component_CNonBlittableStruct) throws {
+        _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.OutNonBlittableStruct(pThis, &value))
+        }
+    }
+    public func OutEnum(_ value: inout __x_ABI_Ctest__component_CSigned) throws {
+        _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.OutEnum(pThis, &value))
+        }
     }
     public func ReturnEnum() throws -> __x_ABI_Ctest__component_CSigned {
         var result: __x_ABI_Ctest__component_CSigned = .init(0)
@@ -213,6 +238,7 @@ open class IStaticClassStatics: IInspectable {
 
 class _ABI_NonBlittableBoolStruct {
     internal var val: __x_ABI_Ctest__component_CNonBlittableBoolStruct = .init()
+    internal init() { } 
     internal init(from swift: NonBlittableBoolStruct) {
         val.First = .init(from: swift.First)
         val.Second = .init(from: swift.Second)
@@ -225,6 +251,7 @@ class _ABI_NonBlittableBoolStruct {
 }
 class _ABI_NonBlittableStruct {
     internal var val: __x_ABI_Ctest__component_CNonBlittableStruct = .init()
+    internal init() { } 
     internal init(from swift: NonBlittableStruct) {
         val.First = try! HString(swift.First).detach()
         val.Second = try! HString(swift.Second).detach()

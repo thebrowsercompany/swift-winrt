@@ -65,6 +65,8 @@ namespace winrt::test_component::implementation
         void OutObject(Windows::Foundation::IInspectable& value);
         void OutStringable(Windows::Foundation::IStringable& value);
         void OutEnum(Signed& value);
+        void OutBlittableStruct(BlittableStruct& value);
+        void OutNonBlittableStruct(NonBlittableStruct& value);
 
         int32_t ReturnInt32();
         hstring ReturnString();

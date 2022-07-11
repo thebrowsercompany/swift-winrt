@@ -45,8 +45,8 @@ class SwiftWinRTTests {
 
     let simple = Simple()
     var nonBlittableStruct = simple.ReturnNonBlittableStruct()
-    print("first:", nonBlittableStruct.First)
-    print("second: ", nonBlittableStruct.Second)
+    print("first:", nonBlittableStruct.First!)
+    print("second: ", nonBlittableStruct.Second!)
 
     assert(nonBlittableStruct.First == "Hello", "not copied correctly")
     assert(nonBlittableStruct.Second == "World", "not copied correctly")
@@ -57,8 +57,8 @@ class SwiftWinRTTests {
     simple.TakeNonBlittableStruct(putNonBlittableStruct)
 
     nonBlittableStruct = simple.NonBlittableStructProperty
-    print("first:", nonBlittableStruct.First)
-    print("second: ", nonBlittableStruct.Second)
+    print("first:", nonBlittableStruct.First!)
+    print("second: ", nonBlittableStruct.Second!)
 
     assert(nonBlittableStruct.First == "", "not copied correctly")
     assert(nonBlittableStruct.Second == "", "not copied correctly")
@@ -66,10 +66,10 @@ class SwiftWinRTTests {
     simple.NonBlittableStructProperty = putNonBlittableStruct
 
     nonBlittableStruct = simple.NonBlittableStructProperty
-    print("first:", nonBlittableStruct.First)
-    print("second: ", nonBlittableStruct.Second)
+    print("first:", nonBlittableStruct.First!)
+    print("second: ", nonBlittableStruct.Second!)
     print("third:", nonBlittableStruct.Third)
-    print("fourth: ", nonBlittableStruct.Fourth)
+    print("fourth: ", nonBlittableStruct.Fourth!)
 
     assert(nonBlittableStruct.First == "From", "not copied correctly")
     assert(nonBlittableStruct.Second == "Swift!", "not copied correctly")
@@ -96,7 +96,7 @@ class SwiftWinRTTests {
     assert(enumProp == Fruit.Banana, "fruit should be b-a-n-a-n-a-s")
 
     print("setting enum to Apple")
-    classy.EnumProperty = Fruit.Apple
+    classy.EnumProperty = .Apple
     enumProp = classy.EnumProperty
     print("an", enumProp, "a day keeps the bugs away")
     assert(enumProp == Fruit.Apple, "fruit should be apple")
@@ -149,6 +149,49 @@ class SwiftWinRTTests {
 
       print("  ** Test passed! **")
   }
+
+  public func TestOutParams()
+  {
+      print("  ** Starting test case:TestOutParams **")
+
+      let classy = Class()
+      
+      print(">> testing OutInt32")
+      var outInt: Int32 = 0
+      classy.OutInt32(&outInt)
+      print("     result: ", outInt)
+      assert(outInt == 123)
+
+      print(">> testing OutString")
+      var outString: String? 
+      classy.OutString(&outString)
+      print("     result: ", outString!)
+      assert(outString == "123")
+
+      print(">> testing OutEnum")
+      var outEnum: Signed = .Second
+      classy.OutEnum(&outEnum)
+      print("     result: ", outEnum)
+      assert(outEnum == .First)
+
+      print(">> testing OutBlittableStruct")
+      var outBlittableStruct = BlittableStruct()
+      classy.OutBlittableStruct(&outBlittableStruct)
+      print("     result: ", outBlittableStruct)
+      assert(outBlittableStruct.First == 867)
+      assert(outBlittableStruct.Second == 5309)
+
+      print(">> testing OutNonBlittableStruct")
+      var outNonBlittableStruct: NonBlittableStruct = .init()
+      classy.OutNonBlittableStruct(&outNonBlittableStruct)
+      print("     result: ", outNonBlittableStruct)
+      assert(outNonBlittableStruct.First == "please")
+      assert(outNonBlittableStruct.Second == "vote")
+      assert(outNonBlittableStruct.Third == 4)
+      assert(outNonBlittableStruct.Fourth == "pedro")
+      
+      print("  ** Test passed! **")
+  }
 }
 
 RoInitialize(RO_INIT_SINGLETHREADED)
@@ -158,3 +201,4 @@ tests.TestNonBlittableStruct()
 tests.TestEnums()
 tests.TestCustomConstructors()
 tests.TestStaticMethods()
+tests.TestOutParams()

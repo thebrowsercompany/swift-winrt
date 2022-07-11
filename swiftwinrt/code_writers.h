@@ -265,7 +265,26 @@ namespace swiftwinrt
         }
         else
         {
-            w.write("%*", type);
+            auto category = get_category(type);
+            if (category == param_category::object_type)
+            {
+                if (auto default_interface = get_default_interface(type))
+                {
+                    w.write("_ %: inout UnsafeMutablePointer<%>?", param.Name(), default_interface);
+                }
+                else
+                {
+                    w.write("_ %: inout UnsafeMutablePointer<%>?", param.Name(), type);
+                }
+            }
+            else if (category == param_category::string_type)
+            {
+                w.write("_ %: inout %?", param.Name(), type);
+            }
+            else
+            {
+                w.write("_ %: inout %", param.Name(), type);
+            }
         }
     }
 
@@ -317,7 +336,15 @@ namespace swiftwinrt
         }
         else
         {
-            w.write("inout %: %", param_name, type);
+            auto category = get_category(type);
+            if (category == param_category::string_type)
+            {
+                w.write("_ %: inout %?", param_name, type);
+            }
+            else
+            {
+                w.write("_ %: inout %", param_name, type);
+            }
         }
     }
 
@@ -361,7 +388,27 @@ namespace swiftwinrt
             }
             else
             {
-                XLANG_ASSERT("**TODO: write_class_func_body**");
+                auto category = get_category(param_signature->Type());
+                bool is_blittable = is_type_blittable(param_signature->Type());
+                if (category == param_category::struct_type)
+                {
+                    if (is_blittable)
+                    {
+                        w.write("&_%", param.Name());
+                    }
+                    else
+                    {
+                        w.write("&_%.val", param.Name());
+                    }
+                }
+                else if (is_blittable)
+                {
+                    w.write("&%", param.Name());
+                }
+                else
+                {
+                    w.write("&_%", param.Name());
+                }
             }
         }
     }
@@ -376,7 +423,14 @@ namespace swiftwinrt
         for (auto&& [param, param_signature] : method_signature.params())
         {
             s();
-            w.write(param.Name());
+            if (param.Flags().In())
+            {
+                w.write(param.Name());
+            }
+            else
+            {
+                w.write("&%", param.Name());
+            }
         }
 
         if (method_signature.return_signature())
@@ -625,6 +679,8 @@ bind<write_abi_args>(signature));
         {
             auto push_indent = w.push_indent({ 1 });
             w.write("internal var val: % = .init()\n", bind<write_type_abi>(type));
+            w.write("internal init() { } \n");
+
             w.write("internal init(from swift: %) {\n", type);
             {
                 auto push_abi = w.push_abi_types(true);
@@ -843,9 +899,8 @@ bind<write_abi_args>(signature));
       
     }
 
-    static void write_local_param_wrappers(writer& w, method_signature const& signature)
+    static write_scope_guard<writer> write_local_param_wrappers(writer& w, method_signature const& signature)
     {
-        
          // This code isn't ideal, but due to the difference in strings between Swift and WinRT
          // we need to allocate an HString on the stack so that the lifetime is properly handled.
          // If we pass the HString in directly to a function like this:
@@ -857,29 +912,69 @@ bind<write_abi_args>(signature));
          //  because the underlying buffers are differnet, we have to allocate a new HString to hold the
          //  memory.
         
+        write_scope_guard guard{ w };
+
         for (auto&& [param, param_signature] : signature.params())
         {
-            auto category = get_category(param_signature->Type());
-            if (category == param_category::string_type)
+            TypeDef signature_type{};
+            auto category = get_category(param_signature->Type(), &signature_type);
+
+            if (param.Flags().In())
             {
-                w.write("let _% = try! HString(%)\n",
-                    param.Name(),
-                    param.Name());
+                if (category == param_category::string_type)
+                {
+                    w.write("let _% = try! HString(%)\n",
+                        param.Name(),
+                        param.Name());
+                }
+                else if (category == param_category::struct_type && !is_type_blittable(param_signature->Type()))
+                {
+                    w.write("let _% = _ABI_%(from: %)\n",
+                        param.Name(),
+                        param_signature->Type(),
+                        param.Name());
+                }
             }
-            else if (category == param_category::struct_type && !is_type_blittable(param_signature->Type()))
+            else
             {
-                w.write("let _% = _ABI_%(from: %)\n",
-                    param.Name(),
-                    param_signature->Type(),
-                    param.Name());
+                if (category == param_category::string_type)
+                {
+                    w.write("var _%: HSTRING?\n",
+                        param.Name());
+                    guard.push("% = .init(from: _%)\n",
+                        param.Name(),
+                        param.Name());
+                    guard.push("WindowsDeleteString(_%)\n", param.Name());
+                }
+                else if (category == param_category::struct_type && is_type_blittable(param_signature->Type()))
+                {
+                    w.write("var _%: % = .init()\n",
+                        param.Name(),
+                        bind<write_type_abi>(signature_type));
+                    guard.push("% = unsafeBitCast(_%, to: %.self)\n",
+                        param.Name(),
+                        param.Name(),
+                        signature_type);
+                }
+                else if (category == param_category::struct_type)
+                {
+                    w.write("var _%: _ABI_% = .init()\n",
+                        param.Name(),
+                        param_signature->Type());
+                    guard.push("% = .init(from: _%.val)\n",
+                        param.Name(),
+                        param.Name());
+                }
             }
         }
+
+        return guard;
     }
 
 
     static void write_factory_body(writer& w, MethodDef const& method, TypeDef const& factory, TypeDef const& type, coded_index<TypeDefOrRef> const& default_interface)
     {
-        auto guard = w.push_indent(indent{ 1 });
+        auto indent_guard = w.push_indent(indent{ 1 });
 
         std::string_view func_name = method.Name();
         method_signature signature{ method };
@@ -889,14 +984,14 @@ bind<write_abi_args>(signature));
 factory,
 get_full_type_name(type));
 
-        write_local_param_wrappers(w, signature);
+        auto guard = write_local_param_wrappers(w, signature);
 
         w.write("let % = try! factory.%(%)\n",
                 signature.return_param_name(),
                 func_name,
                 bind<write_implementation_args>(signature));
 
-        w.write("interface = %(consuming: %)", default_interface, signature.return_param_name());
+        w.write("interface = %(consuming: %)\n", default_interface, signature.return_param_name());
     }
 
     static void write_factory_constructors(writer& w, TypeDef const& factory, TypeDef const& type, coded_index<TypeDefOrRef> const& default_interface)
@@ -910,8 +1005,7 @@ get_full_type_name(type));
 
                 method_signature signature{ method };
                 w.write(R"(public init(%) {
-%
-}
+%}
 
 )", 
                     bind<write_swift_params>(signature),
@@ -953,32 +1047,32 @@ get_type_name(default_interface));
 
     static void write_class_func_body(writer& w, winmd::reader::MethodDef method)
     {
-        auto guard = w.push_indent(indent{ 1 });
+        auto indent_guard = w.push_indent(indent{ 1 });
 
         std::string_view func_name = method.Name();
         method_signature signature{ method };
 
         auto return_sig = signature.return_signature();
 
-        write_local_param_wrappers(w, signature);
+        auto guard = write_local_param_wrappers(w, signature);
 
         if (return_sig)
         {
-            w.write("let % = try! interface.%(%)",
+            w.write("let % = try! interface.%(%)\n",
                 signature.return_param_name(),
                 func_name,
                 bind<write_implementation_args>(signature));
         }
         else
         {
-            w.write("try! interface.%(%)",
+            w.write("try! interface.%(%)\n",
                 func_name,
                 bind<write_implementation_args>(signature));
         }
 
         if (return_sig)
         {
-            w.write("\n%", bind<write_consume_return_statement>(signature));
+            w.write("%\n", bind<write_consume_return_statement>(signature));
         }
     }
 
@@ -1050,8 +1144,7 @@ get_type_name(default_interface));
         }
 
         auto format = R"(public func %(%) %{
-%
-}
+%}
 
 )";
         method_signature signature{ method };
@@ -1075,32 +1168,32 @@ get_type_name(default_interface));
 
     static void write_statics_body(writer& w, MethodDef const& method, TypeDef const& statics, TypeDef const& type)
     {
-        auto guard = w.push_indent(indent{ 1 });
+        auto indent_guard = w.push_indent(indent{ 1 });
 
         std::string_view func_name = method.Name();
         method_signature signature{ method };
 
         auto return_sig = signature.return_signature();
 
-        write_local_param_wrappers(w, signature);
+        auto guard = write_local_param_wrappers(w, signature);
 
         if (return_sig)
         {
-            w.write("let % = try! statics.%(%)",
+            w.write("let % = try! statics.%(%)\n",
                 signature.return_param_name(),
                 func_name,
                 bind<write_implementation_args>(signature));
         }
         else
         {
-            w.write("try! statics.%(%)",
+            w.write("try! statics.%(%)\n",
                 func_name,
                 bind<write_implementation_args>(signature));
         }
 
         if (return_sig)
         {
-            w.write("\n%", bind<write_consume_return_statement>(signature));
+            w.write("%\n", bind<write_consume_return_statement>(signature));
         }
     }
 
@@ -1122,8 +1215,7 @@ get_type_name(default_interface));
 
                 method_signature signature{ method };
                 w.write(R"(public static func %(%) %{
-%
-}
+%}
 
 )", method.Name(),
 bind<write_swift_params>(signature),
@@ -1238,7 +1330,7 @@ bind<write_statics_body>(method, statics, type)
                 auto category = get_category(field_type);
                 if (category == param_category::object_type || category == param_category::string_type)
                 {
-                    auto format = "public let %: %\n";
+                    auto format = "public var %: %? = nil\n";
                     w.write(format, field.Name(), field_type);
                 }
                 else if (category == param_category::struct_type)
@@ -1246,15 +1338,23 @@ bind<write_statics_body>(method, statics, type)
                     auto format = "public var %: % = .init()\n";
                     w.write(format, field.Name(), field_type);
                 }
-                else
+                else if (is_boolean(field_type))
                 {
-                    auto format = "public var %: %\n";
+                    auto format = "public var %: % = false\n";
                     w.write(format,
                         field.Name(),
                         field_type);
                 }
+                else
+                {
+                    auto format = "public var %: % = %\n";
+                    w.write(format,
+                        field.Name(),
+                        field_type, is_floating_point(field_type) ? "0.0" :  "0");
+                }
             }
 
+            w.write("public init() {}\n");
             w.write("public init(%) {\n", bind<write_struct_initializer_params>(type));
             {
                 auto indent = w.push_indent({ 1 });

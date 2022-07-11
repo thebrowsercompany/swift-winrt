@@ -164,6 +164,16 @@ namespace winrt::test_component::implementation
         value = Signed::First;
     }
 
+    void Class::OutBlittableStruct(test_component::BlittableStruct& value)
+    {
+        value = { 867, 5309 };
+    }
+
+    void Class::OutNonBlittableStruct(test_component::NonBlittableStruct& value)
+    {
+        value = { L"please", L"vote", 4, L"pedro"};
+    }
+
     int32_t Class::ReturnInt32()
     {
         return 123;

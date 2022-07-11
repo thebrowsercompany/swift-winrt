@@ -100,6 +100,33 @@ public class Class: Equatable {
         return .init(from: result)
     }
 
+    public func OutInt32(_ value: inout Int32) {
+        try! interface.OutInt32(&value)
+    }
+
+    public func OutString(_ value: inout String?) {
+        var _value: HSTRING?
+        try! interface.OutString(&_value)
+        value = .init(from: _value)
+        WindowsDeleteString(_value)
+    }
+
+    public func OutBlittableStruct(_ value: inout BlittableStruct) {
+        var _value: __x_ABI_Ctest__component_CBlittableStruct = .init()
+        try! interface.OutBlittableStruct(&_value)
+        value = unsafeBitCast(_value, to: BlittableStruct.self)
+    }
+
+    public func OutNonBlittableStruct(_ value: inout NonBlittableStruct) {
+        var _value: _ABI_NonBlittableStruct = .init()
+        try! interface.OutNonBlittableStruct(&_value.val)
+        value = .init(from: _value.val)
+    }
+
+    public func OutEnum(_ value: inout Signed) {
+        try! interface.OutEnum(&value)
+    }
+
     public func ReturnEnum() -> Signed {
         let result = try! interface.ReturnEnum()
         return result
@@ -222,8 +249,9 @@ public class StaticClass {
 }
 
 public struct BlittableStruct {
-    public var First: Int32
-    public var Second: Int32
+    public var First: Int32 = 0
+    public var Second: Int32 = 0
+    public init() {}
     public init(First: Int32, Second: Int32) {
         self.First = First
         self.Second = Second
@@ -231,10 +259,11 @@ public struct BlittableStruct {
 }
 
 public struct NonBlittableBoolStruct {
-    public var First: Bool
-    public var Second: Bool
-    public var Third: Bool
-    public var Fourth: Bool
+    public var First: Bool = false
+    public var Second: Bool = false
+    public var Third: Bool = false
+    public var Fourth: Bool = false
+    public init() {}
     public init(First: Bool, Second: Bool, Third: Bool, Fourth: Bool) {
         self.First = First
         self.Second = Second
@@ -250,10 +279,11 @@ public struct NonBlittableBoolStruct {
 }
 
 public struct NonBlittableStruct {
-    public let First: String
-    public let Second: String
-    public var Third: Int32
-    public let Fourth: String
+    public var First: String? = nil
+    public var Second: String? = nil
+    public var Third: Int32 = 0
+    public var Fourth: String? = nil
+    public init() {}
     public init(First: String, Second: String, Third: Int32, Fourth: String) {
         self.First = First
         self.Second = Second

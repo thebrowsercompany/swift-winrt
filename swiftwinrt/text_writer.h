@@ -308,6 +308,40 @@ namespace swiftwinrt
         std::vector<char> m_first;
     };
 
+    template <typename T>
+    struct write_scope_guard
+    {
+        write_scope_guard(writer_base<T>& w) noexcept : m_writer(w)
+        {
+        }
+
+        write_scope_guard(write_scope_guard const&) = delete;
+        write_scope_guard(write_scope_guard&& rhs) : m_writer(rhs.m_writer), m_lines(std::move(rhs.m_lines)) {}
+        ~write_scope_guard() noexcept
+        {
+            auto on_new_line = m_writer.back() == '\n';
+            if (!on_new_line && !m_lines.empty())
+            {
+                m_writer.write("\n");
+            }
+            for (auto& line : m_lines)
+            {
+                m_writer.write(line);
+            }
+        }
+
+        template <typename... Args>
+        void push(std::string_view const& value, Args const&... args)
+        {
+            T temp_writer;
+            m_lines.push_back(temp_writer.write_temp(value, args...));
+        }
+
+    private:
+        writer_base<T>& m_writer;
+        std::vector<std::string> m_lines;
+    };
+
 
     template <typename T>
     struct indented_writer_base : writer_base<T>

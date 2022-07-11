@@ -225,6 +225,23 @@ namespace swiftwinrt
         return object;
     }
 
+    static bool is_boolean(TypeSig const& signature)
+    {
+        bool boolean{};
+
+        call(signature.Type(),
+            [&](ElementType type)
+            {
+                if (type == ElementType::Boolean)
+                {
+                    boolean = true;
+                }
+            },
+            [](auto&&) {});
+
+        return boolean;
+    }
+
     static bool is_object(TypeSig const& signature)
     {
         bool object{};
