@@ -13,22 +13,22 @@ open class IUnknown {
     self.pUnk = IUnknownRef(pointer)
   }
 
-  public convenience init(_ pointer: UnsafeMutableRawPointer?) {
+  public init(_ pointer: UnsafeMutableRawPointer?) {
     let pUnk: UnsafeMutablePointer<WinSDK.IUnknown>? =
         pointer?.bindMemory(to: WinSDK.IUnknown.self, capacity: 1)
-    self.init(pUnk)
+    self.pUnk = IUnknownRef(pUnk)
   }
 
   public required init(consuming pointer: UnsafeMutablePointer<WinSDK.IUnknown>?) {
     self.pUnk = IUnknownRef(consuming: pointer)
   }
 
-  public convenience init(consuming pointer: UnsafeMutableRawPointer?) {
+  public init(consuming pointer: UnsafeMutableRawPointer?) {
     let pUnk: UnsafeMutablePointer<WinSDK.IUnknown>? =
         pointer?.bindMemory(to: WinSDK.IUnknown.self, capacity: 1)
-    self.init(consuming: pUnk)
+    self.pUnk = IUnknownRef(consuming: pUnk)
   }
-
+  
   @_alwaysEmitIntoClient @inline(__always)
   public func QueryInterface(_ iid: REFIID, _ ppvObject: UnsafeMutablePointer<UnsafeMutableRawPointer?>?) throws {
     let pUnk: UnsafeMutablePointer<WinSDK.IUnknown>! = self.pUnk.borrow

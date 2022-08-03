@@ -25,11 +25,19 @@ namespace winrt::test_component::implementation
 
     hstring Class::InInt32(int32_t value)
     {
+        if (m_implementation)
+        {
+            return m_implementation.InInt32(value);
+        }
         return hstring{ std::to_wstring(value) };
     }
 
     hstring Class::InString(hstring const& value)
     {
+        if (m_implementation)
+        {
+            return m_implementation.InString(value);
+        }
         return value;
     }
 
@@ -44,7 +52,12 @@ namespace winrt::test_component::implementation
     }
 
     hstring Class::InEnum(Signed const& value)
-    {
+    { 
+        if (m_implementation)
+        {
+            return m_implementation.InEnum(value);
+        }
+
         switch (value)
         {
         case Signed::First: return L"First";
@@ -141,12 +154,26 @@ namespace winrt::test_component::implementation
 
     void Class::OutInt32(int32_t& value)
     {
-        value = 123;
+        if (m_implementation)
+        {
+            m_implementation.OutInt32(value);
+        }
+        else
+        {
+            value = 123;
+        }
     }
 
     void Class::OutString(hstring& value)
     {
-        value = L"123";
+        if (m_implementation)
+        {
+            m_implementation.OutString(value);
+        }
+        else
+        {
+            value = L"123";
+        }
     }
 
     void Class::OutObject(Windows::Foundation::IInspectable& value)
@@ -161,17 +188,38 @@ namespace winrt::test_component::implementation
 
     void Class::OutEnum(Signed& value)
     {
-        value = Signed::First;
+        if (m_implementation)
+        {
+            m_implementation.OutEnum(value);
+        }
+        else
+        {
+            value = Signed::First;
+        }
     }
 
     void Class::OutBlittableStruct(test_component::BlittableStruct& value)
     {
-        value = { 867, 5309 };
+        if (m_implementation)
+        {
+            m_implementation.OutBlittableStruct(value);
+        }
+        else
+        {
+            value = { 867, 5309 };
+        }
     }
 
     void Class::OutNonBlittableStruct(test_component::NonBlittableStruct& value)
     {
-        value = { L"please", L"vote", 4, L"pedro"};
+        if (m_implementation)
+        {
+            m_implementation.OutNonBlittableStruct(value);
+        }
+        else
+        {
+            value = { L"please", L"vote", 4, L"pedro"};
+        }
     }
 
     int32_t Class::ReturnInt32()
@@ -191,8 +239,34 @@ namespace winrt::test_component::implementation
         return make<Value>(123);
     }
 
+    Fruit Class::EnumProperty() const
+    {
+        if (m_implementation)
+        {
+            return m_implementation.EnumProperty();
+        }
+        return m_fruit;
+    }
+
+    void Class::EnumProperty(Fruit const& value)
+    { 
+        if (m_implementation)
+        {
+            m_implementation.EnumProperty(value);
+        }
+        else
+        {
+            m_fruit = value;
+        }
+    }
+
     Signed Class::ReturnEnum()
     {
+        if (m_implementation)
+        {
+            return m_implementation.ReturnEnum();
+        }
+
         return Signed::First;
     }
 

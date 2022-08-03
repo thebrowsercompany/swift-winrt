@@ -42,31 +42,38 @@ extension Unsigned {
 }
 
 public class Class: Equatable {
-    internal var interface: IClass
+    internal var interface: ABI.IClass
 
     public init() {
         try! interface = RoActivateInstance(HString("test_component.Class"))
     }
 
-    internal init(_ fromInterface: IClass) {
+    internal init(_ fromInterface: ABI.IClass) {
         interface = fromInterface
     }
 
     public init(_ name: String) {
-        let factory: IClassFactory = try! RoGetActivationFactory(HString("test_component.Class"))
+        let factory: ABI.IClassFactory = try! RoGetActivationFactory(HString("test_component.Class"))
         let _name = try! HString(name)
         let value = try! factory.CreateInstance(_name.get())
-        interface = IClass(consuming: value)
+        interface = ABI.IClass(consuming: value)
     }
 
     public init(_ name: String, _ fruit: Fruit) {
-        let factory: IClassFactory = try! RoGetActivationFactory(HString("test_component.Class"))
+        let factory: ABI.IClassFactory = try! RoGetActivationFactory(HString("test_component.Class"))
         let _name = try! HString(name)
         let value = try! factory.CreateInstance2(_name.get(), fruit)
-        interface = IClass(consuming: value)
+        interface = ABI.IClass(consuming: value)
     }
 
-    private static let statics: IClassStatics = try! RoGetActivationFactory(HString("test_component.Class"))
+    public init(_ name: String, _ fruit: Fruit, _ implementation: IIAmImplementable) {
+        let factory: ABI.IClassFactory = try! RoGetActivationFactory(HString("test_component.Class"))
+        let _name = try! HString(name)
+        let value = try! factory.CreateInstance3(_name.get(), fruit, RawPointer(implementation))
+        interface = ABI.IClass(consuming: value)
+    }
+
+    private static let statics: ABI.IClassStatics = try! RoGetActivationFactory(HString("test_component.Class"))
     public static func StaticTest() {
         try! statics.StaticTest()
     }
@@ -82,6 +89,15 @@ public class Class: Equatable {
             return value
         }
 
+    }
+
+    public func SetDelegate(_ value: ISimpleDelegate) {
+        try! interface.SetDelegate(RawPointer(value))
+    }
+
+    public func GetDelegate() -> ISimpleDelegate {
+        let result = try! interface.GetDelegate()
+        return ISimpleDelegateImpl(result)
     }
 
     public func InInt32(_ value: Int32) -> String {
@@ -118,7 +134,7 @@ public class Class: Equatable {
     }
 
     public func OutNonBlittableStruct(_ value: inout NonBlittableStruct) {
-        var _value: _ABI_NonBlittableStruct = .init()
+        let _value: ABI._ABI_NonBlittableStruct = .init()
         try! interface.OutNonBlittableStruct(&_value.val)
         value = .init(from: _value.val)
     }
@@ -149,13 +165,13 @@ public class Class: Equatable {
 }
 
 public class Simple: Equatable {
-    internal var interface: ISimple
+    internal var interface: ABI.ISimple
 
     public init() {
         try! interface = RoActivateInstance(HString("test_component.Simple"))
     }
 
-    internal init(_ fromInterface: ISimple) {
+    internal init(_ fromInterface: ABI.ISimple) {
         interface = fromInterface
     }
 
@@ -178,7 +194,7 @@ public class Simple: Equatable {
     }
 
     public func TakeNonBlittableStruct(_ value: NonBlittableStruct) {
-        let _value = _ABI_NonBlittableStruct(from: value)
+        let _value = ABI._ABI_NonBlittableStruct(from: value)
         try! interface.TakeNonBlittableStruct(_value.val)
     }
 
@@ -200,7 +216,7 @@ public class Simple: Equatable {
         }
 
         set {
-            let _newValue = _ABI_NonBlittableStruct(from: newValue)
+            let _newValue = ABI._ABI_NonBlittableStruct(from: newValue)
             try! interface.put_NonBlittableStructProperty(_newValue.val) 
         }
     }
@@ -223,14 +239,14 @@ public class Simple: Equatable {
 }
 
 public class StaticClass {
-    private static let statics: IStaticClassStatics = try! RoGetActivationFactory(HString("test_component.StaticClass"))
+    private static let statics: ABI.IStaticClassStatics = try! RoGetActivationFactory(HString("test_component.StaticClass"))
     public static func InEnum(_ value: Signed) -> String {
         let result = try! statics.InEnum(value)
         return .init(from: result)
     }
 
     public static func InNonBlittableStruct(_ value: NonBlittableStruct) -> String {
-        let _value = _ABI_NonBlittableStruct(from: value)
+        let _value = ABI._ABI_NonBlittableStruct(from: value)
         let result = try! statics.InNonBlittableStruct(_value.val)
         return .init(from: result)
     }
@@ -297,4 +313,436 @@ public struct NonBlittableStruct {
         self.Fourth = .init(from: abi.Fourth)
     }
 }
+
+public struct Impl {
+    private static var IIAmImplementableVTable: __x_ABI_Ctest__component_CIIAmImplementableVtbl = .init(
+        QueryInterface: {
+            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+            guard riid.pointee == IUnknown.IID ||
+                  riid.pointee == IInspectable.IID || 
+                  riid.pointee == ISwiftImplemented.IID || 
+                  riid.pointee == ABI.IIAmImplementable.IID else { 
+                ppvObject.pointee = nil
+                return E_NOINTERFACE
+            }
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
+        },
+
+        AddRef: {
+             guard let wrapper = IIAmImplementableBase.from($0) else { return 1 }
+             _ = wrapper.retain()
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+        },
+
+        Release: {
+            guard let wrapper = IIAmImplementableBase.from($0) else { return 1 }
+            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+        },
+
+        GetIids: {
+            let size = MemoryLayout<IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+            iids[0] = IUnknown.IID
+            iids[1] = IInspectable.IID
+            iids[2] = ABI.IIAmImplementable.IID
+            
+            $1!.pointee = 3
+            $2!.pointee = iids
+            return S_OK
+        },
+
+        GetRuntimeClassName: {
+            _ = $0
+            let hstring = try! HString("test_component.IIAmImplementable").detach()
+            $1!.pointee = hstring
+            return S_OK
+        },
+
+        GetTrustLevel: {
+            _ = $0
+            $1!.pointee = TrustLevel.BaseTrust
+            return S_OK
+        },
+
+        InInt32: {
+            guard let wrapper = IIAmImplementableBase.from($0) else { return E_INVALIDARG }
+            guard let instance = wrapper.takeUnretainedValue() as? IIAmImplementableProto else { return E_NOINTERFACE }
+            let value:Int32 = $1
+
+            let result = try! instance.InInt32(value)
+            $2?.initialize(to: try! HString(result).detach())
+            return S_OK
+        },
+
+        InString: {
+            guard let wrapper = IIAmImplementableBase.from($0) else { return E_INVALIDARG }
+            guard let instance = wrapper.takeUnretainedValue() as? IIAmImplementableProto else { return E_NOINTERFACE }
+            let value:String = .init(from: $1)
+
+            let result = try! instance.InString(value)
+            $2?.initialize(to: try! HString(result).detach())
+            return S_OK
+        },
+
+        InEnum: {
+            guard let wrapper = IIAmImplementableBase.from($0) else { return E_INVALIDARG }
+            guard let instance = wrapper.takeUnretainedValue() as? IIAmImplementableProto else { return E_NOINTERFACE }
+            let value:Signed = $1
+
+            let result = try! instance.InEnum(value)
+            $2?.initialize(to: try! HString(result).detach())
+            return S_OK
+        },
+
+        OutInt32: {
+            guard let wrapper = IIAmImplementableBase.from($0) else { return E_INVALIDARG }
+            guard let instance = wrapper.takeUnretainedValue() as? IIAmImplementableProto else { return E_NOINTERFACE }
+            var value: Int32 = 0
+
+            try! instance.OutInt32(&value)
+            $1?.initialize(to: value)
+            return S_OK
+        },
+
+        OutString: {
+            guard let wrapper = IIAmImplementableBase.from($0) else { return E_INVALIDARG }
+            guard let instance = wrapper.takeUnretainedValue() as? IIAmImplementableProto else { return E_NOINTERFACE }
+            var value: String?
+
+            try! instance.OutString(&value)
+            $1?.initialize(to: try! HString(value).detach())
+            return S_OK
+        },
+
+        OutBlittableStruct: {
+            guard let wrapper = IIAmImplementableBase.from($0) else { return E_INVALIDARG }
+            guard let instance = wrapper.takeUnretainedValue() as? IIAmImplementableProto else { return E_NOINTERFACE }
+            var value: BlittableStruct = .init()
+
+            try! instance.OutBlittableStruct(&value)
+            $1?.initialize(to: unsafeBitCast(value, to: __x_ABI_Ctest__component_CBlittableStruct.self))
+            return S_OK
+        },
+
+        OutNonBlittableStruct: {
+            guard let wrapper = IIAmImplementableBase.from($0) else { return E_INVALIDARG }
+            guard let instance = wrapper.takeUnretainedValue() as? IIAmImplementableProto else { return E_NOINTERFACE }
+            var value: NonBlittableStruct = .init()
+
+            try! instance.OutNonBlittableStruct(&value)
+            let _value = ABI._ABI_NonBlittableStruct(from: value)
+        	$1?.initialize(to: _value.detach())
+            return S_OK
+        },
+
+        OutEnum: {
+            guard let wrapper = IIAmImplementableBase.from($0) else { return E_INVALIDARG }
+            guard let instance = wrapper.takeUnretainedValue() as? IIAmImplementableProto else { return E_NOINTERFACE }
+            var value: Signed = .init(0)
+
+            try! instance.OutEnum(&value)
+            $1?.initialize(to: value)
+            return S_OK
+        },
+
+        ReturnEnum: {
+            guard let wrapper = IIAmImplementableBase.from($0) else { return E_INVALIDARG }
+            guard let instance = wrapper.takeUnretainedValue() as? IIAmImplementableProto else { return E_NOINTERFACE }
+
+            let result = try! instance.ReturnEnum()
+            $1?.initialize(to: result)
+            return S_OK
+        },
+
+        get_EnumProperty: {
+            guard let wrapper = IIAmImplementableBase.from($0) else { return E_INVALIDARG }
+            guard let instance = wrapper.takeUnretainedValue() as? IIAmImplementableProto else { return E_NOINTERFACE }
+
+            let value = try! instance.get_EnumProperty()
+            $1?.initialize(to: value)
+            return S_OK
+        },
+
+        put_EnumProperty: {
+            guard let wrapper = IIAmImplementableBase.from($0) else { return E_INVALIDARG }
+            guard let instance = wrapper.takeUnretainedValue() as? IIAmImplementableProto else { return E_NOINTERFACE }
+            let value:Fruit = $1
+
+            try! instance.put_EnumProperty(value)
+            
+            return S_OK
+        }
+    )
+    open class IIAmImplementableBase: ABI.IIAmImplementable {
+        private struct ComObject {
+            var comInterface: __x_ABI_Ctest__component_CIIAmImplementable
+            var wrapper: Unmanaged<IIAmImplementableBase>?
+        }
+        private var instance: ComObject
+        public init() {
+            self.instance = withUnsafeMutablePointer(to: &Impl.IIAmImplementableVTable) {
+                ComObject(comInterface: __x_ABI_Ctest__component_CIIAmImplementable(lpVtbl: $0))
+            }
+
+            // Subtle: This makes the IUnknownRef point to the ComClass instance, which the RawPointer helper
+            // then unwraps using 'RawPointer' when calling back into the C++ code. This is needed
+            // to hand off the raw vtable (with access to this wrapping class) without Swift stomping
+            // the vtable with things like the retain count.
+            super.init(withUnsafeMutablePointer(to: &instance) { $0 })
+            self.instance.wrapper = Unmanaged<IIAmImplementableBase>.passUnretained(self)
+        }
+
+        deinit {
+            // nil out the wrapper, so that we don't try to decrememnt the ref count in the `Release` method, this
+            // causes an infinite loop
+            self.instance.wrapper = nil
+        }
+
+        public init(_ pointer: UnsafeMutablePointer<__x_ABI_Ctest__component_CIIAmImplementable>?) {
+            if let pointee = pointer?.pointee {
+                self.instance = ComObject(comInterface: pointee)
+                super.init(withUnsafeMutablePointer(to: &instance) { $0 })
+
+                // try to get the original wrapper so we can get the apps implementation. if that doesn't
+                // exist, then we know this points to a C++ object and we will just use ourselves as the
+                // wrapper    
+                let delegate = IUnknown(pointer)
+                let wrapperOpt: ISwiftImplemented? = try? delegate.QueryInterface()
+                if let wrapper = wrapperOpt,
+                let pUnk = UnsafeMutableRawPointer(wrapper.pUnk.borrow)   {
+                    self.instance.wrapper = pUnk.bindMemory(to: IIAmImplementableBase.ComObject.self, capacity: 1).pointee.wrapper
+                }
+            } else {
+                self.instance = ComObject(comInterface: .init())
+                super.init(pointer)
+            }
+        }
+
+        private convenience init(empty pointer:UnsafeMutablePointer<__x_ABI_Ctest__component_CIIAmImplementable>?)
+        {
+            self.init(pointer)
+        }
+
+        public static var none: IIAmImplementable = IIAmImplementableImpl(empty: nil)
+        required public init(_ pointer: UnsafeMutablePointer<WinSDK.IUnknown>?) { fatalError("should never be called") }
+        required public init(consuming pointer: UnsafeMutablePointer<WinSDK.IUnknown>?) { fatalError("should never be called") }
+
+        fileprivate static func from(_ pUnk: UnsafeMutableRawPointer?) -> Unmanaged<IIAmImplementableBase>? {
+            return pUnk?.assumingMemoryBound(to: IIAmImplementableBase.ComObject.self).pointee.wrapper
+          }
+
+    }
+
+    private static var ISimpleDelegateVTable: __x_ABI_Ctest__component_CISimpleDelegateVtbl = .init(
+        QueryInterface: {
+            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+            guard riid.pointee == IUnknown.IID ||
+                  riid.pointee == IInspectable.IID || 
+                  riid.pointee == ISwiftImplemented.IID || 
+                  riid.pointee == ABI.ISimpleDelegate.IID else { 
+                ppvObject.pointee = nil
+                return E_NOINTERFACE
+            }
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
+        },
+
+        AddRef: {
+             guard let wrapper = ISimpleDelegateBase.from($0) else { return 1 }
+             _ = wrapper.retain()
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+        },
+
+        Release: {
+            guard let wrapper = ISimpleDelegateBase.from($0) else { return 1 }
+            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+        },
+
+        GetIids: {
+            let size = MemoryLayout<IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+            iids[0] = IUnknown.IID
+            iids[1] = IInspectable.IID
+            iids[2] = ABI.ISimpleDelegate.IID
+            
+            $1!.pointee = 3
+            $2!.pointee = iids
+            return S_OK
+        },
+
+        GetRuntimeClassName: {
+            _ = $0
+            let hstring = try! HString("test_component.ISimpleDelegate").detach()
+            $1!.pointee = hstring
+            return S_OK
+        },
+
+        GetTrustLevel: {
+            _ = $0
+            $1!.pointee = TrustLevel.BaseTrust
+            return S_OK
+        },
+
+        DoThis: {
+            guard let wrapper = ISimpleDelegateBase.from($0) else { return E_INVALIDARG }
+            guard let instance = wrapper.takeUnretainedValue() as? ISimpleDelegateProto else { return E_NOINTERFACE }
+
+            try! instance.DoThis()
+            
+            return S_OK
+        },
+
+        DoThat: {
+            guard let wrapper = ISimpleDelegateBase.from($0) else { return E_INVALIDARG }
+            guard let instance = wrapper.takeUnretainedValue() as? ISimpleDelegateProto else { return E_NOINTERFACE }
+            let val:Int32 = $1
+
+            try! instance.DoThat(val)
+            
+            return S_OK
+        }
+    )
+    open class ISimpleDelegateBase: ABI.ISimpleDelegate {
+        private struct ComObject {
+            var comInterface: __x_ABI_Ctest__component_CISimpleDelegate
+            var wrapper: Unmanaged<ISimpleDelegateBase>?
+        }
+        private var instance: ComObject
+        public init() {
+            self.instance = withUnsafeMutablePointer(to: &Impl.ISimpleDelegateVTable) {
+                ComObject(comInterface: __x_ABI_Ctest__component_CISimpleDelegate(lpVtbl: $0))
+            }
+
+            // Subtle: This makes the IUnknownRef point to the ComClass instance, which the RawPointer helper
+            // then unwraps using 'RawPointer' when calling back into the C++ code. This is needed
+            // to hand off the raw vtable (with access to this wrapping class) without Swift stomping
+            // the vtable with things like the retain count.
+            super.init(withUnsafeMutablePointer(to: &instance) { $0 })
+            self.instance.wrapper = Unmanaged<ISimpleDelegateBase>.passUnretained(self)
+        }
+
+        deinit {
+            // nil out the wrapper, so that we don't try to decrememnt the ref count in the `Release` method, this
+            // causes an infinite loop
+            self.instance.wrapper = nil
+        }
+
+        public init(_ pointer: UnsafeMutablePointer<__x_ABI_Ctest__component_CISimpleDelegate>?) {
+            if let pointee = pointer?.pointee {
+                self.instance = ComObject(comInterface: pointee)
+                super.init(withUnsafeMutablePointer(to: &instance) { $0 })
+
+                // try to get the original wrapper so we can get the apps implementation. if that doesn't
+                // exist, then we know this points to a C++ object and we will just use ourselves as the
+                // wrapper    
+                let delegate = IUnknown(pointer)
+                let wrapperOpt: ISwiftImplemented? = try? delegate.QueryInterface()
+                if let wrapper = wrapperOpt,
+                let pUnk = UnsafeMutableRawPointer(wrapper.pUnk.borrow)   {
+                    self.instance.wrapper = pUnk.bindMemory(to: ISimpleDelegateBase.ComObject.self, capacity: 1).pointee.wrapper
+                }
+            } else {
+                self.instance = ComObject(comInterface: .init())
+                super.init(pointer)
+            }
+        }
+
+        private convenience init(empty pointer:UnsafeMutablePointer<__x_ABI_Ctest__component_CISimpleDelegate>?)
+        {
+            self.init(pointer)
+        }
+
+        public static var none: ISimpleDelegate = ISimpleDelegateImpl(empty: nil)
+        required public init(_ pointer: UnsafeMutablePointer<WinSDK.IUnknown>?) { fatalError("should never be called") }
+        required public init(consuming pointer: UnsafeMutablePointer<WinSDK.IUnknown>?) { fatalError("should never be called") }
+
+        fileprivate static func from(_ pUnk: UnsafeMutableRawPointer?) -> Unmanaged<ISimpleDelegateBase>? {
+            return pUnk?.assumingMemoryBound(to: ISimpleDelegateBase.ComObject.self).pointee.wrapper
+          }
+
+    }
+
+}
+
+internal class IIAmImplementableImpl : IIAmImplementable {
+    public func InInt32(_ value: Int32) throws -> String {
+            let result = try InInt32Impl(value)
+            return .init(from: result)
+        }
+    public func InString(_ value: String) throws -> String {
+            let _value = try! HString(value)
+            let result = try InStringImpl(_value.get())
+            return .init(from: result)
+        }
+    public func InEnum(_ value: Signed) throws -> String {
+            let result = try InEnumImpl(value)
+            return .init(from: result)
+        }
+    public func OutInt32(_ value: inout Int32) throws {
+            try OutInt32Impl(&value)
+        }
+    public func OutString(_ value: inout String?) throws {
+            var _value: HSTRING?
+            try OutStringImpl(&_value)
+            value = .init(from: _value)
+            WindowsDeleteString(_value)
+        }
+    public func OutBlittableStruct(_ value: inout BlittableStruct) throws {
+            var _value: __x_ABI_Ctest__component_CBlittableStruct = .init()
+            try OutBlittableStructImpl(&_value)
+            value = unsafeBitCast(_value, to: BlittableStruct.self)
+        }
+    public func OutNonBlittableStruct(_ value: inout NonBlittableStruct) throws {
+            let _value: ABI._ABI_NonBlittableStruct = .init()
+            try OutNonBlittableStructImpl(&_value.val)
+            value = .init(from: _value.val)
+        }
+    public func OutEnum(_ value: inout Signed) throws {
+            try OutEnumImpl(&value)
+        }
+    public func ReturnEnum() throws -> Signed {
+            let result = try ReturnEnumImpl()
+            return result
+        }
+    public func get_EnumProperty() throws -> Fruit {
+            let value = try get_EnumPropertyImpl()
+            return value
+        }
+    public func put_EnumProperty(_ value: Fruit) throws {
+            try put_EnumPropertyImpl(value)
+        }
+}
+
+public protocol IIAmImplementableProto { 
+        func InInt32(_ value: Int32) throws -> String 
+        func InString(_ value: String) throws -> String 
+        func InEnum(_ value: Signed) throws -> String 
+        func OutInt32(_ value: inout Int32) throws 
+        func OutString(_ value: inout String?) throws 
+        func OutBlittableStruct(_ value: inout BlittableStruct) throws 
+        func OutNonBlittableStruct(_ value: inout NonBlittableStruct) throws 
+        func OutEnum(_ value: inout Signed) throws 
+        func ReturnEnum() throws -> Signed 
+        func get_EnumProperty() throws -> Fruit 
+        func put_EnumProperty(_ value: Fruit) throws 
+}
+public typealias IIAmImplementable = Impl.IIAmImplementableBase & IIAmImplementableProto
+
+internal class ISimpleDelegateImpl : ISimpleDelegate {
+    public func DoThis() throws {
+            try DoThisImpl()
+        }
+    public func DoThat(_ val: Int32) throws {
+            try DoThatImpl(val)
+        }
+}
+
+public protocol ISimpleDelegateProto { 
+        func DoThis() throws 
+        func DoThat(_ val: Int32) throws 
+}
+public typealias ISimpleDelegate = Impl.ISimpleDelegateBase & ISimpleDelegateProto
 

@@ -182,7 +182,7 @@ namespace swiftwinrt
         w.write(" __%Size", param.Name());
     }
 
-    static void write_convert_to_abi_arg(writer& w, std::string_view const& param_name, TypeSig const& type)
+    static void write_convert_to_abi_arg(writer& w, std::string_view const& param_name, TypeSig const& type, bool is_out)
     {
         if (std::holds_alternative<GenericTypeIndex>(type.Type()))
         {
@@ -213,11 +213,26 @@ namespace swiftwinrt
             auto category = get_category(type);
             if (category == param_category::string_type)
             {
-                w.write("_%.get()", param_name);
+                if (!is_out)
+                {
+                    w.write("_%.get()", param_name);
+                }
+                else
+                {
+                    auto format = "try! HString(%).detach()";
+                    w.write(format, param_name);
+                }
             }
             else if (category == param_category::struct_type)
             {
-                w.write("_%.val", param_name);
+                if (!is_out)
+                {
+                    w.write("_%.val", param_name);
+                }
+                else
+                {
+                    w.write("_%.detach()", param_name);
+                }
             }
             else
             {
@@ -234,21 +249,11 @@ namespace swiftwinrt
         }
         else
         {
+            auto push_abi_guard = w.push_abi_types(true);
             auto category = get_category(type);
-            if (category == param_category::object_type)
+            if (category == param_category::object_type || category == param_category::string_type)
             {
-                if (auto default_interface = get_default_interface(type))
-                {
-                    w.write("_ %: UnsafeMutablePointer<%>?", param.Name(), default_interface);
-                }
-                else
-                {
-                    w.write("_ %: UnsafeMutablePointer<%>?", param.Name(), type);
-                }
-            }
-            else if (category == param_category::string_type)
-            {
-                w.write("_ %: %?", param.Name(), type);
+                 w.write("_ %: %?", param.Name(), type);
             }
             else
             {
@@ -266,18 +271,7 @@ namespace swiftwinrt
         else
         {
             auto category = get_category(type);
-            if (category == param_category::object_type)
-            {
-                if (auto default_interface = get_default_interface(type))
-                {
-                    w.write("_ %: inout UnsafeMutablePointer<%>?", param.Name(), default_interface);
-                }
-                else
-                {
-                    w.write("_ %: inout UnsafeMutablePointer<%>?", param.Name(), type);
-                }
-            }
-            else if (category == param_category::string_type)
+            if (category == param_category::object_type || category == param_category::string_type)
             {
                 w.write("_ %: inout %?", param.Name(), type);
             }
@@ -384,7 +378,7 @@ namespace swiftwinrt
             if (param.Flags().In())
             {
                 w.write("%",
-                    bind<write_convert_to_abi_arg>(param.Name(), param_signature->Type()));
+                    bind<write_convert_to_abi_arg>(param.Name(), param_signature->Type(), false));
             }
             else
             {
@@ -498,9 +492,21 @@ namespace swiftwinrt
         }
         else if (category == param_category::object_type)
         {
-            auto format = "%(%(consuming: %))";
-            auto default_interface = get_default_interface(type);
-            w.write(format, type, default_interface, name);
+            if (is_interface(type))
+            {
+                w.write("%Impl(%)", type, name);
+            }
+            else
+            {
+                auto format = "%(ABI.%(%%))";
+                auto default_interface = get_default_interface(type);
+                w.write(format,
+                    type,
+                    default_interface,
+                    w.consume_types ? "consuming: " : "",
+                    name);
+            }
+           
         }
         else if (category == param_category::generic_type)
         {
@@ -511,7 +517,9 @@ namespace swiftwinrt
             if (category == param_category::struct_type)
             {
                 auto format = "unsafeBitCast(%, to: %.self)";
-                w.write(format, name, type);
+                {
+                    w.write(format, name, type);
+                }
             }
             else
             {
@@ -556,6 +564,39 @@ namespace swiftwinrt
             w.write(format,
                 signature.Type(),
                 is_floating_point(signature.Type()) ? "0.0" : "0");
+        }
+    }
+
+    static void write_consume_return_statement(writer& w, method_signature const& signature);
+    static write_scope_guard<writer> write_local_param_wrappers(writer& w, method_signature const& signature);
+
+    static void write_interface_swift_body(writer& w, winmd::reader::MethodDef method)
+    {
+        auto indent = w.push_indent({ 2 });
+
+        std::string_view func_name = method.Name();
+        method_signature signature{ method };
+        auto return_sig = signature.return_signature();
+
+        auto guard = write_local_param_wrappers(w, signature);
+
+        if (return_sig)
+        {
+            w.write("let % = try %Impl(%)\n",
+                signature.return_param_name(),
+                func_name,
+                bind<write_implementation_args>(signature));
+        }
+        else
+        {
+            w.write("try %Impl(%)\n",
+                func_name,
+                bind<write_implementation_args>(signature));
+        }
+
+        if (return_sig)
+        {
+            w.write("%\n", bind<write_consume_return_statement>(signature));
         }
     }
 
@@ -619,18 +660,27 @@ bind<write_abi_args>(signature));
         auto iid_format = "    override public class var IID: IID { IID_% }\n\n";
         w.write(iid_format, type);
 
-        auto format_method = R"(    public func %(%) throws %{
+        auto format_method = R"(    % func %%(%) throws %{
 %    }
 )";
+
+        // For non-exclusive interfaces, meaning an interface the app can implement,
+        // the "ABI" definition of the interface implements the "swifty" apis. This
+        // name seperation isn't ideal, but since we can't have a wrapper class, we
+        // need to implement it at this level. Why can't we have a wrapper class? Because
+        // we don't always know if the interface is being implemented by the app or some
+        // C++ library. 
+        const bool exclusive = is_exclusive(type);
 
         for (auto&& method : type.MethodList())
         {
             try
             {
                 method_signature signature{ method };
-
                 w.write(format_method,
+                    exclusive ? "public" : "internal",
                     get_abi_name(method),
+                    exclusive ? "" : "Impl",
                     bind<write_abi_params>(signature),
                     bind<write_return_type_declaration>(signature),
                     bind<write_abi_func_body>(type, method));
@@ -696,6 +746,23 @@ bind<write_abi_args>(signature));
             }
             w.write("}\n\n");
 
+            w.write("internal func detach() -> % {\n", bind<write_type_abi>(type));
+            {
+                auto indent = w.push_indent({ 1 });
+
+                w.write("let result = val\n");
+                for (auto&& field : type.FieldList())
+                {
+                    if (get_category(field.Signature().Type()) == param_category::string_type)
+                    {
+                        w.write("val.% = nil\n", field.Name());
+                    }
+                }
+                w.write("return result\n");
+            }
+
+            w.write("}\n\n");
+
             w.write("deinit {\n");
             {
                 auto indent = w.push_indent({ 1 });
@@ -715,65 +782,64 @@ bind<write_abi_args>(signature));
 
     static void write_consume_params(writer& w, method_signature const& signature)
     {
-        separator s{ w };
+        auto indent_guard = w.push_indent({ 1 });
+        int param_number = 1;
 
         for (auto&& [param, param_signature] : signature.params())
         {
-            s();
-
             if (param_signature->Type().is_szarray())
             {
-                std::string_view format;
-
-                if (param.Flags().In())
-                {
-                    format = "array_view<% const>";
-                }
-                else if (param_signature->ByRef())
-                {
-                    format = "com_array<%>&";
-                }
-                else
-                {
-                    format = "array_view<%>";
-                }
-
-                w.write(format, param_signature->Type().Type());
+                w.write("**TODO: implement szarray in write_consume_params**");
             }
             else
             {
+                std::string param_name = "$" + std::to_string(param_number);
+
                 if (param.Flags().In())
                 {
                     assert(!param.Flags().Out());
-                    w.consume_types = true;
 
-                    auto param_type = std::get_if<ElementType>(&param_signature->Type().Type());
-
-                    if (param_type && *param_type != ElementType::String && *param_type != ElementType::Object)
-                    {
-                        w.write("%", param_signature->Type());
-                    }
-                    else if (std::holds_alternative<GenericTypeIndex>(param_signature->Type().Type()))
-                    {
-                        w.write("impl::param_type<%> const&", param_signature->Type());
-                    }
-                    else
-                    {
-                        w.write("% const&", param_signature->Type());
-                    }
-
-                    w.consume_types = false;
+                    std::string format = "let %:% = %\n";
+                    w.write(format,
+                        param.Name(),
+                        param_signature->Type(),
+                        bind<write_consume_type>(param_signature->Type(), param_name)
+                    );
                 }
                 else
                 {
                     assert(!param.Flags().In());
                     assert(param.Flags().Out());
+                    auto category = get_category(param_signature->Type());
 
-                    w.write("%&", param_signature->Type());
+                    if (category == param_category::string_type || category == param_category::object_type)
+                    {
+                        w.write("var %: %?\n",
+                            param.Name(),
+                            param_signature->Type());
+                    }
+                    else if (category == param_category::struct_type)
+                    {
+                        w.write("var %: % = .init()\n",
+                            param.Name(),
+                            param_signature->Type());
+                    }
+                    else if (category == param_category::enum_type)
+                    {
+                        w.write("var %: % = .init(0)\n",
+                            param.Name(),
+                            param_signature->Type());
+                    }
+                    else
+                    {
+                        w.write("var %: % = %\n",
+                            param.Name(),
+                            param_signature->Type(),
+                            is_floating_point(param_signature->Type()) ? "0.0" : "0");
+                    }
                 }
             }
-
-            w.write(" %", param.Name());
+            ++param_number;
         }
     }
 
@@ -785,6 +851,7 @@ bind<write_abi_args>(signature));
         }
 
         auto return_type = signature.return_signature().Type();
+        auto consume_types = w.push_consume_types(true);
         w.write("return %", bind<write_consume_type>(return_type, signature.return_param_name()));
     }
 
@@ -795,98 +862,201 @@ bind<write_abi_args>(signature));
         for (auto&& [param, param_signature] : signature.params())
         {
             s();
-            w.write(param.Name());
+            if (param.Flags().In())
+            {
+                w.write(param.Name());
+            }
+            else
+            {
+
+                
+                w.write("&%", param.Name());
+                
+            }
         }
     }
 
-    static void write_interface_override_method(writer& w, MethodDef const& method, std::string_view const& interface_name)
+    static void write_wrapper_type(writer& w, TypeDef const& type)
     {
-        auto format = R"(    template <typename D> auto %T<D>::%(%) const%
-    {
-        return shim().template try_as<%>().%(%);
+        w.write("%Base", type);
     }
+
+    static void write_vtable(writer& w, TypeDef const& type);
+    static void write_interface_impl(writer& w, TypeDef const& type)
+    {
+        // Only write vtables for interfaces which are implementable
+        // by the app, so skip those which are exclusive
+        if (is_exclusive(type))
+        {
+            return;
+        }
+        write_vtable(w, type);
+
+        // Define a struct that matches a C++ object with a vtable. As background:
+        //
+        // in C++ this looks like:
+        //
+        //   class CMyObject : public IMyInterface {
+        //   {
+        //     HRESULT Foo(int number);
+        //   }
+        //
+        // in C it looks
+        //
+        //   struct MyObjectVTable {
+        //     ... AddRef, Release, QI, ...
+        //     HRESULT (STDMETHODCALLTYPE * Foo)(IMyInterface* pThis, int number)
+        //   }
+        // 
+        //   struct IMyInterface {
+        //     const MyObjectVTable* lpVtbl;
+        //   }
+        //
+        // so in Swift we're using the pattern:
+        //
+        //   private var myInterfaceVTable: IMyInterface {
+        //     Foo: {
+        //       // In C, 'pThis' is always the first param
+        //       guard let wrapper = MyObject.from($0) else {
+        //         return E_INVALIDARG
+        //       }
+        //       let number = $1
+        //       instance.Foo(number)
+        //     }
+        //   }
+        //   ...
+        //   private struct ComObject {
+        //     var comInterface: IMyInterface
+        //     var wrapper: MyInterfaceBase
+        //   }
+        w.write(R"(open class %: ABI.% {
+    private struct ComObject {
+        var comInterface: %
+        var wrapper: Unmanaged<%>?
+    }
+    private var instance: ComObject
+    public init() {
+        self.instance = withUnsafeMutablePointer(to: &Impl.%VTable) {
+            ComObject(comInterface: %(lpVtbl: $0))
+        }
+
+        // Subtle: This makes the IUnknownRef point to the ComClass instance, which the RawPointer helper
+        // then unwraps using 'RawPointer' when calling back into the C++ code. This is needed
+        // to hand off the raw vtable (with access to this wrapping class) without Swift stomping
+        // the vtable with things like the retain count.
+        super.init(withUnsafeMutablePointer(to: &instance) { $0 })
+        self.instance.wrapper = Unmanaged<%>.passUnretained(self)
+    }
+
+    deinit {
+        // nil out the wrapper, so that we don't try to decrememnt the ref count in the `Release` method, this
+        // causes an infinite loop
+        self.instance.wrapper = nil
+    }
+
+    public init(_ pointer: UnsafeMutablePointer<%>?) {
+        if let pointee = pointer?.pointee {
+            self.instance = ComObject(comInterface: pointee)
+            super.init(withUnsafeMutablePointer(to: &instance) { $0 })
+
+            // try to get the original wrapper so we can get the apps implementation. if that doesn't
+            // exist, then we know this points to a C++ object and we will just use ourselves as the
+            // wrapper    
+            let delegate = IUnknown(pointer)
+            let wrapperOpt: ISwiftImplemented? = try? delegate.QueryInterface()
+            if let wrapper = wrapperOpt,
+            let pUnk = UnsafeMutableRawPointer(wrapper.pUnk.borrow)   {
+                self.instance.wrapper = pUnk.bindMemory(to: %.ComObject.self, capacity: 1).pointee.wrapper
+            }
+        } else {
+            self.instance = ComObject(comInterface: .init())
+            super.init(pointer)
+        }
+    }
+
+    private convenience init(empty pointer:UnsafeMutablePointer<%>?)
+    {
+        self.init(pointer)
+    }
+
+    public static var none: % = %Impl(empty: nil)
+    required public init(_ pointer: UnsafeMutablePointer<WinSDK.IUnknown>?) { fatalError("should never be called") }
+    required public init(consuming pointer: UnsafeMutablePointer<WinSDK.IUnknown>?) { fatalError("should never be called") }
+
+    fileprivate static func from(_ pUnk: UnsafeMutableRawPointer?) -> Unmanaged<%>? {
+        return pUnk?.assumingMemoryBound(to: %.ComObject.self).pointee.wrapper
+      }
+
+}
+
+)",
+bind<write_wrapper_type>(type),
+type,
+bind<write_type_abi>(type),
+bind<write_wrapper_type>(type),
+type,
+bind<write_type_abi>(type),
+bind<write_wrapper_type>(type),
+bind<write_type_abi>(type),
+bind<write_wrapper_type>(type),
+bind<write_type_abi>(type),
+type,
+type,
+bind<write_wrapper_type>(type),
+bind<write_wrapper_type>(type)
+);
+  
+    }
+
+
+    static void write_interface_proto(writer& w, TypeDef const& type)
+    {
+        auto format = R"(public protocol %Proto { %
+}
 )";
+        w.write(format, type, bind_each([&](writer& w, MethodDef const& method)
+            {
+                method_signature signature{ method };
 
-        method_signature signature{ method };
-        auto method_name = get_name(method);
-
-        w.write(format,
-            interface_name,
-            method_name,
-            bind<write_consume_params>(signature),
-            is_noexcept(method) ? " noexcept" : "",
-            interface_name,
-            method_name,
-            bind<write_consume_args>(signature));
+                w.write("\n        func %(%) throws %",
+                    method.Name(),
+                    bind<write_swift_params>(signature),
+                    bind<write_return_type_declaration>(signature));
+            }, type.MethodList()));
     }
 
-    static void write_interface_override_methods(writer& w, TypeDef const& class_type)
+    static void write_interface(writer& w, TypeDef const& type)
     {
-        for (auto&& [interface_name, info] : get_interfaces(w, class_type))
-        {
-            if (info.overridable && !info.base)
-            {
-                auto name = info.type.TypeName();
-
-                w.write_each<write_interface_override_method>(info.type.MethodList(), name);
-            }
-        };
-    }
-
-
-    static void write_class_override_usings(writer& w, get_interfaces_t const& required_interfaces)
-    {
-        std::map<std::string_view, std::set<std::string>> method_usage;
-
-        for (auto&& [interface_name, info] : required_interfaces)
-        {
-            for (auto&& method : info.type.MethodList())
-            {
-                method_usage[get_name(method)].insert(interface_name);
-            }
-        }
-
-        for (auto&& [method_name, interfaces] : method_usage)
-        {
-            if (interfaces.size() <= 1)
-            {
-                continue;
-            }
-
-            for (auto&& interface_name : interfaces)
-            {
-                w.write("        using impl::consume_t<D, %>::%;\n",
-                    interface_name,
-                    method_name);
-            }
-        }
-    }
-
-
-
-    static void write_interface_requires(writer& w, TypeDef const& type)
-    {
-        auto interfaces = get_interfaces(w, type);
-
-        if (interfaces.empty())
+        if (is_exclusive(type))
         {
             return;
         }
 
-        w.write(",\n        impl::require<%", type);
-
-        for (auto&& [name, info] : interfaces)
+        auto format = "internal class %Impl : % {\n";
+        w.write(format, type, type);
         {
-            w.write(", %", name);
-        }
+            auto indent = w.push_indent({ 1 });
+            for (auto&& method : type.MethodList())
+            {
+                method_signature signature{ method };
+                auto method_format = R"(public func %(%) throws %{
+%    }
+)";
+                auto push_abi_false = w.push_abi_types(false);
+                w.write(method_format,
+                    method.Name(),
+                    bind<write_swift_params>(signature),
+                    bind<write_return_type_declaration>(signature),
+                    bind<write_interface_swift_body>(method));
+            }
+         }
+        w.write("}\n\n");
+        write_interface_proto(w, type);
 
-        w.write('>');
-    }
-
-
-    static void write_interface(writer& w, TypeDef const& type)
-    {
-      
+        w.write("public typealias % = Impl.% & %Proto\n\n",
+            type,
+            bind<write_wrapper_type>(type),
+            type);
     }
 
     static void write_delegate(writer& w, TypeDef const& type)
@@ -929,7 +1099,7 @@ bind<write_abi_args>(signature));
                 }
                 else if (category == param_category::struct_type && !is_type_blittable(param_signature->Type()))
                 {
-                    w.write("let _% = _ABI_%(from: %)\n",
+                    w.write("let _% = ABI._ABI_%(from: %)\n",
                         param.Name(),
                         param_signature->Type(),
                         param.Name());
@@ -958,7 +1128,7 @@ bind<write_abi_args>(signature));
                 }
                 else if (category == param_category::struct_type)
                 {
-                    w.write("var _%: _ABI_% = .init()\n",
+                    w.write("let _%: ABI._ABI_% = .init()\n",
                         param.Name(),
                         param_signature->Type());
                     guard.push("% = .init(from: _%.val)\n",
@@ -979,7 +1149,7 @@ bind<write_abi_args>(signature));
         std::string_view func_name = method.Name();
         method_signature signature{ method };
 
-        w.write(R"(let factory: % = try! RoGetActivationFactory(HString("%"))
+        w.write(R"(let factory: ABI.% = try! RoGetActivationFactory(HString("%"))
 )",
 factory,
 get_full_type_name(type));
@@ -991,7 +1161,7 @@ get_full_type_name(type));
                 func_name,
                 bind<write_implementation_args>(signature));
 
-        w.write("interface = %(consuming: %)\n", default_interface, signature.return_param_name());
+        w.write("interface = ABI.%(consuming: %)\n", default_interface, signature.return_param_name());
     }
 
     static void write_factory_constructors(writer& w, TypeDef const& factory, TypeDef const& type, coded_index<TypeDefOrRef> const& default_interface)
@@ -1026,7 +1196,7 @@ get_full_type_name(type));
 )^-^",
 get_full_type_name(type));
 
-            w.write(R"^-^(    internal init(_ fromInterface: %) {
+            w.write(R"^-^(    internal init(_ fromInterface: ABI.%) {
         interface = fromInterface
     }
 
@@ -1121,7 +1291,7 @@ get_type_name(default_interface));
                 }
                 else if (category == param_category::struct_type)
                 {
-                    extra_init = std::string("let _newValue = _ABI_").append(signature_type.TypeName()).append("(from: newValue)\n    ");
+                    extra_init = std::string("let _newValue = ABI._ABI_").append(signature_type.TypeName()).append("(from: newValue)\n    ");
                 }
             }
 
@@ -1129,7 +1299,7 @@ get_type_name(default_interface));
                 extra_init,
                 is_static ? "statics" : "interface",
                 setter.Name(),
-                bind<write_convert_to_abi_arg>("newValue", prop.Type().Type()));
+                bind<write_convert_to_abi_arg>("newValue", prop.Type().Type(), false));
         }
         
         w.write("    }\n\n");
@@ -1201,7 +1371,7 @@ get_type_name(default_interface));
     {
         if (statics)
         {
-            w.write("    private static let statics: % = try! RoGetActivationFactory(HString(\"%\"))\n",
+            w.write("    private static let statics: ABI.% = try! RoGetActivationFactory(HString(\"%\"))\n",
                 statics,
                 get_full_type_name(type));
             auto guard = w.push_indent(indent{ 1 });
@@ -1248,7 +1418,7 @@ bind<write_statics_body>(method, statics, type)
 
         if (default_interface)
         {
-            w.write("    internal var interface: %\n\n", get_type_name(default_interface));
+            w.write("    internal var interface: ABI.%\n\n", get_type_name(default_interface));
             write_default_constructor_declarations(w, type, default_interface);
         }
 
@@ -1385,4 +1555,196 @@ bind<write_statics_body>(method, statics, type)
         }
         w.write("}\n\n");
     }
+
+    static void write_iunknown_methods(writer& w, TypeDef const& type)
+    {
+        w.write(R"(QueryInterface: {
+    guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+    guard riid.pointee == IUnknown.IID ||
+          riid.pointee == IInspectable.IID || 
+          riid.pointee == ISwiftImplemented.IID || %
+          riid.pointee == ABI.%.IID else { 
+        ppvObject.pointee = nil
+        return E_NOINTERFACE
+    }
+    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+    return S_OK
+},
+
+)",
+            bind_each([&](writer& w, InterfaceImpl const& iface)
+            {
+                w.write("\n        guard riid.pointee == %.IID ||", iface.Interface());
+            }, type.InterfaceImpl()),
+            type
+        );
+
+        w.write(R"(AddRef: {
+     guard let wrapper = %.from($0) else { return 1 }
+     _ = wrapper.retain()
+     return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+},
+
+)",
+            bind<write_wrapper_type>(type)
+        );
+
+        w.write(R"(Release: {
+    guard let wrapper = %.from($0) else { return 1 }
+    return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+},
+
+)",
+            bind<write_wrapper_type>(type)
+);
+    }
+    
+    static void write_iinspectable_methods(writer& w, TypeDef const& type)
+    {
+        auto interfaces = get_interfaces(w, type);
+       // 3 interfaces for IUnknown, IInspectable, type
+       auto interface_count = 3 + interfaces.size();
+        w.write(R"(GetIids: {
+    let size = MemoryLayout<IID>.size
+    let iids = CoTaskMemAlloc(UInt64(size) * %).assumingMemoryBound(to: IID.self)
+    iids[0] = IUnknown.IID
+    iids[1] = IInspectable.IID
+    iids[2] = ABI.%.IID
+    %
+    $1!.pointee = %
+    $2!.pointee = iids
+    return S_OK
+},
+
+)",
+            interface_count,
+            type,
+            bind_each([&](writer& w, std::pair<std::string, interface_info> const& iface)
+            {
+                w.write("\n        guard riid.pointee == %.IID ||", iface.first);
+            }, interfaces),
+            interface_count
+        );
+
+        w.write(R"(GetRuntimeClassName: {
+    _ = $0
+    let hstring = try! HString("%").detach()
+    $1!.pointee = hstring
+    return S_OK
+},
+
+)",
+get_full_type_name(type)
+);
+
+        w.write(R"(GetTrustLevel: {
+    _ = $0
+    $1!.pointee = TrustLevel.BaseTrust
+    return S_OK
+},
+
+)"
+);
+    }
+    
+    static void write_abi_ret_val(writer& w, method_signature signature)
+    {
+        separator s{ w, "\n"};
+
+        int param_number = 1;
+        for (auto&& [param, param_signature] : signature.params())
+        {
+            if (param.Flags().Out())
+            {
+                auto category = get_category(param_signature->Type());
+                auto param_name = param.Name();
+                auto is_blittable = is_type_blittable(param_signature->Type());
+                if (category == param_category::struct_type && !is_blittable)
+                {
+                    w.write("let _% = ABI._ABI_%(from: %)\n\t",
+                        param_name,
+                        param_signature->Type(),
+                        param_name);
+                }
+                auto consume_types = w.push_consume_types(true);
+
+                auto return_param_name = "$" + std::to_string(param_number);
+
+                w.write("%?.initialize(to: %)",
+                    return_param_name,
+                    bind<write_convert_to_abi_arg>(param_name, param_signature->Type(), true)
+                );
+            }
+         
+            param_number++;
+        }
+
+        if (signature.return_signature())
+        {
+            auto return_param_name = "$" + std::to_string(signature.params().size() + 1);
+            w.write("%?.initialize(to: %)",
+                return_param_name,
+                bind<write_convert_to_abi_arg>(signature.return_param_name(), signature.return_signature().Type(), true));
+        }
+    }
+
+    static void write_consume_swift_ret_val(writer& w, method_signature signature)
+    {
+        if (!signature.return_signature())
+        {
+            return;
+        }
+
+        w.write("let % = ",
+            signature.return_param_name());
+    }
+
+    static void write_vtable_method(writer& w, MethodDef const& method, TypeDef const& type)
+    {
+        auto func_name = method.Name();
+        auto signature = method_signature(method);
+        w.write(R"(%: {
+    guard let wrapper = %.from($0) else { return E_INVALIDARG }
+    guard let instance = wrapper.takeUnretainedValue() as? %Proto else { return E_NOINTERFACE }
+%
+    %try! instance.%(%)
+    %
+    return S_OK
+})", 
+            func_name,
+            bind<write_wrapper_type>(type),
+            type,
+            bind<write_consume_params>(signature),
+            bind<write_consume_swift_ret_val>(signature),
+            func_name,
+            bind<write_consume_args>(signature),
+            bind<write_abi_ret_val>(signature)
+    );
+    }
+
+    static void write_vtable(writer& w, TypeDef const& type)
+    {
+        w.write("private static var %VTable: %Vtbl = .init(\n",
+            type,
+            bind<write_type_abi>(type));
+        
+        {
+            auto indent = w.push_indent({ 1 });
+            write_iunknown_methods(w, type);
+            write_iinspectable_methods(w, type);
+
+            separator s{ w, ",\n\n"};
+            for (auto&& method : type.MethodList())
+            {
+                s();
+                write_vtable_method(w, method, type);
+            }
+        }
+
+        w.write(R"(
+)
+)");
+    }
+
 }

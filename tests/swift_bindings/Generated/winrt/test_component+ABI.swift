@@ -3,268 +3,396 @@
 import TestComponent_CWinRT
 
 private var IID___x_ABI_Ctest__component_CIClass: IID {
-    IID(Data1: 0x0196B36C, Data2: 0x5E3E, Data3: 0x5D86, Data4: ( 0xA7,0x00,0xCC,0xE7,0x83,0x37,0x5E,0x1F ))// 0196B36C-5E3E-5D86-A700-CCE783375E1F
+    IID(Data1: 0x37587B95, Data2: 0x2112, Data3: 0x5874, Data4: ( 0xBF,0x59,0x84,0x60,0xA2,0x25,0x3F,0xFB ))// 37587B95-2112-5874-BF59-8460A2253FFB
 }
 
 private var IID___x_ABI_Ctest__component_CIClassFactory: IID {
-    IID(Data1: 0x44D80DD3, Data2: 0x3375, Data3: 0x5BC4, Data4: ( 0xBB,0xF6,0xAE,0x61,0x3D,0xE0,0x19,0x70 ))// 44D80DD3-3375-5BC4-BBF6-AE613DE01970
+    IID(Data1: 0xAB1BAA08, Data2: 0x6D65, Data3: 0x5D77, Data4: ( 0x9E,0xC1,0x9F,0x4D,0x9B,0x1E,0x24,0xC8 ))// AB1BAA08-6D65-5D77-9EC1-9F4D9B1E24C8
 }
 
 private var IID___x_ABI_Ctest__component_CIClassStatics: IID {
     IID(Data1: 0x2E573677, Data2: 0xD7B8, Data3: 0x5305, Data4: ( 0x8F,0x9D,0x1B,0x23,0x15,0xE3,0x77,0x8B ))// 2E573677-D7B8-5305-8F9D-1B2315E3778B
 }
 
+private var IID___x_ABI_Ctest__component_CIIAmImplementable: IID {
+    IID(Data1: 0x037EC137, Data2: 0xC269, Data3: 0x584C, Data4: ( 0x9A,0x19,0xC7,0x31,0x3E,0x5F,0xD1,0x29 ))// 037EC137-C269-584C-9A19-C7313E5FD129
+}
+
 private var IID___x_ABI_Ctest__component_CISimple: IID {
     IID(Data1: 0x86F19B35, Data2: 0x7712, Data3: 0x5667, Data4: ( 0xA6,0x2D,0xA8,0xB2,0x42,0x5A,0x2E,0x9B ))// 86F19B35-7712-5667-A62D-A8B2425A2E9B
+}
+
+private var IID___x_ABI_Ctest__component_CISimpleDelegate: IID {
+    IID(Data1: 0xB73AD784, Data2: 0xEADD, Data3: 0x54B7, Data4: ( 0xA6,0x8E,0x8A,0xC5,0x6E,0xAB,0x73,0x87 ))// B73AD784-EADD-54B7-A68E-8AC56EAB7387
 }
 
 private var IID___x_ABI_Ctest__component_CIStaticClassStatics: IID {
     IID(Data1: 0xC983253D, Data2: 0x876D, Data3: 0x55EE, Data4: ( 0x82,0x4B,0x01,0x24,0x6E,0xDC,0x61,0x2D ))// C983253D-876D-55EE-824B-01246EDC612D
 }
 
-open class IClass: IInspectable {
-    override public class var IID: IID { IID___x_ABI_Ctest__component_CIClass }
+public struct ABI {
+    open class IClass: IInspectable {
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CIClass }
 
-    public func InInt32(_ value: INT32) throws -> HSTRING? {
-        var result: HSTRING?
-        _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.InInt32(pThis, value, &result))
+        public func SetDelegate(_ value: UnsafeMutablePointer<__x_ABI_Ctest__component_CISimpleDelegate>?) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.SetDelegate(pThis, value))
+            }
         }
-        return result
-    }
-    public func InString(_ value: HSTRING?) throws -> HSTRING? {
-        var result: HSTRING?
-        _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.InString(pThis, value, &result))
+        public func GetDelegate() throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CISimpleDelegate>? {
+            var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CISimpleDelegate>?
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetDelegate(pThis, &result))
+            }
+            return result
         }
-        return result
-    }
-    public func InEnum(_ value: __x_ABI_Ctest__component_CSigned) throws -> HSTRING? {
-        var result: HSTRING?
-        _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.InEnum(pThis, value, &result))
+        public func InInt32(_ value: INT32) throws -> HSTRING? {
+            var result: HSTRING?
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.InInt32(pThis, value, &result))
+            }
+            return result
         }
-        return result
-    }
-    public func OutInt32(_ value: inout INT32) throws {
-        _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.OutInt32(pThis, &value))
+        public func InString(_ value: HSTRING?) throws -> HSTRING? {
+            var result: HSTRING?
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.InString(pThis, value, &result))
+            }
+            return result
+        }
+        public func InEnum(_ value: __x_ABI_Ctest__component_CSigned) throws -> HSTRING? {
+            var result: HSTRING?
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.InEnum(pThis, value, &result))
+            }
+            return result
+        }
+        public func OutInt32(_ value: inout INT32) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.OutInt32(pThis, &value))
+            }
+        }
+        public func OutString(_ value: inout HSTRING?) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.OutString(pThis, &value))
+            }
+        }
+        public func OutBlittableStruct(_ value: inout __x_ABI_Ctest__component_CBlittableStruct) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.OutBlittableStruct(pThis, &value))
+            }
+        }
+        public func OutNonBlittableStruct(_ value: inout __x_ABI_Ctest__component_CNonBlittableStruct) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.OutNonBlittableStruct(pThis, &value))
+            }
+        }
+        public func OutEnum(_ value: inout __x_ABI_Ctest__component_CSigned) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.OutEnum(pThis, &value))
+            }
+        }
+        public func ReturnEnum() throws -> __x_ABI_Ctest__component_CSigned {
+            var result: __x_ABI_Ctest__component_CSigned = .init(0)
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnEnum(pThis, &result))
+            }
+            return result
+        }
+        public func get_EnumProperty() throws -> __x_ABI_Ctest__component_CFruit {
+            var value: __x_ABI_Ctest__component_CFruit = .init(0)
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_EnumProperty(pThis, &value))
+            }
+            return value
+        }
+        public func put_EnumProperty(_ value: __x_ABI_Ctest__component_CFruit) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.put_EnumProperty(pThis, value))
+            }
         }
     }
-    public func OutString(_ value: inout HSTRING?) throws {
-        _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.OutString(pThis, &value))
+
+    open class IClassFactory: IInspectable {
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CIClassFactory }
+
+        public func CreateInstance(_ name: HSTRING?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>? {
+            var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>?
+            _ = try perform(as: __x_ABI_Ctest__component_CIClassFactory.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, name, &value))
+            }
+            return value
+        }
+        public func CreateInstance2(_ name: HSTRING?, _ fruit: __x_ABI_Ctest__component_CFruit) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>? {
+            var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>?
+            _ = try perform(as: __x_ABI_Ctest__component_CIClassFactory.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance2(pThis, name, fruit, &value))
+            }
+            return value
+        }
+        public func CreateInstance3(_ name: HSTRING?, _ fruit: __x_ABI_Ctest__component_CFruit, _ implementation: UnsafeMutablePointer<__x_ABI_Ctest__component_CIIAmImplementable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>? {
+            var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>?
+            _ = try perform(as: __x_ABI_Ctest__component_CIClassFactory.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance3(pThis, name, fruit, implementation, &value))
+            }
+            return value
         }
     }
-    public func OutBlittableStruct(_ value: inout __x_ABI_Ctest__component_CBlittableStruct) throws {
-        _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.OutBlittableStruct(pThis, &value))
+
+    open class IClassStatics: IInspectable {
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CIClassStatics }
+
+        public func StaticTest() throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIClassStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.StaticTest(pThis))
+            }
+        }
+        public func StaticTestReturn() throws -> INT32 {
+            var result: INT32 = 0
+            _ = try perform(as: __x_ABI_Ctest__component_CIClassStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.StaticTestReturn(pThis, &result))
+            }
+            return result
+        }
+        public func get_StaticProperty() throws -> INT32 {
+            var value: INT32 = 0
+            _ = try perform(as: __x_ABI_Ctest__component_CIClassStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_StaticProperty(pThis, &value))
+            }
+            return value
         }
     }
-    public func OutNonBlittableStruct(_ value: inout __x_ABI_Ctest__component_CNonBlittableStruct) throws {
-        _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.OutNonBlittableStruct(pThis, &value))
+
+    open class IIAmImplementable: IInspectable {
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CIIAmImplementable }
+
+        internal func InInt32Impl(_ value: INT32) throws -> HSTRING? {
+            var result: HSTRING?
+            _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.InInt32(pThis, value, &result))
+            }
+            return result
+        }
+        internal func InStringImpl(_ value: HSTRING?) throws -> HSTRING? {
+            var result: HSTRING?
+            _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.InString(pThis, value, &result))
+            }
+            return result
+        }
+        internal func InEnumImpl(_ value: __x_ABI_Ctest__component_CSigned) throws -> HSTRING? {
+            var result: HSTRING?
+            _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.InEnum(pThis, value, &result))
+            }
+            return result
+        }
+        internal func OutInt32Impl(_ value: inout INT32) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.OutInt32(pThis, &value))
+            }
+        }
+        internal func OutStringImpl(_ value: inout HSTRING?) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.OutString(pThis, &value))
+            }
+        }
+        internal func OutBlittableStructImpl(_ value: inout __x_ABI_Ctest__component_CBlittableStruct) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.OutBlittableStruct(pThis, &value))
+            }
+        }
+        internal func OutNonBlittableStructImpl(_ value: inout __x_ABI_Ctest__component_CNonBlittableStruct) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.OutNonBlittableStruct(pThis, &value))
+            }
+        }
+        internal func OutEnumImpl(_ value: inout __x_ABI_Ctest__component_CSigned) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.OutEnum(pThis, &value))
+            }
+        }
+        internal func ReturnEnumImpl() throws -> __x_ABI_Ctest__component_CSigned {
+            var result: __x_ABI_Ctest__component_CSigned = .init(0)
+            _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnEnum(pThis, &result))
+            }
+            return result
+        }
+        internal func get_EnumPropertyImpl() throws -> __x_ABI_Ctest__component_CFruit {
+            var value: __x_ABI_Ctest__component_CFruit = .init(0)
+            _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_EnumProperty(pThis, &value))
+            }
+            return value
+        }
+        internal func put_EnumPropertyImpl(_ value: __x_ABI_Ctest__component_CFruit) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.put_EnumProperty(pThis, value))
+            }
         }
     }
-    public func OutEnum(_ value: inout __x_ABI_Ctest__component_CSigned) throws {
-        _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.OutEnum(pThis, &value))
+
+    open class ISimple: IInspectable {
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CISimple }
+
+        public func Method() throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Method(pThis))
+            }
+        }
+        public func ReturnBlittableStruct() throws -> __x_ABI_Ctest__component_CBlittableStruct {
+            var result: __x_ABI_Ctest__component_CBlittableStruct = .init()
+            _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnBlittableStruct(pThis, &result))
+            }
+            return result
+        }
+        public func TakeBlittableStruct(_ value: __x_ABI_Ctest__component_CBlittableStruct) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.TakeBlittableStruct(pThis, value))
+            }
+        }
+        public func get_BlittableStructProperty() throws -> __x_ABI_Ctest__component_CBlittableStruct {
+            var value: __x_ABI_Ctest__component_CBlittableStruct = .init()
+            _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_BlittableStructProperty(pThis, &value))
+            }
+            return value
+        }
+        public func put_BlittableStructProperty(_ value: __x_ABI_Ctest__component_CBlittableStruct) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.put_BlittableStructProperty(pThis, value))
+            }
+        }
+        public func ReturnNonBlittableStruct() throws -> __x_ABI_Ctest__component_CNonBlittableStruct {
+            var result: __x_ABI_Ctest__component_CNonBlittableStruct = .init()
+            _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnNonBlittableStruct(pThis, &result))
+            }
+            return result
+        }
+        public func TakeNonBlittableStruct(_ value: __x_ABI_Ctest__component_CNonBlittableStruct) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.TakeNonBlittableStruct(pThis, value))
+            }
+        }
+        public func get_NonBlittableStructProperty() throws -> __x_ABI_Ctest__component_CNonBlittableStruct {
+            var value: __x_ABI_Ctest__component_CNonBlittableStruct = .init()
+            _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_NonBlittableStructProperty(pThis, &value))
+            }
+            return value
+        }
+        public func put_NonBlittableStructProperty(_ value: __x_ABI_Ctest__component_CNonBlittableStruct) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.put_NonBlittableStructProperty(pThis, value))
+            }
+        }
+        public func get_StringProperty() throws -> HSTRING? {
+            var value: HSTRING?
+            _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_StringProperty(pThis, &value))
+            }
+            return value
+        }
+        public func put_StringProperty(_ value: HSTRING?) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.put_StringProperty(pThis, value))
+            }
         }
     }
-    public func ReturnEnum() throws -> __x_ABI_Ctest__component_CSigned {
-        var result: __x_ABI_Ctest__component_CSigned = .init(0)
-        _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnEnum(pThis, &result))
+
+    open class ISimpleDelegate: IInspectable {
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CISimpleDelegate }
+
+        internal func DoThisImpl() throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CISimpleDelegate.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.DoThis(pThis))
+            }
         }
-        return result
-    }
-    public func get_EnumProperty() throws -> __x_ABI_Ctest__component_CFruit {
-        var value: __x_ABI_Ctest__component_CFruit = .init(0)
-        _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.get_EnumProperty(pThis, &value))
+        internal func DoThatImpl(_ val: INT32) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CISimpleDelegate.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.DoThat(pThis, val))
+            }
         }
-        return value
     }
-    public func put_EnumProperty(_ value: __x_ABI_Ctest__component_CFruit) throws {
-        _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.put_EnumProperty(pThis, value))
+
+    open class IStaticClassStatics: IInspectable {
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CIStaticClassStatics }
+
+        public func get_EnumProperty() throws -> __x_ABI_Ctest__component_CFruit {
+            var value: __x_ABI_Ctest__component_CFruit = .init(0)
+            _ = try perform(as: __x_ABI_Ctest__component_CIStaticClassStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_EnumProperty(pThis, &value))
+            }
+            return value
+        }
+        public func put_EnumProperty(_ value: __x_ABI_Ctest__component_CFruit) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIStaticClassStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.put_EnumProperty(pThis, value))
+            }
+        }
+        public func InEnum(_ value: __x_ABI_Ctest__component_CSigned) throws -> HSTRING? {
+            var result: HSTRING?
+            _ = try perform(as: __x_ABI_Ctest__component_CIStaticClassStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.InEnum(pThis, value, &result))
+            }
+            return result
+        }
+        public func InNonBlittableStruct(_ value: __x_ABI_Ctest__component_CNonBlittableStruct) throws -> HSTRING? {
+            var result: HSTRING?
+            _ = try perform(as: __x_ABI_Ctest__component_CIStaticClassStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.InNonBlittableStruct(pThis, value, &result))
+            }
+            return result
+        }
+    }
+
+    class _ABI_NonBlittableBoolStruct {
+        internal var val: __x_ABI_Ctest__component_CNonBlittableBoolStruct = .init()
+        internal init() { } 
+        internal init(from swift: NonBlittableBoolStruct) {
+            val.First = .init(from: swift.First)
+            val.Second = .init(from: swift.Second)
+            val.Third = .init(from: swift.Third)
+            val.Fourth = .init(from: swift.Fourth)
+        }
+
+        internal func detach() -> __x_ABI_Ctest__component_CNonBlittableBoolStruct {
+            let result = val
+            return result
+        }
+
+        deinit {
+        }
+    }
+    class _ABI_NonBlittableStruct {
+        internal var val: __x_ABI_Ctest__component_CNonBlittableStruct = .init()
+        internal init() { } 
+        internal init(from swift: NonBlittableStruct) {
+            val.First = try! HString(swift.First).detach()
+            val.Second = try! HString(swift.Second).detach()
+            val.Third = swift.Third
+            val.Fourth = try! HString(swift.Fourth).detach()
+        }
+
+        internal func detach() -> __x_ABI_Ctest__component_CNonBlittableStruct {
+            let result = val
+            val.First = nil
+            val.Second = nil
+            val.Fourth = nil
+            return result
+        }
+
+        deinit {
+            WindowsDeleteString(val.First)
+            WindowsDeleteString(val.Second)
+            WindowsDeleteString(val.Fourth)
         }
     }
 }
 
-open class IClassFactory: IInspectable {
-    override public class var IID: IID { IID___x_ABI_Ctest__component_CIClassFactory }
-
-    public func CreateInstance(_ name: HSTRING?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>? {
-        var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>?
-        _ = try perform(as: __x_ABI_Ctest__component_CIClassFactory.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, name, &value))
-        }
-        return value
-    }
-    public func CreateInstance2(_ name: HSTRING?, _ fruit: __x_ABI_Ctest__component_CFruit) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>? {
-        var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>?
-        _ = try perform(as: __x_ABI_Ctest__component_CIClassFactory.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance2(pThis, name, fruit, &value))
-        }
-        return value
-    }
-}
-
-open class IClassStatics: IInspectable {
-    override public class var IID: IID { IID___x_ABI_Ctest__component_CIClassStatics }
-
-    public func StaticTest() throws {
-        _ = try perform(as: __x_ABI_Ctest__component_CIClassStatics.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.StaticTest(pThis))
-        }
-    }
-    public func StaticTestReturn() throws -> INT32 {
-        var result: INT32 = 0
-        _ = try perform(as: __x_ABI_Ctest__component_CIClassStatics.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.StaticTestReturn(pThis, &result))
-        }
-        return result
-    }
-    public func get_StaticProperty() throws -> INT32 {
-        var value: INT32 = 0
-        _ = try perform(as: __x_ABI_Ctest__component_CIClassStatics.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.get_StaticProperty(pThis, &value))
-        }
-        return value
-    }
-}
-
-open class ISimple: IInspectable {
-    override public class var IID: IID { IID___x_ABI_Ctest__component_CISimple }
-
-    public func Method() throws {
-        _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Method(pThis))
-        }
-    }
-    public func ReturnBlittableStruct() throws -> __x_ABI_Ctest__component_CBlittableStruct {
-        var result: __x_ABI_Ctest__component_CBlittableStruct = .init()
-        _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnBlittableStruct(pThis, &result))
-        }
-        return result
-    }
-    public func TakeBlittableStruct(_ value: __x_ABI_Ctest__component_CBlittableStruct) throws {
-        _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.TakeBlittableStruct(pThis, value))
-        }
-    }
-    public func get_BlittableStructProperty() throws -> __x_ABI_Ctest__component_CBlittableStruct {
-        var value: __x_ABI_Ctest__component_CBlittableStruct = .init()
-        _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.get_BlittableStructProperty(pThis, &value))
-        }
-        return value
-    }
-    public func put_BlittableStructProperty(_ value: __x_ABI_Ctest__component_CBlittableStruct) throws {
-        _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.put_BlittableStructProperty(pThis, value))
-        }
-    }
-    public func ReturnNonBlittableStruct() throws -> __x_ABI_Ctest__component_CNonBlittableStruct {
-        var result: __x_ABI_Ctest__component_CNonBlittableStruct = .init()
-        _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnNonBlittableStruct(pThis, &result))
-        }
-        return result
-    }
-    public func TakeNonBlittableStruct(_ value: __x_ABI_Ctest__component_CNonBlittableStruct) throws {
-        _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.TakeNonBlittableStruct(pThis, value))
-        }
-    }
-    public func get_NonBlittableStructProperty() throws -> __x_ABI_Ctest__component_CNonBlittableStruct {
-        var value: __x_ABI_Ctest__component_CNonBlittableStruct = .init()
-        _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.get_NonBlittableStructProperty(pThis, &value))
-        }
-        return value
-    }
-    public func put_NonBlittableStructProperty(_ value: __x_ABI_Ctest__component_CNonBlittableStruct) throws {
-        _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.put_NonBlittableStructProperty(pThis, value))
-        }
-    }
-    public func get_StringProperty() throws -> HSTRING? {
-        var value: HSTRING?
-        _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.get_StringProperty(pThis, &value))
-        }
-        return value
-    }
-    public func put_StringProperty(_ value: HSTRING?) throws {
-        _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.put_StringProperty(pThis, value))
-        }
-    }
-}
-
-open class IStaticClassStatics: IInspectable {
-    override public class var IID: IID { IID___x_ABI_Ctest__component_CIStaticClassStatics }
-
-    public func get_EnumProperty() throws -> __x_ABI_Ctest__component_CFruit {
-        var value: __x_ABI_Ctest__component_CFruit = .init(0)
-        _ = try perform(as: __x_ABI_Ctest__component_CIStaticClassStatics.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.get_EnumProperty(pThis, &value))
-        }
-        return value
-    }
-    public func put_EnumProperty(_ value: __x_ABI_Ctest__component_CFruit) throws {
-        _ = try perform(as: __x_ABI_Ctest__component_CIStaticClassStatics.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.put_EnumProperty(pThis, value))
-        }
-    }
-    public func InEnum(_ value: __x_ABI_Ctest__component_CSigned) throws -> HSTRING? {
-        var result: HSTRING?
-        _ = try perform(as: __x_ABI_Ctest__component_CIStaticClassStatics.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.InEnum(pThis, value, &result))
-        }
-        return result
-    }
-    public func InNonBlittableStruct(_ value: __x_ABI_Ctest__component_CNonBlittableStruct) throws -> HSTRING? {
-        var result: HSTRING?
-        _ = try perform(as: __x_ABI_Ctest__component_CIStaticClassStatics.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.InNonBlittableStruct(pThis, value, &result))
-        }
-        return result
-    }
-}
-
-class _ABI_NonBlittableBoolStruct {
-    internal var val: __x_ABI_Ctest__component_CNonBlittableBoolStruct = .init()
-    internal init() { } 
-    internal init(from swift: NonBlittableBoolStruct) {
-        val.First = .init(from: swift.First)
-        val.Second = .init(from: swift.Second)
-        val.Third = .init(from: swift.Third)
-        val.Fourth = .init(from: swift.Fourth)
-    }
-
-    deinit {
-    }
-}
-class _ABI_NonBlittableStruct {
-    internal var val: __x_ABI_Ctest__component_CNonBlittableStruct = .init()
-    internal init() { } 
-    internal init(from swift: NonBlittableStruct) {
-        val.First = try! HString(swift.First).detach()
-        val.Second = try! HString(swift.Second).detach()
-        val.Third = swift.Third
-        val.Fourth = try! HString(swift.Fourth).detach()
-    }
-
-    deinit {
-        WindowsDeleteString(val.First)
-        WindowsDeleteString(val.Second)
-        WindowsDeleteString(val.Fourth)
-    }
-}
 public typealias Fruit = __x_ABI_Ctest__component_CFruit
 public typealias Signed = __x_ABI_Ctest__component_CSigned
 public typealias Unsigned = __x_ABI_Ctest__component_CUnsigned

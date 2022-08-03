@@ -3,12 +3,27 @@
 //#include "DeferrableEventArgs.g.h"
 namespace winrt::test_component::implementation
 {
+
+    struct SimpleDelegate : implements<SimpleDelegate, test_component::ISimpleDelegate>
+    {
+        void DoThis()
+        {
+            printf("C++ - DoThis\n");
+        }
+
+        void DoThat(int32_t value)
+        {
+            printf("C++ - DoThat: %d\n", value);
+        }
+    };
+
     struct Class : ClassT<Class>
     {
         Class() = default;
+
         Class(hstring const&) {}
         Class(hstring const&, Fruit const& fruit) : m_fruit(fruit){}
-
+        Class(hstring const& name, Fruit const& fruit, IIAmImplementable const& implementation) : m_fruit(fruit), m_implementation(implementation) {}
         static void StaticTest()
         {
         }
@@ -54,6 +69,18 @@ namespace winrt::test_component::implementation
         static hstring InVectorView(Windows::Foundation::Collections::IVectorView<hstring> const& value);
         static Windows::Foundation::IAsyncOperation<hstring> InAsyncVectorView(Windows::Foundation::Collections::IVectorView<hstring> value);
 
+        void SetDelegate(test_component::ISimpleDelegate const& value)
+        {
+            m_delegate = value;
+            if (m_delegate)
+            {
+                m_delegate.DoThis();
+                m_delegate.DoThat(3);
+            }
+        }
+
+        test_component::ISimpleDelegate GetDelegate() { return m_delegate != nullptr ? m_delegate : make<SimpleDelegate>(); }
+
         hstring InInt32(int32_t value);
         hstring InString(hstring const& value);
         hstring InObject(Windows::Foundation::IInspectable const& value);
@@ -98,8 +125,8 @@ namespace winrt::test_component::implementation
         com_array<Windows::Foundation::IStringable> ReturnStringableArray();
         com_array<Signed> ReturnEnumArray();
 
-        Fruit EnumProperty() const { return m_fruit; }
-        void EnumProperty(Fruit const& value) { m_fruit = value; }
+        Fruit EnumProperty() const;
+        void EnumProperty(Fruit const& value);
         
         void NoexceptVoid() noexcept;
         int32_t NoexceptInt32() noexcept;
@@ -142,6 +169,9 @@ namespace winrt::test_component::implementation
         }
 
         test_component::Fruit m_fruit{ test_component::Fruit::Banana };
+
+        test_component::IIAmImplementable m_implementation{};
+        test_component::ISimpleDelegate m_delegate{};
     };
 
     /*

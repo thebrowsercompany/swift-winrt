@@ -45,6 +45,12 @@ namespace swiftwinrt
         return {};
     }
 
+    static bool is_exclusive(TypeDef const& type)
+    {
+        return has_attribute(type, "Windows.Foundation.Metadata", "ExclusiveToAttribute");
+    }
+
+
     static coded_index<TypeDefOrRef> get_default_interface(TypeSig const& type)
     {
         coded_index<TypeDefOrRef> result = {};

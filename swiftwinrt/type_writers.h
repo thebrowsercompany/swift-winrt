@@ -242,6 +242,11 @@ namespace swiftwinrt
             return member_value_guard(this, &writer::delegate_types, value);
         }
 
+        [[nodiscard]] auto push_consume_types(bool value)
+        {
+            return member_value_guard(this, &writer::consume_types, value);
+        }
+
         void write(indent value)
         {
             for (std::size_t i = 0; i < value.additional_indentation; ++i)
@@ -505,6 +510,26 @@ namespace swiftwinrt
             {
                 write("com_array<%>", signature.Type());
             }
+            else if (abi_types)
+            {
+                auto category = get_category(signature);
+
+                if (category == param_category::object_type)
+                {
+                    if (auto default_interface = get_default_interface(signature))
+                    {
+                        write("UnsafeMutablePointer<%>", default_interface);
+                    }
+                    else
+                    {
+                        write("UnsafeMutablePointer<%>", signature.Type());
+                    }
+                }
+                else
+                {
+                    write(signature.Type());
+                }
+            }
             else
             {
                 write(signature.Type());
@@ -516,27 +541,9 @@ namespace swiftwinrt
             if (value)
             {
                 auto category = get_category(value.Type());
-                if (abi_types)
+                if (abi_types && (category == param_category::object_type || category == param_category::string_type))
                 {
-                    if (category == param_category::object_type)
-                    {
-                        if (auto default_interface = get_default_interface(value.Type()))
-                        {
-                            write("UnsafeMutablePointer<%>?", default_interface);
-                        }
-                        else
-                        {
-                            write("UnsafeMutablePointer<%>?", value.Type());
-                        }
-                    }
-                    else if (category == param_category::string_type)
-                    {
-                        write("%?", value.Type());
-                    }
-                    else
-                    {
-                        write(value.Type());
-                    }
+                    write("%?", value.Type());
                 }
                 else
                 {
