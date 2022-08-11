@@ -11,7 +11,7 @@ namespace swiftwinrt
         write_preamble(w, settings.c_import);
 
         w.write_each<write_guid>(members.interfaces);
-        w.write("public struct ABI {\n");
+        w.write("public extension ABI {\n");
         {
             auto indent = w.push_indent({ 1 });
             w.write_each<write_interface_abi>(members.interfaces);
@@ -34,7 +34,7 @@ namespace swiftwinrt
         w.write_each<write_class>(members.classes);
         w.write_each<write_delegate>(members.delegates);
         w.write_each<write_struct>(members.structs);
-        w.write("public struct Impl {\n");
+        w.write("public extension Impl {\n");
         {
             auto indent = w.push_indent({ 1 });
             w.write_each<write_interface_impl>(members.interfaces);
