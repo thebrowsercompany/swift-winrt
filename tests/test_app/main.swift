@@ -390,6 +390,17 @@ class SwiftWinRTTests {
    
     print("  ** Test passed! **")
   }
+
+  public func TestNonDefaultMethods()
+  {
+    print("  ** Starting test case: TestNonDefaultMethods **")
+    Class.StaticPropertyFloat = 4.0
+    assert(Class.StaticPropertyFloat == 4.0)
+    assert(Class.StaticTestReturnFloat() == 42.24)
+    let classy = Class()
+    classy.Method()
+    print("  ** Test passed! **")
+  }
 }
 
 RoInitialize(RO_INIT_SINGLETHREADED)
@@ -401,5 +412,6 @@ tests.TestCustomConstructors()
 tests.TestStaticMethods()
 tests.TestOutParams()
 tests.TestDelegate()
+tests.TestNonDefaultMethods()
 
 print("all tests passed!")

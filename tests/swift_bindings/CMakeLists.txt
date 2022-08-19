@@ -7,6 +7,7 @@ add_library(WinRT_Test SHARED
   Support/COM+Extensions.swift
   Support/Error.swift
   Support/ErrorHandling.swift
+  Support/GeneratedCodeDefinitions.swift
   Support/HString.swift
   Support/HStringStorage.swift
   Support/IInspectable.swift

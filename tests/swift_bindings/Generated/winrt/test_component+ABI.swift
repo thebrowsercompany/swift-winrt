@@ -2,16 +2,28 @@
 
 import TestComponent_CWinRT
 
+private var IID___x_ABI_Ctest__component_CIBasic: IID {
+    IID(Data1: 0x636060A1, Data2: 0xE41D, Data3: 0x59DF, Data4: ( 0xA5,0xD3,0xFB,0x7C,0xE7,0xE1,0x79,0x2F ))// 636060A1-E41D-59DF-A5D3-FB7CE7E1792F
+}
+
 private var IID___x_ABI_Ctest__component_CIClass: IID {
     IID(Data1: 0x37587B95, Data2: 0x2112, Data3: 0x5874, Data4: ( 0xBF,0x59,0x84,0x60,0xA2,0x25,0x3F,0xFB ))// 37587B95-2112-5874-BF59-8460A2253FFB
 }
 
 private var IID___x_ABI_Ctest__component_CIClassFactory: IID {
-    IID(Data1: 0xAB1BAA08, Data2: 0x6D65, Data3: 0x5D77, Data4: ( 0x9E,0xC1,0x9F,0x4D,0x9B,0x1E,0x24,0xC8 ))// AB1BAA08-6D65-5D77-9EC1-9F4D9B1E24C8
+    IID(Data1: 0x44D80DD3, Data2: 0x3375, Data3: 0x5BC4, Data4: ( 0xBB,0xF6,0xAE,0x61,0x3D,0xE0,0x19,0x70 ))// 44D80DD3-3375-5BC4-BBF6-AE613DE01970
+}
+
+private var IID___x_ABI_Ctest__component_CIClassFactory2: IID {
+    IID(Data1: 0xF5F62EBE, Data2: 0x931B, Data3: 0x519B, Data4: ( 0x95,0x1A,0xF1,0x4A,0x4B,0xC7,0x83,0xB1 ))// F5F62EBE-931B-519B-951A-F14A4BC783B1
 }
 
 private var IID___x_ABI_Ctest__component_CIClassStatics: IID {
     IID(Data1: 0x2E573677, Data2: 0xD7B8, Data3: 0x5305, Data4: ( 0x8F,0x9D,0x1B,0x23,0x15,0xE3,0x77,0x8B ))// 2E573677-D7B8-5305-8F9D-1B2315E3778B
+}
+
+private var IID___x_ABI_Ctest__component_CIClassStatics2: IID {
+    IID(Data1: 0xB341C098, Data2: 0x033D, Data3: 0x5445, Data4: ( 0x86,0x80,0x70,0x3A,0x93,0xBC,0xDF,0x81 ))// B341C098-033D-5445-8680-703A93BCDF81
 }
 
 private var IID___x_ABI_Ctest__component_CIIAmImplementable: IID {
@@ -30,7 +42,17 @@ private var IID___x_ABI_Ctest__component_CIStaticClassStatics: IID {
     IID(Data1: 0xC983253D, Data2: 0x876D, Data3: 0x55EE, Data4: ( 0x82,0x4B,0x01,0x24,0x6E,0xDC,0x61,0x2D ))// C983253D-876D-55EE-824B-01246EDC612D
 }
 
-public struct ABI {
+extension ABI {
+    open class IBasic: IInspectable {
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CIBasic }
+
+        internal func MethodImpl() throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIBasic.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Method(pThis))
+            }
+        }
+    }
+
     open class IClass: IInspectable {
         override public class var IID: IID { IID___x_ABI_Ctest__component_CIClass }
 
@@ -130,10 +152,15 @@ public struct ABI {
             }
             return value
         }
-        public func CreateInstance3(_ name: HSTRING?, _ fruit: __x_ABI_Ctest__component_CFruit, _ implementation: UnsafeMutablePointer<__x_ABI_Ctest__component_CIIAmImplementable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>? {
+    }
+
+    open class IClassFactory2: IInspectable {
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CIClassFactory2 }
+
+        public func CreateInstance(_ name: HSTRING?, _ fruit: __x_ABI_Ctest__component_CFruit, _ implementation: UnsafeMutablePointer<__x_ABI_Ctest__component_CIIAmImplementable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>?
-            _ = try perform(as: __x_ABI_Ctest__component_CIClassFactory.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance3(pThis, name, fruit, implementation, &value))
+            _ = try perform(as: __x_ABI_Ctest__component_CIClassFactory2.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, name, fruit, implementation, &value))
             }
             return value
         }
@@ -160,6 +187,30 @@ public struct ABI {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_StaticProperty(pThis, &value))
             }
             return value
+        }
+    }
+
+    open class IClassStatics2: IInspectable {
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CIClassStatics2 }
+
+        public func StaticTestReturnFloat() throws -> FLOAT {
+            var result: FLOAT = 0.0
+            _ = try perform(as: __x_ABI_Ctest__component_CIClassStatics2.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.StaticTestReturnFloat(pThis, &result))
+            }
+            return result
+        }
+        public func get_StaticPropertyFloat() throws -> FLOAT {
+            var value: FLOAT = 0.0
+            _ = try perform(as: __x_ABI_Ctest__component_CIClassStatics2.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_StaticPropertyFloat(pThis, &value))
+            }
+            return value
+        }
+        public func put_StaticPropertyFloat(_ value: FLOAT) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIClassStatics2.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.put_StaticPropertyFloat(pThis, value))
+            }
         }
     }
 

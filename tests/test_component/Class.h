@@ -38,6 +38,17 @@ namespace winrt::test_component::implementation
             return 18;
         }
 
+        static float StaticTestReturnFloat()
+        {
+            return 42.24f;
+        }
+
+        static float StaticPropertyFloat()
+        {
+            return s_float;
+        }
+        static void StaticPropertyFloat(float value) { s_float = value; }
+
         void Fail(bool fail)
         {
             m_fail = fail;
@@ -153,8 +164,10 @@ namespace winrt::test_component::implementation
             co_return;
         }
 
-    private:
+        void Method(){ printf("Method called!\n"); }
 
+    private:
+        static float s_float;
         bool m_fail{};
         //event<Windows::Foundation::TypedEventHandler<test_component::Class, test_component::DeferrableEventArgs>> m_deferrableEvent;
 

@@ -141,15 +141,30 @@ namespace test_component
             void DoThat(Int32 val);
         }
 
-        runtimeclass Class
+        interface IBasic
+        {
+            void Method();
+        }
+
+        runtimeclass Class : IBasic
         {
            Class();
            Class(String name);
            Class(String name, Fruit fruit);
-           Class(String name, Fruit fruit, IIAmImplementable implementation);
            static void StaticTest();
            static Int32 StaticTestReturn();
            static Int32 StaticProperty{ get; };
+
+           // This is used to mimic API contract behavior, such that this will enforce separate types be generated
+           [
+             constructor_name("test_component.IClassFactory2"),
+             static_name("test_component.IClassStatics2") 
+           ]
+           {
+              Class(String name, Fruit fruit, IIAmImplementable implementation);
+              static Single StaticTestReturnFloat();
+              static Single StaticPropertyFloat;
+           }
 
             void SetDelegate(ISimpleDelegate value);
             ISimpleDelegate GetDelegate();

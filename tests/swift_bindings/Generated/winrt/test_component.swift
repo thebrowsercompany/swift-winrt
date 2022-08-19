@@ -67,28 +67,45 @@ public class Class: Equatable {
     }
 
     public init(_ name: String, _ fruit: Fruit, _ implementation: IIAmImplementable) {
-        let factory: ABI.IClassFactory = try! RoGetActivationFactory(HString("test_component.Class"))
+        let factory: ABI.IClassFactory2 = try! RoGetActivationFactory(HString("test_component.Class"))
         let _name = try! HString(name)
-        let value = try! factory.CreateInstance3(_name.get(), fruit, RawPointer(implementation))
+        let value = try! factory.CreateInstance(_name.get(), fruit, RawPointer(implementation))
         interface = ABI.IClass(consuming: value)
     }
 
-    private static let statics: ABI.IClassStatics = try! RoGetActivationFactory(HString("test_component.Class"))
+    private static let _IClassStatics: ABI.IClassStatics = try! RoGetActivationFactory(HString("test_component.Class"))
     public static func StaticTest() {
-        try! statics.StaticTest()
+        try! _IClassStatics.StaticTest()
     }
 
     public static func StaticTestReturn() -> Int32 {
-        let result = try! statics.StaticTestReturn()
+        let result = try! _IClassStatics.StaticTestReturn()
         return result
     }
 
     public static var StaticProperty : Int32 {
         get {
-            let value = try! statics.get_StaticProperty()
+            let value = try! _IClassStatics.get_StaticProperty()
             return value
         }
 
+    }
+
+    private static let _IClassStatics2: ABI.IClassStatics2 = try! RoGetActivationFactory(HString("test_component.Class"))
+    public static func StaticTestReturnFloat() -> Float {
+        let result = try! _IClassStatics2.StaticTestReturnFloat()
+        return result
+    }
+
+    public static var StaticPropertyFloat : Float {
+        get {
+            let value = try! _IClassStatics2.get_StaticPropertyFloat()
+            return value
+        }
+
+        set {
+            try! _IClassStatics2.put_StaticPropertyFloat(newValue) 
+        }
     }
 
     public func SetDelegate(_ value: ISimpleDelegate) {
@@ -157,6 +174,11 @@ public class Class: Equatable {
         set {
             try! interface.put_EnumProperty(newValue) 
         }
+    }
+
+    internal lazy var _IBasic: ABI.IBasic = try! interface.QueryInterface()
+    public func Method() {
+        try! _IBasic.MethodImpl()
     }
 
     public static func == (_ lhs: Class, _ rhs: Class) -> Bool {
@@ -239,26 +261,26 @@ public class Simple: Equatable {
 }
 
 public class StaticClass {
-    private static let statics: ABI.IStaticClassStatics = try! RoGetActivationFactory(HString("test_component.StaticClass"))
+    private static let _IStaticClassStatics: ABI.IStaticClassStatics = try! RoGetActivationFactory(HString("test_component.StaticClass"))
     public static func InEnum(_ value: Signed) -> String {
-        let result = try! statics.InEnum(value)
+        let result = try! _IStaticClassStatics.InEnum(value)
         return .init(from: result)
     }
 
     public static func InNonBlittableStruct(_ value: NonBlittableStruct) -> String {
         let _value = ABI._ABI_NonBlittableStruct(from: value)
-        let result = try! statics.InNonBlittableStruct(_value.val)
+        let result = try! _IStaticClassStatics.InNonBlittableStruct(_value.val)
         return .init(from: result)
     }
 
     public static var EnumProperty : Fruit {
         get {
-            let value = try! statics.get_EnumProperty()
+            let value = try! _IStaticClassStatics.get_EnumProperty()
             return value
         }
 
         set {
-            try! statics.put_EnumProperty(newValue) 
+            try! _IStaticClassStatics.put_EnumProperty(newValue) 
         }
     }
 
@@ -314,7 +336,127 @@ public struct NonBlittableStruct {
     }
 }
 
-public struct Impl {
+extension Impl {
+    private static var IBasicVTable: __x_ABI_Ctest__component_CIBasicVtbl = .init(
+        QueryInterface: {
+            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+            guard riid.pointee == IUnknown.IID ||
+                  riid.pointee == IInspectable.IID || 
+                  riid.pointee == ISwiftImplemented.IID || 
+                  riid.pointee == ABI.IBasic.IID else { 
+                ppvObject.pointee = nil
+                return E_NOINTERFACE
+            }
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
+        },
+
+        AddRef: {
+             guard let wrapper = IBasicBase.from($0) else { return 1 }
+             _ = wrapper.retain()
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+        },
+
+        Release: {
+            guard let wrapper = IBasicBase.from($0) else { return 1 }
+            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+        },
+
+        GetIids: {
+            let size = MemoryLayout<IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+            iids[0] = IUnknown.IID
+            iids[1] = IInspectable.IID
+            iids[2] = ABI.IBasic.IID
+            
+            $1!.pointee = 3
+            $2!.pointee = iids
+            return S_OK
+        },
+
+        GetRuntimeClassName: {
+            _ = $0
+            let hstring = try! HString("test_component.IBasic").detach()
+            $1!.pointee = hstring
+            return S_OK
+        },
+
+        GetTrustLevel: {
+            _ = $0
+            $1!.pointee = TrustLevel.BaseTrust
+            return S_OK
+        },
+
+        Method: {
+            guard let wrapper = IBasicBase.from($0) else { return E_INVALIDARG }
+            guard let instance = wrapper.takeUnretainedValue() as? IBasicProto else { return E_NOINTERFACE }
+
+            try! instance.Method()
+            
+            return S_OK
+        }
+    )
+    open class IBasicBase: ABI.IBasic {
+        private struct ComObject {
+            var comInterface: __x_ABI_Ctest__component_CIBasic
+            var wrapper: Unmanaged<IBasicBase>?
+        }
+        private var instance: ComObject
+        public init() {
+            self.instance = withUnsafeMutablePointer(to: &Impl.IBasicVTable) {
+                ComObject(comInterface: __x_ABI_Ctest__component_CIBasic(lpVtbl: $0))
+            }
+
+            // Subtle: This makes the IUnknownRef point to the ComClass instance, which the RawPointer helper
+            // then unwraps using 'RawPointer' when calling back into the C++ code. This is needed
+            // to hand off the raw vtable (with access to this wrapping class) without Swift stomping
+            // the vtable with things like the retain count.
+            super.init(withUnsafeMutablePointer(to: &instance) { $0 })
+            self.instance.wrapper = Unmanaged<IBasicBase>.passUnretained(self)
+        }
+
+        deinit {
+            // nil out the wrapper, so that we don't try to decrememnt the ref count in the `Release` method, this
+            // causes an infinite loop
+            self.instance.wrapper = nil
+        }
+
+        public init(_ pointer: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>?) {
+            if let pointee = pointer?.pointee {
+                self.instance = ComObject(comInterface: pointee)
+                super.init(withUnsafeMutablePointer(to: &instance) { $0 })
+
+                // try to get the original wrapper so we can get the apps implementation. if that doesn't
+                // exist, then we know this points to a C++ object and we will just use ourselves as the
+                // wrapper    
+                let delegate = IUnknown(pointer)
+                let wrapperOpt: ISwiftImplemented? = try? delegate.QueryInterface()
+                if let wrapper = wrapperOpt,
+                let pUnk = UnsafeMutableRawPointer(wrapper.pUnk.borrow)   {
+                    self.instance.wrapper = pUnk.bindMemory(to: IBasicBase.ComObject.self, capacity: 1).pointee.wrapper
+                }
+            } else {
+                self.instance = ComObject(comInterface: .init())
+                super.init(pointer)
+            }
+        }
+
+        private convenience init(empty pointer:UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>?)
+        {
+            self.init(pointer)
+        }
+
+        public static var none: IBasic = IBasicImpl(empty: nil)
+        required public init(_ pointer: UnsafeMutablePointer<WinSDK.IUnknown>?) { fatalError("should never be called") }
+        required public init(consuming pointer: UnsafeMutablePointer<WinSDK.IUnknown>?) { fatalError("should never be called") }
+
+        fileprivate static func from(_ pUnk: UnsafeMutableRawPointer?) -> Unmanaged<IBasicBase>? {
+            return pUnk?.assumingMemoryBound(to: IBasicBase.ComObject.self).pointee.wrapper
+          }
+
+    }
+
     private static var IIAmImplementableVTable: __x_ABI_Ctest__component_CIIAmImplementableVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
@@ -666,6 +808,17 @@ public struct Impl {
     }
 
 }
+
+internal class IBasicImpl : IBasic {
+    public func Method() throws {
+            try MethodImpl()
+        }
+}
+
+public protocol IBasicProto { 
+        func Method() throws 
+}
+public typealias IBasic = Impl.IBasicBase & IBasicProto
 
 internal class IIAmImplementableImpl : IIAmImplementable {
     public func InInt32(_ value: Int32) throws -> String {

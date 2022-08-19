@@ -1215,7 +1215,7 @@ get_type_name(default_interface));
         auto type_name = type.TypeName();
     }
 
-    static void write_class_func_body(writer& w, winmd::reader::MethodDef method)
+    static void write_class_func_body(writer& w, winmd::reader::MethodDef method, interface_info const& iface)
     {
         auto indent_guard = w.push_indent(indent{ 1 });
 
@@ -1226,17 +1226,22 @@ get_type_name(default_interface));
 
         auto guard = write_local_param_wrappers(w, signature);
 
+        auto impl = iface.is_default ? "interface" : w.write_temp("_%", iface.type);
         if (return_sig)
         {
-            w.write("let % = try! interface.%(%)\n",
+            w.write("let % = try! %.%%(%)\n",
                 signature.return_param_name(),
+                impl,
                 func_name,
+                !iface.exclusive ? "Impl" : "",
                 bind<write_implementation_args>(signature));
         }
         else
         {
-            w.write("try! interface.%(%)\n",
+            w.write("try! %.%%(%)\n",
+                impl,
                 func_name,
+                !iface.exclusive ? "Impl" : "",
                 bind<write_implementation_args>(signature));
         }
 
@@ -1246,15 +1251,16 @@ get_type_name(default_interface));
         }
     }
 
-    static void write_class_impl_property(writer& w, winmd::reader::Property prop, bool is_static = false)
+    static void write_class_impl_property(writer& w, winmd::reader::Property prop, interface_info const& iface)
     {
         auto format = "    public %var % : % {\n";
-
         auto [getter, setter] = get_property_methods(prop);
         w.write(format,
-            is_static ? "static " : "",
+            iface.attributed ? "static " : "",
             prop.Name(),
             prop.Type().Type());
+
+        auto impl = iface.is_default ? "interface" : w.write_temp("_%", iface.type);
 
         if (getter)
         {
@@ -1267,7 +1273,7 @@ get_type_name(default_interface));
             auto guard = w.push_indent(indent{ 2 });
             method_signature signature{ getter };
             w.write(format,
-                is_static ? "statics" : "interface",
+                impl,
                 getter.Name(),
                 bind<write_consume_return_statement>(signature));
         }
@@ -1297,7 +1303,7 @@ get_type_name(default_interface));
 
             w.write(format,
                 extra_init,
-                is_static ? "statics" : "interface",
+                impl,
                 setter.Name(),
                 bind<write_convert_to_abi_arg>("newValue", prop.Type().Type(), false));
         }
@@ -1305,7 +1311,7 @@ get_type_name(default_interface));
         w.write("    }\n\n");
     }
 
-    static void write_class_impl_func(writer& w, winmd::reader::MethodDef method)
+    static void write_class_impl_func(writer& w, winmd::reader::MethodDef method, interface_info const& iface)
     {
         if (method.SpecialName())
         {
@@ -1325,7 +1331,7 @@ get_type_name(default_interface));
             method.Name(), 
             bind<write_swift_params>(signature),
             bind<write_return_type_declaration>(signature),
-            bind<write_class_func_body>(method));
+            bind<write_class_func_body>(method, iface));
     }
     
     static void write_equatable(writer& w, std::string_view const& type_name) {
@@ -1342,21 +1348,22 @@ get_type_name(default_interface));
 
         std::string_view func_name = method.Name();
         method_signature signature{ method };
-
         auto return_sig = signature.return_signature();
 
         auto guard = write_local_param_wrappers(w, signature);
 
         if (return_sig)
         {
-            w.write("let % = try! statics.%(%)\n",
+            w.write("let % = try! _%.%(%)\n",
                 signature.return_param_name(),
+                statics,
                 func_name,
                 bind<write_implementation_args>(signature));
         }
         else
         {
-            w.write("try! statics.%(%)\n",
+            w.write("try! _%.%(%)\n",
+                statics,
                 func_name,
                 bind<write_implementation_args>(signature));
         }
@@ -1367,16 +1374,17 @@ get_type_name(default_interface));
         }
     }
 
-    static void write_static_methods(writer& w, TypeDef const& statics, TypeDef const& type)
+    static void write_static_methods(writer& w, attributed_type const& statics, TypeDef const& type)
     {
-        if (statics)
+        if (statics.type)
         {
-            w.write("    private static let statics: ABI.% = try! RoGetActivationFactory(HString(\"%\"))\n",
-                statics,
+            w.write("    private static let _%: ABI.% = try! RoGetActivationFactory(HString(\"%\"))\n",
+                statics.type,
+                statics.type,
                 get_full_type_name(type));
             auto guard = w.push_indent(indent{ 1 });
 
-            for (auto&& method : statics.MethodList())
+            for (auto&& method : statics.type.MethodList())
             {
                 if (method.SpecialName())
                 {
@@ -1390,35 +1398,37 @@ get_type_name(default_interface));
 )", method.Name(),
 bind<write_swift_params>(signature),
 bind<write_return_type_declaration>(signature),
-bind<write_statics_body>(method, statics, type)
+bind<write_statics_body>(method, statics.type, type)
 );
 
             }
         }
 
-        for (auto&& static_prop : statics.PropertyList())
+        for (auto&& static_prop : statics.type.PropertyList())
         {
-            write_class_impl_property(w, static_prop, true);
+            interface_info static_info{ statics.type };
+            static_info.attributed = true;
+            write_class_impl_property(w, static_prop, static_info);
         }
     }
 
     static void write_class_impl(writer& w, TypeDef const& type)
     {
         auto default_interface = get_default_interface(type);
-        auto type_name = type.TypeName();
+        auto typeName = type.TypeName();
 
         if (default_interface)
         {
-            w.write("public class %: Equatable {\n", type_name);
+            w.write("public class %: Equatable {\n", typeName);
         }
         else
         {
-            w.write("public class % {\n", type_name);
+            w.write("public class % {\n", typeName);
         }
 
         if (default_interface)
         {
-            w.write("    internal var interface: ABI.%\n\n", get_type_name(default_interface));
+            w.write("    internal var interface: ABI.%\n\n", default_interface);
             write_default_constructor_declarations(w, type, default_interface);
         }
 
@@ -1431,45 +1441,37 @@ bind<write_statics_body>(method, statics, type)
 
             if (factory.statics)
             {
-                write_static_methods(w, factory.type, type);
+                write_static_methods(w, factory, type);
             }
         }
 
         for (auto&& [interface_name, info] : get_interfaces(w, type))
         {
+            if (!info.is_default)
+            {
+                w.write("    internal lazy var _%: ABI.% = try! interface.QueryInterface()\n",
+                    interface_name,
+                    interface_name);
+            }
             for (auto&& method : info.type.MethodList())
             {
-                write_class_impl_func(w, method);
+                write_class_impl_func(w, method, info);
             }
 
             for (auto&& prop : info.type.PropertyList())
             {
-                write_class_impl_property(w, prop);
+                write_class_impl_property(w, prop, info);
             }
         }
 
         if (default_interface)
         {
-            write_equatable(w, type_name);
+            write_equatable(w, typeName);
         }
 
         w.write("}\n\n");
     }
 
-    static void write_static_class(writer& w, TypeDef const& type)
-    {
-        if (!is_static(type))
-        {
-            return;
-        }
-
-        w.write("public static class % {\n", type);
-
-        write_static_methods(w, type, type);
-
-        w.write("}\n\n");
-
-    }
     static void write_class(writer& w, TypeDef const& type)
     {
         write_class_impl(w, type);

@@ -507,6 +507,7 @@ namespace swiftwinrt
         bool base{};
         bool exclusive{};
         bool fastabi{};
+        bool attributed{};
         // A pair of (relativeContract, version) where 'relativeContract' is the contract the interface was introduced
         // in relative to the contract history of the class. E.g. if a class goes from contract 'A' to 'B' to 'C',
         // 'relativeContract' would be '0' for an interface introduced in contract 'A', '1' for an interface introduced

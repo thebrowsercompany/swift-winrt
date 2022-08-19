@@ -5,6 +5,7 @@
 namespace winrt::test_component::implementation
 {
     using namespace Windows::Foundation;
+    float Class::s_float = 0.0f;
 
     struct Value : implements<Value, IStringable>
     {
