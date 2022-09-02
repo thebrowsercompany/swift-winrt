@@ -1,20 +1,26 @@
 #pragma once
+#include "winmd_reader.h"
+#include "attributes.h"
+#include "versioning.h"
 
 namespace swiftwinrt
 {
-    static auto get_start_time()
+    template <typename T>
+    bool has_attribute(T const& row, std::string_view const& type_namespace, std::string_view const& type_name);
+
+    inline auto get_start_time()
     {
         return std::chrono::high_resolution_clock::now();
     }
 
-    static auto get_elapsed_time(decltype(get_start_time()) const& start)
+    inline auto get_elapsed_time(decltype(get_start_time()) const& start)
     {
         return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - start).count();
     }
 
-    static bool is_put_overload(MethodDef const& method)
+    inline bool is_put_overload(MethodDef const& method)
     {
-        return method.SpecialName() && starts_with(method.Name(), "put_");
+        return method.SpecialName() && method.Name().starts_with("put_");
     }
 
     struct method_signature
@@ -75,17 +81,6 @@ namespace swiftwinrt
 
         bool is_async() const
         {
-            // WinRT parameter passing conventions include the notion that input parameters of collection types may be read
-            // or copied but should not be stored directly since this would lead to instability as the collection is shared
-            // by the caller and callee. The exception to this rule is property setters where the callee may simply store a
-            // reference to the collection. The collection thus becomes async in the sense that it is expected to remain
-            // valid beyond the duration of the call.
-
-            if (is_put_overload(m_method))
-            {
-                return true;
-            }
-
             if (!m_signature.ReturnType())
             {
                 return false;
@@ -143,57 +138,7 @@ namespace swiftwinrt
         }
     };
 
-    namespace impl
-    {
-        template <typename T, typename... Types>
-        struct variant_index;
-
-        template <typename T, typename First, typename... Types>
-        struct variant_index<T, First, Types...>
-        {
-            static constexpr bool found = std::is_same_v<T, First>;
-            static constexpr std::size_t value = std::conditional_t<found,
-                std::integral_constant<std::size_t, 0>,
-                variant_index<T, Types...>>::value + (found ? 0 : 1);
-        };
-    }
-
-    template <typename Variant, typename T>
-    struct variant_index;
-
-    template <typename... Types, typename T>
-    struct variant_index<std::variant<Types...>, T> : impl::variant_index<T, Types...>
-    {
-    };
-
-    template <typename Variant, typename T>
-    constexpr std::size_t variant_index_v = variant_index<Variant, T>::value;
-
-    template <typename T>
-    auto get_integer_attribute(FixedArgSig const& signature)
-    {
-        auto variant = std::get<ElemSig>(signature.value).value;
-        switch (variant.index())
-        {
-        case variant_index_v<decltype(variant), std::make_unsigned_t<T>>: return static_cast<T>(std::get<std::make_unsigned_t<T>>(variant));
-        case variant_index_v<decltype(variant), std::make_signed_t<T>>: return static_cast<T>(std::get<std::make_signed_t<T>>(variant));
-        default: return std::get<T>(variant); // Likely throws, but that's intentional
-        }
-    }
-
-    template <typename T>
-    auto get_attribute_value(FixedArgSig const& signature)
-    {
-        return std::get<T>(std::get<ElemSig>(signature.value).value);
-    }
-
-    template <typename T>
-    auto get_attribute_value(CustomAttribute const& attribute, uint32_t const arg)
-    {
-        return get_attribute_value<T>(attribute.Value().FixedArgs()[arg]);
-    }
-
-    static auto get_abi_name(MethodDef const& method)
+    inline auto get_abi_name(MethodDef const& method)
     {
         if (auto overload = get_attribute(method, metadata_namespace, "OverloadAttribute"))
         {
@@ -205,7 +150,7 @@ namespace swiftwinrt
         }
     }
 
-    static auto get_name(MethodDef const& method)
+    inline auto get_name(MethodDef const& method)
     {
         auto name = method.Name();
 
@@ -217,32 +162,32 @@ namespace swiftwinrt
         return name;
     }
 
-    static bool is_remove_overload(MethodDef const& method)
+    inline bool is_remove_overload(MethodDef const& method)
     {
-        return method.SpecialName() && starts_with(method.Name(), "remove_");
+        return method.SpecialName() && method.Name().starts_with("remove_");
     }
 
-    static bool is_add_overload(MethodDef const& method)
+    inline bool is_add_overload(MethodDef const& method)
     {
-        return method.SpecialName() && starts_with(method.Name(), "add_");
+        return method.SpecialName() && method.Name().starts_with("add_");
     }
 
-    static bool is_get_overload(MethodDef const& method)
+    inline bool is_get_overload(MethodDef const& method)
     {
-        return method.SpecialName() && starts_with(method.Name(), "get_");
+        return method.SpecialName() && method.Name().starts_with("get_");
     }
 
-    static bool is_noexcept(MethodDef const& method)
+    inline bool is_noexcept(MethodDef const& method)
     {
         return is_remove_overload(method) || has_attribute(method, metadata_namespace, "NoExceptionAttribute");
     }
 
-    static bool has_fastabi(TypeDef const& type)
+    inline bool has_fastabi(TypeDef const& type)
     {
         return settings.fastabi&& has_attribute(type, metadata_namespace, "FastAbiAttribute");
     }
 
-    static bool is_always_disabled(TypeDef const& type)
+    inline bool is_always_disabled(TypeDef const& type)
     {
         if (settings.component_ignore_velocity)
         {
@@ -260,7 +205,7 @@ namespace swiftwinrt
         return stage.equals_enumerator("AlwaysDisabled");
     }
 
-    static bool is_always_enabled(TypeDef const& type)
+    inline bool is_always_enabled(TypeDef const& type)
     {
         auto feature = get_attribute(type, "Windows.Foundation.Metadata", "FeatureAttribute");
 
@@ -273,7 +218,7 @@ namespace swiftwinrt
         return stage.equals_enumerator("AlwaysEnabled");
     }
 
-    static TypeDef get_base_class(TypeDef const& derived)
+    inline TypeDef get_base_class(TypeDef const& derived)
     {
         auto extends = derived.Extends();
         if (!extends)
@@ -282,7 +227,14 @@ namespace swiftwinrt
         }
 
         auto const&[extends_namespace, extends_name] = get_type_namespace_and_name(extends);
+
+        // the following base types are for objects and delegates, but they don't actually
+        // have metadata in the cache. We return an empty type instead of crashing.
         if (extends_name == "Object" && extends_namespace == "System")
+        {
+            return {};
+        }
+        if (extends_name == "MulticastDelegate" && extends_namespace == "System")
         {
             return {};
         }
@@ -290,7 +242,7 @@ namespace swiftwinrt
     };
 
 
-    static auto get_bases(TypeDef const& type)
+    inline auto get_bases(TypeDef const& type)
     {
         std::vector<TypeDef> bases;
 
@@ -300,202 +252,6 @@ namespace swiftwinrt
         }
 
         return bases;
-    }
-
-    struct contract_version
-    {
-        std::string_view name;
-        uint32_t version;
-    };
-
-    struct previous_contract
-    {
-        std::string_view contract_from;
-        std::string_view contract_to;
-        uint32_t version_low;
-        uint32_t version_high;
-    };
-
-    struct contract_history
-    {
-        contract_version current_contract;
-
-        // Sorted such that the first entry is the first contract the type was introduced in
-        std::vector<previous_contract> previous_contracts;
-    };
-
-    static contract_version decode_contract_version_attribute(CustomAttribute const& attribute)
-    {
-        // ContractVersionAttribute has three constructors, but only two we care about here:
-        //      .ctor(string contract, uint32 version)
-        //      .ctor(System.Type contract, uint32 version)
-        auto signature = attribute.Value();
-        auto& args = signature.FixedArgs();
-        assert(args.size() == 2);
-
-        contract_version result{};
-        result.version = get_integer_attribute<uint32_t>(args[1]);
-        call(std::get<ElemSig>(args[0].value).value,
-            [&](ElemSig::SystemType t)
-            {
-                result.name = t.name;
-            },
-            [&](std::string_view name)
-            {
-                result.name = name;
-            },
-            [](auto&&)
-            {
-                assert(false);
-            });
-
-        return result;
-    }
-
-    static previous_contract decode_previous_contract_attribute(CustomAttribute const& attribute)
-    {
-        // PreviousContractVersionAttribute has two constructors:
-        //      .ctor(string fromContract, uint32 versionLow, uint32 versionHigh)
-        //      .ctor(string fromContract, uint32 versionLow, uint32 versionHigh, string contractTo)
-        auto signature = attribute.Value();
-        auto& args = signature.FixedArgs();
-        assert(args.size() >= 3);
-
-        previous_contract result{};
-        result.contract_from = get_attribute_value<std::string_view>(args[0]);
-        result.version_low = get_integer_attribute<uint32_t>(args[1]);
-        result.version_high = get_integer_attribute<uint32_t>(args[2]);
-        if (args.size() == 4)
-        {
-            result.contract_to = get_attribute_value<std::string_view>(args[3]);
-        }
-
-        return result;
-    }
-
-    static contract_version get_initial_contract_version(TypeDef const& type)
-    {
-        // Most types don't have previous contracts, so optimize for that scenario to avoid unnecessary allocations
-        contract_version current_contract{};
-
-        // The initial contract, assuming the type has moved contracts, is the only contract name that doesn't appear as
-        // a "to contract" argument to a PreviousContractVersionAttribute. Note that this assumes that a type does not
-        // "return" to a prior contract, however this is a restriction enforced by midlrt
-        std::vector<contract_version> previous_contracts;
-        std::vector<std::string_view> to_contracts;
-        for (auto&& attribute : type.CustomAttribute())
-        {
-            auto [ns, name] = attribute.TypeNamespaceAndName();
-            if (ns != "Windows.Foundation.Metadata")
-            {
-                continue;
-            }
-
-            if (name == "ContractVersionAttribute")
-            {
-                assert(current_contract.name.empty());
-                current_contract = decode_contract_version_attribute(attribute);
-            }
-            else if (name == "PreviousContractVersionAttribute")
-            {
-                auto prev = decode_previous_contract_attribute(attribute);
-
-                // If this contract was the target of an earlier contract change, we know this isn't the initial one
-                if (std::find(to_contracts.begin(), to_contracts.end(), prev.contract_from) == to_contracts.end())
-                {
-                    previous_contracts.push_back(contract_version{ prev.contract_from, prev.version_low });
-                }
-
-                if (!prev.contract_to.empty())
-                {
-                    auto itr = std::find_if(previous_contracts.begin(), previous_contracts.end(), [&](auto const& ver)
-                    {
-                        return ver.name == prev.contract_to;
-                    });
-                    if (itr != previous_contracts.end())
-                    {
-                        *itr = previous_contracts.back();
-                        previous_contracts.pop_back();
-                    }
-
-                    to_contracts.push_back(prev.contract_to);
-                }
-            }
-            else if (name == "VersionAttribute")
-            {
-                // Prefer contract versioning, if present. Otherwise, use an empty contract name to indicate that this
-                // is not a contract version
-                if (current_contract.name.empty())
-                {
-                    current_contract.version = get_attribute_value<uint32_t>(attribute, 0);
-                }
-            }
-        }
-
-        if (!previous_contracts.empty())
-        {
-            assert(previous_contracts.size() == 1);
-            return previous_contracts[0];
-        }
-
-        return current_contract;
-    }
-
-    static contract_history get_contract_history(TypeDef const& type)
-    {
-        contract_history result{};
-        for (auto&& attribute : type.CustomAttribute())
-        {
-            auto [ns, name] = attribute.TypeNamespaceAndName();
-            if (ns != metadata_namespace)
-            {
-                continue;
-            }
-
-            if (name == "ContractVersionAttribute")
-            {
-                assert(result.current_contract.name.empty());
-                result.current_contract = decode_contract_version_attribute(attribute);
-            }
-            else if (name == "PreviousContractVersionAttribute")
-            {
-                result.previous_contracts.push_back(decode_previous_contract_attribute(attribute));
-            }
-            // We could report the version that the type was introduced if the type is not contract versioned, however
-            // that information is not useful to us anywhere, so just skip it
-        }
-
-        if (result.previous_contracts.empty())
-        {
-            return result;
-        }
-        assert(!result.current_contract.name.empty());
-
-        // There's no guarantee that the contract history will be sorted in metadata (in fact it's unlikely to be)
-        for (auto& prev : result.previous_contracts)
-        {
-            if (prev.contract_to.empty() || (prev.contract_to == result.current_contract.name))
-            {
-                // No 'to' contract indicates that this was the last contract before the current one
-                prev.contract_to = result.current_contract.name;
-                std::swap(prev, result.previous_contracts.back());
-                break;
-            }
-        }
-        assert(result.previous_contracts.back().contract_to == result.current_contract.name);
-
-        for (size_t size = result.previous_contracts.size() - 1; size; --size)
-        {
-            auto& last = result.previous_contracts[size];
-            auto itr = std::find_if(result.previous_contracts.begin(), result.previous_contracts.begin() + size, [&](auto const& prev)
-            {
-                return prev.contract_to == last.contract_from;
-            });
-            assert(itr != result.previous_contracts.end());
-            std::swap(*itr, result.previous_contracts[size - 1]);
-        }
-
-        return result;
     }
 
     struct interface_info
@@ -518,7 +274,7 @@ namespace swiftwinrt
 
     using get_interfaces_t = std::vector<std::pair<std::string, interface_info>>;
 
-    static interface_info* find(get_interfaces_t& interfaces, std::string_view const& name)
+    inline interface_info* find(get_interfaces_t& interfaces, std::string_view const& name)
     {
         auto pair = std::find_if(interfaces.begin(), interfaces.end(), [&](auto&& pair)
         {
@@ -533,7 +289,7 @@ namespace swiftwinrt
         return &pair->second;
     }
 
-    static void insert_or_assign(get_interfaces_t& interfaces, std::string_view const& name, interface_info&& info)
+    inline void insert_or_assign(get_interfaces_t& interfaces, std::string_view const& name, interface_info&& info)
     {
         if (auto existing = find(interfaces, name))
         {
@@ -545,7 +301,7 @@ namespace swiftwinrt
         }
     }
 
-    static void get_interfaces_impl(writer& w, get_interfaces_t& result, bool defaulted, bool overridable, bool base, std::vector<std::vector<std::string>> const& generic_param_stack, std::pair<InterfaceImpl, InterfaceImpl>&& children)
+    inline void get_interfaces_impl(writer& w, get_interfaces_t& result, bool defaulted, bool overridable, bool base, std::vector<std::vector<std::string>> const& generic_param_stack, std::pair<InterfaceImpl, InterfaceImpl>&& children)
     {
         for (auto&& impl : children)
         {
@@ -617,7 +373,7 @@ namespace swiftwinrt
         }
     };
 
-    static auto get_interfaces(writer& w, TypeDef const& type)
+    inline auto get_interfaces(writer& w, TypeDef const& type)
     {
         w.abi_types = false;
         get_interfaces_t result;
@@ -633,29 +389,32 @@ namespace swiftwinrt
             return result;
         }
 
-        auto history = get_contract_history(type);
         size_t count = 0;
-        for (auto& pair : result)
+
+        if (auto history = get_contract_history(type))
         {
-            if (pair.second.exclusive && !pair.second.base && !pair.second.overridable)
+            for (auto& pair : result)
             {
-                ++count;
+                if (pair.second.exclusive && !pair.second.base && !pair.second.overridable)
+                {
+                    ++count;
 
-                auto introduced = get_initial_contract_version(pair.second.type);
-                pair.second.relative_version.second = introduced.version;
+                    auto introduced = get_initial_contract_version(pair.second.type);
+                    pair.second.relative_version.second = introduced.version;
 
-                auto itr = std::find_if(history.previous_contracts.begin(), history.previous_contracts.end(), [&](previous_contract const& prev)
-                {
-                    return prev.contract_from == introduced.name;
-                });
-                if (itr != history.previous_contracts.end())
-                {
-                    pair.second.relative_version.first = static_cast<uint32_t>(itr - history.previous_contracts.begin());
-                }
-                else
-                {
-                    assert(history.current_contract.name == introduced.name);
-                    pair.second.relative_version.first = static_cast<uint32_t>(history.previous_contracts.size());
+                    auto itr = std::find_if(history->previous_contracts.begin(), history->previous_contracts.end(), [&](previous_contract const& prev)
+                        {
+                            return prev.contract_from == introduced.name;
+                        });
+                    if (itr != history->previous_contracts.end())
+                    {
+                        pair.second.relative_version.first = static_cast<uint32_t>(itr - history->previous_contracts.begin());
+                    }
+                    else
+                    {
+                        assert(history->current_contract.name == introduced.name);
+                        pair.second.relative_version.first = static_cast<uint32_t>(history->previous_contracts.size());
+                    }
                 }
             }
         }
@@ -710,7 +469,7 @@ namespace swiftwinrt
         return result;
     }
 
-    static bool implements_interface(TypeDef const& type, std::string_view const& name)
+    inline bool implements_interface(TypeDef const& type, std::string_view const& name)
     {
         for (auto&& impl : type.InterfaceImpl())
         {
@@ -731,7 +490,7 @@ namespace swiftwinrt
         }
     }
 
-    bool has_fastabi_tearoffs(writer& w, TypeDef const& type)
+    inline bool has_fastabi_tearoffs(writer& w, TypeDef const& type)
     {
         for (auto&& [name, info] : get_interfaces(w, type))
         {
@@ -746,7 +505,7 @@ namespace swiftwinrt
         return false;
     }
 
-    std::size_t get_fastabi_size(writer& w, TypeDef const& type)
+    inline std::size_t get_fastabi_size(writer& w, TypeDef const& type)
     {
         if (!has_fastabi(type))
         {
@@ -768,7 +527,7 @@ namespace swiftwinrt
         return result;
     }
 
-    auto get_fastabi_size(writer& w, std::vector<TypeDef> const& classes)
+    inline auto get_fastabi_size(writer& w, std::vector<TypeDef> const& classes)
     {
         std::size_t result{};
 
@@ -789,7 +548,7 @@ namespace swiftwinrt
         bool visible{};
     };
 
-    static auto get_factories(writer& w, TypeDef const& type)
+    inline auto get_factories(writer& w, TypeDef const& type)
     {
         auto get_system_type = [&](auto&& signature) -> TypeDef
         {
@@ -860,7 +619,7 @@ namespace swiftwinrt
         return result;
     }
 
-    static auto get_delegate_method(TypeDef const& type)
+    inline auto get_delegate_method(TypeDef const& type)
     {
         auto methods = type.MethodList();
 
@@ -877,7 +636,7 @@ namespace swiftwinrt
         return method;
     }
 
-    static std::string get_field_abi(writer& w, Field const& field)
+    inline std::string get_field_abi(writer& w, Field const& field)
     {
         auto signature = field.Signature();
         auto const& type = signature.Type();
@@ -902,7 +661,7 @@ namespace swiftwinrt
         return name;
     }
 
-    static std::string get_component_filename(TypeDef const& type)
+    inline std::string get_component_filename(TypeDef const& type)
     {
         std::string result{ type.TypeNamespace() };
         result += '.';
@@ -921,7 +680,7 @@ namespace swiftwinrt
         return result;
     }
 
-    static std::string get_generated_component_filename(TypeDef const& type)
+    inline std::string get_generated_component_filename(TypeDef const& type)
     {
         auto result = get_component_filename(type);
 
@@ -933,7 +692,7 @@ namespace swiftwinrt
         return result;
     }
 
-    static bool has_factory_members(writer& w, TypeDef const& type)
+    inline bool has_factory_members(writer& w, TypeDef const& type)
     {
         for (auto&&[factory_name, factory] : get_factories(w, type))
         {
@@ -946,7 +705,7 @@ namespace swiftwinrt
         return false;
     }
 
-    static bool is_composable(writer& w, TypeDef const& type)
+    inline bool is_composable(writer& w, TypeDef const& type)
     {
         for (auto&&[factory_name, factory] : get_factories(w, type))
         {
@@ -959,12 +718,68 @@ namespace swiftwinrt
         return false;
     }
 
+    inline bool is_overridable(InterfaceImpl const& iface)
+    {
+        return has_attribute(iface, "Windows.Foundation.Metadata", "OverridableAttribute");
+    }
+
     inline bool is_generic(TypeDef const& type) noexcept
     {
         return distance(type.GenericParam()) != 0;
     }
 
-    static bool has_composable_constructors(writer& w, TypeDef const& type)
+    template <typename T>
+    inline bool is_experimental(T const& value)
+    {
+        using namespace std::literals;
+        return static_cast<bool>(get_attribute(value, metadata_namespace, "ExperimentalAttribute"sv));
+    }
+
+    struct deprecation_info
+    {
+        std::string_view contract_type;
+        std::uint32_t version;
+
+        std::string_view message;
+    };
+
+    template <typename T>
+    inline std::optional<deprecation_info> is_deprecated(T const& type)
+    {
+        using namespace std::literals;
+
+        auto attr = get_attribute(type, metadata_namespace, "DeprecatedAttribute"sv);
+        if (!attr)
+        {
+            return std::nullopt;
+        }
+
+        auto sig = attr.Value();
+        auto const& fixedArgs = sig.FixedArgs();
+
+        // There are three DeprecatedAttribute constructors, two of which deal with version numbers which we don't care
+        // about here. The third is relative to a contract version, which we _do_ care about
+        if ((fixedArgs.size() != 4))
+        {
+            return std::nullopt;
+        }
+
+        auto const& contractSig = std::get<ElemSig>(fixedArgs[3].value);
+        if (!std::holds_alternative<std::string_view>(contractSig.value))
+        {
+            return std::nullopt;
+        }
+
+        return deprecation_info
+        {
+            std::get<std::string_view>(contractSig.value),
+            std::get<std::uint32_t>(std::get<ElemSig>(fixedArgs[2].value).value),
+            std::get<std::string_view>(std::get<ElemSig>(fixedArgs[0].value).value)
+        };
+    }
+
+
+    inline bool has_composable_constructors(writer& w, TypeDef const& type)
     {
         for (auto&&[interface_name, factory] : get_factories(w, type))
         {
@@ -977,7 +792,7 @@ namespace swiftwinrt
         return false;
     }
 
-    static bool has_projected_types(cache::namespace_members const& members)
+    inline bool has_projected_types(cache::namespace_members const& members)
     {
         return
             !members.interfaces.empty() ||
@@ -987,7 +802,7 @@ namespace swiftwinrt
             !members.delegates.empty();
     }
 
-    static bool can_produce(TypeDef const& type, cache const& c)
+    inline bool can_produce(TypeDef const& type, cache const& c)
     {
         auto attribute = get_attribute(type, metadata_namespace, "ExclusiveToAttribute");
 
@@ -1019,7 +834,7 @@ namespace swiftwinrt
         return settings.component_filter.includes(class_name);
     }
 
-    auto get_property_methods(Property const& prop)
+    inline auto get_property_methods(Property const& prop)
     {
         MethodDef get_method{}, set_method{};
 
@@ -1049,5 +864,119 @@ namespace swiftwinrt
         }
 
         return std::make_tuple(get_method, set_method);
+    }
+
+    inline std::string get_swift_name(interface_info const& iface)
+    {
+        return iface.is_default && !iface.base ? "interface" : std::string("_").append(iface.type.TypeName());
+    }
+
+    inline std::string_view put_in_backticks_if_needed(std::string_view const& name)
+    {
+        if (name == "Protocol")
+        {
+            return "`Protocol`";
+        }
+        else if (name == "Type")
+        {
+            return "`Type`";
+        }
+        else if (name == "Self")
+        {
+            return "`Self`";
+        }
+        return name;
+    }
+    inline std::string_view get_swift_name(MethodDef const& method)
+    {
+        return put_in_backticks_if_needed(method.Name());
+    }
+
+    inline std::string_view get_swift_name(Property const& property)
+    {
+        return put_in_backticks_if_needed(property.Name());
+    }
+
+    inline std::string_view get_swift_name(Event const& event)
+    {
+        return put_in_backticks_if_needed(event.Name());
+    }
+
+    inline std::string_view get_swift_name(Field const& field)
+    {
+        return put_in_backticks_if_needed(field.Name());
+    }
+
+    inline std::string_view get_swift_name(Param const& param)
+    {
+        return param.Name();
+    }
+
+    inline std::string abi_namespace(std::string_view const& ns)
+    {
+        std::string abi_namespace;
+        constexpr auto abi_prefix = "__ABI_";
+        abi_namespace.reserve(sizeof(abi_prefix) + ns.size());
+        abi_namespace += abi_prefix;
+        abi_namespace += ns;
+        std::replace(abi_namespace.begin(), abi_namespace.end(), '.', '_');
+        return abi_namespace;
+    }
+
+    inline std::string abi_namespace(TypeDef const& type)
+    {
+        return abi_namespace(type.TypeNamespace());
+    }
+
+    inline winmd::reader::ElementType underlying_enum_type(winmd::reader::TypeDef const& type)
+    {
+        return std::get<winmd::reader::ElementType>(type.FieldList().first.Signature().Type().Type());
+    }
+
+    // NOTE: 37 characters for the null terminator; the actual string is 36 characters
+    inline std::array<char, 37> type_iid(winmd::reader::TypeDef const& type)
+    {
+        using namespace std::literals;
+
+        std::array<char, 37> result;
+
+        auto attr = get_attribute(type, metadata_namespace, "GuidAttribute"sv);
+        if (!attr)
+        {
+            swiftwinrt::throw_invalid("'Windows.Foundation.Metadata.GuidAttribute' attribute for type '", type.TypeNamespace(),
+                ".", type.TypeName(), "' not found");
+        }
+
+        auto value = attr.Value();
+        auto const& args = value.FixedArgs();
+        // 966BE0A7-B765-451B-AAAB-C9C498ED2594
+        std::snprintf(result.data(), result.size(), "%08x-%04x-%04x-%02x%02x-%02x%02x%02x%02x%02x%02x",
+            std::get<uint32_t>(std::get<ElemSig>(args[0].value).value),
+            std::get<uint16_t>(std::get<ElemSig>(args[1].value).value),
+            std::get<uint16_t>(std::get<ElemSig>(args[2].value).value),
+            std::get<uint8_t>(std::get<ElemSig>(args[3].value).value),
+            std::get<uint8_t>(std::get<ElemSig>(args[4].value).value),
+            std::get<uint8_t>(std::get<ElemSig>(args[5].value).value),
+            std::get<uint8_t>(std::get<ElemSig>(args[6].value).value),
+            std::get<uint8_t>(std::get<ElemSig>(args[7].value).value),
+            std::get<uint8_t>(std::get<ElemSig>(args[8].value).value),
+            std::get<uint8_t>(std::get<ElemSig>(args[9].value).value),
+            std::get<uint8_t>(std::get<ElemSig>(args[10].value).value));
+
+        return result;
+    }
+
+    inline constexpr std::pair<std::string_view, std::string_view> decompose_type(std::string_view typeName) noexcept
+    {
+        auto pos = typeName.find('<');
+        pos = typeName.rfind('.', pos);
+        if (pos == std::string_view::npos)
+        {
+            // No namespace
+            XLANG_ASSERT(false);
+            return { std::string_view{}, typeName };
+        }
+
+        return { typeName.substr(0, pos), typeName.substr(pos + 1) };
     }
 }

@@ -2,22 +2,13 @@
 
 namespace swiftwinrt
 {
-    enum class ns_prefix
-    {
-        always,
-        never,
-        optional,
-    };
-
-
     struct settings_type
     {
         std::set<std::string> input;
         std::set<std::string> reference;
 
         std::string output_folder;
-        std::string c_import;
-        ns_prefix nsprefix = ns_prefix::always;
+        std::string support;
         bool license{};
         bool brackets{};
         bool verbose{};

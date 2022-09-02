@@ -2,10 +2,10 @@ add_executable(test_app
   main.swift)
 
 target_link_libraries(test_app PRIVATE
-  TestComponent_CWinRT)
+  Ctest_component)
 
 target_link_libraries(test_app PRIVATE
-  WinRT_Test)
+  test_component)
 
 set_target_properties(test_app PROPERTIES
   Swift_LANGUAGE_VERSION 5)

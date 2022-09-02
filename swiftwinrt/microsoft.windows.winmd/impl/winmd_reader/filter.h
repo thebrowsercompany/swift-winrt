@@ -6,16 +6,23 @@ namespace winmd::reader
         filter() noexcept = default;
 
         template <typename T>
-        filter(T const& includes, T const& excludes)
+        filter(T const& includes, T const& excludes, bool exact = false)
+            : m_exact(exact)
         {
             for (auto&& include : includes)
             {
-                m_rules.push_back({ include, true });
+                if (!include.empty())
+                {
+                    m_rules.push_back({ include, true });
+                }
             }
 
             for (auto&& exclude : excludes)
             {
-                m_rules.push_back({ exclude, false });
+                if (!exclude.empty())
+                {
+                    m_rules.push_back({ exclude, false });
+                }
             }
 
             std::sort(m_rules.begin(), m_rules.end(), [](auto const& lhs, auto const& rhs)
@@ -102,7 +109,7 @@ namespace winmd::reader
 
             for (auto&& rule : m_rules)
             {
-                if (match(type_namespace, type_name, rule.first))
+                if (match(type_namespace, type_name, rule.first, m_exact))
                 {
                     return rule.second;
                 }
@@ -111,10 +118,14 @@ namespace winmd::reader
             return false;
         }
 
-        static bool match(std::string_view const& type_namespace, std::string_view const& type_name, std::string_view const& match) noexcept
+        static bool match(std::string_view const& type_namespace, std::string_view const& type_name, std::string_view const& match, bool exact) noexcept
         {
             if (match.size() <= type_namespace.size())
             {
+                if (exact)
+                {
+                    return type_namespace == match;
+                }
                 return impl::starts_with(type_namespace, match);
             }
 
@@ -128,9 +139,14 @@ namespace winmd::reader
                 return false;
             }
 
+            if (exact)
+            {
+                return type_name == match.substr(type_namespace.size() + 1);
+            }
             return impl::starts_with(type_name, match.substr(type_namespace.size() + 1));
         }
 
         std::vector<std::pair<std::string, bool>> m_rules;
+        bool m_exact{};
     };
 }

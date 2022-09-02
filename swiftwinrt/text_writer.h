@@ -311,7 +311,7 @@ namespace swiftwinrt
     template <typename T>
     struct write_scope_guard
     {
-        write_scope_guard(writer_base<T>& w) noexcept : m_writer(w)
+        write_scope_guard(writer_base<T>& w, bool start_on_new_line = true) noexcept : m_writer(w), m_start_on_new_line(start_on_new_line)
         {
         }
 
@@ -320,7 +320,7 @@ namespace swiftwinrt
         ~write_scope_guard() noexcept
         {
             auto on_new_line = m_writer.back() == '\n';
-            if (!on_new_line && !m_lines.empty())
+            if (!on_new_line && !m_lines.empty() && m_start_on_new_line)
             {
                 m_writer.write("\n");
             }
@@ -340,6 +340,7 @@ namespace swiftwinrt
     private:
         writer_base<T>& m_writer;
         std::vector<std::string> m_lines;
+        bool m_start_on_new_line{};
     };
 
 
@@ -353,6 +354,7 @@ namespace swiftwinrt
                 m_writer.m_indent += m_offset;
             }
 
+            indent_guard(indent_guard&& rhs) noexcept : m_writer(rhs.m_writer), m_offset(rhs.m_offset) { rhs.m_offset = 0; }
             ~indent_guard() noexcept
             {
                 m_writer.m_indent -= m_offset;

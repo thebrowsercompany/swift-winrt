@@ -1,5 +1,5 @@
 #pragma once
-
+#include "type_helpers.h"
 namespace swiftwinrt
 {
     using namespace std::filesystem;
@@ -15,6 +15,10 @@ namespace swiftwinrt
     {
         return name.substr(0, name.rfind('`'));
     }
+
+    class writer;
+    std::string get_full_swift_type_name(writer const&, TypeDef const& type);
+    std::string get_swift_module(std::string_view const& ns);
 
     template <typename First, typename...Rest>
     auto get_impl_name(First const& first, Rest const&... rest)
@@ -94,9 +98,9 @@ namespace swiftwinrt
     }
 
     template <bool IsGenericParam>
-    inline std::string mangled_name(TypeDef const& type, ns_prefix ns_prefix_state)
+    inline std::string mangled_name(TypeDef const& type)
     {
-        std::string result = ns_prefix_state == ns_prefix::always ? "__x_ABI_C" : "__x_";
+        std::string result = "__x_ABI_C";
 
         if (details::is_generic(type))
         {
@@ -118,22 +122,17 @@ namespace swiftwinrt
     {
         using writer_base<writer>::write;
 
-        struct depends_compare
-        {
-            bool operator()(TypeDef const& left, TypeDef const& right) const
-            {
-                return left.TypeName() < right.TypeName();
-            }
-        };
-
         std::string type_namespace;
-        ns_prefix ns_prefix_state = ns_prefix::always;
+        std::string support;
         bool abi_types{};
         bool delegate_types{};
         bool consume_types{};
         bool async_types{};
-        std::map<std::string_view, std::set<TypeDef, depends_compare>> depends;
+        bool full_type_names{};
+        bool impl_names{};
+        std::set<std::string> depends;
         std::vector<std::vector<std::string>> generic_param_stack;
+        winmd::reader::filter filter;
 
         struct generic_param_guard
         {
@@ -188,11 +187,11 @@ namespace swiftwinrt
 
         void add_depends(TypeDef const& type)
         {
-            auto ns = type.TypeNamespace();
-
-            if (ns != type_namespace)
+            auto type_module = get_swift_module(type.TypeNamespace());
+            
+            if (type_module != get_swift_module(type_namespace))
             {
-                depends[ns].insert(type);
+                depends.insert(type_module);
             }
         }
 
@@ -245,6 +244,54 @@ namespace swiftwinrt
         [[nodiscard]] auto push_consume_types(bool value)
         {
             return member_value_guard(this, &writer::consume_types, value);
+        }
+
+        [[nodiscard]] auto push_full_type_names(bool value)
+        {
+            return member_value_guard(this, &writer::full_type_names, value);
+        }
+
+        [[nodiscard]] auto push_impl_names(bool value)
+        {
+            return member_value_guard(this, &writer::impl_names, value);
+        }
+
+        private:
+            enum class declaration_stage
+            {
+                begin,
+                forward,
+                end,
+            };
+
+            // A set of already declared (or in the case of generics, defined) types
+            std::map<std::string_view, declaration_stage> m_declaredTypes;
+        public:
+
+        bool begin_declaration(std::string_view mangledName)
+        {
+            auto [itr, added] = m_declaredTypes.emplace(mangledName, declaration_stage::begin);
+            return added;
+        }
+
+        void end_declaration(std::string_view mangledName)
+        {
+            auto itr = m_declaredTypes.find(mangledName);
+            XLANG_ASSERT(itr != m_declaredTypes.end());
+            XLANG_ASSERT(itr->second != declaration_stage::end);
+            itr->second = declaration_stage::end;
+        }
+
+        bool should_forward_declare(std::string_view mangledName)
+        {
+            auto [itr, added] = m_declaredTypes.emplace(mangledName, declaration_stage::begin);
+            if (itr->second != declaration_stage::begin)
+            {
+                return false;
+            }
+
+            itr->second = declaration_stage::forward;
+            return true;
         }
 
         void write(indent value)
@@ -312,9 +359,26 @@ namespace swiftwinrt
             {
                 write("HRESULT");
             }
+            else if (name == "EventRegistrationToken" && ns == "Windows.Foundation")
+            {
+                write("EventRegistrationToken");
+            }
+            else if (name == "AsyncStatus" && ns == "Windows.Foundation")
+            {
+                write("AsyncStatus");
+            }
+            else if (name == "IAsyncInfo" && ns == "Windows.Foundation")
+            {
+                write("IAsyncInfo");
+            }
             else if (abi_types)
             {
-                write(mangled_name<false>(type, ns_prefix_state));
+                write(mangled_name<false>(type));
+            }
+            else if (ns != type_namespace || full_type_names)
+            {
+                auto full_swift_name = get_full_swift_type_name(*this, type);
+                write("%", full_swift_name);
             }
             else
             {
@@ -326,7 +390,7 @@ namespace swiftwinrt
         {
             if (type_name(type) == "System.Guid")
             {
-                write("winrt::guid");
+                write("UUID");
             }
             else
             {
@@ -439,7 +503,7 @@ namespace swiftwinrt
             assert(abi_types);
 
             if (type == ElementType::Boolean){ write("boolean"); }
-            else if (type == ElementType::Char) { write("CHAR"); }
+            else if (type == ElementType::Char) { write("WCHAR"); }
             else if (type == ElementType::I1) { write("INT8"); }
             else if (type == ElementType::U1) { write("UINT8"); }
             else if (type == ElementType::I2) { write("INT16"); }
@@ -451,7 +515,7 @@ namespace swiftwinrt
             else if (type == ElementType::R4) { write("FLOAT"); }
             else if (type == ElementType::R8) { write("DOUBLE"); }
             else if (type == ElementType::String) { write("HSTRING"); }
-            else if (type == ElementType::Object) { write("WinSDK.IInspectable"); }
+            else if (type == ElementType::Object) { write("WinSDK.IUnknown"); }
             else
             {
                 assert(false);
@@ -461,7 +525,7 @@ namespace swiftwinrt
         void write_swift(ElementType type)
         {
             if (type == ElementType::Boolean) { write("Bool"); }
-            else if (type == ElementType::Char) { write("Char"); }
+            else if (type == ElementType::Char) { write("Character"); }
             else if (type == ElementType::I1) { write("Int8"); }
             else if (type == ElementType::U1) { write("UInt8"); }
             else if (type == ElementType::I2) { write("Int16"); }
@@ -516,8 +580,9 @@ namespace swiftwinrt
 
                 if (category == param_category::object_type)
                 {
-                    if (auto default_interface = get_default_interface(signature))
+                    if (is_class(signature))
                     {
+                        auto default_interface = get_default_interface(signature);
                         write("UnsafeMutablePointer<%>", default_interface);
                     }
                     else
@@ -586,8 +651,7 @@ namespace swiftwinrt
 
         void save_file(std::string_view const& ext = "")
         {
-            auto filename{ settings.output_folder + "winrt/" };
-
+            auto filename{ settings.output_folder + get_swift_module(type_namespace) + "/swift/" };
             filename += type_namespace;
 
             if (!ext.empty())
@@ -597,6 +661,14 @@ namespace swiftwinrt
             }
 
             filename += ".swift";
+            flush_to_file(filename);
+        }
+
+        void save_header()
+        {
+            auto filename{ settings.output_folder + get_swift_module(type_namespace) + "/c/" };
+            filename += type_namespace;
+            filename += ".h";
             flush_to_file(filename);
         }
     };

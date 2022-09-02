@@ -3,7 +3,7 @@ project(swiftwinrt)
 set(SWIFTWINRT_VERSION_STRING "0.0.1")
 set(MicrosoftWindowsWinMD_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/microsoft.windows.winmd)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # change the warning level to 4
@@ -47,7 +47,9 @@ endif()
 add_executable(swiftwinrt "")
 target_sources(swiftwinrt PUBLIC
     main.cpp
-    pch.cpp)
+    pch.cpp 
+    metadata_cache.cpp
+    types.cpp)
 
 target_include_directories(swiftwinrt PUBLIC ${MicrosoftWindowsWinMD_INCLUDE_DIR} ${PROJECT_BINARY_DIR} ${PROJECT_SOURCE_DIR})
 target_compile_definitions(swiftwinrt PUBLIC "SWIFTWINRT_VERSION_STRING=\"${SWIFTWINRT_VERSION_STRING}\"")

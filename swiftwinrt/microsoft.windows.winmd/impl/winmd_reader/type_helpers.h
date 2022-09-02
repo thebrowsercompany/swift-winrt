@@ -15,8 +15,8 @@ namespace winmd::reader
         }
         else
         {
-            XLANG_ASSERT(false);
-            return {};
+            auto generic_type = type.TypeSpec().Signature().GenericTypeInst().GenericType();
+            return get_type_namespace_and_name(generic_type);
         }
     }
 
@@ -34,8 +34,8 @@ namespace winmd::reader
         }
         else
         {
-            XLANG_ASSERT(false);
-            return {};
+            auto generic_type = type.TypeSpec().Signature().GenericTypeInst().GenericType();
+            return get_type_name(generic_type);
         }
     }
 
@@ -58,15 +58,5 @@ namespace winmd::reader
     inline bool is_nested(TypeRef const& type)
     {
         return type.ResolutionScope().type() == ResolutionScope::TypeRef;
-    }
-
-    inline std::string get_full_type_name(TypeDef const& type)
-    {
-        std::string result;
-        result.reserve(type.TypeNamespace().length() + type.TypeName().length() + 1);
-        result += type.TypeNamespace();
-        result += '.';
-        result += type.TypeName();
-        return result;
     }
 }

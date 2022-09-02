@@ -1,6 +1,6 @@
 import WinSDK
-import WinRT_Test
-import TestComponent_CWinRT
+import test_component
+import Ctest_component
 
 class SwiftWinRTTests {
   public func TestBlittableStruct()
@@ -401,6 +401,23 @@ class SwiftWinRTTests {
     classy.Method()
     print("  ** Test passed! **")
   }
+
+  public func TestChar()
+  {
+    print(" ** Starting Test case: TestChar **")
+    let classy = Class()
+    print("classy ReturnChar: ", classy.ReturnChar())
+    assert(classy.ReturnChar() == "d")
+
+    let result = classy.InChar("x")
+    print("classy InChar: ", result)
+    assert(result == "x")
+
+    var out: Character = "_"
+    classy.OutChar(&out)
+    print("classy OutChar: ", out)
+    assert(out == "z")
+  }
 }
 
 RoInitialize(RO_INIT_SINGLETHREADED)
@@ -413,5 +430,6 @@ tests.TestStaticMethods()
 tests.TestOutParams()
 tests.TestDelegate()
 tests.TestNonDefaultMethods()
+tests.TestChar()
 
 print("all tests passed!")

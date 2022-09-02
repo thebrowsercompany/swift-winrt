@@ -1,10 +1,13 @@
 #pragma once
+#include <variant>
 
 namespace swiftwinrt
 {
     using namespace std::filesystem;
     using namespace winmd::reader;
     using namespace std::literals;
+
+    std::string get_full_type_name(TypeDef const& type);
 
     inline bool starts_with(std::string_view const& value, std::string_view const& match) noexcept
     {
@@ -14,18 +17,18 @@ namespace swiftwinrt
     template <typename...T> struct visit_overload : T... { using T::operator()...; };
 
     template <typename V, typename...C>
-    auto call(V&& variant, C&&...call)
+    inline auto call(V&& variant, C&&...call)
     {
         return std::visit(visit_overload<C...>{ std::forward<C>(call)... }, std::forward<V>(variant));
     }
 
     template <typename T>
-    bool has_attribute(T const& row, std::string_view const& type_namespace, std::string_view const& type_name)
+    inline bool has_attribute(T const& row, std::string_view const& type_namespace, std::string_view const& type_name)
     {
         return static_cast<bool>(get_attribute(row, type_namespace, type_name));
     }
 
-    static coded_index<TypeDefOrRef> get_default_interface(TypeDef const& type)
+    inline coded_index<TypeDefOrRef> get_default_interface(TypeDef const& type)
     {
         auto impls = type.InterfaceImpl();
 
@@ -45,17 +48,37 @@ namespace swiftwinrt
         return {};
     }
 
-    static bool is_exclusive(TypeDef const& type)
+    inline bool is_exclusive(TypeDef const& type)
     {
         return has_attribute(type, "Windows.Foundation.Metadata", "ExclusiveToAttribute");
     }
 
-    static bool is_default(TypeDef const& type)
+    inline bool is_default(InterfaceImpl const& ifaceImpl)
+    {
+        return has_attribute(ifaceImpl, "Windows.Foundation.Metadata", "DefaultAttribute");
+    }
+
+    inline bool is_default(TypeDef const& type)
     {
         return has_attribute(type, "Windows.Foundation.Metadata", "DefaultAttribute");
     }
 
-    static coded_index<TypeDefOrRef> get_default_interface(TypeSig const& type)
+    inline bool can_mark_internal(TypeDef const& type)
+    {
+        auto const metadata_namespace = "Windows.Foundation.Metadata";
+        if (has_attribute(type, metadata_namespace, "ActivatableAttribute"))
+        {
+            return true;
+        }
+        if (has_attribute(type, metadata_namespace, "StaticAttribute"))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    inline coded_index<TypeDefOrRef> get_default_interface(TypeSig const& type)
     {
         coded_index<TypeDefOrRef> result = {};
         call(type.Type(),
@@ -104,12 +127,12 @@ namespace swiftwinrt
         }
     };
 
-    bool operator==(type_name const& left, type_name const& right)
+    inline bool operator==(type_name const& left, type_name const& right)
     {
         return left.name == right.name && left.name_space == right.name_space;
     }
 
-    bool operator==(type_name const& left, std::string_view const& right)
+    inline bool operator==(type_name const& left, std::string_view const& right)
     {
         if (left.name.size() + 1 + left.name_space.size() != right.size())
         {
@@ -199,7 +222,15 @@ namespace swiftwinrt
                     result = param_category::object_type;
                     return;
                 case category::struct_type:
-                    result = param_category::struct_type;
+                    // HRESULT maps to Int32 due to C import
+                    if (get_full_type_name(type_def) == "Windows.Foundation.HResult")
+                    {
+                        result = param_category::fundamental_type;
+                    }
+                    else
+                    {
+                        result = param_category::struct_type;
+                    }
                     return;
                 case category::enum_type:
                     result = param_category::enum_type;
@@ -208,17 +239,17 @@ namespace swiftwinrt
             },
                 [&](GenericTypeInstSig const&)
             {
-                result = param_category::object_type;
+                result = param_category::generic_type;
             },
                 [&](auto&&)
             {
-                result = param_category::generic_type;
+                result = param_category::object_type;
             });
 
         return result;
     }
 
-    static bool is_floating_point(TypeSig const& signature)
+    inline bool is_floating_point(TypeSig const& signature)
     {
         bool object{};
 
@@ -235,7 +266,7 @@ namespace swiftwinrt
         return object;
     }
 
-    static bool is_boolean(TypeSig const& signature)
+    inline bool is_boolean(TypeSig const& signature)
     {
         bool boolean{};
 
@@ -252,7 +283,7 @@ namespace swiftwinrt
         return boolean;
     }
 
-    static bool is_object(TypeSig const& signature)
+    inline bool is_object(TypeSig const& signature)
     {
         bool object{};
 
@@ -269,7 +300,30 @@ namespace swiftwinrt
         return object;
     }
 
-    static bool is_category_type(TypeSig const& signature, category category)
+    inline bool is_guid(TypeSig const& signature)
+    {
+        bool guid{};
+
+        call(signature.Type(),
+            [&](coded_index<TypeDefOrRef> const& type)
+            {
+                if (type.type() == TypeDefOrRef::TypeRef)
+                {
+                    auto type_ref = type.TypeRef();
+
+                    if (type_name(type_ref) == "System.Guid")
+                    {
+                        guid = true;
+                        return;
+                    }
+                }
+            },
+            [](auto&&) {});
+
+        return guid;
+    }
+
+    inline bool is_category_type(TypeSig const& signature, category category)
     {
         bool is_match{};
 
@@ -305,36 +359,42 @@ namespace swiftwinrt
         return is_match;
     }
 
-    static bool is_interface(TypeSig const& signature)
+    inline bool is_interface(TypeSig const& signature)
     {
         return is_category_type(signature, category::interface_type);
     }
 
-    static bool is_delegate(TypeSig const& signature)
+    inline bool is_delegate(TypeSig const& signature)
     {
         return is_category_type(signature, category::delegate_type);
     }
 
-    static bool is_class(TypeSig const& signature)
+    inline bool is_class(TypeSig const& signature)
     {
         return is_category_type(signature, category::class_type);
     }
 
-    static bool is_struct(TypeSig const& signature)
+    inline bool is_struct(TypeSig const& signature)
     {
-        return is_category_type(signature, category::struct_type);
+        // use get_category bc this does a more detailed check of what is actually a struct type.
+        // the winmd reader seems to imply that any value type is a struct
+        return get_category(signature) == param_category::struct_type;
     }
 
-    bool is_type_blittable(TypeSig const& signature, bool for_array = false)
+    inline bool is_type_blittable(TypeSig const& signature, bool for_array = false)
     {
         if (signature.is_szarray())
         {
             return false;
         }
-
+// intentionally incomplete as call() will call other functions
+// with more detailed type information
+#pragma warning(push)
+#pragma warning(disable: 4715)  
         return call(signature.Type(),
             [&](ElementType type)
             {
+
                 switch (type)
                 {
                     case ElementType::I1:
@@ -365,6 +425,12 @@ namespace swiftwinrt
                 }
                 else
                 {
+                    auto type_ref = type.TypeRef();
+
+                    if (type_name(type_ref) == "System.Guid")
+                    {
+                        return true;
+                    }
                     type_def = find_required(type.TypeRef());
                 }
 
@@ -386,6 +452,7 @@ namespace swiftwinrt
                 case category::enum_type:
                     return !for_array;
                 }
+
             },
                 [&](GenericTypeInstSig const&)
             {
@@ -395,6 +462,7 @@ namespace swiftwinrt
             {
                 return true;
             });
+#pragma warning(pop)
 
     }
 
@@ -407,7 +475,7 @@ namespace swiftwinrt
         bool visible{};
     };
 
-    static auto get_attributed_types(TypeDef const& type)
+    inline auto get_attributed_types(TypeDef const& type)
     {
         auto get_system_type = [&](auto&& signature) -> TypeDef
         {
@@ -478,13 +546,23 @@ namespace swiftwinrt
         return result;
     }
 
-    bool is_static(TypeDef const& type)
+    inline bool is_static(TypeDef const& type)
     {
         return get_category(type) == category::class_type && type.Flags().Abstract();
     }
 
-    bool is_static(MethodDef const& method)
+    inline bool is_static(MethodDef const& method)
     {
         return method.Flags().Static();
+    }
+
+    inline std::string get_full_type_name(TypeDef const& type)
+    {
+        std::string result;
+        result.reserve(type.TypeNamespace().length() + type.TypeName().length() + 1);
+        result += type.TypeNamespace();
+        result += '.';
+        result += type.TypeName();
+        return result;
     }
 }

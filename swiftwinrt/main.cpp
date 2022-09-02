@@ -4,10 +4,16 @@
 #include "type_helpers.h"
 #include "type_writers.h"
 #include "helpers.h"
+#include "versioning.h"
+#include "namespace_iterator.h"
+#include "common.h"
 #include "code_writers.h"
 #include "component_writers.h"
 #include "file_writers.h"
-#include "type_writers.h"
+
+#include "abi_writer.h"
+#include "metadata_cache.h"
+#include "metadata_filter.h"
 
 namespace swiftwinrt
 {
@@ -25,7 +31,7 @@ namespace swiftwinrt
         { "verbose", 0, 0, {}, "Show detailed progress information" },
         { "ns-prefix", 0, 1, "<always|optional|never>", "Sets policy for prefixing type names with 'ABI' namespace (default: never)" },
         { "overwrite", 0, 0, {}, "Overwrite generated component files" },
-        { "import", 0, 1, "<import>", "c module to import" },
+        { "support", 0, 1, "<module>", "module to include support files" },
         { "include", 0, option::no_max, "<prefix>", "One or more prefixes to include in input" },
         { "exclude", 0, option::no_max, "<prefix>", "One or more prefixes to exclude from input" },
         { "help", 0, option::no_max, {}, "Show detailed help with examples" },
@@ -90,9 +96,9 @@ Where <spec> is one or more of:
 
         path output_folder = args.value("output", ".");
         
-        settings.c_import = args.value("import", "CWinRT");
-        
-        create_directories(output_folder / "winrt/impl");
+        settings.support = args.value("support", "Windows");
+
+        create_directories(output_folder);
         settings.output_folder = canonical(output_folder).string();
         settings.output_folder += '\\';
 
@@ -143,39 +149,6 @@ Where <spec> is one or more of:
                 settings.component_folder += '\\';
             }
         }
-
-        if (args.exists("ns-prefix"))
-        {
-            auto const& values = args.values("ns-prefix");
-            if (values.empty())
-            {
-                settings.nsprefix = ns_prefix::always;
-            }
-            else
-            {
-                auto const& value = values[0];
-                if (value == "always")
-                {
-                    settings.nsprefix = ns_prefix::always;
-                }
-                else if (value == "never")
-                {
-                    settings.nsprefix = ns_prefix::never;
-                }
-                else if (value == "optional")
-                {
-                    settings.nsprefix = ns_prefix::optional;
-                }
-                else
-                {
-                    throw_invalid("'" + value + "' is not a valid argument for 'ns-prefix'");
-                }
-            }
-        }
-        else
-        {
-            settings.nsprefix = ns_prefix::never;
-        }
     }
 
     static auto get_files_to_cache()
@@ -188,11 +161,6 @@ Where <spec> is one or more of:
 
     static void build_filters(cache const& c)
     {
-        if (settings.reference.empty())
-        {
-            return;
-        }
-
         std::set<std::string> include;
 
         for (auto file : settings.input)
@@ -212,11 +180,13 @@ Where <spec> is one or more of:
                 std::string full_name{ type.TypeNamespace() };
                 full_name += '.';
                 full_name += type.TypeName();
+
                 include.insert(full_name);
             }
         }
 
-        settings.projection_filter = { include, {} };
+
+        settings.projection_filter = { settings.include.empty() ? include : settings.include, settings.exclude };
         
         settings.component_filter = { settings.include.empty() ? include : settings.include, settings.exclude };
     }
@@ -251,25 +221,6 @@ Where <spec> is one or more of:
         }
     }
 
-    static void remove_foundation_types(cache& c)
-    {
-        c.remove_type("Windows.Foundation", "DateTime");
-        c.remove_type("Windows.Foundation", "EventRegistrationToken");
-        c.remove_type("Windows.Foundation", "HResult");
-        c.remove_type("Windows.Foundation", "Point");
-        c.remove_type("Windows.Foundation", "Rect");
-        c.remove_type("Windows.Foundation", "Size");
-        c.remove_type("Windows.Foundation", "TimeSpan");
-
-        c.remove_type("Windows.Foundation.Numerics", "Matrix3x2");
-        c.remove_type("Windows.Foundation.Numerics", "Matrix4x4");
-        c.remove_type("Windows.Foundation.Numerics", "Plane");
-        c.remove_type("Windows.Foundation.Numerics", "Quaternion");
-        c.remove_type("Windows.Foundation.Numerics", "Vector2");
-        c.remove_type("Windows.Foundation.Numerics", "Vector3");
-        c.remove_type("Windows.Foundation.Numerics", "Vector4");
-    }
-
     static int run(int const argc, char** argv)
     {
         int result{};
@@ -287,11 +238,20 @@ Where <spec> is one or more of:
             }
 
             process_args(args);
-            cache c{ get_files_to_cache(), [](TypeDef const& type) { return type.Flags().WindowsRuntime(); } };
-            remove_foundation_types(c);
-            build_filters(c);
-            build_fastabi_cache(c);
 
+            cache c{ get_files_to_cache(), [](TypeDef const& type) {
+                if (!type.Flags().WindowsRuntime())
+                {
+                    return false;
+                }
+                return true;
+            }};
+            metadata_cache mdCache{ c };
+
+            auto include = args.values("include");
+            metadata_filter mf{ mdCache, include };
+
+            settings.projection_filter = mf.filter();
             if (settings.verbose)
             {
                 char* path = nullptr;
@@ -320,8 +280,8 @@ Where <spec> is one or more of:
             w.flush_to_console();
             task_group group;
             group.synchronous(args.exists("synchronous"));
-            writer swift;
-            write_preamble(swift, settings.c_import);
+
+            std::map<std::string, std::vector<std::string_view>> all_namespaces;
 
             for (auto&&[ns, members] : c.namespaces())
             {
@@ -329,11 +289,24 @@ Where <spec> is one or more of:
                 {
                     continue;
                 }
+                auto module_name = get_swift_module(ns);
+
+                auto result = all_namespaces.emplace(std::piecewise_construct,
+                    std::forward_as_tuple(module_name),
+                    std::forward_as_tuple());
+                result.first->second.push_back(ns);
+                if (result.second)
+                {
+                    path output_folder = settings.output_folder;
+                    create_directories(output_folder / module_name / "c");
+                    create_directories(output_folder / module_name / "swift");
+                }
 
                 group.add([&, &ns = ns, &members = members]
                 {
                     write_namespace_abi(ns, members, settings);
                     write_namespace_wrapper(ns, members, settings);
+                    write_abi_header(ns, settings, mdCache.compile_namespaces({ ns }, mf));
                 });
             }
 
@@ -344,6 +317,8 @@ Where <spec> is one or more of:
 
             group.get();
 
+            write_namespace_definitions(all_namespaces, settings);
+            write_include_all(all_namespaces, settings);
             if (settings.verbose)
             {
                 w.write(" time:  %ms\n", get_elapsed_time(start));
