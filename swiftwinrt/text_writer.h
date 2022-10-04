@@ -133,6 +133,15 @@ namespace swiftwinrt
             write(std::string_view{ buffer, size });
         }
 
+        /*template <auto F, typename... Args>
+        void write_each(std::vector<std::reference_wrapper<const metadata_type>> const& list, Args const&... args)
+        {
+            for (auto&& item : list)
+            {
+                F(*static_cast<T*>(this), item.get(), args...);
+            }
+        }*/
+
         template <auto F, typename List, typename... Args>
         void write_each(List const& list, Args const&... args)
         {
@@ -141,6 +150,7 @@ namespace swiftwinrt
                 F(*static_cast<T*>(this), item, args...);
             }
         }
+
 
         void swap() noexcept
         {
@@ -155,7 +165,7 @@ namespace swiftwinrt
             m_second.clear();
         }
 
-        void flush_to_file(std::string const& filename)
+        void flush_to_file(std::string const& filename, bool append = false)
         {
             if (!file_equal(filename))
             {
@@ -163,7 +173,9 @@ namespace swiftwinrt
                 file.exceptions(std::ofstream::failbit | std::ofstream::badbit);
                 try
                 {
-                  file.open(filename, std::ios::out | std::ios::binary);
+                  auto mode = std::ios::out | std::ios::binary;
+                  if (append) mode |= std::ios::app;
+                  file.open(filename, mode);
                   file.write(m_first.data(), m_first.size());
                   file.write(m_second.data(), m_second.size());
                 }

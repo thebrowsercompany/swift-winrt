@@ -17,6 +17,14 @@ namespace winrt::test_component::implementation
         }
     };
 
+    struct BasicDelegate : implements<BasicDelegate, test_component::IBasic>
+    {
+        void Method()
+        {
+            printf("C++ - Method\n");
+        }
+    };
+
     struct Class : ClassT<Class>
     {
         Class() = default;
@@ -175,8 +183,42 @@ namespace winrt::test_component::implementation
             value = L'z';
         }
 
-        void Method(){ printf("Method called!\n"); }
+        void Method(){
+            if (m_basicImpl){
+                m_basicImpl.Method();
+            }
+            printf("Method called!\n");
+        }
 
+        test_component::IBasic Implementation()
+        {
+            return m_basicImpl != nullptr ? m_basicImpl : make<BasicDelegate>(); 
+        }
+        void Implementation(test_component::IBasic const& value)
+        {
+            m_basicImpl = value;
+            if (m_basicImpl)
+            {
+                m_basicImpl.Method();
+            }
+            else {
+                printf("Property cleared!\n");
+            }
+        }
+
+        Windows::Foundation::IReference<int32_t> StartValue() { return m_startValue; }
+        void StartValue(Windows::Foundation::IReference<int32_t> const& value) { 
+            m_startValue = value;
+            if (m_startValue)
+            {
+                auto pv = m_startValue.as<Windows::Foundation::IPropertyValue>();
+                printf("CPP: Start Value from PropertyValue: %d\n", pv.GetInt32());
+                if (pv.GetInt32() != 23)
+                {
+                    throw hresult_invalid_argument(L"value");
+                }
+            }
+        }
     private:
         static float s_float;
         bool m_fail{};
@@ -196,6 +238,8 @@ namespace winrt::test_component::implementation
 
         test_component::IIAmImplementable m_implementation{};
         test_component::ISimpleDelegate m_delegate{};
+        test_component::IBasic m_basicImpl{};
+        Windows::Foundation::IReference<int32_t> m_startValue{};
     };
 
     /*

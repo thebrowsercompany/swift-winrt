@@ -1,5 +1,6 @@
 #pragma once
 
+#include "type_writers.h"
 namespace swiftwinrt
 {
     inline void write_preamble(writer& w)
@@ -22,17 +23,25 @@ namespace swiftwinrt
         if (!w.type_namespace.empty() && !w.support.empty())
         {
             auto module = get_swift_module(w.type_namespace);
-            if (module != w.support)
+            if (!settings.test)
             {
-                w.depends.emplace(w.support);
+                if (module != w.support)
+                {
+                    w.depends.emplace(w.support);
+                }
+
+                for (auto& import : w.depends)
+                {
+                    w.write("import %\n", import);
+                    w.write("import C%\n", import);
+                }
+                w.write("import C%\n", module);
+            }
+            else
+            {
+                w.write("import C%\n", w.support);
             }
 
-            for (auto& import : w.depends)
-            {
-                w.write("import %\n", import);
-                w.write("import C%\n", import);
-            }
-            w.write("import C%\n", module);
         }
 
         w.write("\n");
@@ -58,6 +67,10 @@ namespace swiftwinrt
 
     inline std::string get_swift_module(TypeDef const& type)
     {
+        if (settings.test)
+        {
+            return settings.support;
+        }
         return get_swift_module(type.TypeNamespace());
     }
 
@@ -66,7 +79,9 @@ namespace swiftwinrt
         std::string result;
 
         result.reserve(ns.length());
-        if (get_swift_module(w.type_namespace) != get_swift_module(ns))
+        // Don't write the full namespace if all types are going into a single module, because
+        // types in Windows.* namespace are *not* in the `Windows` module
+        if (!settings.test && get_swift_module(w.type_namespace) != get_swift_module(ns))
         {
             // not writing type name in current module, use a fully scoped
             // module name instead
@@ -80,6 +95,10 @@ namespace swiftwinrt
                 // remove the root namespace and module name so there isn't a
                 // duplicat name
                 result = ns.substr(index + 1);
+            }
+            else
+            {
+                result = ns;
             }
 
             result.shrink_to_fit();

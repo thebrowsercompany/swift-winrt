@@ -96,55 +96,18 @@ namespace swiftwinrt
         };
     }
 
-    inline void write_uuid(writer& w, winmd::reader::TypeDef const& type)
+    // Don't write "built-in types" since these are defined in other header files
+    // These aren't completely removed from metadata because we need to generate them
+    // on the swift side
+    static std::set<std::string_view> removed_types = {
+        "Windows.Foundation.Collections.CollectionChange",
+        "Windows.Foundation.Collections.IVectorChangedEventArgs"
+    };
+
+    static bool should_write(metadata_type const& type)
     {
-        auto iidStr = type_iid(type);
-        w.write(std::string_view{ iidStr.data(), iidStr.size() - 1 });
+        return !removed_types.contains(type.swift_full_name());
     }
-
-    inline void write_uuid(writer& w, typedef_base const& type)
-    {
-        write_uuid(w, type.type());
-    }
-
-    inline void write_generated_uuid(writer& w, metadata_type const& type)
-    {
-        sha1 signatureHash;
-        static constexpr std::uint8_t namespaceGuidBytes[] =
-        {
-            0x11, 0xf4, 0x7a, 0xd5,
-            0x7b, 0x73,
-            0x42, 0xc0,
-            0xab, 0xae, 0x87, 0x8b, 0x1e, 0x16, 0xad, 0xee
-        };
-        signatureHash.append(namespaceGuidBytes, std::size(namespaceGuidBytes));
-        type.append_signature(signatureHash);
-
-        auto iidHash = signatureHash.finalize();
-        iidHash[6] = (iidHash[6] & 0x0F) | 0x50;
-        iidHash[8] = (iidHash[8] & 0x3F) | 0x80;
-        w.write_printf("%02x%02x%02x%02x-%02x%02x-%02x%02x-%02x%02x-%02x%02x%02x%02x%02x%02x",
-            iidHash[0], iidHash[1], iidHash[2], iidHash[3],
-            iidHash[4], iidHash[5],
-            iidHash[6], iidHash[7],
-            iidHash[8], iidHash[9],
-            iidHash[10], iidHash[11], iidHash[12], iidHash[13], iidHash[14], iidHash[15]);
-    }
-
-    inline void write_uuid(writer& w, generic_inst const& type)
-    {
-        write_generated_uuid(w, type);
-    }
-
-    template <typename T>
-    auto bind_uuid(T const& type)
-    {
-        return [&](writer& w)
-        {
-            write_uuid(w, type);
-        };
-    }
-
 
     static void write_includes(writer& w, type_cache const& types, std::string_view fileName)
     {
@@ -214,7 +177,7 @@ namespace swiftwinrt
 
         for (auto const& type : types.delegates)
         {
-            if (!type.get().is_generic())
+            if (!type.get().is_generic() && should_write(type.get()))
             {
                 type.get().write_c_forward_declaration(w);
             }
@@ -222,7 +185,7 @@ namespace swiftwinrt
 
         for (auto const& type : types.interfaces)
         {
-            if (!type.get().is_generic())
+            if (!type.get().is_generic() && should_write(type.get()))
             {
                 type.get().write_c_forward_declaration(w);
             }
@@ -239,7 +202,11 @@ namespace swiftwinrt
 
         for (auto const& [name, inst] : types.generic_instantiations)
         {
-            inst.get().write_c_forward_declaration(w);
+            if (should_write(inst.get()))
+            {
+                inst.get().write_c_forward_declaration(w);
+
+            }
         }
     }
 
@@ -247,12 +214,19 @@ namespace swiftwinrt
     {
         for (auto const& type : types.external_dependencies)
         {
-            type.get().write_c_forward_declaration(w);
+            if (should_write(type.get()))
+            {
+                type.get().write_c_forward_declaration(w);
+            }
+
         }
 
         for (auto const& type : types.internal_dependencies)
         {
-            type.get().write_c_forward_declaration(w);
+            if (should_write(type.get()))
+            {
+                type.get().write_c_forward_declaration(w);
+            }
         }
     }
 
@@ -260,27 +234,42 @@ namespace swiftwinrt
     {
         for (auto const& enumType : types.enums)
         {
-            enumType.get().write_c_definition(w);
+            if (should_write(enumType.get()))
+            {
+                enumType.get().write_c_definition(w);
+            }
         }
 
         for (auto const& structType : types.structs)
         {
-            structType.get().write_c_definition(w);
+            if (should_write(structType.get()))
+            {
+                structType.get().write_c_definition(w);
+            }
         }
 
         for (auto const& delegateType : types.delegates)
         {
-            delegateType.get().write_c_definition(w);
+            if (should_write(delegateType.get()))
+            {
+                delegateType.get().write_c_definition(w);
+            }
         }
 
         for (auto const& interfaceType : types.interfaces)
         {
-            interfaceType.get().write_c_definition(w);
+            if (should_write(interfaceType.get()))
+            {
+                interfaceType.get().write_c_definition(w);
+            }
         }
 
         for (auto const& classType : types.classes)
         {
-            classType.get().write_c_definition(w);
+            if (should_write(classType.get()))
+            {
+                classType.get().write_c_definition(w);
+            }
         }
     }
 
@@ -306,6 +295,7 @@ namespace swiftwinrt
         for (auto& [module, ns_list] : namespaces)
         {
             writer w;
+            w.type_namespace = module;
             write_preamble(w);
             w.write("#pragma once\n");
             w.write("#pragma clang diagnostic push\n");
@@ -318,7 +308,7 @@ namespace swiftwinrt
             }
             w.write("#pragma clang diagnostic pop\n");
 
-            auto filename{ settings.output_folder + module + "/c/" };
+            auto filename{ w.file_directory("/c/") };
             filename += "C" + module + ".h";
 
             w.flush_to_file(filename);

@@ -155,6 +155,7 @@ namespace test_component
            static Int32 StaticTestReturn();
            static Int32 StaticProperty{ get; };
 
+           IBasic Implementation;
            // This is used to mimic API contract behavior, such that this will enforce separate types be generated
            [
              constructor_name("test_component.IClassFactory2"),
@@ -256,6 +257,8 @@ namespace test_component
             Char ReturnChar();
             String InChar(Char value);
             void OutChar(out Char value);
+
+            Windows.Foundation.IReference<Int32> StartValue;
         }
         
         static runtimeclass StaticClass

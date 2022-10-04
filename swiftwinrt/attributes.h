@@ -1,7 +1,9 @@
 #pragma once
-
+#include "winmd_reader.h"
 namespace swiftwinrt
 {
+    using namespace winmd::reader;
+
     namespace impl
     {
         template <typename T, typename... Types>

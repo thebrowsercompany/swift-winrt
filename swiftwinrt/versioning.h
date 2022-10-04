@@ -1,7 +1,7 @@
 #pragma once
 #include "attributes.h"
 #include <optional>
-
+#include "type_helpers.h"
 namespace swiftwinrt
 {
     struct contract_version

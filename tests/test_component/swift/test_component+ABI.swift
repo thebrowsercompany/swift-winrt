@@ -7,7 +7,7 @@ private var IID___x_ABI_Ctest__component_CIBasic: IID {
 }
 
 private var IID___x_ABI_Ctest__component_CIClass: IID {
-    IID(Data1: 0xD8C3F1C8, Data2: 0x3C84, Data3: 0x5E17, Data4: ( 0x8E,0xB5,0x85,0x3F,0x4E,0xF9,0x89,0x8F ))// D8C3F1C8-3C84-5E17-8EB5-853F4EF9898F
+    IID(Data1: 0x0AEB74AA, Data2: 0x2483, Data3: 0x540D, Data4: ( 0x92,0x3C,0x10,0xEC,0x5A,0x86,0xC9,0xA9 ))// 0AEB74AA-2483-540D-923C-10EC5A86C9A9
 }
 
 private var IID___x_ABI_Ctest__component_CIClassFactory: IID {
@@ -42,7 +42,90 @@ private var IID___x_ABI_Ctest__component_CIStaticClassStatics: IID {
     IID(Data1: 0xC983253D, Data2: 0x876D, Data3: 0x55EE, Data4: ( 0x82,0x4B,0x01,0x24,0x6E,0xDC,0x61,0x2D ))// C983253D-876D-55EE-824B-01246EDC612D
 }
 
+private var IID___x_ABI_C__FIReference_1_int: IID {
+    IID(Data1: 0x548cefbd, Data2: 0xbc8a, Data3: 0x5fa0, Data4: ( 0x8d,0xf2,0x95,0x74,0x40,0xfc,0x8b,0xf4 ))// 548cefbd-bc8a-5fa0-8df2-957440fc8bf4
+}
+
 public enum __ABI_test_component {
+    private static var __x_ABI_C__FIReference_1_intVTable: __x_ABI_C__FIReference_1_intVtbl = .init(
+        QueryInterface: {
+            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+           if riid.pointee == __ABI_Windows_Foundation.IPropertyValueWrapper.IID {
+                guard let instance = __x_ABI_C__FIReference_1_intWrapper.try_unwrap_from(raw: pUnk) as? Foundation.Impl.IPropertyValueImpl else { return E_NOINTERFACE }
+                let inner = __ABI_Windows_Foundation.IPropertyValueWrapper(impl: instance)
+                return withUnsafeMutablePointer(to: &inner.instance.comInterface) { pThis in 
+                    pThis.pointee.lpVtbl.pointee.QueryInterface(pThis, riid, ppvObject)
+                }
+            }
+
+            guard riid.pointee == IUnknown.IID ||
+                  riid.pointee == IInspectable.IID || 
+                  riid.pointee == ISwiftImplemented.IID ||
+                  riid.pointee == __x_ABI_C__FIReference_1_intWrapper.IID else { 
+                ppvObject.pointee = nil
+                return E_NOINTERFACE
+            }
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
+        },
+
+        AddRef: {
+             guard let wrapper = __x_ABI_C__FIReference_1_intWrapper.from_raw($0) else { return 1 }
+             _ = wrapper.retain()
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+        },
+
+        Release: {
+            guard let wrapper = __x_ABI_C__FIReference_1_intWrapper.from_raw($0) else { return 1 }
+            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+        },
+
+        GetIids: {
+            let size = MemoryLayout<IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+            iids[0] = IUnknown.IID
+            iids[1] = IInspectable.IID
+            iids[2] = __x_ABI_C__FIReference_1_intWrapper.IID
+            iids[4] = __ABI_Windows_Foundation.IPropertyValueWrapper.IID
+
+            $1!.pointee = 4
+            $2!.pointee = iids
+            return S_OK
+        },
+
+        GetRuntimeClassName: {
+            _ = $0
+            let hstring = try! HString("Windows.Foundation.IReference`1<Int32>").detach()
+            $1!.pointee = hstring
+            return S_OK
+        },
+
+        GetTrustLevel: {
+            _ = $0
+            $1!.pointee = TrustLevel(rawValue: 0)
+            return S_OK
+        },
+
+        get_Value: {
+            guard let instance = __x_ABI_C__FIReference_1_intWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+
+            let result = instance.Value as! Int32
+            $1?.initialize(to: result)
+
+            return S_OK
+        }
+    )
+    internal class __x_ABI_C__FIReference_1_intWrapper: WinRTWrapperBase<__x_ABI_C__FIReference_1_int, IReference> {
+        override class var IID: IID { IID___x_ABI_C__FIReference_1_int }
+        init?(value: Int32?) {
+            guard let value = value else { return nil }
+            let abi = withUnsafeMutablePointer(to: &__x_ABI_C__FIReference_1_intVTable) {
+                __x_ABI_C__FIReference_1_int(lpVtbl:$0)
+            }
+            super.init(abi, Foundation.Impl.IPropertyValueImpl(value: value))
+        }
+    }
     open class IBasic: test_component.IInspectable {
         override public class var IID: IID { IID___x_ABI_Ctest__component_CIBasic }
 
@@ -53,9 +136,100 @@ public enum __ABI_test_component {
         }
     }
 
+    private static var IBasicVTable: __x_ABI_Ctest__component_CIBasicVtbl = .init(
+        QueryInterface: {
+            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+
+            guard riid.pointee == IUnknown.IID ||
+                  riid.pointee == IInspectable.IID || 
+                  riid.pointee == ISwiftImplemented.IID ||
+                  riid.pointee == __ABI_test_component.IBasicWrapper.IID else { 
+                ppvObject.pointee = nil
+                return E_NOINTERFACE
+            }
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
+        },
+
+        AddRef: {
+             guard let wrapper = IBasicWrapper.from_raw($0) else { return 1 }
+             _ = wrapper.retain()
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+        },
+
+        Release: {
+            guard let wrapper = IBasicWrapper.from_raw($0) else { return 1 }
+            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+        },
+
+        GetIids: {
+            let size = MemoryLayout<IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+            iids[0] = IUnknown.IID
+            iids[1] = IInspectable.IID
+            iids[2] = __ABI_test_component.IBasicWrapper.IID
+            
+            $1!.pointee = 3
+            $2!.pointee = iids
+            return S_OK
+        },
+
+        GetRuntimeClassName: {
+            _ = $0
+            let hstring = try! HString("test_component.IBasic").detach()
+            $1!.pointee = hstring
+            return S_OK
+        },
+
+        GetTrustLevel: {
+            _ = $0
+            $1!.pointee = TrustLevel(rawValue: 0)
+            return S_OK
+        },
+
+        Method: {
+            guard let instance = __ABI_test_component.IBasicWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+
+            instance.Method()
+            
+            return S_OK
+        }
+    )
+
+    public class IBasicWrapper: WinRTWrapperBase<__x_ABI_Ctest__component_CIBasic, test_component.IBasic> {
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CIBasic }
+                
+        public init?(impl: test_component.IBasic?) {
+            guard let impl = impl else { return nil }
+            // try to see if already wrapping an ABI pointer and if so, use that
+            if let internalImpl = impl as? test_component.Impl.IBasicImpl {
+                let abi = try? internalImpl.interface.perform(as: __x_ABI_Ctest__component_CIBasic.self) { $0.pointee }
+                guard let abi = abi else { return nil }
+                super.init(abi, impl)
+            } else {
+                let abi = withUnsafeMutablePointer(to: &IBasicVTable) {
+                    __x_ABI_Ctest__component_CIBasic(lpVtbl: $0)
+                }
+                super.init(abi, impl)
+            }
+        }
+    }
     open class IClass: test_component.IInspectable {
         override public class var IID: IID { IID___x_ABI_Ctest__component_CIClass }
 
+        internal func get_ImplementationImpl() throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>? {
+            var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>?
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Implementation(pThis, &value))
+            }
+            return value
+        }
+        internal func put_ImplementationImpl(_ value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>?) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.put_Implementation(pThis, value))
+            }
+        }
         internal func SetDelegateImpl(_ value: UnsafeMutablePointer<__x_ABI_Ctest__component_CISimpleDelegate>?) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.SetDelegate(pThis, value))
@@ -150,6 +324,18 @@ public enum __ABI_test_component {
         internal func OutCharImpl(_ value: inout WCHAR) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OutChar(pThis, &value))
+            }
+        }
+        internal func get_StartValueImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIReference_1_int>? {
+            var value: UnsafeMutablePointer<__x_ABI_C__FIReference_1_int>?
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_StartValue(pThis, &value))
+            }
+            return value
+        }
+        internal func put_StartValueImpl(_ value: UnsafeMutablePointer<__x_ABI_C__FIReference_1_int>?) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.put_StartValue(pThis, value))
             }
         }
     }
@@ -303,6 +489,180 @@ public enum __ABI_test_component {
         }
     }
 
+    private static var IIAmImplementableVTable: __x_ABI_Ctest__component_CIIAmImplementableVtbl = .init(
+        QueryInterface: {
+            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+
+            guard riid.pointee == IUnknown.IID ||
+                  riid.pointee == IInspectable.IID || 
+                  riid.pointee == ISwiftImplemented.IID ||
+                  riid.pointee == __ABI_test_component.IIAmImplementableWrapper.IID else { 
+                ppvObject.pointee = nil
+                return E_NOINTERFACE
+            }
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
+        },
+
+        AddRef: {
+             guard let wrapper = IIAmImplementableWrapper.from_raw($0) else { return 1 }
+             _ = wrapper.retain()
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+        },
+
+        Release: {
+            guard let wrapper = IIAmImplementableWrapper.from_raw($0) else { return 1 }
+            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+        },
+
+        GetIids: {
+            let size = MemoryLayout<IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+            iids[0] = IUnknown.IID
+            iids[1] = IInspectable.IID
+            iids[2] = __ABI_test_component.IIAmImplementableWrapper.IID
+            
+            $1!.pointee = 3
+            $2!.pointee = iids
+            return S_OK
+        },
+
+        GetRuntimeClassName: {
+            _ = $0
+            let hstring = try! HString("test_component.IIAmImplementable").detach()
+            $1!.pointee = hstring
+            return S_OK
+        },
+
+        GetTrustLevel: {
+            _ = $0
+            $1!.pointee = TrustLevel(rawValue: 0)
+            return S_OK
+        },
+
+        InInt32: {
+            guard let instance = __ABI_test_component.IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            let value: Int32 = $1
+
+            let result = instance.InInt32(value)
+            $2?.initialize(to: try! HString(result).detach())
+
+            return S_OK
+        },
+
+        InString: {
+            guard let instance = __ABI_test_component.IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            let value: String = .init(from: $1)
+
+            let result = instance.InString(value)
+            $2?.initialize(to: try! HString(result).detach())
+
+            return S_OK
+        },
+
+        InEnum: {
+            guard let instance = __ABI_test_component.IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            let value: test_component.Signed = $1
+
+            let result = instance.InEnum(value)
+            $2?.initialize(to: try! HString(result).detach())
+
+            return S_OK
+        },
+
+        OutInt32: {
+            guard let instance = __ABI_test_component.IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            var value: Int32 = 0
+            instance.OutInt32(&value)
+            $1?.initialize(to: value)
+
+            return S_OK
+        },
+
+        OutString: {
+            guard let instance = __ABI_test_component.IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            var value: String?
+            instance.OutString(&value)
+            $1?.initialize(to: try! HString(value).detach())
+
+            return S_OK
+        },
+
+        OutBlittableStruct: {
+            guard let instance = __ABI_test_component.IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            var value: test_component.BlittableStruct = .init()
+            instance.OutBlittableStruct(&value)
+            $1?.initialize(to: unsafeBitCast(value, to: __x_ABI_Ctest__component_CBlittableStruct.self))
+
+            return S_OK
+        },
+
+        OutNonBlittableStruct: {
+            guard let instance = __ABI_test_component.IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            var value: test_component.NonBlittableStruct = .init()
+            instance.OutNonBlittableStruct(&value)
+            let _value = __ABI_test_component._ABI_NonBlittableStruct(from: value)
+        	$1?.initialize(to: _value.detach())
+
+            return S_OK
+        },
+
+        OutEnum: {
+            guard let instance = __ABI_test_component.IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            var value: test_component.Signed = .init(0)
+            instance.OutEnum(&value)
+            $1?.initialize(to: value)
+
+            return S_OK
+        },
+
+        ReturnEnum: {
+            guard let instance = __ABI_test_component.IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+
+            let result = instance.ReturnEnum()
+            $1?.initialize(to: result)
+
+            return S_OK
+        },
+
+        get_EnumProperty: {
+            guard let instance = __ABI_test_component.IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+
+            let value = instance.EnumProperty
+            $1?.initialize(to: value)
+
+            return S_OK
+        },
+
+        put_EnumProperty: {
+            guard let instance = __ABI_test_component.IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            let value: test_component.Fruit = $1
+
+            instance.EnumProperty = value
+            
+            return S_OK
+        }
+    )
+
+    public class IIAmImplementableWrapper: WinRTWrapperBase<__x_ABI_Ctest__component_CIIAmImplementable, test_component.IIAmImplementable> {
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CIIAmImplementable }
+                
+        public init?(impl: test_component.IIAmImplementable?) {
+            guard let impl = impl else { return nil }
+            // try to see if already wrapping an ABI pointer and if so, use that
+            if let internalImpl = impl as? test_component.Impl.IIAmImplementableImpl {
+                let abi = try? internalImpl.interface.perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { $0.pointee }
+                guard let abi = abi else { return nil }
+                super.init(abi, impl)
+            } else {
+                let abi = withUnsafeMutablePointer(to: &IIAmImplementableVTable) {
+                    __x_ABI_Ctest__component_CIIAmImplementable(lpVtbl: $0)
+                }
+                super.init(abi, impl)
+            }
+        }
+    }
     open class ISimple: test_component.IInspectable {
         override public class var IID: IID { IID___x_ABI_Ctest__component_CISimple }
 
@@ -388,6 +748,94 @@ public enum __ABI_test_component {
         }
     }
 
+    private static var ISimpleDelegateVTable: __x_ABI_Ctest__component_CISimpleDelegateVtbl = .init(
+        QueryInterface: {
+            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+
+            guard riid.pointee == IUnknown.IID ||
+                  riid.pointee == IInspectable.IID || 
+                  riid.pointee == ISwiftImplemented.IID ||
+                  riid.pointee == __ABI_test_component.ISimpleDelegateWrapper.IID else { 
+                ppvObject.pointee = nil
+                return E_NOINTERFACE
+            }
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
+        },
+
+        AddRef: {
+             guard let wrapper = ISimpleDelegateWrapper.from_raw($0) else { return 1 }
+             _ = wrapper.retain()
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+        },
+
+        Release: {
+            guard let wrapper = ISimpleDelegateWrapper.from_raw($0) else { return 1 }
+            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+        },
+
+        GetIids: {
+            let size = MemoryLayout<IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+            iids[0] = IUnknown.IID
+            iids[1] = IInspectable.IID
+            iids[2] = __ABI_test_component.ISimpleDelegateWrapper.IID
+            
+            $1!.pointee = 3
+            $2!.pointee = iids
+            return S_OK
+        },
+
+        GetRuntimeClassName: {
+            _ = $0
+            let hstring = try! HString("test_component.ISimpleDelegate").detach()
+            $1!.pointee = hstring
+            return S_OK
+        },
+
+        GetTrustLevel: {
+            _ = $0
+            $1!.pointee = TrustLevel(rawValue: 0)
+            return S_OK
+        },
+
+        DoThis: {
+            guard let instance = __ABI_test_component.ISimpleDelegateWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+
+            instance.DoThis()
+            
+            return S_OK
+        },
+
+        DoThat: {
+            guard let instance = __ABI_test_component.ISimpleDelegateWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            let val: Int32 = $1
+
+            instance.DoThat(val)
+            
+            return S_OK
+        }
+    )
+
+    public class ISimpleDelegateWrapper: WinRTWrapperBase<__x_ABI_Ctest__component_CISimpleDelegate, test_component.ISimpleDelegate> {
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CISimpleDelegate }
+                
+        public init?(impl: test_component.ISimpleDelegate?) {
+            guard let impl = impl else { return nil }
+            // try to see if already wrapping an ABI pointer and if so, use that
+            if let internalImpl = impl as? test_component.Impl.ISimpleDelegateImpl {
+                let abi = try? internalImpl.interface.perform(as: __x_ABI_Ctest__component_CISimpleDelegate.self) { $0.pointee }
+                guard let abi = abi else { return nil }
+                super.init(abi, impl)
+            } else {
+                let abi = withUnsafeMutablePointer(to: &ISimpleDelegateVTable) {
+                    __x_ABI_Ctest__component_CISimpleDelegate(lpVtbl: $0)
+                }
+                super.init(abi, impl)
+            }
+        }
+    }
     open class IStaticClassStatics: test_component.IInspectable {
         override public class var IID: IID { IID___x_ABI_Ctest__component_CIStaticClassStatics }
 
@@ -422,7 +870,7 @@ public enum __ABI_test_component {
     public class _ABI_NonBlittableBoolStruct {
         public var val: __x_ABI_Ctest__component_CNonBlittableBoolStruct = .init()
         public init() { } 
-        public init(from swift: NonBlittableBoolStruct) {
+        public init(from swift: test_component.NonBlittableBoolStruct) {
             val.First = .init(from: swift.First)
             val.Second = .init(from: swift.Second)
             val.Third = .init(from: swift.Third)
@@ -440,7 +888,7 @@ public enum __ABI_test_component {
     public class _ABI_NonBlittableStruct {
         public var val: __x_ABI_Ctest__component_CNonBlittableStruct = .init()
         public init() { } 
-        public init(from swift: NonBlittableStruct) {
+        public init(from swift: test_component.NonBlittableStruct) {
             val.First = try! HString(swift.First).detach()
             val.Second = try! HString(swift.Second).detach()
             val.Third = swift.Third

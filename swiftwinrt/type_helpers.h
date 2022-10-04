@@ -3,6 +3,11 @@
 
 namespace swiftwinrt
 {
+    constexpr std::string_view system_namespace = "System";
+    constexpr std::string_view foundation_namespace = "Windows.Foundation";
+    constexpr std::string_view collections_namespace = "Windows.Foundation.Collections";
+    constexpr std::string_view metadata_namespace = "Windows.Foundation.Metadata";
+
     using namespace std::filesystem;
     using namespace winmd::reader;
     using namespace std::literals;
@@ -65,7 +70,6 @@ namespace swiftwinrt
 
     inline bool can_mark_internal(TypeDef const& type)
     {
-        auto const metadata_namespace = "Windows.Foundation.Metadata";
         if (has_attribute(type, metadata_namespace, "ActivatableAttribute"))
         {
             return true;
@@ -243,7 +247,7 @@ namespace swiftwinrt
             },
                 [&](auto&&)
             {
-                result = param_category::object_type;
+                result = param_category::generic_type;
             });
 
         return result;
@@ -464,6 +468,20 @@ namespace swiftwinrt
             });
 #pragma warning(pop)
 
+    }
+
+    inline bool is_struct_blittable(TypeDef const& type)
+    {
+        assert(get_category(type) == category::struct_type);
+        for (auto&& field : type.FieldList())
+        {
+            if (!is_type_blittable(field.Signature().Type()))
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     struct attributed_type

@@ -49,7 +49,8 @@ target_sources(swiftwinrt PUBLIC
     main.cpp
     pch.cpp 
     metadata_cache.cpp
-    types.cpp)
+    types.cpp
+    metadata_filter.cpp )
 
 target_include_directories(swiftwinrt PUBLIC ${MicrosoftWindowsWinMD_INCLUDE_DIR} ${PROJECT_BINARY_DIR} ${PROJECT_SOURCE_DIR})
 target_compile_definitions(swiftwinrt PUBLIC "SWIFTWINRT_VERSION_STRING=\"${SWIFTWINRT_VERSION_STRING}\"")

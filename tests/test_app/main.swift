@@ -196,13 +196,13 @@ class SwiftWinRTTests {
   {
       private var thisCount: Int32 = 0
       private var that: Int32 = 0
-      func DoThis() throws
+      func DoThis()
       {
         print("Swift - DoThis!")
         thisCount += 1
       }
 
-      func DoThat(_ val: Int32) throws
+      func DoThat(_ val: Int32)
       {
         print("Swift - Do that: ", val)
         that = val
@@ -214,15 +214,15 @@ class SwiftWinRTTests {
   
   class MyImplementableDelegate: IIAmImplementable {
     private var thisCount = 9
-    func InInt32(_ value: Int32) throws -> String {
+    func InInt32(_ value: Int32) -> String {
         return .init(repeating: "abc", count: Int(value))
       }
 
-    func InString(_ value: String) throws -> String {
+    func InString(_ value: String) -> String {
         return .init(value.reversed())
       }
 
-    func InEnum(_ value: Signed) throws -> String {
+    func InEnum(_ value: Signed) -> String {
         switch value {
           case .First: return "1 banana"
           case .Second: return "2 banana"
@@ -231,39 +231,31 @@ class SwiftWinRTTests {
         }
       }
 
-      func OutInt32(_ value: inout Int32) throws {
+      func OutInt32(_ value: inout Int32) {
         value = 987
       }
 
-      func OutString(_ value: inout String?) throws {
+      func OutString(_ value: inout String?) {
         value = "987"
       }
 
-      func OutBlittableStruct(_ value: inout BlittableStruct) throws {
+      func OutBlittableStruct(_ value: inout BlittableStruct) {
         value = .init(First: 9876, Second: 54321)
       }
 
-      func OutNonBlittableStruct(_ value: inout NonBlittableStruct) throws {
+      func OutNonBlittableStruct(_ value: inout NonBlittableStruct) {
         value = .init(First: "to be", Second: "or not", Third: 2, Fourth: "be, that is the question")
       }
 
-      func OutEnum(_ value: inout Signed) throws {
+      func OutEnum(_ value: inout Signed) {
         value = .Second
       }
 
-      func ReturnEnum() throws -> Signed {
+      func ReturnEnum() -> Signed {
         .Third
       }
 
-      // TODO: this needs to swiftified
-      private var enumProp: Fruit = .Apple
-      func get_EnumProperty() throws -> Fruit {
-        enumProp
-      }
-
-      func put_EnumProperty(_ value: Fruit) throws {
-        enumProp = value
-      }
+      var EnumProperty: Fruit = .Apple
   } 
 
   public func TestDelegate()
@@ -281,8 +273,8 @@ class SwiftWinRTTests {
       assert(mySwiftDelegate.GetThisCount() == 1)
       assert(mySwiftDelegate.GetThat() == 3)
 
-      try! mySwiftDelegate.DoThis()
-      try! mySwiftDelegate.DoThat(6)
+      mySwiftDelegate.DoThis()
+      mySwiftDelegate.DoThat(6)
       assert(mySwiftDelegate.GetThisCount() == 2)
       assert(mySwiftDelegate.GetThat() == 6)
 
@@ -290,8 +282,8 @@ class SwiftWinRTTests {
       // TODO: WIN-78 retrieving the delegate causes a memory
       // leak. We should verify the delegate is fully cleaned up
       var retrievedDelegate = classy.GetDelegate()
-      try! retrievedDelegate.DoThis()
-      try! retrievedDelegate.DoThat(9)
+      retrievedDelegate.DoThis()
+      retrievedDelegate.DoThat(9)
 
       assert(mySwiftDelegate.GetThisCount() == 3)
       assert(mySwiftDelegate.GetThat() == 9)
@@ -304,8 +296,8 @@ class SwiftWinRTTests {
 
       // This will hand us a C++ class which implements the interface.
       retrievedDelegate = classy.GetDelegate()
-      try! retrievedDelegate.DoThis()
-      try! retrievedDelegate.DoThat(15)
+      retrievedDelegate.DoThis()
+      retrievedDelegate.DoThat(15)
       assert(mySwiftDelegate.GetThisCount() == 3)
       assert(mySwiftDelegate.GetThat() == 9)
     }
@@ -319,20 +311,20 @@ class SwiftWinRTTests {
 
       var enumVal = Signed.Second
       let returned = classy.InEnum(enumVal);
-      assert(try! returned == impl.InEnum(enumVal), "improper value returned")
+      assert(returned == impl.InEnum(enumVal), "improper value returned")
 
       enumVal = classy.ReturnEnum()
-      assert(try! enumVal == impl.ReturnEnum(), "improper value returned")
+      assert(enumVal == impl.ReturnEnum(), "improper value returned")
 
       var enumProp = classy.EnumProperty
       print("class has: ", enumProp)
-      assert(try! enumProp == impl.get_EnumProperty(), "i'd be apple'd if this was wrong")
+      assert(enumProp == impl.EnumProperty, "i'd be apple'd if this was wrong")
 
       print("setting enum to Pineapple")
       classy.EnumProperty = .Pineapple
       enumProp = classy.EnumProperty
       print("a", enumProp, "is prickly")
-      assert(try! enumProp == impl.get_EnumProperty(), "fruit should be prickly")
+      assert(enumProp == impl.EnumProperty, "fruit should be prickly")
 
       print(">> testing OutInt32")
       var outInt: Int32 = 0
@@ -340,7 +332,7 @@ class SwiftWinRTTests {
       print("     result: ", outInt)
 
       var expectedOutInt: Int32 = 0
-      try! impl.OutInt32(&expectedOutInt)
+      impl.OutInt32(&expectedOutInt)
       assert(outInt == expectedOutInt)
 
       print(">> testing OutString")
@@ -348,7 +340,7 @@ class SwiftWinRTTests {
       classy.OutString(&outString)
 
       var expectedOutString: String?
-      try! impl.OutString(&expectedOutString)
+      impl.OutString(&expectedOutString)
       print("     result: ", outString!)
       assert(outString == expectedOutString)
 
@@ -358,7 +350,7 @@ class SwiftWinRTTests {
       print("     result: ", outEnum)
 
       var expectedOutEnum: Signed = .Second
-      try! impl.OutEnum(&expectedOutEnum)
+      impl.OutEnum(&expectedOutEnum)
       assert(outEnum == expectedOutEnum)
 
       print(">> testing OutBlittableStruct")
@@ -367,7 +359,7 @@ class SwiftWinRTTests {
       print("     result: ", outBlittableStruct)
 
       var outBlittableStructExpected = BlittableStruct()
-      try! impl.OutBlittableStruct(&outBlittableStructExpected)
+      impl.OutBlittableStruct(&outBlittableStructExpected)
       // TODO: Implement equatable on structs
       //assert(outBlittableStruct == outBlittableStructExpected)
       assert(outBlittableStruct.First == outBlittableStructExpected.First)
@@ -379,7 +371,7 @@ class SwiftWinRTTests {
       print("     result: ", outNonBlittableStruct)
 
       var outNonBlittableStructExected = NonBlittableStruct()
-      try! impl.OutNonBlittableStruct(&outNonBlittableStructExected)
+      impl.OutNonBlittableStruct(&outNonBlittableStructExected)
       //assert(outNonBlittableStruct == outNonBlittableStructExected)
       assert(outNonBlittableStruct.First == outNonBlittableStructExected.First)
       assert(outNonBlittableStruct.Second == outNonBlittableStructExected.Second)
@@ -417,11 +409,90 @@ class SwiftWinRTTests {
     classy.OutChar(&out)
     print("classy OutChar: ", out)
     assert(out == "z")
+    print("  ** Test passed! **")
+
   }
+
+  class DoTheNewBase : IBasic
+  {
+    func Method() {
+      print("it's done")
+    }
+  }
+
+  class DoubleDelegate : IBasic, ISimpleDelegate
+  {
+     func Method() {
+      print("method doubled up")
+    }
+
+     func DoThis() {
+        print("Swift Double! - DoThis!")
+      }
+
+      func DoThat(_ val: Int32) {
+        print("Swift Double! - Do that: ", val)
+      }
+  }
+
+  public func TestDoubleDelegate()
+  {
+    print(" ** Starting Test case: TestDoubleDelegate **")
+
+    let classy = Class()
+
+    let newBase = DoTheNewBase()
+    classy.Implementation = newBase
+    classy.Method()
+
+    var implReturn = classy.Implementation
+    implReturn.Method()
+
+    assert(implReturn === newBase, "incorrect swift object returned")
+
+    classy.Implementation = DoTheNewBase.none
+
+    implReturn = classy.Implementation
+    assert(implReturn !== newBase, "incorrect swift object returned")
+    implReturn.Method()
+
+    let double = DoubleDelegate()
+    classy.Implementation = double
+    classy.SetDelegate(double)
+
+    classy.Method()
+
+    let delegate = classy.GetDelegate()
+    delegate.DoThis()
+    delegate.DoThat(19)
+
+    assert(double === delegate)
+    assert(double === classy.Implementation)
+
+    print("  ** Test passed! **")
+
+  }
+
+  public func TestIReference()
+  {
+    print(" ** Starting Test case: TestIReference **")
+
+    let classy = Class()
+    assert(classy.StartValue == nil)
+
+    classy.StartValue = 23
+    print("value: ", classy.StartValue ?? "N/A")
+    assert(classy.StartValue == 23)
+
+    print("  ** Test passed! **")
+
+  }
+  
 }
 
 RoInitialize(RO_INIT_SINGLETHREADED)
 let tests = SwiftWinRTTests()
+
 tests.TestBlittableStruct()
 tests.TestNonBlittableStruct()
 tests.TestEnums()
@@ -432,4 +503,7 @@ tests.TestDelegate()
 tests.TestNonDefaultMethods()
 tests.TestChar()
 
+tests.TestDoubleDelegate()
+
+tests.TestIReference()
 print("all tests passed!")

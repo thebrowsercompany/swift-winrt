@@ -79,12 +79,14 @@ namespace swiftwinrt
 
     static void write_namespace_definitions(std::map<std::string, std::vector<std::string_view>> & namespaces, settings_type const& settings)
     {
-        bool has_namespace_definitions = false;
+        bool append = false;
         for (auto&& [module, ns_list] : namespaces)
         {
+            bool has_namespace_definitions = false;
             std::set<std::string_view> written_namespace;
 
             writer w;
+            w.type_namespace = module;
             write_preamble(w);
 
             written_namespace.insert(ns_list.begin(), ns_list.end());
@@ -100,25 +102,38 @@ namespace swiftwinrt
 
             if (has_namespace_definitions)
             {
-                auto filename{ settings.output_folder + module + "/swift/NamespaceDefinitions.swift" };
-                w.flush_to_file(filename);
+                auto filename{ w.file_directory("/swift/") + "NamespaceDefinitions.swift" };
+                w.flush_to_file(filename, append);
+            }
+
+            // There is only a single namespace file, so append to it instead of overwriting
+            if (settings.test)
+            {
+                append = true;
             }
         }
     }
 
-    static void write_namespace_abi(std::string_view const& ns, cache::namespace_members const& members, settings_type const& settings)
+    static void write_namespace_abi(std::string_view const& ns, type_cache const& members, settings_type const& settings, metadata_filter const& f)
     {
         writer w;
-        w.filter = settings.projection_filter;
+        w.filter = f;
         w.type_namespace = ns;
         w.support = settings.support;
 
         {
             w.write("%", w.filter.bind_each<write_guid>(members.interfaces));
-
+            for (auto& [_, inst] : members.generic_instantiations)
+            {
+                write_guid_generic(w, inst.get());
+            }
             auto abi_ns = abi_namespace(ns);
             auto [namespace_guard, indent_guard] = push_namespace(abi_ns, w, true);
 
+            for (auto& [_, inst] : members.generic_instantiations)
+            {
+                write_interface_generic(w, inst.get());
+            }
             w.write("%", w.filter.bind_each<write_interface_abi>(members.interfaces));
             w.write("%", w.filter.bind_each<write_delegate_abi>(members.delegates));
             w.write("%", w.filter.bind_each<write_struct_abi>(members.structs));
@@ -130,10 +145,10 @@ namespace swiftwinrt
         w.save_file("ABI");
     }
 
-    static void write_namespace_wrapper(std::string_view const& ns, cache::namespace_members const& members, settings_type const& settings)
+    static void write_namespace_wrapper(std::string_view const& ns, type_cache const& members, settings_type const& settings, metadata_filter const& f)
     {
         writer w;
-        w.filter = settings.projection_filter;
+        w.filter = f;
         w.support = settings.support;
         w.type_namespace = ns;
 
@@ -154,8 +169,16 @@ namespace swiftwinrt
         }
         w.write("%", w.filter.bind_each<write_interface_proto>(members.interfaces));
 
-        w.write("%", w.filter.bind_each<write_enum_extension>(members.enums));
+        if (ns == "Windows.Foundation")
+        {
+            write_ireference(w);
+        }
 
+        w.write("%", w.filter.bind_each<write_enum_extension>(members.enums));
+        for (auto& [_, inst] : members.generic_instantiations)
+        {
+            write_ireference_init_extension(w, inst.get());
+        }
         w.swap();
         write_preamble(w);
 

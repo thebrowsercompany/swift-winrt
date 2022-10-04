@@ -13,6 +13,7 @@ namespace swiftwinrt
         bool brackets{};
         bool verbose{};
         bool component{};
+        bool test{};
         std::string component_folder;
         std::string component_name;
         bool component_prefix{};

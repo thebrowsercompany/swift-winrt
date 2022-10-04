@@ -2,7 +2,6 @@
 
 #include "winmd_reader.h"
 #include "sha1.h"
-#include "helpers.h"
 #include "versioning.h"
 
 namespace swiftwinrt
@@ -10,6 +9,14 @@ namespace swiftwinrt
     struct writer;
 
     std::string get_full_type_name(TypeDef const& type);
+    
+    struct deprecation_info
+    {
+        std::string_view contract_type;
+        std::uint32_t version;
+
+        std::string_view message;
+    };
 
     struct metadata_type
     {
@@ -27,6 +34,12 @@ namespace swiftwinrt
 
         virtual void write_c_forward_declaration(writer& w) const = 0;
         virtual void write_c_abi_param(writer& w) const = 0;
+
+        virtual void write_swift_declaration(writer& w) const = 0;
+        /*
+        virtual void write_swift_abi_param(writer& w) const = 0;
+        virtual void write_swift_param(writer& w) const = 0;
+        */
 
         virtual bool is_experimental() const = 0;
 
@@ -62,12 +75,14 @@ namespace swiftwinrt
     struct element_type final : metadata_type
     {
         element_type(
+            bool blittable,
             std::string_view swiftName,
             std::string_view logicalName,
             std::string_view abiName,
             std::string_view cppName,
             std::string_view mangledName,
             std::string_view signature) :
+            m_blittable(blittable),
             m_swiftName(swiftName),
             m_logicalName(logicalName),
             m_abiName(abiName),
@@ -96,7 +111,7 @@ namespace swiftwinrt
 
         virtual std::string_view cpp_abi_name() const override
         {
-            return m_abiName;
+            return m_cppName;
         }
 
         virtual std::string_view cpp_logical_name() const override
@@ -132,6 +147,13 @@ namespace swiftwinrt
             return false;
         }
 
+        virtual void write_swift_declaration(writer& w) const override
+        {
+            // no special declaration necessary
+        }
+
+        bool is_blittable() const { return m_blittable;  }
+
     private:
 
         std::string_view m_swiftName;
@@ -140,6 +162,7 @@ namespace swiftwinrt
         std::string_view m_cppName;
         std::string_view m_mangledName;
         std::string_view m_signature;
+        bool m_blittable{ true };
     };
 
     struct system_type final : metadata_type
@@ -210,6 +233,10 @@ namespace swiftwinrt
             return false;
         }
 
+        virtual void write_swift_declaration(writer&) const override
+        {
+            // no special declaration necessary
+        }
     private:
 
         std::string_view m_swiftName;
@@ -310,6 +337,10 @@ namespace swiftwinrt
             return contract_version{ "Windows.Foundation.UniversalApiContract"sv, 1 };
         }
 
+        virtual void write_swift_declaration(writer&) const override
+        {
+            // no special declaration necessary
+        }
     private:
 
         winmd::reader::TypeDef m_type;
@@ -363,10 +394,7 @@ namespace swiftwinrt
             return m_genericParamMangledName;
         }
 
-        virtual bool is_experimental() const override
-        {
-            return swiftwinrt::is_experimental(m_type);
-        }
+        virtual bool is_experimental() const override;
 
         virtual std::optional<std::size_t> contract_index(std::string_view typeName, std::size_t version) const override
         {
@@ -426,19 +454,18 @@ namespace swiftwinrt
             return m_type;
         }
 
-        bool is_generic() const noexcept
-        {
-            return swiftwinrt::is_generic(m_type);
-        }
+        bool is_generic() const noexcept;
 
-        auto is_deprecated() const noexcept
-        {
-            return swiftwinrt::is_deprecated(m_type);
-        }
+        std::optional<deprecation_info> is_deprecated() const noexcept;
 
         winmd::reader::category category() const noexcept
         {
             return get_category(m_type);
+        }
+
+        virtual void write_swift_declaration(writer&) const override
+        {
+            // not implemented by everyone yet
         }
 
     protected:
@@ -477,10 +504,7 @@ namespace swiftwinrt
 
         void write_c_definition(writer& w) const;
 
-        winmd::reader::ElementType underlying_type() const
-        {
-            return underlying_enum_type(m_type);
-        }
+        winmd::reader::ElementType underlying_type() const;
     };
 
     struct struct_member
@@ -541,13 +565,7 @@ namespace swiftwinrt
 
     struct delegate_type final : typedef_base
     {
-        delegate_type(winmd::reader::TypeDef const& type) :
-            typedef_base(type)
-        {
-            m_abiName.reserve(1 + type.TypeName().length());
-            details::append_type_prefix(m_abiName, type);
-            m_abiName += type.TypeName();
-        }
+        delegate_type(winmd::reader::TypeDef const& type);
 
         virtual std::string_view cpp_abi_name() const override
         {
@@ -561,14 +579,7 @@ namespace swiftwinrt
             return m_abiName;
         }
 
-        virtual void append_signature(sha1& hash) const override
-        {
-            using namespace std::literals;
-            hash.append("delegate({"sv);
-            auto iid = type_iid(m_type);
-            hash.append(std::string_view{ iid.data(), iid.size() - 1 });
-            hash.append("})"sv);
-        }
+        virtual void append_signature(sha1& hash) const override;
 
         virtual void write_c_forward_declaration(writer& w) const override;
         virtual void write_c_abi_param(writer& w) const override;
@@ -591,14 +602,7 @@ namespace swiftwinrt
         {
         }
 
-        virtual void append_signature(sha1& hash) const override
-        {
-            using namespace std::literals;
-            hash.append("{"sv);
-            auto iid = type_iid(m_type);
-            hash.append(std::string_view{ iid.data(), iid.size() - 1 });
-            hash.append("}"sv);
-        }
+        virtual void append_signature(sha1& hash) const override;
 
         virtual void write_c_forward_declaration(writer& w) const override;
         virtual void write_c_abi_param(writer& w) const override;
@@ -730,20 +734,7 @@ namespace swiftwinrt
             return m_mangledName;
         }
 
-        virtual void append_signature(sha1& hash) const override
-        {
-            using namespace std::literals;
-            hash.append("pinterface({"sv);
-            auto iid = type_iid(m_genericType->type());
-            hash.append(std::string_view{ iid.data(), iid.size() - 1 });
-            hash.append("}"sv);
-            for (auto param : m_genericParams)
-            {
-                hash.append(";"sv);
-                param->append_signature(hash);
-            }
-            hash.append(")"sv);
-        }
+        virtual void append_signature(sha1& hash) const override;
 
         virtual void write_c_forward_declaration(writer& w) const override;
         virtual void write_c_abi_param(writer& w) const override;
@@ -772,7 +763,7 @@ namespace swiftwinrt
             return m_genericType->category();
         }
 
-        auto is_deprecated() const noexcept
+        std::optional<deprecation_info> is_deprecated() const noexcept
         {
             return m_genericType->is_deprecated();
         }
@@ -794,6 +785,7 @@ namespace swiftwinrt
         std::vector<generic_inst const*> dependencies;
         std::vector<function_def> functions;
 
+        virtual void write_swift_declaration(writer&) const override;
     private:
 
         typedef_base const* m_genericType;

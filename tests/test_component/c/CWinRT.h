@@ -11,7 +11,7 @@
 #include <winstring.h>
 
 #include "ctest_component.h"
-
+#include "cwindows.h"
 #pragma comment(lib, "runtimeobject")
 
 #endif

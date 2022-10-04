@@ -2,6 +2,7 @@
 #include <ctime>
 #include "settings.h"
 #include "type_helpers.h"
+#include "types.h"
 #include "type_writers.h"
 #include "helpers.h"
 #include "versioning.h"
@@ -9,11 +10,11 @@
 #include "common.h"
 #include "code_writers.h"
 #include "component_writers.h"
-#include "file_writers.h"
 
 #include "abi_writer.h"
 #include "metadata_cache.h"
 #include "metadata_filter.h"
+#include "file_writers.h"
 
 namespace swiftwinrt
 {
@@ -37,6 +38,7 @@ namespace swiftwinrt
         { "help", 0, option::no_max, {}, "Show detailed help with examples" },
         { "?", 0, option::no_max, {}, {} },
         { "library", 0, 1, "<prefix>", "Specify library prefix (defaults to winrt)" },
+        { "test", 0, 0 }, // the projections are for tests and place all code into a single module
         { "filter" }, // One or more prefixes to include in input (same as -include)
         { "license", 0, 0 }, // Generate license comment
         { "brackets", 0, 0 }, // Use angle brackets for #includes (defaults to quotes)
@@ -93,12 +95,17 @@ Where <spec> is one or more of:
 
         settings.license = args.exists("license");
         settings.brackets = args.exists("brackets");
-
+        settings.test = args.exists("test");
         path output_folder = args.value("output", ".");
         
         settings.support = args.value("support", "Windows");
 
         create_directories(output_folder);
+        if (settings.test)
+        {
+            create_directories(output_folder / "c");
+            create_directories(output_folder / "swift");
+        }
         settings.output_folder = canonical(output_folder).string();
         settings.output_folder += '\\';
 
@@ -251,7 +258,6 @@ Where <spec> is one or more of:
             auto include = args.values("include");
             metadata_filter mf{ mdCache, include };
 
-            settings.projection_filter = mf.filter();
             if (settings.verbose)
             {
                 char* path = nullptr;
@@ -285,7 +291,7 @@ Where <spec> is one or more of:
 
             for (auto&&[ns, members] : c.namespaces())
             {
-                if (!has_projected_types(members) || !settings.projection_filter.includes(members))
+                if (!has_projected_types(members) || !mf.filter().includes(members))
                 {
                     continue;
                 }
@@ -295,18 +301,19 @@ Where <spec> is one or more of:
                     std::forward_as_tuple(module_name),
                     std::forward_as_tuple());
                 result.first->second.push_back(ns);
-                if (result.second)
+                if (result.second && !settings.test)
                 {
                     path output_folder = settings.output_folder;
                     create_directories(output_folder / module_name / "c");
                     create_directories(output_folder / module_name / "swift");
                 }
 
-                group.add([&, &ns = ns, &members = members]
+                group.add([&, &ns = ns]
                 {
-                    write_namespace_abi(ns, members, settings);
-                    write_namespace_wrapper(ns, members, settings);
-                    write_abi_header(ns, settings, mdCache.compile_namespaces({ ns }, mf));
+                    auto types = mdCache.compile_namespaces({ ns }, mf);
+                    write_namespace_abi(ns, types, settings, mf);
+                    write_namespace_wrapper(ns, types, settings, mf);
+                    write_abi_header(ns, settings, types);
                 });
             }
 

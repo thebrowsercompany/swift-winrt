@@ -26,3 +26,7 @@ extension Character {
     }
   }
 }
+
+extension UnsafeMutableRawPointer {
+  public static var none : UnsafeMutableRawPointer? { return nil }
+}

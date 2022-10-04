@@ -2,7 +2,7 @@
 #include "winmd_reader.h"
 #include "attributes.h"
 #include "versioning.h"
-
+#include "types.h"
 namespace swiftwinrt
 {
     template <typename T>
@@ -33,13 +33,33 @@ namespace swiftwinrt
 
             if (m_signature.ReturnType() && params.first != params.second && params.first.Sequence() == 0)
             {
-                m_return = params.first;
+                m_return = params.first.Name();
                 ++params.first;
             }
 
             for (uint32_t i{}; i != size(m_signature.Params()); ++i)
             {
                 m_params.emplace_back(params.first + i, &m_signature.Params().first[i]);
+            }
+        }
+
+        explicit method_signature(function_def const& method) :
+            m_method(method.def),
+            m_signature(method.def.Signature())
+        {
+            auto params = method.def.ParamList();
+
+            if (method.return_type)
+            {
+                auto return_type = method.return_type.value();
+                m_return_type = return_type.type;
+                m_return = return_type.name;
+                ++params.first;
+            }
+
+            for (uint32_t i{}; i != method.params.size(); ++i)
+            {
+                m_params.emplace_back(params.first + i, &method.params[i].signature);
             }
         }
 
@@ -58,20 +78,14 @@ namespace swiftwinrt
             return m_signature.ReturnType();
         }
 
+        auto return_type() const
+        {
+            return m_return_type;
+        }
+
         auto return_param_name() const
         {
-            std::string_view name;
-
-            if (m_return)
-            {
-                name = m_return.Name();
-            }
-            else
-            {
-                name = "winrt_impl_result";
-            }
-
-            return name;
+            return m_return;
         }
 
         MethodDef const& method() const
@@ -116,7 +130,8 @@ namespace swiftwinrt
         MethodDef m_method;
         MethodDefSig m_signature;
         std::vector<std::pair<Param, ParamSig const*>> m_params;
-        Param m_return;
+        std::string_view m_return;
+        metadata_type const* m_return_type;
     };
 
     struct separator
@@ -269,7 +284,7 @@ namespace swiftwinrt
         // 'relativeContract' would be '0' for an interface introduced in contract 'A', '1' for an interface introduced
         // in contract 'B', etc. This is only set/valid for 'fastabi' interfaces
         std::pair<uint32_t, uint32_t> relative_version{};
-        std::vector<std::vector<std::string>> generic_param_stack{};
+        std::vector<generic_param_vector> generic_param_stack{};
     };
 
     using get_interfaces_t = std::vector<std::pair<std::string, interface_info>>;
@@ -301,7 +316,7 @@ namespace swiftwinrt
         }
     }
 
-    inline void get_interfaces_impl(writer& w, get_interfaces_t& result, bool defaulted, bool overridable, bool base, std::vector<std::vector<std::string>> const& generic_param_stack, std::pair<InterfaceImpl, InterfaceImpl>&& children)
+    inline void get_interfaces_impl(writer& w, get_interfaces_t& result, bool defaulted, bool overridable, bool base, std::vector<generic_param_vector> const& generic_param_stack, std::pair<InterfaceImpl, InterfaceImpl>&& children)
     {
         for (auto&& impl : children)
         {
@@ -350,14 +365,24 @@ namespace swiftwinrt
                 {
                     auto type_signature = type.TypeSpec().Signature();
 
-                    std::vector<std::string> names;
+                    generic_param_vector names;
 
                     for (auto&& arg : type_signature.GenericTypeInst().GenericArgs())
                     {
-                        names.push_back(w.write_temp("%", arg));
+                        auto semantics = valuetype_copy_semantics::equal;
+                        bool blittable = is_type_blittable(arg);
+                        if (is_struct(arg) && blittable)
+                        {
+                            semantics = valuetype_copy_semantics::blittable;
+                        }
+                        else if (!blittable)
+                        {
+                            semantics = valuetype_copy_semantics::nonblittable;
+                        }
+
+                        names.emplace_back(arg, semantics);
                     }
 
-                    info.generic_param_stack.push_back(std::move(names));
 
                     guard = w.push_generic_params(type_signature.GenericTypeInst());
                     auto signature = type_signature.GenericTypeInst();
@@ -727,6 +752,19 @@ namespace swiftwinrt
     {
         return distance(type.GenericParam()) != 0;
     }
+    
+    inline bool is_generic(coded_index<TypeDefOrRef> const& type)
+    {
+        switch (type.type())
+        {
+        case TypeDefOrRef::TypeSpec:
+            return true;
+        case TypeDefOrRef::TypeRef:
+        case TypeDefOrRef::TypeDef:
+        default:
+            return false;
+        }
+    }
 
     template <typename T>
     inline bool is_experimental(T const& value)
@@ -734,14 +772,6 @@ namespace swiftwinrt
         using namespace std::literals;
         return static_cast<bool>(get_attribute(value, metadata_namespace, "ExperimentalAttribute"sv));
     }
-
-    struct deprecation_info
-    {
-        std::string_view contract_type;
-        std::uint32_t version;
-
-        std::string_view message;
-    };
 
     template <typename T>
     inline std::optional<deprecation_info> is_deprecated(T const& type)
@@ -910,6 +940,16 @@ namespace swiftwinrt
     inline std::string_view get_swift_name(Param const& param)
     {
         return param.Name();
+    }
+
+    inline std::string_view remove_backtick(std::string_view const& name)
+    {
+        auto back_tick_i = name.find_first_of('`');
+        if (back_tick_i != name.npos)
+        {
+            return name.substr(0, back_tick_i);
+        }
+        return name;
     }
 
     inline std::string abi_namespace(std::string_view const& ns)

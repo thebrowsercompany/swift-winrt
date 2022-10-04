@@ -1,6 +1,9 @@
 add_library(test_component SHARED
   test_component.swift
   test_component+ABI.swift
+  Windows.Foundation.swift
+  Windows.Foundation+Abi.swift
+  NamespaceDefinitions.swift
   Support/IUnknown.swift
   Support/IUnknown+Swift.Swift
   Support/IUnknownRef.swift
@@ -16,6 +19,7 @@ add_library(test_component SHARED
   Support/StringHelpers.swift
   Support/Swift+Extensions.swift
   Support/TrustLevel+Swift.swift
+  Support/WinRTWrapperBase.swift
   Support/WinSDK+Extensions.swift
   )
 

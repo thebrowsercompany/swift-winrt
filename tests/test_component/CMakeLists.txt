@@ -9,7 +9,8 @@ set(SWIFT_WINRT_PARAMETERS
 "-include test_component"
 "-input ${WINMD_FILE}"
 "-support test_component"
-"-output ${CMAKE_CURRENT_SOURCE_DIR}/.."
+"-test"
+"-output ${CMAKE_CURRENT_SOURCE_DIR}"
 "-reference 10.0.20348.0"
 )
 

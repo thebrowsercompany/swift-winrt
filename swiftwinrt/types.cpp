@@ -1,17 +1,21 @@
 #include "pch.h"
 
-#include "abi_writer.h"
 #include "types.h"
+#include "abi_writer.h"
 #include "winmd_reader.h"
 #include "helpers.h"
 #include "attributes.h"
 #include "namespace_iterator.h"
+#include "code_writers.h"
 
 using namespace std::literals;
 using namespace winmd::reader;
 
 namespace swiftwinrt
 {
+    static void write_iunknown_methods(writer& w, generic_inst const& type);
+    static void write_iinspectable_methods(writer& w, generic_inst const& type);
+
     template <typename T>
     static auto begin_type_definition(writer& w, T const& type)
     {
@@ -45,9 +49,30 @@ namespace swiftwinrt
         });
     }
 
+    bool typedef_base::is_experimental() const
+    {
+        return swiftwinrt::is_experimental(m_type);
+    }
+
+    std::optional<deprecation_info> typedef_base::is_deprecated() const noexcept
+    {
+        return swiftwinrt::is_deprecated(m_type);
+    }
+
+    bool typedef_base::is_generic() const noexcept
+    {
+        return swiftwinrt::is_generic(m_type);
+    }
+
+
     static std::string_view enum_string(writer& w)
     {
         return "enum"sv;
+    }
+
+    winmd::reader::ElementType enum_type::underlying_type() const
+    {
+        return underlying_enum_type(m_type);
     }
 
     void enum_type::write_c_forward_declaration(writer& w) const
@@ -290,6 +315,23 @@ namespace swiftwinrt
 
     }
 
+    delegate_type::delegate_type(winmd::reader::TypeDef const& type) :
+        typedef_base(type)
+    {
+        m_abiName.reserve(1 + type.TypeName().length());
+        details::append_type_prefix(m_abiName, type);
+        m_abiName += type.TypeName();
+    }
+
+    void delegate_type::append_signature(sha1& hash) const
+    {
+        using namespace std::literals;
+        hash.append("delegate({"sv);
+        auto iid = type_iid(m_type);
+        hash.append(std::string_view{ iid.data(), iid.size() - 1 });
+        hash.append("})"sv);
+    }
+
     void delegate_type::write_c_forward_declaration(writer& w) const
     {
         if (!w.should_forward_declare(m_mangledName))
@@ -344,6 +386,15 @@ namespace swiftwinrt
     void delegate_type::write_c_definition(writer& w) const
     {
         write_delegate_definition(w, *this, &write_c_interface_definition<delegate_type>);
+    }
+
+    void interface_type::append_signature(sha1& hash) const
+    {
+        using namespace std::literals;
+        hash.append("{"sv);
+        auto iid = type_iid(m_type);
+        hash.append(std::string_view{ iid.data(), iid.size() - 1 });
+        hash.append("}"sv);
     }
 
     void interface_type::write_c_forward_declaration(writer& w) const
@@ -445,6 +496,21 @@ namespace swiftwinrt
     {
     }
 
+    void generic_inst::append_signature(sha1& hash) const
+    {
+        using namespace std::literals;
+        hash.append("pinterface({"sv);
+        auto iid = type_iid(m_genericType->type());
+        hash.append(std::string_view{ iid.data(), iid.size() - 1 });
+        hash.append("}"sv);
+        for (auto param : m_genericParams)
+        {
+            hash.append(";"sv);
+            param->append_signature(hash);
+        }
+        hash.append(")"sv);
+    }
+
     void generic_inst::write_c_forward_declaration(writer& w) const
     {
         if (!w.begin_declaration(m_mangledName))
@@ -500,6 +566,57 @@ namespace swiftwinrt
         w.end_declaration(m_mangledName);
     }
 
+    static void write_vtable_method(writer& w, function_def const& func, generic_inst const& type);
+    void generic_inst::write_swift_declaration(writer& w) const
+    {
+        assert(generic_params().size() == 1);
+        auto push_param_guard = w.push_generic_params(*this);
+        w.write("private static var %VTable: %Vtbl = .init(\n",
+            mangled_name(),
+            mangled_name());
+
+        {
+            auto indent = w.push_indent({ 1 });
+            write_iunknown_methods(w, *this);
+            write_iinspectable_methods(w, *this);
+
+            separator s{ w, ",\n\n" };
+            s(); // get first separator out of the way for no-op
+            for (auto&& method : functions)
+            {
+                s();
+                write_vtable_method(w, method, *this);
+            }
+        }
+
+        w.write(R"(
+)
+)");
+
+
+        auto format = R"(internal class %: WinRTWrapperBase<%, %> {
+    override class var IID: IID { IID_% }
+    init?(value: %?) {
+        guard let value = value else { return nil }
+        let abi = withUnsafeMutablePointer(to: &%VTable) {
+            %(lpVtbl:$0)
+        }
+        super.init(abi, %(value: value))
+    }
+}
+)";
+        w.write(format,
+            bind<write_generic_wrapper_type>(*this),
+            mangled_name(),
+            remove_backtick(generic_type()->cpp_logical_name()),
+            mangled_name(),
+            generic_params()[0]->swift_full_name(),
+            mangled_name(),
+            mangled_name(),
+            bind<write_generic_impl_name>(*this)
+            );
+    }
+
     void generic_inst::write_c_abi_param(writer& w) const
     {
         w.write("%*", m_mangledName);
@@ -507,19 +624,20 @@ namespace swiftwinrt
 
     element_type const& element_type::from_type(winmd::reader::ElementType type)
     {
-        static element_type const boolean_type{ "Boolean"sv, "bool"sv, "boolean"sv, "boolean"sv, "boolean"sv, "b1"sv };
-        static element_type const char_type{ "Char16"sv, "wchar_t"sv, "wchar_t"sv, "WCHAR"sv, "wchar__zt"sv, "c2"sv };
-        static element_type const u1_type{ "UInt8"sv, "::byte"sv, "::byte"sv, "BYTE"sv, "byte"sv, "u1"sv };
-        static element_type const i2_type{ "Int16"sv, "short"sv, "short"sv, "INT16"sv, "short"sv, "i2"sv };
-        static element_type const u2_type{ "UInt16"sv, "UINT16"sv, "UINT16"sv, "UINT16"sv, "UINT16"sv, "u2"sv };
-        static element_type const i4_type{ "Int32"sv, "int"sv, "int"sv, "INT32"sv, "int"sv, "i4"sv };
-        static element_type const u4_type{ "UInt32"sv, "UINT32"sv, "UINT32"sv, "UINT32"sv, "UINT32"sv, "u4"sv };
-        static element_type const i8_type{ "Int64"sv, "__int64"sv, "__int64"sv, "INT64"sv, "__z__zint64"sv, "i8"sv };
-        static element_type const u8_type{ "UInt64"sv, "UINT64"sv, "UINT64"sv, "UINT64"sv, "UINT64"sv, "u8"sv };
-        static element_type const r4_type{ "Single"sv, "float"sv, "float"sv, "FLOAT"sv, "float"sv, "f4"sv };
-        static element_type const r8_type{ "Double"sv, "double"sv, "double"sv, "DOUBLE"sv, "double"sv, "f8"sv };
-        static element_type const string_type{ "String"sv, "HSTRING"sv, "HSTRING"sv, "HSTRING"sv, "HSTRING"sv, "string"sv };
-        static element_type const object_type{ "Object"sv, "IInspectable*"sv, "IInspectable*"sv, "IInspectable*"sv, "IInspectable"sv, "cinterface(IInspectable)"sv };
+        const bool blittable = true;
+        static element_type const boolean_type{ !blittable, "Bool"sv, "bool"sv, "boolean"sv, "boolean"sv, "boolean"sv, "b1"sv };
+        static element_type const char_type{ !blittable, "Character"sv, "wchar_t"sv, "wchar_t"sv, "WCHAR"sv, "wchar__zt"sv, "c2"sv };
+        static element_type const u1_type{ blittable, "UInt8"sv, "::byte"sv, "::byte"sv, "BYTE"sv, "byte"sv, "u1"sv };
+        static element_type const i2_type{ blittable, "Int16"sv, "short"sv, "short"sv, "INT16"sv, "short"sv, "i2"sv };
+        static element_type const u2_type{ blittable, "UInt16"sv, "UINT16"sv, "UINT16"sv, "UINT16"sv, "UINT16"sv, "u2"sv };
+        static element_type const i4_type{ blittable, "Int32"sv, "int"sv, "int"sv, "INT32"sv, "int"sv, "i4"sv };
+        static element_type const u4_type{ blittable, "UInt32"sv, "UINT32"sv, "UINT32"sv, "UINT32"sv, "UINT32"sv, "u4"sv };
+        static element_type const i8_type{ blittable, "Int64"sv, "__int64"sv, "__int64"sv, "INT64"sv, "__z__zint64"sv, "i8"sv };
+        static element_type const u8_type{ blittable, "UInt64"sv, "UINT64"sv, "UINT64"sv, "UINT64"sv, "UINT64"sv, "u8"sv };
+        static element_type const r4_type{ blittable, "Float"sv, "float"sv, "float"sv, "FLOAT"sv, "float"sv, "f4"sv };
+        static element_type const r8_type{ blittable, "Double"sv, "double"sv, "double"sv, "DOUBLE"sv, "double"sv, "f8"sv };
+        static element_type const string_type{ !blittable, "String"sv, "HSTRING"sv, "HSTRING"sv, "HSTRING"sv, "HSTRING"sv, "string"sv };
+        static element_type const object_type{ !blittable, "Any"sv, "IInspectable*"sv, "IInspectable*"sv, "IInspectable*"sv, "IInspectable"sv, "cinterface(IInspectable)"sv };
 
         switch (type)
         {

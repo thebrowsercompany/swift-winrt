@@ -1,5 +1,6 @@
 #include "pch.h"
 
+#include "types.h"
 #include "abi_writer.h"
 #include "metadata_cache.h"
 #include "metadata_filter.h"
@@ -250,6 +251,15 @@ void metadata_cache::process_interface_dependencies(init_state& state, interface
     // We only care about instantiations of generic types, so early exit as we won't be able to resolve references
     if (type.is_generic())
     {
+        for (auto const& iface : type.type().InterfaceImpl())
+        {
+            if (!swiftwinrt::is_generic(iface.Interface()))
+            {
+                process_contract_dependencies(*state.target, iface);
+                type.required_interfaces.push_back(&find_dependent_type(state, iface.Interface()));
+            }
+          
+        }
         return;
     }
 
@@ -556,7 +566,6 @@ metadata_type const& metadata_cache::find_dependent_type(init_state& state, Gene
         XLANG_ASSERT(false);
         swiftwinrt::throw_invalid("Generic types must be TypeDefs");
     }
-
     std::vector<metadata_type const*> genericParams;
     for (auto const& param : type.GenericArgs())
     {
@@ -568,7 +577,7 @@ metadata_type const& metadata_cache::find_dependent_type(init_state& state, Gene
     if (added)
     {
         auto restore = std::exchange(state.parent_generic_inst, &itr->second);
-        auto check_dependency = [&, &itr = itr](auto const& t)
+        auto check_dependency = [&, &itr = itr](auto const& t, bool impl = false)
         {
             auto mdType = &find_dependent_type(state, t);
             if (auto genericType = dynamic_cast<generic_inst const*>(mdType))
@@ -579,7 +588,7 @@ metadata_type const& metadata_cache::find_dependent_type(init_state& state, Gene
 
         for (auto const& iface : genericType->type().InterfaceImpl())
         {
-            check_dependency(iface.Interface());
+            check_dependency(iface.Interface(), true);
         }
 
         for (auto const& fn : genericType->type().MethodList())
@@ -683,7 +692,7 @@ type_cache metadata_cache::compile_namespaces(std::initializer_list<std::string_
             }
         }
  
-        // Remove any "built-in types" since these are either defined in other header files or are metadata only types
+        // Remove metadata only types
         auto remove_type = [&](auto& list, std::string_view name)
         {
             auto [lo, hi] = std::equal_range(list.begin(), list.end(), name, typename_comparator{});
@@ -691,12 +700,7 @@ type_cache metadata_cache::compile_namespaces(std::initializer_list<std::string_
             list.erase(lo, hi);
         };
 
-        /*if (ns == "Windows.Foundation.Collections"sv)
-        {
-            remove_type(result.enums, "Windows.Foundation.Collections.CollectionChange"sv);
-            remove_type(result.interfaces, "Windows.Foundation.Collections.IVectorChangedEventArgs"sv);
-        }
-        else if (ns == "Windows.Foundation.Metadata"sv)
+        if (ns == "Windows.Foundation.Metadata"sv)
         {
             remove_type(result.enums, "Windows.Foundation.Metadata.AttributeTargets");
             remove_type(result.enums, "Windows.Foundation.Metadata.CompositionType");
@@ -705,7 +709,7 @@ type_cache metadata_cache::compile_namespaces(std::initializer_list<std::string_
             remove_type(result.enums, "Windows.Foundation.Metadata.MarshalingType");
             remove_type(result.enums, "Windows.Foundation.Metadata.Platform");
             remove_type(result.enums, "Windows.Foundation.Metadata.ThreadingModel");
-        }*/
+        }
     }
 
     // Structs need all members to be defined prior to the struct definition
