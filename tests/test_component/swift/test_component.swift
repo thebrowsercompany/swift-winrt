@@ -160,6 +160,19 @@ public class Class: Equatable {
         }
     }
 
+    public var ID : UUID? {
+        get {
+            let value = try! interface.get_IDImpl()
+            return .init(ref: value)
+        }
+
+        set {
+            let wrapper = __ABI_test_component.__x_ABI_C__FIReference_1_GUIDWrapper(value: newValue)
+            let _newValue = try! wrapper?.to_abi { $0 }
+            try! interface.put_IDImpl(_newValue) 
+        }
+    }
+
     public var Implementation : IBasic {
         get {
             let value = try! interface.get_ImplementationImpl()
@@ -429,6 +442,19 @@ public enum Impl {
                 }
             }
 
+            public var ID : UUID? {
+                get {
+                    let value = try! interface.get_IDImpl()
+                    return .init(ref: value)
+                }
+
+                set {
+                    let wrapper = __ABI_test_component.__x_ABI_C__FIReference_1_GUIDWrapper(value: newValue)
+                    let _newValue = try! wrapper?.to_abi { $0 }
+                    try! interface.put_IDImpl(_newValue) 
+                }
+            }
+
         }
 
         public class ISimpleDelegateImpl : ISimpleDelegate {
@@ -467,6 +493,7 @@ public protocol IIAmImplementablePrototype : IWinRTObject {
         func OutEnum(_ value: inout test_component.Signed) 
         func ReturnEnum() -> test_component.Signed 
         var EnumProperty: test_component.Fruit { get set }
+        var ID: UUID? { get set }
 }
 extension IIAmImplementablePrototype {
     public static var none: IIAmImplementablePrototype {
@@ -528,6 +555,14 @@ fileprivate extension Int32 {
         guard let val = ref else { return nil }
         var result: INT32 = .init()
         try! CHECKED(val.pointee.lpVtbl.pointee.get_Value(val, &result))
-        self.init(result)
+        self = result
+    }
+} 
+fileprivate extension UUID {
+    init?(ref: UnsafeMutablePointer<__x_ABI_C__FIReference_1_GUID>?) {
+        guard let val = ref else { return nil }
+        var result: GUID = .init()
+        try! CHECKED(val.pointee.lpVtbl.pointee.get_Value(val, &result))
+        self = result
     }
 } 

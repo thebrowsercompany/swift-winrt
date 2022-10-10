@@ -138,6 +138,13 @@ namespace swiftwinrt
             w.write("%", w.filter.bind_each<write_delegate_abi>(members.delegates));
             w.write("%", w.filter.bind_each<write_struct_abi>(members.structs));
         }
+
+        // we have to write these in both files because they are fileprivate and required for initializing generics
+        // at the ABI layer for when we have swift implemented interfaces
+        for (auto& [_, inst] : members.generic_instantiations)
+        {
+            write_ireference_init_extension(w, inst.get());
+        }
         w.swap();
         write_preamble(w);
 

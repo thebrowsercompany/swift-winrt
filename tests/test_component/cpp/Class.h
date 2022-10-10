@@ -219,6 +219,10 @@ namespace winrt::test_component::implementation
                 }
             }
         }
+
+        Windows::Foundation::IReference<winrt::guid> ID();
+        void ID(Windows::Foundation::IReference<winrt::guid> const& value);
+
     private:
         static float s_float;
         bool m_fail{};
@@ -240,6 +244,7 @@ namespace winrt::test_component::implementation
         test_component::ISimpleDelegate m_delegate{};
         test_component::IBasic m_basicImpl{};
         Windows::Foundation::IReference<int32_t> m_startValue{};
+        Windows::Foundation::IReference<winrt::guid> m_id{};
     };
 
     /*

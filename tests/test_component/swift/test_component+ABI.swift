@@ -7,7 +7,7 @@ private var IID___x_ABI_Ctest__component_CIBasic: IID {
 }
 
 private var IID___x_ABI_Ctest__component_CIClass: IID {
-    IID(Data1: 0x0AEB74AA, Data2: 0x2483, Data3: 0x540D, Data4: ( 0x92,0x3C,0x10,0xEC,0x5A,0x86,0xC9,0xA9 ))// 0AEB74AA-2483-540D-923C-10EC5A86C9A9
+    IID(Data1: 0xBB2FC9D0, Data2: 0x0E1C, Data3: 0x5704, Data4: ( 0xBE,0xD7,0x67,0xD5,0x33,0x15,0xFD,0x3A ))// BB2FC9D0-0E1C-5704-BED7-67D53315FD3A
 }
 
 private var IID___x_ABI_Ctest__component_CIClassFactory: IID {
@@ -27,7 +27,7 @@ private var IID___x_ABI_Ctest__component_CIClassStatics2: IID {
 }
 
 private var IID___x_ABI_Ctest__component_CIIAmImplementable: IID {
-    IID(Data1: 0x037EC137, Data2: 0xC269, Data3: 0x584C, Data4: ( 0x9A,0x19,0xC7,0x31,0x3E,0x5F,0xD1,0x29 ))// 037EC137-C269-584C-9A19-C7313E5FD129
+    IID(Data1: 0xC7CAD9C9, Data2: 0x4839, Data3: 0x5E15, Data4: ( 0x94,0x59,0x42,0x39,0x44,0xC5,0xB6,0x30 ))// C7CAD9C9-4839-5E15-9459-423944C5B630
 }
 
 private var IID___x_ABI_Ctest__component_CISimple: IID {
@@ -44,6 +44,10 @@ private var IID___x_ABI_Ctest__component_CIStaticClassStatics: IID {
 
 private var IID___x_ABI_C__FIReference_1_int: IID {
     IID(Data1: 0x548cefbd, Data2: 0xbc8a, Data3: 0x5fa0, Data4: ( 0x8d,0xf2,0x95,0x74,0x40,0xfc,0x8b,0xf4 ))// 548cefbd-bc8a-5fa0-8df2-957440fc8bf4
+}
+
+private var IID___x_ABI_C__FIReference_1_GUID: IID {
+    IID(Data1: 0x7d50f649, Data2: 0x632c, Data3: 0x51f9, Data4: ( 0x84,0x9a,0xee,0x49,0x42,0x89,0x33,0xea ))// 7d50f649-632c-51f9-849a-ee49428933ea
 }
 
 public enum __ABI_test_component {
@@ -122,6 +126,85 @@ public enum __ABI_test_component {
             guard let value = value else { return nil }
             let abi = withUnsafeMutablePointer(to: &__x_ABI_C__FIReference_1_intVTable) {
                 __x_ABI_C__FIReference_1_int(lpVtbl:$0)
+            }
+            super.init(abi, Foundation.Impl.IPropertyValueImpl(value: value))
+        }
+    }
+    private static var __x_ABI_C__FIReference_1_GUIDVTable: __x_ABI_C__FIReference_1_GUIDVtbl = .init(
+        QueryInterface: {
+            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+           if riid.pointee == __ABI_Windows_Foundation.IPropertyValueWrapper.IID {
+                guard let instance = __x_ABI_C__FIReference_1_GUIDWrapper.try_unwrap_from(raw: pUnk) as? Foundation.Impl.IPropertyValueImpl else { return E_NOINTERFACE }
+                let inner = __ABI_Windows_Foundation.IPropertyValueWrapper(impl: instance)
+                return withUnsafeMutablePointer(to: &inner.instance.comInterface) { pThis in 
+                    pThis.pointee.lpVtbl.pointee.QueryInterface(pThis, riid, ppvObject)
+                }
+            }
+
+            guard riid.pointee == IUnknown.IID ||
+                  riid.pointee == IInspectable.IID || 
+                  riid.pointee == ISwiftImplemented.IID ||
+                  riid.pointee == __x_ABI_C__FIReference_1_GUIDWrapper.IID else { 
+                ppvObject.pointee = nil
+                return E_NOINTERFACE
+            }
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
+        },
+
+        AddRef: {
+             guard let wrapper = __x_ABI_C__FIReference_1_GUIDWrapper.from_raw($0) else { return 1 }
+             _ = wrapper.retain()
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+        },
+
+        Release: {
+            guard let wrapper = __x_ABI_C__FIReference_1_GUIDWrapper.from_raw($0) else { return 1 }
+            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+        },
+
+        GetIids: {
+            let size = MemoryLayout<IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+            iids[0] = IUnknown.IID
+            iids[1] = IInspectable.IID
+            iids[2] = __x_ABI_C__FIReference_1_GUIDWrapper.IID
+            iids[4] = __ABI_Windows_Foundation.IPropertyValueWrapper.IID
+
+            $1!.pointee = 4
+            $2!.pointee = iids
+            return S_OK
+        },
+
+        GetRuntimeClassName: {
+            _ = $0
+            let hstring = try! HString("Windows.Foundation.IReference`1<UUID>").detach()
+            $1!.pointee = hstring
+            return S_OK
+        },
+
+        GetTrustLevel: {
+            _ = $0
+            $1!.pointee = TrustLevel(rawValue: 0)
+            return S_OK
+        },
+
+        get_Value: {
+            guard let instance = __x_ABI_C__FIReference_1_GUIDWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+
+            let result = instance.Value as! UUID
+            $1?.initialize(to: result)
+
+            return S_OK
+        }
+    )
+    internal class __x_ABI_C__FIReference_1_GUIDWrapper: WinRTWrapperBase<__x_ABI_C__FIReference_1_GUID, IReference> {
+        override class var IID: IID { IID___x_ABI_C__FIReference_1_GUID }
+        init?(value: UUID?) {
+            guard let value = value else { return nil }
+            let abi = withUnsafeMutablePointer(to: &__x_ABI_C__FIReference_1_GUIDVTable) {
+                __x_ABI_C__FIReference_1_GUID(lpVtbl:$0)
             }
             super.init(abi, Foundation.Impl.IPropertyValueImpl(value: value))
         }
@@ -338,6 +421,18 @@ public enum __ABI_test_component {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_StartValue(pThis, value))
             }
         }
+        internal func get_IDImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIReference_1_GUID>? {
+            var value: UnsafeMutablePointer<__x_ABI_C__FIReference_1_GUID>?
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_ID(pThis, &value))
+            }
+            return value
+        }
+        internal func put_IDImpl(_ value: UnsafeMutablePointer<__x_ABI_C__FIReference_1_GUID>?) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.put_ID(pThis, value))
+            }
+        }
     }
 
     open class IClassFactory: test_component.IInspectable {
@@ -485,6 +580,18 @@ public enum __ABI_test_component {
         open func put_EnumPropertyImpl(_ value: __x_ABI_Ctest__component_CFruit) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_EnumProperty(pThis, value))
+            }
+        }
+        open func get_IDImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIReference_1_GUID>? {
+            var value: UnsafeMutablePointer<__x_ABI_C__FIReference_1_GUID>?
+            _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_ID(pThis, &value))
+            }
+            return value
+        }
+        open func put_IDImpl(_ value: UnsafeMutablePointer<__x_ABI_C__FIReference_1_GUID>?) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.put_ID(pThis, value))
             }
         }
     }
@@ -640,6 +747,26 @@ public enum __ABI_test_component {
             let value: test_component.Fruit = $1
 
             instance.EnumProperty = value
+            
+            return S_OK
+        },
+
+        get_ID: {
+            guard let instance = __ABI_test_component.IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+
+            let value = instance.ID
+            let valueWrapper = __ABI_test_component.__x_ABI_C__FIReference_1_GUIDWrapper(value: value)
+        let _value = try! valueWrapper?.to_abi { $0 }
+        $1?.initialize(to: _value)
+
+            return S_OK
+        },
+
+        put_ID: {
+            guard let instance = __ABI_test_component.IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            let value: UUID? = .init(ref: $1)
+
+            instance.ID = value
             
             return S_OK
         }
@@ -910,3 +1037,19 @@ public enum __ABI_test_component {
         }
     }
 }
+fileprivate extension Int32 {
+    init?(ref: UnsafeMutablePointer<__x_ABI_C__FIReference_1_int>?) {
+        guard let val = ref else { return nil }
+        var result: INT32 = .init()
+        try! CHECKED(val.pointee.lpVtbl.pointee.get_Value(val, &result))
+        self = result
+    }
+} 
+fileprivate extension UUID {
+    init?(ref: UnsafeMutablePointer<__x_ABI_C__FIReference_1_GUID>?) {
+        guard let val = ref else { return nil }
+        var result: GUID = .init()
+        try! CHECKED(val.pointee.lpVtbl.pointee.get_Value(val, &result))
+        self = result
+    }
+} 

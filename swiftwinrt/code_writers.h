@@ -1015,7 +1015,7 @@ bind<write_abi_args>(signature));
                 generic_param->swift_full_name(),
                 type.mangled_name(),
                 generic_param->cpp_abi_name(),
-                blittable ? "self.init(result)" : "self.init(from: result)");
+                blittable ? "self = result" : "self.init(from: result)");
         }
       
     }
@@ -2426,6 +2426,17 @@ type.swift_full_name()
                 param_name,
                 abi_namespace(type),
                  bind<write_wrapper_type>(type),
+                param_name);
+            w.write("let _% = try! %Wrapper?.to_abi { $0 }\n",
+                param_name,
+                param_name);
+        }
+        else if (category == param_category::generic_type)
+        {
+            w.write("let %Wrapper = %.%(value: %)\n",
+                param_name,
+                abi_namespace(w.type_namespace),
+                bind<write_wrapper_type_sig>(type_sig),
                 param_name);
             w.write("let _% = try! %Wrapper?.to_abi { $0 }\n",
                 param_name,

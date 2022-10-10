@@ -245,9 +245,13 @@ namespace swiftwinrt
             {
                 result = param_category::generic_type;
             },
+            [&](GenericTypeIndex const&)
+            {
+                result = param_category::object_type;
+            },
                 [&](auto&&)
             {
-                result = param_category::generic_type;
+                result = param_category::object_type;
             });
 
         return result;

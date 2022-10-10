@@ -121,7 +121,7 @@ namespace swiftwinrt
 
         virtual std::string_view mangled_name() const override
         {
-            swiftwinrt::throw_invalid("ElementType values don't have mangled names");
+            return m_mangledName;
         }
 
         virtual std::string_view generic_param_mangled_name() const override
@@ -206,7 +206,7 @@ namespace swiftwinrt
 
         virtual std::string_view mangled_name() const override
         {
-            swiftwinrt::throw_invalid("System types don't have mangled names");
+            return m_cppName;
         }
 
         virtual std::string_view generic_param_mangled_name() const override

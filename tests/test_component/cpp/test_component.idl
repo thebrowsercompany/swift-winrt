@@ -133,6 +133,8 @@ namespace test_component
             Signed ReturnEnum();
 
             Fruit EnumProperty;
+
+            Windows.Foundation.IReference<Guid> ID;
         }
 
         interface ISimpleDelegate
@@ -259,6 +261,10 @@ namespace test_component
             void OutChar(out Char value);
 
             Windows.Foundation.IReference<Int32> StartValue;
+            Windows.Foundation.IReference<Guid> ID;
+
+            //Object ItemsSource;
+            //Windows.Foundation.IVector<Simple> Children { get; };
         }
         
         static runtimeclass StaticClass

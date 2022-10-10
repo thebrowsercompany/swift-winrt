@@ -112,6 +112,44 @@
     
     #endif // ____x_ABI_C__FIReference_1_int_INTERFACE_DEFINED__
     
+#if !defined(____x_ABI_C__FIReference_1_GUID_INTERFACE_DEFINED__)
+    #define ____x_ABI_C__FIReference_1_GUID_INTERFACE_DEFINED__
+
+    typedef interface __x_ABI_C__FIReference_1_GUID __x_ABI_C__FIReference_1_GUID;
+
+    //  Declare the parameterized interface IID.
+    EXTERN_C const IID IID___x_ABI_C__FIReference_1_GUID;
+
+    typedef struct __x_ABI_C__FIReference_1_GUIDVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_C__FIReference_1_GUID* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_C__FIReference_1_GUID* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_C__FIReference_1_GUID* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_C__FIReference_1_GUID* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_C__FIReference_1_GUID* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_C__FIReference_1_GUID* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* get_Value)(__x_ABI_C__FIReference_1_GUID* This,
+        GUID* result);
+
+        END_INTERFACE
+    } __x_ABI_C__FIReference_1_GUIDVtbl;
+
+    interface __x_ABI_C__FIReference_1_GUID
+    {
+        CONST_VTBL struct __x_ABI_C__FIReference_1_GUIDVtbl* lpVtbl;
+    };
+
+    
+    #endif // ____x_ABI_C__FIReference_1_GUID_INTERFACE_DEFINED__
+    
 #ifndef ____x_ABI_CWindows_CFoundation_CIPropertyValue_FWD_DEFINED__
 #define ____x_ABI_CWindows_CFoundation_CIPropertyValue_FWD_DEFINED__
     typedef interface __x_ABI_CWindows_CFoundation_CIPropertyValue __x_ABI_CWindows_CFoundation_CIPropertyValue;
@@ -266,6 +304,10 @@ struct __x_ABI_Ctest__component_CNonBlittableStruct
         __x_ABI_C__FIReference_1_int** value);
     HRESULT (STDMETHODCALLTYPE* put_StartValue)(__x_ABI_Ctest__component_CIClass* This,
         __x_ABI_C__FIReference_1_int* value);
+    HRESULT (STDMETHODCALLTYPE* get_ID)(__x_ABI_Ctest__component_CIClass* This,
+        __x_ABI_C__FIReference_1_GUID** value);
+    HRESULT (STDMETHODCALLTYPE* put_ID)(__x_ABI_Ctest__component_CIClass* This,
+        __x_ABI_C__FIReference_1_GUID* value);
 
         END_INTERFACE
     } __x_ABI_Ctest__component_CIClassVtbl;
@@ -474,6 +516,10 @@ struct __x_ABI_Ctest__component_CNonBlittableStruct
         enum __x_ABI_Ctest__component_CFruit* value);
     HRESULT (STDMETHODCALLTYPE* put_EnumProperty)(__x_ABI_Ctest__component_CIIAmImplementable* This,
         enum __x_ABI_Ctest__component_CFruit value);
+    HRESULT (STDMETHODCALLTYPE* get_ID)(__x_ABI_Ctest__component_CIIAmImplementable* This,
+        __x_ABI_C__FIReference_1_GUID** value);
+    HRESULT (STDMETHODCALLTYPE* put_ID)(__x_ABI_Ctest__component_CIIAmImplementable* This,
+        __x_ABI_C__FIReference_1_GUID* value);
 
         END_INTERFACE
     } __x_ABI_Ctest__component_CIIAmImplementableVtbl;

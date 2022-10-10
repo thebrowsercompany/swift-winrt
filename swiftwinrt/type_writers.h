@@ -456,7 +456,14 @@ namespace swiftwinrt
         {
             if (type_name(type) == "System.Guid")
             {
-                write("UUID");
+                if (abi_types || mangled_names)
+                {
+                    write("GUID");
+                }
+                else
+                {
+                    write("UUID");
+                }
             }
             else
             {

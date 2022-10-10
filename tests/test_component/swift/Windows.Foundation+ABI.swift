@@ -108,8 +108,8 @@ public enum __ABI_Windows_Foundation {
             }
             return value
         }
-        open func GetGuidImpl() throws -> UUID {
-            var value: UUID = .init()
+        open func GetGuidImpl() throws -> GUID {
+            var value: GUID = .init()
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetGuid(pThis, &value))
             }

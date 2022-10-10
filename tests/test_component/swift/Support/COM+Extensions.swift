@@ -15,12 +15,6 @@ private func ==<T: Equatable>(_ lhs: (T, T, T, T, T, T, T, T),
          lhs.7 == rhs.7
 }
 
-internal func ==(_ lhs: _GUID, _ rhs: _GUID) -> Bool {
-  return lhs.Data1 == rhs.Data1 &&
-         lhs.Data2 == rhs.Data2 &&
-         lhs.Data3 == rhs.Data3 &&
-         lhs.Data4 == rhs.Data4
-}
 
 internal func ~=(_ lhs: _GUID, _ rhs: _GUID) -> Bool {
   return lhs.Data1 == rhs.Data1 &&
@@ -38,6 +32,30 @@ extension _GUID: CustomStringConvertible {
         String(decodingCString: $0.baseAddress!, as: UTF16.self)
       }
     }
+  }
+}
+
+extension _GUID: Equatable {
+   public static func ==(_ lhs: _GUID, _ rhs: _GUID) -> Bool {
+      return lhs.Data1 == rhs.Data1 &&
+         lhs.Data2 == rhs.Data2 &&
+         lhs.Data3 == rhs.Data3 &&
+         lhs.Data4 == rhs.Data4
+   }
+}
+
+extension UUID {
+  /// Create a UUID from a string such as "E621E1F8-C36C-495A-93FC-0C247A3E6E5F"
+  ///
+  /// returns nil for invalid strings
+  public init?(uuidString string: String){
+    var _self : _GUID = .init()
+
+    // use UuidFromString because it expects the correct format. 
+    // See https://devblogs.microsoft.com/oldnewthing/20151015-00/?p=91351
+    let result = UuidFromStringA(makeCString(from: string), &_self)
+    if result != S_OK { return nil }
+    self = _self
   }
 }
 

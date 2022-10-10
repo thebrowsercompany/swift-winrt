@@ -479,6 +479,30 @@ namespace winrt::test_component::implementation
         return L"123";
     }
 
+    void Class::ID(Windows::Foundation::IReference<winrt::guid> const& value)
+    {
+        if (m_implementation)
+        {
+            m_implementation.ID(value);
+        }
+        else
+        {
+            m_id = value;
+        }
+    }
+
+    Windows::Foundation::IReference<winrt::guid> Class::ID()
+    {
+        if (m_implementation)
+        {
+            return m_implementation.ID();
+        }
+        else 
+        {
+            return m_id;
+        }
+    }
+
     /* TODO: COR-762 once we enable async/await we can bring this back
     event_token Class::DeferrableEvent(TypedEventHandler<test_component::Class, test_component::DeferrableEventArgs> const& handler)
     {

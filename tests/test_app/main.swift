@@ -256,6 +256,8 @@ class SwiftWinRTTests {
       }
 
       var EnumProperty: Fruit = .Apple
+
+      var ID: UUID?
   } 
 
   public func TestDelegate()
@@ -483,6 +485,12 @@ class SwiftWinRTTests {
     classy.StartValue = 23
     print("value: ", classy.StartValue ?? "N/A")
     assert(classy.StartValue == 23)
+
+    let id: UUID? = .init(uuidString: "E621E1F8-C36C-495A-93FC-0C247A3E6E5F")
+    classy.ID = id
+
+    print("ID: ", classy.ID ?? "00000000-0000-0000-0000-0000000")
+    assert(classy.ID == id)
 
     print("  ** Test passed! **")
 
