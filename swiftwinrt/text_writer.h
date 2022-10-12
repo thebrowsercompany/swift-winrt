@@ -327,6 +327,10 @@ namespace swiftwinrt
         {
         }
 
+        write_scope_guard(writer_base<T>& w, std::string impl_namespace) noexcept : m_writer(w), m_start_on_new_line(true)
+        {
+        }
+
         write_scope_guard(write_scope_guard const&) = delete;
         write_scope_guard(write_scope_guard&& rhs) : m_writer(rhs.m_writer), m_lines(std::move(rhs.m_lines)) {}
         ~write_scope_guard() noexcept
@@ -367,6 +371,7 @@ namespace swiftwinrt
             }
 
             indent_guard(indent_guard&& rhs) noexcept : m_writer(rhs.m_writer), m_offset(rhs.m_offset) { rhs.m_offset = 0; }
+            //indent_guard& operator=(indent_guard&& rhs) noexcept : m_writer(rhs.m_writer), m_offset(rhs.m_offset) { rhs.m_offset = 0; }
             ~indent_guard() noexcept
             {
                 m_writer.m_indent -= m_offset;

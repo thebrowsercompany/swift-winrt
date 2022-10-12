@@ -123,6 +123,8 @@ namespace swiftwinrt
 
         {
             w.write("%", w.filter.bind_each<write_guid>(members.interfaces));
+            w.write("%", w.filter.bind_each<write_guid>(members.delegates));
+
             for (auto& [_, inst] : members.generic_instantiations)
             {
                 write_guid_generic(w, inst.get());
@@ -171,7 +173,13 @@ namespace swiftwinrt
             {
                 auto impl_guard = push_namespace("Impl", w, true);
                 auto impl_indent_guard = w.push_indent({ 1 });
+                auto impl_names = w.push_impl_names(true);
                 w.write("%", w.filter.bind_each<write_interface_impl>(members.interfaces));
+                w.write("%", w.filter.bind_each<write_delegate_implementation>(members.delegates));
+                for (auto& [_, inst] : members.generic_instantiations)
+                {
+                    write_generic_implementation(w, inst.get());
+                }
             }
         }
         w.write("%", w.filter.bind_each<write_interface_proto>(members.interfaces));

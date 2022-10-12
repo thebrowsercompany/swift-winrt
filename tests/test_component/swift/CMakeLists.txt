@@ -1,6 +1,8 @@
 add_library(test_component SHARED
   test_component.swift
   test_component+ABI.swift
+  test_component.Delegates.Swift
+  test_component.Delegates+ABI.swift
   Windows.Foundation.swift
   Windows.Foundation+Abi.swift
   NamespaceDefinitions.swift
@@ -10,6 +12,7 @@ add_library(test_component SHARED
   Support/COM+Extensions.swift
   Support/Error.swift
   Support/ErrorHandling.swift
+  Support/Event.swift
   Support/HString.swift
   Support/HStringStorage.swift
   Support/IInspectable.swift

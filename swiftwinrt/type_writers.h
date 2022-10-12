@@ -140,6 +140,7 @@ namespace swiftwinrt
         bool mangled_names{};
 
         std::set<std::string> depends;
+        std::set<winmd::reader::Event> events;
         std::vector<generic_param_vector> generic_param_stack;
         swiftwinrt::metadata_filter filter;
 
@@ -203,7 +204,7 @@ namespace swiftwinrt
                 depends.insert(type_module);
             }
         }
-
+        
         [[nodiscard]] auto push_generic_params(GenericTypeInstSig const& signature)
         {
             generic_param_vector names;
@@ -426,7 +427,15 @@ namespace swiftwinrt
             }
             else if (name == "IAsyncInfo" && ns == "Windows.Foundation")
             {
-                write("IAsyncInfo");
+                // IAsync info is special in that it is defined in it's own header file and doesn't have a mangled name.
+                if (abi_types)
+                {
+                    write("C%.IAsyncInfo", support);
+                }
+                else
+                {
+                    write("IAsyncInfo");
+                }
             }
             else if (abi_types)
             {
@@ -454,7 +463,7 @@ namespace swiftwinrt
 
         void write(TypeRef const& type)
         {
-            if (type_name(type) == "System.Guid")
+            if (get_full_type_name(type) == "System.Guid")
             {
                 if (abi_types || mangled_names)
                 {
@@ -505,7 +514,7 @@ namespace swiftwinrt
             }
             else
             {
-                auto[ns, name] = get_type_namespace_and_name(generic_type);
+                auto [ns, name] = get_type_namespace_and_name(generic_type);
                 name.remove_suffix(name.size() - name.rfind('`'));
 
                 add_depends(generic_typedef);
@@ -513,6 +522,15 @@ namespace swiftwinrt
                 {
                     auto refType = type.GenericArgs().first->Type();
                     write("%?", refType);
+                }
+                else if (ns == "Windows.Foundation" && name == "TypedEventHandler")
+                {
+                    write("^@escaping (%) -> ()", bind_list(", ", type.GenericArgs()));
+                }
+                else if (ns == "Windows.Foundation" && name == "EventHandler")
+                {
+                    auto argsType = type.GenericArgs().first->Type();
+                    write("^@escaping (%.IInspectable,%) -> ()", support, argsType);
                 }
                 else
                 {
@@ -561,7 +579,7 @@ namespace swiftwinrt
             else if (type == ElementType::R4) { write("Float"); }
             else if (type == ElementType::R8) { write("Double"); }
             else if (type == ElementType::String) { write("String"); }
-            else if (type == ElementType::Object) { write("IInspectable"); }
+            else if (type == ElementType::Object) { write("%.IInspectable", support); }
             else
             {
                 assert(false);
@@ -606,7 +624,15 @@ namespace swiftwinrt
             }
             else
             {
-                write(std::get<const metadata_type*>(generic_param)->swift_full_name());
+                auto swift_full_name = std::get<const metadata_type*>(generic_param)->swift_full_name();
+                if (swift_full_name == "IInspectable")
+                {
+                    write("%.IInspectable", support);
+                }
+                else
+                {
+                    write(swift_full_name);
+                }
             }
         }
 
@@ -695,6 +721,40 @@ namespace swiftwinrt
         void write(Field const& value)
         {
             write(value.Signature().Type());
+        }
+
+        void write(generic_inst const& generic)
+        {
+            if (abi_types)
+            {
+                write(generic.mangled_name());
+            }
+            else
+            {
+                auto generic_type = generic.generic_type();
+                add_depends(generic_type->type());
+                if (generic_type->swift_full_name().starts_with("Windows.Foundation.IReference"))
+                {
+                    auto refType = generic.generic_params()[0];
+                    write("%?", refType);
+                }
+                else if (generic_type->swift_full_name().starts_with("Windows.Foundation.TypedEventHandler"))
+                {
+                    auto senderType = generic.generic_params()[0];
+                    auto argsType = generic.generic_params()[1];
+                    write("(%,%) -> ()", senderType, argsType);
+                }
+                else if (generic_type->swift_full_name().starts_with("Windows.Foundation.EventHandler"))
+                {
+                    auto argsType = generic.generic_params()[0];
+                    write("(%.IInspectable,%) -> ()", support, argsType);
+                }
+                else
+                {
+                    // Do nothing for types we can't write 
+                    //assert(false);
+                }
+            }
         }
         
         std::string file_directory(std::string subdir)

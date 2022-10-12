@@ -221,6 +221,28 @@ public class Simple: Equatable {
         interface = fromInterface
     }
 
+    private static let _ISimpleStatics: __ABI_test_component.ISimpleStatics = try! RoGetActivationFactory(HString("test_component.Simple"))
+    public static func FireStaticEvent() {
+        try! _ISimpleStatics.FireStaticEventImpl()
+    }
+
+    private static let _StaticEventRegistrar = StaticEventRegistrar()
+    public static var StaticEvent : Event<(test_component.IInspectable, test_component.IInspectable),()> = EventImpl<test_component.Impl.__x_ABI_C__FIEventHandler_1_IInspectableImpl>(register: _StaticEventRegistrar, owner:_ISimpleStatics)
+    private class StaticEventRegistrar : IEventRegistration {
+        func add(delegate: any WinRTDelegate, for impl: test_component.IInspectable){
+            let wrapper = __ABI_test_component.__x_ABI_C__FIEventHandler_1_IInspectableWrapper(handler: delegate as! test_component.Impl.__x_ABI_C__FIEventHandler_1_IInspectableImpl)
+            let abi = try! wrapper.to_abi { $0 }
+            let impl:__ABI_test_component.ISimpleStatics = try! impl.QueryInterface()
+            delegate.token = try! impl.add_StaticEventImpl(abi)
+        }
+
+        func remove(delegate: any WinRTDelegate, for impl: test_component.IInspectable){
+            let impl: __ABI_test_component.ISimpleStatics = try! impl.QueryInterface()
+                if let token = delegate.token {
+                try! impl.remove_StaticEventImpl(token)
+            }
+        }
+    }
     public func Method() {
         try! interface.MethodImpl()
     }
@@ -242,6 +264,10 @@ public class Simple: Equatable {
     public func TakeNonBlittableStruct(_ value: NonBlittableStruct) {
         let _value = __ABI_test_component._ABI_NonBlittableStruct(from: value)
         try! interface.TakeNonBlittableStructImpl(_value.val)
+    }
+
+    public func FireEvent() {
+        try! interface.FireEventImpl()
     }
 
     public var BlittableStructProperty : BlittableStruct {
@@ -279,6 +305,57 @@ public class Simple: Equatable {
         }
     }
 
+    private static let _InEventRegistrar = InEventRegistrar()
+    public lazy var InEvent : Event<(String),()> = EventImpl<Delegates.Impl.InDelegateImpl>(register: Self._InEventRegistrar, owner:interface)
+    private class InEventRegistrar : IEventRegistration {
+        func add(delegate: any WinRTDelegate, for impl: test_component.IInspectable){
+            let wrapper = __ABI_test_component_Delegates.InDelegateWrapper(handler: delegate as! Delegates.Impl.InDelegateImpl)
+            let abi = try! wrapper.to_abi { $0 }
+            let impl:__ABI_test_component.ISimple = try! impl.QueryInterface()
+            delegate.token = try! impl.add_InEventImpl(abi)
+        }
+
+        func remove(delegate: any WinRTDelegate, for impl: test_component.IInspectable){
+            let impl: __ABI_test_component.ISimple = try! impl.QueryInterface()
+                if let token = delegate.token {
+                try! impl.remove_InEventImpl(token)
+            }
+        }
+    }
+    private static let _SignalEventRegistrar = SignalEventRegistrar()
+    public lazy var SignalEvent : Event<(),()> = EventImpl<Delegates.Impl.SignalDelegateImpl>(register: Self._SignalEventRegistrar, owner:interface)
+    private class SignalEventRegistrar : IEventRegistration {
+        func add(delegate: any WinRTDelegate, for impl: test_component.IInspectable){
+            let wrapper = __ABI_test_component_Delegates.SignalDelegateWrapper(handler: delegate as! Delegates.Impl.SignalDelegateImpl)
+            let abi = try! wrapper.to_abi { $0 }
+            let impl:__ABI_test_component.ISimple = try! impl.QueryInterface()
+            delegate.token = try! impl.add_SignalEventImpl(abi)
+        }
+
+        func remove(delegate: any WinRTDelegate, for impl: test_component.IInspectable){
+            let impl: __ABI_test_component.ISimple = try! impl.QueryInterface()
+                if let token = delegate.token {
+                try! impl.remove_SignalEventImpl(token)
+            }
+        }
+    }
+    private static let _SimpleEventRegistrar = SimpleEventRegistrar()
+    public lazy var SimpleEvent : Event<(Simple, SimpleEventArgs),()> = EventImpl<test_component.Impl.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsImpl>(register: Self._SimpleEventRegistrar, owner:interface)
+    private class SimpleEventRegistrar : IEventRegistration {
+        func add(delegate: any WinRTDelegate, for impl: test_component.IInspectable){
+            let wrapper = __ABI_test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper(handler: delegate as! test_component.Impl.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsImpl)
+            let abi = try! wrapper.to_abi { $0 }
+            let impl:__ABI_test_component.ISimple = try! impl.QueryInterface()
+            delegate.token = try! impl.add_SimpleEventImpl(abi)
+        }
+
+        func remove(delegate: any WinRTDelegate, for impl: test_component.IInspectable){
+            let impl: __ABI_test_component.ISimple = try! impl.QueryInterface()
+                if let token = delegate.token {
+                try! impl.remove_SimpleEventImpl(token)
+            }
+        }
+    }
     public static func == (_ lhs: Simple, _ rhs: Simple) -> Bool {
         return lhs.interface == rhs.interface
     }
@@ -360,6 +437,14 @@ public struct NonBlittableStruct {
     }
 }
 
+public struct SimpleEventArgs {
+    public var Value: Int32 = 0
+    public init() {}
+    public init(Value: Int32) {
+        self.Value = Value
+    }
+}
+
 public typealias IBasic = test_component.IBasicPrototype
 
 public typealias IIAmImplementable = test_component.IIAmImplementablePrototype
@@ -431,6 +516,10 @@ public enum Impl {
                 return result
             }
 
+            public func FireEvent() {
+                try! interface.FireEventImpl()
+            }
+
             public var EnumProperty : Fruit {
                 get {
                     let value = try! interface.get_EnumPropertyImpl()
@@ -472,6 +561,24 @@ public enum Impl {
 
         }
 
+        internal class __x_ABI_C__FIEventHandler_1_IInspectableImpl : WinRTDelegate {
+            internal typealias Data = (test_component.IInspectable, test_component.IInspectable)
+            internal typealias Return = ()
+            internal var token: EventRegistrationToken?
+            internal var handler: (Data) -> Return
+            internal required init(handler: @escaping (Data) -> Return){
+                self.handler = handler
+            }
+        }
+        internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsImpl : WinRTDelegate {
+            internal typealias Data = (test_component.Simple, test_component.SimpleEventArgs)
+            internal typealias Return = ()
+            internal var token: EventRegistrationToken?
+            internal var handler: (Data) -> Return
+            internal required init(handler: @escaping (Data) -> Return){
+                self.handler = handler
+            }
+        }
 }
 public protocol IBasicPrototype : IWinRTObject { 
         func Method() 
@@ -492,6 +599,7 @@ public protocol IIAmImplementablePrototype : IWinRTObject {
         func OutNonBlittableStruct(_ value: inout test_component.NonBlittableStruct) 
         func OutEnum(_ value: inout test_component.Signed) 
         func ReturnEnum() -> test_component.Signed 
+        func FireEvent() 
         var EnumProperty: test_component.Fruit { get set }
         var ID: UUID? { get set }
 }

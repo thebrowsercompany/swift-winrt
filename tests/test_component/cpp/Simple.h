@@ -1,5 +1,6 @@
 #pragma once
 #include "Simple.g.h"
+#include "winrt/test_component.Delegates.h"
 
 namespace winrt::test_component::implementation
 {
@@ -14,9 +15,9 @@ namespace winrt::test_component::implementation
         Windows::Foundation::IInspectable Object(Windows::Foundation::DateTime const& value);
 
         // All we care about static events (for now) is that they build.
-        static event_token StaticEvent(Windows::Foundation::EventHandler<IInspectable> const&) { return {}; }
-        static void StaticEvent(event_token) { }
-
+        static event_token StaticEvent(Windows::Foundation::EventHandler<IInspectable> const&);
+        static void StaticEvent(event_token);
+        static void FireStaticEvent();
         test_component::BlittableStruct ReturnBlittableStruct()
         {
             return { 123, 456 };
@@ -80,10 +81,24 @@ namespace winrt::test_component::implementation
             m_stringProp = value;
         }
 
+        winrt::event_token SignalEvent(test_component::Delegates::SignalDelegate const& handler);
+        void SignalEvent(winrt::event_token const& token) noexcept;
+        void FireEvent();
+        winrt::event_token InEvent(test_component::Delegates::InDelegate const& handler);
+        void InEvent(winrt::event_token const& token) noexcept;
+
+        winrt::event_token SimpleEvent(Windows::Foundation::TypedEventHandler<test_component::Simple, test_component::SimpleEventArgs> const& handler);
+        void SimpleEvent(winrt::event_token const& token) noexcept;
         private:
         hstring m_stringProp{};
         test_component::BlittableStruct m_blittableStruct{};
         test_component::NonBlittableStruct m_nonBlittableStruct{};
+        winrt::event<test_component::Delegates::SignalDelegate> m_signalEvent;
+        winrt::event<test_component::Delegates::InDelegate> m_inEvent;
+        winrt::event<Windows::Foundation::TypedEventHandler<test_component::Simple, test_component::SimpleEventArgs>> m_simpleEvent;
+
+
+        static winrt::event<Windows::Foundation::EventHandler<Windows::Foundation::IInspectable>> s_staticEvent;
     };
 }
 namespace winrt::test_component::factory_implementation

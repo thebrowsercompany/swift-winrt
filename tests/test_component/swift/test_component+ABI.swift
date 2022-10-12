@@ -27,19 +27,27 @@ private var IID___x_ABI_Ctest__component_CIClassStatics2: IID {
 }
 
 private var IID___x_ABI_Ctest__component_CIIAmImplementable: IID {
-    IID(Data1: 0xC7CAD9C9, Data2: 0x4839, Data3: 0x5E15, Data4: ( 0x94,0x59,0x42,0x39,0x44,0xC5,0xB6,0x30 ))// C7CAD9C9-4839-5E15-9459-423944C5B630
+    IID(Data1: 0x87F63CC3, Data2: 0x16CC, Data3: 0x5C68, Data4: ( 0x85,0xEE,0xBE,0xCA,0x3F,0x6B,0xF9,0xB2 ))// 87F63CC3-16CC-5C68-85EE-BECA3F6BF9B2
 }
 
 private var IID___x_ABI_Ctest__component_CISimple: IID {
-    IID(Data1: 0x86F19B35, Data2: 0x7712, Data3: 0x5667, Data4: ( 0xA6,0x2D,0xA8,0xB2,0x42,0x5A,0x2E,0x9B ))// 86F19B35-7712-5667-A62D-A8B2425A2E9B
+    IID(Data1: 0xCC8E220C, Data2: 0xBBF0, Data3: 0x50B8, Data4: ( 0xB1,0x8E,0x98,0xE7,0xCC,0x2E,0xED,0xDB ))// CC8E220C-BBF0-50B8-B18E-98E7CC2EEDDB
 }
 
 private var IID___x_ABI_Ctest__component_CISimpleDelegate: IID {
     IID(Data1: 0xB73AD784, Data2: 0xEADD, Data3: 0x54B7, Data4: ( 0xA6,0x8E,0x8A,0xC5,0x6E,0xAB,0x73,0x87 ))// B73AD784-EADD-54B7-A68E-8AC56EAB7387
 }
 
+private var IID___x_ABI_Ctest__component_CISimpleStatics: IID {
+    IID(Data1: 0xC8DCADA0, Data2: 0xFD8E, Data3: 0x5E27, Data4: ( 0x95,0x51,0xA3,0x68,0xFE,0x1D,0x11,0xB2 ))// C8DCADA0-FD8E-5E27-9551-A368FE1D11B2
+}
+
 private var IID___x_ABI_Ctest__component_CIStaticClassStatics: IID {
     IID(Data1: 0xC983253D, Data2: 0x876D, Data3: 0x55EE, Data4: ( 0x82,0x4B,0x01,0x24,0x6E,0xDC,0x61,0x2D ))// C983253D-876D-55EE-824B-01246EDC612D
+}
+
+private var IID___x_ABI_C__FIEventHandler_1_IInspectable: IID {
+    IID(Data1: 0xc50898f6, Data2: 0xc536, Data3: 0x5f47, Data4: ( 0x85,0x83,0x8b,0x2c,0x24,0x38,0xa1,0x3b ))// c50898f6-c536-5f47-8583-8b2c2438a13b
 }
 
 private var IID___x_ABI_C__FIReference_1_int: IID {
@@ -50,7 +58,59 @@ private var IID___x_ABI_C__FIReference_1_GUID: IID {
     IID(Data1: 0x7d50f649, Data2: 0x632c, Data3: 0x51f9, Data4: ( 0x84,0x9a,0xee,0x49,0x42,0x89,0x33,0xea ))// 7d50f649-632c-51f9-849a-ee49428933ea
 }
 
+private var IID___x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs: IID {
+    IID(Data1: 0xf23463b2, Data2: 0x72e7, Data3: 0x5551, Data4: ( 0xab,0xf3,0x13,0xbf,0x6b,0xce,0xd6,0x2e ))// f23463b2-72e7-5551-abf3-13bf6bced62e
+}
+
 public enum __ABI_test_component {
+    private static var __x_ABI_C__FIEventHandler_1_IInspectableVTable: __x_ABI_C__FIEventHandler_1_IInspectableVtbl = .init(
+        QueryInterface: {
+            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+
+            guard riid.pointee == IUnknown.IID ||
+                  riid.pointee == IInspectable.IID || 
+                  riid.pointee == ISwiftImplemented.IID ||
+                  riid.pointee == IIAgileObject.IID ||
+                  riid.pointee == __x_ABI_C__FIEventHandler_1_IInspectableWrapper.IID else { 
+                ppvObject.pointee = nil
+                return E_NOINTERFACE
+            }
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
+        },
+
+        AddRef: {
+             guard let wrapper = __x_ABI_C__FIEventHandler_1_IInspectableWrapper.from_raw($0) else { return 1 }
+             _ = wrapper.retain()
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+        },
+
+        Release: {
+            guard let wrapper = __x_ABI_C__FIEventHandler_1_IInspectableWrapper.from_raw($0) else { return 1 }
+            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+        },
+
+        Invoke: {
+            guard let instance = __x_ABI_C__FIEventHandler_1_IInspectableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            let sender: test_component.IInspectable = .init($1)
+            let args: test_component.IInspectable = test_component.IInspectable($2)
+
+            instance.handler((sender, args))
+            
+            return S_OK
+        }
+    )
+
+    class __x_ABI_C__FIEventHandler_1_IInspectableWrapper : WinRTWrapperBase<__x_ABI_C__FIEventHandler_1_IInspectable, test_component.Impl.__x_ABI_C__FIEventHandler_1_IInspectableImpl> {
+        override class var IID: IID { IID___x_ABI_C__FIEventHandler_1_IInspectable }
+        init(handler: test_component.Impl.__x_ABI_C__FIEventHandler_1_IInspectableImpl){
+            let abi = withUnsafeMutablePointer(to: &__x_ABI_C__FIEventHandler_1_IInspectableVTable) {
+                __x_ABI_C__FIEventHandler_1_IInspectable(lpVtbl:$0)
+            }
+            super.init(abi, handler)
+        }
+    }
     private static var __x_ABI_C__FIReference_1_intVTable: __x_ABI_C__FIReference_1_intVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
@@ -65,6 +125,7 @@ public enum __ABI_test_component {
             guard riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
+                  riid.pointee == IIAgileObject.IID ||
                   riid.pointee == __x_ABI_C__FIReference_1_intWrapper.IID else { 
                 ppvObject.pointee = nil
                 return E_NOINTERFACE
@@ -144,6 +205,7 @@ public enum __ABI_test_component {
             guard riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
+                  riid.pointee == IIAgileObject.IID ||
                   riid.pointee == __x_ABI_C__FIReference_1_GUIDWrapper.IID else { 
                 ppvObject.pointee = nil
                 return E_NOINTERFACE
@@ -209,6 +271,54 @@ public enum __ABI_test_component {
             super.init(abi, Foundation.Impl.IPropertyValueImpl(value: value))
         }
     }
+    private static var __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsVTable: __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsVtbl = .init(
+        QueryInterface: {
+            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+
+            guard riid.pointee == IUnknown.IID ||
+                  riid.pointee == IInspectable.IID || 
+                  riid.pointee == ISwiftImplemented.IID ||
+                  riid.pointee == IIAgileObject.IID ||
+                  riid.pointee == __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.IID else { 
+                ppvObject.pointee = nil
+                return E_NOINTERFACE
+            }
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
+        },
+
+        AddRef: {
+             guard let wrapper = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.from_raw($0) else { return 1 }
+             _ = wrapper.retain()
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+        },
+
+        Release: {
+            guard let wrapper = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.from_raw($0) else { return 1 }
+            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+        },
+
+        Invoke: {
+            guard let instance = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            let sender: test_component.Simple = .init(.init($1))
+            let args: test_component.SimpleEventArgs = unsafeBitCast($2, to: test_component.SimpleEventArgs.self)
+
+            instance.handler((sender, args))
+            
+            return S_OK
+        }
+    )
+
+    class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper : WinRTWrapperBase<__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs, test_component.Impl.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsImpl> {
+        override class var IID: IID { IID___x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs }
+        init(handler: test_component.Impl.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsImpl){
+            let abi = withUnsafeMutablePointer(to: &__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsVTable) {
+                __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs(lpVtbl:$0)
+            }
+            super.init(abi, handler)
+        }
+    }
     open class IBasic: test_component.IInspectable {
         override public class var IID: IID { IID___x_ABI_Ctest__component_CIBasic }
 
@@ -226,6 +336,7 @@ public enum __ABI_test_component {
             guard riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
+                  riid.pointee == IIAgileObject.IID ||
                   riid.pointee == __ABI_test_component.IBasicWrapper.IID else { 
                 ppvObject.pointee = nil
                 return E_NOINTERFACE
@@ -594,6 +705,23 @@ public enum __ABI_test_component {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_ID(pThis, value))
             }
         }
+        open func add_ImplementableEventImpl(_ handler: UnsafeMutablePointer<__x_ABI_Ctest__component_CDelegates_CIInDelegate>?) throws -> EventRegistrationToken {
+            var token: EventRegistrationToken = .init()
+            _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.add_ImplementableEvent(pThis, handler, &token))
+            }
+            return token
+        }
+        open func remove_ImplementableEventImpl(_ token: EventRegistrationToken) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.remove_ImplementableEvent(pThis, token))
+            }
+        }
+        open func FireEventImpl() throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.FireEvent(pThis))
+            }
+        }
     }
 
     private static var IIAmImplementableVTable: __x_ABI_Ctest__component_CIIAmImplementableVtbl = .init(
@@ -603,6 +731,7 @@ public enum __ABI_test_component {
             guard riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
+                  riid.pointee == IIAgileObject.IID ||
                   riid.pointee == __ABI_test_component.IIAmImplementableWrapper.IID else { 
                 ppvObject.pointee = nil
                 return E_NOINTERFACE
@@ -769,6 +898,18 @@ public enum __ABI_test_component {
             instance.ID = value
             
             return S_OK
+        },
+
+        add_ImplementableEvent: { _, _, _ in return E_NOTIMPL },
+
+        remove_ImplementableEvent: { _, _ in return E_NOTIMPL },
+
+        FireEvent: {
+            guard let instance = __ABI_test_component.IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+
+            instance.FireEvent()
+            
+            return S_OK
         }
     )
 
@@ -858,6 +999,47 @@ public enum __ABI_test_component {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_StringProperty(pThis, value))
             }
         }
+        internal func add_SignalEventImpl(_ handler: UnsafeMutablePointer<__x_ABI_Ctest__component_CDelegates_CISignalDelegate>?) throws -> EventRegistrationToken {
+            var token: EventRegistrationToken = .init()
+            _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.add_SignalEvent(pThis, handler, &token))
+            }
+            return token
+        }
+        internal func remove_SignalEventImpl(_ token: EventRegistrationToken) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.remove_SignalEvent(pThis, token))
+            }
+        }
+        internal func add_InEventImpl(_ handler: UnsafeMutablePointer<__x_ABI_Ctest__component_CDelegates_CIInDelegate>?) throws -> EventRegistrationToken {
+            var token: EventRegistrationToken = .init()
+            _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.add_InEvent(pThis, handler, &token))
+            }
+            return token
+        }
+        internal func remove_InEventImpl(_ token: EventRegistrationToken) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.remove_InEvent(pThis, token))
+            }
+        }
+        internal func add_SimpleEventImpl(_ handler: UnsafeMutablePointer<__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs>?) throws -> EventRegistrationToken {
+            var token: EventRegistrationToken = .init()
+            _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.add_SimpleEvent(pThis, handler, &token))
+            }
+            return token
+        }
+        internal func remove_SimpleEventImpl(_ token: EventRegistrationToken) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.remove_SimpleEvent(pThis, token))
+            }
+        }
+        internal func FireEventImpl() throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.FireEvent(pThis))
+            }
+        }
     }
 
     open class ISimpleDelegate: test_component.IInspectable {
@@ -882,6 +1064,7 @@ public enum __ABI_test_component {
             guard riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
+                  riid.pointee == IIAgileObject.IID ||
                   riid.pointee == __ABI_test_component.ISimpleDelegateWrapper.IID else { 
                 ppvObject.pointee = nil
                 return E_NOINTERFACE
@@ -963,6 +1146,28 @@ public enum __ABI_test_component {
             }
         }
     }
+    open class ISimpleStatics: test_component.IInspectable {
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CISimpleStatics }
+
+        internal func add_StaticEventImpl(_ handler: UnsafeMutablePointer<__x_ABI_C__FIEventHandler_1_IInspectable>?) throws -> EventRegistrationToken {
+            var token: EventRegistrationToken = .init()
+            _ = try perform(as: __x_ABI_Ctest__component_CISimpleStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.add_StaticEvent(pThis, handler, &token))
+            }
+            return token
+        }
+        internal func remove_StaticEventImpl(_ token: EventRegistrationToken) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CISimpleStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.remove_StaticEvent(pThis, token))
+            }
+        }
+        internal func FireStaticEventImpl() throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CISimpleStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.FireStaticEvent(pThis))
+            }
+        }
+    }
+
     open class IStaticClassStatics: test_component.IInspectable {
         override public class var IID: IID { IID___x_ABI_Ctest__component_CIStaticClassStatics }
 

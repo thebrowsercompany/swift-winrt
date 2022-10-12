@@ -258,6 +258,9 @@ class SwiftWinRTTests {
       var EnumProperty: Fruit = .Apple
 
       var ID: UUID?
+      func FireEvent() {
+        
+      }
   } 
 
   public func TestDelegate()
@@ -495,10 +498,96 @@ class SwiftWinRTTests {
     print("  ** Test passed! **")
 
   }
+
+  public func TestEvents()
+  {
+    print(" ** Starting Test case: TestEvents **")
+
+    let simple = Simple()
+    var count = 0
+    var static_count = 0
+    
+    var disposable = [Disposable?]()
+
+    disposable.append(simple.SignalEvent.addHandler {
+        print("handler 1 called")
+        count+=1
+      })
+
+      disposable.append(simple.SignalEvent += {
+        print("handler 2 called")
+        count+=1
+      })
+
+      disposable.append(Simple.StaticEvent.addHandler { (_,_) in
+        print("static handler 1 called")
+        static_count+=1
+      })
+
+      disposable.append(Simple.StaticEvent += { (_,_) in
+        print("static handler 2 called")
+        static_count+=1
+      })
+
+    simple.FireEvent()
+    assert(count == 2)
+
+    simple.FireEvent()
+    assert(count == 4)
+
+    Simple.FireStaticEvent()
+    assert(static_count == 2)
+    Simple.FireStaticEvent()
+    assert(static_count == 4)
+
+    // dispose of the handlers and make sure we
+    // aren't getting more events
+    for dispose in disposable {
+      if let dispose = dispose {
+        dispose.dispose()
+      }
+    }
+    disposable.removeAll(keepingCapacity: true)
+
+    simple.FireEvent()
+    assert(count == 4)
+
+    Simple.FireStaticEvent()
+    assert(static_count == 4)
+
+    // hookup the handlers again and make sure it works, just to be safe
+    _ = simple.SignalEvent.addHandler {
+        print("handler 1 called")
+        count+=1
+      }
+
+    print("hooking up handler 2")
+      disposable.append(simple.SignalEvent += {
+        print("handler 2 called")
+        count+=1
+      })
+
+      disposable.append(Simple.StaticEvent.addHandler { (_,_) in
+        print("static handler 1 called")
+        static_count+=1
+      })
+
+      disposable.append(Simple.StaticEvent += { (_,_) in
+        print("static handler 2 called")
+        static_count+=1
+      })
+
+    simple.FireEvent()
+    assert(count == 6)
+
+    Simple.FireStaticEvent()
+    assert(static_count == 6)
+
+  }
   
 }
 
-RoInitialize(RO_INIT_SINGLETHREADED)
+RoInitialize(RO_INIT_MULTITHREADED)
 let tests = SwiftWinRTTests()
 
 tests.TestBlittableStruct()
@@ -514,4 +603,5 @@ tests.TestChar()
 tests.TestDoubleDelegate()
 
 tests.TestIReference()
+tests.TestEvents()
 print("all tests passed!")

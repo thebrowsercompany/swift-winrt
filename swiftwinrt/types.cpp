@@ -569,19 +569,23 @@ namespace swiftwinrt
     static void write_vtable_method(writer& w, function_def const& func, generic_inst const& type);
     void generic_inst::write_swift_declaration(writer& w) const
     {
-        assert(generic_params().size() == 1);
         auto push_param_guard = w.push_generic_params(*this);
         w.write("private static var %VTable: %Vtbl = .init(\n",
             mangled_name(),
             mangled_name());
 
+        const bool is_delegate = generic_type()->category() == category::delegate_type;
         {
             auto indent = w.push_indent({ 1 });
             write_iunknown_methods(w, *this);
-            write_iinspectable_methods(w, *this);
-
             separator s{ w, ",\n\n" };
-            s(); // get first separator out of the way for no-op
+
+            if (!is_delegate)
+            {
+                write_iinspectable_methods(w, *this);
+                s(); // get first separator out of the way for no-op
+            }
+        
             for (auto&& method : functions)
             {
                 s();
@@ -592,7 +596,11 @@ namespace swiftwinrt
         w.write(R"(
 )
 )");
-
+        if (is_delegate)
+        {
+            write_generic_delegate_wrapper(w, *this);
+            return;
+        }
 
         auto format = R"(internal class %: WinRTWrapperBase<%, %> {
     override class var IID: IID { IID_% }
@@ -606,14 +614,14 @@ namespace swiftwinrt
 }
 )";
         w.write(format,
-            bind<write_generic_wrapper_type>(*this),
+            bind_wrapper_name(*this),
             mangled_name(),
             remove_backtick(generic_type()->cpp_logical_name()),
             mangled_name(),
             generic_params()[0]->swift_full_name(),
             mangled_name(),
             mangled_name(),
-            bind<write_generic_impl_name>(*this)
+            bind_impl_name(*this)
             );
     }
 
@@ -637,7 +645,7 @@ namespace swiftwinrt
         static element_type const r4_type{ blittable, "Float"sv, "float"sv, "float"sv, "FLOAT"sv, "float"sv, "f4"sv };
         static element_type const r8_type{ blittable, "Double"sv, "double"sv, "double"sv, "DOUBLE"sv, "double"sv, "f8"sv };
         static element_type const string_type{ !blittable, "String"sv, "HSTRING"sv, "HSTRING"sv, "HSTRING"sv, "HSTRING"sv, "string"sv };
-        static element_type const object_type{ !blittable, "Any"sv, "IInspectable*"sv, "IInspectable*"sv, "IInspectable*"sv, "IInspectable"sv, "cinterface(IInspectable)"sv };
+        static element_type const object_type{ !blittable, "IInspectable"sv, "IInspectable*"sv, "IInspectable*"sv, "IInspectable*"sv, "IInspectable"sv, "cinterface(IInspectable)"sv };
 
         switch (type)
         {

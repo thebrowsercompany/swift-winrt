@@ -35,19 +35,19 @@ namespace test_component
             Boolean Fourth;
         };
 
-        //namespace Delegates
-        //{
-        //    delegate void AgileDelegate();
-        //    delegate void InDelegate(String value);
-        //    delegate String ReturnStringDelegate();
-        //    delegate Int32 ReturnInt32Delegate();
-        //    delegate void OutStringDelegate(out String value);
-        //    delegate void OutInt32Delegate(out Int32 value);
+        namespace Delegates
+        {
+            delegate void SignalDelegate();
+            delegate void InDelegate(String value);
+            delegate String ReturnStringDelegate();
+            delegate Int32 ReturnInt32Delegate();
+            delegate void OutStringDelegate(out String value);
+            delegate void OutInt32Delegate(out Int32 value);
         //    delegate String[] ReturnStringArrayDelegate();
         //    delegate void OutStringArrayDelegate(out String[] value);
         //    delegate void RefStringArrayDelegate(ref String[] value);
         //    delegate test_component.Struct[] StructDelegate();
-        //}   
+        }   
 
         enum Signed
         {
@@ -72,6 +72,11 @@ namespace test_component
             Pineapple
         };
 
+        struct SimpleEventArgs
+        {
+            Int32 Value;
+        };
+
         runtimeclass Simple
         {
             Simple();
@@ -81,8 +86,8 @@ namespace test_component
             //Windows.Foundation.IAsyncOperation<Int32> Operation(Windows.Foundation.DateTime value);
             //Windows.Foundation.IAsyncAction Action(Windows.Foundation.DateTime value);
             //Object Object(Windows.Foundation.DateTime value);
-            //static event Windows.Foundation.EventHandler<Object> StaticEvent;
-
+            static event Windows.Foundation.EventHandler<Object> StaticEvent;
+            static void FireStaticEvent();
             //Windows.Foundation.Numerics.Vector2 ReturnVector2();
             BlittableStruct ReturnBlittableStruct();
             void TakeBlittableStruct(BlittableStruct value);
@@ -93,6 +98,11 @@ namespace test_component
             NonBlittableStruct NonBlittableStructProperty;
 
             String StringProperty;
+
+            event test_component.Delegates.SignalDelegate SignalEvent;
+            event test_component.Delegates.InDelegate InEvent;
+            event Windows.Foundation.TypedEventHandler<Simple, SimpleEventArgs> SimpleEvent;
+            void FireEvent();
         }
 
         //runtimeclass DeferrableEventArgs
@@ -135,6 +145,8 @@ namespace test_component
             Fruit EnumProperty;
 
             Windows.Foundation.IReference<Guid> ID;
+            event test_component.Delegates.InDelegate ImplementableEvent;
+            void FireEvent();
         }
 
         interface ISimpleDelegate

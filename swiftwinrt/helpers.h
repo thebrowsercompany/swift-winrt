@@ -18,9 +18,74 @@ namespace swiftwinrt
         return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - start).count();
     }
 
-    inline bool is_put_overload(MethodDef const& method)
+    struct type_name
     {
-        return method.SpecialName() && method.Name().starts_with("put_");
+        std::string_view name;
+        std::string_view name_space;
+
+        explicit type_name(TypeDef const& type) :
+            name(type.TypeName()),
+            name_space(type.TypeNamespace())
+        {
+        }
+
+        explicit type_name(TypeRef const& type) :
+            name(type.TypeName()),
+            name_space(type.TypeNamespace())
+        {
+        }
+
+        explicit type_name(coded_index<TypeDefOrRef> const& type)
+        {
+            auto const& [type_namespace, type_name] = get_type_namespace_and_name(type);
+            name_space = type_namespace;
+            name = type_name;
+        }
+
+        explicit type_name(metadata_type const& type)
+        {
+            auto full_name = type.swift_full_name();
+            auto last_period = full_name.find_last_of('.');
+            if (last_period != full_name.npos)
+            {
+                name = full_name.substr(last_period + 1);
+                name_space = full_name.substr(0, last_period);
+            }
+            else
+            {
+                name = full_name;
+            }
+        }
+
+        explicit type_name(TypeSig const& sig)
+        {
+
+        }
+    };
+
+    inline bool operator==(type_name const& left, type_name const& right)
+    {
+        return left.name == right.name && left.name_space == right.name_space;
+    }
+
+    inline bool operator==(type_name const& left, std::string_view const& right)
+    {
+        if (left.name.size() + 1 + left.name_space.size() != right.size())
+        {
+            return false;
+        }
+
+        if (right[left.name_space.size()] != '.')
+        {
+            return false;
+        }
+
+        if (0 != right.compare(left.name_space.size() + 1, left.name.size(), left.name))
+        {
+            return false;
+        }
+
+        return 0 == right.compare(0, left.name_space.size(), left.name_space);
     }
 
     struct method_signature
@@ -192,6 +257,11 @@ namespace swiftwinrt
         return method.SpecialName() && method.Name().starts_with("get_");
     }
 
+    inline bool is_put_overload(MethodDef const& method)
+    {
+        return method.SpecialName() && method.Name().starts_with("put_");
+    }
+
     inline bool is_noexcept(MethodDef const& method)
     {
         return is_remove_overload(method) || has_attribute(method, metadata_namespace, "NoExceptionAttribute");
@@ -199,7 +269,7 @@ namespace swiftwinrt
 
     inline bool has_fastabi(TypeDef const& type)
     {
-        return settings.fastabi&& has_attribute(type, metadata_namespace, "FastAbiAttribute");
+        return settings.fastabi && has_attribute(type, metadata_namespace, "FastAbiAttribute");
     }
 
     inline bool is_always_disabled(TypeDef const& type)
@@ -241,7 +311,7 @@ namespace swiftwinrt
             return{};
         }
 
-        auto const&[extends_namespace, extends_name] = get_type_namespace_and_name(extends);
+        auto const& [extends_namespace, extends_name] = get_type_namespace_and_name(extends);
 
         // the following base types are for objects and delegates, but they don't actually
         // have metadata in the cache. We return an empty type instead of crashing.
@@ -292,9 +362,9 @@ namespace swiftwinrt
     inline interface_info* find(get_interfaces_t& interfaces, std::string_view const& name)
     {
         auto pair = std::find_if(interfaces.begin(), interfaces.end(), [&](auto&& pair)
-        {
-            return pair.first == name;
-        });
+            {
+                return pair.first == name;
+            });
 
         if (pair == interfaces.end())
         {
@@ -313,6 +383,26 @@ namespace swiftwinrt
         else
         {
             interfaces.emplace_back(name, std::move(info));
+        }
+    }
+
+    inline auto find_type(coded_index<winmd::reader::TypeDefOrRef> type)
+    {
+        switch (type.type())
+        {
+        case TypeDefOrRef::TypeDef:
+            return type.TypeDef();
+        case TypeDefOrRef::TypeRef:
+            return find_required(type.TypeRef());
+        case TypeDefOrRef::TypeSpec:
+        {
+            auto type_signature = type.TypeSpec().Signature();
+            auto generic_inst = type_signature.GenericTypeInst();
+            return find_required(generic_inst.GenericType());
+        }
+        default:
+            assert(false);
+            return TypeDef{};
         }
     }
 
@@ -350,46 +440,46 @@ namespace swiftwinrt
 
             switch (type.type())
             {
-                case TypeDefOrRef::TypeDef:
-                {
-                    info.type = type.TypeDef();
-                    break;
-                }
-                case TypeDefOrRef::TypeRef:
-                {
-                    info.type = find_required(type.TypeRef());
-                    w.add_depends(info.type);
-                    break;
-                }
-                case TypeDefOrRef::TypeSpec:
-                {
-                    auto type_signature = type.TypeSpec().Signature();
+            case TypeDefOrRef::TypeDef:
+            {
+                info.type = type.TypeDef();
+                break;
+            }
+            case TypeDefOrRef::TypeRef:
+            {
+                info.type = find_required(type.TypeRef());
+                w.add_depends(info.type);
+                break;
+            }
+            case TypeDefOrRef::TypeSpec:
+            {
+                auto type_signature = type.TypeSpec().Signature();
 
-                    generic_param_vector names;
+                generic_param_vector names;
 
-                    for (auto&& arg : type_signature.GenericTypeInst().GenericArgs())
+                for (auto&& arg : type_signature.GenericTypeInst().GenericArgs())
+                {
+                    auto semantics = valuetype_copy_semantics::equal;
+                    bool blittable = is_type_blittable(arg);
+                    if (is_struct(arg) && blittable)
                     {
-                        auto semantics = valuetype_copy_semantics::equal;
-                        bool blittable = is_type_blittable(arg);
-                        if (is_struct(arg) && blittable)
-                        {
-                            semantics = valuetype_copy_semantics::blittable;
-                        }
-                        else if (!blittable)
-                        {
-                            semantics = valuetype_copy_semantics::nonblittable;
-                        }
-
-                        names.emplace_back(arg, semantics);
+                        semantics = valuetype_copy_semantics::blittable;
+                    }
+                    else if (!blittable)
+                    {
+                        semantics = valuetype_copy_semantics::nonblittable;
                     }
 
-
-                    guard = w.push_generic_params(type_signature.GenericTypeInst());
-                    auto signature = type_signature.GenericTypeInst();
-                    info.type = find_required(signature.GenericType());
-
-                    break;
+                    names.emplace_back(arg, semantics);
                 }
+
+
+                guard = w.push_generic_params(type_signature.GenericTypeInst());
+                auto signature = type_signature.GenericTypeInst();
+                info.type = find_required(signature.GenericType());
+
+                break;
+            }
             }
 
             info.exclusive = has_attribute(info.type, "Windows.Foundation.Metadata", "ExclusiveToAttribute");
@@ -445,51 +535,51 @@ namespace swiftwinrt
         }
 
         std::partial_sort(result.begin(), result.begin() + count, result.end(), [](auto&& left_pair, auto&& right_pair)
-        {
-            auto& left = left_pair.second;
-            auto& right = right_pair.second;
-
-            // Sort by base before is_default because each base will have a default.
-            if (left.base != right.base)
             {
-                return !left.base;
-            }
+                auto& left = left_pair.second;
+                auto& right = right_pair.second;
 
-            if (left.is_default != right.is_default)
+                // Sort by base before is_default because each base will have a default.
+                if (left.base != right.base)
+                {
+                    return !left.base;
+                }
+
+                if (left.is_default != right.is_default)
+                {
+                    return left.is_default;
+                }
+
+                if (left.overridable != right.overridable)
+                {
+                    return !left.overridable;
+                }
+
+                if (left.exclusive != right.exclusive)
+                {
+                    return left.exclusive;
+                }
+
+                auto left_enabled = is_always_enabled(left.type);
+                auto right_enabled = is_always_enabled(right.type);
+
+                if (left_enabled != right_enabled)
+                {
+                    return left_enabled;
+                }
+
+                if (left.relative_version != right.relative_version)
+                {
+                    return left.relative_version < right.relative_version;
+                }
+
+                return left_pair.first < right_pair.first;
+            });
+
+            std::for_each_n(result.begin(), count, [](auto&& pair)
             {
-                return left.is_default;
-            }
-
-            if (left.overridable != right.overridable)
-            {
-                return !left.overridable;
-            }
-
-            if (left.exclusive != right.exclusive)
-            {
-                return left.exclusive;
-            }
-
-            auto left_enabled = is_always_enabled(left.type);
-            auto right_enabled = is_always_enabled(right.type);
-
-            if (left_enabled != right_enabled)
-            {
-                return left_enabled;
-            }
-
-            if (left.relative_version != right.relative_version)
-            {
-                return left.relative_version < right.relative_version;
-            }
-
-            return left_pair.first < right_pair.first;
-        });
-
-        std::for_each_n(result.begin(), count, [](auto && pair)
-        {
-            pair.second.fastabi = true;
-        });
+                pair.second.fastabi = true;
+            });
 
         return result;
     }
@@ -649,9 +739,9 @@ namespace swiftwinrt
         auto methods = type.MethodList();
 
         auto method = std::find_if(begin(methods), end(methods), [](auto&& method)
-        {
-            return method.Name() == "Invoke";
-        });
+            {
+                return method.Name() == "Invoke";
+            });
 
         if (method == end(methods))
         {
@@ -719,7 +809,7 @@ namespace swiftwinrt
 
     inline bool has_factory_members(writer& w, TypeDef const& type)
     {
-        for (auto&&[factory_name, factory] : get_factories(w, type))
+        for (auto&& [factory_name, factory] : get_factories(w, type))
         {
             if (!factory.type || !empty(factory.type.MethodList()))
             {
@@ -732,7 +822,7 @@ namespace swiftwinrt
 
     inline bool is_composable(writer& w, TypeDef const& type)
     {
-        for (auto&&[factory_name, factory] : get_factories(w, type))
+        for (auto&& [factory_name, factory] : get_factories(w, type))
         {
             if (factory.composable)
             {
@@ -752,7 +842,17 @@ namespace swiftwinrt
     {
         return distance(type.GenericParam()) != 0;
     }
-    
+
+    inline bool is_generic(TypeRef const& ref)
+    {
+        return is_generic(find_required(ref));
+    }
+
+    inline bool is_generic(TypeSig const& sig)
+    {
+        return get_category(sig) == param_category::generic_type;
+    }
+
     inline bool is_generic(coded_index<TypeDefOrRef> const& type)
     {
         switch (type.type())
@@ -760,10 +860,22 @@ namespace swiftwinrt
         case TypeDefOrRef::TypeSpec:
             return true;
         case TypeDefOrRef::TypeRef:
+            return is_generic(type.TypeRef());
         case TypeDefOrRef::TypeDef:
+            return is_generic(type.TypeDef());
         default:
             return false;
         }
+    }
+
+    inline bool is_generic(metadata_type const& type)
+    {
+        return dynamic_cast<const generic_inst*>(&type) != nullptr;
+    }
+
+    inline bool is_delegate(generic_inst const& type)
+    {
+        return type.generic_type()->category() == category::delegate_type;
     }
 
     template <typename T>
@@ -919,6 +1031,11 @@ namespace swiftwinrt
     }
     inline std::string_view get_swift_name(MethodDef const& method)
     {
+        // the swift name for the Invoke method of a delegate is the `handler` property
+        if (get_category(method.Parent()) == category::delegate_type)
+        {
+            return "handler";
+        }
         return put_in_backticks_if_needed(method.Name());
     }
 
@@ -1018,5 +1135,65 @@ namespace swiftwinrt
         }
 
         return { typeName.substr(0, pos), typeName.substr(pos + 1) };
+    }
+
+    inline param_category get_category(generic_param_type const& generic_param, TypeDef* signature_type = nullptr)
+    {
+        if (std::holds_alternative<TypeSig>(generic_param))
+        {
+            return get_category(std::get<TypeSig>(generic_param), signature_type);
+        }
+        else
+        {
+            auto type = std::get<const metadata_type*>(generic_param);
+          
+            if (signature_type)
+            {
+                if (auto typedefBase = dynamic_cast<const typedef_base*>(type))
+                {
+                    *signature_type = typedefBase->type();
+                }
+            }
+
+            if (auto enumType = dynamic_cast<const enum_type*>(type))
+            {
+                return param_category::enum_type;
+            }
+            if (auto structType = dynamic_cast<const struct_type*>(type))
+            {
+                return param_category::struct_type;
+            }
+            if (auto elementType = dynamic_cast<const element_type*>(type))
+            {
+                if (elementType->swift_full_name() == "String") return param_category::string_type;
+                if (elementType->swift_full_name() == "IInspectable") return param_category::object_type;
+                return param_category::fundamental_type;
+            }
+
+            // delegates, interfaces, and classes are all object type
+            return param_category::object_type;
+        }
+    }
+
+    template<typename T>
+    inline std::string get_full_type_name(T const& type)
+    {
+        type_name name(type);
+        std::string result;
+        result.reserve(name.name_space.length() + name.name.length() + 1);
+        result += name.name_space;
+        result += '.';
+        result += name.name;
+        return result;
+    }
+
+    inline std::string get_full_type_name(TypeRef const& type)
+    {
+        return get_full_type_name<TypeRef>(type);
+    }
+
+    inline std::string get_full_type_name(TypeDef const& type)
+    {
+        return get_full_type_name<TypeDef>(type);
     }
 }

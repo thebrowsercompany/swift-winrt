@@ -8,6 +8,7 @@
 #include "EventToken.h"
 #include "windowscontracts.h"
 #include "Windows.Foundation.h"
+#include "test_component.Delegates.h"
 
 /* Forward Declarations */
 #ifndef ____x_ABI_Ctest__component_CIBasic_FWD_DEFINED__
@@ -64,6 +65,12 @@
 
 #endif // ____x_ABI_Ctest__component_CISimpleDelegate_FWD_DEFINED__
 
+#ifndef ____x_ABI_Ctest__component_CISimpleStatics_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CISimpleStatics_FWD_DEFINED__
+    typedef interface __x_ABI_Ctest__component_CISimpleStatics __x_ABI_Ctest__component_CISimpleStatics;
+
+#endif // ____x_ABI_Ctest__component_CISimpleStatics_FWD_DEFINED__
+
 #ifndef ____x_ABI_Ctest__component_CIStaticClassStatics_FWD_DEFINED__
 #define ____x_ABI_Ctest__component_CIStaticClassStatics_FWD_DEFINED__
     typedef interface __x_ABI_Ctest__component_CIStaticClassStatics __x_ABI_Ctest__component_CIStaticClassStatics;
@@ -74,6 +81,38 @@
 
 // Collection interface definitions
 
+#if !defined(____x_ABI_C__FIEventHandler_1_IInspectable_INTERFACE_DEFINED__)
+    #define ____x_ABI_C__FIEventHandler_1_IInspectable_INTERFACE_DEFINED__
+
+    typedef interface __x_ABI_C__FIEventHandler_1_IInspectable __x_ABI_C__FIEventHandler_1_IInspectable;
+
+    //  Declare the parameterized interface IID.
+    EXTERN_C const IID IID___x_ABI_C__FIEventHandler_1_IInspectable;
+
+    typedef struct __x_ABI_C__FIEventHandler_1_IInspectableVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_C__FIEventHandler_1_IInspectable* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_C__FIEventHandler_1_IInspectable* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_C__FIEventHandler_1_IInspectable* This);
+        HRESULT (STDMETHODCALLTYPE* Invoke)(__x_ABI_C__FIEventHandler_1_IInspectable* This,
+        IInspectable* sender,
+        IInspectable* args);
+
+        END_INTERFACE
+    } __x_ABI_C__FIEventHandler_1_IInspectableVtbl;
+
+    interface __x_ABI_C__FIEventHandler_1_IInspectable
+    {
+        CONST_VTBL struct __x_ABI_C__FIEventHandler_1_IInspectableVtbl* lpVtbl;
+    };
+
+    
+    #endif // ____x_ABI_C__FIEventHandler_1_IInspectable_INTERFACE_DEFINED__
+    
 #if !defined(____x_ABI_C__FIReference_1_int_INTERFACE_DEFINED__)
     #define ____x_ABI_C__FIReference_1_int_INTERFACE_DEFINED__
 
@@ -150,13 +189,59 @@
     
     #endif // ____x_ABI_C__FIReference_1_GUID_INTERFACE_DEFINED__
     
+typedef struct __x_ABI_Ctest__component_CSimpleEventArgs __x_ABI_Ctest__component_CSimpleEventArgs;
+
+#if !defined(____x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs_INTERFACE_DEFINED__)
+    #define ____x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs_INTERFACE_DEFINED__
+
+    typedef interface __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs;
+
+    //  Declare the parameterized interface IID.
+    EXTERN_C const IID IID___x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs;
+
+    typedef struct __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs* This);
+        HRESULT (STDMETHODCALLTYPE* Invoke)(__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs* This,
+        __x_ABI_Ctest__component_CISimple* sender,
+        struct __x_ABI_Ctest__component_CSimpleEventArgs args);
+
+        END_INTERFACE
+    } __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsVtbl;
+
+    interface __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs
+    {
+        CONST_VTBL struct __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsVtbl* lpVtbl;
+    };
+
+    
+    #endif // ____x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs_INTERFACE_DEFINED__
+    
 #ifndef ____x_ABI_CWindows_CFoundation_CIPropertyValue_FWD_DEFINED__
 #define ____x_ABI_CWindows_CFoundation_CIPropertyValue_FWD_DEFINED__
     typedef interface __x_ABI_CWindows_CFoundation_CIPropertyValue __x_ABI_CWindows_CFoundation_CIPropertyValue;
 
 #endif // ____x_ABI_CWindows_CFoundation_CIPropertyValue_FWD_DEFINED__
 
-typedef enum __x_ABI_Ctest__component_CFruit __x_ABI_Ctest__component_CFruit;
+#ifndef ____x_ABI_Ctest__component_CDelegates_CIInDelegate_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CDelegates_CIInDelegate_FWD_DEFINED__
+typedef interface __x_ABI_Ctest__component_CDelegates_CIInDelegate __x_ABI_Ctest__component_CDelegates_CIInDelegate;
+
+#endif // ____x_ABI_Ctest__component_CDelegates_CIInDelegate_FWD_DEFINED__
+
+    #ifndef ____x_ABI_Ctest__component_CDelegates_CISignalDelegate_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CDelegates_CISignalDelegate_FWD_DEFINED__
+typedef interface __x_ABI_Ctest__component_CDelegates_CISignalDelegate __x_ABI_Ctest__component_CDelegates_CISignalDelegate;
+
+#endif // ____x_ABI_Ctest__component_CDelegates_CISignalDelegate_FWD_DEFINED__
+
+    typedef enum __x_ABI_Ctest__component_CFruit __x_ABI_Ctest__component_CFruit;
 
 typedef enum __x_ABI_Ctest__component_CSigned __x_ABI_Ctest__component_CSigned;
 
@@ -206,6 +291,11 @@ struct __x_ABI_Ctest__component_CNonBlittableStruct
     HSTRING Second;
     INT32 Third;
     HSTRING Fourth;
+};
+
+struct __x_ABI_Ctest__component_CSimpleEventArgs
+    {
+        INT32 Value;
 };
 
 #if !defined(____x_ABI_Ctest__component_CIBasic_INTERFACE_DEFINED__)
@@ -520,6 +610,12 @@ struct __x_ABI_Ctest__component_CNonBlittableStruct
         __x_ABI_C__FIReference_1_GUID** value);
     HRESULT (STDMETHODCALLTYPE* put_ID)(__x_ABI_Ctest__component_CIIAmImplementable* This,
         __x_ABI_C__FIReference_1_GUID* value);
+    HRESULT (STDMETHODCALLTYPE* add_ImplementableEvent)(__x_ABI_Ctest__component_CIIAmImplementable* This,
+        __x_ABI_Ctest__component_CDelegates_CIInDelegate* handler,
+        EventRegistrationToken* token);
+    HRESULT (STDMETHODCALLTYPE* remove_ImplementableEvent)(__x_ABI_Ctest__component_CIIAmImplementable* This,
+        EventRegistrationToken token);
+    HRESULT (STDMETHODCALLTYPE* FireEvent)(__x_ABI_Ctest__component_CIIAmImplementable* This);
 
         END_INTERFACE
     } __x_ABI_Ctest__component_CIIAmImplementableVtbl;
@@ -573,6 +669,22 @@ struct __x_ABI_Ctest__component_CNonBlittableStruct
         HSTRING* value);
     HRESULT (STDMETHODCALLTYPE* put_StringProperty)(__x_ABI_Ctest__component_CISimple* This,
         HSTRING value);
+    HRESULT (STDMETHODCALLTYPE* add_SignalEvent)(__x_ABI_Ctest__component_CISimple* This,
+        __x_ABI_Ctest__component_CDelegates_CISignalDelegate* handler,
+        EventRegistrationToken* token);
+    HRESULT (STDMETHODCALLTYPE* remove_SignalEvent)(__x_ABI_Ctest__component_CISimple* This,
+        EventRegistrationToken token);
+    HRESULT (STDMETHODCALLTYPE* add_InEvent)(__x_ABI_Ctest__component_CISimple* This,
+        __x_ABI_Ctest__component_CDelegates_CIInDelegate* handler,
+        EventRegistrationToken* token);
+    HRESULT (STDMETHODCALLTYPE* remove_InEvent)(__x_ABI_Ctest__component_CISimple* This,
+        EventRegistrationToken token);
+    HRESULT (STDMETHODCALLTYPE* add_SimpleEvent)(__x_ABI_Ctest__component_CISimple* This,
+        __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs* handler,
+        EventRegistrationToken* token);
+    HRESULT (STDMETHODCALLTYPE* remove_SimpleEvent)(__x_ABI_Ctest__component_CISimple* This,
+        EventRegistrationToken token);
+    HRESULT (STDMETHODCALLTYPE* FireEvent)(__x_ABI_Ctest__component_CISimple* This);
 
         END_INTERFACE
     } __x_ABI_Ctest__component_CISimpleVtbl;
@@ -620,6 +732,44 @@ struct __x_ABI_Ctest__component_CNonBlittableStruct
     
     EXTERN_C const IID IID___x_ABI_Ctest__component_CISimpleDelegate;
 #endif /* !defined(____x_ABI_Ctest__component_CISimpleDelegate_INTERFACE_DEFINED__) */
+    
+#if !defined(____x_ABI_Ctest__component_CISimpleStatics_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CISimpleStatics_INTERFACE_DEFINED__
+    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_ISimpleStatics[] = L"test_component.ISimpleStatics";
+    typedef struct __x_ABI_Ctest__component_CISimpleStaticsVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CISimpleStatics* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CISimpleStatics* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CISimpleStatics* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_Ctest__component_CISimpleStatics* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_Ctest__component_CISimpleStatics* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CISimpleStatics* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* add_StaticEvent)(__x_ABI_Ctest__component_CISimpleStatics* This,
+        __x_ABI_C__FIEventHandler_1_IInspectable* handler,
+        EventRegistrationToken* token);
+    HRESULT (STDMETHODCALLTYPE* remove_StaticEvent)(__x_ABI_Ctest__component_CISimpleStatics* This,
+        EventRegistrationToken token);
+    HRESULT (STDMETHODCALLTYPE* FireStaticEvent)(__x_ABI_Ctest__component_CISimpleStatics* This);
+
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CISimpleStaticsVtbl;
+
+    interface __x_ABI_Ctest__component_CISimpleStatics
+    {
+        CONST_VTBL struct __x_ABI_Ctest__component_CISimpleStaticsVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CISimpleStatics;
+#endif /* !defined(____x_ABI_Ctest__component_CISimpleStatics_INTERFACE_DEFINED__) */
     
 #if !defined(____x_ABI_Ctest__component_CIStaticClassStatics_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIStaticClassStatics_INTERFACE_DEFINED__

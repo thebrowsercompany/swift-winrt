@@ -159,6 +159,7 @@ public enum __ABI_Windows_Foundation {
             guard riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
+                  riid.pointee == IIAgileObject.IID ||
                   riid.pointee == __ABI_Windows_Foundation.IPropertyValueWrapper.IID else { 
                 ppvObject.pointee = nil
                 return E_NOINTERFACE

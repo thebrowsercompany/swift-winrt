@@ -5,4 +5,5 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmicrosoft-enum-forward-reference"
 #include "test_component.h"
+#include "test_component.Delegates.h"
 #pragma clang diagnostic pop

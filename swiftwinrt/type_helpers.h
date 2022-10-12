@@ -13,6 +13,7 @@ namespace swiftwinrt
     using namespace std::literals;
 
     std::string get_full_type_name(TypeDef const& type);
+    std::string get_full_type_name(TypeRef const& type);
 
     inline bool starts_with(std::string_view const& value, std::string_view const& match) noexcept
     {
@@ -106,61 +107,14 @@ namespace swiftwinrt
         return result;
     }
 
-    struct type_name
-    {
-        std::string_view name;
-        std::string_view name_space;
-
-        explicit type_name(TypeDef const& type) :
-            name(type.TypeName()),
-            name_space(type.TypeNamespace())
-        {
-        }
-
-        explicit type_name(TypeRef const& type) :
-            name(type.TypeName()),
-            name_space(type.TypeNamespace())
-        {
-        }
-
-        explicit type_name(coded_index<TypeDefOrRef> const& type)
-        {
-            auto const& [type_namespace, type_name] = get_type_namespace_and_name(type);
-            name_space = type_namespace;
-            name = type_name;
-        }
-    };
-
-    inline bool operator==(type_name const& left, type_name const& right)
-    {
-        return left.name == right.name && left.name_space == right.name_space;
-    }
-
-    inline bool operator==(type_name const& left, std::string_view const& right)
-    {
-        if (left.name.size() + 1 + left.name_space.size() != right.size())
-        {
-            return false;
-        }
-
-        if (right[left.name_space.size()] != '.')
-        {
-            return false;
-        }
-
-        if (0 != right.compare(left.name_space.size() + 1, left.name.size(), left.name))
-        {
-            return false;
-        }
-
-        return 0 == right.compare(0, left.name_space.size(), left.name_space);
-    }
 
     enum class param_category
     {
         generic_type,
         object_type,
         string_type,
+        character_type,
+        boolean_type,
         enum_type,
         struct_type,
         array_type,
@@ -187,6 +141,14 @@ namespace swiftwinrt
                 {
                     result = param_category::object_type;
                 }
+                else if (type == ElementType::Char)
+                {
+                    result = param_category::character_type;
+                }
+                else if (type == ElementType::Boolean)
+                {
+                    result = param_category::boolean_type;
+                }
                 else
                 {
                     result = param_category::fundamental_type;
@@ -204,7 +166,7 @@ namespace swiftwinrt
                 {
                     auto type_ref = type.TypeRef();
 
-                    if (type_name(type_ref) == "System.Guid")
+                    if (get_full_type_name(type_ref) == "System.Guid")
                     {
                         result = param_category::struct_type;
                         return;
@@ -276,19 +238,7 @@ namespace swiftwinrt
 
     inline bool is_boolean(TypeSig const& signature)
     {
-        bool boolean{};
-
-        call(signature.Type(),
-            [&](ElementType type)
-            {
-                if (type == ElementType::Boolean)
-                {
-                    boolean = true;
-                }
-            },
-            [](auto&&) {});
-
-        return boolean;
+        return get_category(signature) == param_category::boolean_type;
     }
 
     inline bool is_object(TypeSig const& signature)
@@ -319,7 +269,7 @@ namespace swiftwinrt
                 {
                     auto type_ref = type.TypeRef();
 
-                    if (type_name(type_ref) == "System.Guid")
+                    if (get_full_type_name(type_ref) == "System.Guid")
                     {
                         guid = true;
                         return;
@@ -348,7 +298,7 @@ namespace swiftwinrt
                 {
                     auto type_ref = type.TypeRef();
 
-                    if (type_name(type_ref) == "System.Guid")
+                    if (get_full_type_name(type_ref) == "System.Guid")
                     {
                         is_match = category == category::struct_type;
                         return;
@@ -435,7 +385,7 @@ namespace swiftwinrt
                 {
                     auto type_ref = type.TypeRef();
 
-                    if (type_name(type_ref) == "System.Guid")
+                    if (get_full_type_name(type_ref) == "System.Guid")
                     {
                         return true;
                     }
@@ -472,6 +422,28 @@ namespace swiftwinrt
             });
 #pragma warning(pop)
 
+    }
+
+    inline bool is_type_blittable(TypeDef const& type)
+    {
+        switch (get_category(type))
+        {
+        case category::interface_type:
+        case category::class_type:
+        case category::delegate_type:
+            return false;
+        case category::struct_type:
+            for (auto&& field : type.FieldList())
+            {
+                if (!is_type_blittable(field.Signature().Type()))
+                {
+                    return false;
+                }
+            }
+            return true;
+        case category::enum_type:
+            return true;
+        }
     }
 
     inline bool is_struct_blittable(TypeDef const& type)
@@ -576,15 +548,5 @@ namespace swiftwinrt
     inline bool is_static(MethodDef const& method)
     {
         return method.Flags().Static();
-    }
-
-    inline std::string get_full_type_name(TypeDef const& type)
-    {
-        std::string result;
-        result.reserve(type.TypeNamespace().length() + type.TypeName().length() + 1);
-        result += type.TypeNamespace();
-        result += '.';
-        result += type.TypeName();
-        return result;
     }
 }
