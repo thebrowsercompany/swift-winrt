@@ -3,17 +3,19 @@
 
 import Ctest_component
 
-public func RoGetActivationFactory<Factory: test_component.IInspectable>(_ activatableClassId: HString) throws -> Factory {
+public func RoGetActivationFactory<Factory: IInspectable>(_ activatableClassId: HString) throws -> Factory {
   var iid: IID = Factory.IID
   var factory: UnsafeMutableRawPointer?
   try CHECKED(RoGetActivationFactory(activatableClassId.hRef.hString, &iid, &factory))
-  return Factory(consuming: factory?.bindMemory(to: WinSDK.IUnknown.self, capacity: 1))
+  let inspectable = IInspectable(consuming: factory?.bindMemory(to: WinSDK.IUnknown.self, capacity: 1))
+  return try inspectable.QueryInterface<Factory>()
 }
 
-public func RoActivateInstance<Instance: test_component.IInspectable>(_ activatableClassId: HString) throws -> Instance {
+public func RoActivateInstance<Instance: IInspectable>(_ activatableClassId: HString) throws -> Instance {
   var instance: UnsafeMutablePointer<Ctest_component.IInspectable>?
   try CHECKED(RoActivateInstance(activatableClassId.hRef.hString, &instance))
-  return Instance(consuming: UnsafeMutableRawPointer(instance)?.bindMemory(to: WinSDK.IUnknown.self, capacity: 1))
+  let inspectable = IInspectable(consuming: UnsafeMutableRawPointer(instance)?.bindMemory(to: WinSDK.IUnknown.self, capacity: 1))
+  return try inspectable.QueryInterface<Instance>()
 }
 
 // ISwiftImplemented is a marker interface for code-gen types which are created by swift/winrt. It's used to QI

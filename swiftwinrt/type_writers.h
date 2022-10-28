@@ -131,6 +131,7 @@ namespace swiftwinrt
 
         std::string type_namespace;
         std::string support;
+        std::string c_mod;
         bool abi_types{};
         bool delegate_types{};
         bool consume_types{};
@@ -430,7 +431,7 @@ namespace swiftwinrt
                 // IAsync info is special in that it is defined in it's own header file and doesn't have a mangled name.
                 if (abi_types)
                 {
-                    write("C%.IAsyncInfo", support);
+                    write("%.IAsyncInfo", c_mod);
                 }
                 else
                 {
@@ -557,7 +558,7 @@ namespace swiftwinrt
             else if (type == ElementType::R4) { write("FLOAT"); }
             else if (type == ElementType::R8) { write("DOUBLE"); }
             else if (type == ElementType::String) { write("HSTRING"); }
-            else if (type == ElementType::Object) { write("WinSDK.IUnknown"); }
+            else if (type == ElementType::Object) { write("%.IInspectable", c_mod); }
             else
             {
                 assert(false);
@@ -785,7 +786,7 @@ namespace swiftwinrt
 
         void save_header()
         {
-            auto filename{ file_directory("/c/") };
+            auto filename{ settings.output_folder + "/c/" };
             filename += type_namespace;
             filename += ".h";
             flush_to_file(filename);

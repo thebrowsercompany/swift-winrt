@@ -308,12 +308,10 @@ namespace swiftwinrt
             }
             w.write("#pragma clang diagnostic pop\n");
 
+            w.type_namespace = "C" + module;
             auto filename{ w.file_directory("/c/") };
-            filename += "C" + module + ".h";
-
-            w.flush_to_file(filename);
+            w.save_header();
         }
-           
 
     }
 }

@@ -5,6 +5,42 @@ public protocol IWinRTObject: AnyObject {
 
 }
 
+public protocol Initializable {
+  init()
+}
+
+public protocol InitializableFromAbi : HasIID {
+    associatedtype ABI
+    init?(ref: UnsafeMutablePointer<ABI>?)
+}
+
+public protocol HasIID {
+  static var IID: IID { get }
+}
+
+public protocol AbiInterface {
+    associatedtype c_ABI
+    associatedtype swift_ABI : test_component.IUnknown
+}
+
+// A protocol for defining a type which implements a WinRT interface and defines
+// the swift <-> winrt translation
+public protocol AbiImpl {
+    associatedtype c_ABI : Initializable
+    associatedtype swift_Projection
+}
+
+public protocol ReferenceImpl : AbiImpl where ValueType.ABI == c_ABI {
+    associatedtype ValueType : InitializableFromAbi
+}
+
+public protocol AbiInterfaceImpl : AbiImpl  & AbiInterface {
+    static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection
+    var _default: swift_ABI { get }
+}
+
+// The WinRTWrapperBase class wraps an AbiImpl and is used for wrapping and unwrapping swift
+// objects at the ABI layer. The contract for how to do this is defined by the AbiImpl protocol
 open class WinRTWrapperBase<CInterface, Prototype> {
     public struct ComObject {
         public var comInterface: CInterface
@@ -58,5 +94,64 @@ open class WinRTWrapperBase<CInterface, Prototype> {
 
         guard let wrapper  = pUnk.bindMemory(to: WinRTWrapperBase.ComObject.self, capacity: 1).pointee.wrapper else { return nil }
         return wrapper.takeRetainedValue().swiftObj
+    }
+}
+
+open class WinRTWrapperBase2<I: AbiImpl> : WinRTWrapperBase<I.c_ABI, I.swift_Projection> {
+}
+
+open class InterfaceWrapperBase<I: AbiInterfaceImpl> : WinRTWrapperBase2<I> {
+    override public class var IID: IID { I.swift_ABI.IID }
+    public init?(impl: I.swift_Projection?) {
+        guard let impl = impl else { return nil }
+        // try to see if already wrapping an ABI pointer and if so, use that
+        if let internalImpl = impl as? I {
+            let abi: UnsafeMutablePointer<I.c_ABI>? = RawPointer(internalImpl._default)
+            guard let abi = abi else { return nil }
+            super.init(abi.pointee, impl)
+        } else {
+            let abi = I.c_ABI()
+            super.init(abi, impl)
+        }
+    }
+
+     public static func unwrap_from(abi pointer: UnsafeMutablePointer<I.c_ABI>?) -> I.swift_Projection {
+        let delegate = IUnknown(pointer)
+        let wrapperOpt: ISwiftImplemented? = try? delegate.QueryInterface()
+        guard let wrapper = wrapperOpt,
+              let pUnk = UnsafeMutableRawPointer(wrapper.pUnk.borrow) else { 
+                 return I.from(abi: pointer)
+              }
+
+          // try to get the original wrapper so we can get the apps implementation. if that doesn't
+          // exist, then return nil
+        guard let wrapper  = pUnk.bindMemory(to: InterfaceWrapperBase.ComObject.self, capacity: 1).pointee.wrapper else {   return I.from(abi: pointer) }
+        return wrapper.takeRetainedValue().swiftObj
+    }
+
+    override public func to_abi<ResultType>(_ body: (UnsafeMutablePointer<I.c_ABI>) throws -> ResultType)
+        throws -> ResultType {
+        // If this is an implementation then we're holding onto a WinRT object pointer, get that pointer
+        // and return that.
+        if let internalImpl = swiftObj as? I {
+            let abi: UnsafeMutablePointer<I.c_ABI>? = RawPointer(internalImpl._default)
+            return try body(abi!)
+        } else {
+            return try super.to_abi(body)
+        }
+    }
+}
+
+
+open class IReferenceWrapperBase<I: ReferenceImpl> : WinRTWrapperBase2<I> {
+    override public class var IID: IID { I.ValueType.IID }
+    public init?(value: I.ValueType?) {
+        guard let value = value else { return nil }
+        let abi = I.c_ABI()
+        super.init(abi, Foundation.Impl.IPropertyValueImpl(value: value) as! I.swift_Projection)
+    }
+
+    public static func unwrap_from(abi pointer: UnsafeMutablePointer<I.c_ABI>?) -> I.ValueType? {
+        return .init(ref: pointer)
     }
 }

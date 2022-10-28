@@ -97,8 +97,14 @@ install(TARGETS test_component_cpp
 target_sources(test_component_cpp PRIVATE
     StaticClass.cpp
     StaticClass.h
+    Base.h
+    Base.cpp
+    BaseNoOverrides.h
+    BaseNoOverrides.cpp
     Class.cpp
     Class.h
+    Derived.h
+    Derived.cpp
     module.cpp
     ${CPPWINRT_OUTPUT}
     #Optional.cpp
@@ -107,6 +113,10 @@ target_sources(test_component_cpp PRIVATE
     pch.h
     Simple.cpp
     Simple.h
+    UnsealedDerived.h
+    UnsealedDerived.cpp
+    UnsealedDerived2.h
+    UnsealedDerived2.cpp
     exports.def
     #Windows.Class.cpp
     #Windows.Class.h

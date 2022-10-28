@@ -277,6 +277,9 @@ namespace test_component
 
             //Object ItemsSource;
             //Windows.Foundation.IVector<Simple> Children { get; };
+
+            Base BaseProperty;
+            BaseNoOverrides BaseNoOverridesProperty;
         }
         
         static runtimeclass StaticClass
@@ -284,6 +287,9 @@ namespace test_component
             static Fruit EnumProperty;
             static String InEnum(Signed value);
             static String InNonBlittableStruct(NonBlittableStruct value);
+
+            static void TakeBase(Base base);
+
         }
         //namespace Structs
         //
@@ -358,4 +364,42 @@ namespace test_component
         //       }
         //   }
         //}
+
+        unsealed runtimeclass Base {
+            protected Base();
+
+            overridable void OnDoTheThing();
+
+            void DoTheThing();
+        };
+
+        unsealed runtimeclass BaseNoOverrides {
+            protected BaseNoOverrides();
+        }
+
+        runtimeclass Derived : Base {
+            Derived();
+
+            Int32 Prop;
+        };
+
+        unsealed runtimeclass UnsealedDerived : Base {
+            protected UnsealedDerived();
+
+            Int32 Prop;
+
+            overridable void OnBeforeDoTheThing();
+            [
+            overridable_name("test_component.IUnsealedDerivedOverloads2")
+            ]
+            {
+                overridable void OnAfterDoTheThing();
+            }
+        };
+
+        unsealed runtimeclass UnsealedDerived2 : UnsealedDerived {
+            protected UnsealedDerived2();
+
+            void Method();
+        }
     }

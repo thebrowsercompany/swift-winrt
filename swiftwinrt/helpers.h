@@ -339,6 +339,12 @@ namespace swiftwinrt
         return bases;
     }
 
+    template <typename T>
+    inline bool is_composable(T const& type)
+    {
+        return has_attribute(type, "Windows.Foundation.Metadata", "ComposableAttribute");
+    }
+
     struct interface_info
     {
         TypeDef type;
@@ -944,6 +950,38 @@ namespace swiftwinrt
             !members.delegates.empty();
     }
 
+    inline TypeDef get_exclusive_to(TypeDef const& type)
+    {
+        auto attribute = get_attribute(type, metadata_namespace, "ExclusiveToAttribute");
+        assert(attribute);
+
+        auto class_name = get_attribute_value<ElemSig::SystemType>(attribute, 0).name;
+        return type.get_cache().find_required(class_name);
+    }
+    
+    inline std::optional<factory_info> try_get_factory_info(TypeDef const& type)
+    {
+        auto attribute = get_attribute(type, metadata_namespace, "ExclusiveToAttribute");
+
+        if (!attribute)
+        {
+            return {};
+        }
+        writer temp;
+        auto interface_name = temp.write_temp("%", type);
+        auto class_name = get_attribute_value<ElemSig::SystemType>(attribute, 0).name;
+        auto class_type = type.get_cache().find_required(class_name);
+
+        auto factories = get_factories(temp, class_type);
+        auto search = factories.find(interface_name);
+        if (search != factories.end())
+        {
+            return search->second;
+        }
+
+        return {};
+    }
+
     inline bool can_produce(TypeDef const& type, cache const& c)
     {
         auto attribute = get_attribute(type, metadata_namespace, "ExclusiveToAttribute");
@@ -1010,7 +1048,7 @@ namespace swiftwinrt
 
     inline std::string get_swift_name(interface_info const& iface)
     {
-        return iface.is_default && !iface.base ? "interface" : std::string("_").append(iface.type.TypeName());
+        return iface.is_default && !iface.base ? "_default" : std::string("_").append(iface.type.TypeName());
     }
 
     inline std::string_view put_in_backticks_if_needed(std::string_view const& name)
@@ -1195,5 +1233,57 @@ namespace swiftwinrt
     inline std::string get_full_type_name(TypeDef const& type)
     {
         return get_full_type_name<TypeDef>(type);
+    }
+
+    inline std::string_view get_full_type_name(generic_inst const& type)
+    {
+        return type.swift_full_name();
+    }
+
+    template<typename T>
+    inline TypeDef find_required(T const& type, std::string_view typeName)
+    {
+        return type.get_cache().find_required(typeName);
+    }
+
+    template<>
+    inline TypeDef find_required(coded_index<TypeDefOrRef> const& type, std::string_view typeName)
+    {
+        if (type.type() == TypeDefOrRef::TypeRef)
+        {
+            return find_required(type.TypeRef(), typeName);
+        }
+        else if (type.type() == TypeDefOrRef::TypeDef)
+        {
+            return find_required(type.TypeDef(), typeName);
+        }
+        else
+        {
+            XLANG_ASSERT(false);
+            return {};
+        }
+    }
+    template<>
+    inline TypeDef find_required(generic_inst const& type, std::string_view typeName)
+    {
+        return find_required(type.generic_type()->type(), typeName);
+    }
+
+    template<>
+    inline TypeDef find_required(metadata_type const& type, std::string_view typeName)
+    {
+        if (auto typedefBase = dynamic_cast<const typedef_base*>(&type))
+        {
+            return find_required(typedefBase->type(), typeName);
+        }
+        else if (auto genericInst = dynamic_cast<const generic_inst*>(&type))
+        {
+            return find_required(genericInst->generic_type()->type(), typeName);
+        }
+        else
+        {
+            assert(false);
+            return {};
+        }
     }
 }

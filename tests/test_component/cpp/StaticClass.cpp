@@ -37,4 +37,9 @@ namespace winrt::test_component::implementation
 
         return result;
     }
+
+    void StaticClass::TakeBase(test_component::Base const& base)
+    {
+        base.DoTheThing();
+    }
 }

@@ -178,6 +178,16 @@ namespace swiftwinrt
         };
     }
 
+    template <typename T>
+    auto bind_wrapper_fullname(T const& type)
+    {
+        return [&](writer& w)
+        {
+            auto full_type_names = w.push_full_type_names(true);
+            write_wrapper_name(w, type);
+        };
+    }
+
     auto bind_event_delegate_wrapper_fullname(Event const& event)
     {
         return [&](writer& w)
@@ -237,7 +247,16 @@ namespace swiftwinrt
             {
                 if (field.Constant())
                 {
-                    w.write(format, get_swift_name(field), get_full_swift_type_name(w, type), type, field.Name());
+                    // this enum is not written by our ABI tool, so it doesn't use a mangled name
+                    if (get_full_type_name(type) == "Windows.Foundation.Collections.CollectionChange")
+                    {
+                        w.write(format, get_swift_name(field), get_full_swift_type_name(w, type), type, field.Name());
+                    }
+                    else
+                    {
+                        // we use mangled names for enums because otherwise the WinAppSDK enums collide with the Windows ones
+                        w.write(format, get_swift_name(field), get_full_swift_type_name(w, type), bind_type_abi(type), field.Name());
+                    }
                 }
             }
         }
@@ -269,7 +288,7 @@ namespace swiftwinrt
         auto category = get_category(type, &actual_type);
         if (category == param_category::object_type || category == param_category::enum_type)
         {
-            if (actual_type == TypeDef{}) { return false; }
+            if (actual_type == TypeDef{}) { return true; }
             if (!can_write(w, actual_type))
             {
                 return false;
@@ -579,6 +598,9 @@ namespace swiftwinrt
 
     static void write_convert_to_abi_arg(writer& w, std::string_view const& param_name, TypeSig const& type, bool is_out)
     {
+        TypeDef signature_type;
+        auto category = get_category(type, &signature_type);
+
         if (std::holds_alternative<GenericTypeIndex>(type.Type()))
         {
             auto genericTypeIndex = std::get<GenericTypeIndex>(type.Type());
@@ -599,13 +621,16 @@ namespace swiftwinrt
                 break;
             }
         }
-        else if (is_interface(type) || is_delegate(type))
+        else if (category == param_category::object_type)
         {
-            w.write("_%", param_name);
-        }
-        else if (is_class(type))
-        {
-            w.write("RawPointer(%.interface)", param_name);
+            if (is_interface(type) || is_delegate(type))
+            {
+                w.write("_%", param_name);
+            }
+            else
+            {
+                w.write("RawPointer(%)", param_name);
+            }
         }
         else if (is_type_blittable(type))
         {
@@ -621,7 +646,6 @@ namespace swiftwinrt
         }
         else
         {
-            auto category = get_category(type);
             if (category == param_category::string_type)
             {
                 if (!is_out)
@@ -860,13 +884,13 @@ namespace swiftwinrt
                     auto signature_category = get_category(signature_type);
                     if (signature_category == category::interface_type)
                     {
-                        w.write("%(%)",
-                            bind_impl_name(signature_type),
+                        w.write("%.unwrap_from(abi: %)",
+                            bind_wrapper_fullname(signature_type),
                             name);
                     }
                     else if (signature_category == category::class_type)
                     {
-                        w.write(".init(.init(%))", name);
+                        w.write(".from(abi: %)", name);
                     }
                     else if (signature_category == category::delegate_type)
                     {
@@ -903,7 +927,9 @@ namespace swiftwinrt
         {
             if (is_interface(type))
             {
-                w.write("%(%)", bind_impl_name(signature_type), name);
+                w.write("%.unwrap_from(abi: %)",
+                    bind_wrapper_fullname(signature_type),
+                    name);
             }
             else if (is_delegate(type))
             {
@@ -916,15 +942,10 @@ namespace swiftwinrt
                     w.write("%.try_unwrap_from(abi: %)", bind_wrapper_name(signature_type), name);
                 }
             }
-            else if (auto default_interface = get_default_interface(type))
+            else if (is_class(type))
             {
-                auto [ns, default_interface_name] = get_type_namespace_and_name(default_interface);
-                auto format = ".init(%.%(%%))";
-                w.write(format,
-                    abi_namespace(ns),
-                    default_interface_name,
-                    w.consume_types ? "consuming: " : "",
-                    name);
+                auto format = "%.from(abi: %)";
+                w.write(format, get_full_swift_type_name(w, signature_type), name);
             }
             else
             {
@@ -1085,19 +1106,33 @@ bind<write_abi_args>(signature));
 
     static void do_write_interface_abi(writer& w, TypeDef const& type)
     {
-        const bool internal = can_mark_internal(type);
+        auto factory_info = try_get_factory_info(type);
+        const bool is_composable_factory = factory_info.has_value() && factory_info.value().composable;
 
-        auto format = R"(% class %: %.IInspectable {
+        if (is_exclusive(type) && !can_write(w, get_exclusive_to(type)))
+        {
+            return;
+        }
+        const bool internal = is_composable_factory || can_mark_internal(type);
+        auto format = R"(% class %: %.IInspectable% {
 )";
         w.write(format,
             internal ? "internal" : "open",
             type,
-            w.support);
+            w.support,
+            is_composable_factory ? ", ComposableActivationFactory": "");
 
+        if (is_composable_factory)
+        {
+            auto overrides_format = "    internal typealias Composable = %.Composable\n\n";
+            w.write(overrides_format, get_full_swift_type_name(w, get_exclusive_to(type)));
+        }
+      
         auto abi_guard = w.push_abi_types(true);
 
         auto iid_format = "    override public class var IID: IID { IID_% }\n\n";
         w.write(iid_format, type);
+
 
         auto format_method = R"(    % func %Impl(%) throws %{
 %    }
@@ -1111,9 +1146,12 @@ bind<write_abi_args>(signature));
             {
                 method_signature signature{ method };
                 auto guard = w.push_abi_types(true);
+                // Composable factories have to have the method be called CreateInstanceImpl, even if the
+                // metadata format specifies something else.
+                auto func_name = is_composable_factory ? "CreateInstance" : get_abi_name(method);
                 w.write(format_method,
-                    internal || is_exclusive(type) ? "internal" : "open",
-                    get_abi_name(method),
+                     internal || is_exclusive(type) ? "internal" : "open",
+                    func_name,
                     bind<write_params>(signature),
                     bind<write_return_type_declaration>(signature),
                     bind<write_abi_func_body>(type, method));
@@ -1370,7 +1408,7 @@ class % : WinRTWrapperBase<%, %> {
                 {
                     assert(!param.Flags().In());
                     assert(param.Flags().Out());
-                    w.write("var %: %",
+                    w.write("var %: %\n",
                         get_swift_name(param), 
                         bind<write_init_val>(param_signature->Type()));
                 }
@@ -1390,16 +1428,7 @@ class % : WinRTWrapperBase<%, %> {
         auto consume_types = w.push_consume_types(true);
         TypeDef signature_type{};
         auto category = get_category(return_type, &signature_type);
-        if (is_interface(return_type))
-        {
-            w.write("if let _% = %.%.try_unwrap_from(abi: %) { return _% } \n",
-                signature.return_param_name(),
-                abi_namespace(signature_type),
-                bind_wrapper_name(signature_type),
-                signature.return_param_name(),
-                signature.return_param_name());
-        }
-        else if (is_delegate(return_type))
+        if (is_delegate(return_type))
         {
             w.write("let _% = %.%.try_unwrap_from(abi: %)\n",
                 signature.return_param_name(),
@@ -1448,7 +1477,8 @@ class % : WinRTWrapperBase<%, %> {
         super.init(abi, Foundation.Impl.IPropertyValueImpl(value: value))
     }
 
-    public init(impl: Foundation.IPropertyValue) {
+    public init?(impl: Foundation.IPropertyValue?) {
+        guard let impl = impl else { return nil }
         let abi = withUnsafeMutablePointer(to: &IPropertyValueVTable) {
             __x_ABI_CWindows_CFoundation_CIPropertyValue(lpVtbl: $0)
         }
@@ -1525,36 +1555,12 @@ class % : WinRTWrapperBase<%, %> {
         // }
 
         w.write(R"(
-public class %: WinRTWrapperBase<%, %> {
-    override public class var IID: IID { IID_% }
-            
-    public init?(impl: %?) {
-        guard let impl = impl else { return nil }
-        // try to see if already wrapping an ABI pointer and if so, use that
-        if let internalImpl = impl as? % {
-            let abi = try? internalImpl.interface.perform(as: %.self) { $0.pointee }
-            guard let abi = abi else { return nil }
-            super.init(abi, impl)
-        } else {
-            let abi = withUnsafeMutablePointer(to: &%VTable) {
-                %(lpVtbl: $0)
-            }
-            super.init(abi, impl)
-        }
-    }
-}
+public typealias % = InterfaceWrapperBase<%>
 )",
-bind_wrapper_name(type), // internal class %
-bind_type_abi(type), // WinRTWrapperBase<%
-get_full_swift_type_name(w, type), // , %>
-bind_type_abi(type),// override class var IID: IID { IID_% }
-get_full_swift_type_name(w, type), // init?(impl: %?)
-bind_impl_fullname(type), // if let internalImpl = impl as? %
-bind_type_abi(type), // let abi = try! internalImpl.perform(as: %
-type, // let abi = withUnsafeMutablePointer(to: &%VTable
-bind_type_abi(type) //%(lpVtbl: $0)
-);
+bind_wrapper_name(type),
+bind_impl_fullname(type));
     }
+
     static void write_class_impl_func(writer& w, winmd::reader::MethodDef method, interface_info const& iface);
     static void write_class_impl_property(writer& w, winmd::reader::Property prop, interface_info const& iface);
     static void write_class_impl_event(writer& w, winmd::reader::Event event, interface_info const& iface);
@@ -1631,6 +1637,7 @@ bind_type_abi(type) //%(lpVtbl: $0)
 
 )");
     }
+
     static void write_interface_impl(writer& w, TypeDef const& type)
     {
         if (is_exclusive(type) || !can_write(w, type)) return;
@@ -1641,21 +1648,29 @@ bind_type_abi(type) //%(lpVtbl: $0)
             return;
         }
 
-        auto format = "public class %Impl : % {\n";
-        w.write(format, type, type);
+        auto format = "public class % : %, AbiInterfaceImpl {\n";
+        w.write(format, bind_impl_name(type), type);
         {
             {
                 auto indent = w.push_indent({ 1 });
-                w.write("public var interface: %.%\n", abi_namespace(type), type);
-                separator s{ w, "\n" };
-                w.write(R"(public init(_ fromAbi: UnsafeMutablePointer<%>?) {
-    interface = %.%(fromAbi)
+                w.write(R"(public typealias c_ABI = %
+public typealias swift_ABI = %.%
+public typealias swift_Projection = %
+private (set) public var _default: swift_ABI
+public static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {
+    return %(abi)
+}
+public init(_ fromAbi: UnsafeMutablePointer<c_ABI>?) {
+    _default = swift_ABI(fromAbi)
 }
 )",
-bind_type_abi(type),
-abi_namespace(type),
-type);
 
+                    bind_type_abi(type),
+                    abi_namespace(type),
+                    type,
+                    type,
+                    bind_impl_name(type));
+            
             }
 
             interface_info info{ type };
@@ -1675,7 +1690,7 @@ type);
 
                 if (!info.is_default || info.base)
                 {
-                    w.write("    internal lazy var %: %.% = try! interface.QueryInterface()\n",
+                    w.write("    internal lazy var %: %.% = try! _default.QueryInterface()\n",
                         get_swift_name(info),
                         abi_namespace(info.type),
                         info.type.TypeName());
@@ -2031,7 +2046,11 @@ type);
                 func_name,
                 bind<write_implementation_args>(signature));
         }
-        w.write("interface = %.%(consuming: %)\n", abi_namespace(type), default_interface, signature.return_param_name());
+        w.write("_default = %.%(consuming: %)\n", abi_namespace(type), default_interface, signature.return_param_name());
+        if (auto base_class = get_base_class(type))
+        {
+            w.write("super.init(fromAbi: try! _default.QueryInterface())\n");
+        }
     }
 
     static void write_factory_constructors(writer& w, TypeDef const& factory, TypeDef const& type, coded_index<TypeDefOrRef> const& default_interface)
@@ -2062,26 +2081,99 @@ get_full_type_name(type));
                     );
             }
         }
+        else
+        {
+            auto base_class = get_base_class(type);
+            auto base_class_init = base_class ? "\n        super.init(fromAbi: try! _default.QueryInterface())" : "";
+                w.write(R"^-^(    %public init() {
+        try! _default = RoActivateInstance(HString("%"))%
+    }
+
+)^-^", base_class ? "override " : "",
+get_full_type_name(type), base_class_init);
+
+        }
         
+    }
+
+    static void write_composable_constructor(writer& w, TypeDef const& factory, TypeDef const& type)
+    {
+        // this factory doesn't have any constructor, don't generate methods. this is a pattern done
+        // by the Microsoft.UI.Composition types where they don't want the app to derive from their types,
+        // but they do provide a hierarchy
+        if (!factory.MethodList().first)
+        {
+            return;
+        }
+        w.write("    private static var _% : %.% =  try! RoGetActivationFactory(HString(\"%\"))\n",
+            factory,
+            abi_namespace(factory),
+            factory, 
+            get_full_type_name(type));
+
+        auto base_class = get_base_class(type);
+        if (!base_class)
+        {
+            auto base_composable_init = R"(    public init() {
+        self._default = MakeComposed(Self._%, &_inner, self)
+    }
+
+    public init<Factory: ComposableActivationFactory>(_ factory : Factory) {
+        self._default = try! MakeComposed(factory, &_inner, self as! Factory.Composable.Default.swift_Projection).QueryInterface()
+        _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
+    }
+)";
+            w.write(base_composable_init, factory);
+        }
+        else
+        {
+            auto override_composable_init = R"(    override public init() {
+        super.init(Self._%) 
+        let parentDefault: UnsafeMutablePointer<%>? = super._get_abi()
+        self._default = try! IInspectable(parentDefault).QueryInterface()
+        _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
+    }
+
+    override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
+        super.init(factory)
+        let parentDefault: UnsafeMutablePointer<%>? = super._get_abi()
+        self._default = try! IInspectable(parentDefault).QueryInterface()
+        _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
+    }
+)";
+            w.write(override_composable_init, factory, bind_type_abi(ElementType::Object), bind_type_abi(ElementType::Object));
+        }
     }
 
     static void write_default_constructor_declarations(writer& w, TypeDef const& type, coded_index<TypeDefOrRef> const& default_interface)
     {
         auto [ns, name] = get_type_namespace_and_name(default_interface);
-        w.write(R"^-^(    public init() {
-        try! interface = RoActivateInstance(HString("%"))
+        auto base_class = get_base_class(type);
+        bool composable = is_composable(type);
+
+        // We unwrap composable types to try and get to any derived type. If not composable, then create a new
+        // instance
+        auto from_abi = composable ? "UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi!)" :
+            ".init(fromAbi: .init(abi))";
+
+        w.write(R"(    public static func from(abi: UnsafeMutablePointer<%>?) -> % {
+         %
     }
+)",
+bind_type_abi(default_interface),
+type,
+from_abi);
 
-)^-^",
-get_full_type_name(type));
-
-            w.write(R"^-^(    public init(_ fromInterface: %.%) {
-        interface = fromInterface
+       
+        auto base_class_init = base_class ? "\n        super.init(fromAbi: try! _default.QueryInterface())" : "";
+        w.write(R"^-^(    internal init(fromAbi: %.%) {
+        _default = fromAbi%
     }
 
 )^-^",
     abi_namespace(ns),
-                name);
+                name,
+                base_class_init);
 
     }
 
@@ -2242,30 +2334,22 @@ get_full_type_name(type));
             return;
         }
 
-        auto format = R"(public func %(%) %{
+        auto format = R"(% func %(%) %{
 %}
 
 )";
         method_signature signature{ method };
-       // auto full_type_name_guard = w.push_full_type_names(true);
 
         auto return_sig = signature.return_signature();
         auto guard = w.push_indent(indent{ 1 });
         w.write(format,
+                iface.overridable ? "open" : "public",
             get_swift_name(method),
             bind<write_params>(signature),
             bind<write_return_type_declaration>(signature),
             bind<write_class_func_body>(method, iface));
     }
     
-    static void write_equatable(writer& w, std::string_view const& type_name) {
-      auto format =  R"(    public static func == (_ lhs: %, _ rhs: %) -> Bool {
-        return lhs.interface == rhs.interface
-    }
-)";
-      w.write(format, type_name, type_name);
-    }
-
     static void write_event_registrar_name(writer& w, winmd::reader::Event event)
     {
         w.write("%Registrar", event.Name());
@@ -2416,29 +2500,163 @@ bind<write_statics_body>(method, statics.type, type)
         }
     }
 
+    static void write_composable_impl(writer& w, TypeDef const& parent, TypeDef const& overrides, bool compose)
+    {
+        auto default_interface = get_default_interface(parent);
+        if (!default_interface)
+        {
+            throw_invalid("Could not find default interface for %s\n", parent.TypeName().data());
+        }
+
+        bool use_iinspectable_vtable = type_name(overrides) == type_name(default_interface);
+
+        auto format = R"(    internal class % : ComposableImpl {
+        internal typealias c_ABI = %
+        internal typealias swift_ABI = %
+        internal class Default : MakeComposedAbi {
+            internal typealias swift_Projection = %
+            internal typealias c_ABI = %
+            internal typealias swift_ABI = %.%
+            internal static func from(abi: UnsafeMutableRawPointer?) -> swift_Projection {
+                .init(fromAbi: .init(abi!))
+            }
+        }
+    }
+)";
+
+        // If we're composing a type without any overrides, then we'll just create an IInspectable vtable which wraps
+        // this object and provides facilities for reference counting and getting the class name of the swift object.
+        w.write(format,
+            overrides.TypeName(),
+            bind([&](writer& w) {
+                if (use_iinspectable_vtable)
+                {
+                    write_type_abi(w, ElementType::Object);
+                }
+                else
+                {
+                    write_type_abi(w, overrides);
+                }}), 
+                bind([&](writer& w) {
+                    if (use_iinspectable_vtable)
+                    {
+                        w.write(ElementType::Object);
+                    }
+                    else
+                    {
+                        w.write("%.%", abi_namespace(overrides), overrides.TypeName());
+                    }}),
+            parent,
+            bind_type_abi(default_interface),
+            abi_namespace(parent),
+            default_interface);
+
+        if (compose)
+        {
+            w.write("    internal typealias Composable = %\n", overrides.TypeName());
+            w.write("    %public class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }\n",
+                get_base_class(parent) ? "override " : "");
+
+        }
+    }   
+
+    static void write_class_interface_impl(writer& w, interface_info const& info)
+    {
+        if (info.overridable)
+        {
+            // when implementing default overrides, we want to call to the inner non-delegating IUnknown
+            // as this will get us to the inner object. otherwise we'll end up with a stack overflow 
+            // because we'll be calling the same method on ourselves
+            w.write("    internal lazy var %: %.% = try! IUnknown(_inner).QueryInterface()\n",
+                get_swift_name(info),
+                abi_namespace(info.type),
+                info.type.TypeName());
+
+        }
+        else if (!info.is_default)
+        {
+            w.write("    internal lazy var %: %.% = try! _default.QueryInterface()\n",
+                get_swift_name(info),
+                abi_namespace(info.type),
+                info.type.TypeName());
+        }
+
+        for (auto&& method : info.type.MethodList())
+        {
+            write_class_impl_func(w, method, info);
+        }
+
+        for (auto&& prop : info.type.PropertyList())
+        {
+            write_class_impl_property(w, prop, info);
+        }
+
+        for (auto&& event : info.type.EventList())
+        {
+            write_class_impl_event(w, event, info);
+        }
+
+
+    }
     static void write_class_impl(writer& w, TypeDef const& type)
     {
         if (!can_write(w, type)) return;
 
         auto default_interface = get_default_interface(type);
         auto typeName = type.TypeName();
+        
+        auto base_class = get_base_class(type);
+        bool composable = is_composable(type);
+        auto modifier = composable ? "open" : "public final";
 
-        if (default_interface)
+        if (base_class)
         {
-            w.write("public class %: Equatable {\n", typeName);
+            w.write("% class %: % {\n", modifier, typeName, get_full_swift_type_name(w, base_class));
+        }
+        else if (default_interface)
+        {
+            auto base_class = composable ? "UnsealedWinRTClass" : "WinRTClass";
+            w.write("% class %: % {\n", modifier, typeName, base_class);
         }
         else
         {
-            w.write("public class % {\n", typeName);
+            w.write("public final class % {\n", typeName);
+        }
+
+        if (composable && !base_class)
+        {
+            w.write("    private (set) public var _inner: UnsafeMutablePointer<%.IInspectable>?\n", w.c_mod);
         }
 
         if (default_interface)
         {
             auto [ns, name] = get_type_namespace_and_name(default_interface);
-            w.write("    public var interface: %.%\n\n", abi_namespace(ns), name);
+            w.write(R"(    private typealias swift_ABI = %.%
+    private typealias c_ABI = %
+    private var _default: swift_ABI = .init(UnsafeMutableRawPointer.none)
+    % func _get_abi<T>() -> UnsafeMutablePointer<T>? {
+        if T.self == c_ABI.self {
+            return RawPointer(_default)
+        }   
+        if T.self == %.IInspectable.self {
+            return RawPointer(_default)
+        }
+        return %
+    }
+
+)",
+            abi_namespace(ns), 
+            name,
+            bind_type_abi(default_interface),
+                base_class ? 
+                            composable ? "override open" : 
+                                         "override public" :
+                            composable ? "open" :
+                                         "public",
+                w.c_mod,
+                base_class ? "super._get_abi()" : "nil");
             write_default_constructor_declarations(w, type, default_interface);
         }
-
         for (auto&& [interface_name, factory] : get_attributed_types(type))
         {
             if (factory.activatable)
@@ -2450,47 +2668,95 @@ bind<write_statics_body>(method, statics.type, type)
             {
                 write_static_methods(w, factory, type);
             }
+
+            if (factory.composable)
+            {
+                write_composable_constructor(w, factory.type, type);
+            }
         }
 
+        bool has_overrides = false;
         for (auto&& [interface_name, info] : get_interfaces(w, type))
         {
             if (!can_write(w, info.type)) { continue; }
 
-            if (!info.is_default || info.base)
+            // Don't reimplement P/M/E for interfaces which are implemented on a base class
+            if (!info.base)
             {
-                w.write("    internal lazy var %: %.% = try! interface.QueryInterface()\n",
-                    get_swift_name(info),
-                    abi_namespace(info.type),
-                    info.type.TypeName());
+                write_class_interface_impl(w, info);
+            }
+          
+            // Generate definitions for how to compose overloads and create wrappers of this type.
+            if (info.overridable && !info.base)
+            {
+                // the very first override is the one we use for composing the class and can respond to QI
+                // calls for all the other overloads
+                const bool compose = !has_overrides;
+                write_composable_impl(w, type, info.type, compose);
+                has_overrides = true;
+            }
+            else if (info.overridable && info.base && !has_overrides)
+            {
+                // This unsealed class doesn't have an overridable interface of it's own, so use the first base
+                // interface we come across for the composable implementation. This is used by the factory method
+                // when we are creating an aggregated type and enables the app to override the base class methods
+                // on this type
+                const bool compose = true;
+                write_composable_impl(w, type, info.type, compose);
+                has_overrides = true;
             }
 
-            for (auto&& method : info.type.MethodList())
-            {
-                write_class_impl_func(w, method, info);
-            }
-
-            for (auto&& prop : info.type.PropertyList())
-            {
-                write_class_impl_property(w, prop, info);
-            }
-
-            for (auto&& event : info.type.EventList())
-            {
-                write_class_impl_event(w, event, info);
-            }
         }
 
-        if (default_interface)
+        if (composable && !has_overrides && default_interface)
         {
-            write_equatable(w, typeName);
+            auto default_type = find_required(default_interface);
+            write_composable_impl(w, type, default_type, true);
         }
-
         w.write("}\n\n");
     }
 
     static void write_class(writer& w, TypeDef const& type)
     {
         write_class_impl(w, type);
+    }
+
+    static void write_initializable_interface(writer& w, TypeDef const& type)
+    {
+        w.write(R"(extension % : Initializable {
+    public init() {
+        let vtblPtr = withUnsafeMutablePointer(to: &%.%VTable) { $0 }
+        self.init(lpVtbl: vtblPtr)
+    }
+}
+)", bind_type_abi(type),
+abi_namespace(type),
+type);
+    }
+
+    static void write_initializable_overrides(writer& w, TypeDef const& type)
+    {
+        if (!is_composable(type))
+        {
+            return;
+        }
+
+        for (auto&& [interface_name, info] : get_interfaces(w, type))
+        {
+            if (!info.overridable || info.base) { continue; }
+
+            write_initializable_interface(w, info.type);
+        }
+    }
+
+    static void write_initializable_implementable(writer& w, TypeDef const& type)
+    {
+        if (!can_write(w, type) || is_exclusive(type))
+        {
+            return;
+        }
+
+        write_initializable_interface(w, type);
     }
 
     static void write_struct_initializer_params(writer& w, TypeDef const& type)
@@ -2575,7 +2841,8 @@ bind<write_statics_body>(method, statics.type, type)
         w.write("}\n\n");
     }
 
-    static void write_iunknown_methods(writer& w, TypeDef const& type)
+    template <typename T>
+    static void write_iunknown_methods(writer& w, T const& type, get_interfaces_t const& interfaces, bool composed = false)
     {
         w.write(R"(QueryInterface: {
     guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
@@ -2584,9 +2851,8 @@ bind<write_statics_body>(method, statics.type, type)
           riid.pointee == IInspectable.IID || 
           riid.pointee == ISwiftImplemented.IID ||
           riid.pointee == IIAgileObject.IID ||
-          riid.pointee == %.%.IID else { 
-        ppvObject.pointee = nil
-        return E_NOINTERFACE
+          riid.pointee == %.IID else { 
+        %
     }
     _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
@@ -2594,31 +2860,60 @@ bind<write_statics_body>(method, statics.type, type)
 },
 
 )",
-    bind([&](writer& w) {
-                auto format = R"(if riid.pointee == %.%.IID {
-    guard let instance = %.try_unwrap_from(raw: pUnk) else { return E_NOINTERFACE }
-    guard let inner = %.%(impl: instance) else { return E_INVALIDARG }
-    return withUnsafeMutablePointer(to: &inner.instance.comInterface) { pThis in 
-        pThis.pointee.lpVtbl.pointee.QueryInterface(pThis, riid, ppvObject)
-    }
+bind([&](writer& w) {
+                auto format = R"(if riid.pointee == %.IID {
+    guard let instance = %.try_unwrap_from(raw: pUnk)% else { return E_NOINTERFACE }
+    guard let inner = %(impl: instance) else { return E_INVALIDARG }
+    let pThis = try! inner.to_abi { $0 }
+    return pThis.pointee.lpVtbl.pointee.QueryInterface(pThis, riid, ppvObject)
 }
 )";
-    for (auto&& iface : get_interfaces(w, type))
-    {
-        // TODO: https://linear.app/the-browser-company/issue/WIN-103/swiftwinrt-write-iasyncinfo
-        if (iface.first.ends_with("IAsyncInfo")) continue;
-        bool is_property_value = iface.first == "Windows.Foundation.IPropertyValue";
-        w.write(format,
-            abi_namespace(iface.second.type), // if riid.pointee == %
-            bind_wrapper_name(iface.second.type), // .%
-            bind_wrapper_name(type), // guard let instance = %
-            abi_namespace(iface.second.type), // let inner = %
-            bind_wrapper_name(iface.second.type) // %.
-        );
+                type_name typeName(type);
+                // workaround right now for the fact that if the relationship isn't specified in metadata
+                
+                if (typeName.name == "IApplicationOverrides" && typeName.name_space == "Microsoft.UI.Xaml")
+                {
+                    auto metadata_provider = swiftwinrt::find_required(type, "Microsoft.UI.Xaml.Markup.IXamlMetadataProvider");
+                    auto cast = w.write_temp(" as? %", metadata_provider);
 
-    }}),
-    abi_namespace(type),
-    bind_wrapper_name(type));    
+                    w.write(format,
+                        bind_wrapper_fullname(metadata_provider), // if riid.pointee == %
+                        bind_wrapper_name(type), // guard let instance = %
+                        cast,
+                        bind_wrapper_fullname(metadata_provider)); // let inner = %
+                }
+                for (auto&& iface : interfaces)
+                {
+                    // TODO: https://linear.app/the-browser-company/issue/WIN-103/swiftwinrt-write-iasyncinfo
+                    if (iface.first.ends_with("IAsyncInfo")) continue;
+                    bool is_property_value = iface.first == "Windows.Foundation.IPropertyValue";
+                    w.write(format,
+                        bind_wrapper_fullname(iface.second.type), // if riid.pointee == %
+                        bind_wrapper_name(type), // guard let instance = %
+                        "", // no casting
+                        bind_wrapper_fullname(iface.second.type) // let inner = %
+                    );
+
+                   
+                }}),
+            bind_wrapper_fullname(type),
+            bind([&](writer & w) {
+               if (!composed)
+               {
+                        w.write(R"(ppvObject.pointee = nil
+                return E_NOINTERFACE
+)");
+               }
+               else
+               {
+                   w.write(R"(    guard let instance = %.try_unwrap_from(raw: $0),
+                    let inner = instance._inner else { return E_INVALIDARG }
+                
+            return inner.pointee.lpVtbl.pointee.QueryInterface(inner, riid, ppvObject)
+)", bind_wrapper_name(type));
+               }
+            })
+    );
 
         w.write(R"(AddRef: {
      guard let wrapper = %.from_raw($0) else { return 1 }
@@ -2642,130 +2937,13 @@ bind<write_statics_body>(method, statics.type, type)
 
     static void write_iunknown_methods(writer& w, generic_inst const& type)
     {
-        w.write(R"(QueryInterface: {
-    guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-%
-    guard riid.pointee == IUnknown.IID ||
-          riid.pointee == IInspectable.IID || 
-          riid.pointee == ISwiftImplemented.IID ||
-          riid.pointee == IIAgileObject.IID ||
-          riid.pointee == %.IID else { 
-        ppvObject.pointee = nil
-        return E_NOINTERFACE
-    }
-    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-    return S_OK
-},
-
-)",
-bind([&](writer& w) {
-                auto format = R"(   if riid.pointee == %.%.IID {
-        guard let instance = %.try_unwrap_from(raw: pUnk) as? % else { return E_NOINTERFACE }
-        let inner = %.%(impl: instance)
-        return withUnsafeMutablePointer(to: &inner.instance.comInterface) { pThis in 
-            pThis.pointee.lpVtbl.pointee.QueryInterface(pThis, riid, ppvObject)
-        }
-    }
-)";
-                for (auto&& iface : get_interfaces(w, type.generic_type()->type()))
-                {
-                    // TODO: https://linear.app/the-browser-company/issue/WIN-103/swiftwinrt-write-iasyncinfo
-
-                    if (iface.first.ends_with("IAsyncInfo")) continue;
-
-                    w.write(format,
-                        abi_namespace(iface.second.type), // if riid.pointee == %
-                        bind_wrapper_name(iface.second.type), // .%
-                       bind_wrapper_name(type), // guard let instance = %
-                        bind_impl_name(iface.second.type), // .try_unwrap_from(raw: pUnk) as? %
-                        abi_namespace(iface.second.type), // let inner = %
-                        bind_wrapper_name(iface.second.type) // %.
-                    );
-
-                }}),
-                   bind_wrapper_name(type));
-
-        w.write(R"(AddRef: {
-     guard let wrapper = %.from_raw($0) else { return 1 }
-     _ = wrapper.retain()
-     return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
-},
-
-)",
-bind_wrapper_name(type)
-);
-
-        w.write(R"(Release: {
-    guard let wrapper = %.from_raw($0) else { return 1 }
-    return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-},
-
-)",
-bind_wrapper_name(type)
-);
+        auto interfaces = get_interfaces(w, type.generic_type()->type());
+        write_iunknown_methods(w, type, interfaces);
     }
     
-    static void write_iinspectable_methods(writer& w, TypeDef const& type)
+    template <typename T>
+    static void write_iinspectable_methods(writer& w, T const& type, get_interfaces_t const& interfaces, bool composed = false)
     {
-        auto interfaces = get_interfaces(w, type);
-       // 3 interfaces for IUnknown, IInspectable, type.
-        auto interface_count = 3 + interfaces.size();
-        w.write(R"(GetIids: {
-    let size = MemoryLayout<IID>.size
-    let iids = CoTaskMemAlloc(UInt64(size) * %).assumingMemoryBound(to: IID.self)
-    iids[0] = IUnknown.IID
-    iids[1] = IInspectable.IID
-    iids[2] = %.%.IID
-    %
-    $1!.pointee = %
-    $2!.pointee = iids
-    return S_OK
-},
-
-)",
-            interface_count,
-            abi_namespace(type),
-            bind_wrapper_name(type),
-            bind([&](writer& w) {
-                auto format = "iids[%] = %.%.IID\n";
-                auto iface_n = 4;
-                for (auto&& iface : interfaces)
-                {
-                    // TODO: https://linear.app/the-browser-company/issue/WIN-103/swiftwinrt-write-iasyncinfo
-                    if (iface.first.ends_with("IAsyncInfo")) continue;
-
-                    w.write(format,
-                        iface_n++,
-                        abi_namespace(iface.second.type),
-                        bind_wrapper_name(iface.second.type)
-                    );
-                }}),
-            interface_count
-        );
-
-        w.write(R"(GetRuntimeClassName: {
-    _ = $0
-    let hstring = try! HString("%").detach()
-    $1!.pointee = hstring
-    return S_OK
-},
-
-)",
-get_full_type_name(type)
-);
-
-        w.write(R"(GetTrustLevel: {
-    _ = $0
-    $1!.pointee = TrustLevel(rawValue: 0)
-    return S_OK
-})"
-);
-    }
-
-    static void write_iinspectable_methods(writer& w, generic_inst const& type)
-    {
-        auto interfaces = get_interfaces(w, type.generic_type()->type());
         // 3 interfaces for IUnknown, IInspectable, type.
         auto interface_count = 3 + interfaces.size();
         w.write(R"(GetIids: {
@@ -2782,14 +2960,15 @@ get_full_type_name(type)
 
 )",
 interface_count,
-bind_wrapper_name(type),
+bind_wrapper_fullname(type),
 bind([&](writer& w) {
                 auto format = "iids[%] = %.%.IID\n";
                 auto iface_n = 4;
                 for (auto&& iface : interfaces)
                 {
                     // TODO: https://linear.app/the-browser-company/issue/WIN-103/swiftwinrt-write-iasyncinfo
-                    if (iface.first == "Windows.Foundation.IAsyncInfo") continue;
+                    if (iface.first.ends_with("IAsyncInfo")) continue;
+
                     w.write(format,
                         iface_n++,
                         abi_namespace(iface.second.type),
@@ -2799,7 +2978,23 @@ bind([&](writer& w) {
             interface_count
                     );
 
-        w.write(R"(GetRuntimeClassName: {
+        if (composed)
+        {
+            // for composed types, get the swift object and grab the typename
+            w.write(R"(GetRuntimeClassName: {
+    guard let instance = %.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+    let hstring = instance.GetRuntimeClassName().detach()
+    $1!.pointee = hstring
+    return S_OK
+},
+
+)",
+bind_wrapper_name(type)
+);
+        }
+        else
+        {
+            w.write(R"(GetRuntimeClassName: {
     _ = $0
     let hstring = try! HString("%").detach()
     $1!.pointee = hstring
@@ -2807,8 +3002,10 @@ bind([&](writer& w) {
 },
 
 )",
-type.swift_full_name()
+get_full_type_name(type)
 );
+        }
+
 
         w.write(R"(GetTrustLevel: {
     _ = $0
@@ -2816,6 +3013,12 @@ type.swift_full_name()
     return S_OK
 })"
 );
+    }
+
+    static void write_iinspectable_methods(writer& w, generic_inst const& type)
+    {
+        auto interfaces = get_interfaces(w, type.generic_type()->type());
+        write_iinspectable_methods(w, type, interfaces);
     }
     
     static void do_write_abi_val_assignment(writer& w, TypeSig const& type_sig, std::string_view const& param_name, std::string_view const& return_param_name)
@@ -2920,6 +3123,10 @@ type.swift_full_name()
             if (sig.return_signature())
             {
                 s();
+                if (sig.return_signature().Type().is_szarray())
+                {
+                    w.write("_, ");
+                }
                 w.write("_");
             }}));
     }
@@ -2958,9 +3165,9 @@ type.swift_full_name()
         }
 
         w.write(R"(%: {
-    guard let instance = %.%.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+    guard let __unwraped__instance = %.%.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 %
-    %instance.%
+    %__unwraped__instance.%
     %
     return S_OK
 })", 
@@ -3003,9 +3210,9 @@ type.swift_full_name()
         }
 
         w.write(R"(%: {
-    guard let instance = %.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+    guard let __unwraped__instance = %.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 %
-    %instance.%
+    %__unwraped__instance.%
     %
     return S_OK
 })",
@@ -3020,18 +3227,18 @@ bind<write_abi_ret_val>(signature)
 
     static void write_vtable(writer& w, TypeDef const& type)
     {
-        w.write("private static var %VTable: %Vtbl = .init(\n",
+        w.write("fileprivate static var %VTable: %Vtbl = .init(\n",
             type,
             bind_type_abi(type));
         
         {
             auto indent = w.push_indent({ 1 });
-            write_iunknown_methods(w, type);
+            write_iunknown_methods(w, type, get_interfaces(w, type));
             separator s{ w, ",\n\n" };
 
             if (get_category(type) != category::delegate_type)
             {
-                write_iinspectable_methods(w, type);
+                write_iinspectable_methods(w, type, get_interfaces(w, type));
                 s(); // get first separator out of the way for no-op
             }
 
@@ -3049,6 +3256,65 @@ bind<write_abi_ret_val>(signature)
             w.write(R"(
 )
 )");
+    }
+
+
+    static void write_overrides_vtable(writer& w, TypeDef const& type, interface_info const& overrides, get_interfaces_t const& other_interfaces)
+    {
+        w.write("internal typealias % = UnsealedWinRTClassWrapper<%.%>\n",
+            bind_wrapper_name(overrides.type),
+            get_full_swift_type_name(w, type),
+            overrides.type
+        );
+        w.write("fileprivate static var %VTable: %Vtbl = .init(\n",
+            overrides.type,
+            bind_type_abi(overrides.type));
+
+        {
+            auto indent = w.push_indent({ 1 });
+            write_iunknown_methods(w, overrides.type, other_interfaces, true);
+            write_iinspectable_methods(w, overrides.type, other_interfaces, true);
+
+            separator s{ w, ",\n\n" };
+            s(); // get first separator out of the way for no-op
+
+            for (auto&& method : overrides.type.MethodList())
+            {
+                if (method.Name() != ".ctor")
+                {
+                    s();
+                    write_vtable_method(w, method, overrides.type);
+                }
+
+            }
+        }
+
+        w.write(R"(
+)
+)");
+    }
+
+    static void write_class_abi(writer& w, TypeDef const& type)
+    {
+        if (!is_composable(type))
+        {
+            return;
+        }
+
+        get_interfaces_t other_composable_interfaces;
+        auto interfaces = get_interfaces(w, type);
+        for (auto iter = interfaces.rbegin(); iter != interfaces.rend(); iter++)
+        {
+            auto&& [interface_name, info] = *iter;
+            if (!info.overridable) { continue; }
+
+            // Generate definitions for how to compose overloads and create wrappers of this type.
+            if (!info.base)
+            {
+                write_overrides_vtable(w, type, info, other_composable_interfaces);
+            }
+            other_composable_interfaces.push_back(*iter);
+        }
     }
 
 }

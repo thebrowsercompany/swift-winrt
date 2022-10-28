@@ -78,7 +78,7 @@ namespace winmd::reader
             XLANG_ASSERT(false);
             return {};
         }
-    }
+    }   
 
     inline TypeDef find_required(coded_index<TypeDefOrRef> const& type)
     {

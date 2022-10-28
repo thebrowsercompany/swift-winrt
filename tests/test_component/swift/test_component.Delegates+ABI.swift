@@ -11,7 +11,7 @@ private var IID___x_ABI_Ctest__component_CDelegates_CISignalDelegate: IID {
 }
 
 public enum __ABI_test_component_Delegates {
-    private static var InDelegateVTable: __x_ABI_Ctest__component_CDelegates_CIInDelegateVtbl = .init(
+    fileprivate static var InDelegateVTable: __x_ABI_Ctest__component_CDelegates_CIInDelegateVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
 
@@ -21,7 +21,8 @@ public enum __ABI_test_component_Delegates {
                   riid.pointee == IIAgileObject.IID ||
                   riid.pointee == __ABI_test_component_Delegates.InDelegateWrapper.IID else { 
                 ppvObject.pointee = nil
-                return E_NOINTERFACE
+                        return E_NOINTERFACE
+
             }
             _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
             ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
@@ -40,10 +41,10 @@ public enum __ABI_test_component_Delegates {
         },
 
         Invoke: {
-            guard let instance = __ABI_test_component_Delegates.InDelegateWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = __ABI_test_component_Delegates.InDelegateWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let value: String = .init(from: $1)
 
-            instance.handler((value))
+            __unwraped__instance.handler((value))
             
             return S_OK
         }
@@ -58,7 +59,7 @@ public enum __ABI_test_component_Delegates {
             super.init(abi, handler)
         }
     }
-    private static var SignalDelegateVTable: __x_ABI_Ctest__component_CDelegates_CISignalDelegateVtbl = .init(
+    fileprivate static var SignalDelegateVTable: __x_ABI_Ctest__component_CDelegates_CISignalDelegateVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
 
@@ -68,7 +69,8 @@ public enum __ABI_test_component_Delegates {
                   riid.pointee == IIAgileObject.IID ||
                   riid.pointee == __ABI_test_component_Delegates.SignalDelegateWrapper.IID else { 
                 ppvObject.pointee = nil
-                return E_NOINTERFACE
+                        return E_NOINTERFACE
+
             }
             _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
             ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
@@ -87,9 +89,9 @@ public enum __ABI_test_component_Delegates {
         },
 
         Invoke: {
-            guard let instance = __ABI_test_component_Delegates.SignalDelegateWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = __ABI_test_component_Delegates.SignalDelegateWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            instance.handler(())
+            __unwraped__instance.handler(())
             
             return S_OK
         }

@@ -222,7 +222,10 @@ namespace winrt::test_component::implementation
 
         Windows::Foundation::IReference<winrt::guid> ID();
         void ID(Windows::Foundation::IReference<winrt::guid> const& value);
-
+        test_component::Base BaseProperty() { return m_base; }
+        void BaseProperty(test_component::Base const& value) { m_base = value; }
+        test_component::BaseNoOverrides BaseNoOverridesProperty() { return m_baseNoOverrides; }
+        void BaseNoOverridesProperty(test_component::BaseNoOverrides const& value) { m_baseNoOverrides = value; }
     private:
         static float s_float;
         bool m_fail{};
@@ -245,6 +248,9 @@ namespace winrt::test_component::implementation
         test_component::IBasic m_basicImpl{};
         Windows::Foundation::IReference<int32_t> m_startValue{};
         Windows::Foundation::IReference<winrt::guid> m_id{};
+        test_component::Base m_base = test_component::Derived();
+        test_component::BaseNoOverrides m_baseNoOverrides { nullptr };
+
     };
 
     /*

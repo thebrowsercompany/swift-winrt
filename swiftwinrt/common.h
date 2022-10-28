@@ -33,15 +33,10 @@ namespace swiftwinrt
                 for (auto& import : w.depends)
                 {
                     w.write("import %\n", import);
-                    w.write("import C%\n", import);
                 }
-                w.write("import C%\n", module);
             }
-            else
-            {
-                w.write("import C%\n", w.support);
-            }
-
+          
+            w.write("import %\n", w.c_mod);
         }
 
         w.write("\n");

@@ -1,6 +1,47 @@
 import WinSDK
 import test_component
 import Ctest_component
+import Foundation
+
+class AppDerived : Base {
+    // overriding the default initialzer is a simple test so that we don't need to override any
+    // other initializers
+    override init(){ super.init() }
+
+    var count = 0
+    override func OnDoTheThing() {
+        print("we in the app yoooo")
+        count+=1
+    }
+}
+
+class AppDerived2 : UnsealedDerived {
+  var count = 0
+
+  override func OnDoTheThing() {
+      print("pt2: we in the app yoooo")
+      count+=1
+  }
+}
+
+class AppDerived3 : UnsealedDerived2 {
+  var count = 0
+  var beforeCount = 0
+  override func OnDoTheThing() {
+      print("pt3: we in the app yoooo")
+      count+=1
+  }
+
+  override func OnBeforeDoTheThing() {
+    print("before doing it")
+    beforeCount+=1
+  }
+}
+
+class AppDerivedNoOverrides : BaseNoOverrides {
+
+}
+
 
 class SwiftWinRTTests {
   public func TestBlittableStruct()
@@ -100,7 +141,6 @@ class SwiftWinRTTests {
     enumProp = classy.EnumProperty
     print("an", enumProp, "a day keeps the bugs away")
     assert(enumProp == Fruit.Apple, "fruit should be apple")
-    
     print("  ** Test passed! **")
   }
 
@@ -257,7 +297,7 @@ class SwiftWinRTTests {
 
       var EnumProperty: Fruit = .Apple
 
-      var ID: UUID?
+      var ID: WinSDK.UUID?
       func FireEvent() {
         
       }
@@ -489,7 +529,7 @@ class SwiftWinRTTests {
     print("value: ", classy.StartValue ?? "N/A")
     assert(classy.StartValue == 23)
 
-    let id: UUID? = .init(uuidString: "E621E1F8-C36C-495A-93FC-0C247A3E6E5F")
+    let id: WinSDK.UUID? = .init(uuidString: "E621E1F8-C36C-495A-93FC-0C247A3E6E5F")
     classy.ID = id
 
     print("ID: ", classy.ID ?? "00000000-0000-0000-0000-0000000")
@@ -584,6 +624,81 @@ class SwiftWinRTTests {
     assert(static_count == 6)
 
   }
+
+  public func TestAggregation() {
+    print(" ** Starting Test case: TestAggregation **")
+
+    let derived = Derived()
+    derived.DoTheThing()
+
+    let appDerived = AppDerived()
+    print(type(of: appDerived))
+
+    let b: Base = appDerived as Base
+    print(type(of: b))
+
+    appDerived.DoTheThing()
+    assert(appDerived.count == 1, "1. count not expected")
+
+    let appDerived2 = AppDerived2()
+    appDerived2.DoTheThing()
+    assert(appDerived2.count == 1, "2. count not expected")
+
+    let appDerived3 = AppDerived3()
+    appDerived3.DoTheThing()
+    assert(appDerived3.count == 1, "3. count not expected")
+    assert(appDerived3.beforeCount == 1, "4. count not expected")
+
+    StaticClass.TakeBase(appDerived)
+    assert(appDerived.count == 2, "5. count not expected")
+    
+    StaticClass.TakeBase(appDerived2)
+    assert(appDerived2.count == 2, "6. count not expected")
+
+    StaticClass.TakeBase(appDerived3)
+    assert(appDerived3.count == 2, "7. count not expected")
+    assert(appDerived3.beforeCount == 2, "8. count not expected")
+
+
+    print("Testing unwrapping proper types from return values")
+    let classy = Class()
+    var base_returned = classy.BaseProperty
+    assert(type(of: base_returned) == Derived.self)
+
+    print("testing app derived")
+    classy.BaseProperty = appDerived
+
+    base_returned = classy.BaseProperty
+    assert(type(of: base_returned) == AppDerived.self)
+    assert(base_returned === appDerived)
+
+    print("testing app derived2")
+
+    classy.BaseProperty = appDerived2
+
+    base_returned = classy.BaseProperty
+    assert(type(of: base_returned) == AppDerived2.self)
+    assert(base_returned === appDerived2)
+
+    print("testing app derived3")
+
+    classy.BaseProperty = appDerived3
+
+    base_returned = classy.BaseProperty
+    assert(type(of: base_returned) == AppDerived3.self)
+    assert(base_returned === appDerived3)
+
+    print("testing app derived no overrides")
+
+    let derivedNoOverrides = AppDerivedNoOverrides()
+    classy.BaseNoOverridesProperty = derivedNoOverrides
+
+    let baseNoOverrides_returned = classy.BaseNoOverridesProperty
+    assert(type(of: baseNoOverrides_returned) == AppDerivedNoOverrides.self)
+    assert(baseNoOverrides_returned === derivedNoOverrides)
+
+    print("  ** Test passed! **")
+  }
   
 }
 
@@ -604,4 +719,5 @@ tests.TestDoubleDelegate()
 
 tests.TestIReference()
 tests.TestEvents()
+tests.TestAggregation()
 print("all tests passed!")

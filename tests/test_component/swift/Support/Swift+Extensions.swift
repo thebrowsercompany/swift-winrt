@@ -9,7 +9,14 @@ extension String {
     let pwszBuffer: PCWSTR = WindowsGetStringRawBuffer(hString, &length)
     self.init(decoding: UnsafeBufferPointer(start: pwszBuffer, count: Int(length)), as: UTF16.self)
   }
+
+  public init(hString: HString) {
+    var length: UINT32 = 0
+    let pwszBuffer: PCWSTR = WindowsGetStringRawBuffer(hString.get(), &length)
+    self.init(decoding: UnsafeBufferPointer(start: pwszBuffer, count: Int(length)), as: UTF16.self)
+  }
 }
+
 
 extension Bool {
   internal init(from val: boolean) {

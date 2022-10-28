@@ -101,9 +101,9 @@ Where <spec> is one or more of:
         settings.support = args.value("support", "Windows");
 
         create_directories(output_folder);
+        create_directories(output_folder / "c");
         if (settings.test)
         {
-            create_directories(output_folder / "c");
             create_directories(output_folder / "swift");
         }
         settings.output_folder = canonical(output_folder).string();

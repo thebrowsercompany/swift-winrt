@@ -11,6 +11,7 @@ namespace winrt::test_component::implementation
         static void EnumProperty(test_component::Fruit const& value);
         static hstring InEnum(test_component::Signed const& value);
         static hstring InNonBlittableStruct(test_component::NonBlittableStruct const& value);
+        static void TakeBase(test_component::Base const& base);
 
         private:
         static test_component::Fruit s_fruit;

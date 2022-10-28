@@ -107,8 +107,8 @@ namespace swiftwinrt
                 {
                     w.write("#if defined(ENABLE_WINRT_EXPERIMENTAL_TYPES)\n");
                 }
-
-                w.write("    %_%", cpp_abi_name(), field.Name());
+                // we use mangled names for enums because otherwise the WinAppSDK enums collide with the Windows ones
+                w.write("    %_%", mangled_name(), field.Name());
      
                 w.write(" = %,\n", value);
                 if (isExperimental)

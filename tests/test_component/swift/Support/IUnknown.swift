@@ -3,17 +3,17 @@
 
 import WinSDK
 
-open class IUnknown {
+open class IUnknown : HasIID {
   @usableFromInline
   internal let pUnk: IUnknownRef
 
-  open class var IID: IID { IID_IUnknown }
+  public class var IID: IID { IID_IUnknown }
 
   public required init(_ pointer: UnsafeMutablePointer<WinSDK.IUnknown>?) {
     self.pUnk = IUnknownRef(pointer)
   }
 
-  public init(_ pointer: UnsafeMutableRawPointer?) {
+  public required init(_ pointer: UnsafeMutableRawPointer?) {
     let pUnk: UnsafeMutablePointer<WinSDK.IUnknown>? =
         pointer?.bindMemory(to: WinSDK.IUnknown.self, capacity: 1)
     self.pUnk = IUnknownRef(pUnk)

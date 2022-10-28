@@ -152,7 +152,7 @@ public enum __ABI_Windows_Foundation {
         }
     }
 
-    private static var IPropertyValueVTable: __x_ABI_CWindows_CFoundation_CIPropertyValueVtbl = .init(
+    fileprivate static var IPropertyValueVTable: __x_ABI_CWindows_CFoundation_CIPropertyValueVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
 
@@ -162,7 +162,8 @@ public enum __ABI_Windows_Foundation {
                   riid.pointee == IIAgileObject.IID ||
                   riid.pointee == __ABI_Windows_Foundation.IPropertyValueWrapper.IID else { 
                 ppvObject.pointee = nil
-                return E_NOINTERFACE
+                        return E_NOINTERFACE
+
             }
             _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
             ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
@@ -206,180 +207,180 @@ public enum __ABI_Windows_Foundation {
         },
 
         get_Type: {
-            guard let instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            let value = instance.Type
+            let value = __unwraped__instance.Type
             $1?.initialize(to: value)
 
             return S_OK
         },
 
         get_IsNumericScalar: {
-            guard let instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            let value = instance.IsNumericScalar
+            let value = __unwraped__instance.IsNumericScalar
             $1?.initialize(to: .init(from: value))
 
             return S_OK
         },
 
         GetUInt8: {
-            guard let instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            let value = instance.GetUInt8()
+            let value = __unwraped__instance.GetUInt8()
             $1?.initialize(to: value)
 
             return S_OK
         },
 
         GetInt16: {
-            guard let instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            let value = instance.GetInt16()
+            let value = __unwraped__instance.GetInt16()
             $1?.initialize(to: value)
 
             return S_OK
         },
 
         GetUInt16: {
-            guard let instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            let value = instance.GetUInt16()
+            let value = __unwraped__instance.GetUInt16()
             $1?.initialize(to: value)
 
             return S_OK
         },
 
         GetInt32: {
-            guard let instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            let value = instance.GetInt32()
+            let value = __unwraped__instance.GetInt32()
             $1?.initialize(to: value)
 
             return S_OK
         },
 
         GetUInt32: {
-            guard let instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            let value = instance.GetUInt32()
+            let value = __unwraped__instance.GetUInt32()
             $1?.initialize(to: value)
 
             return S_OK
         },
 
         GetInt64: {
-            guard let instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            let value = instance.GetInt64()
+            let value = __unwraped__instance.GetInt64()
             $1?.initialize(to: value)
 
             return S_OK
         },
 
         GetUInt64: {
-            guard let instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            let value = instance.GetUInt64()
+            let value = __unwraped__instance.GetUInt64()
             $1?.initialize(to: value)
 
             return S_OK
         },
 
         GetSingle: {
-            guard let instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            let value = instance.GetSingle()
+            let value = __unwraped__instance.GetSingle()
             $1?.initialize(to: value)
 
             return S_OK
         },
 
         GetDouble: {
-            guard let instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            let value = instance.GetDouble()
+            let value = __unwraped__instance.GetDouble()
             $1?.initialize(to: value)
 
             return S_OK
         },
 
         GetChar16: {
-            guard let instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            let value = instance.GetChar16()
+            let value = __unwraped__instance.GetChar16()
             $1?.initialize(to: .init(from: value))
 
             return S_OK
         },
 
         GetBoolean: {
-            guard let instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            let value = instance.GetBoolean()
+            let value = __unwraped__instance.GetBoolean()
             $1?.initialize(to: .init(from: value))
 
             return S_OK
         },
 
         GetString: {
-            guard let instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            let value = instance.GetString()
+            let value = __unwraped__instance.GetString()
             $1?.initialize(to: try! HString(value).detach())
 
             return S_OK
         },
 
         GetGuid: {
-            guard let instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            let value = instance.GetGuid()
+            let value = __unwraped__instance.GetGuid()
             $1?.initialize(to: value)
 
             return S_OK
         },
 
         GetDateTime: {
-            guard let instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            let value = instance.GetDateTime()
+            let value = __unwraped__instance.GetDateTime()
             $1?.initialize(to: unsafeBitCast(value, to: __x_ABI_CWindows_CFoundation_CDateTime.self))
 
             return S_OK
         },
 
         GetTimeSpan: {
-            guard let instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            let value = instance.GetTimeSpan()
+            let value = __unwraped__instance.GetTimeSpan()
             $1?.initialize(to: unsafeBitCast(value, to: __x_ABI_CWindows_CFoundation_CTimeSpan.self))
 
             return S_OK
         },
 
         GetPoint: {
-            guard let instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            let value = instance.GetPoint()
+            let value = __unwraped__instance.GetPoint()
             $1?.initialize(to: unsafeBitCast(value, to: __x_ABI_CWindows_CFoundation_CPoint.self))
 
             return S_OK
         },
 
         GetSize: {
-            guard let instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            let value = instance.GetSize()
+            let value = __unwraped__instance.GetSize()
             $1?.initialize(to: unsafeBitCast(value, to: __x_ABI_CWindows_CFoundation_CSize.self))
 
             return S_OK
         },
 
         GetRect: {
-            guard let instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            let value = instance.GetRect()
+            let value = __unwraped__instance.GetRect()
             $1?.initialize(to: unsafeBitCast(value, to: __x_ABI_CWindows_CFoundation_CRect.self))
 
             return S_OK
@@ -433,11 +434,18 @@ public enum __ABI_Windows_Foundation {
             super.init(abi, Foundation.Impl.IPropertyValueImpl(value: value))
         }
 
-        public init(impl: Foundation.IPropertyValue) {
+        public init?(impl: Foundation.IPropertyValue?) {
+            guard let impl = impl else { return nil }
             let abi = withUnsafeMutablePointer(to: &IPropertyValueVTable) {
                 __x_ABI_CWindows_CFoundation_CIPropertyValue(lpVtbl: $0)
             }
             super.init(abi, impl)
         }
+    }
+}
+extension __x_ABI_CWindows_CFoundation_CIPropertyValue : Initializable {
+    public init() {
+        let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Foundation.IPropertyValueVTable) { $0 }
+        self.init(lpVtbl: vtblPtr)
     }
 }

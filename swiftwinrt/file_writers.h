@@ -120,6 +120,7 @@ namespace swiftwinrt
         w.filter = f;
         w.type_namespace = ns;
         w.support = settings.support;
+        w.c_mod = settings.test ? "C" + settings.support : "CWinRT";
 
         {
             w.write("%", w.filter.bind_each<write_guid>(members.interfaces));
@@ -139,6 +140,7 @@ namespace swiftwinrt
             w.write("%", w.filter.bind_each<write_interface_abi>(members.interfaces));
             w.write("%", w.filter.bind_each<write_delegate_abi>(members.delegates));
             w.write("%", w.filter.bind_each<write_struct_abi>(members.structs));
+            w.write("%", w.filter.bind_each<write_class_abi>(members.classes));
         }
 
         // we have to write these in both files because they are fileprivate and required for initializing generics
@@ -147,6 +149,10 @@ namespace swiftwinrt
         {
             write_ireference_init_extension(w, inst.get());
         }
+
+        w.write("%", w.filter.bind_each<write_initializable_overrides>(members.classes));
+        w.write("%", w.filter.bind_each<write_initializable_implementable>(members.interfaces));
+
         w.swap();
         write_preamble(w);
 
@@ -159,6 +165,7 @@ namespace swiftwinrt
         writer w;
         w.filter = f;
         w.support = settings.support;
+        w.c_mod = settings.test ? "C" + settings.support : "CWinRT";
         w.type_namespace = ns;
 
         {
@@ -176,6 +183,7 @@ namespace swiftwinrt
                 auto impl_names = w.push_impl_names(true);
                 w.write("%", w.filter.bind_each<write_interface_impl>(members.interfaces));
                 w.write("%", w.filter.bind_each<write_delegate_implementation>(members.delegates));
+
                 for (auto& [_, inst] : members.generic_instantiations)
                 {
                     write_generic_implementation(w, inst.get());
@@ -194,6 +202,8 @@ namespace swiftwinrt
         {
             write_ireference_init_extension(w, inst.get());
         }
+
+
         w.swap();
         write_preamble(w);
 

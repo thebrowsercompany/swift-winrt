@@ -28,4 +28,48 @@ extension IInspectable {
     try self.GetTrustLevel(&trustLevel)
     return trustLevel
   }
+
+  // maps the namespace to a swift module. needs to be kept in sync with
+  // get_swift_module defined in common.h in the code generator
+  private func GetSwiftModule(from ns: String) -> String {
+    if ns.starts(with: "Windows.Foundation") {
+       return "WindowsFoundation"
+    }
+     else if ns.starts(with: "Windows.Storage") || 
+              ns.starts(with: "Windows.System") ||
+              ns.starts(with: "Windows.UI") ||
+              ns.starts(with: "Windows.Networking") ||
+              ns.starts(with: "Windows.ApplicationModel")
+      {
+          return "WindowsApplicationModel"
+      }
+      else if ns.starts(with: "Microsoft.UI.Composition")
+      {
+          return "MicrosoftUIComposition"
+      }
+      else if ns.starts(with: "Microsoft.UI.Xaml")
+      {
+          return "MicrosoftUIXaml"
+      }
+      else
+      {
+          var mod: String = ns
+          mod.removeAll(where: { $0 == "." })
+          return mod
+      }
+  }
+
+  public func GetSwiftClassName() throws -> String {
+    let className = try! String(hString: GetRuntimeClassName())
+    let lastNsIndex = className.lastIndex(of: ".")
+    guard let lastNsIndex = lastNsIndex else {
+      fatalError("invalid class name")
+    }
+    let ns = className.prefix(upTo: lastNsIndex)
+    print("namespace: ", ns)
+    let lastNsIndexPlus1 = className.index(after: lastNsIndex)
+    let typeName = className.suffix(from: lastNsIndexPlus1)
+    print("type:", typeName)
+    return GetSwiftModule(from: String(ns)) + "." + typeName
+  }
 }

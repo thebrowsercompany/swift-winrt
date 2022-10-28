@@ -11,3 +11,8 @@ public func RawPointer<T: IUnknown, U>(_ pUnk: T?) -> UnsafeMutablePointer<U>? {
   }
   return nil
 }
+
+@_spi(WinRTClass)
+public func RawPointer<T: WinRTClass, U>(_ obj: T?) -> UnsafeMutablePointer<U>? {
+  return obj?._get_abi()
+}

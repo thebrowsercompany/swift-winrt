@@ -155,127 +155,127 @@ public protocol IReference : Foundation.IPropertyValue {
 }
 extension Foundation.PropertyType {
     public static var Empty : Foundation.PropertyType {
-        PropertyType_Empty
+        __x_ABI_CWindows_CFoundation_CPropertyType_Empty
     }
     public static var UInt8 : Foundation.PropertyType {
-        PropertyType_UInt8
+        __x_ABI_CWindows_CFoundation_CPropertyType_UInt8
     }
     public static var Int16 : Foundation.PropertyType {
-        PropertyType_Int16
+        __x_ABI_CWindows_CFoundation_CPropertyType_Int16
     }
     public static var UInt16 : Foundation.PropertyType {
-        PropertyType_UInt16
+        __x_ABI_CWindows_CFoundation_CPropertyType_UInt16
     }
     public static var Int32 : Foundation.PropertyType {
-        PropertyType_Int32
+        __x_ABI_CWindows_CFoundation_CPropertyType_Int32
     }
     public static var UInt32 : Foundation.PropertyType {
-        PropertyType_UInt32
+        __x_ABI_CWindows_CFoundation_CPropertyType_UInt32
     }
     public static var Int64 : Foundation.PropertyType {
-        PropertyType_Int64
+        __x_ABI_CWindows_CFoundation_CPropertyType_Int64
     }
     public static var UInt64 : Foundation.PropertyType {
-        PropertyType_UInt64
+        __x_ABI_CWindows_CFoundation_CPropertyType_UInt64
     }
     public static var Single : Foundation.PropertyType {
-        PropertyType_Single
+        __x_ABI_CWindows_CFoundation_CPropertyType_Single
     }
     public static var Double : Foundation.PropertyType {
-        PropertyType_Double
+        __x_ABI_CWindows_CFoundation_CPropertyType_Double
     }
     public static var Char16 : Foundation.PropertyType {
-        PropertyType_Char16
+        __x_ABI_CWindows_CFoundation_CPropertyType_Char16
     }
     public static var Boolean : Foundation.PropertyType {
-        PropertyType_Boolean
+        __x_ABI_CWindows_CFoundation_CPropertyType_Boolean
     }
     public static var String : Foundation.PropertyType {
-        PropertyType_String
+        __x_ABI_CWindows_CFoundation_CPropertyType_String
     }
     public static var Inspectable : Foundation.PropertyType {
-        PropertyType_Inspectable
+        __x_ABI_CWindows_CFoundation_CPropertyType_Inspectable
     }
     public static var DateTime : Foundation.PropertyType {
-        PropertyType_DateTime
+        __x_ABI_CWindows_CFoundation_CPropertyType_DateTime
     }
     public static var TimeSpan : Foundation.PropertyType {
-        PropertyType_TimeSpan
+        __x_ABI_CWindows_CFoundation_CPropertyType_TimeSpan
     }
     public static var Guid : Foundation.PropertyType {
-        PropertyType_Guid
+        __x_ABI_CWindows_CFoundation_CPropertyType_Guid
     }
     public static var Point : Foundation.PropertyType {
-        PropertyType_Point
+        __x_ABI_CWindows_CFoundation_CPropertyType_Point
     }
     public static var Size : Foundation.PropertyType {
-        PropertyType_Size
+        __x_ABI_CWindows_CFoundation_CPropertyType_Size
     }
     public static var Rect : Foundation.PropertyType {
-        PropertyType_Rect
+        __x_ABI_CWindows_CFoundation_CPropertyType_Rect
     }
     public static var OtherType : Foundation.PropertyType {
-        PropertyType_OtherType
+        __x_ABI_CWindows_CFoundation_CPropertyType_OtherType
     }
     public static var UInt8Array : Foundation.PropertyType {
-        PropertyType_UInt8Array
+        __x_ABI_CWindows_CFoundation_CPropertyType_UInt8Array
     }
     public static var Int16Array : Foundation.PropertyType {
-        PropertyType_Int16Array
+        __x_ABI_CWindows_CFoundation_CPropertyType_Int16Array
     }
     public static var UInt16Array : Foundation.PropertyType {
-        PropertyType_UInt16Array
+        __x_ABI_CWindows_CFoundation_CPropertyType_UInt16Array
     }
     public static var Int32Array : Foundation.PropertyType {
-        PropertyType_Int32Array
+        __x_ABI_CWindows_CFoundation_CPropertyType_Int32Array
     }
     public static var UInt32Array : Foundation.PropertyType {
-        PropertyType_UInt32Array
+        __x_ABI_CWindows_CFoundation_CPropertyType_UInt32Array
     }
     public static var Int64Array : Foundation.PropertyType {
-        PropertyType_Int64Array
+        __x_ABI_CWindows_CFoundation_CPropertyType_Int64Array
     }
     public static var UInt64Array : Foundation.PropertyType {
-        PropertyType_UInt64Array
+        __x_ABI_CWindows_CFoundation_CPropertyType_UInt64Array
     }
     public static var SingleArray : Foundation.PropertyType {
-        PropertyType_SingleArray
+        __x_ABI_CWindows_CFoundation_CPropertyType_SingleArray
     }
     public static var DoubleArray : Foundation.PropertyType {
-        PropertyType_DoubleArray
+        __x_ABI_CWindows_CFoundation_CPropertyType_DoubleArray
     }
     public static var Char16Array : Foundation.PropertyType {
-        PropertyType_Char16Array
+        __x_ABI_CWindows_CFoundation_CPropertyType_Char16Array
     }
     public static var BooleanArray : Foundation.PropertyType {
-        PropertyType_BooleanArray
+        __x_ABI_CWindows_CFoundation_CPropertyType_BooleanArray
     }
     public static var StringArray : Foundation.PropertyType {
-        PropertyType_StringArray
+        __x_ABI_CWindows_CFoundation_CPropertyType_StringArray
     }
     public static var InspectableArray : Foundation.PropertyType {
-        PropertyType_InspectableArray
+        __x_ABI_CWindows_CFoundation_CPropertyType_InspectableArray
     }
     public static var DateTimeArray : Foundation.PropertyType {
-        PropertyType_DateTimeArray
+        __x_ABI_CWindows_CFoundation_CPropertyType_DateTimeArray
     }
     public static var TimeSpanArray : Foundation.PropertyType {
-        PropertyType_TimeSpanArray
+        __x_ABI_CWindows_CFoundation_CPropertyType_TimeSpanArray
     }
     public static var GuidArray : Foundation.PropertyType {
-        PropertyType_GuidArray
+        __x_ABI_CWindows_CFoundation_CPropertyType_GuidArray
     }
     public static var PointArray : Foundation.PropertyType {
-        PropertyType_PointArray
+        __x_ABI_CWindows_CFoundation_CPropertyType_PointArray
     }
     public static var SizeArray : Foundation.PropertyType {
-        PropertyType_SizeArray
+        __x_ABI_CWindows_CFoundation_CPropertyType_SizeArray
     }
     public static var RectArray : Foundation.PropertyType {
-        PropertyType_RectArray
+        __x_ABI_CWindows_CFoundation_CPropertyType_RectArray
     }
     public static var OtherTypeArray : Foundation.PropertyType {
-        PropertyType_OtherTypeArray
+        __x_ABI_CWindows_CFoundation_CPropertyType_OtherTypeArray
     }
 }
 

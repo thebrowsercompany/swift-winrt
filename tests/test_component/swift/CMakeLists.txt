@@ -6,6 +6,7 @@ add_library(test_component SHARED
   Windows.Foundation.swift
   Windows.Foundation+Abi.swift
   NamespaceDefinitions.swift
+  Support/Aggregation.swift
   Support/IUnknown.swift
   Support/IUnknown+Swift.Swift
   Support/IUnknownRef.swift

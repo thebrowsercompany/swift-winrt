@@ -18,5 +18,25 @@
             name="test_component.StaticClass"
             threadingModel="both"
             xmlns="urn:schemas-microsoft-com:winrt.v1" />
+            <activatableClass
+            name="test_component.Base"
+            threadingModel="both"
+            xmlns="urn:schemas-microsoft-com:winrt.v1" />
+		<activatableClass
+            name="test_component.Derived"
+            threadingModel="both"
+            xmlns="urn:schemas-microsoft-com:winrt.v1" />
+            <activatableClass
+            name="test_component.UnsealedDerived"
+            threadingModel="both"
+            xmlns="urn:schemas-microsoft-com:winrt.v1" />
+            <activatableClass
+            name="test_component.UnsealedDerived2"
+            threadingModel="both"
+            xmlns="urn:schemas-microsoft-com:winrt.v1" />
+            <activatableClass
+            name="test_component.BaseNoOverrides"
+            threadingModel="both"
+            xmlns="urn:schemas-microsoft-com:winrt.v1" />
 	</file>
 </assembly>
