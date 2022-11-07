@@ -148,7 +148,7 @@ open class IReferenceWrapperBase<I: ReferenceImpl> : WinRTWrapperBase2<I> {
     public init?(value: I.ValueType?) {
         guard let value = value else { return nil }
         let abi = I.c_ABI()
-        super.init(abi, Foundation.Impl.IPropertyValueImpl(value: value) as! I.swift_Projection)
+        super.init(abi, __IMPL_Windows_Foundation.IPropertyValueImpl(value: value) as! I.swift_Projection)
     }
 
     public static func unwrap_from(abi pointer: UnsafeMutablePointer<I.c_ABI>?) -> I.ValueType? {

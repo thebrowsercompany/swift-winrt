@@ -15,7 +15,6 @@
 #include "metadata_cache.h"
 #include "metadata_filter.h"
 #include "file_writers.h"
-
 namespace swiftwinrt
 {
     settings_type settings;
@@ -102,10 +101,7 @@ Where <spec> is one or more of:
 
         create_directories(output_folder);
         create_directories(output_folder / "c");
-        if (settings.test)
-        {
-            create_directories(output_folder / "swift");
-        }
+        create_directories(output_folder / "swift");
         settings.output_folder = canonical(output_folder).string();
         settings.output_folder += '\\';
 
@@ -287,7 +283,9 @@ Where <spec> is one or more of:
             task_group group;
             group.synchronous(args.exists("synchronous"));
 
-            std::map<std::string, std::vector<std::string_view>> all_namespaces;
+            std::map<std::string, std::vector<std::string_view>> module_map; // map of module -> namespaces
+            std::map<std::string_view, std::set<std::string>> namespace_dependencies;
+            path output_folder = settings.output_folder;
 
             for (auto&&[ns, members] : c.namespaces())
             {
@@ -297,22 +295,31 @@ Where <spec> is one or more of:
                 }
                 auto module_name = get_swift_module(ns);
 
-                auto result = all_namespaces.emplace(std::piecewise_construct,
+                auto [moduleMapItr, moduleAdded] = module_map.emplace(std::piecewise_construct,
                     std::forward_as_tuple(module_name),
                     std::forward_as_tuple());
-                result.first->second.push_back(ns);
-                if (result.second && !settings.test)
+                if (moduleAdded)
                 {
-                    path output_folder = settings.output_folder;
-                    create_directories(output_folder / module_name / "c");
-                    create_directories(output_folder / module_name / "swift");
+                    create_directories(output_folder / "swift" / module_name);
                 }
+                moduleMapItr->second.push_back(ns);
 
-                group.add([&, &ns = ns]
+                auto [nsItr, nsAdded] = namespace_dependencies.emplace(std::piecewise_construct,
+                    std::forward_as_tuple(ns),
+                    std::forward_as_tuple());
+
+                group.add([&, &ns = ns, &depends = nsItr->second]
                 {
                     auto types = mdCache.compile_namespaces({ ns }, mf);
+                    for (auto&& dependent_ns : types.dependent_namespaces)
+                    {
+                        auto dependent_module = get_swift_module(dependent_ns);
+                        depends.insert(dependent_module);
+                    }
+                   
                     write_namespace_abi(ns, types, settings, mf);
                     write_namespace_wrapper(ns, types, settings, mf);
+                    write_namespace_impl(ns, types, settings, mf);
                     write_abi_header(ns, settings, types);
                 });
             }
@@ -324,8 +331,47 @@ Where <spec> is one or more of:
 
             group.get();
 
-            write_namespace_definitions(all_namespaces, settings);
-            write_include_all(all_namespaces, settings);
+            for (auto&& [module, namespaces] : module_map)
+            {
+                group.add([&, &module = module, &namespaces = namespaces]
+                {
+                    std::set<std::string> module_dependencies;
+                    if (module != settings.support)
+                    {
+                        module_dependencies.emplace(settings.support);
+                    }
+                    for (auto& ns : namespaces)
+                    {
+                        auto ns_dependencies = namespace_dependencies[ns];
+                        for (auto ns : ns_dependencies)
+                        {
+                            if (ns != module)
+                            {
+                                module_dependencies.emplace(ns);
+                            }
+                        }
+                    }
+                    if (!settings.test)
+                    {
+                        // don't write the cmake file if only building a single module
+                        write_cmake_lists(module, module_dependencies);
+                    }
+                });
+            }
+            group.get();
+
+            if (!settings.test)
+            {
+                write_root_cmake(module_map, settings);
+            }
+            else
+            {
+                // don't write the root cmake for the test project, instead just write the 
+                // cmake file for the single module everything is built into, which doesn't
+                // have any dependencies
+                write_cmake_lists(settings.support, {});
+            }
+            write_include_all(module_map, settings);
             if (settings.verbose)
             {
                 w.write(" time:  %ms\n", get_elapsed_time(start));

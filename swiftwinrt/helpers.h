@@ -1107,15 +1107,24 @@ namespace swiftwinrt
         return name;
     }
 
+    inline std::string internal_namepace(std::string prefix, std::string_view const& ns)
+    {
+        std::string internal_namespace;
+        internal_namespace.reserve(prefix.size() + ns.size());
+        internal_namespace += prefix;
+        internal_namespace += ns;
+        std::replace(internal_namespace.begin(), internal_namespace.end(), '.', '_');
+        return internal_namespace;
+    }
+
     inline std::string abi_namespace(std::string_view const& ns)
     {
-        std::string abi_namespace;
-        constexpr auto abi_prefix = "__ABI_";
-        abi_namespace.reserve(sizeof(abi_prefix) + ns.size());
-        abi_namespace += abi_prefix;
-        abi_namespace += ns;
-        std::replace(abi_namespace.begin(), abi_namespace.end(), '.', '_');
-        return abi_namespace;
+        return internal_namepace("__ABI_", ns);
+    }
+
+    inline std::string impl_namespace(std::string_view const& ns)
+    {
+        return internal_namepace("__IMPL_", ns);
     }
 
     inline std::string abi_namespace(TypeDef const& type)

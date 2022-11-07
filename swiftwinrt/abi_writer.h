@@ -292,26 +292,44 @@ namespace swiftwinrt
 
     inline void write_include_all(std::map<std::string, std::vector<std::string_view>>& namespaces, settings_type const& config)
     {
+        writer w;
+        w.c_mod = settings.test ? "C" + settings.support : "CWinRT";
+        write_preamble(w);
+        w.write(R"(#pragma once
+#include <wtypesbase.h>
+#include <minwindef.h>
+#include <winnt.h>
+#include <combaseapi.h>
+
+#include <roapi.h>
+#include <winstring.h>
+#include "stdlib.h"
+
+// undefine win32 apis which collide with WinRT method names
+#undef GetCurrentTime
+#undef FindText
+#undef GetClassName
+
+#define ENABLE_WINRT_EXPERIMENTAL_TYPES
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmicrosoft-enum-forward-reference"
+
+)");
         for (auto& [module, ns_list] : namespaces)
         {
-            writer w;
-            w.type_namespace = module;
-            write_preamble(w);
-            w.write("#pragma once\n");
-            w.write("#pragma clang diagnostic push\n");
-            w.write("#pragma clang diagnostic ignored \"-Wmicrosoft-enum-forward-reference\"\n");
             // sort so the file stays consistent
             std::sort(ns_list.begin(), ns_list.end());
             for (auto& ns : ns_list)
             {
                 w.write("#include \"%.h\"\n", ns);
             }
-            w.write("#pragma clang diagnostic pop\n");
-
-            w.type_namespace = "C" + module;
-            auto filename{ w.file_directory("/c/") };
-            w.save_header();
         }
+
+        w.write("#pragma clang diagnostic pop\n");
+
+        w.type_namespace = w.c_mod;
+        w.save_header();
 
     }
 }

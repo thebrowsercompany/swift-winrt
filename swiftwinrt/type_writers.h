@@ -15,6 +15,7 @@ namespace swiftwinrt
 
     class writer;
     std::string get_full_swift_type_name(writer const&, TypeDef const& type);
+    std::string get_full_swift_type_name(writer const&, const metadata_type* type);
     std::string get_swift_module(std::string_view const& ns);
 
     template <typename First, typename...Rest>
@@ -199,8 +200,18 @@ namespace swiftwinrt
         void add_depends(TypeDef const& type)
         {
             auto type_module = get_swift_module(type.TypeNamespace());
-            
+
             if (type_module != get_swift_module(type_namespace))
+            {
+                depends.insert(type_module);
+            }
+        }
+
+        void add_depends(metadata_type const& type)
+        {
+            auto type_module = get_swift_module(type.swift_logical_namespace());
+
+            if (type_module != get_swift_module(type_namespace) && !type_module.empty())
             {
                 depends.insert(type_module);
             }
@@ -387,13 +398,14 @@ namespace swiftwinrt
 
         void write(metadata_type const* type)
         {
+            add_depends(*type);
             if (abi_types)
             {
                 write(type->mangled_name());
             }
             else if (type->swift_logical_namespace() != type_namespace || full_type_names)
             {
-                write(type->swift_full_name());
+                write(get_full_swift_type_name(*this, type));
             }
             else
             {
@@ -615,26 +627,31 @@ namespace swiftwinrt
             {
                 write(std::get<TypeSig>(generic_param).Type());
             }
-            else if (mangled_names)
+            else 
             {
-                write(std::get<const metadata_type*>(generic_param)->mangled_name());
-            } 
-            else if (abi_types)
-            {
-                write(std::get<const metadata_type*>(generic_param)->cpp_abi_name());
-            }
-            else
-            {
-                auto swift_full_name = std::get<const metadata_type*>(generic_param)->swift_full_name();
-                if (swift_full_name == "IInspectable")
+                auto type = std::get<const metadata_type*>(generic_param);
+                add_depends(*type);
+                if (mangled_names)
                 {
-                    write("%.IInspectable", support);
+                    write(type->mangled_name());
+                }
+                else if (abi_types)
+                {
+                    write(type->cpp_abi_name());
                 }
                 else
                 {
-                    write(swift_full_name);
+                    auto full_name = get_full_swift_type_name(*this, std::get<const metadata_type*>(generic_param));
+                    if (full_name == "IInspectable")
+                    {
+                        write("%.IInspectable", support);
+                    }
+                    else
+                    {
+                        write(full_name);
+                    }
                 }
-            }
+            } 
         }
 
         void write(TypeSig::value_type const& type)
@@ -766,7 +783,7 @@ namespace swiftwinrt
             }
             else
             {
-                return { settings.output_folder + get_swift_module(type_namespace) + subdir };
+                return { settings.output_folder + subdir + get_swift_module(type_namespace) + "/"};
             }
         }
         void save_file(std::string_view const& ext = "")
@@ -789,6 +806,13 @@ namespace swiftwinrt
             auto filename{ settings.output_folder + "/c/" };
             filename += type_namespace;
             filename += ".h";
+            flush_to_file(filename);
+        }
+
+        void save_cmake()
+        {
+            auto filename{ file_directory("/swift/") };
+            filename += "CMakeLists.txt";
             flush_to_file(filename);
         }
     };

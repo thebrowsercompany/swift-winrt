@@ -618,7 +618,7 @@ namespace swiftwinrt
             mangled_name(),
             remove_backtick(generic_type()->cpp_logical_name()),
             mangled_name(),
-            generic_params()[0]->swift_full_name(),
+            get_full_swift_type_name(w, generic_params()[0]),
             mangled_name(),
             mangled_name(),
             bind_impl_name(*this)

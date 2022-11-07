@@ -77,59 +77,36 @@ namespace swiftwinrt
         return wrote;
     }
 
-    static void write_namespace_definitions(std::map<std::string, std::vector<std::string_view>> & namespaces, settings_type const& settings)
-    {
-        bool append = false;
-        for (auto&& [module, ns_list] : namespaces)
-        {
-            bool has_namespace_definitions = false;
-            std::set<std::string_view> written_namespace;
-
-            writer w;
-            w.type_namespace = module;
-            write_preamble(w);
-
-            written_namespace.insert(ns_list.begin(), ns_list.end());
-            std::sort(ns_list.begin(), ns_list.end());
-
-            for (auto&& ns : ns_list)
-            {
-                if (push_namespace_recursive(ns, w, written_namespace))
-                {
-                    has_namespace_definitions = true;
-                }
-            }
-
-            if (has_namespace_definitions)
-            {
-                auto filename{ w.file_directory("/swift/") + "NamespaceDefinitions.swift" };
-                w.flush_to_file(filename, append);
-            }
-
-            // There is only a single namespace file, so append to it instead of overwriting
-            if (settings.test)
-            {
-                append = true;
-            }
-        }
-    }
-
-    static void write_namespace_abi(std::string_view const& ns, type_cache const& members, settings_type const& settings, metadata_filter const& f)
+    static void write_root_cmake(std::map<std::string, std::vector<std::string_view>>& namespaces, settings_type const& settings)
     {
         writer w;
-        w.filter = f;
+        for (auto&& [module, _] : namespaces)
+        {
+            w.write("add_subdirectory(%)\n", module);
+        }
+
+        auto filename{ settings.output_folder + "/swift/" };
+        filename += "CMakeLists.txt";
+        w.flush_to_file(filename);
+    }
+
+    static void write_namespace_abi(std::string_view const& ns, type_cache const& members, settings_type const& settings, metadata_filter const& filter)
+    {
+        writer w;
+        w.filter = filter;
         w.type_namespace = ns;
         w.support = settings.support;
         w.c_mod = settings.test ? "C" + settings.support : "CWinRT";
 
-        {
-            w.write("%", w.filter.bind_each<write_guid>(members.interfaces));
-            w.write("%", w.filter.bind_each<write_guid>(members.delegates));
+        w.write("%", w.filter.bind_each<write_guid>(members.interfaces));
+        w.write("%", w.filter.bind_each<write_guid>(members.delegates));
 
-            for (auto& [_, inst] : members.generic_instantiations)
-            {
-                write_guid_generic(w, inst.get());
-            }
+        for (auto& [_, inst] : members.generic_instantiations)
+        {
+            write_guid_generic(w, inst.get());
+        }
+
+        {
             auto abi_ns = abi_namespace(ns);
             auto [namespace_guard, indent_guard] = push_namespace(abi_ns, w, true);
 
@@ -160,37 +137,19 @@ namespace swiftwinrt
         w.save_file("ABI");
     }
 
-    static void write_namespace_wrapper(std::string_view const& ns, type_cache const& members, settings_type const& settings, metadata_filter const& f)
+    static void write_namespace_wrapper(std::string_view const& ns, type_cache const& members, settings_type const& settings, metadata_filter const& filter)
     {
         writer w;
-        w.filter = f;
+        w.filter = filter;
         w.support = settings.support;
         w.c_mod = settings.test ? "C" + settings.support : "CWinRT";
         w.type_namespace = ns;
 
-        {
-            auto namespace_guard = push_namespace(ns, w);
-
-            w.write("%", w.filter.bind_each<write_enum_def>(members.enums));
-            w.write("%", w.filter.bind_each<write_class>(members.classes));
-            w.write("%", w.filter.bind_each<write_delegate>(members.delegates));
-            w.write("%", w.filter.bind_each<write_struct>(members.structs));
-            w.write("%", w.filter.bind_each<write_interface_alias>(members.interfaces));
-
-            {
-                auto impl_guard = push_namespace("Impl", w, true);
-                auto impl_indent_guard = w.push_indent({ 1 });
-                auto impl_names = w.push_impl_names(true);
-                w.write("%", w.filter.bind_each<write_interface_impl>(members.interfaces));
-                w.write("%", w.filter.bind_each<write_delegate_implementation>(members.delegates));
-
-                for (auto& [_, inst] : members.generic_instantiations)
-                {
-                    write_generic_implementation(w, inst.get());
-                }
-            }
-        }
-        w.write("%", w.filter.bind_each<write_interface_proto>(members.interfaces));
+        w.write("%", w.filter.bind_each<write_enum_def>(members.enums));
+        w.write("%", w.filter.bind_each<write_class>(members.classes));
+        w.write("%", w.filter.bind_each<write_delegate>(members.delegates));
+        w.write("%", w.filter.bind_each<write_struct>(members.structs));
+        w.write("%", w.filter.bind_each<write_interface_alias>(members.interfaces));
 
         if (ns == "Windows.Foundation")
         {
@@ -208,5 +167,87 @@ namespace swiftwinrt
         write_preamble(w);
 
         w.save_file();
+
     }
+
+    static void write_namespace_impl(std::string_view const& ns, type_cache const& members, settings_type const& settings, metadata_filter const& filter)
+    {
+        writer w;
+        w.filter = filter;
+        w.support = settings.support;
+        w.c_mod = settings.test ? "C" + settings.support : "CWinRT";
+        w.type_namespace = ns;
+
+        {
+            auto impl_ns = impl_namespace(ns);
+            auto impl_guard = push_namespace(impl_ns, w, true);
+            auto impl_names = w.push_impl_names(true);
+            w.write("%", w.filter.bind_each<write_interface_impl>(members.interfaces));
+            w.write("%", w.filter.bind_each<write_delegate_implementation>(members.delegates));
+            for (auto& [_, inst] : members.generic_instantiations)
+            {
+                write_generic_implementation(w, inst.get());
+            }
+        }
+
+        w.write("%", w.filter.bind_each<write_interface_proto>(members.interfaces));
+
+        for (auto& [_, inst] : members.generic_instantiations)
+        {
+            write_ireference_init_extension(w, inst.get());
+        }
+
+
+        w.swap();
+        write_preamble(w);
+
+        w.save_file("Impl");
+    }
+
+    static void write_cmake_lists(std::string_view const& module, std::set<std::string> const& depends)
+    {
+        writer w;
+        w.c_mod = settings.test ? "C" + settings.support : "CWinRT";
+        w.type_namespace = module;
+        auto content = R"(
+set(GENERATED_FILES_DIR ${CMAKE_CURRENT_SOURCE_DIR})
+file(GLOB SWIFTWINRT_GENERATED_FILES ${GENERATED_FILES_DIR}/*)
+%
+add_library(% SHARED
+  ${SWIFTWINRT_GENERATED_FILES}%
+  )
+
+install(TARGETS %
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION bin
+  COMPONENT lib)
+
+target_link_libraries(% PRIVATE
+  %
+  %)
+
+target_include_directories(%
+  INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}
+  PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+
+target_include_directories(%
+  INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}
+  PRIVATE ${GENERATED_FILES_DIR})
+
+)";
+        w.write(content, 
+            settings.support == module ? "file(GLOB SUPPORT_FILES ${GENERATED_FILES_DIR}/Support/*)" : "",
+            module,
+            settings.support == module ? "\n  ${SUPPORT_FILES}" : "",
+
+            module,
+            module,
+            w.c_mod,
+            bind_list("\n  ", depends),
+            module,
+            module);
+        w.save_cmake();
+    }
+
 }

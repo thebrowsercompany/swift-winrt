@@ -49,7 +49,7 @@ namespace swiftwinrt
         auto swift_name = w.write_temp("%", type);
         if (swift_name.find("?") != swift_name.npos)
         {
-            w.write("Foundation.Impl.IPropertyValueImpl");
+            w.write("%.%", impl_namespace("Windows.Foundation"), "IPropertyValueImpl");
         }
         else
         {
@@ -58,19 +58,15 @@ namespace swiftwinrt
                 auto use_abi_type = w.push_abi_types(true);
                 implName = w.write_temp("%Impl", type);
             }
- 
+
             if (w.impl_names)
             {
                 w.write(implName);
             }
-            else if (w.full_type_names || w.abi_types)
+            else 
             {
                 // generics aren't public and so we use the namespace of the writer
-                w.write("%.Impl.%", get_swift_namespace(w, w.type_namespace), implName);
-            }
-            else
-            {
-                w.write("Impl.%", implName);
+                w.write("%.%", impl_namespace(w.type_namespace), implName);
             }
         }
     }
@@ -86,10 +82,10 @@ namespace swiftwinrt
         {
             type_name type_name{ type };
             std::string implName = w.write_temp("%Impl", type_name.name);
-            
+
             if (w.type_namespace != type_name.name_space || w.abi_types || w.full_type_names)
             {
-                w.write("%.Impl.%", get_swift_namespace(w, type_name.name_space), implName);
+                w.write("%.%", impl_namespace(type_name.name_space), implName);
             }
             else if (w.impl_names)
             {
@@ -97,7 +93,7 @@ namespace swiftwinrt
             }
             else
             {
-                w.write("Impl.%", implName);
+                w.write("%.%", impl_namespace(type_name.name_space), implName);
             }
         }
     }
@@ -1204,7 +1200,7 @@ bind<write_abi_args>(signature));
         {
             bool blittable = is_struct_blittable(structType->type());
             w.write(format,
-                structType->swift_full_name(),
+                get_full_swift_type_name(w, structType),
                 type.mangled_name(),
                 structType->mangled_name(),
                 blittable ? 
@@ -1219,7 +1215,7 @@ bind<write_abi_args>(signature));
                 blittable = elementType->is_blittable();
             }
             w.write(format,
-                generic_param->swift_full_name(),
+                get_full_swift_type_name(w, generic_param),
                 type.mangled_name(),
                 generic_param->cpp_abi_name(),
                 blittable ? "self = result" : "self.init(from: result)");
@@ -1467,17 +1463,17 @@ class % : WinRTWrapperBase<%, %> {
     // and instead is the glue for boxing types which are of `Any` type in Swift
     static void write_property_value_wrapper(writer& w)
     {
-        w.write(R"(public class IPropertyValueWrapper : WinRTWrapperBase<__x_ABI_CWindows_CFoundation_CIPropertyValue, Foundation.IPropertyValue>
+        w.write(R"(public class IPropertyValueWrapper : WinRTWrapperBase<__x_ABI_CWindows_CFoundation_CIPropertyValue, %.IPropertyValue>
 {
     override public class var IID: IID { IID___x_ABI_CWindows_CFoundation_CIPropertyValue }
     public init(value: Any) {
         let abi = withUnsafeMutablePointer(to: &IPropertyValueVTable) {
             __x_ABI_CWindows_CFoundation_CIPropertyValue(lpVtbl: $0)
         }
-        super.init(abi, Foundation.Impl.IPropertyValueImpl(value: value))
+        super.init(abi, __IMPL_Windows_Foundation.IPropertyValueImpl(value: value))
     }
 
-    public init?(impl: Foundation.IPropertyValue?) {
+    public init?(impl: %.IPropertyValue?) {
         guard let impl = impl else { return nil }
         let abi = withUnsafeMutablePointer(to: &IPropertyValueVTable) {
             __x_ABI_CWindows_CFoundation_CIPropertyValue(lpVtbl: $0)
@@ -1485,7 +1481,7 @@ class % : WinRTWrapperBase<%, %> {
         super.init(abi, impl)
     }
 }
-)");
+)", w.support, w.support);
 }
 
     static void write_implementable_interface(writer& w, TypeDef const& type)
@@ -1568,7 +1564,7 @@ bind_impl_fullname(type));
     {
         w.write(R"(public class IPropertyValueImpl : IPropertyValue, IReference {
     var _value: Any
-    var propertyType : Foundation.PropertyType
+    var propertyType : PropertyType
 
     public init(value: Any) {
         _value = value
@@ -1592,9 +1588,9 @@ bind_impl_fullname(type));
             propertyType = .Char16
         } else if _value is Bool {
             propertyType = .Boolean
-        } else if _value is Foundation.DateTime {
+        } else if _value is DateTime {
             propertyType = .DateTime
-        } else if _value is Foundation.TimeSpan {
+        } else if _value is TimeSpan {
             propertyType = .TimeSpan
         } else if _value is IWinRTObject {
             propertyType = .Inspectable
@@ -1605,7 +1601,7 @@ bind_impl_fullname(type));
         }
     }
 
-    public var `Type`: Foundation.PropertyType { propertyType }
+    public var `Type`: PropertyType { propertyType }
     public var IsNumericScalar: Bool { 
         switch propertyType {
             case .Int16, .Int32, .UInt16, .UInt8, .Int64, .UInt64, .Single, .Double: return true
@@ -1628,11 +1624,11 @@ bind_impl_fullname(type));
     public func GetBoolean() -> Bool { _value as! Bool }
     public func GetString() -> String { _value as! String }
     public func GetGuid() -> UUID { _value as! UUID }
-    public func GetDateTime() -> Foundation.DateTime { _value as! Foundation.DateTime } 
-    public func GetTimeSpan() -> Foundation.TimeSpan { _value as! Foundation.TimeSpan }
-    public func GetPoint() -> Foundation.Point { _value as! Foundation.Point }
-    public func GetSize() -> Foundation.Size { _value as! Foundation.Size }
-    public func GetRect() -> Foundation.Rect { _value as! Foundation.Rect }
+    public func GetDateTime() -> DateTime { _value as! DateTime } 
+    public func GetTimeSpan() -> TimeSpan { _value as! TimeSpan }
+    public func GetPoint() -> Point { _value as! Point }
+    public func GetSize() -> Size { _value as! Size }
+    public func GetRect() -> Rect { _value as! Rect }
 }
 
 )");
@@ -1788,7 +1784,7 @@ public init(_ fromAbi: UnsafeMutablePointer<c_ABI>?) {
 
     static void write_ireference(writer& w)
     {
-        w.write(R"(public protocol IReference : Foundation.IPropertyValue {
+        w.write(R"(public protocol IReference : IPropertyValue {
     var Value: Any { get }
 }
 )");
@@ -3195,7 +3191,7 @@ get_full_type_name(type)
             func_call = w.write_temp("%", method.Name().substr(4));
             if (type.generic_type()->swift_full_name().starts_with("Windows.Foundation.IReference"))
             {
-                func_call.append(w.write_temp(" as! %", type.generic_params()[0]->swift_full_name()));
+                func_call.append(w.write_temp(" as! %", get_full_swift_type_name(w, type.generic_params()[0])));
             }
         }
         else if (is_put_overload(method))
