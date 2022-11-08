@@ -117,6 +117,8 @@ target_sources(test_component_cpp PRIVATE
     UnsealedDerived.cpp
     UnsealedDerived2.h
     UnsealedDerived2.cpp
+    UnsealedDerivedNoOverrides.h
+    UnsealedDerivedNoOverrides.cpp
     exports.def
     #Windows.Class.cpp
     #Windows.Class.h

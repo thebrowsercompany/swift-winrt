@@ -81,6 +81,14 @@ private var IID___x_ABI_Ctest__component_CIUnsealedDerived2ProtectedFactory: IID
     IID(Data1: 0x0978D147, Data2: 0x77BF, Data3: 0x5E0A, Data4: ( 0xA1,0x64,0xCA,0x95,0x1B,0xCA,0xB8,0xB4 ))// 0978D147-77BF-5E0A-A164-CA951BCAB8B4
 }
 
+private var IID___x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides: IID {
+    IID(Data1: 0x3CD27E28, Data2: 0x2DFF, Data3: 0x5A17, Data4: ( 0x82,0x63,0x1B,0xFA,0x75,0x04,0x34,0xAA ))// 3CD27E28-2DFF-5A17-8263-1BFA750434AA
+}
+
+private var IID___x_ABI_Ctest__component_CIUnsealedDerivedNoOverridesProtectedFactory: IID {
+    IID(Data1: 0x8D27A3F3, Data2: 0xD785, Data3: 0x53E3, Data4: ( 0x83,0x19,0x6A,0x50,0x97,0xB1,0x04,0xAB ))// 8D27A3F3-D785-53E3-8319-6A5097B104AB
+}
+
 private var IID___x_ABI_Ctest__component_CIUnsealedDerivedOverloads2: IID {
     IID(Data1: 0xF4CE1AD9, Data2: 0x36B9, Data3: 0x5DC7, Data4: ( 0xA0,0x07,0x3A,0xCD,0xF4,0x22,0xE7,0x05 ))// F4CE1AD9-36B9-5DC7-A007-3ACDF422E705
 }
@@ -351,7 +359,7 @@ public enum __ABI_test_component {
         Invoke: {
             guard let __unwraped__instance = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let sender: test_component.Simple = .from(abi: $1)
-            let args: test_component.SimpleEventArgs = unsafeBitCast($2, to: test_component.SimpleEventArgs.self)
+            let args: test_component.SimpleEventArgs = .from(abi: $2)
 
             __unwraped__instance.handler((sender, args))
             
@@ -960,7 +968,7 @@ public enum __ABI_test_component {
             var value: test_component.BlittableStruct = .init()
 
             __unwraped__instance.OutBlittableStruct(&value)
-            $1?.initialize(to: unsafeBitCast(value, to: __x_ABI_Ctest__component_CBlittableStruct.self))
+            $1?.initialize(to: .from(swift: value))
 
             return S_OK
         },
@@ -1033,9 +1041,9 @@ public enum __ABI_test_component {
             return S_OK
         },
 
-        add_ImplementableEvent: { _, _, _ in return E_NOTIMPL },
+        add_ImplementableEvent: { _, _, _ in return failWith(err: E_NOTIMPL) },
 
-        remove_ImplementableEvent: { _, _ in return E_NOTIMPL },
+        remove_ImplementableEvent: { _, _ in return failWith(err: E_NOTIMPL) },
 
         FireEvent: {
             guard let __unwraped__instance = __ABI_test_component.IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
@@ -1339,6 +1347,25 @@ public enum __ABI_test_component {
         internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<Ctest_component.IInspectable>?, _ innerInterface: inout UnsafeMutablePointer<Ctest_component.IInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived2>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived2>?
             _ = try perform(as: __x_ABI_Ctest__component_CIUnsealedDerived2ProtectedFactory.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, baseInterface, &innerInterface, &value))
+            }
+            return value
+        }
+    }
+
+    open class IUnsealedDerivedNoOverrides: test_component.IInspectable {
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides }
+
+    }
+
+    internal class IUnsealedDerivedNoOverridesProtectedFactory: test_component.IInspectable, ComposableActivationFactory {
+        internal typealias Composable = test_component.UnsealedDerivedNoOverrides.Composable
+
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedNoOverridesProtectedFactory }
+
+        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<Ctest_component.IInspectable>?, _ innerInterface: inout UnsafeMutablePointer<Ctest_component.IInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides>? {
+            var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides>?
+            _ = try perform(as: __x_ABI_Ctest__component_CIUnsealedDerivedNoOverridesProtectedFactory.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, baseInterface, &innerInterface, &value))
             }
             return value
@@ -1688,5 +1715,15 @@ extension __x_ABI_Ctest__component_CISimpleDelegate : Initializable {
     public init() {
         let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.ISimpleDelegateVTable) { $0 }
         self.init(lpVtbl: vtblPtr)
+    }
+}
+extension __x_ABI_Ctest__component_CBlittableStruct {
+    public static func from(swift: test_component.BlittableStruct) -> __x_ABI_Ctest__component_CBlittableStruct {
+        .init(First: swift.First, Second: swift.Second)
+    }
+}
+extension __x_ABI_Ctest__component_CSimpleEventArgs {
+    public static func from(swift: test_component.SimpleEventArgs) -> __x_ABI_Ctest__component_CSimpleEventArgs {
+        .init(Value: swift.Value)
     }
 }

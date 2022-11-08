@@ -60,13 +60,13 @@ public enum __IMPL_test_component {
         public func OutBlittableStruct(_ value: inout BlittableStruct) {
             var _value: __x_ABI_Ctest__component_CBlittableStruct = .init()
             try! _default.OutBlittableStructImpl(&_value)
-            value = unsafeBitCast(_value, to: test_component.BlittableStruct.self)
+            value = .from(abi: _value)
         }
 
         public func OutNonBlittableStruct(_ value: inout NonBlittableStruct) {
             let _value: __ABI_test_component._ABI_NonBlittableStruct = .init()
             try! _default.OutNonBlittableStructImpl(&_value.val)
-            value = .init(from: _value.val)
+            value = .from(abi: _value.val)
         }
 
         public func OutEnum(_ value: inout Signed) {

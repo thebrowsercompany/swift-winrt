@@ -344,7 +344,7 @@ public enum __ABI_Windows_Foundation {
             guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             let value = __unwraped__instance.GetDateTime()
-            $1?.initialize(to: unsafeBitCast(value, to: __x_ABI_CWindows_CFoundation_CDateTime.self))
+            $1?.initialize(to: .from(swift: value))
 
             return S_OK
         },
@@ -353,7 +353,7 @@ public enum __ABI_Windows_Foundation {
             guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             let value = __unwraped__instance.GetTimeSpan()
-            $1?.initialize(to: unsafeBitCast(value, to: __x_ABI_CWindows_CFoundation_CTimeSpan.self))
+            $1?.initialize(to: .from(swift: value))
 
             return S_OK
         },
@@ -362,7 +362,7 @@ public enum __ABI_Windows_Foundation {
             guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             let value = __unwraped__instance.GetPoint()
-            $1?.initialize(to: unsafeBitCast(value, to: __x_ABI_CWindows_CFoundation_CPoint.self))
+            $1?.initialize(to: .from(swift: value))
 
             return S_OK
         },
@@ -371,7 +371,7 @@ public enum __ABI_Windows_Foundation {
             guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             let value = __unwraped__instance.GetSize()
-            $1?.initialize(to: unsafeBitCast(value, to: __x_ABI_CWindows_CFoundation_CSize.self))
+            $1?.initialize(to: .from(swift: value))
 
             return S_OK
         },
@@ -380,48 +380,48 @@ public enum __ABI_Windows_Foundation {
             guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             let value = __unwraped__instance.GetRect()
-            $1?.initialize(to: unsafeBitCast(value, to: __x_ABI_CWindows_CFoundation_CRect.self))
+            $1?.initialize(to: .from(swift: value))
 
             return S_OK
         },
 
-        GetUInt8Array: { _, _, _ in return E_NOTIMPL },
+        GetUInt8Array: { _, _, _ in return failWith(err: E_NOTIMPL) },
 
-        GetInt16Array: { _, _, _ in return E_NOTIMPL },
+        GetInt16Array: { _, _, _ in return failWith(err: E_NOTIMPL) },
 
-        GetUInt16Array: { _, _, _ in return E_NOTIMPL },
+        GetUInt16Array: { _, _, _ in return failWith(err: E_NOTIMPL) },
 
-        GetInt32Array: { _, _, _ in return E_NOTIMPL },
+        GetInt32Array: { _, _, _ in return failWith(err: E_NOTIMPL) },
 
-        GetUInt32Array: { _, _, _ in return E_NOTIMPL },
+        GetUInt32Array: { _, _, _ in return failWith(err: E_NOTIMPL) },
 
-        GetInt64Array: { _, _, _ in return E_NOTIMPL },
+        GetInt64Array: { _, _, _ in return failWith(err: E_NOTIMPL) },
 
-        GetUInt64Array: { _, _, _ in return E_NOTIMPL },
+        GetUInt64Array: { _, _, _ in return failWith(err: E_NOTIMPL) },
 
-        GetSingleArray: { _, _, _ in return E_NOTIMPL },
+        GetSingleArray: { _, _, _ in return failWith(err: E_NOTIMPL) },
 
-        GetDoubleArray: { _, _, _ in return E_NOTIMPL },
+        GetDoubleArray: { _, _, _ in return failWith(err: E_NOTIMPL) },
 
-        GetChar16Array: { _, _, _ in return E_NOTIMPL },
+        GetChar16Array: { _, _, _ in return failWith(err: E_NOTIMPL) },
 
-        GetBooleanArray: { _, _, _ in return E_NOTIMPL },
+        GetBooleanArray: { _, _, _ in return failWith(err: E_NOTIMPL) },
 
-        GetStringArray: { _, _, _ in return E_NOTIMPL },
+        GetStringArray: { _, _, _ in return failWith(err: E_NOTIMPL) },
 
-        GetInspectableArray: { _, _, _ in return E_NOTIMPL },
+        GetInspectableArray: { _, _, _ in return failWith(err: E_NOTIMPL) },
 
-        GetGuidArray: { _, _, _ in return E_NOTIMPL },
+        GetGuidArray: { _, _, _ in return failWith(err: E_NOTIMPL) },
 
-        GetDateTimeArray: { _, _, _ in return E_NOTIMPL },
+        GetDateTimeArray: { _, _, _ in return failWith(err: E_NOTIMPL) },
 
-        GetTimeSpanArray: { _, _, _ in return E_NOTIMPL },
+        GetTimeSpanArray: { _, _, _ in return failWith(err: E_NOTIMPL) },
 
-        GetPointArray: { _, _, _ in return E_NOTIMPL },
+        GetPointArray: { _, _, _ in return failWith(err: E_NOTIMPL) },
 
-        GetSizeArray: { _, _, _ in return E_NOTIMPL },
+        GetSizeArray: { _, _, _ in return failWith(err: E_NOTIMPL) },
 
-        GetRectArray: { _, _, _ in return E_NOTIMPL }
+        GetRectArray: { _, _, _ in return failWith(err: E_NOTIMPL) }
     )
     public class IPropertyValueWrapper : WinRTWrapperBase<__x_ABI_CWindows_CFoundation_CIPropertyValue, test_component.IPropertyValue>
     {
@@ -446,5 +446,30 @@ extension __x_ABI_CWindows_CFoundation_CIPropertyValue : Initializable {
     public init() {
         let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Foundation.IPropertyValueVTable) { $0 }
         self.init(lpVtbl: vtblPtr)
+    }
+}
+extension __x_ABI_CWindows_CFoundation_CDateTime {
+    public static func from(swift: test_component.DateTime) -> __x_ABI_CWindows_CFoundation_CDateTime {
+        .init(UniversalTime: swift.UniversalTime)
+    }
+}
+extension __x_ABI_CWindows_CFoundation_CPoint {
+    public static func from(swift: test_component.Point) -> __x_ABI_CWindows_CFoundation_CPoint {
+        .init(X: swift.X, Y: swift.Y)
+    }
+}
+extension __x_ABI_CWindows_CFoundation_CRect {
+    public static func from(swift: test_component.Rect) -> __x_ABI_CWindows_CFoundation_CRect {
+        .init(X: swift.X, Y: swift.Y, Width: swift.Width, Height: swift.Height)
+    }
+}
+extension __x_ABI_CWindows_CFoundation_CSize {
+    public static func from(swift: test_component.Size) -> __x_ABI_CWindows_CFoundation_CSize {
+        .init(Width: swift.Width, Height: swift.Height)
+    }
+}
+extension __x_ABI_CWindows_CFoundation_CTimeSpan {
+    public static func from(swift: test_component.TimeSpan) -> __x_ABI_CWindows_CFoundation_CTimeSpan {
+        .init(Duration: swift.Duration)
     }
 }

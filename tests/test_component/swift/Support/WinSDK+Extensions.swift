@@ -38,7 +38,7 @@ extension boolean {
 
 extension WCHAR {
   public init(from val: Character) {
-    let value = String(val).withWideChars {
+    let value = try! String(val).withWideChars {
       $0[0]
     }
     self.init(value);

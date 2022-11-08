@@ -8,6 +8,9 @@ public struct DateTime {
     public init(UniversalTime: Int64) {
         self.UniversalTime = UniversalTime
     }
+    public static func from(abi: __x_ABI_CWindows_CFoundation_CDateTime) -> DateTime {
+        .init(UniversalTime: abi.UniversalTime)
+    }
 }
 
 public struct Point {
@@ -17,6 +20,9 @@ public struct Point {
     public init(X: Float, Y: Float) {
         self.X = X
         self.Y = Y
+    }
+    public static func from(abi: __x_ABI_CWindows_CFoundation_CPoint) -> Point {
+        .init(X: abi.X, Y: abi.Y)
     }
 }
 
@@ -32,6 +38,9 @@ public struct Rect {
         self.Width = Width
         self.Height = Height
     }
+    public static func from(abi: __x_ABI_CWindows_CFoundation_CRect) -> Rect {
+        .init(X: abi.X, Y: abi.Y, Width: abi.Width, Height: abi.Height)
+    }
 }
 
 public struct Size {
@@ -42,6 +51,9 @@ public struct Size {
         self.Width = Width
         self.Height = Height
     }
+    public static func from(abi: __x_ABI_CWindows_CFoundation_CSize) -> Size {
+        .init(Width: abi.Width, Height: abi.Height)
+    }
 }
 
 public struct TimeSpan {
@@ -49,6 +61,9 @@ public struct TimeSpan {
     public init() {}
     public init(Duration: Int64) {
         self.Duration = Duration
+    }
+    public static func from(abi: __x_ABI_CWindows_CFoundation_CTimeSpan) -> TimeSpan {
+        .init(Duration: abi.Duration)
     }
 }
 

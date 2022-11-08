@@ -39,9 +39,17 @@ class AppDerived3 : UnsealedDerived2 {
 }
 
 class AppDerivedNoOverrides : BaseNoOverrides {
-
+  override init() {
+    super.init()
+  }
 }
 
+
+class AppDerivedNoOverrides2 : UnsealedDerivedNoOverrides {
+  override init() {
+    super.init()
+  }
+}
 
 class SwiftWinRTTests {
   public func TestBlittableStruct()
@@ -693,9 +701,24 @@ class SwiftWinRTTests {
     let derivedNoOverrides = AppDerivedNoOverrides()
     classy.BaseNoOverridesProperty = derivedNoOverrides
 
-    let baseNoOverrides_returned = classy.BaseNoOverridesProperty
+    var baseNoOverrides_returned = classy.BaseNoOverridesProperty
     assert(type(of: baseNoOverrides_returned) == AppDerivedNoOverrides.self)
     assert(baseNoOverrides_returned === derivedNoOverrides)
+
+    let derivedNoOverrides2 = AppDerivedNoOverrides2()
+    classy.BaseNoOverridesProperty = derivedNoOverrides2
+    baseNoOverrides_returned = classy.BaseNoOverridesProperty
+    assert(type(of: baseNoOverrides_returned) == AppDerivedNoOverrides2.self)
+    assert(baseNoOverrides_returned === derivedNoOverrides2)
+
+    print("  ** Test passed! **")
+  }
+
+  func TestUnicode() {
+    print(" ** Starting Test case: TestUnicode **")
+
+    let classy = Class()
+    _ = classy.InString("\u{E909}")
 
     print("  ** Test passed! **")
   }
@@ -720,4 +743,5 @@ tests.TestDoubleDelegate()
 tests.TestIReference()
 tests.TestEvents()
 tests.TestAggregation()
+tests.TestUnicode()
 print("all tests passed!")

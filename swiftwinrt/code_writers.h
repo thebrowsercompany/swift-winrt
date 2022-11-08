@@ -632,8 +632,7 @@ namespace swiftwinrt
         {
             if (is_struct(type) && !is_guid(type))
             {
-                auto guard = w.push_abi_types(true);
-                w.write("unsafeBitCast(%, to: %.self)", param_name, type);
+                w.write(".from(swift: %)", param_name);
             }
             else
             {
@@ -902,14 +901,13 @@ namespace swiftwinrt
             {
                 w.write(name);
             }
-            else if (category == param_category::struct_type && is_struct_blittable(signature_type))
+            else if (category == param_category::struct_type)
             {
-                auto mangled_name = w.push_mangled_names(w.abi_types);
-                w.write("unsafeBitCast(%, to: %.self)", name, type.first);
+                w.write(".from(abi: %)", name);
             }
             else
             {
-                // other non-blittable types (structs, bool, char, string) all have an initialiazer
+                // primitive types (bool, char, string) all have an initialiazer
                 // which converts from the ABI value
                 w.write(".init(from: %)", name);
             }
@@ -946,28 +944,19 @@ namespace swiftwinrt
             else
             {
                 //TODO: implement generic object type
-                w.write(".init(%%)",
-                    w.consume_types ? "consuming: " : "",
+                w.write(".init(%)",
                     name);
             }
 
         }
+        else if (category == param_category::struct_type && !is_guid(type))
+        {
+            w.write(".from(abi: %)", name);
+        }
         else if (is_type_blittable(type))
         {
-            if (category == param_category::struct_type && !is_guid(type))
-            {
-                auto format = "unsafeBitCast(%, to: %.self)";
-                // disambiguate variables with matching name as type. for example
-                // public var MouseDelta : MouseDelta { get { ... } }
-                auto full_name = w.push_full_type_names(true);
-                w.write(format, name, type);
-
-            }
-            else
-            {
-                // fundamental types can just be simply copied to since the types match
-                w.write(name);
-            }
+            // fundamental types can just be simply copied to since the types match
+            w.write(name);
         }
         else if (w.abi_types && category == param_category::string_type)
         {
@@ -1203,9 +1192,7 @@ bind<write_abi_args>(signature));
                 get_full_swift_type_name(w, structType),
                 type.mangled_name(),
                 structType->mangled_name(),
-                blittable ? 
-                        "self = unsafeBitCast(result, to: Self.self)" :
-                        "self.init(from: result)");
+                "self = .from(abi: result)");
         }
         else
         {
@@ -1293,21 +1280,14 @@ class % : WinRTWrapperBase<%, %> {
     
     static void write_struct_abi(writer& w, TypeDef const& type)
     {
-        bool is_blittable = true;
-        for (auto&& field : type.FieldList())
-        {
-            if (!is_type_blittable(field.Signature().Type()))
-            {
-                is_blittable = false;
-                break;
-            }   
-        }
-
+        bool is_blittable = is_struct_blittable(type);
         if (is_blittable)
         {
             return;
         }
 
+        // for non blittable structs we need to create a type which helps us convert between
+        // swift and C land
         w.write("public class _ABI_% {\n", type.TypeName());
         {
             auto push_indent = w.push_indent({ 1 });
@@ -1974,10 +1954,9 @@ public init(_ fromAbi: UnsafeMutablePointer<c_ABI>?) {
                     w.write("var _%: % = .init()\n",
                         get_swift_name(param),
                         bind_type_abi(signature_type));
-                    guard.push("% = unsafeBitCast(_%, to: %.self)\n",
+                    guard.push("% = .from(abi: _%)\n",
                         get_swift_name(param),
-                        get_swift_name(param),
-                        get_full_swift_type_name(w, signature_type));
+                        get_swift_name(param));
                 }
                 else if (category == param_category::struct_type)
                 {
@@ -1985,7 +1964,7 @@ public init(_ fromAbi: UnsafeMutablePointer<c_ABI>?) {
                         get_swift_name(param),
                         abi_namespace(signature_type),
                         signature_type.TypeName());
-                    guard.push("% = .init(from: _%.val)\n",
+                    guard.push("% = .from(abi: _%.val)\n",
                         get_swift_name(param),
                         get_swift_name(param));
                 }
@@ -2010,7 +1989,7 @@ public init(_ fromAbi: UnsafeMutablePointer<c_ABI>?) {
                     else if (auto default_interface = get_default_interface(param_signature->Type()))
                     {
                         auto [ns, default_interface_name] = get_type_namespace_and_name(default_interface);
-                        guard.push("% = .init(%.%(consuming: _%))\n",
+                        guard.push("% = .init(%.%(_%))\n",
                             get_swift_name(param),
                             abi_namespace(ns),
                             default_interface_name,
@@ -2773,6 +2752,42 @@ type);
         }
     }
 
+    static void write_struct_init_extension(writer& w, TypeDef const& type)
+    {
+        bool is_blittable = is_struct_blittable(type);
+        if (is_blittable)
+        {
+            w.write(R"(extension % {
+    public static func from(swift: %) -> % {
+        .init(%)
+    }
+}
+)", bind_type_abi(type), get_full_swift_type_name(w,type), bind_type_abi(type), bind([&](writer& w) {
+                    separator s{ w };
+                    for (auto&& field : type.FieldList())
+                    {
+                        s();
+
+                        if (is_struct(field.Signature().Type()))
+                        {
+                            w.write("%: .from(swift: swift.%)",
+                                get_swift_name(field),
+                                get_swift_name(field)
+                            );
+                        }
+                        else
+                        {
+                            w.write("%: swift.%",
+                                get_swift_name(field),
+                                get_swift_name(field)
+                            );
+                        }
+  
+                    }
+    }));
+        }
+    }
+
     static void write_struct(writer& w, TypeDef const& type)
     {
         if (type.TypeName() == "HResult" && type.TypeNamespace() == "Windows.Foundation")
@@ -2781,12 +2796,10 @@ type);
         }
         w.write("public struct % {\n", type);
         {
-            bool is_blittable = true;
             auto indent = w.push_indent({ 1 });
             for (auto&& field : type.FieldList())
             {
                 auto field_type = field.Signature().Type();
-                is_blittable = is_blittable && is_type_blittable(field_type);
                 // WIN-64 - swiftwinrt: support boxing/unboxing
                 // WIN-65 - swiftwinrt: support generic types
                 if (!can_write(w, type, field_type)) continue;
@@ -2813,26 +2826,27 @@ type);
             }
             w.write("}\n");
 
-            if (!is_blittable)
-            {
-                w.write("public init(from abi: %) {\n", bind_type_abi(type));
-                {
-                    auto indent = w.push_indent({ 1 });
+            w.write(R"(public static func from(abi: %) -> % {
+    .init(%)
+}
+)", bind_type_abi(type),
+    type,
+    bind([&](writer& w) {
+                    separator s{ w };
                     for (auto&& field : type.FieldList())
                     {
                         if (can_write(w, type, field.Signature().Type()))
                         {
+                            s();
                             std::string from = std::string("abi.").append(get_swift_name(field));
-                            w.write("self.% = %\n",
+                            w.write("%: %",
                                 get_swift_name(field),
                                 bind<write_consume_type>(field.Signature().Type(), from)
                             );
                         }
                     }
-                }
-                w.write("}\n");
-            }
- 
+    }));
+         
         }
         w.write("}\n\n");
     }
@@ -3105,7 +3119,7 @@ get_full_type_name(type)
 
     static void write_not_implementable_vtable_method(writer& w, method_signature const& sig)
     {
-        w.write("%: { _, % in return E_NOTIMPL }", get_abi_name(sig.method()), bind([&](writer& w) {
+        w.write("%: { _, % in return failWith(err: E_NOTIMPL) }", get_abi_name(sig.method()), bind([&](writer& w) {
             separator s{ w };
             for (auto& [_, param_sig] : sig.params())
             {

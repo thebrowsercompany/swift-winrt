@@ -129,6 +129,7 @@ namespace swiftwinrt
 
         w.write("%", w.filter.bind_each<write_initializable_overrides>(members.classes));
         w.write("%", w.filter.bind_each<write_initializable_implementable>(members.interfaces));
+        w.write("%", w.filter.bind_each<write_struct_init_extension>(members.structs));
 
         w.swap();
         write_preamble(w);
@@ -161,7 +162,6 @@ namespace swiftwinrt
         {
             write_ireference_init_extension(w, inst.get());
         }
-
 
         w.swap();
         write_preamble(w);

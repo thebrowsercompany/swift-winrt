@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: BSD-3
 
 import Ctest_component
-
+import Foundation
 open class IInspectable: IUnknown {
   override open class var IID: IID { IID_IInspectable }
 
@@ -37,7 +37,7 @@ open class IInspectable: IUnknown {
 // }
 // internal typealias Composable = IBaseNoOverrides
 enum __ABI {
-    private typealias AnyObjectWrapper = WinRTWrapperBase<Ctest_component.IInspectable, any UnsealedWinRTClass>
+    private typealias AnyObjectWrapper = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>
     fileprivate static var IInspectableVTable: Ctest_component.IInspectableVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
@@ -45,8 +45,8 @@ enum __ABI {
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
                   riid.pointee == IIAgileObject.IID else { 
-                    guard let instance = AnyObjectWrapper.try_unwrap_from(raw: $0),
-                            let inner = instance._inner else { return E_INVALIDARG }
+                    guard let instance = AnyObjectWrapper.try_unwrap_from(raw: $0) as? any UnsealedWinRTClass,
+                            let inner = instance._inner else { return E_NOINTERFACE }
                         
                     return inner.pointee.lpVtbl.pointee.QueryInterface(inner, riid, ppvObject)
 
@@ -80,7 +80,13 @@ enum __ABI {
 
         GetRuntimeClassName: {
             guard let instance = AnyObjectWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            let hstring = instance.GetRuntimeClassName().detach()
+            guard let unsealed = instance as? any UnsealedWinRTClass else {
+                let string = NSStringFromClass(type(of: instance))
+                let hstring = try! HString(string).detach()
+                $1!.pointee = hstring
+                return S_OK   
+            }
+            let hstring = unsealed.GetRuntimeClassName().detach()
             $1!.pointee = hstring
             return S_OK
         },

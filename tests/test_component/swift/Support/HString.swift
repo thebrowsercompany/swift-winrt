@@ -9,9 +9,9 @@ public class HString {
   public init(_ string: String?) throws {
 
     if let string = string {
-      self.hRef = string.withWideChars {
+      self.hRef = try string.withWideChars {
           var out: HSTRING?
-          WindowsCreateString($0, UInt32(string.count), &out)
+          try CHECKED(WindowsCreateString($0, UINT32(string.count), &out))
           return HStringStorage(consuming: out)
         }
     } else {

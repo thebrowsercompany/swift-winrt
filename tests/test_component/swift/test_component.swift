@@ -230,13 +230,13 @@ public final class Class: WinRTClass {
     public func OutBlittableStruct(_ value: inout BlittableStruct) {
         var _value: __x_ABI_Ctest__component_CBlittableStruct = .init()
         try! _default.OutBlittableStructImpl(&_value)
-        value = unsafeBitCast(_value, to: test_component.BlittableStruct.self)
+        value = .from(abi: _value)
     }
 
     public func OutNonBlittableStruct(_ value: inout NonBlittableStruct) {
         let _value: __ABI_test_component._ABI_NonBlittableStruct = .init()
         try! _default.OutNonBlittableStructImpl(&_value.val)
-        value = .init(from: _value.val)
+        value = .from(abi: _value.val)
     }
 
     public func OutEnum(_ value: inout Signed) {
@@ -450,16 +450,16 @@ public final class Simple: WinRTClass {
 
     public func ReturnBlittableStruct() -> BlittableStruct {
         let result = try! _default.ReturnBlittableStructImpl()
-        return unsafeBitCast(result, to: test_component.BlittableStruct.self)
+        return .from(abi: result)
     }
 
     public func TakeBlittableStruct(_ value: BlittableStruct) {
-        try! _default.TakeBlittableStructImpl(unsafeBitCast(value, to: __x_ABI_Ctest__component_CBlittableStruct.self))
+        try! _default.TakeBlittableStructImpl(.from(swift: value))
     }
 
     public func ReturnNonBlittableStruct() -> NonBlittableStruct {
         let result = try! _default.ReturnNonBlittableStructImpl()
-        return .init(from: result)
+        return .from(abi: result)
     }
 
     public func TakeNonBlittableStruct(_ value: NonBlittableStruct) {
@@ -474,18 +474,18 @@ public final class Simple: WinRTClass {
     public var BlittableStructProperty : BlittableStruct {
         get {
             let value = try! _default.get_BlittableStructPropertyImpl()
-            return unsafeBitCast(value, to: test_component.BlittableStruct.self)
+            return .from(abi: value)
         }
 
         set {
-            try! _default.put_BlittableStructPropertyImpl(unsafeBitCast(newValue, to: __x_ABI_Ctest__component_CBlittableStruct.self)) 
+            try! _default.put_BlittableStructPropertyImpl(.from(swift: newValue)) 
         }
     }
 
     public var NonBlittableStructProperty : NonBlittableStruct {
         get {
             let value = try! _default.get_NonBlittableStructPropertyImpl()
-            return .init(from: value)
+            return .from(abi: value)
         }
 
         set {
@@ -730,6 +730,58 @@ open class UnsealedDerived2: test_component.UnsealedDerived {
     override public class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
 }
 
+open class UnsealedDerivedNoOverrides: test_component.BaseNoOverrides {
+    private typealias swift_ABI = __ABI_test_component.IUnsealedDerivedNoOverrides
+    private typealias c_ABI = __x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides
+    private var _default: swift_ABI = .init(UnsafeMutableRawPointer.none)
+    override open func _get_abi<T>() -> UnsafeMutablePointer<T>? {
+        if T.self == c_ABI.self {
+            return RawPointer(_default)
+        }   
+        if T.self == Ctest_component.IInspectable.self {
+            return RawPointer(_default)
+        }
+        return super._get_abi()
+    }
+
+    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides>?) -> UnsealedDerivedNoOverrides {
+         UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi!)
+    }
+    internal init(fromAbi: __ABI_test_component.IUnsealedDerivedNoOverrides) {
+        _default = fromAbi
+        super.init(fromAbi: try! _default.QueryInterface())
+    }
+
+    private static var _IUnsealedDerivedNoOverridesProtectedFactory : __ABI_test_component.IUnsealedDerivedNoOverridesProtectedFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerivedNoOverrides"))
+    override public init() {
+        super.init(Self._IUnsealedDerivedNoOverridesProtectedFactory) 
+        let parentDefault: UnsafeMutablePointer<Ctest_component.IInspectable>? = super._get_abi()
+        self._default = try! IInspectable(parentDefault).QueryInterface()
+        _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
+    }
+
+    override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
+        super.init(factory)
+        let parentDefault: UnsafeMutablePointer<Ctest_component.IInspectable>? = super._get_abi()
+        self._default = try! IInspectable(parentDefault).QueryInterface()
+        _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
+    }
+    internal class IUnsealedDerivedNoOverrides : ComposableImpl {
+        internal typealias c_ABI = Ctest_component.IInspectable
+        internal typealias swift_ABI = test_component.IInspectable
+        internal class Default : MakeComposedAbi {
+            internal typealias swift_Projection = UnsealedDerivedNoOverrides
+            internal typealias c_ABI = __x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides
+            internal typealias swift_ABI = __ABI_test_component.IUnsealedDerivedNoOverrides
+            internal static func from(abi: UnsafeMutableRawPointer?) -> swift_Projection {
+                .init(fromAbi: .init(abi!))
+            }
+        }
+    }
+    internal typealias Composable = IUnsealedDerivedNoOverrides
+    override public class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
+}
+
 public struct BlittableStruct {
     public var First: Int32 = 0
     public var Second: Int32 = 0
@@ -737,6 +789,9 @@ public struct BlittableStruct {
     public init(First: Int32, Second: Int32) {
         self.First = First
         self.Second = Second
+    }
+    public static func from(abi: __x_ABI_Ctest__component_CBlittableStruct) -> BlittableStruct {
+        .init(First: abi.First, Second: abi.Second)
     }
 }
 
@@ -752,11 +807,8 @@ public struct NonBlittableBoolStruct {
         self.Third = Third
         self.Fourth = Fourth
     }
-    public init(from abi: __x_ABI_Ctest__component_CNonBlittableBoolStruct) {
-        self.First = .init(from: abi.First)
-        self.Second = .init(from: abi.Second)
-        self.Third = .init(from: abi.Third)
-        self.Fourth = .init(from: abi.Fourth)
+    public static func from(abi: __x_ABI_Ctest__component_CNonBlittableBoolStruct) -> NonBlittableBoolStruct {
+        .init(First: .init(from: abi.First), Second: .init(from: abi.Second), Third: .init(from: abi.Third), Fourth: .init(from: abi.Fourth))
     }
 }
 
@@ -772,11 +824,8 @@ public struct NonBlittableStruct {
         self.Third = Third
         self.Fourth = Fourth
     }
-    public init(from abi: __x_ABI_Ctest__component_CNonBlittableStruct) {
-        self.First = .init(from: abi.First)
-        self.Second = .init(from: abi.Second)
-        self.Third = abi.Third
-        self.Fourth = .init(from: abi.Fourth)
+    public static func from(abi: __x_ABI_Ctest__component_CNonBlittableStruct) -> NonBlittableStruct {
+        .init(First: .init(from: abi.First), Second: .init(from: abi.Second), Third: abi.Third, Fourth: .init(from: abi.Fourth))
     }
 }
 
@@ -785,6 +834,9 @@ public struct SimpleEventArgs {
     public init() {}
     public init(Value: Int32) {
         self.Value = Value
+    }
+    public static func from(abi: __x_ABI_Ctest__component_CSimpleEventArgs) -> SimpleEventArgs {
+        .init(Value: abi.Value)
     }
 }
 

@@ -32,3 +32,7 @@ extension Error: CustomStringConvertible {
     return "0x\(String(DWORD(bitPattern: hr), radix: 16)) - \(String(decodingCString: message, as: UTF16.self))"
   }
 }
+
+public func failWith(err: HRESULT) -> HRESULT {
+  return err
+}

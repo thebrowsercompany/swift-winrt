@@ -377,6 +377,11 @@ namespace test_component
             protected BaseNoOverrides();
         }
 
+
+        unsealed runtimeclass UnsealedDerivedNoOverrides : BaseNoOverrides {
+            protected UnsealedDerivedNoOverrides();
+        }
+
         runtimeclass Derived : Base {
             Derived();
 
