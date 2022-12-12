@@ -274,6 +274,16 @@ void metadata_cache::process_interface_dependencies(init_state& state, interface
         process_contract_dependencies(*state.target, method);
         type.functions.push_back(process_function(state, method));
     }
+
+    for (auto const& prop : type.type().PropertyList())
+    {
+        type.properties.push_back(process_property(state, prop));
+    }
+
+    for (auto const& event : type.type().EventList())
+    {
+        type.events.push_back(event_def{ event });
+    }
 }
 
 void metadata_cache::process_class_dependencies(init_state& state, class_type& type)
@@ -479,11 +489,28 @@ function_def metadata_cache::process_function(init_state& state, MethodDef const
     for (auto const& param : sig.Params())
     {
         XLANG_ASSERT(paramNames.first != paramNames.second);
-        params.push_back(function_param{ param, paramNames.first.Name(), &find_dependent_type(state, param.Type()) });
+        params.push_back(function_param{ paramNames.first, param, paramNames.first.Name(), &find_dependent_type(state, param.Type()) });
         ++paramNames.first;
     }
 
     return function_def{ def, std::move(return_type), std::move(params) };
+}
+
+property_def metadata_cache::process_property(init_state& state, Property const& def)
+{
+    auto [getter, setter] = get_property_methods(def);
+    if (getter && setter)
+    {
+        return property_def{ def, process_function(state, getter), process_function(state, setter) };
+    }
+    else if (getter)
+    {
+        return property_def{ def, process_function(state, getter), {} };
+    }
+    else
+    {
+        return property_def{ def, {}, process_function(state, setter) };
+    }
 }
 
 metadata_type const& metadata_cache::find_dependent_type(init_state& state, TypeSig const& type)
@@ -613,6 +640,17 @@ metadata_type const& metadata_cache::find_dependent_type(init_state& state, Gene
             }
         }
 
+        for (auto const& prop : genericType->type().PropertyList())
+        {
+            itr->second.properties.push_back(process_property(state, prop ));
+        }
+
+        for (auto const& event : genericType->type().EventList())
+        {
+            itr->second.events.push_back(event_def{ event });
+        }
+
+
         state.parent_generic_inst = restore;
     }
 
@@ -635,7 +673,7 @@ static void merge_into(std::vector<T>& from, std::vector<std::reference_wrapper<
     to.swap(result);
 }
 
-type_cache metadata_cache::compile_namespaces(std::initializer_list<std::string_view> targetNamespaces, metadata_filter const& f)
+type_cache metadata_cache::compile_namespaces(std::vector<std::string_view> const& targetNamespaces, metadata_filter const& f)
 {
     type_cache result{ this };
 

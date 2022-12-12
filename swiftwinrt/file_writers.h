@@ -127,8 +127,6 @@ namespace swiftwinrt
             write_ireference_init_extension(w, inst.get());
         }
 
-        w.write("%", w.filter.bind_each<write_initializable_overrides>(members.classes));
-        w.write("%", w.filter.bind_each<write_initializable_implementable>(members.interfaces));
         w.write("%", w.filter.bind_each<write_struct_init_extension>(members.structs));
 
         w.swap();
@@ -150,7 +148,7 @@ namespace swiftwinrt
         w.write("%", w.filter.bind_each<write_class>(members.classes));
         w.write("%", w.filter.bind_each<write_delegate>(members.delegates));
         w.write("%", w.filter.bind_each<write_struct>(members.structs));
-        w.write("%", w.filter.bind_each<write_interface_alias>(members.interfaces));
+        w.write("%", w.filter.bind_each<write_interface_proto>(members.interfaces));
 
         if (ns == "Windows.Foundation")
         {
@@ -189,8 +187,6 @@ namespace swiftwinrt
                 write_generic_implementation(w, inst.get());
             }
         }
-
-        w.write("%", w.filter.bind_each<write_interface_proto>(members.interfaces));
 
         for (auto& [_, inst] : members.generic_instantiations)
         {

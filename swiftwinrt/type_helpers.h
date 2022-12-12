@@ -14,7 +14,7 @@ namespace swiftwinrt
 
     std::string get_full_type_name(TypeDef const& type);
     std::string get_full_type_name(TypeRef const& type);
-
+    bool is_generic(TypeDef const& type) noexcept;
     inline bool starts_with(std::string_view const& value, std::string_view const& match) noexcept
     {
         return 0 == value.compare(0, match.size(), match);
@@ -79,7 +79,11 @@ namespace swiftwinrt
         {
             return true;
         }
-
+        // generic types are always internal since they are duplicated at each use
+        if (is_generic(type))
+        {
+            return true;
+        }
         return false;
     }
 
@@ -111,6 +115,7 @@ namespace swiftwinrt
     enum class param_category
     {
         generic_type,
+        generic_type_index,
         object_type,
         string_type,
         character_type,
@@ -119,6 +124,7 @@ namespace swiftwinrt
         struct_type,
         array_type,
         fundamental_type,
+        guid_type
     };
 
     inline param_category get_category(TypeSig const& signature, TypeDef* signature_type = nullptr)
@@ -168,7 +174,7 @@ namespace swiftwinrt
 
                     if (get_full_type_name(type_ref) == "System.Guid")
                     {
-                        result = param_category::struct_type;
+                        result = param_category::guid_type;
                         return;
                     }
 
@@ -203,13 +209,13 @@ namespace swiftwinrt
                     return;
                 }
             },
-                [&](GenericTypeInstSig const&)
+                [&](GenericTypeInstSig const& sig)
             {
                 result = param_category::generic_type;
             },
             [&](GenericTypeIndex const&)
             {
-                result = param_category::object_type;
+                result = param_category::generic_type_index;
             },
                 [&](auto&&)
             {
@@ -258,27 +264,9 @@ namespace swiftwinrt
         return object;
     }
 
-    inline bool is_guid(TypeSig const& signature)
+    inline bool is_guid(param_category category)
     {
-        bool guid{};
-
-        call(signature.Type(),
-            [&](coded_index<TypeDefOrRef> const& type)
-            {
-                if (type.type() == TypeDefOrRef::TypeRef)
-                {
-                    auto type_ref = type.TypeRef();
-
-                    if (get_full_type_name(type_ref) == "System.Guid")
-                    {
-                        guid = true;
-                        return;
-                    }
-                }
-            },
-            [](auto&&) {});
-
-        return guid;
+        return category == param_category::guid_type;
     }
 
     inline bool is_category_type(TypeSig const& signature, category category)
@@ -332,6 +320,24 @@ namespace swiftwinrt
         return is_category_type(signature, category::class_type);
     }
 
+    inline bool is_interface(TypeDef const& type)
+    {
+        if (type == TypeDef{}) return false;
+        return get_category(type) == category::interface_type;
+    }
+
+    inline bool is_delegate(TypeDef const& type)
+    {
+        if (type == TypeDef{}) return false;
+        return get_category(type) == category::delegate_type;
+    }
+
+    inline bool is_class(TypeDef const& type)
+    {
+        if (type == TypeDef{}) return false;
+        return get_category(type) == category::class_type;
+    }
+
     inline bool is_struct(TypeSig const& signature)
     {
         // use get_category bc this does a more detailed check of what is actually a struct type.
@@ -339,6 +345,20 @@ namespace swiftwinrt
         return get_category(signature) == param_category::struct_type;
     }
 
+    inline bool is_type_blittable(param_category category)
+    {
+        // generic types should be unwrapped first before calling this API
+        assert(category != param_category::generic_type_index);
+
+        switch (category) {
+        case param_category::enum_type:
+        case param_category::fundamental_type:
+        case param_category::guid_type:
+            return true;
+        default:
+            return false;
+        }
+    }
     inline bool is_type_blittable(TypeSig const& signature, bool for_array = false)
     {
         if (signature.is_szarray())
@@ -426,6 +446,7 @@ namespace swiftwinrt
 
     inline bool is_type_blittable(TypeDef const& type)
     {
+        if (type == TypeDef{}) return false;
         switch (get_category(type))
         {
         case category::interface_type:

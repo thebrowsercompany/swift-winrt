@@ -16,3 +16,8 @@ public func RawPointer<T: IUnknown, U>(_ pUnk: T?) -> UnsafeMutablePointer<U>? {
 public func RawPointer<T: WinRTClass, U>(_ obj: T?) -> UnsafeMutablePointer<U>? {
   return obj?._get_abi()
 }
+
+@_spi(WinRTClass)
+public func RawPointer<T: AbiInterfaceImpl, U>(_ obj: T?) -> UnsafeMutablePointer<U>? {
+  return RawPointer(obj?._default)
+}

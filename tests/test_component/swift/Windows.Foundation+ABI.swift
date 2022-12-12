@@ -151,7 +151,7 @@ public enum __ABI_Windows_Foundation {
         }
     }
 
-    fileprivate static var IPropertyValueVTable: __x_ABI_CWindows_CFoundation_CIPropertyValueVtbl = .init(
+    internal static var IPropertyValueVTable: __x_ABI_CWindows_CFoundation_CIPropertyValueVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
 
@@ -426,26 +426,20 @@ public enum __ABI_Windows_Foundation {
     public class IPropertyValueWrapper : WinRTWrapperBase<__x_ABI_CWindows_CFoundation_CIPropertyValue, test_component.IPropertyValue>
     {
         override public class var IID: IID { IID___x_ABI_CWindows_CFoundation_CIPropertyValue }
-        public init(value: Any) {
+        public init(_ value: Any) {
             let abi = withUnsafeMutablePointer(to: &IPropertyValueVTable) {
                 __x_ABI_CWindows_CFoundation_CIPropertyValue(lpVtbl: $0)
             }
             super.init(abi, __IMPL_Windows_Foundation.IPropertyValueImpl(value: value))
         }
 
-        public init?(impl: test_component.IPropertyValue?) {
+        public init?(_ impl: test_component.IPropertyValue?) {
             guard let impl = impl else { return nil }
             let abi = withUnsafeMutablePointer(to: &IPropertyValueVTable) {
                 __x_ABI_CWindows_CFoundation_CIPropertyValue(lpVtbl: $0)
             }
             super.init(abi, impl)
         }
-    }
-}
-extension __x_ABI_CWindows_CFoundation_CIPropertyValue : Initializable {
-    public init() {
-        let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Foundation.IPropertyValueVTable) { $0 }
-        self.init(lpVtbl: vtblPtr)
     }
 }
 extension __x_ABI_CWindows_CFoundation_CDateTime {

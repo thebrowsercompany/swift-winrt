@@ -198,8 +198,8 @@ namespace test_component
         //   static String InMap(Windows.Foundation.Collections.IMap<String, String> value);
         //   static String InMapView(Windows.Foundation.Collections.IMapView<String, String> value);
         //   static Windows.Foundation.IAsyncOperation<String> InAsyncMapView(Windows.Foundation.Collections.IMapView<String, String> value);
-        //   static String InVector(Windows.Foundation.Collections.IVector<String> value);
-        //   static String InVectorView(Windows.Foundation.Collections.IVectorView<String> value);
+           static String InVector(Windows.Foundation.Collections.IVector<String> value);
+         //    static String InVectorView(Windows.Foundation.Collections.IVectorView<String> value);
         //   static Windows.Foundation.IAsyncOperation<String> InAsyncVectorView(Windows.Foundation.Collections.IVectorView<String> value);
 
         //   void Fail(Boolean value);
@@ -226,6 +226,7 @@ namespace test_component
         //   Windows.Foundation.IStringable ReturnStringable();
         //   Struct ReturnStruct();
             Signed ReturnEnum();
+            Windows.Foundation.Collections.IVector<String> ReturnStringVector();
 
             Fruit EnumProperty;
 
@@ -280,6 +281,9 @@ namespace test_component
 
             Base BaseProperty;
             BaseNoOverrides BaseNoOverridesProperty;
+
+            //Object ItemsSource;
+            //Windows.Foundation.IVector<Simple> Children { get; };
         }
         
         static runtimeclass StaticClass
@@ -406,5 +410,14 @@ namespace test_component
             protected UnsealedDerived2();
 
             void Method();
+        }
+
+        
+        runtimeclass BaseCollection : [default] IVector<Base>
+        {
+        }
+
+        runtimeclass BaseMapCollection : [default] IMap<String, Base>
+        {
         }
     }

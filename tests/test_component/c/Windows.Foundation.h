@@ -7,6 +7,8 @@
 #include "EventToken.h"
 #include "windowscontracts.h"
 #include "IVectorChangedEventArgs.h"
+// Importing Collections header
+#include "Windows.Foundation.Collections.h"
 
 /* Forward Declarations */
 #ifndef ____x_ABI_CWindows_CFoundation_CIPropertyValue_FWD_DEFINED__

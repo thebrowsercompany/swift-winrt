@@ -21,6 +21,7 @@ namespace swiftwinrt
     struct metadata_type
     {
         virtual std::string_view swift_full_name() const = 0;
+        virtual std::string_view swift_type_name() const = 0;
         virtual std::string_view swift_abi_namespace() const = 0;
         virtual std::string_view swift_logical_namespace() const = 0;
 
@@ -109,6 +110,11 @@ namespace swiftwinrt
             return m_swiftName;
         }
 
+        virtual std::string_view swift_type_name() const override
+        {
+            return m_swiftName;
+        }
+
         virtual std::string_view cpp_abi_name() const override
         {
             return m_cppName;
@@ -189,6 +195,11 @@ namespace swiftwinrt
         }
 
         virtual std::string_view swift_full_name() const override
+        {
+            return m_swiftName;
+        }
+
+        virtual std::string_view swift_type_name() const override
         {
             return m_swiftName;
         }
@@ -275,6 +286,11 @@ namespace swiftwinrt
         virtual std::string_view swift_full_name() const override
         {
             return m_swiftFullName;
+        }
+
+        virtual std::string_view swift_type_name() const override
+        {
+            return m_type.TypeName();
         }
 
         virtual std::string_view cpp_abi_name() const override
@@ -373,6 +389,11 @@ namespace swiftwinrt
         virtual std::string_view cpp_abi_name() const override
         {
             // Most types just use the swift type name, so use that as the easy default
+            return m_type.TypeName();
+        }
+
+        virtual std::string_view swift_type_name() const override
+        {
             return m_type.TypeName();
         }
 
@@ -551,6 +572,7 @@ namespace swiftwinrt
 
     struct function_param
     {
+        winmd::reader::Param def;
         winmd::reader::ParamSig signature;
         std::string_view name;
         metadata_type const* type;
@@ -561,6 +583,18 @@ namespace swiftwinrt
         winmd::reader::MethodDef def;
         std::optional<function_return_type> return_type;
         std::vector<function_param> params;
+    };
+
+    struct property_def
+    {
+        winmd::reader::Property def;
+        function_def getter;
+        function_def setter;
+    };
+
+    struct event_def
+    {
+        winmd::reader::Event def;
     };
 
     struct delegate_type final : typedef_base
@@ -611,6 +645,8 @@ namespace swiftwinrt
 
         std::vector<metadata_type const*> required_interfaces;
         std::vector<function_def> functions;
+        std::vector<property_def> properties;
+        std::vector<event_def> events;
 
         // When non-null, this interface gets extended with functions from other exclusiveto interfaces on the class
         class_type const* fast_class = nullptr;
@@ -683,12 +719,17 @@ namespace swiftwinrt
             m_swiftFullName.push_back('<');
 
             m_mangledName = genericType->mangled_name();
+            m_swiftTypeName = genericType->swift_type_name();
+            m_swiftTypeName.push_back('<');
 
             std::string_view prefix;
             for (auto param : m_genericParams)
             {
                 m_swiftFullName += prefix;
                 m_swiftFullName += param->swift_full_name();
+
+                m_swiftTypeName += prefix;
+                m_swiftTypeName += param->swift_type_name();
 
                 m_mangledName.push_back('_');
                 m_mangledName += param->generic_param_mangled_name();
@@ -697,6 +738,7 @@ namespace swiftwinrt
             }
 
             m_swiftFullName.push_back('>');
+            m_swiftTypeName.push_back('>');
         }
 
         virtual std::string_view swift_abi_namespace() const override
@@ -712,6 +754,11 @@ namespace swiftwinrt
         virtual std::string_view swift_full_name() const override
         {
             return m_swiftFullName;
+        }
+
+        virtual std::string_view swift_type_name() const override
+        {
+            return m_swiftTypeName;
         }
 
         virtual std::string_view cpp_abi_name() const override
@@ -784,6 +831,8 @@ namespace swiftwinrt
 
         std::vector<generic_inst const*> dependencies;
         std::vector<function_def> functions;
+        std::vector<property_def> properties;
+        std::vector<event_def> events;
 
         virtual void write_swift_declaration(writer&) const override;
     private:
@@ -791,6 +840,7 @@ namespace swiftwinrt
         typedef_base const* m_genericType;
         std::vector<metadata_type const*> m_genericParams;
         std::string m_swiftFullName;
+        std::string m_swiftTypeName;
         std::string m_mangledName;
     };
 }

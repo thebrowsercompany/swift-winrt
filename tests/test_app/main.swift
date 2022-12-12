@@ -353,6 +353,8 @@ class SwiftWinRTTests {
       retrievedDelegate.DoThat(15)
       assert(mySwiftDelegate.GetThisCount() == 3)
       assert(mySwiftDelegate.GetThat() == 9)
+
+      classy.SetDelegate(retrievedDelegate)
     }
   
     do
@@ -631,6 +633,7 @@ class SwiftWinRTTests {
     Simple.FireStaticEvent()
     assert(static_count == 6)
 
+    print("  ** Test passed! **")
   }
 
   public func TestAggregation() {
@@ -723,6 +726,43 @@ class SwiftWinRTTests {
     print("  ** Test passed! **")
   }
   
+  public func TestCollections() {
+    print(" ** Starting Test case: TestCollections **")
+
+    let array = ["Hello", "Goodbye", "Goodnight"]
+
+    var result = Class.InVector(array.toVector())
+    print(result)
+    assert(result == "Hello")
+
+    let classy = Class()
+    let vector = classy.ReturnStringVector()
+    assert(vector.count == 1)
+    print(vector[0])
+
+    result = Class.InVector(vector)
+
+    print(result)
+    assert(result == vector[0])
+
+    vector.append("Goodbye")
+    assert(vector.count == 2)
+    // Make sure the returned vector has the same data
+    // as the one we modified
+    let vector2 = classy.ReturnStringVector()
+    assert(vector2.count == vector.count)
+    assert(vector2[0] == vector2[0])
+    assert(vector2[1] == vector2[1])
+
+    vector2.append("Goodnight")
+
+    assert(vector2.count == 3)
+    assert(vector.count == 3)
+    assert(vector2[2] == vector2[2])
+
+    print("  ** Test passed! **")
+  }
+
 }
 
 RoInitialize(RO_INIT_MULTITHREADED)
@@ -737,11 +777,10 @@ tests.TestOutParams()
 tests.TestDelegate()
 tests.TestNonDefaultMethods()
 tests.TestChar()
-
 tests.TestDoubleDelegate()
-
 tests.TestIReference()
 tests.TestEvents()
 tests.TestAggregation()
 tests.TestUnicode()
+tests.TestCollections()
 print("all tests passed!")

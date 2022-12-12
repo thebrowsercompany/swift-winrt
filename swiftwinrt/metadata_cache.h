@@ -89,7 +89,7 @@ namespace swiftwinrt
 
         metadata_cache(winmd::reader::cache const& c);
 
-        type_cache compile_namespaces(std::initializer_list<std::string_view> targetNamespaces, metadata_filter const& f);
+        type_cache compile_namespaces(std::vector<std::string_view> const& targetNamespaces, metadata_filter const& f);
 
         metadata_type const* try_find(std::string_view typeNamespace, std::string_view typeName) const
         {
@@ -146,6 +146,7 @@ namespace swiftwinrt
         void process_fastabi_required_interfaces(init_state& state, interface_type const* currentInterface, relative_version rank, relative_version_map& interfaceMap);
 
         function_def process_function(init_state& state, winmd::reader::MethodDef const& def);
+        property_def process_property(init_state& state, winmd::reader::Property const& def);
 
         metadata_type const& find_dependent_type(init_state& state, winmd::reader::TypeSig const& type);
         metadata_type const& find_dependent_type(init_state& state, winmd::reader::coded_index<winmd::reader::TypeDefOrRef> const& type);

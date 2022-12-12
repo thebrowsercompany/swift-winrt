@@ -93,7 +93,10 @@ namespace swiftwinrt
 
     inline std::string get_full_swift_type_name(writer const& w, TypeDef const& type)
     {
-        std::string result = get_swift_namespace(w, type);
+        // writing a generic, don't include the '.' because the type name here should
+        // be something like IVectorView_UIElement not IVectorView_MicrosoftUIXaml.UIElement
+        bool use_full_name = w.full_type_names || !w.writing_generic;
+        std::string result = use_full_name ? get_swift_namespace(w, type) : "";
         if (!result.empty())
         {
             result += '.';
@@ -106,17 +109,25 @@ namespace swiftwinrt
     {
         auto swift_full_name = type->swift_full_name();
         auto last_ns_index = swift_full_name.find_last_of('.');
+        bool use_full_name = w.full_type_names || !w.writing_generic;
         if (last_ns_index != swift_full_name.npos)
         {
             auto ns = swift_full_name.substr(0, last_ns_index);
             auto typeName = swift_full_name.substr(last_ns_index + 1);
-            std::string result = get_swift_namespace(w, ns);
+            // writing a generic, don't include the '.' because the type name here should
+            // be something like IVectorView_UIElement not IVectorView_MicrosoftUIXaml.UIElement
+            std::string result = use_full_name ? get_swift_namespace(w, ns) : "";
             if (!result.empty())
             {
                 result += '.';
             }
             result += typeName;
             return result;
+        }
+        else if (swift_full_name == "IInspectable" && use_full_name)
+        {
+            writer temp;
+            return temp.write_temp("%.IInspectable", w.support);
         }
         else
         {

@@ -44,22 +44,20 @@ namespace swiftwinrt
 
         explicit type_name(metadata_type const& type)
         {
-            auto full_name = type.swift_full_name();
-            auto last_period = full_name.find_last_of('.');
-            if (last_period != full_name.npos)
-            {
-                name = full_name.substr(last_period + 1);
-                name_space = full_name.substr(0, last_period);
-            }
-            else
-            {
-                name = full_name;
-            }
+            name_space = type.swift_abi_namespace();
+            name = type.swift_type_name();
         }
 
         explicit type_name(TypeSig const& sig)
         {
-
+            call(sig.Type(),
+                [&](coded_index<TypeDefOrRef> const& type)
+                {
+                    auto const& [type_namespace, type_name] = get_type_namespace_and_name(type);
+                    name_space = type_namespace;
+                    name = type_name;
+                    TypeDef type_def;
+                }, [](auto&&) {});
         }
     };
 
@@ -101,6 +99,11 @@ namespace swiftwinrt
                 m_return = params.first.Name();
                 ++params.first;
             }
+            else if (m_signature.ReturnType())
+            {
+                // provide generic name if there is a return type but no name (i.e. generic methods)
+                m_return = "result";
+            }
 
             for (uint32_t i{}; i != size(m_signature.Params()); ++i)
             {
@@ -112,19 +115,16 @@ namespace swiftwinrt
             m_method(method.def),
             m_signature(method.def.Signature())
         {
-            auto params = method.def.ParamList();
-
             if (method.return_type)
             {
                 auto return_type = method.return_type.value();
                 m_return_type = return_type.type;
                 m_return = return_type.name;
-                ++params.first;
             }
 
             for (uint32_t i{}; i != method.params.size(); ++i)
             {
-                m_params.emplace_back(params.first + i, &method.params[i].signature);
+                m_params.emplace_back(method.params[i].def, &method.params[i].signature);
             }
         }
 
@@ -199,6 +199,42 @@ namespace swiftwinrt
         metadata_type const* m_return_type;
     };
 
+    std::tuple<MethodDef, MethodDef> get_property_methods(Property const& prop);
+
+    struct property_signature
+    {
+        explicit property_signature(Property const& prop) :
+            m_prop(prop)
+        {
+            auto [getter, setter] = get_property_methods(prop);
+            if (getter) {
+                m_getter = method_signature{ getter };
+            }
+            if (setter) {
+                m_setter = method_signature{ setter };
+            }
+        }
+
+        explicit property_signature(property_def const& prop) :
+            m_prop(prop.def)
+        {
+            if (prop.getter.def) {
+                m_getter = method_signature{ prop.getter };
+            }
+            if (prop.setter.def) {
+                m_setter = method_signature{ prop.setter };
+            }
+        }
+
+        Property const& property() const { return m_prop;  }
+        std::optional<method_signature> const& getter() const { return m_getter; }
+        std::optional<method_signature> const& setter() const { return m_setter; }
+
+    private:
+        Property m_prop;
+        std::optional<method_signature> m_getter;
+        std::optional<method_signature> m_setter;
+    };
     struct separator
     {
         writer& w;
@@ -260,6 +296,25 @@ namespace swiftwinrt
     inline bool is_put_overload(MethodDef const& method)
     {
         return method.SpecialName() && method.Name().starts_with("put_");
+    }
+
+    template<typename T>
+    inline bool is_collection_type(T const& type)
+    {
+        type_name typeName{ type };
+        if (typeName.name_space == "Windows.Foundation.Collections")
+        {
+
+            return typeName.name.starts_with("IVector`") ||
+                typeName.name.starts_with("IMap`") ||
+                typeName.name.starts_with("IVectorView`") ||
+                typeName.name.starts_with("IMapView`") ||
+                typeName.name.starts_with("IIterator`") ||
+                typeName.name.starts_with("IIterable`") ||
+                typeName.name.starts_with("IObservableMap`") ||
+                typeName.name.starts_with("IObservableVector`");
+        }
+        return false;
     }
 
     inline bool is_noexcept(MethodDef const& method)
@@ -360,7 +415,7 @@ namespace swiftwinrt
         // 'relativeContract' would be '0' for an interface introduced in contract 'A', '1' for an interface introduced
         // in contract 'B', etc. This is only set/valid for 'fastabi' interfaces
         std::pair<uint32_t, uint32_t> relative_version{};
-        std::vector<generic_param_vector> generic_param_stack{};
+        generic_param_vector generic_params{};
     };
 
     using get_interfaces_t = std::vector<std::pair<std::string, interface_info>>;
@@ -412,7 +467,7 @@ namespace swiftwinrt
         }
     }
 
-    inline void get_interfaces_impl(writer& w, get_interfaces_t& result, bool defaulted, bool overridable, bool base, std::vector<generic_param_vector> const& generic_param_stack, std::pair<InterfaceImpl, InterfaceImpl>&& children)
+    inline void get_interfaces_impl(writer& w, get_interfaces_t& result, bool defaulted, bool overridable, bool base, std::pair<InterfaceImpl, InterfaceImpl>&& children)
     {
         for (auto&& impl : children)
         {
@@ -441,7 +496,6 @@ namespace swiftwinrt
 
             info.overridable = overridable || has_attribute(impl, metadata_namespace, "OverridableAttribute");
             info.base = base;
-            info.generic_param_stack = generic_param_stack;
             writer::generic_param_guard guard;
 
             switch (type.type())
@@ -461,35 +515,15 @@ namespace swiftwinrt
             {
                 auto type_signature = type.TypeSpec().Signature();
 
-                generic_param_vector names;
-
-                for (auto&& arg : type_signature.GenericTypeInst().GenericArgs())
-                {
-                    auto semantics = valuetype_copy_semantics::equal;
-                    bool blittable = is_type_blittable(arg);
-                    if (is_struct(arg) && blittable)
-                    {
-                        semantics = valuetype_copy_semantics::blittable;
-                    }
-                    else if (!blittable)
-                    {
-                        semantics = valuetype_copy_semantics::nonblittable;
-                    }
-
-                    names.emplace_back(arg, semantics);
-                }
-
-
                 guard = w.push_generic_params(type_signature.GenericTypeInst());
                 auto signature = type_signature.GenericTypeInst();
                 info.type = find_required(signature.GenericType());
-
+                info.generic_params = w.generic_param_stack.back();
                 break;
             }
             }
-
             info.exclusive = has_attribute(info.type, "Windows.Foundation.Metadata", "ExclusiveToAttribute");
-            get_interfaces_impl(w, result, info.defaulted, info.overridable, base, info.generic_param_stack, info.type.InterfaceImpl());
+            get_interfaces_impl(w, result, info.defaulted, info.overridable, base, info.type.InterfaceImpl());
             insert_or_assign(result, name, std::move(info));
         }
     };
@@ -498,11 +532,11 @@ namespace swiftwinrt
     {
         w.abi_types = false;
         get_interfaces_t result;
-        get_interfaces_impl(w, result, false, false, false, {}, type.InterfaceImpl());
+        get_interfaces_impl(w, result, false, false, false, type.InterfaceImpl());
 
         for (auto&& base : get_bases(type))
         {
-            get_interfaces_impl(w, result, false, false, true, {}, base.InterfaceImpl());
+            get_interfaces_impl(w, result, false, false, true, base.InterfaceImpl());
         }
 
         if (!has_fastabi(type))
@@ -1014,7 +1048,7 @@ namespace swiftwinrt
         return settings.component_filter.includes(class_name);
     }
 
-    inline auto get_property_methods(Property const& prop)
+    inline std::tuple<MethodDef, MethodDef> get_property_methods(Property const& prop)
     {
         MethodDef get_method{}, set_method{};
 
@@ -1048,7 +1082,19 @@ namespace swiftwinrt
 
     inline std::string get_swift_name(interface_info const& iface)
     {
-        return iface.is_default && !iface.base ? "_default" : std::string("_").append(iface.type.TypeName());
+        if (iface.is_default && !iface.base)
+        {
+            return "_default";
+        }
+        else
+        {
+            auto name = std::string("_").append(iface.type.TypeName());
+            if (iface.generic_params.size() == 1)
+            {
+                name.erase(name.find_first_of('`'));
+            }
+            return name;
+        }
     }
 
     inline std::string_view put_in_backticks_if_needed(std::string_view const& name)
@@ -1070,7 +1116,7 @@ namespace swiftwinrt
     inline std::string_view get_swift_name(MethodDef const& method)
     {
         // the swift name for the Invoke method of a delegate is the `handler` property
-        if (get_category(method.Parent()) == category::delegate_type)
+        if (get_category(method.Parent()) == category::delegate_type && method.Name() != ".ctor")
         {
             return "handler";
         }
@@ -1214,7 +1260,13 @@ namespace swiftwinrt
             {
                 if (elementType->swift_full_name() == "String") return param_category::string_type;
                 if (elementType->swift_full_name() == "IInspectable") return param_category::object_type;
+                if (elementType->swift_full_name() == "Bool") return param_category::boolean_type;
+                if (elementType->swift_full_name() == "Character") return param_category::character_type;
                 return param_category::fundamental_type;
+            }
+            if (auto sysType = dynamic_cast<const system_type*>(type))
+            {
+                return param_category::guid_type;
             }
 
             // delegates, interfaces, and classes are all object type

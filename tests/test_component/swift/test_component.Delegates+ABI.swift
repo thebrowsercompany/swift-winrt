@@ -10,7 +10,7 @@ private var IID___x_ABI_Ctest__component_CDelegates_CISignalDelegate: IID {
 }
 
 public enum __ABI_test_component_Delegates {
-    fileprivate static var InDelegateVTable: __x_ABI_Ctest__component_CDelegates_CIInDelegateVtbl = .init(
+    internal static var InDelegateVTable: __x_ABI_Ctest__component_CDelegates_CIInDelegateVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
 
@@ -51,14 +51,14 @@ public enum __ABI_test_component_Delegates {
 
     class InDelegateWrapper : WinRTWrapperBase<__x_ABI_Ctest__component_CDelegates_CIInDelegate, __IMPL_test_component_Delegates.InDelegateImpl> {
         override class var IID: IID { IID___x_ABI_Ctest__component_CDelegates_CIInDelegate }
-        init(handler: __IMPL_test_component_Delegates.InDelegateImpl){
+        init(_ handler: __IMPL_test_component_Delegates.InDelegateImpl){
             let abi = withUnsafeMutablePointer(to: &InDelegateVTable) {
                 __x_ABI_Ctest__component_CDelegates_CIInDelegate(lpVtbl:$0)
             }
             super.init(abi, handler)
         }
     }
-    fileprivate static var SignalDelegateVTable: __x_ABI_Ctest__component_CDelegates_CISignalDelegateVtbl = .init(
+    internal static var SignalDelegateVTable: __x_ABI_Ctest__component_CDelegates_CISignalDelegateVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
 
@@ -98,7 +98,7 @@ public enum __ABI_test_component_Delegates {
 
     class SignalDelegateWrapper : WinRTWrapperBase<__x_ABI_Ctest__component_CDelegates_CISignalDelegate, __IMPL_test_component_Delegates.SignalDelegateImpl> {
         override class var IID: IID { IID___x_ABI_Ctest__component_CDelegates_CISignalDelegate }
-        init(handler: __IMPL_test_component_Delegates.SignalDelegateImpl){
+        init(_ handler: __IMPL_test_component_Delegates.SignalDelegateImpl){
             let abi = withUnsafeMutablePointer(to: &SignalDelegateVTable) {
                 __x_ABI_Ctest__component_CDelegates_CISignalDelegate(lpVtbl:$0)
             }

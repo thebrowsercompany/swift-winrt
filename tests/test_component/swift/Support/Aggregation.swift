@@ -14,8 +14,9 @@ public protocol MakeComposedAbi : MakeFromAbi where swift_Projection: UnsealedWi
     associatedtype swift_ABI : test_component.IInspectable
 }
 
-public protocol ComposableImpl : AbiInterface where c_ABI: Initializable, swift_ABI: IInspectable  {
+public protocol ComposableImpl : AbiInterface where swift_ABI: IInspectable  {
     associatedtype Default : MakeComposedAbi
+    static func makeAbi() -> c_ABI
 }
 
 public protocol UnsealedWinRTClass : WinRTClass {
@@ -93,7 +94,7 @@ public extension ComposableActivationFactory {
 // forward other calls to the inner object
 
 public func MakeComposed<Factory: ComposableActivationFactory>(_ factory: Factory, _ inner: inout UnsafeMutablePointer<Ctest_component.IInspectable>?, _ this: Factory.Composable.Default.swift_Projection) -> Factory.Composable.Default.swift_ABI {
-    let wrapper:UnsealedWinRTClassWrapper<Factory.Composable>? = .init(impl: this)
+    let wrapper:UnsealedWinRTClassWrapper<Factory.Composable>? = .init(this)
 
     let abi = try! wrapper?.to_abi { $0 }
     let baseInsp = abi?.withMemoryRebound(to: Ctest_component.IInspectable.self, capacity: 1) { $0 }
@@ -104,9 +105,9 @@ public func MakeComposed<Factory: ComposableActivationFactory>(_ factory: Factor
 public class UnsealedWinRTClassWrapper<Composable: ComposableImpl> : WinRTWrapperBase<Composable.c_ABI, Composable.Default.swift_Projection> {
 
     override public class var IID: IID { Composable.swift_ABI.IID }
-    public init?(impl: Composable.Default.swift_Projection?) {
+    public init?(_ impl: Composable.Default.swift_Projection?) {
         guard let impl = impl else { return nil }
-        let abi = Composable.c_ABI()
+        let abi = Composable.makeAbi()
         super.init(abi, impl)
     }
 

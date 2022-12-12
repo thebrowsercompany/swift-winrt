@@ -13,6 +13,11 @@ public enum __IMPL_test_component {
         public init(_ fromAbi: UnsafeMutablePointer<c_ABI>?) {
             _default = swift_ABI(fromAbi)
         }
+
+        public static func makeAbi() -> c_ABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IBasicVTable) { $0 }
+            return .init(lpVtbl: vtblPtr)
+        }
         public func Method() {
             try! _default.MethodImpl()
         }
@@ -29,6 +34,11 @@ public enum __IMPL_test_component {
         }
         public init(_ fromAbi: UnsafeMutablePointer<c_ABI>?) {
             _default = swift_ABI(fromAbi)
+        }
+
+        public static func makeAbi() -> c_ABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IIAmImplementableVTable) { $0 }
+            return .init(lpVtbl: vtblPtr)
         }
         public func InInt32(_ value: Int32) -> String {
             let result = try! _default.InInt32Impl(value)
@@ -100,7 +110,7 @@ public enum __IMPL_test_component {
             }
 
             set {
-                let wrapper = __ABI_test_component.__x_ABI_C__FIReference_1_GUIDWrapper(value: newValue)
+                let wrapper = __ABI_test_component.__x_ABI_C__FIReference_1_GUIDWrapper(newValue)
                 let _newValue = try! wrapper?.to_abi { $0 }
                 try! _default.put_IDImpl(_newValue) 
             }
@@ -119,12 +129,222 @@ public enum __IMPL_test_component {
         public init(_ fromAbi: UnsafeMutablePointer<c_ABI>?) {
             _default = swift_ABI(fromAbi)
         }
+
+        public static func makeAbi() -> c_ABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.ISimpleDelegateVTable) { $0 }
+            return .init(lpVtbl: vtblPtr)
+        }
         public func DoThis() {
             try! _default.DoThisImpl()
         }
 
         public func DoThat(_ val: Int32) {
             try! _default.DoThatImpl(val)
+        }
+
+    }
+
+    internal class __x_ABI_C__FIVectorView_1_HSTRINGImpl : WinRTVectorView {
+        typealias Element = String
+        typealias c_ABI = __x_ABI_C__FIVectorView_1_HSTRING
+        typealias swift_ABI = __ABI_test_component.IVectorViewString
+        private (set) public var _default: swift_ABI
+        static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {
+            return __x_ABI_C__FIVectorView_1_HSTRINGImpl(abi)
+        }
+        internal init(_ fromAbi: UnsafeMutablePointer<c_ABI>?) {
+            _default = swift_ABI(fromAbi)
+        }
+
+        static func makeAbi() -> c_ABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.__x_ABI_C__FIVectorView_1_HSTRINGVTable) { $0 }
+            return .init(lpVtbl: vtblPtr)
+        }
+        public func GetAt(_ index: UInt32) -> String {
+            let result = try! _default.GetAtImpl(index)
+            return .init(from: result)
+        }
+
+        public func IndexOf(_ value: String, _ index: inout UInt32) -> Bool {
+            let _value = try! HString(value)
+            let result = try! _default.IndexOfImpl(_value.get(), &index)
+            return .init(from: result)
+        }
+
+        public var Size : UInt32 {
+            get {
+                let result = try! _default.get_SizeImpl()
+                return result
+            }
+
+        }
+
+    }
+
+    internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl : WinRTVectorView {
+        typealias Element = Base
+        typealias c_ABI = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase
+        typealias swift_ABI = __ABI_test_component.IVectorViewBase
+        private (set) public var _default: swift_ABI
+        static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {
+            return __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
+        }
+        internal init(_ fromAbi: UnsafeMutablePointer<c_ABI>?) {
+            _default = swift_ABI(fromAbi)
+        }
+
+        static func makeAbi() -> c_ABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
+            return .init(lpVtbl: vtblPtr)
+        }
+        public func GetAt(_ index: UInt32) -> test_component.Base {
+            let result = try! _default.GetAtImpl(index)
+            return .from(abi: result)
+        }
+
+        public func IndexOf(_ value: test_component.Base, _ index: inout UInt32) -> Bool {
+            let result = try! _default.IndexOfImpl(RawPointer(value), &index)
+            return .init(from: result)
+        }
+
+        public var Size : UInt32 {
+            get {
+                let result = try! _default.get_SizeImpl()
+                return result
+            }
+
+        }
+
+    }
+
+    internal class __x_ABI_C__FIVector_1_HSTRINGImpl : WinRTVector {
+        typealias Element = String
+        typealias c_ABI = __x_ABI_C__FIVector_1_HSTRING
+        typealias swift_ABI = __ABI_test_component.IVectorString
+        private (set) public var _default: swift_ABI
+        static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {
+            return __x_ABI_C__FIVector_1_HSTRINGImpl(abi)
+        }
+        internal init(_ fromAbi: UnsafeMutablePointer<c_ABI>?) {
+            _default = swift_ABI(fromAbi)
+        }
+        static func makeAbi() -> c_ABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.__x_ABI_C__FIVector_1_HSTRINGVTable) { $0 }
+            return .init(lpVtbl: vtblPtr)
+        }
+        public func GetAt(_ index: UInt32) -> String {
+            let result = try! _default.GetAtImpl(index)
+            return .init(from: result)
+        }
+
+        public func GetView() -> any IVectorView<String> {
+            let result = try! _default.GetViewImpl()
+            return __ABI_test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper.unwrap_from(abi: result)
+        }
+
+        public func IndexOf(_ value: String, _ index: inout UInt32) -> Bool {
+            let _value = try! HString(value)
+            let result = try! _default.IndexOfImpl(_value.get(), &index)
+            return .init(from: result)
+        }
+
+        public func SetAt(_ index: UInt32, _ value: String) {
+            let _value = try! HString(value)
+            try! _default.SetAtImpl(index, _value.get())
+        }
+
+        public func InsertAt(_ index: UInt32, _ value: String) {
+            let _value = try! HString(value)
+            try! _default.InsertAtImpl(index, _value.get())
+        }
+
+        public func RemoveAt(_ index: UInt32) {
+            try! _default.RemoveAtImpl(index)
+        }
+
+        public func Append(_ value: String) {
+            let _value = try! HString(value)
+            try! _default.AppendImpl(_value.get())
+        }
+
+        public func RemoveAtEnd() {
+            try! _default.RemoveAtEndImpl()
+        }
+
+        public func Clear() {
+            try! _default.ClearImpl()
+        }
+
+        public var Size : UInt32 {
+            get {
+                let result = try! _default.get_SizeImpl()
+                return result
+            }
+
+        }
+
+    }
+
+    internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl : WinRTVector {
+        typealias Element = Base
+        typealias c_ABI = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase
+        typealias swift_ABI = __ABI_test_component.IVectorBase
+        private (set) public var _default: swift_ABI
+        static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {
+            return __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
+        }
+        internal init(_ fromAbi: UnsafeMutablePointer<c_ABI>?) {
+            _default = swift_ABI(fromAbi)
+        }
+        static func makeAbi() -> c_ABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
+            return .init(lpVtbl: vtblPtr)
+        }
+        public func GetAt(_ index: UInt32) -> test_component.Base {
+            let result = try! _default.GetAtImpl(index)
+            return .from(abi: result)
+        }
+
+        public func GetView() -> any IVectorView<test_component.Base> {
+            let result = try! _default.GetViewImpl()
+            return __ABI_test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrap_from(abi: result)
+        }
+
+        public func IndexOf(_ value: test_component.Base, _ index: inout UInt32) -> Bool {
+            let result = try! _default.IndexOfImpl(RawPointer(value), &index)
+            return .init(from: result)
+        }
+
+        public func SetAt(_ index: UInt32, _ value: test_component.Base) {
+            try! _default.SetAtImpl(index, RawPointer(value))
+        }
+
+        public func InsertAt(_ index: UInt32, _ value: test_component.Base) {
+            try! _default.InsertAtImpl(index, RawPointer(value))
+        }
+
+        public func RemoveAt(_ index: UInt32) {
+            try! _default.RemoveAtImpl(index)
+        }
+
+        public func Append(_ value: test_component.Base) {
+            try! _default.AppendImpl(RawPointer(value))
+        }
+
+        public func RemoveAtEnd() {
+            try! _default.RemoveAtEndImpl()
+        }
+
+        public func Clear() {
+            try! _default.ClearImpl()
+        }
+
+        public var Size : UInt32 {
+            get {
+                let result = try! _default.get_SizeImpl()
+                return result
+            }
+
         }
 
     }

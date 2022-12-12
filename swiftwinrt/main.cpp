@@ -303,62 +303,65 @@ Where <spec> is one or more of:
                     create_directories(output_folder / "swift" / module_name);
                 }
                 moduleMapItr->second.push_back(ns);
+            }
+            for (auto&& [module, namespaces] : module_map)
+            {
+                group.add([&, &module = module, &namespaces = namespaces]
+                 {
+                        swiftwinrt::task_group module_group;
 
-                auto [nsItr, nsAdded] = namespace_dependencies.emplace(std::piecewise_construct,
-                    std::forward_as_tuple(ns),
-                    std::forward_as_tuple());
+                        for (auto& ns : namespaces)
+                        {
+                            auto [nsItr, nsAdded] = namespace_dependencies.emplace(std::piecewise_construct,
+                                std::forward_as_tuple(ns),
+                                std::forward_as_tuple());
+                            module_group.add([&, &ns = ns, &depends = nsItr->second]
+                            {
+                                auto types = mdCache.compile_namespaces({ ns }, mf);
+                                for (auto&& dependent_ns : types.dependent_namespaces)
+                                {
+                                    auto dependent_module = get_swift_module(dependent_ns);
+                                    depends.insert(dependent_module);
+                                }
 
-                group.add([&, &ns = ns, &depends = nsItr->second]
-                {
-                    auto types = mdCache.compile_namespaces({ ns }, mf);
-                    for (auto&& dependent_ns : types.dependent_namespaces)
-                    {
-                        auto dependent_module = get_swift_module(dependent_ns);
-                        depends.insert(dependent_module);
-                    }
-                   
-                    write_namespace_abi(ns, types, settings, mf);
-                    write_namespace_wrapper(ns, types, settings, mf);
-                    write_namespace_impl(ns, types, settings, mf);
-                    write_abi_header(ns, settings, types);
-                });
+                                write_namespace_abi(ns, types, settings, mf);
+                                write_namespace_wrapper(ns, types, settings, mf);
+                                write_namespace_impl(ns, types, settings, mf);
+                                write_abi_header(ns, settings, types);
+                             });
+                        }
+
+                        module_group.get();
+                        
+                        // don't write the cmake file if only building a single module
+                        if (!settings.test)
+                        {
+                            std::set<std::string> module_dependencies;
+                            if (module != settings.support)
+                            {
+                                module_dependencies.emplace(settings.support);
+                            }
+                            for (auto& ns : namespaces)
+                            {
+                                auto ns_dependencies = namespace_dependencies[ns];
+                                for (auto ns : ns_dependencies)
+                                {
+                                    if (ns != module)
+                                    {
+                                        module_dependencies.emplace(ns);
+                                    }
+                                }
+                            }
+                            write_cmake_lists(module, module_dependencies);
+                        }
+                    });
             }
 
+            group.get();
             if (settings.component)
             {
                 throw std::exception("component generation not yet supported");
             }
-
-            group.get();
-
-            for (auto&& [module, namespaces] : module_map)
-            {
-                group.add([&, &module = module, &namespaces = namespaces]
-                {
-                    std::set<std::string> module_dependencies;
-                    if (module != settings.support)
-                    {
-                        module_dependencies.emplace(settings.support);
-                    }
-                    for (auto& ns : namespaces)
-                    {
-                        auto ns_dependencies = namespace_dependencies[ns];
-                        for (auto ns : ns_dependencies)
-                        {
-                            if (ns != module)
-                            {
-                                module_dependencies.emplace(ns);
-                            }
-                        }
-                    }
-                    if (!settings.test)
-                    {
-                        // don't write the cmake file if only building a single module
-                        write_cmake_lists(module, module_dependencies);
-                    }
-                });
-            }
-            group.get();
 
             if (!settings.test)
             {

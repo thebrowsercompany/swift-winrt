@@ -142,6 +142,8 @@ namespace winrt::test_component::implementation
     }*/
     hstring Class::InVector(Windows::Foundation::Collections::IVector<hstring> const& value)
     {
+        if (value.Size() == 0) return L"empty";
+        
         return value.GetAt(0);
     }
     hstring Class::InVectorView(Windows::Foundation::Collections::IVectorView<hstring> const& value)
@@ -501,6 +503,13 @@ namespace winrt::test_component::implementation
         {
             return m_id;
         }
+    }
+    Windows::Foundation::Collections::IVector<hstring> Class::ReturnStringVector()
+    {
+        if (m_vector.Size() == 0) {
+            m_vector.Append(L"Hello");
+        }
+        return m_vector;
     }
 
     /* TODO: COR-762 once we enable async/await we can bring this back

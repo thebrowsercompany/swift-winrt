@@ -570,7 +570,7 @@ namespace swiftwinrt
     void generic_inst::write_swift_declaration(writer& w) const
     {
         auto push_param_guard = w.push_generic_params(*this);
-        w.write("private static var %VTable: %Vtbl = .init(\n",
+        w.write("internal static var %VTable: %Vtbl = .init(\n",
             mangled_name(),
             mangled_name());
 
@@ -601,10 +601,16 @@ namespace swiftwinrt
             write_generic_delegate_wrapper(w, *this);
             return;
         }
-
+        else if (is_collection_type(*this))
+        {
+            w.write("typealias % = InterfaceWrapperBase<%>\n",
+                bind_wrapper_name(*this),
+                bind_impl_fullname(*this));
+            return;
+        }
         auto format = R"(internal class %: WinRTWrapperBase<%, %> {
     override class var IID: IID { IID_% }
-    init?(value: %?) {
+    init?(_ value: %?) {
         guard let value = value else { return nil }
         let abi = withUnsafeMutablePointer(to: &%VTable) {
             %(lpVtbl:$0)
@@ -645,7 +651,7 @@ namespace swiftwinrt
         static element_type const r4_type{ blittable, "Float"sv, "float"sv, "float"sv, "FLOAT"sv, "float"sv, "f4"sv };
         static element_type const r8_type{ blittable, "Double"sv, "double"sv, "double"sv, "DOUBLE"sv, "double"sv, "f8"sv };
         static element_type const string_type{ !blittable, "String"sv, "HSTRING"sv, "HSTRING"sv, "HSTRING"sv, "HSTRING"sv, "string"sv };
-        static element_type const object_type{ !blittable, "IInspectable"sv, "IInspectable*"sv, "IInspectable*"sv, "IInspectable*"sv, "IInspectable"sv, "cinterface(IInspectable)"sv };
+        static element_type const object_type{ !blittable, "IInspectable"sv, "IInspectable"sv, "IInspectable"sv, "IInspectable*"sv, "IInspectable"sv, "cinterface(IInspectable)"sv };
 
         switch (type)
         {

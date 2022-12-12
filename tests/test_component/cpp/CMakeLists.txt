@@ -99,6 +99,10 @@ target_sources(test_component_cpp PRIVATE
     StaticClass.h
     Base.h
     Base.cpp
+    BaseCollection.h
+    BaseCollection.cpp
+    BaseMapCollection.h
+    BaseMapCollection.cpp
     BaseNoOverrides.h
     BaseNoOverrides.cpp
     Class.cpp

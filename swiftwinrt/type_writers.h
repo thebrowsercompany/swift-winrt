@@ -18,6 +18,9 @@ namespace swiftwinrt
     std::string get_full_swift_type_name(writer const&, const metadata_type* type);
     std::string get_swift_module(std::string_view const& ns);
 
+    template <typename T>
+    bool is_collection_type(T const& type);
+
     template <typename First, typename...Rest>
     auto get_impl_name(First const& first, Rest const&... rest)
     {
@@ -41,6 +44,16 @@ namespace swiftwinrt
         inline void append_type_prefix(std::string& result, TypeDef const& type)
         {
             if ((get_category(type) == category::delegate_type) && (type.TypeNamespace() != collections_namespace))
+            {
+                // All delegates except those in the 'Windows.Foundation.Collections' namespace get an 'I' appended to the
+                // front...
+                result.push_back('I');
+            }
+        }
+
+        inline void append_type_prefix(std::string& result, metadata_type const& type)
+        {
+            if (dynamic_cast<const delegate_type*>(&type) != nullptr && (type.swift_logical_namespace() != collections_namespace))
             {
                 // All delegates except those in the 'Windows.Foundation.Collections' namespace get an 'I' appended to the
                 // front...
@@ -76,6 +89,11 @@ namespace swiftwinrt
         inline bool is_generic(TypeDef const& type) noexcept
         {
             return distance(type.GenericParam()) != 0;
+        }
+
+        inline bool is_generic(metadata_type const& type) noexcept
+        {
+            return dynamic_cast<const generic_inst*>(&type) != nullptr;
         }
     }
 
@@ -116,6 +134,28 @@ namespace swiftwinrt
         return result;
     }
 
+    template <bool IsGenericParam>
+    inline std::string mangled_name(metadata_type const& type)
+    {
+        std::string result = "__x_ABI_C";
+
+        if (details::is_generic(type))
+        {
+            // Generic types don't have the namespace included in the mangled name
+            result += "__F";
+        }
+        else
+        {
+            result += mangled_namespace<IsGenericParam>(type.swift_abi_namespace());
+            result += IsGenericParam ? "__C" : "_C";
+        }
+
+        details::append_type_prefix(result, type);
+        details::append_mangled_name<IsGenericParam>(result, type.swift_type_name());
+        return result;
+    }
+
+
     enum class valuetype_copy_semantics
     {
         equal,
@@ -125,6 +165,7 @@ namespace swiftwinrt
 
     using generic_param_type = std::variant<const metadata_type*, TypeSig>;
     using generic_param_vector = std::vector<std::pair<generic_param_type, valuetype_copy_semantics>>;
+    param_category get_category(generic_param_type const& generic_param, TypeDef* signature_type);
 
     struct writer : indented_writer_base<writer>
     {
@@ -140,6 +181,7 @@ namespace swiftwinrt
         bool full_type_names{};
         bool impl_names{};
         bool mangled_names{};
+        bool writing_generic{};
 
         std::set<std::string> depends;
         std::set<winmd::reader::Event> events;
@@ -216,25 +258,33 @@ namespace swiftwinrt
                 depends.insert(type_module);
             }
         }
-        
+
         [[nodiscard]] auto push_generic_params(GenericTypeInstSig const& signature)
         {
             generic_param_vector names;
 
             for (auto&& arg : signature.GenericArgs())
             {
-                auto semantics = valuetype_copy_semantics::equal;
-                bool blittable = is_type_blittable(arg);
-                if (is_struct(arg) && blittable)
-                {
-                    semantics = valuetype_copy_semantics::blittable;
-                }
-                else if (!blittable)
-                {
-                    semantics = valuetype_copy_semantics::nonblittable;
-                }
-
-                names.emplace_back(arg, semantics);
+                call(arg.Type(),
+                    [&](GenericTypeIndex var)
+                    {
+                        auto existing = generic_param_stack.back()[var.index];
+                        names.emplace_back(existing.first, existing.second);
+                    },
+                        [&](auto&& type)
+                    {
+                            auto semantics = valuetype_copy_semantics::equal;
+                            bool blittable = is_type_blittable(arg);
+                            if (is_struct(arg) && blittable)
+                            {
+                                semantics = valuetype_copy_semantics::blittable;
+                            }
+                            else if (!blittable)
+                            {
+                                semantics = valuetype_copy_semantics::nonblittable;
+                            }
+                        names.emplace_back(arg, semantics);
+                    });
             }
 
             generic_param_stack.push_back(std::move(names));
@@ -309,6 +359,34 @@ namespace swiftwinrt
         {
             return member_value_guard(this, &writer::mangled_names, value);
         }
+
+
+        [[nodiscard]] auto push_mangled_names_if_needed(param_category forCategory)
+        {
+            if (!abi_types)
+            {
+                return push_mangled_names(false);
+            }
+            // generics, objects (interfaces, classes), structs and enums all
+            // need the mangled name. other fundamental types just need the cpp
+            // abi type
+            switch (forCategory) {
+            case param_category::generic_type:
+            case param_category::object_type:
+            case param_category::struct_type:
+            case param_category::enum_type:
+                return push_mangled_names(true);
+            default:
+                return push_mangled_names(false);
+            }
+        }
+
+
+        [[nodiscard]] auto push_writing_generic(bool value)
+        {
+            return member_value_guard(this, &writer::writing_generic, value);
+        }
+
 
         private:
             enum class declaration_stage
@@ -399,7 +477,7 @@ namespace swiftwinrt
         void write(metadata_type const* type)
         {
             add_depends(*type);
-            if (abi_types)
+            if (mangled_names)
             {
                 write(type->mangled_name());
             }
@@ -422,7 +500,22 @@ namespace swiftwinrt
 
             if (!empty(generics))
             {
-                XLANG_ASSERT("**TODO: write generic type **");
+                auto guard{ push_writing_generic(true) };
+                auto typeName = mangled_names ? mangled_name<true>(type) : std::string(remove_tick(name));
+                bool first = !mangled_names;
+                write("%%", typeName, bind_each([&](writer& w, const std::pair<generic_param_type, valuetype_copy_semantics>& generic_param) {
+                    if (first)
+                    {
+                        first = false;
+                    }
+                    else
+                    {
+                        w.write("_");
+                    }
+
+                    w.write(generic_param.first);
+                    },
+                    generic_param_stack.back()));
                 return;
             }
 
@@ -441,7 +534,7 @@ namespace swiftwinrt
             else if (name == "IAsyncInfo" && ns == "Windows.Foundation")
             {
                 // IAsync info is special in that it is defined in it's own header file and doesn't have a mangled name.
-                if (abi_types)
+                if (mangled_names)
                 {
                     write("%.IAsyncInfo", c_mod);
                 }
@@ -450,11 +543,9 @@ namespace swiftwinrt
                     write("IAsyncInfo");
                 }
             }
-            else if (abi_types)
+            else if (mangled_names || abi_types)
             {
-                // This is a bit of a hack, we should fill in the generic param stack instead,p
-                // or just write the names the same way even if part of a generic definition
-                if (mangled_names)
+                if (writing_generic)
                 {
                     write(mangled_name<true>(type));
                 }
@@ -516,12 +607,12 @@ namespace swiftwinrt
 
         void write(GenericTypeInstSig const& type)
         {
+            auto guard{ push_writing_generic(true) };
             auto generic_type = type.GenericType();
             auto generic_typedef = find_required(generic_type);
             auto [ns, name] = get_type_namespace_and_name(generic_type);
-            if (abi_types)
+            if (mangled_names)
             {
-                auto mangled = push_mangled_names(true);
                 auto mangledName = write_temp("%_%", mangled_name<true>(generic_typedef), bind_list("_", type.GenericArgs()));
                 write(mangledName);
             }
@@ -545,9 +636,41 @@ namespace swiftwinrt
                     auto argsType = type.GenericArgs().first->Type();
                     write("^@escaping (%.IInspectable,%) -> ()", support, argsType);
                 }
+                else if (ns == "Windows.Foundation.Collections" && name == "IVectorView")
+                {
+                    auto argsType = type.GenericArgs().first->Type();
+                    if (abi_types)
+                    {
+                        // temporarily unpush abi types so we dont mangle the name
+                        auto unabi{ push_abi_types(false) };
+                        write("IVectorView%", argsType);
+                    }
+                    else
+                    {
+                        auto full_type_names{ push_full_type_names(true) };
+                        write("IVectorView<%>", argsType);
+                    }
+                  
+                }
+                else if (ns == "Windows.Foundation.Collections" && name == "IVector")
+                {
+                    auto argsType = type.GenericArgs().first->Type();
+                    if (abi_types)
+                    {
+                        // temporarily unpush abi types so we dont mangle the name
+                        auto unabi{ push_abi_types(false) };
+                        write("IVector%", argsType);
+                    }
+                    else
+                    {
+                        auto full_type_names{ push_full_type_names(true) };
+                        write("IVector<%>", argsType);
+                    }
+                }
                 else
                 {
-                    // Do nothing for types we can't write 
+                    // Do nothing for types we can't write since we use this as a test as to whether we can write them.
+                    // We can remove this once we support writing all types
                     //assert(false);
                 }
             }
@@ -555,7 +678,7 @@ namespace swiftwinrt
 
         void write_abi(ElementType type)
         {
-            assert(abi_types);
+            assert(mangled_names || abi_types);
 
             if (type == ElementType::Boolean){ write("boolean"); }
             else if (type == ElementType::Char) { write("WCHAR"); }
@@ -571,6 +694,29 @@ namespace swiftwinrt
             else if (type == ElementType::R8) { write("DOUBLE"); }
             else if (type == ElementType::String) { write("HSTRING"); }
             else if (type == ElementType::Object) { write("%.IInspectable", c_mod); }
+            else
+            {
+                assert(false);
+            }
+        }
+
+        // duplicated with the names defined in types.cpp
+        void write_mangled(ElementType type)
+        {
+            assert(writing_generic);
+            if (type == ElementType::Boolean) { write("boolean"); }
+            else if (type == ElementType::Char) { write("wchar__zt"); }
+            else if (type == ElementType::U1) { write("byte"); }
+            else if (type == ElementType::I2) { write("short"); }
+            else if (type == ElementType::U2) { write("UINT16"); }
+            else if (type == ElementType::I4) { write("int"); }
+            else if (type == ElementType::U4) { write("UINT32"); }
+            else if (type == ElementType::I8) { write("__z__zint64"); }
+            else if (type == ElementType::U8) { write("UINT64"); }
+            else if (type == ElementType::R4) { write("float"); }
+            else if (type == ElementType::R8) { write("double"); }
+            else if (type == ElementType::String) { write("HSTRING"); }
+            else if (type == ElementType::Object) { write("IInspectable"); }
             else
             {
                 assert(false);
@@ -599,59 +745,73 @@ namespace swiftwinrt
             }
         }
 
-        // duplicated with the names defined in types.cpp
-        void write_mangled(ElementType type)
-        {
-            if (type == ElementType::Boolean) { write("boolean"); }
-            else if (type == ElementType::Char) { write("wchar__zt"); }
-            else if (type == ElementType::U1) { write("byte"); }
-            else if (type == ElementType::I2) { write("short"); }
-            else if (type == ElementType::U2) { write("UINT16"); }
-            else if (type == ElementType::I4) { write("int"); }
-            else if (type == ElementType::U4) { write("UINT32"); }
-            else if (type == ElementType::I8) { write("__z__zint64"); }
-            else if (type == ElementType::U8) { write("UINT64"); }
-            else if (type == ElementType::R4) { write("float"); }
-            else if (type == ElementType::R8) { write("double"); }
-            else if (type == ElementType::String) { write("HSTRING"); }
-            else if (type == ElementType::Object) { write("IInspectable"); }
-            else
-            {
-                assert(false);
-            }
-        }
-
         void write(generic_param_type const& generic_param)
         {
             if (std::holds_alternative<TypeSig>(generic_param))
             {
                 write(std::get<TypeSig>(generic_param).Type());
             }
-            else 
+            else if (std::holds_alternative<const metadata_type*>(generic_param))
             {
                 auto type = std::get<const metadata_type*>(generic_param);
                 add_depends(*type);
+                // TODO: does this need to change?
                 if (mangled_names)
                 {
-                    write(type->mangled_name());
+                    // for object types that are part of a generic, we need to use the same name
+                    // building algorithm which places 2 "_" between namespace and names
+                    if (dynamic_cast<const element_type*>(type) || dynamic_cast<const system_type*>(type))
+                    {
+                        auto name = type->mangled_name();
+                        if (!writing_generic && name == "IInspectable")
+                        {
+                            write("%.IInspectable", c_mod);
+                        }
+                        else
+                        {
+                            write(name);
+                        }
+                    }
+                    else if (writing_generic)
+                    {
+                        auto mangled = mangled_name<true>(*type);
+                        write(mangled);
+                    }
+                    else
+                    {
+                        if (auto classType = dynamic_cast<const class_type*>(type))
+                        {
+                            write(mangled_name<false>(*classType->default_interface));
+                        }
+                        else
+                        {
+                            auto mangled = mangled_name<false>(*type);
+                            write(mangled);
+                        }
+
+                    }
                 }
                 else if (abi_types)
                 {
-                    write(type->cpp_abi_name());
+                    auto name = type->cpp_abi_name();
+                    if (name == "IInspectable" && !writing_generic)
+                    {
+                        write("%.IInspectable", c_mod);
+                    }
+                    else
+                    {
+                        write(name);
+                    }
                 }
                 else
                 {
                     auto full_name = get_full_swift_type_name(*this, std::get<const metadata_type*>(generic_param));
-                    if (full_name == "IInspectable")
-                    {
-                        write("%.IInspectable", support);
-                    }
-                    else
-                    {
-                        write(full_name);
-                    }
+                    write(full_name);
                 }
-            } 
+            }
+            else {
+                assert(false);
+            }
         }
 
         void write(TypeSig::value_type const& type)
@@ -659,11 +819,11 @@ namespace swiftwinrt
             call(type,
                 [&](ElementType type)
                 {
-                    if (mangled_names)
+                    if (mangled_names && writing_generic)
                     {
                         write_mangled(type);
                     }
-                    else if (abi_types)
+                    else if (mangled_names || abi_types)
                     {
                         write_abi(type);
                     }
@@ -685,30 +845,19 @@ namespace swiftwinrt
 
         void write(TypeSig const& signature)
         {
-            if (!abi_types && signature.is_szarray())
-            {
-                write("com_array<%>", signature.Type());
-            }
-            else if (abi_types)
-            {
-                auto category = get_category(signature);
+            auto category = get_category(signature);
+            const bool write_mangled = abi_types || mangled_names;
 
-                if (!mangled_names && (category == param_category::object_type || category == param_category::generic_type))
-                {
-                    if (is_class(signature))
-                    {
-                        auto default_interface = get_default_interface(signature);
-                        write("UnsafeMutablePointer<%>", default_interface);
-                    }
-                    else
-                    {
-                        write("UnsafeMutablePointer<%>", signature.Type());
-                    }
-                }
-                else
-                {
-                    write(signature.Type());
-                }
+            // when writing types at the ABI, there is no construct of a class, so get the default interface
+            // and use that
+            if (write_mangled && is_class(signature) && !writing_generic)
+            {
+                auto default_interface = get_default_interface(signature);
+                write("%", default_interface);
+            }
+            else if (!write_mangled && category == param_category::generic_type && is_collection_type(std::get<GenericTypeInstSig>(signature.Type()).GenericType()))
+            {
+                write("any %", signature.Type());
             }
             else
             {
@@ -721,7 +870,20 @@ namespace swiftwinrt
             if (value)
             {
                 auto category = get_category(value.Type());
-                if (abi_types && (category == param_category::object_type || category == param_category::string_type || category == param_category::generic_type))
+                if (category == param_category::generic_type_index)
+                {
+                    auto genericTypeIndex = std::get<GenericTypeIndex>(value.Type().Type());
+                    auto genericType = generic_param_stack.back()[genericTypeIndex.index];
+                    category = get_category(genericType.first, nullptr);
+                }
+                auto temp = write_temp("%", value.Type());
+
+                auto guard{ push_mangled_names_if_needed(category) };
+                if (abi_types && (category == param_category::object_type || category == param_category::generic_type))
+                {
+                    write("UnsafeMutablePointer<%>?", value.Type());
+                }
+                else if (abi_types && category == param_category::string_type)
                 {
                     write("%?", value.Type());
                 }
@@ -743,7 +905,9 @@ namespace swiftwinrt
 
         void write(generic_inst const& generic)
         {
-            if (abi_types)
+            auto guard{ push_writing_generic(true) };
+
+            if (mangled_names)
             {
                 write(generic.mangled_name());
             }
@@ -767,9 +931,36 @@ namespace swiftwinrt
                     auto argsType = generic.generic_params()[0];
                     write("(%.IInspectable,%) -> ()", support, argsType);
                 }
+                else if (generic_type->swift_full_name().starts_with("Windows.Foundation.Collections.IVectorView"))
+                {
+                    auto argsType = generic.generic_params()[0];
+                    if (abi_types)
+                    {
+                        write("IVectorView%", argsType);
+                    }
+                    else
+                    {
+                        auto full_type_names{ push_full_type_names(true) };
+                        write("IVectorView<%>", argsType);
+                    }
+                }
+                else if (generic_type->swift_full_name().starts_with("Windows.Foundation.Collections.IVector"))
+                {
+                    auto argsType = generic.generic_params()[0];
+                    if (abi_types)
+                    {
+                        write("IVector%", argsType);
+                    }
+                    else
+                    {
+                        auto full_type_names{ push_full_type_names(true) };
+                        write("IVector<%>", argsType);
+                    }
+                }
                 else
                 {
-                    // Do nothing for types we can't write 
+                    // Do nothing for types we can't write since we use this as a test as to whether we can write them.
+                    // We can remove this once we support writing all types
                     //assert(false);
                 }
             }

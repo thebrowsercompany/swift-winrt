@@ -26,8 +26,9 @@ public protocol AbiInterface {
 // A protocol for defining a type which implements a WinRT interface and defines
 // the swift <-> winrt translation
 public protocol AbiImpl {
-    associatedtype c_ABI : Initializable
+    associatedtype c_ABI
     associatedtype swift_Projection
+    static func makeAbi() -> c_ABI
 }
 
 public protocol ReferenceImpl : AbiImpl where ValueType.ABI == c_ABI {
@@ -102,7 +103,7 @@ open class WinRTWrapperBase2<I: AbiImpl> : WinRTWrapperBase<I.c_ABI, I.swift_Pro
 
 open class InterfaceWrapperBase<I: AbiInterfaceImpl> : WinRTWrapperBase2<I> {
     override public class var IID: IID { I.swift_ABI.IID }
-    public init?(impl: I.swift_Projection?) {
+    public init?(_ impl: I.swift_Projection?) {
         guard let impl = impl else { return nil }
         // try to see if already wrapping an ABI pointer and if so, use that
         if let internalImpl = impl as? I {
@@ -110,7 +111,7 @@ open class InterfaceWrapperBase<I: AbiInterfaceImpl> : WinRTWrapperBase2<I> {
             guard let abi = abi else { return nil }
             super.init(abi.pointee, impl)
         } else {
-            let abi = I.c_ABI()
+            let abi = I.makeAbi()
             super.init(abi, impl)
         }
     }
@@ -145,9 +146,9 @@ open class InterfaceWrapperBase<I: AbiInterfaceImpl> : WinRTWrapperBase2<I> {
 
 open class IReferenceWrapperBase<I: ReferenceImpl> : WinRTWrapperBase2<I> {
     override public class var IID: IID { I.ValueType.IID }
-    public init?(value: I.ValueType?) {
+    public init?(_ value: I.ValueType?) {
         guard let value = value else { return nil }
-        let abi = I.c_ABI()
+        let abi = I.makeAbi()
         super.init(abi, __IMPL_Windows_Foundation.IPropertyValueImpl(value: value) as! I.swift_Projection)
     }
 
