@@ -147,10 +147,20 @@ namespace swiftwinrt
 
         function_def process_function(init_state& state, winmd::reader::MethodDef const& def);
         property_def process_property(init_state& state, winmd::reader::Property const& def);
+        event_def process_event(init_state& state, Event const& def);
 
         metadata_type const& find_dependent_type(init_state& state, winmd::reader::TypeSig const& type);
         metadata_type const& find_dependent_type(init_state& state, winmd::reader::coded_index<winmd::reader::TypeDefOrRef> const& type);
         metadata_type const& find_dependent_type(init_state& state, winmd::reader::GenericTypeInstSig const& type);
+
+        using get_interfaces_t = std::vector<named_interface_info>;
+
+        get_interfaces_t get_interfaces(init_state& state, winmd::reader::TypeDef const& type);
+        void get_interfaces_impl(init_state& state, writer& w, get_interfaces_t& result, bool defaulted, bool overridable, bool base, std::pair<InterfaceImpl, InterfaceImpl>&& children);
+        interface_info* find(get_interfaces_t& interfaces, std::string_view const& name);
+        void insert_or_assign(get_interfaces_t& interfaces, std::string_view const& name, interface_info&& info);
+
+        std::map<std::string, attributed_type> get_attributed_types(winmd::reader::TypeDef const& type) const;
 
         std::map<std::string_view, std::map<std::string_view, metadata_type const&>> m_typeTable;
     };

@@ -3,6 +3,7 @@
 #include "attributes.h"
 #include "versioning.h"
 #include "types.h"
+#include "metadata_cache.h"
 namespace swiftwinrt
 {
     template <typename T>
@@ -48,17 +49,24 @@ namespace swiftwinrt
             name = type.swift_type_name();
         }
 
-        explicit type_name(TypeSig const& sig)
+        explicit type_name(metadata_type const* type)
         {
-            call(sig.Type(),
-                [&](coded_index<TypeDefOrRef> const& type)
-                {
-                    auto const& [type_namespace, type_name] = get_type_namespace_and_name(type);
-                    name_space = type_namespace;
-                    name = type_name;
-                    TypeDef type_def;
-                }, [](auto&&) {});
+            name_space = type->swift_abi_namespace();
+            name = type->swift_type_name();
         }
+
+        explicit type_name(typedef_base const& type)
+        {
+            name_space = type.type().TypeNamespace();
+            name = type.type().TypeName();
+        }
+
+        explicit type_name(typedef_base const* type)
+        {
+            name_space = type->type().TypeNamespace();
+            name = type->type().TypeName();
+        }
+
     };
 
     inline bool operator==(type_name const& left, type_name const& right)
@@ -86,155 +94,8 @@ namespace swiftwinrt
         return 0 == right.compare(0, left.name_space.size(), left.name_space);
     }
 
-    struct method_signature
-    {
-        explicit method_signature(MethodDef const& method) :
-            m_method(method),
-            m_signature(method.Signature())
-        {
-            auto params = method.ParamList();
-
-            if (m_signature.ReturnType() && params.first != params.second && params.first.Sequence() == 0)
-            {
-                m_return = params.first.Name();
-                ++params.first;
-            }
-            else if (m_signature.ReturnType())
-            {
-                // provide generic name if there is a return type but no name (i.e. generic methods)
-                m_return = "result";
-            }
-
-            for (uint32_t i{}; i != size(m_signature.Params()); ++i)
-            {
-                m_params.emplace_back(params.first + i, &m_signature.Params().first[i]);
-            }
-        }
-
-        explicit method_signature(function_def const& method) :
-            m_method(method.def),
-            m_signature(method.def.Signature())
-        {
-            if (method.return_type)
-            {
-                auto return_type = method.return_type.value();
-                m_return_type = return_type.type;
-                m_return = return_type.name;
-            }
-
-            for (uint32_t i{}; i != method.params.size(); ++i)
-            {
-                m_params.emplace_back(method.params[i].def, &method.params[i].signature);
-            }
-        }
-
-        std::vector<std::pair<Param, ParamSig const*>>& params()
-        {
-            return m_params;
-        }
-
-        std::vector<std::pair<Param, ParamSig const*>> const& params() const
-        {
-            return m_params;
-        }
-
-        auto const& return_signature() const
-        {
-            return m_signature.ReturnType();
-        }
-
-        auto return_type() const
-        {
-            return m_return_type;
-        }
-
-        auto return_param_name() const
-        {
-            return m_return;
-        }
-
-        MethodDef const& method() const
-        {
-            return m_method;
-        }
-
-        bool is_async() const
-        {
-            if (!m_signature.ReturnType())
-            {
-                return false;
-            }
-
-            bool async{};
-
-            call(m_signature.ReturnType().Type().Type(),
-                [&](coded_index<TypeDefOrRef> const& type)
-                {
-                    auto const& [type_namespace, type_name] = get_type_namespace_and_name(type);
-                    async = type_namespace == foundation_namespace && type_name == "IAsyncAction";
-                },
-                [&](GenericTypeInstSig const& type)
-                {
-                    auto const& [type_namespace, type_name] = get_type_namespace_and_name(type.GenericType());
-
-                    if (type_namespace == foundation_namespace)
-                    {
-                        async =
-                            type_name == "IAsyncOperation`1" ||
-                            type_name == "IAsyncActionWithProgress`1" ||
-                            type_name == "IAsyncOperationWithProgress`2";
-                    }
-                },
-                    [](auto&&) {});
-
-            return async;
-        }
-
-    private:
-
-        MethodDef m_method;
-        MethodDefSig m_signature;
-        std::vector<std::pair<Param, ParamSig const*>> m_params;
-        std::string_view m_return;
-        metadata_type const* m_return_type;
-    };
-
     std::tuple<MethodDef, MethodDef> get_property_methods(Property const& prop);
 
-    struct property_signature
-    {
-        explicit property_signature(Property const& prop) :
-            m_prop(prop)
-        {
-            auto [getter, setter] = get_property_methods(prop);
-            if (getter) {
-                m_getter = method_signature{ getter };
-            }
-            if (setter) {
-                m_setter = method_signature{ setter };
-            }
-        }
-
-        explicit property_signature(property_def const& prop) :
-            m_prop(prop.def)
-        {
-            if (prop.getter.def) {
-                m_getter = method_signature{ prop.getter };
-            }
-            if (prop.setter.def) {
-                m_setter = method_signature{ prop.setter };
-            }
-        }
-
-        Property const& property() const { return m_prop;  }
-        std::optional<method_signature> const& getter() const { return m_getter; }
-        std::optional<method_signature> const& setter() const { return m_setter; }
-
-    private:
-        Property m_prop;
-        std::optional<method_signature> m_getter;
-        std::optional<method_signature> m_setter;
-    };
     struct separator
     {
         writer& w;
@@ -266,6 +127,12 @@ namespace swiftwinrt
         }
     }
 
+    inline auto get_abi_name(function_def const& method)
+    {
+        return get_abi_name(method.def);
+    }
+
+
     inline auto get_name(MethodDef const& method)
     {
         auto name = method.Name();
@@ -276,6 +143,11 @@ namespace swiftwinrt
         }
 
         return name;
+    }
+
+    inline auto get_name(function_def const& method)
+    {
+        return get_name(method.def);
     }
 
     inline bool is_remove_overload(MethodDef const& method)
@@ -400,51 +272,9 @@ namespace swiftwinrt
         return has_attribute(type, "Windows.Foundation.Metadata", "ComposableAttribute");
     }
 
-    struct interface_info
+    inline bool is_exclusive(interface_type const& type)
     {
-        TypeDef type;
-        bool is_default{};
-        bool defaulted{};
-        bool overridable{};
-        bool base{};
-        bool exclusive{};
-        bool fastabi{};
-        bool attributed{};
-        // A pair of (relativeContract, version) where 'relativeContract' is the contract the interface was introduced
-        // in relative to the contract history of the class. E.g. if a class goes from contract 'A' to 'B' to 'C',
-        // 'relativeContract' would be '0' for an interface introduced in contract 'A', '1' for an interface introduced
-        // in contract 'B', etc. This is only set/valid for 'fastabi' interfaces
-        std::pair<uint32_t, uint32_t> relative_version{};
-        generic_param_vector generic_params{};
-    };
-
-    using get_interfaces_t = std::vector<std::pair<std::string, interface_info>>;
-
-    inline interface_info* find(get_interfaces_t& interfaces, std::string_view const& name)
-    {
-        auto pair = std::find_if(interfaces.begin(), interfaces.end(), [&](auto&& pair)
-            {
-                return pair.first == name;
-            });
-
-        if (pair == interfaces.end())
-        {
-            return nullptr;
-        }
-
-        return &pair->second;
-    }
-
-    inline void insert_or_assign(get_interfaces_t& interfaces, std::string_view const& name, interface_info&& info)
-    {
-        if (auto existing = find(interfaces, name))
-        {
-            *existing = std::move(info);
-        }
-        else
-        {
-            interfaces.emplace_back(name, std::move(info));
-        }
+        return has_attribute(type.type(), "Windows.Foundation.Metadata", "ExclusiveToAttribute");
     }
 
     inline auto find_type(coded_index<winmd::reader::TypeDefOrRef> type)
@@ -467,313 +297,6 @@ namespace swiftwinrt
         }
     }
 
-    inline void get_interfaces_impl(writer& w, get_interfaces_t& result, bool defaulted, bool overridable, bool base, std::pair<InterfaceImpl, InterfaceImpl>&& children)
-    {
-        for (auto&& impl : children)
-        {
-            interface_info info;
-            auto type = impl.Interface();
-            auto name = w.write_temp("%", type);
-            info.is_default = has_attribute(impl, "Windows.Foundation.Metadata", "DefaultAttribute");
-            info.defaulted = !base && (defaulted || info.is_default);
-
-            {
-                // This is for correctness rather than an optimization (but helps performance as well).
-                // If the interface was not previously inserted, carry on and recursively insert it.
-                // If a previous insertion was defaulted we're done as it is correctly captured.
-                // If a newly discovered instance of a previous insertion is not defaulted, we're also done.
-                // If it was previously captured as non-defaulted but now found as defaulted, we carry on and
-                // rediscover it as we need it to be defaulted recursively.
-
-                if (auto found = find(result, name))
-                {
-                    if (found->defaulted || !info.defaulted)
-                    {
-                        continue;
-                    }
-                }
-            }
-
-            info.overridable = overridable || has_attribute(impl, metadata_namespace, "OverridableAttribute");
-            info.base = base;
-            writer::generic_param_guard guard;
-
-            switch (type.type())
-            {
-            case TypeDefOrRef::TypeDef:
-            {
-                info.type = type.TypeDef();
-                break;
-            }
-            case TypeDefOrRef::TypeRef:
-            {
-                info.type = find_required(type.TypeRef());
-                w.add_depends(info.type);
-                break;
-            }
-            case TypeDefOrRef::TypeSpec:
-            {
-                auto type_signature = type.TypeSpec().Signature();
-
-                guard = w.push_generic_params(type_signature.GenericTypeInst());
-                auto signature = type_signature.GenericTypeInst();
-                info.type = find_required(signature.GenericType());
-                info.generic_params = w.generic_param_stack.back();
-                break;
-            }
-            }
-            info.exclusive = has_attribute(info.type, "Windows.Foundation.Metadata", "ExclusiveToAttribute");
-            get_interfaces_impl(w, result, info.defaulted, info.overridable, base, info.type.InterfaceImpl());
-            insert_or_assign(result, name, std::move(info));
-        }
-    };
-
-    inline auto get_interfaces(writer& w, TypeDef const& type)
-    {
-        w.abi_types = false;
-        get_interfaces_t result;
-        get_interfaces_impl(w, result, false, false, false, type.InterfaceImpl());
-
-        for (auto&& base : get_bases(type))
-        {
-            get_interfaces_impl(w, result, false, false, true, base.InterfaceImpl());
-        }
-
-        if (!has_fastabi(type))
-        {
-            return result;
-        }
-
-        size_t count = 0;
-
-        if (auto history = get_contract_history(type))
-        {
-            for (auto& pair : result)
-            {
-                if (pair.second.exclusive && !pair.second.base && !pair.second.overridable)
-                {
-                    ++count;
-
-                    auto introduced = get_initial_contract_version(pair.second.type);
-                    pair.second.relative_version.second = introduced.version;
-
-                    auto itr = std::find_if(history->previous_contracts.begin(), history->previous_contracts.end(), [&](previous_contract const& prev)
-                        {
-                            return prev.contract_from == introduced.name;
-                        });
-                    if (itr != history->previous_contracts.end())
-                    {
-                        pair.second.relative_version.first = static_cast<uint32_t>(itr - history->previous_contracts.begin());
-                    }
-                    else
-                    {
-                        assert(history->current_contract.name == introduced.name);
-                        pair.second.relative_version.first = static_cast<uint32_t>(history->previous_contracts.size());
-                    }
-                }
-            }
-        }
-
-        std::partial_sort(result.begin(), result.begin() + count, result.end(), [](auto&& left_pair, auto&& right_pair)
-            {
-                auto& left = left_pair.second;
-                auto& right = right_pair.second;
-
-                // Sort by base before is_default because each base will have a default.
-                if (left.base != right.base)
-                {
-                    return !left.base;
-                }
-
-                if (left.is_default != right.is_default)
-                {
-                    return left.is_default;
-                }
-
-                if (left.overridable != right.overridable)
-                {
-                    return !left.overridable;
-                }
-
-                if (left.exclusive != right.exclusive)
-                {
-                    return left.exclusive;
-                }
-
-                auto left_enabled = is_always_enabled(left.type);
-                auto right_enabled = is_always_enabled(right.type);
-
-                if (left_enabled != right_enabled)
-                {
-                    return left_enabled;
-                }
-
-                if (left.relative_version != right.relative_version)
-                {
-                    return left.relative_version < right.relative_version;
-                }
-
-                return left_pair.first < right_pair.first;
-            });
-
-            std::for_each_n(result.begin(), count, [](auto&& pair)
-            {
-                pair.second.fastabi = true;
-            });
-
-        return result;
-    }
-
-    inline bool implements_interface(TypeDef const& type, std::string_view const& name)
-    {
-        for (auto&& impl : type.InterfaceImpl())
-        {
-            const auto iface = impl.Interface();
-            if (iface.type() != TypeDefOrRef::TypeSpec && type_name(iface) == name)
-            {
-                return true;
-            }
-        }
-
-        if (auto base = get_base_class(type))
-        {
-            return implements_interface(base, name);
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    inline bool has_fastabi_tearoffs(writer& w, TypeDef const& type)
-    {
-        for (auto&& [name, info] : get_interfaces(w, type))
-        {
-            if (info.is_default)
-            {
-                continue;
-            }
-
-            return info.fastabi;
-        }
-
-        return false;
-    }
-
-    inline std::size_t get_fastabi_size(writer& w, TypeDef const& type)
-    {
-        if (!has_fastabi(type))
-        {
-            return 0;
-        }
-
-        auto result = 6 + get_bases(type).size();
-
-        for (auto&& [name, info] : get_interfaces(w, type))
-        {
-            if (!info.fastabi)
-            {
-                break;
-            }
-
-            result += size(info.type.MethodList());
-        }
-
-        return result;
-    }
-
-    inline auto get_fastabi_size(writer& w, std::vector<TypeDef> const& classes)
-    {
-        std::size_t result{};
-
-        for (auto&& type : classes)
-        {
-            result = (std::max)(result, get_fastabi_size(w, type));
-        }
-
-        return result;
-    }
-
-    struct factory_info
-    {
-        TypeDef type;
-        bool activatable{};
-        bool statics{};
-        bool composable{};
-        bool visible{};
-    };
-
-    inline auto get_factories(writer& w, TypeDef const& type)
-    {
-        auto get_system_type = [&](auto&& signature) -> TypeDef
-        {
-            for (auto&& arg : signature.FixedArgs())
-            {
-                if (auto type_param = std::get_if<ElemSig::SystemType>(&std::get<ElemSig>(arg.value).value))
-                {
-                    return type.get_cache().find_required(type_param->name);
-                }
-            }
-
-            return {};
-        };
-
-        std::map<std::string, factory_info> result;
-
-        for (auto&& attribute : type.CustomAttribute())
-        {
-            auto attribute_name = attribute.TypeNamespaceAndName();
-
-            if (attribute_name.first != "Windows.Foundation.Metadata")
-            {
-                continue;
-            }
-
-            auto signature = attribute.Value();
-            factory_info info;
-
-            if (attribute_name.second == "ActivatableAttribute")
-            {
-                info.type = get_system_type(signature);
-                info.activatable = true;
-            }
-            else if (attribute_name.second == "StaticAttribute")
-            {
-                info.type = get_system_type(signature);
-                info.statics = true;
-            }
-            else if (attribute_name.second == "ComposableAttribute")
-            {
-                info.type = get_system_type(signature);
-                info.composable = true;
-
-                for (auto&& arg : signature.FixedArgs())
-                {
-                    if (auto visibility = std::get_if<ElemSig::EnumValue>(&std::get<ElemSig>(arg.value).value))
-                    {
-                        info.visible = std::get<int32_t>(visibility->value) == 2;
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                continue;
-            }
-
-            std::string name;
-
-            if (info.type)
-            {
-                name = w.write_temp("%", info.type);
-            }
-
-            result[name] = std::move(info);
-        }
-
-        return result;
-    }
-
     inline auto get_delegate_method(TypeDef const& type)
     {
         auto methods = type.MethodList();
@@ -789,31 +312,6 @@ namespace swiftwinrt
         }
 
         return method;
-    }
-
-    inline std::string get_field_abi(writer& w, Field const& field)
-    {
-        auto signature = field.Signature();
-        auto const& type = signature.Type();
-        std::string name = w.write_temp("%", type);
-
-        if (starts_with(name, "struct "))
-        {
-            auto ref = std::get<coded_index<TypeDefOrRef>>(type.Type());
-
-            name = "struct{";
-
-            for (auto&& nested : find_required(ref).FieldList())
-            {
-                name += " " + get_field_abi(w, nested) + " ";
-                name += nested.Name();
-                name += ";";
-            }
-
-            name += " }";
-        }
-
-        return name;
     }
 
     inline std::string get_component_filename(TypeDef const& type)
@@ -845,32 +343,6 @@ namespace swiftwinrt
         }
 
         return result;
-    }
-
-    inline bool has_factory_members(writer& w, TypeDef const& type)
-    {
-        for (auto&& [factory_name, factory] : get_factories(w, type))
-        {
-            if (!factory.type || !empty(factory.type.MethodList()))
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    inline bool is_composable(writer& w, TypeDef const& type)
-    {
-        for (auto&& [factory_name, factory] : get_factories(w, type))
-        {
-            if (factory.composable)
-            {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     inline bool is_overridable(InterfaceImpl const& iface)
@@ -908,14 +380,52 @@ namespace swiftwinrt
         }
     }
 
+    inline bool is_generic(const metadata_type* type)
+    {
+        if (auto typedefBase = dynamic_cast<const typedef_base*>(type))
+        {
+            return is_generic(typedefBase->type());
+        }
+        return dynamic_cast<const generic_inst*>(type) != nullptr;
+    }
+
     inline bool is_generic(metadata_type const& type)
     {
-        return dynamic_cast<const generic_inst*>(&type) != nullptr;
+        return is_generic(&type);
     }
 
     inline bool is_delegate(generic_inst const& type)
     {
         return type.generic_type()->category() == category::delegate_type;
+    }
+
+    inline bool is_delegate(metadata_type const* type)
+    {
+        if (dynamic_cast<delegate_type const*>(type))
+        {
+            return true;
+        }
+        else if (auto genericInst = dynamic_cast<generic_inst const*>(type))
+        {
+            return is_delegate(*genericInst);
+        }
+        return false;
+    }
+
+    inline bool is_delegate(metadata_type const& type)
+    {
+        return is_delegate(&type);
+    }
+
+    inline bool is_interface(metadata_type const* type)
+    {
+        return dynamic_cast<interface_type const*>(type) != nullptr || 
+               is_generic(type);
+    }
+
+    inline bool is_class(metadata_type const* type)
+    {
+        return dynamic_cast<class_type const*>(type) != nullptr;
     }
 
     template <typename T>
@@ -960,20 +470,6 @@ namespace swiftwinrt
         };
     }
 
-
-    inline bool has_composable_constructors(writer& w, TypeDef const& type)
-    {
-        for (auto&&[interface_name, factory] : get_factories(w, type))
-        {
-            if (factory.composable && !empty(factory.type.MethodList()))
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     inline bool has_projected_types(cache::namespace_members const& members)
     {
         return
@@ -993,59 +489,41 @@ namespace swiftwinrt
         return type.get_cache().find_required(class_name);
     }
     
-    inline std::optional<factory_info> try_get_factory_info(TypeDef const& type)
+    inline TypeDef get_exclusive_to(typedef_base const& type)
     {
-        auto attribute = get_attribute(type, metadata_namespace, "ExclusiveToAttribute");
+        return get_exclusive_to(type.type());
+    }
+
+    inline bool is_exclusive(typedef_base const& type)
+    {
+        return has_attribute(type.type(), "Windows.Foundation.Metadata", "ExclusiveToAttribute");
+    }
+
+    inline std::optional<attributed_type> try_get_factory_info(writer& w, typedef_base const& type)
+    {
+        auto attribute = get_attribute(type.type(), metadata_namespace, "ExclusiveToAttribute");
 
         if (!attribute)
         {
             return {};
         }
-        writer temp;
-        auto interface_name = temp.write_temp("%", type);
+        auto interface_name = type.swift_type_name();
         auto class_name = get_attribute_value<ElemSig::SystemType>(attribute, 0).name;
-        auto class_type = type.get_cache().find_required(class_name);
+        auto last_ns_index = class_name.find_last_of('.');
+        assert(last_ns_index != class_name.npos);
+        auto ns = class_name.substr(0, last_ns_index);
+        auto name = class_name.substr(last_ns_index + 1);
 
-        auto factories = get_factories(temp, class_type);
-        auto search = factories.find(interface_name);
-        if (search != factories.end())
+        auto classType = dynamic_cast<const class_type*>(&w.cache->find(ns, name));
+        assert(classType);
+
+        auto search = classType->factories.find(std::string(interface_name));
+        if (search != classType->factories.end())
         {
             return search->second;
         }
 
         return {};
-    }
-
-    inline bool can_produce(TypeDef const& type, cache const& c)
-    {
-        auto attribute = get_attribute(type, metadata_namespace, "ExclusiveToAttribute");
-
-        if (!attribute)
-        {
-            return true;
-        }
-
-        auto interface_name = type_name(type);
-        auto class_name = get_attribute_value<ElemSig::SystemType>(attribute, 0).name;
-        auto class_type = c.find_required(class_name);
-
-        for (auto&& impl : class_type.InterfaceImpl())
-        {
-            if (has_attribute(impl, metadata_namespace, "OverridableAttribute"))
-            {
-                if (interface_name == type_name(impl.Interface()))
-                {
-                    return true;
-                }
-            }
-        }
-
-        if (!settings.component)
-        {
-            return false;
-        }
-
-        return settings.component_filter.includes(class_name);
     }
 
     inline std::tuple<MethodDef, MethodDef> get_property_methods(Property const& prop)
@@ -1088,7 +566,7 @@ namespace swiftwinrt
         }
         else
         {
-            auto name = std::string("_").append(iface.type.TypeName());
+            auto name = std::string("_").append(iface.type->swift_type_name());
             if (iface.generic_params.size() == 1)
             {
                 name.erase(name.find_first_of('`'));
@@ -1143,6 +621,31 @@ namespace swiftwinrt
         return param.Name();
     }
 
+    inline std::string_view get_swift_name(function_param const& param)
+    {
+        return get_swift_name(param.def);
+    }
+
+    inline std::string_view get_swift_name(property_def const& property)
+    {
+        return put_in_backticks_if_needed(property.def.Name());
+    }
+
+    inline std::string_view get_swift_name(function_def const& function)
+    {
+        // the swift name for the Invoke method of a delegate is the `handler` property
+        if (get_category(function.def.Parent()) == category::delegate_type && function.def.Name() != ".ctor")
+        {
+            return "handler";
+        }
+        return put_in_backticks_if_needed(function.def.Name());
+    }
+
+    inline std::string_view get_swift_name(struct_member const& member)
+    {
+        return put_in_backticks_if_needed(member.field.Name());
+    }
+
     inline std::string_view remove_backtick(std::string_view const& name)
     {
         auto back_tick_i = name.find_first_of('`');
@@ -1152,6 +655,26 @@ namespace swiftwinrt
         }
         return name;
     }
+
+    inline bool is_boolean(metadata_type const* signature)
+    {
+        if (auto elementType = dynamic_cast<element_type const*>(signature))
+        {
+            return elementType->type() == ElementType::Boolean;
+        }
+        return false;
+    }
+
+    inline bool is_floating_point(metadata_type const* signature)
+    {
+        if (auto elementType = dynamic_cast<element_type const*>(signature))
+        {
+            return elementType->type() == ElementType::R4 ||
+                   elementType->type() == ElementType::R8;
+        }
+        return false;
+    }
+
 
     inline std::string internal_namepace(std::string prefix, std::string_view const& ns)
     {
@@ -1176,6 +699,16 @@ namespace swiftwinrt
     inline std::string abi_namespace(TypeDef const& type)
     {
         return abi_namespace(type.TypeNamespace());
+    }
+
+    inline std::string abi_namespace(metadata_type const& type)
+    {
+        return abi_namespace(type.swift_logical_namespace());
+    }
+
+    inline std::string abi_namespace(const metadata_type * type)
+    {
+        return abi_namespace(*type);
     }
 
     inline winmd::reader::ElementType underlying_enum_type(winmd::reader::TypeDef const& type)
@@ -1230,48 +763,55 @@ namespace swiftwinrt
         return { typeName.substr(0, pos), typeName.substr(pos + 1) };
     }
 
-    inline param_category get_category(generic_param_type const& generic_param, TypeDef* signature_type = nullptr)
+    inline param_category get_category(const metadata_type* type, TypeDef* signature_type = nullptr)
     {
-        if (std::holds_alternative<TypeSig>(generic_param))
+        if (signature_type)
         {
-            return get_category(std::get<TypeSig>(generic_param), signature_type);
+            if (auto typedefBase = dynamic_cast<const typedef_base*>(type))
+            {
+                *signature_type = typedefBase->type();
+            }
         }
-        else
+
+        if (auto enumType = dynamic_cast<const enum_type*>(type))
         {
-            auto type = std::get<const metadata_type*>(generic_param);
-          
+            return param_category::enum_type;
+        }
+        if (auto structType = dynamic_cast<const struct_type*>(type))
+        {
+            return param_category::struct_type;
+        }
+        if (auto elementType = dynamic_cast<const element_type*>(type))
+        {
+            if (elementType->type() == ElementType::String) return param_category::string_type;
+            if (elementType->type() == ElementType::Object) return param_category::object_type;
+            if (elementType->type() == ElementType::Boolean) return param_category::boolean_type;
+            if (elementType->type() == ElementType::Char) return param_category::character_type;
+            return param_category::fundamental_type;
+        }
+        if (auto sysType = dynamic_cast<const system_type*>(type))
+        {
+            return param_category::guid_type;
+        }
+        if (auto mapped = dynamic_cast<const mapped_type*>(type))
+        {
             if (signature_type)
             {
-                if (auto typedefBase = dynamic_cast<const typedef_base*>(type))
-                {
-                    *signature_type = typedefBase->type();
-                }
+                *signature_type = mapped->type();
             }
-
-            if (auto enumType = dynamic_cast<const enum_type*>(type))
-            {
-                return param_category::enum_type;
-            }
-            if (auto structType = dynamic_cast<const struct_type*>(type))
-            {
-                return param_category::struct_type;
-            }
-            if (auto elementType = dynamic_cast<const element_type*>(type))
-            {
-                if (elementType->swift_full_name() == "String") return param_category::string_type;
-                if (elementType->swift_full_name() == "IInspectable") return param_category::object_type;
-                if (elementType->swift_full_name() == "Bool") return param_category::boolean_type;
-                if (elementType->swift_full_name() == "Character") return param_category::character_type;
-                return param_category::fundamental_type;
-            }
-            if (auto sysType = dynamic_cast<const system_type*>(type))
-            {
-                return param_category::guid_type;
-            }
-
-            // delegates, interfaces, and classes are all object type
-            return param_category::object_type;
+            if (mapped->swift_type_name() == "EventRegistrationToken") return param_category::struct_type;
+            if (mapped->swift_type_name() == "IAsyncInfo") return param_category::object_type;
+            if (mapped->swift_type_name() == "AsyncStatus") return param_category::enum_type;
+            if (mapped->swift_type_name() == "HResult") return param_category::fundamental_type;
+            assert(false); // unexpected mapped type
         }
+        if (is_generic(type))
+        {
+            return param_category::generic_type;
+        }
+
+        // delegates, interfaces, and classes are all object type
+        return param_category::object_type;
     }
 
     template<typename T>
@@ -1346,5 +886,23 @@ namespace swiftwinrt
             assert(false);
             return {};
         }
+    }
+
+    inline std::pair<std::string_view, std::string_view> get_type_namespace_and_name(metadata_type const& type)
+    {
+        return std::make_pair(type.swift_logical_namespace(), type.swift_type_name());
+    }
+
+    inline bool is_struct_blittable(struct_type const& type)
+    {
+        for (auto&& member : type.members)
+        {
+            if (!is_type_blittable(member.field.Signature().Type()))
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

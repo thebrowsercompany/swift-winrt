@@ -9,7 +9,7 @@ namespace swiftwinrt
     struct writer;
 
     std::string get_full_type_name(TypeDef const& type);
-    
+    std::string_view remove_tick(std::string_view const& name);
     struct deprecation_info
     {
         std::string_view contract_type;
@@ -76,14 +76,14 @@ namespace swiftwinrt
     struct element_type final : metadata_type
     {
         element_type(
-            bool blittable,
+            ElementType elementType,
             std::string_view swiftName,
             std::string_view logicalName,
             std::string_view abiName,
             std::string_view cppName,
             std::string_view mangledName,
             std::string_view signature) :
-            m_blittable(blittable),
+            m_type(elementType),
             m_swiftName(swiftName),
             m_logicalName(logicalName),
             m_abiName(abiName),
@@ -158,8 +158,9 @@ namespace swiftwinrt
             // no special declaration necessary
         }
 
-        bool is_blittable() const { return m_blittable;  }
+        bool is_blittable() const;
 
+        ElementType type() const { return m_type;  }
     private:
 
         std::string_view m_swiftName;
@@ -169,6 +170,7 @@ namespace swiftwinrt
         std::string_view m_mangledName;
         std::string_view m_signature;
         bool m_blittable{ true };
+        ElementType m_type;
     };
 
     struct system_type final : metadata_type
@@ -357,6 +359,8 @@ namespace swiftwinrt
         {
             // no special declaration necessary
         }
+
+        TypeDef type() const { return m_type; }
     private:
 
         winmd::reader::TypeDef m_type;
@@ -576,6 +580,9 @@ namespace swiftwinrt
         winmd::reader::ParamSig signature;
         std::string_view name;
         metadata_type const* type;
+
+        bool in() const { return def.Flags().In(); }
+        bool out() const { return def.Flags().Out(); }
     };
 
     struct function_def
@@ -583,18 +590,53 @@ namespace swiftwinrt
         winmd::reader::MethodDef def;
         std::optional<function_return_type> return_type;
         std::vector<function_param> params;
+        bool is_async() const;
     };
 
     struct property_def
     {
         winmd::reader::Property def;
-        function_def getter;
-        function_def setter;
+        metadata_type const* type;
+        std::optional<function_def> getter;
+        std::optional<function_def> setter;
     };
 
     struct event_def
     {
         winmd::reader::Event def;
+        metadata_type const* type;
+    };
+
+
+    using generic_param_type = const metadata_type*;
+    using generic_param_vector = std::vector<generic_param_type>;
+    struct interface_info
+    {
+        const metadata_type* type{};
+        bool is_default{};
+        bool defaulted{};
+        bool overridable{};
+        bool base{};
+        bool exclusive{};
+        bool fastabi{};
+        bool attributed{};
+        // A pair of (relativeContract, version) where 'relativeContract' is the contract the interface was introduced
+        // in relative to the contract history of the class. E.g. if a class goes from contract 'A' to 'B' to 'C',
+        // 'relativeContract' would be '0' for an interface introduced in contract 'A', '1' for an interface introduced
+        // in contract 'B', etc. This is only set/valid for 'fastabi' interfaces
+        std::pair<uint32_t, uint32_t> relative_version{};
+        generic_param_vector generic_params{};
+    };
+
+    using named_interface_info = std::pair<std::string, interface_info>;
+
+    struct attributed_type
+    {
+        const metadata_type* type;
+        bool activatable{};
+        bool statics{};
+        bool composable{};
+        bool visible{};
     };
 
     struct delegate_type final : typedef_base
@@ -643,7 +685,7 @@ namespace swiftwinrt
 
         void write_c_definition(writer& w) const;
 
-        std::vector<metadata_type const*> required_interfaces;
+        std::vector<named_interface_info> required_interfaces;
         std::vector<function_def> functions;
         std::vector<property_def> properties;
         std::vector<event_def> events;
@@ -699,10 +741,13 @@ namespace swiftwinrt
 
         void write_c_definition(writer& w) const;
 
-        std::vector<metadata_type const*> required_interfaces;
+        std::vector<named_interface_info> required_interfaces;
         std::vector<std::pair<interface_type const*, version>> supplemental_fast_interfaces;
         class_type const* base_class = nullptr;
         metadata_type const* default_interface = nullptr;
+        std::map<std::string, attributed_type> factories;
+
+        bool is_composable() const;
 
     private:
 

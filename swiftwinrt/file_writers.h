@@ -97,6 +97,7 @@ namespace swiftwinrt
         w.type_namespace = ns;
         w.support = settings.support;
         w.c_mod = settings.test ? "C" + settings.support : "CWinRT";
+        w.cache = members.cache;
 
         w.write("%", w.filter.bind_each<write_guid>(members.interfaces));
         w.write("%", w.filter.bind_each<write_guid>(members.delegates));
@@ -143,6 +144,7 @@ namespace swiftwinrt
         w.support = settings.support;
         w.c_mod = settings.test ? "C" + settings.support : "CWinRT";
         w.type_namespace = ns;
+        w.cache = members.cache;
 
         w.write("%", w.filter.bind_each<write_enum_def>(members.enums));
         w.write("%", w.filter.bind_each<write_class>(members.classes));
@@ -175,6 +177,7 @@ namespace swiftwinrt
         w.support = settings.support;
         w.c_mod = settings.test ? "C" + settings.support : "CWinRT";
         w.type_namespace = ns;
+        w.cache = members.cache;
 
         {
             auto impl_ns = impl_namespace(ns);

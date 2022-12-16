@@ -87,6 +87,42 @@ public final class BaseCollection : WinRTClass, IVector {
         _default = fromAbi
     }
 
+    // MARK: Collection
+    public var startIndex: Int { 0 }
+    public var endIndex: Int { Int(Size) }
+    public func index(after i: Int) -> Int {
+        i+1
+    }
+
+    public func index(of: Element) -> Int? { 
+        var index: UInt32 = 0
+        let result = IndexOf(of, &index)
+        guard result else { return nil }
+        return Int(index)
+    }
+    public var count: Int { Int(Size) }
+
+    public func append(_ item: Element) {
+        Append(item)
+    }
+
+    public subscript(position: Int) -> Element {
+        get {
+            GetAt(UInt32(position))
+         }
+         set(newValue) {
+             SetAt(UInt32(position), newValue)
+         }
+    }
+
+    public func removeLast() {
+        RemoveAtEnd()
+    }
+
+    public func clear() {
+        Clear()
+    }
+    // MARK: WinRT
     public func GetAt(_ index: UInt32) -> Base {
         let result = try! _default.GetAtImpl(index)
         return .from(abi: result)
@@ -360,7 +396,7 @@ public final class Class : WinRTClass, IBasic {
     public var BaseNoOverridesProperty : BaseNoOverrides {
         get {
             let value = try! _default.get_BaseNoOverridesPropertyImpl()
-            return test_component.BaseNoOverrides.from(abi: value)
+            return .from(abi: value)
         }
 
         set {
@@ -371,7 +407,7 @@ public final class Class : WinRTClass, IBasic {
     public var BaseProperty : Base {
         get {
             let value = try! _default.get_BasePropertyImpl()
-            return test_component.Base.from(abi: value)
+            return .from(abi: value)
         }
 
         set {
@@ -958,11 +994,44 @@ public struct SimpleEventArgs {
     }
 }
 
-public typealias IBasic = test_component.IBasicPrototype
+public protocol IBasic : IWinRTObject { 
+        func Method() 
+}
+extension IBasic {
+    public static var none: IBasic {
+        __IMPL_test_component.IBasicImpl(nil)
+    }
+}
 
-public typealias IIAmImplementable = test_component.IIAmImplementablePrototype
+public protocol IIAmImplementable : IWinRTObject { 
+        func InInt32(_ value: Int32) -> String 
+        func InString(_ value: String) -> String 
+        func InEnum(_ value: test_component.Signed) -> String 
+        func OutInt32(_ value: inout Int32) 
+        func OutString(_ value: inout String?) 
+        func OutBlittableStruct(_ value: inout test_component.BlittableStruct) 
+        func OutNonBlittableStruct(_ value: inout test_component.NonBlittableStruct) 
+        func OutEnum(_ value: inout test_component.Signed) 
+        func ReturnEnum() -> test_component.Signed 
+        func FireEvent() 
+        var EnumProperty: test_component.Fruit { get set }
+        var ID: UUID? { get set }
+}
+extension IIAmImplementable {
+    public static var none: IIAmImplementable {
+        __IMPL_test_component.IIAmImplementableImpl(nil)
+    }
+}
 
-public typealias ISimpleDelegate = test_component.ISimpleDelegatePrototype
+public protocol ISimpleDelegate : IWinRTObject { 
+        func DoThis() 
+        func DoThat(_ val: Int32) 
+}
+extension ISimpleDelegate {
+    public static var none: ISimpleDelegate {
+        __IMPL_test_component.ISimpleDelegateImpl(nil)
+    }
+}
 
 extension test_component.Fruit {
     public static var Banana : test_component.Fruit {

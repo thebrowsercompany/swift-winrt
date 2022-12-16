@@ -28,7 +28,7 @@ namespace swiftwinrt
         }
         for (auto& required : type.required_interfaces)
         {
-            to_process.emplace(required);
+            to_process.emplace(required.second.type);
         }
     }
 
@@ -46,9 +46,9 @@ namespace swiftwinrt
             }
         }
 
-        for (auto& required : type.required_interfaces)
+        for (auto& [_, required] : type.required_interfaces)
         {
-            to_process.emplace(required);
+            to_process.emplace(required.type);
         }
     }
 
@@ -91,9 +91,9 @@ namespace swiftwinrt
 
         if (auto iface = dynamic_cast<interface_type const*>(generic.generic_type()))
         {
-            for (auto& required : iface->required_interfaces)
+            for (auto& [_, required]: iface->required_interfaces)
             {
-                to_process.emplace(required);
+                to_process.emplace(required.type);
             }
         }
     }
@@ -152,12 +152,11 @@ namespace swiftwinrt
                 else if (auto c = dynamic_cast<const class_type*>(processing))
                 {
                     add_class_dependencies_to_queue(to_process, *c);
-                    for (auto& [name, attributed] : get_attributed_types(c->type()))
+                    for (auto& [name, attributed] : c->factories)
                     {
                         if (attributed.type)
                         {
-                            auto type = &cache.find(attributed.type.TypeNamespace(), attributed.type.TypeName());
-                            to_process.emplace(type);
+                            to_process.emplace(attributed.type);
                         }
                     }
 

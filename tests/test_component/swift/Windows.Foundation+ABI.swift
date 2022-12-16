@@ -23,8 +23,8 @@ public enum __ABI_Windows_Foundation {
             }
             return value
         }
-        open func GetUInt8Impl() throws -> UINT8 {
-            var value: UINT8 = 0
+        open func GetUInt8Impl() throws -> BYTE {
+            var value: BYTE = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetUInt8(pThis, &value))
             }
@@ -206,7 +206,7 @@ public enum __ABI_Windows_Foundation {
         },
 
         get_Type: {
-            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             let value = __unwraped__instance.Type
             $1?.initialize(to: value)
@@ -215,7 +215,7 @@ public enum __ABI_Windows_Foundation {
         },
 
         get_IsNumericScalar: {
-            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             let value = __unwraped__instance.IsNumericScalar
             $1?.initialize(to: .init(from: value))
@@ -224,7 +224,7 @@ public enum __ABI_Windows_Foundation {
         },
 
         GetUInt8: {
-            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             let value = __unwraped__instance.GetUInt8()
             $1?.initialize(to: value)
@@ -233,7 +233,7 @@ public enum __ABI_Windows_Foundation {
         },
 
         GetInt16: {
-            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             let value = __unwraped__instance.GetInt16()
             $1?.initialize(to: value)
@@ -242,7 +242,7 @@ public enum __ABI_Windows_Foundation {
         },
 
         GetUInt16: {
-            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             let value = __unwraped__instance.GetUInt16()
             $1?.initialize(to: value)
@@ -251,7 +251,7 @@ public enum __ABI_Windows_Foundation {
         },
 
         GetInt32: {
-            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             let value = __unwraped__instance.GetInt32()
             $1?.initialize(to: value)
@@ -260,7 +260,7 @@ public enum __ABI_Windows_Foundation {
         },
 
         GetUInt32: {
-            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             let value = __unwraped__instance.GetUInt32()
             $1?.initialize(to: value)
@@ -269,7 +269,7 @@ public enum __ABI_Windows_Foundation {
         },
 
         GetInt64: {
-            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             let value = __unwraped__instance.GetInt64()
             $1?.initialize(to: value)
@@ -278,7 +278,7 @@ public enum __ABI_Windows_Foundation {
         },
 
         GetUInt64: {
-            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             let value = __unwraped__instance.GetUInt64()
             $1?.initialize(to: value)
@@ -287,7 +287,7 @@ public enum __ABI_Windows_Foundation {
         },
 
         GetSingle: {
-            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             let value = __unwraped__instance.GetSingle()
             $1?.initialize(to: value)
@@ -296,7 +296,7 @@ public enum __ABI_Windows_Foundation {
         },
 
         GetDouble: {
-            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             let value = __unwraped__instance.GetDouble()
             $1?.initialize(to: value)
@@ -305,7 +305,7 @@ public enum __ABI_Windows_Foundation {
         },
 
         GetChar16: {
-            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             let value = __unwraped__instance.GetChar16()
             $1?.initialize(to: .init(from: value))
@@ -314,7 +314,7 @@ public enum __ABI_Windows_Foundation {
         },
 
         GetBoolean: {
-            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             let value = __unwraped__instance.GetBoolean()
             $1?.initialize(to: .init(from: value))
@@ -323,7 +323,7 @@ public enum __ABI_Windows_Foundation {
         },
 
         GetString: {
-            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             let value = __unwraped__instance.GetString()
             $1?.initialize(to: try! HString(value).detach())
@@ -332,7 +332,7 @@ public enum __ABI_Windows_Foundation {
         },
 
         GetGuid: {
-            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             let value = __unwraped__instance.GetGuid()
             $1?.initialize(to: value)
@@ -341,7 +341,7 @@ public enum __ABI_Windows_Foundation {
         },
 
         GetDateTime: {
-            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             let value = __unwraped__instance.GetDateTime()
             $1?.initialize(to: .from(swift: value))
@@ -350,7 +350,7 @@ public enum __ABI_Windows_Foundation {
         },
 
         GetTimeSpan: {
-            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             let value = __unwraped__instance.GetTimeSpan()
             $1?.initialize(to: .from(swift: value))
@@ -359,7 +359,7 @@ public enum __ABI_Windows_Foundation {
         },
 
         GetPoint: {
-            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             let value = __unwraped__instance.GetPoint()
             $1?.initialize(to: .from(swift: value))
@@ -368,7 +368,7 @@ public enum __ABI_Windows_Foundation {
         },
 
         GetSize: {
-            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             let value = __unwraped__instance.GetSize()
             $1?.initialize(to: .from(swift: value))
@@ -377,7 +377,7 @@ public enum __ABI_Windows_Foundation {
         },
 
         GetRect: {
-            guard let __unwraped__instance = __ABI_Windows_Foundation.IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             let value = __unwraped__instance.GetRect()
             $1?.initialize(to: .from(swift: value))

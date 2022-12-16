@@ -39,6 +39,8 @@ namespace swiftwinrt
         w.write("\n");
     }
 
+    // Note: If you're changing the structure here you'll need to clean the generated files.
+    // The best thing to do is just delete the folder they are written to (even if checked in)
     inline std::string get_swift_module(std::string_view const& ns)
     {
         if (settings.test)
@@ -54,7 +56,8 @@ namespace swiftwinrt
                 ns.starts_with("Windows.System") ||
                 ns.starts_with("Windows.UI") ||
                 ns.starts_with("Windows.Networking") ||
-                ns.starts_with("Windows.ApplicationModel"))
+                ns.starts_with("Windows.ApplicationModel") || 
+                ns.starts_with("Windows.Security.EnterpriseData"))
         {
             return "WindowsApplicationModel";
         }
@@ -133,5 +136,10 @@ namespace swiftwinrt
         {
             return std::string(swift_full_name);
         }
+    }
+
+    inline std::string get_full_swift_type_name(writer const& w, const metadata_type& type)
+    {
+        return get_full_swift_type_name(w, &type);
     }
 }

@@ -195,6 +195,201 @@ static void process_contract_dependencies(namespace_cache& target, T const& type
     }
 }
 
+interface_info* metadata_cache::find(get_interfaces_t& interfaces, std::string_view const& name)
+{
+    auto pair = std::find_if(interfaces.begin(), interfaces.end(), [&](auto&& pair)
+        {
+            return pair.first == name;
+        });
+
+    if (pair == interfaces.end())
+    {
+        return nullptr;
+    }
+
+    return &pair->second;
+}
+
+void metadata_cache::insert_or_assign(get_interfaces_t& interfaces, std::string_view const& name, interface_info&& info)
+{
+    if (auto existing = find(interfaces, name))
+    {
+        *existing = std::move(info);
+    }
+    else
+    {
+        interfaces.emplace_back(name, std::move(info));
+    }
+}
+
+void metadata_cache::get_interfaces_impl(init_state& state, writer& w, get_interfaces_t& result, bool defaulted, bool overridable, bool base, std::pair<InterfaceImpl, InterfaceImpl>&& children)
+{
+    for (auto&& impl : children)
+    {
+        interface_info info;
+
+        auto type = impl.Interface();
+        info.type = &find_dependent_type(state, type);
+
+        info.is_default = has_attribute(impl, "Windows.Foundation.Metadata", "DefaultAttribute");
+        info.defaulted = !base && (defaulted || info.is_default);
+        writer::generic_param_guard guard;
+        if (auto genericInst = dynamic_cast<const generic_inst*>(info.type))
+        {
+            guard = w.push_generic_params(*genericInst);
+            info.generic_params = w.generic_param_stack.back();
+        }
+        auto name = w.write_temp("%", info.type);
+        {
+            // This is for correctness rather than an optimization (but helps performance as well).
+            // If the interface was not previously inserted, carry on and recursively insert it.
+            // If a previous insertion was defaulted we're done as it is correctly captured.
+            // If a newly discovered instance of a previous insertion is not defaulted, we're also done.
+            // If it was previously captured as non-defaulted but now found as defaulted, we carry on and
+            // rediscover it as we need it to be defaulted recursively.
+
+            if (auto found = find(result, name))
+            {
+                if (found->defaulted || !info.defaulted)
+                {
+                    continue;
+                }
+            }
+        }
+
+        info.overridable = overridable || has_attribute(impl, metadata_namespace, "OverridableAttribute");
+        info.base = base;
+
+        if (auto typeBase = dynamic_cast<const interface_type*>(info.type))
+        {
+            info.exclusive = has_attribute(typeBase->type(), "Windows.Foundation.Metadata", "ExclusiveToAttribute");
+
+            process_contract_dependencies(*state.target, impl);
+            get_interfaces_impl(state, w, result, info.defaulted, info.overridable, base, typeBase->type().InterfaceImpl());
+        }
+
+        insert_or_assign(result, name, std::move(info));
+    }
+};
+
+metadata_cache::get_interfaces_t metadata_cache::get_interfaces(init_state& state, TypeDef const& type)
+{
+    get_interfaces_t result;
+
+    writer w;
+    w.type_namespace = type.TypeNamespace();
+    get_interfaces_impl(state, w, result, false, false, false, type.InterfaceImpl());
+
+    for (auto&& base : get_bases(type))
+    {
+        get_interfaces_impl(state,w, result, false, false, true, base.InterfaceImpl());
+    }
+
+    if (!has_fastabi(type))
+    {
+        return result;
+    }
+
+    size_t count = 0;
+
+    auto get_interface_type = [](const metadata_type* metadataType) -> TypeDef {
+        TypeDef interfaceType{};
+        if (auto genericInst = dynamic_cast<const generic_inst*>(metadataType))
+        {
+            interfaceType = genericInst->generic_type()->type();
+        }
+        else if (auto iFaceType = dynamic_cast<const interface_type*>(metadataType))
+        {
+            interfaceType = iFaceType->type();
+        }
+        else 
+        {
+            interfaceType = dynamic_cast<const mapped_type*>(metadataType)->type();
+
+        }
+        assert(interfaceType);
+        return interfaceType;
+    };
+
+    if (auto history = get_contract_history(type))
+    {
+        for (auto& pair : result)
+        {
+            if (pair.second.exclusive && !pair.second.base && !pair.second.overridable)
+            {
+                ++count;
+
+                auto interfaceType = get_interface_type(pair.second.type);
+
+                auto introduced = get_initial_contract_version(interfaceType);
+                pair.second.relative_version.second = introduced.version;
+
+                auto itr = std::find_if(history->previous_contracts.begin(), history->previous_contracts.end(), [&](previous_contract const& prev)
+                    {
+                        return prev.contract_from == introduced.name;
+                    });
+                if (itr != history->previous_contracts.end())
+                {
+                    pair.second.relative_version.first = static_cast<uint32_t>(itr - history->previous_contracts.begin());
+                }
+                else
+                {
+                    assert(history->current_contract.name == introduced.name);
+                    pair.second.relative_version.first = static_cast<uint32_t>(history->previous_contracts.size());
+                }
+            }
+        }
+    }
+
+    std::partial_sort(result.begin(), result.begin() + count, result.end(), [&get_interface_type](auto&& left_pair, auto&& right_pair)
+        {
+            auto& left = left_pair.second;
+            auto& right = right_pair.second;
+
+            // Sort by base before is_default because each base will have a default.
+            if (left.base != right.base)
+            {
+                return !left.base;
+            }
+
+            if (left.is_default != right.is_default)
+            {
+                return left.is_default;
+            }
+
+            if (left.overridable != right.overridable)
+            {
+                return !left.overridable;
+            }
+
+            if (left.exclusive != right.exclusive)
+            {
+                return left.exclusive;
+            }
+
+            auto left_enabled = is_always_enabled(get_interface_type(left.type));
+            auto right_enabled = is_always_enabled(get_interface_type(right.type));
+
+            if (left_enabled != right_enabled)
+            {
+                return left_enabled;
+            }
+
+            if (left.relative_version != right.relative_version)
+            {
+                return left.relative_version < right.relative_version;
+            }
+
+            return left_pair.first < right_pair.first;
+        });
+
+    std::for_each_n(result.begin(), count, [](auto&& pair)
+        {
+            pair.second.fastabi = true;
+        });
+
+    return result;
+}
 void metadata_cache::process_enum_dependencies(init_state& state, enum_type& type)
 {
     // There's no pre-processing that we need to do for enums. Just take note of the namespace dependencies that come
@@ -248,25 +443,30 @@ void metadata_cache::process_interface_dependencies(init_state& state, interface
 {
     process_contract_dependencies(*state.target, type.type());
 
-    // We only care about instantiations of generic types, so early exit as we won't be able to resolve references
     if (type.is_generic())
     {
+        // only add interface info for non-generic interfaces since we won't be able to resolve references otherwise.
+        // this is what we use to know that IReference<T> derives from IPropertyValue
         for (auto const& iface : type.type().InterfaceImpl())
         {
             if (!swiftwinrt::is_generic(iface.Interface()))
             {
-                process_contract_dependencies(*state.target, iface);
-                type.required_interfaces.push_back(&find_dependent_type(state, iface.Interface()));
+                interface_info info;
+                info.type = &find_dependent_type(state, iface.Interface());
+                type_name name{ iface.Interface() };
+                type.required_interfaces.push_back(std::make_pair(std::string(name.name), info));
             }
-          
         }
         return;
     }
 
-    for (auto const& iface : type.type().InterfaceImpl())
+    for (auto const& interfaces : get_interfaces(state, type.type()))
     {
-        process_contract_dependencies(*state.target, iface);
-        type.required_interfaces.push_back(&find_dependent_type(state, iface.Interface()));
+        // TODO: https://linear.app/the-browser-company/issue/WIN-103/swiftwinrt-write-iasyncinfo
+        if (!interfaces.first.ends_with("IAsyncInfo"))
+        {
+            type.required_interfaces.push_back(interfaces);
+        }
     }
 
     for (auto const& method : type.type().MethodList())
@@ -282,7 +482,7 @@ void metadata_cache::process_interface_dependencies(init_state& state, interface
 
     for (auto const& event : type.type().EventList())
     {
-        type.events.push_back(event_def{ event });
+        type.events.push_back(process_event(state, event));
     }
 }
 
@@ -301,21 +501,21 @@ void metadata_cache::process_class_dependencies(init_state& state, class_type& t
         type.base_class = &dynamic_cast<class_type const&>(this->find(base.TypeNamespace(), base.TypeName()));
     }
 
-    for (auto const& iface : type.type().InterfaceImpl())
+    for (auto const& iface : get_interfaces(state, type.type()))
     {
-        process_contract_dependencies(*state.target, iface);
-        auto ifaceType = &find_dependent_type(state, iface.Interface());
-        type.required_interfaces.push_back(ifaceType);
+        type.required_interfaces.push_back(iface);
 
         // NOTE: Types can have more than one default interface so long as they apply to different platforms. This is
         //       not very useful, as we have to choose one to use for function argument types, but it technically is
         //       allowed... If that's the case, just use the first one we encounter as this has the highest probability
         //       of matching MIDLRT's behavior
-        if (auto attr = get_attribute(iface, metadata_namespace, "DefaultAttribute"sv); attr && !type.default_interface)
+        if (iface.second.is_default && !type.default_interface)
         {
-            type.default_interface = ifaceType;
+            type.default_interface = iface.second.type;
         }
     }
+
+    type.factories = get_attributed_types(type.type());
 
     if (auto fastAttr = get_attribute(type.type(), metadata_namespace, "FastAbiAttribute"sv))
     {
@@ -499,18 +699,24 @@ function_def metadata_cache::process_function(init_state& state, MethodDef const
 property_def metadata_cache::process_property(init_state& state, Property const& def)
 {
     auto [getter, setter] = get_property_methods(def);
+    auto type = &find_dependent_type(state, def.Type().Type());
     if (getter && setter)
     {
-        return property_def{ def, process_function(state, getter), process_function(state, setter) };
+        return property_def{ def, type, process_function(state, getter), process_function(state, setter) };
     }
     else if (getter)
     {
-        return property_def{ def, process_function(state, getter), {} };
+        return property_def{ def, type, process_function(state, getter), {} };
     }
     else
     {
-        return property_def{ def, {}, process_function(state, setter) };
+        return property_def{ def, type, {}, process_function(state, setter) };
     }
+}
+
+event_def metadata_cache::process_event(init_state& state, Event const& def)
+{
+    return event_def{ def, &find_dependent_type(state, def.EventType()) };
 }
 
 metadata_type const& metadata_cache::find_dependent_type(init_state& state, TypeSig const& type)
@@ -559,7 +765,7 @@ metadata_type const& metadata_cache::find_dependent_type(init_state& state, Type
 
 metadata_type const& metadata_cache::find_dependent_type(init_state& state, coded_index<TypeDefOrRef> const& type)
 {
-    metadata_type const* result;
+    metadata_type const* result = nullptr;
     switch (type.type())
     {
     case TypeDefOrRef::TypeSpec:
@@ -647,7 +853,7 @@ metadata_type const& metadata_cache::find_dependent_type(init_state& state, Gene
 
         for (auto const& event : genericType->type().EventList())
         {
-            itr->second.events.push_back(event_def{ event });
+            itr->second.events.push_back(process_event(state, event));
         }
 
 
@@ -782,6 +988,85 @@ type_cache metadata_cache::compile_namespaces(std::vector<std::string_view> cons
         {
             ++range.first;
         }
+    }
+
+    return result;
+}
+
+std::map<std::string, attributed_type> metadata_cache::get_attributed_types(TypeDef const& type) const
+{
+    auto get_system_type = [&](auto&& signature) -> const metadata_type*
+    {
+        for (auto&& arg : signature.FixedArgs())
+        {
+            if (auto type_param = std::get_if<ElemSig::SystemType>(&std::get<ElemSig>(arg.value).value))
+            {
+                auto requiredType = type.get_cache().find_required(type_param->name);
+                return &find(requiredType.TypeNamespace(), requiredType.TypeName());
+            }
+        }
+
+        return {};
+    };
+
+    std::map<std::string, attributed_type> result;
+
+    for (auto&& attribute : type.CustomAttribute())
+    {
+        auto attribute_name = attribute.TypeNamespaceAndName();
+
+        if (attribute_name.first != "Windows.Foundation.Metadata")
+        {
+            continue;
+        }
+
+        auto signature = attribute.Value();
+        attributed_type info;
+
+        if (attribute_name.second == "ActivatableAttribute")
+        {
+            info.type = get_system_type(signature);
+            info.activatable = true;
+        }
+        else if (attribute_name.second == "StaticAttribute")
+        {
+            info.type = get_system_type(signature);
+            info.statics = true;
+        }
+        else if (attribute_name.second == "ComposableAttribute")
+        {
+            info.type = get_system_type(signature);
+            info.composable = true;
+
+            for (auto&& arg : signature.FixedArgs())
+            {
+                if (auto visibility = std::get_if<ElemSig::EnumValue>(&std::get<ElemSig>(arg.value).value))
+                {
+                    info.visible = std::get<int32_t>(visibility->value) == 2;
+                    break;
+                }
+            }
+        }
+        else
+        {
+            continue;
+        }
+
+        std::string name;
+
+        if (info.type)
+        {
+            name = info.type->swift_type_name();
+        }
+        else
+        {
+            // The only factory that can't have a name is the default activation factory.
+            // There should only be one of those, so assert that's the case.
+            assert(info.activatable);
+            assert(result.find(name) == result.end());
+        }
+
+        result[name] = std::move(info);
     }
 
     return result;

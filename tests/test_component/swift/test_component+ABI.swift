@@ -201,12 +201,12 @@ public enum __ABI_test_component {
 
         GetIids: {
             let size = MemoryLayout<IID>.size
-            let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
             iids[2] = __ABI_test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper.IID
             
-            $1!.pointee = 4
+            $1!.pointee = 3
             $2!.pointee = iids
             return S_OK
         },
@@ -315,12 +315,12 @@ public enum __ABI_test_component {
 
         GetIids: {
             let size = MemoryLayout<IID>.size
-            let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
             iids[2] = __ABI_test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
             
-            $1!.pointee = 4
+            $1!.pointee = 3
             $2!.pointee = iids
             return S_OK
         },
@@ -429,12 +429,12 @@ public enum __ABI_test_component {
 
         GetIids: {
             let size = MemoryLayout<IID>.size
-            let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
             iids[2] = __ABI_test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper.IID
             
-            $1!.pointee = 4
+            $1!.pointee = 3
             $2!.pointee = iids
             return S_OK
         },
@@ -647,12 +647,12 @@ public enum __ABI_test_component {
 
         GetIids: {
             let size = MemoryLayout<IID>.size
-            let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
             iids[2] = __ABI_test_component.__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
             
-            $1!.pointee = 4
+            $1!.pointee = 3
             $2!.pointee = iids
             return S_OK
         },
@@ -866,7 +866,7 @@ public enum __ABI_test_component {
         Invoke: {
             guard let __unwraped__instance = __x_ABI_C__FIEventHandler_1_IInspectableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let sender: test_component.IInspectable = .init($1)
-            let args: test_component.IInspectable = test_component.IInspectable($2)
+            let args: test_component.IInspectable = .init($2)
 
             __unwraped__instance.handler((sender, args))
             
@@ -1210,7 +1210,7 @@ public enum __ABI_test_component {
         },
 
         Method: {
-            guard let __unwraped__instance = __ABI_test_component.IBasicWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IBasicWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             __unwraped__instance.Method()
             
@@ -1644,7 +1644,7 @@ public enum __ABI_test_component {
         },
 
         InInt32: {
-            guard let __unwraped__instance = __ABI_test_component.IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let value: Int32 = $1
 
             let result = __unwraped__instance.InInt32(value)
@@ -1654,7 +1654,7 @@ public enum __ABI_test_component {
         },
 
         InString: {
-            guard let __unwraped__instance = __ABI_test_component.IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let value: String = .init(from: $1)
 
             let result = __unwraped__instance.InString(value)
@@ -1664,7 +1664,7 @@ public enum __ABI_test_component {
         },
 
         InEnum: {
-            guard let __unwraped__instance = __ABI_test_component.IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let value: test_component.Signed = $1
 
             let result = __unwraped__instance.InEnum(value)
@@ -1674,7 +1674,7 @@ public enum __ABI_test_component {
         },
 
         OutInt32: {
-            guard let __unwraped__instance = __ABI_test_component.IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             var value: Int32 = 0
 
             __unwraped__instance.OutInt32(&value)
@@ -1684,7 +1684,7 @@ public enum __ABI_test_component {
         },
 
         OutString: {
-            guard let __unwraped__instance = __ABI_test_component.IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             var value: String?
 
             __unwraped__instance.OutString(&value)
@@ -1694,7 +1694,7 @@ public enum __ABI_test_component {
         },
 
         OutBlittableStruct: {
-            guard let __unwraped__instance = __ABI_test_component.IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             var value: test_component.BlittableStruct = .init()
 
             __unwraped__instance.OutBlittableStruct(&value)
@@ -1704,7 +1704,7 @@ public enum __ABI_test_component {
         },
 
         OutNonBlittableStruct: {
-            guard let __unwraped__instance = __ABI_test_component.IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             var value: test_component.NonBlittableStruct = .init()
 
             __unwraped__instance.OutNonBlittableStruct(&value)
@@ -1715,7 +1715,7 @@ public enum __ABI_test_component {
         },
 
         OutEnum: {
-            guard let __unwraped__instance = __ABI_test_component.IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             var value: test_component.Signed = .init(0)
 
             __unwraped__instance.OutEnum(&value)
@@ -1725,7 +1725,7 @@ public enum __ABI_test_component {
         },
 
         ReturnEnum: {
-            guard let __unwraped__instance = __ABI_test_component.IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             let result = __unwraped__instance.ReturnEnum()
             $1?.initialize(to: result)
@@ -1734,7 +1734,7 @@ public enum __ABI_test_component {
         },
 
         get_EnumProperty: {
-            guard let __unwraped__instance = __ABI_test_component.IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             let value = __unwraped__instance.EnumProperty
             $1?.initialize(to: value)
@@ -1743,7 +1743,7 @@ public enum __ABI_test_component {
         },
 
         put_EnumProperty: {
-            guard let __unwraped__instance = __ABI_test_component.IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let value: test_component.Fruit = $1
 
             __unwraped__instance.EnumProperty = value
@@ -1752,7 +1752,7 @@ public enum __ABI_test_component {
         },
 
         get_ID: {
-            guard let __unwraped__instance = __ABI_test_component.IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             let value = __unwraped__instance.ID
             let valueWrapper = __ABI_test_component.__x_ABI_C__FIReference_1_GUIDWrapper(value)
@@ -1763,7 +1763,7 @@ public enum __ABI_test_component {
         },
 
         put_ID: {
-            guard let __unwraped__instance = __ABI_test_component.IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let value: UUID? = .init(ref: $1)
 
             __unwraped__instance.ID = value
@@ -1776,7 +1776,7 @@ public enum __ABI_test_component {
         remove_ImplementableEvent: { _, _ in return failWith(err: E_NOTIMPL) },
 
         FireEvent: {
-            guard let __unwraped__instance = __ABI_test_component.IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             __unwraped__instance.FireEvent()
             
@@ -1966,7 +1966,7 @@ public enum __ABI_test_component {
         },
 
         DoThis: {
-            guard let __unwraped__instance = __ABI_test_component.ISimpleDelegateWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = ISimpleDelegateWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             __unwraped__instance.DoThis()
             
@@ -1974,7 +1974,7 @@ public enum __ABI_test_component {
         },
 
         DoThat: {
-            guard let __unwraped__instance = __ABI_test_component.ISimpleDelegateWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = ISimpleDelegateWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let val: Int32 = $1
 
             __unwraped__instance.DoThat(val)
@@ -2236,7 +2236,7 @@ public enum __ABI_test_component {
         },
 
         OnDoTheThing: {
-            guard let __unwraped__instance = __ABI_test_component.IBaseOverridesWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IBaseOverridesWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             __unwraped__instance.OnDoTheThing()
             
@@ -2308,7 +2308,7 @@ public enum __ABI_test_component {
         },
 
         OnBeforeDoTheThing: {
-            guard let __unwraped__instance = __ABI_test_component.IUnsealedDerivedOverridesWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IUnsealedDerivedOverridesWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             __unwraped__instance.OnBeforeDoTheThing()
             
@@ -2387,7 +2387,7 @@ public enum __ABI_test_component {
         },
 
         OnAfterDoTheThing: {
-            guard let __unwraped__instance = __ABI_test_component.IUnsealedDerivedOverloads2Wrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = IUnsealedDerivedOverloads2Wrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             __unwraped__instance.OnAfterDoTheThing()
             

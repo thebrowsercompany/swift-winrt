@@ -40,7 +40,7 @@ public enum __ABI_test_component_Delegates {
         },
 
         Invoke: {
-            guard let __unwraped__instance = __ABI_test_component_Delegates.InDelegateWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = InDelegateWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let value: String = .init(from: $1)
 
             __unwraped__instance.handler((value))
@@ -88,7 +88,7 @@ public enum __ABI_test_component_Delegates {
         },
 
         Invoke: {
-            guard let __unwraped__instance = __ABI_test_component_Delegates.SignalDelegateWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwraped__instance = SignalDelegateWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
             __unwraped__instance.handler(())
             

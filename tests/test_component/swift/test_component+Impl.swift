@@ -160,6 +160,28 @@ public enum __IMPL_test_component {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.__x_ABI_C__FIVectorView_1_HSTRINGVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
+
+        // MARK: Collection
+        var startIndex: Int { 0 }
+        var endIndex: Int { Int(Size) }
+        func index(after i: Int) -> Int {
+            i+1
+        }
+
+        func index(of: Element) -> Int? { 
+            var index: UInt32 = 0
+            let result = IndexOf(of, &index)
+            guard result else { return nil }
+            return Int(index)
+        }
+        var count: Int { Int(Size) }
+
+        subscript(position: Int) -> Element {
+            get {
+                GetAt(UInt32(position))
+             }
+        }
+        // MARK: WinRT
         public func GetAt(_ index: UInt32) -> String {
             let result = try! _default.GetAtImpl(index)
             return .init(from: result)
@@ -197,12 +219,34 @@ public enum __IMPL_test_component {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
-        public func GetAt(_ index: UInt32) -> test_component.Base {
+
+        // MARK: Collection
+        var startIndex: Int { 0 }
+        var endIndex: Int { Int(Size) }
+        func index(after i: Int) -> Int {
+            i+1
+        }
+
+        func index(of: Element) -> Int? { 
+            var index: UInt32 = 0
+            let result = IndexOf(of, &index)
+            guard result else { return nil }
+            return Int(index)
+        }
+        var count: Int { Int(Size) }
+
+        subscript(position: Int) -> Element {
+            get {
+                GetAt(UInt32(position))
+             }
+        }
+        // MARK: WinRT
+        public func GetAt(_ index: UInt32) -> Base {
             let result = try! _default.GetAtImpl(index)
             return .from(abi: result)
         }
 
-        public func IndexOf(_ value: test_component.Base, _ index: inout UInt32) -> Bool {
+        public func IndexOf(_ value: Base, _ index: inout UInt32) -> Bool {
             let result = try! _default.IndexOfImpl(RawPointer(value), &index)
             return .init(from: result)
         }
@@ -232,6 +276,43 @@ public enum __IMPL_test_component {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.__x_ABI_C__FIVector_1_HSTRINGVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
+
+        // MARK: Collection
+        var startIndex: Int { 0 }
+        var endIndex: Int { Int(Size) }
+        func index(after i: Int) -> Int {
+            i+1
+        }
+
+        func index(of: Element) -> Int? { 
+            var index: UInt32 = 0
+            let result = IndexOf(of, &index)
+            guard result else { return nil }
+            return Int(index)
+        }
+        var count: Int { Int(Size) }
+
+        func append(_ item: Element) {
+            Append(item)
+        }
+
+        subscript(position: Int) -> Element {
+            get {
+                GetAt(UInt32(position))
+             }
+             set(newValue) {
+                 SetAt(UInt32(position), newValue)
+             }
+        }
+
+        func removeLast() {
+            RemoveAtEnd()
+        }
+
+        func clear() {
+            Clear()
+        }
+        // MARK: WinRT
         public func GetAt(_ index: UInt32) -> String {
             let result = try! _default.GetAtImpl(index)
             return .init(from: result)
@@ -300,7 +381,44 @@ public enum __IMPL_test_component {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
-        public func GetAt(_ index: UInt32) -> test_component.Base {
+
+        // MARK: Collection
+        var startIndex: Int { 0 }
+        var endIndex: Int { Int(Size) }
+        func index(after i: Int) -> Int {
+            i+1
+        }
+
+        func index(of: Element) -> Int? { 
+            var index: UInt32 = 0
+            let result = IndexOf(of, &index)
+            guard result else { return nil }
+            return Int(index)
+        }
+        var count: Int { Int(Size) }
+
+        func append(_ item: Element) {
+            Append(item)
+        }
+
+        subscript(position: Int) -> Element {
+            get {
+                GetAt(UInt32(position))
+             }
+             set(newValue) {
+                 SetAt(UInt32(position), newValue)
+             }
+        }
+
+        func removeLast() {
+            RemoveAtEnd()
+        }
+
+        func clear() {
+            Clear()
+        }
+        // MARK: WinRT
+        public func GetAt(_ index: UInt32) -> Base {
             let result = try! _default.GetAtImpl(index)
             return .from(abi: result)
         }
@@ -310,16 +428,16 @@ public enum __IMPL_test_component {
             return __ABI_test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrap_from(abi: result)
         }
 
-        public func IndexOf(_ value: test_component.Base, _ index: inout UInt32) -> Bool {
+        public func IndexOf(_ value: Base, _ index: inout UInt32) -> Bool {
             let result = try! _default.IndexOfImpl(RawPointer(value), &index)
             return .init(from: result)
         }
 
-        public func SetAt(_ index: UInt32, _ value: test_component.Base) {
+        public func SetAt(_ index: UInt32, _ value: Base) {
             try! _default.SetAtImpl(index, RawPointer(value))
         }
 
-        public func InsertAt(_ index: UInt32, _ value: test_component.Base) {
+        public func InsertAt(_ index: UInt32, _ value: Base) {
             try! _default.InsertAtImpl(index, RawPointer(value))
         }
 
@@ -327,7 +445,7 @@ public enum __IMPL_test_component {
             try! _default.RemoveAtImpl(index)
         }
 
-        public func Append(_ value: test_component.Base) {
+        public func Append(_ value: Base) {
             try! _default.AppendImpl(RawPointer(value))
         }
 
@@ -359,7 +477,7 @@ public enum __IMPL_test_component {
         }
     }
     internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsImpl : WinRTDelegate {
-        internal typealias Data = (test_component.Simple, test_component.SimpleEventArgs)
+        internal typealias Data = (Simple, SimpleEventArgs)
         internal typealias Return = ()
         internal var token: EventRegistrationToken?
         internal var handler: (Data) -> Return
@@ -368,45 +486,6 @@ public enum __IMPL_test_component {
         }
     }
 }
-public protocol IBasicPrototype : IWinRTObject { 
-        func Method() 
-}
-extension IBasicPrototype {
-    public static var none: IBasicPrototype {
-        __IMPL_test_component.IBasicImpl(nil)
-    }
-}
-
-public protocol IIAmImplementablePrototype : IWinRTObject { 
-        func InInt32(_ value: Int32) -> String 
-        func InString(_ value: String) -> String 
-        func InEnum(_ value: test_component.Signed) -> String 
-        func OutInt32(_ value: inout Int32) 
-        func OutString(_ value: inout String?) 
-        func OutBlittableStruct(_ value: inout test_component.BlittableStruct) 
-        func OutNonBlittableStruct(_ value: inout test_component.NonBlittableStruct) 
-        func OutEnum(_ value: inout test_component.Signed) 
-        func ReturnEnum() -> test_component.Signed 
-        func FireEvent() 
-        var EnumProperty: test_component.Fruit { get set }
-        var ID: UUID? { get set }
-}
-extension IIAmImplementablePrototype {
-    public static var none: IIAmImplementablePrototype {
-        __IMPL_test_component.IIAmImplementableImpl(nil)
-    }
-}
-
-public protocol ISimpleDelegatePrototype : IWinRTObject { 
-        func DoThis() 
-        func DoThat(_ val: Int32) 
-}
-extension ISimpleDelegatePrototype {
-    public static var none: ISimpleDelegatePrototype {
-        __IMPL_test_component.ISimpleDelegateImpl(nil)
-    }
-}
-
 fileprivate extension Int32 {
     init?(ref: UnsafeMutablePointer<__x_ABI_C__FIReference_1_int>?) {
         guard let val = ref else { return nil }

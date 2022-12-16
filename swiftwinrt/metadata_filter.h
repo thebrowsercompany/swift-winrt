@@ -30,7 +30,7 @@ namespace swiftwinrt
                 {
                     if (includes(type.get().type()))
                     {
-                        F(writer, type.get().type());
+                        F(writer, type.get());
                     }
                 }
             };

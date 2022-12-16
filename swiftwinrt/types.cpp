@@ -36,6 +36,25 @@ namespace swiftwinrt
         w.write('\n');
     }
 
+    bool function_def::is_async() const
+    {
+        if (!return_type)
+        {
+            return false;
+        }
+
+        if (return_type.value().type->swift_logical_namespace() == foundation_namespace)
+        {
+            auto returnTypeName = return_type.value().type->swift_type_name();
+            return returnTypeName == "IAsyncAction" ||
+                returnTypeName == "IAsyncOperation`1" ||
+                returnTypeName == "IAsyncActionWithProgress`1" ||
+                returnTypeName == "IAsyncOperationWithProgress`2";
+        }
+
+        return false;
+    }
+
     typedef_base::typedef_base(TypeDef const& type) :
         m_type(type),
         m_swiftFullName(get_full_type_name(type)),
@@ -496,6 +515,11 @@ namespace swiftwinrt
     {
     }
 
+    bool class_type::is_composable() const
+    {
+        return swiftwinrt::is_composable(type());
+    }
+
     void generic_inst::append_signature(sha1& hash) const
     {
         using namespace std::literals;
@@ -566,7 +590,9 @@ namespace swiftwinrt
         w.end_declaration(m_mangledName);
     }
 
-    static void write_vtable_method(writer& w, function_def const& func, generic_inst const& type);
+    template<typename T>
+    static void write_vtable_method(writer& w, function_def const& func, T const& type);
+
     void generic_inst::write_swift_declaration(writer& w) const
     {
         auto push_param_guard = w.push_generic_params(*this);
@@ -638,20 +664,19 @@ namespace swiftwinrt
 
     element_type const& element_type::from_type(winmd::reader::ElementType type)
     {
-        const bool blittable = true;
-        static element_type const boolean_type{ !blittable, "Bool"sv, "bool"sv, "boolean"sv, "boolean"sv, "boolean"sv, "b1"sv };
-        static element_type const char_type{ !blittable, "Character"sv, "wchar_t"sv, "wchar_t"sv, "WCHAR"sv, "wchar__zt"sv, "c2"sv };
-        static element_type const u1_type{ blittable, "UInt8"sv, "::byte"sv, "::byte"sv, "BYTE"sv, "byte"sv, "u1"sv };
-        static element_type const i2_type{ blittable, "Int16"sv, "short"sv, "short"sv, "INT16"sv, "short"sv, "i2"sv };
-        static element_type const u2_type{ blittable, "UInt16"sv, "UINT16"sv, "UINT16"sv, "UINT16"sv, "UINT16"sv, "u2"sv };
-        static element_type const i4_type{ blittable, "Int32"sv, "int"sv, "int"sv, "INT32"sv, "int"sv, "i4"sv };
-        static element_type const u4_type{ blittable, "UInt32"sv, "UINT32"sv, "UINT32"sv, "UINT32"sv, "UINT32"sv, "u4"sv };
-        static element_type const i8_type{ blittable, "Int64"sv, "__int64"sv, "__int64"sv, "INT64"sv, "__z__zint64"sv, "i8"sv };
-        static element_type const u8_type{ blittable, "UInt64"sv, "UINT64"sv, "UINT64"sv, "UINT64"sv, "UINT64"sv, "u8"sv };
-        static element_type const r4_type{ blittable, "Float"sv, "float"sv, "float"sv, "FLOAT"sv, "float"sv, "f4"sv };
-        static element_type const r8_type{ blittable, "Double"sv, "double"sv, "double"sv, "DOUBLE"sv, "double"sv, "f8"sv };
-        static element_type const string_type{ !blittable, "String"sv, "HSTRING"sv, "HSTRING"sv, "HSTRING"sv, "HSTRING"sv, "string"sv };
-        static element_type const object_type{ !blittable, "IInspectable"sv, "IInspectable"sv, "IInspectable"sv, "IInspectable*"sv, "IInspectable"sv, "cinterface(IInspectable)"sv };
+        static element_type const boolean_type{ ElementType::Boolean, "Bool"sv, "bool"sv, "boolean"sv, "boolean"sv, "boolean"sv, "b1"sv };
+        static element_type const char_type{ ElementType::Char, "Character"sv, "wchar_t"sv, "wchar_t"sv, "WCHAR"sv, "wchar__zt"sv, "c2"sv };
+        static element_type const u1_type{ ElementType::U1, "UInt8"sv, "::byte"sv, "::byte"sv, "BYTE"sv, "byte"sv, "u1"sv };
+        static element_type const i2_type{ ElementType::I2, "Int16"sv, "short"sv, "short"sv, "INT16"sv, "short"sv, "i2"sv };
+        static element_type const u2_type{ ElementType::U2, "UInt16"sv, "UINT16"sv, "UINT16"sv, "UINT16"sv, "UINT16"sv, "u2"sv };
+        static element_type const i4_type{ ElementType::I4, "Int32"sv, "int"sv, "int"sv, "INT32"sv, "int"sv, "i4"sv };
+        static element_type const u4_type{ ElementType::U4, "UInt32"sv, "UINT32"sv, "UINT32"sv, "UINT32"sv, "UINT32"sv, "u4"sv };
+        static element_type const i8_type{ ElementType::I8, "Int64"sv, "__int64"sv, "__int64"sv, "INT64"sv, "__z__zint64"sv, "i8"sv };
+        static element_type const u8_type{ ElementType::U8, "UInt64"sv, "UINT64"sv, "UINT64"sv, "UINT64"sv, "UINT64"sv, "u8"sv };
+        static element_type const r4_type{ ElementType::R4, "Float"sv, "float"sv, "float"sv, "FLOAT"sv, "float"sv, "f4"sv };
+        static element_type const r8_type{ ElementType::R8, "Double"sv, "double"sv, "double"sv, "DOUBLE"sv, "double"sv, "f8"sv };
+        static element_type const string_type{ ElementType::String, "String"sv, "HSTRING"sv, "HSTRING"sv, "HSTRING"sv, "HSTRING"sv, "string"sv };
+        static element_type const object_type{ ElementType::Object, "IInspectable"sv, "IInspectable"sv, "IInspectable"sv, "IInspectable*"sv, "IInspectable"sv, "cinterface(IInspectable)"sv };
 
         switch (type)
         {
@@ -672,6 +697,19 @@ namespace swiftwinrt
         }
     }
 
+    bool element_type::is_blittable() const
+    {
+        switch (m_type)
+        {
+        case ElementType::Boolean:
+        case ElementType::Char:
+        case ElementType::String:
+        case ElementType::Object:
+            return false;
+        default:
+            return true;
+        }
+    }
     void element_type::write_c_abi_param(writer& w) const
     {
         w.write(m_cppName);
