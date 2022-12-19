@@ -731,15 +731,20 @@ namespace swiftwinrt
             write(*generic);
         }
         
+        std::string root_directory()
+        {
+            return { settings.output_folder + "Source/" };
+        }
+
         std::string file_directory()
         {
             if (settings.test)
             {
-                return { settings.output_folder + settings.support + "/" };
+                return { root_directory() + settings.support + "/"};
             }
             else
             {
-                return { settings.output_folder + get_swift_module(type_namespace) + "/"};
+                return { root_directory() + get_swift_module(type_namespace) + "/"};
             }
         }
         void save_file(std::string_view const& ext = "")

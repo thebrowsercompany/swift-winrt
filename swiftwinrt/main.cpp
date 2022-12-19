@@ -15,6 +15,8 @@
 #include "metadata_cache.h"
 #include "metadata_filter.h"
 #include "file_writers.h"
+#include "project_file_writers.h"
+
 namespace swiftwinrt
 {
     settings_type settings;
@@ -104,7 +106,6 @@ Where <spec> is one or more of:
         create_directories(output_folder / "Source" / "CWinRT");
         create_directories(output_folder / "Source" / "CWinRT" / "include");
 
-        settings.output_folder = canonical(output_folder / "Source").string();
         settings.output_folder += '\\';
 
         for (auto && include : args.values("include"))
@@ -286,7 +287,8 @@ Where <spec> is one or more of:
             group.synchronous(args.exists("synchronous"));
 
             std::map<std::string, std::vector<std::string_view>> module_map; // map of module -> namespaces
-            std::map<std::string_view, std::set<std::string>> namespace_dependencies;
+            std::map<std::string_view, std::set<std::string>> namespace_dependencies; // namespace -> module dependencies
+            std::map<std::string, std::set<std::string>> module_dependencies; // module -> module dependencies
             path output_folder = settings.output_folder;
 
             for (auto&&[ns, members] : c.namespaces())
@@ -308,7 +310,11 @@ Where <spec> is one or more of:
             }
             for (auto&& [module, namespaces] : module_map)
             {
-                group.add([&, &module = module, &namespaces = namespaces]
+                auto [moduleItr, added] = module_dependencies.emplace(std::piecewise_construct,
+                    std::forward_as_tuple(module),
+                    std::forward_as_tuple());
+                assert(added);
+                group.add([&, &module = module, &namespaces = namespaces, &moduleDependencies = moduleItr->second]
                  {
                         swiftwinrt::task_group module_group;
 
@@ -338,10 +344,9 @@ Where <spec> is one or more of:
                         // don't write the cmake file if only building a single module
                         if (!settings.test)
                         {
-                            std::set<std::string> module_dependencies;
                             if (module != settings.support)
                             {
-                                module_dependencies.emplace(settings.support);
+                                moduleDependencies.emplace(settings.support);
                             }
                             for (auto& ns : namespaces)
                             {
@@ -350,11 +355,12 @@ Where <spec> is one or more of:
                                 {
                                     if (ns != module)
                                     {
-                                        module_dependencies.emplace(ns);
+                                        moduleDependencies.emplace(ns);
                                     }
                                 }
                             }
-                            write_cmake_lists(module, module_dependencies);
+                            write_cmake_lists(module, moduleDependencies);
+                            write_singlemodule_package_swift(module, moduleDependencies);
                         }
                     });
             }
@@ -375,7 +381,9 @@ Where <spec> is one or more of:
                 // cmake file for the single module everything is built into, which doesn't
                 // have any dependencies
                 write_cmake_lists(settings.support, {});
+                write_multimodule_package_swift(module_dependencies, settings);
             }
+
             write_include_all(module_map, settings);
             if (settings.verbose)
             {

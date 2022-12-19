@@ -77,20 +77,6 @@ namespace swiftwinrt
         return wrote;
     }
 
-    static void write_root_cmake(std::map<std::string, std::vector<std::string_view>>& namespaces, settings_type const& settings)
-    {
-        writer w;
-        w.write("add_subdirectory(CWinRT)\n");
-        for (auto&& [module, _] : namespaces)
-        {
-            w.write("add_subdirectory(%)\n", module);
-        }
-
-        auto filename{ settings.output_folder };
-        filename += "CMakeLists.txt";
-        w.flush_to_file(filename);
-    }
-
     static void write_namespace_abi(std::string_view const& ns, type_cache const& members, settings_type const& settings, metadata_filter const& filter)
     {
         writer w;
@@ -204,51 +190,4 @@ namespace swiftwinrt
 
         w.save_file("Impl");
     }
-
-    static void write_cmake_lists(std::string_view const& module, std::set<std::string> const& depends)
-    {
-        writer w;
-        w.c_mod = settings.test ? "C" + settings.support : "CWinRT";
-        w.type_namespace = module;
-        auto content = R"(
-set(GENERATED_FILES_DIR ${CMAKE_CURRENT_SOURCE_DIR})
-file(GLOB SWIFTWINRT_GENERATED_FILES ${GENERATED_FILES_DIR}/*)
-%
-add_library(% SHARED
-  ${SWIFTWINRT_GENERATED_FILES}%
-  )
-
-install(TARGETS %
-  ARCHIVE DESTINATION lib
-  LIBRARY DESTINATION lib
-  RUNTIME DESTINATION bin
-  COMPONENT lib)
-
-target_link_libraries(% PRIVATE
-  %
-  %)
-
-target_include_directories(%
-  INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}
-  PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
-
-target_include_directories(%
-  INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}
-  PRIVATE ${GENERATED_FILES_DIR})
-
-)";
-        w.write(content, 
-            settings.support == module ? "file(GLOB SUPPORT_FILES ${GENERATED_FILES_DIR}/Support/*)" : "",
-            module,
-            settings.support == module ? "\n  ${SUPPORT_FILES}" : "",
-
-            module,
-            module,
-            w.c_mod,
-            bind_list("\n  ", depends),
-            module,
-            module);
-        w.save_cmake();
-    }
-
 }
