@@ -1,4 +1,0 @@
-module Ctest_component {
-  header "CWinRT.h"
-  export *
-}

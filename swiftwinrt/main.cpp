@@ -100,9 +100,11 @@ Where <spec> is one or more of:
         settings.support = args.value("support", "Windows");
 
         create_directories(output_folder);
-        create_directories(output_folder / "c");
-        create_directories(output_folder / "swift");
-        settings.output_folder = canonical(output_folder).string();
+        create_directories(output_folder / "Source");
+        create_directories(output_folder / "Source" / "CWinRT");
+        create_directories(output_folder / "Source" / "CWinRT" / "include");
+
+        settings.output_folder = canonical(output_folder / "Source").string();
         settings.output_folder += '\\';
 
         for (auto && include : args.values("include"))
@@ -300,7 +302,7 @@ Where <spec> is one or more of:
                     std::forward_as_tuple());
                 if (moduleAdded)
                 {
-                    create_directories(output_folder / "swift" / module_name);
+                    create_directories(output_folder / module_name);
                 }
                 moduleMapItr->second.push_back(ns);
             }

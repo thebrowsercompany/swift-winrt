@@ -80,12 +80,13 @@ namespace swiftwinrt
     static void write_root_cmake(std::map<std::string, std::vector<std::string_view>>& namespaces, settings_type const& settings)
     {
         writer w;
+        w.write("add_subdirectory(CWinRT)\n");
         for (auto&& [module, _] : namespaces)
         {
             w.write("add_subdirectory(%)\n", module);
         }
 
-        auto filename{ settings.output_folder + "/swift/" };
+        auto filename{ settings.output_folder };
         filename += "CMakeLists.txt";
         w.flush_to_file(filename);
     }

@@ -19,8 +19,7 @@ string(REPLACE ";" "\n" SWIFT_WINRT_PARAMETERS "${SWIFT_WINRT_PARAMETERS}")
 file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/SwiftWinRT.rsp ${SWIFT_WINRT_PARAMETERS})
 
 add_subdirectory(cpp)
-add_subdirectory(c)
-add_subdirectory(swift)
+add_subdirectory(Source)
 
 # Since a lot of the bindings code isn't fully implemented, don't run the tool
 # during build as this could modify the checked-in files as well as break the

@@ -1,0 +1,2 @@
+add_subdirectory(CWinRT)
+add_subdirectory(test_component)
