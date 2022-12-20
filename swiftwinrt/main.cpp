@@ -105,6 +105,7 @@ Where <spec> is one or more of:
         create_directories(output_folder / "Source");
         create_directories(output_folder / "Source" / "CWinRT");
         create_directories(output_folder / "Source" / "CWinRT" / "include");
+        settings.output_folder = canonical(output_folder).string();
 
         settings.output_folder += '\\';
 

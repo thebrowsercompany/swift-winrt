@@ -764,7 +764,7 @@ namespace swiftwinrt
 
         void save_header()
         {
-            auto filename{ settings.output_folder + "/CWinRT/include/" };
+            auto filename{ root_directory() + "/CWinRT/include/" };
             filename += type_namespace;
             filename += ".h";
             flush_to_file(filename);
