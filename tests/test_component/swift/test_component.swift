@@ -22,8 +22,8 @@ open class Base : UnsealedWinRTClass {
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?) -> Base {
          UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi!)
     }
-    internal init(fromAbi: __ABI_test_component.IBase) {
-        _default = fromAbi
+    public init(fromAbi: test_component.IInspectable) {
+        _default = try! fromAbi.QueryInterface()
     }
 
     private static var _IBaseProtectedFactory : __ABI_test_component.IBaseProtectedFactory =  try! RoGetActivationFactory(HString("test_component.Base"))
@@ -55,14 +55,9 @@ open class Base : UnsealedWinRTClass {
                 .init(fromAbi: .init(abi!))
             }
         }
-
-        internal static func makeAbi() -> c_ABI {
-            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IBaseOverridesVTable) { $0 }
-            return .init(lpVtbl: vtblPtr)
-        }
 }
     internal typealias Composable = IBaseOverrides
-    public class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
+    open class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
 }
 
 public final class BaseCollection : WinRTClass, IVector {
@@ -83,8 +78,8 @@ public final class BaseCollection : WinRTClass, IVector {
     public static func from(abi: UnsafeMutablePointer<__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase>?) -> BaseCollection {
          .init(fromAbi: .init(abi))
     }
-    internal init(fromAbi: __ABI_test_component.IVectorBase) {
-        _default = fromAbi
+    public init(fromAbi: test_component.IInspectable) {
+        _default = try! fromAbi.QueryInterface()
     }
 
     // MARK: Collection
@@ -190,8 +185,8 @@ open class BaseNoOverrides : UnsealedWinRTClass {
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBaseNoOverrides>?) -> BaseNoOverrides {
          UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi!)
     }
-    internal init(fromAbi: __ABI_test_component.IBaseNoOverrides) {
-        _default = fromAbi
+    public init(fromAbi: test_component.IInspectable) {
+        _default = try! fromAbi.QueryInterface()
     }
 
     private static var _IBaseNoOverridesProtectedFactory : __ABI_test_component.IBaseNoOverridesProtectedFactory =  try! RoGetActivationFactory(HString("test_component.BaseNoOverrides"))
@@ -214,14 +209,9 @@ open class BaseNoOverrides : UnsealedWinRTClass {
                 .init(fromAbi: .init(abi!))
             }
         }
-
-        internal static func makeAbi() -> c_ABI {
-            let vtblPtr = withUnsafeMutablePointer(to: &__ABI.IInspectableVTable) { $0 }
-            return .init(lpVtbl: vtblPtr)
-        }
 }
     internal typealias Composable = IBaseNoOverrides
-    public class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
+    open class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
 }
 
 public final class Class : WinRTClass, IBasic {
@@ -241,8 +231,8 @@ public final class Class : WinRTClass, IBasic {
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>?) -> Class {
          .init(fromAbi: .init(abi))
     }
-    internal init(fromAbi: __ABI_test_component.IClass) {
-        _default = fromAbi
+    public init(fromAbi: test_component.IInspectable) {
+        _default = try! fromAbi.QueryInterface()
     }
 
     public init() {
@@ -489,9 +479,9 @@ public final class Derived : test_component.Base {
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIDerived>?) -> Derived {
          .init(fromAbi: .init(abi))
     }
-    internal init(fromAbi: __ABI_test_component.IDerived) {
-        _default = fromAbi
-        super.init(fromAbi: try! _default.QueryInterface())
+    override public init(fromAbi: test_component.IInspectable) {
+        _default = try! fromAbi.QueryInterface()
+        super.init(fromAbi: fromAbi)
     }
 
     override public init() {
@@ -521,11 +511,6 @@ public final class Derived : test_component.Base {
                 .init(fromAbi: .init(abi!))
             }
         }
-
-        internal static func makeAbi() -> c_ABI {
-            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IBaseOverridesVTable) { $0 }
-            return .init(lpVtbl: vtblPtr)
-        }
 }
     internal typealias Composable = IBaseOverrides
     override public class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
@@ -548,8 +533,8 @@ public final class Simple : WinRTClass {
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CISimple>?) -> Simple {
          .init(fromAbi: .init(abi))
     }
-    internal init(fromAbi: __ABI_test_component.ISimple) {
-        _default = fromAbi
+    public init(fromAbi: test_component.IInspectable) {
+        _default = try! fromAbi.QueryInterface()
     }
 
     public init() {
@@ -740,9 +725,9 @@ open class UnsealedDerived : test_component.Base {
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived>?) -> UnsealedDerived {
          UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi!)
     }
-    internal init(fromAbi: __ABI_test_component.IUnsealedDerived) {
-        _default = fromAbi
-        super.init(fromAbi: try! _default.QueryInterface())
+    override public init(fromAbi: test_component.IInspectable) {
+        _default = try! fromAbi.QueryInterface()
+        super.init(fromAbi: fromAbi)
     }
 
     private static var _IUnsealedDerivedProtectedFactory : __ABI_test_component.IUnsealedDerivedProtectedFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerived"))
@@ -786,14 +771,9 @@ open class UnsealedDerived : test_component.Base {
                 .init(fromAbi: .init(abi!))
             }
         }
-
-        internal static func makeAbi() -> c_ABI {
-            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IUnsealedDerivedOverloads2VTable) { $0 }
-            return .init(lpVtbl: vtblPtr)
-        }
 }
     internal typealias Composable = IUnsealedDerivedOverloads2
-    override public class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
+    override open class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
     internal lazy var _IUnsealedDerivedOverrides: __ABI_test_component.IUnsealedDerivedOverrides = try! IUnknown(_inner).QueryInterface()
     open func OnBeforeDoTheThing() {
         try! _IUnsealedDerivedOverrides.OnBeforeDoTheThingImpl()
@@ -809,11 +789,6 @@ open class UnsealedDerived : test_component.Base {
             internal static func from(abi: UnsafeMutableRawPointer?) -> swift_Projection {
                 .init(fromAbi: .init(abi!))
             }
-        }
-
-        internal static func makeAbi() -> c_ABI {
-            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IUnsealedDerivedOverridesVTable) { $0 }
-            return .init(lpVtbl: vtblPtr)
         }
 }
 }
@@ -835,9 +810,9 @@ open class UnsealedDerived2 : test_component.UnsealedDerived {
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived2>?) -> UnsealedDerived2 {
          UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi!)
     }
-    internal init(fromAbi: __ABI_test_component.IUnsealedDerived2) {
-        _default = fromAbi
-        super.init(fromAbi: try! _default.QueryInterface())
+    override public init(fromAbi: test_component.IInspectable) {
+        _default = try! fromAbi.QueryInterface()
+        super.init(fromAbi: fromAbi)
     }
 
     private static var _IUnsealedDerived2ProtectedFactory : __ABI_test_component.IUnsealedDerived2ProtectedFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerived2"))
@@ -869,14 +844,9 @@ open class UnsealedDerived2 : test_component.UnsealedDerived {
                 .init(fromAbi: .init(abi!))
             }
         }
-
-        internal static func makeAbi() -> c_ABI {
-            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IUnsealedDerivedOverloads2VTable) { $0 }
-            return .init(lpVtbl: vtblPtr)
-        }
 }
     internal typealias Composable = IUnsealedDerivedOverloads2
-    override public class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
+    override open class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
 }
 
 open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
@@ -896,9 +866,9 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides>?) -> UnsealedDerivedNoOverrides {
          UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi!)
     }
-    internal init(fromAbi: __ABI_test_component.IUnsealedDerivedNoOverrides) {
-        _default = fromAbi
-        super.init(fromAbi: try! _default.QueryInterface())
+    override public init(fromAbi: test_component.IInspectable) {
+        _default = try! fromAbi.QueryInterface()
+        super.init(fromAbi: fromAbi)
     }
 
     private static var _IUnsealedDerivedNoOverridesProtectedFactory : __ABI_test_component.IUnsealedDerivedNoOverridesProtectedFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerivedNoOverrides"))
@@ -926,14 +896,9 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
                 .init(fromAbi: .init(abi!))
             }
         }
-
-        internal static func makeAbi() -> c_ABI {
-            let vtblPtr = withUnsafeMutablePointer(to: &__ABI.IInspectableVTable) { $0 }
-            return .init(lpVtbl: vtblPtr)
-        }
 }
     internal typealias Composable = IUnsealedDerivedNoOverrides
-    override public class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
+    override open class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
 }
 
 public struct BlittableStruct {

@@ -129,6 +129,7 @@ namespace swiftwinrt
         }
 
         w.write("%", w.filter.bind_each<write_struct_init_extension>(members.structs));
+        w.write("%", w.filter.bind_each<write_composable_impl_extension>(members.classes));
 
         w.swap();
         write_preamble(w);

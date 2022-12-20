@@ -2005,16 +2005,15 @@ from_abi);
             auto default_generic = dynamic_cast<const generic_inst*>(&default_interface);
             swiftAbi = w.write_temp("%.%", abi_namespace(w.type_namespace), bind_type_abi(default_generic));
         }
-        auto base_class_init = base_class ? "\n        super.init(fromAbi: try! _default.QueryInterface())" : "";
-        w.write(R"^-^(    internal init(fromAbi: %) {
-        _default = fromAbi%
+        auto base_class_init = base_class ? "\n        super.init(fromAbi: fromAbi)" : "";
+        w.write(R"^-^(    %public init(fromAbi: %.IInspectable) {
+        _default = try! fromAbi.QueryInterface()%
     }
 
 )^-^",
-swiftAbi,
+    base_class ? "override " : "",
+w.support,
 base_class_init);
-      
-
     }
 
     static void write_class_definitions(writer& w, TypeDef const& type)
@@ -2341,11 +2340,6 @@ bind<write_statics_body>(method, *statics.type)
                 .init(fromAbi: .init(abi!))
             }
         }
-
-        internal static func makeAbi() -> c_ABI {
-            let vtblPtr = withUnsafeMutablePointer(to: &%VTable) { $0 }
-            return .init(lpVtbl: vtblPtr)
-        }
 }
 )";
 
@@ -2354,15 +2348,15 @@ bind<write_statics_body>(method, *statics.type)
         w.write(format,
             overrides.swift_type_name(),
             bind([&](writer& w) {
-                if (use_iinspectable_vtable)
-                {
-                    write_type_mangled(w, ElementType::Object);
-                }
-                else
-                {
-                    write_type_mangled(w, overrides);
-                }}), 
-                bind([&](writer& w) {
+                    if (use_iinspectable_vtable)
+                    {
+                        write_type_mangled(w, ElementType::Object);
+                    }
+                    else
+                    {
+                        write_type_mangled(w, overrides);
+                    }}),
+            bind([&](writer& w) {
                     if (use_iinspectable_vtable)
                     {
                         w.write(ElementType::Object);
@@ -2371,30 +2365,44 @@ bind<write_statics_body>(method, *statics.type)
                     {
                         w.write("%.%", abi_namespace(overrides), overrides.swift_type_name());
                     }}),
-            parent,
+                parent,
             bind_type_mangled(default_interface),
             abi_namespace(parent),
-            default_interface,
-            bind([&](writer& w) {
-                    if (use_iinspectable_vtable)
-                    {
-                        w.write("__ABI.IInspectable");
-                    }
-                    else
-                    {
-                        w.write("%.%", abi_namespace(overrides), overrides.swift_type_name());
-                    }
-                })
-);
+            default_interface);
 
         if (compose)
         {
+            auto modifier = parent.is_composable() ? "open" : "public";
             w.write("    internal typealias Composable = %\n", overrides.swift_type_name());
-            w.write("    %public class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }\n",
-                parent.base_class ? "override " : "");
+            w.write("    %% class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }\n",
+                parent.base_class ? "override " : "", modifier);
         }
     }   
 
+    // write the default implementation for makeAbi. this way we don't need to expose the internal implementation
+    // details of the vtable to external modules.
+    static void write_composable_impl_extension(writer& w, class_type const& overridable)
+    {
+        if (!overridable.is_composable())
+        {
+            return;
+        }   
+
+        for (auto&& [_, info] : overridable.required_interfaces)
+        {
+            if (!info.overridable || info.base) continue;
+
+            w.write(R"(extension ComposableImpl where c_ABI == % {
+    public static func makeAbi() -> c_ABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &%.%VTable) { $0 }
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+)", bind_type_mangled(info.type),
+    abi_namespace(info.type),
+    info.type->swift_type_name());
+        }
+    }
 
 
     static void write_class_interface_impl(writer& w, interface_info const& info)

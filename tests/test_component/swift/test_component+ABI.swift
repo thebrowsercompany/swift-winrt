@@ -2421,3 +2421,21 @@ extension __x_ABI_Ctest__component_CSimpleEventArgs {
         .init(Value: swift.Value)
     }
 }
+extension ComposableImpl where c_ABI == __x_ABI_Ctest__component_CIBaseOverrides {
+    public static func makeAbi() -> c_ABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IBaseOverridesVTable) { $0 }
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+extension ComposableImpl where c_ABI == __x_ABI_Ctest__component_CIUnsealedDerivedOverloads2 {
+    public static func makeAbi() -> c_ABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IUnsealedDerivedOverloads2VTable) { $0 }
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+extension ComposableImpl where c_ABI == __x_ABI_Ctest__component_CIUnsealedDerivedOverrides {
+    public static func makeAbi() -> c_ABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IUnsealedDerivedOverridesVTable) { $0 }
+        return .init(lpVtbl: vtblPtr)
+    }
+}

@@ -38,7 +38,7 @@ open class IInspectable: IUnknown {
 // internal typealias Composable = IBaseNoOverrides
 enum __ABI {
     private typealias AnyObjectWrapper = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>
-    internal static var IInspectableVTable: Ctest_component.IInspectableVtbl = .init(
+    fileprivate static var IInspectableVTable: Ctest_component.IInspectableVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
             guard riid.pointee == IUnknown.IID ||
@@ -97,4 +97,11 @@ enum __ABI {
             return S_OK
         }
     )
+}
+
+extension ComposableImpl where c_ABI == Ctest_component.IInspectable {
+  public static func makeAbi() -> c_ABI {
+    let vtblPtr = withUnsafeMutablePointer(to: &__ABI.IInspectableVTable) { $0 }
+    return .init(lpVtbl: vtblPtr)
+  }
 }
