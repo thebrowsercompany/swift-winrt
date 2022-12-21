@@ -11,19 +11,20 @@ namespace swiftwinrt
             w.write("add_subdirectory(%)\n", module);
         }
 
-        auto filename{ settings.output_folder };
+        auto filename{ w.root_directory()};
         filename += "CMakeLists.txt";
         w.flush_to_file(filename);
     }
 
-    static void write_cmake_lists(std::string_view const& module, std::set<std::string> const& depends)
+    static void write_cmake_lists(std::string_view const& module, std::set<std::string> const& depends, std::vector<std::string_view> const& namespaces)
     {
         writer w;
         w.c_mod = settings.test ? "C" + settings.support : "CWinRT";
         w.type_namespace = module;
         auto content = R"(
 set(GENERATED_FILES_DIR ${CMAKE_CURRENT_SOURCE_DIR})
-file(GLOB SWIFTWINRT_GENERATED_FILES ${GENERATED_FILES_DIR}/*)
+set(SWIFTWINRT_GENERATED_FILES
+%)
 %
 add_library(% SHARED
   ${SWIFTWINRT_GENERATED_FILES}%
@@ -49,6 +50,11 @@ target_include_directories(%
 
 )";
         w.write(content,
+            bind_each([&](writer& w, const std::string_view ns) {
+                w.write("  %.swift\n", ns);
+                w.write("  %+ABI.swift\n", ns);
+                w.write("  %+Impl.swift\n", ns);
+                }, namespaces),
             settings.support == module ? "file(GLOB SUPPORT_FILES ${GENERATED_FILES_DIR}/Support/*)" : "",
             module,
             settings.support == module ? "\n  ${SUPPORT_FILES}" : "",

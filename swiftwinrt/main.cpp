@@ -305,7 +305,7 @@ Where <spec> is one or more of:
                     std::forward_as_tuple());
                 if (moduleAdded)
                 {
-                    create_directories(output_folder / module_name);
+                    create_directories(output_folder / "Source" / module_name);
                 }
                 moduleMapItr->second.push_back(ns);
             }
@@ -324,6 +324,7 @@ Where <spec> is one or more of:
                             auto [nsItr, nsAdded] = namespace_dependencies.emplace(std::piecewise_construct,
                                 std::forward_as_tuple(ns),
                                 std::forward_as_tuple());
+                            assert(nsAdded);
                             module_group.add([&, &ns = ns, &depends = nsItr->second]
                             {
                                 auto types = mdCache.compile_namespaces({ ns }, mf);
@@ -360,7 +361,7 @@ Where <spec> is one or more of:
                                     }
                                 }
                             }
-                            write_cmake_lists(module, moduleDependencies);
+                            write_cmake_lists(module, moduleDependencies, namespaces);
                             write_singlemodule_package_swift(module, moduleDependencies);
                         }
                     });
@@ -381,7 +382,7 @@ Where <spec> is one or more of:
                 // don't write the root cmake for the test project, instead just write the 
                 // cmake file for the single module everything is built into, which doesn't
                 // have any dependencies
-                write_cmake_lists(settings.support, {});
+                write_cmake_lists(settings.support, {}, module_map[settings.support]);
                 write_multimodule_package_swift(module_dependencies, settings);
             }
 
