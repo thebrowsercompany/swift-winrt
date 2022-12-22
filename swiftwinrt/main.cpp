@@ -37,6 +37,8 @@ namespace swiftwinrt
         { "include", 0, option::no_max, "<prefix>", "One or more prefixes to include in input" },
         { "exclude", 0, option::no_max, "<prefix>", "One or more prefixes to exclude from input" },
         { "help", 0, option::no_max, {}, "Show detailed help with examples" },
+        { "spm", 0, 0, "generate SPM project files"}, // generate SPM project files
+        { "cmake", 0, 0, "generate CMake project files"}, // generate CMake project files
         { "?", 0, option::no_max, {}, {} },
         { "library", 0, 1, "<prefix>", "Specify library prefix (defaults to winrt)" },
         { "test", 0, 0 }, // the projections are for tests and place all code into a single module
@@ -124,6 +126,14 @@ Where <spec> is one or more of:
             settings.exclude.insert(exclude);
         }
 
+        if (args.exists("spm"))
+        {
+            settings.project |= project_type::spm;
+        }
+        if (args.exists("cmake"))
+        {
+            settings.project |= project_type::cmake;
+        }
         if (settings.component)
         {
             settings.component_overwrite = args.exists("overwrite");

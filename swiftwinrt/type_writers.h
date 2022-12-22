@@ -736,7 +736,7 @@ namespace swiftwinrt
             return { settings.output_folder + "Source/" };
         }
 
-        std::string file_directory()
+        std::string project_directory()
         {
             if (settings.test)
             {
@@ -749,7 +749,7 @@ namespace swiftwinrt
         }
         void save_file(std::string_view const& ext = "")
         {
-            auto filename{ file_directory() };
+            auto filename{ project_directory() };
             filename += type_namespace;
 
             if (!ext.empty())
@@ -772,7 +772,7 @@ namespace swiftwinrt
 
         void save_cmake()
         {
-            auto filename{ file_directory() };
+            auto filename{ project_directory() };
             filename += "CMakeLists.txt";
             flush_to_file(filename);
         }
