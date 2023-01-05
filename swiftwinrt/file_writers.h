@@ -11,7 +11,6 @@ namespace swiftwinrt
 
         std::string swift_ns;
         indent i{ 0 };
-        auto last_ns_index = ns.find_last_of('.');
         auto first_ns_index = ns.find_first_of('.');
 
         // When writing the swift namespace, we want to omit the first one (which is the same as the module name).
@@ -77,7 +76,7 @@ namespace swiftwinrt
         return wrote;
     }
 
-    static void write_namespace_abi(std::string_view const& ns, type_cache const& members, settings_type const& settings, metadata_filter const& filter)
+    static void write_namespace_abi(std::string_view const& ns, type_cache const& members, metadata_filter const& filter)
     {
         writer w;
         w.filter = filter;
@@ -125,7 +124,7 @@ namespace swiftwinrt
         w.save_file("ABI");
     }
 
-    static void write_namespace_wrapper(std::string_view const& ns, type_cache const& members, settings_type const& settings, metadata_filter const& filter)
+    static void write_namespace_wrapper(std::string_view const& ns, type_cache const& members, metadata_filter const& filter)
     {
         writer w;
         w.filter = filter;
@@ -158,7 +157,7 @@ namespace swiftwinrt
 
     }
 
-    static void write_namespace_impl(std::string_view const& ns, type_cache const& members, settings_type const& settings, metadata_filter const& filter)
+    static void write_namespace_impl(std::string_view const& ns, type_cache const& members, metadata_filter const& filter)
     {
         writer w;
         w.filter = filter;

@@ -82,7 +82,7 @@ namespace swiftwinrt
         return get_swift_module(type.TypeNamespace());
     }
 
-    inline std::string get_swift_namespace(writer const& w, std::string_view const& ns)
+    inline std::string get_swift_namespace(writer const&, std::string_view const& ns)
     {
         // We don't nest names in Swift due to not being able to create nested types.
         // See: https://github.com/apple/swift-corelibs-foundation/blob/de5f7edc3040057717f7da0ba875df04d3dc3e9e/Sources/Foundation/NSObjCRuntime.swift#L431-L433

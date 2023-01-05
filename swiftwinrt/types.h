@@ -153,7 +153,7 @@ namespace swiftwinrt
             return false;
         }
 
-        virtual void write_swift_declaration(writer& w) const override
+        virtual void write_swift_declaration(writer&) const override
         {
             // no special declaration necessary
         }

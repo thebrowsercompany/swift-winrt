@@ -457,7 +457,7 @@ namespace swiftwinrt
             return result;
         }
 
-        int32_t m_indent{};
+        size_t m_indent{};
     };
 
 

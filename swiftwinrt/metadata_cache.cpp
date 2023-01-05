@@ -778,8 +778,8 @@ metadata_type const& metadata_cache::find_dependent_type(init_state& state, code
         result = &find(ns, name);
         if (auto typeDef = dynamic_cast<typedef_base const*>(result))
         {
-            auto name = result->swift_abi_namespace();
-            state.target->dependent_namespaces.insert(name);
+            auto swift_namespace = result->swift_abi_namespace();
+            state.target->dependent_namespaces.insert(swift_namespace);
             if (!typeDef->is_generic())
             {
                 state.target->type_dependencies.emplace(*typeDef);
@@ -810,7 +810,7 @@ metadata_type const& metadata_cache::find_dependent_type(init_state& state, Gene
     if (added)
     {
         auto restore = std::exchange(state.parent_generic_inst, &itr->second);
-        auto check_dependency = [&, &itr = itr](auto const& t, bool impl = false)
+        auto check_dependency = [&, &itr = itr](auto const& t)
         {
             auto mdType = &find_dependent_type(state, t);
             if (auto genericType = dynamic_cast<generic_inst const*>(mdType))
@@ -821,7 +821,7 @@ metadata_type const& metadata_cache::find_dependent_type(init_state& state, Gene
 
         for (auto const& iface : genericType->type().InterfaceImpl())
         {
-            check_dependency(iface.Interface(), true);
+            check_dependency(iface.Interface());
         }
 
         for (auto const& fn : genericType->type().MethodList())
@@ -877,6 +877,29 @@ static void merge_into(std::vector<T>& from, std::vector<std::reference_wrapper<
     }
     result.shrink_to_fit();
     to.swap(result);
+}
+
+std::set<std::string_view> metadata_cache::get_dependent_namespaces(std::vector<std::string_view> const& targetNamespaces, metadata_filter const& f)
+{
+    std::set<std::string_view> result;
+    for (auto ns : targetNamespaces)
+    {
+        auto itr = namespaces.find(ns);
+        if (itr == namespaces.end())
+        {
+            XLANG_ASSERT(false);
+            swiftwinrt::throw_invalid("Namespace '", ns, "' not found");
+        }
+
+        for (auto& dependent : itr->second.dependent_namespaces)
+        {
+            if (f.includes_ns(dependent))
+            {
+                result.insert(dependent);
+            }
+        }
+    }
+    return result;
 }
 
 type_cache metadata_cache::compile_namespaces(std::vector<std::string_view> const& targetNamespaces, metadata_filter const& f)

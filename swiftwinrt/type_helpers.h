@@ -209,7 +209,7 @@ namespace swiftwinrt
                     return;
                 }
             },
-                [&](GenericTypeInstSig const& sig)
+                [&](GenericTypeInstSig const&)
             {
                 result = param_category::generic_type;
             },
@@ -365,14 +365,10 @@ namespace swiftwinrt
         {
             return false;
         }
-// intentionally incomplete as call() will call other functions
-// with more detailed type information
-#pragma warning(push)
-#pragma warning(disable: 4715)  
-        return call(signature.Type(),
+        bool result = true;
+        call(signature.Type(),
             [&](ElementType type)
             {
-
                 switch (type)
                 {
                     case ElementType::I1:
@@ -383,14 +379,17 @@ namespace swiftwinrt
                     case ElementType::U2:
                     case ElementType::U4:
                     case ElementType::U8:
-                        return true;
+                        result = true;
+                        return;
                     case ElementType::Enum:
-                        return !for_array;
+                        result = !for_array;
+                        return;
                     case ElementType::Boolean:
                     case ElementType::String:
                     case ElementType::GenericInst:
                     case ElementType::Char:
-                        return false;
+                        result = false;
+                        return;
                 }
             },
             [&](coded_index<TypeDefOrRef> const& type)
@@ -407,7 +406,8 @@ namespace swiftwinrt
 
                     if (get_full_type_name(type_ref) == "System.Guid")
                     {
-                        return true;
+                        result = true;
+                        return;
                     }
                     type_def = find_required(type.TypeRef());
                 }
@@ -417,31 +417,35 @@ namespace swiftwinrt
                 case category::interface_type:
                 case category::class_type:
                 case category::delegate_type:
-                    return false;
+                    result = false;
+                    return;
                 case category::struct_type:
                     for (auto&& field : type_def.FieldList())
                     {
                         if (!is_type_blittable(field.Signature().Type()))
                         {
-                            return false;
+                            result = false;
+                            return;
                         }
                     }
-                    return true;
+                    result = true;
+                    return;
                 case category::enum_type:
-                    return !for_array;
+                    result = !for_array;
+                    return;
                 }
-
             },
                 [&](GenericTypeInstSig const&)
             {
-                return false;
+                result = false;
+                return;
             },
                 [&](auto&&)
             {
-                return true;
+                result = true;
+                return;
             });
-#pragma warning(pop)
-
+        return result;
     }
 
     inline bool is_type_blittable(TypeDef const& type)

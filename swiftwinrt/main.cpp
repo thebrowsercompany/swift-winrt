@@ -1,4 +1,9 @@
 #include "pch.h"
+
+// we get warnings about unreferenced methods being removed even though they are referenced
+// and actually haven't been removed
+#pragma warning(push)
+#pragma warning (disable: 4505)
 #include <ctime>
 #include "settings.h"
 #include "type_helpers.h"
@@ -10,12 +15,13 @@
 #include "common.h"
 #include "code_writers.h"
 #include "component_writers.h"
-
 #include "abi_writer.h"
 #include "metadata_cache.h"
 #include "metadata_filter.h"
 #include "file_writers.h"
 #include "project_file_writers.h"
+#pragma warning(pop)
+
 
 namespace swiftwinrt
 {
@@ -31,6 +37,7 @@ namespace swiftwinrt
         { "component", 0, 1, "[<path>]", "Generate component templates, and optional implementation" },
         { "name", 0, 1, "<name>", "Specify explicit name for component files" },
         { "verbose", 0, 0, {}, "Show detailed progress information" },
+        { "log", 0, 0, {}, "Write detailed information to log" },
         { "ns-prefix", 0, 1, "<always|optional|never>", "Sets policy for prefixing type names with 'ABI' namespace (default: never)" },
         { "overwrite", 0, 0, {}, "Overwrite generated component files" },
         { "support", 0, 1, "<module>", "module to include support files" },
@@ -88,7 +95,8 @@ Where <spec> is one or more of:
 
     static void process_args(reader const& args)
     {
-        settings.verbose = args.exists("verbose");
+        settings.log = args.exists("log");
+        settings.verbose = settings.log || args.exists("verbose");
         settings.fastabi = args.exists("fastabi");
 
         settings.input = args.files("input", database::is_database);
@@ -242,7 +250,7 @@ Where <spec> is one or more of:
     {
         int result{};
         writer w;
-
+        std::string log_file;
         try
         {
             auto start = get_start_time();
@@ -255,6 +263,7 @@ Where <spec> is one or more of:
             }
 
             process_args(args);
+            log_file = settings.output_folder + "swiftwinrt.log";
 
             cache c{ get_files_to_cache(), [](TypeDef const& type) {
                 if (!type.Flags().WindowsRuntime())
@@ -293,15 +302,21 @@ Where <spec> is one or more of:
                 }
             }
 
-            w.flush_to_console();
+            if (settings.log)
+            {
+                w.flush_to_file(log_file);
+            }
+            else
+            {
+                w.flush_to_console();
+            }
+
             task_group group;
             group.synchronous(args.exists("synchronous"));
 
             std::map<std::string, std::vector<std::string_view>> module_map; // map of module -> namespaces
-            std::map<std::string_view, std::set<std::string>> namespace_dependencies; // namespace -> module dependencies
             std::map<std::string, std::set<std::string>> module_dependencies; // module -> module dependencies
             path output_folder = settings.output_folder;
-
             for (auto&&[ns, members] : c.namespaces())
             {
                 if (!has_projected_types(members) || !mf.filter().includes(members))
@@ -325,29 +340,21 @@ Where <spec> is one or more of:
                     std::forward_as_tuple(module),
                     std::forward_as_tuple());
                 assert(added);
-                group.add([&, &module = module, &namespaces = namespaces, &moduleDependencies = moduleItr->second]
-                 {
+                group.add([&,
+                        &module = module,
+                        &namespaces = namespaces,
+                        &moduleDependencies = moduleItr->second]
+                    {
                         swiftwinrt::task_group module_group;
-
                         for (auto& ns : namespaces)
                         {
-                            auto [nsItr, nsAdded] = namespace_dependencies.emplace(std::piecewise_construct,
-                                std::forward_as_tuple(ns),
-                                std::forward_as_tuple());
-                            assert(nsAdded);
-                            module_group.add([&, &ns = ns, &depends = nsItr->second]
+                            module_group.add([&, &ns = ns]
                             {
                                 auto types = mdCache.compile_namespaces({ ns }, mf);
-                                for (auto&& dependent_ns : types.dependent_namespaces)
-                                {
-                                    auto dependent_module = get_swift_module(dependent_ns);
-                                    depends.insert(dependent_module);
-                                }
-
-                                write_namespace_abi(ns, types, settings, mf);
-                                write_namespace_wrapper(ns, types, settings, mf);
-                                write_namespace_impl(ns, types, settings, mf);
-                                write_abi_header(ns, settings, types);
+                                write_namespace_abi(ns, types, mf);
+                                write_namespace_wrapper(ns, types, mf);
+                                write_namespace_impl(ns, types, mf);
+                                write_abi_header(ns, types);
                              });
                         }
 
@@ -360,17 +367,17 @@ Where <spec> is one or more of:
                             {
                                 moduleDependencies.emplace(settings.support);
                             }
-                            for (auto& ns : namespaces)
+                            auto dependentNamespaces = mdCache.get_dependent_namespaces(namespaces, mf);
+
+                            for (auto&& dependent_ns : dependentNamespaces)
                             {
-                                auto ns_dependencies = namespace_dependencies[ns];
-                                for (auto ns : ns_dependencies)
+                                auto dependent_module = get_swift_module(dependent_ns);
+                                if (dependent_module != module)
                                 {
-                                    if (ns != module)
-                                    {
-                                        moduleDependencies.emplace(ns);
-                                    }
+                                    moduleDependencies.emplace(dependent_module);
                                 }
                             }
+
                             write_cmake_lists(module, moduleDependencies, namespaces);
                             write_singlemodule_package_swift(module, moduleDependencies);
                         }
@@ -378,6 +385,7 @@ Where <spec> is one or more of:
             }
 
             group.get();
+
             if (settings.component)
             {
                 throw std::exception("component generation not yet supported");
@@ -385,7 +393,7 @@ Where <spec> is one or more of:
 
             if (!settings.test)
             {
-                write_root_cmake(module_map, settings);
+                write_root_cmake(module_map);
             }
             else
             {
@@ -393,10 +401,10 @@ Where <spec> is one or more of:
                 // cmake file for the single module everything is built into, which doesn't
                 // have any dependencies
                 write_cmake_lists(settings.support, {}, module_map[settings.support]);
-                write_multimodule_package_swift(module_dependencies, settings);
+                write_multimodule_package_swift(module_dependencies);
             }
 
-            write_include_all(module_map, settings);
+            write_include_all(module_map);
             if (settings.verbose)
             {
                 w.write(" time:  %ms\n", get_elapsed_time(start));
@@ -412,7 +420,14 @@ Where <spec> is one or more of:
             result = 1;
         }
 
-        w.flush_to_console(result == 0);
+        if (settings.log && !log_file.empty())
+        {
+            w.flush_to_file(log_file, true);
+        }
+        else
+        {
+            w.flush_to_console(result == 0);
+        }
         return result;
     }
 }

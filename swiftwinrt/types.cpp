@@ -84,11 +84,6 @@ namespace swiftwinrt
     }
 
 
-    static std::string_view enum_string(writer& w)
-    {
-        return "enum"sv;
-    }
-
     winmd::reader::ElementType enum_type::underlying_type() const
     {
         return underlying_enum_type(m_type);
@@ -511,7 +506,7 @@ namespace swiftwinrt
         default_interface->write_c_abi_param(w);
     }
 
-    void class_type::write_c_definition(writer& w) const
+    void class_type::write_c_definition(writer&) const
     {
     }
 

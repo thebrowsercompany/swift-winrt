@@ -16,7 +16,7 @@ using namespace winmd::reader;
 
 namespace swiftwinrt
 {
-    inline std::string_view mangled_name_macro_format(writer& w)
+    inline std::string_view mangled_name_macro_format(writer&)
     {
         return "%";
     }
@@ -273,7 +273,7 @@ namespace swiftwinrt
         }
     }
 
-    inline void write_abi_header(std::string_view fileName, settings_type const& config, type_cache const& types)
+    inline void write_abi_header(std::string_view fileName, type_cache const& types)
     {
         writer w;
         w.type_namespace = fileName;
@@ -290,7 +290,7 @@ namespace swiftwinrt
         w.save_header();
     }
 
-    inline void write_include_all(std::map<std::string, std::vector<std::string_view>>& namespaces, settings_type const& config)
+    inline void write_include_all(std::map<std::string, std::vector<std::string_view>>& namespaces)
     {
         writer w;
         w.c_mod = settings.test ? "C" + settings.support : "CWinRT";

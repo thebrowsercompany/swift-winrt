@@ -91,6 +91,8 @@ namespace swiftwinrt
 
         type_cache compile_namespaces(std::vector<std::string_view> const& targetNamespaces, metadata_filter const& f);
 
+        std::set<std::string_view> get_dependent_namespaces(std::vector<std::string_view> const& targetNamespaces, metadata_filter const& f);
+
         metadata_type const* try_find(std::string_view typeNamespace, std::string_view typeName) const
         {
             if (typeNamespace == system_namespace)

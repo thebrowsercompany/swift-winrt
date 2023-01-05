@@ -21,6 +21,7 @@ namespace swiftwinrt
         bool license{};
         bool brackets{};
         bool verbose{};
+        bool log{};
         bool component{};
         bool test{};
         bool spm{};

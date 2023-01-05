@@ -8,12 +8,12 @@ namespace swiftwinrt
     using namespace winmd::reader;
     using namespace std::literals;
 
-    static std::string_view remove_tick(std::string_view const& name)
+    inline std::string_view remove_tick(std::string_view const& name)
     {
         return name.substr(0, name.rfind('`'));
     }
 
-    class writer;
+    struct writer;
     std::string get_full_swift_type_name(writer const&, TypeDef const& type);
     std::string get_full_swift_type_name(writer const&, const metadata_type* type);
     std::string get_swift_module(std::string_view const& ns);
@@ -700,7 +700,7 @@ namespace swiftwinrt
                     }
                     else
                     {
-                        auto full_type_names{ push_full_type_names(true) };
+                        auto full_type_names_guard{ push_full_type_names(true) };
                         write("IVectorView<%>", argsType);
                     }
                 }
@@ -713,7 +713,7 @@ namespace swiftwinrt
                     }
                     else
                     {
-                        auto full_type_names{ push_full_type_names(true) };
+                        auto full_type_names_guard{ push_full_type_names(true) };
                         write("IVector<%>", argsType);
                     }
                 }

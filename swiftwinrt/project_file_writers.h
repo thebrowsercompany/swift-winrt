@@ -2,7 +2,7 @@
 
 namespace swiftwinrt
 {
-    static void write_root_cmake(std::map<std::string, std::vector<std::string_view>>& namespaces, settings_type const& settings)
+    static void write_root_cmake(std::map<std::string, std::vector<std::string_view>>& namespaces)
     {
         writer w;
         auto filename{ w.root_directory() };
@@ -82,7 +82,7 @@ target_include_directories(%
 
     // Write a package.swift file which includes the full enclosure of Swift modules being generated (including CWinRT) which are generated
     // by the project. This is useful for our test project, which just creates a single module.
-    static void write_multimodule_package_swift(std::map<std::string, std::set<std::string>>& module_dependencies, settings_type const& settings)
+    static void write_multimodule_package_swift(std::map<std::string, std::set<std::string>>& module_dependencies)
     {
         writer w;
         auto filename{ w.root_directory() };
