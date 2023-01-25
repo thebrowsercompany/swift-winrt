@@ -1,0 +1,53 @@
+{
+    "version": 2,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 19,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "base",
+            "hidden": true,
+            "generator": "Ninja",
+            "architecture": {
+                "value": "x64",
+                "strategy": "external"
+            },
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "cl",
+                "CMAKE_CXX_COMPILER": "cl"
+            }
+        },
+        {
+            "name": "tool-debug",
+            "displayName": "Tool Only (Debug)",
+            "binaryDir": "${sourceDir}/build/tool-debug",
+            "inherits": [ "base" ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "SKIP_TESTS": true
+            }
+        },
+        {
+            "name": "tool-release",
+            "displayName": "Tool Only (Release)",
+            "binaryDir": "${sourceDir}/build/tool-release",
+            "inherits": [ "base" ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "SKIP_TESTS": true
+            }
+        }
+    ],
+    "buildPresets": [
+      {
+        "name": "tool-debug",
+        "configurePreset": "tool-debug"
+      },
+      {
+        "name": "tool-release",
+        "configurePreset": "tool-release"
+      }
+    ]
+}

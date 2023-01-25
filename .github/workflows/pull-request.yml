@@ -1,0 +1,23 @@
+name: Pull Request Build
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Configure VC++ build for amd64
+      uses: seanmiddleditch/gha-setup-vsdevenv@master
+      with:
+        arch: amd64
+
+    - name: Configure CMake
+      run: cmake --preset tool-release
+
+    - name: Build
+      run: cmake --build --preset tool-release
