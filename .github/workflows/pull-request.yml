@@ -1,4 +1,4 @@
-name: Pull Request Build With CMake & VC++
+name: Pull Request Build With CMake
 
 on:
   pull_request:
