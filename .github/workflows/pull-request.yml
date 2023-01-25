@@ -2,7 +2,7 @@ name: Pull Request Build with CMake
 
 on:
   pull_request:
-    branches: [ "tristan/ci" ]
+    branches: [ "main" ]
 
 jobs:
   build:
