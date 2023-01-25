@@ -1,4 +1,4 @@
-name: Pull Request Build With CMake
+name: Pull Request Build
 
 on:
   pull_request:
@@ -11,8 +11,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Configure build for amd64
-      uses: seanmiddleditch/gha-setup-vsdevenv
+    - name: Configure VC++ build for amd64
+      uses: seanmiddleditch/gha-setup-vsdevenv@master
       with:
         arch: amd64
 
