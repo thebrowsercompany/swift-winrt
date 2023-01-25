@@ -2977,7 +2977,7 @@ get_full_type_name(type)
 
     static void write_abi_ret_val(writer& w, function_def signature)
     {
-        separator s{ w, "\n"};
+        auto indent_guard = w.push_indent({ 1 });
         int param_number = 1;
         for (auto& param : signature.params)
         {
@@ -3077,10 +3077,10 @@ get_full_type_name(type)
             func_call += w.write_temp(format, get_swift_name(method), bind<write_consume_args>(function));
         }
         w.write(R"(%: {
-    guard let __unwraped__instance = %.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+    guard let __unwrapped__instance = %.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 %
-    %__unwraped__instance.%
-    %
+    %__unwrapped__instance.%
+%
     return S_OK
 })",
 func_name,
