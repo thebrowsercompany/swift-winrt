@@ -3,5 +3,6 @@ CMakeCache.txt
 CMakeUserPresets.json
 build/
 
-# Visual Studio
+# IDEs
 .vs/
+.vscode/
