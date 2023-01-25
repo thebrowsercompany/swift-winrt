@@ -11,6 +11,14 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Install Visual Studio 2022 Build Tools
+      run: winget install --id Microsoft.VisualStudio.2022.BuildTools -e --override "--add Microsoft.VisualStudio.Workload.NativeDesktop --passive --norestart --wait"
+
+    - name: Configure build for amd64
+      uses: ilammy/msvc-dev-cmd@v1
+      with:
+        arch: amd64
+
     - name: Configure CMake
       run: cmake --preset release
 

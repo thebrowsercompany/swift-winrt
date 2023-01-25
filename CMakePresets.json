@@ -7,31 +7,35 @@
     },
     "configurePresets": [
         {
-            "name": "debug",
-            "displayName": "Debug",
-            "binaryDir": "${sourceDir}/build/debug",
+            "name": "base",
+            "hidden": true,
             "generator": "Ninja",
             "architecture": {
                 "value": "x64",
                 "strategy": "external"
             },
             "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_C_COMPILER": "cl",
+                "CMAKE_CXX_COMPILER": "cl",
                 "SKIP_TESTS": true
+            }
+        },
+        {
+            "name": "debug",
+            "displayName": "Debug",
+            "binaryDir": "${sourceDir}/build/debug",
+            "inherits": [ "base" ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
             }
         },
         {
             "name": "release",
             "displayName": "Release",
             "binaryDir": "${sourceDir}/build/release",
-            "generator": "Ninja",
-            "architecture": {
-                "value": "x64",
-                "strategy": "external"
-            },
+            "inherits": [ "base" ],
             "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Release",
-                "SKIP_TESTS": true
+                "CMAKE_BUILD_TYPE": "Release"
             }
         }
     ],
