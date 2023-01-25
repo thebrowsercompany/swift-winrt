@@ -16,37 +16,38 @@
             },
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "cl",
-                "CMAKE_CXX_COMPILER": "cl",
+                "CMAKE_CXX_COMPILER": "cl"
+            }
+        },
+        {
+            "name": "tool-debug",
+            "displayName": "Tool Only (Debug)",
+            "binaryDir": "${sourceDir}/build/tool-debug",
+            "inherits": [ "base" ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
                 "SKIP_TESTS": true
             }
         },
         {
-            "name": "debug",
-            "displayName": "Debug",
-            "binaryDir": "${sourceDir}/build/debug",
+            "name": "tool-release",
+            "displayName": "Tool Only (Release)",
+            "binaryDir": "${sourceDir}/build/tool-release",
             "inherits": [ "base" ],
             "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug"
-            }
-        },
-        {
-            "name": "release",
-            "displayName": "Release",
-            "binaryDir": "${sourceDir}/build/release",
-            "inherits": [ "base" ],
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Release"
+                "CMAKE_BUILD_TYPE": "Release",
+                "SKIP_TESTS": true
             }
         }
     ],
     "buildPresets": [
       {
-        "name": "debug",
-        "configurePreset": "debug"
+        "name": "tool-debug",
+        "configurePreset": "tool-debug"
       },
       {
-        "name": "release",
-        "configurePreset": "release"
+        "name": "tool-release",
+        "configurePreset": "tool-release"
       }
     ]
 }

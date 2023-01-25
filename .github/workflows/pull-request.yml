@@ -17,7 +17,7 @@ jobs:
         arch: amd64
 
     - name: Configure CMake
-      run: cmake --preset release
+      run: cmake --preset tool-release
 
     - name: Build
-      run: cmake --build --preset release
+      run: cmake --build --preset tool-release
