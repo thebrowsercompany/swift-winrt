@@ -1,0 +1,7 @@
+# CMake
+CMakeCache.txt
+CMakeUserPresets.json
+build/
+
+# Visual Studio
+.vs/
