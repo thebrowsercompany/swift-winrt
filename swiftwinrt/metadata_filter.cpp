@@ -109,7 +109,6 @@ namespace swiftwinrt
 
     metadata_filter::metadata_filter(metadata_cache const& cache, std::vector<std::string> const& includes)
     {
-        std::set<std::string> processed;
         processing_queue to_process;
         for (auto& include : includes)
         {
@@ -143,7 +142,7 @@ namespace swiftwinrt
             auto processing = to_process.front();
             to_process.pop();
             auto processing_full_name = std::string(processing->swift_full_name());
-            if (processed.find(processing_full_name) == processed.end())
+            if (full_type_names.find(processing_full_name) == full_type_names.end())
             {
                 if (auto s = dynamic_cast<const struct_type*>(processing))
                 {
@@ -183,7 +182,7 @@ namespace swiftwinrt
                 }
 
                 // enums and contracts will be added to processed queue, but they don't have any dependencies
-                processed.insert(processing_full_name);
+                full_type_names.insert(processing_full_name);
                 auto ns = processing->swift_logical_namespace();
                 if (!ns.empty())
                 {
@@ -191,7 +190,24 @@ namespace swiftwinrt
                 }
             }
         }
+    }
 
-        f = winmd::reader::filter{ processed, {}, true };
+    bool metadata_filter::includes(winmd::reader::TypeDef const& type) const
+    {
+        for (auto&& full_type_name : full_type_names)
+        {
+            auto dotIndex = full_type_name.find_last_of('.');
+            if (dotIndex != std::string::npos)
+            {
+                std::string_view ns{ full_type_name.data(), dotIndex };
+                std::string_view name{ full_type_name.begin() + dotIndex + 1, full_type_name.end() };
+                if (type.TypeNamespace() == ns && type.TypeName() == name)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }

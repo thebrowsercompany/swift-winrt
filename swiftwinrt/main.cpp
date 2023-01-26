@@ -319,7 +319,7 @@ Where <spec> is one or more of:
             path output_folder = settings.output_folder;
             for (auto&&[ns, members] : c.namespaces())
             {
-                if (!has_projected_types(members) || !mf.filter().includes(members))
+                if (!has_projected_types(members) || !mf.includes_any(members))
                 {
                     continue;
                 }

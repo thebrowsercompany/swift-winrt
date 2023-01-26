@@ -15,11 +15,22 @@ namespace swiftwinrt
         metadata_filter(metadata_cache const& cache, std::vector<std::string> const& includes);
         metadata_filter() = default;
         metadata_filter(const metadata_filter&) = default;
-        bool includes(winmd::reader::TypeDef const& type) const { return f.includes(type); }
+        bool includes(winmd::reader::TypeDef const& type) const;
         bool includes_ns(std::string_view const& ns) const { return namespaces.find(std::string(ns)) != namespaces.end(); }
         bool includes_generic(std::string_view const& generic) const { return generics.find(std::string(generic)) != generics.end(); }
+        
+        bool includes_any(cache::namespace_members const& members) const
+        {
+            for (auto&& type : members.types)
+            {
+                if (includes(type.second))
+                {
+                    return true;
+                }
+            }
 
-        winmd::reader::filter filter() { return f; }
+            return false;
+        }
 
         template <auto F, typename T>
         auto bind_each(std::vector<std::reference_wrapper<T const>> const& types) const
@@ -36,7 +47,7 @@ namespace swiftwinrt
             };
         }
     private:
-        winmd::reader::filter f{};
+        std::set<std::string> full_type_names;
         std::set<std::string> namespaces;
         std::set<std::string> generics;
     };
