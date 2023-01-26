@@ -1,4 +1,5 @@
 project(test_component_cpp)
+include(nuget)
 
 set(H_FILE
     ${CMAKE_TEST_COMPONENT_OUTPUT}/test_component.h
@@ -65,31 +66,29 @@ if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
 endif()
 
 set(CPPWINRT_OUTPUT
-    ${CPP_WINRT_OUTPUT_DIR}/module.g.cpp
-    ${CPP_WINRT_OUTPUT_DIR}/winrt/test_component.h
-    ${CPP_WINRT_OUTPUT_DIR}/winrt/fast_forward.h
-    ${CPP_WINRT_OUTPUT_DIR}/winrt/impl/test_component.0.h
-    ${CPP_WINRT_OUTPUT_DIR}/winrt/impl/test_component.1.h
-    ${CPP_WINRT_OUTPUT_DIR}/winrt/impl/test_component.2.h
+  ${CPP_WINRT_OUTPUT_DIR}/module.g.cpp
+  ${CPP_WINRT_OUTPUT_DIR}/winrt/test_component.h
+  ${CPP_WINRT_OUTPUT_DIR}/winrt/fast_forward.h
+  ${CPP_WINRT_OUTPUT_DIR}/winrt/impl/test_component.0.h
+  ${CPP_WINRT_OUTPUT_DIR}/winrt/impl/test_component.1.h
+  ${CPP_WINRT_OUTPUT_DIR}/winrt/impl/test_component.2.h
 )
 
-# Figure out the Windows SDK version using a well-known binary in the Windows Kits directory
-execute_process(COMMAND where midlrt.exe OUTPUT_VARIABLE MIDLRT_PATH OUTPUT_STRIP_TRAILING_WHITESPACE)
-string(REGEX MATCH "\\\\10.0.[0-9]+.[0-9]+\\\\" WINDOWS_SDK_VERSION "${MIDLRT_PATH}") # Match part of the path with version
-string(REPLACE "\\" "" WINDOWS_SDK_VERSION "${WINDOWS_SDK_VERSION}") # Remove start and end '\'
-
-# cppwinrt.exe has a bug and depends on being invoked with an expanded path as args[0],
-# however CMake also has a bug that prevents add_custom_cmmand COMMANDs from containing spaces, and cppwinrt.exe lives under "Windows Kits".
-# Workaround: copy cppwinrt.exe to our binary directory (which hopefully has no spaces)
-execute_process(COMMAND where cppwinrt.exe OUTPUT_VARIABLE CPPWINRT_PATH OUTPUT_STRIP_TRAILING_WHITESPACE)
-file(COPY "${CPPWINRT_PATH}" DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-set(CPPWINRT_PATH ${CMAKE_CURRENT_BINARY_DIR}/cppwinrt.exe)
+nuget(
+  SUBCOMMAND install
+  DOWNLOAD_PATH ${CMAKE_BINARY_DIR}
+  SOURCE_NAME "nuget.org"
+  PUBLISH_URL "https://api.nuget.org/v3/index.json"
+  PACKAGE "Microsoft.Windows.CppWinRT"
+  PACKAGE_VERSION "2.0.221121.5"
+)
+set(CPPWINRT_EXE_PATH ${NUGET_PACKAGE_INSTALL_ROOT}/bin/cppwinrt.exe)
 
 add_custom_command(
   OUTPUT ${MIDL_OUTPUT} ${CPPWINRT_OUTPUT} 
   COMMAND midlrt.exe /metadata_dir $ENV{SystemRoot}/system32/winmetadata /winrt /winmd ${WINMD_FILE} /h ${H_FILE} /ns_prefix /nomidl ${MIDL_FILE}
-  COMMAND ${CPPWINRT_PATH} -input ${WINMD_FILE} -comp ${CPP_WINRT_OUTPUT_DIR} -output ${CPP_WINRT_OUTPUT_DIR} -include test_component -verbose -opt -lib test -overwrite -reference ${WINDOWS_SDK_VERSION} -name test_component
-  COMMAND ${CPPWINRT_PATH} -output ${CPP_WINRT_OUTPUT_DIR} -include Windows.Foundation -opt -verbose -reference ${WINDOWS_SDK_VERSION}
+  COMMAND ${CPPWINRT_EXE_PATH} -input ${WINMD_FILE} -comp ${CPP_WINRT_OUTPUT_DIR} -output ${CPP_WINRT_OUTPUT_DIR} -include test_component -verbose -opt -lib test -overwrite -reference ${CMAKE_SYSTEM_VERSION} -name test_component
+  COMMAND ${CPPWINRT_EXE_PATH} -output ${CPP_WINRT_OUTPUT_DIR} -include Windows.Foundation -opt -verbose -reference ${CMAKE_SYSTEM_VERSION}
   DEPENDS ${MIDL_FILE}
   MAIN_DEPENDENCY ${MIDL_FILE}
   VERBATIM
