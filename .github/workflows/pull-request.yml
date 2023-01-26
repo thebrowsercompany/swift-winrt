@@ -10,6 +10,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+      with:
+        submodules: recursive
 
     - name: Configure VC++ build for amd64
       uses: seanmiddleditch/gha-setup-vsdevenv@master
