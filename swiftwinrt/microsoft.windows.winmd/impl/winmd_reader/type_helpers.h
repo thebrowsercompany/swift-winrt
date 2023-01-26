@@ -15,8 +15,8 @@ namespace winmd::reader
         }
         else
         {
-            auto generic_type = type.TypeSpec().Signature().GenericTypeInst().GenericType();
-            return get_type_namespace_and_name(generic_type);
+            XLANG_ASSERT(false);
+            return {};
         }
     }
 

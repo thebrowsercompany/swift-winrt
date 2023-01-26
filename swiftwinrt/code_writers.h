@@ -1860,7 +1860,7 @@ public static func makeAbi() -> c_ABI {
                     }
                     else if (auto default_interface = get_default_interface(signature_type))
                     {
-                        auto [ns, default_interface_name] = get_type_namespace_and_name(default_interface);
+                        auto [ns, default_interface_name] = type_name::get_namespace_and_name(default_interface);
                         guard.push("% = .init(%.%(_%))\n",
                             get_swift_name(param),
                             abi_namespace(ns),

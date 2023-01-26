@@ -478,7 +478,7 @@ namespace swiftwinrt
         using namespace winmd::reader;
         if (auto defaultIface = get_default_interface(type))
         {
-            auto [ns, _] = get_type_namespace_and_name(defaultIface);
+            auto [ns, _] = type_name::get_namespace_and_name(defaultIface);
             m_abiNamespace = ns;
         }
     }
