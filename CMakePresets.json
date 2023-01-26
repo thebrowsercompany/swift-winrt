@@ -16,7 +16,9 @@
             },
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "cl",
-                "CMAKE_CXX_COMPILER": "cl"
+                "CMAKE_CXX_COMPILER": "cl",
+                "CMAKE_SYSTEM_VERSION": "10.0.22621.0",
+                "CMAKE_MODULE_PATH": "${sourceDir}/cmake"
             }
         },
         {
