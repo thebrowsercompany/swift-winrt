@@ -225,32 +225,32 @@ public enum __ABI_test_component {
         },
 
         GetAt: {
-            guard let __unwraped__instance = __x_ABI_C__FIVectorView_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let index: UInt32 = $1
 
-            let result = __unwraped__instance.GetAt(index)
+            let result = __unwrapped__instance.GetAt(index)
             $2?.initialize(to: try! HString(result).detach())
 
             return S_OK
         },
 
         get_Size: {
-            guard let __unwraped__instance = __x_ABI_C__FIVectorView_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            let result = __unwraped__instance.Size
+            let result = __unwrapped__instance.Size
             $1?.initialize(to: result)
 
             return S_OK
         },
 
         IndexOf: {
-            guard let __unwraped__instance = __x_ABI_C__FIVectorView_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let value: String = .init(from: $1)
             var index: UInt32 = 0
 
-            let result = __unwraped__instance.IndexOf(value, &index)
+            let result = __unwrapped__instance.IndexOf(value, &index)
             $2?.initialize(to: index)
-        $3?.initialize(to: .init(from: result))
+            $3?.initialize(to: .init(from: result))
 
             return S_OK
         },
@@ -339,32 +339,32 @@ public enum __ABI_test_component {
         },
 
         GetAt: {
-            guard let __unwraped__instance = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let index: UInt32 = $1
 
-            let result = __unwraped__instance.GetAt(index)
+            let result = __unwrapped__instance.GetAt(index)
             $2?.initialize(to: RawPointer(result))
 
             return S_OK
         },
 
         get_Size: {
-            guard let __unwraped__instance = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            let result = __unwraped__instance.Size
+            let result = __unwrapped__instance.Size
             $1?.initialize(to: result)
 
             return S_OK
         },
 
         IndexOf: {
-            guard let __unwraped__instance = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let value: test_component.Base = .from(abi: $1)
             var index: UInt32 = 0
 
-            let result = __unwraped__instance.IndexOf(value, &index)
+            let result = __unwrapped__instance.IndexOf(value, &index)
             $2?.initialize(to: index)
-        $3?.initialize(to: .init(from: result))
+            $3?.initialize(to: .init(from: result))
 
             return S_OK
         },
@@ -453,98 +453,98 @@ public enum __ABI_test_component {
         },
 
         GetAt: {
-            guard let __unwraped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let index: UInt32 = $1
 
-            let result = __unwraped__instance.GetAt(index)
+            let result = __unwrapped__instance.GetAt(index)
             $2?.initialize(to: try! HString(result).detach())
 
             return S_OK
         },
 
         get_Size: {
-            guard let __unwraped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            let result = __unwraped__instance.Size
+            let result = __unwrapped__instance.Size
             $1?.initialize(to: result)
 
             return S_OK
         },
 
         GetView: {
-            guard let __unwraped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            let result = __unwraped__instance.GetView()
+            let result = __unwrapped__instance.GetView()
             let resultWrapper = __ABI_test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper(result)
-        let _result = try! resultWrapper?.to_abi { $0 }
-        $1?.initialize(to: _result)
+            let _result = try! resultWrapper?.to_abi { $0 }
+            $1?.initialize(to: _result)
 
             return S_OK
         },
 
         IndexOf: {
-            guard let __unwraped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let value: String = .init(from: $1)
             var index: UInt32 = 0
 
-            let result = __unwraped__instance.IndexOf(value, &index)
+            let result = __unwrapped__instance.IndexOf(value, &index)
             $2?.initialize(to: index)
-        $3?.initialize(to: .init(from: result))
+            $3?.initialize(to: .init(from: result))
 
             return S_OK
         },
 
         SetAt: {
-            guard let __unwraped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let index: UInt32 = $1
             let value: String = .init(from: $2)
 
-            __unwraped__instance.SetAt(index, value)
-            
+            __unwrapped__instance.SetAt(index, value)
+
             return S_OK
         },
 
         InsertAt: {
-            guard let __unwraped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let index: UInt32 = $1
             let value: String = .init(from: $2)
 
-            __unwraped__instance.InsertAt(index, value)
-            
+            __unwrapped__instance.InsertAt(index, value)
+
             return S_OK
         },
 
         RemoveAt: {
-            guard let __unwraped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let index: UInt32 = $1
 
-            __unwraped__instance.RemoveAt(index)
-            
+            __unwrapped__instance.RemoveAt(index)
+
             return S_OK
         },
 
         Append: {
-            guard let __unwraped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let value: String = .init(from: $1)
 
-            __unwraped__instance.Append(value)
-            
+            __unwrapped__instance.Append(value)
+
             return S_OK
         },
 
         RemoveAtEnd: {
-            guard let __unwraped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            __unwraped__instance.RemoveAtEnd()
-            
+            __unwrapped__instance.RemoveAtEnd()
+
             return S_OK
         },
 
         Clear: {
-            guard let __unwraped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            __unwraped__instance.Clear()
-            
+            __unwrapped__instance.Clear()
+
             return S_OK
         },
 
@@ -671,98 +671,98 @@ public enum __ABI_test_component {
         },
 
         GetAt: {
-            guard let __unwraped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let index: UInt32 = $1
 
-            let result = __unwraped__instance.GetAt(index)
+            let result = __unwrapped__instance.GetAt(index)
             $2?.initialize(to: RawPointer(result))
 
             return S_OK
         },
 
         get_Size: {
-            guard let __unwraped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            let result = __unwraped__instance.Size
+            let result = __unwrapped__instance.Size
             $1?.initialize(to: result)
 
             return S_OK
         },
 
         GetView: {
-            guard let __unwraped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            let result = __unwraped__instance.GetView()
+            let result = __unwrapped__instance.GetView()
             let resultWrapper = __ABI_test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper(result)
-        let _result = try! resultWrapper?.to_abi { $0 }
-        $1?.initialize(to: _result)
+            let _result = try! resultWrapper?.to_abi { $0 }
+            $1?.initialize(to: _result)
 
             return S_OK
         },
 
         IndexOf: {
-            guard let __unwraped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let value: test_component.Base = .from(abi: $1)
             var index: UInt32 = 0
 
-            let result = __unwraped__instance.IndexOf(value, &index)
+            let result = __unwrapped__instance.IndexOf(value, &index)
             $2?.initialize(to: index)
-        $3?.initialize(to: .init(from: result))
+            $3?.initialize(to: .init(from: result))
 
             return S_OK
         },
 
         SetAt: {
-            guard let __unwraped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let index: UInt32 = $1
             let value: test_component.Base = .from(abi: $2)
 
-            __unwraped__instance.SetAt(index, value)
-            
+            __unwrapped__instance.SetAt(index, value)
+
             return S_OK
         },
 
         InsertAt: {
-            guard let __unwraped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let index: UInt32 = $1
             let value: test_component.Base = .from(abi: $2)
 
-            __unwraped__instance.InsertAt(index, value)
-            
+            __unwrapped__instance.InsertAt(index, value)
+
             return S_OK
         },
 
         RemoveAt: {
-            guard let __unwraped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let index: UInt32 = $1
 
-            __unwraped__instance.RemoveAt(index)
-            
+            __unwrapped__instance.RemoveAt(index)
+
             return S_OK
         },
 
         Append: {
-            guard let __unwraped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let value: test_component.Base = .from(abi: $1)
 
-            __unwraped__instance.Append(value)
-            
+            __unwrapped__instance.Append(value)
+
             return S_OK
         },
 
         RemoveAtEnd: {
-            guard let __unwraped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            __unwraped__instance.RemoveAtEnd()
-            
+            __unwrapped__instance.RemoveAtEnd()
+
             return S_OK
         },
 
         Clear: {
-            guard let __unwraped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            __unwraped__instance.Clear()
-            
+            __unwrapped__instance.Clear()
+
             return S_OK
         },
 
@@ -864,12 +864,12 @@ public enum __ABI_test_component {
         },
 
         Invoke: {
-            guard let __unwraped__instance = __x_ABI_C__FIEventHandler_1_IInspectableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = __x_ABI_C__FIEventHandler_1_IInspectableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let sender: test_component.IInspectable = .init($1)
             let args: test_component.IInspectable = .init($2)
 
-            __unwraped__instance.handler((sender, args))
-            
+            __unwrapped__instance.handler((sender, args))
+
             return S_OK
         }
     )
@@ -945,9 +945,9 @@ public enum __ABI_test_component {
         },
 
         get_Value: {
-            guard let __unwraped__instance = __x_ABI_C__FIReference_1_intWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = __x_ABI_C__FIReference_1_intWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            let result = __unwraped__instance.Value as! Int32
+            let result = __unwrapped__instance.Value as! Int32
             $1?.initialize(to: result)
 
             return S_OK
@@ -1025,9 +1025,9 @@ public enum __ABI_test_component {
         },
 
         get_Value: {
-            guard let __unwraped__instance = __x_ABI_C__FIReference_1_GUIDWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = __x_ABI_C__FIReference_1_GUIDWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            let result = __unwraped__instance.Value as! UUID
+            let result = __unwrapped__instance.Value as! UUID
             $1?.initialize(to: result)
 
             return S_OK
@@ -1073,12 +1073,12 @@ public enum __ABI_test_component {
         },
 
         Invoke: {
-            guard let __unwraped__instance = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let sender: test_component.Simple = .from(abi: $1)
             let args: test_component.SimpleEventArgs = .from(abi: $2)
 
-            __unwraped__instance.handler((sender, args))
-            
+            __unwrapped__instance.handler((sender, args))
+
             return S_OK
         }
     )
@@ -1210,10 +1210,10 @@ public enum __ABI_test_component {
         },
 
         Method: {
-            guard let __unwraped__instance = IBasicWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IBasicWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            __unwraped__instance.Method()
-            
+            __unwrapped__instance.Method()
+
             return S_OK
         }
     )
@@ -1644,130 +1644,130 @@ public enum __ABI_test_component {
         },
 
         InInt32: {
-            guard let __unwraped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let value: Int32 = $1
 
-            let result = __unwraped__instance.InInt32(value)
+            let result = __unwrapped__instance.InInt32(value)
             $2?.initialize(to: try! HString(result).detach())
 
             return S_OK
         },
 
         InString: {
-            guard let __unwraped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let value: String = .init(from: $1)
 
-            let result = __unwraped__instance.InString(value)
+            let result = __unwrapped__instance.InString(value)
             $2?.initialize(to: try! HString(result).detach())
 
             return S_OK
         },
 
         InEnum: {
-            guard let __unwraped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let value: test_component.Signed = $1
 
-            let result = __unwraped__instance.InEnum(value)
+            let result = __unwrapped__instance.InEnum(value)
             $2?.initialize(to: try! HString(result).detach())
 
             return S_OK
         },
 
         OutInt32: {
-            guard let __unwraped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             var value: Int32 = 0
 
-            __unwraped__instance.OutInt32(&value)
+            __unwrapped__instance.OutInt32(&value)
             $1?.initialize(to: value)
 
             return S_OK
         },
 
         OutString: {
-            guard let __unwraped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             var value: String?
 
-            __unwraped__instance.OutString(&value)
+            __unwrapped__instance.OutString(&value)
             $1?.initialize(to: try! HString(value).detach())
 
             return S_OK
         },
 
         OutBlittableStruct: {
-            guard let __unwraped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             var value: test_component.BlittableStruct = .init()
 
-            __unwraped__instance.OutBlittableStruct(&value)
+            __unwrapped__instance.OutBlittableStruct(&value)
             $1?.initialize(to: .from(swift: value))
 
             return S_OK
         },
 
         OutNonBlittableStruct: {
-            guard let __unwraped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             var value: test_component.NonBlittableStruct = .init()
 
-            __unwraped__instance.OutNonBlittableStruct(&value)
+            __unwrapped__instance.OutNonBlittableStruct(&value)
             let _value = __ABI_test_component._ABI_NonBlittableStruct(from: value)
-        	$1?.initialize(to: _value.detach())
+            	$1?.initialize(to: _value.detach())
 
             return S_OK
         },
 
         OutEnum: {
-            guard let __unwraped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             var value: test_component.Signed = .init(0)
 
-            __unwraped__instance.OutEnum(&value)
+            __unwrapped__instance.OutEnum(&value)
             $1?.initialize(to: value)
 
             return S_OK
         },
 
         ReturnEnum: {
-            guard let __unwraped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            let result = __unwraped__instance.ReturnEnum()
+            let result = __unwrapped__instance.ReturnEnum()
             $1?.initialize(to: result)
 
             return S_OK
         },
 
         get_EnumProperty: {
-            guard let __unwraped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            let value = __unwraped__instance.EnumProperty
+            let value = __unwrapped__instance.EnumProperty
             $1?.initialize(to: value)
 
             return S_OK
         },
 
         put_EnumProperty: {
-            guard let __unwraped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let value: test_component.Fruit = $1
 
-            __unwraped__instance.EnumProperty = value
-            
+            __unwrapped__instance.EnumProperty = value
+
             return S_OK
         },
 
         get_ID: {
-            guard let __unwraped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            let value = __unwraped__instance.ID
+            let value = __unwrapped__instance.ID
             let valueWrapper = __ABI_test_component.__x_ABI_C__FIReference_1_GUIDWrapper(value)
-        let _value = try! valueWrapper?.to_abi { $0 }
-        $1?.initialize(to: _value)
+            let _value = try! valueWrapper?.to_abi { $0 }
+            $1?.initialize(to: _value)
 
             return S_OK
         },
 
         put_ID: {
-            guard let __unwraped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let value: UUID? = .init(ref: $1)
 
-            __unwraped__instance.ID = value
-            
+            __unwrapped__instance.ID = value
+
             return S_OK
         },
 
@@ -1776,10 +1776,10 @@ public enum __ABI_test_component {
         remove_ImplementableEvent: { _, _ in return failWith(err: E_NOTIMPL) },
 
         FireEvent: {
-            guard let __unwraped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            __unwraped__instance.FireEvent()
-            
+            __unwrapped__instance.FireEvent()
+
             return S_OK
         }
     )
@@ -1966,19 +1966,19 @@ public enum __ABI_test_component {
         },
 
         DoThis: {
-            guard let __unwraped__instance = ISimpleDelegateWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = ISimpleDelegateWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            __unwraped__instance.DoThis()
-            
+            __unwrapped__instance.DoThis()
+
             return S_OK
         },
 
         DoThat: {
-            guard let __unwraped__instance = ISimpleDelegateWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = ISimpleDelegateWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let val: Int32 = $1
 
-            __unwraped__instance.DoThat(val)
-            
+            __unwrapped__instance.DoThat(val)
+
             return S_OK
         }
     )
@@ -2236,10 +2236,10 @@ public enum __ABI_test_component {
         },
 
         OnDoTheThing: {
-            guard let __unwraped__instance = IBaseOverridesWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IBaseOverridesWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            __unwraped__instance.OnDoTheThing()
-            
+            __unwrapped__instance.OnDoTheThing()
+
             return S_OK
         }
     )
@@ -2308,10 +2308,10 @@ public enum __ABI_test_component {
         },
 
         OnBeforeDoTheThing: {
-            guard let __unwraped__instance = IUnsealedDerivedOverridesWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IUnsealedDerivedOverridesWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            __unwraped__instance.OnBeforeDoTheThing()
-            
+            __unwrapped__instance.OnBeforeDoTheThing()
+
             return S_OK
         }
     )
@@ -2387,10 +2387,10 @@ public enum __ABI_test_component {
         },
 
         OnAfterDoTheThing: {
-            guard let __unwraped__instance = IUnsealedDerivedOverloads2Wrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IUnsealedDerivedOverloads2Wrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
 
-            __unwraped__instance.OnAfterDoTheThing()
-            
+            __unwrapped__instance.OnAfterDoTheThing()
+
             return S_OK
         }
     )
