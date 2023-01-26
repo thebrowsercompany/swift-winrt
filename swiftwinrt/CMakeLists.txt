@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 project(swiftwinrt)
 
 set(SWIFTWINRT_VERSION_STRING "0.0.1")
-set(MicrosoftWindowsWinMD_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/microsoft.windows.winmd)
+set(MicrosoftWindowsWinMD_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/winmd/src)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)

@@ -1,0 +1,3 @@
+[submodule "swiftwinrt/winmd"]
+	path = swiftwinrt/winmd
+	url = https://github.com/microsoft/winmd.git
