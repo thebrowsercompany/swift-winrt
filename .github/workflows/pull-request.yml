@@ -13,16 +13,15 @@ jobs:
       with:
         submodules: recursive
 
-    - name: Install the Swift Toolset
-      shell: pwsh
-      run: |
-        Invoke-WebRequest -URI https://download.swift.org/swift-5.7.3-release/windows10/swift-5.7.3-RELEASE/swift-5.7.3-RELEASE-windows10.exe -OutFile swift-5.7.3-RELEASE-windows10.exe
-        .\swift-5.7.3-RELEASE-windows10.exe /install /quiet 
-
-    - name: Configure VC++ build for amd64
+    - name: Setup the VS environment for amd64
       uses: seanmiddleditch/gha-setup-vsdevenv@master
       with:
         arch: amd64
+
+    - name: Install the Swift Toolset
+      uses: rinsuki/setup-swift-windows
+      with:
+        version: "5.7.3"
 
     - name: Configure CMake
       run: cmake --preset release
