@@ -14,12 +14,12 @@ jobs:
         submodules: recursive
 
     - name: Setup the VS environment for amd64
-      uses: seanmiddleditch/gha-setup-vsdevenv@master
+      uses: seanmiddleditch/gha-setup-vsdevenv@v4
       with:
         arch: amd64
 
     - name: Install the Swift Toolset
-      uses: rinsuki/setup-swift-windows
+      uses: rinsuki/setup-swift-windows@0.1.1
       with:
         version: "5.7.3"
 
