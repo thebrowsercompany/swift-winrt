@@ -22,8 +22,8 @@ jobs:
       shell: pwsh
       run: |
         $swiftTag = "swift-5.7.3-RELEASE"
-        $url = " https://download.swift.org/swift-5.7.3-release/windows10/$swiftTag/$swiftTag-windows10.exe"
-        $outpath = Join-Path -Path "{{ workspace_dir }}/downloads" -ChildPath "swift-installer.exe"
+        $url = "https://download.swift.org/swift-5.7.3-release/windows10/$swiftTag/$swiftTag-windows10.exe"
+        $outpath = Join-Path -Path "$env:TEMP/downloads" -ChildPath "swift-installer.exe"
         $wc = New-Object System.Net.WebClient
         $wc.DownloadFile($url, $outpath)
         $install = Start-Process -Filepath "$outpath" -Wait -ArgumentList "-q" -PassThru
@@ -34,8 +34,6 @@ jobs:
           Remove-Item -Path $outpath
         }
         exit $install.ExitCode
-      args:
-        creates: '{{ workspace_dir }}\downloads\swift-installer.exe'
 
     # - name: Set Swift environment variables
     #   win_shell: |
