@@ -19,7 +19,8 @@ jobs:
         arch: amd64
 
     - name: Install the Swift Toolset
-      win_shell: |
+      shell: pwsh
+      run: |
         $swiftTag = "swift-5.7.3-RELEASE"
         $url = " https://download.swift.org/swift-5.7.3-release/windows10/$swiftTag/$swiftTag-windows10.exe"
         $outpath = Join-Path -Path "{{ workspace_dir }}/downloads" -ChildPath "swift-installer.exe"
