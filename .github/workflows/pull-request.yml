@@ -13,7 +13,7 @@ jobs:
       with:
         submodules: recursive
 
-    - name: Setup the VS environment for amd64
+    - name: Configure VC++ build for amd64
       uses: seanmiddleditch/gha-setup-vsdevenv@v4
       with:
         arch: amd64
