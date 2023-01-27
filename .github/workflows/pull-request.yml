@@ -23,9 +23,8 @@ jobs:
       run: |
         $swiftTag = "swift-5.7.3-RELEASE"
         $url = "https://download.swift.org/swift-5.7.3-release/windows10/$swiftTag/$swiftTag-windows10.exe"
-        $outpath = Join-Path -Path "$env:TEMP/downloads" -ChildPath "swift-installer.exe"
-        $wc = New-Object System.Net.WebClient
-        $wc.DownloadFile($url, $outpath)
+        $outpath = "$env:RUNNER_TEMP/swift-installer.exe"
+        Invoke-WebRequest -URI $url -OutFile "$outpath"
         $install = Start-Process -Filepath "$outpath" -Wait -ArgumentList "-q" -PassThru
         # remove the download if the install fails so we can retry
         if ($install.ExitCode -ne 0) {
