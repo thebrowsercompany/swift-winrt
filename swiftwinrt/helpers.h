@@ -38,7 +38,7 @@ namespace swiftwinrt
 
         explicit type_name(coded_index<TypeDefOrRef> const& type)
         {
-            auto const& [type_namespace, type_name] = get_type_namespace_and_name(type);
+            auto const& [type_namespace, type_name] = get_namespace_and_name(type);
             name_space = type_namespace;
             name = type_name;
         }
@@ -67,6 +67,26 @@ namespace swiftwinrt
             name = type->type().TypeName();
         }
 
+        // Same as winmd::reader::get_type_namespace_and_name, but also handles TypeSpecs
+        static inline std::pair<std::string_view, std::string_view> get_namespace_and_name(coded_index<TypeDefOrRef> const& type)
+        {
+            if (type.type() == TypeDefOrRef::TypeDef)
+            {
+                auto const def = type.TypeDef();
+                return { def.TypeNamespace(), def.TypeName() };
+            }
+            else if (type.type() == TypeDefOrRef::TypeRef)
+            {
+                auto const ref = type.TypeRef();
+                return { ref.TypeNamespace(), ref.TypeName() };
+            }
+            else
+            {
+                XLANG_ASSERT(type.type() == TypeDefOrRef::TypeSpec);
+                auto generic_type = type.TypeSpec().Signature().GenericTypeInst().GenericType();
+                return get_namespace_and_name(generic_type);
+            }
+        }
     };
 
     inline bool operator==(type_name const& left, type_name const& right)

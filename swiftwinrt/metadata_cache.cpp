@@ -773,7 +773,7 @@ metadata_type const& metadata_cache::find_dependent_type(init_state& state, code
         break;
     case TypeDefOrRef::TypeDef:
     case TypeDefOrRef::TypeRef:
-        auto [ns, name] = get_type_namespace_and_name(type);
+        auto [ns, name] = type_name::get_namespace_and_name(type);
 
         result = &find(ns, name);
         if (auto typeDef = dynamic_cast<typedef_base const*>(result))
