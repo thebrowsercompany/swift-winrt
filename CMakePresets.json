@@ -16,38 +16,66 @@
             },
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "cl",
-                "CMAKE_CXX_COMPILER": "cl"
+                "CMAKE_CXX_COMPILER": "cl",
+                "CMAKE_SYSTEM_VERSION": "10.0.22621.0",
+                "CMAKE_MODULE_PATH": "${sourceDir}/cmake"
             }
         },
         {
-            "name": "tool-debug",
-            "displayName": "Tool Only (Debug)",
-            "binaryDir": "${sourceDir}/build/tool-debug",
+            "name": "debug",
+            "displayName": "Debug",
+            "binaryDir": "${sourceDir}/build/debug",
+            "inherits": [ "base" ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "release",
+            "displayName": "Release",
+            "binaryDir": "${sourceDir}/build/release",
+            "inherits": [ "base" ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "debug-noswift",
+            "displayName": "Debug, no Swift",
+            "binaryDir": "${sourceDir}/build/debug-noswift",
             "inherits": [ "base" ],
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
-                "SKIP_TESTS": true
+                "NO_SWIFT": true
             }
         },
         {
-            "name": "tool-release",
-            "displayName": "Tool Only (Release)",
-            "binaryDir": "${sourceDir}/build/tool-release",
+            "name": "release-noswift",
+            "displayName": "Release, no Swift",
+            "binaryDir": "${sourceDir}/build/release-noswift",
             "inherits": [ "base" ],
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release",
-                "SKIP_TESTS": true
+                "NO_SWIFT": true
             }
         }
     ],
     "buildPresets": [
       {
-        "name": "tool-debug",
-        "configurePreset": "tool-debug"
+        "name": "debug",
+        "configurePreset": "debug"
       },
       {
-        "name": "tool-release",
-        "configurePreset": "tool-release"
+        "name": "release",
+        "configurePreset": "release"
+      },
+      {
+        "name": "debug-noswift",
+        "configurePreset": "debug-noswift"
+      },
+      {
+        "name": "release-noswift",
+        "configurePreset": "release-noswift"
       }
     ]
 }

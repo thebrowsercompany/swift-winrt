@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: windows-2022
 
     steps:
     - uses: actions/checkout@v3
@@ -17,7 +17,7 @@ jobs:
         arch: amd64
 
     - name: Configure CMake
-      run: cmake --preset tool-release
+      run: cmake --preset release-noswift
 
     - name: Build
-      run: cmake --build --preset tool-release
+      run: cmake --build --preset release-noswift

@@ -1,4 +1,5 @@
 project(test_component_cpp)
+include(nuget)
 
 set(H_FILE
     ${CMAKE_TEST_COMPONENT_OUTPUT}/test_component.h
@@ -9,7 +10,7 @@ set(MIDL_FILE
 )
 
 set(CPP_WINRT_OUTPUT_DIR
-    ${CMAKE_CURRENT_SOURCE_DIR}/generated
+    ${CMAKE_CURRENT_BINARY_DIR}/generated
 )
 
 # Fix the paths passed to midlrt
@@ -65,19 +66,29 @@ if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
 endif()
 
 set(CPPWINRT_OUTPUT
-    ${CPP_WINRT_OUTPUT_DIR}/module.g.cpp
-    ${CPP_WINRT_OUTPUT_DIR}/winrt/test_component.h
-    ${CPP_WINRT_OUTPUT_DIR}/winrt/fast_forward.h
-    ${CPP_WINRT_OUTPUT_DIR}/winrt/impl/test_component.0.h
-    ${CPP_WINRT_OUTPUT_DIR}/winrt/impl/test_component.1.h
-    ${CPP_WINRT_OUTPUT_DIR}/winrt/impl/test_component.2.h
+  ${CPP_WINRT_OUTPUT_DIR}/module.g.cpp
+  ${CPP_WINRT_OUTPUT_DIR}/winrt/test_component.h
+  ${CPP_WINRT_OUTPUT_DIR}/winrt/fast_forward.h
+  ${CPP_WINRT_OUTPUT_DIR}/winrt/impl/test_component.0.h
+  ${CPP_WINRT_OUTPUT_DIR}/winrt/impl/test_component.1.h
+  ${CPP_WINRT_OUTPUT_DIR}/winrt/impl/test_component.2.h
 )
+
+nuget(
+  SUBCOMMAND install
+  DOWNLOAD_PATH ${CMAKE_BINARY_DIR}
+  SOURCE_NAME "nuget.org"
+  PUBLISH_URL "https://api.nuget.org/v3/index.json"
+  PACKAGE "Microsoft.Windows.CppWinRT"
+  PACKAGE_VERSION "2.0.221121.5"
+)
+set(CPPWINRT_EXE_PATH ${NUGET_PACKAGE_INSTALL_ROOT}/bin/cppwinrt.exe)
 
 add_custom_command(
   OUTPUT ${MIDL_OUTPUT} ${CPPWINRT_OUTPUT} 
-  COMMAND midlrt /metadata_dir $ENV{SystemRoot}/system32/winmetadata /winrt /winmd ${WINMD_FILE} /h ${H_FILE} /ns_prefix /nomidl ${MIDL_FILE}
-  COMMAND ${CMAKE_SOURCE_DIR}/tools/cppwinrt.exe -input ${WINMD_FILE} -comp ${CPP_WINRT_OUTPUT_DIR} -output ${CPP_WINRT_OUTPUT_DIR} -include test_component -verbose -opt -lib test -overwrite -reference 10.0.20348.0 -name test_component
-  COMMAND ${CMAKE_SOURCE_DIR}/tools/cppwinrt.exe -output ${CPP_WINRT_OUTPUT_DIR} -include Windows.Foundation -opt -verbose -reference 10.0.20348.0
+  COMMAND midlrt.exe /metadata_dir $ENV{SystemRoot}/system32/winmetadata /winrt /winmd ${WINMD_FILE} /h ${H_FILE} /ns_prefix /nomidl ${MIDL_FILE}
+  COMMAND ${CPPWINRT_EXE_PATH} -input ${WINMD_FILE} -comp ${CPP_WINRT_OUTPUT_DIR} -output ${CPP_WINRT_OUTPUT_DIR} -include test_component -verbose -opt -lib test -overwrite -reference ${CMAKE_SYSTEM_VERSION} -name test_component
+  COMMAND ${CPPWINRT_EXE_PATH} -output ${CPP_WINRT_OUTPUT_DIR} -include Windows.Foundation -opt -verbose -reference ${CMAKE_SYSTEM_VERSION}
   DEPENDS ${MIDL_FILE}
   MAIN_DEPENDENCY ${MIDL_FILE}
   VERBATIM
