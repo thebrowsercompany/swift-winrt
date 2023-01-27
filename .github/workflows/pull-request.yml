@@ -32,6 +32,11 @@ jobs:
           Write-Error $install.StandardError
           Remove-Item -Path $outpath
         }
+        else {
+          # Create environment variables for CMake
+          $swiftcPath = (Get-Childitem -Path C:\Library\Developer\ -Include "swiftc.exe" -File -Recurse)[0].FullName
+          echo "SWIFTC=$swiftcPath" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+        }
         exit $install.ExitCode
 
     # - name: Set Swift environment variables
