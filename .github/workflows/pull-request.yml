@@ -19,9 +19,26 @@ jobs:
         arch: amd64
 
     - name: Install the Swift Toolset
-      uses: rinsuki/setup-swift-windows@0.1.1
-      with:
-        version: "5.7.3"
+      win_shell: |
+        $swiftTag = "swift-5.7.3-RELEASE"
+        $url = " https://download.swift.org/swift-5.7.3-release/windows10/$swiftTag/$swiftTag-windows10.exe"
+        $outpath = Join-Path -Path "{{ workspace_dir }}/downloads" -ChildPath "swift-installer.exe"
+        $wc = New-Object System.Net.WebClient
+        $wc.DownloadFile($url, $outpath)
+        $install = Start-Process -Filepath "$outpath" -Wait -ArgumentList "-q" -PassThru
+        # remove the download if the install fails so we can retry
+        if ($install.ExitCode -ne 0) {
+          Write-Output $install.StandardOutput
+          Write-Error $install.StandardError
+          Remove-Item -Path $outpath
+        }
+        exit $install.ExitCode
+      args:
+        creates: '{{ workspace_dir }}\downloads\swift-installer.exe'
+
+    # - name: Set Swift environment variables
+    #   win_shell: |
+    #     echo "C:\Library\Developer\Toolchains\unknown-Asserts-development.xctoolchain\usr\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
 
     - name: Configure CMake
       run: cmake --preset release
