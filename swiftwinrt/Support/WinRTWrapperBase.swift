@@ -1,4 +1,3 @@
-import Ctest_component
 import WinSDK
 
 public protocol IWinRTObject: AnyObject {

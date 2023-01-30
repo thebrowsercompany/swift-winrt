@@ -1,5 +1,4 @@
 import WinSDK
-import Ctest_component
 
 public protocol WinRTVector : IVector, AbiInterfaceImpl where swift_Projection == any IVector<Element> {}
 public protocol WinRTVectorView : IVectorView, AbiInterfaceImpl where swift_Projection == any IVectorView<Element> {}

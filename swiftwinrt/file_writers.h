@@ -76,6 +76,70 @@ namespace swiftwinrt
         return wrote;
     }
 
+    // Gets all Swift support files for the generated code, indexed by filename.
+    static std::map<std::string, std::string_view> get_swift_support_files()
+    {
+        typedef std::map<std::string, std::string_view> support_file_map;
+        support_file_map support_files;
+        EnumResourceNamesA(GetModuleHandle(NULL), "SWIFT_FILE",
+            [](HMODULE hModule, LPCSTR lpType, LPSTR lpName, LONG_PTR lParam) -> BOOL
+            {
+                // We expect lpName to be a string pointer, but it could be an integer resource ID.
+                if (IS_INTRESOURCE(lpName)) return TRUE;
+
+                auto res_handle = FindResourceA(hModule, lpName, lpType);
+                if (res_handle == 0) return TRUE;
+
+                auto data_handle = LoadResource(hModule, res_handle);
+                if (data_handle == 0) return TRUE;
+
+                // Resources always have ALL_CAPS names
+                std::string file_name{ lpName };
+                std::transform(file_name.begin(), file_name.end(), file_name.begin(),
+                    [](unsigned char c) { return std::tolower(c); });
+                file_name += ".swift";
+
+                // From Microsoft docs:
+                //   The pointer returned by LockResource is valid until the module containing the resource is unloaded.
+                //   It is not necessary to unlock resources because the system automatically deletes them when the process that created them terminates.
+                auto text_ptr = static_cast<const char*>(LockResource(data_handle));
+                auto text_size = SizeofResource(hModule, res_handle);
+
+                ((support_file_map*)lParam)->emplace(std::move(file_name), std::string_view(text_ptr, text_size));
+                return TRUE;
+            },
+            (LONG_PTR)&support_files);
+
+        return support_files;
+    }
+
+    static void write_swift_support_files(std::string_view const& module_name)
+    {
+        auto support_files = get_swift_support_files();
+
+        std::string dir_path = { settings.output_folder + "Source\\" };
+        dir_path += module_name;
+        dir_path += "\\Support\\";
+        create_directories(dir_path);
+
+        for (auto& support_file : support_files)
+        {
+            std::string path = dir_path + support_file.first;
+
+            std::ofstream file;
+            file.exceptions(std::ofstream::failbit | std::ofstream::badbit);
+            try
+            {
+                file.open(path, std::ios::out | std::ios::binary);
+                file.write(support_file.second.data(), support_file.second.size());
+            }
+            catch (std::ofstream::failure const& e)
+            {
+                throw std::filesystem::filesystem_error(e.what(), path, std::io_errc::stream);
+            }
+        }
+    }
+
     static void write_namespace_abi(std::string_view const& ns, type_cache const& members, metadata_filter const& filter)
     {
         writer w;

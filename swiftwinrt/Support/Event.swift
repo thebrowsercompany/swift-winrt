@@ -1,6 +1,4 @@
 import WinSDK
-import Ctest_component
-
 
 public class Event<Data, Return> {
     open func addHandler(handler: @escaping (Data) -> Return) -> Disposable? { fatalError("not implemented") }
