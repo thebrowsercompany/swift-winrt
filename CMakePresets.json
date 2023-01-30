@@ -40,28 +40,6 @@
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release"
             }
-        },
-        {
-            "name": "debug-noswift",
-            "displayName": "Debug, no Swift",
-            "binaryDir": "${sourceDir}/build/debug-noswift",
-            "installDir": "${sourceDir}/out/debug-noswift",
-            "inherits": [ "base" ],
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug",
-                "NO_SWIFT": true
-            }
-        },
-        {
-            "name": "release-noswift",
-            "displayName": "Release, no Swift",
-            "binaryDir": "${sourceDir}/build/release-noswift",
-            "installDir": "${sourceDir}/out/release-noswift",
-            "inherits": [ "base" ],
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Release",
-                "NO_SWIFT": true
-            }
         }
     ],
     "buildPresets": [
@@ -72,14 +50,6 @@
       {
         "name": "release",
         "configurePreset": "release"
-      },
-      {
-        "name": "debug-noswift",
-        "configurePreset": "debug-noswift"
-      },
-      {
-        "name": "release-noswift",
-        "configurePreset": "release-noswift"
       }
     ]
 }
