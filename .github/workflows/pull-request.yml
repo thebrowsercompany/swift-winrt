@@ -20,9 +20,9 @@ jobs:
 
     - name: Install the Swift Toolset
       uses: compnerd/gha-setup-swift@main
-        with:
-          branch: swift-5.7.3-release
-          tag: 5.7.3-RELEASE
+      with:
+        branch: swift-5.7.3-release
+        tag: 5.7.3-RELEASE
 
     - name: Configure CMake
       run: cmake --preset release
