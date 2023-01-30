@@ -1,5 +1,5 @@
 {
-    "version": 2,
+    "version": 3,
     "cmakeMinimumRequired": {
         "major": 3,
         "minor": 19,
@@ -26,6 +26,7 @@
             "name": "debug",
             "displayName": "Debug",
             "binaryDir": "${sourceDir}/build/debug",
+            "installDir": "${sourceDir}/out/debug",
             "inherits": [ "base" ],
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug"
@@ -35,6 +36,7 @@
             "name": "release",
             "displayName": "Release",
             "binaryDir": "${sourceDir}/build/release",
+            "installDir": "${sourceDir}/out/release",
             "inherits": [ "base" ],
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release"
@@ -44,6 +46,7 @@
             "name": "debug-noswift",
             "displayName": "Debug, no Swift",
             "binaryDir": "${sourceDir}/build/debug-noswift",
+            "installDir": "${sourceDir}/out/debug-noswift",
             "inherits": [ "base" ],
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
@@ -54,6 +57,7 @@
             "name": "release-noswift",
             "displayName": "Release, no Swift",
             "binaryDir": "${sourceDir}/build/release-noswift",
+            "installDir": "${sourceDir}/out/release-noswift",
             "inherits": [ "base" ],
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release",

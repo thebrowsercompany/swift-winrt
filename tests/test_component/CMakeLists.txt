@@ -11,7 +11,7 @@ set(SWIFT_WINRT_PARAMETERS
 "-support test_component"
 "-test"
 "-output ${CMAKE_CURRENT_SOURCE_DIR}"
-"-reference 10.0.20348.0"
+"-reference ${CMAKE_SYSTEM_VERSION}"
 )
 
 string(REPLACE ";" "\n" SWIFT_WINRT_PARAMETERS "${SWIFT_WINRT_PARAMETERS}")
