@@ -32,6 +32,5 @@ jobs:
         cmake --build --preset release
         cmake --build --preset release --target install
 
-    # Failing due to WinRT class not registered error
-    # - name: Run test app
-    #  run: .\out\release\bin\test_app.exe
+    - name: Run test app
+      run: .\out\release\bin\test_app.exe
