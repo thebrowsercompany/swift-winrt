@@ -10,7 +10,7 @@
 
 namespace swiftwinrt
 {
-    // Gets all of a win32 module's resources of a given type as text strings.
+    // Gets all of a win32 module's resources of a given type as byte spans, keyed by name.
     static std::map<std::string, std::span<const std::byte>> get_named_resources_of_type(
         HMODULE hModule, LPCSTR type, bool make_lowercase = false)
     {
