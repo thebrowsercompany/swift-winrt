@@ -347,10 +347,13 @@ Where <spec> is one or more of:
                     {
                         swiftwinrt::task_group module_group;
 
-                        module_group.add([&]
+                        if (module == settings.support)
                         {
-                            write_swift_support_files(module);
-                        });
+                            module_group.add([&]
+                            {
+                                write_swift_support_files(module);
+                            });
+                        }
 
                         for (auto& ns : namespaces)
                         {
