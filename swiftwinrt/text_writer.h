@@ -165,9 +165,9 @@ namespace swiftwinrt
             m_second.clear();
         }
 
-        void flush_to_file(std::string const& filename, bool append = false)
+        void flush_to_file(std::filesystem::path const& filename, bool append = false)
         {
-            if (!file_equal(filename))
+            if (!file_equal(filename.string()))
             {
                 std::ofstream file;
                 file.exceptions(std::ofstream::failbit | std::ofstream::badbit);
@@ -186,11 +186,6 @@ namespace swiftwinrt
             }
             m_first.clear();
             m_second.clear();
-        }
-
-        void flush_to_file(std::filesystem::path const& filename)
-        {
-            flush_to_file(filename.string());
         }
 
         std::string flush_to_string()

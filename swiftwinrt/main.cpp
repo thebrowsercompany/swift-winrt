@@ -107,17 +107,14 @@ Where <spec> is one or more of:
         settings.license = args.exists("license");
         settings.brackets = args.exists("brackets");
         settings.test = args.exists("test");
-        path output_folder = args.value("output", ".");
+        settings.output_folder = args.value("output", ".");
         
         settings.support = args.value("support", "Windows");
 
-        create_directories(output_folder);
-        create_directories(output_folder / "Source");
-        create_directories(output_folder / "Source" / "CWinRT");
-        create_directories(output_folder / "Source" / "CWinRT" / "include");
-        settings.output_folder = canonical(output_folder).string();
-
-        settings.output_folder += '\\';
+        create_directories(settings.output_folder);
+        create_directories(settings.output_folder / "Source");
+        create_directories(settings.output_folder / "Source" / "CWinRT");
+        create_directories(settings.output_folder / "Source" / "CWinRT" / "include");
 
         for (auto && include : args.values("include"))
         {
@@ -165,13 +162,11 @@ Where <spec> is one or more of:
             settings.component_opt = args.exists("optimize");
             settings.component_ignore_velocity = args.exists("ignore_velocity");
 
-            auto component = args.value("component");
+            settings.component_folder = args.value("component");
 
-            if (!component.empty())
+            if (!settings.component_folder.empty())
             {
-                create_directories(component);
-                settings.component_folder = canonical(component).string();
-                settings.component_folder += '\\';
+                create_directories(settings.component_folder);
             }
         }
     }
@@ -250,7 +245,7 @@ Where <spec> is one or more of:
     {
         int result{};
         writer w;
-        std::string log_file;
+        std::filesystem::path log_file;
         try
         {
             auto start = get_start_time();
@@ -263,7 +258,7 @@ Where <spec> is one or more of:
             }
 
             process_args(args);
-            log_file = settings.output_folder + "swiftwinrt.log";
+            log_file = settings.output_folder / "swiftwinrt.log";
 
             cache c{ get_files_to_cache(), [](TypeDef const& type) {
                 if (!type.Flags().WindowsRuntime())
@@ -294,11 +289,11 @@ Where <spec> is one or more of:
                     w.write(" ref:   %\n", file);
                 }
 
-                w.write(" out:   %\n", settings.output_folder);
+                w.write(" out:   %\n", settings.output_folder.string());
 
                 if (!settings.component_folder.empty())
                 {
-                    w.write(" cout:  %\n", settings.component_folder);
+                    w.write(" cout:  %\n", settings.component_folder.string());
                 }
             }
 

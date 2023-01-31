@@ -16,7 +16,7 @@ namespace swiftwinrt
         std::set<std::string> input;
         std::set<std::string> reference;
 
-        std::string output_folder;
+        std::filesystem::path output_folder;
         std::string support;
         bool license{};
         bool brackets{};
@@ -26,7 +26,7 @@ namespace swiftwinrt
         bool test{};
         bool spm{};
         project_type project{ project_type::none };
-        std::string component_folder;
+        std::filesystem::path component_folder;
         std::string component_name;
         bool component_prefix{};
         bool component_overwrite{};
