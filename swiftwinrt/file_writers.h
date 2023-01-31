@@ -84,16 +84,14 @@ namespace swiftwinrt
     {
         auto c_module_name = settings.get_c_module_name();
 
-        std::string dir_path = { settings.output_folder + "Source\\" };
-        dir_path += module_name;
-        dir_path += "\\Support\\";
+        auto dir_path = std::filesystem::path(settings.output_folder) / "Source" / module_name / "Support";
         create_directories(dir_path);
 
         auto support_files = get_named_resources_of_type(
             GetModuleHandle(NULL), RESOURCE_TYPE_SWIFT_FILE_STR, /* make_lowercase: */ true);
-        for (auto& support_file : support_files)
+        for (const auto& support_file : support_files)
         {
-            std::string path = dir_path + support_file.first + ".swift";
+            auto path = dir_path / (support_file.first + ".swift");
 
             // Replace the C bindings module name placeholder with regex due to no string.replace(string, string)
             std::string code{ reinterpret_cast<const char*>(support_file.second.data()), support_file.second.size() };
