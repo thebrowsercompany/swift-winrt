@@ -1,6 +1,8 @@
 // Copyright © 2021 Saleem Abdulrasool <compnerd@compnerd.org>
 // SPDX-License-Identifier: BSD-3
 
+import C_BINDINGS_MODULE
+
 extension TrustLevel {
   public static var BaseTrust: TrustLevel {
     TrustLevel(rawValue: 0)

@@ -1,25 +1,25 @@
 // Copyright © 2021 Saleem Abdulrasool <compnerd@compnerd.org>
 // SPDX-License-Identifier: BSD-3
 
-import Ctest_component
+import C_BINDINGS_MODULE
 import Foundation
 open class IInspectable: IUnknown {
   override open class var IID: IID { IID_IInspectable }
 
   public func GetIids(_ iidCount: UnsafeMutablePointer<ULONG>, _ iids: UnsafeMutablePointer<UnsafeMutablePointer<IID>?>?) throws {
-    return try perform(as: Ctest_component.IInspectable.self) { pThis in
+    return try perform(as: C_BINDINGS_MODULE.IInspectable.self) { pThis in
       try CHECKED(pThis.pointee.lpVtbl.pointee.GetIids(pThis, iidCount, iids))
     }
   }
 
   public func GetRuntimeClassName(_ className: UnsafeMutablePointer<HSTRING?>) throws {
-    return try perform(as: Ctest_component.IInspectable.self) { pThis in
+    return try perform(as: C_BINDINGS_MODULE.IInspectable.self) { pThis in
       try CHECKED(pThis.pointee.lpVtbl.pointee.GetRuntimeClassName(pThis, className))
     }
   }
 
   public func GetTrustLevel(_ trustLevel: UnsafeMutablePointer<TrustLevel>?) throws {
-    return try perform(as: Ctest_component.IInspectable.self) { pThis in
+    return try perform(as: C_BINDINGS_MODULE.IInspectable.self) { pThis in
       try CHECKED(pThis.pointee.lpVtbl.pointee.GetTrustLevel(pThis, trustLevel))
     }
   }
@@ -29,7 +29,7 @@ open class IInspectable: IUnknown {
 // These types are used for composable types which don't provide an overrides interface. Composable types which
 // follow this pattern should define their composability contract like the following:
 // internal class IBaseNoOverrides : OverridesImpl {
-//      internal typealias c_ABI = Ctest_component.IInspectable
+//      internal typealias c_ABI = C_BINDINGS_MODULE.IInspectable
 //      internal typealias swift_ABI = __ABI_test_component.IBaseNoOverrides
 //      internal typealias swift_Projection = BaseNoOverrides
 //      internal typealias c_defaultABI = __x_ABI_Ctest__component_CIBaseNoOverrides
@@ -37,8 +37,8 @@ open class IInspectable: IUnknown {
 // }
 // internal typealias Composable = IBaseNoOverrides
 enum __ABI {
-    private typealias AnyObjectWrapper = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>
-    fileprivate static var IInspectableVTable: Ctest_component.IInspectableVtbl = .init(
+    private typealias AnyObjectWrapper = WinRTWrapperBase<C_BINDINGS_MODULE.IInspectable, AnyObject>
+    fileprivate static var IInspectableVTable: C_BINDINGS_MODULE.IInspectableVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
             guard riid.pointee == IUnknown.IID ||
@@ -99,7 +99,7 @@ enum __ABI {
     )
 }
 
-extension ComposableImpl where c_ABI == Ctest_component.IInspectable {
+extension ComposableImpl where c_ABI == C_BINDINGS_MODULE.IInspectable {
   public static func makeAbi() -> c_ABI {
     let vtblPtr = withUnsafeMutablePointer(to: &__ABI.IInspectableVTable) { $0 }
     return .init(lpVtbl: vtblPtr)

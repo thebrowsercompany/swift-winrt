@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: BSD-3
 
 import WinSDK
-import Ctest_component
+import C_BINDINGS_MODULE
 
 public func RoGetActivationFactory<Factory: IInspectable>(_ activatableClassId: HString) throws -> Factory {
   var iid: IID = Factory.IID
@@ -13,7 +13,7 @@ public func RoGetActivationFactory<Factory: IInspectable>(_ activatableClassId: 
 }
 
 public func RoActivateInstance<Instance: IInspectable>(_ activatableClassId: HString) throws -> Instance {
-  var instance: UnsafeMutablePointer<Ctest_component.IInspectable>?
+  var instance: UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable>?
   try CHECKED(RoActivateInstance(activatableClassId.hRef.hString, &instance))
   let inspectable = IInspectable(consuming: UnsafeMutableRawPointer(instance)?.bindMemory(to: WinSDK.IUnknown.self, capacity: 1))
   return try inspectable.QueryInterface()

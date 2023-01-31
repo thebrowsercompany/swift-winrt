@@ -1,7 +1,7 @@
 // Copyright © 2021 Saleem Abdulrasool <compnerd@compnerd.org>
 // SPDX-License-Identifier: BSD-3
 
-import Ctest_component
+import C_BINDINGS_MODULE
 
 public class HString {
   public private(set) var hRef: HStringStorage
@@ -26,7 +26,7 @@ public class HString {
     self.hRef = try HStringStorage(buffer)
   }
 
-  public init(consuming hString: Ctest_component.HSTRING?) {
+  public init(consuming hString: C_BINDINGS_MODULE.HSTRING?) {
     self.hRef = HStringStorage(consuming: hString)
   }
 

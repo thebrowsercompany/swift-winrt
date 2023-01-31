@@ -1,4 +1,6 @@
 import WinSDK
+import C_BINDINGS_MODULE
+
 
 public class Event<Data, Return> {
     open func addHandler(handler: @escaping (Data) -> Return) -> Disposable? { fatalError("not implemented") }

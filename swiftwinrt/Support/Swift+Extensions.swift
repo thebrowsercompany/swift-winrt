@@ -1,6 +1,8 @@
 // Copyright © 2021 Saleem Abdulrasool <compnerd@compnerd.org>
 // SPDX-License-Identifier: BSD-3
 
+import C_BINDINGS_MODULE
+
 extension String {
   internal init(from hString: HSTRING?) {
     var length: UINT32 = 0

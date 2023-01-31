@@ -44,6 +44,8 @@ namespace swiftwinrt
         std::map<winmd::reader::TypeDef, winmd::reader::TypeDef> fastabi_cache;
 
         bool has_project_type(project_type type) const { return (project & type) != project_type::none; }
+
+        std::string get_c_module_name() const { return test ? "C" + support : "CWinRT"; }
     };
 
     extern settings_type settings;

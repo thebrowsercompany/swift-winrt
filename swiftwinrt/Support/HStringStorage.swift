@@ -1,6 +1,8 @@
 // Copyright © 2021 Saleem Abdulrasool <compnerd@compnerd.org>
 // SPDX-License-Identifier: BSD-3
 
+import C_BINDINGS_MODULE
+
 @_fixed_layout
 final public class HStringStorage {
   internal private(set) var hString: HSTRING?

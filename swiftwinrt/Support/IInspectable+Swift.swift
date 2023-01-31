@@ -1,7 +1,7 @@
 // Copyright © 2021 Saleem Abdulrasool <compnerd@compnerd.org>
 // SPDX-License-Identifier: BSD-3
 
-import Ctest_component
+import C_BINDINGS_MODULE
 
 extension IInspectable {
   public func GetIids() throws -> [IID] {
@@ -18,7 +18,7 @@ extension IInspectable {
   }
 
   public func GetRuntimeClassName() throws -> HString {
-    var className: Ctest_component.HSTRING?
+    var className: C_BINDINGS_MODULE.HSTRING?
     try self.GetRuntimeClassName(&className)
     return HString(consuming: className)
   }

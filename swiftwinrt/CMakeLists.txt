@@ -61,3 +61,5 @@ target_link_libraries(swiftwinrt windowsapp ole32 shlwapi)
 
 file(TO_NATIVE_PATH "${CMAKE_CURRENT_BINARY_DIR}/swiftwinrt.exe" swiftwinrtwinrt_exe)
 set_target_properties(swiftwinrt PROPERTIES "swiftwinrtwinrt_exe" ${swiftwinrtwinrt_exe})
+
+install(TARGETS swiftwinrt DESTINATION bin COMPONENT exe)

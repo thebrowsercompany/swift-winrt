@@ -1,4 +1,5 @@
 import WinSDK
+import C_BINDINGS_MODULE
 
 public protocol WinRTVector : IVector, AbiInterfaceImpl where swift_Projection == any IVector<Element> {}
 public protocol WinRTVectorView : IVectorView, AbiInterfaceImpl where swift_Projection == any IVectorView<Element> {}

@@ -1,4 +1,4 @@
-import Ctest_component
+import C_BINDINGS_MODULE
 import Foundation
 public protocol WinRTClass : IWinRTObject, Equatable {
     func _get_abi<T>() -> UnsafeMutablePointer<T>?
@@ -20,7 +20,7 @@ public protocol ComposableImpl : AbiInterface where swift_ABI: IInspectable  {
 }
 
 public protocol UnsealedWinRTClass : WinRTClass {
-    var _inner: UnsafeMutablePointer<Ctest_component.IInspectable>? { get }
+    var _inner: UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable>? { get }
     // rather than require an initializer, expose a type which can create this class.
     // we do this so app derived types don't have to implement initializers that will
     // never be called
@@ -33,7 +33,7 @@ public extension WinRTClass {
         // Every WinRT interface is binary compatible with IInspectable. asking this class for
         // the iinspectable will ensure we get the default implementation from whichever derived
         // class it actually is. 
-        let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable>? = _get_abi()
+        let cDefault: UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable>? = _get_abi()
         return IInspectable(cDefault)
     }
     func `as`<Interface: test_component.IInspectable>() throws -> Interface {
@@ -71,8 +71,8 @@ public protocol ComposableActivationFactory {
     associatedtype Composable : ComposableImpl
 
     func CreateInstanceImpl(
-            _ base: UnsafeMutablePointer<Ctest_component.IInspectable>?,
-            _ inner: inout UnsafeMutablePointer<Ctest_component.IInspectable>?)  throws -> UnsafeMutablePointer<Composable.Default.c_ABI>? 
+            _ base: UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable>?,
+            _ inner: inout UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable>?)  throws -> UnsafeMutablePointer<Composable.Default.c_ABI>? 
 }
 
 
@@ -80,8 +80,8 @@ public protocol ComposableActivationFactory {
 // https://linear.app/the-browser-company/issue/WIN-110/swiftwinrt-dont-allow-app-to-derive-from-types-without-a-constructor
 public extension ComposableActivationFactory {
     func CreateInstanceImpl(
-            _ base: UnsafeMutablePointer<Ctest_component.IInspectable>?,
-            _ inner: inout UnsafeMutablePointer<Ctest_component.IInspectable>?)  throws -> UnsafeMutablePointer<Composable.Default.c_ABI>? {
+            _ base: UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable>?,
+            _ inner: inout UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable>?)  throws -> UnsafeMutablePointer<Composable.Default.c_ABI>? {
         throw Error(hr: E_NOTIMPL)
     }
 }
@@ -93,11 +93,11 @@ public extension ComposableActivationFactory {
 // considered the "controlling unknown", meaning all QI calls for IUnknown and IInspectable should come to the swift object and we
 // forward other calls to the inner object
 
-public func MakeComposed<Factory: ComposableActivationFactory>(_ factory: Factory, _ inner: inout UnsafeMutablePointer<Ctest_component.IInspectable>?, _ this: Factory.Composable.Default.swift_Projection) -> Factory.Composable.Default.swift_ABI {
+public func MakeComposed<Factory: ComposableActivationFactory>(_ factory: Factory, _ inner: inout UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable>?, _ this: Factory.Composable.Default.swift_Projection) -> Factory.Composable.Default.swift_ABI {
     let wrapper:UnsealedWinRTClassWrapper<Factory.Composable>? = .init(this)
 
     let abi = try! wrapper?.to_abi { $0 }
-    let baseInsp = abi?.withMemoryRebound(to: Ctest_component.IInspectable.self, capacity: 1) { $0 }
+    let baseInsp = abi?.withMemoryRebound(to: C_BINDINGS_MODULE.IInspectable.self, capacity: 1) { $0 }
     let base = try! factory.CreateInstanceImpl(baseInsp, &inner)
     return Factory.Composable.Default.swift_ABI(base)
 }
