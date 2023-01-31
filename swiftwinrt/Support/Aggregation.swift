@@ -1,5 +1,6 @@
 import C_BINDINGS_MODULE
 import Foundation
+
 public protocol WinRTClass : IWinRTObject, Equatable {
     func _get_abi<T>() -> UnsafeMutablePointer<T>?
 }
@@ -11,7 +12,7 @@ public protocol MakeFromAbi {
 }
 
 public protocol MakeComposedAbi : MakeFromAbi where swift_Projection: UnsealedWinRTClass {
-    associatedtype swift_ABI : test_component.IInspectable
+    associatedtype swift_ABI : WindowsFoundation.IInspectable
 }
 
 public protocol ComposableImpl : AbiInterface where swift_ABI: IInspectable  {
@@ -29,18 +30,18 @@ public protocol UnsealedWinRTClass : WinRTClass {
 
 public extension WinRTClass {
 
-    func getDefault() -> test_component.IInspectable {
+    func getDefault() -> WindowsFoundation.IInspectable {
         // Every WinRT interface is binary compatible with IInspectable. asking this class for
         // the iinspectable will ensure we get the default implementation from whichever derived
         // class it actually is. 
         let cDefault: UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable>? = _get_abi()
         return IInspectable(cDefault)
     }
-    func `as`<Interface: test_component.IInspectable>() throws -> Interface {
+    func `as`<Interface: WindowsFoundation.IInspectable>() throws -> Interface {
         try getDefault().QueryInterface()
     }
 
-    func try_as<Interface: test_component.IInspectable>() -> Interface? {
+    func try_as<Interface: WindowsFoundation.IInspectable>() -> Interface? {
         return try? getDefault().QueryInterface()
     }
 }

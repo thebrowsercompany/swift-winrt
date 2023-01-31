@@ -27,7 +27,7 @@ final public class HStringStorage {
     hString = nil
     return tempString
   }
-  
+
   deinit {
     try! CHECKED(WindowsDeleteString(self.hString))
   }

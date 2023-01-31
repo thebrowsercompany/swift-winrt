@@ -1,7 +1,6 @@
 // Copyright © 2021 Saleem Abdulrasool <compnerd@compnerd.org>
 // SPDX-License-Identifier: BSD-3
 
-import WinSDK
 import C_BINDINGS_MODULE
 
 public func RoGetActivationFactory<Factory: IInspectable>(_ activatableClassId: HString) throws -> Factory {
@@ -9,14 +8,14 @@ public func RoGetActivationFactory<Factory: IInspectable>(_ activatableClassId: 
   var factory: UnsafeMutableRawPointer?
   try CHECKED(RoGetActivationFactory(activatableClassId.hRef.hString, &iid, &factory))
   let inspectable = IInspectable(consuming: factory?.bindMemory(to: WinSDK.IUnknown.self, capacity: 1))
-  return try inspectable.QueryInterface()
+  return try inspectable.QueryInterface<Factory>()
 }
 
 public func RoActivateInstance<Instance: IInspectable>(_ activatableClassId: HString) throws -> Instance {
   var instance: UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable>?
   try CHECKED(RoActivateInstance(activatableClassId.hRef.hString, &instance))
   let inspectable = IInspectable(consuming: UnsafeMutableRawPointer(instance)?.bindMemory(to: WinSDK.IUnknown.self, capacity: 1))
-  return try inspectable.QueryInterface()
+  return try inspectable.QueryInterface<Instance>()
 }
 
 // ISwiftImplemented is a marker interface for code-gen types which are created by swift/winrt. It's used to QI
@@ -26,6 +25,6 @@ private var IID_ISwiftImplemented: IID {
     IID(Data1: 0xbfd14ad5, Data2: 0x950b, Data3: 0x4b82, Data4: ( 0x96, 0xc, 0x1, 0xf4, 0xf4, 0x77, 0x7e, 0x57 )) // BFD14AD5-950B-4B82-960C-01F4F4777E57
 }
 
-final class ISwiftImplemented : test_component.IInspectable {
+public final class ISwiftImplemented : IInspectable {
     override public class var IID: IID { IID_ISwiftImplemented }
 }

@@ -6,8 +6,7 @@ import C_BINDINGS_MODULE
 public class HString {
   public private(set) var hRef: HStringStorage
 
-  public init(_ string: String?) throws {
-
+public init(_ string: String?) throws {
     if let string = string {
       self.hRef = try string.withWideChars {
           var out: HSTRING?
@@ -19,8 +18,6 @@ public class HString {
     }
     
   }
-
-  public init() { self.hRef = .init() }
 
   public init(_ buffer: UnsafeBufferPointer<WCHAR>?) throws {
     self.hRef = try HStringStorage(buffer)

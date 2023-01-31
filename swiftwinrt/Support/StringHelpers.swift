@@ -1,3 +1,4 @@
+import C_BINDINGS_MODULE
 import WinSDK
 
 // TODO: Find clean wchar_t conversions and switch to W form of Win32 APIs.
