@@ -8,7 +8,7 @@
 #include "metadata_cache.h"
 #include "metadata_filter.h"
 #include "attributes.h"
-
+#include "helpers.h"
 namespace swiftwinrt
 {
     using processing_queue = std::queue<metadata_type const*>;
@@ -140,8 +140,14 @@ namespace swiftwinrt
         while (!to_process.empty())
         {
             auto processing = to_process.front();
+            
+            type_name processing_name(processing);
+            auto [iter, added] = types.emplace(std::piecewise_construct,
+                std::forward_as_tuple(processing_name.name_space),
+                std::forward_as_tuple());
+            auto& full_type_names = iter->second;
             to_process.pop();
-            auto processing_full_name = std::string(processing->swift_full_name());
+            auto processing_full_name = processing_name.name;
             if (full_type_names.find(processing_full_name) == full_type_names.end())
             {
                 if (auto s = dynamic_cast<const struct_type*>(processing))
@@ -194,18 +200,10 @@ namespace swiftwinrt
 
     bool metadata_filter::includes(winmd::reader::TypeDef const& type) const
     {
-        for (auto&& full_type_name : full_type_names)
+        auto ns = types.find(type.TypeNamespace());
+        if (ns != types.end())
         {
-            auto dotIndex = full_type_name.find_last_of('.');
-            if (dotIndex != std::string::npos)
-            {
-                std::string_view ns{ full_type_name.data(), dotIndex };
-                std::string_view name{ full_type_name.begin() + dotIndex + 1, full_type_name.end() };
-                if (type.TypeNamespace() == ns && type.TypeName() == name)
-                {
-                    return true;
-                }
-            }
+            return ns->second.find(type.TypeName()) != ns->second.end();
         }
 
         return false;
