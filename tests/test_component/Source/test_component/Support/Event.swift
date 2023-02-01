@@ -1,7 +1,6 @@
 import WinSDK
 import Ctest_component
 
-
 public class Event<Data, Return> {
     open func addHandler(handler: @escaping (Data) -> Return) -> Disposable? { fatalError("not implemented") }
 }
@@ -9,7 +8,7 @@ public class Event<Data, Return> {
 public class EventImpl<Delegate: WinRTDelegate>: Event<Delegate.Data, Delegate.Return> {
     var register: IEventRegistration
     weak var owner: IInspectable?
-    init(register: IEventRegistration, owner: IInspectable){
+    public init(register: IEventRegistration, owner: test_component.IInspectable){
         self.register = register
         self.owner = owner
     }
@@ -25,7 +24,7 @@ public class EventImpl<Delegate: WinRTDelegate>: Event<Delegate.Data, Delegate.R
 class EventCleanup : Disposable {
     weak var delegate: (any WinRTDelegate)?
     weak var event: IEventRegistration?
-    weak var impl: IInspectable?
+    weak var impl: test_component.IInspectable?
     init(delegate: any WinRTDelegate, event: IEventRegistration, impl: IInspectable?)
     {
         self.delegate = delegate
@@ -52,7 +51,7 @@ public protocol WinRTDelegate : IWinRTObject {
     associatedtype Return
     init(handler: @escaping (Data) -> Return)
     var handler: (Data) -> Return { get }
-    var token: EventRegistrationToken? { get set }
+    var token: Ctest_component.EventRegistrationToken? { get set }
 
 }
 

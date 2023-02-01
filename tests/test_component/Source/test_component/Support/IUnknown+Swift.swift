@@ -29,7 +29,6 @@ extension IUnknown {
 }
 
 extension IUnknown {
-  @_spi(IUnknown)
   @_alwaysEmitIntoClient @inline(__always)
   public func perform<Type, ResultType>(as type: Type.Type,
                                         _ body: (UnsafeMutablePointer<Type>) throws -> ResultType)

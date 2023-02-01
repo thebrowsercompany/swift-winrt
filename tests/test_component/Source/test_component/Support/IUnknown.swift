@@ -4,8 +4,7 @@
 import WinSDK
 
 open class IUnknown : HasIID {
-  @usableFromInline
-  internal let pUnk: IUnknownRef
+  public let pUnk: IUnknownRef
 
   public class var IID: IID { IID_IUnknown }
 

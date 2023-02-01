@@ -3,7 +3,7 @@
 
 import WinSDK
 
-private func ==<T: Equatable>(_ lhs: (T, T, T, T, T, T, T, T),
+public func ==<T: Equatable>(_ lhs: (T, T, T, T, T, T, T, T),
                               _ rhs: (T, T, T, T, T, T, T, T)) -> Bool {
   return lhs.0 == rhs.0 &&
          lhs.1 == rhs.1 &&
@@ -15,8 +15,7 @@ private func ==<T: Equatable>(_ lhs: (T, T, T, T, T, T, T, T),
          lhs.7 == rhs.7
 }
 
-
-internal func ~=(_ lhs: _GUID, _ rhs: _GUID) -> Bool {
+public func ~=(_ lhs: _GUID, _ rhs: _GUID) -> Bool {
   return lhs.Data1 == rhs.Data1 &&
          lhs.Data2 == rhs.Data2 &&
          lhs.Data3 == rhs.Data3 &&
@@ -62,15 +61,9 @@ extension UUID {
 extension IInspectable : Equatable {
   // Test for COM-style equality.
   public static func ==(_ lhs: IInspectable, _ rhs: IInspectable) -> Bool {
-    var iid: IID = IID_IUnknown
-    var lhsUnknown: UnsafeMutableRawPointer?
-    try! lhs.QueryInterface(&iid, &lhsUnknown)
-    var rhsUnknown: UnsafeMutableRawPointer?
-    try! rhs.QueryInterface(&iid, &rhsUnknown)
-    let equals = (lhsUnknown == rhsUnknown)
-
-    _ = IUnknown(lhsUnknown).Release()
-    _ = IUnknown(rhsUnknown).Release()
+    let lhsUnknown: IUnknown = try! lhs.QueryInterface()
+    let rhsUnknown: IUnknown = try! rhs.QueryInterface()
+    let equals = (lhsUnknown.pUnk.borrow == rhsUnknown.pUnk.borrow)
 
     return equals
   }
@@ -80,6 +73,6 @@ private var IID_IAgileObject: IID {
     IID(Data1: 0x94ea2b94, Data2: 0xe9cc, Data3: 0x49e0, Data4: ( 0xc0, 0xff, 0xee, 0x64, 0xca, 0x8f, 0x5b, 0x90 )) // 94ea2b94-e9cc-49e0-c0ff-ee64ca8f5b90
 }
 
-final class IIAgileObject : test_component.IUnknown {
+public final class IIAgileObject : IUnknown {
     override public class var IID: IID { IID_IAgileObject }
 }
