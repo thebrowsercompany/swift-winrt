@@ -5,11 +5,10 @@ namespace swiftwinrt
     static void write_root_cmake(std::map<std::string, std::vector<std::string_view>>& namespaces)
     {
         writer w;
-        auto filename{ w.root_directory() };
-        filename += "CMakeLists.txt";
+        auto path = w.root_directory() / "CMakeLists.txt";
         if (!settings.has_project_type(project_type::cmake))
         {
-            std::filesystem::remove(filename);
+            std::filesystem::remove(path);
             return;
         }
         w.write("add_subdirectory(CWinRT)\n");
@@ -18,19 +17,18 @@ namespace swiftwinrt
             w.write("add_subdirectory(%)\n", module);
         }   
 
-        w.flush_to_file(filename);
+        w.flush_to_file(path);
     }
 
     static void write_cmake_lists(std::string_view const& module, std::set<std::string> const& depends, std::vector<std::string_view> const& namespaces)
     {
         writer w;
         w.type_namespace = module;
-        auto filename{ w.project_directory() };
-        filename += "CMakeLists.txt";
+        auto path = w.project_directory() / "CMakeLists.txt";
 
         if (!settings.has_project_type(project_type::cmake))
         {
-            std::filesystem::remove(filename);
+            std::filesystem::remove(path);
             return;
         }
         auto content = R"(
@@ -85,11 +83,10 @@ target_include_directories(%
     static void write_multimodule_package_swift(std::map<std::string, std::set<std::string>>& module_dependencies)
     {
         writer w;
-        auto filename{ w.root_directory() };
-        filename += "Package.swift";
+        auto path = w.root_directory() / "Package.swift";
         if (!settings.has_project_type(project_type::spm))
         {
-            std::filesystem::remove(filename);
+            std::filesystem::remove(path);
             return;
         }
 
@@ -148,18 +145,17 @@ let package = Package(
             }}
         ), exclude_cmake);
 
-        w.flush_to_file(filename);
+        w.flush_to_file(path);
     }
 
     static void write_singlemodule_package_swift(std::string_view const& module, std::set<std::string> const& depends)
     {
         writer w;
         w.type_namespace = module;
-        auto filename{ w.project_directory() };
-        filename += "Package.swift";
+        auto path = w.project_directory() / "Package.swift";
         if (!settings.has_project_type(project_type::spm))
         {
-            std::filesystem::remove(filename);
+            std::filesystem::remove(path);
             return;
         }
 
@@ -210,6 +206,6 @@ let package = Package(
             }}
         ), exclude_cmake);
       
-        w.flush_to_file(filename);
+        w.flush_to_file(path);
     }
 }

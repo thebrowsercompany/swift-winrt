@@ -731,26 +731,26 @@ namespace swiftwinrt
             write(*generic);
         }
         
-        std::string root_directory()
+        std::filesystem::path root_directory()
         {
-            return { settings.output_folder + "Source\\" };
+            return settings.output_folder / "Source";
         }
 
-        std::string project_directory()
+        std::filesystem::path project_directory()
         {
             if (settings.test)
             {
-                return { root_directory() + settings.support + "\\"};
+                return root_directory() / settings.support;
             }
             else
             {
-                return { root_directory() + get_swift_module(type_namespace) + "\\"};
+                return root_directory() / get_swift_module(type_namespace);
             }
         }
+
         void save_file(std::string_view const& ext = "")
         {
-            auto filename{ project_directory() };
-            filename += type_namespace;
+            auto filename = type_namespace;
 
             if (!ext.empty())
             {
@@ -759,22 +759,17 @@ namespace swiftwinrt
             }
 
             filename += ".swift";
-            flush_to_file(filename);
+            flush_to_file(project_directory() / filename);
         }
 
         void save_header()
         {
-            auto filename{ root_directory() + "CWinRT\\include\\" };
-            filename += type_namespace;
-            filename += ".h";
-            flush_to_file(filename);
+            flush_to_file(root_directory() / "CWinRT" / "include" / (type_namespace + ".h"));
         }
 
         void save_cmake()
         {
-            auto filename{ project_directory() };
-            filename += "CMakeLists.txt";
-            flush_to_file(filename);
+            flush_to_file(project_directory() / "CMakeLists.txt");
         }
     };
 }
