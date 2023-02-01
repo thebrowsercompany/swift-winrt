@@ -8,7 +8,7 @@ public class Event<Data, Return> {
 public class EventImpl<Delegate: WinRTDelegate>: Event<Delegate.Data, Delegate.Return> {
     var register: IEventRegistration
     weak var owner: IInspectable?
-    public init(register: IEventRegistration, owner: WindowsFoundation.IInspectable){
+    public init(register: IEventRegistration, owner: SUPPORT_MODULE.IInspectable){
         self.register = register
         self.owner = owner
     }
@@ -24,7 +24,7 @@ public class EventImpl<Delegate: WinRTDelegate>: Event<Delegate.Data, Delegate.R
 class EventCleanup : Disposable {
     weak var delegate: (any WinRTDelegate)?
     weak var event: IEventRegistration?
-    weak var impl: WindowsFoundation.IInspectable?
+    weak var impl: SUPPORT_MODULE.IInspectable?
     init(delegate: any WinRTDelegate, event: IEventRegistration, impl: IInspectable?)
     {
         self.delegate = delegate

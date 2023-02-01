@@ -96,6 +96,7 @@ namespace swiftwinrt
             // Replace the C bindings module name placeholder with regex due to no string.replace(string, string)
             std::string code{ reinterpret_cast<const char*>(support_file.second.data()), support_file.second.size() };
             code = std::regex_replace(code, std::regex("\\bC_BINDINGS_MODULE\\b"), c_module_name);
+            code = std::regex_replace(code, std::regex("\\bSUPPORT_MODULE\\b"), settings.support);
 
             std::ofstream file;
             file.exceptions(std::ofstream::failbit | std::ofstream::badbit);
