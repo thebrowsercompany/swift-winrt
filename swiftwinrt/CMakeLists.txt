@@ -50,7 +50,8 @@ target_sources(swiftwinrt PUBLIC
     pch.cpp 
     metadata_cache.cpp
     types.cpp
-    metadata_filter.cpp)
+    metadata_filter.cpp
+    resources.rc)
 
 target_include_directories(swiftwinrt PUBLIC ${MicrosoftWindowsWinMD_INCLUDE_DIR} ${PROJECT_BINARY_DIR} ${PROJECT_SOURCE_DIR})
 target_compile_definitions(swiftwinrt PUBLIC "SWIFTWINRT_VERSION_STRING=\"${SWIFTWINRT_VERSION_STRING}\"")
@@ -60,3 +61,5 @@ target_link_libraries(swiftwinrt windowsapp ole32 shlwapi)
 
 file(TO_NATIVE_PATH "${CMAKE_CURRENT_BINARY_DIR}/swiftwinrt.exe" swiftwinrtwinrt_exe)
 set_target_properties(swiftwinrt PROPERTIES "swiftwinrtwinrt_exe" ${swiftwinrtwinrt_exe})
+
+install(TARGETS swiftwinrt DESTINATION bin COMPONENT exe)

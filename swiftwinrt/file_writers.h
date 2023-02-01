@@ -1,5 +1,9 @@
 #pragma once
 
+#include "resources.h"
+
+#include <regex>
+
 namespace swiftwinrt
 {
     using indent_writer = swiftwinrt::indented_writer_base<swiftwinrt::writer>;
@@ -76,13 +80,44 @@ namespace swiftwinrt
         return wrote;
     }
 
+    static void write_swift_support_files(std::string_view const& module_name)
+    {
+        auto c_module_name = settings.get_c_module_name();
+
+        auto dir_path = std::filesystem::path(settings.output_folder) / "Source" / module_name / "Support";
+        create_directories(dir_path);
+
+        auto support_files = get_named_resources_of_type(
+            GetModuleHandle(NULL), RESOURCE_TYPE_SWIFT_FILE_STR, /* make_lowercase: */ true);
+        for (const auto& support_file : support_files)
+        {
+            auto path = dir_path / (support_file.first + ".swift");
+
+            // Replace the C bindings module name placeholder with regex due to no string.replace(string, string)
+            std::string code{ reinterpret_cast<const char*>(support_file.second.data()), support_file.second.size() };
+            code = std::regex_replace(code, std::regex("\\bC_BINDINGS_MODULE\\b"), c_module_name);
+
+            std::ofstream file;
+            file.exceptions(std::ofstream::failbit | std::ofstream::badbit);
+            try
+            {
+                file.open(path, std::ios::out | std::ios::binary);
+                file.write(code.data(), code.size());
+            }
+            catch (std::ofstream::failure const& e)
+            {
+                throw std::filesystem::filesystem_error(e.what(), path, std::io_errc::stream);
+            }
+        }
+    }
+
     static void write_namespace_abi(std::string_view const& ns, type_cache const& members, metadata_filter const& filter)
     {
         writer w;
         w.filter = filter;
         w.type_namespace = ns;
         w.support = settings.support;
-        w.c_mod = settings.test ? "C" + settings.support : "CWinRT";
+        w.c_mod = settings.get_c_module_name();
         w.cache = members.cache;
 
         w.write("%", w.filter.bind_each<write_guid>(members.interfaces));
@@ -129,7 +164,7 @@ namespace swiftwinrt
         writer w;
         w.filter = filter;
         w.support = settings.support;
-        w.c_mod = settings.test ? "C" + settings.support : "CWinRT";
+        w.c_mod = settings.get_c_module_name();
         w.type_namespace = ns;
         w.cache = members.cache;
 
@@ -162,7 +197,7 @@ namespace swiftwinrt
         writer w;
         w.filter = filter;
         w.support = settings.support;
-        w.c_mod = settings.test ? "C" + settings.support : "CWinRT";
+        w.c_mod = settings.get_c_module_name();
         w.type_namespace = ns;
         w.cache = members.cache;
 

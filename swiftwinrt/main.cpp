@@ -346,6 +346,15 @@ Where <spec> is one or more of:
                         &moduleDependencies = moduleItr->second]
                     {
                         swiftwinrt::task_group module_group;
+
+                        if (module == settings.support)
+                        {
+                            module_group.add([&]
+                            {
+                                write_swift_support_files(module);
+                            });
+                        }
+
                         for (auto& ns : namespaces)
                         {
                             module_group.add([&, &ns = ns]

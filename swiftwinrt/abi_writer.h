@@ -293,7 +293,7 @@ namespace swiftwinrt
     inline void write_include_all(std::map<std::string, std::vector<std::string_view>>& namespaces)
     {
         writer w;
-        w.c_mod = settings.test ? "C" + settings.support : "CWinRT";
+        w.c_mod = settings.get_c_module_name();
         write_preamble(w);
         w.write(R"(#pragma once
 #include <wtypesbase.h>
