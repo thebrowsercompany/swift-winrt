@@ -2853,36 +2853,32 @@ bind([&](writer& w) {
     {
         // 3 interfaces for IUnknown, IInspectable, type.
         auto interface_count = 3 + interfaces.size();
-        w.write(R"(GetIids: {
-    let size = MemoryLayout<IID>.size
-    let iids = CoTaskMemAlloc(UInt64(size) * %).assumingMemoryBound(to: IID.self)
-    iids[0] = IUnknown.IID
-    iids[1] = IInspectable.IID
-    iids[2] = %.IID
-    %
-    $1!.pointee = %
-    $2!.pointee = iids
-    return S_OK
-},
+        w.write("GetIids: {\n");
+        {
+            auto indent_guard = w.push_indent({ 1 });
+            w.write("let size = MemoryLayout<IID>.size\n");
+            w.write("let iids = CoTaskMemAlloc(UInt64(size) * %).assumingMemoryBound(to: IID.self)\n", interface_count);
+            w.write("iids[0] = IUnknown.IID\n");
+            w.write("iids[1] = IInspectable.IID\n");
+            w.write("iids[2] = %.IID\n", bind_wrapper_fullname(type));
+            
+            auto iface_n = 3;
+            for (auto&& iface : interfaces)
+            {
+                if (!can_write(w, iface.second.type)) continue;
 
-)",
-interface_count,
-bind_wrapper_fullname(type),
-bind([&](writer& w) {
-                auto format = "iids[%] = %.%.IID\n";
-                auto iface_n = 4;
-                for (auto&& iface : interfaces)
-                {
-                    if (!can_write(w, iface.second.type)) continue;
+                w.write("iids[%] = %.%.IID\n",
+                    iface_n++,
+                    abi_namespace(iface.second.type),
+                    bind_wrapper_name(iface.second.type)
+                );
+            }
 
-                    w.write(format,
-                        iface_n++,
-                        abi_namespace(iface.second.type),
-                        bind_wrapper_name(iface.second.type)
-                    );
-                }}),
-            interface_count
-                    );
+            w.write("$1!.pointee = %\n", interface_count);
+            w.write("$2!.pointee = iids\n");
+            w.write("return S_OK\n");
+        }
+        w.write("},\n\n");
 
         if (composed)
         {
@@ -2894,9 +2890,7 @@ bind([&](writer& w) {
     return S_OK
 },
 
-)",
-bind_wrapper_name(type)
-);
+)", bind_wrapper_name(type));
         }
         else
         {
@@ -2907,9 +2901,7 @@ bind_wrapper_name(type)
     return S_OK
 },
 
-)",
-get_full_type_name(type)
-);
+)", get_full_type_name(type));
         }
 
 

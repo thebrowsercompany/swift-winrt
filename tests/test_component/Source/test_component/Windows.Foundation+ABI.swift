@@ -186,7 +186,6 @@ public enum __ABI_Windows_Foundation {
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
             iids[2] = __ABI_Windows_Foundation.IPropertyValueWrapper.IID
-            
             $1!.pointee = 3
             $2!.pointee = iids
             return S_OK

@@ -205,7 +205,6 @@ public enum __ABI_test_component {
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
             iids[2] = __ABI_test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper.IID
-            
             $1!.pointee = 3
             $2!.pointee = iids
             return S_OK
@@ -319,7 +318,6 @@ public enum __ABI_test_component {
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
             iids[2] = __ABI_test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
-            
             $1!.pointee = 3
             $2!.pointee = iids
             return S_OK
@@ -433,7 +431,6 @@ public enum __ABI_test_component {
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
             iids[2] = __ABI_test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper.IID
-            
             $1!.pointee = 3
             $2!.pointee = iids
             return S_OK
@@ -651,7 +648,6 @@ public enum __ABI_test_component {
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
             iids[2] = __ABI_test_component.__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
-            
             $1!.pointee = 3
             $2!.pointee = iids
             return S_OK
@@ -924,8 +920,7 @@ public enum __ABI_test_component {
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
             iids[2] = __ABI_test_component.__x_ABI_C__FIReference_1_intWrapper.IID
-            iids[4] = __ABI_Windows_Foundation.IPropertyValueWrapper.IID
-
+            iids[3] = __ABI_Windows_Foundation.IPropertyValueWrapper.IID
             $1!.pointee = 4
             $2!.pointee = iids
             return S_OK
@@ -1004,8 +999,7 @@ public enum __ABI_test_component {
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
             iids[2] = __ABI_test_component.__x_ABI_C__FIReference_1_GUIDWrapper.IID
-            iids[4] = __ABI_Windows_Foundation.IPropertyValueWrapper.IID
-
+            iids[3] = __ABI_Windows_Foundation.IPropertyValueWrapper.IID
             $1!.pointee = 4
             $2!.pointee = iids
             return S_OK
@@ -1190,7 +1184,6 @@ public enum __ABI_test_component {
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
             iids[2] = __ABI_test_component.IBasicWrapper.IID
-            
             $1!.pointee = 3
             $2!.pointee = iids
             return S_OK
@@ -1624,7 +1617,6 @@ public enum __ABI_test_component {
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
             iids[2] = __ABI_test_component.IIAmImplementableWrapper.IID
-            
             $1!.pointee = 3
             $2!.pointee = iids
             return S_OK
@@ -1946,7 +1938,6 @@ public enum __ABI_test_component {
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
             iids[2] = __ABI_test_component.ISimpleDelegateWrapper.IID
-            
             $1!.pointee = 3
             $2!.pointee = iids
             return S_OK
@@ -2216,7 +2207,6 @@ public enum __ABI_test_component {
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
             iids[2] = __ABI_test_component.IBaseOverridesWrapper.IID
-            
             $1!.pointee = 3
             $2!.pointee = iids
             return S_OK
@@ -2287,8 +2277,7 @@ public enum __ABI_test_component {
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
             iids[2] = __ABI_test_component.IUnsealedDerivedOverridesWrapper.IID
-            iids[4] = __ABI_test_component.IBaseOverridesWrapper.IID
-
+            iids[3] = __ABI_test_component.IBaseOverridesWrapper.IID
             $1!.pointee = 4
             $2!.pointee = iids
             return S_OK
@@ -2365,9 +2354,8 @@ public enum __ABI_test_component {
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
             iids[2] = __ABI_test_component.IUnsealedDerivedOverloads2Wrapper.IID
-            iids[4] = __ABI_test_component.IBaseOverridesWrapper.IID
-        iids[5] = __ABI_test_component.IUnsealedDerivedOverridesWrapper.IID
-
+            iids[3] = __ABI_test_component.IBaseOverridesWrapper.IID
+            iids[4] = __ABI_test_component.IUnsealedDerivedOverridesWrapper.IID
             $1!.pointee = 5
             $2!.pointee = iids
             return S_OK
