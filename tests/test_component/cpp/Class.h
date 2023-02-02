@@ -143,7 +143,8 @@ namespace winrt::test_component::implementation
         com_array<Windows::Foundation::IInspectable> ReturnObjectArray();
         com_array<Windows::Foundation::IStringable> ReturnStringableArray();
         com_array<Signed> ReturnEnumArray();
-        Windows::Foundation::Collections::IVector<hstring> ReturnStringVector();
+        Windows::Foundation::Collections::IVector<hstring> ReturnStoredStringVector();
+        Windows::Foundation::Collections::IMap<hstring, hstring> ReturnMapFromStringToString();
 
         Fruit EnumProperty() const;
         void EnumProperty(Fruit const& value);
@@ -252,7 +253,7 @@ namespace winrt::test_component::implementation
         test_component::Base m_base = test_component::Derived();
         test_component::BaseNoOverrides m_baseNoOverrides { nullptr };
 
-        Windows::Foundation::Collections::IVector<hstring> m_vector {  winrt::single_threaded_vector<hstring>() };
+        Windows::Foundation::Collections::IVector<hstring> m_vector { winrt::single_threaded_vector<hstring>() };
     };
 
     /*

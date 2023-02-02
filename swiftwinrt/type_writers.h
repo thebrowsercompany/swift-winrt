@@ -612,19 +612,35 @@ namespace swiftwinrt
 
         void write_swift(function_param const& param)
         {
+            // Write the parameter name
+            write("_ %: ", param.name);
+
+            // Write the parameter type
             auto category = get_category(param.type, nullptr);
             auto qualifier = param.out() ? "inout " : "";
             if (param.out() && category == param_category::string_type)
             {
-                write("_ %: %%?", param.name, qualifier, param.type);
+                write("%%?", qualifier, param.type);
             }
             else if (category == param_category::generic_type && is_collection_type(param.type))
             {
-                write("_ %: %any %", param.name, qualifier, param.type);
+                if (param.in())
+                {
+                    write("any %", param.type);
+                }
+                else
+                {
+                    // Project "out IVector<String>" as "inout (any IVector<String>)?" because:
+                    // - "inout" forces the caller to initialize the variable, and Optional allows
+                    //   them to use nil. Swift has no mere "out".
+                    // - The WinRT layer could output null.
+                    // - "?" has precedence over "any"
+                    write("inout (any %)?", param.type);
+                }
             }
             else
             {
-                write("_ %: %%", param.name, qualifier, param.type);
+                write("%%", qualifier, param.type);
             }
         }
 
@@ -673,48 +689,58 @@ namespace swiftwinrt
             }
             else
             {
+                auto collections_namespace_prefix = "Windows.Foundation.Collections."sv;
+
                 auto generic_type = generic.generic_type();
                 add_depends(generic_type->type());
-                if (generic_type->swift_full_name().starts_with("Windows.Foundation.IReference"))
+                auto type_full_name = generic_type->swift_full_name();
+                const auto& generic_params = generic.generic_params();
+                if (generic_type->swift_full_name() == "Windows.Foundation.IReference`1")
                 {
-                    auto refType = generic.generic_params()[0];
+                    auto refType = generic_params[0];
                     write("%?", refType);
                 }
-                else if (generic_type->swift_full_name().starts_with("Windows.Foundation.TypedEventHandler"))
+                else if (generic_type->swift_full_name() == "Windows.Foundation.TypedEventHandler`2")
                 {
-                    auto senderType = generic.generic_params()[0];
-                    auto argsType = generic.generic_params()[1];
+                    auto senderType = generic_params[0];
+                    auto argsType = generic_params[1];
                     write("^@escaping (%,%) -> ()", senderType, argsType);
                 }
-                else if (generic_type->swift_full_name().starts_with("Windows.Foundation.EventHandler"))
+                else if (generic_type->swift_full_name() == "Windows.Foundation.EventHandler`1")
                 {
-                    auto argsType = generic.generic_params()[0];
+                    auto argsType = generic_params[0];
                     write("^@escaping (%.IInspectable,%) -> ()", support, argsType);
                 }
-                else if (generic_type->swift_full_name().starts_with("Windows.Foundation.Collections.IVectorView"))
+                else if (is_collection_type(generic))
                 {
-                    auto argsType = generic.generic_params()[0];
+                    // IVector`1, IVectorView`1, IMap`2, IMapView`2
+                    auto type_name = generic_type->swift_type_name();
+                    type_name = type_name.substr(0, type_name.find_first_of('`'));
+
                     if (abi_types)
                     {
-                        write("IVectorView%", argsType->swift_type_name());
+                        // IMapString_String
+                        write(type_name);
+
+                        bool first = true;
+                        for (const auto& type_param : generic.generic_params()) {
+                            if (!first) write("_");
+                            write(type_param->swift_type_name());
+                            first = false;
+                        }
                     }
                     else
                     {
-                        auto full_type_names_guard{ push_full_type_names(true) };
-                        write("IVectorView<%>", argsType);
-                    }
-                }
-                else if (generic_type->swift_full_name().starts_with("Windows.Foundation.Collections.IVector"))
-                {
-                    auto argsType = generic.generic_params()[0];
-                    if (abi_types)
-                    {
-                        write("IVector%", argsType->swift_type_name());
-                    }
-                    else
-                    {
-                        auto full_type_names_guard{ push_full_type_names(true) };
-                        write("IVector<%>", argsType);
+                        // IVector<String>
+                        write(type_name);
+                        write("<");
+                        bool first = true;
+                        for (const auto& type_param : generic.generic_params()) {
+                            if (!first) write(", ");
+                            write(type_param->swift_type_name());
+                            first = false;
+                        }
+                        write(">");
                     }
                 }
                 else
