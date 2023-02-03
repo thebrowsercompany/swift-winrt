@@ -4,8 +4,7 @@
 import WinSDK
 
 @_fixed_layout
-@usableFromInline
-internal final class IUnknownRef {
+public final class IUnknownRef {
   private var pUnk: UnsafeMutablePointer<WinSDK.IUnknown>?
 
   init(_ pUnk: UnsafeMutablePointer<WinSDK.IUnknown>?) {
@@ -20,10 +19,6 @@ internal final class IUnknownRef {
 
   init(consuming pUnk: UnsafeMutablePointer<WinSDK.IUnknown>?) {
     self.pUnk = pUnk
-    // TODO: WIN-158 we shouldn't need to addref because these pointers already have an 
-    // added reference coming from winrt. However, this helps the app not crash so
-    // doing this for now
-    _ = self.pUnk?.pointee.lpVtbl.pointee.AddRef(self.pUnk)
   }
 
   convenience init(consuming pointer: UnsafeMutableRawPointer?) {
@@ -35,13 +30,11 @@ internal final class IUnknownRef {
     _ = self.pUnk?.pointee.lpVtbl.pointee.Release(self.pUnk)
   }
 
-  @usableFromInline
-  internal var borrow: UnsafeMutablePointer<WinSDK.IUnknown>? {
+ public var borrow: UnsafeMutablePointer<WinSDK.IUnknown>? {
     return self.pUnk
   }
 
-  @usableFromInline
-  internal var ref: UnsafeMutablePointer<WinSDK.IUnknown>? {
+  public var ref: UnsafeMutablePointer<WinSDK.IUnknown>? {
     _ = self.pUnk?.pointee.lpVtbl.pointee.AddRef(self.pUnk)
     return self.pUnk
   }

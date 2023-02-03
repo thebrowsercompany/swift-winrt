@@ -126,6 +126,7 @@ open class InterfaceWrapperBase<I: AbiInterfaceImpl> : WinRTWrapperBase2<I> {
 
           // try to get the original wrapper so we can get the apps implementation. if that doesn't
           // exist, then return nil
+
         guard let wrapper  = pUnk.bindMemory(to: InterfaceWrapperBase.ComObject.self, capacity: 1).pointee.wrapper else {   return I.from(abi: pointer) }
         return wrapper.takeRetainedValue().swiftObj
     }
@@ -142,7 +143,6 @@ open class InterfaceWrapperBase<I: AbiInterfaceImpl> : WinRTWrapperBase2<I> {
         }
     }
 }
-
 
 open class IReferenceWrapperBase<I: ReferenceImpl> : WinRTWrapperBase2<I> {
     override public class var IID: IID { I.ValueType.IID }

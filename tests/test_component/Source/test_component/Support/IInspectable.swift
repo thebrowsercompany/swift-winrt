@@ -3,6 +3,7 @@
 
 import Ctest_component
 import Foundation
+
 open class IInspectable: IUnknown {
   override open class var IID: IID { IID_IInspectable }
 
@@ -36,8 +37,8 @@ open class IInspectable: IUnknown {
 //      internal typealias swift_overrides = test_component.IInspectable
 // }
 // internal typealias Composable = IBaseNoOverrides
-enum __ABI {
-    private typealias AnyObjectWrapper = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>
+public enum __ABI {
+    fileprivate typealias AnyObjectWrapper = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>
     fileprivate static var IInspectableVTable: Ctest_component.IInspectableVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
@@ -45,7 +46,7 @@ enum __ABI {
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
                   riid.pointee == IIAgileObject.IID else { 
-                    guard let instance = AnyObjectWrapper.try_unwrap_from(raw: $0) as? any UnsealedWinRTClass,
+                      guard let instance = AnyObjectWrapper.try_unwrap_from(raw: $0) as? any UnsealedWinRTClass,
                             let inner = instance._inner else { return E_NOINTERFACE }
                         
                     return inner.pointee.lpVtbl.pointee.QueryInterface(inner, riid, ppvObject)
@@ -103,5 +104,21 @@ extension ComposableImpl where c_ABI == Ctest_component.IInspectable {
   public static func makeAbi() -> c_ABI {
     let vtblPtr = withUnsafeMutablePointer(to: &__ABI.IInspectableVTable) { $0 }
     return .init(lpVtbl: vtblPtr)
+  }
+}
+
+extension IInspectable {
+  public func unwrap<T>() -> T {
+        // Try to unwrap an app implemented object. If one doesn't exist then we'll create the proper WinRT type below
+        if let instance = __ABI.AnyObjectWrapper.try_unwrap_from(abi: RawPointer(self)) {
+            return instance as! T
+        }
+
+        // We don't use the `Composable` type here because we have to get the actual implementation of this base 
+        // class and then get *that types* composing creator. This allows us to be able to properly create a derived type.
+        // Note that we'll *never* be trying to create an app implemented object at this point
+        let className = try! GetSwiftClassName() 
+        let baseType = NSClassFromString(className) as! any UnsealedWinRTClass.Type
+        return baseType._makeFromAbi.from(abi: self.pUnk.borrow) as! T
   }
 }

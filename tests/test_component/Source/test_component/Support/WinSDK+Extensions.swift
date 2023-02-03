@@ -8,17 +8,17 @@ public typealias REFIID = UnsafePointer<IID>
 // winerror.h
 
 @_transparent
-public var E_INVALIDARG: HRESULT {
+public var E_INVALIDARG: WinSDK.HRESULT {
   HRESULT(bitPattern: 0x80070057)
 }
 
 @_transparent
-public var E_NOTIMPL: HRESULT {
+public var E_NOTIMPL: WinSDK.HRESULT {
   HRESULT(bitPattern: 0x80004001)
 }
 
 @_transparent
-public var E_NOINTERFACE: HRESULT {
+public var E_NOINTERFACE: WinSDK.HRESULT {
   HRESULT(bitPattern: 0x80004002)
 }
 
@@ -30,9 +30,16 @@ internal func MAKELANGID(_ p: WORD, _ s: WORD) -> DWORD {
 }
 
 extension boolean {
-  internal init(from val: Bool) {
+  public init(from val: Bool) {
     let value : boolean = val ? 1 : 0
     self.init(value)
+  }
+}
+
+extension HWND {
+  public init(from val: UInt64) {
+    // TODO: Revisit since this gives a compiler warning.
+    self.init(unsafeBitCast(val, to: UnsafeMutablePointer<HWND__>.self))
   }
 }
 
@@ -42,13 +49,6 @@ extension WCHAR {
       $0[0]
     }
     self.init(value);
-  }
-}
-
-extension HWND {
-  public init(from val: UInt64) {
-    // TODO: Revisit since this gives a compiler warning.
-     self.init(unsafeBitCast(val, to: UnsafeMutablePointer<HWND__>.self))
   }
 }
 

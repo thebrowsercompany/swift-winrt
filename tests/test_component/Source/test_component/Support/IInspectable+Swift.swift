@@ -34,29 +34,22 @@ extension IInspectable {
   private func GetSwiftModule(from ns: String) -> String {
     if ns.starts(with: "Windows.Foundation") {
        return "WindowsFoundation"
-    }
-     else if ns.starts(with: "Windows.Storage") || 
+    } else if ns.starts(with: "Windows.Storage") || 
               ns.starts(with: "Windows.System") ||
               ns.starts(with: "Windows.UI") ||
               ns.starts(with: "Windows.Networking") ||
-              ns.starts(with: "Windows.ApplicationModel")
-      {
-          return "WindowsApplicationModel"
-      }
-      else if ns.starts(with: "Microsoft.UI.Composition")
-      {
-          return "MicrosoftUIComposition"
-      }
-      else if ns.starts(with: "Microsoft.UI.Xaml")
-      {
-          return "MicrosoftUIXaml"
-      }
-      else
-      {
-          var mod: String = ns
-          mod.removeAll(where: { $0 == "." })
-          return mod
-      }
+              ns.starts(with: "Windows.ApplicationModel") ||
+              ns.starts(with: "Windows.Security.EnterpriseData") {
+      return "WindowsApplicationModel"
+    } else if ns.starts(with: "Microsoft.UI.Composition") {
+      return "MicrosoftUIComposition"
+    } else if ns.starts(with: "Microsoft.UI.Xaml") {
+      return "MicrosoftUIXaml"
+    } else {
+      var mod: String = ns
+      mod.removeAll(where: { $0 == "." })
+      return mod
+    }
   }
 
   public func GetSwiftClassName() throws -> String {

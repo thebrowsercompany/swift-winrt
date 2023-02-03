@@ -1,5 +1,6 @@
 import Ctest_component
 import Foundation
+
 public protocol WinRTClass : IWinRTObject, Equatable {
     func _get_abi<T>() -> UnsafeMutablePointer<T>?
 }

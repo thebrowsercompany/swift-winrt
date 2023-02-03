@@ -4,7 +4,7 @@
 import Ctest_component
 
 extension String {
-  internal init(from hString: HSTRING?) {
+  public init(from hString: HSTRING?) {
     var length: UINT32 = 0
     let pwszBuffer: PCWSTR = WindowsGetStringRawBuffer(hString, &length)
     self.init(decoding: UnsafeBufferPointer(start: pwszBuffer, count: Int(length)), as: UTF16.self)
@@ -17,9 +17,8 @@ extension String {
   }
 }
 
-
 extension Bool {
-  internal init(from val: boolean) {
+  public init(from val: boolean) {
     self.init(booleanLiteral: val != 0)
   }
 }
