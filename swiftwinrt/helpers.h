@@ -45,26 +45,22 @@ namespace swiftwinrt
 
         explicit type_name(metadata_type const& type)
         {
-            name_space = type.swift_abi_namespace();
-            name = type.swift_type_name();
+            construct(&type);
         }
 
         explicit type_name(metadata_type const* type)
         {
-            name_space = type->swift_abi_namespace();
-            name = type->swift_type_name();
+            construct(type);
         }
 
         explicit type_name(typedef_base const& type)
         {
-            name_space = type.type().TypeNamespace();
-            name = type.type().TypeName();
+            construct(&type);
         }
 
         explicit type_name(typedef_base const* type)
         {
-            name_space = type->type().TypeNamespace();
-            name = type->type().TypeName();
+            construct(type);
         }
 
         // Same as winmd::reader::get_type_namespace_and_name, but also handles TypeSpecs
@@ -86,6 +82,28 @@ namespace swiftwinrt
                 auto generic_type = type.TypeSpec().Signature().GenericTypeInst().GenericType();
                 return get_namespace_and_name(generic_type);
             }
+        }
+
+    private: 
+        void construct(metadata_type const* type)
+        {
+            // Check if this is a typedef_base, otherwise we could fail trying to get the swift_abi_namespace
+            // for static classes where there is no default interface
+            if (auto typedefbase = dynamic_cast<const typedef_base*>(type))
+            {
+                construct(typedefbase);
+            }
+            else
+            {
+                name_space = type->swift_abi_namespace();
+                name = type->swift_type_name();
+            }
+        }
+
+        void construct(typedef_base const* type)
+        {
+            name_space = type->type().TypeNamespace();
+            name = type->type().TypeName();
         }
     };
 

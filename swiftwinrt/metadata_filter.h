@@ -47,7 +47,7 @@ namespace swiftwinrt
             };
         }
     private:
-        std::set<std::string> full_type_names;
+        std::map<std::string_view, std::set<std::string_view>> types;
         std::set<std::string> namespaces;
         std::set<std::string> generics;
     };
