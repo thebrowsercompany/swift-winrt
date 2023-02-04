@@ -774,7 +774,8 @@ namespace swiftwinrt
                 m_swiftFullName += param->swift_full_name();
 
                 m_swiftTypeName += prefix;
-                m_swiftTypeName += param->swift_type_name();
+                // we use the param full name because short type names could conflict (i.e. Microsoft.UI.Input.PointerPoint/Windows.UI.Input.PointerPoint)
+                m_swiftTypeName += param->swift_full_name();
 
                 m_mangledName.push_back('_');
                 m_mangledName += param->generic_param_mangled_name();
