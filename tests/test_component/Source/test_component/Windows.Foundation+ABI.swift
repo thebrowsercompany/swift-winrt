@@ -16,6 +16,7 @@ public enum __ABI_Windows_Foundation {
             }
             return value
         }
+
         open func get_IsNumericScalarImpl() throws -> boolean {
             var value: boolean = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
@@ -23,6 +24,7 @@ public enum __ABI_Windows_Foundation {
             }
             return value
         }
+
         open func GetUInt8Impl() throws -> BYTE {
             var value: BYTE = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
@@ -30,6 +32,7 @@ public enum __ABI_Windows_Foundation {
             }
             return value
         }
+
         open func GetInt16Impl() throws -> INT16 {
             var value: INT16 = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
@@ -37,6 +40,7 @@ public enum __ABI_Windows_Foundation {
             }
             return value
         }
+
         open func GetUInt16Impl() throws -> UINT16 {
             var value: UINT16 = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
@@ -44,6 +48,7 @@ public enum __ABI_Windows_Foundation {
             }
             return value
         }
+
         open func GetInt32Impl() throws -> INT32 {
             var value: INT32 = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
@@ -51,6 +56,7 @@ public enum __ABI_Windows_Foundation {
             }
             return value
         }
+
         open func GetUInt32Impl() throws -> UINT32 {
             var value: UINT32 = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
@@ -58,6 +64,7 @@ public enum __ABI_Windows_Foundation {
             }
             return value
         }
+
         open func GetInt64Impl() throws -> INT64 {
             var value: INT64 = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
@@ -65,6 +72,7 @@ public enum __ABI_Windows_Foundation {
             }
             return value
         }
+
         open func GetUInt64Impl() throws -> UINT64 {
             var value: UINT64 = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
@@ -72,6 +80,7 @@ public enum __ABI_Windows_Foundation {
             }
             return value
         }
+
         open func GetSingleImpl() throws -> FLOAT {
             var value: FLOAT = 0.0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
@@ -79,6 +88,7 @@ public enum __ABI_Windows_Foundation {
             }
             return value
         }
+
         open func GetDoubleImpl() throws -> DOUBLE {
             var value: DOUBLE = 0.0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
@@ -86,6 +96,7 @@ public enum __ABI_Windows_Foundation {
             }
             return value
         }
+
         open func GetChar16Impl() throws -> WCHAR {
             var value: WCHAR = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
@@ -93,6 +104,7 @@ public enum __ABI_Windows_Foundation {
             }
             return value
         }
+
         open func GetBooleanImpl() throws -> boolean {
             var value: boolean = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
@@ -100,6 +112,7 @@ public enum __ABI_Windows_Foundation {
             }
             return value
         }
+
         open func GetStringImpl() throws -> HSTRING? {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
@@ -107,6 +120,7 @@ public enum __ABI_Windows_Foundation {
             }
             return value
         }
+
         open func GetGuidImpl() throws -> GUID {
             var value: GUID = .init()
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
@@ -114,6 +128,7 @@ public enum __ABI_Windows_Foundation {
             }
             return value
         }
+
         open func GetDateTimeImpl() throws -> __x_ABI_CWindows_CFoundation_CDateTime {
             var value: __x_ABI_CWindows_CFoundation_CDateTime = .init()
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
@@ -121,6 +136,7 @@ public enum __ABI_Windows_Foundation {
             }
             return value
         }
+
         open func GetTimeSpanImpl() throws -> __x_ABI_CWindows_CFoundation_CTimeSpan {
             var value: __x_ABI_CWindows_CFoundation_CTimeSpan = .init()
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
@@ -128,6 +144,7 @@ public enum __ABI_Windows_Foundation {
             }
             return value
         }
+
         open func GetPointImpl() throws -> __x_ABI_CWindows_CFoundation_CPoint {
             var value: __x_ABI_CWindows_CFoundation_CPoint = .init()
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
@@ -135,6 +152,7 @@ public enum __ABI_Windows_Foundation {
             }
             return value
         }
+
         open func GetSizeImpl() throws -> __x_ABI_CWindows_CFoundation_CSize {
             var value: __x_ABI_CWindows_CFoundation_CSize = .init()
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
@@ -142,6 +160,7 @@ public enum __ABI_Windows_Foundation {
             }
             return value
         }
+
         open func GetRectImpl() throws -> __x_ABI_CWindows_CFoundation_CRect {
             var value: __x_ABI_CWindows_CFoundation_CRect = .init()
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
@@ -149,6 +168,7 @@ public enum __ABI_Windows_Foundation {
             }
             return value
         }
+
     }
 
     internal static var IPropertyValueVTable: __x_ABI_CWindows_CFoundation_CIPropertyValueVtbl = .init(
@@ -206,181 +226,141 @@ public enum __ABI_Windows_Foundation {
 
         get_Type: {
             guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let value = __unwrapped__instance.Type
             $1?.initialize(to: value)
-
             return S_OK
         },
 
         get_IsNumericScalar: {
             guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let value = __unwrapped__instance.IsNumericScalar
             $1?.initialize(to: .init(from: value))
-
             return S_OK
         },
 
         GetUInt8: {
             guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let value = __unwrapped__instance.GetUInt8()
             $1?.initialize(to: value)
-
             return S_OK
         },
 
         GetInt16: {
             guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let value = __unwrapped__instance.GetInt16()
             $1?.initialize(to: value)
-
             return S_OK
         },
 
         GetUInt16: {
             guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let value = __unwrapped__instance.GetUInt16()
             $1?.initialize(to: value)
-
             return S_OK
         },
 
         GetInt32: {
             guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let value = __unwrapped__instance.GetInt32()
             $1?.initialize(to: value)
-
             return S_OK
         },
 
         GetUInt32: {
             guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let value = __unwrapped__instance.GetUInt32()
             $1?.initialize(to: value)
-
             return S_OK
         },
 
         GetInt64: {
             guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let value = __unwrapped__instance.GetInt64()
             $1?.initialize(to: value)
-
             return S_OK
         },
 
         GetUInt64: {
             guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let value = __unwrapped__instance.GetUInt64()
             $1?.initialize(to: value)
-
             return S_OK
         },
 
         GetSingle: {
             guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let value = __unwrapped__instance.GetSingle()
             $1?.initialize(to: value)
-
             return S_OK
         },
 
         GetDouble: {
             guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let value = __unwrapped__instance.GetDouble()
             $1?.initialize(to: value)
-
             return S_OK
         },
 
         GetChar16: {
             guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let value = __unwrapped__instance.GetChar16()
             $1?.initialize(to: .init(from: value))
-
             return S_OK
         },
 
         GetBoolean: {
             guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let value = __unwrapped__instance.GetBoolean()
             $1?.initialize(to: .init(from: value))
-
             return S_OK
         },
 
         GetString: {
             guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let value = __unwrapped__instance.GetString()
             $1?.initialize(to: try! HString(value).detach())
-
             return S_OK
         },
 
         GetGuid: {
             guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let value = __unwrapped__instance.GetGuid()
             $1?.initialize(to: value)
-
             return S_OK
         },
 
         GetDateTime: {
             guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let value = __unwrapped__instance.GetDateTime()
             $1?.initialize(to: .from(swift: value))
-
             return S_OK
         },
 
         GetTimeSpan: {
             guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let value = __unwrapped__instance.GetTimeSpan()
             $1?.initialize(to: .from(swift: value))
-
             return S_OK
         },
 
         GetPoint: {
             guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let value = __unwrapped__instance.GetPoint()
             $1?.initialize(to: .from(swift: value))
-
             return S_OK
         },
 
         GetSize: {
             guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let value = __unwrapped__instance.GetSize()
             $1?.initialize(to: .from(swift: value))
-
             return S_OK
         },
 
         GetRect: {
             guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let value = __unwrapped__instance.GetRect()
             $1?.initialize(to: .from(swift: value))
-
             return S_OK
         },
 

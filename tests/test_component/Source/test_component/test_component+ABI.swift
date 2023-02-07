@@ -226,19 +226,15 @@ public enum __ABI_test_component {
         GetAt: {
             guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let index: UInt32 = $1
-
             let result = __unwrapped__instance.GetAt(index)
             $2?.initialize(to: try! HString(result).detach())
-
             return S_OK
         },
 
         get_Size: {
             guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let result = __unwrapped__instance.Size
             $1?.initialize(to: result)
-
             return S_OK
         },
 
@@ -246,11 +242,9 @@ public enum __ABI_test_component {
             guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let value: String = .init(from: $1)
             var index: UInt32 = 0
-
             let result = __unwrapped__instance.IndexOf(value, &index)
             $2?.initialize(to: index)
             $3?.initialize(to: .init(from: result))
-
             return S_OK
         },
 
@@ -267,6 +261,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func get_SizeImpl() throws -> UINT32 {
             var result: UINT32 = 0
             _ = try perform(as: __x_ABI_C__FIVectorView_1_HSTRING.self) { pThis in
@@ -274,6 +269,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func IndexOfImpl(_ value: HSTRING?, _ index: inout UINT32) throws -> boolean {
             var result: boolean = 0
             _ = try perform(as: __x_ABI_C__FIVectorView_1_HSTRING.self) { pThis in
@@ -281,6 +277,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
     }
 
     internal static var __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
@@ -339,19 +336,15 @@ public enum __ABI_test_component {
         GetAt: {
             guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let index: UInt32 = $1
-
             let result = __unwrapped__instance.GetAt(index)
             $2?.initialize(to: RawPointer(result))
-
             return S_OK
         },
 
         get_Size: {
             guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let result = __unwrapped__instance.Size
             $1?.initialize(to: result)
-
             return S_OK
         },
 
@@ -359,11 +352,9 @@ public enum __ABI_test_component {
             guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let value: test_component.Base = .from(abi: $1)
             var index: UInt32 = 0
-
             let result = __unwrapped__instance.IndexOf(value, &index)
             $2?.initialize(to: index)
             $3?.initialize(to: .init(from: result))
-
             return S_OK
         },
 
@@ -380,6 +371,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func get_SizeImpl() throws -> UINT32 {
             var result: UINT32 = 0
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
@@ -387,6 +379,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func IndexOfImpl(_ value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?, _ index: inout UINT32) throws -> boolean {
             var result: boolean = 0
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
@@ -394,6 +387,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
     }
 
     internal static var __x_ABI_C__FIVector_1_HSTRINGVTable: __x_ABI_C__FIVector_1_HSTRINGVtbl = .init(
@@ -452,30 +446,24 @@ public enum __ABI_test_component {
         GetAt: {
             guard let __unwrapped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let index: UInt32 = $1
-
             let result = __unwrapped__instance.GetAt(index)
             $2?.initialize(to: try! HString(result).detach())
-
             return S_OK
         },
 
         get_Size: {
             guard let __unwrapped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let result = __unwrapped__instance.Size
             $1?.initialize(to: result)
-
             return S_OK
         },
 
         GetView: {
             guard let __unwrapped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let result = __unwrapped__instance.GetView()
             let resultWrapper = __ABI_test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper(result)
             let _result = try! resultWrapper?.to_abi { $0 }
             $1?.initialize(to: _result)
-
             return S_OK
         },
 
@@ -483,11 +471,9 @@ public enum __ABI_test_component {
             guard let __unwrapped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let value: String = .init(from: $1)
             var index: UInt32 = 0
-
             let result = __unwrapped__instance.IndexOf(value, &index)
             $2?.initialize(to: index)
             $3?.initialize(to: .init(from: result))
-
             return S_OK
         },
 
@@ -495,9 +481,7 @@ public enum __ABI_test_component {
             guard let __unwrapped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let index: UInt32 = $1
             let value: String = .init(from: $2)
-
             __unwrapped__instance.SetAt(index, value)
-
             return S_OK
         },
 
@@ -505,43 +489,33 @@ public enum __ABI_test_component {
             guard let __unwrapped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let index: UInt32 = $1
             let value: String = .init(from: $2)
-
             __unwrapped__instance.InsertAt(index, value)
-
             return S_OK
         },
 
         RemoveAt: {
             guard let __unwrapped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let index: UInt32 = $1
-
             __unwrapped__instance.RemoveAt(index)
-
             return S_OK
         },
 
         Append: {
             guard let __unwrapped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let value: String = .init(from: $1)
-
             __unwrapped__instance.Append(value)
-
             return S_OK
         },
 
         RemoveAtEnd: {
             guard let __unwrapped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             __unwrapped__instance.RemoveAtEnd()
-
             return S_OK
         },
 
         Clear: {
             guard let __unwrapped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             __unwrapped__instance.Clear()
-
             return S_OK
         },
 
@@ -560,6 +534,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func get_SizeImpl() throws -> UINT32 {
             var result: UINT32 = 0
             _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
@@ -567,6 +542,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func GetViewImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIVectorView_1_HSTRING>? {
             var result: UnsafeMutablePointer<__x_ABI_C__FIVectorView_1_HSTRING>?
             _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
@@ -574,6 +550,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func IndexOfImpl(_ value: HSTRING?, _ index: inout UINT32) throws -> boolean {
             var result: boolean = 0
             _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
@@ -581,36 +558,43 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func SetAtImpl(_ index: UINT32, _ value: HSTRING?) throws {
             _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.SetAt(pThis, index, value))
             }
         }
+
         internal func InsertAtImpl(_ index: UINT32, _ value: HSTRING?) throws {
             _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InsertAt(pThis, index, value))
             }
         }
+
         internal func RemoveAtImpl(_ index: UINT32) throws {
             _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAt(pThis, index))
             }
         }
+
         internal func AppendImpl(_ value: HSTRING?) throws {
             _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Append(pThis, value))
             }
         }
+
         internal func RemoveAtEndImpl() throws {
             _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAtEnd(pThis))
             }
         }
+
         internal func ClearImpl() throws {
             _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Clear(pThis))
             }
         }
+
     }
 
     internal static var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
@@ -669,30 +653,24 @@ public enum __ABI_test_component {
         GetAt: {
             guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let index: UInt32 = $1
-
             let result = __unwrapped__instance.GetAt(index)
             $2?.initialize(to: RawPointer(result))
-
             return S_OK
         },
 
         get_Size: {
             guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let result = __unwrapped__instance.Size
             $1?.initialize(to: result)
-
             return S_OK
         },
 
         GetView: {
             guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let result = __unwrapped__instance.GetView()
             let resultWrapper = __ABI_test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper(result)
             let _result = try! resultWrapper?.to_abi { $0 }
             $1?.initialize(to: _result)
-
             return S_OK
         },
 
@@ -700,11 +678,9 @@ public enum __ABI_test_component {
             guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let value: test_component.Base = .from(abi: $1)
             var index: UInt32 = 0
-
             let result = __unwrapped__instance.IndexOf(value, &index)
             $2?.initialize(to: index)
             $3?.initialize(to: .init(from: result))
-
             return S_OK
         },
 
@@ -712,9 +688,7 @@ public enum __ABI_test_component {
             guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let index: UInt32 = $1
             let value: test_component.Base = .from(abi: $2)
-
             __unwrapped__instance.SetAt(index, value)
-
             return S_OK
         },
 
@@ -722,43 +696,33 @@ public enum __ABI_test_component {
             guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let index: UInt32 = $1
             let value: test_component.Base = .from(abi: $2)
-
             __unwrapped__instance.InsertAt(index, value)
-
             return S_OK
         },
 
         RemoveAt: {
             guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let index: UInt32 = $1
-
             __unwrapped__instance.RemoveAt(index)
-
             return S_OK
         },
 
         Append: {
             guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let value: test_component.Base = .from(abi: $1)
-
             __unwrapped__instance.Append(value)
-
             return S_OK
         },
 
         RemoveAtEnd: {
             guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             __unwrapped__instance.RemoveAtEnd()
-
             return S_OK
         },
 
         Clear: {
             guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             __unwrapped__instance.Clear()
-
             return S_OK
         },
 
@@ -777,6 +741,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func get_SizeImpl() throws -> UINT32 {
             var result: UINT32 = 0
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
@@ -784,6 +749,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func GetViewImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase>? {
             var result: UnsafeMutablePointer<__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase>?
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
@@ -791,6 +757,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func IndexOfImpl(_ value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?, _ index: inout UINT32) throws -> boolean {
             var result: boolean = 0
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
@@ -798,36 +765,43 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func SetAtImpl(_ index: UINT32, _ value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?) throws {
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.SetAt(pThis, index, value))
             }
         }
+
         internal func InsertAtImpl(_ index: UINT32, _ value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?) throws {
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InsertAt(pThis, index, value))
             }
         }
+
         internal func RemoveAtImpl(_ index: UINT32) throws {
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAt(pThis, index))
             }
         }
+
         internal func AppendImpl(_ value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?) throws {
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Append(pThis, value))
             }
         }
+
         internal func RemoveAtEndImpl() throws {
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAtEnd(pThis))
             }
         }
+
         internal func ClearImpl() throws {
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Clear(pThis))
             }
         }
+
     }
 
     internal static var __x_ABI_C__FIEventHandler_1_IInspectableVTable: __x_ABI_C__FIEventHandler_1_IInspectableVtbl = .init(
@@ -863,9 +837,7 @@ public enum __ABI_test_component {
             guard let __unwrapped__instance = __x_ABI_C__FIEventHandler_1_IInspectableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let sender: test_component.IInspectable = .init($1)
             let args: test_component.IInspectable = .init($2)
-
             __unwrapped__instance.handler((sender, args))
-
             return S_OK
         }
     )
@@ -941,10 +913,8 @@ public enum __ABI_test_component {
 
         get_Value: {
             guard let __unwrapped__instance = __x_ABI_C__FIReference_1_intWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let result = __unwrapped__instance.Value as! Int32
             $1?.initialize(to: result)
-
             return S_OK
         }
     )
@@ -1020,10 +990,8 @@ public enum __ABI_test_component {
 
         get_Value: {
             guard let __unwrapped__instance = __x_ABI_C__FIReference_1_GUIDWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let result = __unwrapped__instance.Value as! UUID
             $1?.initialize(to: result)
-
             return S_OK
         }
     )
@@ -1070,9 +1038,7 @@ public enum __ABI_test_component {
             guard let __unwrapped__instance = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let sender: test_component.Simple = .from(abi: $1)
             let args: test_component.SimpleEventArgs = .from(abi: $2)
-
             __unwrapped__instance.handler((sender, args))
-
             return S_OK
         }
     )
@@ -1094,6 +1060,7 @@ public enum __ABI_test_component {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.DoTheThing(pThis))
             }
         }
+
     }
 
     open class IBaseNoOverrides: test_component.IInspectable {
@@ -1113,6 +1080,7 @@ public enum __ABI_test_component {
             }
             return value
         }
+
     }
 
     open class IBaseOverrides: test_component.IInspectable {
@@ -1123,6 +1091,7 @@ public enum __ABI_test_component {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OnDoTheThing(pThis))
             }
         }
+
     }
 
     internal class IBaseProtectedFactory: test_component.IInspectable, ComposableActivationFactory {
@@ -1137,6 +1106,7 @@ public enum __ABI_test_component {
             }
             return value
         }
+
     }
 
     open class IBasic: test_component.IInspectable {
@@ -1147,6 +1117,7 @@ public enum __ABI_test_component {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Method(pThis))
             }
         }
+
     }
 
     internal static var IBasicVTable: __x_ABI_Ctest__component_CIBasicVtbl = .init(
@@ -1204,9 +1175,7 @@ public enum __ABI_test_component {
 
         Method: {
             guard let __unwrapped__instance = IBasicWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             __unwrapped__instance.Method()
-
             return S_OK
         }
     )
@@ -1222,16 +1191,19 @@ public enum __ABI_test_component {
             }
             return value
         }
+
         internal func put_ImplementationImpl(_ value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>?) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_Implementation(pThis, value))
             }
         }
+
         internal func SetDelegateImpl(_ value: UnsafeMutablePointer<__x_ABI_Ctest__component_CISimpleDelegate>?) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.SetDelegate(pThis, value))
             }
         }
+
         internal func GetDelegateImpl() throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CISimpleDelegate>? {
             var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CISimpleDelegate>?
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
@@ -1239,6 +1211,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func InInt32Impl(_ value: INT32) throws -> HSTRING? {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
@@ -1246,6 +1219,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func InStringImpl(_ value: HSTRING?) throws -> HSTRING? {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
@@ -1253,6 +1227,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func InEnumImpl(_ value: __x_ABI_Ctest__component_CSigned) throws -> HSTRING? {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
@@ -1260,31 +1235,37 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func OutInt32Impl(_ value: inout INT32) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OutInt32(pThis, &value))
             }
         }
+
         internal func OutStringImpl(_ value: inout HSTRING?) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OutString(pThis, &value))
             }
         }
+
         internal func OutBlittableStructImpl(_ value: inout __x_ABI_Ctest__component_CBlittableStruct) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OutBlittableStruct(pThis, &value))
             }
         }
+
         internal func OutNonBlittableStructImpl(_ value: inout __x_ABI_Ctest__component_CNonBlittableStruct) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OutNonBlittableStruct(pThis, &value))
             }
         }
+
         internal func OutEnumImpl(_ value: inout __x_ABI_Ctest__component_CSigned) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OutEnum(pThis, &value))
             }
         }
+
         internal func ReturnEnumImpl() throws -> __x_ABI_Ctest__component_CSigned {
             var result: __x_ABI_Ctest__component_CSigned = .init(0)
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
@@ -1292,6 +1273,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func ReturnStringVectorImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIVector_1_HSTRING>? {
             var result: UnsafeMutablePointer<__x_ABI_C__FIVector_1_HSTRING>?
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
@@ -1299,6 +1281,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func get_EnumPropertyImpl() throws -> __x_ABI_Ctest__component_CFruit {
             var value: __x_ABI_Ctest__component_CFruit = .init(0)
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
@@ -1306,11 +1289,13 @@ public enum __ABI_test_component {
             }
             return value
         }
+
         internal func put_EnumPropertyImpl(_ value: __x_ABI_Ctest__component_CFruit) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_EnumProperty(pThis, value))
             }
         }
+
         internal func ReturnCharImpl() throws -> WCHAR {
             var result: WCHAR = 0
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
@@ -1318,6 +1303,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func InCharImpl(_ value: WCHAR) throws -> HSTRING? {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
@@ -1325,11 +1311,13 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func OutCharImpl(_ value: inout WCHAR) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OutChar(pThis, &value))
             }
         }
+
         internal func get_StartValueImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIReference_1_int>? {
             var value: UnsafeMutablePointer<__x_ABI_C__FIReference_1_int>?
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
@@ -1337,11 +1325,13 @@ public enum __ABI_test_component {
             }
             return value
         }
+
         internal func put_StartValueImpl(_ value: UnsafeMutablePointer<__x_ABI_C__FIReference_1_int>?) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_StartValue(pThis, value))
             }
         }
+
         internal func get_IDImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIReference_1_GUID>? {
             var value: UnsafeMutablePointer<__x_ABI_C__FIReference_1_GUID>?
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
@@ -1349,11 +1339,13 @@ public enum __ABI_test_component {
             }
             return value
         }
+
         internal func put_IDImpl(_ value: UnsafeMutablePointer<__x_ABI_C__FIReference_1_GUID>?) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_ID(pThis, value))
             }
         }
+
         internal func get_BasePropertyImpl() throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
@@ -1361,11 +1353,13 @@ public enum __ABI_test_component {
             }
             return value
         }
+
         internal func put_BasePropertyImpl(_ value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_BaseProperty(pThis, value))
             }
         }
+
         internal func get_BaseNoOverridesPropertyImpl() throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBaseNoOverrides>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBaseNoOverrides>?
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
@@ -1373,11 +1367,13 @@ public enum __ABI_test_component {
             }
             return value
         }
+
         internal func put_BaseNoOverridesPropertyImpl(_ value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBaseNoOverrides>?) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_BaseNoOverridesProperty(pThis, value))
             }
         }
+
     }
 
     open class IClassFactory: test_component.IInspectable {
@@ -1390,6 +1386,7 @@ public enum __ABI_test_component {
             }
             return value
         }
+
         internal func CreateInstance2Impl(_ name: HSTRING?, _ fruit: __x_ABI_Ctest__component_CFruit) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>?
             _ = try perform(as: __x_ABI_Ctest__component_CIClassFactory.self) { pThis in
@@ -1397,6 +1394,7 @@ public enum __ABI_test_component {
             }
             return value
         }
+
     }
 
     open class IClassFactory2: test_component.IInspectable {
@@ -1409,6 +1407,7 @@ public enum __ABI_test_component {
             }
             return value
         }
+
     }
 
     open class IClassStatics: test_component.IInspectable {
@@ -1419,6 +1418,7 @@ public enum __ABI_test_component {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.StaticTest(pThis))
             }
         }
+
         internal func StaticTestReturnImpl() throws -> INT32 {
             var result: INT32 = 0
             _ = try perform(as: __x_ABI_Ctest__component_CIClassStatics.self) { pThis in
@@ -1426,6 +1426,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func get_StaticPropertyImpl() throws -> INT32 {
             var value: INT32 = 0
             _ = try perform(as: __x_ABI_Ctest__component_CIClassStatics.self) { pThis in
@@ -1433,6 +1434,7 @@ public enum __ABI_test_component {
             }
             return value
         }
+
         internal func InVectorImpl(_ value: UnsafeMutablePointer<__x_ABI_C__FIVector_1_HSTRING>?) throws -> HSTRING? {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CIClassStatics.self) { pThis in
@@ -1440,6 +1442,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
     }
 
     open class IClassStatics2: test_component.IInspectable {
@@ -1452,6 +1455,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func get_StaticPropertyFloatImpl() throws -> FLOAT {
             var value: FLOAT = 0.0
             _ = try perform(as: __x_ABI_Ctest__component_CIClassStatics2.self) { pThis in
@@ -1459,11 +1463,13 @@ public enum __ABI_test_component {
             }
             return value
         }
+
         internal func put_StaticPropertyFloatImpl(_ value: FLOAT) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIClassStatics2.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_StaticPropertyFloat(pThis, value))
             }
         }
+
     }
 
     open class IDerived: test_component.IInspectable {
@@ -1476,11 +1482,13 @@ public enum __ABI_test_component {
             }
             return value
         }
+
         internal func put_PropImpl(_ value: INT32) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIDerived.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_Prop(pThis, value))
             }
         }
+
     }
 
     open class IIAmImplementable: test_component.IInspectable {
@@ -1493,6 +1501,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         open func InStringImpl(_ value: HSTRING?) throws -> HSTRING? {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
@@ -1500,6 +1509,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         open func InEnumImpl(_ value: __x_ABI_Ctest__component_CSigned) throws -> HSTRING? {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
@@ -1507,31 +1517,37 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         open func OutInt32Impl(_ value: inout INT32) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OutInt32(pThis, &value))
             }
         }
+
         open func OutStringImpl(_ value: inout HSTRING?) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OutString(pThis, &value))
             }
         }
+
         open func OutBlittableStructImpl(_ value: inout __x_ABI_Ctest__component_CBlittableStruct) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OutBlittableStruct(pThis, &value))
             }
         }
+
         open func OutNonBlittableStructImpl(_ value: inout __x_ABI_Ctest__component_CNonBlittableStruct) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OutNonBlittableStruct(pThis, &value))
             }
         }
+
         open func OutEnumImpl(_ value: inout __x_ABI_Ctest__component_CSigned) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OutEnum(pThis, &value))
             }
         }
+
         open func ReturnEnumImpl() throws -> __x_ABI_Ctest__component_CSigned {
             var result: __x_ABI_Ctest__component_CSigned = .init(0)
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
@@ -1539,6 +1555,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         open func get_EnumPropertyImpl() throws -> __x_ABI_Ctest__component_CFruit {
             var value: __x_ABI_Ctest__component_CFruit = .init(0)
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
@@ -1546,11 +1563,13 @@ public enum __ABI_test_component {
             }
             return value
         }
+
         open func put_EnumPropertyImpl(_ value: __x_ABI_Ctest__component_CFruit) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_EnumProperty(pThis, value))
             }
         }
+
         open func get_IDImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIReference_1_GUID>? {
             var value: UnsafeMutablePointer<__x_ABI_C__FIReference_1_GUID>?
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
@@ -1558,11 +1577,13 @@ public enum __ABI_test_component {
             }
             return value
         }
+
         open func put_IDImpl(_ value: UnsafeMutablePointer<__x_ABI_C__FIReference_1_GUID>?) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_ID(pThis, value))
             }
         }
+
         open func add_ImplementableEventImpl(_ handler: UnsafeMutablePointer<__x_ABI_Ctest__component_CDelegates_CIInDelegate>?) throws -> EventRegistrationToken {
             var token: EventRegistrationToken = .init()
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
@@ -1570,16 +1591,19 @@ public enum __ABI_test_component {
             }
             return token
         }
+
         open func remove_ImplementableEventImpl(_ token: EventRegistrationToken) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.remove_ImplementableEvent(pThis, token))
             }
         }
+
         open func FireEventImpl() throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.FireEvent(pThis))
             }
         }
+
     }
 
     internal static var IIAmImplementableVTable: __x_ABI_Ctest__component_CIIAmImplementableVtbl = .init(
@@ -1638,128 +1662,102 @@ public enum __ABI_test_component {
         InInt32: {
             guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let value: Int32 = $1
-
             let result = __unwrapped__instance.InInt32(value)
             $2?.initialize(to: try! HString(result).detach())
-
             return S_OK
         },
 
         InString: {
             guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let value: String = .init(from: $1)
-
             let result = __unwrapped__instance.InString(value)
             $2?.initialize(to: try! HString(result).detach())
-
             return S_OK
         },
 
         InEnum: {
             guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let value: test_component.Signed = $1
-
             let result = __unwrapped__instance.InEnum(value)
             $2?.initialize(to: try! HString(result).detach())
-
             return S_OK
         },
 
         OutInt32: {
             guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             var value: Int32 = 0
-
             __unwrapped__instance.OutInt32(&value)
             $1?.initialize(to: value)
-
             return S_OK
         },
 
         OutString: {
             guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             var value: String?
-
             __unwrapped__instance.OutString(&value)
             $1?.initialize(to: try! HString(value).detach())
-
             return S_OK
         },
 
         OutBlittableStruct: {
             guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             var value: test_component.BlittableStruct = .init()
-
             __unwrapped__instance.OutBlittableStruct(&value)
             $1?.initialize(to: .from(swift: value))
-
             return S_OK
         },
 
         OutNonBlittableStruct: {
             guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             var value: test_component.NonBlittableStruct = .init()
-
             __unwrapped__instance.OutNonBlittableStruct(&value)
             let _value = __ABI_test_component._ABI_NonBlittableStruct(from: value)
             	$1?.initialize(to: _value.detach())
-
             return S_OK
         },
 
         OutEnum: {
             guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             var value: test_component.Signed = .init(0)
-
             __unwrapped__instance.OutEnum(&value)
             $1?.initialize(to: value)
-
             return S_OK
         },
 
         ReturnEnum: {
             guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let result = __unwrapped__instance.ReturnEnum()
             $1?.initialize(to: result)
-
             return S_OK
         },
 
         get_EnumProperty: {
             guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let value = __unwrapped__instance.EnumProperty
             $1?.initialize(to: value)
-
             return S_OK
         },
 
         put_EnumProperty: {
             guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let value: test_component.Fruit = $1
-
             __unwrapped__instance.EnumProperty = value
-
             return S_OK
         },
 
         get_ID: {
             guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let value = __unwrapped__instance.ID
             let valueWrapper = __ABI_test_component.__x_ABI_C__FIReference_1_GUIDWrapper(value)
             let _value = try! valueWrapper?.to_abi { $0 }
             $1?.initialize(to: _value)
-
             return S_OK
         },
 
         put_ID: {
             guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let value: UUID? = .init(ref: $1)
-
             __unwrapped__instance.ID = value
-
             return S_OK
         },
 
@@ -1769,9 +1767,7 @@ public enum __ABI_test_component {
 
         FireEvent: {
             guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             __unwrapped__instance.FireEvent()
-
             return S_OK
         }
     )
@@ -1785,6 +1781,7 @@ public enum __ABI_test_component {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Method(pThis))
             }
         }
+
         internal func ReturnBlittableStructImpl() throws -> __x_ABI_Ctest__component_CBlittableStruct {
             var result: __x_ABI_Ctest__component_CBlittableStruct = .init()
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
@@ -1792,11 +1789,13 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func TakeBlittableStructImpl(_ value: __x_ABI_Ctest__component_CBlittableStruct) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.TakeBlittableStruct(pThis, value))
             }
         }
+
         internal func get_BlittableStructPropertyImpl() throws -> __x_ABI_Ctest__component_CBlittableStruct {
             var value: __x_ABI_Ctest__component_CBlittableStruct = .init()
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
@@ -1804,11 +1803,13 @@ public enum __ABI_test_component {
             }
             return value
         }
+
         internal func put_BlittableStructPropertyImpl(_ value: __x_ABI_Ctest__component_CBlittableStruct) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_BlittableStructProperty(pThis, value))
             }
         }
+
         internal func ReturnNonBlittableStructImpl() throws -> __x_ABI_Ctest__component_CNonBlittableStruct {
             var result: __x_ABI_Ctest__component_CNonBlittableStruct = .init()
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
@@ -1816,11 +1817,13 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func TakeNonBlittableStructImpl(_ value: __x_ABI_Ctest__component_CNonBlittableStruct) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.TakeNonBlittableStruct(pThis, value))
             }
         }
+
         internal func get_NonBlittableStructPropertyImpl() throws -> __x_ABI_Ctest__component_CNonBlittableStruct {
             var value: __x_ABI_Ctest__component_CNonBlittableStruct = .init()
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
@@ -1828,11 +1831,13 @@ public enum __ABI_test_component {
             }
             return value
         }
+
         internal func put_NonBlittableStructPropertyImpl(_ value: __x_ABI_Ctest__component_CNonBlittableStruct) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_NonBlittableStructProperty(pThis, value))
             }
         }
+
         internal func get_StringPropertyImpl() throws -> HSTRING? {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
@@ -1840,11 +1845,13 @@ public enum __ABI_test_component {
             }
             return value
         }
+
         internal func put_StringPropertyImpl(_ value: HSTRING?) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_StringProperty(pThis, value))
             }
         }
+
         internal func add_SignalEventImpl(_ handler: UnsafeMutablePointer<__x_ABI_Ctest__component_CDelegates_CISignalDelegate>?) throws -> EventRegistrationToken {
             var token: EventRegistrationToken = .init()
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
@@ -1852,11 +1859,13 @@ public enum __ABI_test_component {
             }
             return token
         }
+
         internal func remove_SignalEventImpl(_ token: EventRegistrationToken) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.remove_SignalEvent(pThis, token))
             }
         }
+
         internal func add_InEventImpl(_ handler: UnsafeMutablePointer<__x_ABI_Ctest__component_CDelegates_CIInDelegate>?) throws -> EventRegistrationToken {
             var token: EventRegistrationToken = .init()
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
@@ -1864,11 +1873,13 @@ public enum __ABI_test_component {
             }
             return token
         }
+
         internal func remove_InEventImpl(_ token: EventRegistrationToken) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.remove_InEvent(pThis, token))
             }
         }
+
         internal func add_SimpleEventImpl(_ handler: UnsafeMutablePointer<__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs>?) throws -> EventRegistrationToken {
             var token: EventRegistrationToken = .init()
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
@@ -1876,16 +1887,19 @@ public enum __ABI_test_component {
             }
             return token
         }
+
         internal func remove_SimpleEventImpl(_ token: EventRegistrationToken) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.remove_SimpleEvent(pThis, token))
             }
         }
+
         internal func FireEventImpl() throws {
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.FireEvent(pThis))
             }
         }
+
     }
 
     open class ISimpleDelegate: test_component.IInspectable {
@@ -1896,11 +1910,13 @@ public enum __ABI_test_component {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.DoThis(pThis))
             }
         }
+
         open func DoThatImpl(_ val: INT32) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CISimpleDelegate.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.DoThat(pThis, val))
             }
         }
+
     }
 
     internal static var ISimpleDelegateVTable: __x_ABI_Ctest__component_CISimpleDelegateVtbl = .init(
@@ -1958,18 +1974,14 @@ public enum __ABI_test_component {
 
         DoThis: {
             guard let __unwrapped__instance = ISimpleDelegateWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             __unwrapped__instance.DoThis()
-
             return S_OK
         },
 
         DoThat: {
             guard let __unwrapped__instance = ISimpleDelegateWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let val: Int32 = $1
-
             __unwrapped__instance.DoThat(val)
-
             return S_OK
         }
     )
@@ -1985,16 +1997,19 @@ public enum __ABI_test_component {
             }
             return token
         }
+
         internal func remove_StaticEventImpl(_ token: EventRegistrationToken) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CISimpleStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.remove_StaticEvent(pThis, token))
             }
         }
+
         internal func FireStaticEventImpl() throws {
             _ = try perform(as: __x_ABI_Ctest__component_CISimpleStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.FireStaticEvent(pThis))
             }
         }
+
     }
 
     open class IStaticClassStatics: test_component.IInspectable {
@@ -2007,11 +2022,13 @@ public enum __ABI_test_component {
             }
             return value
         }
+
         internal func put_EnumPropertyImpl(_ value: __x_ABI_Ctest__component_CFruit) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIStaticClassStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_EnumProperty(pThis, value))
             }
         }
+
         internal func InEnumImpl(_ value: __x_ABI_Ctest__component_CSigned) throws -> HSTRING? {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CIStaticClassStatics.self) { pThis in
@@ -2019,6 +2036,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func InNonBlittableStructImpl(_ value: __x_ABI_Ctest__component_CNonBlittableStruct) throws -> HSTRING? {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CIStaticClassStatics.self) { pThis in
@@ -2026,11 +2044,13 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func TakeBaseImpl(_ base: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIStaticClassStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.TakeBase(pThis, base))
             }
         }
+
     }
 
     open class IUnsealedDerived: test_component.IInspectable {
@@ -2043,11 +2063,13 @@ public enum __ABI_test_component {
             }
             return value
         }
+
         internal func put_PropImpl(_ value: INT32) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIUnsealedDerived.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_Prop(pThis, value))
             }
         }
+
     }
 
     open class IUnsealedDerived2: test_component.IInspectable {
@@ -2058,6 +2080,7 @@ public enum __ABI_test_component {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Method(pThis))
             }
         }
+
     }
 
     internal class IUnsealedDerived2ProtectedFactory: test_component.IInspectable, ComposableActivationFactory {
@@ -2072,6 +2095,7 @@ public enum __ABI_test_component {
             }
             return value
         }
+
     }
 
     open class IUnsealedDerivedNoOverrides: test_component.IInspectable {
@@ -2091,6 +2115,7 @@ public enum __ABI_test_component {
             }
             return value
         }
+
     }
 
     open class IUnsealedDerivedOverloads2: test_component.IInspectable {
@@ -2101,6 +2126,7 @@ public enum __ABI_test_component {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OnAfterDoTheThing(pThis))
             }
         }
+
     }
 
     open class IUnsealedDerivedOverrides: test_component.IInspectable {
@@ -2111,6 +2137,7 @@ public enum __ABI_test_component {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OnBeforeDoTheThing(pThis))
             }
         }
+
     }
 
     internal class IUnsealedDerivedProtectedFactory: test_component.IInspectable, ComposableActivationFactory {
@@ -2125,11 +2152,12 @@ public enum __ABI_test_component {
             }
             return value
         }
+
     }
 
     public class _ABI_NonBlittableBoolStruct {
         public var val: __x_ABI_Ctest__component_CNonBlittableBoolStruct = .init()
-        public init() { } 
+        public init() { }
         public init(from swift: test_component.NonBlittableBoolStruct) {
             val.First = .init(from: swift.First)
             val.Second = .init(from: swift.Second)
@@ -2147,7 +2175,7 @@ public enum __ABI_test_component {
     }
     public class _ABI_NonBlittableStruct {
         public var val: __x_ABI_Ctest__component_CNonBlittableStruct = .init()
-        public init() { } 
+        public init() { }
         public init(from swift: test_component.NonBlittableStruct) {
             val.First = try! HString(swift.First).detach()
             val.Second = try! HString(swift.Second).detach()
@@ -2227,9 +2255,7 @@ public enum __ABI_test_component {
 
         OnDoTheThing: {
             guard let __unwrapped__instance = IBaseOverridesWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             __unwrapped__instance.OnDoTheThing()
-
             return S_OK
         }
     )
@@ -2298,9 +2324,7 @@ public enum __ABI_test_component {
 
         OnBeforeDoTheThing: {
             guard let __unwrapped__instance = IUnsealedDerivedOverridesWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             __unwrapped__instance.OnBeforeDoTheThing()
-
             return S_OK
         }
     )
@@ -2376,9 +2400,7 @@ public enum __ABI_test_component {
 
         OnAfterDoTheThing: {
             guard let __unwrapped__instance = IUnsealedDerivedOverloads2Wrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             __unwrapped__instance.OnAfterDoTheThing()
-
             return S_OK
         }
     )

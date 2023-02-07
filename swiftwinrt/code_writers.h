@@ -772,7 +772,6 @@ namespace swiftwinrt
     static void write_abi_func_body(writer& w, typedef_base const& type, function_def const& function)
     {
         std::string_view func_name = get_abi_name(function);
-        auto indent = w.push_indent({ 2 });
         if (function.return_type)
         {
             auto return_val = function.return_type.value();
@@ -817,30 +816,24 @@ bind<write_abi_args>(function));
             return;
         }
         const bool internal = is_composable_factory || can_mark_internal(type.type());
-        auto format = R"(% class %: %.IInspectable% {
-)";
-      
-        w.write(format,
+        w.write("% class %: %.IInspectable% {\n",
             internal ? "internal" : "open",
             type,
             w.support,
             is_composable_factory ? ", ComposableActivationFactory": "");
 
+        auto class_indent_guard = w.push_indent();
+
         if (is_composable_factory)
         {
-            auto overrides_format = "    internal typealias Composable = %.Composable\n\n";
+            auto overrides_format = "internal typealias Composable = %.Composable\n\n";
             w.write(overrides_format, get_full_swift_type_name(w, get_exclusive_to(type)));
         }
       
         auto abi_guard = w.push_abi_types(true);
 
-        auto iid_format = "    override public class var IID: IID { IID_% }\n\n";
+        auto iid_format = "override public class var IID: IID { IID_% }\n\n";
         w.write(iid_format, bind_type_mangled(type));
-
-
-        auto format_method = R"(    % func %Impl(%) throws %{
-%    }
-)";
 
         for (auto&& function : methods)
         {
@@ -851,12 +844,16 @@ bind<write_abi_args>(function));
                 // metadata format specifies something else.
                 auto func_name = is_composable_factory ? "CreateInstance" : get_abi_name(function);
                 auto abi_guard2 = w.push_abi_types(true);
-                w.write(format_method,
-                     internal || is_exclusive(type) ? "internal" : "open",
+                w.write("% func %Impl(%) throws %{\n",
+                    internal || is_exclusive(type) ? "internal" : "open",
                     func_name,
                     bind<write_params>(function),
-                    bind<write_return_type_declaration>(function),
-                    bind<write_abi_func_body>(type, function));
+                    bind<write_return_type_declaration>(function));
+                {
+                    auto function_indent_guard = w.push_indent();
+                    write_abi_func_body(w, type, function);
+                }
+                w.write("}\n\n");
             }
             catch (std::exception const& e)
             {
@@ -867,6 +864,7 @@ bind<write_abi_args>(function));
             }
         }
 
+        class_indent_guard.end();
         w.write("}\n\n");
     }
     static void write_implementable_interface(writer& w, interface_type const& type);
@@ -994,14 +992,14 @@ class % : WinRTWrapperBase<%, %> {
         // swift and C land
         w.write("public class _ABI_% {\n", type.swift_type_name());
         {
-            auto push_indent = w.push_indent({ 1 });
+            auto class_indent_guard = w.push_indent();
             w.write("public var val: % = .init()\n", bind_type_mangled(type));
-            w.write("public init() { } \n");
+            w.write("public init() { }\n");
 
             w.write("public init(from swift: %) {\n", get_full_swift_type_name(w, type));
             {
                 auto push_abi = w.push_abi_types(true);
-                auto indent = w.push_indent({ 1 });
+                auto indent = w.push_indent();
                 for (auto&& field : type.members)
                 {
                     // WIN-64 - swiftwinrt: support boxing/unboxing
@@ -1014,14 +1012,14 @@ class % : WinRTWrapperBase<%, %> {
                             bind<write_consume_type>(field.type, from)
                         );
                     }
-                 
+
                 }
             }
             w.write("}\n\n");
 
             w.write("public func detach() -> % {\n", bind_type_mangled(type));
             {
-                auto indent = w.push_indent({ 1 });
+                auto indent = w.push_indent();
 
                 w.write("let result = val\n");
                 for (auto&& member : type.members)
@@ -1034,12 +1032,11 @@ class % : WinRTWrapperBase<%, %> {
                 }
                 w.write("return result\n");
             }
-
             w.write("}\n\n");
 
             w.write("deinit {\n");
             {
-                auto indent = w.push_indent({ 1 });
+                auto indent = w.push_indent();
                 for (auto&& member : type.members)
                 {
                     if (get_category(member.type) == param_category::string_type)
@@ -1051,12 +1048,10 @@ class % : WinRTWrapperBase<%, %> {
             w.write("}\n");
         }
         w.write("}\n");
-        
     }
 
     static void write_consume_params(writer& w, function_def const& signature)
     {
-        auto indent_guard = w.push_indent({ 1 });
         int param_number = 1;
         auto full_type_names = w.push_full_type_names(true);
 
@@ -1325,59 +1320,59 @@ bind_impl_fullname(type));
         auto typeName = info.type->swift_type_name();
         if (typeName.starts_with("IVector"))
         {
-            w.write(R"(    // MARK: Collection
-    %var startIndex: Int { 0 }
-    %var endIndex: Int { Int(Size) }
-    %func index(after i: Int) -> Int {
-        i+1
-    }
+            w.write(R"(// MARK: Collection
+%var startIndex: Int { 0 }
+%var endIndex: Int { Int(Size) }
+%func index(after i: Int) -> Int {
+    i+1
+}
 
-    %func index(of: Element) -> Int? { 
-        var index: UInt32 = 0
-        let result = IndexOf(of, &index)
-        guard result else { return nil }
-        return Int(index)
-    }
-    %var count: Int { Int(Size) }
+%func index(of: Element) -> Int? { 
+    var index: UInt32 = 0
+    let result = IndexOf(of, &index)
+    guard result else { return nil }
+    return Int(index)
+}
+%var count: Int { Int(Size) }
 )", modifier, modifier, modifier, modifier, modifier);
             if (typeName.starts_with("IVectorView"))
             {
                 w.write(R"(
-    %subscript(position: Int) -> Element {
-        get {
-            GetAt(UInt32(position))
-         }
+%subscript(position: Int) -> Element {
+    get {
+        GetAt(UInt32(position))
     }
+}
 )", modifier);
             }
             else
             {
                 w.write(R"(
-    %func append(_ item: Element) {
-        Append(item)
-    }
+%func append(_ item: Element) {
+    Append(item)
+}
 
-    %subscript(position: Int) -> Element {
-        get {
-            GetAt(UInt32(position))
-         }
-         set(newValue) {
-             SetAt(UInt32(position), newValue)
-         }
+%subscript(position: Int) -> Element {
+    get {
+        GetAt(UInt32(position))
     }
+    set(newValue) {
+        SetAt(UInt32(position), newValue)
+    }
+}
 
-    %func removeLast() {
-        RemoveAtEnd()
-    }
+%func removeLast() {
+    RemoveAtEnd()
+}
 
-    %func clear() {
-        Clear()
-    }
+%func clear() {
+    Clear()
+}
 )", modifier, modifier, modifier, modifier);
             }
         }
 
-        w.write("    // MARK: WinRT\n");
+        w.write("// MARK: WinRT\n");
     }
 
     static void write_interface_impl(writer& w, interface_type const& type)
@@ -1392,10 +1387,10 @@ bind_impl_fullname(type));
 
         auto format = "public class % : %, AbiInterfaceImpl {\n";
         w.write(format, bind_impl_name(type), type);
-        {
-            {
-                auto indent = w.push_indent({ 1 });
-                w.write(R"(public typealias c_ABI = %
+
+        auto class_indent_guard = w.push_indent();
+
+        w.write(R"(public typealias c_ABI = %
 public typealias swift_ABI = %.%
 public typealias swift_Projection = %
 private (set) public var _default: swift_ABI
@@ -1411,56 +1406,53 @@ public static func makeAbi() -> c_ABI {
     return .init(lpVtbl: vtblPtr)
 }
 )",
+            bind_type_mangled(type),
+            abi_namespace(type),
+            type,
+            type,
+            bind_impl_name(type),
+            abi_namespace(type),
+            type);
 
-                    bind_type_mangled(type),
-                    abi_namespace(type),
-                    type,
-                    type,
-                    bind_impl_name(type),
-                    abi_namespace(type),
-                    type);
-            
-            }
-
-            interface_info type_info{ &type };
-            type_info.is_default = true; // mark as default so we use the name "_default"
-            for (auto&& method : type.functions)
-            {
-                write_class_impl_func(w, method, type_info);
-            }
-            for (auto&& prop : type.properties)
-            {
-                write_class_impl_property(w, prop, type_info);
-            }
-
-            for (auto&& [interface_name, info] : type.required_interfaces)
-            {
-                if (!can_write(w, info.type)) { continue; }
-
-                if (!info.is_default || info.base)
-                {
-                    auto swiftAbi = w.write_temp("%.%", abi_namespace(*info.type), info.type->swift_type_name());
-                    assert(!is_collection_type(info.type)); // not expected generic types in this method    
-                    w.write("    internal lazy var %: % = try! _default.QueryInterface()\n",
-                        get_swift_name(info),
-                        swiftAbi);
-                }
-
-                if (auto iface = dynamic_cast<const interface_type*>(info.type))
-                {
-                    for (auto&& method : iface->functions)
-                    {
-                        write_class_impl_func(w, method, info);
-                    }
-
-                    for (auto&& prop : iface->properties)
-                    {
-                        write_class_impl_property(w, prop, info);
-                    }
-                }
-            }
-
+        interface_info type_info{ &type };
+        type_info.is_default = true; // mark as default so we use the name "_default"
+        for (auto&& method : type.functions)
+        {
+            write_class_impl_func(w, method, type_info);
         }
+        for (auto&& prop : type.properties)
+        {
+            write_class_impl_property(w, prop, type_info);
+        }
+
+        for (auto&& [interface_name, info] : type.required_interfaces)
+        {
+            if (!can_write(w, info.type)) { continue; }
+
+            if (!info.is_default || info.base)
+            {
+                auto swiftAbi = w.write_temp("%.%", abi_namespace(*info.type), info.type->swift_type_name());
+                assert(!is_collection_type(info.type)); // not expected generic types in this method    
+                w.write("internal lazy var %: % = try! _default.QueryInterface()\n",
+                    get_swift_name(info),
+                    swiftAbi);
+            }
+
+            if (auto iface = dynamic_cast<const interface_type*>(info.type))
+            {
+                for (auto&& method : iface->functions)
+                {
+                    write_class_impl_func(w, method, info);
+                }
+
+                for (auto&& prop : iface->properties)
+                {
+                    write_class_impl_property(w, prop, info);
+                }
+            }
+        }
+
+        class_indent_guard.end();
         w.write("}\n\n");
     }
 
@@ -1633,6 +1625,8 @@ public static func makeAbi() -> c_ABI {
             abi_namespace(w.type_namespace), bind_type_mangled(type)
         );
 
+        auto indent_guard = w.push_indent();
+
         interface_info info{ &type };
         info.is_default = true; // mark as default so we use the name "_default"
         write_collection_protocol_conformance(w, info);
@@ -1645,6 +1639,8 @@ public static func makeAbi() -> c_ABI {
         {
             write_class_impl_property(w, prop, info);
         }
+
+        indent_guard.end();
         w.write("}\n\n");
     }
 
@@ -1682,17 +1678,21 @@ public static func makeAbi() -> c_ABI {
             abi_namespace(w.type_namespace), bind_type_mangled(type)
             );
 
-        interface_info info{ &type };
-        info.is_default = true; // mark as default so we use the name "_default"
-        write_collection_protocol_conformance(w, info);
+        {
+            auto indent = w.push_indent();
 
-        for (auto&& method : type.functions)
-        {
-            write_class_impl_func(w, method, info);
-        }
-        for (auto&& prop : type.properties)
-        {
-            write_class_impl_property(w, prop, info);
+            interface_info info{ &type };
+            info.is_default = true; // mark as default so we use the name "_default"
+            write_collection_protocol_conformance(w, info);
+
+            for (auto&& method : type.functions)
+            {
+                write_class_impl_func(w, method, info);
+            }
+            for (auto&& prop : type.properties)
+            {
+                write_class_impl_property(w, prop, info);
+            }
         }
         w.write("}\n\n");
     }
@@ -1877,7 +1877,6 @@ public static func makeAbi() -> c_ABI {
 
     static void write_factory_body(writer& w, function_def const& method, interface_info const& factory, class_type const& type, metadata_type const& default_interface)
     {
-        auto indent_guard = w.push_indent(indent{ 1 });
         std::string_view func_name = get_abi_name(method);
 
         auto swift_name = get_swift_name(factory);
@@ -1901,50 +1900,45 @@ public static func makeAbi() -> c_ABI {
     {
         if (auto factoryIface = dynamic_cast<const interface_type*>(&factory))
         {
-            auto guard = w.push_indent(indent{ 1 });
-
             interface_info factory_info{ factoryIface };
             auto swift_name = get_swift_name(factory_info);
-            w.write(R"(private static let %: %.% = try! RoGetActivationFactory(HString("%"))
-)",
-swift_name,
-abi_namespace(factory),
-factory,
-get_full_type_name(type));
+            w.write("private static let %: %.% = try! RoGetActivationFactory(HString(\"%\"))\n",
+                swift_name, abi_namespace(factory), factory, get_full_type_name(type));
 
             for (auto&& method : factoryIface->functions)
             {
                 if (!can_write(w, method)) continue;
-                w.write(R"(public init(%) {
-%}
 
-)", 
-                    bind<write_params>(method),
-                    bind<write_factory_body>(method, factory_info, type, default_interface)
-                    );
+                w.write("public init(%) {\n", bind<write_params>(method));
+                {
+                    auto indent = w.push_indent();
+                    write_factory_body(w, method, factory_info, type, default_interface);
+                }
+                w.write("}\n\n");
             }
         }
         else
         {
             auto base_class = type.base_class;
-            auto base_class_init = base_class ? "\n        super.init(fromAbi: try! _default.QueryInterface())" : "";
-                w.write(R"^-^(    %public init() {
-        try! _default = RoActivateInstance(HString("%"))%
-    }
 
-)^-^", base_class ? "override " : "",
-get_full_type_name(type), base_class_init);
-
+            w.write("%public init() {\n", base_class ? "override " : "");
+            {
+                auto indent = w.push_indent();
+                w.write("try! _default = RoActivateInstance(HString(\"%\"))\n", get_full_type_name(type));
+                if (base_class)
+                {
+                    w.write("super.init(fromAbi: try! _default.QueryInterface())\n");
+                }
+            }
+            w.write("}\n\n");
         }
-        
     }
 
     static void write_composable_constructor(writer& w, metadata_type const& factory, class_type const& type)
     {
         if (auto factoryIface = dynamic_cast<const interface_type*>(&factory))
         {
-
-            w.write("    private static var _% : %.% =  try! RoGetActivationFactory(HString(\"%\"))\n",
+            w.write("private static var _% : %.% =  try! RoGetActivationFactory(HString(\"%\"))\n",
                 factory,
                 abi_namespace(factory),
                 factory,
@@ -1953,32 +1947,32 @@ get_full_type_name(type), base_class_init);
             auto base_class = type.base_class;
             if (!base_class)
             {
-                auto base_composable_init = R"(    public init() {
-        self._default = MakeComposed(Self._%, &_inner, self)
-    }
+                auto base_composable_init = R"(public init() {
+    self._default = MakeComposed(Self._%, &_inner, self)
+}
 
-    public init<Factory: ComposableActivationFactory>(_ factory : Factory) {
-        self._default = try! MakeComposed(factory, &_inner, self as! Factory.Composable.Default.swift_Projection).QueryInterface()
-        _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
-    }
+public init<Factory: ComposableActivationFactory>(_ factory : Factory) {
+    self._default = try! MakeComposed(factory, &_inner, self as! Factory.Composable.Default.swift_Projection).QueryInterface()
+    _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
+}
 )";
                 w.write(base_composable_init, factory);
             }
             else
             {
-                auto override_composable_init = R"(    override public init() {
-        super.init(Self._%) 
-        let parentDefault: UnsafeMutablePointer<%>? = super._get_abi()
-        self._default = try! IInspectable(parentDefault).QueryInterface()
-        _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
-    }
+                auto override_composable_init = R"(override public init() {
+    super.init(Self._%) 
+    let parentDefault: UnsafeMutablePointer<%>? = super._get_abi()
+    self._default = try! IInspectable(parentDefault).QueryInterface()
+    _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
+}
 
-    override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
-        super.init(factory)
-        let parentDefault: UnsafeMutablePointer<%>? = super._get_abi()
-        self._default = try! IInspectable(parentDefault).QueryInterface()
-        _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
-    }
+override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
+    super.init(factory)
+    let parentDefault: UnsafeMutablePointer<%>? = super._get_abi()
+    self._default = try! IInspectable(parentDefault).QueryInterface()
+    _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
+}
 )";
                 w.write(override_composable_init, factory, bind_type_abi(ElementType::Object), bind_type_abi(ElementType::Object));
             }
@@ -1989,41 +1983,34 @@ get_full_type_name(type), base_class_init);
     {
         auto [ns, name] = get_type_namespace_and_name(default_interface);
         auto base_class = type.base_class;
-        bool composable = type.is_composable();
 
-        // We unwrap composable types to try and get to any derived type. If not composable, then create a new
-        // instance
-        auto from_abi = composable ? "UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi!)" :
-            ".init(fromAbi: .init(abi))";
-
-        w.write(R"(    public static func from(abi: UnsafeMutablePointer<%>?) -> % {
-         %
-    }
-)",
-bind_type_mangled(default_interface),
-type,
-from_abi);
-
-        auto swiftAbi = w.write_temp("%.%", abi_namespace(ns), name);
-        if (is_collection_type(default_interface))
+        // We unwrap composable types to try and get to any derived type.
+        // If not composable, then create a new instance
+        w.write("public static func from(abi: UnsafeMutablePointer<%>?) -> % {\n",
+            bind_type_mangled(default_interface), type);
         {
-            auto default_generic = dynamic_cast<const generic_inst*>(&default_interface);
-            swiftAbi = w.write_temp("%.%", abi_namespace(w.type_namespace), bind_type_abi(default_generic));
+            auto indent = w.push_indent();
+            w.write(type.is_composable()
+                ? "UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi!)\n"
+                : ".init(fromAbi: .init(abi))\n");
         }
-        auto base_class_init = base_class ? "\n        super.init(fromAbi: fromAbi)" : "";
-        w.write(R"^-^(    %public init(fromAbi: %.IInspectable) {
-        _default = try! fromAbi.QueryInterface()%
-    }
+        w.write("}\n\n");
 
-)^-^",
-    base_class ? "override " : "",
-w.support,
-base_class_init);
+        w.write("%public init(fromAbi: %.IInspectable) {\n",
+            base_class ? "override " : "", w.support);
+        {
+            auto indent = w.push_indent();
+            w.write("_default = try! fromAbi.QueryInterface()\n");
+            if (base_class)
+            {
+                w.write("super.init(fromAbi: fromAbi)\n");
+            }
+        }
+        w.write("}\n\n");
     }
 
     static void write_class_func_body(writer& w, function_def const& function, interface_info const& iface)
     {
-        auto indent_guard = w.push_indent(indent{ 1 });
         std::string_view func_name = get_abi_name(function);
         {
             auto guard = write_local_param_wrappers(w, function);
@@ -2056,19 +2043,16 @@ base_class_init);
     {
         if (!can_write(w, prop)) return;
 
-        auto format = "    public %var % : % {\n";
-
-        auto propName = get_swift_name(prop);
-
         // TODO: https://linear.app/the-browser-company/issue/WIN-82/support-setters-not-defined-in-same-api-contract-as-getters
         // right now require that both getter and setter are defined in the same version
         if (prop.getter)
         {
-            w.write(format,
+            w.write("public %var % : % {\n",
                 iface.attributed ? "static " : "",
-                propName,
+                get_swift_name(prop),
                 prop.getter.value().return_type.value());
         }
+        auto property_indent_guard = w.push_indent();
 
         auto impl = get_swift_name(iface);
 
@@ -2080,7 +2064,6 @@ base_class_init);
 }
 
 )";
-            auto guard = w.push_indent(indent{ 2 });
             auto getterSig = prop.getter.value();
             w.write(getter_format,
                 getterSig.return_type.value().name,
@@ -2093,50 +2076,47 @@ base_class_init);
         // right now require that both getter and setter are defined in the same version
         if (prop.setter && prop.getter)
         {
-            auto setter_format = R"(set {
-    %try! %.%Impl(%) 
-}
-)";
-            auto guard = w.push_indent(indent{ 2 });
+            w.write("set {\n");
+            auto set_indent_guard = w.push_indent();
+
             std::string extra_init;
 
             TypeDef signature_type{};
             auto category = get_category(prop.type, &signature_type);
             if (category == param_category::string_type)
             {
-                extra_init = "let _newValue = try! HString(newValue)\n    ";
+                w.write("let _newValue = try! HString(newValue)\n");
             }
             else if (category == param_category::struct_type && !is_struct_blittable(signature_type))
             {
-                extra_init = w.write_temp("let _newValue = %._ABI_", abi_namespace(signature_type))
-                    .append(signature_type.TypeName())
-                    .append("(from: newValue)\n    ");
+                w.write("let _newValue = %._ABI_%(from: newValue)\n", abi_namespace(signature_type), signature_type.TypeName());
             }
             else if (is_interface(prop.type))
             {
-                extra_init = w.write_temp("let wrapper = %(newValue)\n    ",
-                    bind_wrapper_fullname(prop.type));
-                extra_init.append("let _newValue = try! wrapper?.to_abi { $0 }\n    ");
+                w.write("let wrapper = %(newValue)\n", bind_wrapper_fullname(prop.type));
+                w.write("let _newValue = try! wrapper?.to_abi { $0 }\n");
             }
             else if (is_delegate(prop.type))
             {
-                extra_init = w.write_temp("let wrapper = %(newValue)\n    ",
-                    bind_wrapper_fullname(prop.type));
-                extra_init.append("let _newValue = try! wrapper.to_abi { $0 }\n    ");
+                w.write("let wrapper = %(newValue)\n", bind_wrapper_fullname(prop.type));
+                w.write("let _newValue = try! wrapper.to_abi { $0 }\n");
             }
   
-            w.write(setter_format,
-                extra_init,
+            w.write("try! %.%Impl(%)\n",
                 impl,
                 get_swift_name(prop.setter.value()),
                 bind<write_convert_to_abi_arg>("newValue", prop.type, false));
+
+            set_indent_guard.end();
+            w.write("}\n");
         }
         
         // TODO: https://linear.app/the-browser-company/issue/WIN-82/support-setters-not-defined-in-same-api-contract-as-getters
         // right now require that both getter and setter are defined in the same version
         if (prop.getter)
         {
-            w.write("    }\n\n");
+            property_indent_guard.end();
+            w.write("}\n\n");
         }
     }
 
@@ -2148,18 +2128,16 @@ base_class_init);
             return;
         }
 
-        auto format = R"(% func %(%) %{
-%}
-
-)";
-
-        auto guard = w.push_indent(indent{ 1 });
-        w.write(format,
-                iface.overridable ? "open" : "public",
+        w.write("% func %(%) %{\n",
+            iface.overridable ? "open" : "public",
             get_swift_name(function),
             bind<write_params>(function),
-            bind<write_return_type_declaration>(function),
-            bind<write_class_func_body>(function, iface));
+            bind<write_return_type_declaration>(function));
+        {
+            auto indent = w.push_indent();
+            write_class_func_body(w, function, iface);
+        }
+        w.write("}\n\n");
     }
     
     static void write_event_registrar_name(writer& w, winmd::reader::Event event)
@@ -2170,21 +2148,21 @@ base_class_init);
     static void write_event_registrar(writer& w, event_def const& event, interface_info const& iface)
     {
         auto abi_name = w.write_temp("%.%", abi_namespace(iface.type), iface.type->swift_type_name());
-        auto format = R"(    private class % : IEventRegistration {
-        func add(delegate: any WinRTDelegate, for impl: %.IInspectable){
-            let wrapper = %(delegate as! %)
-            let abi = try! wrapper.to_abi { $0 }
-            let impl:% = try! impl.QueryInterface()
-            delegate.token = try! impl.add_%Impl(abi)
-        }
+        auto format = R"(private class % : IEventRegistration {
+    func add(delegate: any WinRTDelegate, for impl: %.IInspectable){
+        let wrapper = %(delegate as! %)
+        let abi = try! wrapper.to_abi { $0 }
+        let impl:% = try! impl.QueryInterface()
+        delegate.token = try! impl.add_%Impl(abi)
+    }
 
-        func remove(delegate: any WinRTDelegate, for impl: %.IInspectable){
-            let impl: % = try! impl.QueryInterface()
-                if let token = delegate.token {
-                try! impl.remove_%Impl(token)
-            }
+    func remove(delegate: any WinRTDelegate, for impl: %.IInspectable){
+        let impl: % = try! impl.QueryInterface()
+            if let token = delegate.token {
+            try! impl.remove_%Impl(token)
         }
     }
+}
 )";
         w.write(format,
             bind<write_event_registrar_name>(event.def), // class %Registrar
@@ -2201,8 +2179,8 @@ base_class_init);
     static void write_class_impl_event(writer& w, event_def const& def, interface_info const& iface)
     {
         auto event = def.def;
-        auto format = R"(    private static let _% = %()
-    public % var % : Event<(%),%> = EventImpl<%>(register: %_%, owner:%)
+        auto format = R"(private static let _% = %()
+public % var % : Event<(%),%> = EventImpl<%>(register: %_%, owner:%)
 )";
         auto registrar_name = w.write_temp("%", bind<write_event_registrar_name>(event));
         auto type = find_type(event.EventType());
@@ -2237,8 +2215,6 @@ base_class_init);
 
     static void write_statics_body(writer& w, function_def const& method, metadata_type const& statics)
     {
-        auto indent_guard = w.push_indent(indent{ 1 });
-
         std::string_view func_name = get_abi_name(method);
 
         {
@@ -2272,7 +2248,7 @@ base_class_init);
         {
             interface_info static_info{ statics.type };
             auto impl_name = get_swift_name(static_info);
-            w.write("    private static let %: %.% = try! RoGetActivationFactory(HString(\"%\"))\n",
+            w.write("private static let %: %.% = try! RoGetActivationFactory(HString(\"%\"))\n",
                 impl_name,
                 abi_namespace(statics.type),
                 statics.type->swift_type_name(),
@@ -2280,22 +2256,20 @@ base_class_init);
 
             for (auto&& method : ifaceType->functions)
             {
-                auto guard = w.push_indent(indent{ 1 });
-
                 if (!can_write(w, method))
                 {
                     continue;
                 }
 
-                w.write(R"(public static func %(%) %{
-%}
-
-)", get_swift_name(method),
-bind<write_params>(method),
-bind<write_return_type_declaration>(method),
-bind<write_statics_body>(method, *statics.type)
-);
-
+                w.write("public static func %(%) %{\n",
+                    get_swift_name(method),
+                    bind<write_params>(method),
+                    bind<write_return_type_declaration>(method));
+                {
+                    auto indent = w.push_indent();
+                    write_statics_body(w, method, *statics.type);
+                }
+                w.write("}\n\n");
             }
 
             static_info.attributed = true;
@@ -2321,17 +2295,17 @@ bind<write_statics_body>(method, *statics.type)
 
         bool use_iinspectable_vtable = type_name(overrides) == type_name(*default_interface);
 
-        auto format = R"(    internal class % : ComposableImpl {
+        auto format = R"(internal class % : ComposableImpl {
+    internal typealias c_ABI = %
+    internal typealias swift_ABI = %
+    internal class Default : MakeComposedAbi {
+        internal typealias swift_Projection = %
         internal typealias c_ABI = %
-        internal typealias swift_ABI = %
-        internal class Default : MakeComposedAbi {
-            internal typealias swift_Projection = %
-            internal typealias c_ABI = %
-            internal typealias swift_ABI = %.%
-            internal static func from(abi: UnsafeMutableRawPointer?) -> swift_Projection {
-                .init(fromAbi: .init(abi!))
-            }
+        internal typealias swift_ABI = %.%
+        internal static func from(abi: UnsafeMutableRawPointer?) -> swift_Projection {
+            .init(fromAbi: .init(abi!))
         }
+    }
 }
 )";
 
@@ -2365,8 +2339,8 @@ bind<write_statics_body>(method, *statics.type)
         if (compose)
         {
             auto modifier = parent.is_composable() ? "open" : "public";
-            w.write("    internal typealias Composable = %\n", overrides.swift_type_name());
-            w.write("    %% class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }\n",
+            w.write("internal typealias Composable = %\n", overrides.swift_type_name());
+            w.write("%% class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }\n",
                 parent.base_class ? "override " : "", modifier);
         }
     }   
@@ -2404,7 +2378,7 @@ bind<write_statics_body>(method, *statics.type)
             // when implementing default overrides, we want to call to the inner non-delegating IUnknown
             // as this will get us to the inner object. otherwise we'll end up with a stack overflow 
             // because we'll be calling the same method on ourselves
-            w.write("    internal lazy var %: %.% = try! IUnknown(_inner).QueryInterface()\n",
+            w.write("internal lazy var %: %.% = try! IUnknown(_inner).QueryInterface()\n",
                 get_swift_name(info),
                 abi_namespace(info.type->swift_logical_namespace()),
                 info.type->swift_type_name());
@@ -2419,7 +2393,7 @@ bind<write_statics_body>(method, *statics.type)
                 writer::generic_param_guard guard{ &w };
                 swiftAbi = w.write_temp("%.%", abi_namespace(w.type_namespace), bind_type_abi(info.type));
             }
-            w.write("    internal lazy var %: % = try! _default.QueryInterface()\n",
+            w.write("internal lazy var %: % = try! _default.QueryInterface()\n",
                 get_swift_name(info),
                 swiftAbi);
         }
@@ -2516,14 +2490,16 @@ bind<write_statics_body>(method, *statics.type)
 
         w.write(" {\n");
 
+        auto class_indent_guard = w.push_indent();
+
         if (composable && !base_class)
         {
-            w.write("    private (set) public var _inner: UnsafeMutablePointer<%.IInspectable>?\n", w.c_mod);
+            w.write("private (set) public var _inner: UnsafeMutablePointer<%.IInspectable>?\n", w.c_mod);
         }
 
         if (!collection_type_alias.empty())
         {
-            w.write("    public typealias %\n", collection_type_alias);
+            w.write("public typealias %\n", collection_type_alias);
         }
         writer::generic_param_guard guard;
 
@@ -2539,22 +2515,22 @@ bind<write_statics_body>(method, *statics.type)
                 swiftAbi = w.write_temp("%.%", abi_namespace(w.type_namespace), bind_type_abi(generic_type));
             }
 
-            w.write(R"(    private typealias swift_ABI = %
-    private typealias c_ABI = %
-    private var _default: swift_ABI = .init(UnsafeMutableRawPointer.none)
-    % func _get_abi<T>() -> UnsafeMutablePointer<T>? {
-        if T.self == c_ABI.self {
-            return RawPointer(_default)
-        }   
-        if T.self == %.IInspectable.self {
-            return RawPointer(_default)
-        }
-        return %
+            w.write(R"(private typealias swift_ABI = %
+private typealias c_ABI = %
+private var _default: swift_ABI = .init(UnsafeMutableRawPointer.none)
+% func _get_abi<T>() -> UnsafeMutablePointer<T>? {
+    if T.self == c_ABI.self {
+        return RawPointer(_default)
+    }   
+    if T.self == %.IInspectable.self {
+        return RawPointer(_default)
     }
+    return %
+}
 
 )",
                 swiftAbi,
-            bind_type_mangled(default_interface),
+                bind_type_mangled(default_interface),
                 base_class ? 
                             composable ? "override open" : 
                                          "override public" :
@@ -2621,6 +2597,8 @@ bind<write_statics_body>(method, *statics.type)
         {
             write_composable_impl(w, type, *default_interface, true);
         }
+
+        class_indent_guard.end();
         w.write("}\n\n");
     }
 
@@ -2687,7 +2665,7 @@ bind<write_statics_body>(method, *statics.type)
     {
         w.write("public struct % {\n", type);
         {
-            auto indent_guard1 = w.push_indent({ 1 });
+            auto indent_guard1 = w.push_indent();
             for (auto&& field : type.members)
             {
                 auto field_type = field.type;
@@ -2703,7 +2681,7 @@ bind<write_statics_body>(method, *statics.type)
             w.write("public init() {}\n");
             w.write("public init(%) {\n", bind<write_struct_initializer_params>(type));
             {
-                auto indent_guard2 = w.push_indent({ 1 });
+                auto indent_guard2 = w.push_indent();
                 for (auto&& field : type.members)
                 {
                     // WIN-64 - swiftwinrt: support boxing/unboxing
@@ -2855,7 +2833,7 @@ bind([&](writer& w) {
         auto interface_count = 3 + interfaces.size();
         w.write("GetIids: {\n");
         {
-            auto indent_guard = w.push_indent({ 1 });
+            auto indent_guard = w.push_indent();
             w.write("let size = MemoryLayout<IID>.size\n");
             w.write("let iids = CoTaskMemAlloc(UInt64(size) * %).assumingMemoryBound(to: IID.self)\n", interface_count);
             w.write("iids[0] = IUnknown.IID\n");
@@ -2969,7 +2947,6 @@ bind([&](writer& w) {
 
     static void write_abi_ret_val(writer& w, function_def signature)
     {
-        auto indent_guard = w.push_indent({ 1 });
         int param_number = 1;
         for (auto& param : signature.params)
         {
@@ -2987,17 +2964,6 @@ bind([&](writer& w) {
             auto return_param_name = "$" + std::to_string(signature.params.size() + 1);
             do_write_abi_val_assignment(w, signature.return_type.value().type, signature.return_type.value().name, return_param_name);
         }
-    }
-
-    static void write_consume_swift_ret_val(writer& w, function_def signature)
-    {
-        if (!signature.return_type)
-        {
-            return;
-        }
-
-        w.write("let % = ",
-            signature.return_type.value().name);
     }
 
     static void write_not_implementable_vtable_method(writer& w, function_def const& sig)
@@ -3068,20 +3034,23 @@ bind([&](writer& w) {
             auto format = is_delegate(type) ? "%((%))" : "%(%)";
             func_call += w.write_temp(format, get_swift_name(method), bind<write_consume_args>(function));
         }
-        w.write(R"(%: {
-    guard let __unwrapped__instance = %.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-%
-    %__unwrapped__instance.%
-%
-    return S_OK
-})",
-func_name,
-bind_wrapper_name(type),
-bind<write_consume_params>(function),
-bind<write_consume_swift_ret_val>(function),
-func_call,
-bind<write_abi_ret_val>(function)
-);
+
+        w.write("%: {\n", func_name);
+        {
+            auto indent_guard = w.push_indent();
+            w.write("guard let __unwrapped__instance = %.try_unwrap_from(raw: $0) else { return E_INVALIDARG }\n",
+                bind_wrapper_name(type));
+            write_consume_params(w, function);
+
+            if (function.return_type)
+            {
+                w.write("let % = ", function.return_type.value().name);
+            }
+            w.write("__unwrapped__instance.%\n", func_call);
+            write_abi_ret_val(w, function);
+            w.write("return S_OK\n");
+        }
+        w.write("}");
     }
 
     template <typename T>
@@ -3094,9 +3063,8 @@ bind<write_abi_ret_val>(function)
         w.write("internal static var %VTable: %Vtbl = .init(\n",
             type,
             bind_type_mangled(type));
-
         {
-            auto indent = w.push_indent({ 1 });
+            auto indent = w.push_indent();
             write_iunknown_methods(w, type, interfaces);
             separator s{ w, ",\n\n" };
 
@@ -3144,7 +3112,7 @@ bind<write_abi_ret_val>(function)
             bind_type_mangled(overrides.type));
 
         {
-            auto indent = w.push_indent({ 1 });
+            auto indent = w.push_indent();
             write_iunknown_methods(w, overrides.type, other_interfaces, true);
             write_iinspectable_methods(w, overrides.type, other_interfaces, true);
 
