@@ -637,7 +637,7 @@ class SwiftWinRTTests {
   }
 
   public func TestAggregation() {
-    print(" ** Starting Test case: TestAggregation **")
+    print(" ** Starting Test Case: TestAggregation **")
 
     let derived = Derived()
     derived.DoTheThing()
