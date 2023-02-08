@@ -388,6 +388,8 @@ Where <spec> is one or more of:
                     });
             }
 
+            group.add([] { write_cwinrt_build_files(); });
+
             group.get();
 
             if (settings.component)
