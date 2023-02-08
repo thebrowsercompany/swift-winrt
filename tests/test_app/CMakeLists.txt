@@ -10,7 +10,8 @@ target_link_libraries(test_app PRIVATE Ctest_component)
 target_link_libraries(test_app PRIVATE test_component)
 
 # XCTest dependency
-set(XCTest_DIR "C:/Library/Developer/Platforms/Windows.platform/Developer/Library/XCTest-development")
+set(XCTest_DIR "$ENV{SDKROOT}/../../Developer/Library/XCTest-development")
+
 set(XCTest_LIBRARY "${XCTest_DIR}/usr/lib/swift/windows/x86_64")
 target_include_directories(test_app PRIVATE "${XCTest_LIBRARY}")
 target_link_directories(test_app PRIVATE "${XCTest_LIBRARY}")
