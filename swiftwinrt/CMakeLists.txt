@@ -54,16 +54,8 @@ target_sources(swiftwinrt PUBLIC
     resources.rc)
 
 # Make resources.rc depend on the files it embeds
-# We use an intermediate file for robustness because set_source_files_properties()
-# with OBJECT_DEPENDS starts failing when we pass in more than ~25 files directly.
 file(GLOB SUPPORT_FILES Support/*)
-set(SUPPORT_FILES_CHANGED_STAMP ${CMAKE_CURRENT_BINARY_DIR}/support-files-stamp.txt)
-add_custom_command(
-    OUTPUT ${SUPPORT_FILES_CHANGED_STAMP}
-    COMMAND ${CMAKE_COMMAND} -E echo "Support files changed" > ${SUPPORT_FILES_CHANGED_STAMP}
-    DEPENDS ${SUPPORT_FILES})
-set_source_files_properties(resources.rc PROPERTIES
-    OBJECT_DEPENDS ${SUPPORT_FILES_CHANGED_STAMP})
+set_property(SOURCE resources.rc APPEND PROPERTY OBJECT_DEPENDS ${SUPPORT_FILES})
 
 target_include_directories(swiftwinrt PUBLIC ${MicrosoftWindowsWinMD_INCLUDE_DIR} ${PROJECT_BINARY_DIR} ${PROJECT_SOURCE_DIR})
 target_compile_definitions(swiftwinrt PUBLIC "SWIFTWINRT_VERSION_STRING=\"${SWIFTWINRT_VERSION_STRING}\"")
