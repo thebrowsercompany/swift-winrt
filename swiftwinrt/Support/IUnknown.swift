@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: BSD-3
 
 import WinSDK
+import C_BINDINGS_MODULE
 
 open class IUnknown : HasIID {
   public let pUnk: IUnknownRef

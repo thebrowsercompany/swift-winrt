@@ -20,7 +20,7 @@ public protocol HasIID {
 
 public protocol AbiInterface {
     associatedtype c_ABI
-    associatedtype swift_ABI : WindowsFoundation.IUnknown
+    associatedtype swift_ABI : SUPPORT_MODULE.IUnknown
 }
 
 // A protocol for defining a type which implements a WinRT interface and defines

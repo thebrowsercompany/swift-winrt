@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: BSD-3
 
 import Ctest_component
+import WinSDK
 
 public func RoGetActivationFactory<Factory: IInspectable>(_ activatableClassId: HString) throws -> Factory {
   var iid: IID = Factory.IID
