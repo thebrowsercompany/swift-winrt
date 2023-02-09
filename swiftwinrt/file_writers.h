@@ -15,7 +15,7 @@ namespace swiftwinrt
 
         std::string swift_ns;
         indent i{ 0 };
-        auto first_ns_index = ns.find_first_of('.');
+        auto first_ns_index = ns.find_first_of('.'); //
 
         // When writing the swift namespace, we want to omit the first one (which is the same as the module name).
         // This is only not true if forcing the namespace (i.e. ABI or IMPL namespaces)
