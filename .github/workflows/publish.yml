@@ -3,7 +3,7 @@ name: Publish Build
 on:
   push:
     branches: [ "main" ]
-  workflow_dispath:
+  workflow_dispatch:
 
 jobs:
   release-and-publish:
