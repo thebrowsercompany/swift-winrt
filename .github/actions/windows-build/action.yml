@@ -5,7 +5,6 @@ inputs:
 
 defaults:
   run:
-    shell: bash
     
 runs:
   using: "composite"
@@ -23,12 +22,15 @@ runs:
       tag: DEVELOPMENT-SNAPSHOT-2023-01-02-a
 
   - name: Configure CMake
+    shell: bash
     run: cmake --preset ${{ inputs.config }}
 
   - name: Build
+    shell: bash
     run: |
       cmake --build --preset ${{ inputs.config }}
       cmake --build --preset ${{ inputs.config }} --target install
 
   - name: Run test app
+    shell: bash
     run: .\out\${{ inputs.config }}\bin\test_app.exe

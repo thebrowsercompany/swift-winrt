@@ -27,10 +27,12 @@ jobs:
           echo "GIT_HASH=$hash" >> $GITHUB_OUTPUT
 
       - name: Build Nuget
+        shell: bash
         run: |
           cmake --build --preset release --target nuget -DNUGET_HASH=${{ steps.git-hash.outputs.GIT_HASH }}
 
       - name: Publish NuGet Package
+        shell: bash
         env:
           GITHUB_TOKEN: ${{ secrets.NUGET_TOKEN }}
           GITHUB_USERNAME: thebrowsercompany-bot2
