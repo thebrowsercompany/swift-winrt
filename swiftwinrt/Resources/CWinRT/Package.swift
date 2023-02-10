@@ -3,7 +3,7 @@
 import Foundation
 import PackageDescription
 
-let sdkRoot = ProcessInfo.processInfo.environment["SDKROOT"] ?? "C:\\Library\\Developer\\Platforms\\Windows.platform\\Developer\\SDKs\\Windows.sdk"
+let sdkRoot = ProcessInfo.processInfo.environment["SDKROOT"]!
 let package = Package(
     name: "C_BINDINGS_MODULE",
     products: [
