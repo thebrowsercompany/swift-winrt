@@ -19,6 +19,10 @@ public final class IUnknownRef {
 
   init(consuming pUnk: UnsafeMutablePointer<WinSDK.IUnknown>?) {
     self.pUnk = pUnk
+    // TODO: WIN-158 we shouldn't need to addref because these pointers already have an 
+    // added reference coming from winrt. However, this helps the app not crash so
+    // doing this for now
+    _ = self.pUnk?.pointee.lpVtbl.pointee.AddRef(self.pUnk)
   }
 
   convenience init(consuming pointer: UnsafeMutableRawPointer?) {

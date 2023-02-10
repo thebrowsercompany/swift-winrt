@@ -1,6 +1,7 @@
 // Copyright © 2021 Saleem Abdulrasool <compnerd@compnerd.org>
 // SPDX-License-Identifier: BSD-3
 
+import WinSDK
 import Ctest_component
 
 public func RoGetActivationFactory<Factory: IInspectable>(_ activatableClassId: HString) throws -> Factory {
