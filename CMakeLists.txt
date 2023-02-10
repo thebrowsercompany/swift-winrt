@@ -9,3 +9,17 @@ endif()
 
 add_subdirectory(swiftwinrt)
 add_subdirectory(tests)
+
+set(NUGET_VERSION 0.0.0.1)
+if (DEFINED NUGET_HASH)
+    set(NUGET_VERSION_WITH_SUFFIX ${NUGET_VERSION}-${NUGET_HASH})
+else()
+    set(NUGET_VERSION_WITH_SUFFIX ${NUGET_VERSION}-local)
+endif()
+
+add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/nuget/company.thebrowser.swiftwinrt.nupkg
+    COMMAND ${CMAKE_BINARY_DIR}/nuget pack ${CMAKE_CURRENT_SOURCE_DIR}\\nuget\\swiftwinrt.nuspec -Properties swiftwinrt_exe=${CMAKE_CURRENT_SOURCE_DIR}\\out\\${CMAKE_BUILD_TYPE}\\bin\\swiftwinrt.exe -Version ${NUGET_VERSION_WITH_SUFFIX}
+)
+        
+add_custom_target(nuget 
+    DEPENDS ${CMAKE_BINARY_DIR}/nuget/company.thebrowser.swiftwinrt.nupkg)
