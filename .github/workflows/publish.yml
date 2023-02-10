@@ -31,6 +31,7 @@ jobs:
         env:
           NUGET_HASH: ${{ steps.git-hash.outputs.GIT_HASH }}
         run: |
+          echo "NUGET HASH: %NUGET_HASH%"
           cmake --build --preset release --target nuget
       - name: Publish NuGet Package
         shell: cmd
