@@ -1,33 +1,29 @@
-on:
-  workflow_call:
-    inputs:
-      config:
-        required: true
-        type: string
+inputs:
+  config:
+    required: true
+    type: string
 
-jobs:
-  build:
-    runs-on: windows-2022
+runs:
+  using: "composite"
+  steps:
+  - name: Configure VC++ build for amd64
+    uses: compnerd/gha-setup-vsdevenv@main
+    with:
+      arch: amd64
 
-    steps:
-    - name: Configure VC++ build for amd64
-      uses: compnerd/gha-setup-vsdevenv@main
-      with:
-        arch: amd64
+  - name: Install the Swift Toolset
+    uses: compnerd/gha-setup-swift@main
+    with:
+      branch: development
+      tag: DEVELOPMENT-SNAPSHOT-2023-01-02-a
 
-    - name: Install the Swift Toolset
-      uses: compnerd/gha-setup-swift@main
-      with:
-        branch: development
-        tag: DEVELOPMENT-SNAPSHOT-2023-01-02-a
+  - name: Configure CMake
+    run: cmake --preset ${{ inputs.config }}
 
-    - name: Configure CMake
-      run: cmake --preset ${{ inputs.config }}
+  - name: Build
+    run: |
+      cmake --build --preset ${{ inputs.config }}
+      cmake --build --preset ${{ inputs.config }} --target install
 
-    - name: Build
-      run: |
-        cmake --build --preset ${{ inputs.config }}
-        cmake --build --preset ${{ inputs.config }} --target install
-
-    - name: Run test app
-      run: .\out\${{ inputs.config }}\bin\test_app.exe
+  - name: Run test app
+    run: .\out\${{ inputs.config }}\bin\test_app.exe
