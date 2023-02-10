@@ -6,6 +6,7 @@ on:
 
 jobs:
   build:
+    runs-on: windows-2022
     name: Swift/WinRT PR Build & Test
     uses: ./.github/workflows/windows-build.yml
     with:
