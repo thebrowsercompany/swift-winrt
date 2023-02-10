@@ -3,9 +3,6 @@ inputs:
     required: true
     type: string
 
-defaults:
-  run:
-    
 runs:
   using: "composite"
 
@@ -32,5 +29,5 @@ runs:
       cmake --build --preset ${{ inputs.config }} --target install
 
   - name: Run test app
-    shell: bash
+    shell: cmd
     run: .\out\${{ inputs.config }}\bin\test_app.exe
