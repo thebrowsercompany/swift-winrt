@@ -50,6 +50,11 @@ namespace swiftwinrt
         return std::span(text_ptr, text_size);
     }
 
+    static std::span<const std::byte> find_resource(LPCSTR type, LPCSTR name)
+    {
+        return find_resource(GetModuleHandle(NULL), type, name);
+    }
+
     // Gets all of a win32 module's resources of a given type as byte spans, keyed by name.
     static std::map<std::string, std::span<const std::byte>> get_named_resources_of_type(
         HMODULE hModule, LPCSTR type, bool make_lowercase = false)
