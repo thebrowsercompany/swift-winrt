@@ -3,8 +3,13 @@ inputs:
     required: true
     type: string
 
+defaults:
+  run:
+    shell: bash
+    
 runs:
   using: "composite"
+
   steps:
   - name: Configure VC++ build for amd64
     uses: compnerd/gha-setup-vsdevenv@main
