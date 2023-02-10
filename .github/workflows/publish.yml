@@ -24,16 +24,14 @@ jobs:
         shell: powershell
         run: |
           $hash=$(git log --format=%h -n1)
-          Write-Output "hash: $hash"
-          echo "GIT_HASH=$hash" >> $GITHUB_OUTPUT
+          echo "GIT_HASH=$hash" >> $env:GITHUB_OUTPUT
 
       - name: Build Nuget
-        shell: bash
-        run: |
-          cmake --build --preset release --target nuget -DNUGET_HASH=${{ env.GIT_HASH }}
+        shell: cmd
         env:
           GIT_HASH: ${{ steps.git-hash.outputs.GIT_HASH }}
-
+        run: |
+          cmake --build --preset release --target nuget -DNUGET_HASH=%GIT_HASH%
       - name: Publish NuGet Package
         shell: cmd
         env:
@@ -42,4 +40,12 @@ jobs:
           NUGET_PUBLISH_URL: https://nuget.pkg.github.com/thebrowsercompany/index.json
           NUGET_SOURCE_NAME: TheBrowserCompany
         run: |
-          %GITHUB_WORKSPACE%\\build\\release\\nuget push %GITHUB_WORKSPACE%\\build\\release\\*.nupkg -Source %NUGET_SOURCE_NAME%
+          set PATH=%PATH%;%GITHUB_WORKSPACE%\build\release
+          nuget sources list | find "%NUGET_SOURCE_NAME%"
+          if errorlevel 0 (
+            nuget sources remove -name %NUGET_SOURCE_NAME%
+          )
+          nuget sources Add -Name %NUGET_SOURCE_NAME% -Source %NUGET_PUBLISH_URL% -username %GITHUB_USERNAME% -password %GITHUB_TOKEN% -StorePasswordInClearText
+          nuget setApiKey %GITHUB_TOKEN% -Source %NUGET_PUBLISH_URL%
+
+          nuget push %GITHUB_WORKSPACE%\\build\\release\\*.nupkg -Source %NUGET_SOURCE_NAME%
