@@ -188,6 +188,7 @@ public final class BaseMapCollection : WinRTClass, IMap {
     public static func from(abi: UnsafeMutablePointer<__x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?) -> BaseMapCollection {
         .init(fromAbi: .init(abi))
     }
+
     public init(fromAbi: test_component.IInspectable) {
         _default = try! fromAbi.QueryInterface()
     }

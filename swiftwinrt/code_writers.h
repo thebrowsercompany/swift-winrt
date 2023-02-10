@@ -1610,47 +1610,46 @@ public static func makeAbi() -> c_ABI {
         // do this because we define an extension on the protocol which does this.
         w.write("internal class % : %, AbiInterfaceImpl {\n",
             bind_impl_name(type), type.generic_type_abi_name());
+
+        auto indent_guard = w.push_indent();
+
+        if (type.swift_type_name().starts_with("IVector")) // IVector and IVectorView
         {
-            auto indent_guard = w.push_indent({ 1 });
-
-            if (type.swift_type_name().starts_with("IVector")) // IVector and IVectorView
-            {
-                w.write("typealias Element = %\n", type.generic_params()[0]);
-                w.write("typealias swift_Projection = any %<%>\n",
-                    type.generic_type_abi_name(), type.generic_params()[0]);
-            }
-            else if (type.swift_type_name().starts_with("IMap")) // IMap and IMapView
-            {
-                w.write("typealias Key = %\n", type.generic_params()[0]);
-                w.write("typealias Value = %\n", type.generic_params()[1]);
-                w.write("typealias swift_Projection = any %<%, %>\n",
-                    type.generic_type_abi_name(), type.generic_params()[0], type.generic_params()[1]);
-            }
-            else
-            {
-                assert(!"Unexpected collection type");
-            }
-
-            w.write("typealias c_ABI = %\n", bind_type_mangled(type));
-            w.write("typealias swift_ABI = %.%\n", abi_namespace(w.type_namespace), bind_type_abi(type));
-            w.write("\n");
-            w.write("private (set) public var _default: swift_ABI\n");
-            w.write("\n");
-
-            w.write("static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {\n");
-            w.write("    return %(abi)\n", bind_impl_name(type));
-            w.write("}\n\n");
-
-            w.write("internal init(_ fromAbi: UnsafeMutablePointer<c_ABI>?) {\n");
-            w.write("    _default = swift_ABI(fromAbi)\n");
-            w.write("}\n\n");
-
-            w.write("static func makeAbi() -> c_ABI {\n");
-            w.write("    let vtblPtr = withUnsafeMutablePointer(to: &%.%VTable) { $0 }\n",
-                abi_namespace(w.type_namespace), bind_type_mangled(type));
-            w.write("    return.init(lpVtbl: vtblPtr)\n");
-            w.write("}\n\n");
+            w.write("typealias Element = %\n", type.generic_params()[0]);
+            w.write("typealias swift_Projection = any %<%>\n",
+                type.generic_type_abi_name(), type.generic_params()[0]);
         }
+        else if (type.swift_type_name().starts_with("IMap")) // IMap and IMapView
+        {
+            w.write("typealias Key = %\n", type.generic_params()[0]);
+            w.write("typealias Value = %\n", type.generic_params()[1]);
+            w.write("typealias swift_Projection = any %<%, %>\n",
+                type.generic_type_abi_name(), type.generic_params()[0], type.generic_params()[1]);
+        }
+        else
+        {
+            assert(!"Unexpected collection type");
+        }
+
+        w.write("typealias c_ABI = %\n", bind_type_mangled(type));
+        w.write("typealias swift_ABI = %.%\n", abi_namespace(w.type_namespace), bind_type_abi(type));
+        w.write("\n");
+        w.write("private (set) public var _default: swift_ABI\n");
+        w.write("\n");
+
+        w.write("static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {\n");
+        w.write("    return %(abi)\n", bind_impl_name(type));
+        w.write("}\n\n");
+
+        w.write("internal init(_ fromAbi: UnsafeMutablePointer<c_ABI>?) {\n");
+        w.write("    _default = swift_ABI(fromAbi)\n");
+        w.write("}\n\n");
+
+        w.write("static func makeAbi() -> c_ABI {\n");
+        w.write("    let vtblPtr = withUnsafeMutablePointer(to: &%.%VTable) { $0 }\n",
+            abi_namespace(w.type_namespace), bind_type_mangled(type));
+        w.write("    return.init(lpVtbl: vtblPtr)\n");
+        w.write("}\n\n");
         
         interface_info info{ &type };
         info.is_default = true; // mark as default so we use the name "_default"
@@ -1665,6 +1664,7 @@ public static func makeAbi() -> c_ABI {
             write_class_impl_property(w, prop, info);
         }
 
+        indent_guard.end();
         w.write("}\n\n");
     }
 

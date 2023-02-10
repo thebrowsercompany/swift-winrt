@@ -246,29 +246,23 @@ public enum __ABI_test_component {
         Lookup: {
             guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let key: String = .init(from: $1)
-
             let result = __unwrapped__instance.Lookup(key)
             $2?.initialize(to: try! HString(result).detach())
-
             return S_OK
         },
 
         get_Size: {
             guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let result = __unwrapped__instance.Size
             $1?.initialize(to: result)
-
             return S_OK
         },
 
         HasKey: {
             guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let key: String = .init(from: $1)
-
             let result = __unwrapped__instance.HasKey(key)
             $2?.initialize(to: .init(from: result))
-
             return S_OK
         },
 
@@ -276,7 +270,6 @@ public enum __ABI_test_component {
             guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             var first: (any IMapView<String, String>)?
             var second: (any IMapView<String, String>)?
-
             __unwrapped__instance.Split(&first, &second)
             let firstWrapper = __ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper(first)
             let _first = try! firstWrapper?.to_abi { $0 }
@@ -284,7 +277,6 @@ public enum __ABI_test_component {
             let secondWrapper = __ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper(second)
             let _second = try! secondWrapper?.to_abi { $0 }
             $2?.initialize(to: _second)
-
             return S_OK
         }
     )
@@ -299,6 +291,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func get_SizeImpl() throws -> UINT32 {
             var result: UINT32 = 0
             _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_HSTRING.self) { pThis in
@@ -306,6 +299,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func HasKeyImpl(_ key: HSTRING?) throws -> boolean {
             var result: boolean = 0
             _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_HSTRING.self) { pThis in
@@ -313,11 +307,13 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func SplitImpl(_ first: inout UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?, _ second: inout UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?) throws {
             _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &first, &second))
             }
         }
+
     }
 
     internal static var __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
@@ -376,29 +372,23 @@ public enum __ABI_test_component {
         Lookup: {
             guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let key: String = .init(from: $1)
-
             let result = __unwrapped__instance.Lookup(key)
             $2?.initialize(to: RawPointer(result))
-
             return S_OK
         },
 
         get_Size: {
             guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let result = __unwrapped__instance.Size
             $1?.initialize(to: result)
-
             return S_OK
         },
 
         HasKey: {
             guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let key: String = .init(from: $1)
-
             let result = __unwrapped__instance.HasKey(key)
             $2?.initialize(to: .init(from: result))
-
             return S_OK
         },
 
@@ -406,7 +396,6 @@ public enum __ABI_test_component {
             guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             var first: (any IMapView<String, Base>)?
             var second: (any IMapView<String, Base>)?
-
             __unwrapped__instance.Split(&first, &second)
             let firstWrapper = __ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper(first)
             let _first = try! firstWrapper?.to_abi { $0 }
@@ -414,7 +403,6 @@ public enum __ABI_test_component {
             let secondWrapper = __ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper(second)
             let _second = try! secondWrapper?.to_abi { $0 }
             $2?.initialize(to: _second)
-
             return S_OK
         }
     )
@@ -429,6 +417,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func get_SizeImpl() throws -> UINT32 {
             var result: UINT32 = 0
             _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
@@ -436,6 +425,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func HasKeyImpl(_ key: HSTRING?) throws -> boolean {
             var result: boolean = 0
             _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
@@ -443,11 +433,13 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func SplitImpl(_ first: inout UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?, _ second: inout UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?) throws {
             _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &first, &second))
             }
         }
+
     }
 
     internal static var __x_ABI_C__FIMap_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMap_2_HSTRING_HSTRINGVtbl = .init(
@@ -506,40 +498,32 @@ public enum __ABI_test_component {
         Lookup: {
             guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let key: String = .init(from: $1)
-
             let result = __unwrapped__instance.Lookup(key)
             $2?.initialize(to: try! HString(result).detach())
-
             return S_OK
         },
 
         get_Size: {
             guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let result = __unwrapped__instance.Size
             $1?.initialize(to: result)
-
             return S_OK
         },
 
         HasKey: {
             guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let key: String = .init(from: $1)
-
             let result = __unwrapped__instance.HasKey(key)
             $2?.initialize(to: .init(from: result))
-
             return S_OK
         },
 
         GetView: {
             guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let result = __unwrapped__instance.GetView()
             let resultWrapper = __ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper(result)
             let _result = try! resultWrapper?.to_abi { $0 }
             $1?.initialize(to: _result)
-
             return S_OK
         },
 
@@ -547,27 +531,21 @@ public enum __ABI_test_component {
             guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let key: String = .init(from: $1)
             let value: String = .init(from: $2)
-
             let result = __unwrapped__instance.Insert(key, value)
             $3?.initialize(to: .init(from: result))
-
             return S_OK
         },
 
         Remove: {
             guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let key: String = .init(from: $1)
-
             __unwrapped__instance.Remove(key)
-
             return S_OK
         },
 
         Clear: {
             guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             __unwrapped__instance.Clear()
-
             return S_OK
         }
     )
@@ -582,6 +560,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func get_SizeImpl() throws -> UINT32 {
             var result: UINT32 = 0
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
@@ -589,6 +568,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func HasKeyImpl(_ key: HSTRING?) throws -> boolean {
             var result: boolean = 0
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
@@ -596,6 +576,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func GetViewImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>? {
             var result: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
@@ -603,6 +584,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func InsertImpl(_ key: HSTRING?, _ value: HSTRING?) throws -> boolean {
             var result: boolean = 0
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
@@ -610,16 +592,19 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func RemoveImpl(_ key: HSTRING?) throws {
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Remove(pThis, key))
             }
         }
+
         internal func ClearImpl() throws {
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Clear(pThis))
             }
         }
+
     }
 
     internal static var __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
@@ -678,40 +663,32 @@ public enum __ABI_test_component {
         Lookup: {
             guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let key: String = .init(from: $1)
-
             let result = __unwrapped__instance.Lookup(key)
             $2?.initialize(to: RawPointer(result))
-
             return S_OK
         },
 
         get_Size: {
             guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let result = __unwrapped__instance.Size
             $1?.initialize(to: result)
-
             return S_OK
         },
 
         HasKey: {
             guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let key: String = .init(from: $1)
-
             let result = __unwrapped__instance.HasKey(key)
             $2?.initialize(to: .init(from: result))
-
             return S_OK
         },
 
         GetView: {
             guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             let result = __unwrapped__instance.GetView()
             let resultWrapper = __ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper(result)
             let _result = try! resultWrapper?.to_abi { $0 }
             $1?.initialize(to: _result)
-
             return S_OK
         },
 
@@ -719,27 +696,21 @@ public enum __ABI_test_component {
             guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let key: String = .init(from: $1)
             let value: test_component.Base = .from(abi: $2)
-
             let result = __unwrapped__instance.Insert(key, value)
             $3?.initialize(to: .init(from: result))
-
             return S_OK
         },
 
         Remove: {
             guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let key: String = .init(from: $1)
-
             __unwrapped__instance.Remove(key)
-
             return S_OK
         },
 
         Clear: {
             guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-
             __unwrapped__instance.Clear()
-
             return S_OK
         }
     )
@@ -754,6 +725,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func get_SizeImpl() throws -> UINT32 {
             var result: UINT32 = 0
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
@@ -761,6 +733,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func HasKeyImpl(_ key: HSTRING?) throws -> boolean {
             var result: boolean = 0
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
@@ -768,6 +741,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func GetViewImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>? {
             var result: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
@@ -775,6 +749,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func InsertImpl(_ key: HSTRING?, _ value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?) throws -> boolean {
             var result: boolean = 0
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
@@ -782,16 +757,19 @@ public enum __ABI_test_component {
             }
             return result
         }
+
         internal func RemoveImpl(_ key: HSTRING?) throws {
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Remove(pThis, key))
             }
         }
+
         internal func ClearImpl() throws {
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Clear(pThis))
             }
         }
+
     }
 
     internal static var __x_ABI_C__FIVectorView_1_HSTRINGVTable: __x_ABI_C__FIVectorView_1_HSTRINGVtbl = .init(
@@ -2058,6 +2036,7 @@ public enum __ABI_test_component {
             }
             return value
         }
+
     }
 
     open class IClassFactory2: test_component.IInspectable {
@@ -2129,6 +2108,7 @@ public enum __ABI_test_component {
             }
             return result
         }
+
     }
 
     open class IClassStatics2: test_component.IInspectable {
