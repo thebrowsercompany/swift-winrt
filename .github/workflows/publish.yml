@@ -24,19 +24,22 @@ jobs:
         shell: powershell
         run: |
           $hash=$(git log --format=%h -n1)
+          Write-Output "hash: $hash"
           echo "GIT_HASH=$hash" >> $GITHUB_OUTPUT
 
       - name: Build Nuget
         shell: bash
         run: |
-          cmake --build --preset release --target nuget -DNUGET_HASH=${{ steps.git-hash.outputs.GIT_HASH }}
+          cmake --build --preset release --target nuget -DNUGET_HASH=${{ env.GIT_HASH }}
+        env:
+          GIT_HASH: ${{ steps.git-hash.outputs.GIT_HASH }}
 
       - name: Publish NuGet Package
-        shell: bash
+        shell: cmd
         env:
           GITHUB_TOKEN: ${{ secrets.NUGET_TOKEN }}
           GITHUB_USERNAME: thebrowsercompany-bot2
           NUGET_PUBLISH_URL: https://nuget.pkg.github.com/thebrowsercompany/index.json
           NUGET_SOURCE_NAME: TheBrowserCompany
         run: |
-          ${{github.workspace}}/build/release/nuget push ${{github.workspace}}/build/release/*.nupkg -Source ${{ env.NUGET_SOURCE_NAME }}
+          %GITHUB_WORKSPACE%\\build\\release\\nuget push %GITHUB_WORKSPACE%\\build\\release\\*.nupkg -Source %NUGET_SOURCE_NAME%
