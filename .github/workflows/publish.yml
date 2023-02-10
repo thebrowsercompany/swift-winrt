@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           submodules: recursive
-      - uses: ./.github/workflows/windows-build.yml
+      - uses: ./.github/actions/windows-build
         with:
           config: release
       - name: Get Git Hash
