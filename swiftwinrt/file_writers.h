@@ -3,6 +3,7 @@
 #include "resources.h"
 
 #include <regex>
+#include <span>
 
 namespace swiftwinrt
 {
@@ -80,36 +81,53 @@ namespace swiftwinrt
         return wrote;
     }
 
+    static void write_file(const std::filesystem::path& path, std::span<const std::byte> data)
+    {
+        std::ofstream file;
+        file.exceptions(std::ofstream::failbit | std::ofstream::badbit);
+        try
+        {
+            file.open(path, std::ios::out | std::ios::binary);
+            file.write((const char*)data.data(), data.size());
+        }
+        catch (std::ofstream::failure const& e)
+        {
+            throw std::filesystem::filesystem_error(e.what(), path, std::io_errc::stream);
+        }
+    }
+
+    static void fill_template_placeholders_to_file(std::span<const std::byte> data, const std::filesystem::path& path)
+    {
+        // Replace the module name placeholders with regex due to no string.replace(string, string)
+        std::string text{ reinterpret_cast<const char*>(data.data()), data.size() };
+        text = std::regex_replace(text, std::regex("C_BINDINGS_MODULE"), settings.get_c_module_name());
+        text = std::regex_replace(text, std::regex("SUPPORT_MODULE"), settings.support);
+        write_file(path, std::span(reinterpret_cast<const std::byte*>(text.data()), text.size()));
+    }
+
     static void write_swift_support_files(std::string_view const& module_name)
     {
-        auto c_module_name = settings.get_c_module_name();
-
         auto dir_path = std::filesystem::path(settings.output_folder) / "Source" / module_name / "Support";
         create_directories(dir_path);
 
         auto support_files = get_named_resources_of_type(
-            GetModuleHandle(NULL), RESOURCE_TYPE_SWIFT_FILE_STR, /* make_lowercase: */ true);
+            GetModuleHandle(NULL), RESOURCE_TYPE_SWIFT_SUPPORT_FILE_STR, /* make_lowercase: */ true);
         for (const auto& support_file : support_files)
         {
             auto path = dir_path / (support_file.first + ".swift");
-
-            // Replace the C bindings module name placeholder with regex due to no string.replace(string, string)
-            std::string code{ reinterpret_cast<const char*>(support_file.second.data()), support_file.second.size() };
-            code = std::regex_replace(code, std::regex("\\bC_BINDINGS_MODULE\\b"), c_module_name);
-            code = std::regex_replace(code, std::regex("\\bSUPPORT_MODULE\\b"), settings.support);
-
-            std::ofstream file;
-            file.exceptions(std::ofstream::failbit | std::ofstream::badbit);
-            try
-            {
-                file.open(path, std::ios::out | std::ios::binary);
-                file.write(code.data(), code.size());
-            }
-            catch (std::ofstream::failure const& e)
-            {
-                throw std::filesystem::filesystem_error(e.what(), path, std::io_errc::stream);
-            }
+            fill_template_placeholders_to_file(support_file.second, path);
         }
+    }
+
+    static void write_cwinrt_build_files()
+    {
+        auto dir_path = std::filesystem::path(settings.output_folder) / "Source" / "CWinRT";
+
+        auto shim_template = find_resource(RESOURCE_TYPE_OTHER_FILE_STR, RESOURCE_NAME_CWINRT_SHIM_C_STR);
+        fill_template_placeholders_to_file(shim_template, dir_path / "shim.c");
+
+        auto package_template = find_resource(RESOURCE_TYPE_OTHER_FILE_STR, RESOURCE_NAME_CWINRT_PACKAGE_SWIFT_STR);
+        fill_template_placeholders_to_file(package_template, dir_path / "Package.swift");
     }
 
     static void write_namespace_abi(std::string_view const& ns, type_cache const& members, metadata_filter const& filter)
