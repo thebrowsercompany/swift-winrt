@@ -31,50 +31,65 @@ namespace swiftwinrt
             std::filesystem::remove(path);
             return;
         }
-        auto content = R"(
-set(GENERATED_FILES_DIR ${CMAKE_CURRENT_SOURCE_DIR})
-set(SWIFTWINRT_GENERATED_FILES
-%)
-%
-add_library(% SHARED
-  ${SWIFTWINRT_GENERATED_FILES}%
-  )
 
-install(TARGETS %
-  ARCHIVE DESTINATION lib
-  LIBRARY DESTINATION lib
-  RUNTIME DESTINATION bin
-  COMPONENT lib)
+        w.write("set(GENERATED_FILES_DIR ${CMAKE_CURRENT_SOURCE_DIR})\n");
 
-target_link_libraries(% PRIVATE
-  %
-  %)
+        w.write("set(SWIFTWINRT_GENERATED_FILES");
+        {
+            auto indent = w.push_indent({ 1 });
+            for (const auto& ns : namespaces)
+            {
+                w.write("\n%.swift", ns);
+                w.write("\n%+ABI.swift", ns);
+                w.write("\n%+Impl.swift", ns);
+            }
+        }
+        w.write(")\n");
 
-target_include_directories(%
-  INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}
-  PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+        if (module == settings.support)
+            w.write("file(GLOB SUPPORT_FILES ${GENERATED_FILES_DIR}/Support/*)\n");
 
-target_include_directories(%
-  INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}
-  PRIVATE ${GENERATED_FILES_DIR})
+        w.write("\n");
 
-)";
-        w.write(content,
-            bind_each([&](writer& w, const std::string_view ns) {
-                w.write("  %.swift\n", ns);
-                w.write("  %+ABI.swift\n", ns);
-                w.write("  %+Impl.swift\n", ns);
-                }, namespaces),
-            settings.support == module ? "file(GLOB SUPPORT_FILES ${GENERATED_FILES_DIR}/Support/*)" : "",
-            module,
-            settings.support == module ? "\n  ${SUPPORT_FILES}" : "",
+        w.write("add_library(% SHARED ${SWIFTWINRT_GENERATED_FILES} %)\n",
+            module, module == settings.support ? "${SUPPORT_FILES}" : "");
 
-            module,
-            module,
-            w.c_mod,
-            bind_list("\n  ", depends),
-            module,
-            module);
+        w.write("\n");
+
+        w.write("install(TARGETS %\n", module);
+        {
+            auto indent = w.push_indent({ 1 });
+            w.write("ARCHIVE DESTINATION lib\n");
+            w.write("LIBRARY DESTINATION lib\n");
+            w.write("RUNTIME DESTINATION bin\n");
+            w.write("COMPONENT lib)\n");
+        }
+
+        w.write("\n");
+
+        w.write("target_link_libraries(% PRIVATE", module);
+        {
+            auto indent = w.push_indent({ 1 });
+            w.write("\n%", settings.get_c_module_name());
+            for (const auto& dep : depends)
+                w.write("\n%", dep);
+        }
+        w.write(")\n");
+
+        w.write("target_include_directories(%\n", module);
+        {
+            auto indent = w.push_indent({ 1 });
+            w.write("INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}\n");
+            w.write("PRIVATE ${CMAKE_CURRENT_BINARY_DIR})\n");
+        }
+
+        w.write("target_include_directories(%\n", module);
+        {
+            auto indent = w.push_indent({ 1 });
+            w.write("INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}\n");
+            w.write("PRIVATE ${GENERATED_FILES_DIR})\n");
+        }
+
         w.save_cmake();
     }
 

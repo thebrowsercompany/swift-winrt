@@ -15,7 +15,7 @@ set(CPP_WINRT_OUTPUT_DIR
 
 # Fix the paths passed to midlrt
 string(REPLACE "/" "\\" MIDL_FILE "${MIDL_FILE}")
-string(REPLACE "/" "\\" WINMD_FILE "${WINMD_FILE}")
+string(REPLACE "/" "\\" WINMD_FILE "${TEST_COMPONENT_WINMD_FILE}")
 string(REPLACE "/" "\\" H_FILE "${H_FILE}")
 string(REPLACE "/" "\\" CPP_WINRT_OUTPUT_DIR "${CPP_WINRT_OUTPUT_DIR}")
 
