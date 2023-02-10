@@ -3,7 +3,6 @@
 import Foundation
 import PackageDescription
 
-let sdkRoot = ProcessInfo.processInfo.environment["SDKROOT"]!
 let package = Package(
     name: "C_BINDINGS_MODULE",
     products: [
@@ -14,7 +13,7 @@ let package = Package(
             name: "C_BINDINGS_MODULE",
             path: ".",
             linkerSettings: [
-                .unsafeFlags(["-Xlinker", "\(sdkRoot)\\usr\\lib\\swift\\windows\\x86_64\\swiftCore.lib"]),
+                .unsafeFlags(["-nostartfiles"]),
             ]
         ),
     ]
