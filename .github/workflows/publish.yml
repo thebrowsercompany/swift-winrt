@@ -10,6 +10,7 @@ jobs:
     runs-on: windows-2022
     name: Swift/WinRT Release Build & Publish
     permissions:
+      contents: read
       packages: write
     steps:
       - uses: actions/checkout@v3
