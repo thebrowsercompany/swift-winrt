@@ -8,9 +8,13 @@ on:
 jobs:
   release-and-publish:
     runs-on: windows-2022
+    name: Swift/WinRT Release Build & Publish
     permissions:
       packages: write
     steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
       - uses: ./.github/workflows/windows-build.yml
         with:
           config: release

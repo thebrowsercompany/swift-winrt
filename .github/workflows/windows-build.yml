@@ -10,10 +10,6 @@ jobs:
     runs-on: windows-2022
 
     steps:
-    - uses: actions/checkout@v3
-      with:
-        submodules: recursive
-
     - name: Configure VC++ build for amd64
       uses: compnerd/gha-setup-vsdevenv@main
       with:

@@ -8,6 +8,10 @@ jobs:
   build:
     runs-on: windows-2022
     name: Swift/WinRT PR Build & Test
-    uses: ./.github/workflows/windows-build.yml
-    with:
-      config: debug
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - uses: ./.github/workflows/windows-build.yml
+        with:
+          config: debug
