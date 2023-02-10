@@ -29,9 +29,9 @@ jobs:
       - name: Build Nuget
         shell: cmd
         env:
-          GIT_HASH: ${{ steps.git-hash.outputs.GIT_HASH }}
+          NUGET_HASH: ${{ steps.git-hash.outputs.GIT_HASH }}
         run: |
-          cmake --build --preset release --target nuget -DNUGET_HASH=%GIT_HASH%
+          cmake --build --preset release --target nuget
       - name: Publish NuGet Package
         shell: cmd
         env:
@@ -48,4 +48,4 @@ jobs:
           nuget sources Add -Name %NUGET_SOURCE_NAME% -Source %NUGET_PUBLISH_URL% -username %GITHUB_USERNAME% -password %GITHUB_TOKEN% -StorePasswordInClearText
           nuget setApiKey %GITHUB_TOKEN% -Source %NUGET_PUBLISH_URL%
 
-          nuget push %GITHUB_WORKSPACE%\\build\\release\\*.nupkg -Source %NUGET_SOURCE_NAME%
+          nuget push %GITHUB_WORKSPACE%\build\release\*.nupkg -Source %NUGET_SOURCE_NAME%
