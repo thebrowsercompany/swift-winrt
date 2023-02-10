@@ -2,7 +2,7 @@ name: Publish Build
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "steve/swiftwinrt-nuget" ]
   workflow_dispatch:
 
 jobs:
