@@ -20,8 +20,9 @@ open class Base : UnsealedWinRTClass {
     }
 
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?) -> Base {
-         UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi!)
+        UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi!)
     }
+
     public init(fromAbi: test_component.IInspectable) {
         _default = try! fromAbi.QueryInterface()
     }
@@ -55,7 +56,7 @@ open class Base : UnsealedWinRTClass {
                 .init(fromAbi: .init(abi!))
             }
         }
-}
+    }
     internal typealias Composable = IBaseOverrides
     open class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
 }
@@ -76,8 +77,9 @@ public final class BaseCollection : WinRTClass, IVector {
     }
 
     public static func from(abi: UnsafeMutablePointer<__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase>?) -> BaseCollection {
-         .init(fromAbi: .init(abi))
+        .init(fromAbi: .init(abi))
     }
+
     public init(fromAbi: test_component.IInspectable) {
         _default = try! fromAbi.QueryInterface()
     }
@@ -104,10 +106,10 @@ public final class BaseCollection : WinRTClass, IVector {
     public subscript(position: Int) -> Element {
         get {
             GetAt(UInt32(position))
-         }
-         set(newValue) {
-             SetAt(UInt32(position), newValue)
-         }
+        }
+        set(newValue) {
+            SetAt(UInt32(position), newValue)
+        }
     }
 
     public func removeLast() {
@@ -183,8 +185,9 @@ open class BaseNoOverrides : UnsealedWinRTClass {
     }
 
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBaseNoOverrides>?) -> BaseNoOverrides {
-         UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi!)
+        UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi!)
     }
+
     public init(fromAbi: test_component.IInspectable) {
         _default = try! fromAbi.QueryInterface()
     }
@@ -209,7 +212,7 @@ open class BaseNoOverrides : UnsealedWinRTClass {
                 .init(fromAbi: .init(abi!))
             }
         }
-}
+    }
     internal typealias Composable = IBaseNoOverrides
     open class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
 }
@@ -229,8 +232,9 @@ public final class Class : WinRTClass, IBasic {
     }
 
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>?) -> Class {
-         .init(fromAbi: .init(abi))
+        .init(fromAbi: .init(abi))
     }
+
     public init(fromAbi: test_component.IInspectable) {
         _default = try! fromAbi.QueryInterface()
     }
@@ -299,7 +303,7 @@ public final class Class : WinRTClass, IBasic {
         }
 
         set {
-            try! _IClassStatics2.put_StaticPropertyFloatImpl(newValue) 
+            try! _IClassStatics2.put_StaticPropertyFloatImpl(newValue)
         }
     }
 
@@ -390,7 +394,7 @@ public final class Class : WinRTClass, IBasic {
         }
 
         set {
-            try! _default.put_BaseNoOverridesPropertyImpl(RawPointer(newValue)) 
+            try! _default.put_BaseNoOverridesPropertyImpl(RawPointer(newValue))
         }
     }
 
@@ -401,7 +405,7 @@ public final class Class : WinRTClass, IBasic {
         }
 
         set {
-            try! _default.put_BasePropertyImpl(RawPointer(newValue)) 
+            try! _default.put_BasePropertyImpl(RawPointer(newValue))
         }
     }
 
@@ -412,7 +416,7 @@ public final class Class : WinRTClass, IBasic {
         }
 
         set {
-            try! _default.put_EnumPropertyImpl(newValue) 
+            try! _default.put_EnumPropertyImpl(newValue)
         }
     }
 
@@ -425,7 +429,7 @@ public final class Class : WinRTClass, IBasic {
         set {
             let wrapper = __ABI_test_component.__x_ABI_C__FIReference_1_GUIDWrapper(newValue)
             let _newValue = try! wrapper?.to_abi { $0 }
-            try! _default.put_IDImpl(_newValue) 
+            try! _default.put_IDImpl(_newValue)
         }
     }
 
@@ -438,7 +442,7 @@ public final class Class : WinRTClass, IBasic {
         set {
             let wrapper = __ABI_test_component.IBasicWrapper(newValue)
             let _newValue = try! wrapper?.to_abi { $0 }
-            try! _default.put_ImplementationImpl(_newValue) 
+            try! _default.put_ImplementationImpl(_newValue)
         }
     }
 
@@ -451,7 +455,7 @@ public final class Class : WinRTClass, IBasic {
         set {
             let wrapper = __ABI_test_component.__x_ABI_C__FIReference_1_intWrapper(newValue)
             let _newValue = try! wrapper?.to_abi { $0 }
-            try! _default.put_StartValueImpl(_newValue) 
+            try! _default.put_StartValueImpl(_newValue)
         }
     }
 
@@ -477,8 +481,9 @@ public final class Derived : test_component.Base {
     }
 
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIDerived>?) -> Derived {
-         .init(fromAbi: .init(abi))
+        .init(fromAbi: .init(abi))
     }
+
     override public init(fromAbi: test_component.IInspectable) {
         _default = try! fromAbi.QueryInterface()
         super.init(fromAbi: fromAbi)
@@ -496,7 +501,7 @@ public final class Derived : test_component.Base {
         }
 
         set {
-            try! _default.put_PropImpl(newValue) 
+            try! _default.put_PropImpl(newValue)
         }
     }
 
@@ -511,7 +516,7 @@ public final class Derived : test_component.Base {
                 .init(fromAbi: .init(abi!))
             }
         }
-}
+    }
     internal typealias Composable = IBaseOverrides
     override public class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
 }
@@ -531,8 +536,9 @@ public final class Simple : WinRTClass {
     }
 
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CISimple>?) -> Simple {
-         .init(fromAbi: .init(abi))
+        .init(fromAbi: .init(abi))
     }
+
     public init(fromAbi: test_component.IInspectable) {
         _default = try! fromAbi.QueryInterface()
     }
@@ -597,7 +603,7 @@ public final class Simple : WinRTClass {
         }
 
         set {
-            try! _default.put_BlittableStructPropertyImpl(.from(swift: newValue)) 
+            try! _default.put_BlittableStructPropertyImpl(.from(swift: newValue))
         }
     }
 
@@ -609,7 +615,7 @@ public final class Simple : WinRTClass {
 
         set {
             let _newValue = __ABI_test_component._ABI_NonBlittableStruct(from: newValue)
-            try! _default.put_NonBlittableStructPropertyImpl(_newValue.val) 
+            try! _default.put_NonBlittableStructPropertyImpl(_newValue.val)
         }
     }
 
@@ -621,7 +627,7 @@ public final class Simple : WinRTClass {
 
         set {
             let _newValue = try! HString(newValue)
-            try! _default.put_StringPropertyImpl(_newValue.get()) 
+            try! _default.put_StringPropertyImpl(_newValue.get())
         }
     }
 
@@ -702,7 +708,7 @@ public final class StaticClass {
         }
 
         set {
-            try! _IStaticClassStatics.put_EnumPropertyImpl(newValue) 
+            try! _IStaticClassStatics.put_EnumPropertyImpl(newValue)
         }
     }
 
@@ -723,8 +729,9 @@ open class UnsealedDerived : test_component.Base {
     }
 
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived>?) -> UnsealedDerived {
-         UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi!)
+        UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi!)
     }
+
     override public init(fromAbi: test_component.IInspectable) {
         _default = try! fromAbi.QueryInterface()
         super.init(fromAbi: fromAbi)
@@ -751,7 +758,7 @@ open class UnsealedDerived : test_component.Base {
         }
 
         set {
-            try! _default.put_PropImpl(newValue) 
+            try! _default.put_PropImpl(newValue)
         }
     }
 
@@ -771,7 +778,7 @@ open class UnsealedDerived : test_component.Base {
                 .init(fromAbi: .init(abi!))
             }
         }
-}
+    }
     internal typealias Composable = IUnsealedDerivedOverloads2
     override open class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
     internal lazy var _IUnsealedDerivedOverrides: __ABI_test_component.IUnsealedDerivedOverrides = try! IUnknown(_inner).QueryInterface()
@@ -790,7 +797,7 @@ open class UnsealedDerived : test_component.Base {
                 .init(fromAbi: .init(abi!))
             }
         }
-}
+    }
 }
 
 open class UnsealedDerived2 : test_component.UnsealedDerived {
@@ -808,8 +815,9 @@ open class UnsealedDerived2 : test_component.UnsealedDerived {
     }
 
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived2>?) -> UnsealedDerived2 {
-         UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi!)
+        UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi!)
     }
+
     override public init(fromAbi: test_component.IInspectable) {
         _default = try! fromAbi.QueryInterface()
         super.init(fromAbi: fromAbi)
@@ -844,7 +852,7 @@ open class UnsealedDerived2 : test_component.UnsealedDerived {
                 .init(fromAbi: .init(abi!))
             }
         }
-}
+    }
     internal typealias Composable = IUnsealedDerivedOverloads2
     override open class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
 }
@@ -864,8 +872,9 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
     }
 
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides>?) -> UnsealedDerivedNoOverrides {
-         UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi!)
+        UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi!)
     }
+
     override public init(fromAbi: test_component.IInspectable) {
         _default = try! fromAbi.QueryInterface()
         super.init(fromAbi: fromAbi)
@@ -896,7 +905,7 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
                 .init(fromAbi: .init(abi!))
             }
         }
-}
+    }
     internal typealias Composable = IUnsealedDerivedNoOverrides
     override open class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
 }

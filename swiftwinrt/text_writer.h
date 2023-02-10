@@ -372,12 +372,18 @@ namespace swiftwinrt
                 m_writer.m_indent -= m_offset;
             }
 
+            void end()
+            {
+                m_writer.m_indent -= m_offset;
+                m_offset = 0;
+            }
+
         private:
             indented_writer_base<T>& m_writer;
             size_t m_offset{};
         };
 
-        auto push_indent(indent indent)
+        auto push_indent(indent indent = { 1 })
         {
             return indent_guard(*this, indent.additional_indentation);
         }

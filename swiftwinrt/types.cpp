@@ -597,7 +597,7 @@ namespace swiftwinrt
 
         const bool is_delegate = generic_type()->category() == category::delegate_type;
         {
-            auto indent = w.push_indent({ 1 });
+            auto indent = w.push_indent();
             write_iunknown_methods(w, *this);
             separator s{ w, ",\n\n" };
 

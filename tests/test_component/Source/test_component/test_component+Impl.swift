@@ -99,7 +99,7 @@ public enum __IMPL_test_component {
             }
 
             set {
-                try! _default.put_EnumPropertyImpl(newValue) 
+                try! _default.put_EnumPropertyImpl(newValue)
             }
         }
 
@@ -112,7 +112,7 @@ public enum __IMPL_test_component {
             set {
                 let wrapper = __ABI_test_component.__x_ABI_C__FIReference_1_GUIDWrapper(newValue)
                 let _newValue = try! wrapper?.to_abi { $0 }
-                try! _default.put_IDImpl(_newValue) 
+                try! _default.put_IDImpl(_newValue)
             }
         }
 
@@ -179,7 +179,7 @@ public enum __IMPL_test_component {
         subscript(position: Int) -> Element {
             get {
                 GetAt(UInt32(position))
-             }
+            }
         }
         // MARK: WinRT
         public func GetAt(_ index: UInt32) -> String {
@@ -238,7 +238,7 @@ public enum __IMPL_test_component {
         subscript(position: Int) -> Element {
             get {
                 GetAt(UInt32(position))
-             }
+            }
         }
         // MARK: WinRT
         public func GetAt(_ index: UInt32) -> Base {
@@ -299,10 +299,10 @@ public enum __IMPL_test_component {
         subscript(position: Int) -> Element {
             get {
                 GetAt(UInt32(position))
-             }
-             set(newValue) {
-                 SetAt(UInt32(position), newValue)
-             }
+            }
+            set(newValue) {
+                SetAt(UInt32(position), newValue)
+            }
         }
 
         func removeLast() {
@@ -404,10 +404,10 @@ public enum __IMPL_test_component {
         subscript(position: Int) -> Element {
             get {
                 GetAt(UInt32(position))
-             }
-             set(newValue) {
-                 SetAt(UInt32(position), newValue)
-             }
+            }
+            set(newValue) {
+                SetAt(UInt32(position), newValue)
+            }
         }
 
         func removeLast() {
