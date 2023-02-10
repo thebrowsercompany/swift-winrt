@@ -16,9 +16,6 @@ jobs:
       - uses: actions/checkout@v3
         with:
           submodules: recursive
-      - uses: ./.github/actions/windows-build
-        with:
-          config: release
       - name: Get Git Hash
         id: git-hash
         shell: powershell
@@ -26,12 +23,15 @@ jobs:
           $hash=$(git log --format=%h -n1)
           echo "GIT_HASH=$hash" >> $env:GITHUB_OUTPUT
 
+      - uses: ./.github/actions/windows-build
+        env:
+            NUGET_HASH: ${{ steps.git-hash.outputs.GIT_HASH }}
+        with:
+          config: release
+
       - name: Build Nuget
         shell: cmd
-        env:
-          NUGET_HASH: ${{ steps.git-hash.outputs.GIT_HASH }}
         run: |
-          echo "NUGET HASH: %NUGET_HASH%"
           cmake --build --preset release --target nuget
       - name: Publish NuGet Package
         shell: cmd

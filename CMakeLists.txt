@@ -11,7 +11,6 @@ add_subdirectory(swiftwinrt)
 add_subdirectory(tests)
 
 set(NUGET_VERSION 0.0.0.1)
-message(STATUS "HASH cmake: $ENV{NUGET_HASH}" )
 if (DEFINED ENV{NUGET_HASH})
     set(NUGET_VERSION_WITH_SUFFIX ${NUGET_VERSION}-$ENV{NUGET_HASH})
 else()
