@@ -65,7 +65,7 @@ namespace swiftwinrt
             bool make_lowercase = make_lowercase;
         } closure;
 
-        EnumResourceNamesA(hModule, type,
+        EnumResourceNamesExA(hModule, type,
             [](HMODULE hModule, LPCSTR lpType, LPSTR lpName, LONG_PTR lParam) -> BOOL
             {
                 auto& closure = *(closure_type*)lParam;
@@ -91,7 +91,7 @@ namespace swiftwinrt
                 closure.resources.emplace(std::move(res_name), res_data);
                 return TRUE;
             },
-            (LONG_PTR)&closure);
+            (LONG_PTR)&closure, /* dwFlags: */ 0, /* LangId: */ 0);
 
         return std::move(closure.resources);
     }
