@@ -130,11 +130,11 @@ namespace winrt::test_component::implementation
     }*/
     hstring Class::InMap(Windows::Foundation::Collections::IMap<hstring, hstring> const& value)
     {
-        return value.Lookup(L"A");
+        return value.Lookup(L"test");
     }
     hstring Class::InMapView(Windows::Foundation::Collections::IMapView<hstring, hstring> const& value)
     {
-        return value.Lookup(L"A");
+        return value.Lookup(L"test");
     }
    /* Windows::Foundation::IAsyncOperation<hstring> Class::InAsyncMapView(Windows::Foundation::Collections::IMapView<hstring, hstring> value)
     {
@@ -504,21 +504,12 @@ namespace winrt::test_component::implementation
             return m_id;
         }
     }
-
-    Windows::Foundation::Collections::IVector<hstring> Class::ReturnStoredStringVector()
+    Windows::Foundation::Collections::IVector<hstring> Class::ReturnStringVector()
     {
-        if (m_vector.Size() == 0)
-        {
+        if (m_vector.Size() == 0) {
             m_vector.Append(L"Hello");
         }
         return m_vector;
-    }
-    
-    Windows::Foundation::Collections::IMap<hstring, hstring> Class::ReturnMapFromStringToString()
-    {
-        auto map = winrt::single_threaded_map<hstring, hstring>();
-        map.Insert(L"A", L"Alpha");
-        return map;
     }
 
     /* TODO: COR-762 once we enable async/await we can bring this back
