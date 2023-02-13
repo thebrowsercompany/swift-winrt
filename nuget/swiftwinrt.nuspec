@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata minClientVersion="2.5">
+    <id>company.thebrowser.swiftwinrt</id>
+    <version>0.0.0.1</version>
+    <title>Swift/WinRT Build Support</title>
+    <authors>TheBrowserCompany</authors>
+    <owners>TheBrowserCompany</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Swift/WinRT is a Swift language projection for consuming Windows Runtime components.</description>
+    <releaseNotes></releaseNotes>
+    <tags>swift WinRT</tags>
+    <copyright>© The Browser Company of New York. All rights reserved.</copyright>
+    <projectUrl>https://github.com/thebrowsercompany/swiftwinrt</projectUrl>
+    <repository type="git" url="https://github.com/thebrowsercompany/swiftwinrt"/>
+  </metadata>
+  <files>
+    <file src="$swiftwinrt_exe$" target="bin"/>
+    <file src="readme.txt"/>
+  </files>
+</package>

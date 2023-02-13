@@ -7,30 +7,11 @@ on:
 jobs:
   build:
     runs-on: windows-2022
-
+    name: Swift/WinRT PR Build & Test
     steps:
-    - uses: actions/checkout@v3
-      with:
-        submodules: recursive
-
-    - name: Configure VC++ build for amd64
-      uses: compnerd/gha-setup-vsdevenv@main
-      with:
-        arch: amd64
-
-    - name: Install the Swift Toolset
-      uses: compnerd/gha-setup-swift@main
-      with:
-        branch: development
-        tag: DEVELOPMENT-SNAPSHOT-2023-01-02-a
-
-    - name: Configure CMake
-      run: cmake --preset release
-
-    - name: Build
-      run: |
-        cmake --build --preset release
-        cmake --build --preset release --target install
-
-    - name: Run test app
-      run: .\out\release\bin\test_app.exe
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - uses: ./.github/actions/windows-build
+        with:
+          config: debug

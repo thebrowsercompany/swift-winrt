@@ -1,0 +1,52 @@
+name: Publish Build
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  release-and-publish:
+    runs-on: windows-2022
+    name: Swift/WinRT Release Build & Publish
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Get Git Hash
+        id: git-hash
+        shell: powershell
+        run: |
+          $hash=$(git log --format=%h -n1)
+          echo "GIT_HASH=$hash" >> $env:GITHUB_OUTPUT
+
+      - uses: ./.github/actions/windows-build
+        env:
+            NUGET_HASH: ${{ steps.git-hash.outputs.GIT_HASH }}
+        with:
+          config: release
+
+      - name: Build Nuget
+        shell: cmd
+        run: |
+          cmake --build --preset release --target nuget
+      - name: Publish NuGet Package
+        shell: cmd
+        env:
+          GITHUB_TOKEN: ${{ secrets.NUGET_TOKEN }}
+          GITHUB_USERNAME: thebrowsercompany-bot2
+          NUGET_PUBLISH_URL: https://nuget.pkg.github.com/thebrowsercompany/index.json
+          NUGET_SOURCE_NAME: TheBrowserCompany
+        run: |
+          set PATH=%PATH%;%GITHUB_WORKSPACE%\build\release
+          nuget sources list | find "%NUGET_SOURCE_NAME%"
+          if errorlevel 0 (
+            nuget sources remove -name %NUGET_SOURCE_NAME%
+          )
+          nuget sources Add -Name %NUGET_SOURCE_NAME% -Source %NUGET_PUBLISH_URL% -username %GITHUB_USERNAME% -password %GITHUB_TOKEN% -StorePasswordInClearText
+          nuget setApiKey %GITHUB_TOKEN% -Source %NUGET_PUBLISH_URL%
+
+          nuget push %GITHUB_WORKSPACE%\build\release\*.nupkg -Source %NUGET_SOURCE_NAME%

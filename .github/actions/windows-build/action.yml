@@ -1,0 +1,33 @@
+inputs:
+  config:
+    required: true
+    type: string
+
+runs:
+  using: "composite"
+
+  steps:
+  - name: Configure VC++ build for amd64
+    uses: compnerd/gha-setup-vsdevenv@main
+    with:
+      arch: amd64
+
+  - name: Install the Swift Toolset
+    uses: compnerd/gha-setup-swift@main
+    with:
+      branch: development
+      tag: DEVELOPMENT-SNAPSHOT-2023-01-02-a
+
+  - name: Configure CMake
+    shell: bash
+    run: cmake --preset ${{ inputs.config }}
+
+  - name: Build
+    shell: bash
+    run: |
+      cmake --build --preset ${{ inputs.config }}
+      cmake --build --preset ${{ inputs.config }} --target install
+
+  - name: Run test app
+    shell: cmd
+    run: .\out\${{ inputs.config }}\bin\test_app.exe
