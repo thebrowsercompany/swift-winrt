@@ -714,8 +714,9 @@ namespace swiftwinrt
                 else if (is_collection_type(generic))
                 {
                     // IVector`1, IVectorView`1, IMap`2, IMapView`2
-                    auto type_name = generic_type->swift_type_name();
-                    type_name = type_name.substr(0, type_name.find_first_of('`'));
+                    auto type_name_with_generic_param_count = generic_type->swift_type_name();
+                    auto type_name = type_name_with_generic_param_count.substr(0,
+                        type_name_with_generic_param_count.find_first_of('`'));
 
                     if (abi_types)
                     {
