@@ -23,3 +23,5 @@ add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/nuget/company.thebrowser.swiftwinr
         
 add_custom_target(nuget 
     DEPENDS ${CMAKE_BINARY_DIR}/nuget/company.thebrowser.swiftwinrt.nupkg)
+
+add_dependencies(nuget install)
