@@ -726,8 +726,8 @@ class SwiftWinRTTests {
     print("  ** Test passed! **")
   }
   
-  public func TestCollections() {
-    print(" ** Starting Test case: TestCollections **")
+  public func TestVector() {
+    print(" ** Starting Test case: TestVector **")
 
     let array = ["Hello", "Goodbye", "Goodnight"]
 
@@ -736,7 +736,7 @@ class SwiftWinRTTests {
     assert(result == "Hello")
 
     let classy = Class()
-    let vector = classy.ReturnStringVector()
+    let vector = classy.ReturnStoredStringVector()
     assert(vector.count == 1)
     print(vector[0])
 
@@ -749,7 +749,7 @@ class SwiftWinRTTests {
     assert(vector.count == 2)
     // Make sure the returned vector has the same data
     // as the one we modified
-    let vector2 = classy.ReturnStringVector()
+    let vector2 = classy.ReturnStoredStringVector()
     assert(vector2.count == vector.count)
     assert(vector2[0] == vector2[0])
     assert(vector2[1] == vector2[1])
@@ -763,6 +763,42 @@ class SwiftWinRTTests {
     print("  ** Test passed! **")
   }
 
+  public func TestMap_asInput() {
+    print(" ** Starting Test case: TestMap_asInput **")
+
+    let dictionary = ["A": "Alpha"]
+    let value = Class.InMap(dictionary.toMap())
+    assert(value == "Alpha")
+
+    print("  ** Test passed! **")
+  }
+  
+  public func TestMap_asReturn() {
+    print(" ** Starting Test case: TestMap_asReturn **")
+
+    let classy = Class()
+    let map = classy.ReturnMapFromStringToString()
+    assert(map.count == 1)
+    assert(map.HasKey("A") && map.Lookup("A") == "Alpha")
+    assert(!map.HasKey("Z"))
+    
+    print("  ** Test passed! **")
+  }
+
+  public func TestMap_mutate() {
+    print(" ** Starting Test case: TestMap_mutate **")
+
+    let classy = Class()
+    let map = classy.ReturnMapFromStringToString()
+    assert(map.HasKey("A") && map.Lookup("A") == "Alpha")
+    
+    assert(map.Insert("A", "Aleph")) // Returns true if replacing
+    assert(map.HasKey("A") && map.Lookup("A") == "Aleph")
+    let value = Class.InMap(map)
+    assert(value == "Aleph")
+    
+    print("  ** Test passed! **")
+  }
 }
 
 RoInitialize(RO_INIT_MULTITHREADED)
@@ -782,5 +818,8 @@ tests.TestIReference()
 tests.TestEvents()
 tests.TestAggregation()
 tests.TestUnicode()
-tests.TestCollections()
+tests.TestVector()
+tests.TestMap_asInput()
+tests.TestMap_asReturn()
+tests.TestMap_mutate()
 print("all tests passed!")

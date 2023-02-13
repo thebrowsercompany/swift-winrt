@@ -253,7 +253,8 @@ namespace swiftwinrt
     static bool can_write(generic_inst const& type)
     {
         auto name = type.generic_type_abi_name();
-        return name == "IReference" || name == "IEventHandler" || name == "ITypedEventHandler" || name == "IVector" || name == "IVectorView";
+        return name == "IReference" || name == "IEventHandler" || name == "ITypedEventHandler"
+            || name == "IVector" || name == "IVectorView" || name == "IMap" || name == "IMapView";
     }
 
     static bool can_write(writer& w, function_def const& function, bool allow_special = false)
@@ -724,7 +725,15 @@ namespace swiftwinrt
      
         if (category == param_category::object_type || category == param_category::generic_type)
         {
-            w.write("UnsafeMutablePointer<%>?", sig);
+            if (category == param_category::generic_type && !w.mangled_names)
+            {
+                // "?" has precedence over "any"
+                w.write("(any %)?", sig);
+            }
+            else
+            {
+                w.write("UnsafeMutablePointer<%>?", sig);
+            }
         }
         else if (category == param_category::string_type)
         {
@@ -1312,8 +1321,8 @@ bind_impl_fullname(type));
     }
 
     // Due to https://linear.app/the-browser-company/issue/WIN-148/investigate-possible-compiler-bug-crash-when-generating-collection
-   // we have to generate the protocol conformance for the Collection protocol (see "// MARK: Collection" below). We shouldn't have to
-   // do this because we define an extension on the protocol which does this.
+    // we have to generate the protocol conformance for the Collection protocol (see "// MARK: Collection" below). We shouldn't have to
+    // do this because we define an extension on the protocol which does this.
     static void write_collection_protocol_conformance(writer& w, interface_info const& info)
     {
         auto modifier = w.impl_names ? "" : "public ";
@@ -1594,106 +1603,68 @@ public static func makeAbi() -> c_ABI {
         }
     }
 
-    static void write_vectorview_implementation(writer& w, generic_inst const& type)
+    static void write_collection_implementation(writer& w, generic_inst const& type)
     {
-
-        auto format = R"(internal class % : WinRTVectorView {
-    typealias Element = %
-    typealias c_ABI = %
-    typealias swift_ABI = %.%
-    private (set) public var _default: swift_ABI
-    static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {
-        return %(abi)
-    }
-    internal init(_ fromAbi: UnsafeMutablePointer<c_ABI>?) {
-        _default = swift_ABI(fromAbi)
-    }
-
-    static func makeAbi() -> c_ABI {
-        let vtblPtr = withUnsafeMutablePointer(to: &%.%VTable) { $0 }
-        return .init(lpVtbl: vtblPtr)
-    }
-
-)";
-        auto vector_type = type.generic_params()[0];
-        w.write(format,
-            bind_impl_name(type),
-            vector_type,
-            bind_type_mangled(type),
-            abi_namespace(w.type_namespace), bind_type_abi(type),
-            bind_impl_name(type),
-            abi_namespace(w.type_namespace), bind_type_mangled(type)
-        );
+        // Due to https://linear.app/the-browser-company/issue/WIN-148/investigate-possible-compiler-bug-crash-when-generating-collection
+        // we have to generate the protocol conformance for the Collection protocol (see "// MARK: Collection" below). We shouldn't have to
+        // do this because we define an extension on the protocol which does this.
+        w.write("internal class % : %, AbiInterfaceImpl {\n",
+            bind_impl_name(type), type.generic_type_abi_name());
 
         auto indent_guard = w.push_indent();
 
+        if (type.swift_type_name().starts_with("IVector")) // IVector and IVectorView
+        {
+            w.write("typealias Element = %\n", type.generic_params()[0]);
+            w.write("typealias swift_Projection = any %<%>\n",
+                type.generic_type_abi_name(), type.generic_params()[0]);
+        }
+        else if (type.swift_type_name().starts_with("IMap")) // IMap and IMapView
+        {
+            w.write("typealias Key = %\n", type.generic_params()[0]);
+            w.write("typealias Value = %\n", type.generic_params()[1]);
+            w.write("typealias swift_Projection = any %<%, %>\n",
+                type.generic_type_abi_name(), type.generic_params()[0], type.generic_params()[1]);
+        }
+        else
+        {
+            assert(!"Unexpected collection type");
+        }
+
+        w.write("typealias c_ABI = %\n", bind_type_mangled(type));
+        w.write("typealias swift_ABI = %.%\n", abi_namespace(w.type_namespace), bind_type_abi(type));
+        w.write("\n");
+        w.write("private (set) public var _default: swift_ABI\n");
+        w.write("\n");
+
+        w.write("static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {\n");
+        w.write("    return %(abi)\n", bind_impl_name(type));
+        w.write("}\n\n");
+
+        w.write("internal init(_ fromAbi: UnsafeMutablePointer<c_ABI>?) {\n");
+        w.write("    _default = swift_ABI(fromAbi)\n");
+        w.write("}\n\n");
+
+        w.write("static func makeAbi() -> c_ABI {\n");
+        w.write("    let vtblPtr = withUnsafeMutablePointer(to: &%.%VTable) { $0 }\n",
+            abi_namespace(w.type_namespace), bind_type_mangled(type));
+        w.write("    return.init(lpVtbl: vtblPtr)\n");
+        w.write("}\n\n");
+        
         interface_info info{ &type };
         info.is_default = true; // mark as default so we use the name "_default"
         write_collection_protocol_conformance(w, info);
+
         for (auto&& method : type.functions)
         {
             write_class_impl_func(w, method, info);
         }
-
         for (auto&& prop : type.properties)
         {
             write_class_impl_property(w, prop, info);
         }
 
         indent_guard.end();
-        w.write("}\n\n");
-    }
-
-    static void write_vector_implementation(writer& w, generic_inst const& type)
-    {
-        // Due to https://linear.app/the-browser-company/issue/WIN-148/investigate-possible-compiler-bug-crash-when-generating-collection
-        // we have to generate the protocol conformance for the Collection protocol (see "// MARK: Collection" below). We shouldn't have to
-        // do this because we define an extension on the protocol which does this.
-        auto format = R"(internal class % : WinRTVector {
-    typealias Element = %
-    typealias c_ABI = %
-    typealias swift_ABI = %.%
-    private (set) public var _default: swift_ABI
-    static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {
-        return %(abi)
-    }
-    internal init(_ fromAbi: UnsafeMutablePointer<c_ABI>?) {
-        _default = swift_ABI(fromAbi)
-    }
-    static func makeAbi() -> c_ABI {
-        let vtblPtr = withUnsafeMutablePointer(to: &%.%VTable) { $0 }
-        return .init(lpVtbl: vtblPtr)
-    }
-
-)";
-
-        auto vector_type = type.generic_params()[0];
-        auto vector_name = w.write_temp("%", vector_type);
-        w.write(format,
-            bind_impl_name(type),
-            vector_name,
-            bind_type_mangled(type),
-            abi_namespace(w.type_namespace), bind_type_abi(type),
-            bind_impl_name(type),
-            abi_namespace(w.type_namespace), bind_type_mangled(type)
-            );
-
-        {
-            auto indent = w.push_indent();
-
-            interface_info info{ &type };
-            info.is_default = true; // mark as default so we use the name "_default"
-            write_collection_protocol_conformance(w, info);
-
-            for (auto&& method : type.functions)
-            {
-                write_class_impl_func(w, method, info);
-            }
-            for (auto&& prop : type.properties)
-            {
-                write_class_impl_property(w, prop, info);
-            }
-        }
         w.write("}\n\n");
     }
 
@@ -1707,13 +1678,9 @@ public static func makeAbi() -> c_ABI {
             auto delegate_method = type.functions[0];
             do_write_delegate_implementation(w, type, delegate_method);
         }
-        else if (type.swift_full_name().starts_with("Windows.Foundation.Collections.IVectorView"))
+        else if (is_collection_type(type))
         {
-            write_vectorview_implementation(w, type);
-        }
-        else if (type.swift_full_name().starts_with("Windows.Foundation.Collections.IVector"))
-        {
-            write_vector_implementation(w, type);
+            write_collection_implementation(w, type);
         }
     }
 
@@ -1867,6 +1834,17 @@ public static func makeAbi() -> c_ABI {
                             default_interface_name,
                             get_swift_name(param));
                     }
+                }
+                else if (category == param_category::generic_type)
+                {
+                    w.write("var _%: UnsafeMutablePointer<%>?\n",
+                        get_swift_name(param),
+                        bind_type_mangled(param.type));
+
+                    guard.push("% = %Impl(_%)\n",
+                        get_swift_name(param),
+                        bind_type_mangled(param.type),
+                        get_swift_name(param));
                 }
             }
         }
@@ -2467,21 +2445,30 @@ public % var % : Event<(%),%> = EventImpl<%>(register: %_%, owner:%)
         separator s{ w };
         s();
 
-        std::string collection_type_alias;
+        std::vector<std::string> collection_type_aliases;
         for (auto&& [interface_name, info] : type.required_interfaces)
         {
             // Filter out which interfaces we actually want to declare on the class. We don't want to specify interfaces which come from the base class or which
             // ones are exclusive
             if (info.base || info.exclusive || interface_name.empty()) continue;
+
+            // Avoid writing both IIterable and IVector/IMap
+            if (interface_name.starts_with("IIterable<") && type.required_interfaces.size() > 1) continue;
+
             s();
 
             // when deriving from collections we want to just derive from `IVector` and will use a typealias to set the Element (this is required by Swift)
             auto name_to_write = interface_name;
             if (is_collection_type(info.type))
             {
-                if (info.generic_params.size() == 1)
+                if (interface_name.starts_with("IVector"))
                 {
-                    collection_type_alias = w.write_temp("Element = %", info.generic_params[0]);
+                    collection_type_aliases.emplace_back(w.write_temp("Element = %", info.generic_params[0]));
+                }
+                else if (interface_name.starts_with("IMap"))
+                {
+                    collection_type_aliases.emplace_back(w.write_temp("Key = %", info.generic_params[0]));
+                    collection_type_aliases.emplace_back(w.write_temp("Value = %", info.generic_params[1]));
                 }
                 name_to_write = interface_name.substr(0, interface_name.find_first_of('<'));
             }
@@ -2497,7 +2484,7 @@ public % var % : Event<(%),%> = EventImpl<%>(register: %_%, owner:%)
             w.write("private (set) public var _inner: UnsafeMutablePointer<%.IInspectable>?\n", w.c_mod);
         }
 
-        if (!collection_type_alias.empty())
+        for (const auto& collection_type_alias : collection_type_aliases)
         {
             w.write("public typealias %\n", collection_type_alias);
         }

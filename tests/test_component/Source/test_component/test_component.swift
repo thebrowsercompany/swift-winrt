@@ -125,7 +125,7 @@ public final class BaseCollection : WinRTClass, IVector {
         return .from(abi: result)
     }
 
-    public func GetView() -> any IVectorView<test_component.Base> {
+    public func GetView() -> any IVectorView<Base> {
         let result = try! _default.GetViewImpl()
         return __ABI_test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrap_from(abi: result)
     }
@@ -153,6 +153,73 @@ public final class BaseCollection : WinRTClass, IVector {
 
     public func RemoveAtEnd() {
         try! _default.RemoveAtEndImpl()
+    }
+
+    public func Clear() {
+        try! _default.ClearImpl()
+    }
+
+    public var Size : UInt32 {
+        get {
+            let result = try! _default.get_SizeImpl()
+            return result
+        }
+
+    }
+
+}
+
+public final class BaseMapCollection : WinRTClass, IMap {
+    public typealias Key = String
+    public typealias Value = Base
+    private typealias swift_ABI = __ABI_test_component.IMapString_Base
+    private typealias c_ABI = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
+    private var _default: swift_ABI = .init(UnsafeMutableRawPointer.none)
+    public func _get_abi<T>() -> UnsafeMutablePointer<T>? {
+        if T.self == c_ABI.self {
+            return RawPointer(_default)
+        }   
+        if T.self == Ctest_component.IInspectable.self {
+            return RawPointer(_default)
+        }
+        return nil
+    }
+
+    public static func from(abi: UnsafeMutablePointer<__x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?) -> BaseMapCollection {
+        .init(fromAbi: .init(abi))
+    }
+
+    public init(fromAbi: test_component.IInspectable) {
+        _default = try! fromAbi.QueryInterface()
+    }
+
+    // MARK: WinRT
+    public func Lookup(_ key: String) -> Base {
+        let _key = try! HString(key)
+        let result = try! _default.LookupImpl(_key.get())
+        return .from(abi: result)
+    }
+
+    public func HasKey(_ key: String) -> Bool {
+        let _key = try! HString(key)
+        let result = try! _default.HasKeyImpl(_key.get())
+        return .init(from: result)
+    }
+
+    public func GetView() -> any IMapView<String, Base> {
+        let result = try! _default.GetViewImpl()
+        return __ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrap_from(abi: result)
+    }
+
+    public func Insert(_ key: String, _ value: Base) -> Bool {
+        let _key = try! HString(key)
+        let result = try! _default.InsertImpl(_key.get(), RawPointer(value))
+        return .init(from: result)
+    }
+
+    public func Remove(_ key: String) {
+        let _key = try! HString(key)
+        try! _default.RemoveImpl(_key.get())
     }
 
     public func Clear() {
@@ -256,6 +323,34 @@ public final class Class : WinRTClass, IBasic {
         _default = __ABI_test_component.IClass(consuming: value)
     }
 
+    public init(_ arg: any IMap<String, String>, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32) {
+        let argWrapper = __ABI_test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper(arg)
+        let _arg = try! argWrapper?.to_abi { $0 }
+        let value = try! Self._IClassFactory.CreateInstance3Impl(_arg, dummy1, dummy2, dummy3)
+        _default = __ABI_test_component.IClass(consuming: value)
+    }
+
+    public init(_ arg: any IMapView<String, String>, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32, _ dummy4: Int32) {
+        let argWrapper = __ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper(arg)
+        let _arg = try! argWrapper?.to_abi { $0 }
+        let value = try! Self._IClassFactory.CreateInstance4Impl(_arg, dummy1, dummy2, dummy3, dummy4)
+        _default = __ABI_test_component.IClass(consuming: value)
+    }
+
+    public init(_ arg: any IVector<String>, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32, _ dummy4: Int32, _ dummy5: Int32) {
+        let argWrapper = __ABI_test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper(arg)
+        let _arg = try! argWrapper?.to_abi { $0 }
+        let value = try! Self._IClassFactory.CreateInstance5Impl(_arg, dummy1, dummy2, dummy3, dummy4, dummy5)
+        _default = __ABI_test_component.IClass(consuming: value)
+    }
+
+    public init(_ arg: any IVectorView<String>, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32, _ dummy4: Int32, _ dummy5: Int32, _ dummy6: Int32) {
+        let argWrapper = __ABI_test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper(arg)
+        let _arg = try! argWrapper?.to_abi { $0 }
+        let value = try! Self._IClassFactory.CreateInstance6Impl(_arg, dummy1, dummy2, dummy3, dummy4, dummy5, dummy6)
+        _default = __ABI_test_component.IClass(consuming: value)
+    }
+
     private static let _IClassFactory2: __ABI_test_component.IClassFactory2 = try! RoGetActivationFactory(HString("test_component.Class"))
     public init(_ name: String, _ fruit: Fruit, _ implementation: IIAmImplementable) {
         let _name = try! HString(name)
@@ -275,10 +370,31 @@ public final class Class : WinRTClass, IBasic {
         return result
     }
 
+    public static func InMap(_ value: any IMap<String, String>) -> String {
+        let valueWrapper = __ABI_test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper(value)
+        let _value = try! valueWrapper?.to_abi { $0 }
+        let result = try! _IClassStatics.InMapImpl(_value)
+        return .init(from: result)
+    }
+
+    public static func InMapView(_ value: any IMapView<String, String>) -> String {
+        let valueWrapper = __ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper(value)
+        let _value = try! valueWrapper?.to_abi { $0 }
+        let result = try! _IClassStatics.InMapViewImpl(_value)
+        return .init(from: result)
+    }
+
     public static func InVector(_ value: any IVector<String>) -> String {
         let valueWrapper = __ABI_test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper(value)
         let _value = try! valueWrapper?.to_abi { $0 }
         let result = try! _IClassStatics.InVectorImpl(_value)
+        return .init(from: result)
+    }
+
+    public static func InVectorView(_ value: any IVectorView<String>) -> String {
+        let valueWrapper = __ABI_test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper(value)
+        let _value = try! valueWrapper?.to_abi { $0 }
+        let result = try! _IClassStatics.InVectorViewImpl(_value)
         return .init(from: result)
     }
 
@@ -366,9 +482,14 @@ public final class Class : WinRTClass, IBasic {
         return result
     }
 
-    public func ReturnStringVector() -> any IVector<String> {
-        let result = try! _default.ReturnStringVectorImpl()
+    public func ReturnStoredStringVector() -> any IVector<String> {
+        let result = try! _default.ReturnStoredStringVectorImpl()
         return __ABI_test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper.unwrap_from(abi: result)
+    }
+
+    public func ReturnMapFromStringToString() -> any IMap<String, String> {
+        let result = try! _default.ReturnMapFromStringToStringImpl()
+        return __ABI_test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.unwrap_from(abi: result)
     }
 
     public func ReturnChar() -> Character {
