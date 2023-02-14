@@ -47,9 +47,9 @@ namespace swiftwinrt
         {
             auto returnTypeName = return_type.value().type->swift_type_name();
             return returnTypeName == "IAsyncAction" ||
-                returnTypeName == "IAsyncOperation`1" ||
-                returnTypeName == "IAsyncActionWithProgress`1" ||
-                returnTypeName == "IAsyncOperationWithProgress`2";
+                returnTypeName == "IAsyncOperation" ||
+                returnTypeName == "IAsyncActionWithProgress" ||
+                returnTypeName == "IAsyncOperationWithProgress";
         }
 
         return false;
@@ -62,6 +62,14 @@ namespace swiftwinrt
         m_genericParamMangledName(swiftwinrt::mangled_name<true>(type)),
         m_contractHistory(get_contract_history(type))
     {
+        // Swift does not support overloading by generic param arity,
+        // so we don't need to preserve the param count as part of the name.
+        auto backtick_index = m_swiftFullName.find('`');
+        if (backtick_index != std::string::npos)
+        {
+            m_swiftFullName = m_swiftFullName.erase(backtick_index);
+        }
+
         for_each_attribute(type, metadata_namespace, "VersionAttribute"sv, [&](bool, CustomAttribute const& attr)
         {
             m_platformVersions.push_back(decode_platform_version(attr));

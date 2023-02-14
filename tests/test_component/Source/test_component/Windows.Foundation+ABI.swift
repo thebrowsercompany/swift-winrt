@@ -174,15 +174,13 @@ public enum __ABI_Windows_Foundation {
     internal static var IPropertyValueVTable: __x_ABI_CWindows_CFoundation_CIPropertyValueVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-
             guard riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
                   riid.pointee == IIAgileObject.IID ||
-                  riid.pointee == __ABI_Windows_Foundation.IPropertyValueWrapper.IID else { 
+                  riid.pointee == __ABI_Windows_Foundation.IPropertyValueWrapper.IID else {
                 ppvObject.pointee = nil
-                        return E_NOINTERFACE
-
+                return E_NOINTERFACE
             }
             _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
             ppvObject.pointee = UnsafeMutableRawPointer(pUnk)

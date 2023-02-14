@@ -18,6 +18,12 @@
 
 #endif // ____x_ABI_Ctest__component_CIBase_FWD_DEFINED__
 
+#ifndef ____x_ABI_Ctest__component_CIBaseInterface_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CIBaseInterface_FWD_DEFINED__
+    typedef interface __x_ABI_Ctest__component_CIBaseInterface __x_ABI_Ctest__component_CIBaseInterface;
+
+#endif // ____x_ABI_Ctest__component_CIBaseInterface_FWD_DEFINED__
+
 #ifndef ____x_ABI_Ctest__component_CIBaseNoOverrides_FWD_DEFINED__
 #define ____x_ABI_Ctest__component_CIBaseNoOverrides_FWD_DEFINED__
     typedef interface __x_ABI_Ctest__component_CIBaseNoOverrides __x_ABI_Ctest__component_CIBaseNoOverrides;
@@ -84,6 +90,12 @@
 
 #endif // ____x_ABI_Ctest__component_CIDerived_FWD_DEFINED__
 
+#ifndef ____x_ABI_Ctest__component_CIDerivedInterface_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CIDerivedInterface_FWD_DEFINED__
+    typedef interface __x_ABI_Ctest__component_CIDerivedInterface __x_ABI_Ctest__component_CIDerivedInterface;
+
+#endif // ____x_ABI_Ctest__component_CIDerivedInterface_FWD_DEFINED__
+
 #ifndef ____x_ABI_Ctest__component_CIIAmImplementable_FWD_DEFINED__
 #define ____x_ABI_Ctest__component_CIIAmImplementable_FWD_DEFINED__
     typedef interface __x_ABI_Ctest__component_CIIAmImplementable __x_ABI_Ctest__component_CIIAmImplementable;
@@ -113,6 +125,12 @@
     typedef interface __x_ABI_Ctest__component_CIStaticClassStatics __x_ABI_Ctest__component_CIStaticClassStatics;
 
 #endif // ____x_ABI_Ctest__component_CIStaticClassStatics_FWD_DEFINED__
+
+#ifndef ____x_ABI_Ctest__component_CIStringVector_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CIStringVector_FWD_DEFINED__
+    typedef interface __x_ABI_Ctest__component_CIStringVector __x_ABI_Ctest__component_CIStringVector;
+
+#endif // ____x_ABI_Ctest__component_CIStringVector_FWD_DEFINED__
 
 #ifndef ____x_ABI_Ctest__component_CIUnsealedDerived_FWD_DEFINED__
 #define ____x_ABI_Ctest__component_CIUnsealedDerived_FWD_DEFINED__
@@ -631,55 +649,6 @@ typedef interface __x_ABI_C__FIMapView_2_HSTRING_HSTRING __x_ABI_C__FIMapView_2_
     
     #endif // ____x_ABI_C__FIMapView_2_HSTRING_HSTRING_INTERFACE_DEFINED__
     
-typedef interface __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase;
-
-#if !defined(____x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase_INTERFACE_DEFINED__)
-    #define ____x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase_INTERFACE_DEFINED__
-
-    typedef interface __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase;
-
-    //  Declare the parameterized interface IID.
-    EXTERN_C const IID IID___x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase;
-
-    typedef struct __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVtbl
-    {
-        BEGIN_INTERFACE
-
-        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase* This,
-            REFIID riid,
-            void** ppvObject);
-        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase* This);
-        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase* This);
-        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase* This,
-            ULONG* iidCount,
-            IID** iids);
-        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase* This,
-            HSTRING* className);
-        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase* This,
-            TrustLevel* trustLevel);
-        HRESULT (STDMETHODCALLTYPE* Lookup)(__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase* This,
-        HSTRING key,
-        __x_ABI_Ctest__component_CIBase** result);
-    HRESULT (STDMETHODCALLTYPE* get_Size)(__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase* This,
-        UINT32* result);
-    HRESULT (STDMETHODCALLTYPE* HasKey)(__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase* This,
-        HSTRING key,
-        boolean* result);
-    HRESULT (STDMETHODCALLTYPE* Split)(__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase* This,
-        __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase** first,
-        __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase** second);
-
-        END_INTERFACE
-    } __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVtbl;
-
-    interface __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
-    {
-        CONST_VTBL struct __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVtbl* lpVtbl;
-    };
-
-    
-    #endif // ____x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase_INTERFACE_DEFINED__
-    
 #if !defined(____x_ABI_C__FIMap_2_HSTRING_HSTRING_INTERFACE_DEFINED__)
     #define ____x_ABI_C__FIMap_2_HSTRING_HSTRING_INTERFACE_DEFINED__
 
@@ -732,6 +701,55 @@ typedef interface __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBas
 
     
     #endif // ____x_ABI_C__FIMap_2_HSTRING_HSTRING_INTERFACE_DEFINED__
+    
+typedef interface __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase;
+
+#if !defined(____x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase_INTERFACE_DEFINED__)
+    #define ____x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase_INTERFACE_DEFINED__
+
+    typedef interface __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase;
+
+    //  Declare the parameterized interface IID.
+    EXTERN_C const IID IID___x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase;
+
+    typedef struct __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* Lookup)(__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase* This,
+        HSTRING key,
+        __x_ABI_Ctest__component_CIBase** result);
+    HRESULT (STDMETHODCALLTYPE* get_Size)(__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase* This,
+        UINT32* result);
+    HRESULT (STDMETHODCALLTYPE* HasKey)(__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase* This,
+        HSTRING key,
+        boolean* result);
+    HRESULT (STDMETHODCALLTYPE* Split)(__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase* This,
+        __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase** first,
+        __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase** second);
+
+        END_INTERFACE
+    } __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVtbl;
+
+    interface __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
+    {
+        CONST_VTBL struct __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVtbl* lpVtbl;
+    };
+
+    
+    #endif // ____x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase_INTERFACE_DEFINED__
     
 #if !defined(____x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase_INTERFACE_DEFINED__)
     #define ____x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase_INTERFACE_DEFINED__
@@ -836,56 +854,6 @@ typedef interface __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBas
     
     #endif // ____x_ABI_C__FIVectorView_1_HSTRING_INTERFACE_DEFINED__
     
-#if !defined(____x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase_INTERFACE_DEFINED__)
-    #define ____x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase_INTERFACE_DEFINED__
-
-    typedef interface __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase;
-
-    //  Declare the parameterized interface IID.
-    EXTERN_C const IID IID___x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase;
-
-    typedef struct __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVtbl
-    {
-        BEGIN_INTERFACE
-
-        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase* This,
-            REFIID riid,
-            void** ppvObject);
-        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase* This);
-        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase* This);
-        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase* This,
-            ULONG* iidCount,
-            IID** iids);
-        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase* This,
-            HSTRING* className);
-        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase* This,
-            TrustLevel* trustLevel);
-        HRESULT (STDMETHODCALLTYPE* GetAt)(__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase* This,
-        UINT32 index,
-        __x_ABI_Ctest__component_CIBase** result);
-    HRESULT (STDMETHODCALLTYPE* get_Size)(__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase* This,
-        UINT32* result);
-    HRESULT (STDMETHODCALLTYPE* IndexOf)(__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase* This,
-        __x_ABI_Ctest__component_CIBase* value,
-        UINT32* index,
-        boolean* result);
-    HRESULT (STDMETHODCALLTYPE* GetMany)(__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase* This,
-        UINT32 startIndex,
-        UINT32 itemsLength,
-        __x_ABI_Ctest__component_CIBase** items,
-        UINT32* result);
-
-        END_INTERFACE
-    } __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVtbl;
-
-    interface __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase
-    {
-        CONST_VTBL struct __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVtbl* lpVtbl;
-    };
-
-    
-    #endif // ____x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase_INTERFACE_DEFINED__
-    
 #if !defined(____x_ABI_C__FIVector_1_HSTRING_INTERFACE_DEFINED__)
     #define ____x_ABI_C__FIVector_1_HSTRING_INTERFACE_DEFINED__
 
@@ -952,6 +920,56 @@ typedef interface __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBas
 
     
     #endif // ____x_ABI_C__FIVector_1_HSTRING_INTERFACE_DEFINED__
+    
+#if !defined(____x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase_INTERFACE_DEFINED__)
+    #define ____x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase_INTERFACE_DEFINED__
+
+    typedef interface __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase;
+
+    //  Declare the parameterized interface IID.
+    EXTERN_C const IID IID___x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase;
+
+    typedef struct __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* GetAt)(__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase* This,
+        UINT32 index,
+        __x_ABI_Ctest__component_CIBase** result);
+    HRESULT (STDMETHODCALLTYPE* get_Size)(__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase* This,
+        UINT32* result);
+    HRESULT (STDMETHODCALLTYPE* IndexOf)(__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase* This,
+        __x_ABI_Ctest__component_CIBase* value,
+        UINT32* index,
+        boolean* result);
+    HRESULT (STDMETHODCALLTYPE* GetMany)(__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase* This,
+        UINT32 startIndex,
+        UINT32 itemsLength,
+        __x_ABI_Ctest__component_CIBase** items,
+        UINT32* result);
+
+        END_INTERFACE
+    } __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVtbl;
+
+    interface __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase
+    {
+        CONST_VTBL struct __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVtbl* lpVtbl;
+    };
+
+    
+    #endif // ____x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase_INTERFACE_DEFINED__
     
 #if !defined(____x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase_INTERFACE_DEFINED__)
     #define ____x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase_INTERFACE_DEFINED__
@@ -1269,6 +1287,39 @@ struct __x_ABI_Ctest__component_CSimpleEventArgs
     
     EXTERN_C const IID IID___x_ABI_Ctest__component_CIBase;
 #endif /* !defined(____x_ABI_Ctest__component_CIBase_INTERFACE_DEFINED__) */
+    
+#if !defined(____x_ABI_Ctest__component_CIBaseInterface_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CIBaseInterface_INTERFACE_DEFINED__
+    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IBaseInterface[] = L"test_component.IBaseInterface";
+    typedef struct __x_ABI_Ctest__component_CIBaseInterfaceVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CIBaseInterface* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CIBaseInterface* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CIBaseInterface* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_Ctest__component_CIBaseInterface* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_Ctest__component_CIBaseInterface* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CIBaseInterface* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* DummyBase)(__x_ABI_Ctest__component_CIBaseInterface* This);
+
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CIBaseInterfaceVtbl;
+
+    interface __x_ABI_Ctest__component_CIBaseInterface
+    {
+        CONST_VTBL struct __x_ABI_Ctest__component_CIBaseInterfaceVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CIBaseInterface;
+#endif /* !defined(____x_ABI_Ctest__component_CIBaseInterface_INTERFACE_DEFINED__) */
     
 #if !defined(____x_ABI_Ctest__component_CIBaseNoOverrides_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIBaseNoOverrides_INTERFACE_DEFINED__
@@ -1761,6 +1812,39 @@ struct __x_ABI_Ctest__component_CSimpleEventArgs
     EXTERN_C const IID IID___x_ABI_Ctest__component_CIDerived;
 #endif /* !defined(____x_ABI_Ctest__component_CIDerived_INTERFACE_DEFINED__) */
     
+#if !defined(____x_ABI_Ctest__component_CIDerivedInterface_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CIDerivedInterface_INTERFACE_DEFINED__
+    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IDerivedInterface[] = L"test_component.IDerivedInterface";
+    typedef struct __x_ABI_Ctest__component_CIDerivedInterfaceVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CIDerivedInterface* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CIDerivedInterface* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CIDerivedInterface* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_Ctest__component_CIDerivedInterface* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_Ctest__component_CIDerivedInterface* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CIDerivedInterface* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* DummyDerived)(__x_ABI_Ctest__component_CIDerivedInterface* This);
+
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CIDerivedInterfaceVtbl;
+
+    interface __x_ABI_Ctest__component_CIDerivedInterface
+    {
+        CONST_VTBL struct __x_ABI_Ctest__component_CIDerivedInterfaceVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CIDerivedInterface;
+#endif /* !defined(____x_ABI_Ctest__component_CIDerivedInterface_INTERFACE_DEFINED__) */
+    
 #if !defined(____x_ABI_Ctest__component_CIIAmImplementable_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIIAmImplementable_INTERFACE_DEFINED__
     extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IIAmImplementable[] = L"test_component.IIAmImplementable";
@@ -2013,6 +2097,39 @@ struct __x_ABI_Ctest__component_CSimpleEventArgs
     
     EXTERN_C const IID IID___x_ABI_Ctest__component_CIStaticClassStatics;
 #endif /* !defined(____x_ABI_Ctest__component_CIStaticClassStatics_INTERFACE_DEFINED__) */
+    
+#if !defined(____x_ABI_Ctest__component_CIStringVector_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CIStringVector_INTERFACE_DEFINED__
+    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IStringVector[] = L"test_component.IStringVector";
+    typedef struct __x_ABI_Ctest__component_CIStringVectorVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CIStringVector* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CIStringVector* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CIStringVector* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_Ctest__component_CIStringVector* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_Ctest__component_CIStringVector* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CIStringVector* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* Dummy)(__x_ABI_Ctest__component_CIStringVector* This);
+
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CIStringVectorVtbl;
+
+    interface __x_ABI_Ctest__component_CIStringVector
+    {
+        CONST_VTBL struct __x_ABI_Ctest__component_CIStringVectorVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CIStringVector;
+#endif /* !defined(____x_ABI_Ctest__component_CIStringVector_INTERFACE_DEFINED__) */
     
 #if !defined(____x_ABI_Ctest__component_CIUnsealedDerived_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIUnsealedDerived_INTERFACE_DEFINED__

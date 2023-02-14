@@ -1089,12 +1089,30 @@ public struct SimpleEventArgs {
     }
 }
 
+public protocol IBaseInterface : IWinRTObject { 
+        func DummyBase() 
+}
+extension IBaseInterface {
+    public static var none: any IBaseInterface {
+        __IMPL_test_component.IBaseInterfaceImpl(nil)
+    }
+}
+
 public protocol IBasic : IWinRTObject { 
         func Method() 
 }
 extension IBasic {
-    public static var none: IBasic {
+    public static var none: any IBasic {
         __IMPL_test_component.IBasicImpl(nil)
+    }
+}
+
+public protocol IDerivedInterface : IBaseInterface { 
+        func DummyDerived() 
+}
+extension IDerivedInterface {
+    public static var none: any IDerivedInterface {
+        __IMPL_test_component.IDerivedInterfaceImpl(nil)
     }
 }
 
@@ -1113,7 +1131,7 @@ public protocol IIAmImplementable : IWinRTObject {
         var ID: UUID? { get set }
 }
 extension IIAmImplementable {
-    public static var none: IIAmImplementable {
+    public static var none: any IIAmImplementable {
         __IMPL_test_component.IIAmImplementableImpl(nil)
     }
 }
@@ -1123,8 +1141,17 @@ public protocol ISimpleDelegate : IWinRTObject {
         func DoThat(_ val: Int32) 
 }
 extension ISimpleDelegate {
-    public static var none: ISimpleDelegate {
+    public static var none: any ISimpleDelegate {
         __IMPL_test_component.ISimpleDelegateImpl(nil)
+    }
+}
+
+public protocol IStringVector : IVector<String> { 
+        func Dummy() 
+}
+extension IStringVector {
+    public static var none: any IStringVector {
+        __IMPL_test_component.IStringVectorImpl(nil)
     }
 }
 

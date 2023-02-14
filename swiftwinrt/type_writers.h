@@ -8,11 +8,6 @@ namespace swiftwinrt
     using namespace winmd::reader;
     using namespace std::literals;
 
-    inline std::string_view remove_tick(std::string_view const& name)
-    {
-        return name.substr(0, name.rfind('`'));
-    }
-
     struct writer;
     std::string get_full_swift_type_name(writer const&, TypeDef const& type);
     std::string get_full_swift_type_name(writer const&, const metadata_type* type);
@@ -20,9 +15,8 @@ namespace swiftwinrt
     std::string_view get_swift_name(function_param const&);
     bool is_generic(metadata_type const& type);
     bool is_generic(const metadata_type* type);
-
-    template <typename T>
-    bool is_collection_type(T const& type);
+    bool is_collection_type(metadata_type const& type);
+    bool is_collection_type(const metadata_type* type);
 
     param_category get_category(const metadata_type*, TypeDef*);
 
@@ -156,7 +150,7 @@ namespace swiftwinrt
         }
 
         details::append_type_prefix(result, type);
-        details::append_mangled_name<IsGenericParam>(result, type.swift_type_name());
+        details::append_mangled_name<IsGenericParam>(result, type.cpp_abi_name());
         return result;
     }
 
@@ -421,7 +415,7 @@ namespace swiftwinrt
             {
                 auto name = type->swift_type_name();
                 auto guard{ push_writing_generic(true) };
-                auto typeName = mangled_names ? mangled_name<true>(*type) : std::string(remove_tick(name));
+                auto typeName = mangled_names ? mangled_name<true>(*type) : std::string(name);
                 bool first = !mangled_names;
                 write("%%", typeName, bind_each([&](writer& w, generic_param_type generic_param) {
                     if (first)
@@ -689,34 +683,29 @@ namespace swiftwinrt
             }
             else
             {
-                auto collections_namespace_prefix = "Windows.Foundation.Collections."sv;
-
                 auto generic_type = generic.generic_type();
                 add_depends(generic_type->type());
-                auto type_full_name = generic_type->swift_full_name();
                 const auto& generic_params = generic.generic_params();
-                if (generic_type->swift_full_name() == "Windows.Foundation.IReference`1")
+                if (generic_type->swift_full_name() == "Windows.Foundation.IReference")
                 {
                     auto refType = generic_params[0];
                     write("%?", refType);
                 }
-                else if (generic_type->swift_full_name() == "Windows.Foundation.TypedEventHandler`2")
+                else if (generic_type->swift_full_name() == "Windows.Foundation.TypedEventHandler")
                 {
                     auto senderType = generic_params[0];
                     auto argsType = generic_params[1];
                     write("^@escaping (%,%) -> ()", senderType, argsType);
                 }
-                else if (generic_type->swift_full_name() == "Windows.Foundation.EventHandler`1")
+                else if (generic_type->swift_full_name() == "Windows.Foundation.EventHandler")
                 {
                     auto argsType = generic_params[0];
                     write("^@escaping (%.IInspectable,%) -> ()", support, argsType);
                 }
                 else if (is_collection_type(generic))
                 {
-                    // IVector`1, IVectorView`1, IMap`2, IMapView`2
-                    auto type_name_with_generic_param_count = generic_type->swift_type_name();
-                    auto type_name = type_name_with_generic_param_count.substr(0,
-                        type_name_with_generic_param_count.find_first_of('`'));
+                    // IVector, IVectorView, IMap, IMapView
+                    auto type_name = generic_type->swift_type_name();
 
                     if (abi_types)
                     {

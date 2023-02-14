@@ -2,11 +2,38 @@
 import Ctest_component
 
 public enum __IMPL_test_component {
+    public class IBaseInterfaceImpl : IBaseInterface, AbiInterfaceImpl {
+        public typealias c_ABI = __x_ABI_Ctest__component_CIBaseInterface
+        public typealias swift_ABI = __ABI_test_component.IBaseInterface
+        public typealias swift_Projection = any IBaseInterface
+
+        private (set) public var _default: swift_ABI
+
+        public static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {
+            return IBaseInterfaceImpl(abi)
+        }
+        public init(_ fromAbi: UnsafeMutablePointer<c_ABI>?) {
+            _default = swift_ABI(fromAbi)
+        }
+
+        public static func makeAbi() -> c_ABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IBaseInterfaceVTable) { $0 }
+            return .init(lpVtbl: vtblPtr)
+        }
+
+        public func DummyBase() {
+            try! _default.DummyBaseImpl()
+        }
+
+    }
+
     public class IBasicImpl : IBasic, AbiInterfaceImpl {
         public typealias c_ABI = __x_ABI_Ctest__component_CIBasic
         public typealias swift_ABI = __ABI_test_component.IBasic
-        public typealias swift_Projection = IBasic
+        public typealias swift_Projection = any IBasic
+
         private (set) public var _default: swift_ABI
+
         public static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {
             return IBasicImpl(abi)
         }
@@ -18,8 +45,40 @@ public enum __IMPL_test_component {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IBasicVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
+
         public func Method() {
             try! _default.MethodImpl()
+        }
+
+    }
+
+    public class IDerivedInterfaceImpl : IDerivedInterface, AbiInterfaceImpl {
+        public typealias c_ABI = __x_ABI_Ctest__component_CIDerivedInterface
+        public typealias swift_ABI = __ABI_test_component.IDerivedInterface
+        public typealias swift_Projection = any IDerivedInterface
+
+        private (set) public var _default: swift_ABI
+
+        public static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {
+            return IDerivedInterfaceImpl(abi)
+        }
+        public init(_ fromAbi: UnsafeMutablePointer<c_ABI>?) {
+            _default = swift_ABI(fromAbi)
+        }
+
+        public static func makeAbi() -> c_ABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IDerivedInterfaceVTable) { $0 }
+            return .init(lpVtbl: vtblPtr)
+        }
+
+        public func DummyDerived() {
+            try! _default.DummyDerivedImpl()
+        }
+
+        internal lazy var _IBaseInterface: __ABI_test_component.IBaseInterface = try! _default.QueryInterface()
+
+        public func DummyBase() {
+            try! _IBaseInterface.DummyBaseImpl()
         }
 
     }
@@ -27,8 +86,10 @@ public enum __IMPL_test_component {
     public class IIAmImplementableImpl : IIAmImplementable, AbiInterfaceImpl {
         public typealias c_ABI = __x_ABI_Ctest__component_CIIAmImplementable
         public typealias swift_ABI = __ABI_test_component.IIAmImplementable
-        public typealias swift_Projection = IIAmImplementable
+        public typealias swift_Projection = any IIAmImplementable
+
         private (set) public var _default: swift_ABI
+
         public static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {
             return IIAmImplementableImpl(abi)
         }
@@ -40,10 +101,12 @@ public enum __IMPL_test_component {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IIAmImplementableVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
+
         public func InInt32(_ value: Int32) -> String {
             let result = try! _default.InInt32Impl(value)
             return .init(from: result)
         }
+
 
         public func InString(_ value: String) -> String {
             let _value = try! HString(value)
@@ -51,14 +114,17 @@ public enum __IMPL_test_component {
             return .init(from: result)
         }
 
+
         public func InEnum(_ value: Signed) -> String {
             let result = try! _default.InEnumImpl(value)
             return .init(from: result)
         }
 
+
         public func OutInt32(_ value: inout Int32) {
             try! _default.OutInt32Impl(&value)
         }
+
 
         public func OutString(_ value: inout String?) {
             var _value: HSTRING?
@@ -67,11 +133,13 @@ public enum __IMPL_test_component {
             WindowsDeleteString(_value)
         }
 
+
         public func OutBlittableStruct(_ value: inout BlittableStruct) {
             var _value: __x_ABI_Ctest__component_CBlittableStruct = .init()
             try! _default.OutBlittableStructImpl(&_value)
             value = .from(abi: _value)
         }
+
 
         public func OutNonBlittableStruct(_ value: inout NonBlittableStruct) {
             let _value: __ABI_test_component._ABI_NonBlittableStruct = .init()
@@ -79,18 +147,28 @@ public enum __IMPL_test_component {
             value = .from(abi: _value.val)
         }
 
+
         public func OutEnum(_ value: inout Signed) {
             try! _default.OutEnumImpl(&value)
         }
+
 
         public func ReturnEnum() -> Signed {
             let result = try! _default.ReturnEnumImpl()
             return result
         }
 
+
+
+
+
+
+
+
         public func FireEvent() {
             try! _default.FireEventImpl()
         }
+
 
         public var EnumProperty : Fruit {
             get {
@@ -102,6 +180,7 @@ public enum __IMPL_test_component {
                 try! _default.put_EnumPropertyImpl(newValue)
             }
         }
+
 
         public var ID : UUID? {
             get {
@@ -121,8 +200,10 @@ public enum __IMPL_test_component {
     public class ISimpleDelegateImpl : ISimpleDelegate, AbiInterfaceImpl {
         public typealias c_ABI = __x_ABI_Ctest__component_CISimpleDelegate
         public typealias swift_ABI = __ABI_test_component.ISimpleDelegate
-        public typealias swift_Projection = ISimpleDelegate
+        public typealias swift_Projection = any ISimpleDelegate
+
         private (set) public var _default: swift_ABI
+
         public static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {
             return ISimpleDelegateImpl(abi)
         }
@@ -134,9 +215,11 @@ public enum __IMPL_test_component {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.ISimpleDelegateVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
+
         public func DoThis() {
             try! _default.DoThisImpl()
         }
+
 
         public func DoThat(_ val: Int32) {
             try! _default.DoThatImpl(val)
@@ -144,105 +227,125 @@ public enum __IMPL_test_component {
 
     }
 
-    internal class __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl : IMapView, AbiInterfaceImpl {
-        typealias Key = String
-        typealias Value = String
-        typealias swift_Projection = any IMapView<String, String>
-        typealias c_ABI = __x_ABI_C__FIMapView_2_HSTRING_HSTRING
-        typealias swift_ABI = __ABI_test_component.IMapViewString_String
+    public class IStringVectorImpl : IStringVector, AbiInterfaceImpl {
+        public typealias c_ABI = __x_ABI_Ctest__component_CIStringVector
+        public typealias swift_ABI = __ABI_test_component.IStringVector
+        public typealias swift_Projection = any IStringVector
 
         private (set) public var _default: swift_ABI
 
-        static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {
-            return __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl(abi)
+        public static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {
+            return IStringVectorImpl(abi)
         }
-
-        internal init(_ fromAbi: UnsafeMutablePointer<c_ABI>?) {
+        public init(_ fromAbi: UnsafeMutablePointer<c_ABI>?) {
             _default = swift_ABI(fromAbi)
         }
 
-        static func makeAbi() -> c_ABI {
-            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGVTable) { $0 }
-            return.init(lpVtbl: vtblPtr)
+        public static func makeAbi() -> c_ABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IStringVectorVTable) { $0 }
+            return .init(lpVtbl: vtblPtr)
         }
 
-        // MARK: WinRT
-        public func Lookup(_ key: String) -> String {
-            let _key = try! HString(key)
-            let result = try! _default.LookupImpl(_key.get())
-            return .init(from: result)
+        public func Dummy() {
+            try! _default.DummyImpl()
         }
 
-        public func HasKey(_ key: String) -> Bool {
-            let _key = try! HString(key)
-            let result = try! _default.HasKeyImpl(_key.get())
-            return .init(from: result)
+        internal lazy var _IVector: __ABI_test_component.IVectorString = try! _default.QueryInterface()
+        // MARK: Collection
+        public var startIndex: Int { 0 }
+        public var endIndex: Int { Int(Size) }
+        public func index(after i: Int) -> Int {
+            i+1
         }
 
-        public func Split(_ first: inout (any IMapView<String, String>)?, _ second: inout (any IMapView<String, String>)?) {
-            var _first: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?
-            var _second: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?
-            try! _default.SplitImpl(&_first, &_second)
-            first = __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl(_first)
-            second = __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl(_second)
+        public func index(of: Element) -> Int? { 
+            var index: UInt32 = 0
+            let result = IndexOf(of, &index)
+            guard result else { return nil }
+            return Int(index)
+        }
+        public var count: Int { Int(Size) }
+
+        public func append(_ item: Element) {
+            Append(item)
         }
 
-        public var Size : UInt32 {
+        public subscript(position: Int) -> Element {
             get {
-                let result = try! _default.get_SizeImpl()
-                return result
+                GetAt(UInt32(position))
             }
-
+            set(newValue) {
+                SetAt(UInt32(position), newValue)
+            }
         }
 
-    }
-
-    internal class __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl : IMapView, AbiInterfaceImpl {
-        typealias Key = String
-        typealias Value = Base
-        typealias swift_Projection = any IMapView<String, Base>
-        typealias c_ABI = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
-        typealias swift_ABI = __ABI_test_component.IMapViewString_Base
-
-        private (set) public var _default: swift_ABI
-
-        static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {
-            return __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
+        public func removeLast() {
+            RemoveAtEnd()
         }
 
-        internal init(_ fromAbi: UnsafeMutablePointer<c_ABI>?) {
-            _default = swift_ABI(fromAbi)
+        public func clear() {
+            Clear()
         }
-
-        static func makeAbi() -> c_ABI {
-            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
-            return.init(lpVtbl: vtblPtr)
-        }
-
         // MARK: WinRT
-        public func Lookup(_ key: String) -> Base {
-            let _key = try! HString(key)
-            let result = try! _default.LookupImpl(_key.get())
-            return .from(abi: result)
-        }
 
-        public func HasKey(_ key: String) -> Bool {
-            let _key = try! HString(key)
-            let result = try! _default.HasKeyImpl(_key.get())
+        public func GetAt(_ index: UInt32) -> String {
+            let result = try! _IVector.GetAtImpl(index)
             return .init(from: result)
         }
 
-        public func Split(_ first: inout (any IMapView<String, Base>)?, _ second: inout (any IMapView<String, Base>)?) {
-            var _first: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
-            var _second: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
-            try! _default.SplitImpl(&_first, &_second)
-            first = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(_first)
-            second = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(_second)
+
+
+        public func GetView() -> any IVectorView<String> {
+            let result = try! _IVector.GetViewImpl()
+            return __ABI_test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper.unwrap_from(abi: result)
         }
+
+
+        public func IndexOf(_ value: String, _ index: inout UInt32) -> Bool {
+            let _value = try! HString(value)
+            let result = try! _IVector.IndexOfImpl(_value.get(), &index)
+            return .init(from: result)
+        }
+
+
+        public func SetAt(_ index: UInt32, _ value: String) {
+            let _value = try! HString(value)
+            try! _IVector.SetAtImpl(index, _value.get())
+        }
+
+
+        public func InsertAt(_ index: UInt32, _ value: String) {
+            let _value = try! HString(value)
+            try! _IVector.InsertAtImpl(index, _value.get())
+        }
+
+
+        public func RemoveAt(_ index: UInt32) {
+            try! _IVector.RemoveAtImpl(index)
+        }
+
+
+        public func Append(_ value: String) {
+            let _value = try! HString(value)
+            try! _IVector.AppendImpl(_value.get())
+        }
+
+
+        public func RemoveAtEnd() {
+            try! _IVector.RemoveAtEndImpl()
+        }
+
+
+        public func Clear() {
+            try! _IVector.ClearImpl()
+        }
+
+
+
 
         public var Size : UInt32 {
             get {
-                let result = try! _default.get_SizeImpl()
+                let result = try! _IVector.get_SizeImpl()
                 return result
             }
 
@@ -381,16 +484,17 @@ public enum __IMPL_test_component {
 
     }
 
-    internal class __x_ABI_C__FIVectorView_1_HSTRINGImpl : IVectorView, AbiInterfaceImpl {
-        typealias Element = String
-        typealias swift_Projection = any IVectorView<String>
-        typealias c_ABI = __x_ABI_C__FIVectorView_1_HSTRING
-        typealias swift_ABI = __ABI_test_component.IVectorViewString
+    internal class __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl : IMapView, AbiInterfaceImpl {
+        typealias Key = String
+        typealias Value = String
+        typealias swift_Projection = any IMapView<String, String>
+        typealias c_ABI = __x_ABI_C__FIMapView_2_HSTRING_HSTRING
+        typealias swift_ABI = __ABI_test_component.IMapViewString_String
 
         private (set) public var _default: swift_ABI
 
         static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {
-            return __x_ABI_C__FIVectorView_1_HSTRINGImpl(abi)
+            return __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl(abi)
         }
 
         internal init(_ fromAbi: UnsafeMutablePointer<c_ABI>?) {
@@ -398,40 +502,29 @@ public enum __IMPL_test_component {
         }
 
         static func makeAbi() -> c_ABI {
-            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.__x_ABI_C__FIVectorView_1_HSTRINGVTable) { $0 }
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGVTable) { $0 }
             return.init(lpVtbl: vtblPtr)
         }
 
-        // MARK: Collection
-        var startIndex: Int { 0 }
-        var endIndex: Int { Int(Size) }
-        func index(after i: Int) -> Int {
-            i+1
-        }
-
-        func index(of: Element) -> Int? { 
-            var index: UInt32 = 0
-            let result = IndexOf(of, &index)
-            guard result else { return nil }
-            return Int(index)
-        }
-        var count: Int { Int(Size) }
-
-        subscript(position: Int) -> Element {
-            get {
-                GetAt(UInt32(position))
-            }
-        }
         // MARK: WinRT
-        public func GetAt(_ index: UInt32) -> String {
-            let result = try! _default.GetAtImpl(index)
+        public func Lookup(_ key: String) -> String {
+            let _key = try! HString(key)
+            let result = try! _default.LookupImpl(_key.get())
             return .init(from: result)
         }
 
-        public func IndexOf(_ value: String, _ index: inout UInt32) -> Bool {
-            let _value = try! HString(value)
-            let result = try! _default.IndexOfImpl(_value.get(), &index)
+        public func HasKey(_ key: String) -> Bool {
+            let _key = try! HString(key)
+            let result = try! _default.HasKeyImpl(_key.get())
             return .init(from: result)
+        }
+
+        public func Split(_ first: inout (any IMapView<String, String>)?, _ second: inout (any IMapView<String, String>)?) {
+            var _first: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?
+            var _second: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?
+            try! _default.SplitImpl(&_first, &_second)
+            first = __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl(_first)
+            second = __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl(_second)
         }
 
         public var Size : UInt32 {
@@ -444,16 +537,17 @@ public enum __IMPL_test_component {
 
     }
 
-    internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl : IVectorView, AbiInterfaceImpl {
-        typealias Element = Base
-        typealias swift_Projection = any IVectorView<Base>
-        typealias c_ABI = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase
-        typealias swift_ABI = __ABI_test_component.IVectorViewBase
+    internal class __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl : IMapView, AbiInterfaceImpl {
+        typealias Key = String
+        typealias Value = Base
+        typealias swift_Projection = any IMapView<String, Base>
+        typealias c_ABI = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
+        typealias swift_ABI = __ABI_test_component.IMapViewString_Base
 
         private (set) public var _default: swift_ABI
 
         static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {
-            return __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
+            return __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
         }
 
         internal init(_ fromAbi: UnsafeMutablePointer<c_ABI>?) {
@@ -461,39 +555,29 @@ public enum __IMPL_test_component {
         }
 
         static func makeAbi() -> c_ABI {
-            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
             return.init(lpVtbl: vtblPtr)
         }
 
-        // MARK: Collection
-        var startIndex: Int { 0 }
-        var endIndex: Int { Int(Size) }
-        func index(after i: Int) -> Int {
-            i+1
-        }
-
-        func index(of: Element) -> Int? { 
-            var index: UInt32 = 0
-            let result = IndexOf(of, &index)
-            guard result else { return nil }
-            return Int(index)
-        }
-        var count: Int { Int(Size) }
-
-        subscript(position: Int) -> Element {
-            get {
-                GetAt(UInt32(position))
-            }
-        }
         // MARK: WinRT
-        public func GetAt(_ index: UInt32) -> Base {
-            let result = try! _default.GetAtImpl(index)
+        public func Lookup(_ key: String) -> Base {
+            let _key = try! HString(key)
+            let result = try! _default.LookupImpl(_key.get())
             return .from(abi: result)
         }
 
-        public func IndexOf(_ value: Base, _ index: inout UInt32) -> Bool {
-            let result = try! _default.IndexOfImpl(RawPointer(value), &index)
+        public func HasKey(_ key: String) -> Bool {
+            let _key = try! HString(key)
+            let result = try! _default.HasKeyImpl(_key.get())
             return .init(from: result)
+        }
+
+        public func Split(_ first: inout (any IMapView<String, Base>)?, _ second: inout (any IMapView<String, Base>)?) {
+            var _first: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
+            var _second: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
+            try! _default.SplitImpl(&_first, &_second)
+            first = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(_first)
+            second = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(_second)
         }
 
         public var Size : UInt32 {
@@ -528,25 +612,25 @@ public enum __IMPL_test_component {
         }
 
         // MARK: Collection
-        var startIndex: Int { 0 }
-        var endIndex: Int { Int(Size) }
-        func index(after i: Int) -> Int {
+        public var startIndex: Int { 0 }
+        public var endIndex: Int { Int(Size) }
+        public func index(after i: Int) -> Int {
             i+1
         }
 
-        func index(of: Element) -> Int? { 
+        public func index(of: Element) -> Int? { 
             var index: UInt32 = 0
             let result = IndexOf(of, &index)
             guard result else { return nil }
             return Int(index)
         }
-        var count: Int { Int(Size) }
+        public var count: Int { Int(Size) }
 
-        func append(_ item: Element) {
+        public func append(_ item: Element) {
             Append(item)
         }
 
-        subscript(position: Int) -> Element {
+        public subscript(position: Int) -> Element {
             get {
                 GetAt(UInt32(position))
             }
@@ -555,11 +639,11 @@ public enum __IMPL_test_component {
             }
         }
 
-        func removeLast() {
+        public func removeLast() {
             RemoveAtEnd()
         }
 
-        func clear() {
+        public func clear() {
             Clear()
         }
         // MARK: WinRT
@@ -638,25 +722,25 @@ public enum __IMPL_test_component {
         }
 
         // MARK: Collection
-        var startIndex: Int { 0 }
-        var endIndex: Int { Int(Size) }
-        func index(after i: Int) -> Int {
+        public var startIndex: Int { 0 }
+        public var endIndex: Int { Int(Size) }
+        public func index(after i: Int) -> Int {
             i+1
         }
 
-        func index(of: Element) -> Int? { 
+        public func index(of: Element) -> Int? { 
             var index: UInt32 = 0
             let result = IndexOf(of, &index)
             guard result else { return nil }
             return Int(index)
         }
-        var count: Int { Int(Size) }
+        public var count: Int { Int(Size) }
 
-        func append(_ item: Element) {
+        public func append(_ item: Element) {
             Append(item)
         }
 
-        subscript(position: Int) -> Element {
+        public subscript(position: Int) -> Element {
             get {
                 GetAt(UInt32(position))
             }
@@ -665,11 +749,11 @@ public enum __IMPL_test_component {
             }
         }
 
-        func removeLast() {
+        public func removeLast() {
             RemoveAtEnd()
         }
 
-        func clear() {
+        public func clear() {
             Clear()
         }
         // MARK: WinRT
@@ -710,6 +794,131 @@ public enum __IMPL_test_component {
 
         public func Clear() {
             try! _default.ClearImpl()
+        }
+
+        public var Size : UInt32 {
+            get {
+                let result = try! _default.get_SizeImpl()
+                return result
+            }
+
+        }
+
+    }
+
+    internal class __x_ABI_C__FIVectorView_1_HSTRINGImpl : IVectorView, AbiInterfaceImpl {
+        typealias Element = String
+        typealias swift_Projection = any IVectorView<String>
+        typealias c_ABI = __x_ABI_C__FIVectorView_1_HSTRING
+        typealias swift_ABI = __ABI_test_component.IVectorViewString
+
+        private (set) public var _default: swift_ABI
+
+        static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {
+            return __x_ABI_C__FIVectorView_1_HSTRINGImpl(abi)
+        }
+
+        internal init(_ fromAbi: UnsafeMutablePointer<c_ABI>?) {
+            _default = swift_ABI(fromAbi)
+        }
+
+        static func makeAbi() -> c_ABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.__x_ABI_C__FIVectorView_1_HSTRINGVTable) { $0 }
+            return.init(lpVtbl: vtblPtr)
+        }
+
+        // MARK: Collection
+        public var startIndex: Int { 0 }
+        public var endIndex: Int { Int(Size) }
+        public func index(after i: Int) -> Int {
+            i+1
+        }
+
+        public func index(of: Element) -> Int? { 
+            var index: UInt32 = 0
+            let result = IndexOf(of, &index)
+            guard result else { return nil }
+            return Int(index)
+        }
+        public var count: Int { Int(Size) }
+
+        public subscript(position: Int) -> Element {
+            get {
+                GetAt(UInt32(position))
+            }
+        }
+        // MARK: WinRT
+        public func GetAt(_ index: UInt32) -> String {
+            let result = try! _default.GetAtImpl(index)
+            return .init(from: result)
+        }
+
+        public func IndexOf(_ value: String, _ index: inout UInt32) -> Bool {
+            let _value = try! HString(value)
+            let result = try! _default.IndexOfImpl(_value.get(), &index)
+            return .init(from: result)
+        }
+
+        public var Size : UInt32 {
+            get {
+                let result = try! _default.get_SizeImpl()
+                return result
+            }
+
+        }
+
+    }
+
+    internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl : IVectorView, AbiInterfaceImpl {
+        typealias Element = Base
+        typealias swift_Projection = any IVectorView<Base>
+        typealias c_ABI = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase
+        typealias swift_ABI = __ABI_test_component.IVectorViewBase
+
+        private (set) public var _default: swift_ABI
+
+        static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {
+            return __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
+        }
+
+        internal init(_ fromAbi: UnsafeMutablePointer<c_ABI>?) {
+            _default = swift_ABI(fromAbi)
+        }
+
+        static func makeAbi() -> c_ABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
+            return.init(lpVtbl: vtblPtr)
+        }
+
+        // MARK: Collection
+        public var startIndex: Int { 0 }
+        public var endIndex: Int { Int(Size) }
+        public func index(after i: Int) -> Int {
+            i+1
+        }
+
+        public func index(of: Element) -> Int? { 
+            var index: UInt32 = 0
+            let result = IndexOf(of, &index)
+            guard result else { return nil }
+            return Int(index)
+        }
+        public var count: Int { Int(Size) }
+
+        public subscript(position: Int) -> Element {
+            get {
+                GetAt(UInt32(position))
+            }
+        }
+        // MARK: WinRT
+        public func GetAt(_ index: UInt32) -> Base {
+            let result = try! _default.GetAtImpl(index)
+            return .from(abi: result)
+        }
+
+        public func IndexOf(_ value: Base, _ index: inout UInt32) -> Bool {
+            let result = try! _default.IndexOfImpl(RawPointer(value), &index)
+            return .init(from: result)
         }
 
         public var Size : UInt32 {

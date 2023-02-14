@@ -9,7 +9,21 @@ namespace swiftwinrt
     struct writer;
 
     std::string get_full_type_name(TypeDef const& type);
-    std::string_view remove_tick(std::string_view const& name);
+    
+    inline std::string_view remove_tick(std::string_view const& name, bool expect = true)
+    {
+        auto backtick_index = name.find('`');
+        if (backtick_index == std::string_view::npos)
+        {
+            assert(!expect);
+            return name;
+        }
+        else
+        {
+            return name.substr(0, backtick_index);
+        }
+    }
+
     struct deprecation_info
     {
         std::string_view contract_type;
@@ -20,9 +34,20 @@ namespace swiftwinrt
 
     struct metadata_type
     {
+        // The concatenated Swift logical namespace and type name.
         virtual std::string_view swift_full_name() const = 0;
+
+        // The unqualified type name as it may appear in Swift code.
+        // - Primitives: The corresponding swift type.
+        // - Generic type defs: The name without the backtick suffix.
+        // - Generic instance: The name with generic parameters in angle brackets.
         virtual std::string_view swift_type_name() const = 0;
+
+        // Same as the Swift logical namespace except for
+        // runtimeclasses with no default interface.
         virtual std::string_view swift_abi_namespace() const = 0;
+
+        // Same as the WinRT namespace, empty for primitive types
         virtual std::string_view swift_logical_namespace() const = 0;
 
         virtual std::string_view cpp_abi_name() const = 0;
@@ -398,7 +423,8 @@ namespace swiftwinrt
 
         virtual std::string_view swift_type_name() const override
         {
-            return m_type.TypeName();
+            // Swift cannot overload on generic param arity so we don't preserve it
+            return remove_tick(m_type.TypeName(), /* expect */ false);
         }
 
         virtual std::string_view cpp_logical_name() const override
@@ -863,11 +889,8 @@ namespace swiftwinrt
 
         std::string_view generic_type_abi_name() const noexcept
         {
-            // Generic type swift names end with "`N" where 'N' is the number of generic parameters
-            auto result = m_genericType->cpp_abi_name();
-            auto tickPos = result.rfind('`');
-            XLANG_ASSERT(tickPos != std::string_view::npos);
-            return result.substr(0, tickPos);
+            // Generic type metadata names end with "`N" where 'N' is the number of generic parameters
+            return remove_tick(m_genericType->cpp_abi_name());
         }
 
         std::vector<metadata_type const*> const& generic_params() const noexcept

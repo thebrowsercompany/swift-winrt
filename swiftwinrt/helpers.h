@@ -208,23 +208,26 @@ namespace swiftwinrt
         return method.SpecialName() && method.Name().starts_with("put_");
     }
 
-    template<typename T>
-    inline bool is_collection_type(T const& type)
+    inline bool is_collection_type(metadata_type const& type)
     {
-        type_name typeName{ type };
-        if (typeName.name_space == "Windows.Foundation.Collections")
+        if (type.swift_logical_namespace() == "Windows.Foundation.Collections")
         {
-
-            return typeName.name.starts_with("IVector`") ||
-                typeName.name.starts_with("IMap`") ||
-                typeName.name.starts_with("IVectorView`") ||
-                typeName.name.starts_with("IMapView`") ||
-                typeName.name.starts_with("IIterator`") ||
-                typeName.name.starts_with("IIterable`") ||
-                typeName.name.starts_with("IObservableMap`") ||
-                typeName.name.starts_with("IObservableVector`");
+            auto type_name = type.swift_type_name();
+            return type_name.starts_with("IVector<") ||
+                type_name.starts_with("IMap<") ||
+                type_name.starts_with("IVectorView<") ||
+                type_name.starts_with("IMapView<") ||
+                type_name.starts_with("IIterator<") ||
+                type_name.starts_with("IIterable<") ||
+                type_name.starts_with("IObservableMap<") ||
+                type_name.starts_with("IObservableVector<");
         }
         return false;
+    }
+
+    inline bool is_collection_type(metadata_type const* type)
+    {
+        return is_collection_type(*type);
     }
 
     inline bool is_noexcept(MethodDef const& method)
@@ -605,9 +608,11 @@ namespace swiftwinrt
         else
         {
             auto name = std::string("_").append(iface.type->swift_type_name());
-            if (iface.generic_params.size() == 1)
+            if (iface.generic_params.size() > 0)
             {
-                name.erase(name.find_first_of('`'));
+                auto generic_params_start = name.find_first_of('<');
+                assert(generic_params_start != std::string::npos);
+                name.erase(generic_params_start);
             }
             return name;
         }
@@ -747,6 +752,18 @@ namespace swiftwinrt
     inline std::string abi_namespace(const metadata_type * type)
     {
         return abi_namespace(*type);
+    }
+
+    inline std::string abi_namespace(writer const& w, metadata_type const& type)
+    {
+        return dynamic_cast<const generic_inst*>(&type)
+            ? abi_namespace(w.type_namespace)
+            : abi_namespace(type.swift_logical_namespace());
+    }
+
+    inline std::string abi_namespace(writer const& w, metadata_type const* type)
+    {
+        return abi_namespace(w, *type);
     }
 
     inline winmd::reader::ElementType underlying_enum_type(winmd::reader::TypeDef const& type)

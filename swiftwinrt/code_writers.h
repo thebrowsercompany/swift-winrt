@@ -1323,9 +1323,9 @@ bind_impl_fullname(type));
     // Due to https://linear.app/the-browser-company/issue/WIN-148/investigate-possible-compiler-bug-crash-when-generating-collection
     // we have to generate the protocol conformance for the Collection protocol (see "// MARK: Collection" below). We shouldn't have to
     // do this because we define an extension on the protocol which does this.
-    static void write_collection_protocol_conformance(writer& w, interface_info const& info)
+    static void write_collection_protocol_conformance(writer& w, interface_info const& info, bool public_members)
     {
-        auto modifier = w.impl_names ? "" : "public ";
+        auto modifier = public_members ? "public " : "";
         auto typeName = info.type->swift_type_name();
         if (typeName.starts_with("IVector"))
         {
@@ -1401,8 +1401,10 @@ bind_impl_fullname(type));
 
         w.write(R"(public typealias c_ABI = %
 public typealias swift_ABI = %.%
-public typealias swift_Projection = %
+public typealias swift_Projection = any %
+
 private (set) public var _default: swift_ABI
+
 public static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {
     return %(abi)
 }
@@ -1427,10 +1429,12 @@ public static func makeAbi() -> c_ABI {
         type_info.is_default = true; // mark as default so we use the name "_default"
         for (auto&& method : type.functions)
         {
+            w.write("\n");
             write_class_impl_func(w, method, type_info);
         }
         for (auto&& prop : type.properties)
         {
+            w.write("\n");
             write_class_impl_property(w, prop, type_info);
         }
 
@@ -1440,22 +1444,41 @@ public static func makeAbi() -> c_ABI {
 
             if (!info.is_default || info.base)
             {
-                auto swiftAbi = w.write_temp("%.%", abi_namespace(*info.type), info.type->swift_type_name());
-                assert(!is_collection_type(info.type)); // not expected generic types in this method    
-                w.write("internal lazy var %: % = try! _default.QueryInterface()\n",
-                    get_swift_name(info),
-                    swiftAbi);
+                auto abi_guard = w.push_abi_types(true);
+                w.write("internal lazy var %: %.% = try! _default.QueryInterface()\n",
+                    get_swift_name(info), abi_namespace(w.type_namespace), *info.type);
+
+                if (is_collection_type(info.type))
+                {
+                    write_collection_protocol_conformance(w, info, /* public_members */ true);
+                }
             }
 
             if (auto iface = dynamic_cast<const interface_type*>(info.type))
             {
                 for (auto&& method : iface->functions)
                 {
+                    w.write("\n");
                     write_class_impl_func(w, method, info);
                 }
 
                 for (auto&& prop : iface->properties)
                 {
+                    w.write("\n");
+                    write_class_impl_property(w, prop, info);
+                }
+            }
+            else if (auto geninst = dynamic_cast<const generic_inst*>(info.type))
+            {
+                for (auto&& method : geninst->functions)
+                {
+                    w.write("\n");
+                    write_class_impl_func(w, method, info);
+                }
+
+                for (auto&& prop : geninst->properties)
+                {
+                    w.write("\n");
                     write_class_impl_property(w, prop, info);
                 }
             }
@@ -1517,7 +1540,7 @@ public static func makeAbi() -> c_ABI {
             return;
         }
         auto extension_format = R"(extension % {
-    public static var none: % {
+    public static var none: any % {
         %(nil)
     }
 }
@@ -1653,7 +1676,7 @@ public static func makeAbi() -> c_ABI {
         
         interface_info info{ &type };
         info.is_default = true; // mark as default so we use the name "_default"
-        write_collection_protocol_conformance(w, info);
+        write_collection_protocol_conformance(w, info, /* public_members: */ true);
 
         for (auto&& method : type.functions)
         {
@@ -2378,7 +2401,7 @@ public % var % : Event<(%),%> = EventImpl<%>(register: %_%, owner:%)
 
         if (is_collection_type(info.type))
         {
-            write_collection_protocol_conformance(w, info);
+            write_collection_protocol_conformance(w, info, /* public_members: */ true);
         }
 
         if (auto iface = dynamic_cast<const interface_type*>(info.type))
@@ -2708,77 +2731,71 @@ private var _default: swift_ABI = .init(UnsafeMutableRawPointer.none)
     }
 
     template <typename T>
+    static void write_query_interface_case(writer& w, T const& type, const metadata_type* iface, bool cast)
+    {
+        w.write("if riid.pointee == %.IID {\n", bind_wrapper_fullname(iface));
+        {
+            auto indent = w.push_indent();
+            w.write("guard let instance = %.try_unwrap_from(raw: pUnk)% else { return E_NOINTERFACE }\n",
+                bind_wrapper_name(type), cast ? w.write_temp(" as? any %", iface) : "");
+            w.write("guard let inner = %(instance) else { return E_INVALIDARG }\n",
+                bind_wrapper_fullname(iface));
+
+            w.write("let pThis = try!inner.to_abi { $0 }\n");
+            w.write("return pThis.pointee.lpVtbl.pointee.QueryInterface(pThis, riid, ppvObject)\n");
+        }
+        w.write("}\n\n");
+    }
+
+    template <typename T>
     static void write_iunknown_methods(writer& w, T const& type, std::vector<named_interface_info> const& interfaces, bool composed = false)
     {
-        w.write(R"(QueryInterface: {
-    guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-%
-    guard riid.pointee == IUnknown.IID ||
-          riid.pointee == IInspectable.IID || 
-          riid.pointee == ISwiftImplemented.IID ||
-          riid.pointee == IIAgileObject.IID ||
-          riid.pointee == %.IID else { 
-        %
-    }
-    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-    return S_OK
-},
+        w.write("QueryInterface: {\n");
+        {
+            auto qi_indent = w.push_indent();
+            w.write("guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }\n");
 
-)",
-bind([&](writer& w) {
-                auto format = R"(if riid.pointee == %.IID {
-    guard let instance = %.try_unwrap_from(raw: pUnk)% else { return E_NOINTERFACE }
-    guard let inner = %(instance) else { return E_INVALIDARG }
-    let pThis = try! inner.to_abi { $0 }
-    return pThis.pointee.lpVtbl.pointee.QueryInterface(pThis, riid, ppvObject)
-}
-)";
-                type_name typeName(type);
-                // workaround right now for the fact that if the relationship isn't specified in metadata
-                
-                if (typeName.name == "IApplicationOverrides" && typeName.name_space == "Microsoft.UI.Xaml")
+            type_name typeName(type);
+            // workaround right now for the fact that if the relationship isn't specified in metadata
+            if (typeName.name == "IApplicationOverrides" && typeName.name_space == "Microsoft.UI.Xaml")
+            {
+                auto metadata_provider = &w.cache->find("Microsoft.UI.Xaml.Markup", "IXamlMetadataProvider");
+                write_query_interface_case(w, type, metadata_provider, /* cast */ true);
+            }
+            for (auto&& iface : interfaces)
+            {
+                if (!can_write(w, iface.second.type)) continue;
+
+                write_query_interface_case(w, type, iface.second.type,
+                    /* cast: */ dynamic_cast<const generic_inst*>(iface.second.type) != nullptr);
+            }
+
+            w.write("guard riid.pointee == IUnknown.IID ||\n");
+            w.write("      riid.pointee == IInspectable.IID || \n");
+            w.write("      riid.pointee == ISwiftImplemented.IID ||\n");
+            w.write("      riid.pointee == IIAgileObject.IID ||\n");
+            w.write("      riid.pointee == %.IID else {\n", bind_wrapper_fullname(type));
+            {
+                auto pointee_iid_indent = w.push_indent();
+                if (!composed)
                 {
-                    auto metadata_provider = &w.cache->find("Microsoft.UI.Xaml.Markup", "IXamlMetadataProvider");
-                    auto cast = w.write_temp(" as? %", metadata_provider);
-
-                    w.write(format,
-                        bind_wrapper_fullname(metadata_provider), // if riid.pointee == %
-                        bind_wrapper_name(type), // guard let instance = %
-                        cast,
-                        bind_wrapper_fullname(metadata_provider)); // let inner = %
+                    w.write("ppvObject.pointee = nil\n");
+                    w.write("return E_NOINTERFACE\n");
                 }
-                for (auto&& iface : interfaces)
+                else
                 {
-                    if (!can_write(w, iface.second.type)) continue;
+                    w.write("guard let instance = %.try_unwrap_from(raw: $0),\n", bind_wrapper_name(type));
+                    w.write("      let inner = instance._inner else { return E_INVALIDARG }\n");
+                    w.write("return inner.pointee.lpVtbl.pointee.QueryInterface(inner, riid, ppvObject)\n");
+                }
+            }
+            w.write("}\n");
 
-                    w.write(format,
-                        bind_wrapper_fullname(iface.second.type), // if riid.pointee == %
-                        bind_wrapper_name(type), // guard let instance = %
-                        "", // no casting
-                        bind_wrapper_fullname(iface.second.type) // let inner = %
-                    );
-
-                   
-                }}),
-            bind_wrapper_fullname(type),
-            bind([&](writer & w) {
-               if (!composed)
-               {
-                        w.write(R"(ppvObject.pointee = nil
-                return E_NOINTERFACE
-)");
-               }
-               else
-               {
-                   w.write(R"(    guard let instance = %.try_unwrap_from(raw: $0),
-                    let inner = instance._inner else { return E_INVALIDARG }
-                
-            return inner.pointee.lpVtbl.pointee.QueryInterface(inner, riid, ppvObject)
-)", bind_wrapper_name(type));
-               }
-            })
-    );
+            w.write("_ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)\n");
+            w.write("ppvObject.pointee = UnsafeMutableRawPointer(pUnk)\n");
+            w.write("return S_OK\n");
+        }
+        w.write("},\n\n");
 
         w.write(R"(AddRef: {
      guard let wrapper = %.from_raw($0) else { return 1 }
@@ -2786,18 +2803,14 @@ bind([&](writer& w) {
      return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
 },
 
-)",
-            bind_wrapper_name(type)
-        );
+)", bind_wrapper_name(type));
 
         w.write(R"(Release: {
     guard let wrapper = %.from_raw($0) else { return 1 }
     return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
 },
 
-)",
-            bind_wrapper_name(type)
-);
+)", bind_wrapper_name(type));
     }
 
     static void write_iunknown_methods(writer& w, generic_inst const& type)
@@ -2834,7 +2847,7 @@ bind([&](writer& w) {
 
                 w.write("iids[%] = %.%.IID\n",
                     iface_n++,
-                    abi_namespace(iface.second.type),
+                    abi_namespace(w, iface.second.type),
                     bind_wrapper_name(iface.second.type)
                 );
             }
