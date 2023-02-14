@@ -175,11 +175,10 @@ namespace test_component
         void Dummy(); // Avoids error MIDL4028 : [msg]All Windows Runtime types must define a version attribute.
     }
     
-    // Similar to IPropertySet
-    // interface IStringMap requires IMap<String, String>
-    // {
-    //     void Dummy(); // Avoids error MIDL4028 : [msg]All Windows Runtime types must define a version attribute.
-    // }
+    interface IStringMap requires IMap<String, String>
+    {
+        void Dummy(); // Avoids error MIDL4028 : [msg]All Windows Runtime types must define a version attribute.
+    }
 
     runtimeclass Class : IBasic
     {

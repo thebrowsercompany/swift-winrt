@@ -77,6 +77,10 @@ private var IID___x_ABI_Ctest__component_CIStaticClassStatics: IID {
     IID(Data1: 0x92E618EF, Data2: 0xFF6E, Data3: 0x5975, Data4: ( 0x86,0x8C,0x99,0xAD,0xC1,0x1D,0x36,0xDE ))// 92E618EF-FF6E-5975-868C-99ADC11D36DE
 }
 
+private var IID___x_ABI_Ctest__component_CIStringMap: IID {
+    IID(Data1: 0x93ABAF07, Data2: 0xDB5B, Data3: 0x568A, Data4: ( 0xA4,0x27,0xED,0x17,0xD7,0xF0,0xE9,0xEA ))// 93ABAF07-DB5B-568A-A427-ED17D7F0E9EA
+}
+
 private var IID___x_ABI_Ctest__component_CIStringVector: IID {
     IID(Data1: 0x413A072C, Data2: 0xE0C6, Data3: 0x597D, Data4: ( 0x8E,0xF6,0x3E,0x2C,0x8B,0x05,0x2C,0x57 ))// 413A072C-E0C6-597D-8EF6-3E2C8B052C57
 }
@@ -2851,6 +2855,84 @@ public enum __ABI_test_component {
 
     }
 
+    open class IStringMap: test_component.IInspectable {
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CIStringMap }
+
+        open func DummyImpl() throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIStringMap.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Dummy(pThis))
+            }
+        }
+
+    }
+
+    internal static var IStringMapVTable: __x_ABI_Ctest__component_CIStringMapVtbl = .init(
+        QueryInterface: {
+            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+            if riid.pointee == __ABI_test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.IID {
+                guard let instance = IStringMapWrapper.try_unwrap_from(raw: pUnk) as? any IMap<String, String> else { return E_NOINTERFACE }
+                guard let inner = __ABI_test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper(instance) else { return E_INVALIDARG }
+                let pThis = try!inner.to_abi { $0 }
+                return pThis.pointee.lpVtbl.pointee.QueryInterface(pThis, riid, ppvObject)
+            }
+
+            guard riid.pointee == IUnknown.IID ||
+                  riid.pointee == IInspectable.IID || 
+                  riid.pointee == ISwiftImplemented.IID ||
+                  riid.pointee == IIAgileObject.IID ||
+                  riid.pointee == __ABI_test_component.IStringMapWrapper.IID else {
+                ppvObject.pointee = nil
+                return E_NOINTERFACE
+            }
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
+        },
+
+        AddRef: {
+             guard let wrapper = IStringMapWrapper.from_raw($0) else { return 1 }
+             _ = wrapper.retain()
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+        },
+
+        Release: {
+            guard let wrapper = IStringMapWrapper.from_raw($0) else { return 1 }
+            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+        },
+
+        GetIids: {
+            let size = MemoryLayout<IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 5).assumingMemoryBound(to: IID.self)
+            iids[0] = IUnknown.IID
+            iids[1] = IInspectable.IID
+            iids[2] = __ABI_test_component.IStringMapWrapper.IID
+            iids[3] = __ABI_test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.IID
+            $1!.pointee = 5
+            $2!.pointee = iids
+            return S_OK
+        },
+
+        GetRuntimeClassName: {
+            _ = $0
+            let hstring = try! HString("test_component.IStringMap").detach()
+            $1!.pointee = hstring
+            return S_OK
+        },
+
+        GetTrustLevel: {
+            _ = $0
+            $1!.pointee = TrustLevel(rawValue: 0)
+            return S_OK
+        },
+
+        Dummy: {
+            guard let __unwrapped__instance = IStringMapWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            __unwrapped__instance.Dummy()
+            return S_OK
+        }
+    )
+
+    public typealias IStringMapWrapper = InterfaceWrapperBase<__IMPL_test_component.IStringMapImpl>
     open class IStringVector: test_component.IInspectable {
         override public class var IID: IID { IID___x_ABI_Ctest__component_CIStringVector }
 

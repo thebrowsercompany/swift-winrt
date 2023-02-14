@@ -1146,6 +1146,15 @@ extension ISimpleDelegate {
     }
 }
 
+public protocol IStringMap : IMap<String, String> { 
+        func Dummy() 
+}
+extension IStringMap {
+    public static var none: any IStringMap {
+        __IMPL_test_component.IStringMapImpl(nil)
+    }
+}
+
 public protocol IStringVector : IVector<String> { 
         func Dummy() 
 }

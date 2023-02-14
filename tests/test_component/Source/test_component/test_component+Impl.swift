@@ -227,6 +227,82 @@ public enum __IMPL_test_component {
 
     }
 
+    public class IStringMapImpl : IStringMap, AbiInterfaceImpl {
+        public typealias c_ABI = __x_ABI_Ctest__component_CIStringMap
+        public typealias swift_ABI = __ABI_test_component.IStringMap
+        public typealias swift_Projection = any IStringMap
+
+        private (set) public var _default: swift_ABI
+
+        public static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {
+            return IStringMapImpl(abi)
+        }
+        public init(_ fromAbi: UnsafeMutablePointer<c_ABI>?) {
+            _default = swift_ABI(fromAbi)
+        }
+
+        public static func makeAbi() -> c_ABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IStringMapVTable) { $0 }
+            return .init(lpVtbl: vtblPtr)
+        }
+
+        public func Dummy() {
+            try! _default.DummyImpl()
+        }
+
+        internal lazy var _IMap: __ABI_test_component.IMapString_String = try! _default.QueryInterface()
+        // MARK: WinRT
+
+        public func Lookup(_ key: String) -> String {
+            let _key = try! HString(key)
+            let result = try! _IMap.LookupImpl(_key.get())
+            return .init(from: result)
+        }
+
+
+
+        public func HasKey(_ key: String) -> Bool {
+            let _key = try! HString(key)
+            let result = try! _IMap.HasKeyImpl(_key.get())
+            return .init(from: result)
+        }
+
+
+        public func GetView() -> any IMapView<String, String> {
+            let result = try! _IMap.GetViewImpl()
+            return __ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.unwrap_from(abi: result)
+        }
+
+
+        public func Insert(_ key: String, _ value: String) -> Bool {
+            let _key = try! HString(key)
+            let _value = try! HString(value)
+            let result = try! _IMap.InsertImpl(_key.get(), _value.get())
+            return .init(from: result)
+        }
+
+
+        public func Remove(_ key: String) {
+            let _key = try! HString(key)
+            try! _IMap.RemoveImpl(_key.get())
+        }
+
+
+        public func Clear() {
+            try! _IMap.ClearImpl()
+        }
+
+
+        public var Size : UInt32 {
+            get {
+                let result = try! _IMap.get_SizeImpl()
+                return result
+            }
+
+        }
+
+    }
+
     public class IStringVectorImpl : IStringVector, AbiInterfaceImpl {
         public typealias c_ABI = __x_ABI_Ctest__component_CIStringVector
         public typealias swift_ABI = __ABI_test_component.IStringVector

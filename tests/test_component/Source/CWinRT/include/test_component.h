@@ -126,6 +126,12 @@
 
 #endif // ____x_ABI_Ctest__component_CIStaticClassStatics_FWD_DEFINED__
 
+#ifndef ____x_ABI_Ctest__component_CIStringMap_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CIStringMap_FWD_DEFINED__
+    typedef interface __x_ABI_Ctest__component_CIStringMap __x_ABI_Ctest__component_CIStringMap;
+
+#endif // ____x_ABI_Ctest__component_CIStringMap_FWD_DEFINED__
+
 #ifndef ____x_ABI_Ctest__component_CIStringVector_FWD_DEFINED__
 #define ____x_ABI_Ctest__component_CIStringVector_FWD_DEFINED__
     typedef interface __x_ABI_Ctest__component_CIStringVector __x_ABI_Ctest__component_CIStringVector;
@@ -2097,6 +2103,39 @@ struct __x_ABI_Ctest__component_CSimpleEventArgs
     
     EXTERN_C const IID IID___x_ABI_Ctest__component_CIStaticClassStatics;
 #endif /* !defined(____x_ABI_Ctest__component_CIStaticClassStatics_INTERFACE_DEFINED__) */
+    
+#if !defined(____x_ABI_Ctest__component_CIStringMap_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CIStringMap_INTERFACE_DEFINED__
+    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IStringMap[] = L"test_component.IStringMap";
+    typedef struct __x_ABI_Ctest__component_CIStringMapVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CIStringMap* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CIStringMap* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CIStringMap* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_Ctest__component_CIStringMap* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_Ctest__component_CIStringMap* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CIStringMap* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* Dummy)(__x_ABI_Ctest__component_CIStringMap* This);
+
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CIStringMapVtbl;
+
+    interface __x_ABI_Ctest__component_CIStringMap
+    {
+        CONST_VTBL struct __x_ABI_Ctest__component_CIStringMapVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CIStringMap;
+#endif /* !defined(____x_ABI_Ctest__component_CIStringMap_INTERFACE_DEFINED__) */
     
 #if !defined(____x_ABI_Ctest__component_CIStringVector_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIStringVector_INTERFACE_DEFINED__
