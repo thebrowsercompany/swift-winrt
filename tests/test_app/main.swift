@@ -94,8 +94,8 @@ class SwiftWinRTTests {
 
     let simple = Simple()
     var nonBlittableStruct = simple.ReturnNonBlittableStruct()
-    print("first:", nonBlittableStruct.First!)
-    print("second: ", nonBlittableStruct.Second!)
+    print("first:", nonBlittableStruct.First)
+    print("second: ", nonBlittableStruct.Second)
 
     assert(nonBlittableStruct.First == "Hello", "not copied correctly")
     assert(nonBlittableStruct.Second == "World", "not copied correctly")
@@ -106,8 +106,8 @@ class SwiftWinRTTests {
     simple.TakeNonBlittableStruct(putNonBlittableStruct)
 
     nonBlittableStruct = simple.NonBlittableStructProperty
-    print("first:", nonBlittableStruct.First!)
-    print("second: ", nonBlittableStruct.Second!)
+    print("first:", nonBlittableStruct.First)
+    print("second: ", nonBlittableStruct.Second)
 
     assert(nonBlittableStruct.First == "", "not copied correctly")
     assert(nonBlittableStruct.Second == "", "not copied correctly")
@@ -115,10 +115,10 @@ class SwiftWinRTTests {
     simple.NonBlittableStructProperty = putNonBlittableStruct
 
     nonBlittableStruct = simple.NonBlittableStructProperty
-    print("first:", nonBlittableStruct.First!)
-    print("second: ", nonBlittableStruct.Second!)
+    print("first:", nonBlittableStruct.First)
+    print("second: ", nonBlittableStruct.Second)
     print("third:", nonBlittableStruct.Third)
-    print("fourth: ", nonBlittableStruct.Fourth!)
+    print("fourth: ", nonBlittableStruct.Fourth)
 
     assert(nonBlittableStruct.First == "From", "not copied correctly")
     assert(nonBlittableStruct.Second == "Swift!", "not copied correctly")
@@ -210,9 +210,9 @@ class SwiftWinRTTests {
       assert(outInt == 123)
 
       print(">> testing OutString")
-      var outString: String? 
+      var outString: String = ""
       classy.OutString(&outString)
-      print("     result: ", outString!)
+      print("     result: ", outString)
       assert(outString == "123")
 
       print(">> testing OutEnum")
@@ -283,7 +283,7 @@ class SwiftWinRTTests {
         value = 987
       }
 
-      func OutString(_ value: inout String?) {
+      func OutString(_ value: inout String) {
         value = "987"
       }
 
@@ -391,12 +391,12 @@ class SwiftWinRTTests {
       assert(outInt == expectedOutInt)
 
       print(">> testing OutString")
-      var outString: String? 
+      var outString: String = ""
       classy.OutString(&outString)
 
-      var expectedOutString: String?
+      var expectedOutString: String = ""
       impl.OutString(&expectedOutString)
-      print("     result: ", outString!)
+      print("     result: ", outString)
       assert(outString == expectedOutString)
 
       print(">> testing OutEnum")
@@ -736,7 +736,7 @@ class SwiftWinRTTests {
     assert(result == "Hello")
 
     let classy = Class()
-    let vector = classy.ReturnStoredStringVector()
+    let vector = classy.ReturnStoredStringVector()!
     assert(vector.count == 1)
     print(vector[0])
 
@@ -749,7 +749,7 @@ class SwiftWinRTTests {
     assert(vector.count == 2)
     // Make sure the returned vector has the same data
     // as the one we modified
-    let vector2 = classy.ReturnStoredStringVector()
+    let vector2 = classy.ReturnStoredStringVector()!
     assert(vector2.count == vector.count)
     assert(vector2[0] == vector2[0])
     assert(vector2[1] == vector2[1])
@@ -777,7 +777,7 @@ class SwiftWinRTTests {
     print(" ** Starting Test case: TestMap_asReturn **")
 
     let classy = Class()
-    let map = classy.ReturnMapFromStringToString()
+    let map = classy.ReturnMapFromStringToString()!
     assert(map.count == 1)
     assert(map.HasKey("A") && map.Lookup("A") == "Alpha")
     assert(!map.HasKey("Z"))
@@ -789,7 +789,7 @@ class SwiftWinRTTests {
     print(" ** Starting Test case: TestMap_mutate **")
 
     let classy = Class()
-    let map = classy.ReturnMapFromStringToString()
+    let map = classy.ReturnMapFromStringToString()!
     assert(map.HasKey("A") && map.Lookup("A") == "Alpha")
     
     assert(map.Insert("A", "Aleph")) // Returns true if replacing

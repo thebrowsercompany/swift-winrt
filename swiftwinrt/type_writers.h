@@ -480,18 +480,17 @@ namespace swiftwinrt
                     }
                 }
             }
-            else if (auto elem_type = dynamic_cast<const element_type*>(type);
-                elem_type && elem_type->type() == ElementType::String)
-            {
-                // WIN-271: WinRT strings are semantically non-nullable
-                write(abi_types ? "HSTRING?" : "String?");
-            }
             else if (abi_types)
             {
                 auto name = type->cpp_abi_name();
                 if (name == "IInspectable" && !writing_generic)
                 {
                     write("%.IInspectable", c_mod);
+                }
+                else if (auto elem_type = dynamic_cast<const element_type*>(type);
+                    elem_type && elem_type->type() == ElementType::String)
+                {
+                    write("HSTRING?");
                 }
                 else
                 {

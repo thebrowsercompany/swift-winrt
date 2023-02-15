@@ -79,7 +79,7 @@ public protocol IPropertyValue : IWinRTObject {
     func GetDouble() -> Double
     func GetChar16() -> Character
     func GetBoolean() -> Bool
-    func GetString() -> String?
+    func GetString() -> String
     func GetGuid() -> UUID
     func GetDateTime() -> test_component.DateTime
     func GetTimeSpan() -> test_component.TimeSpan

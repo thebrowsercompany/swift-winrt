@@ -3,7 +3,7 @@ import Ctest_component
 
 public enum __IMPL_test_component_Delegates {
     public class InDelegateImpl : WinRTDelegate {
-        public typealias Data = (String?)
+        public typealias Data = (String)
         public typealias Return = ()
         public var token: EventRegistrationToken?
         public var handler: (Data) -> Return

@@ -722,10 +722,13 @@ namespace swiftwinrt
         auto category = get_category(sig);
      
         if (category == param_category::object_type
-            || category == param_category::generic_type
-            || category == param_category::string_type)
+            || category == param_category::generic_type)
         {
             // Those project to nullable types which don't need explicit initialization
+        }
+        else if (category == param_category::string_type)
+        {
+            if (!w.abi_types) w.write(" = \"\"");
         }
         else if (category == param_category::struct_type || is_guid(category))
         {
@@ -1289,7 +1292,7 @@ bind_impl_fullname(type));
     public func GetDouble() -> Double { _value as! Double }
     public func GetChar16() -> Character { _value as! Character }
     public func GetBoolean() -> Bool { _value as! Bool }
-    public func GetString() -> String? { (_value as! String) }
+    public func GetString() -> String { _value as! String }
     public func GetGuid() -> UUID { _value as! UUID }
     public func GetDateTime() -> DateTime { _value as! DateTime } 
     public func GetTimeSpan() -> TimeSpan { _value as! TimeSpan }

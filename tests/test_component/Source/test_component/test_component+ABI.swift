@@ -259,7 +259,7 @@ public enum __ABI_test_component {
 
         Lookup: {
             guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            let key: String? = .init(from: $1)
+            let key: String = .init(from: $1)
             let result = __unwrapped__instance.Lookup(key)
             $2?.initialize(to: try! HString(result).detach())
             return S_OK
@@ -274,7 +274,7 @@ public enum __ABI_test_component {
 
         HasKey: {
             guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            let key: String? = .init(from: $1)
+            let key: String = .init(from: $1)
             let result = __unwrapped__instance.HasKey(key)
             $2?.initialize(to: .init(from: result))
             return S_OK
@@ -291,8 +291,8 @@ public enum __ABI_test_component {
 
         Insert: {
             guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            let key: String? = .init(from: $1)
-            let value: String? = .init(from: $2)
+            let key: String = .init(from: $1)
+            let value: String = .init(from: $2)
             let result = __unwrapped__instance.Insert(key, value)
             $3?.initialize(to: .init(from: result))
             return S_OK
@@ -300,7 +300,7 @@ public enum __ABI_test_component {
 
         Remove: {
             guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            let key: String? = .init(from: $1)
+            let key: String = .init(from: $1)
             __unwrapped__instance.Remove(key)
             return S_OK
         },
@@ -422,7 +422,7 @@ public enum __ABI_test_component {
 
         Lookup: {
             guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            let key: String? = .init(from: $1)
+            let key: String = .init(from: $1)
             let result = __unwrapped__instance.Lookup(key)
             $2?.initialize(to: RawPointer(result))
             return S_OK
@@ -437,7 +437,7 @@ public enum __ABI_test_component {
 
         HasKey: {
             guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            let key: String? = .init(from: $1)
+            let key: String = .init(from: $1)
             let result = __unwrapped__instance.HasKey(key)
             $2?.initialize(to: .init(from: result))
             return S_OK
@@ -454,7 +454,7 @@ public enum __ABI_test_component {
 
         Insert: {
             guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            let key: String? = .init(from: $1)
+            let key: String = .init(from: $1)
             let value: test_component.Base = .from(abi: $2)
             let result = __unwrapped__instance.Insert(key, value)
             $3?.initialize(to: .init(from: result))
@@ -463,7 +463,7 @@ public enum __ABI_test_component {
 
         Remove: {
             guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            let key: String? = .init(from: $1)
+            let key: String = .init(from: $1)
             __unwrapped__instance.Remove(key)
             return S_OK
         },
@@ -585,7 +585,7 @@ public enum __ABI_test_component {
 
         Lookup: {
             guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            let key: String? = .init(from: $1)
+            let key: String = .init(from: $1)
             let result = __unwrapped__instance.Lookup(key)
             $2?.initialize(to: try! HString(result).detach())
             return S_OK
@@ -600,7 +600,7 @@ public enum __ABI_test_component {
 
         HasKey: {
             guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            let key: String? = .init(from: $1)
+            let key: String = .init(from: $1)
             let result = __unwrapped__instance.HasKey(key)
             $2?.initialize(to: .init(from: result))
             return S_OK
@@ -608,8 +608,8 @@ public enum __ABI_test_component {
 
         Split: {
             guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            var first: (any IMapView<String?, String?>)?
-            var second: (any IMapView<String?, String?>)?
+            var first: (any IMapView<String, String>)?
+            var second: (any IMapView<String, String>)?
             __unwrapped__instance.Split(&first, &second)
             let firstWrapper = __ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper(first)
             let _first = try! firstWrapper?.to_abi { $0 }
@@ -709,7 +709,7 @@ public enum __ABI_test_component {
 
         Lookup: {
             guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            let key: String? = .init(from: $1)
+            let key: String = .init(from: $1)
             let result = __unwrapped__instance.Lookup(key)
             $2?.initialize(to: RawPointer(result))
             return S_OK
@@ -724,7 +724,7 @@ public enum __ABI_test_component {
 
         HasKey: {
             guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            let key: String? = .init(from: $1)
+            let key: String = .init(from: $1)
             let result = __unwrapped__instance.HasKey(key)
             $2?.initialize(to: .init(from: result))
             return S_OK
@@ -732,8 +732,8 @@ public enum __ABI_test_component {
 
         Split: {
             guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            var first: (any IMapView<String?, test_component.Base>)?
-            var second: (any IMapView<String?, test_component.Base>)?
+            var first: (any IMapView<String, test_component.Base>)?
+            var second: (any IMapView<String, test_component.Base>)?
             __unwrapped__instance.Split(&first, &second)
             let firstWrapper = __ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper(first)
             let _first = try! firstWrapper?.to_abi { $0 }
@@ -857,7 +857,7 @@ public enum __ABI_test_component {
 
         IndexOf: {
             guard let __unwrapped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            let value: String? = .init(from: $1)
+            let value: String = .init(from: $1)
             var index: UInt32 = 0
             let result = __unwrapped__instance.IndexOf(value, &index)
             $2?.initialize(to: index)
@@ -868,7 +868,7 @@ public enum __ABI_test_component {
         SetAt: {
             guard let __unwrapped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let index: UInt32 = $1
-            let value: String? = .init(from: $2)
+            let value: String = .init(from: $2)
             __unwrapped__instance.SetAt(index, value)
             return S_OK
         },
@@ -876,7 +876,7 @@ public enum __ABI_test_component {
         InsertAt: {
             guard let __unwrapped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let index: UInt32 = $1
-            let value: String? = .init(from: $2)
+            let value: String = .init(from: $2)
             __unwrapped__instance.InsertAt(index, value)
             return S_OK
         },
@@ -890,7 +890,7 @@ public enum __ABI_test_component {
 
         Append: {
             guard let __unwrapped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            let value: String? = .init(from: $1)
+            let value: String = .init(from: $1)
             __unwrapped__instance.Append(value)
             return S_OK
         },
@@ -1258,7 +1258,7 @@ public enum __ABI_test_component {
 
         IndexOf: {
             guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            let value: String? = .init(from: $1)
+            let value: String = .init(from: $1)
             var index: UInt32 = 0
             let result = __unwrapped__instance.IndexOf(value, &index)
             $2?.initialize(to: index)
@@ -2473,7 +2473,7 @@ public enum __ABI_test_component {
 
         InString: {
             guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            let value: String? = .init(from: $1)
+            let value: String = .init(from: $1)
             let result = __unwrapped__instance.InString(value)
             $2?.initialize(to: try! HString(result).detach())
             return S_OK
@@ -2497,7 +2497,7 @@ public enum __ABI_test_component {
 
         OutString: {
             guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            var value: String?
+            var value: String = ""
             __unwrapped__instance.OutString(&value)
             $1?.initialize(to: try! HString(value).detach())
             return S_OK
@@ -2870,7 +2870,7 @@ public enum __ABI_test_component {
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
             if riid.pointee == __ABI_test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.IID {
-                guard let instance = IStringMapWrapper.try_unwrap_from(raw: pUnk) as? (any IMap<String?, String?>)? else { return E_NOINTERFACE }
+                guard let instance = IStringMapWrapper.try_unwrap_from(raw: pUnk) as? (any IMap<String, String>)? else { return E_NOINTERFACE }
                 guard let inner = __ABI_test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper(instance) else { return E_INVALIDARG }
                 let pThis = try!inner.to_abi { $0 }
                 return pThis.pointee.lpVtbl.pointee.QueryInterface(pThis, riid, ppvObject)
@@ -2948,7 +2948,7 @@ public enum __ABI_test_component {
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
             if riid.pointee == __ABI_test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper.IID {
-                guard let instance = IStringVectorWrapper.try_unwrap_from(raw: pUnk) as? (any IVector<String?>)? else { return E_NOINTERFACE }
+                guard let instance = IStringVectorWrapper.try_unwrap_from(raw: pUnk) as? (any IVector<String>)? else { return E_NOINTERFACE }
                 guard let inner = __ABI_test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper(instance) else { return E_INVALIDARG }
                 let pThis = try!inner.to_abi { $0 }
                 return pThis.pointee.lpVtbl.pointee.QueryInterface(pThis, riid, ppvObject)
