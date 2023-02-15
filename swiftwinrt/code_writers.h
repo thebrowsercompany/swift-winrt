@@ -2815,6 +2815,7 @@ bind([&](writer& w) {
      _ = wrapper.retain()
      return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
 },
+
 )",
             bind_wrapper_name(type)
         );
@@ -2823,6 +2824,7 @@ bind([&](writer& w) {
     guard let wrapper = %.from_raw($0) else { return 1 }
     return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
 },
+
 )",
             bind_wrapper_name(type)
 );

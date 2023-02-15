@@ -229,10 +229,12 @@ public enum __ABI_test_component {
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
+
         Release: {
             guard let wrapper = __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.from_raw($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
+
         GetIids: {
             let size = MemoryLayout<IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
@@ -392,10 +394,12 @@ public enum __ABI_test_component {
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
+
         Release: {
             guard let wrapper = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.from_raw($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
+
         GetIids: {
             let size = MemoryLayout<IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
@@ -555,10 +559,12 @@ public enum __ABI_test_component {
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
+
         Release: {
             guard let wrapper = __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.from_raw($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
+
         GetIids: {
             let size = MemoryLayout<IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
@@ -679,10 +685,12 @@ public enum __ABI_test_component {
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
+
         Release: {
             guard let wrapper = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.from_raw($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
+
         GetIids: {
             let size = MemoryLayout<IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
@@ -803,10 +811,12 @@ public enum __ABI_test_component {
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
+
         Release: {
             guard let wrapper = __x_ABI_C__FIVector_1_HSTRINGWrapper.from_raw($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
+
         GetIids: {
             let size = MemoryLayout<IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
@@ -1008,10 +1018,12 @@ public enum __ABI_test_component {
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
+
         Release: {
             guard let wrapper = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.from_raw($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
+
         GetIids: {
             let size = MemoryLayout<IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
@@ -1213,10 +1225,12 @@ public enum __ABI_test_component {
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
+
         Release: {
             guard let wrapper = __x_ABI_C__FIVectorView_1_HSTRINGWrapper.from_raw($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
+
         GetIids: {
             let size = MemoryLayout<IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
@@ -1321,10 +1335,12 @@ public enum __ABI_test_component {
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
+
         Release: {
             guard let wrapper = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.from_raw($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
+
         GetIids: {
             let size = MemoryLayout<IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
@@ -1429,10 +1445,12 @@ public enum __ABI_test_component {
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
+
         Release: {
             guard let wrapper = __x_ABI_C__FIEventHandler_1_IInspectableWrapper.from_raw($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
+
         Invoke: {
             guard let __unwrapped__instance = __x_ABI_C__FIEventHandler_1_IInspectableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let sender: test_component.IInspectable = .init($1)
@@ -1480,10 +1498,12 @@ public enum __ABI_test_component {
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
+
         Release: {
             guard let wrapper = __x_ABI_C__FIReference_1_intWrapper.from_raw($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
+
         GetIids: {
             let size = MemoryLayout<IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
@@ -1555,10 +1575,12 @@ public enum __ABI_test_component {
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
+
         Release: {
             guard let wrapper = __x_ABI_C__FIReference_1_GUIDWrapper.from_raw($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
+
         GetIids: {
             let size = MemoryLayout<IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
@@ -1624,10 +1646,12 @@ public enum __ABI_test_component {
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
+
         Release: {
             guard let wrapper = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.from_raw($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
+
         Invoke: {
             guard let __unwrapped__instance = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let sender: test_component.Simple = .from(abi: $1)
@@ -1691,10 +1715,12 @@ public enum __ABI_test_component {
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
+
         Release: {
             guard let wrapper = IBaseInterfaceWrapper.from_raw($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
+
         GetIids: {
             let size = MemoryLayout<IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
@@ -1807,10 +1833,12 @@ public enum __ABI_test_component {
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
+
         Release: {
             guard let wrapper = IBasicWrapper.from_raw($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
+
         GetIids: {
             let size = MemoryLayout<IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
@@ -2257,10 +2285,12 @@ public enum __ABI_test_component {
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
+
         Release: {
             guard let wrapper = IDerivedInterfaceWrapper.from_raw($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
+
         GetIids: {
             let size = MemoryLayout<IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
@@ -2432,10 +2462,12 @@ public enum __ABI_test_component {
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
+
         Release: {
             guard let wrapper = IIAmImplementableWrapper.from_raw($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
+
         GetIids: {
             let size = MemoryLayout<IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
@@ -2743,10 +2775,12 @@ public enum __ABI_test_component {
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
+
         Release: {
             guard let wrapper = ISimpleDelegateWrapper.from_raw($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
+
         GetIids: {
             let size = MemoryLayout<IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
@@ -2892,10 +2926,12 @@ public enum __ABI_test_component {
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
+
         Release: {
             guard let wrapper = IStringMapWrapper.from_raw($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
+
         GetIids: {
             let size = MemoryLayout<IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 5).assumingMemoryBound(to: IID.self)
@@ -2969,10 +3005,12 @@ public enum __ABI_test_component {
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
+
         Release: {
             guard let wrapper = IStringVectorWrapper.from_raw($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
+
         GetIids: {
             let size = MemoryLayout<IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 5).assumingMemoryBound(to: IID.self)
@@ -3176,10 +3214,12 @@ public enum __ABI_test_component {
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
+
         Release: {
             guard let wrapper = IBaseOverridesWrapper.from_raw($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
+
         GetIids: {
             let size = MemoryLayout<IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
@@ -3242,10 +3282,12 @@ public enum __ABI_test_component {
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
+
         Release: {
             guard let wrapper = IUnsealedDerivedOverridesWrapper.from_raw($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
+
         GetIids: {
             let size = MemoryLayout<IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
@@ -3315,10 +3357,12 @@ public enum __ABI_test_component {
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
+
         Release: {
             guard let wrapper = IUnsealedDerivedOverloads2Wrapper.from_raw($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
+
         GetIids: {
             let size = MemoryLayout<IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 5).assumingMemoryBound(to: IID.self)

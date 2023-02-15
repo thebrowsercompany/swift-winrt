@@ -194,10 +194,12 @@ public enum __ABI_Windows_Foundation {
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
+
         Release: {
             guard let wrapper = IPropertyValueWrapper.from_raw($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
+
         GetIids: {
             let size = MemoryLayout<IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
