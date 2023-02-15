@@ -62,7 +62,7 @@ public enum __IMPL_Windows_Foundation {
         public func GetDouble() -> Double { _value as! Double }
         public func GetChar16() -> Character { _value as! Character }
         public func GetBoolean() -> Bool { _value as! Bool }
-        public func GetString() -> String { _value as! String }
+        public func GetString() -> String? { (_value as! String) }
         public func GetGuid() -> UUID { _value as! UUID }
         public func GetDateTime() -> DateTime { _value as! DateTime } 
         public func GetTimeSpan() -> TimeSpan { _value as! TimeSpan }

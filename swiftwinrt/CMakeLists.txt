@@ -54,7 +54,7 @@ target_sources(swiftwinrt PUBLIC
     resources.rc)
 
 # Make resources.rc depend on the files it embeds
-file(GLOB SUPPORT_FILES CONFIGURE_DEPENDS Support/*)
+file(GLOB_RECURSE SUPPORT_FILES CONFIGURE_DEPENDS Resources/*)
 set_property(SOURCE resources.rc APPEND PROPERTY OBJECT_DEPENDS ${SUPPORT_FILES})
 
 target_include_directories(swiftwinrt PUBLIC ${MicrosoftWindowsWinMD_INCLUDE_DIR} ${PROJECT_BINARY_DIR} ${PROJECT_SOURCE_DIR})

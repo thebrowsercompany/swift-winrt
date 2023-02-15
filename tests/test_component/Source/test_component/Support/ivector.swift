@@ -17,7 +17,7 @@ public protocol IVector<Element> : IWinRTObject, Collection where Index == Int {
     func RemoveAt(_ index: UInt32)
     func RemoveAtEnd()
     func Clear()
-    func GetView() -> any IVectorView<Element>
+    func GetView() -> (any IVectorView<Element>)?
 }   
 
 public protocol IVectorView<Element> : IWinRTObject, Collection where Index == Int {

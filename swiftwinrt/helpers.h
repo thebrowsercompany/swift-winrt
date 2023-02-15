@@ -469,6 +469,11 @@ namespace swiftwinrt
         return dynamic_cast<class_type const*>(type) != nullptr;
     }
 
+    inline bool is_nullable(metadata_type const* type)
+    {
+        return is_interface(type) || is_class(type) || is_delegate(type);
+    }
+
     template <typename T>
     inline bool is_experimental(T const& value)
     {
@@ -756,6 +761,8 @@ namespace swiftwinrt
 
     inline std::string abi_namespace(writer const& w, metadata_type const& type)
     {
+        // Generic types are instantiated in the current type namespace,
+        // rather than in the namespace to which their type definition belongs.
         return dynamic_cast<const generic_inst*>(&type)
             ? abi_namespace(w.type_namespace)
             : abi_namespace(type.swift_logical_namespace());

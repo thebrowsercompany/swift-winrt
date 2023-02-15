@@ -14,7 +14,7 @@ internal class DictionaryMap<Key, Value> : IMap where Key : Hashable {
     var Size : UInt32 { UInt32(storage.count) }
     func HasKey(_ key: Key) -> Bool { storage[key] != nil }
     func Lookup(_ key: Key) -> Value { storage[key]! }
-    func GetView() -> any IMapView<Key, Value> { DictionaryMapView(storage) }
+    func GetView() -> (any IMapView<Key, Value>)? { DictionaryMapView(storage) }
 
     @discardableResult func Insert(_ key: Key, _ value: Value) -> Bool {
         // WinRT returns true if replacing

@@ -8,7 +8,7 @@ public protocol IMap<Key, Value> : IWinRTObject {
     var Size : UInt32 { get }
     func HasKey(_ key: Key) -> Bool
     func Lookup(_ key: Key) -> Value
-    func GetView() -> any IMapView<Key, Value>
+    func GetView() -> (any IMapView<Key, Value>)?
 
     @discardableResult func Insert(_ key: Key, _ value: Value) -> Bool
     func Remove(_ key: Key)

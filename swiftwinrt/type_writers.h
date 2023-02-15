@@ -289,7 +289,6 @@ namespace swiftwinrt
             return member_value_guard(this, &writer::mangled_names, value);
         }
 
-
         [[nodiscard]] auto push_mangled_names_if_needed(param_category forCategory)
         {
             if (!abi_types)
@@ -413,23 +412,31 @@ namespace swiftwinrt
             }
             if (is_generic(type))
             {
-                auto name = type->swift_type_name();
                 auto guard{ push_writing_generic(true) };
-                auto typeName = mangled_names ? mangled_name<true>(*type) : std::string(name);
+                write(mangled_names ? mangled_name<true>(*type) : type->swift_type_name());
                 bool first = !mangled_names;
-                write("%%", typeName, bind_each([&](writer& w, generic_param_type generic_param) {
+                for (const auto& generic_param : generic_param_stack.back())
+                {
                     if (first)
                     {
                         first = false;
                     }
                     else
                     {
-                        w.write("_");
+                        write("_");
                     }
 
-                    w.write(generic_param);
-                    },
-                    generic_param_stack.back()));
+                    if (mangled_names)
+                    {
+                        write(generic_param);
+                    }
+                    else
+                    {
+                        // Only write the type name because the printed type may include
+                        // decorators like "String?". This may break recursive generics.
+                        write(generic_param->swift_type_name());
+                    }
+                }
                 return;
             }
 
@@ -473,6 +480,12 @@ namespace swiftwinrt
                     }
                 }
             }
+            else if (auto elem_type = dynamic_cast<const element_type*>(type);
+                elem_type && elem_type->type() == ElementType::String)
+            {
+                // WIN-271: WinRT strings are semantically non-nullable
+                write(abi_types ? "HSTRING?" : "String?");
+            }
             else if (abi_types)
             {
                 auto name = type->cpp_abi_name();
@@ -491,7 +504,15 @@ namespace swiftwinrt
             }
             else
             {
-                write(type->swift_type_name());
+                auto name = type->swift_type_name();
+                if (name == "IInspectable")
+                {
+                    write("%.IInspectable", support);
+                }
+                else
+                {
+                    write(name);
+                }
             }
         }
 
@@ -585,92 +606,31 @@ namespace swiftwinrt
             }
         }
 
-        void write_abi(function_param const& param)
+        void write_param_or_return_type(const metadata_type* type)
         {
-            auto category = get_category(param.type, nullptr);
+            auto category = get_category(type, nullptr);
             auto guard{ push_mangled_names_if_needed(category) };
-            auto qualifier = param.out() ? "inout " : "";
-            if (category == param_category::object_type || category == param_category::generic_type)
+            if (abi_types && (category == param_category::object_type || category == param_category::generic_type))
             {
-                write("_ %: %UnsafeMutablePointer<%>?", get_swift_name(param), qualifier, param.type);
-            }
-            else if (category == param_category::string_type)
-            {
-                write("_ %: %%?", get_swift_name(param), qualifier, param.type);
+                write("UnsafeMutablePointer<%>?", type);
             }
             else
             {
-                write("_ %: %%", get_swift_name(param), qualifier, param.type);
-            }
-        }
-
-        void write_swift(function_param const& param)
-        {
-            // Write the parameter name
-            write("_ %: ", param.name);
-
-            // Write the parameter type
-            auto category = get_category(param.type, nullptr);
-            auto qualifier = param.out() ? "inout " : "";
-            if (param.out() && category == param_category::string_type)
-            {
-                write("%%?", qualifier, param.type);
-            }
-            else if (category == param_category::generic_type && is_collection_type(param.type))
-            {
-                if (param.in())
-                {
-                    write("any %", param.type);
-                }
-                else
-                {
-                    // Project "out IVector<String>" as "inout (any IVector<String>)?" because:
-                    // - "inout" forces the caller to initialize the variable, and Optional allows
-                    //   them to use nil. Swift has no mere "out".
-                    // - The WinRT layer could output null.
-                    // - "?" has precedence over "any"
-                    write("inout (any %)?", param.type);
-                }
-            }
-            else
-            {
-                write("%%", qualifier, param.type);
+                write(type);
             }
         }
 
         void write(function_param const& param)
         {
-            if (abi_types)
-            {
-                write_abi(param);
-            }
-            else
-            {
-                write_swift(param);
-            }
+            write("_ %: ", get_swift_name(param));
+            if (param.out()) write("inout ");
+
+            write_param_or_return_type(param.type);
         }
 
         void write(function_return_type const& value)
         {
-            auto category = get_category(value.type, nullptr);
-
-            auto guard{ push_mangled_names_if_needed(category) };
-            if (abi_types && (category == param_category::object_type || category == param_category::generic_type))
-            {
-                write("UnsafeMutablePointer<%>?", value.type);
-            }
-            else if (abi_types && category == param_category::string_type)
-            {
-                write("%?", value.type);
-            }
-            else if (category == param_category::generic_type && is_collection_type(value.type))
-            {
-                write("any %", value.type);
-            }
-            else
-            {
-                write(value.type);
-            }
+            write_param_or_return_type(value.type);
         }
 
         void write(generic_inst const& generic)
@@ -702,9 +662,8 @@ namespace swiftwinrt
                     auto argsType = generic_params[0];
                     write("^@escaping (%.IInspectable,%) -> ()", support, argsType);
                 }
-                else if (is_collection_type(generic))
+                else
                 {
-                    // IVector, IVectorView, IMap, IMapView
                     auto type_name = generic_type->swift_type_name();
 
                     if (abi_types)
@@ -722,22 +681,16 @@ namespace swiftwinrt
                     else
                     {
                         // IVector<String>
-                        write(type_name);
-                        write("<");
+                        // Assume generic types are interfaces and need "any"
+                        write("(any %<", type_name);
                         bool first = true;
                         for (const auto& type_param : generic.generic_params()) {
                             if (!first) write(", ");
-                            write(type_param->swift_type_name());
+                            write(type_param);
                             first = false;
                         }
-                        write(">");
+                        write(">)?");
                     }
-                }
-                else
-                {
-                    // Do nothing for types we can't write since we use this as a test as to whether we can write them.
-                    // We can remove this once we support writing all types
-                    //assert(false);
                 }
             }
         }
