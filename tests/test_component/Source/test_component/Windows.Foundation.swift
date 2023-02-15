@@ -68,24 +68,24 @@ public struct TimeSpan {
 }
 
 public protocol IPropertyValue : IWinRTObject {
-    func GetUInt8()-> UInt8
-    func GetInt16()-> Int16
-    func GetUInt16()-> UInt16
-    func GetInt32()-> Int32
-    func GetUInt32()-> UInt32
-    func GetInt64()-> Int64
-    func GetUInt64()-> UInt64
-    func GetSingle()-> Float
-    func GetDouble()-> Double
-    func GetChar16()-> Character
-    func GetBoolean()-> Bool
-    func GetString()-> String
-    func GetGuid()-> UUID
-    func GetDateTime()-> test_component.DateTime
-    func GetTimeSpan()-> test_component.TimeSpan
-    func GetPoint()-> test_component.Point
-    func GetSize()-> test_component.Size
-    func GetRect()-> test_component.Rect
+    func GetUInt8()-> UInt8 
+    func GetInt16()-> Int16 
+    func GetUInt16()-> UInt16 
+    func GetInt32()-> Int32 
+    func GetUInt32()-> UInt32 
+    func GetInt64()-> Int64 
+    func GetUInt64()-> UInt64 
+    func GetSingle()-> Float 
+    func GetDouble()-> Double 
+    func GetChar16()-> Character 
+    func GetBoolean()-> Bool 
+    func GetString()-> String 
+    func GetGuid()-> UUID 
+    func GetDateTime()-> test_component.DateTime 
+    func GetTimeSpan()-> test_component.TimeSpan 
+    func GetPoint()-> test_component.Point 
+    func GetSize()-> test_component.Size 
+    func GetRect()-> test_component.Rect 
     var IsNumericScalar: Bool { get }
     var `Type`: test_component.PropertyType { get }
 }

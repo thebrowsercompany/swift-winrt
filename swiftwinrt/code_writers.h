@@ -791,7 +791,7 @@ bind<write_abi_args>(function));
             return;
         }
 
-        auto format = "-> %";
+        auto format = "-> % ";
         w.write(format,
             function.return_type.value());
     }
@@ -835,7 +835,7 @@ bind<write_abi_args>(function));
                 // metadata format specifies something else.
                 auto func_name = is_composable_factory ? "CreateInstance" : get_abi_name(function);
                 auto abi_guard2 = w.push_abi_types(true);
-                w.write("% func %Impl(%) throws% {\n",
+                w.write("% func %Impl(%) throws %{\n",
                     internal || is_exclusive(type) ? "internal" : "open",
                     func_name,
                     bind<write_params>(function),

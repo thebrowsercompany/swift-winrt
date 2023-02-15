@@ -315,7 +315,7 @@ public enum __ABI_test_component {
     internal class IMapString_String: test_component.IInspectable {
         override public class var IID: IID { IID___x_ABI_C__FIMap_2_HSTRING_HSTRING }
 
-        internal func LookupImpl(_ key: HSTRING?) throws-> HSTRING? {
+        internal func LookupImpl(_ key: HSTRING?) throws -> HSTRING? {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, key, &result))
@@ -323,7 +323,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func get_SizeImpl() throws-> UINT32 {
+        internal func get_SizeImpl() throws -> UINT32 {
             var result: UINT32 = 0
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -331,7 +331,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func HasKeyImpl(_ key: HSTRING?) throws-> boolean {
+        internal func HasKeyImpl(_ key: HSTRING?) throws -> boolean {
             var result: boolean = 0
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.HasKey(pThis, key, &result))
@@ -339,7 +339,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func GetViewImpl() throws-> UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>? {
+        internal func GetViewImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>? {
             var result: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &result))
@@ -347,7 +347,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func InsertImpl(_ key: HSTRING?, _ value: HSTRING?) throws-> boolean {
+        internal func InsertImpl(_ key: HSTRING?, _ value: HSTRING?) throws -> boolean {
             var result: boolean = 0
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Insert(pThis, key, value, &result))
@@ -478,7 +478,7 @@ public enum __ABI_test_component {
     internal class IMapString_Base: test_component.IInspectable {
         override public class var IID: IID { IID___x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
 
-        internal func LookupImpl(_ key: HSTRING?) throws-> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>? {
+        internal func LookupImpl(_ key: HSTRING?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>? {
             var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, key, &result))
@@ -486,7 +486,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func get_SizeImpl() throws-> UINT32 {
+        internal func get_SizeImpl() throws -> UINT32 {
             var result: UINT32 = 0
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -494,7 +494,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func HasKeyImpl(_ key: HSTRING?) throws-> boolean {
+        internal func HasKeyImpl(_ key: HSTRING?) throws -> boolean {
             var result: boolean = 0
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.HasKey(pThis, key, &result))
@@ -502,7 +502,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func GetViewImpl() throws-> UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>? {
+        internal func GetViewImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>? {
             var result: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &result))
@@ -510,7 +510,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func InsertImpl(_ key: HSTRING?, _ value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?) throws-> boolean {
+        internal func InsertImpl(_ key: HSTRING?, _ value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?) throws -> boolean {
             var result: boolean = 0
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Insert(pThis, key, value, &result))
@@ -624,7 +624,7 @@ public enum __ABI_test_component {
     internal class IMapViewString_String: test_component.IInspectable {
         override public class var IID: IID { IID___x_ABI_C__FIMapView_2_HSTRING_HSTRING }
 
-        internal func LookupImpl(_ key: HSTRING?) throws-> HSTRING? {
+        internal func LookupImpl(_ key: HSTRING?) throws -> HSTRING? {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, key, &result))
@@ -632,7 +632,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func get_SizeImpl() throws-> UINT32 {
+        internal func get_SizeImpl() throws -> UINT32 {
             var result: UINT32 = 0
             _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -640,7 +640,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func HasKeyImpl(_ key: HSTRING?) throws-> boolean {
+        internal func HasKeyImpl(_ key: HSTRING?) throws -> boolean {
             var result: boolean = 0
             _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.HasKey(pThis, key, &result))
@@ -748,7 +748,7 @@ public enum __ABI_test_component {
     internal class IMapViewString_Base: test_component.IInspectable {
         override public class var IID: IID { IID___x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
 
-        internal func LookupImpl(_ key: HSTRING?) throws-> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>? {
+        internal func LookupImpl(_ key: HSTRING?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>? {
             var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?
             _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, key, &result))
@@ -756,7 +756,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func get_SizeImpl() throws-> UINT32 {
+        internal func get_SizeImpl() throws -> UINT32 {
             var result: UINT32 = 0
             _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -764,7 +764,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func HasKeyImpl(_ key: HSTRING?) throws-> boolean {
+        internal func HasKeyImpl(_ key: HSTRING?) throws -> boolean {
             var result: boolean = 0
             _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.HasKey(pThis, key, &result))
@@ -915,7 +915,7 @@ public enum __ABI_test_component {
     internal class IVectorString: test_component.IInspectable {
         override public class var IID: IID { IID___x_ABI_C__FIVector_1_HSTRING }
 
-        internal func GetAtImpl(_ index: UINT32) throws-> HSTRING? {
+        internal func GetAtImpl(_ index: UINT32) throws -> HSTRING? {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
@@ -923,7 +923,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func get_SizeImpl() throws-> UINT32 {
+        internal func get_SizeImpl() throws -> UINT32 {
             var result: UINT32 = 0
             _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -931,7 +931,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func GetViewImpl() throws-> UnsafeMutablePointer<__x_ABI_C__FIVectorView_1_HSTRING>? {
+        internal func GetViewImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIVectorView_1_HSTRING>? {
             var result: UnsafeMutablePointer<__x_ABI_C__FIVectorView_1_HSTRING>?
             _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &result))
@@ -939,7 +939,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func IndexOfImpl(_ value: HSTRING?, _ index: inout UINT32) throws-> boolean {
+        internal func IndexOfImpl(_ value: HSTRING?, _ index: inout UINT32) throws -> boolean {
             var result: boolean = 0
             _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, value, &index, &result))
@@ -1120,7 +1120,7 @@ public enum __ABI_test_component {
     internal class IVectorBase: test_component.IInspectable {
         override public class var IID: IID { IID___x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase }
 
-        internal func GetAtImpl(_ index: UINT32) throws-> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>? {
+        internal func GetAtImpl(_ index: UINT32) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>? {
             var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
@@ -1128,7 +1128,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func get_SizeImpl() throws-> UINT32 {
+        internal func get_SizeImpl() throws -> UINT32 {
             var result: UINT32 = 0
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -1136,7 +1136,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func GetViewImpl() throws-> UnsafeMutablePointer<__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase>? {
+        internal func GetViewImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase>? {
             var result: UnsafeMutablePointer<__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase>?
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &result))
@@ -1144,7 +1144,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func IndexOfImpl(_ value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?, _ index: inout UINT32) throws-> boolean {
+        internal func IndexOfImpl(_ value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?, _ index: inout UINT32) throws -> boolean {
             var result: boolean = 0
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, value, &index, &result))
@@ -1272,7 +1272,7 @@ public enum __ABI_test_component {
     internal class IVectorViewString: test_component.IInspectable {
         override public class var IID: IID { IID___x_ABI_C__FIVectorView_1_HSTRING }
 
-        internal func GetAtImpl(_ index: UINT32) throws-> HSTRING? {
+        internal func GetAtImpl(_ index: UINT32) throws -> HSTRING? {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_C__FIVectorView_1_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
@@ -1280,7 +1280,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func get_SizeImpl() throws-> UINT32 {
+        internal func get_SizeImpl() throws -> UINT32 {
             var result: UINT32 = 0
             _ = try perform(as: __x_ABI_C__FIVectorView_1_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -1288,7 +1288,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func IndexOfImpl(_ value: HSTRING?, _ index: inout UINT32) throws-> boolean {
+        internal func IndexOfImpl(_ value: HSTRING?, _ index: inout UINT32) throws -> boolean {
             var result: boolean = 0
             _ = try perform(as: __x_ABI_C__FIVectorView_1_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, value, &index, &result))
@@ -1380,7 +1380,7 @@ public enum __ABI_test_component {
     internal class IVectorViewBase: test_component.IInspectable {
         override public class var IID: IID { IID___x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase }
 
-        internal func GetAtImpl(_ index: UINT32) throws-> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>? {
+        internal func GetAtImpl(_ index: UINT32) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>? {
             var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
@@ -1388,7 +1388,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func get_SizeImpl() throws-> UINT32 {
+        internal func get_SizeImpl() throws -> UINT32 {
             var result: UINT32 = 0
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -1396,7 +1396,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func IndexOfImpl(_ value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?, _ index: inout UINT32) throws-> boolean {
+        internal func IndexOfImpl(_ value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?, _ index: inout UINT32) throws -> boolean {
             var result: boolean = 0
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, value, &index, &result))
@@ -1737,7 +1737,7 @@ public enum __ABI_test_component {
 
         override public class var IID: IID { IID___x_ABI_Ctest__component_CIBaseNoOverridesProtectedFactory }
 
-        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<Ctest_component.IInspectable>?, _ innerInterface: inout UnsafeMutablePointer<Ctest_component.IInspectable>?) throws-> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBaseNoOverrides>? {
+        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<Ctest_component.IInspectable>?, _ innerInterface: inout UnsafeMutablePointer<Ctest_component.IInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBaseNoOverrides>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBaseNoOverrides>?
             _ = try perform(as: __x_ABI_Ctest__component_CIBaseNoOverridesProtectedFactory.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, baseInterface, &innerInterface, &value))
@@ -1763,7 +1763,7 @@ public enum __ABI_test_component {
 
         override public class var IID: IID { IID___x_ABI_Ctest__component_CIBaseProtectedFactory }
 
-        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<Ctest_component.IInspectable>?, _ innerInterface: inout UnsafeMutablePointer<Ctest_component.IInspectable>?) throws-> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>? {
+        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<Ctest_component.IInspectable>?, _ innerInterface: inout UnsafeMutablePointer<Ctest_component.IInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?
             _ = try perform(as: __x_ABI_Ctest__component_CIBaseProtectedFactory.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, baseInterface, &innerInterface, &value))
@@ -1846,7 +1846,7 @@ public enum __ABI_test_component {
     open class IClass: test_component.IInspectable {
         override public class var IID: IID { IID___x_ABI_Ctest__component_CIClass }
 
-        internal func get_ImplementationImpl() throws-> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>? {
+        internal func get_ImplementationImpl() throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>?
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Implementation(pThis, &value))
@@ -1866,7 +1866,7 @@ public enum __ABI_test_component {
             }
         }
 
-        internal func GetDelegateImpl() throws-> UnsafeMutablePointer<__x_ABI_Ctest__component_CISimpleDelegate>? {
+        internal func GetDelegateImpl() throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CISimpleDelegate>? {
             var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CISimpleDelegate>?
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetDelegate(pThis, &result))
@@ -1874,7 +1874,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func InInt32Impl(_ value: INT32) throws-> HSTRING? {
+        internal func InInt32Impl(_ value: INT32) throws -> HSTRING? {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InInt32(pThis, value, &result))
@@ -1882,7 +1882,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func InStringImpl(_ value: HSTRING?) throws-> HSTRING? {
+        internal func InStringImpl(_ value: HSTRING?) throws -> HSTRING? {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InString(pThis, value, &result))
@@ -1890,7 +1890,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func InEnumImpl(_ value: __x_ABI_Ctest__component_CSigned) throws-> HSTRING? {
+        internal func InEnumImpl(_ value: __x_ABI_Ctest__component_CSigned) throws -> HSTRING? {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InEnum(pThis, value, &result))
@@ -1928,7 +1928,7 @@ public enum __ABI_test_component {
             }
         }
 
-        internal func ReturnEnumImpl() throws-> __x_ABI_Ctest__component_CSigned {
+        internal func ReturnEnumImpl() throws -> __x_ABI_Ctest__component_CSigned {
             var result: __x_ABI_Ctest__component_CSigned = .init(0)
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnEnum(pThis, &result))
@@ -1936,7 +1936,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func get_EnumPropertyImpl() throws-> __x_ABI_Ctest__component_CFruit {
+        internal func get_EnumPropertyImpl() throws -> __x_ABI_Ctest__component_CFruit {
             var value: __x_ABI_Ctest__component_CFruit = .init(0)
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_EnumProperty(pThis, &value))
@@ -1950,7 +1950,7 @@ public enum __ABI_test_component {
             }
         }
 
-        internal func ReturnStoredStringVectorImpl() throws-> UnsafeMutablePointer<__x_ABI_C__FIVector_1_HSTRING>? {
+        internal func ReturnStoredStringVectorImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIVector_1_HSTRING>? {
             var result: UnsafeMutablePointer<__x_ABI_C__FIVector_1_HSTRING>?
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnStoredStringVector(pThis, &result))
@@ -1958,7 +1958,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func ReturnMapFromStringToStringImpl() throws-> UnsafeMutablePointer<__x_ABI_C__FIMap_2_HSTRING_HSTRING>? {
+        internal func ReturnMapFromStringToStringImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIMap_2_HSTRING_HSTRING>? {
             var result: UnsafeMutablePointer<__x_ABI_C__FIMap_2_HSTRING_HSTRING>?
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnMapFromStringToString(pThis, &result))
@@ -1966,7 +1966,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func ReturnCharImpl() throws-> WCHAR {
+        internal func ReturnCharImpl() throws -> WCHAR {
             var result: WCHAR = 0
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnChar(pThis, &result))
@@ -1974,7 +1974,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func InCharImpl(_ value: WCHAR) throws-> HSTRING? {
+        internal func InCharImpl(_ value: WCHAR) throws -> HSTRING? {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InChar(pThis, value, &result))
@@ -1988,7 +1988,7 @@ public enum __ABI_test_component {
             }
         }
 
-        internal func get_StartValueImpl() throws-> UnsafeMutablePointer<__x_ABI_C__FIReference_1_int>? {
+        internal func get_StartValueImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIReference_1_int>? {
             var value: UnsafeMutablePointer<__x_ABI_C__FIReference_1_int>?
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_StartValue(pThis, &value))
@@ -2002,7 +2002,7 @@ public enum __ABI_test_component {
             }
         }
 
-        internal func get_IDImpl() throws-> UnsafeMutablePointer<__x_ABI_C__FIReference_1_GUID>? {
+        internal func get_IDImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIReference_1_GUID>? {
             var value: UnsafeMutablePointer<__x_ABI_C__FIReference_1_GUID>?
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_ID(pThis, &value))
@@ -2016,7 +2016,7 @@ public enum __ABI_test_component {
             }
         }
 
-        internal func get_BasePropertyImpl() throws-> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>? {
+        internal func get_BasePropertyImpl() throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_BaseProperty(pThis, &value))
@@ -2030,7 +2030,7 @@ public enum __ABI_test_component {
             }
         }
 
-        internal func get_BaseNoOverridesPropertyImpl() throws-> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBaseNoOverrides>? {
+        internal func get_BaseNoOverridesPropertyImpl() throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBaseNoOverrides>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBaseNoOverrides>?
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_BaseNoOverridesProperty(pThis, &value))
@@ -2049,7 +2049,7 @@ public enum __ABI_test_component {
     open class IClassFactory: test_component.IInspectable {
         override public class var IID: IID { IID___x_ABI_Ctest__component_CIClassFactory }
 
-        internal func CreateInstanceImpl(_ name: HSTRING?) throws-> UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>? {
+        internal func CreateInstanceImpl(_ name: HSTRING?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>?
             _ = try perform(as: __x_ABI_Ctest__component_CIClassFactory.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, name, &value))
@@ -2057,7 +2057,7 @@ public enum __ABI_test_component {
             return value
         }
 
-        internal func CreateInstance2Impl(_ name: HSTRING?, _ fruit: __x_ABI_Ctest__component_CFruit) throws-> UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>? {
+        internal func CreateInstance2Impl(_ name: HSTRING?, _ fruit: __x_ABI_Ctest__component_CFruit) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>?
             _ = try perform(as: __x_ABI_Ctest__component_CIClassFactory.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance2(pThis, name, fruit, &value))
@@ -2065,7 +2065,7 @@ public enum __ABI_test_component {
             return value
         }
 
-        internal func CreateInstance3Impl(_ arg: UnsafeMutablePointer<__x_ABI_C__FIMap_2_HSTRING_HSTRING>?, _ dummy1: INT32, _ dummy2: INT32, _ dummy3: INT32) throws-> UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>? {
+        internal func CreateInstance3Impl(_ arg: UnsafeMutablePointer<__x_ABI_C__FIMap_2_HSTRING_HSTRING>?, _ dummy1: INT32, _ dummy2: INT32, _ dummy3: INT32) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>?
             _ = try perform(as: __x_ABI_Ctest__component_CIClassFactory.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance3(pThis, arg, dummy1, dummy2, dummy3, &value))
@@ -2073,7 +2073,7 @@ public enum __ABI_test_component {
             return value
         }
 
-        internal func CreateInstance4Impl(_ arg: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?, _ dummy1: INT32, _ dummy2: INT32, _ dummy3: INT32, _ dummy4: INT32) throws-> UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>? {
+        internal func CreateInstance4Impl(_ arg: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?, _ dummy1: INT32, _ dummy2: INT32, _ dummy3: INT32, _ dummy4: INT32) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>?
             _ = try perform(as: __x_ABI_Ctest__component_CIClassFactory.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance4(pThis, arg, dummy1, dummy2, dummy3, dummy4, &value))
@@ -2081,7 +2081,7 @@ public enum __ABI_test_component {
             return value
         }
 
-        internal func CreateInstance5Impl(_ arg: UnsafeMutablePointer<__x_ABI_C__FIVector_1_HSTRING>?, _ dummy1: INT32, _ dummy2: INT32, _ dummy3: INT32, _ dummy4: INT32, _ dummy5: INT32) throws-> UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>? {
+        internal func CreateInstance5Impl(_ arg: UnsafeMutablePointer<__x_ABI_C__FIVector_1_HSTRING>?, _ dummy1: INT32, _ dummy2: INT32, _ dummy3: INT32, _ dummy4: INT32, _ dummy5: INT32) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>?
             _ = try perform(as: __x_ABI_Ctest__component_CIClassFactory.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance5(pThis, arg, dummy1, dummy2, dummy3, dummy4, dummy5, &value))
@@ -2089,7 +2089,7 @@ public enum __ABI_test_component {
             return value
         }
 
-        internal func CreateInstance6Impl(_ arg: UnsafeMutablePointer<__x_ABI_C__FIVectorView_1_HSTRING>?, _ dummy1: INT32, _ dummy2: INT32, _ dummy3: INT32, _ dummy4: INT32, _ dummy5: INT32, _ dummy6: INT32) throws-> UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>? {
+        internal func CreateInstance6Impl(_ arg: UnsafeMutablePointer<__x_ABI_C__FIVectorView_1_HSTRING>?, _ dummy1: INT32, _ dummy2: INT32, _ dummy3: INT32, _ dummy4: INT32, _ dummy5: INT32, _ dummy6: INT32) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>?
             _ = try perform(as: __x_ABI_Ctest__component_CIClassFactory.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance6(pThis, arg, dummy1, dummy2, dummy3, dummy4, dummy5, dummy6, &value))
@@ -2102,7 +2102,7 @@ public enum __ABI_test_component {
     open class IClassFactory2: test_component.IInspectable {
         override public class var IID: IID { IID___x_ABI_Ctest__component_CIClassFactory2 }
 
-        internal func CreateInstanceImpl(_ name: HSTRING?, _ fruit: __x_ABI_Ctest__component_CFruit, _ implementation: UnsafeMutablePointer<__x_ABI_Ctest__component_CIIAmImplementable>?) throws-> UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>? {
+        internal func CreateInstanceImpl(_ name: HSTRING?, _ fruit: __x_ABI_Ctest__component_CFruit, _ implementation: UnsafeMutablePointer<__x_ABI_Ctest__component_CIIAmImplementable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>?
             _ = try perform(as: __x_ABI_Ctest__component_CIClassFactory2.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, name, fruit, implementation, &value))
@@ -2121,7 +2121,7 @@ public enum __ABI_test_component {
             }
         }
 
-        internal func StaticTestReturnImpl() throws-> INT32 {
+        internal func StaticTestReturnImpl() throws -> INT32 {
             var result: INT32 = 0
             _ = try perform(as: __x_ABI_Ctest__component_CIClassStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.StaticTestReturn(pThis, &result))
@@ -2129,7 +2129,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func get_StaticPropertyImpl() throws-> INT32 {
+        internal func get_StaticPropertyImpl() throws -> INT32 {
             var value: INT32 = 0
             _ = try perform(as: __x_ABI_Ctest__component_CIClassStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_StaticProperty(pThis, &value))
@@ -2137,7 +2137,7 @@ public enum __ABI_test_component {
             return value
         }
 
-        internal func InMapImpl(_ value: UnsafeMutablePointer<__x_ABI_C__FIMap_2_HSTRING_HSTRING>?) throws-> HSTRING? {
+        internal func InMapImpl(_ value: UnsafeMutablePointer<__x_ABI_C__FIMap_2_HSTRING_HSTRING>?) throws -> HSTRING? {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CIClassStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InMap(pThis, value, &result))
@@ -2145,7 +2145,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func InMapViewImpl(_ value: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?) throws-> HSTRING? {
+        internal func InMapViewImpl(_ value: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?) throws -> HSTRING? {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CIClassStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InMapView(pThis, value, &result))
@@ -2153,7 +2153,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func InVectorImpl(_ value: UnsafeMutablePointer<__x_ABI_C__FIVector_1_HSTRING>?) throws-> HSTRING? {
+        internal func InVectorImpl(_ value: UnsafeMutablePointer<__x_ABI_C__FIVector_1_HSTRING>?) throws -> HSTRING? {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CIClassStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InVector(pThis, value, &result))
@@ -2161,7 +2161,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func InVectorViewImpl(_ value: UnsafeMutablePointer<__x_ABI_C__FIVectorView_1_HSTRING>?) throws-> HSTRING? {
+        internal func InVectorViewImpl(_ value: UnsafeMutablePointer<__x_ABI_C__FIVectorView_1_HSTRING>?) throws -> HSTRING? {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CIClassStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InVectorView(pThis, value, &result))
@@ -2174,7 +2174,7 @@ public enum __ABI_test_component {
     open class IClassStatics2: test_component.IInspectable {
         override public class var IID: IID { IID___x_ABI_Ctest__component_CIClassStatics2 }
 
-        internal func StaticTestReturnFloatImpl() throws-> FLOAT {
+        internal func StaticTestReturnFloatImpl() throws -> FLOAT {
             var result: FLOAT = 0.0
             _ = try perform(as: __x_ABI_Ctest__component_CIClassStatics2.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.StaticTestReturnFloat(pThis, &result))
@@ -2182,7 +2182,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func get_StaticPropertyFloatImpl() throws-> FLOAT {
+        internal func get_StaticPropertyFloatImpl() throws -> FLOAT {
             var value: FLOAT = 0.0
             _ = try perform(as: __x_ABI_Ctest__component_CIClassStatics2.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_StaticPropertyFloat(pThis, &value))
@@ -2201,7 +2201,7 @@ public enum __ABI_test_component {
     open class IDerived: test_component.IInspectable {
         override public class var IID: IID { IID___x_ABI_Ctest__component_CIDerived }
 
-        internal func get_PropImpl() throws-> INT32 {
+        internal func get_PropImpl() throws -> INT32 {
             var value: INT32 = 0
             _ = try perform(as: __x_ABI_Ctest__component_CIDerived.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Prop(pThis, &value))
@@ -2297,7 +2297,7 @@ public enum __ABI_test_component {
     open class IIAmImplementable: test_component.IInspectable {
         override public class var IID: IID { IID___x_ABI_Ctest__component_CIIAmImplementable }
 
-        open func InInt32Impl(_ value: INT32) throws-> HSTRING? {
+        open func InInt32Impl(_ value: INT32) throws -> HSTRING? {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InInt32(pThis, value, &result))
@@ -2305,7 +2305,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        open func InStringImpl(_ value: HSTRING?) throws-> HSTRING? {
+        open func InStringImpl(_ value: HSTRING?) throws -> HSTRING? {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InString(pThis, value, &result))
@@ -2313,7 +2313,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        open func InEnumImpl(_ value: __x_ABI_Ctest__component_CSigned) throws-> HSTRING? {
+        open func InEnumImpl(_ value: __x_ABI_Ctest__component_CSigned) throws -> HSTRING? {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InEnum(pThis, value, &result))
@@ -2351,7 +2351,7 @@ public enum __ABI_test_component {
             }
         }
 
-        open func ReturnEnumImpl() throws-> __x_ABI_Ctest__component_CSigned {
+        open func ReturnEnumImpl() throws -> __x_ABI_Ctest__component_CSigned {
             var result: __x_ABI_Ctest__component_CSigned = .init(0)
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnEnum(pThis, &result))
@@ -2359,7 +2359,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        open func get_EnumPropertyImpl() throws-> __x_ABI_Ctest__component_CFruit {
+        open func get_EnumPropertyImpl() throws -> __x_ABI_Ctest__component_CFruit {
             var value: __x_ABI_Ctest__component_CFruit = .init(0)
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_EnumProperty(pThis, &value))
@@ -2373,7 +2373,7 @@ public enum __ABI_test_component {
             }
         }
 
-        open func get_IDImpl() throws-> UnsafeMutablePointer<__x_ABI_C__FIReference_1_GUID>? {
+        open func get_IDImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIReference_1_GUID>? {
             var value: UnsafeMutablePointer<__x_ABI_C__FIReference_1_GUID>?
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_ID(pThis, &value))
@@ -2387,7 +2387,7 @@ public enum __ABI_test_component {
             }
         }
 
-        open func add_ImplementableEventImpl(_ handler: UnsafeMutablePointer<__x_ABI_Ctest__component_CDelegates_CIInDelegate>?) throws-> EventRegistrationToken {
+        open func add_ImplementableEventImpl(_ handler: UnsafeMutablePointer<__x_ABI_Ctest__component_CDelegates_CIInDelegate>?) throws -> EventRegistrationToken {
             var token: EventRegistrationToken = .init()
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.add_ImplementableEvent(pThis, handler, &token))
@@ -2583,7 +2583,7 @@ public enum __ABI_test_component {
             }
         }
 
-        internal func ReturnBlittableStructImpl() throws-> __x_ABI_Ctest__component_CBlittableStruct {
+        internal func ReturnBlittableStructImpl() throws -> __x_ABI_Ctest__component_CBlittableStruct {
             var result: __x_ABI_Ctest__component_CBlittableStruct = .init()
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnBlittableStruct(pThis, &result))
@@ -2597,7 +2597,7 @@ public enum __ABI_test_component {
             }
         }
 
-        internal func get_BlittableStructPropertyImpl() throws-> __x_ABI_Ctest__component_CBlittableStruct {
+        internal func get_BlittableStructPropertyImpl() throws -> __x_ABI_Ctest__component_CBlittableStruct {
             var value: __x_ABI_Ctest__component_CBlittableStruct = .init()
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_BlittableStructProperty(pThis, &value))
@@ -2611,7 +2611,7 @@ public enum __ABI_test_component {
             }
         }
 
-        internal func ReturnNonBlittableStructImpl() throws-> __x_ABI_Ctest__component_CNonBlittableStruct {
+        internal func ReturnNonBlittableStructImpl() throws -> __x_ABI_Ctest__component_CNonBlittableStruct {
             var result: __x_ABI_Ctest__component_CNonBlittableStruct = .init()
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnNonBlittableStruct(pThis, &result))
@@ -2625,7 +2625,7 @@ public enum __ABI_test_component {
             }
         }
 
-        internal func get_NonBlittableStructPropertyImpl() throws-> __x_ABI_Ctest__component_CNonBlittableStruct {
+        internal func get_NonBlittableStructPropertyImpl() throws -> __x_ABI_Ctest__component_CNonBlittableStruct {
             var value: __x_ABI_Ctest__component_CNonBlittableStruct = .init()
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_NonBlittableStructProperty(pThis, &value))
@@ -2639,7 +2639,7 @@ public enum __ABI_test_component {
             }
         }
 
-        internal func get_StringPropertyImpl() throws-> HSTRING? {
+        internal func get_StringPropertyImpl() throws -> HSTRING? {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_StringProperty(pThis, &value))
@@ -2653,7 +2653,7 @@ public enum __ABI_test_component {
             }
         }
 
-        internal func add_SignalEventImpl(_ handler: UnsafeMutablePointer<__x_ABI_Ctest__component_CDelegates_CISignalDelegate>?) throws-> EventRegistrationToken {
+        internal func add_SignalEventImpl(_ handler: UnsafeMutablePointer<__x_ABI_Ctest__component_CDelegates_CISignalDelegate>?) throws -> EventRegistrationToken {
             var token: EventRegistrationToken = .init()
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.add_SignalEvent(pThis, handler, &token))
@@ -2667,7 +2667,7 @@ public enum __ABI_test_component {
             }
         }
 
-        internal func add_InEventImpl(_ handler: UnsafeMutablePointer<__x_ABI_Ctest__component_CDelegates_CIInDelegate>?) throws-> EventRegistrationToken {
+        internal func add_InEventImpl(_ handler: UnsafeMutablePointer<__x_ABI_Ctest__component_CDelegates_CIInDelegate>?) throws -> EventRegistrationToken {
             var token: EventRegistrationToken = .init()
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.add_InEvent(pThis, handler, &token))
@@ -2681,7 +2681,7 @@ public enum __ABI_test_component {
             }
         }
 
-        internal func add_SimpleEventImpl(_ handler: UnsafeMutablePointer<__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs>?) throws-> EventRegistrationToken {
+        internal func add_SimpleEventImpl(_ handler: UnsafeMutablePointer<__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs>?) throws -> EventRegistrationToken {
             var token: EventRegistrationToken = .init()
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.add_SimpleEvent(pThis, handler, &token))
@@ -2789,7 +2789,7 @@ public enum __ABI_test_component {
     open class ISimpleStatics: test_component.IInspectable {
         override public class var IID: IID { IID___x_ABI_Ctest__component_CISimpleStatics }
 
-        internal func add_StaticEventImpl(_ handler: UnsafeMutablePointer<__x_ABI_C__FIEventHandler_1_IInspectable>?) throws-> EventRegistrationToken {
+        internal func add_StaticEventImpl(_ handler: UnsafeMutablePointer<__x_ABI_C__FIEventHandler_1_IInspectable>?) throws -> EventRegistrationToken {
             var token: EventRegistrationToken = .init()
             _ = try perform(as: __x_ABI_Ctest__component_CISimpleStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.add_StaticEvent(pThis, handler, &token))
@@ -2814,7 +2814,7 @@ public enum __ABI_test_component {
     open class IStaticClassStatics: test_component.IInspectable {
         override public class var IID: IID { IID___x_ABI_Ctest__component_CIStaticClassStatics }
 
-        internal func get_EnumPropertyImpl() throws-> __x_ABI_Ctest__component_CFruit {
+        internal func get_EnumPropertyImpl() throws -> __x_ABI_Ctest__component_CFruit {
             var value: __x_ABI_Ctest__component_CFruit = .init(0)
             _ = try perform(as: __x_ABI_Ctest__component_CIStaticClassStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_EnumProperty(pThis, &value))
@@ -2828,7 +2828,7 @@ public enum __ABI_test_component {
             }
         }
 
-        internal func InEnumImpl(_ value: __x_ABI_Ctest__component_CSigned) throws-> HSTRING? {
+        internal func InEnumImpl(_ value: __x_ABI_Ctest__component_CSigned) throws -> HSTRING? {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CIStaticClassStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InEnum(pThis, value, &result))
@@ -2836,7 +2836,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func InNonBlittableStructImpl(_ value: __x_ABI_Ctest__component_CNonBlittableStruct) throws-> HSTRING? {
+        internal func InNonBlittableStructImpl(_ value: __x_ABI_Ctest__component_CNonBlittableStruct) throws -> HSTRING? {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CIStaticClassStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InNonBlittableStruct(pThis, value, &result))
@@ -3009,7 +3009,7 @@ public enum __ABI_test_component {
     open class IUnsealedDerived: test_component.IInspectable {
         override public class var IID: IID { IID___x_ABI_Ctest__component_CIUnsealedDerived }
 
-        internal func get_PropImpl() throws-> INT32 {
+        internal func get_PropImpl() throws -> INT32 {
             var value: INT32 = 0
             _ = try perform(as: __x_ABI_Ctest__component_CIUnsealedDerived.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Prop(pThis, &value))
@@ -3041,7 +3041,7 @@ public enum __ABI_test_component {
 
         override public class var IID: IID { IID___x_ABI_Ctest__component_CIUnsealedDerived2ProtectedFactory }
 
-        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<Ctest_component.IInspectable>?, _ innerInterface: inout UnsafeMutablePointer<Ctest_component.IInspectable>?) throws-> UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived2>? {
+        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<Ctest_component.IInspectable>?, _ innerInterface: inout UnsafeMutablePointer<Ctest_component.IInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived2>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived2>?
             _ = try perform(as: __x_ABI_Ctest__component_CIUnsealedDerived2ProtectedFactory.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, baseInterface, &innerInterface, &value))
@@ -3061,7 +3061,7 @@ public enum __ABI_test_component {
 
         override public class var IID: IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedNoOverridesProtectedFactory }
 
-        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<Ctest_component.IInspectable>?, _ innerInterface: inout UnsafeMutablePointer<Ctest_component.IInspectable>?) throws-> UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides>? {
+        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<Ctest_component.IInspectable>?, _ innerInterface: inout UnsafeMutablePointer<Ctest_component.IInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides>?
             _ = try perform(as: __x_ABI_Ctest__component_CIUnsealedDerivedNoOverridesProtectedFactory.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, baseInterface, &innerInterface, &value))
@@ -3098,7 +3098,7 @@ public enum __ABI_test_component {
 
         override public class var IID: IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedProtectedFactory }
 
-        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<Ctest_component.IInspectable>?, _ innerInterface: inout UnsafeMutablePointer<Ctest_component.IInspectable>?) throws-> UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived>? {
+        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<Ctest_component.IInspectable>?, _ innerInterface: inout UnsafeMutablePointer<Ctest_component.IInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived>?
             _ = try perform(as: __x_ABI_Ctest__component_CIUnsealedDerivedProtectedFactory.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, baseInterface, &innerInterface, &value))

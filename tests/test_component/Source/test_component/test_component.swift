@@ -120,17 +120,17 @@ public final class BaseCollection : WinRTClass, IVector {
         Clear()
     }
     // MARK: WinRT
-    public func GetAt(_ index: UInt32) -> Base{
+    public func GetAt(_ index: UInt32) -> Base {
         let result = try! _default.GetAtImpl(index)
         return .from(abi: result)
     }
 
-    public func GetView() -> (any IVectorView<Base>)?{
+    public func GetView() -> (any IVectorView<Base>)? {
         let result = try! _default.GetViewImpl()
         return __ABI_test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrap_from(abi: result)
     }
 
-    public func IndexOf(_ value: Base, _ index: inout UInt32) -> Bool{
+    public func IndexOf(_ value: Base, _ index: inout UInt32) -> Bool {
         let result = try! _default.IndexOfImpl(RawPointer(value), &index)
         return .init(from: result)
     }
@@ -194,24 +194,24 @@ public final class BaseMapCollection : WinRTClass, IMap {
     }
 
     // MARK: WinRT
-    public func Lookup(_ key: String) -> Base{
+    public func Lookup(_ key: String) -> Base {
         let _key = try! HString(key)
         let result = try! _default.LookupImpl(_key.get())
         return .from(abi: result)
     }
 
-    public func HasKey(_ key: String) -> Bool{
+    public func HasKey(_ key: String) -> Bool {
         let _key = try! HString(key)
         let result = try! _default.HasKeyImpl(_key.get())
         return .init(from: result)
     }
 
-    public func GetView() -> (any IMapView<String, Base>)?{
+    public func GetView() -> (any IMapView<String, Base>)? {
         let result = try! _default.GetViewImpl()
         return __ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrap_from(abi: result)
     }
 
-    public func Insert(_ key: String, _ value: Base) -> Bool{
+    public func Insert(_ key: String, _ value: Base) -> Bool {
         let _key = try! HString(key)
         let result = try! _default.InsertImpl(_key.get(), RawPointer(value))
         return .init(from: result)
@@ -365,33 +365,33 @@ public final class Class : WinRTClass, IBasic {
         try! _IClassStatics.StaticTestImpl()
     }
 
-    public static func StaticTestReturn() -> Int32{
+    public static func StaticTestReturn() -> Int32 {
         let result = try! _IClassStatics.StaticTestReturnImpl()
         return result
     }
 
-    public static func InMap(_ value: (any IMap<String, String>)?) -> String{
+    public static func InMap(_ value: (any IMap<String, String>)?) -> String {
         let valueWrapper = __ABI_test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper(value)
         let _value = try! valueWrapper?.to_abi { $0 }
         let result = try! _IClassStatics.InMapImpl(_value)
         return .init(from: result)
     }
 
-    public static func InMapView(_ value: (any IMapView<String, String>)?) -> String{
+    public static func InMapView(_ value: (any IMapView<String, String>)?) -> String {
         let valueWrapper = __ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper(value)
         let _value = try! valueWrapper?.to_abi { $0 }
         let result = try! _IClassStatics.InMapViewImpl(_value)
         return .init(from: result)
     }
 
-    public static func InVector(_ value: (any IVector<String>)?) -> String{
+    public static func InVector(_ value: (any IVector<String>)?) -> String {
         let valueWrapper = __ABI_test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper(value)
         let _value = try! valueWrapper?.to_abi { $0 }
         let result = try! _IClassStatics.InVectorImpl(_value)
         return .init(from: result)
     }
 
-    public static func InVectorView(_ value: (any IVectorView<String>)?) -> String{
+    public static func InVectorView(_ value: (any IVectorView<String>)?) -> String {
         let valueWrapper = __ABI_test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper(value)
         let _value = try! valueWrapper?.to_abi { $0 }
         let result = try! _IClassStatics.InVectorViewImpl(_value)
@@ -407,7 +407,7 @@ public final class Class : WinRTClass, IBasic {
     }
 
     private static let _IClassStatics2: __ABI_test_component.IClassStatics2 = try! RoGetActivationFactory(HString("test_component.Class"))
-    public static func StaticTestReturnFloat() -> Float{
+    public static func StaticTestReturnFloat() -> Float {
         let result = try! _IClassStatics2.StaticTestReturnFloatImpl()
         return result
     }
@@ -429,23 +429,23 @@ public final class Class : WinRTClass, IBasic {
         try! _default.SetDelegateImpl(_value)
     }
 
-    public func GetDelegate() -> ISimpleDelegate{
+    public func GetDelegate() -> ISimpleDelegate {
         let result = try! _default.GetDelegateImpl()
         return __ABI_test_component.ISimpleDelegateWrapper.unwrap_from(abi: result)
     }
 
-    public func InInt32(_ value: Int32) -> String{
+    public func InInt32(_ value: Int32) -> String {
         let result = try! _default.InInt32Impl(value)
         return .init(from: result)
     }
 
-    public func InString(_ value: String) -> String{
+    public func InString(_ value: String) -> String {
         let _value = try! HString(value)
         let result = try! _default.InStringImpl(_value.get())
         return .init(from: result)
     }
 
-    public func InEnum(_ value: Signed) -> String{
+    public func InEnum(_ value: Signed) -> String {
         let result = try! _default.InEnumImpl(value)
         return .init(from: result)
     }
@@ -477,27 +477,27 @@ public final class Class : WinRTClass, IBasic {
         try! _default.OutEnumImpl(&value)
     }
 
-    public func ReturnEnum() -> Signed{
+    public func ReturnEnum() -> Signed {
         let result = try! _default.ReturnEnumImpl()
         return result
     }
 
-    public func ReturnStoredStringVector() -> (any IVector<String>)?{
+    public func ReturnStoredStringVector() -> (any IVector<String>)? {
         let result = try! _default.ReturnStoredStringVectorImpl()
         return __ABI_test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper.unwrap_from(abi: result)
     }
 
-    public func ReturnMapFromStringToString() -> (any IMap<String, String>)?{
+    public func ReturnMapFromStringToString() -> (any IMap<String, String>)? {
         let result = try! _default.ReturnMapFromStringToStringImpl()
         return __ABI_test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.unwrap_from(abi: result)
     }
 
-    public func ReturnChar() -> Character{
+    public func ReturnChar() -> Character {
         let result = try! _default.ReturnCharImpl()
         return .init(from: result)
     }
 
-    public func InChar(_ value: Character) -> String{
+    public func InChar(_ value: Character) -> String {
         let result = try! _default.InCharImpl(.init(from: value))
         return .init(from: result)
     }
@@ -694,7 +694,7 @@ public final class Simple : WinRTClass {
         try! _default.MethodImpl()
     }
 
-    public func ReturnBlittableStruct() -> BlittableStruct{
+    public func ReturnBlittableStruct() -> BlittableStruct {
         let result = try! _default.ReturnBlittableStructImpl()
         return .from(abi: result)
     }
@@ -703,7 +703,7 @@ public final class Simple : WinRTClass {
         try! _default.TakeBlittableStructImpl(.from(swift: value))
     }
 
-    public func ReturnNonBlittableStruct() -> NonBlittableStruct{
+    public func ReturnNonBlittableStruct() -> NonBlittableStruct {
         let result = try! _default.ReturnNonBlittableStructImpl()
         return .from(abi: result)
     }
@@ -807,12 +807,12 @@ public final class Simple : WinRTClass {
 
 public final class StaticClass {
     private static let _IStaticClassStatics: __ABI_test_component.IStaticClassStatics = try! RoGetActivationFactory(HString("test_component.StaticClass"))
-    public static func InEnum(_ value: Signed) -> String{
+    public static func InEnum(_ value: Signed) -> String {
         let result = try! _IStaticClassStatics.InEnumImpl(value)
         return .init(from: result)
     }
 
-    public static func InNonBlittableStruct(_ value: NonBlittableStruct) -> String{
+    public static func InNonBlittableStruct(_ value: NonBlittableStruct) -> String {
         let _value = __ABI_test_component._ABI_NonBlittableStruct(from: value)
         let result = try! _IStaticClassStatics.InNonBlittableStructImpl(_value.val)
         return .init(from: result)
@@ -1120,15 +1120,15 @@ extension IDerivedInterface {
 }
 
 public protocol IIAmImplementable : IWinRTObject {
-    func InInt32(_ value: Int32)-> String
-    func InString(_ value: String)-> String
-    func InEnum(_ value: test_component.Signed)-> String
+    func InInt32(_ value: Int32)-> String 
+    func InString(_ value: String)-> String 
+    func InEnum(_ value: test_component.Signed)-> String 
     func OutInt32(_ value: inout Int32)
     func OutString(_ value: inout String)
     func OutBlittableStruct(_ value: inout test_component.BlittableStruct)
     func OutNonBlittableStruct(_ value: inout test_component.NonBlittableStruct)
     func OutEnum(_ value: inout test_component.Signed)
-    func ReturnEnum()-> test_component.Signed
+    func ReturnEnum()-> test_component.Signed 
     func FireEvent()
     var EnumProperty: test_component.Fruit { get set }
     var ID: UUID? { get set }

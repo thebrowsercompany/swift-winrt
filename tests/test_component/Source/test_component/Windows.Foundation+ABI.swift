@@ -9,7 +9,7 @@ public enum __ABI_Windows_Foundation {
     open class IPropertyValue: test_component.IInspectable {
         override public class var IID: IID { IID___x_ABI_CWindows_CFoundation_CIPropertyValue }
 
-        open func get_TypeImpl() throws-> __x_ABI_CWindows_CFoundation_CPropertyType {
+        open func get_TypeImpl() throws -> __x_ABI_CWindows_CFoundation_CPropertyType {
             var value: __x_ABI_CWindows_CFoundation_CPropertyType = .init(0)
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Type(pThis, &value))
@@ -17,7 +17,7 @@ public enum __ABI_Windows_Foundation {
             return value
         }
 
-        open func get_IsNumericScalarImpl() throws-> boolean {
+        open func get_IsNumericScalarImpl() throws -> boolean {
             var value: boolean = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_IsNumericScalar(pThis, &value))
@@ -25,7 +25,7 @@ public enum __ABI_Windows_Foundation {
             return value
         }
 
-        open func GetUInt8Impl() throws-> BYTE {
+        open func GetUInt8Impl() throws -> BYTE {
             var value: BYTE = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetUInt8(pThis, &value))
@@ -33,7 +33,7 @@ public enum __ABI_Windows_Foundation {
             return value
         }
 
-        open func GetInt16Impl() throws-> INT16 {
+        open func GetInt16Impl() throws -> INT16 {
             var value: INT16 = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetInt16(pThis, &value))
@@ -41,7 +41,7 @@ public enum __ABI_Windows_Foundation {
             return value
         }
 
-        open func GetUInt16Impl() throws-> UINT16 {
+        open func GetUInt16Impl() throws -> UINT16 {
             var value: UINT16 = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetUInt16(pThis, &value))
@@ -49,7 +49,7 @@ public enum __ABI_Windows_Foundation {
             return value
         }
 
-        open func GetInt32Impl() throws-> INT32 {
+        open func GetInt32Impl() throws -> INT32 {
             var value: INT32 = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetInt32(pThis, &value))
@@ -57,7 +57,7 @@ public enum __ABI_Windows_Foundation {
             return value
         }
 
-        open func GetUInt32Impl() throws-> UINT32 {
+        open func GetUInt32Impl() throws -> UINT32 {
             var value: UINT32 = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetUInt32(pThis, &value))
@@ -65,7 +65,7 @@ public enum __ABI_Windows_Foundation {
             return value
         }
 
-        open func GetInt64Impl() throws-> INT64 {
+        open func GetInt64Impl() throws -> INT64 {
             var value: INT64 = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetInt64(pThis, &value))
@@ -73,7 +73,7 @@ public enum __ABI_Windows_Foundation {
             return value
         }
 
-        open func GetUInt64Impl() throws-> UINT64 {
+        open func GetUInt64Impl() throws -> UINT64 {
             var value: UINT64 = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetUInt64(pThis, &value))
@@ -81,7 +81,7 @@ public enum __ABI_Windows_Foundation {
             return value
         }
 
-        open func GetSingleImpl() throws-> FLOAT {
+        open func GetSingleImpl() throws -> FLOAT {
             var value: FLOAT = 0.0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetSingle(pThis, &value))
@@ -89,7 +89,7 @@ public enum __ABI_Windows_Foundation {
             return value
         }
 
-        open func GetDoubleImpl() throws-> DOUBLE {
+        open func GetDoubleImpl() throws -> DOUBLE {
             var value: DOUBLE = 0.0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetDouble(pThis, &value))
@@ -97,7 +97,7 @@ public enum __ABI_Windows_Foundation {
             return value
         }
 
-        open func GetChar16Impl() throws-> WCHAR {
+        open func GetChar16Impl() throws -> WCHAR {
             var value: WCHAR = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetChar16(pThis, &value))
@@ -105,7 +105,7 @@ public enum __ABI_Windows_Foundation {
             return value
         }
 
-        open func GetBooleanImpl() throws-> boolean {
+        open func GetBooleanImpl() throws -> boolean {
             var value: boolean = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetBoolean(pThis, &value))
@@ -113,7 +113,7 @@ public enum __ABI_Windows_Foundation {
             return value
         }
 
-        open func GetStringImpl() throws-> HSTRING? {
+        open func GetStringImpl() throws -> HSTRING? {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetString(pThis, &value))
@@ -121,7 +121,7 @@ public enum __ABI_Windows_Foundation {
             return value
         }
 
-        open func GetGuidImpl() throws-> GUID {
+        open func GetGuidImpl() throws -> GUID {
             var value: GUID = .init()
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetGuid(pThis, &value))
@@ -129,7 +129,7 @@ public enum __ABI_Windows_Foundation {
             return value
         }
 
-        open func GetDateTimeImpl() throws-> __x_ABI_CWindows_CFoundation_CDateTime {
+        open func GetDateTimeImpl() throws -> __x_ABI_CWindows_CFoundation_CDateTime {
             var value: __x_ABI_CWindows_CFoundation_CDateTime = .init()
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetDateTime(pThis, &value))
@@ -137,7 +137,7 @@ public enum __ABI_Windows_Foundation {
             return value
         }
 
-        open func GetTimeSpanImpl() throws-> __x_ABI_CWindows_CFoundation_CTimeSpan {
+        open func GetTimeSpanImpl() throws -> __x_ABI_CWindows_CFoundation_CTimeSpan {
             var value: __x_ABI_CWindows_CFoundation_CTimeSpan = .init()
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetTimeSpan(pThis, &value))
@@ -145,7 +145,7 @@ public enum __ABI_Windows_Foundation {
             return value
         }
 
-        open func GetPointImpl() throws-> __x_ABI_CWindows_CFoundation_CPoint {
+        open func GetPointImpl() throws -> __x_ABI_CWindows_CFoundation_CPoint {
             var value: __x_ABI_CWindows_CFoundation_CPoint = .init()
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetPoint(pThis, &value))
@@ -153,7 +153,7 @@ public enum __ABI_Windows_Foundation {
             return value
         }
 
-        open func GetSizeImpl() throws-> __x_ABI_CWindows_CFoundation_CSize {
+        open func GetSizeImpl() throws -> __x_ABI_CWindows_CFoundation_CSize {
             var value: __x_ABI_CWindows_CFoundation_CSize = .init()
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetSize(pThis, &value))
@@ -161,7 +161,7 @@ public enum __ABI_Windows_Foundation {
             return value
         }
 
-        open func GetRectImpl() throws-> __x_ABI_CWindows_CFoundation_CRect {
+        open func GetRectImpl() throws -> __x_ABI_CWindows_CFoundation_CRect {
             var value: __x_ABI_CWindows_CFoundation_CRect = .init()
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetRect(pThis, &value))
