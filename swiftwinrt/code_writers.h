@@ -791,7 +791,7 @@ bind<write_abi_args>(function));
             return;
         }
 
-        auto format = " -> %";
+        auto format = "-> %";
         w.write(format,
             function.return_type.value());
     }
@@ -806,7 +806,6 @@ bind<write_abi_args>(function));
             return;
         }
 
-        auto foo = type.swift_full_name();
         const bool internal = is_composable_factory || can_mark_internal(type.type());
         w.write("% class %: %.IInspectable% {\n",
             internal ? "internal" : "open",
@@ -1307,45 +1306,44 @@ bind_impl_fullname(type));
     // Due to https://linear.app/the-browser-company/issue/WIN-148/investigate-possible-compiler-bug-crash-when-generating-collection
     // we have to generate the protocol conformance for the Collection protocol (see "// MARK: Collection" below). We shouldn't have to
     // do this because we define an extension on the protocol which does this.
-    static void write_collection_protocol_conformance(writer& w, interface_info const& info, bool public_members)
+    static void write_collection_protocol_conformance(writer& w, interface_info const& info)
     {
-        auto modifier = public_members ? "public " : "";
         auto typeName = info.type->swift_type_name();
         if (typeName.starts_with("IVector"))
         {
             w.write(R"(// MARK: Collection
-%var startIndex: Int { 0 }
-%var endIndex: Int { Int(Size) }
-%func index(after i: Int) -> Int {
+public var startIndex: Int { 0 }
+public var endIndex: Int { Int(Size) }
+public func index(after i: Int) -> Int {
     i+1
 }
 
-%func index(of: Element) -> Int? { 
+public func index(of: Element) -> Int? { 
     var index: UInt32 = 0
     let result = IndexOf(of, &index)
     guard result else { return nil }
     return Int(index)
 }
-%var count: Int { Int(Size) }
-)", modifier, modifier, modifier, modifier, modifier);
+public var count: Int { Int(Size) }
+)");
             if (typeName.starts_with("IVectorView"))
             {
                 w.write(R"(
-%subscript(position: Int) -> Element {
+public subscript(position: Int) -> Element {
     get {
         GetAt(UInt32(position))
     }
 }
-)", modifier);
+)");
             }
             else
             {
                 w.write(R"(
-%func append(_ item: Element) {
+public func append(_ item: Element) {
     Append(item)
 }
 
-%subscript(position: Int) -> Element {
+public subscript(position: Int) -> Element {
     get {
         GetAt(UInt32(position))
     }
@@ -1354,14 +1352,14 @@ bind_impl_fullname(type));
     }
 }
 
-%func removeLast() {
+public func removeLast() {
     RemoveAtEnd()
 }
 
-%func clear() {
+public func clear() {
     Clear()
 }
-)", modifier, modifier, modifier, modifier);
+)");
             }
         }
 
@@ -1413,12 +1411,10 @@ public static func makeAbi() -> c_ABI {
         type_info.is_default = true; // mark as default so we use the name "_default"
         for (auto&& method : type.functions)
         {
-            w.write("\n");
             write_class_impl_func(w, method, type_info);
         }
         for (auto&& prop : type.properties)
         {
-            w.write("\n");
             write_class_impl_property(w, prop, type_info);
         }
 
@@ -1434,7 +1430,7 @@ public static func makeAbi() -> c_ABI {
 
                 if (is_collection_type(info.type))
                 {
-                    write_collection_protocol_conformance(w, info, /* public_members */ true);
+                    write_collection_protocol_conformance(w, info);
                 }
             }
 
@@ -1442,13 +1438,11 @@ public static func makeAbi() -> c_ABI {
             {
                 for (auto&& method : iface->functions)
                 {
-                    w.write("\n");
                     write_class_impl_func(w, method, info);
                 }
 
                 for (auto&& prop : iface->properties)
                 {
-                    w.write("\n");
                     write_class_impl_property(w, prop, info);
                 }
             }
@@ -1456,13 +1450,11 @@ public static func makeAbi() -> c_ABI {
             {
                 for (auto&& method : geninst->functions)
                 {
-                    w.write("\n");
                     write_class_impl_func(w, method, info);
                 }
 
                 for (auto&& prop : geninst->properties)
                 {
-                    w.write("\n");
                     write_class_impl_property(w, prop, info);
                 }
             }
@@ -1688,7 +1680,7 @@ public static func makeAbi() -> c_ABI {
         
         interface_info info{ &type };
         info.is_default = true; // mark as default so we use the name "_default"
-        write_collection_protocol_conformance(w, info, /* public_members: */ true);
+        write_collection_protocol_conformance(w, info);
 
         for (auto&& method : type.functions)
         {
@@ -2141,7 +2133,7 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
             return;
         }
 
-        w.write("% func %(%)% {\n",
+        w.write("% func %(%) %{\n",
             iface.overridable ? "open" : "public",
             get_swift_name(function),
             bind<write_params>(function),
@@ -2274,7 +2266,7 @@ public % var % : Event<(%),%> = EventImpl<%>(register: %_%, owner:%)
                     continue;
                 }
 
-                w.write("public static func %(%)% {\n",
+                w.write("public static func %(%) %{\n",
                     get_swift_name(method),
                     bind<write_params>(method),
                     bind<write_return_type_declaration>(method));
@@ -2413,7 +2405,7 @@ public % var % : Event<(%),%> = EventImpl<%>(register: %_%, owner:%)
 
         if (is_collection_type(info.type))
         {
-            write_collection_protocol_conformance(w, info, /* public_members: */ true);
+            write_collection_protocol_conformance(w, info);
         }
 
         if (auto iface = dynamic_cast<const interface_type*>(info.type))
@@ -2743,86 +2735,97 @@ private var _default: swift_ABI = .init(UnsafeMutableRawPointer.none)
     }
 
     template <typename T>
-    static void write_query_interface_case(writer& w, T const& type, const metadata_type* iface, bool cast)
-    {
-        w.write("if riid.pointee == %.IID {\n", bind_wrapper_fullname(iface));
-        {
-            auto indent = w.push_indent();
-            w.write("guard let instance = %.try_unwrap_from(raw: pUnk)% else { return E_NOINTERFACE }\n",
-                bind_wrapper_name(type), cast ? w.write_temp(" as? %", iface) : "");
-            w.write("guard let inner = %(instance) else { return E_INVALIDARG }\n",
-                bind_wrapper_fullname(iface));
-
-            w.write("let pThis = try!inner.to_abi { $0 }\n");
-            w.write("return pThis.pointee.lpVtbl.pointee.QueryInterface(pThis, riid, ppvObject)\n");
-        }
-        w.write("}\n\n");
-    }
-
-    template <typename T>
     static void write_iunknown_methods(writer& w, T const& type, std::vector<named_interface_info> const& interfaces, bool composed = false)
     {
-        w.write("QueryInterface: {\n");
-        {
-            auto qi_indent = w.push_indent();
-            w.write("guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }\n");
+        w.write(R"(QueryInterface: {
+    guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+%
+    guard riid.pointee == IUnknown.IID ||
+          riid.pointee == IInspectable.IID || 
+          riid.pointee == ISwiftImplemented.IID ||
+          riid.pointee == IIAgileObject.IID ||
+          riid.pointee == %.IID else { 
+        %
+    }
+    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+    return S_OK
+},
 
-            type_name typeName(type);
-            // workaround right now for the fact that if the relationship isn't specified in metadata
-            if (typeName.name == "IApplicationOverrides" && typeName.name_space == "Microsoft.UI.Xaml")
-            {
-                auto metadata_provider = &w.cache->find("Microsoft.UI.Xaml.Markup", "IXamlMetadataProvider");
-                write_query_interface_case(w, type, metadata_provider, /* cast */ true);
-            }
-            for (auto&& iface : interfaces)
-            {
-                if (!can_write(w, iface.second.type)) continue;
+)",
+bind([&](writer& w) {
+                auto format = R"(if riid.pointee == %.IID {
+    guard let instance = %.try_unwrap_from(raw: pUnk)% else { return E_NOINTERFACE }
+    guard let inner = %(instance) else { return E_INVALIDARG }
+    let pThis = try! inner.to_abi { $0 }
+    return pThis.pointee.lpVtbl.pointee.QueryInterface(pThis, riid, ppvObject)
+}
+)";
+                type_name typeName(type);
+                // workaround right now for the fact that if the relationship isn't specified in metadata
 
-                write_query_interface_case(w, type, iface.second.type,
-                    /* cast: */ dynamic_cast<const generic_inst*>(iface.second.type) != nullptr);
-            }
-
-            w.write("guard riid.pointee == IUnknown.IID ||\n");
-            w.write("      riid.pointee == IInspectable.IID || \n");
-            w.write("      riid.pointee == ISwiftImplemented.IID ||\n");
-            w.write("      riid.pointee == IIAgileObject.IID ||\n");
-            w.write("      riid.pointee == %.IID else {\n", bind_wrapper_fullname(type));
-            {
-                auto pointee_iid_indent = w.push_indent();
-                if (!composed)
+                if (typeName.name == "IApplicationOverrides" && typeName.name_space == "Microsoft.UI.Xaml")
                 {
-                    w.write("ppvObject.pointee = nil\n");
-                    w.write("return E_NOINTERFACE\n");
-                }
-                else
-                {
-                    w.write("guard let instance = %.try_unwrap_from(raw: $0),\n", bind_wrapper_name(type));
-                    w.write("      let inner = instance._inner else { return E_INVALIDARG }\n");
-                    w.write("return inner.pointee.lpVtbl.pointee.QueryInterface(inner, riid, ppvObject)\n");
-                }
-            }
-            w.write("}\n");
+                    auto metadata_provider = &w.cache->find("Microsoft.UI.Xaml.Markup", "IXamlMetadataProvider");
+                    auto cast = w.write_temp(" as? %", metadata_provider);
 
-            w.write("_ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)\n");
-            w.write("ppvObject.pointee = UnsafeMutableRawPointer(pUnk)\n");
-            w.write("return S_OK\n");
-        }
-        w.write("},\n\n");
+                    w.write(format,
+                        bind_wrapper_fullname(metadata_provider), // if riid.pointee == %
+                        bind_wrapper_name(type), // guard let instance = %
+                        cast,
+                        bind_wrapper_fullname(metadata_provider)); // let inner = %
+                }
+                for (auto&& iface : interfaces)
+                {
+                    if (!can_write(w, iface.second.type)) continue;
+
+                    // Implicit conversion fails for generic types here
+                    auto cast = is_generic(iface.second.type)
+                        ? w.write_temp(" as? %", iface.second.type)
+                        : "";
+
+                    w.write(format,
+                        bind_wrapper_fullname(iface.second.type), // if riid.pointee == %
+                        bind_wrapper_name(type), // guard let instance = %
+                        cast,
+                        bind_wrapper_fullname(iface.second.type) // let inner = %
+                    );
+                }}),
+            bind_wrapper_fullname(type),
+            bind([&](writer & w) {
+               if (!composed)
+               {
+                        w.write(R"(ppvObject.pointee = nil
+                return E_NOINTERFACE
+)");
+               }
+               else
+               {
+                   w.write(R"(    guard let instance = %.try_unwrap_from(raw: $0),
+                    let inner = instance._inner else { return E_INVALIDARG }
+                
+            return inner.pointee.lpVtbl.pointee.QueryInterface(inner, riid, ppvObject)
+)", bind_wrapper_name(type));
+               }
+            })
+    );
 
         w.write(R"(AddRef: {
      guard let wrapper = %.from_raw($0) else { return 1 }
      _ = wrapper.retain()
      return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
 },
-
-)", bind_wrapper_name(type));
+)",
+            bind_wrapper_name(type)
+        );
 
         w.write(R"(Release: {
     guard let wrapper = %.from_raw($0) else { return 1 }
     return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
 },
-
-)", bind_wrapper_name(type));
+)",
+            bind_wrapper_name(type)
+);
     }
 
     static void write_iunknown_methods(writer& w, generic_inst const& type)
