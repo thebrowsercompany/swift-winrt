@@ -2091,19 +2091,23 @@ public init<Factory: ComposableActivationFactory>(_ factory : Factory) {
             {
                 auto override_composable_init = R"(override public init() {
     super.init(Self._%) 
-    let parentDefault: UnsafeMutablePointer<%>? = super._get_abi()
+    let parentDefault: UnsafeMutablePointer<%.%>? = super._get_abi()
     self._default = try! IInspectable(parentDefault).QueryInterface()
     _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
 }
 
 override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
     super.init(factory)
-    let parentDefault: UnsafeMutablePointer<%>? = super._get_abi()
+    let parentDefault: UnsafeMutablePointer<%.%>? = super._get_abi()
     self._default = try! IInspectable(parentDefault).QueryInterface()
     _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
 }
 )";
-                w.write(override_composable_init, factory, bind_type_abi(ElementType::Object), bind_type_abi(ElementType::Object));
+                w.write(override_composable_init, factory,
+                    w.c_mod,
+                    bind_type_abi(ElementType::Object),
+                    w.c_mod,
+                    bind_type_abi(ElementType::Object));
             }
         }
     }

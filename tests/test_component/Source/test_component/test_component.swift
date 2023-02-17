@@ -861,14 +861,14 @@ open class UnsealedDerived : test_component.Base {
     private static var _IUnsealedDerivedProtectedFactory : __ABI_test_component.IUnsealedDerivedProtectedFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerived"))
     override public init() {
         super.init(Self._IUnsealedDerivedProtectedFactory) 
-        let parentDefault: UnsafeMutablePointer<IInspectable>? = super._get_abi()
+        let parentDefault: UnsafeMutablePointer<Ctest_component.IInspectable>? = super._get_abi()
         self._default = try! IInspectable(parentDefault).QueryInterface()
         _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
     }
 
     override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         super.init(factory)
-        let parentDefault: UnsafeMutablePointer<IInspectable>? = super._get_abi()
+        let parentDefault: UnsafeMutablePointer<Ctest_component.IInspectable>? = super._get_abi()
         self._default = try! IInspectable(parentDefault).QueryInterface()
         _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
     }
@@ -947,14 +947,14 @@ open class UnsealedDerived2 : test_component.UnsealedDerived {
     private static var _IUnsealedDerived2ProtectedFactory : __ABI_test_component.IUnsealedDerived2ProtectedFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerived2"))
     override public init() {
         super.init(Self._IUnsealedDerived2ProtectedFactory) 
-        let parentDefault: UnsafeMutablePointer<IInspectable>? = super._get_abi()
+        let parentDefault: UnsafeMutablePointer<Ctest_component.IInspectable>? = super._get_abi()
         self._default = try! IInspectable(parentDefault).QueryInterface()
         _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
     }
 
     override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         super.init(factory)
-        let parentDefault: UnsafeMutablePointer<IInspectable>? = super._get_abi()
+        let parentDefault: UnsafeMutablePointer<Ctest_component.IInspectable>? = super._get_abi()
         self._default = try! IInspectable(parentDefault).QueryInterface()
         _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
     }
@@ -1004,14 +1004,14 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
     private static var _IUnsealedDerivedNoOverridesProtectedFactory : __ABI_test_component.IUnsealedDerivedNoOverridesProtectedFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerivedNoOverrides"))
     override public init() {
         super.init(Self._IUnsealedDerivedNoOverridesProtectedFactory) 
-        let parentDefault: UnsafeMutablePointer<IInspectable>? = super._get_abi()
+        let parentDefault: UnsafeMutablePointer<Ctest_component.IInspectable>? = super._get_abi()
         self._default = try! IInspectable(parentDefault).QueryInterface()
         _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
     }
 
     override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         super.init(factory)
-        let parentDefault: UnsafeMutablePointer<IInspectable>? = super._get_abi()
+        let parentDefault: UnsafeMutablePointer<Ctest_component.IInspectable>? = super._get_abi()
         self._default = try! IInspectable(parentDefault).QueryInterface()
         _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
     }
