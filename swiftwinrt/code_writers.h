@@ -532,7 +532,7 @@ namespace swiftwinrt
     }
 
     static void write_typedef_expression(writer& w, typedef_base const& type,
-        const generic_inst* opt_generic_inst, bool abi)
+        const generic_inst* opt_generic_inst, bool abi, bool no_outer_optional)
     {
         bool is_interface = dynamic_cast<const interface_type*>(&type) != nullptr;
         bool is_reference_type = is_interface
@@ -555,7 +555,12 @@ namespace swiftwinrt
         }
         else
         {
-            if (is_interface) w.write("(any "); // Project as existential and optional
+            if (is_interface)
+            {
+                // Project as existential and optional
+                if (!no_outer_optional) w.write("(");
+                w.write("any ");
+            }
             
             // Namespace
             if (opt_generic_inst)
@@ -582,19 +587,25 @@ namespace swiftwinrt
                 w.write(">");
             }
 
-            if (is_interface) w.write(")"); // Close existential parenthesis
-            if (is_reference_type) w.write("?"); // Project as optional
+            if (!no_outer_optional)
+            {
+                if (is_interface) w.write(")"); // Close existential parenthesis
+                if (is_reference_type) w.write("?"); // Project as optional
+            }
         }
     }
 
-    static void write_type_expression(writer& w, metadata_type const& type, bool abi)
+    // "ex" to avoid overloading, which breaks bind<>
+    static void write_type_expression_ex(writer& w, metadata_type const& type, bool abi, bool no_outer_optional)
     {
         if (auto elem_type = dynamic_cast<const element_type*>(&type))
         {
+            assert(!no_outer_optional);
             write_element_type_expression(w, *elem_type, abi);
         }
         else if (auto mapped = dynamic_cast<const mapped_type*>(&type))
         {
+            assert(!no_outer_optional);
             // mapped types are defined in headers and *not* metadata files, so these don't follow the same
             // naming conventions that other types do. We just grab the type name and will use that.
             auto swift_name = mapped->swift_type_name();
@@ -602,12 +613,13 @@ namespace swiftwinrt
         }
         else if (auto systype = dynamic_cast<const system_type*>(&type))
         {
+            assert(!no_outer_optional);
             w.write(abi ? systype->cpp_abi_name() : systype->swift_type_name());
         }
         else if (auto type_def = dynamic_cast<const typedef_base*>(&type))
         {
             assert(!is_generic(type));
-            write_typedef_expression(w, *type_def, /* opt_generic_params: */ nullptr, abi);
+            write_typedef_expression(w, *type_def, /* opt_generic_params: */ nullptr, abi, no_outer_optional);
         }
         else if (auto geninst = dynamic_cast<const generic_inst*>(&type))
         {
@@ -637,9 +649,14 @@ namespace swiftwinrt
             else
             {
                 // Collections and other generic types
-                write_typedef_expression(w, gentype, geninst, abi);
+                write_typedef_expression(w, gentype, geninst, abi, no_outer_optional);
             }
         }
+    }
+
+    static void write_type_expression(writer& w, metadata_type const& type, bool abi)
+    {
+        write_type_expression_ex(w, type, abi, /* nonnullable: */ false);
     }
 
     static void write_function_param(writer& w, function_param const& param, bool abi)
@@ -1694,7 +1711,7 @@ public static func makeAbi() -> c_ABI {
         for (auto& param : params)
         {
             s();
-            w.write(param.type);
+            write_type_expression(w, *param.type, /* abi: */ false);
         }
     }
 
@@ -1762,7 +1779,8 @@ public static func makeAbi() -> c_ABI {
             assert(!"Unexpected collection type");
         }
 
-        w.write("typealias swift_Projection = %\n", bind<write_type_expression>(type, /* abi: */ false));
+        w.write("typealias swift_Projection = %\n",
+            bind<write_type_expression_ex>(type, /* abi: */ false, /* no_outer_optional: */ true));
 
         w.write("typealias c_ABI = %\n", bind_type_mangled(type));
         w.write("typealias swift_ABI = %.%\n", abi_namespace(w.type_namespace), bind_type_abi(type));

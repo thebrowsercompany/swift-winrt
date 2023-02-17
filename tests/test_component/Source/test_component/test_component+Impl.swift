@@ -147,7 +147,7 @@ public enum __IMPL_test_component {
     internal class __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl : IMapView, AbiInterfaceImpl {
         typealias Key = String
         typealias Value = String
-        typealias swift_Projection = (any test_component.IMapView<String, String>)?
+        typealias swift_Projection = any test_component.IMapView<String, String>
         typealias c_ABI = __x_ABI_C__FIMapView_2_HSTRING_HSTRING
         typealias swift_ABI = __ABI_test_component.IMapViewString_String
 
@@ -200,7 +200,7 @@ public enum __IMPL_test_component {
     internal class __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl : IMapView, AbiInterfaceImpl {
         typealias Key = String
         typealias Value = Base?
-        typealias swift_Projection = (any test_component.IMapView<String, Base?>)?
+        typealias swift_Projection = any test_component.IMapView<String, Base?>
         typealias c_ABI = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
         typealias swift_ABI = __ABI_test_component.IMapViewString_Base
 
@@ -253,7 +253,7 @@ public enum __IMPL_test_component {
     internal class __x_ABI_C__FIMap_2_HSTRING_HSTRINGImpl : IMap, AbiInterfaceImpl {
         typealias Key = String
         typealias Value = String
-        typealias swift_Projection = (any test_component.IMap<String, String>)?
+        typealias swift_Projection = any test_component.IMap<String, String>
         typealias c_ABI = __x_ABI_C__FIMap_2_HSTRING_HSTRING
         typealias swift_ABI = __ABI_test_component.IMapString_String
 
@@ -319,7 +319,7 @@ public enum __IMPL_test_component {
     internal class __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl : IMap, AbiInterfaceImpl {
         typealias Key = String
         typealias Value = Base?
-        typealias swift_Projection = (any test_component.IMap<String, Base?>)?
+        typealias swift_Projection = any test_component.IMap<String, Base?>
         typealias c_ABI = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
         typealias swift_ABI = __ABI_test_component.IMapString_Base
 
@@ -383,7 +383,7 @@ public enum __IMPL_test_component {
 
     internal class __x_ABI_C__FIVectorView_1_HSTRINGImpl : IVectorView, AbiInterfaceImpl {
         typealias Element = String
-        typealias swift_Projection = (any test_component.IVectorView<String>)?
+        typealias swift_Projection = any test_component.IVectorView<String>
         typealias c_ABI = __x_ABI_C__FIVectorView_1_HSTRING
         typealias swift_ABI = __ABI_test_component.IVectorViewString
 
@@ -446,7 +446,7 @@ public enum __IMPL_test_component {
 
     internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl : IVectorView, AbiInterfaceImpl {
         typealias Element = Base?
-        typealias swift_Projection = (any test_component.IVectorView<Base?>)?
+        typealias swift_Projection = any test_component.IVectorView<Base?>
         typealias c_ABI = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase
         typealias swift_ABI = __ABI_test_component.IVectorViewBase
 
@@ -508,7 +508,7 @@ public enum __IMPL_test_component {
 
     internal class __x_ABI_C__FIVector_1_HSTRINGImpl : IVector, AbiInterfaceImpl {
         typealias Element = String
-        typealias swift_Projection = (any test_component.IVector<String>)?
+        typealias swift_Projection = any test_component.IVector<String>
         typealias c_ABI = __x_ABI_C__FIVector_1_HSTRING
         typealias swift_ABI = __ABI_test_component.IVectorString
 
@@ -618,7 +618,7 @@ public enum __IMPL_test_component {
 
     internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl : IVector, AbiInterfaceImpl {
         typealias Element = Base?
-        typealias swift_Projection = (any test_component.IVector<Base?>)?
+        typealias swift_Projection = any test_component.IVector<Base?>
         typealias c_ABI = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase
         typealias swift_ABI = __ABI_test_component.IVectorBase
 
@@ -732,7 +732,7 @@ public enum __IMPL_test_component {
         }
     }
     internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsImpl : WinRTDelegate {
-        internal typealias Data = (Simple, SimpleEventArgs)
+        internal typealias Data = (Simple?, SimpleEventArgs)
         internal typealias Return = ()
         internal var token: EventRegistrationToken?
         internal var handler: (Data) -> Return
