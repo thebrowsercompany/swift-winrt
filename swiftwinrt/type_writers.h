@@ -21,8 +21,8 @@ namespace swiftwinrt
     bool is_generic(metadata_type const& type);
     bool is_generic(const metadata_type* type);
 
-    template <typename T>
-    bool is_collection_type(T const& type);
+    bool is_collection_type(const metadata_type* type);
+    bool is_collection_type(metadata_type const& type);
 
     param_category get_category(const metadata_type*, TypeDef*);
 
@@ -479,17 +479,10 @@ namespace swiftwinrt
                     }
                 }
             }
-            else if (abi_types)
+            else if (abi_types && !writing_generic)
             {
-                auto name = type->cpp_abi_name();
-                if (name == "IInspectable" && !writing_generic)
-                {
-                    assert(!"IInspectable in this context would be an expression, not an identifier.");
-                }
-                else
-                {
-                    write(name);
-                }
+                // In generics, don't use the ABI name or we get IVectorIBase instead of IVectorBase
+                write(type->cpp_abi_name());
             }
             else if (type->swift_logical_namespace() != type_namespace || full_type_names)
             {
@@ -599,26 +592,25 @@ namespace swiftwinrt
             {
                 write(generic.mangled_name());
             }
-            else if (abi_types)
-            {
-                // IMapString_String
-                auto generic_type = generic.generic_type();
-                auto type_name_with_generic_param_count = generic_type->swift_type_name();
-                auto type_name = type_name_with_generic_param_count.substr(0,
-                    type_name_with_generic_param_count.find_first_of('`'));
-
-                write(type_name);
-
-                bool first = true;
-                for (const auto& generic_arg : generic.generic_params()) {
-                    if (!first) write("_");
-                    write(generic_arg->swift_type_name());
-                    first = false;
-                }
-            }
             else
             {
-                assert(!"A generic instance in a swift context would be an expression, not an identifier.");
+                if (abi_types)
+                {
+                    // Consolidate with implementation in write(metadata_type)
+                    auto guard = push_generic_params(generic);
+                    write(generic.generic_type());
+                }
+                else
+                {
+                    write("%<", remove_tick(generic.generic_type()->swift_type_name()));
+                    bool first = true;
+                    for (auto&& generic_arg : generic.generic_params()) {
+                        if (!first) write(", ");
+                        write(generic_arg);
+                        first = false;
+                    }
+                    write(">");
+                }
             }
         }
 

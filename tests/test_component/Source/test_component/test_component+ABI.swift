@@ -268,8 +268,8 @@ public enum __ABI_test_component {
 
         Split: {
             guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            var first: (any IMapView<String, String>)?
-            var second: (any IMapView<String, String>)?
+            var first: (any test_component.IMapView<String, String>)?
+            var second: (any test_component.IMapView<String, String>)?
             __unwrapped__instance.Split(&first, &second)
             let firstWrapper = __ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper(first)
             let _first = try! firstWrapper?.to_abi { $0 }
@@ -394,8 +394,8 @@ public enum __ABI_test_component {
 
         Split: {
             guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            var first: (any IMapView<String, Base>)?
-            var second: (any IMapView<String, Base>)?
+            var first: (any test_component.IMapView<String, Base?>)?
+            var second: (any test_component.IMapView<String, Base?>)?
             __unwrapped__instance.Split(&first, &second)
             let firstWrapper = __ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper(first)
             let _first = try! firstWrapper?.to_abi { $0 }
@@ -695,7 +695,7 @@ public enum __ABI_test_component {
         Insert: {
             guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let key: String = .init(from: $1)
-            let value: test_component.Base = .from(abi: $2)
+            let value: Base? = .from(abi: $2)
             let result = __unwrapped__instance.Insert(key, value)
             $3?.initialize(to: .init(from: result))
             return S_OK
@@ -952,7 +952,7 @@ public enum __ABI_test_component {
 
         IndexOf: {
             guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            let value: test_component.Base = .from(abi: $1)
+            let value: Base? = .from(abi: $1)
             var index: UInt32 = 0
             let result = __unwrapped__instance.IndexOf(value, &index)
             $2?.initialize(to: index)
@@ -1278,7 +1278,7 @@ public enum __ABI_test_component {
 
         IndexOf: {
             guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            let value: test_component.Base = .from(abi: $1)
+            let value: Base? = .from(abi: $1)
             var index: UInt32 = 0
             let result = __unwrapped__instance.IndexOf(value, &index)
             $2?.initialize(to: index)
@@ -1289,7 +1289,7 @@ public enum __ABI_test_component {
         SetAt: {
             guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let index: UInt32 = $1
-            let value: test_component.Base = .from(abi: $2)
+            let value: Base? = .from(abi: $2)
             __unwrapped__instance.SetAt(index, value)
             return S_OK
         },
@@ -1297,7 +1297,7 @@ public enum __ABI_test_component {
         InsertAt: {
             guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let index: UInt32 = $1
-            let value: test_component.Base = .from(abi: $2)
+            let value: Base? = .from(abi: $2)
             __unwrapped__instance.InsertAt(index, value)
             return S_OK
         },
@@ -1311,7 +1311,7 @@ public enum __ABI_test_component {
 
         Append: {
             guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            let value: test_component.Base = .from(abi: $1)
+            let value: Base? = .from(abi: $1)
             __unwrapped__instance.Append(value)
             return S_OK
         },
@@ -1638,8 +1638,8 @@ public enum __ABI_test_component {
 
         Invoke: {
             guard let __unwrapped__instance = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            let sender: test_component.Simple = .from(abi: $1)
-            let args: test_component.SimpleEventArgs = .from(abi: $2)
+            let sender: Simple? = .from(abi: $1)
+            let args: SimpleEventArgs = .from(abi: $2)
             __unwrapped__instance.handler((sender, args))
             return S_OK
         }
@@ -2343,7 +2343,7 @@ public enum __ABI_test_component {
 
         InEnum: {
             guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            let value: test_component.Signed = $1
+            let value: Signed = $1
             let result = __unwrapped__instance.InEnum(value)
             $2?.initialize(to: try! HString(result).detach())
             return S_OK
@@ -2359,7 +2359,7 @@ public enum __ABI_test_component {
 
         OutString: {
             guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            var value: String?
+            var value: String = ""
             __unwrapped__instance.OutString(&value)
             $1?.initialize(to: try! HString(value).detach())
             return S_OK
@@ -2367,7 +2367,7 @@ public enum __ABI_test_component {
 
         OutBlittableStruct: {
             guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            var value: test_component.BlittableStruct = .init()
+            var value: BlittableStruct = .init()
             __unwrapped__instance.OutBlittableStruct(&value)
             $1?.initialize(to: .from(swift: value))
             return S_OK
@@ -2375,7 +2375,7 @@ public enum __ABI_test_component {
 
         OutNonBlittableStruct: {
             guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            var value: test_component.NonBlittableStruct = .init()
+            var value: NonBlittableStruct = .init()
             __unwrapped__instance.OutNonBlittableStruct(&value)
             let _value = __ABI_test_component._ABI_NonBlittableStruct(from: value)
             	$1?.initialize(to: _value.detach())
@@ -2384,7 +2384,7 @@ public enum __ABI_test_component {
 
         OutEnum: {
             guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            var value: test_component.Signed = .init(0)
+            var value: Signed = .init(0)
             __unwrapped__instance.OutEnum(&value)
             $1?.initialize(to: value)
             return S_OK
@@ -2406,7 +2406,7 @@ public enum __ABI_test_component {
 
         put_EnumProperty: {
             guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            let value: test_component.Fruit = $1
+            let value: Fruit = $1
             __unwrapped__instance.EnumProperty = value
             return S_OK
         },
