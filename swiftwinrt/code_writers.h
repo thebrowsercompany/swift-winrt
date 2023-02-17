@@ -495,6 +495,165 @@ namespace swiftwinrt
         w.write(" __%Size", get_swift_name(param));
     }
 
+    static void write_type_expression(writer& w, metadata_type const& type, bool abi);
+    
+    static void write_type_expression(writer& w, element_type const& type, bool abi)
+    {
+        if (abi)
+        {
+            if (elem_type->type() == ElementType::Object)
+            {
+                w.write("%.IInspectable", w.c_mod);
+            }
+            else if (elem_type->type() == ElementType::String)
+            {
+                // Projecting as optional makes it easier to interop
+                // with UnsafePointers
+                w.write("HSTRING?");
+            }
+            else
+            {
+                // Primitive numeric types
+                w.write_abi(elem_type->type());
+            }
+        }
+        else
+        {
+            if (elem_type->type() == ElementType::Object)
+            {
+                w.write("%.IInspectable", w.support);
+            }
+            else
+            {
+                // Primitive numeric types and String
+                w.write_swift(elem_type->type());
+            }
+        }
+    }
+
+    static void write_type_expression(writer& w, typedef_base const& type,
+        const generic_inst* opt_generic_inst, bool abi)
+    {
+        bool is_interface = dynamic_cast<const interface_type*>(type) != nullptr;
+        bool is_reference_type = is_interface || dynamic_cast<const class_type*>(type) != nullptr;
+
+        if (abi)
+        {
+            if (is_reference_type)
+            {
+                auto abi_guard = w.push_abi();
+                auto guard{ push_mangled_names_if_needed(get_category(type)) };
+                if (is_reference_type) w.write("UnsafeMutablePointer<%>?", type);
+                else w.write(type);
+            }
+            else
+            {
+                assert(!"Not implemented");
+            }
+        }
+        else
+        {
+            if (is_reference_type) w.write("("); // Project as optional
+            if (is_interface) w.write("any "); // Project as existential
+            
+            // Namespace
+            if (opt_generic_inst)
+            {
+                writer.write("%.", writer.support);
+            }
+            else if (type->swift_logical_namespace() != writer.type_namespace)
+            {
+                writer.write("%.", type->swift_logical_namespace());
+            }
+
+            w.write(type);
+            
+            // Generic type arguments
+            if (opt_generic_inst)
+            {
+                w.write("<");
+                separator sep{ w };
+                for (const auto& gen_arg : opt_generic_inst->generic_params())
+                {
+                    sep();
+                    write_type_expression(w, gen_arg, abi);
+                }
+                w.write(">");
+            }
+
+            if (is_reference_type) w.write(")?"); // Project as optional
+        }
+    }
+
+    static void write_type_expression(writer& w, metadata_type const& type, bool abi)
+    {
+        if (auto elem_type = dynamic_cast<const element_type*>(&type))
+        {
+            write_type_expression(w, *elem_type, abi);
+        }
+        else if (auto mapped = dynamic_cast<const mapped_type*>(&type))
+        {
+            // mapped types are defined in headers and *not* metadata files, so these don't follow the same
+            // naming conventions that other types do. We just grab the type name and will use that.
+            auto swift_name = mapped->swift_type_name();
+            w.write(swift_name == "HResult" ? "HRESULT" : swift_name);
+        }
+        else if (auto type_def = dynamic_cast<const typedef_base*>(&type))
+        {
+            assert(!is_generic(type));
+            write_type_expression(w, type_def, /* opt_generic_params: */ nullptr, layer);
+        }
+        else if (auto geninst = dynamic_cast<const generic_inst*>(&type))
+        {
+            auto gentype = *geninst->generic_type();
+            const auto& genparams = geninst->generic_params();
+            
+            // Special generic types
+            if (gentype.swift_full_name() == "Windows.Foundation.IReference`1")
+            {
+                auto boxed_type = genparams[0];
+                write("%?", bind<write_type_expression>(w, boxed_type, layer));
+            }
+            else if (gentype.swift_full_name() == "Windows.Foundation.TypedEventHandler`2")
+            {
+                auto sender_type = genparams[0];
+                auto args_type = genparams[1];
+                write("^@escaping (%,%) -> ()",
+                    bind<write_type_expression>(w, sender_type, layer),
+                    bind<write_type_expression>(w, args_type, layer));
+            }
+            else if (gentype.swift_full_name() == "Windows.Foundation.EventHandler`1")
+            {
+                auto args_type = genparams[0];
+                write("^@escaping (%.IInspectable,%) -> ()",
+                    support, bind<write_type_expression>(w, args_type, layer));
+            }
+            else
+            {
+                // Collections and other generic types
+                write_type_expression(w, gentype, &genparams, layer);
+            }
+        }
+    }
+
+    static void write_function_param(writer& w, function_param const& param, ProjectionLayer layer)
+    {
+        w.write("_ %: ", get_swift_name(param));
+        if (param.out) w.write("inout ");
+        write_type_expression(w, *param.type, layer);
+    }
+
+    static void write_function_params(writer& w, function_def const& function)
+    {
+        separator s{ w };
+
+        for (auto&& param : function.params)
+        {
+            s();
+            write_function_param(param);
+        }
+    }
+
     static void write_convert_to_abi_arg(writer& w, std::string_view const& param_name, const metadata_type* type, bool is_out)
     {
         TypeDef signature_type;
@@ -558,17 +717,6 @@ namespace swiftwinrt
         }
     }
 
-    static void write_params(writer& w, function_def const& function)
-    {
-        separator s{ w };
-
-        for (auto&& param : function.params)
-        {
-            s();
-            w.write(param);
-        }
-    }
-
     static void write_implementation_args(writer& w, function_def const& function)
     {
         separator s{ w };
@@ -577,8 +725,7 @@ namespace swiftwinrt
             s();
             if (param.in())
             {
-                w.write("%",
-                    bind<write_convert_to_abi_arg>(get_swift_name(param), param.type, false));
+                write_convert_to_abi_arg(w, get_swift_name(param), param.type, false);
             }
             else
             {
@@ -719,51 +866,33 @@ namespace swiftwinrt
         }
     }
 
-    static void write_init_val(writer& w, metadata_type const* sig)
+    static void write_default_init_assignment(writer& w, metadata_type const* sig)
     {
         auto category = get_category(sig);
      
         if (category == param_category::object_type || category == param_category::generic_type)
         {
-            if (category == param_category::generic_type && !w.mangled_names)
-            {
-                // "?" has precedence over "any"
-                w.write("(any %)?", sig);
-            }
-            else
-            {
-                w.write("UnsafeMutablePointer<%>?", sig);
-            }
+            // Projected to Optional and default-initialized to nil
         }
         else if (category == param_category::string_type)
         {
-            w.write("%?", sig);
+            w.write(" = \"\"");
         }
         else if (category == param_category::struct_type || is_guid(category))
         {
-            auto format = "% = .init()";
-            w.write(format,
-                sig);
+            w.write(" = .init()");
         }
         else if (category == param_category::enum_type)
         {
-            auto format = "% = .init(0)";
-            w.write(format,
-                sig);
+            w.write(" = .init(0)");
         }
         else if (is_boolean(sig))
         {
-            auto format = "% = %";
-            w.write(format,
-                sig,
-                w.abi_types ? "0" : "false");
+            w.write(" = %", w.abi_types ? "0" : "false");
         }
         else
         {
-            auto format = "% = %";
-            w.write(format,
-                sig,
-                is_floating_point(sig) ? "0.0" : "0");
+            w.write(" = %", is_floating_point(sig) ? "0.0" : "0");
         }
     }
 
@@ -772,7 +901,8 @@ namespace swiftwinrt
     {
         auto category = get_category(signature.type);
         auto guard{ w.push_mangled_names_if_needed(category) };
-        write_init_val(w, signature.type);
+        write_type_expression(w, *signature.type, ProjectionLayer::ABI);
+        write_default_init_assignment(w, signature.type);
     }
 
     static void write_consume_return_statement(writer& w, function_def const& signature);
@@ -810,9 +940,8 @@ bind<write_abi_args>(function));
             return;
         }
 
-        auto format = "-> % ";
-        w.write(format,
-            function.return_type.value());
+        w.write(" -> ");
+        write_type_expression(w, function.return_type.value(), ProjectionLayer::ABI);
     }
 
     static void do_write_interface_abi(writer& w, typedef_base const& type, std::vector<function_def> const& methods)
@@ -876,6 +1005,7 @@ bind<write_abi_args>(function));
         class_indent_guard.end();
         w.write("}\n\n");
     }
+
     static void write_implementable_interface(writer& w, interface_type const& type);
 
     static void write_interface_generic(writer& w, generic_inst const& type)
@@ -941,6 +1071,7 @@ bind<write_abi_args>(function));
             write_implementable_interface(w, type);
         }
     }
+
     static void write_vtable(writer& w, interface_type const& type);
     static void write_vtable(writer& w, delegate_type const& type);
 
@@ -1402,7 +1533,9 @@ bind_impl_fullname(type));
         w.write(R"(public typealias c_ABI = %
 public typealias swift_ABI = %.%
 public typealias swift_Projection = %
+
 private (set) public var _default: swift_ABI
+
 public static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {
     return %(abi)
 }
@@ -1440,11 +1573,9 @@ public static func makeAbi() -> c_ABI {
 
             if (!info.is_default || info.base)
             {
-                auto swiftAbi = w.write_temp("%.%", abi_namespace(*info.type), info.type->swift_type_name());
-                assert(!is_collection_type(info.type)); // not expected generic types in this method    
                 w.write("internal lazy var %: % = try! _default.QueryInterface()\n",
                     get_swift_name(info),
-                    swiftAbi);
+                    bind<write_type_expression>(*info.type, ProjectionLayer::ABI));
             }
 
             if (auto iface = dynamic_cast<const interface_type*>(info.type))
