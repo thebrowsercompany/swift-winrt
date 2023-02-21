@@ -81,13 +81,13 @@ public protocol IPropertyValue : IWinRTObject {
         func GetBoolean() -> Bool
         func GetString() -> String
         func GetGuid() -> UUID
-        func GetDateTime() -> DateTime
-        func GetTimeSpan() -> TimeSpan
-        func GetPoint() -> Point
-        func GetSize() -> Size
-        func GetRect() -> Rect
+        func GetDateTime() -> test_component.DateTime
+        func GetTimeSpan() -> test_component.TimeSpan
+        func GetPoint() -> test_component.Point
+        func GetSize() -> test_component.Size
+        func GetRect() -> test_component.Rect
         var IsNumericScalar: Bool { get }
-        var `Type`: PropertyType { get }
+        var `Type`: test_component.PropertyType { get }
 }
 public protocol IReference : IPropertyValue {
     var Value: Any { get }

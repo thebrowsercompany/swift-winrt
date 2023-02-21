@@ -218,6 +218,29 @@ namespace swiftwinrt
         return is_ireference(*type);
     }
 
+    inline bool is_eventhandler(metadata_type const& type, bool* typed = nullptr)
+    {
+        if (type.swift_full_name().starts_with("Windows.Foundation.EventHandler"))
+        {
+            if (typed != nullptr) *typed = false;
+            return true;
+        }
+        else if (type.swift_full_name().starts_with("Windows.Foundation.TypedEventHandler"))
+        {
+            if (typed != nullptr) *typed = true;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    inline bool is_eventhandler(const metadata_type* type, bool* typed = nullptr)
+    {
+        return is_eventhandler(*type, typed);
+    }
+
     inline bool is_collection_type(metadata_type const& type)
     {
         if (type.swift_logical_namespace() == "Windows.Foundation.Collections")
@@ -616,7 +639,7 @@ namespace swiftwinrt
         else
         {
             auto name = std::string("_").append(iface.type->swift_type_name());
-            if (iface.generic_params.size() == 1)
+            if (iface.generic_params.size() > 0)
             {
                 name.erase(name.find_first_of('`'));
             }

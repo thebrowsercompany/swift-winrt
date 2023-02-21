@@ -1093,7 +1093,7 @@ public protocol IBasic : IWinRTObject {
         func Method()
 }
 extension IBasic {
-    public static var none: IBasic {
+    public static var none: any IBasic {
         __IMPL_test_component.IBasicImpl(nil)
     }
 }
@@ -1101,19 +1101,19 @@ extension IBasic {
 public protocol IIAmImplementable : IWinRTObject { 
         func InInt32(_ value: Int32) -> String
         func InString(_ value: String) -> String
-        func InEnum(_ value: Signed) -> String
+        func InEnum(_ value: test_component.Signed) -> String
         func OutInt32(_ value: inout Int32)
         func OutString(_ value: inout String)
-        func OutBlittableStruct(_ value: inout BlittableStruct)
-        func OutNonBlittableStruct(_ value: inout NonBlittableStruct)
-        func OutEnum(_ value: inout Signed)
-        func ReturnEnum() -> Signed
+        func OutBlittableStruct(_ value: inout test_component.BlittableStruct)
+        func OutNonBlittableStruct(_ value: inout test_component.NonBlittableStruct)
+        func OutEnum(_ value: inout test_component.Signed)
+        func ReturnEnum() -> test_component.Signed
         func FireEvent()
-        var EnumProperty: Fruit { get set }
+        var EnumProperty: test_component.Fruit { get set }
         var ID: UUID? { get set }
 }
 extension IIAmImplementable {
-    public static var none: IIAmImplementable {
+    public static var none: any IIAmImplementable {
         __IMPL_test_component.IIAmImplementableImpl(nil)
     }
 }
@@ -1123,7 +1123,7 @@ public protocol ISimpleDelegate : IWinRTObject {
         func DoThat(_ val: Int32)
 }
 extension ISimpleDelegate {
-    public static var none: ISimpleDelegate {
+    public static var none: any ISimpleDelegate {
         __IMPL_test_component.ISimpleDelegateImpl(nil)
     }
 }

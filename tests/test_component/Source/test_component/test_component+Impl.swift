@@ -5,7 +5,7 @@ public enum __IMPL_test_component {
     public class IBasicImpl : IBasic, AbiInterfaceImpl {
         public typealias c_ABI = __x_ABI_Ctest__component_CIBasic
         public typealias swift_ABI = __ABI_test_component.IBasic
-        public typealias swift_Projection = IBasic
+        public typealias swift_Projection = any IBasic
         private (set) public var _default: swift_ABI
         public static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {
             return IBasicImpl(abi)
@@ -27,7 +27,7 @@ public enum __IMPL_test_component {
     public class IIAmImplementableImpl : IIAmImplementable, AbiInterfaceImpl {
         public typealias c_ABI = __x_ABI_Ctest__component_CIIAmImplementable
         public typealias swift_ABI = __ABI_test_component.IIAmImplementable
-        public typealias swift_Projection = IIAmImplementable
+        public typealias swift_Projection = any IIAmImplementable
         private (set) public var _default: swift_ABI
         public static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {
             return IIAmImplementableImpl(abi)
@@ -121,7 +121,7 @@ public enum __IMPL_test_component {
     public class ISimpleDelegateImpl : ISimpleDelegate, AbiInterfaceImpl {
         public typealias c_ABI = __x_ABI_Ctest__component_CISimpleDelegate
         public typealias swift_ABI = __ABI_test_component.ISimpleDelegate
-        public typealias swift_Projection = ISimpleDelegate
+        public typealias swift_Projection = any ISimpleDelegate
         private (set) public var _default: swift_ABI
         public static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {
             return ISimpleDelegateImpl(abi)
@@ -183,8 +183,8 @@ public enum __IMPL_test_component {
             var _first: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?
             var _second: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?
             try! _default.SplitImpl(&_first, &_second)
-            first = __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl(_first)
-            second = __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl(_second)
+            first = __IMPL_test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl(_first)
+            second = __IMPL_test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl(_second)
         }
 
         public var Size : UInt32 {
@@ -236,8 +236,8 @@ public enum __IMPL_test_component {
             var _first: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
             var _second: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
             try! _default.SplitImpl(&_first, &_second)
-            first = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(_first)
-            second = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(_second)
+            first = __IMPL_test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(_first)
+            second = __IMPL_test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(_second)
         }
 
         public var Size : UInt32 {
