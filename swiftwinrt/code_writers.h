@@ -251,7 +251,7 @@ namespace swiftwinrt
 
     static bool can_write(generic_inst const& type)
     {
-        // TODO: WIN-###: Support nested generics
+        // TODO: WIN-275: Code generation for nested generics
         for (auto genarg : type.generic_params())
         {
             if (dynamic_cast<const generic_inst*>(genarg) != nullptr)
@@ -339,7 +339,7 @@ namespace swiftwinrt
             // so we'll return false
             if (iface.second.is_default)
             {
-                // TODO: WIN-### Implement IIterable/IIterator
+                // TODO: WIN-274 Code generation for IIterable/IIterator
                 // TODO: WIN-124 Code generation for IObservableVector and IObservableMap
                 auto name = iface.second.type->swift_full_name();
                 if (name.starts_with("Windows.Foundation.Collections.IIterable")
@@ -918,7 +918,7 @@ namespace swiftwinrt
         }
     }
 
-    static void write_default_init_assignment(writer& w, metadata_type const& sig, bool abi)
+    static void write_default_init_assignment(writer& w, metadata_type const& sig, bool c_abi)
     {
         auto category = get_category(&sig);
      
@@ -929,7 +929,7 @@ namespace swiftwinrt
         else if (category == param_category::string_type)
         {
             // abi representation is HRESULT? which defaults to nil
-            if (!abi) w.write(" = \"\"");
+            if (!c_abi) w.write(" = \"\"");
         }
         else if (category == param_category::struct_type || is_guid(category))
         {
@@ -941,7 +941,7 @@ namespace swiftwinrt
         }
         else if (is_boolean(&sig))
         {
-            w.write(" = %", abi ? "0" : "false");
+            w.write(" = %", c_abi ? "0" : "false");
         }
         else
         {
@@ -985,7 +985,7 @@ bind<write_abi_args>(function));
         }
     }
 
-    static void write_return_type_declaration(writer& w, function_def function, bool abi)
+    static void write_return_type_declaration(writer& w, function_def function, bool c_abi)
     {
         if (!function.return_type)
         {
@@ -993,7 +993,7 @@ bind<write_abi_args>(function));
         }
 
         w.write(" -> ");
-        write_type_expression(w, *function.return_type->type, abi);
+        write_type_expression(w, *function.return_type->type, c_abi);
     }
 
     static void do_write_interface_abi(writer& w, typedef_base const& type, std::vector<function_def> const& methods)
@@ -2620,7 +2620,7 @@ public % var % : Event<(%),%> = EventImpl<%>(register: %_%, owner:%)
             // We don't want to specify interfaces which come from the base class or which ones are exclusive
             if (info.base || info.exclusive || interface_name.empty()) continue;
 
-            // TODO: WIN-### Implement IIterable/IIterator
+            // TODO: WIN-274 Code generation for IIterable/IIterator
             // TODO: WIN-124 Code generation for IObservableVector and IObservableMap
             auto name = info.type->swift_full_name();
             if (name.starts_with("Windows.Foundation.Collections.IIterable")
@@ -2893,7 +2893,7 @@ private var _default: swift_ABI = .init(UnsafeMutableRawPointer.none)
     template <typename T>
     static void write_query_interface_case(writer& w, T const& type, metadata_type const& iface, bool cast)
     {
-        w.write("if riid.pointee == %.IID{\n", bind_wrapper_fullname(iface));
+        w.write("if riid.pointee == %.IID {\n", bind_wrapper_fullname(iface));
         {
             auto indent = w.push_indent();
 

@@ -471,7 +471,7 @@ namespace swiftwinrt
                     auto name = type->mangled_name();
                     if (name == "IInspectable" && !writing_generic)
                     {
-                        assert(!"IInspectable in this context would be an expression, not an identifier.");
+                        write("%.IInspectable", c_mod);
                     }
                     else
                     {
@@ -516,7 +516,7 @@ namespace swiftwinrt
             else if (type == ElementType::R4) { write("FLOAT"); }
             else if (type == ElementType::R8) { write("DOUBLE"); }
             else if (type == ElementType::String) { write("HSTRING"); }
-            else if (type == ElementType::Object) { write("IInspectable"); }
+            else if (type == ElementType::Object) { write("%.IInspectable", c_mod); }
             else
             {
                 assert(false);
@@ -561,7 +561,7 @@ namespace swiftwinrt
             else if (type == ElementType::R4) { write("Float"); }
             else if (type == ElementType::R8) { write("Double"); }
             else if (type == ElementType::String) { write("String"); }
-            else if (type == ElementType::Object) { write("IInspectable"); }
+            else if (type == ElementType::Object) { write("%.IInspectable", support); }
             else
             {
                 assert(false);

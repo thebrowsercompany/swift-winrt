@@ -1456,7 +1456,7 @@ public enum __ABI_test_component {
     internal static var __x_ABI_C__FIReference_1_intVTable: __x_ABI_C__FIReference_1_intVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-            if riid.pointee == __ABI_Windows_Foundation.IPropertyValueWrapper.IID{
+            if riid.pointee == __ABI_Windows_Foundation.IPropertyValueWrapper.IID {
                 guard let instance = __x_ABI_C__FIReference_1_intWrapper.try_unwrap_from(raw: pUnk) else { return E_NOINTERFACE }
                 guard let inner = __ABI_Windows_Foundation.IPropertyValueWrapper(instance) else { return E_INVALIDARG }
                 let pThis = try! inner.to_abi { $0 }
@@ -1533,7 +1533,7 @@ public enum __ABI_test_component {
     internal static var __x_ABI_C__FIReference_1_GUIDVTable: __x_ABI_C__FIReference_1_GUIDVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-            if riid.pointee == __ABI_Windows_Foundation.IPropertyValueWrapper.IID{
+            if riid.pointee == __ABI_Windows_Foundation.IPropertyValueWrapper.IID {
                 guard let instance = __x_ABI_C__FIReference_1_GUIDWrapper.try_unwrap_from(raw: pUnk) else { return E_NOINTERFACE }
                 guard let inner = __ABI_Windows_Foundation.IPropertyValueWrapper(instance) else { return E_INVALIDARG }
                 let pThis = try! inner.to_abi { $0 }
@@ -2929,7 +2929,7 @@ public enum __ABI_test_component {
     internal static var IUnsealedDerivedOverridesVTable: __x_ABI_Ctest__component_CIUnsealedDerivedOverridesVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-            if riid.pointee == __ABI_test_component.IBaseOverridesWrapper.IID{
+            if riid.pointee == __ABI_test_component.IBaseOverridesWrapper.IID {
                 guard let instance = IUnsealedDerivedOverridesWrapper.try_unwrap_from(raw: pUnk) else { return E_NOINTERFACE }
                 guard let inner = __ABI_test_component.IBaseOverridesWrapper(instance) else { return E_INVALIDARG }
                 let pThis = try! inner.to_abi { $0 }
@@ -2998,13 +2998,13 @@ public enum __ABI_test_component {
     internal static var IUnsealedDerivedOverloads2VTable: __x_ABI_Ctest__component_CIUnsealedDerivedOverloads2Vtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-            if riid.pointee == __ABI_test_component.IBaseOverridesWrapper.IID{
+            if riid.pointee == __ABI_test_component.IBaseOverridesWrapper.IID {
                 guard let instance = IUnsealedDerivedOverloads2Wrapper.try_unwrap_from(raw: pUnk) else { return E_NOINTERFACE }
                 guard let inner = __ABI_test_component.IBaseOverridesWrapper(instance) else { return E_INVALIDARG }
                 let pThis = try! inner.to_abi { $0 }
                 return pThis.pointee.lpVtbl.pointee.QueryInterface(pThis, riid, ppvObject)
             }
-            if riid.pointee == __ABI_test_component.IUnsealedDerivedOverridesWrapper.IID{
+            if riid.pointee == __ABI_test_component.IUnsealedDerivedOverridesWrapper.IID {
                 guard let instance = IUnsealedDerivedOverloads2Wrapper.try_unwrap_from(raw: pUnk) else { return E_NOINTERFACE }
                 guard let inner = __ABI_test_component.IUnsealedDerivedOverridesWrapper(instance) else { return E_INVALIDARG }
                 let pThis = try! inner.to_abi { $0 }
