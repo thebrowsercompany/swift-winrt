@@ -1655,7 +1655,7 @@ bind_impl_fullname(type));
 
         w.write(R"(public typealias c_ABI = %
 public typealias swift_ABI = %.%
-public typealias swift_Projection = any %
+public typealias swift_Projection = %
 private (set) public var _default: swift_ABI
 public static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {
     return %(abi)
@@ -1672,7 +1672,7 @@ public static func makeAbi() -> c_ABI {
             bind_type_mangled(type),
             abi_namespace(type),
             type,
-            type,
+            bind<write_type_expression_ex>(type, /* c_abi: */ false, /* omit_outer_optional: */ true),
             bind_impl_name(type),
             abi_namespace(type),
             type);
@@ -1864,7 +1864,7 @@ public static func makeAbi() -> c_ABI {
         }
 
         w.write("typealias swift_Projection = %\n",
-            bind<write_type_expression_ex>(type, /* c_abi: */ false, /* no_outer_optional: */ true));
+            bind<write_type_expression_ex>(type, /* c_abi: */ false, /* omit_outer_optional: */ true));
 
         w.write("typealias c_ABI = %\n", bind_type_mangled(type));
         w.write("typealias swift_ABI = %.%\n", abi_namespace(w.type_namespace), bind_type_abi(type));
@@ -1961,7 +1961,7 @@ public static func makeAbi() -> c_ABI {
                     }
                     else if (is_delegate(param.type))
                     {
-                        // TODO-###: Support nullability for delegates
+                        // TODO: WIN-276: Delegates are assumed to be non-null in generated code
                         w.write("let %Wrapper = %(%!)\n",
                             get_swift_name(param),
                             bind_wrapper_fullname(param.type),
@@ -2175,19 +2175,19 @@ public init<Factory: ComposableActivationFactory>(_ factory : Factory) {
             {
                 auto override_composable_init = R"(override public init() {
     super.init(Self._%) 
-    let parentDefault: UnsafeMutablePointer<%.IInspectable>? = super._get_abi()
+    let parentDefault: UnsafeMutablePointer<%>? = super._get_abi()
     self._default = try! IInspectable(parentDefault).QueryInterface()
     _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
 }
 
 override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
     super.init(factory)
-    let parentDefault: UnsafeMutablePointer<%.IInspectable>? = super._get_abi()
+    let parentDefault: UnsafeMutablePointer<%>? = super._get_abi()
     self._default = try! IInspectable(parentDefault).QueryInterface()
     _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
 }
 )";
-                w.write(override_composable_init, factory, w.c_mod, w.c_mod);
+                w.write(override_composable_init, factory, bind_type_abi(ElementType::Object), bind_type_abi(ElementType::Object));
             }
         }
     }
@@ -2312,7 +2312,7 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
             }
             else if (is_delegate(prop.type))
             {
-                // TODO-###: Support nullability for delegates
+                // TODO: WIN-276: Delegates are assumed to be non-null in generated code
                 w.write("let wrapper = %(newValue!)\n", bind_wrapper_fullname(prop.type));
                 w.write("let _newValue = try! wrapper.to_abi { $0 }\n");
             }
@@ -2531,7 +2531,7 @@ public % var % : Event<(%),%> = EventImpl<%>(register: %_%, owner:%)
             bind([&](writer& w) {
                     if (use_iinspectable_vtable)
                     {
-                        w.write("%.IInspectable", w.c_mod);
+                        write_type_mangled(w, ElementType::Object);
                     }
                     else
                     {
@@ -2540,7 +2540,7 @@ public % var % : Event<(%),%> = EventImpl<%>(register: %_%, owner:%)
             bind([&](writer& w) {
                     if (use_iinspectable_vtable)
                     {
-                        w.write("%.IInspectable", w.support);
+                        w.write(ElementType::Object);
                     }
                     else
                     {
@@ -2658,16 +2658,16 @@ public % var % : Event<(%),%> = EventImpl<%>(register: %_%, owner:%)
 
         auto class_indent_guard = w.push_indent();
 
+        if (composable && !base_class)
+        {
+            w.write("private (set) public var _inner: UnsafeMutablePointer<%.IInspectable>?\n", w.c_mod);
+        }
+
         for (auto&& collection_type_alias : collection_type_aliases)
         {
             w.write("public typealias % = %\n",
                 collection_type_alias.first,
                 bind<write_type_expression>(*collection_type_alias.second, /* c_abi: */ false));
-        }
-
-        if (composable && !base_class)
-        {
-            w.write("private (set) public var _inner: UnsafeMutablePointer<%.IInspectable>?\n", w.c_mod);
         }
 
         writer::generic_param_guard guard;
@@ -2947,6 +2947,7 @@ bind([&](writer& w) {
                 {
                     if (!can_write(w, iface.second.type)) continue;
 
+                    // Swift fails to implicitly convert a derived interface to its generic base interface without a cast
                     write_query_interface_case(w, type, *iface.second.type,
                         /* cast: */ dynamic_cast<const generic_inst*>(iface.second.type) != nullptr);
                 }}),
@@ -3106,7 +3107,7 @@ bind([&](writer& w) {
         }
         else if (is_delegate(type))
         {
-            // TODO-###: Support nullability for delegates
+            // TODO: WIN-276: Delegates are assumed to be non-null in generated code
             w.write("let %Wrapper = %(%!)\n",
                 param_name,
                 bind_wrapper_fullname(type),
