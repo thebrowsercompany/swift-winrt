@@ -218,27 +218,24 @@ namespace swiftwinrt
         return is_ireference(*type);
     }
 
-    inline bool is_eventhandler(metadata_type const& type, bool* typed = nullptr)
+    inline bool is_eventhandler(metadata_type const& type)
     {
-        if (type.swift_full_name().starts_with("Windows.Foundation.EventHandler"))
-        {
-            if (typed != nullptr) *typed = false;
-            return true;
-        }
-        else if (type.swift_full_name().starts_with("Windows.Foundation.TypedEventHandler"))
-        {
-            if (typed != nullptr) *typed = true;
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return type.swift_full_name().starts_with("Windows.Foundation.EventHandler");
     }
 
-    inline bool is_eventhandler(const metadata_type* type, bool* typed = nullptr)
+    inline bool is_eventhandler(const metadata_type* type)
     {
-        return is_eventhandler(*type, typed);
+        return is_eventhandler(*type);
+    }
+
+    inline bool is_typedeventhandler(metadata_type const& type)
+    {
+        return type.swift_full_name().starts_with("Windows.Foundation.TypedEventHandler");
+    }
+
+    inline bool is_typedeventhandler(const metadata_type* type)
+    {
+        return is_typedeventhandler(*type);
     }
 
     inline bool is_collection_type(metadata_type const& type)
@@ -473,15 +470,11 @@ namespace swiftwinrt
 
     inline bool is_delegate(metadata_type const* type)
     {
-        if (dynamic_cast<delegate_type const*>(type))
-        {
-            return true;
-        }
-        else if (auto genericInst = dynamic_cast<generic_inst const*>(type))
+        if (auto genericInst = dynamic_cast<generic_inst const*>(type))
         {
             return is_delegate(*genericInst);
         }
-        return false;
+        return dynamic_cast<delegate_type const*>(type) != nullptr;
     }
 
     inline bool is_delegate(metadata_type const& type)
@@ -491,13 +484,29 @@ namespace swiftwinrt
 
     inline bool is_interface(metadata_type const* type)
     {
-        return dynamic_cast<interface_type const*>(type) != nullptr || 
-               is_generic(type);
+        if (auto geninst = dynamic_cast<generic_inst const*>(type))
+        {
+            return is_interface(geninst->generic_type());
+        }
+
+        return dynamic_cast<interface_type const*>(type) != nullptr;
     }
 
     inline bool is_class(metadata_type const* type)
     {
+        // Classes cannot be generic in WinRT
         return dynamic_cast<class_type const*>(type) != nullptr;
+    }
+
+    inline bool is_reference_type(metadata_type const* type)
+    {
+        if (is_class(type) || is_interface(type) || is_delegate(type))
+        {
+            return true;
+        }
+
+        auto elem = dynamic_cast<element_type const*>(type);
+        return elem != nullptr && elem->type() == ElementType::Object;
     }
 
     template <typename T>
