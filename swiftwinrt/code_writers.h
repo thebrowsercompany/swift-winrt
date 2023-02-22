@@ -255,7 +255,7 @@ namespace swiftwinrt
         // TODO: WIN-275: Code generation for nested generics
         for (auto genarg : type.generic_params())
         {
-            if (dynamic_cast<const generic_inst*>(genarg) != nullptr)
+            if (is_generic(genarg))
             {
                 return false;
             }
