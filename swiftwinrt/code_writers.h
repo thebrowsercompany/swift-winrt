@@ -2742,7 +2742,7 @@ bind([&](writer& w) {
 
                     // Swift fails to implicitly convert a derived interface to its generic base interface without a cast
                     write_query_interface_case(w, type, *iface.second.type,
-                        /* cast: */ dynamic_cast<const generic_inst*>(iface.second.type) != nullptr);
+                        /* cast: */ is_generic(iface.second.type));
                 }}),
             bind_wrapper_fullname(type),
             bind([&](writer & w) {

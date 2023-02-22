@@ -188,11 +188,7 @@ static void write_c_abi_type_expression(writer& w, metadata_type const& type, bo
             generic_params_guard = w.push_generic_params(*geninst);
         }
 
-        bool is_reference_type = dynamic_cast<const interface_type*>(&type) != nullptr
-            || dynamic_cast<const class_type*>(&type) != nullptr
-            || dynamic_cast<const delegate_type*>(&type) != nullptr;
-
-        if (is_reference_type)
+        if (is_reference_type(&type))
         {
             w.write("UnsafeMutablePointer<%>", type);
             if (!omit_outer_optional)
