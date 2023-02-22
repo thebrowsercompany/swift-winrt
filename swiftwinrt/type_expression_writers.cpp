@@ -17,7 +17,11 @@ static void write_swift_typedef_expression(writer& w, typedef_base const& type,
     if (is_interface(&type))
     {
         // Project as existential and optional
-        if (!omit_outer_optional) w.write("(");
+        if (!omit_outer_optional)
+        {
+            w.write("(");
+        }
+
         w.write("any ");
     }
 
@@ -49,8 +53,15 @@ static void write_swift_typedef_expression(writer& w, typedef_base const& type,
 
     if (!omit_outer_optional)
     {
-        if (is_interface(&type)) w.write(")"); // Close existential parenthesis
-        if (is_reference_type(&type)) w.write("?"); // Project as optional
+        if (is_interface(&type))
+        {
+            w.write(")"); // Close existential parenthesis
+        }
+
+        if (is_reference_type(&type))
+        {
+            w.write("?"); // Project as optional
+        }
     }
 }
 
