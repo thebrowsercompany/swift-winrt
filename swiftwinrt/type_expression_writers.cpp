@@ -95,7 +95,11 @@ static void write_swift_type_expression(writer& w, metadata_type const& type, bo
     }
     else if (auto type_def = dynamic_cast<const typedef_base*>(&type))
     {
-        assert(!is_generic(type));
+        if (type_def->is_generic())
+        {
+            throw std::exception("Cannot write a type expression of a generic type definition.");
+        }
+
         write_swift_typedef_expression(w, *type_def, /* opt_generic_params: */ nullptr, omit_outer_optional);
     }
     else if (auto geninst = dynamic_cast<const generic_inst*>(&type))
@@ -133,6 +137,10 @@ static void write_swift_type_expression(writer& w, metadata_type const& type, bo
             write_swift_typedef_expression(w, gentype, geninst, omit_outer_optional);
         }
     }
+    else
+    {
+        throw std::exception("Unexpected metadata_type");
+    }
 }
 
 static void write_c_abi_type_expression(writer& w, metadata_type const& type, bool omit_outer_optional)
@@ -158,10 +166,7 @@ static void write_c_abi_type_expression(writer& w, metadata_type const& type, bo
     }
     else if (auto mapped = dynamic_cast<const mapped_type*>(&type))
     {
-        // mapped types are defined in headers and *not* metadata files, so these don't follow the same
-        // naming conventions that other types do. We just grab the type name and will use that.
-        auto swift_name = mapped->swift_type_name();
-        w.write(swift_name == "HResult" ? "HRESULT" : swift_name);
+        w.write(mapped->cpp_abi_name());
     }
     else if (auto systype = dynamic_cast<const system_type*>(&type))
     {
@@ -169,14 +174,24 @@ static void write_c_abi_type_expression(writer& w, metadata_type const& type, bo
     }
     else
     {
-        auto geninst = dynamic_cast<const generic_inst*>(&type);
-        auto type_def = geninst == nullptr
-            ? dynamic_cast<const typedef_base*>(&type)
-            : geninst->generic_type();
+        auto type_def = dynamic_cast<const typedef_base*>(&type);
+        const generic_inst* geninst = nullptr;
         if (type_def == nullptr)
         {
-            assert(!"Unexpected metadata_type");
-            return;
+            geninst = dynamic_cast<const generic_inst*>(&type);
+            if (geninst == nullptr)
+            {
+                throw std::exception("Unexpected metadata_type");
+            }
+
+            type_def = geninst->generic_type();
+        }
+        else
+        {
+            if (type_def->is_generic())
+            {
+                throw std::exception("Cannot write a type expression of a generic type definition.");
+            }
         }
 
         auto abi_guard = w.push_abi_types(true);
@@ -215,7 +230,6 @@ void swiftwinrt::write_type_expression_ex(writer& w, metadata_type const& type,
         write_c_abi_type_expression(w, type, omit_outer_optional);
     }
 }
-
 
 void swiftwinrt::write_default_init_assignment(writer& w, metadata_type const& sig, projection_layer layer)
 {
