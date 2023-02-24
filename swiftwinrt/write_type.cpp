@@ -2,74 +2,71 @@
 #include "types.h"
 #include "type_writers.h"
 
-#include "type_expression_writers.h"
+#include "write_type.h"
 
 using namespace swiftwinrt;
 
-static void write_swift_type_expression(writer& w, metadata_type const& type, bool omit_outer_optional);
-
-static void write_swift_typedef_expression(writer& w, typedef_base const& type,
-    const generic_inst* opt_generic_inst, bool omit_outer_optional)
+// Writes the Swift code representation of a WinRT type at the Swift projection layer
+// as a 'type' syntax node.
+static void write_swift_type(writer& w, metadata_type const& type)
 {
-    // Make sure the module gets imported
-    w.add_depends(type);
+    // Handle types with special codegen
+    if (auto gen_inst = dynamic_cast<const generic_inst*>(&type))
+    {
+        auto&& generic_typedef = *gen_inst->generic_type();
+        auto&& generic_params = gen_inst->generic_params();
+        if (is_ireference(generic_typedef))
+        {
+            auto boxed_type = generic_params[0];
+            w.write("%?", bind<write_swift_type>(*boxed_type));
+            return;
+        }
+
+        if (is_eventhandler(generic_typedef))
+        {
+            auto args_type = generic_params[0];
+            // '^' escapes the '@'
+            w.write("^@escaping (%.IInspectable, %) -> ()",
+                w.support, bind<write_swift_type>(*args_type));
+            return;
+        }
+
+        if (is_typedeventhandler(generic_typedef))
+        {
+            auto sender_type = generic_params[0];
+            auto args_type = generic_params[1];
+            // '^' escapes the '@'
+            w.write("^@escaping (%, %) -> ()",
+                bind<write_swift_type>(*sender_type),
+                bind<write_swift_type>(*args_type));
+            return;
+        }
+    }
 
     if (is_interface(&type))
     {
         // Project as existential and optional
-        if (!omit_outer_optional)
-        {
-            w.write("(");
-        }
-
-        w.write("any ");
+        w.write("(any ");
     }
 
-    // Namespace
-    if (opt_generic_inst)
+    write_swift_type_identifier(w, type);
+
+    if (is_interface(&type))
     {
-        // Generic instances are always in the support module
-        w.write("%.", w.support);
+        w.write(")"); // Close existential parenthesis
     }
-    else if (w.full_type_names || type.swift_logical_namespace() != w.type_namespace)
+
+    if (is_reference_type(&type))
     {
-        w.write("%.", get_swift_module(type.swift_logical_namespace()));
+        w.write("?"); // Project as optional
     }
 
-    w.write(remove_backtick(type.swift_type_name()));
-
-    // Generic type arguments
-    if (opt_generic_inst)
-    {
-        w.write("<");
-        separator sep{ w };
-        for (auto&& gen_arg : opt_generic_inst->generic_params())
-        {
-            sep();
-            write_swift_type_expression(w, *gen_arg, /* omit_outer_optional: */ false);
-        }
-        w.write(">");
-    }
-
-    if (!omit_outer_optional)
-    {
-        if (is_interface(&type))
-        {
-            w.write(")"); // Close existential parenthesis
-        }
-
-        if (is_reference_type(&type))
-        {
-            w.write("?"); // Project as optional
-        }
-    }
 }
 
-static void write_swift_type_expression(writer& w, metadata_type const& type, bool omit_outer_optional)
+void swiftwinrt::write_swift_type_identifier(writer& w, metadata_type const& type)
 {
     if (auto elem_type = dynamic_cast<const element_type*>(&type))
     {
-        assert(!omit_outer_optional);
         if (elem_type->type() == ElementType::Object)
         {
             w.write("%.IInspectable", w.support);
@@ -82,7 +79,6 @@ static void write_swift_type_expression(writer& w, metadata_type const& type, bo
     }
     else if (auto mapped = dynamic_cast<const mapped_type*>(&type))
     {
-        assert(!omit_outer_optional);
         // mapped types are defined in headers and *not* metadata files, so these don't follow the same
         // naming conventions that other types do. We just grab the type name and will use that.
         auto swift_name = mapped->swift_type_name();
@@ -90,60 +86,61 @@ static void write_swift_type_expression(writer& w, metadata_type const& type, bo
     }
     else if (auto systype = dynamic_cast<const system_type*>(&type))
     {
-        assert(!omit_outer_optional);
         w.write(systype->swift_type_name());
     }
     else if (auto type_def = dynamic_cast<const typedef_base*>(&type))
     {
+        // Make sure the module gets imported
+        w.add_depends(type);
+
+        // Module 
         if (type_def->is_generic())
         {
-            throw std::exception("Cannot write a type expression of a generic type definition.");
+            // Generic instances are always in the support module
+            if (w.full_type_names || (get_swift_module(w.type_namespace) != w.support))
+            {
+                w.write("%.", w.support);
+            }
+        }
+        else if (w.full_type_names || type.swift_logical_namespace() != w.type_namespace)
+        {
+            w.write("%.", get_swift_module(type.swift_logical_namespace()));
         }
 
-        write_swift_typedef_expression(w, *type_def, /* opt_generic_params: */ nullptr, omit_outer_optional);
+        w.write(remove_backtick(type.swift_type_name()));
     }
-    else if (auto geninst = dynamic_cast<const generic_inst*>(&type))
+    else if (auto gen_inst = dynamic_cast<const generic_inst*>(&type))
     {
-        auto&& gentype = *geninst->generic_type();
-        auto&& genparams = geninst->generic_params();
+        auto&& generic_typedef = *gen_inst->generic_type();
 
         // Special generic types
-        bool typed_event_handler = false;
-        if (is_ireference(gentype))
+        if (is_ireference(generic_typedef)
+            || is_eventhandler(generic_typedef)
+            || is_typedeventhandler(generic_typedef))
         {
-            assert(!omit_outer_optional);
-            auto boxed_type = genparams[0];
-            w.write("%?", bind<write_swift_type_expression>(*boxed_type, /* omit_outer_optional: */ false));
+            throw std::exception("Special types IReference, EventHandler and TypedEventHandler"
+                " cannot be represented as a Swift type-identifier syntax node.");
         }
-        else if (is_eventhandler(gentype))
+
+        write_swift_type_identifier(w, generic_typedef);
+
+        w.write("<");
+        separator sep{ w };
+        for (auto&& gen_arg : gen_inst->generic_params())
         {
-            assert(!omit_outer_optional);
-            auto args_type = genparams[0];
-            w.write("^@escaping (%.IInspectable,%) -> ()",
-                w.support, bind<write_swift_type_expression>(*args_type, /* omit_outer_optional: */ false));
+            sep();
+            write_swift_type(w, *gen_arg);
         }
-        else if (is_typedeventhandler(gentype))
-        {
-            assert(!omit_outer_optional);
-            auto sender_type = genparams[0];
-            auto args_type = genparams[1];
-            w.write("^@escaping (%,%) -> ()",
-                bind<write_swift_type_expression>(*sender_type, /* omit_outer_optional: */ false),
-                bind<write_swift_type_expression>(*args_type, /* omit_outer_optional: */ false));
-        }
-        else
-        {
-            // Collections and other generic types
-            write_swift_typedef_expression(w, gentype, geninst, omit_outer_optional);
-        }
+        w.write(">");
     }
     else
     {
         throw std::exception("Unexpected metadata_type");
     }
 }
-
-static void write_c_abi_type_expression(writer& w, metadata_type const& type, bool omit_outer_optional)
+// Writes the Swift code representation of a WinRT type at the C ABI projection layer
+// as a 'type' syntax node.
+static void write_c_abi_type(writer& w, metadata_type const& type)
 {
     if (auto elem_type = dynamic_cast<const element_type*>(&type))
     {
@@ -205,11 +202,7 @@ static void write_c_abi_type_expression(writer& w, metadata_type const& type, bo
 
         if (is_reference_type(&type))
         {
-            w.write("UnsafeMutablePointer<%>", type);
-            if (!omit_outer_optional)
-            {
-                w.write("?");
-            }
+            w.write("UnsafeMutablePointer<%>?", type);
         }
         else
         {
@@ -218,16 +211,15 @@ static void write_c_abi_type_expression(writer& w, metadata_type const& type, bo
     }
 }
 
-void swiftwinrt::write_type_expression_ex(writer& w, metadata_type const& type,
-    projection_layer layer, bool omit_outer_optional)
+void swiftwinrt::write_type(writer& w, metadata_type const& type, projection_layer layer)
 {
     if (layer == projection_layer::swift)
     {
-        write_swift_type_expression(w, type, omit_outer_optional);
+        write_swift_type(w, type);
     }
     else
     {
-        write_c_abi_type_expression(w, type, omit_outer_optional);
+        write_c_abi_type(w, type);
     }
 }
 

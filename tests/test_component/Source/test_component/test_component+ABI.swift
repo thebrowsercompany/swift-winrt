@@ -1437,8 +1437,8 @@ public enum __ABI_test_component {
 
         Invoke: {
             guard let __unwrapped__instance = __x_ABI_C__FIEventHandler_1_IInspectableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            let sender: test_component.IInspectable = .init($1)
-            let args: test_component.IInspectable = .init($2)
+            let sender: test_component.IInspectable? = .init($1)
+            let args: test_component.IInspectable? = .init($2)
             __unwrapped__instance.handler((sender, args))
             return S_OK
         }
