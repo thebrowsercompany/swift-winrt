@@ -1,8 +1,8 @@
-#include "pch.h"
-#include "types.h"
-#include "type_writers.h"
+#include "../pch.h"
+#include "../types.h"
+#include "../type_writers.h"
 
-#include "write_type.h"
+#include "type_writers.h"
 
 using namespace swiftwinrt;
 
@@ -45,22 +45,16 @@ static void write_swift_type(writer& w, metadata_type const& type)
 
     if (is_interface(&type))
     {
-        // Project as existential and optional
-        w.write("(any ");
+        w.write("(any %)?", bind<write_swift_type_identifier>(type));
     }
-
-    write_swift_type_identifier(w, type);
-
-    if (is_interface(&type))
+    else if (is_reference_type(&type))
     {
-        w.write(")"); // Close existential parenthesis
+        w.write("%?", bind<write_swift_type_identifier>(type));
     }
-
-    if (is_reference_type(&type))
+    else
     {
-        w.write("?"); // Project as optional
+        write_swift_type_identifier(w, type);
     }
-
 }
 
 void swiftwinrt::write_swift_type_identifier(writer& w, metadata_type const& type)
