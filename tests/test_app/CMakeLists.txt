@@ -11,9 +11,9 @@ target_link_libraries(test_app PRIVATE test_component)
 
 # XCTest dependency
 set(XCTest_DIR "$ENV{SDKROOT}/../../Library/XCTest-development")
-set(XCTest_LIBRARY "${XCTest_DIR}/usr/lib/swift/windows/x86_64")
+set(XCTest_LIBRARY "${XCTest_DIR}/usr/lib/swift/windows")
 target_include_directories(test_app PRIVATE "${XCTest_LIBRARY}")
-target_link_directories(test_app PRIVATE "${XCTest_LIBRARY}")
+target_link_directories(test_app PRIVATE "${XCTest_LIBRARY}/x86_64")
 add_custom_command(TARGET test_app POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy "${XCTest_DIR}/usr/bin64/XCTest.dll" ${CMAKE_CURRENT_BINARY_DIR}/XCTest.dll)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/XCTest.dll DESTINATION bin)
