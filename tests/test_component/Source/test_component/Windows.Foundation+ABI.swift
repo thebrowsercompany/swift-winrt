@@ -25,8 +25,8 @@ public enum __ABI_Windows_Foundation {
             return value
         }
 
-        open func GetUInt8Impl() throws -> BYTE {
-            var value: BYTE = 0
+        open func GetUInt8Impl() throws -> UINT8 {
+            var value: UINT8 = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetUInt8(pThis, &value))
             }

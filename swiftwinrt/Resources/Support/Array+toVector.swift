@@ -21,7 +21,7 @@ internal class ArrayVector<Element> : IVector {
     func RemoveAt(_ index: UInt32) { storage.remove(at: Int(index) )}
     func RemoveAtEnd() { storage.removeLast() }
     func Clear() { storage.removeAll() }
-    func GetView() -> any IVectorView<Element> { return ArrayVectorView(storage) }
+    func GetView() -> (any IVectorView<Element>)? { return ArrayVectorView(storage) }
 }
 
 extension ArrayVector where Element: Equatable {

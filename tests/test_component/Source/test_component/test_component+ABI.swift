@@ -268,8 +268,8 @@ public enum __ABI_test_component {
 
         Split: {
             guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            var first: (any IMapView<String, String>)?
-            var second: (any IMapView<String, String>)?
+            var first: (any test_component.IMapView<String, String>)?
+            var second: (any test_component.IMapView<String, String>)?
             __unwrapped__instance.Split(&first, &second)
             let firstWrapper = __ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper(first)
             let _first = try! firstWrapper?.to_abi { $0 }
@@ -394,8 +394,8 @@ public enum __ABI_test_component {
 
         Split: {
             guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            var first: (any IMapView<String, Base>)?
-            var second: (any IMapView<String, Base>)?
+            var first: (any test_component.IMapView<String, test_component.Base?>)?
+            var second: (any test_component.IMapView<String, test_component.Base?>)?
             __unwrapped__instance.Split(&first, &second)
             let firstWrapper = __ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper(first)
             let _first = try! firstWrapper?.to_abi { $0 }
@@ -695,7 +695,7 @@ public enum __ABI_test_component {
         Insert: {
             guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let key: String = .init(from: $1)
-            let value: test_component.Base = .from(abi: $2)
+            let value: test_component.Base? = .from(abi: $2)
             let result = __unwrapped__instance.Insert(key, value)
             $3?.initialize(to: .init(from: result))
             return S_OK
@@ -952,7 +952,7 @@ public enum __ABI_test_component {
 
         IndexOf: {
             guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            let value: test_component.Base = .from(abi: $1)
+            let value: test_component.Base? = .from(abi: $1)
             var index: UInt32 = 0
             let result = __unwrapped__instance.IndexOf(value, &index)
             $2?.initialize(to: index)
@@ -1278,7 +1278,7 @@ public enum __ABI_test_component {
 
         IndexOf: {
             guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            let value: test_component.Base = .from(abi: $1)
+            let value: test_component.Base? = .from(abi: $1)
             var index: UInt32 = 0
             let result = __unwrapped__instance.IndexOf(value, &index)
             $2?.initialize(to: index)
@@ -1289,7 +1289,7 @@ public enum __ABI_test_component {
         SetAt: {
             guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let index: UInt32 = $1
-            let value: test_component.Base = .from(abi: $2)
+            let value: test_component.Base? = .from(abi: $2)
             __unwrapped__instance.SetAt(index, value)
             return S_OK
         },
@@ -1297,7 +1297,7 @@ public enum __ABI_test_component {
         InsertAt: {
             guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
             let index: UInt32 = $1
-            let value: test_component.Base = .from(abi: $2)
+            let value: test_component.Base? = .from(abi: $2)
             __unwrapped__instance.InsertAt(index, value)
             return S_OK
         },
@@ -1311,7 +1311,7 @@ public enum __ABI_test_component {
 
         Append: {
             guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            let value: test_component.Base = .from(abi: $1)
+            let value: test_component.Base? = .from(abi: $1)
             __unwrapped__instance.Append(value)
             return S_OK
         },
@@ -1437,8 +1437,8 @@ public enum __ABI_test_component {
 
         Invoke: {
             guard let __unwrapped__instance = __x_ABI_C__FIEventHandler_1_IInspectableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            let sender: test_component.IInspectable = .init($1)
-            let args: test_component.IInspectable = .init($2)
+            let sender: test_component.IInspectable? = .init($1)
+            let args: test_component.IInspectable? = .init($2)
             __unwrapped__instance.handler((sender, args))
             return S_OK
         }
@@ -1456,12 +1456,12 @@ public enum __ABI_test_component {
     internal static var __x_ABI_C__FIReference_1_intVTable: __x_ABI_C__FIReference_1_intVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        if riid.pointee == __ABI_Windows_Foundation.IPropertyValueWrapper.IID {
-            guard let instance = __x_ABI_C__FIReference_1_intWrapper.try_unwrap_from(raw: pUnk) else { return E_NOINTERFACE }
-            guard let inner = __ABI_Windows_Foundation.IPropertyValueWrapper(instance) else { return E_INVALIDARG }
-            let pThis = try! inner.to_abi { $0 }
-            return pThis.pointee.lpVtbl.pointee.QueryInterface(pThis, riid, ppvObject)
-        }
+            if riid.pointee == __ABI_Windows_Foundation.IPropertyValueWrapper.IID {
+                guard let instance = __x_ABI_C__FIReference_1_intWrapper.try_unwrap_from(raw: pUnk) else { return E_NOINTERFACE }
+                guard let inner = __ABI_Windows_Foundation.IPropertyValueWrapper(instance) else { return E_INVALIDARG }
+                let pThis = try! inner.to_abi { $0 }
+                return pThis.pointee.lpVtbl.pointee.QueryInterface(pThis, riid, ppvObject)
+            }
 
             guard riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
@@ -1533,12 +1533,12 @@ public enum __ABI_test_component {
     internal static var __x_ABI_C__FIReference_1_GUIDVTable: __x_ABI_C__FIReference_1_GUIDVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        if riid.pointee == __ABI_Windows_Foundation.IPropertyValueWrapper.IID {
-            guard let instance = __x_ABI_C__FIReference_1_GUIDWrapper.try_unwrap_from(raw: pUnk) else { return E_NOINTERFACE }
-            guard let inner = __ABI_Windows_Foundation.IPropertyValueWrapper(instance) else { return E_INVALIDARG }
-            let pThis = try! inner.to_abi { $0 }
-            return pThis.pointee.lpVtbl.pointee.QueryInterface(pThis, riid, ppvObject)
-        }
+            if riid.pointee == __ABI_Windows_Foundation.IPropertyValueWrapper.IID {
+                guard let instance = __x_ABI_C__FIReference_1_GUIDWrapper.try_unwrap_from(raw: pUnk) else { return E_NOINTERFACE }
+                guard let inner = __ABI_Windows_Foundation.IPropertyValueWrapper(instance) else { return E_INVALIDARG }
+                let pThis = try! inner.to_abi { $0 }
+                return pThis.pointee.lpVtbl.pointee.QueryInterface(pThis, riid, ppvObject)
+            }
 
             guard riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
@@ -1638,7 +1638,7 @@ public enum __ABI_test_component {
 
         Invoke: {
             guard let __unwrapped__instance = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            let sender: test_component.Simple = .from(abi: $1)
+            let sender: test_component.Simple? = .from(abi: $1)
             let args: test_component.SimpleEventArgs = .from(abi: $2)
             __unwrapped__instance.handler((sender, args))
             return S_OK
@@ -2359,7 +2359,7 @@ public enum __ABI_test_component {
 
         OutString: {
             guard let __unwrapped__instance = IIAmImplementableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            var value: String?
+            var value: String = ""
             __unwrapped__instance.OutString(&value)
             $1?.initialize(to: try! HString(value).detach())
             return S_OK
@@ -2929,12 +2929,12 @@ public enum __ABI_test_component {
     internal static var IUnsealedDerivedOverridesVTable: __x_ABI_Ctest__component_CIUnsealedDerivedOverridesVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        if riid.pointee == __ABI_test_component.IBaseOverridesWrapper.IID {
-            guard let instance = IUnsealedDerivedOverridesWrapper.try_unwrap_from(raw: pUnk) else { return E_NOINTERFACE }
-            guard let inner = __ABI_test_component.IBaseOverridesWrapper(instance) else { return E_INVALIDARG }
-            let pThis = try! inner.to_abi { $0 }
-            return pThis.pointee.lpVtbl.pointee.QueryInterface(pThis, riid, ppvObject)
-        }
+            if riid.pointee == __ABI_test_component.IBaseOverridesWrapper.IID {
+                guard let instance = IUnsealedDerivedOverridesWrapper.try_unwrap_from(raw: pUnk) else { return E_NOINTERFACE }
+                guard let inner = __ABI_test_component.IBaseOverridesWrapper(instance) else { return E_INVALIDARG }
+                let pThis = try! inner.to_abi { $0 }
+                return pThis.pointee.lpVtbl.pointee.QueryInterface(pThis, riid, ppvObject)
+            }
 
             guard riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
@@ -2998,18 +2998,18 @@ public enum __ABI_test_component {
     internal static var IUnsealedDerivedOverloads2VTable: __x_ABI_Ctest__component_CIUnsealedDerivedOverloads2Vtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        if riid.pointee == __ABI_test_component.IBaseOverridesWrapper.IID {
-            guard let instance = IUnsealedDerivedOverloads2Wrapper.try_unwrap_from(raw: pUnk) else { return E_NOINTERFACE }
-            guard let inner = __ABI_test_component.IBaseOverridesWrapper(instance) else { return E_INVALIDARG }
-            let pThis = try! inner.to_abi { $0 }
-            return pThis.pointee.lpVtbl.pointee.QueryInterface(pThis, riid, ppvObject)
-        }
-        if riid.pointee == __ABI_test_component.IUnsealedDerivedOverridesWrapper.IID {
-            guard let instance = IUnsealedDerivedOverloads2Wrapper.try_unwrap_from(raw: pUnk) else { return E_NOINTERFACE }
-            guard let inner = __ABI_test_component.IUnsealedDerivedOverridesWrapper(instance) else { return E_INVALIDARG }
-            let pThis = try! inner.to_abi { $0 }
-            return pThis.pointee.lpVtbl.pointee.QueryInterface(pThis, riid, ppvObject)
-        }
+            if riid.pointee == __ABI_test_component.IBaseOverridesWrapper.IID {
+                guard let instance = IUnsealedDerivedOverloads2Wrapper.try_unwrap_from(raw: pUnk) else { return E_NOINTERFACE }
+                guard let inner = __ABI_test_component.IBaseOverridesWrapper(instance) else { return E_INVALIDARG }
+                let pThis = try! inner.to_abi { $0 }
+                return pThis.pointee.lpVtbl.pointee.QueryInterface(pThis, riid, ppvObject)
+            }
+            if riid.pointee == __ABI_test_component.IUnsealedDerivedOverridesWrapper.IID {
+                guard let instance = IUnsealedDerivedOverloads2Wrapper.try_unwrap_from(raw: pUnk) else { return E_NOINTERFACE }
+                guard let inner = __ABI_test_component.IUnsealedDerivedOverridesWrapper(instance) else { return E_INVALIDARG }
+                let pThis = try! inner.to_abi { $0 }
+                return pThis.pointee.lpVtbl.pointee.QueryInterface(pThis, riid, ppvObject)
+            }
 
             guard riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 

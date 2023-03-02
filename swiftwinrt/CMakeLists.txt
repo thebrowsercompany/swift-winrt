@@ -51,6 +51,7 @@ target_sources(swiftwinrt PUBLIC
     metadata_cache.cpp
     types.cpp
     metadata_filter.cpp
+    code_writers/type_writers.cpp
     resources.rc)
 
 # Make resources.rc depend on the files it embeds

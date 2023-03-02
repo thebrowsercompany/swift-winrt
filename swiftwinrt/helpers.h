@@ -208,23 +208,54 @@ namespace swiftwinrt
         return method.SpecialName() && method.Name().starts_with("put_");
     }
 
-    template<typename T>
-    inline bool is_collection_type(T const& type)
+    inline bool is_ireference(metadata_type const& type)
     {
-        type_name typeName{ type };
-        if (typeName.name_space == "Windows.Foundation.Collections")
-        {
+        return type.swift_full_name().starts_with("Windows.Foundation.IReference");
+    }
 
-            return typeName.name.starts_with("IVector`") ||
-                typeName.name.starts_with("IMap`") ||
-                typeName.name.starts_with("IVectorView`") ||
-                typeName.name.starts_with("IMapView`") ||
-                typeName.name.starts_with("IIterator`") ||
-                typeName.name.starts_with("IIterable`") ||
-                typeName.name.starts_with("IObservableMap`") ||
-                typeName.name.starts_with("IObservableVector`");
+    inline bool is_ireference(const metadata_type* type)
+    {
+        return is_ireference(*type);
+    }
+
+    inline bool is_eventhandler(metadata_type const& type)
+    {
+        return type.swift_full_name().starts_with("Windows.Foundation.EventHandler");
+    }
+
+    inline bool is_eventhandler(const metadata_type* type)
+    {
+        return is_eventhandler(*type);
+    }
+
+    inline bool is_typedeventhandler(metadata_type const& type)
+    {
+        return type.swift_full_name().starts_with("Windows.Foundation.TypedEventHandler");
+    }
+
+    inline bool is_typedeventhandler(const metadata_type* type)
+    {
+        return is_typedeventhandler(*type);
+    }
+
+    inline bool is_collection_type(metadata_type const& type)
+    {
+        if (type.swift_logical_namespace() == "Windows.Foundation.Collections")
+        {
+            auto type_name = type.swift_type_name();
+            return type_name.starts_with("IVector") || // Covers IVectorView
+                type_name.starts_with("IMap") || // Covers IMapView
+                type_name.starts_with("IIterator") ||
+                type_name.starts_with("IIterable") ||
+                type_name.starts_with("IObservableMap") ||
+                type_name.starts_with("IObservableVector");
         }
         return false;
+    }
+
+    inline bool is_collection_type(const metadata_type* type)
+    {
+        return is_collection_type(*type);
     }
 
     inline bool is_noexcept(MethodDef const& method)
@@ -439,15 +470,11 @@ namespace swiftwinrt
 
     inline bool is_delegate(metadata_type const* type)
     {
-        if (dynamic_cast<delegate_type const*>(type))
-        {
-            return true;
-        }
-        else if (auto genericInst = dynamic_cast<generic_inst const*>(type))
+        if (auto genericInst = dynamic_cast<generic_inst const*>(type))
         {
             return is_delegate(*genericInst);
         }
-        return false;
+        return dynamic_cast<delegate_type const*>(type) != nullptr;
     }
 
     inline bool is_delegate(metadata_type const& type)
@@ -457,13 +484,29 @@ namespace swiftwinrt
 
     inline bool is_interface(metadata_type const* type)
     {
-        return dynamic_cast<interface_type const*>(type) != nullptr || 
-               is_generic(type);
+        if (auto geninst = dynamic_cast<generic_inst const*>(type))
+        {
+            return is_interface(geninst->generic_type());
+        }
+
+        return dynamic_cast<interface_type const*>(type) != nullptr;
     }
 
     inline bool is_class(metadata_type const* type)
     {
+        // Classes cannot be generic in WinRT
         return dynamic_cast<class_type const*>(type) != nullptr;
+    }
+
+    inline bool is_reference_type(metadata_type const* type)
+    {
+        if (is_class(type) || is_interface(type) || is_delegate(type))
+        {
+            return true;
+        }
+
+        auto elem = dynamic_cast<element_type const*>(type);
+        return elem != nullptr && elem->type() == ElementType::Object;
     }
 
     template <typename T>
@@ -605,7 +648,7 @@ namespace swiftwinrt
         else
         {
             auto name = std::string("_").append(iface.type->swift_type_name());
-            if (iface.generic_params.size() == 1)
+            if (iface.generic_params.size() > 0)
             {
                 name.erase(name.find_first_of('`'));
             }

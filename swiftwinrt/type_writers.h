@@ -21,8 +21,8 @@ namespace swiftwinrt
     bool is_generic(metadata_type const& type);
     bool is_generic(const metadata_type* type);
 
-    template <typename T>
-    bool is_collection_type(T const& type);
+    bool is_collection_type(const metadata_type* type);
+    bool is_collection_type(metadata_type const& type);
 
     param_category get_category(const metadata_type*, TypeDef*);
 
@@ -479,17 +479,10 @@ namespace swiftwinrt
                     }
                 }
             }
-            else if (abi_types)
+            // In generics, don't use the ABI name or we get IVectorIBase instead of IVectorBase
+            else if (abi_types && !writing_generic)
             {
-                auto name = type->cpp_abi_name();
-                if (name == "IInspectable" && !writing_generic)
-                {
-                    write("%.IInspectable", c_mod);
-                }
-                else
-                {
-                    write(name);
-                }
+                write(type->cpp_abi_name());
             }
             else if (type->swift_logical_namespace() != type_namespace || full_type_names)
             {
@@ -591,94 +584,6 @@ namespace swiftwinrt
             }
         }
 
-        void write_abi(function_param const& param)
-        {
-            auto category = get_category(param.type, nullptr);
-            auto guard{ push_mangled_names_if_needed(category) };
-            auto qualifier = param.out() ? "inout " : "";
-            if (category == param_category::object_type || category == param_category::generic_type)
-            {
-                write("_ %: %UnsafeMutablePointer<%>?", get_swift_name(param), qualifier, param.type);
-            }
-            else if (category == param_category::string_type)
-            {
-                write("_ %: %%?", get_swift_name(param), qualifier, param.type);
-            }
-            else
-            {
-                write("_ %: %%", get_swift_name(param), qualifier, param.type);
-            }
-        }
-
-        void write_swift(function_param const& param)
-        {
-            // Write the parameter name
-            write("_ %: ", param.name);
-
-            // Write the parameter type
-            auto category = get_category(param.type, nullptr);
-            auto qualifier = param.out() ? "inout " : "";
-            if (param.out() && category == param_category::string_type)
-            {
-                write("%%?", qualifier, param.type);
-            }
-            else if (category == param_category::generic_type && is_collection_type(param.type))
-            {
-                if (param.in())
-                {
-                    write("any %", param.type);
-                }
-                else
-                {
-                    // Project "out IVector<String>" as "inout (any IVector<String>)?" because:
-                    // - "inout" forces the caller to initialize the variable, and Optional allows
-                    //   them to use nil. Swift has no mere "out".
-                    // - The WinRT layer could output null.
-                    // - "?" has precedence over "any"
-                    write("inout (any %)?", param.type);
-                }
-            }
-            else
-            {
-                write("%%", qualifier, param.type);
-            }
-        }
-
-        void write(function_param const& param)
-        {
-            if (abi_types)
-            {
-                write_abi(param);
-            }
-            else
-            {
-                write_swift(param);
-            }
-        }
-
-        void write(function_return_type const& value)
-        {
-            auto category = get_category(value.type, nullptr);
-
-            auto guard{ push_mangled_names_if_needed(category) };
-            if (abi_types && (category == param_category::object_type || category == param_category::generic_type))
-            {
-                write("UnsafeMutablePointer<%>?", value.type);
-            }
-            else if (abi_types && category == param_category::string_type)
-            {
-                write("%?", value.type);
-            }
-            else if (category == param_category::generic_type && is_collection_type(value.type))
-            {
-                write("any %", value.type);
-            }
-            else
-            {
-                write(value.type);
-            }
-        }
-
         void write(generic_inst const& generic)
         {
             auto guard{ push_writing_generic(true) };
@@ -689,66 +594,22 @@ namespace swiftwinrt
             }
             else
             {
-                auto collections_namespace_prefix = "Windows.Foundation.Collections."sv;
-
-                auto generic_type = generic.generic_type();
-                add_depends(generic_type->type());
-                auto type_full_name = generic_type->swift_full_name();
-                const auto& generic_params = generic.generic_params();
-                if (generic_type->swift_full_name() == "Windows.Foundation.IReference`1")
+                if (abi_types)
                 {
-                    auto refType = generic_params[0];
-                    write("%?", refType);
-                }
-                else if (generic_type->swift_full_name() == "Windows.Foundation.TypedEventHandler`2")
-                {
-                    auto senderType = generic_params[0];
-                    auto argsType = generic_params[1];
-                    write("^@escaping (%,%) -> ()", senderType, argsType);
-                }
-                else if (generic_type->swift_full_name() == "Windows.Foundation.EventHandler`1")
-                {
-                    auto argsType = generic_params[0];
-                    write("^@escaping (%.IInspectable,%) -> ()", support, argsType);
-                }
-                else if (is_collection_type(generic))
-                {
-                    // IVector`1, IVectorView`1, IMap`2, IMapView`2
-                    auto type_name_with_generic_param_count = generic_type->swift_type_name();
-                    auto type_name = type_name_with_generic_param_count.substr(0,
-                        type_name_with_generic_param_count.find_first_of('`'));
-
-                    if (abi_types)
-                    {
-                        // IMapString_String
-                        write(type_name);
-
-                        bool first = true;
-                        for (const auto& type_param : generic.generic_params()) {
-                            if (!first) write("_");
-                            write(type_param->swift_type_name());
-                            first = false;
-                        }
-                    }
-                    else
-                    {
-                        // IVector<String>
-                        write(type_name);
-                        write("<");
-                        bool first = true;
-                        for (const auto& type_param : generic.generic_params()) {
-                            if (!first) write(", ");
-                            write(type_param->swift_type_name());
-                            first = false;
-                        }
-                        write(">");
-                    }
+                    // Consolidate with implementation in write(metadata_type)
+                    auto guard = push_generic_params(generic);
+                    write(generic.generic_type());
                 }
                 else
                 {
-                    // Do nothing for types we can't write since we use this as a test as to whether we can write them.
-                    // We can remove this once we support writing all types
-                    //assert(false);
+                    write("%<", remove_tick(generic.generic_type()->swift_type_name()));
+                    bool first = true;
+                    for (auto&& generic_arg : generic.generic_params()) {
+                        if (!first) write(", ");
+                        write(generic_arg);
+                        first = false;
+                    }
+                    write(">");
                 }
             }
         }

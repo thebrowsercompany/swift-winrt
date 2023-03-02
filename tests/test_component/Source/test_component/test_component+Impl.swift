@@ -5,7 +5,7 @@ public enum __IMPL_test_component {
     public class IBasicImpl : IBasic, AbiInterfaceImpl {
         public typealias c_ABI = __x_ABI_Ctest__component_CIBasic
         public typealias swift_ABI = __ABI_test_component.IBasic
-        public typealias swift_Projection = IBasic
+        public typealias swift_Projection = any IBasic
         private (set) public var _default: swift_ABI
         public static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {
             return IBasicImpl(abi)
@@ -27,7 +27,7 @@ public enum __IMPL_test_component {
     public class IIAmImplementableImpl : IIAmImplementable, AbiInterfaceImpl {
         public typealias c_ABI = __x_ABI_Ctest__component_CIIAmImplementable
         public typealias swift_ABI = __ABI_test_component.IIAmImplementable
-        public typealias swift_Projection = IIAmImplementable
+        public typealias swift_Projection = any IIAmImplementable
         private (set) public var _default: swift_ABI
         public static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {
             return IIAmImplementableImpl(abi)
@@ -60,7 +60,7 @@ public enum __IMPL_test_component {
             try! _default.OutInt32Impl(&value)
         }
 
-        public func OutString(_ value: inout String?) {
+        public func OutString(_ value: inout String) {
             var _value: HSTRING?
             try! _default.OutStringImpl(&_value)
             value = .init(from: _value)
@@ -121,7 +121,7 @@ public enum __IMPL_test_component {
     public class ISimpleDelegateImpl : ISimpleDelegate, AbiInterfaceImpl {
         public typealias c_ABI = __x_ABI_Ctest__component_CISimpleDelegate
         public typealias swift_ABI = __ABI_test_component.ISimpleDelegate
-        public typealias swift_Projection = ISimpleDelegate
+        public typealias swift_Projection = any ISimpleDelegate
         private (set) public var _default: swift_ABI
         public static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {
             return ISimpleDelegateImpl(abi)
@@ -183,8 +183,8 @@ public enum __IMPL_test_component {
             var _first: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?
             var _second: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?
             try! _default.SplitImpl(&_first, &_second)
-            first = __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl(_first)
-            second = __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl(_second)
+            first = __IMPL_test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl(_first)
+            second = __IMPL_test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl(_second)
         }
 
         public var Size : UInt32 {
@@ -199,8 +199,8 @@ public enum __IMPL_test_component {
 
     internal class __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl : IMapView, AbiInterfaceImpl {
         typealias Key = String
-        typealias Value = Base
-        typealias swift_Projection = any IMapView<String, Base>
+        typealias Value = Base?
+        typealias swift_Projection = any IMapView<String, Base?>
         typealias c_ABI = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
         typealias swift_ABI = __ABI_test_component.IMapViewString_Base
 
@@ -220,7 +220,7 @@ public enum __IMPL_test_component {
         }
 
         // MARK: WinRT
-        public func Lookup(_ key: String) -> Base {
+        public func Lookup(_ key: String) -> Base? {
             let _key = try! HString(key)
             let result = try! _default.LookupImpl(_key.get())
             return .from(abi: result)
@@ -232,12 +232,12 @@ public enum __IMPL_test_component {
             return .init(from: result)
         }
 
-        public func Split(_ first: inout (any IMapView<String, Base>)?, _ second: inout (any IMapView<String, Base>)?) {
+        public func Split(_ first: inout (any IMapView<String, Base?>)?, _ second: inout (any IMapView<String, Base?>)?) {
             var _first: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
             var _second: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
             try! _default.SplitImpl(&_first, &_second)
-            first = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(_first)
-            second = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(_second)
+            first = __IMPL_test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(_first)
+            second = __IMPL_test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(_second)
         }
 
         public var Size : UInt32 {
@@ -285,7 +285,7 @@ public enum __IMPL_test_component {
             return .init(from: result)
         }
 
-        public func GetView() -> any IMapView<String, String> {
+        public func GetView() -> (any IMapView<String, String>)? {
             let result = try! _default.GetViewImpl()
             return __ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.unwrap_from(abi: result)
         }
@@ -318,8 +318,8 @@ public enum __IMPL_test_component {
 
     internal class __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl : IMap, AbiInterfaceImpl {
         typealias Key = String
-        typealias Value = Base
-        typealias swift_Projection = any IMap<String, Base>
+        typealias Value = Base?
+        typealias swift_Projection = any IMap<String, Base?>
         typealias c_ABI = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
         typealias swift_ABI = __ABI_test_component.IMapString_Base
 
@@ -339,7 +339,7 @@ public enum __IMPL_test_component {
         }
 
         // MARK: WinRT
-        public func Lookup(_ key: String) -> Base {
+        public func Lookup(_ key: String) -> Base? {
             let _key = try! HString(key)
             let result = try! _default.LookupImpl(_key.get())
             return .from(abi: result)
@@ -351,12 +351,12 @@ public enum __IMPL_test_component {
             return .init(from: result)
         }
 
-        public func GetView() -> any IMapView<String, Base> {
+        public func GetView() -> (any IMapView<String, Base?>)? {
             let result = try! _default.GetViewImpl()
             return __ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrap_from(abi: result)
         }
 
-        public func Insert(_ key: String, _ value: Base) -> Bool {
+        public func Insert(_ key: String, _ value: Base?) -> Bool {
             let _key = try! HString(key)
             let result = try! _default.InsertImpl(_key.get(), RawPointer(value))
             return .init(from: result)
@@ -445,8 +445,8 @@ public enum __IMPL_test_component {
     }
 
     internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl : IVectorView, AbiInterfaceImpl {
-        typealias Element = Base
-        typealias swift_Projection = any IVectorView<Base>
+        typealias Element = Base?
+        typealias swift_Projection = any IVectorView<Base?>
         typealias c_ABI = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase
         typealias swift_ABI = __ABI_test_component.IVectorViewBase
 
@@ -486,12 +486,12 @@ public enum __IMPL_test_component {
             }
         }
         // MARK: WinRT
-        public func GetAt(_ index: UInt32) -> Base {
+        public func GetAt(_ index: UInt32) -> Base? {
             let result = try! _default.GetAtImpl(index)
             return .from(abi: result)
         }
 
-        public func IndexOf(_ value: Base, _ index: inout UInt32) -> Bool {
+        public func IndexOf(_ value: Base?, _ index: inout UInt32) -> Bool {
             let result = try! _default.IndexOfImpl(RawPointer(value), &index)
             return .init(from: result)
         }
@@ -568,7 +568,7 @@ public enum __IMPL_test_component {
             return .init(from: result)
         }
 
-        public func GetView() -> any IVectorView<String> {
+        public func GetView() -> (any IVectorView<String>)? {
             let result = try! _default.GetViewImpl()
             return __ABI_test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper.unwrap_from(abi: result)
         }
@@ -617,8 +617,8 @@ public enum __IMPL_test_component {
     }
 
     internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl : IVector, AbiInterfaceImpl {
-        typealias Element = Base
-        typealias swift_Projection = any IVector<Base>
+        typealias Element = Base?
+        typealias swift_Projection = any IVector<Base?>
         typealias c_ABI = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase
         typealias swift_ABI = __ABI_test_component.IVectorBase
 
@@ -673,26 +673,26 @@ public enum __IMPL_test_component {
             Clear()
         }
         // MARK: WinRT
-        public func GetAt(_ index: UInt32) -> Base {
+        public func GetAt(_ index: UInt32) -> Base? {
             let result = try! _default.GetAtImpl(index)
             return .from(abi: result)
         }
 
-        public func GetView() -> any IVectorView<Base> {
+        public func GetView() -> (any IVectorView<Base?>)? {
             let result = try! _default.GetViewImpl()
             return __ABI_test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrap_from(abi: result)
         }
 
-        public func IndexOf(_ value: Base, _ index: inout UInt32) -> Bool {
+        public func IndexOf(_ value: Base?, _ index: inout UInt32) -> Bool {
             let result = try! _default.IndexOfImpl(RawPointer(value), &index)
             return .init(from: result)
         }
 
-        public func SetAt(_ index: UInt32, _ value: Base) {
+        public func SetAt(_ index: UInt32, _ value: Base?) {
             try! _default.SetAtImpl(index, RawPointer(value))
         }
 
-        public func InsertAt(_ index: UInt32, _ value: Base) {
+        public func InsertAt(_ index: UInt32, _ value: Base?) {
             try! _default.InsertAtImpl(index, RawPointer(value))
         }
 
@@ -700,7 +700,7 @@ public enum __IMPL_test_component {
             try! _default.RemoveAtImpl(index)
         }
 
-        public func Append(_ value: Base) {
+        public func Append(_ value: Base?) {
             try! _default.AppendImpl(RawPointer(value))
         }
 
@@ -723,7 +723,7 @@ public enum __IMPL_test_component {
     }
 
     internal class __x_ABI_C__FIEventHandler_1_IInspectableImpl : WinRTDelegate {
-        internal typealias Data = (test_component.IInspectable, test_component.IInspectable)
+        internal typealias Data = (test_component.IInspectable?, test_component.IInspectable?)
         internal typealias Return = ()
         internal var token: EventRegistrationToken?
         internal var handler: (Data) -> Return
@@ -732,7 +732,7 @@ public enum __IMPL_test_component {
         }
     }
     internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsImpl : WinRTDelegate {
-        internal typealias Data = (Simple, SimpleEventArgs)
+        internal typealias Data = (Simple?, SimpleEventArgs)
         internal typealias Return = ()
         internal var token: EventRegistrationToken?
         internal var handler: (Data) -> Return
