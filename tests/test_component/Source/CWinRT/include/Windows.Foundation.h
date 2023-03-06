@@ -11,6 +11,12 @@
 #include "Windows.Foundation.Collections.h"
 
 /* Forward Declarations */
+#ifndef ____x_ABI_CWindows_CFoundation_CIClosable_FWD_DEFINED__
+#define ____x_ABI_CWindows_CFoundation_CIClosable_FWD_DEFINED__
+    typedef interface __x_ABI_CWindows_CFoundation_CIClosable __x_ABI_CWindows_CFoundation_CIClosable;
+
+#endif // ____x_ABI_CWindows_CFoundation_CIClosable_FWD_DEFINED__
+
 #ifndef ____x_ABI_CWindows_CFoundation_CIPropertyValue_FWD_DEFINED__
 #define ____x_ABI_CWindows_CFoundation_CIPropertyValue_FWD_DEFINED__
     typedef interface __x_ABI_CWindows_CFoundation_CIPropertyValue __x_ABI_CWindows_CFoundation_CIPropertyValue;
@@ -108,6 +114,39 @@ struct __x_ABI_CWindows_CFoundation_CTimeSpan
         INT64 Duration;
 };
 
+#if !defined(____x_ABI_CWindows_CFoundation_CIClosable_INTERFACE_DEFINED__)
+    #define ____x_ABI_CWindows_CFoundation_CIClosable_INTERFACE_DEFINED__
+    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_Windows_Foundation_IClosable[] = L"Windows.Foundation.IClosable";
+    typedef struct __x_ABI_CWindows_CFoundation_CIClosableVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_CWindows_CFoundation_CIClosable* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_CWindows_CFoundation_CIClosable* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_CWindows_CFoundation_CIClosable* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_CWindows_CFoundation_CIClosable* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_CWindows_CFoundation_CIClosable* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_CWindows_CFoundation_CIClosable* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* Close)(__x_ABI_CWindows_CFoundation_CIClosable* This);
+
+        END_INTERFACE
+    } __x_ABI_CWindows_CFoundation_CIClosableVtbl;
+
+    interface __x_ABI_CWindows_CFoundation_CIClosable
+    {
+        CONST_VTBL struct __x_ABI_CWindows_CFoundation_CIClosableVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_CWindows_CFoundation_CIClosable;
+#endif /* !defined(____x_ABI_CWindows_CFoundation_CIClosable_INTERFACE_DEFINED__) */
+    
 #if !defined(____x_ABI_CWindows_CFoundation_CIPropertyValue_INTERFACE_DEFINED__)
     #define ____x_ABI_CWindows_CFoundation_CIPropertyValue_INTERFACE_DEFINED__
     extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_Windows_Foundation_IPropertyValue[] = L"Windows.Foundation.IPropertyValue";

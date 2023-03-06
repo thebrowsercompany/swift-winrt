@@ -2,6 +2,28 @@
 import Ctest_component
 
 public enum __IMPL_Windows_Foundation {
+    public class IClosableImpl : IClosable, AbiInterfaceImpl {
+        public typealias c_ABI = __x_ABI_CWindows_CFoundation_CIClosable
+        public typealias swift_ABI = __ABI_Windows_Foundation.IClosable
+        public typealias swift_Projection = any IClosable
+        private (set) public var _default: swift_ABI
+        public static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {
+            return IClosableImpl(abi)
+        }
+        public init(_ fromAbi: UnsafeMutablePointer<c_ABI>?) {
+            _default = swift_ABI(fromAbi)
+        }
+
+        public static func makeAbi() -> c_ABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Foundation.IClosableVTable) { $0 }
+            return .init(lpVtbl: vtblPtr)
+        }
+        public func Close() {
+            try! _default.CloseImpl()
+        }
+
+    }
+
     public class IPropertyValueImpl : IPropertyValue, IReference {
         var _value: Any
         var propertyType : PropertyType

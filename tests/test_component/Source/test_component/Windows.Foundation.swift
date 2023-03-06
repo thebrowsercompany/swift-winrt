@@ -67,6 +67,15 @@ public struct TimeSpan {
     }
 }
 
+public protocol IClosable : IWinRTObject { 
+        func Close()
+}
+extension IClosable {
+    public static var none: any IClosable {
+        __IMPL_Windows_Foundation.IClosableImpl(nil)
+    }
+}
+
 public protocol IPropertyValue : IWinRTObject { 
         func GetUInt8() -> UInt8
         func GetInt16() -> Int16

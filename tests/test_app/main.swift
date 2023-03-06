@@ -724,6 +724,23 @@ class SwiftWinRTTests : XCTestCase {
     let value = Class.InMap(map)
     XCTAssertEqual(value, "Aleph")
   }
+  
+  public func TestNullValues() {
+    XCTAssertTrue(NullValues.IsInterfaceNull(nil))
+    XCTAssertTrue(NullValues.IsGenericInterfaceNull(nil))
+    XCTAssertTrue(NullValues.IsClassNull(nil))
+    // XCTAssertTrue(NullValues.IsDelegateNull(nil))
+    
+    XCTAssertFalse(NullValues.IsInterfaceNull(NoopClosable()))
+    XCTAssertFalse(NullValues.IsGenericInterfaceNull([""].toVector()))
+    XCTAssertFalse(NullValues.IsClassNull(NoopClosable()))
+    XCTAssertFalse(NullValues.IsDelegateNull(VoidToVoidDelegate(handler: {})))
+
+    // XCTAssertNil(NullValues.GetNullInterface())
+    // XCTAssertNil(NullValues.GetNullGenericInterface())
+    // XCTAssertNil(NullValues.GetNullClass())
+    // XCTAssertNil(NullValues.GetNullDelegate())
+  }
 }
 
 var tests: [XCTestCaseEntry] = [
@@ -742,6 +759,7 @@ var tests: [XCTestCaseEntry] = [
     ("TestMap_mutate", SwiftWinRTTests.TestMap_mutate),
     ("TestNonBlittableStruct", SwiftWinRTTests.TestNonBlittableStruct),
     ("TestNonDefaultMethods", SwiftWinRTTests.TestNonDefaultMethods),
+    ("TestNullValues", SwiftWinRTTests.TestNullValues),
     ("TestOutParams", SwiftWinRTTests.TestOutParams),
     ("TestStaticMethods", SwiftWinRTTests.TestStaticMethods),
     ("TestUnicode", SwiftWinRTTests.TestUnicode),

@@ -1,0 +1,25 @@
+// Methods for testing passing in and returning null values.
+import "Windows.Foundation.idl";
+
+namespace test_component
+{
+    delegate void VoidToVoidDelegate();
+
+    runtimeclass NoopClosable : [default] Windows.Foundation.IClosable
+    {
+        NoopClosable();
+    }
+
+    static runtimeclass NullValues
+    {
+        static Boolean IsInterfaceNull(Windows.Foundation.IClosable value);
+        static Boolean IsGenericInterfaceNull(Windows.Foundation.Collections.IVector<String> value);
+        static Boolean IsClassNull(NoopClosable value);
+        static Boolean IsDelegateNull(VoidToVoidDelegate value);
+
+        static Windows.Foundation.IClosable GetNullInterface();
+        static Windows.Foundation.Collections.IVector<String> GetNullGenericInterface();
+        static NoopClosable GetNullClass();
+        static VoidToVoidDelegate GetNullDelegate();
+    }
+}

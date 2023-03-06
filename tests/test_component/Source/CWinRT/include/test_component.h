@@ -12,7 +12,13 @@
 #include "Windows.Foundation.Collections.h"
 
 /* Forward Declarations */
-#ifndef ____x_ABI_Ctest__component_CIBase_FWD_DEFINED__
+#ifndef ____x_ABI_Ctest__component_CIVoidToVoidDelegate_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CIVoidToVoidDelegate_FWD_DEFINED__
+typedef interface __x_ABI_Ctest__component_CIVoidToVoidDelegate __x_ABI_Ctest__component_CIVoidToVoidDelegate;
+
+#endif // ____x_ABI_Ctest__component_CIVoidToVoidDelegate_FWD_DEFINED__
+
+    #ifndef ____x_ABI_Ctest__component_CIBase_FWD_DEFINED__
 #define ____x_ABI_Ctest__component_CIBase_FWD_DEFINED__
     typedef interface __x_ABI_Ctest__component_CIBase __x_ABI_Ctest__component_CIBase;
 
@@ -89,6 +95,12 @@
     typedef interface __x_ABI_Ctest__component_CIIAmImplementable __x_ABI_Ctest__component_CIIAmImplementable;
 
 #endif // ____x_ABI_Ctest__component_CIIAmImplementable_FWD_DEFINED__
+
+#ifndef ____x_ABI_Ctest__component_CINullValuesStatics_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CINullValuesStatics_FWD_DEFINED__
+    typedef interface __x_ABI_Ctest__component_CINullValuesStatics __x_ABI_Ctest__component_CINullValuesStatics;
+
+#endif // ____x_ABI_Ctest__component_CINullValuesStatics_FWD_DEFINED__
 
 #ifndef ____x_ABI_Ctest__component_CISimple_FWD_DEFINED__
 #define ____x_ABI_Ctest__component_CISimple_FWD_DEFINED__
@@ -1162,6 +1174,12 @@ typedef struct __x_ABI_Ctest__component_CSimpleEventArgs __x_ABI_Ctest__componen
     
     #endif // ____x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs_INTERFACE_DEFINED__
     
+#ifndef ____x_ABI_CWindows_CFoundation_CIClosable_FWD_DEFINED__
+#define ____x_ABI_CWindows_CFoundation_CIClosable_FWD_DEFINED__
+    typedef interface __x_ABI_CWindows_CFoundation_CIClosable __x_ABI_CWindows_CFoundation_CIClosable;
+
+#endif // ____x_ABI_CWindows_CFoundation_CIClosable_FWD_DEFINED__
+
 #ifndef ____x_ABI_CWindows_CFoundation_CIPropertyValue_FWD_DEFINED__
 #define ____x_ABI_CWindows_CFoundation_CIPropertyValue_FWD_DEFINED__
     typedef interface __x_ABI_CWindows_CFoundation_CIPropertyValue __x_ABI_CWindows_CFoundation_CIPropertyValue;
@@ -1237,6 +1255,31 @@ struct __x_ABI_Ctest__component_CSimpleEventArgs
         INT32 Value;
 };
 
+#if !defined(____x_ABI_Ctest__component_CIVoidToVoidDelegate_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CIVoidToVoidDelegate_INTERFACE_DEFINED__
+    typedef struct __x_ABI_Ctest__component_CIVoidToVoidDelegateVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CIVoidToVoidDelegate* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CIVoidToVoidDelegate* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CIVoidToVoidDelegate* This);
+        HRESULT (STDMETHODCALLTYPE* Invoke)(__x_ABI_Ctest__component_CIVoidToVoidDelegate* This);
+
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CIVoidToVoidDelegateVtbl;
+
+    interface __x_ABI_Ctest__component_CIVoidToVoidDelegate
+    {
+        CONST_VTBL struct __x_ABI_Ctest__component_CIVoidToVoidDelegateVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CIVoidToVoidDelegate;
+    #endif /* !defined(____x_ABI_Ctest__component_CIVoidToVoidDelegate_INTERFACE_DEFINED__) */
+    
 #if !defined(____x_ABI_Ctest__component_CIBase_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIBase_INTERFACE_DEFINED__
     extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IBase[] = L"test_component.IBase";
@@ -1827,6 +1870,58 @@ struct __x_ABI_Ctest__component_CSimpleEventArgs
     
     EXTERN_C const IID IID___x_ABI_Ctest__component_CIIAmImplementable;
 #endif /* !defined(____x_ABI_Ctest__component_CIIAmImplementable_INTERFACE_DEFINED__) */
+    
+#if !defined(____x_ABI_Ctest__component_CINullValuesStatics_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CINullValuesStatics_INTERFACE_DEFINED__
+    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_INullValuesStatics[] = L"test_component.INullValuesStatics";
+    typedef struct __x_ABI_Ctest__component_CINullValuesStaticsVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CINullValuesStatics* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CINullValuesStatics* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CINullValuesStatics* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_Ctest__component_CINullValuesStatics* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_Ctest__component_CINullValuesStatics* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CINullValuesStatics* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* IsInterfaceNull)(__x_ABI_Ctest__component_CINullValuesStatics* This,
+        __x_ABI_CWindows_CFoundation_CIClosable* value,
+        boolean* result);
+    HRESULT (STDMETHODCALLTYPE* IsGenericInterfaceNull)(__x_ABI_Ctest__component_CINullValuesStatics* This,
+        __x_ABI_C__FIVector_1_HSTRING* value,
+        boolean* result);
+    HRESULT (STDMETHODCALLTYPE* IsClassNull)(__x_ABI_Ctest__component_CINullValuesStatics* This,
+        __x_ABI_CWindows_CFoundation_CIClosable* value,
+        boolean* result);
+    HRESULT (STDMETHODCALLTYPE* IsDelegateNull)(__x_ABI_Ctest__component_CINullValuesStatics* This,
+        __x_ABI_Ctest__component_CIVoidToVoidDelegate* value,
+        boolean* result);
+    HRESULT (STDMETHODCALLTYPE* GetNullInterface)(__x_ABI_Ctest__component_CINullValuesStatics* This,
+        __x_ABI_CWindows_CFoundation_CIClosable** result);
+    HRESULT (STDMETHODCALLTYPE* GetNullGenericInterface)(__x_ABI_Ctest__component_CINullValuesStatics* This,
+        __x_ABI_C__FIVector_1_HSTRING** result);
+    HRESULT (STDMETHODCALLTYPE* GetNullClass)(__x_ABI_Ctest__component_CINullValuesStatics* This,
+        __x_ABI_CWindows_CFoundation_CIClosable** result);
+    HRESULT (STDMETHODCALLTYPE* GetNullDelegate)(__x_ABI_Ctest__component_CINullValuesStatics* This,
+        __x_ABI_Ctest__component_CIVoidToVoidDelegate** result);
+
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CINullValuesStaticsVtbl;
+
+    interface __x_ABI_Ctest__component_CINullValuesStatics
+    {
+        CONST_VTBL struct __x_ABI_Ctest__component_CINullValuesStaticsVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CINullValuesStatics;
+#endif /* !defined(____x_ABI_Ctest__component_CINullValuesStatics_INTERFACE_DEFINED__) */
     
 #if !defined(____x_ABI_Ctest__component_CISimple_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CISimple_INTERFACE_DEFINED__
