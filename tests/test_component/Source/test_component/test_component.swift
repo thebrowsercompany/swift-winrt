@@ -676,6 +676,11 @@ public final class NoopClosable : WinRTClass, test_component.IClosable {
 
 public final class NullValues {
     private static let _INullValuesStatics: __ABI_test_component.INullValuesStatics = try! RoGetActivationFactory(HString("test_component.NullValues"))
+    public static func IsObjectNull(_ value: test_component.IInspectable?) -> Bool {
+        let result = try! _INullValuesStatics.IsObjectNullImpl(RawPointer(value))
+        return .init(from: result)
+    }
+
     public static func IsInterfaceNull(_ value: (any test_component.IClosable)?) -> Bool {
         let valueWrapper = __ABI_Windows_Foundation.IClosableWrapper(value)
         let _value = try! valueWrapper?.to_abi { $0 }
@@ -700,6 +705,11 @@ public final class NullValues {
         let _value = try! valueWrapper.to_abi { $0 }
         let result = try! _INullValuesStatics.IsDelegateNullImpl(_value)
         return .init(from: result)
+    }
+
+    public static func GetNullObject() -> test_component.IInspectable? {
+        let result = try! _INullValuesStatics.GetNullObjectImpl()
+        return .init(result)
     }
 
     public static func GetNullInterface() -> (any test_component.IClosable)? {

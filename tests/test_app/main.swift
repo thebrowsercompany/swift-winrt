@@ -726,20 +726,23 @@ class SwiftWinRTTests : XCTestCase {
   }
   
   public func TestNullValues() {
+    XCTAssertTrue(NullValues.IsObjectNull(nil))
     XCTAssertTrue(NullValues.IsInterfaceNull(nil))
     XCTAssertTrue(NullValues.IsGenericInterfaceNull(nil))
     XCTAssertTrue(NullValues.IsClassNull(nil))
-    // XCTAssertTrue(NullValues.IsDelegateNull(nil))
+    // XCTAssertTrue(NullValues.IsDelegateNull(nil)) // TODO: WIN-295: Crashes
     
+    // XCTAssertFalse(NullValues.IsObjectNull(NoopClosable())) // TODO: WIN-295: Crashes
     XCTAssertFalse(NullValues.IsInterfaceNull(NoopClosable()))
     XCTAssertFalse(NullValues.IsGenericInterfaceNull([""].toVector()))
     XCTAssertFalse(NullValues.IsClassNull(NoopClosable()))
     XCTAssertFalse(NullValues.IsDelegateNull(VoidToVoidDelegate(handler: {})))
 
-    // XCTAssertNil(NullValues.GetNullInterface())
-    // XCTAssertNil(NullValues.GetNullGenericInterface())
-    // XCTAssertNil(NullValues.GetNullClass())
-    // XCTAssertNil(NullValues.GetNullDelegate())
+    // XCTAssertNil(NullValues.GetNullObject()) // TODO: WIN-295: Currently fails
+    // XCTAssertNil(NullValues.GetNullInterface()) // TODO: WIN-295: Crashes
+    // XCTAssertNil(NullValues.GetNullGenericInterface()) // TODO: WIN-295: Crashes
+    // XCTAssertNil(NullValues.GetNullClass()) // TODO: WIN-295: Crashes
+    // XCTAssertNil(NullValues.GetNullDelegate()) // TODO: WIN-295: Crashes
   }
 }
 

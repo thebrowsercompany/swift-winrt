@@ -12,11 +12,13 @@ namespace test_component
 
     static runtimeclass NullValues
     {
+        static Boolean IsObjectNull(IInspectable value);
         static Boolean IsInterfaceNull(Windows.Foundation.IClosable value);
         static Boolean IsGenericInterfaceNull(Windows.Foundation.Collections.IVector<String> value);
         static Boolean IsClassNull(NoopClosable value);
         static Boolean IsDelegateNull(VoidToVoidDelegate value);
 
+        static IInspectable GetNullObject();
         static Windows.Foundation.IClosable GetNullInterface();
         static Windows.Foundation.Collections.IVector<String> GetNullGenericInterface();
         static NoopClosable GetNullClass();

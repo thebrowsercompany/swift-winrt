@@ -54,7 +54,7 @@ private var IID___x_ABI_Ctest__component_CIIAmImplementable: IID {
 }
 
 private var IID___x_ABI_Ctest__component_CINullValuesStatics: IID {
-    IID(Data1: 0x796E98B3, Data2: 0xA2B0, Data3: 0x5676, Data4: ( 0xAD,0xB1,0xC0,0x19,0x1A,0x93,0x7B,0x5A ))// 796E98B3-A2B0-5676-ADB1-C0191A937B5A
+    IID(Data1: 0x4F2BB96B, Data2: 0xB91D, Data3: 0x51E5, Data4: ( 0xA5,0x89,0x26,0x52,0xC1,0x65,0xA8,0xB5 ))// 4F2BB96B-B91D-51E5-A589-2652C165A8B5
 }
 
 private var IID___x_ABI_Ctest__component_CISimple: IID {
@@ -2450,6 +2450,14 @@ public enum __ABI_test_component {
     open class INullValuesStatics: test_component.IInspectable {
         override public class var IID: IID { IID___x_ABI_Ctest__component_CINullValuesStatics }
 
+        internal func IsObjectNullImpl(_ value: UnsafeMutablePointer<Ctest_component.IInspectable>?) throws -> boolean {
+            var result: boolean = 0
+            _ = try perform(as: __x_ABI_Ctest__component_CINullValuesStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.IsObjectNull(pThis, value, &result))
+            }
+            return result
+        }
+
         internal func IsInterfaceNullImpl(_ value: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIClosable>?) throws -> boolean {
             var result: boolean = 0
             _ = try perform(as: __x_ABI_Ctest__component_CINullValuesStatics.self) { pThis in
@@ -2478,6 +2486,14 @@ public enum __ABI_test_component {
             var result: boolean = 0
             _ = try perform(as: __x_ABI_Ctest__component_CINullValuesStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.IsDelegateNull(pThis, value, &result))
+            }
+            return result
+        }
+
+        internal func GetNullObjectImpl() throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
+            var result: UnsafeMutablePointer<Ctest_component.IInspectable>?
+            _ = try perform(as: __x_ABI_Ctest__component_CINullValuesStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetNullObject(pThis, &result))
             }
             return result
         }

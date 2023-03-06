@@ -7,10 +7,12 @@ namespace winrt::test_component::implementation
     {
         NullValues() = default;
 
+        static bool IsObjectNull(winrt::Windows::Foundation::IInspectable const& value) { return value == nullptr; }
         static bool IsInterfaceNull(winrt::Windows::Foundation::IClosable const& value) { return value == nullptr; }
         static bool IsGenericInterfaceNull(winrt::Windows::Foundation::Collections::IVector<hstring> const& value) { return value == nullptr; }
         static bool IsClassNull(winrt::test_component::NoopClosable const& value) { return value == nullptr; }
         static bool IsDelegateNull(winrt::test_component::VoidToVoidDelegate const& value) { return value == nullptr; }
+        static winrt::Windows::Foundation::IInspectable GetNullObject() { return nullptr; }
         static winrt::Windows::Foundation::IClosable GetNullInterface() { return nullptr; }
         static winrt::Windows::Foundation::Collections::IVector<hstring> GetNullGenericInterface() { return nullptr; }
         static winrt::test_component::NoopClosable GetNullClass() { return nullptr; }

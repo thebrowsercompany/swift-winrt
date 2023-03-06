@@ -1890,7 +1890,10 @@ struct __x_ABI_Ctest__component_CSimpleEventArgs
             HSTRING* className);
         HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CINullValuesStatics* This,
             TrustLevel* trustLevel);
-        HRESULT (STDMETHODCALLTYPE* IsInterfaceNull)(__x_ABI_Ctest__component_CINullValuesStatics* This,
+        HRESULT (STDMETHODCALLTYPE* IsObjectNull)(__x_ABI_Ctest__component_CINullValuesStatics* This,
+        IInspectable* value,
+        boolean* result);
+    HRESULT (STDMETHODCALLTYPE* IsInterfaceNull)(__x_ABI_Ctest__component_CINullValuesStatics* This,
         __x_ABI_CWindows_CFoundation_CIClosable* value,
         boolean* result);
     HRESULT (STDMETHODCALLTYPE* IsGenericInterfaceNull)(__x_ABI_Ctest__component_CINullValuesStatics* This,
@@ -1902,6 +1905,8 @@ struct __x_ABI_Ctest__component_CSimpleEventArgs
     HRESULT (STDMETHODCALLTYPE* IsDelegateNull)(__x_ABI_Ctest__component_CINullValuesStatics* This,
         __x_ABI_Ctest__component_CIVoidToVoidDelegate* value,
         boolean* result);
+    HRESULT (STDMETHODCALLTYPE* GetNullObject)(__x_ABI_Ctest__component_CINullValuesStatics* This,
+        IInspectable** result);
     HRESULT (STDMETHODCALLTYPE* GetNullInterface)(__x_ABI_Ctest__component_CINullValuesStatics* This,
         __x_ABI_CWindows_CFoundation_CIClosable** result);
     HRESULT (STDMETHODCALLTYPE* GetNullGenericInterface)(__x_ABI_Ctest__component_CINullValuesStatics* This,
