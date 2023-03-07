@@ -642,6 +642,99 @@ public final class Derived : test_component.Base {
     override public class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
 }
 
+public final class NoopClosable : WinRTClass, test_component.IClosable {
+    private typealias swift_ABI = __ABI_Windows_Foundation.IClosable
+    private typealias c_ABI = __x_ABI_CWindows_CFoundation_CIClosable
+    private var _default: swift_ABI = .init(UnsafeMutableRawPointer.none)
+    public func _get_abi<T>() -> UnsafeMutablePointer<T>? {
+        if T.self == c_ABI.self {
+            return RawPointer(_default)
+        }   
+        if T.self == Ctest_component.IInspectable.self {
+            return RawPointer(_default)
+        }
+        return nil
+    }
+
+    public static func from(abi: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIClosable>?) -> NoopClosable {
+        .init(fromAbi: .init(abi))
+    }
+
+    public init(fromAbi: test_component.IInspectable) {
+        _default = try! fromAbi.QueryInterface()
+    }
+
+    public init() {
+        try! _default = RoActivateInstance(HString("test_component.NoopClosable"))
+    }
+
+    public func Close() {
+        try! _default.CloseImpl()
+    }
+
+}
+
+public final class NullValues {
+    private static let _INullValuesStatics: __ABI_test_component.INullValuesStatics = try! RoGetActivationFactory(HString("test_component.NullValues"))
+    public static func IsObjectNull(_ value: test_component.IInspectable?) -> Bool {
+        let result = try! _INullValuesStatics.IsObjectNullImpl(RawPointer(value))
+        return .init(from: result)
+    }
+
+    public static func IsInterfaceNull(_ value: (any test_component.IClosable)?) -> Bool {
+        let valueWrapper = __ABI_Windows_Foundation.IClosableWrapper(value)
+        let _value = try! valueWrapper?.to_abi { $0 }
+        let result = try! _INullValuesStatics.IsInterfaceNullImpl(_value)
+        return .init(from: result)
+    }
+
+    public static func IsGenericInterfaceNull(_ value: (any IVector<String>)?) -> Bool {
+        let valueWrapper = __ABI_test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper(value)
+        let _value = try! valueWrapper?.to_abi { $0 }
+        let result = try! _INullValuesStatics.IsGenericInterfaceNullImpl(_value)
+        return .init(from: result)
+    }
+
+    public static func IsClassNull(_ value: NoopClosable?) -> Bool {
+        let result = try! _INullValuesStatics.IsClassNullImpl(RawPointer(value))
+        return .init(from: result)
+    }
+
+    public static func IsDelegateNull(_ value: VoidToVoidDelegate?) -> Bool {
+        let valueWrapper = __ABI_test_component.VoidToVoidDelegateWrapper(value!)
+        let _value = try! valueWrapper.to_abi { $0 }
+        let result = try! _INullValuesStatics.IsDelegateNullImpl(_value)
+        return .init(from: result)
+    }
+
+    public static func GetNullObject() -> test_component.IInspectable? {
+        let result = try! _INullValuesStatics.GetNullObjectImpl()
+        return .init(result)
+    }
+
+    public static func GetNullInterface() -> (any test_component.IClosable)? {
+        let result = try! _INullValuesStatics.GetNullInterfaceImpl()
+        return __ABI_Windows_Foundation.IClosableWrapper.unwrap_from(abi: result)
+    }
+
+    public static func GetNullGenericInterface() -> (any IVector<String>)? {
+        let result = try! _INullValuesStatics.GetNullGenericInterfaceImpl()
+        return __ABI_test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper.unwrap_from(abi: result)
+    }
+
+    public static func GetNullClass() -> NoopClosable? {
+        let result = try! _INullValuesStatics.GetNullClassImpl()
+        return .from(abi: result)
+    }
+
+    public static func GetNullDelegate() -> VoidToVoidDelegate? {
+        let result = try! _INullValuesStatics.GetNullDelegateImpl()
+        let _result = __ABI_test_component.VoidToVoidDelegateWrapper.try_unwrap_from(abi: result)
+        return _result!
+    }
+
+}
+
 public final class Simple : WinRTClass {
     private typealias swift_ABI = __ABI_test_component.ISimple
     private typealias c_ABI = __x_ABI_Ctest__component_CISimple
@@ -1031,6 +1124,7 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
     override open class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
 }
 
+public typealias VoidToVoidDelegate = __IMPL_test_component.VoidToVoidDelegateImpl
 public struct BlittableStruct {
     public var First: Int32 = 0
     public var Second: Int32 = 0

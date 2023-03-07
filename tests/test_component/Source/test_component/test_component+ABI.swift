@@ -53,6 +53,10 @@ private var IID___x_ABI_Ctest__component_CIIAmImplementable: IID {
     IID(Data1: 0x87F63CC3, Data2: 0x16CC, Data3: 0x5C68, Data4: ( 0x85,0xEE,0xBE,0xCA,0x3F,0x6B,0xF9,0xB2 ))// 87F63CC3-16CC-5C68-85EE-BECA3F6BF9B2
 }
 
+private var IID___x_ABI_Ctest__component_CINullValuesStatics: IID {
+    IID(Data1: 0x4F2BB96B, Data2: 0xB91D, Data3: 0x51E5, Data4: ( 0xA5,0x89,0x26,0x52,0xC1,0x65,0xA8,0xB5 ))// 4F2BB96B-B91D-51E5-A589-2652C165A8B5
+}
+
 private var IID___x_ABI_Ctest__component_CISimple: IID {
     IID(Data1: 0xCC8E220C, Data2: 0xBBF0, Data3: 0x50B8, Data4: ( 0xB1,0x8E,0x98,0xE7,0xCC,0x2E,0xED,0xDB ))// CC8E220C-BBF0-50B8-B18E-98E7CC2EEDDB
 }
@@ -99,6 +103,10 @@ private var IID___x_ABI_Ctest__component_CIUnsealedDerivedOverrides: IID {
 
 private var IID___x_ABI_Ctest__component_CIUnsealedDerivedProtectedFactory: IID {
     IID(Data1: 0x84D1FBFC, Data2: 0x0633, Data3: 0x572C, Data4: ( 0xAA,0x3D,0xA8,0xB9,0xBA,0x1D,0x30,0x76 ))// 84D1FBFC-0633-572C-AA3D-A8B9BA1D3076
+}
+
+private var IID___x_ABI_Ctest__component_CIVoidToVoidDelegate: IID {
+    IID(Data1: 0x5ED7E415, Data2: 0x84E7, Data3: 0x5E4C, Data4: ( 0x8F,0x68,0xD4,0x65,0x3C,0x39,0xEE,0x46 ))// 5ED7E415-84E7-5E4C-8F68-D4653C39EE46
 }
 
 private var IID___x_ABI_C__FIIterable_1_HSTRING: IID {
@@ -2439,6 +2447,91 @@ public enum __ABI_test_component {
     )
 
     public typealias IIAmImplementableWrapper = InterfaceWrapperBase<__IMPL_test_component.IIAmImplementableImpl>
+    open class INullValuesStatics: test_component.IInspectable {
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CINullValuesStatics }
+
+        internal func IsObjectNullImpl(_ value: UnsafeMutablePointer<Ctest_component.IInspectable>?) throws -> boolean {
+            var result: boolean = 0
+            _ = try perform(as: __x_ABI_Ctest__component_CINullValuesStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.IsObjectNull(pThis, value, &result))
+            }
+            return result
+        }
+
+        internal func IsInterfaceNullImpl(_ value: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIClosable>?) throws -> boolean {
+            var result: boolean = 0
+            _ = try perform(as: __x_ABI_Ctest__component_CINullValuesStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.IsInterfaceNull(pThis, value, &result))
+            }
+            return result
+        }
+
+        internal func IsGenericInterfaceNullImpl(_ value: UnsafeMutablePointer<__x_ABI_C__FIVector_1_HSTRING>?) throws -> boolean {
+            var result: boolean = 0
+            _ = try perform(as: __x_ABI_Ctest__component_CINullValuesStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.IsGenericInterfaceNull(pThis, value, &result))
+            }
+            return result
+        }
+
+        internal func IsClassNullImpl(_ value: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIClosable>?) throws -> boolean {
+            var result: boolean = 0
+            _ = try perform(as: __x_ABI_Ctest__component_CINullValuesStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.IsClassNull(pThis, value, &result))
+            }
+            return result
+        }
+
+        internal func IsDelegateNullImpl(_ value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIVoidToVoidDelegate>?) throws -> boolean {
+            var result: boolean = 0
+            _ = try perform(as: __x_ABI_Ctest__component_CINullValuesStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.IsDelegateNull(pThis, value, &result))
+            }
+            return result
+        }
+
+        internal func GetNullObjectImpl() throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
+            var result: UnsafeMutablePointer<Ctest_component.IInspectable>?
+            _ = try perform(as: __x_ABI_Ctest__component_CINullValuesStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetNullObject(pThis, &result))
+            }
+            return result
+        }
+
+        internal func GetNullInterfaceImpl() throws -> UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIClosable>? {
+            var result: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIClosable>?
+            _ = try perform(as: __x_ABI_Ctest__component_CINullValuesStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetNullInterface(pThis, &result))
+            }
+            return result
+        }
+
+        internal func GetNullGenericInterfaceImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIVector_1_HSTRING>? {
+            var result: UnsafeMutablePointer<__x_ABI_C__FIVector_1_HSTRING>?
+            _ = try perform(as: __x_ABI_Ctest__component_CINullValuesStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetNullGenericInterface(pThis, &result))
+            }
+            return result
+        }
+
+        internal func GetNullClassImpl() throws -> UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIClosable>? {
+            var result: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIClosable>?
+            _ = try perform(as: __x_ABI_Ctest__component_CINullValuesStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetNullClass(pThis, &result))
+            }
+            return result
+        }
+
+        internal func GetNullDelegateImpl() throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIVoidToVoidDelegate>? {
+            var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIVoidToVoidDelegate>?
+            _ = try perform(as: __x_ABI_Ctest__component_CINullValuesStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetNullDelegate(pThis, &result))
+            }
+            return result
+        }
+
+    }
+
     open class ISimple: test_component.IInspectable {
         override public class var IID: IID { IID___x_ABI_Ctest__component_CISimple }
 
@@ -2821,6 +2914,51 @@ public enum __ABI_test_component {
 
     }
 
+    internal static var VoidToVoidDelegateVTable: __x_ABI_Ctest__component_CIVoidToVoidDelegateVtbl = .init(
+        QueryInterface: {
+            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+
+            guard riid.pointee == IUnknown.IID ||
+                  riid.pointee == IInspectable.IID || 
+                  riid.pointee == ISwiftImplemented.IID ||
+                  riid.pointee == IIAgileObject.IID ||
+                  riid.pointee == __ABI_test_component.VoidToVoidDelegateWrapper.IID else { 
+                ppvObject.pointee = nil
+                        return E_NOINTERFACE
+
+            }
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
+        },
+
+        AddRef: {
+             guard let wrapper = VoidToVoidDelegateWrapper.from_raw($0) else { return 1 }
+             _ = wrapper.retain()
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+        },
+
+        Release: {
+            guard let wrapper = VoidToVoidDelegateWrapper.from_raw($0) else { return 1 }
+            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+        },
+
+        Invoke: {
+            guard let __unwrapped__instance = VoidToVoidDelegateWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            __unwrapped__instance.handler(())
+            return S_OK
+        }
+    )
+
+    class VoidToVoidDelegateWrapper : WinRTWrapperBase<__x_ABI_Ctest__component_CIVoidToVoidDelegate, __IMPL_test_component.VoidToVoidDelegateImpl> {
+        override class var IID: IID { IID___x_ABI_Ctest__component_CIVoidToVoidDelegate }
+        init(_ handler: __IMPL_test_component.VoidToVoidDelegateImpl){
+            let abi = withUnsafeMutablePointer(to: &VoidToVoidDelegateVTable) {
+                __x_ABI_Ctest__component_CIVoidToVoidDelegate(lpVtbl:$0)
+            }
+            super.init(abi, handler)
+        }
+    }
     public class _ABI_NonBlittableBoolStruct {
         public var val: __x_ABI_Ctest__component_CNonBlittableBoolStruct = .init()
         public init() { }

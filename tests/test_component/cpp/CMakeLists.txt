@@ -124,6 +124,10 @@ target_sources(test_component_cpp PRIVATE
     ${CPPWINRT_OUTPUT}
     #Optional.cpp
     #Optional.h
+    NoopClosable.cpp
+    NoopClosable.h
+    NullValues.cpp
+    NullValues.h
     pch.cpp
     pch.h
     Simple.cpp

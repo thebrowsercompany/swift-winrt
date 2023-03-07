@@ -1,5 +1,7 @@
-import "Windows.Foundation.Numerics.idl";
+#include "NullValues.idl"
 
+import "Windows.Foundation.idl";
+// import "Windows.Foundation.Numerics.idl";
 
 //namespace Windows.Foundation.Metadata
 //{

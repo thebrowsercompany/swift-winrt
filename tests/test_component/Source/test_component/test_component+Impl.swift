@@ -144,6 +144,15 @@ public enum __IMPL_test_component {
 
     }
 
+    public class VoidToVoidDelegateImpl : WinRTDelegate {
+        public typealias Data = ()
+        public typealias Return = ()
+        public var token: EventRegistrationToken?
+        public var handler: (Data) -> Return
+        public required init(handler: @escaping (Data) -> Return){
+            self.handler = handler
+        }
+    }
     internal class __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl : IMapView, AbiInterfaceImpl {
         typealias Key = String
         typealias Value = String
