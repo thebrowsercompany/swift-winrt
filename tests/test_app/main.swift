@@ -316,9 +316,9 @@ class SwiftWinRTTests : XCTestCase {
       // we're initializing the swift object with `nil`, which is similar to 
       // how in C++/WinRT this works.
 
-      classy.SetDelegate(MySimpleDelegate.none)
+      classy.SetDelegate(nil)
 
-      // This will hand us a C++ class which implements the interface.
+      // This will hand us a new C++ class which implements the interface.
       retrievedDelegate = classy.GetDelegate()!
       retrievedDelegate.DoThis()
       retrievedDelegate.DoThat(15)
@@ -451,7 +451,6 @@ class SwiftWinRTTests : XCTestCase {
 
   public func TestDoubleDelegate() {
     let classy = Class()
-
     let newBase = DoTheNewBase()
     classy.Implementation = newBase
     classy.Method()
@@ -461,11 +460,9 @@ class SwiftWinRTTests : XCTestCase {
 
     XCTAssertIdentical(implReturn, newBase, "incorrect swift object returned")
 
-    classy.Implementation = DoTheNewBase.none
-
-    implReturn = classy.Implementation!
+    classy.Implementation = nil
+    implReturn = classy.Implementation! // Will create a new implementation
     XCTAssertNotIdentical(implReturn, newBase, "incorrect swift object returned")
-    implReturn.Method()
 
     let double = DoubleDelegate()
     classy.Implementation = double
@@ -730,19 +727,19 @@ class SwiftWinRTTests : XCTestCase {
     XCTAssertTrue(NullValues.IsInterfaceNull(nil))
     XCTAssertTrue(NullValues.IsGenericInterfaceNull(nil))
     XCTAssertTrue(NullValues.IsClassNull(nil))
-    // XCTAssertTrue(NullValues.IsDelegateNull(nil)) // TODO: WIN-295: Crashes
+    // XCTAssertTrue(NullValues.IsDelegateNull(nil)) // TODO: WIN-276: Crashes
     
-    // XCTAssertFalse(NullValues.IsObjectNull(NoopClosable())) // TODO: WIN-295: Crashes
+    // XCTAssertFalse(NullValues.IsObjectNull(NoopClosable())) // TODO: How to create an IInspectable?
     XCTAssertFalse(NullValues.IsInterfaceNull(NoopClosable()))
     XCTAssertFalse(NullValues.IsGenericInterfaceNull([""].toVector()))
     XCTAssertFalse(NullValues.IsClassNull(NoopClosable()))
     XCTAssertFalse(NullValues.IsDelegateNull(VoidToVoidDelegate(handler: {})))
 
-    // XCTAssertNil(NullValues.GetNullObject()) // TODO: WIN-295: Currently fails
-    // XCTAssertNil(NullValues.GetNullInterface()) // TODO: WIN-295: Crashes
-    // XCTAssertNil(NullValues.GetNullGenericInterface()) // TODO: WIN-295: Crashes
-    // XCTAssertNil(NullValues.GetNullClass()) // TODO: WIN-295: Crashes
-    // XCTAssertNil(NullValues.GetNullDelegate()) // TODO: WIN-295: Crashes
+    XCTAssertNil(NullValues.GetNullObject())
+    XCTAssertNil(NullValues.GetNullInterface())
+    XCTAssertNil(NullValues.GetNullGenericInterface())
+    XCTAssertNil(NullValues.GetNullClass())
+    XCTAssertNil(NullValues.GetNullDelegate())
   }
 }
 

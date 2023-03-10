@@ -58,13 +58,13 @@ public enum __ABI {
         },
 
         AddRef: {
-             guard let wrapper = AnyObjectWrapper.from_raw($0) else { return 1 }
+             guard let wrapper = AnyObjectWrapper.fromRawIfLet($0) else { return 1 }
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
 
         Release: {
-            guard let wrapper = AnyObjectWrapper.from_raw($0) else { return 1 }
+            guard let wrapper = AnyObjectWrapper.fromRawIfLet($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
 

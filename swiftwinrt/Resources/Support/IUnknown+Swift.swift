@@ -4,13 +4,18 @@
 import WinSDK
 
 extension IUnknown {
-  public func QueryInterface<Interface: IUnknown>() throws -> Interface {
-    guard let pUnk = self.pUnk.borrow else { throw Error(hr: E_INVALIDARG) }
+  public static func fromIfLet(_ pointer: UnsafeMutableRawPointer?) -> Self? {
+    guard let pointer = pointer else { return nil }
+    return Self(pointer)
+  }
 
+  public func QueryInterface<Interface: IUnknown>() throws -> Interface {
     var iid: IID = Interface.IID
     var pointer: UnsafeMutableRawPointer?
-    try CHECKED(pUnk.pointee.lpVtbl.pointee.QueryInterface(pUnk, &iid, &pointer))
-    return Interface(consuming: pointer?.bindMemory(to: WinSDK.IUnknown.self, capacity: 1))
+    try CHECKED(self.pUnk.borrow.pointee.lpVtbl.pointee.QueryInterface(self.pUnk.borrow, &iid, &pointer))
+    // https://learn.microsoft.com/en-us/windows/win32/api/unknwn/nf-unknwn-iunknown-queryinterface(refiid_void)
+    // "Upon successful return, *ppvObject (the dereferenced address) contains a pointer to the requested interface"
+    return Interface(consuming: pointer!.bindMemory(to: WinSDK.IUnknown.self, capacity: 1))
   }
 }
 
@@ -24,7 +29,9 @@ extension IUnknown {
 
     var pointer: UnsafeMutableRawPointer?
     try CHECKED(CoCreateInstance(&clsid, RawPointer(pUnkOuter), DWORD(dwClsContext.rawValue), &iid, &pointer))
-    return Interface(consuming: pointer?.bindMemory(to: WinSDK.IUnknown.self, capacity: 1))
+    // https://learn.microsoft.com/en-us/windows/win32/api/combaseapi/nf-combaseapi-cocreateinstance
+    // "Upon successful return, *ppv contains the requested interface pointer."
+    return Interface(consuming: pointer!.bindMemory(to: WinSDK.IUnknown.self, capacity: 1))
   }
 }
 

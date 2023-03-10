@@ -9,23 +9,23 @@ open class IUnknown : HasIID {
 
   public class var IID: IID { IID_IUnknown }
 
-  public required init(_ pointer: UnsafeMutablePointer<WinSDK.IUnknown>?) {
+  public required init(_ pointer: UnsafeMutablePointer<WinSDK.IUnknown>) {
     self.pUnk = IUnknownRef(pointer)
   }
 
-  public required init(_ pointer: UnsafeMutableRawPointer?) {
-    let pUnk: UnsafeMutablePointer<WinSDK.IUnknown>? =
-        pointer?.bindMemory(to: WinSDK.IUnknown.self, capacity: 1)
+  public required init(_ pointer: UnsafeMutableRawPointer) {
+    let pUnk: UnsafeMutablePointer<WinSDK.IUnknown> =
+        pointer.bindMemory(to: WinSDK.IUnknown.self, capacity: 1)
     self.pUnk = IUnknownRef(pUnk)
   }
 
-  public required init(consuming pointer: UnsafeMutablePointer<WinSDK.IUnknown>?) {
+  public required init(consuming pointer: UnsafeMutablePointer<WinSDK.IUnknown>) {
     self.pUnk = IUnknownRef(consuming: pointer)
   }
 
-  public init(consuming pointer: UnsafeMutableRawPointer?) {
-    let pUnk: UnsafeMutablePointer<WinSDK.IUnknown>? =
-        pointer?.bindMemory(to: WinSDK.IUnknown.self, capacity: 1)
+  public init(consuming pointer: UnsafeMutableRawPointer) {
+    let pUnk: UnsafeMutablePointer<WinSDK.IUnknown> =
+        pointer.bindMemory(to: WinSDK.IUnknown.self, capacity: 1)
     self.pUnk = IUnknownRef(consuming: pUnk)
   }
   

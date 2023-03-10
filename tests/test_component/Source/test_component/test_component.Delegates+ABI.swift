@@ -29,13 +29,13 @@ public enum __ABI_test_component_Delegates {
         },
 
         AddRef: {
-             guard let wrapper = InDelegateWrapper.from_raw($0) else { return 1 }
+             guard let wrapper = InDelegateWrapper.fromRawIfLet($0) else { return 1 }
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
 
         Release: {
-            guard let wrapper = InDelegateWrapper.from_raw($0) else { return 1 }
+            guard let wrapper = InDelegateWrapper.fromRawIfLet($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
 
@@ -75,13 +75,13 @@ public enum __ABI_test_component_Delegates {
         },
 
         AddRef: {
-             guard let wrapper = SignalDelegateWrapper.from_raw($0) else { return 1 }
+             guard let wrapper = SignalDelegateWrapper.fromRawIfLet($0) else { return 1 }
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
 
         Release: {
-            guard let wrapper = SignalDelegateWrapper.from_raw($0) else { return 1 }
+            guard let wrapper = SignalDelegateWrapper.fromRawIfLet($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
 

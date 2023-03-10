@@ -5,41 +5,41 @@ import WinSDK
 
 @_fixed_layout
 public final class IUnknownRef {
-  private var pUnk: UnsafeMutablePointer<WinSDK.IUnknown>?
+  private var pUnk: UnsafeMutablePointer<WinSDK.IUnknown>
 
-  init(_ pUnk: UnsafeMutablePointer<WinSDK.IUnknown>?) {
+  init(_ pUnk: UnsafeMutablePointer<WinSDK.IUnknown>) {
     self.pUnk = pUnk
-    _ = self.pUnk?.pointee.lpVtbl.pointee.AddRef(self.pUnk)
+    _ = self.pUnk.pointee.lpVtbl.pointee.AddRef(self.pUnk)
   }
 
-  convenience init(_ pointer: UnsafeMutableRawPointer?) {
-    let pUnk = pointer?.bindMemory(to: WinSDK.IUnknown.self, capacity: 1)
+  convenience init(_ pointer: UnsafeMutableRawPointer) {
+    let pUnk = pointer.bindMemory(to: WinSDK.IUnknown.self, capacity: 1)
     self.init(pUnk)
   }
 
-  init(consuming pUnk: UnsafeMutablePointer<WinSDK.IUnknown>?) {
+  init(consuming pUnk: UnsafeMutablePointer<WinSDK.IUnknown>) {
     self.pUnk = pUnk
     // TODO: WIN-158 we shouldn't need to addref because these pointers already have an 
     // added reference coming from winrt. However, this helps the app not crash so
     // doing this for now
-    _ = self.pUnk?.pointee.lpVtbl.pointee.AddRef(self.pUnk)
+    _ = self.pUnk.pointee.lpVtbl.pointee.AddRef(self.pUnk)
   }
 
-  convenience init(consuming pointer: UnsafeMutableRawPointer?) {
-    let pUnk = pointer?.bindMemory(to: WinSDK.IUnknown.self, capacity: 1)
+  convenience init(consuming pointer: UnsafeMutableRawPointer) {
+    let pUnk = pointer.bindMemory(to: WinSDK.IUnknown.self, capacity: 1)
     self.init(consuming: pUnk)
   }
 
   deinit {
-    _ = self.pUnk?.pointee.lpVtbl.pointee.Release(self.pUnk)
+    _ = self.pUnk.pointee.lpVtbl.pointee.Release(self.pUnk)
   }
 
- public var borrow: UnsafeMutablePointer<WinSDK.IUnknown>? {
+ public var borrow: UnsafeMutablePointer<WinSDK.IUnknown> {
     return self.pUnk
   }
 
-  public var ref: UnsafeMutablePointer<WinSDK.IUnknown>? {
-    _ = self.pUnk?.pointee.lpVtbl.pointee.AddRef(self.pUnk)
+  public var ref: UnsafeMutablePointer<WinSDK.IUnknown> {
+    _ = self.pUnk.pointee.lpVtbl.pointee.AddRef(self.pUnk)
     return self.pUnk
   }
 }
