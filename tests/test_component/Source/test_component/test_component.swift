@@ -711,8 +711,8 @@ public final class NullValues {
     }
 
     public static func IsDelegateNull(_ value: VoidToVoidDelegate?) -> Bool {
-        let valueWrapper = __ABI_test_component.VoidToVoidDelegateWrapper(value!)
-        let _value = try! valueWrapper.to_abi { $0 }
+        let valueWrapper = __ABI_test_component.VoidToVoidDelegateWrapper(value)
+        let _value = try! valueWrapper?.to_abi { $0 }
         let result = try! _INullValuesStatics.IsDelegateNullImpl(_value)
         return .init(from: result)
     }
@@ -781,8 +781,8 @@ public final class Simple : WinRTClass {
     public static var StaticEvent : Event<(test_component.IInspectable?, test_component.IInspectable?),()> = EventImpl<__IMPL_test_component.__x_ABI_C__FIEventHandler_1_IInspectableImpl>(register: _StaticEventRegistrar, owner:_ISimpleStatics)
     private class StaticEventRegistrar : IEventRegistration {
         func add(delegate: any WinRTDelegate, for impl: test_component.IInspectable){
-            let wrapper = __ABI_test_component.__x_ABI_C__FIEventHandler_1_IInspectableWrapper(delegate as! __IMPL_test_component.__x_ABI_C__FIEventHandler_1_IInspectableImpl)
-            let abi = try! wrapper.to_abi { $0 }
+            let wrapper = __ABI_test_component.__x_ABI_C__FIEventHandler_1_IInspectableWrapper(delegate as? __IMPL_test_component.__x_ABI_C__FIEventHandler_1_IInspectableImpl)
+            let abi = try! wrapper?.to_abi { $0 }
             let impl:__ABI_test_component.ISimpleStatics = try! impl.QueryInterface()
             delegate.token = try! impl.add_StaticEventImpl(abi)
         }
@@ -860,8 +860,8 @@ public final class Simple : WinRTClass {
     public lazy var InEvent : Event<(String),()> = EventImpl<__IMPL_test_component_Delegates.InDelegateImpl>(register: Self._InEventRegistrar, owner:_default)
     private class InEventRegistrar : IEventRegistration {
         func add(delegate: any WinRTDelegate, for impl: test_component.IInspectable){
-            let wrapper = __ABI_test_component_Delegates.InDelegateWrapper(delegate as! __IMPL_test_component_Delegates.InDelegateImpl)
-            let abi = try! wrapper.to_abi { $0 }
+            let wrapper = __ABI_test_component_Delegates.InDelegateWrapper(delegate as? __IMPL_test_component_Delegates.InDelegateImpl)
+            let abi = try! wrapper?.to_abi { $0 }
             let impl:__ABI_test_component.ISimple = try! impl.QueryInterface()
             delegate.token = try! impl.add_InEventImpl(abi)
         }
@@ -877,8 +877,8 @@ public final class Simple : WinRTClass {
     public lazy var SignalEvent : Event<(),()> = EventImpl<__IMPL_test_component_Delegates.SignalDelegateImpl>(register: Self._SignalEventRegistrar, owner:_default)
     private class SignalEventRegistrar : IEventRegistration {
         func add(delegate: any WinRTDelegate, for impl: test_component.IInspectable){
-            let wrapper = __ABI_test_component_Delegates.SignalDelegateWrapper(delegate as! __IMPL_test_component_Delegates.SignalDelegateImpl)
-            let abi = try! wrapper.to_abi { $0 }
+            let wrapper = __ABI_test_component_Delegates.SignalDelegateWrapper(delegate as? __IMPL_test_component_Delegates.SignalDelegateImpl)
+            let abi = try! wrapper?.to_abi { $0 }
             let impl:__ABI_test_component.ISimple = try! impl.QueryInterface()
             delegate.token = try! impl.add_SignalEventImpl(abi)
         }
@@ -894,8 +894,8 @@ public final class Simple : WinRTClass {
     public lazy var SimpleEvent : Event<(Simple?, SimpleEventArgs),()> = EventImpl<__IMPL_test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsImpl>(register: Self._SimpleEventRegistrar, owner:_default)
     private class SimpleEventRegistrar : IEventRegistration {
         func add(delegate: any WinRTDelegate, for impl: test_component.IInspectable){
-            let wrapper = __ABI_test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper(delegate as! __IMPL_test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsImpl)
-            let abi = try! wrapper.to_abi { $0 }
+            let wrapper = __ABI_test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper(delegate as? __IMPL_test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsImpl)
+            let abi = try! wrapper?.to_abi { $0 }
             let impl:__ABI_test_component.ISimple = try! impl.QueryInterface()
             delegate.token = try! impl.add_SimpleEventImpl(abi)
         }

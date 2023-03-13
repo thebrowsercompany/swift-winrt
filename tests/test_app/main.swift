@@ -727,7 +727,7 @@ class SwiftWinRTTests : XCTestCase {
     XCTAssertTrue(NullValues.IsInterfaceNull(nil))
     XCTAssertTrue(NullValues.IsGenericInterfaceNull(nil))
     XCTAssertTrue(NullValues.IsClassNull(nil))
-    // XCTAssertTrue(NullValues.IsDelegateNull(nil)) // TODO: WIN-276: Crashes
+    XCTAssertTrue(NullValues.IsDelegateNull(nil))
     
     // XCTAssertFalse(NullValues.IsObjectNull(NoopClosable())) // TODO: How to create an IInspectable?
     XCTAssertFalse(NullValues.IsInterfaceNull(NoopClosable()))

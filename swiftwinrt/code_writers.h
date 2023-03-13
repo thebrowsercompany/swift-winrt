@@ -929,7 +929,8 @@ bind<write_abi_args>(function));
         auto format = R"(
 class % : WinRTWrapperBase<%, %> {
     override class var IID: IID { IID_% }
-    init(_ handler: %){
+    init?(_ handler: %?){
+        guard let handler = handler else { return nil }
         let abi = withUnsafeMutablePointer(to: &%VTable) {
             %(lpVtbl:$0)
         }
@@ -1751,12 +1752,11 @@ public static func makeAbi() -> c_ABI {
                     }
                     else if (is_delegate(param.type))
                     {
-                        // TODO: WIN-276: Delegates are assumed to be non-null in generated code
-                        w.write("let %Wrapper = %(%!)\n",
+                        w.write("let %Wrapper = %(%)\n",
                             get_swift_name(param),
                             bind_wrapper_fullname(param.type),
                             get_swift_name(param));
-                        w.write("let _% = try! %Wrapper.to_abi { $0 }\n",
+                        w.write("let _% = try! %Wrapper?.to_abi { $0 }\n",
                             get_swift_name(param),
                             get_swift_name(param));
                     }
@@ -2109,9 +2109,8 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
             }
             else if (is_delegate(prop.type))
             {
-                // TODO: WIN-276: Delegates are assumed to be non-null in generated code
-                w.write("let wrapper = %(newValue!)\n", bind_wrapper_fullname(prop.type));
-                w.write("let _newValue = try! wrapper.to_abi { $0 }\n");
+                w.write("let wrapper = %(newValue)\n", bind_wrapper_fullname(prop.type));
+                w.write("let _newValue = try! wrapper?.to_abi { $0 }\n");
             }
   
             w.write("try! %.%Impl(%)\n",
@@ -2162,8 +2161,8 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         auto abi_name = w.write_temp("%.%", abi_namespace(iface.type), iface.type->swift_type_name());
         auto format = R"(private class % : IEventRegistration {
     func add(delegate: any WinRTDelegate, for impl: %.IInspectable){
-        let wrapper = %(delegate as! %)
-        let abi = try! wrapper.to_abi { $0 }
+        let wrapper = %(delegate as? %)
+        let abi = try! wrapper?.to_abi { $0 }
         let impl:% = try! impl.QueryInterface()
         delegate.token = try! impl.add_%Impl(abi)
     }
@@ -2906,11 +2905,11 @@ bind([&](writer& w) {
         else if (is_delegate(type))
         {
             // TODO: WIN-276: Delegates are assumed to be non-null in generated code
-            w.write("let %Wrapper = %(%!)\n",
+            w.write("let %Wrapper = %(%)\n",
                 param_name,
                 bind_wrapper_fullname(type),
                 param_name);
-            w.write("let _% = try! %Wrapper.to_abi { $0 }\n",
+            w.write("let _% = try! %Wrapper?.to_abi { $0 }\n",
                 param_name,
                 param_name);
         }
