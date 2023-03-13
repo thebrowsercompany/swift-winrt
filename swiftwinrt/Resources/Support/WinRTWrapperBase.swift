@@ -106,7 +106,8 @@ open class WinRTWrapperBase2<I: AbiImpl> : WinRTWrapperBase<I.c_ABI, I.swift_Pro
 
 open class InterfaceWrapperBase<I: AbiInterfaceImpl> : WinRTWrapperBase2<I> {
     override public class var IID: IID { I.swift_ABI.IID }
-    public init(_ impl: I.swift_Projection) {
+    public init?(_ impl: I.swift_Projection?) {
+        guard let impl = impl else { return nil }
         // try to see if already wrapping an ABI pointer and if so, use that
         if let internalImpl = impl as? I {
             let abi: UnsafeMutablePointer<I.c_ABI> = RawPointer(internalImpl._default)!
@@ -115,11 +116,6 @@ open class InterfaceWrapperBase<I: AbiInterfaceImpl> : WinRTWrapperBase2<I> {
             let abi = I.makeAbi()
             super.init(abi, impl)
         }
-    }
-    
-    public convenience init?(_ impl: I.swift_Projection?) {
-        guard let impl = impl else { return nil }
-        self.init(impl)
     }
 
     public static func unwrap_from(abi pointer: UnsafeMutablePointer<I.c_ABI>?) -> I.swift_Projection? {

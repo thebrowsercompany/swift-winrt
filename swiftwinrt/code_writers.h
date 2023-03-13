@@ -1793,7 +1793,7 @@ public static func makeAbi() -> c_ABI {
                             get_swift_name(param),
                             bind_wrapper_fullname(param.type),
                             get_swift_name(param));
-                        w.write("let _% = try! %Wrapper.to_abi { $0 }\n",
+                        w.write("let _% = try! %Wrapper?.to_abi { $0 }\n",
                             get_swift_name(param),
                             get_swift_name(param));
                     }
