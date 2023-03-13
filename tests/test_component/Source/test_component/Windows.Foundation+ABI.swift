@@ -40,13 +40,13 @@ public enum __ABI_Windows_Foundation {
         },
 
         AddRef: {
-             guard let wrapper = IClosableWrapper.fromRawIfLet($0) else { return 1 }
+             guard let wrapper = IClosableWrapper.from_raw($0) else { return 1 }
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
 
         Release: {
-            guard let wrapper = IClosableWrapper.fromRawIfLet($0) else { return 1 }
+            guard let wrapper = IClosableWrapper.from_raw($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
 
@@ -266,13 +266,13 @@ public enum __ABI_Windows_Foundation {
         },
 
         AddRef: {
-             guard let wrapper = IPropertyValueWrapper.fromRawIfLet($0) else { return 1 }
+             guard let wrapper = IPropertyValueWrapper.from_raw($0) else { return 1 }
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
 
         Release: {
-            guard let wrapper = IPropertyValueWrapper.fromRawIfLet($0) else { return 1 }
+            guard let wrapper = IPropertyValueWrapper.from_raw($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
 

@@ -7,7 +7,8 @@ public enum __IMPL_test_component {
         public typealias swift_ABI = __ABI_test_component.IBasic
         public typealias swift_Projection = any IBasic
         private (set) public var _default: swift_ABI
-        public static func from(abi: UnsafeMutablePointer<c_ABI>) -> swift_Projection {
+        public static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection? {
+            guard let abi = abi else { return nil }
             return IBasicImpl(abi)
         }
         public init(_ fromAbi: UnsafeMutablePointer<c_ABI>) {
@@ -29,7 +30,8 @@ public enum __IMPL_test_component {
         public typealias swift_ABI = __ABI_test_component.IIAmImplementable
         public typealias swift_Projection = any IIAmImplementable
         private (set) public var _default: swift_ABI
-        public static func from(abi: UnsafeMutablePointer<c_ABI>) -> swift_Projection {
+        public static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection? {
+            guard let abi = abi else { return nil }
             return IIAmImplementableImpl(abi)
         }
         public init(_ fromAbi: UnsafeMutablePointer<c_ABI>) {
@@ -123,7 +125,8 @@ public enum __IMPL_test_component {
         public typealias swift_ABI = __ABI_test_component.ISimpleDelegate
         public typealias swift_Projection = any ISimpleDelegate
         private (set) public var _default: swift_ABI
-        public static func from(abi: UnsafeMutablePointer<c_ABI>) -> swift_Projection {
+        public static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection? {
+            guard let abi = abi else { return nil }
             return ISimpleDelegateImpl(abi)
         }
         public init(_ fromAbi: UnsafeMutablePointer<c_ABI>) {
@@ -162,7 +165,8 @@ public enum __IMPL_test_component {
 
         private (set) public var _default: swift_ABI
 
-        static func from(abi: UnsafeMutablePointer<c_ABI>) -> swift_Projection {
+        static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection? {
+            guard let abi = abi else { return nil }
             return __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl(abi)
         }
 
@@ -192,8 +196,8 @@ public enum __IMPL_test_component {
             var _first: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?
             var _second: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?
             try! _default.SplitImpl(&_first, &_second)
-            first = __IMPL_test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl.fromIfLet(abi: _first)
-            second = __IMPL_test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl.fromIfLet(abi: _second)
+            first = __IMPL_test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl.from(abi: _first)
+            second = __IMPL_test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl.from(abi: _second)
         }
 
         public var Size : UInt32 {
@@ -215,7 +219,8 @@ public enum __IMPL_test_component {
 
         private (set) public var _default: swift_ABI
 
-        static func from(abi: UnsafeMutablePointer<c_ABI>) -> swift_Projection {
+        static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection? {
+            guard let abi = abi else { return nil }
             return __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
         }
 
@@ -232,7 +237,7 @@ public enum __IMPL_test_component {
         public func Lookup(_ key: String) -> Base? {
             let _key = try! HString(key)
             let result = try! _default.LookupImpl(_key.get())
-            return .fromIfLet(abi: result)
+            return .from(abi: result)
         }
 
         public func HasKey(_ key: String) -> Bool {
@@ -245,8 +250,8 @@ public enum __IMPL_test_component {
             var _first: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
             var _second: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
             try! _default.SplitImpl(&_first, &_second)
-            first = __IMPL_test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl.fromIfLet(abi: _first)
-            second = __IMPL_test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl.fromIfLet(abi: _second)
+            first = __IMPL_test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl.from(abi: _first)
+            second = __IMPL_test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl.from(abi: _second)
         }
 
         public var Size : UInt32 {
@@ -268,7 +273,8 @@ public enum __IMPL_test_component {
 
         private (set) public var _default: swift_ABI
 
-        static func from(abi: UnsafeMutablePointer<c_ABI>) -> swift_Projection {
+        static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection? {
+            guard let abi = abi else { return nil }
             return __x_ABI_C__FIMap_2_HSTRING_HSTRINGImpl(abi)
         }
 
@@ -334,7 +340,8 @@ public enum __IMPL_test_component {
 
         private (set) public var _default: swift_ABI
 
-        static func from(abi: UnsafeMutablePointer<c_ABI>) -> swift_Projection {
+        static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection? {
+            guard let abi = abi else { return nil }
             return __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
         }
 
@@ -351,7 +358,7 @@ public enum __IMPL_test_component {
         public func Lookup(_ key: String) -> Base? {
             let _key = try! HString(key)
             let result = try! _default.LookupImpl(_key.get())
-            return .fromIfLet(abi: result)
+            return .from(abi: result)
         }
 
         public func HasKey(_ key: String) -> Bool {
@@ -398,7 +405,8 @@ public enum __IMPL_test_component {
 
         private (set) public var _default: swift_ABI
 
-        static func from(abi: UnsafeMutablePointer<c_ABI>) -> swift_Projection {
+        static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection? {
+            guard let abi = abi else { return nil }
             return __x_ABI_C__FIVectorView_1_HSTRINGImpl(abi)
         }
 
@@ -461,7 +469,8 @@ public enum __IMPL_test_component {
 
         private (set) public var _default: swift_ABI
 
-        static func from(abi: UnsafeMutablePointer<c_ABI>) -> swift_Projection {
+        static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection? {
+            guard let abi = abi else { return nil }
             return __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
         }
 
@@ -497,7 +506,7 @@ public enum __IMPL_test_component {
         // MARK: WinRT
         public func GetAt(_ index: UInt32) -> Base? {
             let result = try! _default.GetAtImpl(index)
-            return .fromIfLet(abi: result)
+            return .from(abi: result)
         }
 
         public func IndexOf(_ value: Base?, _ index: inout UInt32) -> Bool {
@@ -523,7 +532,8 @@ public enum __IMPL_test_component {
 
         private (set) public var _default: swift_ABI
 
-        static func from(abi: UnsafeMutablePointer<c_ABI>) -> swift_Projection {
+        static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection? {
+            guard let abi = abi else { return nil }
             return __x_ABI_C__FIVector_1_HSTRINGImpl(abi)
         }
 
@@ -633,7 +643,8 @@ public enum __IMPL_test_component {
 
         private (set) public var _default: swift_ABI
 
-        static func from(abi: UnsafeMutablePointer<c_ABI>) -> swift_Projection {
+        static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection? {
+            guard let abi = abi else { return nil }
             return __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
         }
 
@@ -684,7 +695,7 @@ public enum __IMPL_test_component {
         // MARK: WinRT
         public func GetAt(_ index: UInt32) -> Base? {
             let result = try! _default.GetAtImpl(index)
-            return .fromIfLet(abi: result)
+            return .from(abi: result)
         }
 
         public func GetView() -> (any IVectorView<Base?>)? {

@@ -8,14 +8,7 @@ public protocol WinRTClass : IWinRTObject, Equatable {
 public protocol MakeFromAbi {
     associatedtype c_ABI
     associatedtype swift_Projection
-    static func from(abi: UnsafeMutableRawPointer) -> swift_Projection
-}
-
-public extension MakeFromAbi {
-    static func fromIfLet(abi: UnsafeMutableRawPointer?) -> swift_Projection? {
-        guard let abi = abi else { return nil }
-        return from(abi: abi)
-    }
+    static func from(abi: UnsafeMutableRawPointer?) -> swift_Projection?
 }
 
 public protocol MakeComposedAbi : MakeFromAbi where swift_Projection: UnsealedWinRTClass {

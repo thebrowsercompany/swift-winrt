@@ -36,15 +36,8 @@ public protocol ReferenceImpl : AbiImpl where ValueType.ABI == c_ABI {
 }
 
 public protocol AbiInterfaceImpl : AbiImpl & AbiInterface {
-    static func from(abi: UnsafeMutablePointer<c_ABI>) -> swift_Projection
+    static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection?
     var _default: swift_ABI { get }
-}
-
-public extension AbiInterfaceImpl {
-    static func fromIfLet(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection? {
-      guard let abi = abi else { return nil }
-      return from(abi: abi);
-    }
 }
 
 // The WinRTWrapperBase class wraps an AbiImpl and is used for wrapping and unwrapping swift
@@ -81,18 +74,14 @@ open class WinRTWrapperBase<CInterface, Prototype> {
         }
     }
 
-    public static func fromRaw(_ pUnk: UnsafeMutableRawPointer) -> Unmanaged<WinRTWrapperBase>? {
-      return pUnk.assumingMemoryBound(to: WinRTWrapperBase.ComObject.self).pointee.wrapper
-    }
-    
-    public static func fromRawIfLet(_ pUnk: UnsafeMutableRawPointer?) -> Unmanaged<WinRTWrapperBase>? {
+    public static func from_raw(_ pUnk: UnsafeMutableRawPointer?) -> Unmanaged<WinRTWrapperBase>? {
       guard let pUnk = pUnk else { return nil }
-      return fromRaw(pUnk)
+      return pUnk.assumingMemoryBound(to: WinRTWrapperBase.ComObject.self).pointee.wrapper
     }
 
     public static func try_unwrap_from(raw pUnk: UnsafeMutableRawPointer?) -> Prototype? {
       guard let pUnk = pUnk else { return nil }
-      return fromRaw(pUnk)?.takeUnretainedValue().swiftObj
+      return from_raw(pUnk)?.takeUnretainedValue().swiftObj
     }
     
     // When unwrapping from the abi, we want to see if the object has an existing implementation so we can use

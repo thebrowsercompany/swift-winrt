@@ -4,7 +4,7 @@
 import WinSDK
 
 extension IUnknown {
-  public static func fromIfLet(_ pointer: UnsafeMutableRawPointer?) -> Self? {
+  public static func from(_ pointer: UnsafeMutableRawPointer?) -> Self? {
     guard let pointer = pointer else { return nil }
     return Self(pointer)
   }

@@ -19,13 +19,9 @@ open class Base : UnsealedWinRTClass {
         return nil
     }
 
-    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>) -> Base {
-        UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi)
-    }
-
-    public static func fromIfLet(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?) -> Base? {
+    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?) -> Base? {
         guard let abi = abi else { return nil }
-        return from(abi: abi)
+        return UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi)
     }
 
     public init(fromAbi: test_component.IInspectable) {
@@ -57,8 +53,9 @@ open class Base : UnsealedWinRTClass {
             internal typealias swift_Projection = Base
             internal typealias c_ABI = __x_ABI_Ctest__component_CIBase
             internal typealias swift_ABI = __ABI_test_component.IBase
-            internal static func from(abi: UnsafeMutableRawPointer) -> swift_Projection {
-                .init(fromAbi: .init(abi))
+            internal static func from(abi: UnsafeMutableRawPointer?) -> swift_Projection? {
+                guard let abi = abi else { return nil }
+                return .init(fromAbi: .init(abi))
             }
         }
     }
@@ -81,13 +78,9 @@ public final class BaseCollection : WinRTClass, IVector {
         return nil
     }
 
-    public static func from(abi: UnsafeMutablePointer<__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase>) -> BaseCollection {
-        .init(fromAbi: .init(abi))
-    }
-
-    public static func fromIfLet(abi: UnsafeMutablePointer<__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase>?) -> BaseCollection? {
+    public static func from(abi: UnsafeMutablePointer<__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase>?) -> BaseCollection? {
         guard let abi = abi else { return nil }
-        return from(abi: abi)
+        return .init(fromAbi: .init(abi))
     }
 
     public init(fromAbi: test_component.IInspectable) {
@@ -132,7 +125,7 @@ public final class BaseCollection : WinRTClass, IVector {
     // MARK: WinRT
     public func GetAt(_ index: UInt32) -> Base? {
         let result = try! _default.GetAtImpl(index)
-        return .fromIfLet(abi: result)
+        return .from(abi: result)
     }
 
     public func GetView() -> (any IVectorView<Base?>)? {
@@ -195,13 +188,9 @@ public final class BaseMapCollection : WinRTClass, IMap {
         return nil
     }
 
-    public static func from(abi: UnsafeMutablePointer<__x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>) -> BaseMapCollection {
-        .init(fromAbi: .init(abi))
-    }
-
-    public static func fromIfLet(abi: UnsafeMutablePointer<__x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?) -> BaseMapCollection? {
+    public static func from(abi: UnsafeMutablePointer<__x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?) -> BaseMapCollection? {
         guard let abi = abi else { return nil }
-        return from(abi: abi)
+        return .init(fromAbi: .init(abi))
     }
 
     public init(fromAbi: test_component.IInspectable) {
@@ -212,7 +201,7 @@ public final class BaseMapCollection : WinRTClass, IMap {
     public func Lookup(_ key: String) -> Base? {
         let _key = try! HString(key)
         let result = try! _default.LookupImpl(_key.get())
-        return .fromIfLet(abi: result)
+        return .from(abi: result)
     }
 
     public func HasKey(_ key: String) -> Bool {
@@ -266,13 +255,9 @@ open class BaseNoOverrides : UnsealedWinRTClass {
         return nil
     }
 
-    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBaseNoOverrides>) -> BaseNoOverrides {
-        UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi)
-    }
-
-    public static func fromIfLet(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBaseNoOverrides>?) -> BaseNoOverrides? {
+    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBaseNoOverrides>?) -> BaseNoOverrides? {
         guard let abi = abi else { return nil }
-        return from(abi: abi)
+        return UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi)
     }
 
     public init(fromAbi: test_component.IInspectable) {
@@ -295,8 +280,9 @@ open class BaseNoOverrides : UnsealedWinRTClass {
             internal typealias swift_Projection = BaseNoOverrides
             internal typealias c_ABI = __x_ABI_Ctest__component_CIBaseNoOverrides
             internal typealias swift_ABI = __ABI_test_component.IBaseNoOverrides
-            internal static func from(abi: UnsafeMutableRawPointer) -> swift_Projection {
-                .init(fromAbi: .init(abi))
+            internal static func from(abi: UnsafeMutableRawPointer?) -> swift_Projection? {
+                guard let abi = abi else { return nil }
+                return .init(fromAbi: .init(abi))
             }
         }
     }
@@ -318,13 +304,9 @@ public final class Class : WinRTClass, IBasic {
         return nil
     }
 
-    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>) -> Class {
-        .init(fromAbi: .init(abi))
-    }
-
-    public static func fromIfLet(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>?) -> Class? {
+    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>?) -> Class? {
         guard let abi = abi else { return nil }
-        return from(abi: abi)
+        return .init(fromAbi: .init(abi))
     }
 
     public init(fromAbi: test_component.IInspectable) {
@@ -536,7 +518,7 @@ public final class Class : WinRTClass, IBasic {
     public var BaseNoOverridesProperty : BaseNoOverrides? {
         get {
             let value = try! _default.get_BaseNoOverridesPropertyImpl()
-            return .fromIfLet(abi: value)
+            return .from(abi: value)
         }
 
         set {
@@ -547,7 +529,7 @@ public final class Class : WinRTClass, IBasic {
     public var BaseProperty : Base? {
         get {
             let value = try! _default.get_BasePropertyImpl()
-            return .fromIfLet(abi: value)
+            return .from(abi: value)
         }
 
         set {
@@ -626,13 +608,9 @@ public final class Derived : test_component.Base {
         return super._get_abi()
     }
 
-    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIDerived>) -> Derived {
-        .init(fromAbi: .init(abi))
-    }
-
-    public static func fromIfLet(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIDerived>?) -> Derived? {
+    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIDerived>?) -> Derived? {
         guard let abi = abi else { return nil }
-        return from(abi: abi)
+        return .init(fromAbi: .init(abi))
     }
 
     override public init(fromAbi: test_component.IInspectable) {
@@ -663,8 +641,9 @@ public final class Derived : test_component.Base {
             internal typealias swift_Projection = Derived
             internal typealias c_ABI = __x_ABI_Ctest__component_CIDerived
             internal typealias swift_ABI = __ABI_test_component.IDerived
-            internal static func from(abi: UnsafeMutableRawPointer) -> swift_Projection {
-                .init(fromAbi: .init(abi))
+            internal static func from(abi: UnsafeMutableRawPointer?) -> swift_Projection? {
+                guard let abi = abi else { return nil }
+                return .init(fromAbi: .init(abi))
             }
         }
     }
@@ -686,13 +665,9 @@ public final class NoopClosable : WinRTClass, test_component.IClosable {
         return nil
     }
 
-    public static func from(abi: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIClosable>) -> NoopClosable {
-        .init(fromAbi: .init(abi))
-    }
-
-    public static func fromIfLet(abi: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIClosable>?) -> NoopClosable? {
+    public static func from(abi: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIClosable>?) -> NoopClosable? {
         guard let abi = abi else { return nil }
-        return from(abi: abi)
+        return .init(fromAbi: .init(abi))
     }
 
     public init(fromAbi: test_component.IInspectable) {
@@ -744,7 +719,7 @@ public final class NullValues {
 
     public static func GetNullObject() -> test_component.IInspectable? {
         let result = try! _INullValuesStatics.GetNullObjectImpl()
-        return .fromIfLet(result)
+        return .from(result)
     }
 
     public static func GetNullInterface() -> (any test_component.IClosable)? {
@@ -759,7 +734,7 @@ public final class NullValues {
 
     public static func GetNullClass() -> NoopClosable? {
         let result = try! _INullValuesStatics.GetNullClassImpl()
-        return .fromIfLet(abi: result)
+        return .from(abi: result)
     }
 
     public static func GetNullDelegate() -> VoidToVoidDelegate? {
@@ -784,13 +759,9 @@ public final class Simple : WinRTClass {
         return nil
     }
 
-    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CISimple>) -> Simple {
-        .init(fromAbi: .init(abi))
-    }
-
-    public static func fromIfLet(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CISimple>?) -> Simple? {
+    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CISimple>?) -> Simple? {
         guard let abi = abi else { return nil }
-        return from(abi: abi)
+        return .init(fromAbi: .init(abi))
     }
 
     public init(fromAbi: test_component.IInspectable) {
@@ -982,13 +953,9 @@ open class UnsealedDerived : test_component.Base {
         return super._get_abi()
     }
 
-    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived>) -> UnsealedDerived {
-        UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi)
-    }
-
-    public static func fromIfLet(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived>?) -> UnsealedDerived? {
+    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived>?) -> UnsealedDerived? {
         guard let abi = abi else { return nil }
-        return from(abi: abi)
+        return UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi)
     }
 
     override public init(fromAbi: test_component.IInspectable) {
@@ -1033,8 +1000,9 @@ open class UnsealedDerived : test_component.Base {
             internal typealias swift_Projection = UnsealedDerived
             internal typealias c_ABI = __x_ABI_Ctest__component_CIUnsealedDerived
             internal typealias swift_ABI = __ABI_test_component.IUnsealedDerived
-            internal static func from(abi: UnsafeMutableRawPointer) -> swift_Projection {
-                .init(fromAbi: .init(abi))
+            internal static func from(abi: UnsafeMutableRawPointer?) -> swift_Projection? {
+                guard let abi = abi else { return nil }
+                return .init(fromAbi: .init(abi))
             }
         }
     }
@@ -1052,8 +1020,9 @@ open class UnsealedDerived : test_component.Base {
             internal typealias swift_Projection = UnsealedDerived
             internal typealias c_ABI = __x_ABI_Ctest__component_CIUnsealedDerived
             internal typealias swift_ABI = __ABI_test_component.IUnsealedDerived
-            internal static func from(abi: UnsafeMutableRawPointer) -> swift_Projection {
-                .init(fromAbi: .init(abi))
+            internal static func from(abi: UnsafeMutableRawPointer?) -> swift_Projection? {
+                guard let abi = abi else { return nil }
+                return .init(fromAbi: .init(abi))
             }
         }
     }
@@ -1073,13 +1042,9 @@ open class UnsealedDerived2 : test_component.UnsealedDerived {
         return super._get_abi()
     }
 
-    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived2>) -> UnsealedDerived2 {
-        UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi)
-    }
-
-    public static func fromIfLet(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived2>?) -> UnsealedDerived2? {
+    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived2>?) -> UnsealedDerived2? {
         guard let abi = abi else { return nil }
-        return from(abi: abi)
+        return UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi)
     }
 
     override public init(fromAbi: test_component.IInspectable) {
@@ -1112,8 +1077,9 @@ open class UnsealedDerived2 : test_component.UnsealedDerived {
             internal typealias swift_Projection = UnsealedDerived2
             internal typealias c_ABI = __x_ABI_Ctest__component_CIUnsealedDerived2
             internal typealias swift_ABI = __ABI_test_component.IUnsealedDerived2
-            internal static func from(abi: UnsafeMutableRawPointer) -> swift_Projection {
-                .init(fromAbi: .init(abi))
+            internal static func from(abi: UnsafeMutableRawPointer?) -> swift_Projection? {
+                guard let abi = abi else { return nil }
+                return .init(fromAbi: .init(abi))
             }
         }
     }
@@ -1135,13 +1101,9 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
         return super._get_abi()
     }
 
-    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides>) -> UnsealedDerivedNoOverrides {
-        UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi)
-    }
-
-    public static func fromIfLet(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides>?) -> UnsealedDerivedNoOverrides? {
+    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides>?) -> UnsealedDerivedNoOverrides? {
         guard let abi = abi else { return nil }
-        return from(abi: abi)
+        return UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi)
     }
 
     override public init(fromAbi: test_component.IInspectable) {
@@ -1170,8 +1132,9 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
             internal typealias swift_Projection = UnsealedDerivedNoOverrides
             internal typealias c_ABI = __x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides
             internal typealias swift_ABI = __ABI_test_component.IUnsealedDerivedNoOverrides
-            internal static func from(abi: UnsafeMutableRawPointer) -> swift_Projection {
-                .init(fromAbi: .init(abi))
+            internal static func from(abi: UnsafeMutableRawPointer?) -> swift_Projection? {
+                guard let abi = abi else { return nil }
+                return .init(fromAbi: .init(abi))
             }
         }
     }

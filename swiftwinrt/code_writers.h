@@ -690,12 +690,12 @@ namespace swiftwinrt
             }
             else if (is_class(type))
             {
-                w.write(".fromIfLet(abi: %)", name);
+                w.write(".from(abi: %)", name);
             }
             else
             {
                 //TODO: implement generic object type
-                w.write(".fromIfLet(%)", name);
+                w.write(".from(%)", name);
             }
 
         }
@@ -1455,7 +1455,8 @@ bind_impl_fullname(type));
 public typealias swift_ABI = %.%
 public typealias swift_Projection = any %
 private (set) public var _default: swift_ABI
-public static func from(abi: UnsafeMutablePointer<c_ABI>) -> swift_Projection {
+public static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection? {
+    guard let abi = abi else { return nil }
     return %(abi)
 }
 public init(_ fromAbi: UnsafeMutablePointer<c_ABI>) {
@@ -1660,7 +1661,8 @@ public static func makeAbi() -> c_ABI {
         w.write("private (set) public var _default: swift_ABI\n");
         w.write("\n");
 
-        w.write("static func from(abi: UnsafeMutablePointer<c_ABI>) -> swift_Projection {\n");
+        w.write("static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection? {\n");
+        w.write("    guard let abi = abi else { return nil }\n");
         w.write("    return %(abi)\n", bind_impl_name(type));
         w.write("}\n\n");
 
@@ -1863,7 +1865,7 @@ public static func makeAbi() -> c_ABI {
                         get_swift_name(param),
                         bind<write_type>(*param.type, projection_layer::c_abi));
 
-                    guard.push("% = %.%Impl.fromIfLet(abi: _%)\n",
+                    guard.push("% = %.%Impl.from(abi: _%)\n",
                         get_swift_name(param),
                         impl_namespace(w.type_namespace), 
                         bind_type_mangled(param.type),
@@ -1987,22 +1989,19 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
 
         // We unwrap composable types to try and get to any derived type.
         // If not composable, then create a new instance
-        w.write("public static func from(abi: UnsafeMutablePointer<%>) -> % {\n",
-            bind_type_mangled(default_interface), type);
-        {
-            auto indent = w.push_indent();
-            w.write(type.is_composable()
-                ? "UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi)\n"
-                : ".init(fromAbi: .init(abi))\n");
-        }
-        w.write("}\n\n");
-
-        w.write("public static func fromIfLet(abi: UnsafeMutablePointer<%>?) -> %? {\n",
+        w.write("public static func from(abi: UnsafeMutablePointer<%>?) -> %? {\n",
             bind_type_mangled(default_interface), type);
         {
             auto indent = w.push_indent();
             w.write("guard let abi = abi else { return nil }\n");
-            w.write("return from(abi: abi)\n");
+            if (type.is_composable())
+            {
+                w.write("return UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi)\n");
+            }
+            else
+            {
+                w.write("return .init(fromAbi: .init(abi))\n");
+            }
         }
         w.write("}\n\n");
 
@@ -2315,8 +2314,9 @@ public % var % : Event<(%),%> = EventImpl<%>(register: %_%, owner:%)
         internal typealias swift_Projection = %
         internal typealias c_ABI = %
         internal typealias swift_ABI = %.%
-        internal static func from(abi: UnsafeMutableRawPointer) -> swift_Projection {
-            .init(fromAbi: .init(abi))
+        internal static func from(abi: UnsafeMutableRawPointer?) -> swift_Projection? {
+            guard let abi = abi else { return nil }
+            return .init(fromAbi: .init(abi))
         }
     }
 }
@@ -2769,7 +2769,7 @@ bind([&](writer& w) {
     );
 
         w.write(R"(AddRef: {
-     guard let wrapper = %.fromRawIfLet($0) else { return 1 }
+     guard let wrapper = %.from_raw($0) else { return 1 }
      _ = wrapper.retain()
      return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
 },
@@ -2779,7 +2779,7 @@ bind([&](writer& w) {
         );
 
         w.write(R"(Release: {
-    guard let wrapper = %.fromRawIfLet($0) else { return 1 }
+    guard let wrapper = %.from_raw($0) else { return 1 }
     return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
 },
 
