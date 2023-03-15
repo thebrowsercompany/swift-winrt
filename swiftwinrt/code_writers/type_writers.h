@@ -19,7 +19,13 @@ namespace swiftwinrt
     // This is a type as can appear in a variable, parameter, return or property declaration,
     // and may include decorators like "any" or "?".
     // For example: (any IVector<(any IVector<String>)?>)?
-    void write_type(writer& w, metadata_type const& type, projection_layer layer);
+    void write_type_ex(writer& w, metadata_type const& type, projection_layer layer, bool allow_implicit_unwrap);
+
+    // Simple case with no extra parameters (default parameter values break bind<>)
+    inline void write_type(writer& w, metadata_type const& type, projection_layer layer)
+    {
+        write_type_ex(w, type, layer, /* allow_implicit_unwrap: */ false);
+    }
 
     // Writes the Swift code representation of a WinRT type at the Swift projection layer
     // as a 'type-identifier' syntax node. This includes:

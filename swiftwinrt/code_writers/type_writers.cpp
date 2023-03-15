@@ -8,8 +8,10 @@ using namespace swiftwinrt;
 
 // Writes the Swift code representation of a WinRT type at the Swift projection layer
 // as a 'type' syntax node.
-static void write_swift_type(writer& w, metadata_type const& type)
+static void write_swift_type(writer& w, metadata_type const& type, bool allow_implicit_unwrap)
 {
+    char optional_suffix = allow_implicit_unwrap ? '!' : '?';
+
     // Handle types with special codegen
     if (auto gen_inst = dynamic_cast<const generic_inst*>(&type))
     {
@@ -18,7 +20,7 @@ static void write_swift_type(writer& w, metadata_type const& type)
         if (is_winrt_ireference(generic_typedef))
         {
             auto boxed_type = generic_params[0];
-            w.write("%?", bind<write_swift_type>(*boxed_type));
+            w.write("%%", bind<write_swift_type>(*boxed_type, /* allow_implicit_unwrap: */ false), optional_suffix);
             return;
         }
 
@@ -27,7 +29,7 @@ static void write_swift_type(writer& w, metadata_type const& type)
             auto args_type = generic_params[0];
             // '^' escapes the '@'
             w.write("^@escaping (%.IInspectable, %) -> ()",
-                w.support, bind<write_swift_type>(*args_type));
+                w.support, bind<write_swift_type>(*args_type, /* allow_implicit_unwrap: */ false));
             return;
         }
 
@@ -37,19 +39,19 @@ static void write_swift_type(writer& w, metadata_type const& type)
             auto args_type = generic_params[1];
             // '^' escapes the '@'
             w.write("^@escaping (%, %) -> ()",
-                bind<write_swift_type>(*sender_type),
-                bind<write_swift_type>(*args_type));
+                bind<write_swift_type>(*sender_type, /* allow_implicit_unwrap: */ false),
+                bind<write_swift_type>(*args_type, /* allow_implicit_unwrap: */ false));
             return;
         }
     }
 
     if (is_interface(&type))
     {
-        w.write("(any %)?", bind<write_swift_type_identifier>(type));
+        w.write("(any %)%", bind<write_swift_type_identifier>(type), optional_suffix);
     }
     else if (is_reference_type(&type))
     {
-        w.write("%?", bind<write_swift_type_identifier>(type));
+        w.write("%%", bind<write_swift_type_identifier>(type), optional_suffix);
     }
     else
     {
@@ -123,7 +125,9 @@ void swiftwinrt::write_swift_type_identifier(writer& w, metadata_type const& typ
         for (auto&& gen_arg : gen_inst->generic_params())
         {
             sep();
-            write_swift_type(w, *gen_arg);
+
+            // Implicitly unwrap optionals are illegal on generic arguments
+            write_swift_type(w, *gen_arg, /* allow_implicit_unwrap: */ false);
         }
         w.write(">");
     }
@@ -205,11 +209,11 @@ static void write_c_abi_type(writer& w, metadata_type const& type)
     }
 }
 
-void swiftwinrt::write_type(writer& w, metadata_type const& type, projection_layer layer)
+void swiftwinrt::write_type_ex(writer& w, metadata_type const& type, projection_layer layer, bool allow_implicit_unwrap)
 {
     if (layer == projection_layer::swift)
     {
-        write_swift_type(w, type);
+        write_swift_type(w, type, allow_implicit_unwrap);
     }
     else
     {

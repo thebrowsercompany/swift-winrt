@@ -521,7 +521,7 @@ namespace swiftwinrt
     {
         w.write("_ %: ", get_swift_name(param));
         if (param.out()) w.write("inout ");
-        write_type(w, *param.type, layer);
+        write_type_ex(w, *param.type, layer, /* allow_implicit_unwrap: */ true);
     }
 
     static void write_function_params(writer& w, function_def const& function, projection_layer layer)
@@ -788,7 +788,7 @@ bind<write_abi_args>(function));
         }
 
         w.write(" -> ");
-        write_type(w, *function.return_type->type, layer);
+        write_type_ex(w, *function.return_type->type, layer, /* allow_implicit_unwrap: */ true);
     }
 
     static void do_write_interface_abi(writer& w, typedef_base const& type, std::vector<function_def> const& methods)
@@ -1575,7 +1575,8 @@ public static func makeAbi() -> CABI {
     {
         if (sig.return_type)
         {
-            write_type(w, *sig.return_type->type, projection_layer::swift);
+            write_type_ex(w, *sig.return_type->type, projection_layer::swift,
+                /* allow_implicit_unwrap: */ false);
         }
         else
         {
@@ -2029,7 +2030,7 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
             w.write("public %var % : % {\n",
                 iface.attributed ? "static " : "",
                 get_swift_name(prop),
-                bind<write_type>(*prop.getter->return_type->type, projection_layer::swift));
+                bind<write_type_ex>(*prop.getter->return_type->type, projection_layer::swift, /* allow_implicit_unwrap: */ true));
         }
         auto property_indent_guard = w.push_indent();
 
@@ -2610,7 +2611,7 @@ private var _default: SwiftABI!
 
                 w.write("public var %: %%\n", 
                     get_swift_name(field),
-                    bind<write_type>(*field_type, projection_layer::swift),
+                    bind<write_type_ex>(*field_type, projection_layer::swift, /* allow_implicit_unwrap: */ true),
                     bind<write_default_init_assignment>(*field_type, projection_layer::swift));
             }
 
