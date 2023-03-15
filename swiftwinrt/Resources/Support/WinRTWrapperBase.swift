@@ -35,8 +35,8 @@ public protocol ReferenceImpl : AbiImpl where ValueType.ABI == c_ABI {
     associatedtype ValueType : InitializableFromAbi
 }
 
-public protocol AbiInterfaceImpl : AbiImpl  & AbiInterface {
-    static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection
+public protocol AbiInterfaceImpl : AbiImpl & AbiInterface {
+    static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection?
     var _default: swift_ABI { get }
 }
 
@@ -75,16 +75,19 @@ open class WinRTWrapperBase<CInterface, Prototype> {
     }
 
     public static func from_raw(_ pUnk: UnsafeMutableRawPointer?) -> Unmanaged<WinRTWrapperBase>? {
-      return pUnk?.assumingMemoryBound(to: WinRTWrapperBase.ComObject.self).pointee.wrapper
+      guard let pUnk = pUnk else { return nil }
+      return pUnk.assumingMemoryBound(to: WinRTWrapperBase.ComObject.self).pointee.wrapper
     }
 
     public static func try_unwrap_from(raw pUnk: UnsafeMutableRawPointer?) -> Prototype? {
+      guard let pUnk = pUnk else { return nil }
       return from_raw(pUnk)?.takeUnretainedValue().swiftObj
     }
     
     // When unwrapping from the abi, we want to see if the object has an existing implementation so we can use
     // that to get to the existing swift object. if it doesn't exist then we can create a new implementation
     public static func try_unwrap_from(abi pointer: UnsafeMutablePointer<CInterface>?) -> Prototype? {
+        guard let pointer = pointer else { return nil }
         let delegate = IUnknown(pointer)
         let wrapperOpt: ISwiftImplemented? = try? delegate.QueryInterface()
         guard let wrapper = wrapperOpt,
@@ -107,8 +110,7 @@ open class InterfaceWrapperBase<I: AbiInterfaceImpl> : WinRTWrapperBase2<I> {
         guard let impl = impl else { return nil }
         // try to see if already wrapping an ABI pointer and if so, use that
         if let internalImpl = impl as? I {
-            let abi: UnsafeMutablePointer<I.c_ABI>? = RawPointer(internalImpl._default)
-            guard let abi = abi else { return nil }
+            let abi: UnsafeMutablePointer<I.c_ABI> = RawPointer(internalImpl._default)!
             super.init(abi.pointee, impl)
         } else {
             let abi = I.makeAbi()
@@ -116,7 +118,8 @@ open class InterfaceWrapperBase<I: AbiInterfaceImpl> : WinRTWrapperBase2<I> {
         }
     }
 
-     public static func unwrap_from(abi pointer: UnsafeMutablePointer<I.c_ABI>?) -> I.swift_Projection {
+    public static func unwrap_from(abi pointer: UnsafeMutablePointer<I.c_ABI>?) -> I.swift_Projection? {
+        guard let pointer = pointer else { return nil }
         let delegate = IUnknown(pointer)
         let wrapperOpt: ISwiftImplemented? = try? delegate.QueryInterface()
         guard let wrapper = wrapperOpt,

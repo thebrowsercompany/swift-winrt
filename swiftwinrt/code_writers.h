@@ -681,7 +681,7 @@ namespace swiftwinrt
             {
                 if (w.consume_types)
                 {
-                    w.write("_%!", name);
+                    w.write("_%", name);
                 }
                 else
                 {
@@ -690,14 +690,12 @@ namespace swiftwinrt
             }
             else if (is_class(type))
             {
-                auto format = ".from(abi: %)";
-                w.write(format, name);
+                w.write(".from(abi: %)", name);
             }
             else
             {
                 //TODO: implement generic object type
-                w.write(".init(%)",
-                    name);
+                w.write(".from(%)", name);
             }
 
         }
@@ -931,7 +929,8 @@ bind<write_abi_args>(function));
         auto format = R"(
 class % : WinRTWrapperBase<%, %> {
     override class var IID: IID { IID_% }
-    init(_ handler: %){
+    init?(_ handler: %?){
+        guard let handler = handler else { return nil }
         let abi = withUnsafeMutablePointer(to: &%VTable) {
             %(lpVtbl:$0)
         }
@@ -1373,7 +1372,7 @@ bind_impl_fullname(type));
             // when implementing default overrides, we want to call to the inner non-delegating IUnknown
             // as this will get us to the inner object. otherwise we'll end up with a stack overflow 
             // because we'll be calling the same method on ourselves
-            w.write("internal lazy var %: %.% = try! IUnknown(_inner).QueryInterface()\n",
+            w.write("internal lazy var %: %.% = try! IUnknown(_inner!).QueryInterface()\n",
                 get_swift_name(info),
                 abi_namespace(info.type->swift_logical_namespace()),
                 info.type->swift_type_name());
@@ -1457,10 +1456,11 @@ bind_impl_fullname(type));
 public typealias swift_ABI = %.%
 public typealias swift_Projection = any %
 private (set) public var _default: swift_ABI
-public static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {
+public static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection? {
+    guard let abi = abi else { return nil }
     return %(abi)
 }
-public init(_ fromAbi: UnsafeMutablePointer<c_ABI>?) {
+public init(_ fromAbi: UnsafeMutablePointer<c_ABI>) {
     _default = swift_ABI(fromAbi)
 }
 
@@ -1552,17 +1552,6 @@ public static func makeAbi() -> c_ABI {
         {
             return;
         }
-        auto extension_format = R"(extension % {
-    public static var none: any % {
-        %(nil)
-    }
-}
-
-)";
-        w.write(extension_format,
-            type,
-            bind<write_swift_type_identifier>(type), // Do not include outer Optional<>
-            bind_impl_fullname(type));
     }
 
     static void write_ireference(writer& w)
@@ -1673,11 +1662,12 @@ public static func makeAbi() -> c_ABI {
         w.write("private (set) public var _default: swift_ABI\n");
         w.write("\n");
 
-        w.write("static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {\n");
+        w.write("static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection? {\n");
+        w.write("    guard let abi = abi else { return nil }\n");
         w.write("    return %(abi)\n", bind_impl_name(type));
         w.write("}\n\n");
 
-        w.write("internal init(_ fromAbi: UnsafeMutablePointer<c_ABI>?) {\n");
+        w.write("internal init(_ fromAbi: UnsafeMutablePointer<c_ABI>) {\n");
         w.write("    _default = swift_ABI(fromAbi)\n");
         w.write("}\n\n");
 
@@ -1762,12 +1752,11 @@ public static func makeAbi() -> c_ABI {
                     }
                     else if (is_delegate(param.type))
                     {
-                        // TODO: WIN-276: Delegates are assumed to be non-null in generated code
-                        w.write("let %Wrapper = %(%!)\n",
+                        w.write("let %Wrapper = %(%)\n",
                             get_swift_name(param),
                             bind_wrapper_fullname(param.type),
                             get_swift_name(param));
-                        w.write("let _% = try! %Wrapper.to_abi { $0 }\n",
+                        w.write("let _% = try! %Wrapper?.to_abi { $0 }\n",
                             get_swift_name(param),
                             get_swift_name(param));
                     }
@@ -1804,7 +1793,7 @@ public static func makeAbi() -> c_ABI {
                             get_swift_name(param),
                             bind_wrapper_fullname(param.type),
                             get_swift_name(param));
-                        w.write("let _% = try! %Wrapper.to_abi { $0 }\n",
+                        w.write("let _% = try! %Wrapper?.to_abi { $0 }\n",
                             get_swift_name(param),
                             get_swift_name(param));
                     }
@@ -1876,7 +1865,7 @@ public static func makeAbi() -> c_ABI {
                         get_swift_name(param),
                         bind<write_type>(*param.type, projection_layer::c_abi));
 
-                    guard.push("% = %.%Impl(_%)\n",
+                    guard.push("% = %.%Impl.from(abi: _%)\n",
                         get_swift_name(param),
                         impl_namespace(w.type_namespace), 
                         bind_type_mangled(param.type),
@@ -1903,7 +1892,7 @@ public static func makeAbi() -> c_ABI {
                 func_name,
                 bind<write_implementation_args>(method));
         }
-        w.write("_default = %.%(consuming: %)\n", abi_namespace(type), default_interface, return_name);
+        w.write("_default = %.%(consuming: %!)\n", abi_namespace(type), default_interface, return_name);
         if (auto base_class = type.base_class)
         {
             w.write("super.init(fromAbi: try! _default.QueryInterface())\n");
@@ -1976,14 +1965,14 @@ public init<Factory: ComposableActivationFactory>(_ factory : Factory) {
             {
                 auto override_composable_init = R"(override public init() {
     super.init(Self._%) 
-    let parentDefault: UnsafeMutablePointer<%>? = super._get_abi()
+    let parentDefault: UnsafeMutablePointer<%> = super._get_abi()!
     self._default = try! IInspectable(parentDefault).QueryInterface()
     _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
 }
 
 override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
     super.init(factory)
-    let parentDefault: UnsafeMutablePointer<%>? = super._get_abi()
+    let parentDefault: UnsafeMutablePointer<%> = super._get_abi()!
     self._default = try! IInspectable(parentDefault).QueryInterface()
     _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
 }
@@ -2000,15 +1989,22 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
 
         // We unwrap composable types to try and get to any derived type.
         // If not composable, then create a new instance
-        w.write("public static func from(abi: UnsafeMutablePointer<%>?) -> % {\n",
+        w.write("public static func from(abi: UnsafeMutablePointer<%>?) -> %? {\n",
             bind_type_mangled(default_interface), type);
         {
             auto indent = w.push_indent();
-            w.write(type.is_composable()
-                ? "UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi!)\n"
-                : ".init(fromAbi: .init(abi))\n");
+            w.write("guard let abi = abi else { return nil }\n");
+            if (type.is_composable())
+            {
+                w.write("return UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi)\n");
+            }
+            else
+            {
+                w.write("return .init(fromAbi: .init(abi))\n");
+            }
         }
         w.write("}\n\n");
+
 
         w.write("%public init(fromAbi: %.IInspectable) {\n",
             base_class ? "override " : "", w.support);
@@ -2113,9 +2109,8 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
             }
             else if (is_delegate(prop.type))
             {
-                // TODO: WIN-276: Delegates are assumed to be non-null in generated code
-                w.write("let wrapper = %(newValue!)\n", bind_wrapper_fullname(prop.type));
-                w.write("let _newValue = try! wrapper.to_abi { $0 }\n");
+                w.write("let wrapper = %(newValue)\n", bind_wrapper_fullname(prop.type));
+                w.write("let _newValue = try! wrapper?.to_abi { $0 }\n");
             }
   
             w.write("try! %.%Impl(%)\n",
@@ -2166,8 +2161,8 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         auto abi_name = w.write_temp("%.%", abi_namespace(iface.type), iface.type->swift_type_name());
         auto format = R"(private class % : IEventRegistration {
     func add(delegate: any WinRTDelegate, for impl: %.IInspectable){
-        let wrapper = %(delegate as! %)
-        let abi = try! wrapper.to_abi { $0 }
+        let wrapper = %(delegate as? %)
+        let abi = try! wrapper?.to_abi { $0 }
         let impl:% = try! impl.QueryInterface()
         delegate.token = try! impl.add_%Impl(abi)
     }
@@ -2318,8 +2313,9 @@ public % var % : Event<(%),%> = EventImpl<%>(register: %_%, owner:%)
         internal typealias swift_Projection = %
         internal typealias c_ABI = %
         internal typealias swift_ABI = %.%
-        internal static func from(abi: UnsafeMutableRawPointer?) -> swift_Projection {
-            .init(fromAbi: .init(abi!))
+        internal static func from(abi: UnsafeMutableRawPointer?) -> swift_Projection? {
+            guard let abi = abi else { return nil }
+            return .init(fromAbi: .init(abi))
         }
     }
 }
@@ -2487,7 +2483,7 @@ public % var % : Event<(%),%> = EventImpl<%>(register: %_%, owner:%)
 
             w.write(R"(private typealias swift_ABI = %
 private typealias c_ABI = %
-private var _default: swift_ABI = .init(UnsafeMutableRawPointer.none)
+private var _default: swift_ABI!
 % func _get_abi<T>() -> UnsafeMutablePointer<T>? {
     if T.self == c_ABI.self {
         return RawPointer(_default)
@@ -2909,11 +2905,11 @@ bind([&](writer& w) {
         else if (is_delegate(type))
         {
             // TODO: WIN-276: Delegates are assumed to be non-null in generated code
-            w.write("let %Wrapper = %(%!)\n",
+            w.write("let %Wrapper = %(%)\n",
                 param_name,
                 bind_wrapper_fullname(type),
                 param_name);
-            w.write("let _% = try! %Wrapper.to_abi { $0 }\n",
+            w.write("let _% = try! %Wrapper?.to_abi { $0 }\n",
                 param_name,
                 param_name);
         }

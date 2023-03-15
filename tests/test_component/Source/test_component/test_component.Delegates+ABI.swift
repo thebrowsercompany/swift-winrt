@@ -49,7 +49,8 @@ public enum __ABI_test_component_Delegates {
 
     class InDelegateWrapper : WinRTWrapperBase<__x_ABI_Ctest__component_CDelegates_CIInDelegate, __IMPL_test_component_Delegates.InDelegateImpl> {
         override class var IID: IID { IID___x_ABI_Ctest__component_CDelegates_CIInDelegate }
-        init(_ handler: __IMPL_test_component_Delegates.InDelegateImpl){
+        init?(_ handler: __IMPL_test_component_Delegates.InDelegateImpl?){
+            guard let handler = handler else { return nil }
             let abi = withUnsafeMutablePointer(to: &InDelegateVTable) {
                 __x_ABI_Ctest__component_CDelegates_CIInDelegate(lpVtbl:$0)
             }
@@ -94,7 +95,8 @@ public enum __ABI_test_component_Delegates {
 
     class SignalDelegateWrapper : WinRTWrapperBase<__x_ABI_Ctest__component_CDelegates_CISignalDelegate, __IMPL_test_component_Delegates.SignalDelegateImpl> {
         override class var IID: IID { IID___x_ABI_Ctest__component_CDelegates_CISignalDelegate }
-        init(_ handler: __IMPL_test_component_Delegates.SignalDelegateImpl){
+        init?(_ handler: __IMPL_test_component_Delegates.SignalDelegateImpl?){
+            guard let handler = handler else { return nil }
             let abi = withUnsafeMutablePointer(to: &SignalDelegateVTable) {
                 __x_ABI_Ctest__component_CDelegates_CISignalDelegate(lpVtbl:$0)
             }

@@ -8,7 +8,7 @@ public protocol WinRTClass : IWinRTObject, Equatable {
 public protocol MakeFromAbi {
     associatedtype c_ABI
     associatedtype swift_Projection
-    static func from(abi: UnsafeMutableRawPointer?) -> swift_Projection
+    static func from(abi: UnsafeMutableRawPointer?) -> swift_Projection?
 }
 
 public protocol MakeComposedAbi : MakeFromAbi where swift_Projection: UnsealedWinRTClass {
@@ -34,7 +34,7 @@ public extension WinRTClass {
         // Every WinRT interface is binary compatible with IInspectable. asking this class for
         // the iinspectable will ensure we get the default implementation from whichever derived
         // class it actually is. 
-        let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable>? = _get_abi()
+        let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = _get_abi()!
         return IInspectable(cDefault)
     }
     func `as`<Interface: test_component.IInspectable>() throws -> Interface {
@@ -100,7 +100,7 @@ public func MakeComposed<Factory: ComposableActivationFactory>(_ factory: Factor
     let abi = try! wrapper?.to_abi { $0 }
     let baseInsp = abi?.withMemoryRebound(to: Ctest_component.IInspectable.self, capacity: 1) { $0 }
     let base = try! factory.CreateInstanceImpl(baseInsp, &inner)
-    return Factory.Composable.Default.swift_ABI(base)
+    return Factory.Composable.Default.swift_ABI(base!)
 }
 
 public class UnsealedWinRTClassWrapper<Composable: ComposableImpl> : WinRTWrapperBase<Composable.c_ABI, Composable.Default.swift_Projection> {

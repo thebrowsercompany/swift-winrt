@@ -1445,8 +1445,8 @@ public enum __ABI_test_component {
 
         Invoke: {
             guard let __unwrapped__instance = __x_ABI_C__FIEventHandler_1_IInspectableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
-            let sender: test_component.IInspectable? = .init($1)
-            let args: test_component.IInspectable? = .init($2)
+            let sender: test_component.IInspectable? = .from($1)
+            let args: test_component.IInspectable? = .from($2)
             __unwrapped__instance.handler((sender, args))
             return S_OK
         }
@@ -1454,7 +1454,8 @@ public enum __ABI_test_component {
 
     class __x_ABI_C__FIEventHandler_1_IInspectableWrapper : WinRTWrapperBase<__x_ABI_C__FIEventHandler_1_IInspectable, __IMPL_test_component.__x_ABI_C__FIEventHandler_1_IInspectableImpl> {
         override class var IID: IID { IID___x_ABI_C__FIEventHandler_1_IInspectable }
-        init(_ handler: __IMPL_test_component.__x_ABI_C__FIEventHandler_1_IInspectableImpl){
+        init?(_ handler: __IMPL_test_component.__x_ABI_C__FIEventHandler_1_IInspectableImpl?){
+            guard let handler = handler else { return nil }
             let abi = withUnsafeMutablePointer(to: &__x_ABI_C__FIEventHandler_1_IInspectableVTable) {
                 __x_ABI_C__FIEventHandler_1_IInspectable(lpVtbl:$0)
             }
@@ -1655,7 +1656,8 @@ public enum __ABI_test_component {
 
     class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper : WinRTWrapperBase<__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs, __IMPL_test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsImpl> {
         override class var IID: IID { IID___x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs }
-        init(_ handler: __IMPL_test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsImpl){
+        init?(_ handler: __IMPL_test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsImpl?){
+            guard let handler = handler else { return nil }
             let abi = withUnsafeMutablePointer(to: &__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsVTable) {
                 __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs(lpVtbl:$0)
             }
@@ -2952,7 +2954,8 @@ public enum __ABI_test_component {
 
     class VoidToVoidDelegateWrapper : WinRTWrapperBase<__x_ABI_Ctest__component_CIVoidToVoidDelegate, __IMPL_test_component.VoidToVoidDelegateImpl> {
         override class var IID: IID { IID___x_ABI_Ctest__component_CIVoidToVoidDelegate }
-        init(_ handler: __IMPL_test_component.VoidToVoidDelegateImpl){
+        init?(_ handler: __IMPL_test_component.VoidToVoidDelegateImpl?){
+            guard let handler = handler else { return nil }
             let abi = withUnsafeMutablePointer(to: &VoidToVoidDelegateVTable) {
                 __x_ABI_Ctest__component_CIVoidToVoidDelegate(lpVtbl:$0)
             }

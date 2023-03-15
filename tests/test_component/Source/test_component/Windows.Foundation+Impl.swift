@@ -7,10 +7,11 @@ public enum __IMPL_Windows_Foundation {
         public typealias swift_ABI = __ABI_Windows_Foundation.IClosable
         public typealias swift_Projection = any IClosable
         private (set) public var _default: swift_ABI
-        public static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection {
+        public static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection? {
+            guard let abi = abi else { return nil }
             return IClosableImpl(abi)
         }
-        public init(_ fromAbi: UnsafeMutablePointer<c_ABI>?) {
+        public init(_ fromAbi: UnsafeMutablePointer<c_ABI>) {
             _default = swift_ABI(fromAbi)
         }
 
