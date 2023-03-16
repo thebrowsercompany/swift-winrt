@@ -37,9 +37,8 @@ extension boolean {
 }
 
 extension HWND {
-  public init(from val: UInt64) {
-    // TODO: Revisit since this gives a compiler warning.
-    self.init(unsafeBitCast(val, to: UnsafeMutablePointer<HWND__>.self))
+  public init?(from val: UInt64) {
+    self.init(HWND(bitPattern: UInt(val)))
   }
 }
 
