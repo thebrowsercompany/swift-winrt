@@ -59,10 +59,8 @@ extension IInspectable {
       fatalError("invalid class name")
     }
     let ns = className.prefix(upTo: lastNsIndex)
-    print("namespace: ", ns)
     let lastNsIndexPlus1 = className.index(after: lastNsIndex)
     let typeName = className.suffix(from: lastNsIndexPlus1)
-    print("type:", typeName)
     return GetSwiftModule(from: String(ns)) + "." + typeName
   }
 }
