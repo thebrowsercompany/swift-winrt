@@ -29,18 +29,18 @@ public enum __ABI_test_component_Delegates {
         },
 
         AddRef: {
-             guard let wrapper = InDelegateWrapper.from_raw($0) else { return 1 }
+             guard let wrapper = InDelegateWrapper.fromRaw($0) else { return 1 }
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
 
         Release: {
-            guard let wrapper = InDelegateWrapper.from_raw($0) else { return 1 }
+            guard let wrapper = InDelegateWrapper.fromRaw($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
 
         Invoke: {
-            guard let __unwrapped__instance = InDelegateWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = InDelegateWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let value: String = .init(from: $1)
             __unwrapped__instance.handler((value))
             return S_OK
@@ -76,18 +76,18 @@ public enum __ABI_test_component_Delegates {
         },
 
         AddRef: {
-             guard let wrapper = SignalDelegateWrapper.from_raw($0) else { return 1 }
+             guard let wrapper = SignalDelegateWrapper.fromRaw($0) else { return 1 }
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
 
         Release: {
-            guard let wrapper = SignalDelegateWrapper.from_raw($0) else { return 1 }
+            guard let wrapper = SignalDelegateWrapper.fromRaw($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
 
         Invoke: {
-            guard let __unwrapped__instance = SignalDelegateWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = SignalDelegateWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             __unwrapped__instance.handler(())
             return S_OK
         }

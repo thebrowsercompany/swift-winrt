@@ -30,9 +30,9 @@ open class IInspectable: IUnknown {
 // These types are used for composable types which don't provide an overrides interface. Composable types which
 // follow this pattern should define their composability contract like the following:
 // internal class IBaseNoOverrides : OverridesImpl {
-//      internal typealias c_ABI = Ctest_component.IInspectable
-//      internal typealias swift_ABI = __ABI_test_component.IBaseNoOverrides
-//      internal typealias swift_Projection = BaseNoOverrides
+//      internal typealias CABI = Ctest_component.IInspectable
+//      internal typealias SwiftABI = __ABI_test_component.IBaseNoOverrides
+//      internal typealias SwiftProjection = BaseNoOverrides
 //      internal typealias c_defaultABI = __x_ABI_Ctest__component_CIBaseNoOverrides
 //      internal typealias swift_overrides = test_component.IInspectable
 // }
@@ -46,7 +46,7 @@ public enum __ABI {
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
                   riid.pointee == IIAgileObject.IID else { 
-                      guard let instance = AnyObjectWrapper.try_unwrap_from(raw: $0) as? any UnsealedWinRTClass,
+                      guard let instance = AnyObjectWrapper.tryUnwrapFrom(raw: $0) as? any UnsealedWinRTClass,
                             let inner = instance._inner else { return E_NOINTERFACE }
                         
                     return inner.pointee.lpVtbl.pointee.QueryInterface(inner, riid, ppvObject)
@@ -58,13 +58,13 @@ public enum __ABI {
         },
 
         AddRef: {
-             guard let wrapper = AnyObjectWrapper.from_raw($0) else { return 1 }
+             guard let wrapper = AnyObjectWrapper.fromRaw($0) else { return 1 }
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
 
         Release: {
-            guard let wrapper = AnyObjectWrapper.from_raw($0) else { return 1 }
+            guard let wrapper = AnyObjectWrapper.fromRaw($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
 
@@ -80,7 +80,7 @@ public enum __ABI {
         },
 
         GetRuntimeClassName: {
-            guard let instance = AnyObjectWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let instance = AnyObjectWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             guard let unsealed = instance as? any UnsealedWinRTClass else {
                 let string = NSStringFromClass(type(of: instance))
                 let hstring = try! HString(string).detach()
@@ -100,8 +100,8 @@ public enum __ABI {
     )
 }
 
-extension ComposableImpl where c_ABI == Ctest_component.IInspectable {
-  public static func makeAbi() -> c_ABI {
+extension ComposableImpl where CABI == Ctest_component.IInspectable {
+  public static func makeAbi() -> CABI {
     let vtblPtr = withUnsafeMutablePointer(to: &__ABI.IInspectableVTable) { $0 }
     return .init(lpVtbl: vtblPtr)
   }
@@ -110,7 +110,7 @@ extension ComposableImpl where c_ABI == Ctest_component.IInspectable {
 extension IInspectable {
   public func unwrap<T>() -> T {
         // Try to unwrap an app implemented object. If one doesn't exist then we'll create the proper WinRT type below
-        if let instance = __ABI.AnyObjectWrapper.try_unwrap_from(abi: RawPointer(self)) {
+        if let instance = __ABI.AnyObjectWrapper.tryUnwrapFrom(abi: RawPointer(self)) {
             return instance as! T
         }
 

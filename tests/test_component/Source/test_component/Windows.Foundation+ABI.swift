@@ -40,13 +40,13 @@ public enum __ABI_Windows_Foundation {
         },
 
         AddRef: {
-             guard let wrapper = IClosableWrapper.from_raw($0) else { return 1 }
+             guard let wrapper = IClosableWrapper.fromRaw($0) else { return 1 }
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
 
         Release: {
-            guard let wrapper = IClosableWrapper.from_raw($0) else { return 1 }
+            guard let wrapper = IClosableWrapper.fromRaw($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
 
@@ -75,7 +75,7 @@ public enum __ABI_Windows_Foundation {
         },
 
         Close: {
-            guard let __unwrapped__instance = IClosableWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IClosableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             __unwrapped__instance.Close()
             return S_OK
         }
@@ -266,13 +266,13 @@ public enum __ABI_Windows_Foundation {
         },
 
         AddRef: {
-             guard let wrapper = IPropertyValueWrapper.from_raw($0) else { return 1 }
+             guard let wrapper = IPropertyValueWrapper.fromRaw($0) else { return 1 }
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
 
         Release: {
-            guard let wrapper = IPropertyValueWrapper.from_raw($0) else { return 1 }
+            guard let wrapper = IPropertyValueWrapper.fromRaw($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
 
@@ -301,140 +301,140 @@ public enum __ABI_Windows_Foundation {
         },
 
         get_Type: {
-            guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let value = __unwrapped__instance.Type
             $1?.initialize(to: value)
             return S_OK
         },
 
         get_IsNumericScalar: {
-            guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let value = __unwrapped__instance.IsNumericScalar
             $1?.initialize(to: .init(from: value))
             return S_OK
         },
 
         GetUInt8: {
-            guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let value = __unwrapped__instance.GetUInt8()
             $1?.initialize(to: value)
             return S_OK
         },
 
         GetInt16: {
-            guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let value = __unwrapped__instance.GetInt16()
             $1?.initialize(to: value)
             return S_OK
         },
 
         GetUInt16: {
-            guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let value = __unwrapped__instance.GetUInt16()
             $1?.initialize(to: value)
             return S_OK
         },
 
         GetInt32: {
-            guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let value = __unwrapped__instance.GetInt32()
             $1?.initialize(to: value)
             return S_OK
         },
 
         GetUInt32: {
-            guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let value = __unwrapped__instance.GetUInt32()
             $1?.initialize(to: value)
             return S_OK
         },
 
         GetInt64: {
-            guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let value = __unwrapped__instance.GetInt64()
             $1?.initialize(to: value)
             return S_OK
         },
 
         GetUInt64: {
-            guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let value = __unwrapped__instance.GetUInt64()
             $1?.initialize(to: value)
             return S_OK
         },
 
         GetSingle: {
-            guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let value = __unwrapped__instance.GetSingle()
             $1?.initialize(to: value)
             return S_OK
         },
 
         GetDouble: {
-            guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let value = __unwrapped__instance.GetDouble()
             $1?.initialize(to: value)
             return S_OK
         },
 
         GetChar16: {
-            guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let value = __unwrapped__instance.GetChar16()
             $1?.initialize(to: .init(from: value))
             return S_OK
         },
 
         GetBoolean: {
-            guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let value = __unwrapped__instance.GetBoolean()
             $1?.initialize(to: .init(from: value))
             return S_OK
         },
 
         GetString: {
-            guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let value = __unwrapped__instance.GetString()
             $1?.initialize(to: try! HString(value).detach())
             return S_OK
         },
 
         GetGuid: {
-            guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let value = __unwrapped__instance.GetGuid()
             $1?.initialize(to: value)
             return S_OK
         },
 
         GetDateTime: {
-            guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let value = __unwrapped__instance.GetDateTime()
             $1?.initialize(to: .from(swift: value))
             return S_OK
         },
 
         GetTimeSpan: {
-            guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let value = __unwrapped__instance.GetTimeSpan()
             $1?.initialize(to: .from(swift: value))
             return S_OK
         },
 
         GetPoint: {
-            guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let value = __unwrapped__instance.GetPoint()
             $1?.initialize(to: .from(swift: value))
             return S_OK
         },
 
         GetSize: {
-            guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let value = __unwrapped__instance.GetSize()
             $1?.initialize(to: .from(swift: value))
             return S_OK
         },
 
         GetRect: {
-            guard let __unwrapped__instance = IPropertyValueWrapper.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+            guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let value = __unwrapped__instance.GetRect()
             $1?.initialize(to: .from(swift: value))
             return S_OK
