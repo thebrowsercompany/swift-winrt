@@ -1965,14 +1965,14 @@ public init<Factory: ComposableActivationFactory>(_ factory : Factory) {
             {
                 auto override_composable_init = R"(override public init() {
     super.init(Self._%) 
-    let parentDefault: UnsafeMutablePointer<%> = super.getABI()!
+    let parentDefault: UnsafeMutablePointer<%> = super._getABI()!
     self._default = try! IInspectable(parentDefault).QueryInterface()
     _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
 }
 
 override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
     super.init(factory)
-    let parentDefault: UnsafeMutablePointer<%> = super.getABI()!
+    let parentDefault: UnsafeMutablePointer<%> = super._getABI()!
     self._default = try! IInspectable(parentDefault).QueryInterface()
     _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
 }
@@ -2484,7 +2484,7 @@ public % var % : Event<(%),%> = EventImpl<%>(register: %_%, owner:%)
             w.write(R"(private typealias SwiftABI = %
 private typealias CABI = %
 private var _default: SwiftABI!
-% func getABI<T>() -> UnsafeMutablePointer<T>? {
+% func _getABI<T>() -> UnsafeMutablePointer<T>? {
     if T.self == CABI.self {
         return RawPointer(_default)
     }   
@@ -2503,7 +2503,7 @@ private var _default: SwiftABI!
                             composable ? "open" :
                                          "public",
                 w.c_mod,
-                base_class ? "super.getABI()" : "nil");
+                base_class ? "super._getABI()" : "nil");
             write_default_constructor_declarations(w, type, *default_interface);
         }
         for (auto&& [interface_name, factory] : type.factories)

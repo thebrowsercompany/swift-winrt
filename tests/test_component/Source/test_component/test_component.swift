@@ -9,7 +9,7 @@ open class Base : UnsealedWinRTClass {
     private typealias SwiftABI = __ABI_test_component.IBase
     private typealias CABI = __x_ABI_Ctest__component_CIBase
     private var _default: SwiftABI!
-    open func getABI<T>() -> UnsafeMutablePointer<T>? {
+    open func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
@@ -68,7 +68,7 @@ public final class BaseCollection : WinRTClass, IVector {
     private typealias SwiftABI = __ABI_test_component.IVectorBase
     private typealias CABI = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase
     private var _default: SwiftABI!
-    public func getABI<T>() -> UnsafeMutablePointer<T>? {
+    public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
@@ -178,7 +178,7 @@ public final class BaseMapCollection : WinRTClass, IMap {
     private typealias SwiftABI = __ABI_test_component.IMapString_Base
     private typealias CABI = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
     private var _default: SwiftABI!
-    public func getABI<T>() -> UnsafeMutablePointer<T>? {
+    public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
@@ -245,7 +245,7 @@ open class BaseNoOverrides : UnsealedWinRTClass {
     private typealias SwiftABI = __ABI_test_component.IBaseNoOverrides
     private typealias CABI = __x_ABI_Ctest__component_CIBaseNoOverrides
     private var _default: SwiftABI!
-    open func getABI<T>() -> UnsafeMutablePointer<T>? {
+    open func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
@@ -294,7 +294,7 @@ public final class Class : WinRTClass, IBasic {
     private typealias SwiftABI = __ABI_test_component.IClass
     private typealias CABI = __x_ABI_Ctest__component_CIClass
     private var _default: SwiftABI!
-    public func getABI<T>() -> UnsafeMutablePointer<T>? {
+    public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
@@ -598,14 +598,14 @@ public final class Derived : test_component.Base {
     private typealias SwiftABI = __ABI_test_component.IDerived
     private typealias CABI = __x_ABI_Ctest__component_CIDerived
     private var _default: SwiftABI!
-    override public func getABI<T>() -> UnsafeMutablePointer<T>? {
+    override public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
         if T.self == Ctest_component.IInspectable.self {
             return RawPointer(_default)
         }
-        return super.getABI()
+        return super._getABI()
     }
 
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIDerived>?) -> Derived? {
@@ -655,7 +655,7 @@ public final class NoopClosable : WinRTClass, test_component.IClosable {
     private typealias SwiftABI = __ABI_Windows_Foundation.IClosable
     private typealias CABI = __x_ABI_CWindows_CFoundation_CIClosable
     private var _default: SwiftABI!
-    public func getABI<T>() -> UnsafeMutablePointer<T>? {
+    public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
@@ -749,7 +749,7 @@ public final class Simple : WinRTClass {
     private typealias SwiftABI = __ABI_test_component.ISimple
     private typealias CABI = __x_ABI_Ctest__component_CISimple
     private var _default: SwiftABI!
-    public func getABI<T>() -> UnsafeMutablePointer<T>? {
+    public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
@@ -943,14 +943,14 @@ open class UnsealedDerived : test_component.Base {
     private typealias SwiftABI = __ABI_test_component.IUnsealedDerived
     private typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerived
     private var _default: SwiftABI!
-    override open func getABI<T>() -> UnsafeMutablePointer<T>? {
+    override open func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
         if T.self == Ctest_component.IInspectable.self {
             return RawPointer(_default)
         }
-        return super.getABI()
+        return super._getABI()
     }
 
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived>?) -> UnsealedDerived? {
@@ -966,14 +966,14 @@ open class UnsealedDerived : test_component.Base {
     private static var _IUnsealedDerivedProtectedFactory : __ABI_test_component.IUnsealedDerivedProtectedFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerived"))
     override public init() {
         super.init(Self._IUnsealedDerivedProtectedFactory) 
-        let parentDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = super.getABI()!
+        let parentDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = super._getABI()!
         self._default = try! IInspectable(parentDefault).QueryInterface()
         _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
     }
 
     override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         super.init(factory)
-        let parentDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = super.getABI()!
+        let parentDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = super._getABI()!
         self._default = try! IInspectable(parentDefault).QueryInterface()
         _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
     }
@@ -1032,14 +1032,14 @@ open class UnsealedDerived2 : test_component.UnsealedDerived {
     private typealias SwiftABI = __ABI_test_component.IUnsealedDerived2
     private typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerived2
     private var _default: SwiftABI!
-    override open func getABI<T>() -> UnsafeMutablePointer<T>? {
+    override open func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
         if T.self == Ctest_component.IInspectable.self {
             return RawPointer(_default)
         }
-        return super.getABI()
+        return super._getABI()
     }
 
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived2>?) -> UnsealedDerived2? {
@@ -1055,14 +1055,14 @@ open class UnsealedDerived2 : test_component.UnsealedDerived {
     private static var _IUnsealedDerived2ProtectedFactory : __ABI_test_component.IUnsealedDerived2ProtectedFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerived2"))
     override public init() {
         super.init(Self._IUnsealedDerived2ProtectedFactory) 
-        let parentDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = super.getABI()!
+        let parentDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = super._getABI()!
         self._default = try! IInspectable(parentDefault).QueryInterface()
         _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
     }
 
     override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         super.init(factory)
-        let parentDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = super.getABI()!
+        let parentDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = super._getABI()!
         self._default = try! IInspectable(parentDefault).QueryInterface()
         _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
     }
@@ -1091,14 +1091,14 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
     private typealias SwiftABI = __ABI_test_component.IUnsealedDerivedNoOverrides
     private typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides
     private var _default: SwiftABI!
-    override open func getABI<T>() -> UnsafeMutablePointer<T>? {
+    override open func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
         if T.self == Ctest_component.IInspectable.self {
             return RawPointer(_default)
         }
-        return super.getABI()
+        return super._getABI()
     }
 
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides>?) -> UnsealedDerivedNoOverrides? {
@@ -1114,14 +1114,14 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
     private static var _IUnsealedDerivedNoOverridesProtectedFactory : __ABI_test_component.IUnsealedDerivedNoOverridesProtectedFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerivedNoOverrides"))
     override public init() {
         super.init(Self._IUnsealedDerivedNoOverridesProtectedFactory) 
-        let parentDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = super.getABI()!
+        let parentDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = super._getABI()!
         self._default = try! IInspectable(parentDefault).QueryInterface()
         _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
     }
 
     override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         super.init(factory)
-        let parentDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = super.getABI()!
+        let parentDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = super._getABI()!
         self._default = try! IInspectable(parentDefault).QueryInterface()
         _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
     }

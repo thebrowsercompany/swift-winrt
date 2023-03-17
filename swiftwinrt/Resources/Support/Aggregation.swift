@@ -2,7 +2,7 @@ import C_BINDINGS_MODULE
 import Foundation
 
 public protocol WinRTClass : IWinRTObject, Equatable {
-    func getABI<T>() -> UnsafeMutablePointer<T>?
+    func _getABI<T>() -> UnsafeMutablePointer<T>?
 }
 
 public protocol MakeFromAbi {
@@ -33,7 +33,7 @@ public extension WinRTClass {
         // Every WinRT interface is binary compatible with IInspectable. asking this class for
         // the iinspectable will ensure we get the default implementation from whichever derived
         // class it actually is. 
-        let cDefault: UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable> = getABI()!
+        let cDefault: UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable> = _getABI()!
         return IInspectable(cDefault)
     }
 
