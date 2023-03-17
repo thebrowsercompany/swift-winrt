@@ -57,7 +57,7 @@ namespace swiftwinrt
         // for IReference<> types we use the same IPropertyValueImpl class that is
         // specially generated. this type can hold any value type and implements
         // the appropriate interface
-        if (is_ireference(type))
+        if (is_winrt_ireference(type))
         {
             w.write("%.%", impl_namespace("Windows.Foundation"), "IPropertyValueImpl");
         }
@@ -84,7 +84,7 @@ namespace swiftwinrt
     template<typename T>
     inline void write_impl_name(writer& w, T const& type)
     {
-        if (is_generic(type))
+        if (is_generic_def_or_inst(type))
         {
             write_generic_impl_name(w, type);
         }
@@ -132,7 +132,7 @@ namespace swiftwinrt
     {
         type_name type_name(type);
 
-        if (is_generic(type))
+        if (is_generic_def_or_inst(type))
         {
             auto mangled_name = w.push_mangled_names(true);
             auto handlerWrapperTypeName = w.write_temp("%Wrapper", type);
@@ -255,7 +255,7 @@ namespace swiftwinrt
         // TODO: WIN-275: Code generation for nested generics
         for (auto genarg : type.generic_params())
         {
-            if (is_generic(genarg))
+            if (is_generic_def_or_inst(genarg))
             {
                 return false;
             }
@@ -722,7 +722,7 @@ namespace swiftwinrt
         }
         else if (category == param_category::generic_type)
         {
-            if (is_ireference(type))
+            if (is_winrt_ireference(type))
             {
                 w.write(".init(ref: %)", name);
             }
@@ -857,7 +857,7 @@ bind<write_abi_args>(function));
         {
             type.write_swift_declaration(w);
 
-            if (is_collection_type(type))
+            if (is_winrt_generic_collection(type))
             {
                 auto generic_params = w.push_generic_params(type);
                 do_write_interface_abi(w, *type.generic_type(), type.functions);
@@ -867,7 +867,7 @@ bind<write_abi_args>(function));
 
     static void write_ireference_init_extension(writer& w, generic_inst const& type)
     {
-        if (!is_ireference(type)) return;
+        if (!is_winrt_ireference(type)) return;
 
         auto format = R"(fileprivate extension % {
     init?(ref: UnsafeMutablePointer<%>?) {
@@ -1381,7 +1381,7 @@ bind_impl_fullname(type));
         else if (!info.is_default || (!is_class && info.base))
         {
             auto swiftAbi = w.write_temp("%.%", abi_namespace(info.type->swift_logical_namespace()), info.type->swift_type_name());
-            if (is_collection_type(info.type))
+            if (is_winrt_generic_collection(info.type))
             {
                 w.generic_param_stack.push_back(info.generic_params);
                 writer::generic_param_guard guard{ &w };
@@ -1392,7 +1392,7 @@ bind_impl_fullname(type));
                 swiftAbi);
         }
 
-        if (is_class && is_collection_type(info.type))
+        if (is_class && is_winrt_generic_collection(info.type))
         {
             write_collection_protocol_conformance(w, info);
         }
@@ -1704,7 +1704,7 @@ public static func makeAbi() -> c_ABI {
             auto delegate_method = type.functions[0];
             do_write_delegate_implementation(w, type, delegate_method);
         }
-        else if (is_collection_type(type))
+        else if (is_winrt_generic_collection(type))
         {
             write_collection_implementation(w, type);
         }
@@ -1763,7 +1763,7 @@ public static func makeAbi() -> c_ABI {
                 }
                 else if (category == param_category::generic_type)
                 {
-                    if (is_ireference(param.type))
+                    if (is_winrt_ireference(param.type))
                     {
                         w.write("let %Wrapper = %(%)\n",
                             get_swift_name(param),
@@ -1773,7 +1773,7 @@ public static func makeAbi() -> c_ABI {
                             get_swift_name(param),
                             get_swift_name(param));
                     }
-                    else if (is_collection_type(param.type))
+                    else if (is_winrt_generic_collection(param.type))
                     {
                         w.write("let %Wrapper = %(%)\n",
                             get_swift_name(param),
@@ -1783,7 +1783,7 @@ public static func makeAbi() -> c_ABI {
                             get_swift_name(param),
                             get_swift_name(param));
                     }
-                    else if (is_eventhandler(param.type) || is_typedeventhandler(param.type))
+                    else if (is_winrt_eventhandler(param.type) || is_winrt_typedeventhandler(param.type))
                     {
                         w.write("let %Handler = %(handler: %)\n",
                             get_swift_name(param),
@@ -2432,7 +2432,7 @@ public % var % : Event<(%),%> = EventImpl<%>(register: %_%, owner:%)
 
             // when deriving from collections we want to just derive from `IVector` and will use a typealias to set the Element (this is required by Swift)
             auto name_to_write = interface_name;
-            if (is_collection_type(info.type))
+            if (is_winrt_generic_collection(info.type))
             {
                 if (interface_name.starts_with("IVector"))
                 {
@@ -2474,7 +2474,7 @@ public % var % : Event<(%),%> = EventImpl<%>(register: %_%, owner:%)
             auto [ns, name] = get_type_namespace_and_name(*default_interface);
             auto swiftAbi = w.write_temp("%.%", abi_namespace(ns), name);
             std::string defaultVal = "";
-            if (is_collection_type(default_interface))
+            if (is_winrt_generic_collection(default_interface))
             {
                 auto generic_type = dynamic_cast<const generic_inst*>(default_interface);
                 guard = w.push_generic_params(*generic_type);
@@ -2746,7 +2746,7 @@ bind([&](writer& w) {
 
                     // Swift fails to implicitly convert a derived interface to its generic base interface without a cast
                     write_query_interface_case(w, type, *iface.second.type,
-                        /* cast: */ is_generic(iface.second.type));
+                        /* cast: */ is_generic_def_or_inst(iface.second.type));
                 }}),
             bind_wrapper_fullname(type),
             bind([&](writer & w) {
@@ -2993,7 +2993,7 @@ bind([&](writer& w) {
             if (isGeneric)
             {
                 auto genericInst = (const generic_inst&)type;
-                if (is_ireference(genericInst.generic_type()))
+                if (is_winrt_ireference(genericInst.generic_type()))
                 {
                     func_call.append(w.write_temp(" as! %", get_full_swift_type_name(w, genericInst.generic_params()[0])));
                 }

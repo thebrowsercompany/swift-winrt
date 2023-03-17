@@ -3,9 +3,6 @@
 
 namespace swiftwinrt
 {
-    constexpr std::string_view system_namespace = "System";
-    constexpr std::string_view foundation_namespace = "Windows.Foundation";
-    constexpr std::string_view collections_namespace = "Windows.Foundation.Collections";
     constexpr std::string_view metadata_namespace = "Windows.Foundation.Metadata";
 
     using namespace std::filesystem;
@@ -223,6 +220,36 @@ namespace swiftwinrt
             });
 
         return result;
+    }
+
+    inline bool is_generic(TypeDef const& type) noexcept
+    {
+        return distance(type.GenericParam()) != 0;
+    }
+
+    inline bool is_generic(TypeRef const& ref)
+    {
+        return is_generic(find_required(ref));
+    }
+
+    inline bool is_generic(TypeSig const& sig)
+    {
+        return get_category(sig) == param_category::generic_type;
+    }
+
+    inline bool is_generic(coded_index<TypeDefOrRef> const& type)
+    {
+        switch (type.type())
+        {
+        case TypeDefOrRef::TypeSpec:
+            return true;
+        case TypeDefOrRef::TypeRef:
+            return is_generic(type.TypeRef());
+        case TypeDefOrRef::TypeDef:
+            return is_generic(type.TypeDef());
+        default:
+            return false;
+        }
     }
 
     inline bool is_floating_point(TypeSig const& signature)

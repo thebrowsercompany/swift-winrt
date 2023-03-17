@@ -119,7 +119,7 @@ namespace swiftwinrt
 #include "windowscontracts.h"
 )^-^");
 
-        if (fileName != foundation_namespace)
+        if (fileName != winrt_foundation_namespace)
         {
             w.write(R"^-^(#include "Windows.Foundation.h"
 )^-^");
@@ -133,12 +133,12 @@ namespace swiftwinrt
         bool hasCollectionsDependency = false;
         for (auto ns : types.dependent_namespaces)
         {
-            if (ns == collections_namespace)
+            if (ns == winrt_collections_namespace)
             {
                 // The collections header is hand-rolled
                 hasCollectionsDependency = true;
             }
-            else if (ns == foundation_namespace)
+            else if (ns == winrt_foundation_namespace)
             {
                 // This is a forced dependency
             }

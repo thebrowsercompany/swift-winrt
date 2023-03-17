@@ -55,7 +55,7 @@ void metadata_cache::process_namespace_types(
     std::map<std::string_view, metadata_type const&>& table)
 {
     // Mapped types are only in the 'Windows.Foundation' namespace, so pre-compute
-    bool isFoundationNamespace = members.types.begin()->second.TypeNamespace() == foundation_namespace;
+    bool isFoundationNamespace = members.types.begin()->second.TypeNamespace() == winrt_foundation_namespace;
 
     target.enums.reserve(members.enums.size());
     for (auto const& e : members.enums)
