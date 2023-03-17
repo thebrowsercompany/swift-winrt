@@ -123,26 +123,26 @@ public final class BaseCollection : WinRTClass, IVector {
         Clear()
     }
     // MARK: WinRT
-    public func GetAt(_ index: UInt32) -> Base! {
+    public func GetAt(_ index: UInt32) -> Base? {
         let result = try! _default.GetAtImpl(index)
         return .from(abi: result)
     }
 
-    public func GetView() -> (any IVectorView<Base?>)! {
+    public func GetView() -> (any IVectorView<Base?>)? {
         let result = try! _default.GetViewImpl()
         return __ABI_test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
 
-    public func IndexOf(_ value: Base!, _ index: inout UInt32) -> Bool {
+    public func IndexOf(_ value: Base?, _ index: inout UInt32) -> Bool {
         let result = try! _default.IndexOfImpl(RawPointer(value), &index)
         return .init(from: result)
     }
 
-    public func SetAt(_ index: UInt32, _ value: Base!) {
+    public func SetAt(_ index: UInt32, _ value: Base?) {
         try! _default.SetAtImpl(index, RawPointer(value))
     }
 
-    public func InsertAt(_ index: UInt32, _ value: Base!) {
+    public func InsertAt(_ index: UInt32, _ value: Base?) {
         try! _default.InsertAtImpl(index, RawPointer(value))
     }
 
@@ -150,7 +150,7 @@ public final class BaseCollection : WinRTClass, IVector {
         try! _default.RemoveAtImpl(index)
     }
 
-    public func Append(_ value: Base!) {
+    public func Append(_ value: Base?) {
         try! _default.AppendImpl(RawPointer(value))
     }
 
@@ -198,7 +198,7 @@ public final class BaseMapCollection : WinRTClass, IMap {
     }
 
     // MARK: WinRT
-    public func Lookup(_ key: String) -> Base! {
+    public func Lookup(_ key: String) -> Base? {
         let _key = try! HString(key)
         let result = try! _default.LookupImpl(_key.get())
         return .from(abi: result)
@@ -210,12 +210,12 @@ public final class BaseMapCollection : WinRTClass, IMap {
         return .init(from: result)
     }
 
-    public func GetView() -> (any IMapView<String, Base?>)! {
+    public func GetView() -> (any IMapView<String, Base?>)? {
         let result = try! _default.GetViewImpl()
         return __ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
 
-    public func Insert(_ key: String, _ value: Base!) -> Bool {
+    public func Insert(_ key: String, _ value: Base?) -> Bool {
         let _key = try! HString(key)
         let result = try! _default.InsertImpl(_key.get(), RawPointer(value))
         return .init(from: result)
@@ -1216,7 +1216,7 @@ public protocol IIAmImplementable : IWinRTObject {
         func ReturnEnum() -> test_component.Signed
         func FireEvent()
         var EnumProperty: test_component.Fruit { get set }
-        var ID: UUID? { get set }
+        var ID: UUID! { get set }
 }
 public protocol ISimpleDelegate : IWinRTObject { 
         func DoThis()

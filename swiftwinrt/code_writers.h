@@ -517,21 +517,18 @@ namespace swiftwinrt
         w.write(" __%Size", get_swift_name(param));
     }
 
-    static void write_function_param(writer& w, function_param const& param, projection_layer layer)
-    {
-        w.write("_ %: ", get_swift_name(param));
-        if (param.out()) w.write("inout ");
-        write_type_ex(w, *param.type, layer, /* allow_implicit_unwrap: */ true);
-    }
-
-    static void write_function_params(writer& w, function_def const& function, projection_layer layer)
+    static void write_function_params(writer& w, function_def const& function, projection_layer layer,
+        bool allow_implicit_unwrap)
     {
         separator s{ w };
 
         for (auto&& param : function.params)
         {
             s();
-            write_function_param(w, param, layer);
+
+            w.write("_ %: ", get_swift_name(param));
+            if (param.out()) w.write("inout ");
+            write_type_ex(w, *param.type, layer, allow_implicit_unwrap);
         }
     }
 
@@ -780,7 +777,8 @@ bind<write_abi_args>(function));
         }
     }
 
-    static void write_return_type_declaration(writer& w, function_def function, projection_layer layer)
+    static void write_return_type_declaration(writer& w, function_def function, projection_layer layer,
+        bool allow_implicit_unwrap)
     {
         if (!function.return_type)
         {
@@ -788,7 +786,7 @@ bind<write_abi_args>(function));
         }
 
         w.write(" -> ");
-        write_type_ex(w, *function.return_type->type, layer, /* allow_implicit_unwrap: */ true);
+        write_type_ex(w, *function.return_type->type, layer, allow_implicit_unwrap);
     }
 
     static void do_write_interface_abi(writer& w, typedef_base const& type, std::vector<function_def> const& methods)
@@ -832,8 +830,8 @@ bind<write_abi_args>(function));
                 w.write("% func %Impl(%) throws% {\n",
                     internal || is_exclusive(type) ? "internal" : "open",
                     func_name,
-                    bind<write_function_params>(function, projection_layer::c_abi),
-                    bind<write_return_type_declaration>(function, projection_layer::c_abi));
+                    bind<write_function_params>(function, projection_layer::c_abi, /* allow_implicit_unwrap: */ false),
+                    bind<write_return_type_declaration>(function, projection_layer::c_abi, /* allow_implicit_unwrap: */ false));
                 {
                     auto function_indent_guard = w.push_indent();
                     write_abi_func_body(w, type, function);
@@ -1535,8 +1533,8 @@ public static func makeAbi() -> CABI {
                     auto full_type_name = w.push_full_type_names(true);
                     w.write("\n        func %(%)%",
                         get_swift_name(method),
-                        bind<write_function_params>(method, projection_layer::swift),
-                        bind<write_return_type_declaration>(method, projection_layer::swift));
+                        bind<write_function_params>(method, projection_layer::swift, /* allow_implicit_unwrap: */ true),
+                        bind<write_return_type_declaration>(method, projection_layer::swift, /* allow_implicit_unwrap: */ true));
                 }
 
                 for (auto& prop : type.properties)
@@ -1546,7 +1544,7 @@ public static func makeAbi() -> CABI {
                     auto&& return_type = *prop.getter->return_type->type;
                     w.write("\n        var %: % { get% }",
                         get_swift_name(prop),
-                        bind<write_type>(return_type, projection_layer::swift),
+                        bind<write_type_ex>(return_type, projection_layer::swift, /* allow_implicit_unwrap: */ true),
                         prop.setter ? " set" : "");
                 }
             }));
@@ -1882,7 +1880,7 @@ public static func makeAbi() -> CABI {
             {
                 if (!can_write(w, method)) continue;
 
-                w.write("public init(%) {\n", bind<write_function_params>(method, projection_layer::swift));
+                w.write("public init(%) {\n", bind<write_function_params>(method, projection_layer::swift, /* allow_implicit_unwrap: */ true));
                 {
                     auto indent = w.push_indent();
                     write_factory_body(w, method, factory_info, type, default_interface);
@@ -2109,11 +2107,17 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
             return;
         }
 
+        // When implementing a generic collection interface,
+        // we cannot use implicit unwrapping, because of Swift limitations:
+        // typename Element must be Base? and not Base!,
+        // and declaring GetAt(_: UInt32) -> Base! would not bind to GetAt(_: UInt32) -> Element.
+        bool allow_implicit_unwrap = !is_collection_type(iface.type);
+
         w.write("% func %(%)% {\n",
             iface.overridable ? "open" : "public",
             get_swift_name(function),
-            bind<write_function_params>(function, projection_layer::swift),
-            bind<write_return_type_declaration>(function, projection_layer::swift));
+            bind<write_function_params>(function, projection_layer::swift, allow_implicit_unwrap),
+            bind<write_return_type_declaration>(function, projection_layer::swift, allow_implicit_unwrap));
         {
             auto indent = w.push_indent();
             write_class_func_body(w, function, iface);
@@ -2244,8 +2248,8 @@ public % var % : Event<(%),%> = EventImpl<%>(register: %_%, owner:%)
 
                 w.write("public static func %(%)% {\n",
                     get_swift_name(method),
-                    bind<write_function_params>(method, projection_layer::swift),
-                    bind<write_return_type_declaration>(method, projection_layer::swift));
+                    bind<write_function_params>(method, projection_layer::swift, /* allow_implicit_unwrap: */ true),
+                    bind<write_return_type_declaration>(method, projection_layer::swift, /* allow_implicit_unwrap: */ true));
                 {
                     auto indent = w.push_indent();
                     write_statics_body(w, method, *statics.type);
