@@ -29,7 +29,7 @@ public protocol UnsealedWinRTClass : WinRTClass {
 }
 
 public extension WinRTClass {
-    func asIInspectable() -> test_component.IInspectable {
+    func getDefaultAsIInspectable() -> test_component.IInspectable {
         // Every WinRT interface is binary compatible with IInspectable. asking this class for
         // the iinspectable will ensure we get the default implementation from whichever derived
         // class it actually is. 
@@ -38,11 +38,7 @@ public extension WinRTClass {
     }
 
     func `as`<Interface: test_component.IInspectable>() throws -> Interface {
-        try asIInspectable().QueryInterface()
-    }
-
-    func tryAs<Interface: test_component.IInspectable>() -> Interface? {
-        return try? asIInspectable().QueryInterface()
+        try getDefaultAsIInspectable().QueryInterface()
     }
 }
 
@@ -65,7 +61,7 @@ extension UnsealedWinRTClass {
 }
 
 public func ==<T: WinRTClass>(_ lhs: T, _ rhs: T) -> Bool {
-  return lhs.asIInspectable() == rhs.asIInspectable()
+  return lhs.getDefaultAsIInspectable() == rhs.getDefaultAsIInspectable()
 }
 
 public protocol ComposableActivationFactory {

@@ -729,7 +729,7 @@ class SwiftWinRTTests : XCTestCase {
     XCTAssertTrue(NullValues.IsClassNull(nil))
     XCTAssertTrue(NullValues.IsDelegateNull(nil))
     
-    XCTAssertFalse(NullValues.IsObjectNull(NoopClosable().getDefault()))
+    XCTAssertFalse(NullValues.IsObjectNull(NoopClosable().getDefaultAsIInspectable()))
     XCTAssertFalse(NullValues.IsInterfaceNull(NoopClosable()))
     XCTAssertFalse(NullValues.IsGenericInterfaceNull([""].toVector()))
     XCTAssertFalse(NullValues.IsClassNull(NoopClosable()))
