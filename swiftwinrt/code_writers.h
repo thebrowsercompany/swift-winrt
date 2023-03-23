@@ -90,6 +90,8 @@ namespace swiftwinrt
         }
         else
         {
+            assert(!is_generic_def(type));
+
             type_name type_name{ type };
             std::string implName = w.write_temp("%Impl", type_name.name);
 
@@ -147,6 +149,8 @@ namespace swiftwinrt
         }
         else
         {
+            assert(!is_generic_def(type));
+            
             auto handlerWrapperTypeName = w.write_temp("%Wrapper", type_name.name);
             if (w.full_type_names)
             {

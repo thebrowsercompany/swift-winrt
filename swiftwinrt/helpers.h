@@ -733,6 +733,7 @@ namespace swiftwinrt
         }
 
         // delegates, interfaces, and classes are all object type
+        assert(!is_generic_def(type));
         return param_category::object_type;
     }
 
