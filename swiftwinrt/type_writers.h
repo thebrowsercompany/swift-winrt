@@ -134,7 +134,7 @@ namespace swiftwinrt
     {
         std::string result = "__x_ABI_C";
 
-        if (is_generic_def_or_inst(type))
+        if (is_generic_def(type) || is_generic_inst(type))
         {
             // Generic types don't have the namespace included in the mangled name
             result += "__F";
@@ -407,7 +407,7 @@ namespace swiftwinrt
                 write(gti);
                 return;
             }
-            if (is_generic_def_or_inst(type))
+            if (is_generic_def(type))
             {
                 auto name = type->swift_type_name();
                 auto guard{ push_writing_generic(true) };

@@ -727,7 +727,7 @@ namespace swiftwinrt
             if (mapped->swift_type_name() == "HResult") return param_category::fundamental_type;
             assert(false); // unexpected mapped type
         }
-        if (is_generic_def_or_inst(type))
+        if (is_generic_inst(type))
         {
             return param_category::generic_type;
         }

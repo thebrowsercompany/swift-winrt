@@ -901,18 +901,15 @@ namespace swiftwinrt
         return is_generic_inst(&type);
     }
 
-    inline bool is_generic_def_or_inst(const metadata_type* type)
+    inline bool is_generic_def(const metadata_type* type)
     {
-        if (auto typedefBase = dynamic_cast<const typedef_base*>(type))
-        {
-            return typedefBase->is_generic();
-        }
-        return is_generic_inst(type);
+        auto typedefBase = dynamic_cast<const typedef_base*>(type);
+        return typedefBase != nullptr && typedefBase->is_generic();
     }
 
-    inline bool is_generic_def_or_inst(metadata_type const& type)
+    inline bool is_generic_def(metadata_type const& type)
     {
-        return is_generic_def_or_inst(&type);
+        return is_generic_def(&type);
     }
 
     inline bool is_delegate(generic_inst const& type)

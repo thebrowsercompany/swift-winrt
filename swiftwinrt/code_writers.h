@@ -84,7 +84,7 @@ namespace swiftwinrt
     template<typename T>
     inline void write_impl_name(writer& w, T const& type)
     {
-        if (is_generic_def_or_inst(type))
+        if (is_generic_inst(type))
         {
             write_generic_impl_name(w, type);
         }
@@ -132,7 +132,7 @@ namespace swiftwinrt
     {
         type_name type_name(type);
 
-        if (is_generic_def_or_inst(type))
+        if (is_generic_inst(type))
         {
             auto mangled_name = w.push_mangled_names(true);
             auto handlerWrapperTypeName = w.write_temp("%Wrapper", type);
@@ -255,7 +255,7 @@ namespace swiftwinrt
         // TODO: WIN-275: Code generation for nested generics
         for (auto genarg : type.generic_params())
         {
-            if (is_generic_def_or_inst(genarg))
+            if (is_generic_inst(genarg))
             {
                 return false;
             }
@@ -2746,7 +2746,7 @@ bind([&](writer& w) {
 
                     // Swift fails to implicitly convert a derived interface to its generic base interface without a cast
                     write_query_interface_case(w, type, *iface.second.type,
-                        /* cast: */ is_generic_def_or_inst(iface.second.type));
+                        /* cast: */ is_generic_inst(iface.second.type));
                 }}),
             bind_wrapper_fullname(type),
             bind([&](writer & w) {
