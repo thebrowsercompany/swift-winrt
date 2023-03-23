@@ -15,14 +15,14 @@ static void write_swift_type(writer& w, metadata_type const& type)
     {
         auto&& generic_typedef = *gen_inst->generic_type();
         auto&& generic_params = gen_inst->generic_params();
-        if (is_ireference(generic_typedef))
+        if (is_winrt_ireference(generic_typedef))
         {
             auto boxed_type = generic_params[0];
             w.write("%?", bind<write_swift_type>(*boxed_type));
             return;
         }
 
-        if (is_eventhandler(generic_typedef))
+        if (is_winrt_eventhandler(generic_typedef))
         {
             auto args_type = generic_params[0];
             // '^' escapes the '@'
@@ -31,7 +31,7 @@ static void write_swift_type(writer& w, metadata_type const& type)
             return;
         }
 
-        if (is_typedeventhandler(generic_typedef))
+        if (is_winrt_typedeventhandler(generic_typedef))
         {
             auto sender_type = generic_params[0];
             auto args_type = generic_params[1];
@@ -108,9 +108,9 @@ void swiftwinrt::write_swift_type_identifier(writer& w, metadata_type const& typ
         auto&& generic_typedef = *gen_inst->generic_type();
 
         // Special generic types
-        if (is_ireference(generic_typedef)
-            || is_eventhandler(generic_typedef)
-            || is_typedeventhandler(generic_typedef))
+        if (is_winrt_ireference(generic_typedef)
+            || is_winrt_eventhandler(generic_typedef)
+            || is_winrt_typedeventhandler(generic_typedef))
         {
             throw std::exception("Special types IReference, EventHandler and TypedEventHandler"
                 " cannot be represented as a Swift type-identifier syntax node.");

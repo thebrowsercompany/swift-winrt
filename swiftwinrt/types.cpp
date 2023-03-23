@@ -43,7 +43,7 @@ namespace swiftwinrt
             return false;
         }
 
-        if (return_type.value().type->swift_logical_namespace() == foundation_namespace)
+        if (return_type.value().type->swift_logical_namespace() == winrt_foundation_namespace)
         {
             auto returnTypeName = return_type.value().type->swift_type_name();
             return returnTypeName == "IAsyncAction" ||
@@ -622,7 +622,7 @@ namespace swiftwinrt
             write_generic_delegate_wrapper(w, *this);
             return;
         }
-        else if (is_collection_type(*this))
+        else if (is_winrt_generic_collection(*this))
         {
             w.write("typealias % = InterfaceWrapperBase<%>\n",
                 bind_wrapper_name(*this),
@@ -729,7 +729,7 @@ namespace swiftwinrt
 
     mapped_type const* mapped_type::from_typedef(winmd::reader::TypeDef const& type)
     {
-        if (type.TypeNamespace() == foundation_namespace)
+        if (type.TypeNamespace() == winrt_foundation_namespace)
         {
             if (type.TypeName() == "HResult"sv)
             {

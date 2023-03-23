@@ -889,4 +889,158 @@ namespace swiftwinrt
         std::string m_swiftTypeName;
         std::string m_mangledName;
     };
+
+    // Helpers
+    inline bool is_generic_inst(const metadata_type* type)
+    {
+        return dynamic_cast<const generic_inst*>(type) != nullptr;
+    }
+
+    inline bool is_generic_inst(metadata_type const& type)
+    {
+        return is_generic_inst(&type);
+    }
+
+    inline bool is_generic_def(const metadata_type* type)
+    {
+        auto typedefBase = dynamic_cast<const typedef_base*>(type);
+        return typedefBase != nullptr && typedefBase->is_generic();
+    }
+
+    inline bool is_generic_def(metadata_type const& type)
+    {
+        return is_generic_def(&type);
+    }
+
+    inline bool is_delegate(generic_inst const& type)
+    {
+        return type.generic_type()->category() == category::delegate_type;
+    }
+
+    inline bool is_delegate(metadata_type const* type, bool allow_generic = true)
+    {
+        if (allow_generic)
+        {
+            if (auto genericInst = dynamic_cast<generic_inst const*>(type))
+            {
+                return is_delegate(*genericInst);
+            }
+        }
+
+        return dynamic_cast<delegate_type const*>(type) != nullptr;
+    }
+
+    inline bool is_delegate(metadata_type const& type, bool allow_generic = true)
+    {
+        return is_delegate(&type, allow_generic);
+    }
+
+    inline bool is_interface(metadata_type const* type, bool allow_generic = true)
+    {
+        if (allow_generic)
+        {
+            if (auto geninst = dynamic_cast<generic_inst const*>(type))
+            {
+                return is_interface(geninst->generic_type());
+            }
+        }
+
+        return dynamic_cast<interface_type const*>(type) != nullptr;
+    }
+
+    inline bool is_interface(metadata_type const& type, bool allow_generic = true)
+    {
+        return is_interface(&type, allow_generic);
+    }
+
+    inline bool is_class(metadata_type const* type)
+    {
+        // Classes cannot be generic in WinRT
+        return dynamic_cast<class_type const*>(type) != nullptr;
+    }
+
+    inline bool is_reference_type(metadata_type const* type)
+    {
+        if (is_class(type) || is_interface(type) || is_delegate(type))
+        {
+            return true;
+        }
+
+        auto elem = dynamic_cast<element_type const*>(type);
+        return elem != nullptr && elem->type() == ElementType::Object;
+    }
+
+    inline bool is_boolean(metadata_type const* signature)
+    {
+        if (auto elementType = dynamic_cast<element_type const*>(signature))
+        {
+            return elementType->type() == ElementType::Boolean;
+        }
+        return false;
+    }
+
+    inline bool is_floating_point(metadata_type const* signature)
+    {
+        if (auto elementType = dynamic_cast<element_type const*>(signature))
+        {
+            return elementType->type() == ElementType::R4 ||
+                elementType->type() == ElementType::R8;
+        }
+        return false;
+    }
+
+    // Helpers for WinRT types
+    constexpr std::string_view system_namespace = "System";
+    constexpr std::string_view winrt_foundation_namespace = "Windows.Foundation";
+    constexpr std::string_view winrt_collections_namespace = "Windows.Foundation.Collections";
+
+    inline bool is_winrt_ireference(metadata_type const& type)
+    {
+        return type.swift_full_name().starts_with("Windows.Foundation.IReference");
+    }
+
+    inline bool is_winrt_ireference(const metadata_type* type)
+    {
+        return is_winrt_ireference(*type);
+    }
+
+    inline bool is_winrt_eventhandler(metadata_type const& type)
+    {
+        return type.swift_full_name().starts_with("Windows.Foundation.EventHandler");
+    }
+
+    inline bool is_winrt_eventhandler(const metadata_type* type)
+    {
+        return is_winrt_eventhandler(*type);
+    }
+
+    inline bool is_winrt_typedeventhandler(metadata_type const& type)
+    {
+        return type.swift_full_name().starts_with("Windows.Foundation.TypedEventHandler");
+    }
+
+    inline bool is_winrt_typedeventhandler(const metadata_type* type)
+    {
+        return is_winrt_typedeventhandler(*type);
+    }
+
+    inline bool is_winrt_generic_collection(metadata_type const& type)
+    {
+        if (type.swift_logical_namespace() == winrt_collections_namespace)
+        {
+            auto type_name = type.swift_type_name();
+            return type_name.starts_with("IVector") || // Covers IVectorView
+                type_name.starts_with("IMap") || // Covers IMapView
+                type_name.starts_with("IIterator") ||
+                type_name.starts_with("IIterable") ||
+                type_name.starts_with("IObservableMap") ||
+                type_name.starts_with("IObservableVector");
+        }
+        return false;
+    }
+
+    inline bool is_winrt_generic_collection(const metadata_type* type)
+    {
+        return is_winrt_generic_collection(*type);
+    }
 }

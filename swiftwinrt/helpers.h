@@ -208,56 +208,6 @@ namespace swiftwinrt
         return method.SpecialName() && method.Name().starts_with("put_");
     }
 
-    inline bool is_ireference(metadata_type const& type)
-    {
-        return type.swift_full_name().starts_with("Windows.Foundation.IReference");
-    }
-
-    inline bool is_ireference(const metadata_type* type)
-    {
-        return is_ireference(*type);
-    }
-
-    inline bool is_eventhandler(metadata_type const& type)
-    {
-        return type.swift_full_name().starts_with("Windows.Foundation.EventHandler");
-    }
-
-    inline bool is_eventhandler(const metadata_type* type)
-    {
-        return is_eventhandler(*type);
-    }
-
-    inline bool is_typedeventhandler(metadata_type const& type)
-    {
-        return type.swift_full_name().starts_with("Windows.Foundation.TypedEventHandler");
-    }
-
-    inline bool is_typedeventhandler(const metadata_type* type)
-    {
-        return is_typedeventhandler(*type);
-    }
-
-    inline bool is_collection_type(metadata_type const& type)
-    {
-        if (type.swift_logical_namespace() == "Windows.Foundation.Collections")
-        {
-            auto type_name = type.swift_type_name();
-            return type_name.starts_with("IVector") || // Covers IVectorView
-                type_name.starts_with("IMap") || // Covers IMapView
-                type_name.starts_with("IIterator") ||
-                type_name.starts_with("IIterable") ||
-                type_name.starts_with("IObservableMap") ||
-                type_name.starts_with("IObservableVector");
-        }
-        return false;
-    }
-
-    inline bool is_collection_type(const metadata_type* type)
-    {
-        return is_collection_type(*type);
-    }
-
     inline bool is_noexcept(MethodDef const& method)
     {
         return is_remove_overload(method) || has_attribute(method, metadata_namespace, "NoExceptionAttribute");
@@ -417,96 +367,6 @@ namespace swiftwinrt
     inline bool is_overridable(InterfaceImpl const& iface)
     {
         return has_attribute(iface, "Windows.Foundation.Metadata", "OverridableAttribute");
-    }
-
-    inline bool is_generic(TypeDef const& type) noexcept
-    {
-        return distance(type.GenericParam()) != 0;
-    }
-
-    inline bool is_generic(TypeRef const& ref)
-    {
-        return is_generic(find_required(ref));
-    }
-
-    inline bool is_generic(TypeSig const& sig)
-    {
-        return get_category(sig) == param_category::generic_type;
-    }
-
-    inline bool is_generic(coded_index<TypeDefOrRef> const& type)
-    {
-        switch (type.type())
-        {
-        case TypeDefOrRef::TypeSpec:
-            return true;
-        case TypeDefOrRef::TypeRef:
-            return is_generic(type.TypeRef());
-        case TypeDefOrRef::TypeDef:
-            return is_generic(type.TypeDef());
-        default:
-            return false;
-        }
-    }
-
-    inline bool is_generic(const metadata_type* type)
-    {
-        if (auto typedefBase = dynamic_cast<const typedef_base*>(type))
-        {
-            return is_generic(typedefBase->type());
-        }
-        return dynamic_cast<const generic_inst*>(type) != nullptr;
-    }
-
-    inline bool is_generic(metadata_type const& type)
-    {
-        return is_generic(&type);
-    }
-
-    inline bool is_delegate(generic_inst const& type)
-    {
-        return type.generic_type()->category() == category::delegate_type;
-    }
-
-    inline bool is_delegate(metadata_type const* type)
-    {
-        if (auto genericInst = dynamic_cast<generic_inst const*>(type))
-        {
-            return is_delegate(*genericInst);
-        }
-        return dynamic_cast<delegate_type const*>(type) != nullptr;
-    }
-
-    inline bool is_delegate(metadata_type const& type)
-    {
-        return is_delegate(&type);
-    }
-
-    inline bool is_interface(metadata_type const* type)
-    {
-        if (auto geninst = dynamic_cast<generic_inst const*>(type))
-        {
-            return is_interface(geninst->generic_type());
-        }
-
-        return dynamic_cast<interface_type const*>(type) != nullptr;
-    }
-
-    inline bool is_class(metadata_type const* type)
-    {
-        // Classes cannot be generic in WinRT
-        return dynamic_cast<class_type const*>(type) != nullptr;
-    }
-
-    inline bool is_reference_type(metadata_type const* type)
-    {
-        if (is_class(type) || is_interface(type) || is_delegate(type))
-        {
-            return true;
-        }
-
-        auto elem = dynamic_cast<element_type const*>(type);
-        return elem != nullptr && elem->type() == ElementType::Object;
     }
 
     template <typename T>
@@ -737,25 +597,6 @@ namespace swiftwinrt
         return name;
     }
 
-    inline bool is_boolean(metadata_type const* signature)
-    {
-        if (auto elementType = dynamic_cast<element_type const*>(signature))
-        {
-            return elementType->type() == ElementType::Boolean;
-        }
-        return false;
-    }
-
-    inline bool is_floating_point(metadata_type const* signature)
-    {
-        if (auto elementType = dynamic_cast<element_type const*>(signature))
-        {
-            return elementType->type() == ElementType::R4 ||
-                   elementType->type() == ElementType::R8;
-        }
-        return false;
-    }
-
 
     inline std::string internal_namepace(std::string prefix, std::string_view const& ns)
     {
@@ -886,12 +727,13 @@ namespace swiftwinrt
             if (mapped->swift_type_name() == "HResult") return param_category::fundamental_type;
             assert(false); // unexpected mapped type
         }
-        if (is_generic(type))
+        if (is_generic_inst(type))
         {
             return param_category::generic_type;
         }
 
         // delegates, interfaces, and classes are all object type
+        assert(!is_generic_def(type));
         return param_category::object_type;
     }
 

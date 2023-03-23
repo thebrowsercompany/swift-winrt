@@ -18,11 +18,6 @@ namespace swiftwinrt
     std::string get_full_swift_type_name(writer const&, const metadata_type* type);
     std::string get_swift_module(std::string_view const& ns);
     std::string_view get_swift_name(function_param const&);
-    bool is_generic(metadata_type const& type);
-    bool is_generic(const metadata_type* type);
-
-    bool is_collection_type(const metadata_type* type);
-    bool is_collection_type(metadata_type const& type);
 
     param_category get_category(const metadata_type*, TypeDef*);
 
@@ -48,7 +43,7 @@ namespace swiftwinrt
     {
         inline void append_type_prefix(std::string& result, TypeDef const& type)
         {
-            if ((get_category(type) == category::delegate_type) && (type.TypeNamespace() != collections_namespace))
+            if ((get_category(type) == category::delegate_type) && (type.TypeNamespace() != winrt_collections_namespace))
             {
                 // All delegates except those in the 'Windows.Foundation.Collections' namespace get an 'I' appended to the
                 // front...
@@ -58,7 +53,7 @@ namespace swiftwinrt
 
         inline void append_type_prefix(std::string& result, metadata_type const& type)
         {
-            if (dynamic_cast<const delegate_type*>(&type) != nullptr && (type.swift_logical_namespace() != collections_namespace))
+            if (dynamic_cast<const delegate_type*>(&type) != nullptr && (type.swift_logical_namespace() != winrt_collections_namespace))
             {
                 // All delegates except those in the 'Windows.Foundation.Collections' namespace get an 'I' appended to the
                 // front...
@@ -95,11 +90,6 @@ namespace swiftwinrt
         {
             return distance(type.GenericParam()) != 0;
         }
-
-        inline bool is_generic(metadata_type const& type) noexcept
-        {
-            return swiftwinrt::is_generic(type);
-        }
     }
 
     template <bool IsGenericParam>
@@ -107,7 +97,7 @@ namespace swiftwinrt
     {
         if constexpr (IsGenericParam)
         {
-            if (typeNamespace == collections_namespace)
+            if (typeNamespace == winrt_collections_namespace)
             {
                 return "__F";
             }
@@ -144,7 +134,7 @@ namespace swiftwinrt
     {
         std::string result = "__x_ABI_C";
 
-        if (details::is_generic(type))
+        if (is_generic_def(type) || is_generic_inst(type))
         {
             // Generic types don't have the namespace included in the mangled name
             result += "__F";
@@ -417,7 +407,7 @@ namespace swiftwinrt
                 write(gti);
                 return;
             }
-            if (is_generic(type))
+            if (is_generic_def(type))
             {
                 auto name = type->swift_type_name();
                 auto guard{ push_writing_generic(true) };
