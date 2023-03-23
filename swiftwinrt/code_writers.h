@@ -677,7 +677,7 @@ namespace swiftwinrt
         {
             if (is_interface(type))
             {
-                w.write("%.unwrap_from(abi: %)",
+                w.write("%.unwrapFrom(abi: %)",
                     bind_wrapper_fullname(type),
                     name);
             }
@@ -689,7 +689,7 @@ namespace swiftwinrt
                 }
                 else
                 {
-                    w.write("%.try_unwrap_from(abi: %)", bind_wrapper_name(type), name);
+                    w.write("%.tryUnwrapFrom(abi: %)", bind_wrapper_name(type), name);
                 }
             }
             else if (is_class(type))
@@ -732,7 +732,7 @@ namespace swiftwinrt
             }
             else
             {
-                w.write("%.unwrap_from(abi: %)",
+                w.write("%.unwrapFrom(abi: %)",
                     bind_wrapper_fullname(type),
                     name);
             }
@@ -1100,7 +1100,7 @@ class % : WinRTWrapperBase<%, %> {
         auto return_param_name = signature.return_type.value().name;
         if (is_delegate(return_type))
         {
-            w.write("let _% = %.try_unwrap_from(abi: %)\n",
+            w.write("let _% = %.tryUnwrapFrom(abi: %)\n",
                 return_param_name,
                 bind_wrapper_fullname(return_type),
                 return_param_name);
@@ -1456,19 +1456,19 @@ bind_impl_fullname(type));
 
         auto class_indent_guard = w.push_indent();
 
-        w.write(R"(public typealias c_ABI = %
-public typealias swift_ABI = %.%
-public typealias swift_Projection = any %
-private (set) public var _default: swift_ABI
-public static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection? {
+        w.write(R"(public typealias CABI = %
+public typealias SwiftABI = %.%
+public typealias SwiftProjection = any %
+private (set) public var _default: SwiftABI
+public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
     guard let abi = abi else { return nil }
     return %(abi)
 }
-public init(_ fromAbi: UnsafeMutablePointer<c_ABI>) {
-    _default = swift_ABI(fromAbi)
+public init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+    _default = SwiftABI(fromAbi)
 }
 
-public static func makeAbi() -> c_ABI {
+public static func makeAbi() -> CABI {
     let vtblPtr = withUnsafeMutablePointer(to: &%.%VTable) { $0 }
     return .init(lpVtbl: vtblPtr)
 }
@@ -1657,25 +1657,25 @@ public static func makeAbi() -> c_ABI {
             assert(!"Unexpected collection type");
         }
 
-        w.write("typealias swift_Projection = any %\n",
+        w.write("typealias SwiftProjection = any %\n",
             bind<write_swift_type_identifier>(type)); // Do not include outer Optional<>
 
-        w.write("typealias c_ABI = %\n", bind_type_mangled(type));
-        w.write("typealias swift_ABI = %.%\n", abi_namespace(w.type_namespace), bind_type_abi(type));
+        w.write("typealias CABI = %\n", bind_type_mangled(type));
+        w.write("typealias SwiftABI = %.%\n", abi_namespace(w.type_namespace), bind_type_abi(type));
         w.write("\n");
-        w.write("private (set) public var _default: swift_ABI\n");
+        w.write("private (set) public var _default: SwiftABI\n");
         w.write("\n");
 
-        w.write("static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection? {\n");
+        w.write("static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {\n");
         w.write("    guard let abi = abi else { return nil }\n");
         w.write("    return %(abi)\n", bind_impl_name(type));
         w.write("}\n\n");
 
-        w.write("internal init(_ fromAbi: UnsafeMutablePointer<c_ABI>) {\n");
-        w.write("    _default = swift_ABI(fromAbi)\n");
+        w.write("internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {\n");
+        w.write("    _default = SwiftABI(fromAbi)\n");
         w.write("}\n\n");
 
-        w.write("static func makeAbi() -> c_ABI {\n");
+        w.write("static func makeAbi() -> CABI {\n");
         w.write("    let vtblPtr = withUnsafeMutablePointer(to: &%.%VTable) { $0 }\n",
             abi_namespace(w.type_namespace), bind_type_mangled(type));
         w.write("    return.init(lpVtbl: vtblPtr)\n");
@@ -1750,7 +1750,7 @@ public static func makeAbi() -> c_ABI {
                             get_swift_name(param),
                             bind_wrapper_fullname(param.type),
                             get_swift_name(param));
-                        w.write("let _% = try! %Wrapper?.to_abi { $0 }\n",
+                        w.write("let _% = try! %Wrapper?.toABI { $0 }\n",
                             get_swift_name(param),
                             get_swift_name(param));
                     }
@@ -1760,7 +1760,7 @@ public static func makeAbi() -> c_ABI {
                             get_swift_name(param),
                             bind_wrapper_fullname(param.type),
                             get_swift_name(param));
-                        w.write("let _% = try! %Wrapper?.to_abi { $0 }\n",
+                        w.write("let _% = try! %Wrapper?.toABI { $0 }\n",
                             get_swift_name(param),
                             get_swift_name(param));
                     }
@@ -1773,7 +1773,7 @@ public static func makeAbi() -> c_ABI {
                             get_swift_name(param),
                             bind_wrapper_fullname(param.type),
                             get_swift_name(param));
-                        w.write("let _% = try! %Wrapper?.to_abi { $0 }\n",
+                        w.write("let _% = try! %Wrapper?.toABI { $0 }\n",
                             get_swift_name(param),
                             get_swift_name(param));
                     }
@@ -1783,7 +1783,7 @@ public static func makeAbi() -> c_ABI {
                             get_swift_name(param),
                             bind_wrapper_fullname(param.type),
                             get_swift_name(param));
-                        w.write("let _% = try! %Wrapper?.to_abi { $0 }\n",
+                        w.write("let _% = try! %Wrapper?.toABI { $0 }\n",
                             get_swift_name(param),
                             get_swift_name(param));
                     }
@@ -1797,7 +1797,7 @@ public static func makeAbi() -> c_ABI {
                             get_swift_name(param),
                             bind_wrapper_fullname(param.type),
                             get_swift_name(param));
-                        w.write("let _% = try! %Wrapper?.to_abi { $0 }\n",
+                        w.write("let _% = try! %Wrapper?.toABI { $0 }\n",
                             get_swift_name(param),
                             get_swift_name(param));
                     }
@@ -1959,7 +1959,7 @@ public static func makeAbi() -> c_ABI {
 }
 
 public init<Factory: ComposableActivationFactory>(_ factory : Factory) {
-    self._default = try! MakeComposed(factory, &_inner, self as! Factory.Composable.Default.swift_Projection).QueryInterface()
+    self._default = try! MakeComposed(factory, &_inner, self as! Factory.Composable.Default.SwiftProjection).QueryInterface()
     _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
 }
 )";
@@ -1969,14 +1969,14 @@ public init<Factory: ComposableActivationFactory>(_ factory : Factory) {
             {
                 auto override_composable_init = R"(override public init() {
     super.init(Self._%) 
-    let parentDefault: UnsafeMutablePointer<%> = super._get_abi()!
+    let parentDefault: UnsafeMutablePointer<%> = super._getABI()!
     self._default = try! IInspectable(parentDefault).QueryInterface()
     _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
 }
 
 override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
     super.init(factory)
-    let parentDefault: UnsafeMutablePointer<%> = super._get_abi()!
+    let parentDefault: UnsafeMutablePointer<%> = super._getABI()!
     self._default = try! IInspectable(parentDefault).QueryInterface()
     _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
 }
@@ -2000,7 +2000,7 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
             w.write("guard let abi = abi else { return nil }\n");
             if (type.is_composable())
             {
-                w.write("return UnsealedWinRTClassWrapper<Composable>.unwrap_from(base: abi)\n");
+                w.write("return UnsealedWinRTClassWrapper<Composable>.unwrapFrom(base: abi)\n");
             }
             else
             {
@@ -2109,12 +2109,12 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
             else if (is_interface(prop.type))
             {
                 w.write("let wrapper = %(newValue)\n", bind_wrapper_fullname(prop.type));
-                w.write("let _newValue = try! wrapper?.to_abi { $0 }\n");
+                w.write("let _newValue = try! wrapper?.toABI { $0 }\n");
             }
             else if (is_delegate(prop.type))
             {
                 w.write("let wrapper = %(newValue)\n", bind_wrapper_fullname(prop.type));
-                w.write("let _newValue = try! wrapper?.to_abi { $0 }\n");
+                w.write("let _newValue = try! wrapper?.toABI { $0 }\n");
             }
   
             w.write("try! %.%Impl(%)\n",
@@ -2166,7 +2166,7 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         auto format = R"(private class % : IEventRegistration {
     func add(delegate: any WinRTDelegate, for impl: %.IInspectable){
         let wrapper = %(delegate as? %)
-        let abi = try! wrapper?.to_abi { $0 }
+        let abi = try! wrapper?.toABI { $0 }
         let impl:% = try! impl.QueryInterface()
         delegate.token = try! impl.add_%Impl(abi)
     }
@@ -2311,13 +2311,13 @@ public % var % : Event<(%),%> = EventImpl<%>(register: %_%, owner:%)
         bool use_iinspectable_vtable = type_name(overrides) == type_name(*default_interface);
 
         auto format = R"(internal class % : ComposableImpl {
-    internal typealias c_ABI = %
-    internal typealias swift_ABI = %
+    internal typealias CABI = %
+    internal typealias SwiftABI = %
     internal class Default : MakeComposedAbi {
-        internal typealias swift_Projection = %
-        internal typealias c_ABI = %
-        internal typealias swift_ABI = %.%
-        internal static func from(abi: UnsafeMutableRawPointer?) -> swift_Projection? {
+        internal typealias SwiftProjection = %
+        internal typealias CABI = %
+        internal typealias SwiftABI = %.%
+        internal static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return .init(fromAbi: .init(abi))
         }
@@ -2374,8 +2374,8 @@ public % var % : Event<(%),%> = EventImpl<%>(register: %_%, owner:%)
         {
             if (!info.overridable || info.base) continue;
 
-            w.write(R"(extension ComposableImpl where c_ABI == % {
-    public static func makeAbi() -> c_ABI {
+            w.write(R"(extension ComposableImpl where CABI == % {
+    public static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &%.%VTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -2485,11 +2485,11 @@ public % var % : Event<(%),%> = EventImpl<%>(register: %_%, owner:%)
                 swiftAbi = w.write_temp("%.%", abi_namespace(w.type_namespace), bind_type_abi(generic_type));
             }
 
-            w.write(R"(private typealias swift_ABI = %
-private typealias c_ABI = %
-private var _default: swift_ABI!
-% func _get_abi<T>() -> UnsafeMutablePointer<T>? {
-    if T.self == c_ABI.self {
+            w.write(R"(private typealias SwiftABI = %
+private typealias CABI = %
+private var _default: SwiftABI!
+% func _getABI<T>() -> UnsafeMutablePointer<T>? {
+    if T.self == CABI.self {
         return RawPointer(_default)
     }   
     if T.self == %.IInspectable.self {
@@ -2507,7 +2507,7 @@ private var _default: swift_ABI!
                             composable ? "open" :
                                          "public",
                 w.c_mod,
-                base_class ? "super._get_abi()" : "nil");
+                base_class ? "super._getABI()" : "nil");
             write_default_constructor_declarations(w, type, *default_interface);
         }
         for (auto&& [interface_name, factory] : type.factories)
@@ -2705,11 +2705,11 @@ private var _default: swift_ABI!
                     bind<write_swift_type_identifier>(iface)); // Do not include outer Optional<>
             }
 
-            w.write("guard let instance = %.try_unwrap_from(raw: pUnk)% else { return E_NOINTERFACE }\n",
+            w.write("guard let instance = %.tryUnwrapFrom(raw: pUnk)% else { return E_NOINTERFACE }\n",
                 bind_wrapper_name(type), cast_expr);
             w.write("guard let inner = %(instance) else { return E_INVALIDARG }\n",
                 bind_wrapper_fullname(iface));
-            w.write("let pThis = try! inner.to_abi { $0 }\n");
+            w.write("let pThis = try! inner.toABI { $0 }\n");
             w.write("return pThis.pointee.lpVtbl.pointee.QueryInterface(pThis, riid, ppvObject)\n");
         };
         w.write("}\n");
@@ -2762,7 +2762,7 @@ bind([&](writer& w) {
                }
                else
                {
-                   w.write(R"(    guard let instance = %.try_unwrap_from(raw: $0),
+                   w.write(R"(    guard let instance = %.tryUnwrapFrom(raw: $0),
                     let inner = instance._inner else { return E_INVALIDARG }
                 
             return inner.pointee.lpVtbl.pointee.QueryInterface(inner, riid, ppvObject)
@@ -2772,7 +2772,7 @@ bind([&](writer& w) {
     );
 
         w.write(R"(AddRef: {
-     guard let wrapper = %.from_raw($0) else { return 1 }
+     guard let wrapper = %.fromRaw($0) else { return 1 }
      _ = wrapper.retain()
      return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
 },
@@ -2782,7 +2782,7 @@ bind([&](writer& w) {
         );
 
         w.write(R"(Release: {
-    guard let wrapper = %.from_raw($0) else { return 1 }
+    guard let wrapper = %.fromRaw($0) else { return 1 }
     return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
 },
 
@@ -2840,7 +2840,7 @@ bind([&](writer& w) {
         {
             // for composed types, get the swift object and grab the typename
             w.write(R"(GetRuntimeClassName: {
-    guard let instance = %.try_unwrap_from(raw: $0) else { return E_INVALIDARG }
+    guard let instance = %.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
     let hstring = instance.GetRuntimeClassName().detach()
     $1!.pointee = hstring
     return S_OK
@@ -2902,7 +2902,7 @@ bind([&](writer& w) {
                 param_name,
                     bind_wrapper_fullname(type),
                 param_name);
-            w.write("let _% = try! %Wrapper?.to_abi { $0 }\n",
+            w.write("let _% = try! %Wrapper?.toABI { $0 }\n",
                 param_name,
                 param_name);
         }
@@ -2913,7 +2913,7 @@ bind([&](writer& w) {
                 param_name,
                 bind_wrapper_fullname(type),
                 param_name);
-            w.write("let _% = try! %Wrapper?.to_abi { $0 }\n",
+            w.write("let _% = try! %Wrapper?.toABI { $0 }\n",
                 param_name,
                 param_name);
         }
@@ -3017,7 +3017,7 @@ bind([&](writer& w) {
         w.write("%: {\n", func_name);
         {
             auto indent_guard = w.push_indent();
-            w.write("guard let __unwrapped__instance = %.try_unwrap_from(raw: $0) else { return E_INVALIDARG }\n",
+            w.write("guard let __unwrapped__instance = %.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }\n",
                 bind_wrapper_name(type));
             write_consume_params(w, function);
 

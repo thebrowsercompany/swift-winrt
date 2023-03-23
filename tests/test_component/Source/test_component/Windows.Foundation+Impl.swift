@@ -3,19 +3,19 @@ import Ctest_component
 
 public enum __IMPL_Windows_Foundation {
     public class IClosableImpl : IClosable, AbiInterfaceImpl {
-        public typealias c_ABI = __x_ABI_CWindows_CFoundation_CIClosable
-        public typealias swift_ABI = __ABI_Windows_Foundation.IClosable
-        public typealias swift_Projection = any IClosable
-        private (set) public var _default: swift_ABI
-        public static func from(abi: UnsafeMutablePointer<c_ABI>?) -> swift_Projection? {
+        public typealias CABI = __x_ABI_CWindows_CFoundation_CIClosable
+        public typealias SwiftABI = __ABI_Windows_Foundation.IClosable
+        public typealias SwiftProjection = any IClosable
+        private (set) public var _default: SwiftABI
+        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IClosableImpl(abi)
         }
-        public init(_ fromAbi: UnsafeMutablePointer<c_ABI>) {
-            _default = swift_ABI(fromAbi)
+        public init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+            _default = SwiftABI(fromAbi)
         }
 
-        public static func makeAbi() -> c_ABI {
+        public static func makeAbi() -> CABI {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Foundation.IClosableVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
