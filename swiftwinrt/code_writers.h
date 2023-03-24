@@ -1742,52 +1742,9 @@ public static func makeAbi() -> CABI {
                         signature_type.TypeName(),
                         get_swift_name(param));
                 }
-                else if (category == param_category::object_type)
+                else if (is_interface(param.type) || is_delegate(param.type))
                 {
-                    if (is_interface(param.type))
-                    {
-                        w.write("let %Wrapper = %(%)\n",
-                            get_swift_name(param),
-                            bind_wrapper_fullname(param.type),
-                            get_swift_name(param));
-                        w.write("let _% = try! %Wrapper?.toABI { $0 }\n",
-                            get_swift_name(param),
-                            get_swift_name(param));
-                    }
-                    else if (is_delegate(param.type))
-                    {
-                        w.write("let %Wrapper = %(%)\n",
-                            get_swift_name(param),
-                            bind_wrapper_fullname(param.type),
-                            get_swift_name(param));
-                        w.write("let _% = try! %Wrapper?.toABI { $0 }\n",
-                            get_swift_name(param),
-                            get_swift_name(param));
-                    }
-                }
-                else if (category == param_category::generic_type)
-                {
-                    if (is_winrt_ireference(param.type))
-                    {
-                        w.write("let %Wrapper = %(%)\n",
-                            get_swift_name(param),
-                            bind_wrapper_fullname(param.type),
-                            get_swift_name(param));
-                        w.write("let _% = try! %Wrapper?.toABI { $0 }\n",
-                            get_swift_name(param),
-                            get_swift_name(param));
-                    }
-                    else if (is_winrt_generic_collection(param.type))
-                    {
-                        w.write("let %Wrapper = %(%)\n",
-                            get_swift_name(param),
-                            bind_wrapper_fullname(param.type),
-                            get_swift_name(param));
-                        w.write("let _% = try! %Wrapper?.toABI { $0 }\n",
-                            get_swift_name(param),
-                            get_swift_name(param));
-                    }
-                    else if (is_winrt_eventhandler(param.type) || is_winrt_typedeventhandler(param.type))
+                    if (is_winrt_eventhandler(param.type) || is_winrt_typedeventhandler(param.type))
                     {
                         w.write("let %Handler = %(handler: %)\n",
                             get_swift_name(param),
@@ -1797,10 +1754,18 @@ public static func makeAbi() -> CABI {
                             get_swift_name(param),
                             bind_wrapper_fullname(param.type),
                             get_swift_name(param));
-                        w.write("let _% = try! %Wrapper?.toABI { $0 }\n",
+                    }
+                    else
+                    {
+                        w.write("let %Wrapper = %(%)\n",
                             get_swift_name(param),
+                            bind_wrapper_fullname(param.type),
                             get_swift_name(param));
                     }
+
+                    w.write("let _% = try! %Wrapper?.toABI { $0 }\n",
+                        get_swift_name(param),
+                        get_swift_name(param));
                 }
             }
             else
