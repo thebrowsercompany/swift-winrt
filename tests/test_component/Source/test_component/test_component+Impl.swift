@@ -105,7 +105,7 @@ public enum __IMPL_test_component {
             }
         }
 
-        public var ID : UUID! {
+        public var ID : UUID? {
             get {
                 let value = try! _default.get_IDImpl()
                 return .init(ref: value)

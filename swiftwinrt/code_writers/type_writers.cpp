@@ -6,6 +6,10 @@
 
 using namespace swiftwinrt;
 
+const write_type_params write_type_params::swift{ projection_layer::swift };
+const write_type_params write_type_params::c_abi{ projection_layer::c_abi };
+const write_type_params write_type_params::swift_allow_implicit_unwrap{ projection_layer::swift, true };
+
 // Writes the Swift code representation of a WinRT type at the Swift projection layer
 // as a 'type' syntax node.
 static void write_swift_type(writer& w, metadata_type const& type, bool allow_implicit_unwrap)
@@ -20,7 +24,7 @@ static void write_swift_type(writer& w, metadata_type const& type, bool allow_im
         if (is_winrt_ireference(generic_typedef))
         {
             auto boxed_type = generic_params[0];
-            w.write("%%", bind<write_swift_type>(*boxed_type, /* allow_implicit_unwrap: */ false), optional_suffix);
+            w.write("%?", bind<write_swift_type>(*boxed_type, /* allow_implicit_unwrap: */ false));
             return;
         }
 
@@ -209,11 +213,11 @@ static void write_c_abi_type(writer& w, metadata_type const& type)
     }
 }
 
-void swiftwinrt::write_type_ex(writer& w, metadata_type const& type, projection_layer layer, bool allow_implicit_unwrap)
+void swiftwinrt::write_type(writer& w, metadata_type const& type, write_type_params const& params)
 {
-    if (layer == projection_layer::swift)
+    if (params.layer == projection_layer::swift)
     {
-        write_swift_type(w, type, allow_implicit_unwrap);
+        write_swift_type(w, type, params.allow_implicit_unwrap);
     }
     else
     {

@@ -548,7 +548,7 @@ public final class Class : WinRTClass, IBasic {
         }
     }
 
-    public var ID : UUID! {
+    public var ID : UUID? {
         get {
             let value = try! _default.get_IDImpl()
             return .init(ref: value)
@@ -574,7 +574,7 @@ public final class Class : WinRTClass, IBasic {
         }
     }
 
-    public var StartValue : Int32! {
+    public var StartValue : Int32? {
         get {
             let value = try! _default.get_StartValueImpl()
             return .init(ref: value)
@@ -1216,7 +1216,7 @@ public protocol IIAmImplementable : IWinRTObject {
         func ReturnEnum() -> test_component.Signed
         func FireEvent()
         var EnumProperty: test_component.Fruit { get set }
-        var ID: UUID! { get set }
+        var ID: UUID? { get set }
 }
 public protocol ISimpleDelegate : IWinRTObject { 
         func DoThis()

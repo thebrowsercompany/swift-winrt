@@ -279,7 +279,7 @@ class SwiftWinRTTests : XCTestCase {
 
     var EnumProperty: Fruit = .Apple
 
-    var ID: WinSDK.UUID!
+    var ID: WinSDK.UUID?
     func FireEvent() {
     }
   } 
@@ -645,7 +645,7 @@ class SwiftWinRTTests : XCTestCase {
     let derivedNoOverrides = AppDerivedNoOverrides()
     classy.BaseNoOverridesProperty = derivedNoOverrides
 
-    var baseNoOverrides_returned = classy.BaseNoOverridesProperty
+    var baseNoOverrides_returned = classy.BaseNoOverridesProperty!
     XCTAssert(type(of: baseNoOverrides_returned) == AppDerivedNoOverrides.self)
     XCTAssertIdentical(baseNoOverrides_returned, derivedNoOverrides)
 
