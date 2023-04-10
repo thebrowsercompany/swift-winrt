@@ -461,7 +461,7 @@ class SwiftWinRTTests : XCTestCase {
     XCTAssertIdentical(implReturn, newBase, "incorrect swift object returned")
 
     classy.Implementation = nil
-    implReturn = classy.Implementation! // Will create a new implementation
+    implReturn = classy.Implementation // Will create a new implementation
     XCTAssertNotIdentical(implReturn, newBase, "incorrect swift object returned")
 
     let double = DoubleDelegate()
@@ -620,7 +620,7 @@ class SwiftWinRTTests : XCTestCase {
     print("testing app derived")
     classy.BaseProperty = appDerived
 
-    base_returned = classy.BaseProperty!
+    base_returned = classy.BaseProperty
     XCTAssert(type(of: base_returned) == AppDerived.self)
     XCTAssertIdentical(base_returned, appDerived)
 
@@ -628,7 +628,7 @@ class SwiftWinRTTests : XCTestCase {
 
     classy.BaseProperty = appDerived2
 
-    base_returned = classy.BaseProperty!
+    base_returned = classy.BaseProperty
     XCTAssert(type(of: base_returned) == AppDerived2.self)
     XCTAssertIdentical(base_returned, appDerived2)
 
@@ -636,7 +636,7 @@ class SwiftWinRTTests : XCTestCase {
 
     classy.BaseProperty = appDerived3
 
-    base_returned = classy.BaseProperty!
+    base_returned = classy.BaseProperty
     XCTAssert(type(of: base_returned) == AppDerived3.self)
     XCTAssertIdentical(base_returned, appDerived3)
 
@@ -651,7 +651,7 @@ class SwiftWinRTTests : XCTestCase {
 
     let derivedNoOverrides2 = AppDerivedNoOverrides2()
     classy.BaseNoOverridesProperty = derivedNoOverrides2
-    baseNoOverrides_returned = classy.BaseNoOverridesProperty!
+    baseNoOverrides_returned = classy.BaseNoOverridesProperty
     XCTAssert(type(of: baseNoOverrides_returned) == AppDerivedNoOverrides2.self)
     XCTAssertIdentical(baseNoOverrides_returned, derivedNoOverrides2)
   }

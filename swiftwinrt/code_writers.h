@@ -517,21 +517,17 @@ namespace swiftwinrt
         w.write(" __%Size", get_swift_name(param));
     }
 
-    static void write_function_param(writer& w, function_param const& param, projection_layer layer)
-    {
-        w.write("_ %: ", get_swift_name(param));
-        if (param.out()) w.write("inout ");
-        write_type(w, *param.type, layer);
-    }
-
-    static void write_function_params(writer& w, function_def const& function, projection_layer layer)
+    static void write_function_params(writer& w, function_def const& function, write_type_params const& type_params)
     {
         separator s{ w };
 
         for (auto&& param : function.params)
         {
             s();
-            write_function_param(w, param, layer);
+
+            w.write("_ %: ", get_swift_name(param));
+            if (param.out()) w.write("inout ");
+            write_type(w, *param.type, type_params);
         }
     }
 
@@ -748,7 +744,7 @@ namespace swiftwinrt
     {
         auto category = get_category(signature.type);
         auto guard{ w.push_mangled_names_if_needed(category) };
-        write_type(w, *signature.type, projection_layer::c_abi);
+        write_type(w, *signature.type, write_type_params::c_abi);
         write_default_init_assignment(w, *signature.type, projection_layer::c_abi);
     }
 
@@ -780,7 +776,7 @@ bind<write_abi_args>(function));
         }
     }
 
-    static void write_return_type_declaration(writer& w, function_def function, projection_layer layer)
+    static void write_return_type_declaration(writer& w, function_def function, write_type_params const& type_params)
     {
         if (!function.return_type)
         {
@@ -788,7 +784,7 @@ bind<write_abi_args>(function));
         }
 
         w.write(" -> ");
-        write_type(w, *function.return_type->type, layer);
+        write_type(w, *function.return_type->type, type_params);
     }
 
     static void do_write_interface_abi(writer& w, typedef_base const& type, std::vector<function_def> const& methods)
@@ -832,8 +828,8 @@ bind<write_abi_args>(function));
                 w.write("% func %Impl(%) throws% {\n",
                     internal || is_exclusive(type) ? "internal" : "open",
                     func_name,
-                    bind<write_function_params>(function, projection_layer::c_abi),
-                    bind<write_return_type_declaration>(function, projection_layer::c_abi));
+                    bind<write_function_params>(function, write_type_params::c_abi),
+                    bind<write_return_type_declaration>(function, write_type_params::c_abi));
                 {
                     auto function_indent_guard = w.push_indent();
                     write_abi_func_body(w, type, function);
@@ -1062,14 +1058,14 @@ class % : WinRTWrapperBase<%, %> {
                     {
                         w.write("guard let %: % = % else { return E_INVALIDARG }\n",
                             get_swift_name(param),
-                            bind<write_type>(*param.type, projection_layer::swift),
+                            bind<write_type>(*param.type, write_type_params::swift),
                             bind<write_consume_type>(param.type, param_name));
                     }
                     else
                     {
                         w.write("let %: % = %\n",
                             get_swift_name(param),
-                            bind<write_type>(*param.type, projection_layer::swift),
+                            bind<write_type>(*param.type, write_type_params::swift),
                             bind<write_consume_type>(param.type, param_name));
                     }
                 }
@@ -1079,7 +1075,7 @@ class % : WinRTWrapperBase<%, %> {
                     assert(param.out());
                     w.write("var %: %%\n",
                         get_swift_name(param), 
-                        bind<write_type>(*param.type, projection_layer::swift),
+                        bind<write_type>(*param.type, write_type_params::swift),
                         bind<write_default_init_assignment>(*param.type, projection_layer::swift));
                 }
             }
@@ -1535,8 +1531,8 @@ public static func makeAbi() -> CABI {
                     auto full_type_name = w.push_full_type_names(true);
                     w.write("\n        func %(%)%",
                         get_swift_name(method),
-                        bind<write_function_params>(method, projection_layer::swift),
-                        bind<write_return_type_declaration>(method, projection_layer::swift));
+                        bind<write_function_params>(method, write_type_params::swift_allow_implicit_unwrap),
+                        bind<write_return_type_declaration>(method, write_type_params::swift_allow_implicit_unwrap));
                 }
 
                 for (auto& prop : type.properties)
@@ -1546,7 +1542,7 @@ public static func makeAbi() -> CABI {
                     auto&& return_type = *prop.getter->return_type->type;
                     w.write("\n        var %: % { get% }",
                         get_swift_name(prop),
-                        bind<write_type>(return_type, projection_layer::swift),
+                        bind<write_type>(return_type, write_type_params::swift_allow_implicit_unwrap),
                         prop.setter ? " set" : "");
                 }
             }));
@@ -1575,7 +1571,7 @@ public static func makeAbi() -> CABI {
     {
         if (sig.return_type)
         {
-            write_type(w, *sig.return_type->type, projection_layer::swift);
+            write_type(w, *sig.return_type->type, write_type_params::swift);
         }
         else
         {
@@ -1589,7 +1585,7 @@ public static func makeAbi() -> CABI {
         for (auto& param : params)
         {
             s();
-            write_type(w, *param.type, projection_layer::swift);
+            write_type(w, *param.type, write_type_params::swift);
         }
     }
 
@@ -1645,12 +1641,12 @@ public static func makeAbi() -> CABI {
         auto&& generic_params = type.generic_params();
         if (type.swift_type_name().starts_with("IVector")) // IVector and IVectorView
         {
-            w.write("typealias Element = %\n", bind<write_type>(*generic_params[0], projection_layer::swift));
+            w.write("typealias Element = %\n", bind<write_type>(*generic_params[0], write_type_params::swift));
         }
         else if (type.swift_type_name().starts_with("IMap")) // IMap and IMapView
         {
-            w.write("typealias Key = %\n", bind<write_type>(*generic_params[0], projection_layer::swift));
-            w.write("typealias Value = %\n", bind<write_type>(*generic_params[1], projection_layer::swift));
+            w.write("typealias Key = %\n", bind<write_type>(*generic_params[0], write_type_params::swift));
+            w.write("typealias Value = %\n", bind<write_type>(*generic_params[1], write_type_params::swift));
         }
         else
         {
@@ -1832,7 +1828,7 @@ public static func makeAbi() -> CABI {
                 {
                     w.write("var _%: %\n",
                         get_swift_name(param),
-                        bind<write_type>(*param.type, projection_layer::c_abi));
+                        bind<write_type>(*param.type, write_type_params::c_abi));
 
                     guard.push("% = %.%Impl.from(abi: _%)\n",
                         get_swift_name(param),
@@ -1881,7 +1877,7 @@ public static func makeAbi() -> CABI {
             {
                 if (!can_write(w, method)) continue;
 
-                w.write("public init(%) {\n", bind<write_function_params>(method, projection_layer::swift));
+                w.write("public init(%) {\n", bind<write_function_params>(method, write_type_params::swift_allow_implicit_unwrap));
                 {
                     auto indent = w.push_indent();
                     write_factory_body(w, method, factory_info, type, default_interface);
@@ -2029,7 +2025,7 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
             w.write("public %var % : % {\n",
                 iface.attributed ? "static " : "",
                 get_swift_name(prop),
-                bind<write_type>(*prop.getter->return_type->type, projection_layer::swift));
+                bind<write_type>(*prop.getter->return_type->type, write_type_params::swift_allow_implicit_unwrap));
         }
         auto property_indent_guard = w.push_indent();
 
@@ -2108,11 +2104,18 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
             return;
         }
 
+        // When implementing a generic collection interface,
+        // we cannot use implicit unwrapping, because of Swift limitations:
+        // typename Element must be Base? and not Base!,
+        // and declaring GetAt(_: UInt32) -> Base! would not bind to GetAt(_: UInt32) -> Element.
+        auto&& type_params = is_winrt_generic_collection(iface.type)
+            ? write_type_params::swift : write_type_params::swift_allow_implicit_unwrap;
+
         w.write("% func %(%)% {\n",
             iface.overridable ? "open" : "public",
             get_swift_name(function),
-            bind<write_function_params>(function, projection_layer::swift),
-            bind<write_return_type_declaration>(function, projection_layer::swift));
+            bind<write_function_params>(function, type_params),
+            bind<write_return_type_declaration>(function, type_params));
         {
             auto indent = w.push_indent();
             write_class_func_body(w, function, iface);
@@ -2243,8 +2246,8 @@ public % var % : Event<(%),%> = EventImpl<%>(register: %_%, owner:%)
 
                 w.write("public static func %(%)% {\n",
                     get_swift_name(method),
-                    bind<write_function_params>(method, projection_layer::swift),
-                    bind<write_return_type_declaration>(method, projection_layer::swift));
+                    bind<write_function_params>(method, write_type_params::swift_allow_implicit_unwrap),
+                    bind<write_return_type_declaration>(method, write_type_params::swift_allow_implicit_unwrap));
                 {
                     auto indent = w.push_indent();
                     write_statics_body(w, method, *statics.type);
@@ -2433,7 +2436,7 @@ public % var % : Event<(%),%> = EventImpl<%>(register: %_%, owner:%)
         {
             w.write("public typealias % = %\n",
                 collection_type_alias.first,
-                bind<write_type>(*collection_type_alias.second, projection_layer::swift));
+                bind<write_type>(*collection_type_alias.second, write_type_params::swift));
         }
 
         writer::generic_param_guard guard;
@@ -2610,7 +2613,7 @@ private var _default: SwiftABI!
 
                 w.write("public var %: %%\n", 
                     get_swift_name(field),
-                    bind<write_type>(*field_type, projection_layer::swift),
+                    bind<write_type>(*field_type, write_type_params::swift_allow_implicit_unwrap),
                     bind<write_default_init_assignment>(*field_type, projection_layer::swift));
             }
 

@@ -330,28 +330,28 @@ public final class Class : WinRTClass, IBasic {
         _default = __ABI_test_component.IClass(consuming: value!)
     }
 
-    public init(_ arg: (any IMap<String, String>)?, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32) {
+    public init(_ arg: (any IMap<String, String>)!, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32) {
         let argWrapper = __ABI_test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper(arg)
         let _arg = try! argWrapper?.toABI { $0 }
         let value = try! Self._IClassFactory.CreateInstance3Impl(_arg, dummy1, dummy2, dummy3)
         _default = __ABI_test_component.IClass(consuming: value!)
     }
 
-    public init(_ arg: (any IMapView<String, String>)?, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32, _ dummy4: Int32) {
+    public init(_ arg: (any IMapView<String, String>)!, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32, _ dummy4: Int32) {
         let argWrapper = __ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper(arg)
         let _arg = try! argWrapper?.toABI { $0 }
         let value = try! Self._IClassFactory.CreateInstance4Impl(_arg, dummy1, dummy2, dummy3, dummy4)
         _default = __ABI_test_component.IClass(consuming: value!)
     }
 
-    public init(_ arg: (any IVector<String>)?, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32, _ dummy4: Int32, _ dummy5: Int32) {
+    public init(_ arg: (any IVector<String>)!, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32, _ dummy4: Int32, _ dummy5: Int32) {
         let argWrapper = __ABI_test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper(arg)
         let _arg = try! argWrapper?.toABI { $0 }
         let value = try! Self._IClassFactory.CreateInstance5Impl(_arg, dummy1, dummy2, dummy3, dummy4, dummy5)
         _default = __ABI_test_component.IClass(consuming: value!)
     }
 
-    public init(_ arg: (any IVectorView<String>)?, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32, _ dummy4: Int32, _ dummy5: Int32, _ dummy6: Int32) {
+    public init(_ arg: (any IVectorView<String>)!, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32, _ dummy4: Int32, _ dummy5: Int32, _ dummy6: Int32) {
         let argWrapper = __ABI_test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper(arg)
         let _arg = try! argWrapper?.toABI { $0 }
         let value = try! Self._IClassFactory.CreateInstance6Impl(_arg, dummy1, dummy2, dummy3, dummy4, dummy5, dummy6)
@@ -359,7 +359,7 @@ public final class Class : WinRTClass, IBasic {
     }
 
     private static let _IClassFactory2: __ABI_test_component.IClassFactory2 = try! RoGetActivationFactory(HString("test_component.Class"))
-    public init(_ name: String, _ fruit: Fruit, _ implementation: (any IIAmImplementable)?) {
+    public init(_ name: String, _ fruit: Fruit, _ implementation: (any IIAmImplementable)!) {
         let _name = try! HString(name)
         let implementationWrapper = __ABI_test_component.IIAmImplementableWrapper(implementation)
         let _implementation = try! implementationWrapper?.toABI { $0 }
@@ -377,28 +377,28 @@ public final class Class : WinRTClass, IBasic {
         return result
     }
 
-    public static func InMap(_ value: (any IMap<String, String>)?) -> String {
+    public static func InMap(_ value: (any IMap<String, String>)!) -> String {
         let valueWrapper = __ABI_test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         let result = try! _IClassStatics.InMapImpl(_value)
         return .init(from: result)
     }
 
-    public static func InMapView(_ value: (any IMapView<String, String>)?) -> String {
+    public static func InMapView(_ value: (any IMapView<String, String>)!) -> String {
         let valueWrapper = __ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         let result = try! _IClassStatics.InMapViewImpl(_value)
         return .init(from: result)
     }
 
-    public static func InVector(_ value: (any IVector<String>)?) -> String {
+    public static func InVector(_ value: (any IVector<String>)!) -> String {
         let valueWrapper = __ABI_test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         let result = try! _IClassStatics.InVectorImpl(_value)
         return .init(from: result)
     }
 
-    public static func InVectorView(_ value: (any IVectorView<String>)?) -> String {
+    public static func InVectorView(_ value: (any IVectorView<String>)!) -> String {
         let valueWrapper = __ABI_test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         let result = try! _IClassStatics.InVectorViewImpl(_value)
@@ -430,13 +430,13 @@ public final class Class : WinRTClass, IBasic {
         }
     }
 
-    public func SetDelegate(_ value: (any ISimpleDelegate)?) {
+    public func SetDelegate(_ value: (any ISimpleDelegate)!) {
         let valueWrapper = __ABI_test_component.ISimpleDelegateWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         try! _default.SetDelegateImpl(_value)
     }
 
-    public func GetDelegate() -> (any ISimpleDelegate)? {
+    public func GetDelegate() -> (any ISimpleDelegate)! {
         let result = try! _default.GetDelegateImpl()
         return __ABI_test_component.ISimpleDelegateWrapper.unwrapFrom(abi: result)
     }
@@ -489,12 +489,12 @@ public final class Class : WinRTClass, IBasic {
         return result
     }
 
-    public func ReturnStoredStringVector() -> (any IVector<String>)? {
+    public func ReturnStoredStringVector() -> (any IVector<String>)! {
         let result = try! _default.ReturnStoredStringVectorImpl()
         return __ABI_test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
-    public func ReturnMapFromStringToString() -> (any IMap<String, String>)? {
+    public func ReturnMapFromStringToString() -> (any IMap<String, String>)! {
         let result = try! _default.ReturnMapFromStringToStringImpl()
         return __ABI_test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
     }
@@ -515,7 +515,7 @@ public final class Class : WinRTClass, IBasic {
         value = .init(from: _value)
     }
 
-    public var BaseNoOverridesProperty : BaseNoOverrides? {
+    public var BaseNoOverridesProperty : BaseNoOverrides! {
         get {
             let value = try! _default.get_BaseNoOverridesPropertyImpl()
             return .from(abi: value)
@@ -526,7 +526,7 @@ public final class Class : WinRTClass, IBasic {
         }
     }
 
-    public var BaseProperty : Base? {
+    public var BaseProperty : Base! {
         get {
             let value = try! _default.get_BasePropertyImpl()
             return .from(abi: value)
@@ -561,7 +561,7 @@ public final class Class : WinRTClass, IBasic {
         }
     }
 
-    public var Implementation : (any IBasic)? {
+    public var Implementation : (any IBasic)! {
         get {
             let value = try! _default.get_ImplementationImpl()
             return __ABI_test_component.IBasicWrapper.unwrapFrom(abi: value)
@@ -686,58 +686,58 @@ public final class NoopClosable : WinRTClass, test_component.IClosable {
 
 public final class NullValues {
     private static let _INullValuesStatics: __ABI_test_component.INullValuesStatics = try! RoGetActivationFactory(HString("test_component.NullValues"))
-    public static func IsObjectNull(_ value: test_component.IInspectable?) -> Bool {
+    public static func IsObjectNull(_ value: test_component.IInspectable!) -> Bool {
         let result = try! _INullValuesStatics.IsObjectNullImpl(RawPointer(value))
         return .init(from: result)
     }
 
-    public static func IsInterfaceNull(_ value: (any test_component.IClosable)?) -> Bool {
+    public static func IsInterfaceNull(_ value: (any test_component.IClosable)!) -> Bool {
         let valueWrapper = __ABI_Windows_Foundation.IClosableWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         let result = try! _INullValuesStatics.IsInterfaceNullImpl(_value)
         return .init(from: result)
     }
 
-    public static func IsGenericInterfaceNull(_ value: (any IVector<String>)?) -> Bool {
+    public static func IsGenericInterfaceNull(_ value: (any IVector<String>)!) -> Bool {
         let valueWrapper = __ABI_test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         let result = try! _INullValuesStatics.IsGenericInterfaceNullImpl(_value)
         return .init(from: result)
     }
 
-    public static func IsClassNull(_ value: NoopClosable?) -> Bool {
+    public static func IsClassNull(_ value: NoopClosable!) -> Bool {
         let result = try! _INullValuesStatics.IsClassNullImpl(RawPointer(value))
         return .init(from: result)
     }
 
-    public static func IsDelegateNull(_ value: VoidToVoidDelegate?) -> Bool {
+    public static func IsDelegateNull(_ value: VoidToVoidDelegate!) -> Bool {
         let valueWrapper = __ABI_test_component.VoidToVoidDelegateWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         let result = try! _INullValuesStatics.IsDelegateNullImpl(_value)
         return .init(from: result)
     }
 
-    public static func GetNullObject() -> test_component.IInspectable? {
+    public static func GetNullObject() -> test_component.IInspectable! {
         let result = try! _INullValuesStatics.GetNullObjectImpl()
         return .from(result)
     }
 
-    public static func GetNullInterface() -> (any test_component.IClosable)? {
+    public static func GetNullInterface() -> (any test_component.IClosable)! {
         let result = try! _INullValuesStatics.GetNullInterfaceImpl()
         return __ABI_Windows_Foundation.IClosableWrapper.unwrapFrom(abi: result)
     }
 
-    public static func GetNullGenericInterface() -> (any IVector<String>)? {
+    public static func GetNullGenericInterface() -> (any IVector<String>)! {
         let result = try! _INullValuesStatics.GetNullGenericInterfaceImpl()
         return __ABI_test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
-    public static func GetNullClass() -> NoopClosable? {
+    public static func GetNullClass() -> NoopClosable! {
         let result = try! _INullValuesStatics.GetNullClassImpl()
         return .from(abi: result)
     }
 
-    public static func GetNullDelegate() -> VoidToVoidDelegate? {
+    public static func GetNullDelegate() -> VoidToVoidDelegate! {
         let result = try! _INullValuesStatics.GetNullDelegateImpl()
         let _result = __ABI_test_component.VoidToVoidDelegateWrapper.tryUnwrapFrom(abi: result)
         return _result
@@ -922,7 +922,7 @@ public final class StaticClass {
         return .init(from: result)
     }
 
-    public static func TakeBase(_ base: Base?) {
+    public static func TakeBase(_ base: Base!) {
         try! _IStaticClassStatics.TakeBaseImpl(RawPointer(base))
     }
 
