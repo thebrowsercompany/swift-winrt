@@ -516,45 +516,36 @@ namespace swiftwinrt
         }
     }
 
-    inline std::string_view put_in_backticks_if_needed(std::string_view const& name)
+    inline std::string to_camel_case(std::string_view const& name)
     {
-        if (name == "Protocol")
-        {
-            return "`Protocol`";
-        }
-        else if (name == "Type")
-        {
-            return "`Type`";
-        }
-        else if (name == "Self")
-        {
-            return "`Self`";
-        }
-        return name;
+        std::string result = std::string(name);
+        result[0] = tolower(result[0]);
+        return result;
     }
-    inline std::string_view get_swift_name(MethodDef const& method)
+
+    inline std::string get_swift_name(MethodDef const& method)
     {
         // the swift name for the Invoke method of a delegate is the `handler` property
         if (get_category(method.Parent()) == category::delegate_type && method.Name() != ".ctor")
         {
             return "handler";
         }
-        return put_in_backticks_if_needed(method.Name());
+        return to_camel_case(method.Name());
     }
 
-    inline std::string_view get_swift_name(Property const& property)
+    inline std::string get_swift_name(Property const& property)
     {
-        return put_in_backticks_if_needed(property.Name());
+        return to_camel_case(property.Name());
     }
 
-    inline std::string_view get_swift_name(Event const& event)
+    inline std::string get_swift_name(Event const& event)
     {
-        return put_in_backticks_if_needed(event.Name());
+        return to_camel_case(event.Name());
     }
 
-    inline std::string_view get_swift_name(Field const& field)
+    inline std::string get_swift_name(Field const& field)
     {
-        return put_in_backticks_if_needed(field.Name());
+        return to_camel_case(field.Name());
     }
 
     inline std::string_view get_swift_name(Param const& param)
@@ -567,24 +558,24 @@ namespace swiftwinrt
         return get_swift_name(param.def);
     }
 
-    inline std::string_view get_swift_name(property_def const& property)
+    inline std::string get_swift_name(property_def const& property)
     {
-        return put_in_backticks_if_needed(property.def.Name());
+        return to_camel_case(property.def.Name());
     }
 
-    inline std::string_view get_swift_name(function_def const& function)
+    inline std::string get_swift_name(function_def const& function)
     {
         // the swift name for the Invoke method of a delegate is the `handler` property
         if (get_category(function.def.Parent()) == category::delegate_type && function.def.Name() != ".ctor")
         {
             return "handler";
         }
-        return put_in_backticks_if_needed(function.def.Name());
+        return to_camel_case(function.def.Name());
     }
 
-    inline std::string_view get_swift_name(struct_member const& member)
+    inline std::string get_swift_name(struct_member const& member)
     {
-        return put_in_backticks_if_needed(member.field.Name());
+        return to_camel_case(member.field.Name());
     }
 
     inline std::string_view remove_backtick(std::string_view const& name)

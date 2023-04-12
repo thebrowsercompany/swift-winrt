@@ -2901,7 +2901,7 @@ bind([&](writer& w) {
             {
                 auto return_param_name = "$" + std::to_string(param_number);
                 auto param_name = get_swift_name(param);
-                do_write_abi_val_assignment(w, param.type, param_name, return_param_name);
+                do_write_abi_val_assignment(w, param.type, std::string_view(param_name), return_param_name);
             }
             param_number++;
         }
