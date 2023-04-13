@@ -2178,7 +2178,7 @@ public % var % : Event<(%),%> = EventImpl<%>(register: %_%, owner:%)
             registrar_name, // private static let _% 
             registrar_name, // %()
             iface.attributed ? "static" : "lazy", // public %
-            event.Name(), // var %
+            get_swift_name(event), // var %
             bind<write_comma_param_types>(delegate_method.params), // Event<(%)
             bind<write_delegate_return_type>(delegate_method), // , %>
             bind_impl_fullname(def.type), // EventImpl<%>

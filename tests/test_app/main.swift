@@ -110,13 +110,13 @@ class SwiftWinRTTests : XCTestCase {
     nonBlittableStruct = simple.nonBlittableStructProperty
     print("first:", nonBlittableStruct.first)
     print("second: ", nonBlittableStruct.second)
-    print("third:", nonBlittableStruct.Third)
-    print("fourth: ", nonBlittableStruct.Fourth)
+    print("third:", nonBlittableStruct.third)
+    print("fourth: ", nonBlittableStruct.fourth)
 
     XCTAssertEqual(nonBlittableStruct.first, "From", "not copied correctly")
     XCTAssertEqual(nonBlittableStruct.second, "Swift!", "not copied correctly")
-    XCTAssertEqual(nonBlittableStruct.Third, 3, "not copied correctly")
-    XCTAssertEqual(nonBlittableStruct.Fourth, "Yay!", "not copied correctly")
+    XCTAssertEqual(nonBlittableStruct.third, 3, "not copied correctly")
+    XCTAssertEqual(nonBlittableStruct.fourth, "Yay!", "not copied correctly")
   }
 
   public func testEnums() {
@@ -211,8 +211,8 @@ class SwiftWinRTTests : XCTestCase {
     print("     result: ", outNonBlittableStruct)
     XCTAssertEqual(outNonBlittableStruct.first, "please")
     XCTAssertEqual(outNonBlittableStruct.second, "vote")
-    XCTAssertEqual(outNonBlittableStruct.Third, 4)
-    XCTAssertEqual(outNonBlittableStruct.Fourth, "pedro")
+    XCTAssertEqual(outNonBlittableStruct.third, 4)
+    XCTAssertEqual(outNonBlittableStruct.fourth, "pedro")
   }
 
   class MySimpleDelegate : ISimpleDelegate {
@@ -274,7 +274,7 @@ class SwiftWinRTTests : XCTestCase {
     }
 
     func returnEnum() -> Signed {
-      .Third
+      .third
     }
 
     var enumProperty: Fruit = .apple
@@ -401,8 +401,8 @@ class SwiftWinRTTests : XCTestCase {
       //XCTAssertEqual(outNonBlittableStruct, outNonBlittableStructExected)
       XCTAssertEqual(outNonBlittableStruct.first, outNonBlittableStructExected.first)
       XCTAssertEqual(outNonBlittableStruct.second, outNonBlittableStructExected.second)
-      XCTAssertEqual(outNonBlittableStruct.Third, outNonBlittableStructExected.Third)
-      XCTAssertEqual(outNonBlittableStruct.Fourth, outNonBlittableStructExected.Fourth)
+      XCTAssertEqual(outNonBlittableStruct.third, outNonBlittableStructExected.third)
+      XCTAssertEqual(outNonBlittableStruct.fourth, outNonBlittableStructExected.fourth)
     }
   }
 

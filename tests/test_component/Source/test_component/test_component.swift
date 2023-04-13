@@ -772,7 +772,7 @@ public final class Simple : WinRTClass {
     }
 
     private static let _StaticEventRegistrar = StaticEventRegistrar()
-    public static var StaticEvent : Event<(test_component.IInspectable?, test_component.IInspectable?),()> = EventImpl<__IMPL_test_component.__x_ABI_C__FIEventHandler_1_IInspectableImpl>(register: _StaticEventRegistrar, owner:_ISimpleStatics)
+    public static var staticEvent : Event<(test_component.IInspectable?, test_component.IInspectable?),()> = EventImpl<__IMPL_test_component.__x_ABI_C__FIEventHandler_1_IInspectableImpl>(register: _StaticEventRegistrar, owner:_ISimpleStatics)
     private class StaticEventRegistrar : IEventRegistration {
         func add(delegate: any WinRTDelegate, for impl: test_component.IInspectable){
             let wrapper = __ABI_test_component.__x_ABI_C__FIEventHandler_1_IInspectableWrapper(delegate as? __IMPL_test_component.__x_ABI_C__FIEventHandler_1_IInspectableImpl)
@@ -851,7 +851,7 @@ public final class Simple : WinRTClass {
     }
 
     private static let _InEventRegistrar = InEventRegistrar()
-    public lazy var InEvent : Event<(String),()> = EventImpl<__IMPL_test_component_Delegates.InDelegateImpl>(register: Self._InEventRegistrar, owner:_default)
+    public lazy var inEvent : Event<(String),()> = EventImpl<__IMPL_test_component_Delegates.InDelegateImpl>(register: Self._InEventRegistrar, owner:_default)
     private class InEventRegistrar : IEventRegistration {
         func add(delegate: any WinRTDelegate, for impl: test_component.IInspectable){
             let wrapper = __ABI_test_component_Delegates.InDelegateWrapper(delegate as? __IMPL_test_component_Delegates.InDelegateImpl)
@@ -868,7 +868,7 @@ public final class Simple : WinRTClass {
         }
     }
     private static let _SignalEventRegistrar = SignalEventRegistrar()
-    public lazy var SignalEvent : Event<(),()> = EventImpl<__IMPL_test_component_Delegates.SignalDelegateImpl>(register: Self._SignalEventRegistrar, owner:_default)
+    public lazy var signalEvent : Event<(),()> = EventImpl<__IMPL_test_component_Delegates.SignalDelegateImpl>(register: Self._SignalEventRegistrar, owner:_default)
     private class SignalEventRegistrar : IEventRegistration {
         func add(delegate: any WinRTDelegate, for impl: test_component.IInspectable){
             let wrapper = __ABI_test_component_Delegates.SignalDelegateWrapper(delegate as? __IMPL_test_component_Delegates.SignalDelegateImpl)
@@ -885,7 +885,7 @@ public final class Simple : WinRTClass {
         }
     }
     private static let _SimpleEventRegistrar = SimpleEventRegistrar()
-    public lazy var SimpleEvent : Event<(Simple?, SimpleEventArgs),()> = EventImpl<__IMPL_test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsImpl>(register: Self._SimpleEventRegistrar, owner:_default)
+    public lazy var simpleEvent : Event<(Simple?, SimpleEventArgs),()> = EventImpl<__IMPL_test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsImpl>(register: Self._SimpleEventRegistrar, owner:_default)
     private class SimpleEventRegistrar : IEventRegistration {
         func add(delegate: any WinRTDelegate, for impl: test_component.IInspectable){
             let wrapper = __ABI_test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper(delegate as? __IMPL_test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsImpl)
