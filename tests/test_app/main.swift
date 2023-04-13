@@ -741,6 +741,16 @@ class SwiftWinRTTests : XCTestCase {
     XCTAssertNil(NullValues.getNullClass())
     XCTAssertNil(NullValues.getNullDelegate())
   }
+
+  public func testCasing() {
+    // Don't change the casing of these names! This test is to make sure the
+    // casing is as expected. It doesn't need to run, just compile.
+    print("\(SwiftifiableNames.camelCase)")
+    print("\(SwiftifiableNames.pascalCase)")
+    print("\(SwiftifiableNames.esingleLetterPrefixed)")
+    print("\(SwiftifiableNames.leadingCaps)")
+    print("\(SwiftifiableNames.r8g8b8a8Typeless)")
+  }
 }
  
 var tests: [XCTestCaseEntry] = [

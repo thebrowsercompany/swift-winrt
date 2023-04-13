@@ -3,7 +3,7 @@ import Ctest_component
 
 public typealias Fruit = __x_ABI_Ctest__component_CFruit
 public typealias Signed = __x_ABI_Ctest__component_CSigned
-public typealias TestDirectXPixelFormat = __x_ABI_Ctest__component_CTestDirectXPixelFormat
+public typealias SwiftifiableNames = __x_ABI_Ctest__component_CSwiftifiableNames
 public typealias Unsigned = __x_ABI_Ctest__component_CUnsigned
 open class Base : UnsealedWinRTClass {
     private (set) public var _inner: UnsafeMutablePointer<Ctest_component.IInspectable>?
@@ -1244,9 +1244,21 @@ extension test_component.Signed {
     }
 }
 
-extension test_component.TestDirectXPixelFormat {
-    public static var b8g8r8a8Typeless : test_component.TestDirectXPixelFormat {
-        __x_ABI_Ctest__component_CTestDirectXPixelFormat_B8G8R8A8Typeless
+extension test_component.SwiftifiableNames {
+    public static var camelCase : test_component.SwiftifiableNames {
+        __x_ABI_Ctest__component_CSwiftifiableNames_camelCase
+    }
+    public static var pascalCase : test_component.SwiftifiableNames {
+        __x_ABI_Ctest__component_CSwiftifiableNames_PascalCase
+    }
+    public static var esingleLetterPrefixed : test_component.SwiftifiableNames {
+        __x_ABI_Ctest__component_CSwiftifiableNames_ESingleLetterPrefixed
+    }
+    public static var leadingCaps : test_component.SwiftifiableNames {
+        __x_ABI_Ctest__component_CSwiftifiableNames_LEADINGCaps
+    }
+    public static var r8g8b8a8Typeless : test_component.SwiftifiableNames {
+        __x_ABI_Ctest__component_CSwiftifiableNames_R8G8B8A8Typeless
     }
 }
 

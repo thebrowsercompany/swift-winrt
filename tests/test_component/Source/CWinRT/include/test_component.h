@@ -1221,9 +1221,13 @@ enum __x_ABI_Ctest__component_CSigned
     __x_ABI_Ctest__component_CSigned_Third = 1,
 };
 
-enum __x_ABI_Ctest__component_CTestDirectXPixelFormat
+enum __x_ABI_Ctest__component_CSwiftifiableNames
     {
-        __x_ABI_Ctest__component_CTestDirectXPixelFormat_B8G8R8A8Typeless = 0,
+        __x_ABI_Ctest__component_CSwiftifiableNames_camelCase = 0,
+    __x_ABI_Ctest__component_CSwiftifiableNames_PascalCase = 1,
+    __x_ABI_Ctest__component_CSwiftifiableNames_ESingleLetterPrefixed = 2,
+    __x_ABI_Ctest__component_CSwiftifiableNames_LEADINGCaps = 3,
+    __x_ABI_Ctest__component_CSwiftifiableNames_R8G8B8A8Typeless = 4,
 };
 
 enum __x_ABI_Ctest__component_CUnsigned
