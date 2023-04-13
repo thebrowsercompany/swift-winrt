@@ -1238,15 +1238,15 @@ bind_impl_fullname(type));
         if _value is Int32 {
             propertyType = .int32
         } else if _value is UInt8 {
-            propertyType = .uInt8
+            propertyType = .uint8
         } else if _value is Int16 {
             propertyType = .int16
         } else if _value is UInt32 {
-            propertyType = .uInt32
+            propertyType = .uint32
         } else if _value is Int64 {
             propertyType = .int64
         } else if _value is UInt64 {
-            propertyType = .uInt64
+            propertyType = .uint64
         } else if _value is Float {
             propertyType = .single
         } else if _value is Double {
@@ -1271,7 +1271,7 @@ bind_impl_fullname(type));
     public var type: PropertyType { propertyType }
     public var isNumericScalar: Bool { 
         switch propertyType {
-            case .int16, .int32, .uInt16, .uInt8, .int64, .uInt64, .single, .double: return true
+            case .int16, .int32, .uint16, .uint8, .int64, .uint64, .single, .double: return true
             default: return false
         }
     }

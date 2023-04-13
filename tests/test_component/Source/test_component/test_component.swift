@@ -3,6 +3,7 @@ import Ctest_component
 
 public typealias Fruit = __x_ABI_Ctest__component_CFruit
 public typealias Signed = __x_ABI_Ctest__component_CSigned
+public typealias TestDirectXPixelFormat = __x_ABI_Ctest__component_CTestDirectXPixelFormat
 public typealias Unsigned = __x_ABI_Ctest__component_CUnsigned
 open class Base : UnsealedWinRTClass {
     private (set) public var _inner: UnsafeMutablePointer<Ctest_component.IInspectable>?
@@ -1240,6 +1241,12 @@ extension test_component.Signed {
     }
     public static var third : test_component.Signed {
         __x_ABI_Ctest__component_CSigned_Third
+    }
+}
+
+extension test_component.TestDirectXPixelFormat {
+    public static var b8g8r8a8Typeless : test_component.TestDirectXPixelFormat {
+        __x_ABI_Ctest__component_CTestDirectXPixelFormat_B8G8R8A8Typeless
     }
 }
 

@@ -15,6 +15,12 @@ import "Windows.Foundation.idl";
 
 namespace test_component
 {
+        // Just defined to validate we properly generate this name
+        enum TestDirectXPixelFormat 
+        {
+            B8G8R8A8Typeless
+        };
+
         struct BlittableStruct
         {
             Int32 First;

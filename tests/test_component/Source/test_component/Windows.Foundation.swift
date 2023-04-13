@@ -99,25 +99,25 @@ extension test_component.PropertyType {
     public static var empty : test_component.PropertyType {
         __x_ABI_CWindows_CFoundation_CPropertyType_Empty
     }
-    public static var uInt8 : test_component.PropertyType {
+    public static var uint8 : test_component.PropertyType {
         __x_ABI_CWindows_CFoundation_CPropertyType_UInt8
     }
     public static var int16 : test_component.PropertyType {
         __x_ABI_CWindows_CFoundation_CPropertyType_Int16
     }
-    public static var uInt16 : test_component.PropertyType {
+    public static var uint16 : test_component.PropertyType {
         __x_ABI_CWindows_CFoundation_CPropertyType_UInt16
     }
     public static var int32 : test_component.PropertyType {
         __x_ABI_CWindows_CFoundation_CPropertyType_Int32
     }
-    public static var uInt32 : test_component.PropertyType {
+    public static var uint32 : test_component.PropertyType {
         __x_ABI_CWindows_CFoundation_CPropertyType_UInt32
     }
     public static var int64 : test_component.PropertyType {
         __x_ABI_CWindows_CFoundation_CPropertyType_Int64
     }
-    public static var uInt64 : test_component.PropertyType {
+    public static var uint64 : test_component.PropertyType {
         __x_ABI_CWindows_CFoundation_CPropertyType_UInt64
     }
     public static var single : test_component.PropertyType {
@@ -159,25 +159,25 @@ extension test_component.PropertyType {
     public static var otherType : test_component.PropertyType {
         __x_ABI_CWindows_CFoundation_CPropertyType_OtherType
     }
-    public static var uInt8Array : test_component.PropertyType {
+    public static var uint8Array : test_component.PropertyType {
         __x_ABI_CWindows_CFoundation_CPropertyType_UInt8Array
     }
     public static var int16Array : test_component.PropertyType {
         __x_ABI_CWindows_CFoundation_CPropertyType_Int16Array
     }
-    public static var uInt16Array : test_component.PropertyType {
+    public static var uint16Array : test_component.PropertyType {
         __x_ABI_CWindows_CFoundation_CPropertyType_UInt16Array
     }
     public static var int32Array : test_component.PropertyType {
         __x_ABI_CWindows_CFoundation_CPropertyType_Int32Array
     }
-    public static var uInt32Array : test_component.PropertyType {
+    public static var uint32Array : test_component.PropertyType {
         __x_ABI_CWindows_CFoundation_CPropertyType_UInt32Array
     }
     public static var int64Array : test_component.PropertyType {
         __x_ABI_CWindows_CFoundation_CPropertyType_Int64Array
     }
-    public static var uInt64Array : test_component.PropertyType {
+    public static var uint64Array : test_component.PropertyType {
         __x_ABI_CWindows_CFoundation_CPropertyType_UInt64Array
     }
     public static var singleArray : test_component.PropertyType {

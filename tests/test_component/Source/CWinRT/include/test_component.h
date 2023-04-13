@@ -1221,6 +1221,11 @@ enum __x_ABI_Ctest__component_CSigned
     __x_ABI_Ctest__component_CSigned_Third = 1,
 };
 
+enum __x_ABI_Ctest__component_CTestDirectXPixelFormat
+    {
+        __x_ABI_Ctest__component_CTestDirectXPixelFormat_B8G8R8A8Typeless = 0,
+};
+
 enum __x_ABI_Ctest__component_CUnsigned
     {
         __x_ABI_Ctest__component_CUnsigned_First = 0,
