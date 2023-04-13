@@ -11,8 +11,8 @@ target_link_libraries(test_app PRIVATE test_component)
 
 # XCTest dependency
 set(XCTest_RootDir "$ENV{SDKROOT}/../../Library/XCTest-development/usr")
-set(XCTest_LibraryDir "${XCTest_DIR}/lib/swift/windows")
-set(XCTest_BinaryDir "${XCTest_DIR}/bin64")
+set(XCTest_LibraryDir "${XCTest_RootDir}/lib/swift/windows")
+set(XCTest_BinaryDir "${XCTest_RootDir}/bin64")
 
 target_include_directories(test_app PRIVATE "${XCTest_LibraryDir}") # where XCTest.swiftmodule is
 target_link_directories(test_app PRIVATE "${XCTest_LibraryDir}/x86_64") # where XCTest.lib is
