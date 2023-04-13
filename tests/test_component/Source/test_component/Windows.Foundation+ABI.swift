@@ -302,14 +302,14 @@ public enum __ABI_Windows_Foundation {
 
         get_Type: {
             guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let value = __unwrapped__instance.Type
+            let value = __unwrapped__instance.type
             $1?.initialize(to: value)
             return S_OK
         },
 
         get_IsNumericScalar: {
             guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let value = __unwrapped__instance.IsNumericScalar
+            let value = __unwrapped__instance.isNumericScalar
             $1?.initialize(to: .init(from: value))
             return S_OK
         },
@@ -499,26 +499,26 @@ public enum __ABI_Windows_Foundation {
 }
 extension __x_ABI_CWindows_CFoundation_CDateTime {
     public static func from(swift: test_component.DateTime) -> __x_ABI_CWindows_CFoundation_CDateTime {
-        .init(universalTime: swift.universalTime)
+        .init(UniversalTime: swift.universalTime)
     }
 }
 extension __x_ABI_CWindows_CFoundation_CPoint {
     public static func from(swift: test_component.Point) -> __x_ABI_CWindows_CFoundation_CPoint {
-        .init(x: swift.x, y: swift.y)
+        .init(X: swift.x, Y: swift.y)
     }
 }
 extension __x_ABI_CWindows_CFoundation_CRect {
     public static func from(swift: test_component.Rect) -> __x_ABI_CWindows_CFoundation_CRect {
-        .init(x: swift.x, y: swift.y, width: swift.width, height: swift.height)
+        .init(X: swift.x, Y: swift.y, Width: swift.width, Height: swift.height)
     }
 }
 extension __x_ABI_CWindows_CFoundation_CSize {
     public static func from(swift: test_component.Size) -> __x_ABI_CWindows_CFoundation_CSize {
-        .init(width: swift.width, height: swift.height)
+        .init(Width: swift.width, Height: swift.height)
     }
 }
 extension __x_ABI_CWindows_CFoundation_CTimeSpan {
     public static func from(swift: test_component.TimeSpan) -> __x_ABI_CWindows_CFoundation_CTimeSpan {
-        .init(duration: swift.duration)
+        .init(Duration: swift.duration)
     }
 }

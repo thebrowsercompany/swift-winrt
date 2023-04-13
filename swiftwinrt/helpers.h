@@ -530,7 +530,18 @@ namespace swiftwinrt
         {
             return "handler";
         }
-        return to_camel_case(method.Name());
+        else if (is_get_overload(method) || is_put_overload(method) || is_add_overload(method))
+        {
+            return to_camel_case(method.Name().substr(sizeof("get")));
+        }
+        else if (is_remove_overload(method))
+        {
+            return to_camel_case(method.Name().substr(sizeof("remove")));
+        }
+        else
+        {
+            return to_camel_case(method.Name());
+        }
     }
 
     inline std::string get_swift_name(Property const& property)
@@ -578,6 +589,10 @@ namespace swiftwinrt
         return to_camel_case(member.field.Name());
     }
 
+    inline std::string_view get_abi_name(struct_member const& member)
+    {
+        return member.field.Name();
+    }
     inline std::string_view remove_backtick(std::string_view const& name)
     {
         auto back_tick_i = name.find_first_of('`');

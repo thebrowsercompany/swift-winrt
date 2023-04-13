@@ -105,16 +105,16 @@ public enum __IMPL_test_component {
             }
         }
 
-        public var iD : UUID? {
+        public var id : UUID? {
             get {
-                let value = try! _default.get_IDImpl()
+                let value = try! _default.get_IdImpl()
                 return .init(ref: value)
             }
 
             set {
                 let wrapper = __ABI_test_component.__x_ABI_C__FIReference_1_GUIDWrapper(newValue)
                 let _newValue = try! wrapper?.toABI { $0 }
-                try! _default.put_IDImpl(_newValue)
+                try! _default.put_IdImpl(_newValue)
             }
         }
 
@@ -421,22 +421,22 @@ public enum __IMPL_test_component {
 
         // MARK: Collection
         var startIndex: Int { 0 }
-        var endIndex: Int { Int(Size) }
+        var endIndex: Int { Int(size) }
         func index(after i: Int) -> Int {
             i+1
         }
 
         func index(of: Element) -> Int? { 
             var index: UInt32 = 0
-            let result = IndexOf(of, &index)
+            let result = indexOf(of, &index)
             guard result else { return nil }
             return Int(index)
         }
-        var count: Int { Int(Size) }
+        var count: Int { Int(size) }
 
         subscript(position: Int) -> Element {
             get {
-                GetAt(UInt32(position))
+                getAt(UInt32(position))
             }
         }
         // MARK: WinRT
@@ -485,22 +485,22 @@ public enum __IMPL_test_component {
 
         // MARK: Collection
         var startIndex: Int { 0 }
-        var endIndex: Int { Int(Size) }
+        var endIndex: Int { Int(size) }
         func index(after i: Int) -> Int {
             i+1
         }
 
         func index(of: Element) -> Int? { 
             var index: UInt32 = 0
-            let result = IndexOf(of, &index)
+            let result = indexOf(of, &index)
             guard result else { return nil }
             return Int(index)
         }
-        var count: Int { Int(Size) }
+        var count: Int { Int(size) }
 
         subscript(position: Int) -> Element {
             get {
-                GetAt(UInt32(position))
+                getAt(UInt32(position))
             }
         }
         // MARK: WinRT
@@ -548,39 +548,33 @@ public enum __IMPL_test_component {
 
         // MARK: Collection
         var startIndex: Int { 0 }
-        var endIndex: Int { Int(Size) }
+        var endIndex: Int { Int(size) }
         func index(after i: Int) -> Int {
             i+1
         }
 
         func index(of: Element) -> Int? { 
             var index: UInt32 = 0
-            let result = IndexOf(of, &index)
+            let result = indexOf(of, &index)
             guard result else { return nil }
             return Int(index)
         }
-        var count: Int { Int(Size) }
+        var count: Int { Int(size) }
 
-        func append(_ item: Element) {
-            Append(item)
-        }
 
         subscript(position: Int) -> Element {
             get {
-                GetAt(UInt32(position))
+                getAt(UInt32(position))
             }
             set(newValue) {
-                SetAt(UInt32(position), newValue)
+                setAt(UInt32(position), newValue)
             }
         }
 
         func removeLast() {
-            RemoveAtEnd()
+            removeAtEnd()
         }
 
-        func clear() {
-            Clear()
-        }
         // MARK: WinRT
         public func getAt(_ index: UInt32) -> String {
             let result = try! _default.GetAtImpl(index)
@@ -659,39 +653,33 @@ public enum __IMPL_test_component {
 
         // MARK: Collection
         var startIndex: Int { 0 }
-        var endIndex: Int { Int(Size) }
+        var endIndex: Int { Int(size) }
         func index(after i: Int) -> Int {
             i+1
         }
 
         func index(of: Element) -> Int? { 
             var index: UInt32 = 0
-            let result = IndexOf(of, &index)
+            let result = indexOf(of, &index)
             guard result else { return nil }
             return Int(index)
         }
-        var count: Int { Int(Size) }
+        var count: Int { Int(size) }
 
-        func append(_ item: Element) {
-            Append(item)
-        }
 
         subscript(position: Int) -> Element {
             get {
-                GetAt(UInt32(position))
+                getAt(UInt32(position))
             }
             set(newValue) {
-                SetAt(UInt32(position), newValue)
+                setAt(UInt32(position), newValue)
             }
         }
 
         func removeLast() {
-            RemoveAtEnd()
+            removeAtEnd()
         }
 
-        func clear() {
-            Clear()
-        }
         // MARK: WinRT
         public func getAt(_ index: UInt32) -> Base? {
             let result = try! _default.GetAtImpl(index)

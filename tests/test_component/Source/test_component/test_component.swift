@@ -89,39 +89,33 @@ public final class BaseCollection : WinRTClass, IVector {
 
     // MARK: Collection
     public var startIndex: Int { 0 }
-    public var endIndex: Int { Int(Size) }
+    public var endIndex: Int { Int(size) }
     public func index(after i: Int) -> Int {
         i+1
     }
 
     public func index(of: Element) -> Int? { 
         var index: UInt32 = 0
-        let result = IndexOf(of, &index)
+        let result = indexOf(of, &index)
         guard result else { return nil }
         return Int(index)
     }
-    public var count: Int { Int(Size) }
+    public var count: Int { Int(size) }
 
-    public func append(_ item: Element) {
-        Append(item)
-    }
 
     public subscript(position: Int) -> Element {
         get {
-            GetAt(UInt32(position))
+            getAt(UInt32(position))
         }
         set(newValue) {
-            SetAt(UInt32(position), newValue)
+            setAt(UInt32(position), newValue)
         }
     }
 
     public func removeLast() {
-        RemoveAtEnd()
+        removeAtEnd()
     }
 
-    public func clear() {
-        Clear()
-    }
     // MARK: WinRT
     public func getAt(_ index: UInt32) -> Base? {
         let result = try! _default.GetAtImpl(index)
@@ -548,16 +542,16 @@ public final class Class : WinRTClass, IBasic {
         }
     }
 
-    public var iD : UUID? {
+    public var id : UUID? {
         get {
-            let value = try! _default.get_IDImpl()
+            let value = try! _default.get_IdImpl()
             return .init(ref: value)
         }
 
         set {
             let wrapper = __ABI_test_component.__x_ABI_C__FIReference_1_GUIDWrapper(newValue)
             let _newValue = try! wrapper?.toABI { $0 }
-            try! _default.put_IDImpl(_newValue)
+            try! _default.put_IdImpl(_newValue)
         }
     }
 
@@ -1152,7 +1146,7 @@ public struct BlittableStruct {
         self.second = second
     }
     public static func from(abi: __x_ABI_Ctest__component_CBlittableStruct) -> BlittableStruct {
-        .init(first: abi.first, second: abi.second)
+        .init(first: abi.First, second: abi.Second)
     }
 }
 
@@ -1169,7 +1163,7 @@ public struct NonBlittableBoolStruct {
         self.fourth = fourth
     }
     public static func from(abi: __x_ABI_Ctest__component_CNonBlittableBoolStruct) -> NonBlittableBoolStruct {
-        .init(first: .init(from: abi.first), second: .init(from: abi.second), third: .init(from: abi.third), fourth: .init(from: abi.fourth))
+        .init(first: .init(from: abi.First), second: .init(from: abi.Second), third: .init(from: abi.Third), fourth: .init(from: abi.Fourth))
     }
 }
 
@@ -1186,7 +1180,7 @@ public struct NonBlittableStruct {
         self.fourth = fourth
     }
     public static func from(abi: __x_ABI_Ctest__component_CNonBlittableStruct) -> NonBlittableStruct {
-        .init(first: .init(from: abi.first), second: .init(from: abi.second), third: abi.third, fourth: .init(from: abi.fourth))
+        .init(first: .init(from: abi.First), second: .init(from: abi.Second), third: abi.Third, fourth: .init(from: abi.Fourth))
     }
 }
 
@@ -1197,7 +1191,7 @@ public struct SimpleEventArgs {
         self.value = value
     }
     public static func from(abi: __x_ABI_Ctest__component_CSimpleEventArgs) -> SimpleEventArgs {
-        .init(value: abi.value)
+        .init(value: abi.Value)
     }
 }
 
@@ -1216,7 +1210,7 @@ public protocol IIAmImplementable : IWinRTObject {
         func returnEnum() -> test_component.Signed
         func fireEvent()
         var enumProperty: test_component.Fruit { get set }
-        var iD: UUID? { get set }
+        var id: UUID? { get set }
 }
 public protocol ISimpleDelegate : IWinRTObject { 
         func doThis()

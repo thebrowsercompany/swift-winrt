@@ -24,6 +24,7 @@ namespace swiftwinrt
     {
         writer w;
         w.type_namespace = module;
+        w.c_mod = settings.get_c_module_name();
         auto path = w.project_directory() / "CMakeLists.txt";
 
         if (!settings.has_project_type(project_type::cmake))

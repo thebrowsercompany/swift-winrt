@@ -481,11 +481,11 @@ namespace winrt::test_component::implementation
         return L"123";
     }
 
-    void Class::ID(Windows::Foundation::IReference<winrt::guid> const& value)
+    void Class::Id(Windows::Foundation::IReference<winrt::guid> const& value)
     {
         if (m_implementation)
         {
-            m_implementation.ID(value);
+            m_implementation.Id(value);
         }
         else
         {
@@ -493,11 +493,11 @@ namespace winrt::test_component::implementation
         }
     }
 
-    Windows::Foundation::IReference<winrt::guid> Class::ID()
+    Windows::Foundation::IReference<winrt::guid> Class::Id()
     {
         if (m_implementation)
         {
-            return m_implementation.ID();
+            return m_implementation.Id();
         }
         else 
         {

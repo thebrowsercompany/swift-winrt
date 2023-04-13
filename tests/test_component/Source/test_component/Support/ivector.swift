@@ -8,22 +8,22 @@ import Ctest_component
 public protocol IVector<Element> : IWinRTObject, Collection where Index == Int {
     associatedtype Element
     // MARK: WinRT APIs
-    func GetAt(_ index: UInt32) -> Element 
-    var Size: UInt32 { get }
-    func IndexOf(_ item: Element, _ index: inout UInt32) -> Bool
-    func Append(_ item: Element)
-    func SetAt(_ index: UInt32, _ item: Element)
-    func InsertAt(_ index: UInt32, _ item: Element)
-    func RemoveAt(_ index: UInt32)
-    func RemoveAtEnd()
-    func Clear()
-    func GetView() -> (any IVectorView<Element>)?
+    func getAt(_ index: UInt32) -> Element 
+    var size: UInt32 { get }
+    func indexOf(_ item: Element, _ index: inout UInt32) -> Bool
+    func append(_ item: Element)
+    func setAt(_ index: UInt32, _ item: Element)
+    func insertAt(_ index: UInt32, _ item: Element)
+    func removeAt(_ index: UInt32)
+    func removeAtEnd()
+    func clear()
+    func getView() -> (any IVectorView<Element>)?
 }
 
 public protocol IVectorView<Element> : IWinRTObject, Collection where Index == Int {
     associatedtype Element
     // MARK: WinRT APIs
-    func GetAt(_ index: UInt32) -> Element 
-    var Size: UInt32 { get }
-    func IndexOf(_ item: Element, _ index: inout UInt32) -> Bool
+    func getAt(_ index: UInt32) -> Element 
+    var size: UInt32 { get }
+    func indexOf(_ item: Element, _ index: inout UInt32) -> Bool
 }

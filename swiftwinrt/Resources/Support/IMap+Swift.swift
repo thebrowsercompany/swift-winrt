@@ -1,52 +1,52 @@
 // Swift Dictionary-like extensions to IMap[View]
 extension IMap {
-    public var count: Int { Int(Size) }
-    public var underestimatedCount: Int { Int(Size) }
-    public var isEmpty: Bool { Size == 0 }
+    public var count: Int { Int(size) }
+    public var underestimatedCount: Int { Int(size) }
+    public var isEmpty: Bool { size == 0 }
 
     public subscript(key: Key) -> Value? {
-        get { HasKey(key) ? Lookup(key) : nil }
+        get { hasKey(key) ? lookup(key) : nil }
         set(newValue) {
             if let value = newValue {
-                Insert(key, value)
+                insert(key, value)
             }
             else {
-                Remove(key)
+                remove(key)
             }
         }
     }
 
     public subscript(key: Key, default defaultValue: @autoclosure () -> Value) -> Value {
-        get { HasKey(key) ? Lookup(key) : defaultValue() }
+        get { hasKey(key) ? lookup(key) : defaultValue() }
     }
 
     @discardableResult
     public func updateValue(_ value: Value, forKey key: Key) -> Value? {
-        let oldValue = HasKey(key) ? Lookup(key) : nil
-        Insert(key, value)
+        let oldValue = hasKey(key) ? lookup(key) : nil
+        insert(key, value)
         return oldValue
     }
 
     @discardableResult
     public func removeValue(forKey key: Key) -> Value? {
-        let oldValue = HasKey(key) ? Lookup(key) : nil
-        Remove(key)
+        let oldValue = hasKey(key) ? lookup(key) : nil
+        remove(key)
         return oldValue
     }
 
-    public func removeAll() { Clear() }
+    public func removeAll() { clear() }
 }
 
 extension IMapView {
-    public var count: Int { Int(Size) }
-    public var underestimatedCount: Int { Int(Size) }
-    public var isEmpty: Bool { Size == 0 }
+    public var count: Int { Int(size) }
+    public var underestimatedCount: Int { Int(size) }
+    public var isEmpty: Bool { size == 0 }
     
     public subscript(key: Key) -> Value? {
-        HasKey(key) ? Lookup(key) : nil
+        hasKey(key) ? lookup(key) : nil
     }
 
     public subscript(key: Key, default defaultValue: @autoclosure () -> Value) -> Value {
-        get { HasKey(key) ? Lookup(key) : defaultValue() }
+        get { hasKey(key) ? lookup(key) : defaultValue() }
     }
 }

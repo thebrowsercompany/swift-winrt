@@ -1550,9 +1550,9 @@ struct __x_ABI_Ctest__component_CSimpleEventArgs
         __x_ABI_C__FIReference_1_int** value);
     HRESULT (STDMETHODCALLTYPE* put_StartValue)(__x_ABI_Ctest__component_CIClass* This,
         __x_ABI_C__FIReference_1_int* value);
-    HRESULT (STDMETHODCALLTYPE* get_ID)(__x_ABI_Ctest__component_CIClass* This,
+    HRESULT (STDMETHODCALLTYPE* get_Id)(__x_ABI_Ctest__component_CIClass* This,
         __x_ABI_C__FIReference_1_GUID** value);
-    HRESULT (STDMETHODCALLTYPE* put_ID)(__x_ABI_Ctest__component_CIClass* This,
+    HRESULT (STDMETHODCALLTYPE* put_Id)(__x_ABI_Ctest__component_CIClass* This,
         __x_ABI_C__FIReference_1_GUID* value);
     HRESULT (STDMETHODCALLTYPE* get_BaseProperty)(__x_ABI_Ctest__component_CIClass* This,
         __x_ABI_Ctest__component_CIBase** value);
@@ -1848,9 +1848,9 @@ struct __x_ABI_Ctest__component_CSimpleEventArgs
         enum __x_ABI_Ctest__component_CFruit* value);
     HRESULT (STDMETHODCALLTYPE* put_EnumProperty)(__x_ABI_Ctest__component_CIIAmImplementable* This,
         enum __x_ABI_Ctest__component_CFruit value);
-    HRESULT (STDMETHODCALLTYPE* get_ID)(__x_ABI_Ctest__component_CIIAmImplementable* This,
+    HRESULT (STDMETHODCALLTYPE* get_Id)(__x_ABI_Ctest__component_CIIAmImplementable* This,
         __x_ABI_C__FIReference_1_GUID** value);
-    HRESULT (STDMETHODCALLTYPE* put_ID)(__x_ABI_Ctest__component_CIIAmImplementable* This,
+    HRESULT (STDMETHODCALLTYPE* put_Id)(__x_ABI_Ctest__component_CIIAmImplementable* This,
         __x_ABI_C__FIReference_1_GUID* value);
     HRESULT (STDMETHODCALLTYPE* add_ImplementableEvent)(__x_ABI_Ctest__component_CIIAmImplementable* This,
         __x_ABI_Ctest__component_CDelegates_CIInDelegate* handler,

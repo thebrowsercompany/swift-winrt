@@ -9,7 +9,7 @@ public struct DateTime {
         self.universalTime = universalTime
     }
     public static func from(abi: __x_ABI_CWindows_CFoundation_CDateTime) -> DateTime {
-        .init(universalTime: abi.universalTime)
+        .init(universalTime: abi.UniversalTime)
     }
 }
 
@@ -22,7 +22,7 @@ public struct Point {
         self.y = y
     }
     public static func from(abi: __x_ABI_CWindows_CFoundation_CPoint) -> Point {
-        .init(x: abi.x, y: abi.y)
+        .init(x: abi.X, y: abi.Y)
     }
 }
 
@@ -39,7 +39,7 @@ public struct Rect {
         self.height = height
     }
     public static func from(abi: __x_ABI_CWindows_CFoundation_CRect) -> Rect {
-        .init(x: abi.x, y: abi.y, width: abi.width, height: abi.height)
+        .init(x: abi.X, y: abi.Y, width: abi.Width, height: abi.Height)
     }
 }
 
@@ -52,7 +52,7 @@ public struct Size {
         self.height = height
     }
     public static func from(abi: __x_ABI_CWindows_CFoundation_CSize) -> Size {
-        .init(width: abi.width, height: abi.height)
+        .init(width: abi.Width, height: abi.Height)
     }
 }
 
@@ -63,7 +63,7 @@ public struct TimeSpan {
         self.duration = duration
     }
     public static func from(abi: __x_ABI_CWindows_CFoundation_CTimeSpan) -> TimeSpan {
-        .init(duration: abi.duration)
+        .init(duration: abi.Duration)
     }
 }
 
@@ -93,7 +93,7 @@ public protocol IPropertyValue : IWinRTObject {
         var type: test_component.PropertyType { get }
 }
 public protocol IReference : IPropertyValue {
-    var Value: Any { get }
+    var value: Any { get }
 }
 extension test_component.PropertyType {
     public static var empty : test_component.PropertyType {

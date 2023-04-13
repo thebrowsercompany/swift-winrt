@@ -222,8 +222,8 @@ namespace winrt::test_component::implementation
             }
         }
 
-        Windows::Foundation::IReference<winrt::guid> ID();
-        void ID(Windows::Foundation::IReference<winrt::guid> const& value);
+        Windows::Foundation::IReference<winrt::guid> Id();
+        void Id(Windows::Foundation::IReference<winrt::guid> const& value);
         test_component::Base BaseProperty() { return m_base; }
         void BaseProperty(test_component::Base const& value) { m_base = value; }
         test_component::BaseNoOverrides BaseNoOverridesProperty() { return m_baseNoOverrides; }

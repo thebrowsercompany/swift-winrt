@@ -146,7 +146,7 @@ namespace test_component
 
             Fruit EnumProperty;
 
-            Windows.Foundation.IReference<Guid> ID;
+            Windows.Foundation.IReference<Guid> Id;
             event test_component.Delegates.InDelegate ImplementableEvent;
             void FireEvent();
         }
@@ -277,7 +277,7 @@ namespace test_component
             void OutChar(out Char value);
 
             Windows.Foundation.IReference<Int32> StartValue;
-            Windows.Foundation.IReference<Guid> ID;
+            Windows.Foundation.IReference<Guid> Id;
 
             //Object ItemsSource;
             // Windows.Foundation.Collections.IVector<Simple> Children { get; };
