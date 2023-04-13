@@ -750,6 +750,7 @@ class SwiftWinRTTests : XCTestCase {
     print("\(SwiftifiableNames.esingleLetterPrefixed)")
     print("\(SwiftifiableNames.leadingCaps)")
     print("\(SwiftifiableNames.r8g8b8a8Typeless)")
+    print("\(SwiftifiableNames.uuid)")
   }
 }
  

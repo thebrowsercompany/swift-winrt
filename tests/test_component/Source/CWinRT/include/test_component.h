@@ -1228,6 +1228,7 @@ enum __x_ABI_Ctest__component_CSwiftifiableNames
     __x_ABI_Ctest__component_CSwiftifiableNames_ESingleLetterPrefixed = 2,
     __x_ABI_Ctest__component_CSwiftifiableNames_LEADINGCaps = 3,
     __x_ABI_Ctest__component_CSwiftifiableNames_R8G8B8A8Typeless = 4,
+    __x_ABI_Ctest__component_CSwiftifiableNames_UUID = 5,
 };
 
 enum __x_ABI_Ctest__component_CUnsigned

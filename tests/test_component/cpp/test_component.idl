@@ -23,6 +23,7 @@ namespace test_component
             ESingleLetterPrefixed, // Should become esingleLetterPrefixed
             LEADINGCaps, // Should become leadingCaps
             R8G8B8A8Typeless, // Should become r8g8b8a8Typeless (from D3D)
+            UUID, // Should become uuid
         };
         
         struct BlittableStruct

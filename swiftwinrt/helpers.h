@@ -521,9 +521,9 @@ namespace swiftwinrt
         std::string result = std::string(name);
         result[0] = tolower(result[0]);
 
-        // loop through result and convert any consecutive upper case letters or digits to lower case,
-        // keep the last upper case letter as upper case. only do this if the seocnd letter is
-        // upper case or a digit and exit out of the loop as soon as we hit a lower case letter
+        // One or two leading capitals: GetFoo -> getFoo / UInt32 -> uint32
+        // 3+ leading capitals or mixed digits, keep the last one: 
+        //    UIElement -> uiElement / HELLOWorld -> helloWorld / R8G8B8Alpha -> r8g8b8Alpha
         if (result.size() > 1 && isupper(result[1]) || isdigit(result[1])){
             result[1] = tolower(result[1]);
             int next = 2;
@@ -531,6 +531,12 @@ namespace swiftwinrt
             {
                 result[next - 1] = tolower(result[next - 1]);
                 next++;
+            }
+
+            // If we got to the end of the string, this means everything was uppercase,
+            // so we need to lowercase the last character
+            if (next == result.size() && isupper(result[next -1])) {
+                result[next - 1] = tolower(result[next - 1]);
             }
         }
 

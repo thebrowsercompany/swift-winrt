@@ -1260,6 +1260,9 @@ extension test_component.SwiftifiableNames {
     public static var r8g8b8a8Typeless : test_component.SwiftifiableNames {
         __x_ABI_Ctest__component_CSwiftifiableNames_R8G8B8A8Typeless
     }
+    public static var uuid : test_component.SwiftifiableNames {
+        __x_ABI_Ctest__component_CSwiftifiableNames_UUID
+    }
 }
 
 extension test_component.Unsigned {
