@@ -10,12 +10,14 @@ target_link_libraries(test_app PRIVATE Ctest_component)
 target_link_libraries(test_app PRIVATE test_component)
 
 # XCTest dependency
-set(XCTest_DIR "$ENV{SDKROOT}/../../Library/XCTest-development")
-set(XCTest_LIBRARY "${XCTest_DIR}/usr/lib/swift/windows/x86_64")
-target_include_directories(test_app PRIVATE "${XCTest_LIBRARY}")
-target_link_directories(test_app PRIVATE "${XCTest_LIBRARY}")
+set(XCTest_RootDir "$ENV{SDKROOT}/../../Library/XCTest-development/usr")
+set(XCTest_LibraryDir "${XCTest_DIR}/lib/swift/windows")
+set(XCTest_BinaryDir "${XCTest_DIR}/bin64")
+
+target_include_directories(test_app PRIVATE "${XCTest_LibraryDir}") # where XCTest.swiftmodule is
+target_link_directories(test_app PRIVATE "${XCTest_LibraryDir}/x86_64") # where XCTest.lib is
 add_custom_command(TARGET test_app POST_BUILD
-  COMMAND ${CMAKE_COMMAND} -E copy "${XCTest_DIR}/usr/bin64/XCTest.dll" ${CMAKE_CURRENT_BINARY_DIR}/XCTest.dll)
+  COMMAND ${CMAKE_COMMAND} -E copy "${XCTest_BinaryDir}/XCTest.dll" ${CMAKE_CURRENT_BINARY_DIR}/XCTest.dll)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/XCTest.dll DESTINATION bin)
 
 # LLDB  crashes on startup with an embedded manifest, so we're using a side-by-side
