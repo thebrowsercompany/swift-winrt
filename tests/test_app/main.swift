@@ -430,13 +430,13 @@ class SwiftWinRTTests : XCTestCase {
   }
 
   class DoTheNewBase : IBasic {
-    func Method() {
+    func method() {
       print("it's done")
     }
   }
 
   class DoubleDelegate : IBasic, ISimpleDelegate {
-    func Method() {
+    func method() {
       print("method doubled up")
     }
 
