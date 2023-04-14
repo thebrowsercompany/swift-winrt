@@ -1234,59 +1234,128 @@ extension test_component.Fruit {
 }
 
 extension test_component.Keywords {
-    public static var `extension` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_extension
+    public static var `as` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_As
     }
-    public static var `func` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_func
+    public static var `break` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_Break
     }
-    public static var `internal` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_internal
+    public static var `case` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_Case
     }
-    public static var `var` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_var
+    public static var `catch` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_Catch
     }
-    public static var `let` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_let
+    public static var `class` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_Class
     }
-    public static var `repeat` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_repeat
+    public static var `continue` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_Continue
     }
-    public static var `in` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_in
-    }
-    public static var `where` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_where
-    }
-    public static var `fallthrough` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_fallthrough
+    public static var `default` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_Default
     }
     public static var `defer` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_defer
+        __x_ABI_Ctest__component_CKeywords_Defer
     }
-    public static var `throws` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_throws
+    public static var `do` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_Do
     }
-    public static var `rethrows` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_rethrows
+    public static var `else` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_Else
     }
-    public static var `as` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_as
+    public static var `enum` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_Enum
+    }
+    public static var `extension` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_Extension
+    }
+    public static var `fallthrough` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_Fallthrough
+    }
+    public static var `false` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_False
+    }
+    public static var `for` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_For
+    }
+    public static var `func` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_Func
+    }
+    public static var `if` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_If
+    }
+    public static var `import` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_Import
+    }
+    public static var `in` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_In
+    }
+    public static var `internal` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_Internal
     }
     public static var `is` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_is
+        __x_ABI_Ctest__component_CKeywords_Is
+    }
+    public static var `let` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_Let
     }
     public static var `nil` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_nil
+        __x_ABI_Ctest__component_CKeywords_Nil
     }
-    public static var `super` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_super
-    }
-    public static var `self` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_self
+    public static var `private` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_Private
     }
     public static var `protocol` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_protocol
+        __x_ABI_Ctest__component_CKeywords_Protocol
+    }
+    public static var `public` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_Public
+    }
+    public static var `repeat` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_Repeat
+    }
+    public static var `rethrows` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_Rethrows
+    }
+    public static var `return` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_Return
+    }
+    public static var `self` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_Self
+    }
+    public static var `static` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_Static
+    }
+    public static var `struct` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_Struct
+    }
+    public static var `super` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_Super
+    }
+    public static var `switch` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_Switch
+    }
+    public static var `throw` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_Throw
+    }
+    public static var `throws` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_Throws
+    }
+    public static var `true` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_True
+    }
+    public static var `try` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_Try
+    }
+    public static var `var` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_Var
+    }
+    public static var `where` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_Where
+    }
+    public static var `while` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_While
     }
 }
 

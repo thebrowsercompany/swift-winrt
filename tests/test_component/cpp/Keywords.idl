@@ -1,28 +1,53 @@
 import "Windows.Foundation.idl";
 
 // this is a list of swift keywords which are valid midl and c++ names
-// the goal is just to get this to compile
+// the goal is just to get this to compile. We use standard WinRT naming
+// scheme here so that they pass MIDL/C++ compilations
 namespace test_component
 {
     enum Keywords
     {
-        extension,
-        func,
-        internal,
-        var,
-        let,
-        repeat,
-        in,
-        where,
-        fallthrough,
-        defer,
-        throws,
-        rethrows,
-        as,
-        is,
-        nil,
-        super,
-        self,
-        protocol
+        As,
+        Break,
+        Case,
+        Catch,
+        Class,
+        Continue,
+        Default,
+        Defer,
+        Do,
+        Else,
+        Enum,
+        Extension,
+        Fallthrough,
+        False,
+        For,
+        Func,
+        If,
+        Import,
+        In,
+        Internal,
+        Is,
+        Let,
+        Nil,
+        Private,
+        Protocol,
+        Public,
+        Repeat,
+        Rethrows,
+        Return,
+        Self,
+        Static,
+        Struct,
+        Super,
+        Switch,
+        Throw,
+        Throws,
+        True,
+        Try,
+        Var,
+        Where,
+        While
     };
+
 }
