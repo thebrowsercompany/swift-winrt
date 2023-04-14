@@ -515,6 +515,56 @@ namespace swiftwinrt
             return name;
         }
     }
+    
+    inline std::string put_in_backticks_if_needed(std::string name) {
+        // any lowercase swift keywords neet to be put in backticks
+        static auto keyWords = std::set<std::string>{
+            "extension",
+            "import",
+            "func",
+            "public",
+            "private",
+            "internal",
+            "static",
+            "struct",
+            "class",
+            "enum",
+            "var",
+            "let",
+            "if",
+            "else",
+            "while",
+            "do",
+            "repeat",
+            "for",
+            "in",
+            "switch",
+            "case",
+            "default",
+            "where",
+            "break",
+            "continue",
+            "fallthrough",
+            "return",
+            "defer",
+            "throws",
+            "rethrows",
+            "throw",
+            "try",
+            "catch",
+            "as",
+            "false",
+            "is",
+            "nil",
+            "super",
+            "self",
+        };
+        if (keyWords.contains(name))
+        {
+            return "`" + name + "`";
+        }
+        return name;
+    }
 
     inline std::string to_camel_case(std::string_view const& name)
     {
@@ -540,7 +590,7 @@ namespace swiftwinrt
             }
         }
 
-        return result;
+        return put_in_backticks_if_needed(result);
     }
 
     inline std::string get_swift_name(MethodDef const& method)

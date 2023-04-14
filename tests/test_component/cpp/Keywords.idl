@@ -1,0 +1,27 @@
+import "Windows.Foundation.idl";
+
+// this is a list of swift keywords which are valid midl and c++ names
+// the goal is just to get this to compile
+namespace test_component
+{
+    enum Keywords
+    {
+        extension,
+        func,
+        internal,
+        var,
+        let,
+        repeat,
+        in,
+        where,
+        fallthrough,
+        defer,
+        throws,
+        rethrows,
+        as,
+        is,
+        nil,
+        super,
+        self,
+    };
+}

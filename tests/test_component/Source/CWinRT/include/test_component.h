@@ -1214,6 +1214,27 @@ enum __x_ABI_Ctest__component_CFruit
     __x_ABI_Ctest__component_CFruit_Pineapple = 3,
 };
 
+enum __x_ABI_Ctest__component_CKeywords
+    {
+        __x_ABI_Ctest__component_CKeywords_extension = 0,
+    __x_ABI_Ctest__component_CKeywords_func = 1,
+    __x_ABI_Ctest__component_CKeywords_internal = 2,
+    __x_ABI_Ctest__component_CKeywords_var = 3,
+    __x_ABI_Ctest__component_CKeywords_let = 4,
+    __x_ABI_Ctest__component_CKeywords_repeat = 5,
+    __x_ABI_Ctest__component_CKeywords_in = 6,
+    __x_ABI_Ctest__component_CKeywords_where = 7,
+    __x_ABI_Ctest__component_CKeywords_fallthrough = 8,
+    __x_ABI_Ctest__component_CKeywords_defer = 9,
+    __x_ABI_Ctest__component_CKeywords_throws = 10,
+    __x_ABI_Ctest__component_CKeywords_rethrows = 11,
+    __x_ABI_Ctest__component_CKeywords_as = 12,
+    __x_ABI_Ctest__component_CKeywords_is = 13,
+    __x_ABI_Ctest__component_CKeywords_nil = 14,
+    __x_ABI_Ctest__component_CKeywords_super = 15,
+    __x_ABI_Ctest__component_CKeywords_self = 16,
+};
+
 enum __x_ABI_Ctest__component_CSigned
     {
         __x_ABI_Ctest__component_CSigned_First = -1,

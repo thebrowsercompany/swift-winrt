@@ -2,6 +2,7 @@
 import Ctest_component
 
 public typealias Fruit = __x_ABI_Ctest__component_CFruit
+public typealias Keywords = __x_ABI_Ctest__component_CKeywords
 public typealias Signed = __x_ABI_Ctest__component_CSigned
 public typealias SwiftifiableNames = __x_ABI_Ctest__component_CSwiftifiableNames
 public typealias Unsigned = __x_ABI_Ctest__component_CUnsigned
@@ -1229,6 +1230,60 @@ extension test_component.Fruit {
     }
     public static var pineapple : test_component.Fruit {
         __x_ABI_Ctest__component_CFruit_Pineapple
+    }
+}
+
+extension test_component.Keywords {
+    public static var `extension` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_extension
+    }
+    public static var `func` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_func
+    }
+    public static var `internal` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_internal
+    }
+    public static var `var` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_var
+    }
+    public static var `let` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_let
+    }
+    public static var `repeat` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_repeat
+    }
+    public static var `in` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_in
+    }
+    public static var `where` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_where
+    }
+    public static var `fallthrough` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_fallthrough
+    }
+    public static var `defer` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_defer
+    }
+    public static var `throws` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_throws
+    }
+    public static var `rethrows` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_rethrows
+    }
+    public static var `as` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_as
+    }
+    public static var `is` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_is
+    }
+    public static var `nil` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_nil
+    }
+    public static var `super` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_super
+    }
+    public static var `self` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_self
     }
 }
 
