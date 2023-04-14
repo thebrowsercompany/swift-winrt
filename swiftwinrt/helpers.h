@@ -558,6 +558,7 @@ namespace swiftwinrt
             "nil",
             "super",
             "self",
+            "protocol"
         };
         if (keyWords.contains(name))
         {

@@ -1285,6 +1285,9 @@ extension test_component.Keywords {
     public static var `self` : test_component.Keywords {
         __x_ABI_Ctest__component_CKeywords_self
     }
+    public static var `protocol` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_protocol
+    }
 }
 
 extension test_component.Signed {

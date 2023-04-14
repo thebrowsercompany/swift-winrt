@@ -1233,6 +1233,7 @@ enum __x_ABI_Ctest__component_CKeywords
     __x_ABI_Ctest__component_CKeywords_nil = 14,
     __x_ABI_Ctest__component_CKeywords_super = 15,
     __x_ABI_Ctest__component_CKeywords_self = 16,
+    __x_ABI_Ctest__component_CKeywords_protocol = 17,
 };
 
 enum __x_ABI_Ctest__component_CSigned
