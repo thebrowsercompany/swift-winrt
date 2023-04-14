@@ -1,6 +1,16 @@
 
 set(GENERATED_FILES_DIR ${CMAKE_CURRENT_SOURCE_DIR})
-file(GLOB SWIFTWINRT_GENERATED_FILES ${GENERATED_FILES_DIR}/*)
+set(SWIFTWINRT_GENERATED_FILES
+  Windows.Foundation.swift
+  Windows.Foundation+ABI.swift
+  Windows.Foundation+Impl.swift
+  test_component.swift
+  test_component+ABI.swift
+  test_component+Impl.swift
+  test_component.Delegates.swift
+  test_component.Delegates+ABI.swift
+  test_component.Delegates+Impl.swift
+)
 file(GLOB SUPPORT_FILES ${GENERATED_FILES_DIR}/Support/*)
 add_library(test_component SHARED
   ${SWIFTWINRT_GENERATED_FILES}

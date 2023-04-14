@@ -19,7 +19,7 @@ public enum __IMPL_Windows_Foundation {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Foundation.IClosableVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
-        public func Close() {
+        public func close() {
             try! _default.CloseImpl()
         }
 
@@ -32,66 +32,66 @@ public enum __IMPL_Windows_Foundation {
         public init(value: Any) {
             _value = value
             if _value is Int32 {
-                propertyType = .Int32
+                propertyType = .int32
             } else if _value is UInt8 {
-                propertyType = .UInt8
+                propertyType = .uint8
             } else if _value is Int16 {
-                propertyType = .Int16
+                propertyType = .int16
             } else if _value is UInt32 {
-                propertyType = .UInt32
+                propertyType = .uint32
             } else if _value is Int64 {
-                propertyType = .Int64
+                propertyType = .int64
             } else if _value is UInt64 {
-                propertyType = .UInt64
+                propertyType = .uint64
             } else if _value is Float {
-                propertyType = .Single
+                propertyType = .single
             } else if _value is Double {
-                propertyType = .Double
+                propertyType = .double
             } else if _value is Character {
-                propertyType = .Char16
+                propertyType = .char16
             } else if _value is Bool {
-                propertyType = .Boolean
+                propertyType = .boolean
             } else if _value is DateTime {
-                propertyType = .DateTime
+                propertyType = .dateTime
             } else if _value is TimeSpan {
-                propertyType = .TimeSpan
+                propertyType = .timeSpan
             } else if _value is IWinRTObject {
-                propertyType = .Inspectable
+                propertyType = .inspectable
             } else if _value is IInspectable {
-                propertyType = .Inspectable
+                propertyType = .inspectable
             } else {
-                propertyType = .OtherType
+                propertyType = .otherType
             }
         }
 
-        public var `Type`: PropertyType { propertyType }
-        public var IsNumericScalar: Bool { 
+        public var type: PropertyType { propertyType }
+        public var isNumericScalar: Bool { 
             switch propertyType {
-                case .Int16, .Int32, .UInt16, .UInt8, .Int64, .UInt64, .Single, .Double: return true
+                case .int16, .int32, .uint16, .uint8, .int64, .uint64, .single, .double: return true
                 default: return false
             }
         }
 
-        public var Value: Any { _value }
+        public var value: Any { _value }
 
-        public func GetUInt8() -> UInt8 { _value as! UInt8 }
-        public func GetInt16() -> Int16 { _value as! Int16 }
-        public func GetUInt16() -> UInt16 { _value as! UInt16 }
-        public func GetInt32() -> Int32 { _value as! Int32 }
-        public func GetUInt32() -> UInt32 { _value as! UInt32 }
-        public func GetInt64() -> Int64 { _value as! Int64 }
-        public func GetUInt64() -> UInt64 { _value as! UInt64 }
-        public func GetSingle() -> Float { _value as! Float }
-        public func GetDouble() -> Double { _value as! Double }
-        public func GetChar16() -> Character { _value as! Character }
-        public func GetBoolean() -> Bool { _value as! Bool }
-        public func GetString() -> String { _value as! String }
-        public func GetGuid() -> UUID { _value as! UUID }
-        public func GetDateTime() -> DateTime { _value as! DateTime } 
-        public func GetTimeSpan() -> TimeSpan { _value as! TimeSpan }
-        public func GetPoint() -> Point { _value as! Point }
-        public func GetSize() -> Size { _value as! Size }
-        public func GetRect() -> Rect { _value as! Rect }
+        public func getUInt8() -> UInt8 { _value as! UInt8 }
+        public func getInt16() -> Int16 { _value as! Int16 }
+        public func getUInt16() -> UInt16 { _value as! UInt16 }
+        public func getInt32() -> Int32 { _value as! Int32 }
+        public func getUInt32() -> UInt32 { _value as! UInt32 }
+        public func getInt64() -> Int64 { _value as! Int64 }
+        public func getUInt64() -> UInt64 { _value as! UInt64 }
+        public func getSingle() -> Float { _value as! Float }
+        public func getDouble() -> Double { _value as! Double }
+        public func getChar16() -> Character { _value as! Character }
+        public func getBoolean() -> Bool { _value as! Bool }
+        public func getString() -> String { _value as! String }
+        public func getGuid() -> UUID { _value as! UUID }
+        public func getDateTime() -> DateTime { _value as! DateTime } 
+        public func getTimeSpan() -> TimeSpan { _value as! TimeSpan }
+        public func getPoint() -> Point { _value as! Point }
+        public func getSize() -> Size { _value as! Size }
+        public func getRect() -> Rect { _value as! Rect }
     }
 
 }

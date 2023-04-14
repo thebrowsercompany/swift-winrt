@@ -516,45 +516,67 @@ namespace swiftwinrt
         }
     }
 
-    inline std::string_view put_in_backticks_if_needed(std::string_view const& name)
+    inline std::string to_camel_case(std::string_view const& name)
     {
-        if (name == "Protocol")
-        {
-            return "`Protocol`";
+        std::string result = std::string(name);
+        result[0] = tolower(result[0]);
+
+        // One or two leading capitals: GetFoo -> getFoo / UInt32 -> uint32
+        // 3+ leading capitals or mixed digits, keep the last one: 
+        //    UIElement -> uiElement / HELLOWorld -> helloWorld / R8G8B8Alpha -> r8g8b8Alpha
+        if (result.size() > 1 && isupper(result[1]) || isdigit(result[1])){
+            result[1] = tolower(result[1]);
+            int next = 2;
+            while (next < result.size() && (isupper(result[next]) || isdigit(result[next])))
+            {
+                result[next - 1] = tolower(result[next - 1]);
+                next++;
+            }
+
+            // If we got to the end of the string, this means everything was uppercase,
+            // so we need to lowercase the last character
+            if (next == result.size() && isupper(result[next -1])) {
+                result[next - 1] = tolower(result[next - 1]);
+            }
         }
-        else if (name == "Type")
-        {
-            return "`Type`";
-        }
-        else if (name == "Self")
-        {
-            return "`Self`";
-        }
-        return name;
+
+        return result;
     }
-    inline std::string_view get_swift_name(MethodDef const& method)
+
+    inline std::string get_swift_name(MethodDef const& method)
     {
         // the swift name for the Invoke method of a delegate is the `handler` property
         if (get_category(method.Parent()) == category::delegate_type && method.Name() != ".ctor")
         {
             return "handler";
         }
-        return put_in_backticks_if_needed(method.Name());
+        else if (is_get_overload(method) || is_put_overload(method) || is_add_overload(method))
+        {
+            return to_camel_case(method.Name().substr(sizeof("get")));
+        }
+        else if (is_remove_overload(method))
+        {
+            return to_camel_case(method.Name().substr(sizeof("remove")));
+        }
+        else
+        {
+            return to_camel_case(method.Name());
+        }
     }
 
-    inline std::string_view get_swift_name(Property const& property)
+    inline std::string get_swift_name(Property const& property)
     {
-        return put_in_backticks_if_needed(property.Name());
+        return to_camel_case(property.Name());
     }
 
-    inline std::string_view get_swift_name(Event const& event)
+    inline std::string get_swift_name(Event const& event)
     {
-        return put_in_backticks_if_needed(event.Name());
+        return to_camel_case(event.Name());
     }
 
-    inline std::string_view get_swift_name(Field const& field)
+    inline std::string get_swift_name(Field const& field)
     {
-        return put_in_backticks_if_needed(field.Name());
+        return to_camel_case(field.Name());
     }
 
     inline std::string_view get_swift_name(Param const& param)
@@ -567,26 +589,30 @@ namespace swiftwinrt
         return get_swift_name(param.def);
     }
 
-    inline std::string_view get_swift_name(property_def const& property)
+    inline std::string get_swift_name(property_def const& property)
     {
-        return put_in_backticks_if_needed(property.def.Name());
+        return to_camel_case(property.def.Name());
     }
 
-    inline std::string_view get_swift_name(function_def const& function)
+    inline std::string get_swift_name(function_def const& function)
     {
         // the swift name for the Invoke method of a delegate is the `handler` property
         if (get_category(function.def.Parent()) == category::delegate_type && function.def.Name() != ".ctor")
         {
             return "handler";
         }
-        return put_in_backticks_if_needed(function.def.Name());
+        return to_camel_case(function.def.Name());
     }
 
-    inline std::string_view get_swift_name(struct_member const& member)
+    inline std::string get_swift_name(struct_member const& member)
     {
-        return put_in_backticks_if_needed(member.field.Name());
+        return to_camel_case(member.field.Name());
     }
 
+    inline std::string_view get_abi_name(struct_member const& member)
+    {
+        return member.field.Name();
+    }
     inline std::string_view remove_backtick(std::string_view const& name)
     {
         auto back_tick_i = name.find_first_of('`');

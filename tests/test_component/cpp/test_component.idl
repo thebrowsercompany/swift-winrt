@@ -15,6 +15,17 @@ import "Windows.Foundation.idl";
 
 namespace test_component
 {
+        // Just defined to validate we properly generate this name
+        enum SwiftifiableNames
+        {
+            camelCase, // Should be preserved
+            PascalCase, // Should become pascalCase
+            ESingleLetterPrefixed, // Should become esingleLetterPrefixed
+            LEADINGCaps, // Should become leadingCaps
+            R8G8B8A8Typeless, // Should become r8g8b8a8Typeless (from D3D)
+            UUID, // Should become uuid
+        };
+        
         struct BlittableStruct
         {
             Int32 First;
@@ -146,7 +157,7 @@ namespace test_component
 
             Fruit EnumProperty;
 
-            Windows.Foundation.IReference<Guid> ID;
+            Windows.Foundation.IReference<Guid> Id;
             event test_component.Delegates.InDelegate ImplementableEvent;
             void FireEvent();
         }
@@ -277,7 +288,7 @@ namespace test_component
             void OutChar(out Char value);
 
             Windows.Foundation.IReference<Int32> StartValue;
-            Windows.Foundation.IReference<Guid> ID;
+            Windows.Foundation.IReference<Guid> Id;
 
             //Object ItemsSource;
             // Windows.Foundation.Collections.IVector<Simple> Children { get; };

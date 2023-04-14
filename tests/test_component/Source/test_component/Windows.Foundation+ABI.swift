@@ -76,7 +76,7 @@ public enum __ABI_Windows_Foundation {
 
         Close: {
             guard let __unwrapped__instance = IClosableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            __unwrapped__instance.Close()
+            __unwrapped__instance.close()
             return S_OK
         }
     )
@@ -302,140 +302,140 @@ public enum __ABI_Windows_Foundation {
 
         get_Type: {
             guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let value = __unwrapped__instance.Type
+            let value = __unwrapped__instance.type
             $1?.initialize(to: value)
             return S_OK
         },
 
         get_IsNumericScalar: {
             guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let value = __unwrapped__instance.IsNumericScalar
+            let value = __unwrapped__instance.isNumericScalar
             $1?.initialize(to: .init(from: value))
             return S_OK
         },
 
         GetUInt8: {
             guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let value = __unwrapped__instance.GetUInt8()
+            let value = __unwrapped__instance.getUInt8()
             $1?.initialize(to: value)
             return S_OK
         },
 
         GetInt16: {
             guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let value = __unwrapped__instance.GetInt16()
+            let value = __unwrapped__instance.getInt16()
             $1?.initialize(to: value)
             return S_OK
         },
 
         GetUInt16: {
             guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let value = __unwrapped__instance.GetUInt16()
+            let value = __unwrapped__instance.getUInt16()
             $1?.initialize(to: value)
             return S_OK
         },
 
         GetInt32: {
             guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let value = __unwrapped__instance.GetInt32()
+            let value = __unwrapped__instance.getInt32()
             $1?.initialize(to: value)
             return S_OK
         },
 
         GetUInt32: {
             guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let value = __unwrapped__instance.GetUInt32()
+            let value = __unwrapped__instance.getUInt32()
             $1?.initialize(to: value)
             return S_OK
         },
 
         GetInt64: {
             guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let value = __unwrapped__instance.GetInt64()
+            let value = __unwrapped__instance.getInt64()
             $1?.initialize(to: value)
             return S_OK
         },
 
         GetUInt64: {
             guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let value = __unwrapped__instance.GetUInt64()
+            let value = __unwrapped__instance.getUInt64()
             $1?.initialize(to: value)
             return S_OK
         },
 
         GetSingle: {
             guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let value = __unwrapped__instance.GetSingle()
+            let value = __unwrapped__instance.getSingle()
             $1?.initialize(to: value)
             return S_OK
         },
 
         GetDouble: {
             guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let value = __unwrapped__instance.GetDouble()
+            let value = __unwrapped__instance.getDouble()
             $1?.initialize(to: value)
             return S_OK
         },
 
         GetChar16: {
             guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let value = __unwrapped__instance.GetChar16()
+            let value = __unwrapped__instance.getChar16()
             $1?.initialize(to: .init(from: value))
             return S_OK
         },
 
         GetBoolean: {
             guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let value = __unwrapped__instance.GetBoolean()
+            let value = __unwrapped__instance.getBoolean()
             $1?.initialize(to: .init(from: value))
             return S_OK
         },
 
         GetString: {
             guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let value = __unwrapped__instance.GetString()
+            let value = __unwrapped__instance.getString()
             $1?.initialize(to: try! HString(value).detach())
             return S_OK
         },
 
         GetGuid: {
             guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let value = __unwrapped__instance.GetGuid()
+            let value = __unwrapped__instance.getGuid()
             $1?.initialize(to: value)
             return S_OK
         },
 
         GetDateTime: {
             guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let value = __unwrapped__instance.GetDateTime()
+            let value = __unwrapped__instance.getDateTime()
             $1?.initialize(to: .from(swift: value))
             return S_OK
         },
 
         GetTimeSpan: {
             guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let value = __unwrapped__instance.GetTimeSpan()
+            let value = __unwrapped__instance.getTimeSpan()
             $1?.initialize(to: .from(swift: value))
             return S_OK
         },
 
         GetPoint: {
             guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let value = __unwrapped__instance.GetPoint()
+            let value = __unwrapped__instance.getPoint()
             $1?.initialize(to: .from(swift: value))
             return S_OK
         },
 
         GetSize: {
             guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let value = __unwrapped__instance.GetSize()
+            let value = __unwrapped__instance.getSize()
             $1?.initialize(to: .from(swift: value))
             return S_OK
         },
 
         GetRect: {
             guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let value = __unwrapped__instance.GetRect()
+            let value = __unwrapped__instance.getRect()
             $1?.initialize(to: .from(swift: value))
             return S_OK
         },
@@ -499,26 +499,26 @@ public enum __ABI_Windows_Foundation {
 }
 extension __x_ABI_CWindows_CFoundation_CDateTime {
     public static func from(swift: test_component.DateTime) -> __x_ABI_CWindows_CFoundation_CDateTime {
-        .init(UniversalTime: swift.UniversalTime)
+        .init(UniversalTime: swift.universalTime)
     }
 }
 extension __x_ABI_CWindows_CFoundation_CPoint {
     public static func from(swift: test_component.Point) -> __x_ABI_CWindows_CFoundation_CPoint {
-        .init(X: swift.X, Y: swift.Y)
+        .init(X: swift.x, Y: swift.y)
     }
 }
 extension __x_ABI_CWindows_CFoundation_CRect {
     public static func from(swift: test_component.Rect) -> __x_ABI_CWindows_CFoundation_CRect {
-        .init(X: swift.X, Y: swift.Y, Width: swift.Width, Height: swift.Height)
+        .init(X: swift.x, Y: swift.y, Width: swift.width, Height: swift.height)
     }
 }
 extension __x_ABI_CWindows_CFoundation_CSize {
     public static func from(swift: test_component.Size) -> __x_ABI_CWindows_CFoundation_CSize {
-        .init(Width: swift.Width, Height: swift.Height)
+        .init(Width: swift.width, Height: swift.height)
     }
 }
 extension __x_ABI_CWindows_CFoundation_CTimeSpan {
     public static func from(swift: test_component.TimeSpan) -> __x_ABI_CWindows_CFoundation_CTimeSpan {
-        .init(Duration: swift.Duration)
+        .init(Duration: swift.duration)
     }
 }
