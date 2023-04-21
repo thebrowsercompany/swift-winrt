@@ -9,9 +9,9 @@ public struct DateTime {
         self.universalTime = universalTime
     }
     public static func from(abi: __x_ABI_CWindows_CFoundation_CDateTime) -> DateTime {
-        .init(universalTime: abi.UniversalTime)
-    }
-}
+            .init(universalTime: abi.UniversalTime)
+        }
+        }
 
 public struct Point {
     public var x: Float = 0.0
@@ -22,9 +22,9 @@ public struct Point {
         self.y = y
     }
     public static func from(abi: __x_ABI_CWindows_CFoundation_CPoint) -> Point {
-        .init(x: abi.X, y: abi.Y)
-    }
-}
+            .init(x: abi.X, y: abi.Y)
+        }
+        }
 
 public struct Rect {
     public var x: Float = 0.0
@@ -39,9 +39,9 @@ public struct Rect {
         self.height = height
     }
     public static func from(abi: __x_ABI_CWindows_CFoundation_CRect) -> Rect {
-        .init(x: abi.X, y: abi.Y, width: abi.Width, height: abi.Height)
-    }
-}
+            .init(x: abi.X, y: abi.Y, width: abi.Width, height: abi.Height)
+        }
+        }
 
 public struct Size {
     public var width: Float = 0.0
@@ -52,9 +52,9 @@ public struct Size {
         self.height = height
     }
     public static func from(abi: __x_ABI_CWindows_CFoundation_CSize) -> Size {
-        .init(width: abi.Width, height: abi.Height)
-    }
-}
+            .init(width: abi.Width, height: abi.Height)
+        }
+        }
 
 public struct TimeSpan {
     public var duration: Int64 = 0
@@ -63,9 +63,9 @@ public struct TimeSpan {
         self.duration = duration
     }
     public static func from(abi: __x_ABI_CWindows_CFoundation_CTimeSpan) -> TimeSpan {
-        .init(duration: abi.Duration)
-    }
-}
+            .init(duration: abi.Duration)
+        }
+        }
 
 public protocol IClosable : IWinRTObject { 
         func close()

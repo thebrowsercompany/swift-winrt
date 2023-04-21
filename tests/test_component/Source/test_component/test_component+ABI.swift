@@ -3229,16 +3229,16 @@ fileprivate extension UUID {
     }
 } 
 extension __x_ABI_Ctest__component_CBlittableStruct {
-    public static func from(swift: test_component.BlittableStruct) -> __x_ABI_Ctest__component_CBlittableStruct {
-        .init(First: swift.first, Second: swift.second)
+        public static func from(swift: test_component.BlittableStruct) -> __x_ABI_Ctest__component_CBlittableStruct {
+            .init(First: swift.first, Second: swift.second)
+        }
     }
-}
-extension __x_ABI_Ctest__component_CSimpleEventArgs {
-    public static func from(swift: test_component.SimpleEventArgs) -> __x_ABI_Ctest__component_CSimpleEventArgs {
-        .init(Value: swift.value)
+    extension __x_ABI_Ctest__component_CSimpleEventArgs {
+        public static func from(swift: test_component.SimpleEventArgs) -> __x_ABI_Ctest__component_CSimpleEventArgs {
+            .init(Value: swift.value)
+        }
     }
-}
-extension ComposableImpl where CABI == __x_ABI_Ctest__component_CIBaseOverrides {
+    extension ComposableImpl where CABI == __x_ABI_Ctest__component_CIBaseOverrides {
     public static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IBaseOverridesVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
