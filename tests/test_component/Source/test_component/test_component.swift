@@ -1139,7 +1139,7 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
 }
 
 public typealias VoidToVoidDelegate = __IMPL_test_component.VoidToVoidDelegateImpl
-public struct BlittableStruct : Equatable {
+public struct BlittableStruct: Equatable {
     public var first: Int32 = 0
     public var second: Int32 = 0
     public init() {}
@@ -1152,7 +1152,7 @@ public struct BlittableStruct : Equatable {
         }
         }
 
-public struct NonBlittableBoolStruct : Equatable {
+public struct NonBlittableBoolStruct: Equatable {
     public var first: Bool = false
     public var second: Bool = false
     public var third: Bool = false
@@ -1169,7 +1169,7 @@ public struct NonBlittableBoolStruct : Equatable {
         }
         }
 
-public struct NonBlittableStruct : Equatable {
+public struct NonBlittableStruct: Equatable {
     public var first: String = ""
     public var second: String = ""
     public var third: Int32 = 0
@@ -1186,7 +1186,7 @@ public struct NonBlittableStruct : Equatable {
         }
         }
 
-public struct SimpleEventArgs : Equatable {
+public struct SimpleEventArgs: Equatable {
     public var value: Int32 = 0
     public init() {}
     public init(value: Int32) {
