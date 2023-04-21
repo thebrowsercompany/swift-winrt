@@ -2,7 +2,7 @@
 import Ctest_component
 
 public typealias PropertyType = __x_ABI_CWindows_CFoundation_CPropertyType
-public struct DateTime {
+public struct DateTime : Equatable {
     public var universalTime: Int64 = 0
     public init() {}
     public init(universalTime: Int64) {
@@ -13,7 +13,7 @@ public struct DateTime {
         }
         }
 
-public struct Point {
+public struct Point : Equatable {
     public var x: Float = 0.0
     public var y: Float = 0.0
     public init() {}
@@ -26,7 +26,7 @@ public struct Point {
         }
         }
 
-public struct Rect {
+public struct Rect : Equatable {
     public var x: Float = 0.0
     public var y: Float = 0.0
     public var width: Float = 0.0
@@ -43,7 +43,7 @@ public struct Rect {
         }
         }
 
-public struct Size {
+public struct Size : Equatable {
     public var width: Float = 0.0
     public var height: Float = 0.0
     public init() {}
@@ -56,7 +56,7 @@ public struct Size {
         }
         }
 
-public struct TimeSpan {
+public struct TimeSpan : Equatable {
     public var duration: Int64 = 0
     public init() {}
     public init(duration: Int64) {
