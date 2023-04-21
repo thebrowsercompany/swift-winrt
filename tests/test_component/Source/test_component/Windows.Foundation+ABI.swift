@@ -498,27 +498,28 @@ public enum __ABI_Windows_Foundation {
     }
 }
 extension __x_ABI_CWindows_CFoundation_CDateTime {
-    public static func from(swift: test_component.DateTime) -> __x_ABI_CWindows_CFoundation_CDateTime {
-        .init(UniversalTime: swift.universalTime)
+        public static func from(swift: test_component.DateTime) -> __x_ABI_CWindows_CFoundation_CDateTime {
+            .init(UniversalTime: swift.universalTime)
+        }
     }
-}
-extension __x_ABI_CWindows_CFoundation_CPoint {
-    public static func from(swift: test_component.Point) -> __x_ABI_CWindows_CFoundation_CPoint {
-        .init(X: swift.x, Y: swift.y)
+    extension __x_ABI_CWindows_CFoundation_CPoint {
+        public static func from(swift: test_component.Point) -> __x_ABI_CWindows_CFoundation_CPoint {
+            .init(X: swift.x, Y: swift.y)
+        }
     }
-}
-extension __x_ABI_CWindows_CFoundation_CRect {
-    public static func from(swift: test_component.Rect) -> __x_ABI_CWindows_CFoundation_CRect {
-        .init(X: swift.x, Y: swift.y, Width: swift.width, Height: swift.height)
+    extension __x_ABI_CWindows_CFoundation_CRect {
+        public static func from(swift: test_component.Rect) -> __x_ABI_CWindows_CFoundation_CRect {
+            .init(X: swift.x, Y: swift.y, Width: swift.width, Height: swift.height)
+        }
     }
-}
-extension __x_ABI_CWindows_CFoundation_CSize {
-    public static func from(swift: test_component.Size) -> __x_ABI_CWindows_CFoundation_CSize {
-        .init(Width: swift.width, Height: swift.height)
+    extension __x_ABI_CWindows_CFoundation_CSize {
+        public static func from(swift: test_component.Size) -> __x_ABI_CWindows_CFoundation_CSize {
+            .init(Width: swift.width, Height: swift.height)
+        }
     }
-}
-extension __x_ABI_CWindows_CFoundation_CTimeSpan {
-    public static func from(swift: test_component.TimeSpan) -> __x_ABI_CWindows_CFoundation_CTimeSpan {
-        .init(Duration: swift.duration)
+    extension __x_ABI_CWindows_CFoundation_CTimeSpan {
+        public static func from(swift: test_component.TimeSpan) -> __x_ABI_CWindows_CFoundation_CTimeSpan {
+            .init(Duration: swift.duration)
+        }
     }
-}
+    

@@ -4,6 +4,8 @@
 #include "versioning.h"
 #include "types.h"
 #include "metadata_cache.h"
+#include "type_writers.h"
+#include "settings.h"
 namespace swiftwinrt
 {
     template <typename T>

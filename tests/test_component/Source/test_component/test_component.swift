@@ -1148,9 +1148,9 @@ public struct BlittableStruct {
         self.second = second
     }
     public static func from(abi: __x_ABI_Ctest__component_CBlittableStruct) -> BlittableStruct {
-        .init(first: abi.First, second: abi.Second)
-    }
-}
+            .init(first: abi.First, second: abi.Second)
+        }
+        }
 
 public struct NonBlittableBoolStruct {
     public var first: Bool = false
@@ -1165,9 +1165,9 @@ public struct NonBlittableBoolStruct {
         self.fourth = fourth
     }
     public static func from(abi: __x_ABI_Ctest__component_CNonBlittableBoolStruct) -> NonBlittableBoolStruct {
-        .init(first: .init(from: abi.First), second: .init(from: abi.Second), third: .init(from: abi.Third), fourth: .init(from: abi.Fourth))
-    }
-}
+            .init(first: .init(from: abi.First), second: .init(from: abi.Second), third: .init(from: abi.Third), fourth: .init(from: abi.Fourth))
+        }
+        }
 
 public struct NonBlittableStruct {
     public var first: String = ""
@@ -1182,9 +1182,9 @@ public struct NonBlittableStruct {
         self.fourth = fourth
     }
     public static func from(abi: __x_ABI_Ctest__component_CNonBlittableStruct) -> NonBlittableStruct {
-        .init(first: .init(from: abi.First), second: .init(from: abi.Second), third: abi.Third, fourth: .init(from: abi.Fourth))
-    }
-}
+            .init(first: .init(from: abi.First), second: .init(from: abi.Second), third: abi.Third, fourth: .init(from: abi.Fourth))
+        }
+        }
 
 public struct SimpleEventArgs {
     public var value: Int32 = 0
@@ -1193,9 +1193,9 @@ public struct SimpleEventArgs {
         self.value = value
     }
     public static func from(abi: __x_ABI_Ctest__component_CSimpleEventArgs) -> SimpleEventArgs {
-        .init(value: abi.Value)
-    }
-}
+            .init(value: abi.Value)
+        }
+        }
 
 public protocol IBasic : IWinRTObject { 
         func method()
