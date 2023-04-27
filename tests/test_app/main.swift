@@ -531,10 +531,10 @@ class SwiftWinRTTests : XCTestCase {
     disposable.removeAll(keepingCapacity: true)
 
     simple.fireEvent()
-    XCTAssertEqual(count, 4)
+    XCTAssertEqual(count, 2)
 
     Simple.fireStaticEvent()
-    XCTAssertEqual(static_count, 4)
+    XCTAssertEqual(static_count, 2)
 
     // hookup the handlers again and make sure it works, just to be safe
     simple.signalEvent.addHandler {
