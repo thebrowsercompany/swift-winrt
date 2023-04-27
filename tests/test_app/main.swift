@@ -505,31 +505,21 @@ class SwiftWinRTTests : XCTestCase {
       count+=1
     })
 
-    disposable.append(simple.signalEvent += {
-      print("handler 2 called")
-      count+=1
-    })
-
     disposable.append(Simple.staticEvent.addHandler { (_,_) in
       print("static handler 1 called")
       static_count+=1
     })
 
-    disposable.append(Simple.staticEvent += { (_,_) in
-      print("static handler 2 called")
-      static_count+=1
-    })
+    simple.fireEvent()
+    XCTAssertEqual(count, 1)
 
     simple.fireEvent()
     XCTAssertEqual(count, 2)
 
-    simple.fireEvent()
-    XCTAssertEqual(count, 4)
-
+    Simple.fireStaticEvent()
+    XCTAssertEqual(static_count, 1)
     Simple.fireStaticEvent()
     XCTAssertEqual(static_count, 2)
-    Simple.fireStaticEvent()
-    XCTAssertEqual(static_count, 4)
 
     // dispose of the handlers and make sure we
     // aren't getting more events
@@ -547,32 +537,21 @@ class SwiftWinRTTests : XCTestCase {
     XCTAssertEqual(static_count, 4)
 
     // hookup the handlers again and make sure it works, just to be safe
-    _ = simple.signalEvent.addHandler {
+    simple.signalEvent.addHandler {
       print("handler 1 called")
       count+=1
     }
-
-    print("hooking up handler 2")
-    disposable.append(simple.signalEvent += {
-      print("handler 2 called")
-      count+=1
-    })
 
     disposable.append(Simple.staticEvent.addHandler { (_,_) in
       print("static handler 1 called")
       static_count+=1
     })
 
-    disposable.append(Simple.staticEvent += { (_,_) in
-      print("static handler 2 called")
-      static_count+=1
-    })
-
     simple.fireEvent()
-    XCTAssertEqual(count, 6)
+    XCTAssertEqual(count, 3)
 
     Simple.fireStaticEvent()
-    XCTAssertEqual(static_count, 6)
+    XCTAssertEqual(static_count, 3)
   }
 
   public func testAggregation() {

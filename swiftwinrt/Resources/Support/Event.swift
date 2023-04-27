@@ -2,7 +2,7 @@ import WinSDK
 import C_BINDINGS_MODULE
 
 public class Event<Data, Return> {
-    open func addHandler(handler: @escaping (Data) -> Return) -> Disposable? { fatalError("not implemented") }
+    @discardableResult open func addHandler(handler: @escaping (Data) -> Return) -> Disposable? { fatalError("not implemented") }
 }
 
 public class EventImpl<Delegate: WinRTDelegate>: Event<Delegate.Data, Delegate.Return> {
@@ -13,7 +13,7 @@ public class EventImpl<Delegate: WinRTDelegate>: Event<Delegate.Data, Delegate.R
         self.owner = owner
     }
 
-    override open func addHandler(handler: @escaping (Delegate.Data) -> Delegate.Return) -> Disposable? {
+    @discardableResult override open func addHandler(handler: @escaping (Delegate.Data) -> Delegate.Return) -> Disposable? {
         guard let owner = owner else { return nil }
         let delegate = Delegate(handler: handler)
         register.add(delegate: delegate , for: owner)
@@ -57,8 +57,4 @@ public protocol WinRTDelegate : IWinRTObject {
 
 public protocol Disposable {
  func dispose()
-}
-
-public func += <Data, Return> (left: Event<Data, Return>, right:@escaping (Data) -> Return) -> Disposable? {
-  left.addHandler(handler: right)
 }
