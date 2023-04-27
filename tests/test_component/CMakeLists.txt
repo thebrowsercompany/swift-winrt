@@ -22,10 +22,11 @@ file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/SwiftWinRT.rsp ${SWIFT_WINRT_PARAMETERS})
 add_subdirectory(cpp)
 add_subdirectory(Source)
 
-# Since a lot of the bindings code isn't fully implemented, don't run the tool
-# during build as this could modify the checked-in files as well as break the
-# build.
-#add_dependencies(WinRT_Test swiftwinrt)
-#add_custom_command(
-#  OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/Generated/ArcCoreWinRT.swift
-#  COMMAND ${CMAKE_BINARY_DIR}/bin/swiftwinrt.exe -ns-prefix -input ${ArcCore_INCLUDE_DIR}/bin/ArcCoreWin.winmd -output ${CMAKE_CURRENT_SOURCE_DIR}/Generated/ -import Ctest_component -reference 10.0.20348.0)
+# re-run swiftwinrt to ensure the bindings get updated
+set(SWIFTWINRT_PARAM_FILE ${CMAKE_CURRENT_BINARY_DIR}/SwiftWinRT.rsp)
+add_custom_target(GenerateBindings
+  BYPRODUCTS ${CMAKE_CURRENT_SOURCE_DIR}/Source/test_component/test_component.swift
+  DEPENDS ${SWIFTWINRT_PARAM_FILE}
+  COMMAND ${CMAKE_BINARY_DIR}/swiftwinrt/swiftwinrt.exe @${SWIFTWINRT_PARAM_FILE})
+add_dependencies(GenerateBindings swiftwinrt)
+add_dependencies(test_component GenerateBindings)
