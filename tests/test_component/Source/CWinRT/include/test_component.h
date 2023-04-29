@@ -1202,6 +1202,8 @@ typedef interface __x_ABI_Ctest__component_CDelegates_CISignalDelegate __x_ABI_C
 
 typedef enum __x_ABI_Ctest__component_CSigned __x_ABI_Ctest__component_CSigned;
 
+typedef enum __x_ABI_Ctest__component_CSwiftifiableNames __x_ABI_Ctest__component_CSwiftifiableNames;
+
 typedef struct __x_ABI_Ctest__component_CBlittableStruct __x_ABI_Ctest__component_CBlittableStruct;
 
 typedef struct __x_ABI_Ctest__component_CNonBlittableStruct __x_ABI_Ctest__component_CNonBlittableStruct;
@@ -1308,6 +1310,11 @@ struct __x_ABI_Ctest__component_CNonBlittableStruct
 struct __x_ABI_Ctest__component_CSimpleEventArgs
     {
         INT32 Value;
+};
+
+struct __x_ABI_Ctest__component_CStructWithEnum
+    {
+        enum __x_ABI_Ctest__component_CSwiftifiableNames Names;
 };
 
 #if !defined(____x_ABI_Ctest__component_CIVoidToVoidDelegate_INTERFACE_DEFINED__)

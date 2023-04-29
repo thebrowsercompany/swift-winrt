@@ -27,6 +27,7 @@ set(SWIFTWINRT_PARAM_FILE ${CMAKE_CURRENT_BINARY_DIR}/SwiftWinRT.rsp)
 add_custom_target(GenerateBindings
   BYPRODUCTS ${CMAKE_CURRENT_SOURCE_DIR}/Source/test_component/test_component.swift
   DEPENDS ${SWIFTWINRT_PARAM_FILE}
+  DEPENDS ${WINMD_FILE}
   COMMAND ${CMAKE_BINARY_DIR}/swiftwinrt/swiftwinrt.exe @${SWIFTWINRT_PARAM_FILE})
 add_dependencies(GenerateBindings swiftwinrt)
 add_dependencies(test_component GenerateBindings)

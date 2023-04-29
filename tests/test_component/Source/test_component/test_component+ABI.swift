@@ -3238,6 +3238,11 @@ extension __x_ABI_Ctest__component_CBlittableStruct {
             .init(Value: swift.value)
         }
     }
+    extension __x_ABI_Ctest__component_CStructWithEnum {
+        public static func from(swift: test_component.StructWithEnum) -> __x_ABI_Ctest__component_CStructWithEnum {
+            .init(Names: swift.names)
+        }
+    }
     extension ComposableImpl where CABI == __x_ABI_Ctest__component_CIBaseOverrides {
     public static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IBaseOverridesVTable) { $0 }
