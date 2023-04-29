@@ -49,6 +49,11 @@ namespace test_component
             Boolean Fourth;
         };
 
+        struct StructWithEnum
+        {
+            SwiftifiableNames Names;
+        };
+
         namespace Delegates
         {
             delegate void SignalDelegate();

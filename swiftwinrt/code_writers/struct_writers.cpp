@@ -63,7 +63,7 @@ namespace swiftwinrt
 
     void write_struct(writer & w, struct_type const& type)
     {
-        w.write("public struct % {\n", type);
+        w.write("public struct %: Hashable, Codable {\n", type);
         {
             auto indent_guard1 = w.push_indent();
             for (auto&& field : type.members)
