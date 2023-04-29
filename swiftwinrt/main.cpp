@@ -325,7 +325,7 @@ Where <spec> is one or more of:
                     std::forward_as_tuple());
                 if (moduleAdded)
                 {
-                    create_directories(output_folder / "Source" / module_name);
+                    create_directories(output_folder / module_name);
                 }
                 moduleMapItr->second.push_back(ns);
             }

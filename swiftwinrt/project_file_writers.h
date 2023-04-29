@@ -153,7 +153,8 @@ let package = Package(
     {
         writer w;
         w.type_namespace = module;
-        auto path = w.project_directory() / "Package.swift";
+
+        auto path = w.root_directory() / module / "Package.swift";
         if (!settings.has_project_type(project_type::spm))
         {
             std::filesystem::remove(path);

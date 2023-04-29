@@ -611,7 +611,7 @@ namespace swiftwinrt
         
         std::filesystem::path root_directory()
         {
-            return settings.output_folder / "Source";
+            return settings.output_folder ;
         }
 
         std::filesystem::path project_directory()
