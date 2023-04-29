@@ -120,7 +120,7 @@ let package = Package(
         for (auto&& [module, _] : module_dependencies)
         {
             s();
-            w.write(R"(    .library(name: "%", type: .dynamic, targets: ["%"]),)", module, module);
+            w.write(R"(    .library(name: "%", targets: ["%"]),)", module, module);
         }}),
             exclude_cmake,
             bind([&](writer& w) {

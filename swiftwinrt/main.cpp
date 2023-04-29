@@ -112,9 +112,9 @@ Where <spec> is one or more of:
         settings.support = args.value("support", "Windows");
 
         create_directories(settings.output_folder);
-        create_directories(settings.output_folder / "Source");
-        create_directories(settings.output_folder / "Source" / "CWinRT");
-        create_directories(settings.output_folder / "Source" / "CWinRT" / "include");
+        create_directories(writer::root_directory());
+        create_directories(writer::root_directory() / "CWinRT");
+        create_directories(writer::root_directory() / "CWinRT" / "include");
 
         for (auto && include : args.values("include"))
         {
@@ -325,7 +325,7 @@ Where <spec> is one or more of:
                     std::forward_as_tuple());
                 if (moduleAdded)
                 {
-                    create_directories(output_folder / module_name);
+                    create_directories(writer::root_directory() / module_name);
                 }
                 moduleMapItr->second.push_back(ns);
             }
