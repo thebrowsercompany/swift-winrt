@@ -52,14 +52,6 @@ namespace swiftwinrt
         {
             return "WindowsFoundation";
         }
-        else if (ns.starts_with("Windows.Graphics.DirectX"))
-        {
-            return "DirectX";
-        }
-        else if (ns.starts_with("Windows.Graphics"))
-        {
-            return "WindowsGraphics";
-        }
         else if (ns.starts_with("Windows"))
         {
             return "UWP";

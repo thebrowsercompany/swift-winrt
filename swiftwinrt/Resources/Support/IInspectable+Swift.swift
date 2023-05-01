@@ -34,10 +34,6 @@ extension IInspectable {
   private func GetSwiftModule(from ns: String) -> String {
     if ns.starts(with: "Windows.Foundation") {
        return "WindowsFoundation"
-    } else if ns.starts(with: "Windows.Graphics.DirectX"){
-      return "DirectX"
-    } else if ns.starts(with: "Windows.Graphics"){
-      return "WindowsGraphics"
     } else if ns.starts(with: "Windows") {
       return "UWP"
     } else if ns.starts(with: "Microsoft.UI.Xaml") {
