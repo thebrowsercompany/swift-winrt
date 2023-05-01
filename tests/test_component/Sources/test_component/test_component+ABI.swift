@@ -26,7 +26,7 @@ private var IID___x_ABI_Ctest__component_CIBasic: IID {
 }
 
 private var IID___x_ABI_Ctest__component_CIClass: IID {
-    IID(Data1: 0xCE48B782, Data2: 0xDBC3, Data3: 0x54C3, Data4: ( 0x89,0x4F,0xB6,0x16,0x47,0xAA,0x45,0x9A ))// CE48B782-DBC3-54C3-894F-B61647AA459A
+    IID(Data1: 0xD3E8E0A4, Data2: 0xE023, Data3: 0x5D9C, Data4: ( 0x83,0xE0,0x7C,0x11,0x87,0x96,0x77,0x63 ))// D3E8E0A4-E023-5D9C-83E0-7C1187967763
 }
 
 private var IID___x_ABI_Ctest__component_CIClassFactory: IID {
@@ -191,6 +191,10 @@ private var IID___x_ABI_C__FIReference_1_int: IID {
 
 private var IID___x_ABI_C__FIReference_1_GUID: IID {
     IID(Data1: 0x7d50f649, Data2: 0x632c, Data3: 0x51f9, Data4: ( 0x84,0x9a,0xee,0x49,0x42,0x89,0x33,0xea ))// 7d50f649-632c-51f9-849a-ee49428933ea
+}
+
+private var IID___x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned: IID {
+    IID(Data1: 0x5888a1ed, Data2: 0xabae, Data3: 0x584f, Data4: ( 0xbf,0x08,0x13,0x1b,0x25,0x42,0x80,0x6b ))// 5888a1ed-abae-584f-bf08-131b2542806b
 }
 
 private var IID___x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs: IID {
@@ -1616,6 +1620,83 @@ public enum __ABI_test_component {
             super.init(abi, __IMPL_Windows_Foundation.IPropertyValueImpl(value: value))
         }
     }
+    internal static var __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedVTable: __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedVtbl = .init(
+        QueryInterface: {
+            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+            if riid.pointee == __ABI_Windows_Foundation.IPropertyValueWrapper.IID {
+                guard let instance = __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper.tryUnwrapFrom(raw: pUnk) else { return E_NOINTERFACE }
+                guard let inner = __ABI_Windows_Foundation.IPropertyValueWrapper(instance) else { return E_INVALIDARG }
+                let pThis = try! inner.toABI { $0 }
+                return pThis.pointee.lpVtbl.pointee.QueryInterface(pThis, riid, ppvObject)
+            }
+
+            guard riid.pointee == IUnknown.IID ||
+                  riid.pointee == IInspectable.IID || 
+                  riid.pointee == ISwiftImplemented.IID ||
+                  riid.pointee == IIAgileObject.IID ||
+                  riid.pointee == __ABI_test_component.__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper.IID else { 
+                ppvObject.pointee = nil
+                        return E_NOINTERFACE
+
+            }
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
+        },
+
+        AddRef: {
+             guard let wrapper = __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper.fromRaw($0) else { return 1 }
+             _ = wrapper.retain()
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+        },
+
+        Release: {
+            guard let wrapper = __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper.fromRaw($0) else { return 1 }
+            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+        },
+
+        GetIids: {
+            let size = MemoryLayout<IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+            iids[0] = IUnknown.IID
+            iids[1] = IInspectable.IID
+            iids[2] = __ABI_test_component.__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper.IID
+            iids[3] = __ABI_Windows_Foundation.IPropertyValueWrapper.IID
+            $1!.pointee = 4
+            $2!.pointee = iids
+            return S_OK
+        },
+
+        GetRuntimeClassName: {
+            _ = $0
+            let hstring = try! HString("Windows.Foundation.IReference`1<test_component.Signed>").detach()
+            $1!.pointee = hstring
+            return S_OK
+        },
+
+        GetTrustLevel: {
+            _ = $0
+            $1!.pointee = TrustLevel(rawValue: 0)
+            return S_OK
+        },
+
+        get_Value: {
+            guard let __unwrapped__instance = __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let result = __unwrapped__instance.value as! test_component.Signed
+            $1?.initialize(to: result)
+            return S_OK
+        }
+    )
+    internal class __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper: WinRTWrapperBase<__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned, IReference> {
+        override class var IID: IID { IID___x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned }
+        init?(_ value: test_component.Signed?) {
+            guard let value = value else { return nil }
+            let abi = withUnsafeMutablePointer(to: &__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedVTable) {
+                __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned(lpVtbl:$0)
+            }
+            super.init(abi, __IMPL_Windows_Foundation.IPropertyValueImpl(value: value))
+        }
+    }
     internal static var __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsVTable: __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
@@ -1882,6 +1963,14 @@ public enum __ABI_test_component {
             var result: __x_ABI_Ctest__component_CSigned = .init(0)
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnEnum(pThis, &result))
+            }
+            return result
+        }
+
+        internal func ReturnReferenceEnumImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned>? {
+            var result: UnsafeMutablePointer<__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned>?
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnReferenceEnum(pThis, &result))
             }
             return result
         }
@@ -3215,7 +3304,7 @@ public enum __ABI_test_component {
 fileprivate extension Int32 {
     init?(ref: UnsafeMutablePointer<__x_ABI_C__FIReference_1_int>?) {
         guard let val = ref else { return nil }
-        var result: INT32 = .init()
+        var result: INT32 = 0
         try! CHECKED(val.pointee.lpVtbl.pointee.get_Value(val, &result))
         self = result
     }
@@ -3224,6 +3313,14 @@ fileprivate extension UUID {
     init?(ref: UnsafeMutablePointer<__x_ABI_C__FIReference_1_GUID>?) {
         guard let val = ref else { return nil }
         var result: GUID = .init()
+        try! CHECKED(val.pointee.lpVtbl.pointee.get_Value(val, &result))
+        self = result
+    }
+} 
+fileprivate extension test_component.Signed {
+    init?(ref: UnsafeMutablePointer<__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned>?) {
+        guard let val = ref else { return nil }
+        var result: Signed = .init(0)
         try! CHECKED(val.pointee.lpVtbl.pointee.get_Value(val, &result))
         self = result
     }

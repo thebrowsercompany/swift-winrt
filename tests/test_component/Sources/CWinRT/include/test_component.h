@@ -1140,6 +1140,46 @@ typedef interface __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBas
     
     #endif // ____x_ABI_C__FIReference_1_GUID_INTERFACE_DEFINED__
     
+typedef enum __x_ABI_Ctest__component_CSigned __x_ABI_Ctest__component_CSigned;
+
+#if !defined(____x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned_INTERFACE_DEFINED__)
+    #define ____x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned_INTERFACE_DEFINED__
+
+    typedef interface __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned;
+
+    //  Declare the parameterized interface IID.
+    EXTERN_C const IID IID___x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned;
+
+    typedef struct __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* get_Value)(__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned* This,
+        enum __x_ABI_Ctest__component_CSigned* result);
+
+        END_INTERFACE
+    } __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedVtbl;
+
+    interface __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned
+    {
+        CONST_VTBL struct __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedVtbl* lpVtbl;
+    };
+
+    
+    #endif // ____x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned_INTERFACE_DEFINED__
+    
 typedef struct __x_ABI_Ctest__component_CSimpleEventArgs __x_ABI_Ctest__component_CSimpleEventArgs;
 
 #if !defined(____x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs_INTERFACE_DEFINED__)
@@ -1199,8 +1239,6 @@ typedef interface __x_ABI_Ctest__component_CDelegates_CISignalDelegate __x_ABI_C
 #endif // ____x_ABI_Ctest__component_CDelegates_CISignalDelegate_FWD_DEFINED__
 
     typedef enum __x_ABI_Ctest__component_CFruit __x_ABI_Ctest__component_CFruit;
-
-typedef enum __x_ABI_Ctest__component_CSigned __x_ABI_Ctest__component_CSigned;
 
 typedef enum __x_ABI_Ctest__component_CSwiftifiableNames __x_ABI_Ctest__component_CSwiftifiableNames;
 
@@ -1593,6 +1631,8 @@ struct __x_ABI_Ctest__component_CStructWithEnum
         enum __x_ABI_Ctest__component_CSigned* value);
     HRESULT (STDMETHODCALLTYPE* ReturnEnum)(__x_ABI_Ctest__component_CIClass* This,
         enum __x_ABI_Ctest__component_CSigned* result);
+    HRESULT (STDMETHODCALLTYPE* ReturnReferenceEnum)(__x_ABI_Ctest__component_CIClass* This,
+        __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned** result);
     HRESULT (STDMETHODCALLTYPE* get_EnumProperty)(__x_ABI_Ctest__component_CIClass* This,
         enum __x_ABI_Ctest__component_CFruit* value);
     HRESULT (STDMETHODCALLTYPE* put_EnumProperty)(__x_ABI_Ctest__component_CIClass* This,

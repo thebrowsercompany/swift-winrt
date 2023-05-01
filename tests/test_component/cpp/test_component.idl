@@ -245,7 +245,7 @@ namespace test_component
             // Windows.Foundation.IStringable ReturnStringable();
             // Struct ReturnStruct();
             Signed ReturnEnum();
-
+            Windows.Foundation.IReference<Signed> ReturnReferenceEnum();
             Fruit EnumProperty;
 
             // String InInt32Array(Int32[] value);

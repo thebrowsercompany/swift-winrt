@@ -752,7 +752,7 @@ public enum __IMPL_test_component {
 fileprivate extension Int32 {
     init?(ref: UnsafeMutablePointer<__x_ABI_C__FIReference_1_int>?) {
         guard let val = ref else { return nil }
-        var result: INT32 = .init()
+        var result: INT32 = 0
         try! CHECKED(val.pointee.lpVtbl.pointee.get_Value(val, &result))
         self = result
     }
@@ -761,6 +761,14 @@ fileprivate extension UUID {
     init?(ref: UnsafeMutablePointer<__x_ABI_C__FIReference_1_GUID>?) {
         guard let val = ref else { return nil }
         var result: GUID = .init()
+        try! CHECKED(val.pointee.lpVtbl.pointee.get_Value(val, &result))
+        self = result
+    }
+} 
+fileprivate extension test_component.Signed {
+    init?(ref: UnsafeMutablePointer<__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned>?) {
+        guard let val = ref else { return nil }
+        var result: Signed = .init(0)
         try! CHECKED(val.pointee.lpVtbl.pointee.get_Value(val, &result))
         self = result
     }
