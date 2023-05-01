@@ -31,7 +31,7 @@ public enum __ABI_Windows_Foundation {
                   riid.pointee == IIAgileObject.IID ||
                   riid.pointee == __ABI_Windows_Foundation.IClosableWrapper.IID else { 
                     guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
-                           let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
+                          let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
                     return cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, riid, ppvObject) 
 
             }
@@ -258,7 +258,7 @@ public enum __ABI_Windows_Foundation {
                   riid.pointee == IIAgileObject.IID ||
                   riid.pointee == __ABI_Windows_Foundation.IPropertyValueWrapper.IID else { 
                     guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
-                           let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
+                          let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
                     return cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, riid, ppvObject) 
 
             }
