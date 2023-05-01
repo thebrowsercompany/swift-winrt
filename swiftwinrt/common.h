@@ -52,21 +52,18 @@ namespace swiftwinrt
         {
             return "WindowsFoundation";
         }
-        else if (ns.starts_with("Windows.Graphics.DirectX"))
+        // Put both system xaml and winui3 in the "WinUI" module. In WinUI3 applications, there are still
+        // types in the Windows.UI.Xaml.Interop namespace and it doesn't make sense to pull in the whole
+        // UWP module for that. Plus, WinUI is such a distinct chunk, that even a non-winui3 app it makes
+        // sense to have it be it's own thing. There will be compilation errors if the user tries to use
+        // both, but this is a non-supported scenario anyway.
+        else if (ns.starts_with("Microsoft.UI.Xaml") || ns.starts_with("Windows.UI.Xaml"))
         {
-            return "DirectX";
-        }
-        else if (ns.starts_with("Windows.Graphics"))
-        {
-            return "WindowsGraphics";
+            return "WinUI";
         }
         else if (ns.starts_with("Windows"))
         {
             return "UWP";
-        }
-        else if (ns.starts_with("Microsoft.UI.Xaml"))
-        {
-            return "WinUI";
         }
         else if (ns.starts_with("Microsoft.Web.WebView2.Core"))
         {
