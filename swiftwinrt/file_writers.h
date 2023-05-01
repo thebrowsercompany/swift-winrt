@@ -107,7 +107,7 @@ namespace swiftwinrt
 
     static void write_swift_support_files(std::string_view const& module_name)
     {
-        auto dir_path = std::filesystem::path(settings.output_folder) / "Source" / module_name / "Support";
+        auto dir_path = writer::root_directory() / module_name / "Support";
         create_directories(dir_path);
 
         auto support_files = get_named_resources_of_type(
@@ -121,7 +121,7 @@ namespace swiftwinrt
 
     static void write_cwinrt_build_files()
     {
-        auto dir_path = std::filesystem::path(settings.output_folder) / "Source" / "CWinRT";
+        auto dir_path = writer::root_directory() / "CWinRT";
 
         auto shim_template = find_resource(RESOURCE_TYPE_OTHER_FILE_STR, RESOURCE_NAME_CWINRT_SHIM_C_STR);
         fill_template_placeholders_to_file(shim_template, dir_path / "shim.c");

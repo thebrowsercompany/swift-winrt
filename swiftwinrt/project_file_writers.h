@@ -120,7 +120,7 @@ let package = Package(
         for (auto&& [module, _] : module_dependencies)
         {
             s();
-            w.write(R"(    .library(name: "%", type: .dynamic, targets: ["%"]),)", module, module);
+            w.write(R"(    .library(name: "%", targets: ["%"]),)", module, module);
         }}),
             exclude_cmake,
             bind([&](writer& w) {
@@ -153,7 +153,8 @@ let package = Package(
     {
         writer w;
         w.type_namespace = module;
-        auto path = w.project_directory() / "Package.swift";
+
+        auto path = w.root_directory() / module / "Package.swift";
         if (!settings.has_project_type(project_type::spm))
         {
             std::filesystem::remove(path);

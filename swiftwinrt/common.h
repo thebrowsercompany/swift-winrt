@@ -52,22 +52,33 @@ namespace swiftwinrt
         {
             return "WindowsFoundation";
         }
-        else if (ns.starts_with("Windows.Storage") || 
-                ns.starts_with("Windows.System") ||
-                ns.starts_with("Windows.UI") ||
-                ns.starts_with("Windows.Networking") ||
-                ns.starts_with("Windows.ApplicationModel") || 
-                ns.starts_with("Windows.Security.EnterpriseData"))
+        else if (ns.starts_with("Windows.Graphics.DirectX"))
         {
-            return "WindowsApplicationModel";
+            return "DirectX";
         }
-        else if (ns.starts_with("Microsoft.UI.Composition"))
+        else if (ns.starts_with("Windows.Graphics"))
         {
-            return "MicrosoftUIComposition";
+            return "WindowsGraphics";
+        }
+        else if (ns.starts_with("Windows"))
+        {
+            return "UWP";
         }
         else if (ns.starts_with("Microsoft.UI.Xaml"))
         {
-            return "MicrosoftUIXaml";
+            return "WinUI";
+        }
+        else if (ns.starts_with("Microsoft.Web.WebView2.Core"))
+        {
+            return "WebView2Core";
+        }
+        else if (ns.starts_with("Microsoft.Graphics.Canvas"))
+        {
+            return "Win2D";
+        }
+        else if (ns.starts_with("Microsoft"))
+        {
+            return "WinAppSDK";
         }
         else
         {

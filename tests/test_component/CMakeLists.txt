@@ -20,12 +20,12 @@ string(REPLACE ";" "\n" SWIFT_WINRT_PARAMETERS "${SWIFT_WINRT_PARAMETERS}")
 file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/SwiftWinRT.rsp ${SWIFT_WINRT_PARAMETERS})
 
 add_subdirectory(cpp)
-add_subdirectory(Source)
+add_subdirectory(Sources)
 
 # re-run swiftwinrt to ensure the bindings get updated
 set(SWIFTWINRT_PARAM_FILE ${CMAKE_CURRENT_BINARY_DIR}/SwiftWinRT.rsp)
 add_custom_target(GenerateBindings
-  BYPRODUCTS ${CMAKE_CURRENT_SOURCE_DIR}/Source/test_component/test_component.swift
+  BYPRODUCTS ${CMAKE_CURRENT_SOURCE_DIR}/Sources/test_component/test_component.swift
   DEPENDS ${SWIFTWINRT_PARAM_FILE}
   DEPENDS ${WINMD_FILE}
   COMMAND ${CMAKE_BINARY_DIR}/swiftwinrt/swiftwinrt.exe @${SWIFTWINRT_PARAM_FILE})

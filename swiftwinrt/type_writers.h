@@ -609,9 +609,9 @@ namespace swiftwinrt
             write(*generic);
         }
         
-        std::filesystem::path root_directory()
+        static std::filesystem::path root_directory()
         {
-            return settings.output_folder / "Source";
+            return settings.output_folder / "Sources";
         }
 
         std::filesystem::path project_directory()
