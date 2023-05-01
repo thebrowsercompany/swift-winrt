@@ -1881,9 +1881,11 @@ public enum __ABI_test_component {
         },
 
         Method: {
+        do {
             guard let __unwrapped__instance = IBasicWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            __unwrapped__instance.method()
+            try __unwrapped__instance.method()
             return S_OK
+        } catch { return failWith(err: E_FAIL) } 
         }
     )
 
@@ -2440,75 +2442,93 @@ public enum __ABI_test_component {
         },
 
         InInt32: {
+        do {
             guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let value: Int32 = $1
-            let result = __unwrapped__instance.inInt32(value)
+            let result = try __unwrapped__instance.inInt32(value)
             $2?.initialize(to: try! HString(result).detach())
             return S_OK
+        } catch { return failWith(err: E_FAIL) } 
         },
 
         InString: {
+        do {
             guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let value: String = .init(from: $1)
-            let result = __unwrapped__instance.inString(value)
+            let result = try __unwrapped__instance.inString(value)
             $2?.initialize(to: try! HString(result).detach())
             return S_OK
+        } catch { return failWith(err: E_FAIL) } 
         },
 
         InEnum: {
+        do {
             guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let value: test_component.Signed = $1
-            let result = __unwrapped__instance.inEnum(value)
+            let result = try __unwrapped__instance.inEnum(value)
             $2?.initialize(to: try! HString(result).detach())
             return S_OK
+        } catch { return failWith(err: E_FAIL) } 
         },
 
         OutInt32: {
+        do {
             guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             var value: Int32 = 0
-            __unwrapped__instance.outInt32(&value)
+            try __unwrapped__instance.outInt32(&value)
             $1?.initialize(to: value)
             return S_OK
+        } catch { return failWith(err: E_FAIL) } 
         },
 
         OutString: {
+        do {
             guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             var value: String = ""
-            __unwrapped__instance.outString(&value)
+            try __unwrapped__instance.outString(&value)
             $1?.initialize(to: try! HString(value).detach())
             return S_OK
+        } catch { return failWith(err: E_FAIL) } 
         },
 
         OutBlittableStruct: {
+        do {
             guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             var value: test_component.BlittableStruct = .init()
-            __unwrapped__instance.outBlittableStruct(&value)
+            try __unwrapped__instance.outBlittableStruct(&value)
             $1?.initialize(to: .from(swift: value))
             return S_OK
+        } catch { return failWith(err: E_FAIL) } 
         },
 
         OutNonBlittableStruct: {
+        do {
             guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             var value: test_component.NonBlittableStruct = .init()
-            __unwrapped__instance.outNonBlittableStruct(&value)
+            try __unwrapped__instance.outNonBlittableStruct(&value)
             let _value = __ABI_test_component._ABI_NonBlittableStruct(from: value)
             	$1?.initialize(to: _value.detach())
             return S_OK
+        } catch { return failWith(err: E_FAIL) } 
         },
 
         OutEnum: {
+        do {
             guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             var value: test_component.Signed = .init(0)
-            __unwrapped__instance.outEnum(&value)
+            try __unwrapped__instance.outEnum(&value)
             $1?.initialize(to: value)
             return S_OK
+        } catch { return failWith(err: E_FAIL) } 
         },
 
         ReturnEnum: {
+        do {
             guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let result = __unwrapped__instance.returnEnum()
+            let result = try __unwrapped__instance.returnEnum()
             $1?.initialize(to: result)
             return S_OK
+        } catch { return failWith(err: E_FAIL) } 
         },
 
         get_EnumProperty: {
@@ -2546,9 +2566,11 @@ public enum __ABI_test_component {
         remove_ImplementableEvent: { _, _ in return failWith(err: E_NOTIMPL) },
 
         FireEvent: {
+        do {
             guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            __unwrapped__instance.fireEvent()
+            try __unwrapped__instance.fireEvent()
             return S_OK
+        } catch { return failWith(err: E_FAIL) } 
         }
     )
 
@@ -2839,16 +2861,20 @@ public enum __ABI_test_component {
         },
 
         DoThis: {
+        do {
             guard let __unwrapped__instance = ISimpleDelegateWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            __unwrapped__instance.doThis()
+            try __unwrapped__instance.doThis()
             return S_OK
+        } catch { return failWith(err: E_FAIL) } 
         },
 
         DoThat: {
+        do {
             guard let __unwrapped__instance = ISimpleDelegateWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let val: Int32 = $1
-            __unwrapped__instance.doThat(val)
+            try __unwrapped__instance.doThat(val)
             return S_OK
+        } catch { return failWith(err: E_FAIL) } 
         }
     )
 
@@ -3167,9 +3193,11 @@ public enum __ABI_test_component {
         },
 
         OnDoTheThing: {
+        do {
             guard let __unwrapped__instance = IBaseOverridesWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            __unwrapped__instance.onDoTheThing()
+            try __unwrapped__instance.onDoTheThing()
             return S_OK
+        } catch { return failWith(err: E_FAIL) } 
         }
     )
     internal typealias IUnsealedDerivedOverridesWrapper = UnsealedWinRTClassWrapper<test_component.UnsealedDerived.IUnsealedDerivedOverrides>
@@ -3236,9 +3264,11 @@ public enum __ABI_test_component {
         },
 
         OnBeforeDoTheThing: {
+        do {
             guard let __unwrapped__instance = IUnsealedDerivedOverridesWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            __unwrapped__instance.onBeforeDoTheThing()
+            try __unwrapped__instance.onBeforeDoTheThing()
             return S_OK
+        } catch { return failWith(err: E_FAIL) } 
         }
     )
     internal typealias IUnsealedDerivedOverloads2Wrapper = UnsealedWinRTClassWrapper<test_component.UnsealedDerived.IUnsealedDerivedOverloads2>
@@ -3312,9 +3342,11 @@ public enum __ABI_test_component {
         },
 
         OnAfterDoTheThing: {
+        do {
             guard let __unwrapped__instance = IUnsealedDerivedOverloads2Wrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            __unwrapped__instance.onAfterDoTheThing()
+            try __unwrapped__instance.onAfterDoTheThing()
             return S_OK
+        } catch { return failWith(err: E_FAIL) } 
         }
     )
 }

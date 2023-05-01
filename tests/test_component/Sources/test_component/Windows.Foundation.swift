@@ -68,27 +68,27 @@ public struct TimeSpan: Hashable, Codable {
         }
 
 public protocol IClosable : IWinRTObject { 
-        func close()
+        func close() throws 
 }
 public protocol IPropertyValue : IWinRTObject { 
-        func getUInt8() -> UInt8
-        func getInt16() -> Int16
-        func getUInt16() -> UInt16
-        func getInt32() -> Int32
-        func getUInt32() -> UInt32
-        func getInt64() -> Int64
-        func getUInt64() -> UInt64
-        func getSingle() -> Float
-        func getDouble() -> Double
-        func getChar16() -> Character
-        func getBoolean() -> Bool
-        func getString() -> String
-        func getGuid() -> UUID
-        func getDateTime() -> test_component.DateTime
-        func getTimeSpan() -> test_component.TimeSpan
-        func getPoint() -> test_component.Point
-        func getSize() -> test_component.Size
-        func getRect() -> test_component.Rect
+        func getUInt8() throws  -> UInt8
+        func getInt16() throws  -> Int16
+        func getUInt16() throws  -> UInt16
+        func getInt32() throws  -> Int32
+        func getUInt32() throws  -> UInt32
+        func getInt64() throws  -> Int64
+        func getUInt64() throws  -> UInt64
+        func getSingle() throws  -> Float
+        func getDouble() throws  -> Double
+        func getChar16() throws  -> Character
+        func getBoolean() throws  -> Bool
+        func getString() throws  -> String
+        func getGuid() throws  -> UUID
+        func getDateTime() throws  -> test_component.DateTime
+        func getTimeSpan() throws  -> test_component.TimeSpan
+        func getPoint() throws  -> test_component.Point
+        func getSize() throws  -> test_component.Size
+        func getRect() throws  -> test_component.Rect
         var isNumericScalar: Bool { get }
         var type: test_component.PropertyType { get }
 }
