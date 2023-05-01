@@ -441,20 +441,21 @@ bind<write_abi_args>(function));
         auto format = R"(fileprivate extension % {
     init?(ref: UnsafeMutablePointer<%>?) {
         guard let val = ref else { return nil }
-        var result: % = .init()
+        var result: %%
         try! CHECKED(val.pointee.lpVtbl.pointee.get_Value(val, &result))
         %
     }
 } 
 )";
         auto generic_param = type.generic_params()[0];
-
+        w.add_depends(*generic_param);
         if (auto structType = dynamic_cast<const struct_type*>(generic_param))
         {
             w.write(format,
                 get_full_swift_type_name(w, structType),
                 type.mangled_name(),
                 structType->mangled_name(),
+                bind<write_default_init_assignment>(*structType, projection_layer::c_abi),
                 "self = .from(abi: result)");
         }
         else
@@ -468,6 +469,7 @@ bind<write_abi_args>(function));
                 get_full_swift_type_name(w, generic_param),
                 type.mangled_name(),
                 generic_param->cpp_abi_name(),
+                bind<write_default_init_assignment>(*generic_param, projection_layer::c_abi),
                 blittable ? "self = result" : "self.init(from: result)");
         }
       
