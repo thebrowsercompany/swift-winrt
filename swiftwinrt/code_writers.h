@@ -2177,9 +2177,10 @@ bind([&](writer& w) {
             bind([&](writer & w) {
                if (!composed)
                {
-                        w.write(R"(ppvObject.pointee = nil
-                return E_NOINTERFACE
-)");
+                        w.write(R"(    guard let instance = WinRTWrapperBase<%.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
+                  let cDefault: UnsafeMutablePointer<%.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
+            return cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, riid, ppvObject) 
+)", w.c_mod, w.c_mod);
                }
                else
                {
