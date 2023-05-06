@@ -309,6 +309,7 @@ namespace swiftwinrt
 #undef GetCurrentTime
 #undef FindText
 #undef GetClassName
+#undef GetObject
 
 #define ENABLE_WINRT_EXPERIMENTAL_TYPES
 
