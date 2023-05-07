@@ -1094,9 +1094,11 @@ public static func makeAbi() -> CABI {
                     if (!can_write(w, method)) continue;
 
                     auto full_type_name = w.push_full_type_names(true);
-                    w.write("\n        func %(%) throws %",
+                    auto maybe_throws = is_noexcept(method.def) ? "" : "throws ";
+                    w.write("\n        func %(%) %%",
                         get_swift_name(method),
                         bind<write_function_params>(method, write_type_params::swift_allow_implicit_unwrap),
+                        maybe_throws,
                         bind<write_return_type_declaration>(method, write_type_params::swift_allow_implicit_unwrap));
                 }
 
@@ -1549,7 +1551,7 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         w.write("}\n\n");
     }
 
-    static void write_class_func_body(writer& w, function_def const& function, interface_info const& iface, bool is_winrt_collection)
+    static void write_class_func_body(writer& w, function_def const& function, interface_info const& iface, bool is_noexcept)
     {
         std::string_view func_name = get_abi_name(function);
         {
@@ -1557,7 +1559,7 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
 
             auto impl = get_swift_name(iface);
 
-            auto try_flavor = is_winrt_collection ? "try!" : "try";
+            auto try_flavor = is_noexcept ? "try!" : "try";
             if (function.return_type)
             {
                 w.write("let % = % %.%Impl(%)\n",

@@ -17,12 +17,12 @@
             "cacheVariables": {
                 "CMAKE_C_COMPILER": "cl",
                 "CMAKE_CXX_COMPILER": "cl",
-                "CMAKE_SYSTEM_VERSION": "10.0.20348.0",
+                "CMAKE_SYSTEM_VERSION": "10.0.17763.0",
                 "CMAKE_MODULE_PATH": "${sourceDir}/cmake"
             },
-            "environment": {
-                "PATH": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\Ninja;$penv{PATH}"
-            }
+          "environment": {
+            "PATH": "$penv{DevEnvDir}\\CommonExtensions\\Microsoft\\CMake\\Ninja;$penv{PATH}"
+          }
         },
         {
             "name": "debug",
