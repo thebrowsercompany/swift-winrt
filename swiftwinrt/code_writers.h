@@ -1094,9 +1094,11 @@ public static func makeAbi() -> CABI {
                     if (!can_write(w, method)) continue;
 
                     auto full_type_name = w.push_full_type_names(true);
-                    w.write("\n        func %(%)%",
+                    auto maybe_throws = is_noexcept(method.def) ? "" : " throws";
+                    w.write("\n        func %(%)%%",
                         get_swift_name(method),
                         bind<write_function_params>(method, write_type_params::swift_allow_implicit_unwrap),
+                        maybe_throws,
                         bind<write_return_type_declaration>(method, write_type_params::swift_allow_implicit_unwrap));
                 }
 
@@ -1549,7 +1551,7 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         w.write("}\n\n");
     }
 
-    static void write_class_func_body(writer& w, function_def const& function, interface_info const& iface)
+    static void write_class_func_body(writer& w, function_def const& function, interface_info const& iface, bool is_noexcept)
     {
         std::string_view func_name = get_abi_name(function);
         {
@@ -1557,17 +1559,20 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
 
             auto impl = get_swift_name(iface);
 
+            auto try_flavor = is_noexcept ? "try!" : "try";
             if (function.return_type)
             {
-                w.write("let % = try! %.%Impl(%)\n",
+                w.write("let % = % %.%Impl(%)\n",
                     function.return_type.value().name,
+                    try_flavor,
                     impl,
                     func_name,
                     bind<write_implementation_args>(function));
             }
             else
             {
-                w.write("try! %.%Impl(%)\n",
+                w.write("% %.%Impl(%)\n",
+                    try_flavor,
                     impl,
                     func_name,
                     bind<write_implementation_args>(function));
@@ -1673,17 +1678,19 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         // we cannot use implicit unwrapping, because of Swift limitations:
         // typename Element must be Base? and not Base!,
         // and declaring GetAt(_: UInt32) -> Base! would not bind to GetAt(_: UInt32) -> Element.
-        auto&& type_params = is_winrt_generic_collection(iface.type)
+        auto is_winrt_collection = is_winrt_generic_collection(iface.type);
+        auto&& type_params = is_winrt_collection
             ? write_type_params::swift : write_type_params::swift_allow_implicit_unwrap;
-
-        w.write("% func %(%)% {\n",
+        auto maybe_throws = is_winrt_collection ? "" : " throws";
+        w.write("% func %(%)%% {\n",
             iface.overridable ? "open" : "public",
             get_swift_name(function),
             bind<write_function_params>(function, type_params),
+            maybe_throws,
             bind<write_return_type_declaration>(function, type_params));
         {
             auto indent = w.push_indent();
-            write_class_func_body(w, function, iface);
+            write_class_func_body(w, function, iface, is_winrt_collection);
         }
         w.write("}\n\n");
     }
@@ -2413,6 +2420,7 @@ bind([&](writer& w) {
         // we have to write the methods in a certain order and so we will have to detect here whether
         // this method is a property getter/setter and adjust the call so we use the swift syntax
         std::string func_call;
+        bool is_get_or_put = true;
         if (is_get_overload(method))
         {
             func_call += w.write_temp("%", get_swift_name(method));
@@ -2431,12 +2439,18 @@ bind([&](writer& w) {
         }
         else
         {
+            is_get_or_put = false;
             // delegate arg types are a tuple, so wrap in an extra paranthesis
             auto format = is_delegate(type) ? "%((%))" : "%(%)";
             func_call += w.write_temp(format, get_swift_name(method), bind<write_consume_args>(function));
         }
 
+        bool needs_try_catch = !is_get_or_put && !is_winrt_generic_collection(type) && !is_delegate(type);
         w.write("%: {\n", func_name);
+        if (needs_try_catch) {
+            w.m_indent += 1;
+            w.write("do {\n");
+        }
         {
             auto indent_guard = w.push_indent();
             w.write("guard let __unwrapped__instance = %.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }\n",
@@ -2447,9 +2461,15 @@ bind([&](writer& w) {
             {
                 w.write("let % = ", function.return_type.value().name);
             }
-            w.write("__unwrapped__instance.%\n", func_call);
+            w.write("%__unwrapped__instance.%\n",
+                needs_try_catch ? "try " : "",
+                func_call);
             write_abi_ret_val(w, function);
             w.write("return S_OK\n");
+        }
+        if (needs_try_catch) {
+            w.write("} catch { return failWith(err: E_FAIL) } \n");
+            w.m_indent -= 1;
         }
         w.write("}");
     }

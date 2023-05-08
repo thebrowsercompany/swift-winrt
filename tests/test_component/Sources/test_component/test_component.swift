@@ -39,13 +39,13 @@ open class Base : UnsealedWinRTClass {
         self._default = try! MakeComposed(factory, &_inner, self as! Factory.Composable.Default.SwiftProjection).QueryInterface()
         _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
     }
-    public func doTheThing() {
-        try! _default.DoTheThingImpl()
+    public func doTheThing() throws {
+        try _default.DoTheThingImpl()
     }
 
     internal lazy var _IBaseOverrides: __ABI_test_component.IBaseOverrides = try! IUnknown(_inner!).QueryInterface()
-    open func onDoTheThing() {
-        try! _IBaseOverrides.OnDoTheThingImpl()
+    open func onDoTheThing() throws {
+        try _IBaseOverrides.OnDoTheThingImpl()
     }
 
     internal class IBaseOverrides : ComposableImpl {
@@ -426,93 +426,93 @@ public final class Class : WinRTClass, IBasic {
         }
     }
 
-    public func setDelegate(_ value: (any ISimpleDelegate)!) {
+    public func setDelegate(_ value: (any ISimpleDelegate)!) throws {
         let valueWrapper = __ABI_test_component.ISimpleDelegateWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
-        try! _default.SetDelegateImpl(_value)
+        try _default.SetDelegateImpl(_value)
     }
 
-    public func getDelegate() -> (any ISimpleDelegate)! {
-        let result = try! _default.GetDelegateImpl()
+    public func getDelegate() throws -> (any ISimpleDelegate)! {
+        let result = try _default.GetDelegateImpl()
         return __ABI_test_component.ISimpleDelegateWrapper.unwrapFrom(abi: result)
     }
 
-    public func inInt32(_ value: Int32) -> String {
-        let result = try! _default.InInt32Impl(value)
+    public func inInt32(_ value: Int32) throws -> String {
+        let result = try _default.InInt32Impl(value)
         return .init(from: result)
     }
 
-    public func inString(_ value: String) -> String {
+    public func inString(_ value: String) throws -> String {
         let _value = try! HString(value)
-        let result = try! _default.InStringImpl(_value.get())
+        let result = try _default.InStringImpl(_value.get())
         return .init(from: result)
     }
 
-    public func inEnum(_ value: Signed) -> String {
-        let result = try! _default.InEnumImpl(value)
+    public func inEnum(_ value: Signed) throws -> String {
+        let result = try _default.InEnumImpl(value)
         return .init(from: result)
     }
 
-    public func outInt32(_ value: inout Int32) {
-        try! _default.OutInt32Impl(&value)
+    public func outInt32(_ value: inout Int32) throws {
+        try _default.OutInt32Impl(&value)
     }
 
-    public func outString(_ value: inout String) {
+    public func outString(_ value: inout String) throws {
         var _value: HSTRING?
-        try! _default.OutStringImpl(&_value)
+        try _default.OutStringImpl(&_value)
         value = .init(from: _value)
         WindowsDeleteString(_value)
     }
 
-    public func outBlittableStruct(_ value: inout BlittableStruct) {
+    public func outBlittableStruct(_ value: inout BlittableStruct) throws {
         var _value: __x_ABI_Ctest__component_CBlittableStruct = .init()
-        try! _default.OutBlittableStructImpl(&_value)
+        try _default.OutBlittableStructImpl(&_value)
         value = .from(abi: _value)
     }
 
-    public func outNonBlittableStruct(_ value: inout NonBlittableStruct) {
+    public func outNonBlittableStruct(_ value: inout NonBlittableStruct) throws {
         let _value: __ABI_test_component._ABI_NonBlittableStruct = .init()
-        try! _default.OutNonBlittableStructImpl(&_value.val)
+        try _default.OutNonBlittableStructImpl(&_value.val)
         value = .from(abi: _value.val)
     }
 
-    public func outEnum(_ value: inout Signed) {
-        try! _default.OutEnumImpl(&value)
+    public func outEnum(_ value: inout Signed) throws {
+        try _default.OutEnumImpl(&value)
     }
 
-    public func returnEnum() -> Signed {
-        let result = try! _default.ReturnEnumImpl()
+    public func returnEnum() throws -> Signed {
+        let result = try _default.ReturnEnumImpl()
         return result
     }
 
-    public func returnReferenceEnum() -> Signed? {
-        let result = try! _default.ReturnReferenceEnumImpl()
+    public func returnReferenceEnum() throws -> Signed? {
+        let result = try _default.ReturnReferenceEnumImpl()
         return .init(ref: result)
     }
 
-    public func returnStoredStringVector() -> (any IVector<String>)! {
-        let result = try! _default.ReturnStoredStringVectorImpl()
+    public func returnStoredStringVector() throws -> (any IVector<String>)! {
+        let result = try _default.ReturnStoredStringVectorImpl()
         return __ABI_test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
-    public func returnMapFromStringToString() -> (any IMap<String, String>)! {
-        let result = try! _default.ReturnMapFromStringToStringImpl()
+    public func returnMapFromStringToString() throws -> (any IMap<String, String>)! {
+        let result = try _default.ReturnMapFromStringToStringImpl()
         return __ABI_test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
-    public func returnChar() -> Character {
-        let result = try! _default.ReturnCharImpl()
+    public func returnChar() throws -> Character {
+        let result = try _default.ReturnCharImpl()
         return .init(from: result)
     }
 
-    public func inChar(_ value: Character) -> String {
-        let result = try! _default.InCharImpl(.init(from: value))
+    public func inChar(_ value: Character) throws -> String {
+        let result = try _default.InCharImpl(.init(from: value))
         return .init(from: result)
     }
 
-    public func outChar(_ value: inout Character) {
+    public func outChar(_ value: inout Character) throws {
         var _value: WCHAR = .init()
-        try! _default.OutCharImpl(&_value)
+        try _default.OutCharImpl(&_value)
         value = .init(from: _value)
     }
 
@@ -589,8 +589,8 @@ public final class Class : WinRTClass, IBasic {
     }
 
     internal lazy var _IBasic: __ABI_test_component.IBasic = try! _default.QueryInterface()
-    public func method() {
-        try! _IBasic.MethodImpl()
+    public func method() throws {
+        try _IBasic.MethodImpl()
     }
 
 }
@@ -679,8 +679,8 @@ public final class NoopClosable : WinRTClass, test_component.IClosable {
         try! _default = RoActivateInstance(HString("test_component.NoopClosable"))
     }
 
-    public func close() {
-        try! _default.CloseImpl()
+    public func close() throws {
+        try _default.CloseImpl()
     }
 
 }
@@ -795,31 +795,31 @@ public final class Simple : WinRTClass {
             }
         }
     }
-    public func method() {
-        try! _default.MethodImpl()
+    public func method() throws {
+        try _default.MethodImpl()
     }
 
-    public func returnBlittableStruct() -> BlittableStruct {
-        let result = try! _default.ReturnBlittableStructImpl()
+    public func returnBlittableStruct() throws -> BlittableStruct {
+        let result = try _default.ReturnBlittableStructImpl()
         return .from(abi: result)
     }
 
-    public func takeBlittableStruct(_ value: BlittableStruct) {
-        try! _default.TakeBlittableStructImpl(.from(swift: value))
+    public func takeBlittableStruct(_ value: BlittableStruct) throws {
+        try _default.TakeBlittableStructImpl(.from(swift: value))
     }
 
-    public func returnNonBlittableStruct() -> NonBlittableStruct {
-        let result = try! _default.ReturnNonBlittableStructImpl()
+    public func returnNonBlittableStruct() throws -> NonBlittableStruct {
+        let result = try _default.ReturnNonBlittableStructImpl()
         return .from(abi: result)
     }
 
-    public func takeNonBlittableStruct(_ value: NonBlittableStruct) {
+    public func takeNonBlittableStruct(_ value: NonBlittableStruct) throws {
         let _value = __ABI_test_component._ABI_NonBlittableStruct(from: value)
-        try! _default.TakeNonBlittableStructImpl(_value.val)
+        try _default.TakeNonBlittableStructImpl(_value.val)
     }
 
-    public func fireEvent() {
-        try! _default.FireEventImpl()
+    public func fireEvent() throws {
+        try _default.FireEventImpl()
     }
 
     public var blittableStructProperty : BlittableStruct {
@@ -990,8 +990,8 @@ open class UnsealedDerived : test_component.Base {
     }
 
     internal lazy var _IUnsealedDerivedOverloads2: __ABI_test_component.IUnsealedDerivedOverloads2 = try! IUnknown(_inner!).QueryInterface()
-    open func onAfterDoTheThing() {
-        try! _IUnsealedDerivedOverloads2.OnAfterDoTheThingImpl()
+    open func onAfterDoTheThing() throws {
+        try _IUnsealedDerivedOverloads2.OnAfterDoTheThingImpl()
     }
 
     internal class IUnsealedDerivedOverloads2 : ComposableImpl {
@@ -1010,8 +1010,8 @@ open class UnsealedDerived : test_component.Base {
     internal typealias Composable = IUnsealedDerivedOverloads2
     override open class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
     internal lazy var _IUnsealedDerivedOverrides: __ABI_test_component.IUnsealedDerivedOverrides = try! IUnknown(_inner!).QueryInterface()
-    open func onBeforeDoTheThing() {
-        try! _IUnsealedDerivedOverrides.OnBeforeDoTheThingImpl()
+    open func onBeforeDoTheThing() throws {
+        try _IUnsealedDerivedOverrides.OnBeforeDoTheThingImpl()
     }
 
     internal class IUnsealedDerivedOverrides : ComposableImpl {
@@ -1067,8 +1067,8 @@ open class UnsealedDerived2 : test_component.UnsealedDerived {
         self._default = try! IInspectable(parentDefault).QueryInterface()
         _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
     }
-    public func method() {
-        try! _default.MethodImpl()
+    public func method() throws {
+        try _default.MethodImpl()
     }
 
     internal class IUnsealedDerivedOverloads2 : ComposableImpl {
@@ -1214,25 +1214,25 @@ public struct StructWithEnum: Hashable, Codable {
         }
 
 public protocol IBasic : IWinRTObject { 
-        func method()
+        func method() throws
 }
 public protocol IIAmImplementable : IWinRTObject { 
-        func inInt32(_ value: Int32) -> String
-        func inString(_ value: String) -> String
-        func inEnum(_ value: test_component.Signed) -> String
-        func outInt32(_ value: inout Int32)
-        func outString(_ value: inout String)
-        func outBlittableStruct(_ value: inout test_component.BlittableStruct)
-        func outNonBlittableStruct(_ value: inout test_component.NonBlittableStruct)
-        func outEnum(_ value: inout test_component.Signed)
-        func returnEnum() -> test_component.Signed
-        func fireEvent()
+        func inInt32(_ value: Int32) throws -> String
+        func inString(_ value: String) throws -> String
+        func inEnum(_ value: test_component.Signed) throws -> String
+        func outInt32(_ value: inout Int32) throws
+        func outString(_ value: inout String) throws
+        func outBlittableStruct(_ value: inout test_component.BlittableStruct) throws
+        func outNonBlittableStruct(_ value: inout test_component.NonBlittableStruct) throws
+        func outEnum(_ value: inout test_component.Signed) throws
+        func returnEnum() throws -> test_component.Signed
+        func fireEvent() throws
         var enumProperty: test_component.Fruit { get set }
         var id: UUID? { get set }
 }
 public protocol ISimpleDelegate : IWinRTObject { 
-        func doThis()
-        func doThat(_ val: Int32)
+        func doThis() throws
+        func doThat(_ val: Int32) throws
 }
 extension test_component.Fruit {
     public static var banana : test_component.Fruit {

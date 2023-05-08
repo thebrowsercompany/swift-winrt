@@ -19,8 +19,8 @@ public enum __IMPL_test_component {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IBasicVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
-        public func method() {
-            try! _default.MethodImpl()
+        public func method() throws {
+            try _default.MethodImpl()
         }
 
     }
@@ -42,56 +42,56 @@ public enum __IMPL_test_component {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IIAmImplementableVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
-        public func inInt32(_ value: Int32) -> String {
-            let result = try! _default.InInt32Impl(value)
+        public func inInt32(_ value: Int32) throws -> String {
+            let result = try _default.InInt32Impl(value)
             return .init(from: result)
         }
 
-        public func inString(_ value: String) -> String {
+        public func inString(_ value: String) throws -> String {
             let _value = try! HString(value)
-            let result = try! _default.InStringImpl(_value.get())
+            let result = try _default.InStringImpl(_value.get())
             return .init(from: result)
         }
 
-        public func inEnum(_ value: Signed) -> String {
-            let result = try! _default.InEnumImpl(value)
+        public func inEnum(_ value: Signed) throws -> String {
+            let result = try _default.InEnumImpl(value)
             return .init(from: result)
         }
 
-        public func outInt32(_ value: inout Int32) {
-            try! _default.OutInt32Impl(&value)
+        public func outInt32(_ value: inout Int32) throws {
+            try _default.OutInt32Impl(&value)
         }
 
-        public func outString(_ value: inout String) {
+        public func outString(_ value: inout String) throws {
             var _value: HSTRING?
-            try! _default.OutStringImpl(&_value)
+            try _default.OutStringImpl(&_value)
             value = .init(from: _value)
             WindowsDeleteString(_value)
         }
 
-        public func outBlittableStruct(_ value: inout BlittableStruct) {
+        public func outBlittableStruct(_ value: inout BlittableStruct) throws {
             var _value: __x_ABI_Ctest__component_CBlittableStruct = .init()
-            try! _default.OutBlittableStructImpl(&_value)
+            try _default.OutBlittableStructImpl(&_value)
             value = .from(abi: _value)
         }
 
-        public func outNonBlittableStruct(_ value: inout NonBlittableStruct) {
+        public func outNonBlittableStruct(_ value: inout NonBlittableStruct) throws {
             let _value: __ABI_test_component._ABI_NonBlittableStruct = .init()
-            try! _default.OutNonBlittableStructImpl(&_value.val)
+            try _default.OutNonBlittableStructImpl(&_value.val)
             value = .from(abi: _value.val)
         }
 
-        public func outEnum(_ value: inout Signed) {
-            try! _default.OutEnumImpl(&value)
+        public func outEnum(_ value: inout Signed) throws {
+            try _default.OutEnumImpl(&value)
         }
 
-        public func returnEnum() -> Signed {
-            let result = try! _default.ReturnEnumImpl()
+        public func returnEnum() throws -> Signed {
+            let result = try _default.ReturnEnumImpl()
             return result
         }
 
-        public func fireEvent() {
-            try! _default.FireEventImpl()
+        public func fireEvent() throws {
+            try _default.FireEventImpl()
         }
 
         public var enumProperty : Fruit {
@@ -137,12 +137,12 @@ public enum __IMPL_test_component {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.ISimpleDelegateVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
-        public func doThis() {
-            try! _default.DoThisImpl()
+        public func doThis() throws {
+            try _default.DoThisImpl()
         }
 
-        public func doThat(_ val: Int32) {
-            try! _default.DoThatImpl(val)
+        public func doThat(_ val: Int32) throws {
+            try _default.DoThatImpl(val)
         }
 
     }

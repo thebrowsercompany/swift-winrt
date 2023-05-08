@@ -53,9 +53,9 @@ class AppDerivedNoOverrides2 : UnsealedDerivedNoOverrides {
 }
 
 class SwiftWinRTTests : XCTestCase {
-  public func testBlittableStruct() {
+  public func testBlittableStruct() throws {
     let simple = Simple()
-    var blittableStruct = simple.returnBlittableStruct()
+    var blittableStruct = try simple.returnBlittableStruct()
     print("first:", blittableStruct.first)
     print("second: ", blittableStruct.second)
 
@@ -65,7 +65,7 @@ class SwiftWinRTTests : XCTestCase {
     // TakeBlittableStruct requires the struct to have these values
     let putBlittableStruct = BlittableStruct(first: 654, second: 321)
 
-    simple.takeBlittableStruct(putBlittableStruct)
+    try simple.takeBlittableStruct(putBlittableStruct)
 
     blittableStruct = simple.blittableStructProperty
     print("first:", blittableStruct.first)
@@ -84,9 +84,9 @@ class SwiftWinRTTests : XCTestCase {
     XCTAssertEqual(blittableStruct.second, 321, "not copied correctly")
   }
 
-  public func testNonBlittableStruct() {
+  public func testNonBlittableStruct() throws {
     let simple = Simple()
-    var nonBlittableStruct = simple.returnNonBlittableStruct()
+    var nonBlittableStruct = try simple.returnNonBlittableStruct()
     print("first:", nonBlittableStruct.first)
     print("second: ", nonBlittableStruct.second)
 
@@ -96,7 +96,7 @@ class SwiftWinRTTests : XCTestCase {
     // TakeBlittableStruct requires the struct to have these values
     let putNonBlittableStruct = NonBlittableStruct(first: "From", second: "Swift!", third: 3, fourth: "Yay!")
 
-    simple.takeNonBlittableStruct(putNonBlittableStruct)
+    try simple.takeNonBlittableStruct(putNonBlittableStruct)
 
     nonBlittableStruct = simple.nonBlittableStructProperty
     print("first:", nonBlittableStruct.first)
@@ -119,14 +119,14 @@ class SwiftWinRTTests : XCTestCase {
     XCTAssertEqual(nonBlittableStruct.fourth, "Yay!", "not copied correctly")
   }
 
-  public func testEnums() {
+  public func testEnums() throws {
     let classy = Class()
 
     var enumVal = Signed.second
-    let returned = classy.inEnum(enumVal);
+    let returned = try classy.inEnum(enumVal);
     XCTAssertEqual(returned, "Second", "improper value returned")
 
-    enumVal = classy.returnEnum()
+    enumVal = try classy.returnEnum()
     XCTAssertEqual(enumVal, Signed.first, "improper value returned")
 
     var enumProp = classy.enumProperty
@@ -140,7 +140,7 @@ class SwiftWinRTTests : XCTestCase {
     XCTAssertEqual(enumProp, Fruit.apple, "fruit should be apple")
   }
 
-  public func testCustomConstructors() {
+  public func testCustomConstructors() throws {
     var classy = Class("hello")
     XCTAssertEqual(classy.enumProperty, Fruit.banana, "fruit should be bananas")
 
@@ -178,36 +178,36 @@ class SwiftWinRTTests : XCTestCase {
     XCTAssertEqual(putStructResult, "FromSwift!Yay!")
   }
 
-  public func testOutParams() {
+  public func testOutParams() throws {
     let classy = Class()
     print(">> testing OutInt32")
     var outInt: Int32 = 0
-    classy.outInt32(&outInt)
+    try classy.outInt32(&outInt)
     print("     result: ", outInt)
     XCTAssertEqual(outInt, 123)
 
     print(">> testing OutString")
     var outString: String = ""
-    classy.outString(&outString)
+    try classy.outString(&outString)
     print("     result: ", outString)
     XCTAssertEqual(outString, "123")
 
     print(">> testing OutEnum")
     var outEnum: Signed = .second
-    classy.outEnum(&outEnum)
+    try classy.outEnum(&outEnum)
     print("     result: ", outEnum)
     XCTAssertEqual(outEnum, .first)
 
     print(">> testing OutBlittableStruct")
     var outBlittableStruct = BlittableStruct()
-    classy.outBlittableStruct(&outBlittableStruct)
+    try classy.outBlittableStruct(&outBlittableStruct)
     print("     result: ", outBlittableStruct)
     XCTAssertEqual(outBlittableStruct.first, 867)
     XCTAssertEqual(outBlittableStruct.second, 5309)
 
     print(">> testing OutNonBlittableStruct")
     var outNonBlittableStruct: NonBlittableStruct = .init()
-    classy.outNonBlittableStruct(&outNonBlittableStruct)
+    try classy.outNonBlittableStruct(&outNonBlittableStruct)
     print("     result: ", outNonBlittableStruct)
     XCTAssertEqual(outNonBlittableStruct.first, "please")
     XCTAssertEqual(outNonBlittableStruct.second, "vote")
@@ -284,7 +284,7 @@ class SwiftWinRTTests : XCTestCase {
     }
   } 
 
-  public func testDelegate() {
+  public func testDelegate() throws {
     var classy = Class()
 
     do
@@ -293,7 +293,7 @@ class SwiftWinRTTests : XCTestCase {
 
       let mySwiftDelegate = MySimpleDelegate()
 
-      classy.setDelegate(mySwiftDelegate)
+      try classy.setDelegate(mySwiftDelegate)
       XCTAssertEqual(mySwiftDelegate.getThisCount(), 1)
       XCTAssertEqual(mySwiftDelegate.getThat(), 3)
 
@@ -305,9 +305,9 @@ class SwiftWinRTTests : XCTestCase {
       // Get the delegate back and make sure it works
       // TODO: WIN-78 retrieving the delegate causes a memory
       // leak. We should verify the delegate is fully cleaned up
-      var retrievedDelegate = classy.getDelegate()!
-      retrievedDelegate.doThis()
-      retrievedDelegate.doThat(9)
+      var retrievedDelegate = try classy.getDelegate()!
+      try retrievedDelegate.doThis()
+      try retrievedDelegate.doThat(9)
 
       XCTAssertEqual(mySwiftDelegate.getThisCount(), 3)
       XCTAssertEqual(mySwiftDelegate.getThat(), 9)
@@ -316,16 +316,16 @@ class SwiftWinRTTests : XCTestCase {
       // we're initializing the swift object with `nil`, which is similar to 
       // how in C++/WinRT this works.
 
-      classy.setDelegate(nil)
+      try classy.setDelegate(nil)
 
       // This will hand us a new C++ class which implements the interface.
-      retrievedDelegate = classy.getDelegate()!
-      retrievedDelegate.doThis()
-      retrievedDelegate.doThat(15)
+      retrievedDelegate = try classy.getDelegate()!
+      try retrievedDelegate.doThis()
+      try retrievedDelegate.doThat(15)
       XCTAssertEqual(mySwiftDelegate.getThisCount(), 3)
       XCTAssertEqual(mySwiftDelegate.getThat(), 9)
 
-      classy.setDelegate(retrievedDelegate)
+      try classy.setDelegate(retrievedDelegate)
     }
   
     do
@@ -336,10 +336,10 @@ class SwiftWinRTTests : XCTestCase {
       classy = Class("with delegate", .orange, impl)
 
       var enumVal = Signed.second
-      let returned = classy.inEnum(enumVal);
+      let returned = try classy.inEnum(enumVal);
       XCTAssertEqual(returned, impl.inEnum(enumVal), "improper value returned")
 
-      enumVal = classy.returnEnum()
+      enumVal = try classy.returnEnum()
       XCTAssertEqual(enumVal, impl.returnEnum(), "improper value returned")
 
       var enumProp = classy.enumProperty
@@ -354,7 +354,7 @@ class SwiftWinRTTests : XCTestCase {
 
       print(">> testing OutInt32")
       var outInt: Int32 = 0
-      classy.outInt32(&outInt)
+      try classy.outInt32(&outInt)
       print("     result: ", outInt)
 
       var expectedOutInt: Int32 = 0
@@ -363,7 +363,7 @@ class SwiftWinRTTests : XCTestCase {
 
       print(">> testing OutString")
       var outString: String = ""
-      classy.outString(&outString)
+      try classy.outString(&outString)
 
       var expectedOutString: String = ""
       impl.outString(&expectedOutString)
@@ -372,7 +372,7 @@ class SwiftWinRTTests : XCTestCase {
 
       print(">> testing OutEnum")
       var outEnum: Signed = .second
-      classy.outEnum(&outEnum)
+      try classy.outEnum(&outEnum)
       print("     result: ", outEnum)
 
       var expectedOutEnum: Signed = .second
@@ -381,7 +381,7 @@ class SwiftWinRTTests : XCTestCase {
 
       print(">> testing OutBlittableStruct")
       var outBlittableStruct = BlittableStruct()
-      classy.outBlittableStruct(&outBlittableStruct)
+      try classy.outBlittableStruct(&outBlittableStruct)
       print("     result: ", outBlittableStruct)
 
       var outBlittableStructExpected = BlittableStruct()
@@ -393,7 +393,7 @@ class SwiftWinRTTests : XCTestCase {
 
       print(">> testing OutNonBlittableStruct")
       var outNonBlittableStruct: NonBlittableStruct = .init()
-      classy.outNonBlittableStruct(&outNonBlittableStruct)
+      try classy.outNonBlittableStruct(&outNonBlittableStruct)
       print("     result: ", outNonBlittableStruct)
 
       var outNonBlittableStructExected = NonBlittableStruct()
@@ -406,25 +406,25 @@ class SwiftWinRTTests : XCTestCase {
     }
   }
 
-  public func testNonDefaultMethods() {
+  public func testNonDefaultMethods() throws {
     Class.staticPropertyFloat = 4.0
     XCTAssertEqual(Class.staticPropertyFloat, 4.0)
     XCTAssertEqual(Class.staticTestReturnFloat(), 42.24)
     let classy = Class()
-    classy.method()
+    try classy.method()
   }
 
-  public func testChar() {
+  public func testChar() throws {
     let classy = Class()
-    print("classy ReturnChar: ", classy.returnChar())
-    XCTAssertEqual(classy.returnChar(), "d")
+    print("classy ReturnChar: ", try classy.returnChar())
+    XCTAssertEqual(try classy.returnChar(), "d")
 
-    let result = classy.inChar("x")
+    let result = try classy.inChar("x")
     print("classy InChar: ", result)
     XCTAssertEqual(result, "x")
 
     var out: Character = "_"
-    classy.outChar(&out)
+    try classy.outChar(&out)
     print("classy OutChar: ", out)
     XCTAssertEqual(out, "z")
   }
@@ -449,14 +449,14 @@ class SwiftWinRTTests : XCTestCase {
     }
   }
 
-  public func testDoubleDelegate() {
+  public func testDoubleDelegate() throws {
     let classy = Class()
     let newBase = DoTheNewBase()
     classy.implementation = newBase
-    classy.method()
+    try classy.method()
 
     var implReturn = classy.implementation!
-    implReturn.method()
+    try implReturn.method()
 
     XCTAssertIdentical(implReturn, newBase, "incorrect swift object returned")
 
@@ -466,19 +466,19 @@ class SwiftWinRTTests : XCTestCase {
 
     let double = DoubleDelegate()
     classy.implementation = double
-    classy.setDelegate(double)
+    try classy.setDelegate(double)
 
-    classy.method()
+    try classy.method()
 
-    let delegate = classy.getDelegate()!
-    delegate.doThis()
-    delegate.doThat(19)
+    let delegate = try classy.getDelegate()!
+    try delegate.doThis()
+    try delegate.doThat(19)
 
     XCTAssertIdentical(double, delegate)
     XCTAssertIdentical(double, classy.implementation)
   }
 
-  public func testIReference() {
+  public func testIReference() throws {
     let classy = Class()
     XCTAssertEqual(classy.startValue, nil)
 
@@ -493,7 +493,7 @@ class SwiftWinRTTests : XCTestCase {
     XCTAssertEqual(classy.id, id)
   }
 
-  public func testEvents() {
+  public func testEvents() throws {
     let simple = Simple()
     var count = 0
     var static_count = 0
@@ -510,10 +510,10 @@ class SwiftWinRTTests : XCTestCase {
       static_count+=1
     })
 
-    simple.fireEvent()
+    try simple.fireEvent()
     XCTAssertEqual(count, 1)
 
-    simple.fireEvent()
+    try simple.fireEvent()
     XCTAssertEqual(count, 2)
 
     Simple.fireStaticEvent()
@@ -530,7 +530,7 @@ class SwiftWinRTTests : XCTestCase {
     }
     disposable.removeAll(keepingCapacity: true)
 
-    simple.fireEvent()
+    try simple.fireEvent()
     XCTAssertEqual(count, 2)
 
     Simple.fireStaticEvent()
@@ -547,16 +547,16 @@ class SwiftWinRTTests : XCTestCase {
       static_count+=1
     })
 
-    simple.fireEvent()
+    try simple.fireEvent()
     XCTAssertEqual(count, 3)
 
     Simple.fireStaticEvent()
     XCTAssertEqual(static_count, 3)
   }
 
-  public func testAggregation() {
+  public func testAggregation() throws {
     let derived = Derived()
-    derived.doTheThing()
+    try derived.doTheThing()
 
     let appDerived = AppDerived()
     print(type(of: appDerived))
@@ -564,19 +564,19 @@ class SwiftWinRTTests : XCTestCase {
     let b: Base = appDerived as Base
     print(type(of: b))
 
-    appDerived.doTheThing()
+    try appDerived.doTheThing()
     XCTAssertEqual(appDerived.count, 1, "1. count not expected")
 
     print("foo");
     let appDerived2 = AppDerived2()
     print("foo");
-    appDerived2.doTheThing()
+    try appDerived2.doTheThing()
     print("foo");
     XCTAssertEqual(appDerived2.count, 1, "2. count not expected")
 
     print("foo");
     let appDerived3 = AppDerived3()
-    appDerived3.doTheThing()
+    try appDerived3.doTheThing()
     XCTAssertEqual(appDerived3.count, 1, "3. count not expected")
     XCTAssertEqual(appDerived3.beforeCount, 1, "4. count not expected")
 
@@ -635,12 +635,12 @@ class SwiftWinRTTests : XCTestCase {
     XCTAssertIdentical(baseNoOverrides_returned, derivedNoOverrides2)
   }
 
-  func testUnicode() {
+  public func testUnicode() throws {
     let classy = Class()
-    _ = classy.inString("\u{E909}")
+    _ = try classy.inString("\u{E909}")
   }
   
-  public func testVector() {
+  public func testVector() throws {
     let array = ["Hello", "Goodbye", "Goodnight"]
 
     var result = Class.inVector(array.toVector())
@@ -648,7 +648,7 @@ class SwiftWinRTTests : XCTestCase {
     XCTAssertEqual(result, "Hello")
 
     let classy = Class()
-    let vector = classy.returnStoredStringVector()!
+    let vector = try classy.returnStoredStringVector()!
     XCTAssertEqual(vector.count, 1)
     print(vector[0])
 
@@ -661,7 +661,7 @@ class SwiftWinRTTests : XCTestCase {
     XCTAssertEqual(vector.count, 2)
     // Make sure the returned vector has the same data
     // as the one we modified
-    let vector2 = classy.returnStoredStringVector()!
+    let vector2 = try classy.returnStoredStringVector()!
     XCTAssertEqual(vector2.count, vector.count)
     XCTAssertEqual(vector2[0], vector2[0])
     XCTAssertEqual(vector2[1], vector2[1])
@@ -679,18 +679,18 @@ class SwiftWinRTTests : XCTestCase {
     XCTAssertEqual(value, "Alpha")
   }
   
-  public func testMap_asReturn() {
+  public func testMap_asReturn() throws {
     let classy = Class()
-    let map = classy.returnMapFromStringToString()!
+    let map = try classy.returnMapFromStringToString()!
     XCTAssertEqual(map.count, 1)
     XCTAssert(map.hasKey("A"))
     XCTAssertEqual(map.lookup("A"), "Alpha")
     XCTAssert(!map.hasKey("Z"))
   }
 
-  public func testMap_mutate() {
+  public func testMap_mutate() throws {
     let classy = Class()
-    let map = classy.returnMapFromStringToString()!
+    let map = try classy.returnMapFromStringToString()!
     XCTAssert(map.hasKey("A"))
     XCTAssertEqual(map.lookup("A"), "Alpha")
     

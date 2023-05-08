@@ -19,8 +19,8 @@ public enum __IMPL_Windows_Foundation {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Foundation.IClosableVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
-        public func close() {
-            try! _default.CloseImpl()
+        public func close() throws {
+            try _default.CloseImpl()
         }
 
     }
