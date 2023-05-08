@@ -57,17 +57,9 @@ namespace winrt::test_component::implementation
         }
         static void StaticPropertyFloat(float value) { s_float = value; }
 
-        void Fail(bool fail)
+        void Fail()
         {
-            m_fail = fail;
-        }
-
-        void abi_enter()
-        {
-            if (m_fail)
-            {
-                throw hresult_invalid_argument(L"value");
-            }
+            throw hresult_illegal_method_call(L"You are doing a bad thing");
         }
 
         Class(Windows::Foundation::Collections::IIterable<hstring> const& arg, int32_t dummy1);

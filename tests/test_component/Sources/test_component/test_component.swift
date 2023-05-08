@@ -439,6 +439,13 @@ public final class Class : WinRTClass, IBasic {
 
     public func inInt32(_ value: Int32) throws -> String {
         let result = try _default.InInt32Impl(value)
+    }
+    public func fail() {
+        try! _default.FailImpl()
+    }
+
+    public func inInt32(_ value: Int32) -> String {
+        let result = try! _default.InInt32Impl(value)
         return .init(from: result)
     }
 

@@ -731,6 +731,15 @@ class SwiftWinRTTests : XCTestCase {
     print("\(SwiftifiableNames.r8g8b8a8Typeless)")
     print("\(SwiftifiableNames.uuid)")
   }
+
+  public func testErrorInfo() {
+    do {
+      let classy = Class()
+      try classy.fail()
+    } catch {
+      XCTAssertEqual("\(error)", "You are doing a bad thing")
+    }
+  }
 }
  
 var tests: [XCTestCaseEntry] = [

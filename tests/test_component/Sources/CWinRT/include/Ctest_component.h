@@ -7,6 +7,7 @@
 #include <combaseapi.h>
 
 #include <roapi.h>
+#include <roerrorapi.h>
 #include <winstring.h>
 #include "stdlib.h"
 
@@ -14,6 +15,7 @@
 #undef GetCurrentTime
 #undef FindText
 #undef GetClassName
+#undef GetObject
 
 #define ENABLE_WINRT_EXPERIMENTAL_TYPES
 

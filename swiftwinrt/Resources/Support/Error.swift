@@ -2,18 +2,36 @@
 // SPDX-License-Identifier: BSD-3
 
 import WinSDK
+import C_BINDINGS_MODULE
 
-public struct Error: Swift.Error {
-  public let hr: HRESULT
-
-  public init(hr: HRESULT) {
-    self.hr = hr
+private func getDescriptionFromErrorInfo() -> String? {
+  var errorInfo: UnsafeMutablePointer<IRestrictedErrorInfo>?
+  var result = GetRestrictedErrorInfo(&errorInfo)
+  guard result == S_OK else { return nil }
+  defer {
+    _ = errorInfo?.pointee.lpVtbl.pointee.Release(errorInfo)
   }
+  var errorDescription: BSTR?
+  var restrictedDescription: BSTR?
+  var capabilitySid: BSTR?
+  defer {
+    SysFreeString(errorDescription)
+    SysFreeString(restrictedDescription)
+    SysFreeString(capabilitySid)
+  }
+  _ = errorInfo?.pointee.lpVtbl.pointee.GetErrorDetails(
+    errorInfo!,
+    &errorDescription,
+    &result,
+    &restrictedDescription,
+    &capabilitySid)
+  
+  guard SysStringLen(errorDescription) > 0 else { return nil }
+  return String(decodingCString: errorDescription!, as: UTF16.self)
 }
 
-extension Error: CustomStringConvertible {
-  public var description: String {
-    let dwFlags: DWORD = DWORD(FORMAT_MESSAGE_ALLOCATE_BUFFER)
+private func hrToString(_ hr: HRESULT) -> String {
+  let dwFlags: DWORD = DWORD(FORMAT_MESSAGE_ALLOCATE_BUFFER)
                        | DWORD(FORMAT_MESSAGE_FROM_SYSTEM)
                        | DWORD(FORMAT_MESSAGE_IGNORE_INSERTS)
 
@@ -30,8 +48,23 @@ extension Error: CustomStringConvertible {
     }
     defer { LocalFree(buffer) }
     return "0x\(String(DWORD(bitPattern: hr), radix: 16)) - \(String(decodingCString: message, as: UTF16.self))"
+}
+
+public struct Error: Swift.Error, CustomStringConvertible {
+  public let hr: HRESULT
+  public let description: String
+  public init(hr: HRESULT) {
+    self.hr = hr
+
+    if let errorDescription = getDescriptionFromErrorInfo() {
+      self.description = errorDescription
+    } else {
+      self.description = hrToString(hr)
+    }
+
   }
 }
+
 
 public func failWith(err: HRESULT) -> HRESULT {
   return err
