@@ -180,19 +180,19 @@ public enum __IMPL_test_component {
         }
 
         // MARK: WinRT
-        public func lookup(_ key: String)  -> String {
+        public func lookup(_ key: String) -> String {
             let _key = try! HString(key)
             let result = try! _default.LookupImpl(_key.get())
             return .init(from: result)
         }
 
-        public func hasKey(_ key: String)  -> Bool {
+        public func hasKey(_ key: String) -> Bool {
             let _key = try! HString(key)
             let result = try! _default.HasKeyImpl(_key.get())
             return .init(from: result)
         }
 
-        public func split(_ first: inout (any IMapView<String, String>)?, _ second: inout (any IMapView<String, String>)?)  {
+        public func split(_ first: inout (any IMapView<String, String>)?, _ second: inout (any IMapView<String, String>)?) {
             var _first: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?
             var _second: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?
             try! _default.SplitImpl(&_first, &_second)
@@ -234,19 +234,19 @@ public enum __IMPL_test_component {
         }
 
         // MARK: WinRT
-        public func lookup(_ key: String)  -> Base? {
+        public func lookup(_ key: String) -> Base? {
             let _key = try! HString(key)
             let result = try! _default.LookupImpl(_key.get())
             return .from(abi: result)
         }
 
-        public func hasKey(_ key: String)  -> Bool {
+        public func hasKey(_ key: String) -> Bool {
             let _key = try! HString(key)
             let result = try! _default.HasKeyImpl(_key.get())
             return .init(from: result)
         }
 
-        public func split(_ first: inout (any IMapView<String, Base?>)?, _ second: inout (any IMapView<String, Base?>)?)  {
+        public func split(_ first: inout (any IMapView<String, Base?>)?, _ second: inout (any IMapView<String, Base?>)?) {
             var _first: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
             var _second: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
             try! _default.SplitImpl(&_first, &_second)
@@ -288,36 +288,36 @@ public enum __IMPL_test_component {
         }
 
         // MARK: WinRT
-        public func lookup(_ key: String)  -> String {
+        public func lookup(_ key: String) -> String {
             let _key = try! HString(key)
             let result = try! _default.LookupImpl(_key.get())
             return .init(from: result)
         }
 
-        public func hasKey(_ key: String)  -> Bool {
+        public func hasKey(_ key: String) -> Bool {
             let _key = try! HString(key)
             let result = try! _default.HasKeyImpl(_key.get())
             return .init(from: result)
         }
 
-        public func getView()  -> (any IMapView<String, String>)? {
+        public func getView() -> (any IMapView<String, String>)? {
             let result = try! _default.GetViewImpl()
             return __ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
         }
 
-        public func insert(_ key: String, _ value: String)  -> Bool {
+        public func insert(_ key: String, _ value: String) -> Bool {
             let _key = try! HString(key)
             let _value = try! HString(value)
             let result = try! _default.InsertImpl(_key.get(), _value.get())
             return .init(from: result)
         }
 
-        public func remove(_ key: String)  {
+        public func remove(_ key: String) {
             let _key = try! HString(key)
             try! _default.RemoveImpl(_key.get())
         }
 
-        public func clear()  {
+        public func clear() {
             try! _default.ClearImpl()
         }
 
@@ -355,35 +355,35 @@ public enum __IMPL_test_component {
         }
 
         // MARK: WinRT
-        public func lookup(_ key: String)  -> Base? {
+        public func lookup(_ key: String) -> Base? {
             let _key = try! HString(key)
             let result = try! _default.LookupImpl(_key.get())
             return .from(abi: result)
         }
 
-        public func hasKey(_ key: String)  -> Bool {
+        public func hasKey(_ key: String) -> Bool {
             let _key = try! HString(key)
             let result = try! _default.HasKeyImpl(_key.get())
             return .init(from: result)
         }
 
-        public func getView()  -> (any IMapView<String, Base?>)? {
+        public func getView() -> (any IMapView<String, Base?>)? {
             let result = try! _default.GetViewImpl()
             return __ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
         }
 
-        public func insert(_ key: String, _ value: Base?)  -> Bool {
+        public func insert(_ key: String, _ value: Base?) -> Bool {
             let _key = try! HString(key)
             let result = try! _default.InsertImpl(_key.get(), RawPointer(value))
             return .init(from: result)
         }
 
-        public func remove(_ key: String)  {
+        public func remove(_ key: String) {
             let _key = try! HString(key)
             try! _default.RemoveImpl(_key.get())
         }
 
-        public func clear()  {
+        public func clear() {
             try! _default.ClearImpl()
         }
 
@@ -440,12 +440,12 @@ public enum __IMPL_test_component {
             }
         }
         // MARK: WinRT
-        public func getAt(_ index: UInt32)  -> String {
+        public func getAt(_ index: UInt32) -> String {
             let result = try! _default.GetAtImpl(index)
             return .init(from: result)
         }
 
-        public func indexOf(_ value: String, _ index: inout UInt32)  -> Bool {
+        public func indexOf(_ value: String, _ index: inout UInt32) -> Bool {
             let _value = try! HString(value)
             let result = try! _default.IndexOfImpl(_value.get(), &index)
             return .init(from: result)
@@ -504,12 +504,12 @@ public enum __IMPL_test_component {
             }
         }
         // MARK: WinRT
-        public func getAt(_ index: UInt32)  -> Base? {
+        public func getAt(_ index: UInt32) -> Base? {
             let result = try! _default.GetAtImpl(index)
             return .from(abi: result)
         }
 
-        public func indexOf(_ value: Base?, _ index: inout UInt32)  -> Bool {
+        public func indexOf(_ value: Base?, _ index: inout UInt32) -> Bool {
             let result = try! _default.IndexOfImpl(RawPointer(value), &index)
             return .init(from: result)
         }
@@ -576,46 +576,46 @@ public enum __IMPL_test_component {
         }
 
         // MARK: WinRT
-        public func getAt(_ index: UInt32)  -> String {
+        public func getAt(_ index: UInt32) -> String {
             let result = try! _default.GetAtImpl(index)
             return .init(from: result)
         }
 
-        public func getView()  -> (any IVectorView<String>)? {
+        public func getView() -> (any IVectorView<String>)? {
             let result = try! _default.GetViewImpl()
             return __ABI_test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper.unwrapFrom(abi: result)
         }
 
-        public func indexOf(_ value: String, _ index: inout UInt32)  -> Bool {
+        public func indexOf(_ value: String, _ index: inout UInt32) -> Bool {
             let _value = try! HString(value)
             let result = try! _default.IndexOfImpl(_value.get(), &index)
             return .init(from: result)
         }
 
-        public func setAt(_ index: UInt32, _ value: String)  {
+        public func setAt(_ index: UInt32, _ value: String) {
             let _value = try! HString(value)
             try! _default.SetAtImpl(index, _value.get())
         }
 
-        public func insertAt(_ index: UInt32, _ value: String)  {
+        public func insertAt(_ index: UInt32, _ value: String) {
             let _value = try! HString(value)
             try! _default.InsertAtImpl(index, _value.get())
         }
 
-        public func removeAt(_ index: UInt32)  {
+        public func removeAt(_ index: UInt32) {
             try! _default.RemoveAtImpl(index)
         }
 
-        public func append(_ value: String)  {
+        public func append(_ value: String) {
             let _value = try! HString(value)
             try! _default.AppendImpl(_value.get())
         }
 
-        public func removeAtEnd()  {
+        public func removeAtEnd() {
             try! _default.RemoveAtEndImpl()
         }
 
-        public func clear()  {
+        public func clear() {
             try! _default.ClearImpl()
         }
 
@@ -681,42 +681,42 @@ public enum __IMPL_test_component {
         }
 
         // MARK: WinRT
-        public func getAt(_ index: UInt32)  -> Base? {
+        public func getAt(_ index: UInt32) -> Base? {
             let result = try! _default.GetAtImpl(index)
             return .from(abi: result)
         }
 
-        public func getView()  -> (any IVectorView<Base?>)? {
+        public func getView() -> (any IVectorView<Base?>)? {
             let result = try! _default.GetViewImpl()
             return __ABI_test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
         }
 
-        public func indexOf(_ value: Base?, _ index: inout UInt32)  -> Bool {
+        public func indexOf(_ value: Base?, _ index: inout UInt32) -> Bool {
             let result = try! _default.IndexOfImpl(RawPointer(value), &index)
             return .init(from: result)
         }
 
-        public func setAt(_ index: UInt32, _ value: Base?)  {
+        public func setAt(_ index: UInt32, _ value: Base?) {
             try! _default.SetAtImpl(index, RawPointer(value))
         }
 
-        public func insertAt(_ index: UInt32, _ value: Base?)  {
+        public func insertAt(_ index: UInt32, _ value: Base?) {
             try! _default.InsertAtImpl(index, RawPointer(value))
         }
 
-        public func removeAt(_ index: UInt32)  {
+        public func removeAt(_ index: UInt32) {
             try! _default.RemoveAtImpl(index)
         }
 
-        public func append(_ value: Base?)  {
+        public func append(_ value: Base?) {
             try! _default.AppendImpl(RawPointer(value))
         }
 
-        public func removeAtEnd()  {
+        public func removeAtEnd() {
             try! _default.RemoveAtEndImpl()
         }
 
-        public func clear()  {
+        public func clear() {
             try! _default.ClearImpl()
         }
 

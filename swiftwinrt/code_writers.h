@@ -1094,8 +1094,8 @@ public static func makeAbi() -> CABI {
                     if (!can_write(w, method)) continue;
 
                     auto full_type_name = w.push_full_type_names(true);
-                    auto maybe_throws = is_noexcept(method.def) ? "" : "throws ";
-                    w.write("\n        func %(%) %%",
+                    auto maybe_throws = is_noexcept(method.def) ? "" : " throws";
+                    w.write("\n        func %(%)%%",
                         get_swift_name(method),
                         bind<write_function_params>(method, write_type_params::swift_allow_implicit_unwrap),
                         maybe_throws,
@@ -1681,8 +1681,8 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         auto is_winrt_collection = is_winrt_generic_collection(iface.type);
         auto&& type_params = is_winrt_collection
             ? write_type_params::swift : write_type_params::swift_allow_implicit_unwrap;
-        auto maybe_throws = is_winrt_collection ? "" : "throws";
-        w.write("% func %(%) %% {\n",
+        auto maybe_throws = is_winrt_collection ? "" : " throws";
+        w.write("% func %(%)%% {\n",
             iface.overridable ? "open" : "public",
             get_swift_name(function),
             bind<write_function_params>(function, type_params),
@@ -2448,6 +2448,7 @@ bind([&](writer& w) {
         bool needs_try_catch = !is_get_or_put && !is_winrt_generic_collection(type) && !is_delegate(type);
         w.write("%: {\n", func_name);
         if (needs_try_catch) {
+            w.m_indent += 1;
             w.write("do {\n");
         }
         {
@@ -2468,6 +2469,7 @@ bind([&](writer& w) {
         }
         if (needs_try_catch) {
             w.write("} catch { return failWith(err: E_FAIL) } \n");
+            w.m_indent -= 1;
         }
         w.write("}");
     }

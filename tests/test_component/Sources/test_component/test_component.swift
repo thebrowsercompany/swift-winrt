@@ -119,42 +119,42 @@ public final class BaseCollection : WinRTClass, IVector {
     }
 
     // MARK: WinRT
-    public func getAt(_ index: UInt32)  -> Base? {
+    public func getAt(_ index: UInt32) -> Base? {
         let result = try! _default.GetAtImpl(index)
         return .from(abi: result)
     }
 
-    public func getView()  -> (any IVectorView<Base?>)? {
+    public func getView() -> (any IVectorView<Base?>)? {
         let result = try! _default.GetViewImpl()
         return __ABI_test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
 
-    public func indexOf(_ value: Base?, _ index: inout UInt32)  -> Bool {
+    public func indexOf(_ value: Base?, _ index: inout UInt32) -> Bool {
         let result = try! _default.IndexOfImpl(RawPointer(value), &index)
         return .init(from: result)
     }
 
-    public func setAt(_ index: UInt32, _ value: Base?)  {
+    public func setAt(_ index: UInt32, _ value: Base?) {
         try! _default.SetAtImpl(index, RawPointer(value))
     }
 
-    public func insertAt(_ index: UInt32, _ value: Base?)  {
+    public func insertAt(_ index: UInt32, _ value: Base?) {
         try! _default.InsertAtImpl(index, RawPointer(value))
     }
 
-    public func removeAt(_ index: UInt32)  {
+    public func removeAt(_ index: UInt32) {
         try! _default.RemoveAtImpl(index)
     }
 
-    public func append(_ value: Base?)  {
+    public func append(_ value: Base?) {
         try! _default.AppendImpl(RawPointer(value))
     }
 
-    public func removeAtEnd()  {
+    public func removeAtEnd() {
         try! _default.RemoveAtEndImpl()
     }
 
-    public func clear()  {
+    public func clear() {
         try! _default.ClearImpl()
     }
 
@@ -194,35 +194,35 @@ public final class BaseMapCollection : WinRTClass, IMap {
     }
 
     // MARK: WinRT
-    public func lookup(_ key: String)  -> Base? {
+    public func lookup(_ key: String) -> Base? {
         let _key = try! HString(key)
         let result = try! _default.LookupImpl(_key.get())
         return .from(abi: result)
     }
 
-    public func hasKey(_ key: String)  -> Bool {
+    public func hasKey(_ key: String) -> Bool {
         let _key = try! HString(key)
         let result = try! _default.HasKeyImpl(_key.get())
         return .init(from: result)
     }
 
-    public func getView()  -> (any IMapView<String, Base?>)? {
+    public func getView() -> (any IMapView<String, Base?>)? {
         let result = try! _default.GetViewImpl()
         return __ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
 
-    public func insert(_ key: String, _ value: Base?)  -> Bool {
+    public func insert(_ key: String, _ value: Base?) -> Bool {
         let _key = try! HString(key)
         let result = try! _default.InsertImpl(_key.get(), RawPointer(value))
         return .init(from: result)
     }
 
-    public func remove(_ key: String)  {
+    public func remove(_ key: String) {
         let _key = try! HString(key)
         try! _default.RemoveImpl(_key.get())
     }
 
-    public func clear()  {
+    public func clear() {
         try! _default.ClearImpl()
     }
 
@@ -1214,25 +1214,25 @@ public struct StructWithEnum: Hashable, Codable {
         }
 
 public protocol IBasic : IWinRTObject { 
-        func method() throws 
+        func method() throws
 }
 public protocol IIAmImplementable : IWinRTObject { 
-        func inInt32(_ value: Int32) throws  -> String
-        func inString(_ value: String) throws  -> String
-        func inEnum(_ value: test_component.Signed) throws  -> String
-        func outInt32(_ value: inout Int32) throws 
-        func outString(_ value: inout String) throws 
-        func outBlittableStruct(_ value: inout test_component.BlittableStruct) throws 
-        func outNonBlittableStruct(_ value: inout test_component.NonBlittableStruct) throws 
-        func outEnum(_ value: inout test_component.Signed) throws 
-        func returnEnum() throws  -> test_component.Signed
-        func fireEvent() throws 
+        func inInt32(_ value: Int32) throws -> String
+        func inString(_ value: String) throws -> String
+        func inEnum(_ value: test_component.Signed) throws -> String
+        func outInt32(_ value: inout Int32) throws
+        func outString(_ value: inout String) throws
+        func outBlittableStruct(_ value: inout test_component.BlittableStruct) throws
+        func outNonBlittableStruct(_ value: inout test_component.NonBlittableStruct) throws
+        func outEnum(_ value: inout test_component.Signed) throws
+        func returnEnum() throws -> test_component.Signed
+        func fireEvent() throws
         var enumProperty: test_component.Fruit { get set }
         var id: UUID? { get set }
 }
 public protocol ISimpleDelegate : IWinRTObject { 
-        func doThis() throws 
-        func doThat(_ val: Int32) throws 
+        func doThis() throws
+        func doThat(_ val: Int32) throws
 }
 extension test_component.Fruit {
     public static var banana : test_component.Fruit {
