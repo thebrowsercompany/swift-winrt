@@ -63,7 +63,7 @@ namespace swiftwinrt
 
     struct include_all_filter : metadata_filter {
         include_all_filter(winmd::reader::cache& c) : m_cache(c) {};
-        bool includes(winmd::reader::TypeDef const& type) const override { return true;}
+        bool includes(winmd::reader::TypeDef const& type) const override { return true; }
         bool includes_ns(std::string_view const& ns) const override;
         bool includes_generic(std::string_view const& generic) const override { return true; }
 

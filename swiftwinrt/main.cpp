@@ -321,9 +321,10 @@ Where <spec> is one or more of:
 
                 group.add([&, &ns = ns]
                 {
-                    // we want the C header to contain all of the types so that incremental builds of the
+                    // we want the C module to contain all of the types so that incremental builds of the
                     // projections is quick. we don't actually even need the end result of the C bindings
-                    // and so it can be discarded after the app is built - meaning the size doesn't matter
+                    // and so it can be discarded after the app is built - meaning the size increase doesn't
+                    // matter
                     include_all_filter filter{c};
                     auto types = mdCache.compile_namespaces({ ns }, filter);
                     write_abi_header(ns, types);

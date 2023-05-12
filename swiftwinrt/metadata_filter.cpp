@@ -209,6 +209,10 @@ namespace swiftwinrt
         return false;
     }
 
+    // we want to make sure the cache (which contains all possible types) has **something** that is
+    // projected - this ensures a simple namespace with just an API contract (i.e. Microsoft.Foundation)
+    // isn't included. we won't generate a header for this type, and so we can get in a world where we
+    // try to include a non-existent header
     bool include_all_filter::includes_ns(std::string_view const& ns) const
     {
         auto members = m_cache.namespaces();
