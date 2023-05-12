@@ -437,15 +437,12 @@ public final class Class : WinRTClass, IBasic {
         return __ABI_test_component.ISimpleDelegateWrapper.unwrapFrom(abi: result)
     }
 
-    public func inInt32(_ value: Int32) throws -> String {
-        let result = try _default.InInt32Impl(value)
-    }
-    public func fail() {
-        try! _default.FailImpl()
+    public func fail() throws {
+        try _default.FailImpl()
     }
 
-    public func inInt32(_ value: Int32) -> String {
-        let result = try! _default.InInt32Impl(value)
+    public func inInt32(_ value: Int32) throws -> String {
+        let result = try _default.InInt32Impl(value)
         return .init(from: result)
     }
 

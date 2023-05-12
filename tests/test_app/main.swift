@@ -763,6 +763,7 @@ var tests: [XCTestCaseEntry] = [
     ("testStaticMethods", SwiftWinRTTests.testStaticMethods),
     ("testUnicode", SwiftWinRTTests.testUnicode),
     ("testVector", SwiftWinRTTests.testVector),
+    ("testErrorInfo", SwiftWinRTTests.testErrorInfo),
   ])
 ]
 
