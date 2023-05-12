@@ -1158,9 +1158,9 @@ public struct BlittableStruct: Hashable, Codable {
         self.second = second
     }
     public static func from(abi: __x_ABI_Ctest__component_CBlittableStruct) -> BlittableStruct {
-            .init(first: abi.First, second: abi.Second)
-        }
-        }
+        .init(first: abi.First, second: abi.Second)
+    }
+}
 
 public struct NonBlittableBoolStruct: Hashable, Codable {
     public var first: Bool = false
@@ -1175,9 +1175,9 @@ public struct NonBlittableBoolStruct: Hashable, Codable {
         self.fourth = fourth
     }
     public static func from(abi: __x_ABI_Ctest__component_CNonBlittableBoolStruct) -> NonBlittableBoolStruct {
-            .init(first: .init(from: abi.First), second: .init(from: abi.Second), third: .init(from: abi.Third), fourth: .init(from: abi.Fourth))
-        }
-        }
+        .init(first: .init(from: abi.First), second: .init(from: abi.Second), third: .init(from: abi.Third), fourth: .init(from: abi.Fourth))
+    }
+}
 
 public struct NonBlittableStruct: Hashable, Codable {
     public var first: String = ""
@@ -1192,9 +1192,9 @@ public struct NonBlittableStruct: Hashable, Codable {
         self.fourth = fourth
     }
     public static func from(abi: __x_ABI_Ctest__component_CNonBlittableStruct) -> NonBlittableStruct {
-            .init(first: .init(from: abi.First), second: .init(from: abi.Second), third: abi.Third, fourth: .init(from: abi.Fourth))
-        }
-        }
+        .init(first: .init(from: abi.First), second: .init(from: abi.Second), third: abi.Third, fourth: .init(from: abi.Fourth))
+    }
+}
 
 public struct SimpleEventArgs: Hashable, Codable {
     public var value: Int32 = 0
@@ -1203,9 +1203,9 @@ public struct SimpleEventArgs: Hashable, Codable {
         self.value = value
     }
     public static func from(abi: __x_ABI_Ctest__component_CSimpleEventArgs) -> SimpleEventArgs {
-            .init(value: abi.Value)
-        }
-        }
+        .init(value: abi.Value)
+    }
+}
 
 public struct StructWithEnum: Hashable, Codable {
     public var names: SwiftifiableNames = .init(0)
@@ -1214,37 +1214,37 @@ public struct StructWithEnum: Hashable, Codable {
         self.names = names
     }
     public static func from(abi: __x_ABI_Ctest__component_CStructWithEnum) -> StructWithEnum {
-            .init(names: abi.Names)
-        }
-        }
+        .init(names: abi.Names)
+    }
+}
 
 public protocol IBasic : IWinRTObject {
-
-        func method() throws}
+    func method() throws
+}
 
 public typealias AnyBasic = any IBasic
 
 public protocol IIAmImplementable : IWinRTObject {
-
-        func inInt32(_ value: Int32) throws -> String
-        func inString(_ value: String) throws -> String
-        func inEnum(_ value: test_component.Signed) throws -> String
-        func outInt32(_ value: inout Int32) throws
-        func outString(_ value: inout String) throws
-        func outBlittableStruct(_ value: inout test_component.BlittableStruct) throws
-        func outNonBlittableStruct(_ value: inout test_component.NonBlittableStruct) throws
-        func outEnum(_ value: inout test_component.Signed) throws
-        func returnEnum() throws -> test_component.Signed
-        func fireEvent() throws
-        var enumProperty: test_component.Fruit { get set }
-        var id: UUID? { get set }}
+    func inInt32(_ value: Int32) throws -> String
+    func inString(_ value: String) throws -> String
+    func inEnum(_ value: test_component.Signed) throws -> String
+    func outInt32(_ value: inout Int32) throws
+    func outString(_ value: inout String) throws
+    func outBlittableStruct(_ value: inout test_component.BlittableStruct) throws
+    func outNonBlittableStruct(_ value: inout test_component.NonBlittableStruct) throws
+    func outEnum(_ value: inout test_component.Signed) throws
+    func returnEnum() throws -> test_component.Signed
+    func fireEvent() throws
+    var enumProperty: test_component.Fruit { get set }
+    var id: UUID? { get set }
+}
 
 public typealias AnyIAmImplementable = any IIAmImplementable
 
 public protocol ISimpleDelegate : IWinRTObject {
-
-        func doThis() throws
-        func doThat(_ val: Int32) throws}
+    func doThis() throws
+    func doThat(_ val: Int32) throws
+}
 
 public typealias AnySimpleDelegate = any ISimpleDelegate
 

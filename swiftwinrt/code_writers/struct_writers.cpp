@@ -61,7 +61,7 @@ namespace swiftwinrt
         }
     }
 
-    void write_struct(writer & w, struct_type const& type)
+    void write_struct(writer& w, struct_type const& type)
     {
         w.write("public struct %: Hashable, Codable {\n", type);
         {
@@ -96,27 +96,28 @@ namespace swiftwinrt
             }
             w.write("}\n");
 
-            w.write(R"(public static func from(abi: %) -> % {
-        .init(%)
-    }
-    )", bind_type_mangled(type),
-    type,
-    bind([&](writer& w) {
-                    separator s{ w };
-            for (auto&& field : type.members)
+            w.write("public static func from(abi: %) -> % {\n",
+                bind_type_mangled(type), type);
             {
-                if (can_write(w, field.type))
-                {
-                    s();
-                    std::string from = std::string("abi.").append(get_abi_name(field));
-                    w.write("%: %",
-                        get_swift_name(field),
-                        bind<write_consume_type>(field.type, from)
-                    );
-                }
-            }
-        }));
+                auto from_body_indent = w.push_indent();
 
+                w.write(".init(");
+                separator s{ w };
+                for (auto&& field : type.members)
+                {
+                    if (can_write(w, field.type))
+                    {
+                        s();
+                        std::string from = std::string("abi.").append(get_abi_name(field));
+                        w.write("%: %",
+                            get_swift_name(field),
+                            bind<write_consume_type>(field.type, from)
+                        );
+                    }
+                }
+                w.write(")\n");
+            }
+            w.write("}\n");
         }
         w.write("}\n\n");
     }

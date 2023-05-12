@@ -1093,7 +1093,7 @@ public static func makeAbi() -> CABI {
 
                 auto full_type_name = w.push_full_type_names(true);
                 auto maybe_throws = is_noexcept(method.def) ? "" : " throws";
-                w.write("\n    func %(%)%%",
+                w.write("func %(%)%%\n",
                     get_swift_name(method),
                     bind<write_function_params>(method, write_type_params::swift_allow_implicit_unwrap),
                     maybe_throws,
@@ -1105,7 +1105,7 @@ public static func makeAbi() -> CABI {
                 if (!can_write(w, prop)) continue;
                 auto full_type_name = w.push_full_type_names(true);
                 auto&& return_type = *prop.getter->return_type->type;
-                w.write("\n    var %: % { get% }",
+                w.write("var %: % { get% }\n",
                     get_swift_name(prop),
                     bind<write_type>(return_type, write_type_params::swift_allow_implicit_unwrap),
                     prop.setter ? " set" : "");
