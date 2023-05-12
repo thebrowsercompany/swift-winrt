@@ -5,28 +5,6 @@ import WinSDK
 
 public typealias REFIID = UnsafePointer<IID>
 
-// winerror.h
-
-@_transparent
-public var E_FAIL: WinSDK.HRESULT {
-  HRESULT(bitPattern: 0x80004005)
-}
-
-@_transparent
-public var E_INVALIDARG: WinSDK.HRESULT {
-  HRESULT(bitPattern: 0x80070057)
-}
-
-@_transparent
-public var E_NOTIMPL: WinSDK.HRESULT {
-  HRESULT(bitPattern: 0x80004001)
-}
-
-@_transparent
-public var E_NOINTERFACE: WinSDK.HRESULT {
-  HRESULT(bitPattern: 0x80004002)
-}
-
 // winnt.h
 
 @_transparent

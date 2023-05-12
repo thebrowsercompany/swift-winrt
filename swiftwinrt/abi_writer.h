@@ -302,6 +302,7 @@ namespace swiftwinrt
 #include <combaseapi.h>
 
 #include <roapi.h>
+#include <roerrorapi.h>
 #include <winstring.h>
 #include "stdlib.h"
 
