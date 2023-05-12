@@ -733,11 +733,12 @@ class SwiftWinRTTests : XCTestCase {
   }
 
   public func testErrorInfo() {
+    let message = "You are doing a bad thing"
     do {
       let classy = Class()
-      try classy.fail()
+      try classy.fail(message)
     } catch {
-      XCTAssertEqual("\(error)", "You are doing a bad thing")
+      XCTAssertEqual("\(error)", message)
     }
   }
 }

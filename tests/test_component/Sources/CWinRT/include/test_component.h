@@ -1610,7 +1610,8 @@ struct __x_ABI_Ctest__component_CStructWithEnum
         __x_ABI_Ctest__component_CISimpleDelegate* value);
     HRESULT (STDMETHODCALLTYPE* GetDelegate)(__x_ABI_Ctest__component_CIClass* This,
         __x_ABI_Ctest__component_CISimpleDelegate** result);
-    HRESULT (STDMETHODCALLTYPE* Fail)(__x_ABI_Ctest__component_CIClass* This);
+    HRESULT (STDMETHODCALLTYPE* Fail)(__x_ABI_Ctest__component_CIClass* This,
+        HSTRING message);
     HRESULT (STDMETHODCALLTYPE* InInt32)(__x_ABI_Ctest__component_CIClass* This,
         INT32 value,
         HSTRING* result);

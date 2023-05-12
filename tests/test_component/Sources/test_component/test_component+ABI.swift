@@ -26,7 +26,7 @@ private var IID___x_ABI_Ctest__component_CIBasic: IID {
 }
 
 private var IID___x_ABI_Ctest__component_CIClass: IID {
-    IID(Data1: 0x2A3F015A, Data2: 0x1250, Data3: 0x5C48, Data4: ( 0xB8,0x9C,0xC0,0xB5,0x88,0x26,0x7A,0xBE ))// 2A3F015A-1250-5C48-B89C-C0B588267ABE
+    IID(Data1: 0xB5B3F34A, Data2: 0xEA16, Data3: 0x5B75, Data4: ( 0x88,0x72,0xC8,0x01,0xC0,0x7B,0xDC,0x70 ))// B5B3F34A-EA16-5B75-8872-C801C07BDC70
 }
 
 private var IID___x_ABI_Ctest__component_CIClassFactory: IID {
@@ -1921,9 +1921,9 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func FailImpl() throws {
+        internal func FailImpl(_ message: HSTRING?) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.Fail(pThis))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Fail(pThis, message))
             }
         }
 

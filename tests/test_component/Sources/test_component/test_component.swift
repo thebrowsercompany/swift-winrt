@@ -437,8 +437,9 @@ public final class Class : WinRTClass, IBasic {
         return __ABI_test_component.ISimpleDelegateWrapper.unwrapFrom(abi: result)
     }
 
-    public func fail() throws {
-        try _default.FailImpl()
+    public func fail(_ message: String) throws {
+        let _message = try! HString(message)
+        try _default.FailImpl(_message.get())
     }
 
     public func inInt32(_ value: Int32) throws -> String {

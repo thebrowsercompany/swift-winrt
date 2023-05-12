@@ -101,27 +101,9 @@ public var E_XAMLPARSEFAILED : WinSDK.HRESULT {
   HRESULT(bitPattern: 0x802B000A)
 }
 
-
-private func getDescriptionFromErrorInfo() -> String? {
-  var errorInfo: UnsafeMutablePointer<IErrorInfo>?
-  let result = GetErrorInfo(0, &errorInfo)
-  guard result == S_OK else { return nil }
-  defer {
-    _ = errorInfo?.pointee.lpVtbl.pointee.Release(errorInfo)
-  }
-  var errorDescription: BSTR?
-  defer {
-    SysFreeString(errorDescription)
-  }
-  _ = errorInfo?.pointee.lpVtbl.pointee.GetDescription(errorInfo, &errorDescription)
-  guard SysStringLen(errorDescription) > 0 else { return nil }
-  return String(decodingCString: errorDescription!, as: UTF16.self)
-}
-
-private func getDescriptionFromRestrictedErrorInfo() -> String? {
+private func getErrorDescription(for hr: HRESULT) -> String? {
   var errorInfo: UnsafeMutablePointer<IRestrictedErrorInfo>?
-  var result = GetRestrictedErrorInfo(&errorInfo)
-  guard result == S_OK else { return nil }
+  guard GetRestrictedErrorInfo(&errorInfo) == S_OK else { return nil }
   defer {
     _ = errorInfo?.pointee.lpVtbl.pointee.Release(errorInfo)
   }
@@ -134,19 +116,27 @@ private func getDescriptionFromRestrictedErrorInfo() -> String? {
     SysFreeString(restrictedDescription)
     SysFreeString(capabilitySid)
   }
+  var resultLocal: HRESULT = S_OK
   _ = errorInfo?.pointee.lpVtbl.pointee.GetErrorDetails(
     errorInfo,
     &errorDescription,
-    &result,
+    &resultLocal,
     &restrictedDescription,
     &capabilitySid)
-  
-  guard SysStringLen(restrictedDescription) > 0 else { return nil }
-  return String(decodingCString: restrictedDescription!, as: UTF16.self)
-}
 
-private func getErrorDescription() -> String? {
-  return getDescriptionFromRestrictedErrorInfo() ?? getDescriptionFromErrorInfo()
+  guard resultLocal == hr else { return nil }
+  
+  // Favor restrictedDescription as this is a more user friendly message, which
+  // is intended to be displayed to the caller to help them understand why the
+  // api call failed. If it's not set, then fallback to the generic error message
+  // for the result
+  if SysStringLen(restrictedDescription) > 0 {
+    return String(decodingCString: restrictedDescription!, as: UTF16.self)
+  } else if SysStringLen(errorDescription) > 0 {
+    return String(decodingCString: errorDescription!, as: UTF16.self)
+  } else {
+    return nil
+  }
 }
 
 private func hrToString(_ hr: HRESULT) -> String {
@@ -174,7 +164,7 @@ public struct Error : Swift.Error, CustomStringConvertible {
   public let hr: HRESULT
 
   public init(hr: HRESULT) {
-    self.description = getErrorDescription() ?? hrToString(hr)
+    self.description = getErrorDescription(for: hr) ?? hrToString(hr)
     self.hr = hr
   }
 }
