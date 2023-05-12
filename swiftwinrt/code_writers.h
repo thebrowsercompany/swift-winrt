@@ -1019,7 +1019,7 @@ bind_impl_fullname(type));
 
         w.write(R"(public typealias CABI = %
 public typealias SwiftABI = %.%
-public typealias SwiftProjection = any %
+public typealias SwiftProjection = %
 private (set) public var _default: SwiftABI
 public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
     guard let abi = abi else { return nil }
@@ -1037,7 +1037,7 @@ public static func makeAbi() -> CABI {
             bind_type_mangled(type),
             abi_namespace(type),
             type,
-            bind<write_swift_type_identifier>(type), // Do not include outer Optional<>
+            bind<write_swift_interface_existential_identifier>(type), // Do not include outer Optional<>
             bind_impl_name(type),
             abi_namespace(type),
             type);
@@ -1070,9 +1070,7 @@ public static func makeAbi() -> CABI {
         {
             return;
         }
-        auto format = R"(public protocol % : %% { %
-}
-)";
+
         auto typeName = type.swift_type_name();
         bool is_property_set = typeName == "IPropertySet"sv;
         auto interfaces = type.required_interfaces;
@@ -1085,40 +1083,38 @@ public static func makeAbi() -> CABI {
                 write_swift_type_identifier(w, *iface.second.type);
             }}, interfaces));
 
-        w.write(format, type, implements,
-            implements.empty() ? "IWinRTObject" : "",
-            bind([&](writer& w)
-            {
-                for (auto& method : type.functions)
-                {
-                    if (!can_write(w, method)) continue;
-
-                    auto full_type_name = w.push_full_type_names(true);
-                    auto maybe_throws = is_noexcept(method.def) ? "" : " throws";
-                    w.write("\n        func %(%)%%",
-                        get_swift_name(method),
-                        bind<write_function_params>(method, write_type_params::swift_allow_implicit_unwrap),
-                        maybe_throws,
-                        bind<write_return_type_declaration>(method, write_type_params::swift_allow_implicit_unwrap));
-                }
-
-                for (auto& prop : type.properties)
-                {
-                    if (!can_write(w, prop)) continue;
-                    auto full_type_name = w.push_full_type_names(true);
-                    auto&& return_type = *prop.getter->return_type->type;
-                    w.write("\n        var %: % { get% }",
-                        get_swift_name(prop),
-                        bind<write_type>(return_type, write_type_params::swift_allow_implicit_unwrap),
-                        prop.setter ? " set" : "");
-                }
-            }));
-
-        // don't write this extension for property value since it isn't used publically
-        if (get_full_type_name(type) == "Windows.Foundation.IPropertyValue")
+        w.write("public protocol % : %% {\n", type, implements,
+            implements.empty() ? "IWinRTObject" : "");
         {
-            return;
+            auto body_indent = w.push_indent();
+            for (auto& method : type.functions)
+            {
+                if (!can_write(w, method)) continue;
+
+                auto full_type_name = w.push_full_type_names(true);
+                auto maybe_throws = is_noexcept(method.def) ? "" : " throws";
+                w.write("\n    func %(%)%%",
+                    get_swift_name(method),
+                    bind<write_function_params>(method, write_type_params::swift_allow_implicit_unwrap),
+                    maybe_throws,
+                    bind<write_return_type_declaration>(method, write_type_params::swift_allow_implicit_unwrap));
+            }
+
+            for (auto& prop : type.properties)
+            {
+                if (!can_write(w, prop)) continue;
+                auto full_type_name = w.push_full_type_names(true);
+                auto&& return_type = *prop.getter->return_type->type;
+                w.write("\n    var %: % { get% }",
+                    get_swift_name(prop),
+                    bind<write_type>(return_type, write_type_params::swift_allow_implicit_unwrap),
+                    prop.setter ? " set" : "");
+            }
         }
+        w.write("}\n\n");
+
+        // Declare a short form for the existential version of the type, e.g. AnyClosable for "any IClosable"
+        w.write("public typealias % = any %\n\n", get_interface_existential_name(type), typeName);
     }
 
     static void write_ireference(writer& w)
@@ -1220,8 +1216,8 @@ public static func makeAbi() -> CABI {
             assert(!"Unexpected collection type");
         }
 
-        w.write("typealias SwiftProjection = any %\n",
-            bind<write_swift_type_identifier>(type)); // Do not include outer Optional<>
+        w.write("typealias SwiftProjection = %\n",
+            bind<write_swift_interface_existential_identifier>(type)); // Do not include outer Optional<>
 
         w.write("typealias CABI = %\n", bind_type_mangled(type));
         w.write("typealias SwiftABI = %.%\n", abi_namespace(w.type_namespace), bind_type_abi(type));
@@ -1704,14 +1700,14 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
     {
         auto abi_name = w.write_temp("%.%", abi_namespace(iface.type), iface.type->swift_type_name());
         auto format = R"(private class % : IEventRegistration {
-    func add(delegate: any WinRTDelegate, for impl: %.IInspectable){
+    func add(delegate: AnyWinRTDelegate, for impl: %.IInspectable){
         let wrapper = %(delegate as? %)
         let abi = try! wrapper?.toABI { $0 }
         let impl:% = try! impl.QueryInterface()
         delegate.token = try! impl.add_%Impl(abi)
     }
 
-    func remove(delegate: any WinRTDelegate, for impl: %.IInspectable){
+    func remove(delegate: AnyWinRTDelegate, for impl: %.IInspectable){
         let impl: % = try! impl.QueryInterface()
             if let token = delegate.token {
             try! impl.remove_%Impl(token)

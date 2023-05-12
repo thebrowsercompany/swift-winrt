@@ -281,8 +281,8 @@ public enum __ABI_test_component {
 
         Split: {
             guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            var first: (any test_component.IMapView<String, String>)?
-            var second: (any test_component.IMapView<String, String>)?
+            var first: test_component.AnyMapView<String, String>?
+            var second: test_component.AnyMapView<String, String>?
             __unwrapped__instance.split(&first, &second)
             let firstWrapper = __ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper(first)
             let _first = try! firstWrapper?.toABI { $0 }
@@ -408,8 +408,8 @@ public enum __ABI_test_component {
 
         Split: {
             guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            var first: (any test_component.IMapView<String, test_component.Base?>)?
-            var second: (any test_component.IMapView<String, test_component.Base?>)?
+            var first: test_component.AnyMapView<String, test_component.Base?>?
+            var second: test_component.AnyMapView<String, test_component.Base?>?
             __unwrapped__instance.split(&first, &second)
             let firstWrapper = __ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper(first)
             let _first = try! firstWrapper?.toABI { $0 }

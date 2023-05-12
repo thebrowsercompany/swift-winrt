@@ -8,12 +8,12 @@ public protocol IMap<Key, Value> : IWinRTObject {
     var size : UInt32 { get }
     func hasKey(_ key: Key) -> Bool
     func lookup(_ key: Key) -> Value
-    func getView() -> (any IMapView<Key, Value>)?
+    func getView() -> AnyMapView<Key, Value>?
 
     @discardableResult func insert(_ key: Key, _ value: Value) -> Bool
     func remove(_ key: Key)
     func clear()
-}   
+}
 
 public protocol IMapView<Key, Value> : IWinRTObject {
     associatedtype Key
@@ -23,6 +23,9 @@ public protocol IMapView<Key, Value> : IWinRTObject {
     func hasKey(_ key: Key) -> Bool 
     func lookup(_ key: Key) -> Value 
     func split(
-        _ first: inout (any IMapView<Key, Value>)?,
-        _ second: inout (any IMapView<Key, Value>)?)
+        _ first: inout AnyMapView<Key, Value>?,
+        _ second: inout AnyMapView<Key, Value>?)
 }
+
+public typealias AnyMap<Key, Value> = any IMap<Key, Value>
+public typealias AnyMapView<Key, Value> = any IMapView<Key, Value>

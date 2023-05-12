@@ -67,10 +67,14 @@ public struct TimeSpan: Hashable, Codable {
         }
         }
 
-public protocol IClosable : IWinRTObject { 
-        func close() throws
-}
-public protocol IPropertyValue : IWinRTObject { 
+public protocol IClosable : IWinRTObject {
+
+        func close() throws}
+
+public typealias AnyClosable = any IClosable
+
+public protocol IPropertyValue : IWinRTObject {
+
         func getUInt8() throws -> UInt8
         func getInt16() throws -> Int16
         func getUInt16() throws -> UInt16
@@ -90,8 +94,10 @@ public protocol IPropertyValue : IWinRTObject {
         func getSize() throws -> test_component.Size
         func getRect() throws -> test_component.Rect
         var isNumericScalar: Bool { get }
-        var type: test_component.PropertyType { get }
-}
+        var type: test_component.PropertyType { get }}
+
+public typealias AnyPropertyValue = any IPropertyValue
+
 public protocol IReference : IPropertyValue {
     var value: Any { get }
 }
