@@ -169,7 +169,7 @@ namespace swiftwinrt
         std::set<std::string> depends;
         std::set<winmd::reader::Event> events;
         std::vector<generic_param_vector> generic_param_stack;
-        swiftwinrt::metadata_filter filter;
+        swiftwinrt::include_only_used_filter filter;
         swiftwinrt::metadata_cache const* cache;
 
         struct generic_param_guard

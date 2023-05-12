@@ -150,10 +150,6 @@ namespace swiftwinrt
             {
                 // Don't include ourself
             }
-            else if (ns.starts_with("Windows"))
-            {
-                // Don't include anything from windows
-            }
             else
             {
                 w.write(R"^-^(#include "%.h"

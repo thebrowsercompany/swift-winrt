@@ -64,6 +64,8 @@ namespace swiftwinrt
         std::map<std::string_view, std::reference_wrapper<generic_inst const>> generic_instantiations;
         std::set<std::reference_wrapper<typedef_base const>> external_dependencies;
         std::set<std::reference_wrapper<typedef_base const>, category_compare> internal_dependencies;
+
+        const bool has_projections(){ return !enums.empty() && !structs.empty() && !delegates.empty() && !interfaces.empty() && !classes.empty(); }
     };
 
     struct namespace_cache

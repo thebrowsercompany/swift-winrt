@@ -130,7 +130,7 @@ namespace swiftwinrt
         fill_template_placeholders_to_file(package_template, dir_path / "Package.swift");
     }
 
-    static void write_namespace_abi(std::string_view const& ns, type_cache const& members, metadata_filter const& filter)
+    static void write_namespace_abi(std::string_view const& ns, type_cache const& members, include_only_used_filter const& filter)
     {
         writer w;
         w.filter = filter;
@@ -178,7 +178,7 @@ namespace swiftwinrt
         w.save_file("ABI");
     }
 
-    static void write_namespace_wrapper(std::string_view const& ns, type_cache const& members, metadata_filter const& filter)
+    static void write_namespace_wrapper(std::string_view const& ns, type_cache const& members, include_only_used_filter const& filter)
     {
         writer w;
         w.filter = filter;
@@ -211,7 +211,7 @@ namespace swiftwinrt
 
     }
 
-    static void write_namespace_impl(std::string_view const& ns, type_cache const& members, metadata_filter const& filter)
+    static void write_namespace_impl(std::string_view const& ns, type_cache const& members, include_only_used_filter const& filter)
     {
         writer w;
         w.filter = filter;

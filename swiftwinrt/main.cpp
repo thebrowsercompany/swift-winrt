@@ -270,7 +270,7 @@ Where <spec> is one or more of:
             metadata_cache mdCache{ c };
 
             auto include = args.values("include");
-            metadata_filter mf{ mdCache, include };
+            include_only_used_filter mf{ mdCache, include };
 
             if (settings.verbose)
             {
@@ -314,7 +314,22 @@ Where <spec> is one or more of:
             path output_folder = settings.output_folder;
             for (auto&&[ns, members] : c.namespaces())
             {
-                if (!has_projected_types(members) || !mf.includes_any(members))
+                if (!has_projected_types(members))
+                {
+                    continue;
+                }
+
+                group.add([&, &ns = ns]
+                {
+                    // we want the C header to contain all of the types so that incremental builds of the
+                    // projections is quick. we don't actually even need the end result of the C bindings
+                    // and so it can be discarded after the app is built - meaning the size doesn't matter
+                    include_all_filter filter{c};
+                    auto types = mdCache.compile_namespaces({ ns }, filter);
+                    write_abi_header(ns, types);
+                });
+
+                if (!mf.includes_any(members))
                 {
                     continue;
                 }
@@ -358,7 +373,6 @@ Where <spec> is one or more of:
                                 write_namespace_abi(ns, types, mf);
                                 write_namespace_wrapper(ns, types, mf);
                                 write_namespace_impl(ns, types, mf);
-                                write_abi_header(ns, types);
                              });
                         }
 

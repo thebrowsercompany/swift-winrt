@@ -15,6 +15,30 @@ typedef interface __x_ABI_Ctest__component_CDelegates_CIInDelegate __x_ABI_Ctest
 
 #endif // ____x_ABI_Ctest__component_CDelegates_CIInDelegate_FWD_DEFINED__
 
+    #ifndef ____x_ABI_Ctest__component_CDelegates_CIOutInt32Delegate_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CDelegates_CIOutInt32Delegate_FWD_DEFINED__
+typedef interface __x_ABI_Ctest__component_CDelegates_CIOutInt32Delegate __x_ABI_Ctest__component_CDelegates_CIOutInt32Delegate;
+
+#endif // ____x_ABI_Ctest__component_CDelegates_CIOutInt32Delegate_FWD_DEFINED__
+
+    #ifndef ____x_ABI_Ctest__component_CDelegates_CIOutStringDelegate_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CDelegates_CIOutStringDelegate_FWD_DEFINED__
+typedef interface __x_ABI_Ctest__component_CDelegates_CIOutStringDelegate __x_ABI_Ctest__component_CDelegates_CIOutStringDelegate;
+
+#endif // ____x_ABI_Ctest__component_CDelegates_CIOutStringDelegate_FWD_DEFINED__
+
+    #ifndef ____x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate_FWD_DEFINED__
+typedef interface __x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate __x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate;
+
+#endif // ____x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate_FWD_DEFINED__
+
+    #ifndef ____x_ABI_Ctest__component_CDelegates_CIReturnStringDelegate_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CDelegates_CIReturnStringDelegate_FWD_DEFINED__
+typedef interface __x_ABI_Ctest__component_CDelegates_CIReturnStringDelegate __x_ABI_Ctest__component_CDelegates_CIReturnStringDelegate;
+
+#endif // ____x_ABI_Ctest__component_CDelegates_CIReturnStringDelegate_FWD_DEFINED__
+
     #ifndef ____x_ABI_Ctest__component_CDelegates_CISignalDelegate_FWD_DEFINED__
 #define ____x_ABI_Ctest__component_CDelegates_CISignalDelegate_FWD_DEFINED__
 typedef interface __x_ABI_Ctest__component_CDelegates_CISignalDelegate __x_ABI_Ctest__component_CDelegates_CISignalDelegate;
@@ -50,6 +74,110 @@ typedef interface __x_ABI_Ctest__component_CDelegates_CISignalDelegate __x_ABI_C
     
     EXTERN_C const IID IID___x_ABI_Ctest__component_CDelegates_CIInDelegate;
     #endif /* !defined(____x_ABI_Ctest__component_CDelegates_CIInDelegate_INTERFACE_DEFINED__) */
+    
+#if !defined(____x_ABI_Ctest__component_CDelegates_CIOutInt32Delegate_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CDelegates_CIOutInt32Delegate_INTERFACE_DEFINED__
+    typedef struct __x_ABI_Ctest__component_CDelegates_CIOutInt32DelegateVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CDelegates_CIOutInt32Delegate* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CDelegates_CIOutInt32Delegate* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CDelegates_CIOutInt32Delegate* This);
+        HRESULT (STDMETHODCALLTYPE* Invoke)(__x_ABI_Ctest__component_CDelegates_CIOutInt32Delegate* This,
+        INT32* value);
+
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CDelegates_CIOutInt32DelegateVtbl;
+
+    interface __x_ABI_Ctest__component_CDelegates_CIOutInt32Delegate
+    {
+        CONST_VTBL struct __x_ABI_Ctest__component_CDelegates_CIOutInt32DelegateVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CDelegates_CIOutInt32Delegate;
+    #endif /* !defined(____x_ABI_Ctest__component_CDelegates_CIOutInt32Delegate_INTERFACE_DEFINED__) */
+    
+#if !defined(____x_ABI_Ctest__component_CDelegates_CIOutStringDelegate_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CDelegates_CIOutStringDelegate_INTERFACE_DEFINED__
+    typedef struct __x_ABI_Ctest__component_CDelegates_CIOutStringDelegateVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CDelegates_CIOutStringDelegate* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CDelegates_CIOutStringDelegate* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CDelegates_CIOutStringDelegate* This);
+        HRESULT (STDMETHODCALLTYPE* Invoke)(__x_ABI_Ctest__component_CDelegates_CIOutStringDelegate* This,
+        HSTRING* value);
+
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CDelegates_CIOutStringDelegateVtbl;
+
+    interface __x_ABI_Ctest__component_CDelegates_CIOutStringDelegate
+    {
+        CONST_VTBL struct __x_ABI_Ctest__component_CDelegates_CIOutStringDelegateVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CDelegates_CIOutStringDelegate;
+    #endif /* !defined(____x_ABI_Ctest__component_CDelegates_CIOutStringDelegate_INTERFACE_DEFINED__) */
+    
+#if !defined(____x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate_INTERFACE_DEFINED__
+    typedef struct __x_ABI_Ctest__component_CDelegates_CIReturnInt32DelegateVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate* This);
+        HRESULT (STDMETHODCALLTYPE* Invoke)(__x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate* This,
+        INT32* result);
+
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CDelegates_CIReturnInt32DelegateVtbl;
+
+    interface __x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate
+    {
+        CONST_VTBL struct __x_ABI_Ctest__component_CDelegates_CIReturnInt32DelegateVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate;
+    #endif /* !defined(____x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate_INTERFACE_DEFINED__) */
+    
+#if !defined(____x_ABI_Ctest__component_CDelegates_CIReturnStringDelegate_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CDelegates_CIReturnStringDelegate_INTERFACE_DEFINED__
+    typedef struct __x_ABI_Ctest__component_CDelegates_CIReturnStringDelegateVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CDelegates_CIReturnStringDelegate* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CDelegates_CIReturnStringDelegate* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CDelegates_CIReturnStringDelegate* This);
+        HRESULT (STDMETHODCALLTYPE* Invoke)(__x_ABI_Ctest__component_CDelegates_CIReturnStringDelegate* This,
+        HSTRING* result);
+
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CDelegates_CIReturnStringDelegateVtbl;
+
+    interface __x_ABI_Ctest__component_CDelegates_CIReturnStringDelegate
+    {
+        CONST_VTBL struct __x_ABI_Ctest__component_CDelegates_CIReturnStringDelegateVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CDelegates_CIReturnStringDelegate;
+    #endif /* !defined(____x_ABI_Ctest__component_CDelegates_CIReturnStringDelegate_INTERFACE_DEFINED__) */
     
 #if !defined(____x_ABI_Ctest__component_CDelegates_CISignalDelegate_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CDelegates_CISignalDelegate_INTERFACE_DEFINED__
