@@ -101,7 +101,7 @@ public var E_XAMLPARSEFAILED : WinSDK.HRESULT {
   HRESULT(bitPattern: 0x802B000A)
 }
 
-private func getErrorDescription(for hr: HRESULT) -> String? {
+private func getErrorDescription(expecting hr: HRESULT) -> String? {
   var errorInfo: UnsafeMutablePointer<IRestrictedErrorInfo>?
   guard GetRestrictedErrorInfo(&errorInfo) == S_OK else { return nil }
   defer {
@@ -164,7 +164,7 @@ public struct Error : Swift.Error, CustomStringConvertible {
   public let hr: HRESULT
 
   public init(hr: HRESULT) {
-    self.description = getErrorDescription(for: hr) ?? hrToString(hr)
+    self.description = getErrorDescription(expecting: hr) ?? hrToString(hr)
     self.hr = hr
   }
 }
