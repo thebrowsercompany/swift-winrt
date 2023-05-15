@@ -1114,7 +1114,7 @@ public static func makeAbi() -> CABI {
         w.write("}\n\n");
 
         // Declare a short form for the existential version of the type, e.g. AnyClosable for "any IClosable"
-        w.write("public typealias % = any %\n\n", get_interface_existential_name(type), typeName);
+        w.write("public typealias Any% = any %\n\n", typeName, typeName);
     }
 
     static void write_ireference(writer& w)

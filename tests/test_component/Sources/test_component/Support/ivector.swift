@@ -17,7 +17,7 @@ public protocol IVector<Element> : IWinRTObject, Collection where Index == Int {
     func removeAt(_ index: UInt32)
     func removeAtEnd()
     func clear()
-    func getView() -> AnyVectorView<Element>?
+    func getView() -> AnyIVectorView<Element>?
 }
 
 public protocol IVectorView<Element> : IWinRTObject, Collection where Index == Int {
@@ -28,5 +28,5 @@ public protocol IVectorView<Element> : IWinRTObject, Collection where Index == I
     func indexOf(_ item: Element, _ index: inout UInt32) -> Bool
 }
 
-public typealias AnyVector<Element> = any IVector<Element>
-public typealias AnyVectorView<Element> = any IVectorView<Element>
+public typealias AnyIVector<Element> = any IVector<Element>
+public typealias AnyIVectorView<Element> = any IVectorView<Element>

@@ -71,7 +71,7 @@ public protocol IClosable : IWinRTObject {
     func close() throws
 }
 
-public typealias AnyClosable = any IClosable
+public typealias AnyIClosable = any IClosable
 
 public protocol IPropertyValue : IWinRTObject {
     func getUInt8() throws -> UInt8
@@ -96,7 +96,7 @@ public protocol IPropertyValue : IWinRTObject {
     var type: test_component.PropertyType { get }
 }
 
-public typealias AnyPropertyValue = any IPropertyValue
+public typealias AnyIPropertyValue = any IPropertyValue
 
 public protocol IReference : IPropertyValue {
     var value: Any { get }

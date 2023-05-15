@@ -110,12 +110,12 @@ void write_swift_type_identifier_ex(writer& w, metadata_type const& type, bool e
         assert(!existential || iface);
         if (existential && iface)
         {
-            w.write(get_interface_existential_name(*iface));
+            // Use the "AnyIFoo" typealias for any IFoo,
+            // to avoid needing parens in (any IFoo)?
+            w.write("Any");
         }
-        else
-        {
-            w.write(remove_backtick(type.swift_type_name()));
-        }
+        
+        w.write(remove_backtick(type.swift_type_name()));
     }
     else if (auto gen_inst = dynamic_cast<const generic_inst*>(&type))
     {
@@ -273,15 +273,4 @@ void swiftwinrt::write_default_init_assignment(writer& w, metadata_type const& s
     {
         w.write(" = %", is_floating_point(&sig) ? "0.0" : "0");
     }
-}
-
-std::string swiftwinrt::get_interface_existential_name(metadata_type const& iface)
-{
-    assert(is_interface(iface));
-    auto name = remove_backtick(iface.swift_type_name());
-
-    // Interface names should start with an I, but be well-behaved if they don't.
-    std::string existential_name = "Any";
-    existential_name.append(name.starts_with("I") ? name.substr(1) : name);
-    return existential_name;
 }

@@ -11,7 +11,7 @@ namespace swiftwinrt
 {
     enum class projection_layer
     {
-        swift, // AnyVector<String>?
+        swift, // AnyIVector<String>?
         c_abi // UnsafeMutablePointer<__x_IVector_HSTRING>?
     };
 
@@ -28,7 +28,7 @@ namespace swiftwinrt
     // Writes the Swift code representation of a WinRT type as a 'type' syntax node.
     // This is a type as can appear in a variable, parameter, return or property declaration,
     // and may include existentials and "?".
-    // For example: AnyVector<AnyVector<String>?>?
+    // For example: AnyIVector<AnyIVector<String>?>?
     void write_type(writer& w, metadata_type const& type, write_type_params const& params);
 
     // Writes the Swift code representation of a WinRT type at the Swift projection layer
@@ -38,13 +38,11 @@ namespace swiftwinrt
     // - (for generic instances) the generic arguments
     // Does not include decorators like existentials or "?" on the outer type,
     // but may include them on generic arguments.
-    // For example: IVector<AnyVector<String>?>
+    // For example: IVector<AnyIVector<String>?>
     void write_swift_type_identifier(writer& w, metadata_type const& type);
 
-    // Writes the existential version of an interface, such as AnyClosable for "any IClosable"
+    // Writes the existential version of an interface, such as AnyIClosable for "any IClosable"
     void write_swift_interface_existential_identifier(writer& w, metadata_type const& iface);
-
-    std::string get_interface_existential_name(metadata_type const& iface);
 
     void write_default_init_assignment(writer& w, metadata_type const& sig, projection_layer layer);
 }

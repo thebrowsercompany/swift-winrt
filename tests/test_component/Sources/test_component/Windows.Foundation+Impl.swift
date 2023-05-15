@@ -5,7 +5,7 @@ public enum __IMPL_Windows_Foundation {
     public class IClosableImpl : IClosable, AbiInterfaceImpl {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIClosable
         public typealias SwiftABI = __ABI_Windows_Foundation.IClosable
-        public typealias SwiftProjection = AnyClosable
+        public typealias SwiftProjection = AnyIClosable
         private (set) public var _default: SwiftABI
         public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }

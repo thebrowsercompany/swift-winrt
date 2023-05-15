@@ -1,6 +1,6 @@
 // Swift Array to IVector Adaptor
 extension Array {
-    public func toVector() -> AnyVector<Element> {
+    public func toVector() -> AnyIVector<Element> {
         ArrayVector(self)
     }
 }
@@ -21,7 +21,7 @@ internal class ArrayVector<Element> : IVector {
     func removeAt(_ index: UInt32) { storage.remove(at: Int(index) )}
     func removeAtEnd() { storage.removeLast() }
     func clear() { storage.removeAll() }
-    func getView() -> AnyVectorView<Element>? { return ArrayVectorView(storage) }
+    func getView() -> AnyIVectorView<Element>? { return ArrayVectorView(storage) }
 }
 
 extension ArrayVector where Element: Equatable {
