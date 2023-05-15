@@ -912,18 +912,13 @@ namespace swiftwinrt
         return is_generic_def(&type);
     }
 
-    inline bool is_delegate(generic_inst const& type)
-    {
-        return type.generic_type()->category() == category::delegate_type;
-    }
-
     inline bool is_delegate(metadata_type const* type, bool allow_generic = true)
     {
         if (allow_generic)
         {
             if (auto genericInst = dynamic_cast<generic_inst const*>(type))
             {
-                return is_delegate(*genericInst);
+                return is_delegate(genericInst->generic_type());
             }
         }
 

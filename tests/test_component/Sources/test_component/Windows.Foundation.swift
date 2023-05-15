@@ -9,9 +9,9 @@ public struct DateTime: Hashable, Codable {
         self.universalTime = universalTime
     }
     public static func from(abi: __x_ABI_CWindows_CFoundation_CDateTime) -> DateTime {
-            .init(universalTime: abi.UniversalTime)
-        }
-        }
+        .init(universalTime: abi.UniversalTime)
+    }
+}
 
 public struct Point: Hashable, Codable {
     public var x: Float = 0.0
@@ -22,9 +22,9 @@ public struct Point: Hashable, Codable {
         self.y = y
     }
     public static func from(abi: __x_ABI_CWindows_CFoundation_CPoint) -> Point {
-            .init(x: abi.X, y: abi.Y)
-        }
-        }
+        .init(x: abi.X, y: abi.Y)
+    }
+}
 
 public struct Rect: Hashable, Codable {
     public var x: Float = 0.0
@@ -39,9 +39,9 @@ public struct Rect: Hashable, Codable {
         self.height = height
     }
     public static func from(abi: __x_ABI_CWindows_CFoundation_CRect) -> Rect {
-            .init(x: abi.X, y: abi.Y, width: abi.Width, height: abi.Height)
-        }
-        }
+        .init(x: abi.X, y: abi.Y, width: abi.Width, height: abi.Height)
+    }
+}
 
 public struct Size: Hashable, Codable {
     public var width: Float = 0.0
@@ -52,9 +52,9 @@ public struct Size: Hashable, Codable {
         self.height = height
     }
     public static func from(abi: __x_ABI_CWindows_CFoundation_CSize) -> Size {
-            .init(width: abi.Width, height: abi.Height)
-        }
-        }
+        .init(width: abi.Width, height: abi.Height)
+    }
+}
 
 public struct TimeSpan: Hashable, Codable {
     public var duration: Int64 = 0
@@ -63,35 +63,41 @@ public struct TimeSpan: Hashable, Codable {
         self.duration = duration
     }
     public static func from(abi: __x_ABI_CWindows_CFoundation_CTimeSpan) -> TimeSpan {
-            .init(duration: abi.Duration)
-        }
-        }
+        .init(duration: abi.Duration)
+    }
+}
 
-public protocol IClosable : IWinRTObject { 
-        func close() throws
+public protocol IClosable : IWinRTObject {
+    func close() throws
 }
-public protocol IPropertyValue : IWinRTObject { 
-        func getUInt8() throws -> UInt8
-        func getInt16() throws -> Int16
-        func getUInt16() throws -> UInt16
-        func getInt32() throws -> Int32
-        func getUInt32() throws -> UInt32
-        func getInt64() throws -> Int64
-        func getUInt64() throws -> UInt64
-        func getSingle() throws -> Float
-        func getDouble() throws -> Double
-        func getChar16() throws -> Character
-        func getBoolean() throws -> Bool
-        func getString() throws -> String
-        func getGuid() throws -> UUID
-        func getDateTime() throws -> test_component.DateTime
-        func getTimeSpan() throws -> test_component.TimeSpan
-        func getPoint() throws -> test_component.Point
-        func getSize() throws -> test_component.Size
-        func getRect() throws -> test_component.Rect
-        var isNumericScalar: Bool { get }
-        var type: test_component.PropertyType { get }
+
+public typealias AnyIClosable = any IClosable
+
+public protocol IPropertyValue : IWinRTObject {
+    func getUInt8() throws -> UInt8
+    func getInt16() throws -> Int16
+    func getUInt16() throws -> UInt16
+    func getInt32() throws -> Int32
+    func getUInt32() throws -> UInt32
+    func getInt64() throws -> Int64
+    func getUInt64() throws -> UInt64
+    func getSingle() throws -> Float
+    func getDouble() throws -> Double
+    func getChar16() throws -> Character
+    func getBoolean() throws -> Bool
+    func getString() throws -> String
+    func getGuid() throws -> UUID
+    func getDateTime() throws -> test_component.DateTime
+    func getTimeSpan() throws -> test_component.TimeSpan
+    func getPoint() throws -> test_component.Point
+    func getSize() throws -> test_component.Size
+    func getRect() throws -> test_component.Rect
+    var isNumericScalar: Bool { get }
+    var type: test_component.PropertyType { get }
 }
+
+public typealias AnyIPropertyValue = any IPropertyValue
+
 public protocol IReference : IPropertyValue {
     var value: Any { get }
 }

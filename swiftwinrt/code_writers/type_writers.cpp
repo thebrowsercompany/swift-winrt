@@ -10,6 +10,8 @@ const write_type_params write_type_params::swift{ projection_layer::swift };
 const write_type_params write_type_params::c_abi{ projection_layer::c_abi };
 const write_type_params write_type_params::swift_allow_implicit_unwrap{ projection_layer::swift, true };
 
+void write_swift_type_identifier_ex(writer& w, metadata_type const& type, bool existential);
+
 // Writes the Swift code representation of a WinRT type at the Swift projection layer
 // as a 'type' syntax node.
 static void write_swift_type(writer& w, metadata_type const& type, bool allow_implicit_unwrap)
@@ -49,13 +51,10 @@ static void write_swift_type(writer& w, metadata_type const& type, bool allow_im
         }
     }
 
-    if (is_interface(&type))
+    if (is_reference_type(&type))
     {
-        w.write("(any %)%", bind<write_swift_type_identifier>(type), optional_suffix);
-    }
-    else if (is_reference_type(&type))
-    {
-        w.write("%%", bind<write_swift_type_identifier>(type), optional_suffix);
+        bool existential = is_interface(&type);
+        w.write("%%", bind<write_swift_type_identifier_ex>(type, existential), optional_suffix);
     }
     else
     {
@@ -63,7 +62,7 @@ static void write_swift_type(writer& w, metadata_type const& type, bool allow_im
     }
 }
 
-void swiftwinrt::write_swift_type_identifier(writer& w, metadata_type const& type)
+void write_swift_type_identifier_ex(writer& w, metadata_type const& type, bool existential)
 {
     if (auto elem_type = dynamic_cast<const element_type*>(&type))
     {
@@ -107,6 +106,15 @@ void swiftwinrt::write_swift_type_identifier(writer& w, metadata_type const& typ
             w.write("%.", get_swift_module(type.swift_logical_namespace()));
         }
 
+        auto iface = dynamic_cast<const interface_type*>(type_def);
+        assert(!existential || iface);
+        if (existential && iface)
+        {
+            // Use the "AnyIFoo" typealias for any IFoo,
+            // to avoid needing parens in (any IFoo)?
+            w.write("Any");
+        }
+        
         w.write(remove_backtick(type.swift_type_name()));
     }
     else if (auto gen_inst = dynamic_cast<const generic_inst*>(&type))
@@ -122,7 +130,7 @@ void swiftwinrt::write_swift_type_identifier(writer& w, metadata_type const& typ
                 " cannot be represented as a Swift type-identifier syntax node.");
         }
 
-        write_swift_type_identifier(w, generic_typedef);
+        write_swift_type_identifier_ex(w, generic_typedef, existential);
 
         w.write("<");
         separator sep{ w };
@@ -140,6 +148,16 @@ void swiftwinrt::write_swift_type_identifier(writer& w, metadata_type const& typ
         throw std::exception("Unexpected metadata_type");
     }
 }
+
+void swiftwinrt::write_swift_type_identifier(writer& w, metadata_type const& type) {
+    write_swift_type_identifier_ex(w, type, /* existential: */ false);
+}
+
+void swiftwinrt::write_swift_interface_existential_identifier(writer& w, metadata_type const& iface) {
+    assert(is_interface(iface));
+    write_swift_type_identifier_ex(w, iface, /* existential: */ true);
+}
+
 // Writes the Swift code representation of a WinRT type at the C ABI projection layer
 // as a 'type' syntax node.
 static void write_c_abi_type(writer& w, metadata_type const& type)

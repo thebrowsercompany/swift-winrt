@@ -1,6 +1,6 @@
 // Swift Dictionary to IMap Adaptor
 extension Dictionary {
-    public func toMap() -> any IMap<Key, Value> {
+    public func toMap() -> AnyIMap<Key, Value> {
         DictionaryMap(self)
     }
 }
@@ -14,7 +14,7 @@ internal class DictionaryMap<Key, Value> : IMap where Key : Hashable {
     var size : UInt32 { UInt32(storage.count) }
     func hasKey(_ key: Key) -> Bool { storage[key] != nil }
     func lookup(_ key: Key) -> Value { storage[key]! }
-    func getView() -> (any IMapView<Key, Value>)? { DictionaryMapView(storage) }
+    func getView() -> AnyIMapView<Key, Value>? { DictionaryMapView(storage) }
 
     @discardableResult func insert(_ key: Key, _ value: Value) -> Bool {
         // WinRT returns true if replacing
@@ -34,8 +34,8 @@ internal class DictionaryMapView<Key, Value> : IMapView where Key : Hashable {
     func hasKey(_ key: Key) -> Bool { storage[key] != nil }
     func lookup(_ key: Key) -> Value { storage[key]! }
     func split(
-        _ first: inout (any IMapView<Key, Value>)?,
-        _ second: inout (any IMapView<Key, Value>)?) {
+        _ first: inout AnyIMapView<Key, Value>?,
+        _ second: inout AnyIMapView<Key, Value>?) {
         fatalError("Not implemented: DictionaryMapView.Split")
     }
 }

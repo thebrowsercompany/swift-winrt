@@ -5,7 +5,7 @@ public enum __IMPL_test_component {
     public class IBasicImpl : IBasic, AbiInterfaceImpl {
         public typealias CABI = __x_ABI_Ctest__component_CIBasic
         public typealias SwiftABI = __ABI_test_component.IBasic
-        public typealias SwiftProjection = any IBasic
+        public typealias SwiftProjection = AnyIBasic
         private (set) public var _default: SwiftABI
         public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
@@ -28,7 +28,7 @@ public enum __IMPL_test_component {
     public class IIAmImplementableImpl : IIAmImplementable, AbiInterfaceImpl {
         public typealias CABI = __x_ABI_Ctest__component_CIIAmImplementable
         public typealias SwiftABI = __ABI_test_component.IIAmImplementable
-        public typealias SwiftProjection = any IIAmImplementable
+        public typealias SwiftProjection = AnyIIAmImplementable
         private (set) public var _default: SwiftABI
         public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
@@ -123,7 +123,7 @@ public enum __IMPL_test_component {
     public class ISimpleDelegateImpl : ISimpleDelegate, AbiInterfaceImpl {
         public typealias CABI = __x_ABI_Ctest__component_CISimpleDelegate
         public typealias SwiftABI = __ABI_test_component.ISimpleDelegate
-        public typealias SwiftProjection = any ISimpleDelegate
+        public typealias SwiftProjection = AnyISimpleDelegate
         private (set) public var _default: SwiftABI
         public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
@@ -159,7 +159,7 @@ public enum __IMPL_test_component {
     internal class __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl : IMapView, AbiInterfaceImpl {
         typealias Key = String
         typealias Value = String
-        typealias SwiftProjection = any IMapView<String, String>
+        typealias SwiftProjection = AnyIMapView<String, String>
         typealias CABI = __x_ABI_C__FIMapView_2_HSTRING_HSTRING
         typealias SwiftABI = __ABI_test_component.IMapViewString_String
 
@@ -192,7 +192,7 @@ public enum __IMPL_test_component {
             return .init(from: result)
         }
 
-        public func split(_ first: inout (any IMapView<String, String>)?, _ second: inout (any IMapView<String, String>)?) {
+        public func split(_ first: inout AnyIMapView<String, String>?, _ second: inout AnyIMapView<String, String>?) {
             var _first: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?
             var _second: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?
             try! _default.SplitImpl(&_first, &_second)
@@ -213,7 +213,7 @@ public enum __IMPL_test_component {
     internal class __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl : IMapView, AbiInterfaceImpl {
         typealias Key = String
         typealias Value = Base?
-        typealias SwiftProjection = any IMapView<String, Base?>
+        typealias SwiftProjection = AnyIMapView<String, Base?>
         typealias CABI = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
         typealias SwiftABI = __ABI_test_component.IMapViewString_Base
 
@@ -246,7 +246,7 @@ public enum __IMPL_test_component {
             return .init(from: result)
         }
 
-        public func split(_ first: inout (any IMapView<String, Base?>)?, _ second: inout (any IMapView<String, Base?>)?) {
+        public func split(_ first: inout AnyIMapView<String, Base?>?, _ second: inout AnyIMapView<String, Base?>?) {
             var _first: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
             var _second: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
             try! _default.SplitImpl(&_first, &_second)
@@ -267,7 +267,7 @@ public enum __IMPL_test_component {
     internal class __x_ABI_C__FIMap_2_HSTRING_HSTRINGImpl : IMap, AbiInterfaceImpl {
         typealias Key = String
         typealias Value = String
-        typealias SwiftProjection = any IMap<String, String>
+        typealias SwiftProjection = AnyIMap<String, String>
         typealias CABI = __x_ABI_C__FIMap_2_HSTRING_HSTRING
         typealias SwiftABI = __ABI_test_component.IMapString_String
 
@@ -300,7 +300,7 @@ public enum __IMPL_test_component {
             return .init(from: result)
         }
 
-        public func getView() -> (any IMapView<String, String>)? {
+        public func getView() -> AnyIMapView<String, String>? {
             let result = try! _default.GetViewImpl()
             return __ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
         }
@@ -334,7 +334,7 @@ public enum __IMPL_test_component {
     internal class __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl : IMap, AbiInterfaceImpl {
         typealias Key = String
         typealias Value = Base?
-        typealias SwiftProjection = any IMap<String, Base?>
+        typealias SwiftProjection = AnyIMap<String, Base?>
         typealias CABI = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
         typealias SwiftABI = __ABI_test_component.IMapString_Base
 
@@ -367,7 +367,7 @@ public enum __IMPL_test_component {
             return .init(from: result)
         }
 
-        public func getView() -> (any IMapView<String, Base?>)? {
+        public func getView() -> AnyIMapView<String, Base?>? {
             let result = try! _default.GetViewImpl()
             return __ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
         }
@@ -399,7 +399,7 @@ public enum __IMPL_test_component {
 
     internal class __x_ABI_C__FIVectorView_1_HSTRINGImpl : IVectorView, AbiInterfaceImpl {
         typealias Element = String
-        typealias SwiftProjection = any IVectorView<String>
+        typealias SwiftProjection = AnyIVectorView<String>
         typealias CABI = __x_ABI_C__FIVectorView_1_HSTRING
         typealias SwiftABI = __ABI_test_component.IVectorViewString
 
@@ -463,7 +463,7 @@ public enum __IMPL_test_component {
 
     internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl : IVectorView, AbiInterfaceImpl {
         typealias Element = Base?
-        typealias SwiftProjection = any IVectorView<Base?>
+        typealias SwiftProjection = AnyIVectorView<Base?>
         typealias CABI = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase
         typealias SwiftABI = __ABI_test_component.IVectorViewBase
 
@@ -526,7 +526,7 @@ public enum __IMPL_test_component {
 
     internal class __x_ABI_C__FIVector_1_HSTRINGImpl : IVector, AbiInterfaceImpl {
         typealias Element = String
-        typealias SwiftProjection = any IVector<String>
+        typealias SwiftProjection = AnyIVector<String>
         typealias CABI = __x_ABI_C__FIVector_1_HSTRING
         typealias SwiftABI = __ABI_test_component.IVectorString
 
@@ -581,7 +581,7 @@ public enum __IMPL_test_component {
             return .init(from: result)
         }
 
-        public func getView() -> (any IVectorView<String>)? {
+        public func getView() -> AnyIVectorView<String>? {
             let result = try! _default.GetViewImpl()
             return __ABI_test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper.unwrapFrom(abi: result)
         }
@@ -631,7 +631,7 @@ public enum __IMPL_test_component {
 
     internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl : IVector, AbiInterfaceImpl {
         typealias Element = Base?
-        typealias SwiftProjection = any IVector<Base?>
+        typealias SwiftProjection = AnyIVector<Base?>
         typealias CABI = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase
         typealias SwiftABI = __ABI_test_component.IVectorBase
 
@@ -686,7 +686,7 @@ public enum __IMPL_test_component {
             return .from(abi: result)
         }
 
-        public func getView() -> (any IVectorView<Base?>)? {
+        public func getView() -> AnyIVectorView<Base?>? {
             let result = try! _default.GetViewImpl()
             return __ABI_test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
         }

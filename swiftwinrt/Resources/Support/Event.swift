@@ -22,10 +22,10 @@ public class EventImpl<Delegate: WinRTDelegate>: Event<Delegate.Data, Delegate.R
 }
 
 class EventCleanup : Disposable {
-    weak var delegate: (any WinRTDelegate)?
+    weak var delegate: AnyWinRTDelegate?
     weak var event: IEventRegistration?
     weak var impl: SUPPORT_MODULE.IInspectable?
-    init(delegate: any WinRTDelegate, event: IEventRegistration, impl: IInspectable?)
+    init(delegate: AnyWinRTDelegate, event: IEventRegistration, impl: IInspectable?)
     {
         self.delegate = delegate
         self.event = event
@@ -42,8 +42,8 @@ class EventCleanup : Disposable {
 }
 
 public protocol IEventRegistration : AnyObject {
-    func add(delegate: any WinRTDelegate, for: IInspectable)
-    func remove(delegate: any WinRTDelegate, for: IInspectable)
+    func add(delegate: AnyWinRTDelegate, for: IInspectable)
+    func remove(delegate: AnyWinRTDelegate, for: IInspectable)
 }
 
 public protocol WinRTDelegate : IWinRTObject {
@@ -55,6 +55,7 @@ public protocol WinRTDelegate : IWinRTObject {
 
 }
 
+public typealias AnyWinRTDelegate = any WinRTDelegate
 public protocol Disposable {
  func dispose()
 }
