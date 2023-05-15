@@ -912,7 +912,7 @@ namespace swiftwinrt
         return is_generic_def(&type);
     }
 
-    inline delegate_type const* is_delegate(metadata_type const* type, bool allow_generic = true)
+    inline bool is_delegate(metadata_type const* type, bool allow_generic = true)
     {
         if (allow_generic)
         {
@@ -922,15 +922,15 @@ namespace swiftwinrt
             }
         }
 
-        return dynamic_cast<delegate_type const*>(type);
+        return dynamic_cast<delegate_type const*>(type) != nullptr;
     }
 
-    inline delegate_type const* is_delegate(metadata_type const& type, bool allow_generic = true)
+    inline bool is_delegate(metadata_type const& type, bool allow_generic = true)
     {
         return is_delegate(&type, allow_generic);
     }
 
-    inline interface_type const* is_interface(metadata_type const* type, bool allow_generic = true)
+    inline bool is_interface(metadata_type const* type, bool allow_generic = true)
     {
         if (allow_generic)
         {
@@ -940,10 +940,10 @@ namespace swiftwinrt
             }
         }
 
-        return dynamic_cast<interface_type const*>(type);
+        return dynamic_cast<interface_type const*>(type) != nullptr;
     }
 
-    inline interface_type const* is_interface(metadata_type const& type, bool allow_generic = true)
+    inline bool is_interface(metadata_type const& type, bool allow_generic = true)
     {
         return is_interface(&type, allow_generic);
     }
