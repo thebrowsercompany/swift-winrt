@@ -371,7 +371,7 @@ Where <spec> is one or more of:
                             module_group.add([&, &ns = ns]
                             {
                                 auto types = mdCache.compile_namespaces({ ns }, mf);
-                                write_namespace_abi(ns, types, mf);
+                                write_namespace_abi (ns, types, mf);
                                 write_namespace_wrapper(ns, types, mf);
                                 write_namespace_impl(ns, types, mf);
                              });
@@ -425,7 +425,7 @@ Where <spec> is one or more of:
                 write_multimodule_package_swift(module_dependencies);
             }
 
-            write_include_all(module_map);
+            write_include_all(c.namespaces());
             if (settings.verbose)
             {
                 w.write(" time:  %ms\n", get_elapsed_time(start));

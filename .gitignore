@@ -5,6 +5,11 @@ build/
 out/
 .build
 
+tests/test_component/Sources/CWinRT/include
+!tests/test_component/Sources/CWinRT/include/Ctest_component.h
+!tests/test_component/Sources/CWinRT/include/test_component.h
+!tests/test_component/Sources/CWinRT/include/test_component.Delegates.h
+
 # IDEs
 .vs/
 .vscode/
