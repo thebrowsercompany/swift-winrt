@@ -1,0 +1,4 @@
+module Ctest_component {
+    header "Ctest_component.h"
+    export *
+}
