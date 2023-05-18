@@ -5,6 +5,16 @@ build/
 out/
 .build
 
+# ignore all generated headers because there are too many
+tests/test_component/Sources/CWinRT/include
+# keep around a few headers so we can see changes. Ctest_component.h
+# is the main header for the component which includes all others - so it's
+# helpful to see that one
+!tests/test_component/Sources/CWinRT/include/Ctest_component.h
+!tests/test_component/Sources/CWinRT/include/module.modulemap
+!tests/test_component/Sources/CWinRT/include/test_component.h
+!tests/test_component/Sources/CWinRT/include/test_component.Delegates.h
+
 # IDEs
 .vs/
 .vscode/

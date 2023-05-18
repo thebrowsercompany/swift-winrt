@@ -10,6 +10,7 @@
 #include "metadata_cache.h"
 #include "settings.h"
 #include "common.h"
+#include "helpers.h"
 
 using namespace std::literals;
 using namespace winmd::reader;
@@ -150,10 +151,6 @@ namespace swiftwinrt
             {
                 // Don't include ourself
             }
-            else if (ns.starts_with("Windows"))
-            {
-                // Don't include anything from windows
-            }
             else
             {
                 w.write(R"^-^(#include "%.h"
@@ -290,7 +287,7 @@ namespace swiftwinrt
         w.save_header();
     }
 
-    inline void write_include_all(std::map<std::string, std::vector<std::string_view>>& namespaces)
+    inline void write_include_all(std::map<std::string_view, winmd::reader::cache::namespace_members> const& namespaces)
     {
         writer w;
         w.c_mod = settings.get_c_module_name();
@@ -318,13 +315,12 @@ namespace swiftwinrt
 #pragma clang diagnostic ignored "-Wmicrosoft-enum-forward-reference"
 
 )");
-        for (auto& [module, ns_list] : namespaces)
+        for (auto& [ns, members] : namespaces)
         {
-            // sort so the file stays consistent
-            std::sort(ns_list.begin(), ns_list.end());
-            for (auto& ns : ns_list)
+            if (has_projected_types(members))
             {
                 w.write("#include \"%.h\"\n", ns);
+
             }
         }
 

@@ -107,7 +107,7 @@ namespace swiftwinrt
         }
     }
 
-    metadata_filter::metadata_filter(metadata_cache const& cache, std::vector<std::string> const& includes)
+    include_only_used_filter::include_only_used_filter(metadata_cache const& cache, std::vector<std::string> const& includes)
     {
         processing_queue to_process;
         for (auto& include : includes)
@@ -198,7 +198,7 @@ namespace swiftwinrt
         }
     }
 
-    bool metadata_filter::includes(winmd::reader::TypeDef const& type) const
+    bool include_only_used_filter::includes(winmd::reader::TypeDef const& type) const
     {
         auto ns = types.find(type.TypeNamespace());
         if (ns != types.end())
@@ -207,5 +207,15 @@ namespace swiftwinrt
         }
 
         return false;
+    }
+
+    // we want to make sure the cache (which contains all possible types) has **something** that is
+    // projected - this ensures a simple namespace with just an API contract (i.e. Microsoft.Foundation)
+    // isn't included. we won't generate a header for this type, and so we can get in a world where we
+    // try to include a non-existent header
+    bool include_all_filter::includes_ns(std::string_view const& ns) const
+    {
+        auto members = m_cache.namespaces();
+        return has_projected_types(members[ns]);
     }
 }
