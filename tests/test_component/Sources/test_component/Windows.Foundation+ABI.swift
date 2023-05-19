@@ -99,7 +99,7 @@ public enum __ABI_Windows_Foundation {
 
         put_Completed: {
             guard let __unwrapped__instance = IAsyncActionWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            guard let handler: test_component.AsyncActionCompletedHandler? = __ABI_Windows_Foundation.AsyncActionCompletedHandlerWrapper.tryUnwrapFrom(abi: $1) else { return E_INVALIDARG }
+            guard let handler = __ABI_Windows_Foundation.AsyncActionCompletedHandlerWrapper.tryUnwrapFrom(abi: $1) else { return E_INVALIDARG }
             __unwrapped__instance.completed = handler
             return S_OK
         },
