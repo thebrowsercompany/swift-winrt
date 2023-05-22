@@ -627,9 +627,8 @@ class % : WinRTWrapperBase<%, %> {
 
                     if (is_delegate(param.type))
                     {
-                        w.write("guard let %: % = % else { return E_INVALIDARG }\n",
+                        w.write("guard let % = % else { return E_INVALIDARG }\n",
                             get_swift_name(param),
-                            bind<write_type>(*param.type, write_type_params::swift),
                             bind<write_consume_type>(param.type, param_name));
                     }
                     else

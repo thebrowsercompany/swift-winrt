@@ -58,7 +58,7 @@ private var IID___x_ABI_Ctest__component_CINullValuesStatics: IID {
 }
 
 private var IID___x_ABI_Ctest__component_CISimple: IID {
-    IID(Data1: 0xCC8E220C, Data2: 0xBBF0, Data3: 0x50B8, Data4: ( 0xB1,0x8E,0x98,0xE7,0xCC,0x2E,0xED,0xDB ))// CC8E220C-BBF0-50B8-B18E-98E7CC2EEDDB
+    IID(Data1: 0xEC2C83BF, Data2: 0xF221, Data3: 0x550A, Data4: ( 0xBF,0xEE,0x07,0x35,0xC5,0x73,0x17,0x94 ))// EC2C83BF-F221-550A-BFEE-0735C5731794
 }
 
 private var IID___x_ABI_Ctest__component_CISimpleDelegate: IID {
@@ -198,7 +198,7 @@ private var IID___x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned: IID
 }
 
 private var IID___x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs: IID {
-    IID(Data1: 0xf23463b2, Data2: 0x72e7, Data3: 0x5551, Data4: ( 0xab,0xf3,0x13,0xbf,0x6b,0xce,0xd6,0x2e ))// f23463b2-72e7-5551-abf3-13bf6bced62e
+    IID(Data1: 0xf177e7ee, Data2: 0xc4b3, Data3: 0x585b, Data4: ( 0xb3,0xa5,0xcf,0xa6,0xbc,0xcf,0x71,0x5d ))// f177e7ee-c4b3-585b-b3a5-cfa6bccf715d
 }
 
 public enum __ABI_test_component {

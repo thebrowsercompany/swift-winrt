@@ -2,6 +2,7 @@
 import Ctest_component
 
 public typealias PropertyType = __x_ABI_CWindows_CFoundation_CPropertyType
+public typealias AsyncActionCompletedHandler = __IMPL_Windows_Foundation.AsyncActionCompletedHandlerImpl
 public struct DateTime: Hashable, Codable {
     public var universalTime: Int64 = 0
     public init() {}
@@ -66,6 +67,13 @@ public struct TimeSpan: Hashable, Codable {
         .init(duration: abi.Duration)
     }
 }
+
+public protocol IAsyncAction : IWinRTObject {
+    func getResults() throws
+    var completed: test_component.AsyncActionCompletedHandler! { get set }
+}
+
+public typealias AnyIAsyncAction = any IAsyncAction
 
 public protocol IClosable : IWinRTObject {
     func close() throws

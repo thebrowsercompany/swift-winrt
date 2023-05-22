@@ -2,6 +2,43 @@
 import Ctest_component
 
 public enum __IMPL_Windows_Foundation {
+    public class IAsyncActionImpl : IAsyncAction, AbiInterfaceImpl {
+        public typealias CABI = __x_ABI_CWindows_CFoundation_CIAsyncAction
+        public typealias SwiftABI = __ABI_Windows_Foundation.IAsyncAction
+        public typealias SwiftProjection = AnyIAsyncAction
+        private (set) public var _default: SwiftABI
+        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+            guard let abi = abi else { return nil }
+            return IAsyncActionImpl(abi)
+        }
+        public init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+            _default = SwiftABI(fromAbi)
+        }
+
+        public static func makeAbi() -> CABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Foundation.IAsyncActionVTable) { $0 }
+            return .init(lpVtbl: vtblPtr)
+        }
+        public func getResults() throws {
+            try _default.GetResultsImpl()
+        }
+
+        public var completed : AsyncActionCompletedHandler! {
+            get {
+                let handler = try! _default.get_CompletedImpl()
+                let _handler = __ABI_Windows_Foundation.AsyncActionCompletedHandlerWrapper.tryUnwrapFrom(abi: handler)
+            return _handler
+            }
+
+            set {
+                let wrapper = __ABI_Windows_Foundation.AsyncActionCompletedHandlerWrapper(newValue)
+                let _newValue = try! wrapper?.toABI { $0 }
+                try! _default.put_CompletedImpl(_newValue)
+            }
+        }
+
+    }
+
     public class IClosableImpl : IClosable, AbiInterfaceImpl {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIClosable
         public typealias SwiftABI = __ABI_Windows_Foundation.IClosable
@@ -94,4 +131,13 @@ public enum __IMPL_Windows_Foundation {
         public func getRect() -> Rect { _value as! Rect }
     }
 
+    public class AsyncActionCompletedHandlerImpl : WinRTDelegate {
+        public typealias Data = (AnyIAsyncAction?, AsyncStatus)
+        public typealias Return = ()
+        public var token: EventRegistrationToken?
+        public var handler: (Data) -> Return
+        public required init(handler: @escaping (Data) -> Return){
+            self.handler = handler
+        }
+    }
 }
