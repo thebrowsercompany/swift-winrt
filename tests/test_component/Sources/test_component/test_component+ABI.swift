@@ -26,7 +26,7 @@ private var IID___x_ABI_Ctest__component_CIBasic: IID {
 }
 
 private var IID___x_ABI_Ctest__component_CIClass: IID {
-    IID(Data1: 0xB5B3F34A, Data2: 0xEA16, Data3: 0x5B75, Data4: ( 0x88,0x72,0xC8,0x01,0xC0,0x7B,0xDC,0x70 ))// B5B3F34A-EA16-5B75-8872-C801C07BDC70
+    IID(Data1: 0x716D6874, Data2: 0x054C, Data3: 0x5378, Data4: ( 0x91,0xC8,0x5A,0xFB,0x2E,0x29,0x28,0xCE ))// 716D6874-054C-5378-91C8-5AFB2E2928CE
 }
 
 private var IID___x_ABI_Ctest__component_CIClassFactory: IID {
@@ -50,7 +50,7 @@ private var IID___x_ABI_Ctest__component_CIDerived: IID {
 }
 
 private var IID___x_ABI_Ctest__component_CIIAmImplementable: IID {
-    IID(Data1: 0xFF015907, Data2: 0x5990, Data3: 0x5227, Data4: ( 0x9B,0xE3,0xDF,0x66,0x7F,0xCC,0x1A,0xE1 ))// FF015907-5990-5227-9BE3-DF667FCC1AE1
+    IID(Data1: 0xD91566A4, Data2: 0xABC6, Data3: 0x573F, Data4: ( 0x81,0xE4,0x43,0x85,0xBD,0x87,0x58,0xFA ))// D91566A4-ABC6-573F-81E4-4385BD8758FA
 }
 
 private var IID___x_ABI_Ctest__component_CINullValuesStatics: IID {
@@ -58,7 +58,7 @@ private var IID___x_ABI_Ctest__component_CINullValuesStatics: IID {
 }
 
 private var IID___x_ABI_Ctest__component_CISimple: IID {
-    IID(Data1: 0xEC2C83BF, Data2: 0xF221, Data3: 0x550A, Data4: ( 0xBF,0xEE,0x07,0x35,0xC5,0x73,0x17,0x94 ))// EC2C83BF-F221-550A-BFEE-0735C5731794
+    IID(Data1: 0x7416DAC1, Data2: 0xAED6, Data3: 0x59D6, Data4: ( 0xB3,0x3C,0x06,0xD6,0x77,0x86,0xBB,0xCF ))// 7416DAC1-AED6-59D6-B33C-06D67786BBCF
 }
 
 private var IID___x_ABI_Ctest__component_CISimpleDelegate: IID {
@@ -198,7 +198,7 @@ private var IID___x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned: IID
 }
 
 private var IID___x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs: IID {
-    IID(Data1: 0xf177e7ee, Data2: 0xc4b3, Data3: 0x585b, Data4: ( 0xb3,0xa5,0xcf,0xa6,0xbc,0xcf,0x71,0x5d ))// f177e7ee-c4b3-585b-b3a5-cfa6bccf715d
+    IID(Data1: 0x8d86135f, Data2: 0x7503, Data3: 0x570a, Data4: ( 0xb1,0x25,0xe0,0x8a,0xa9,0xdc,0x7e,0xed ))// 8d86135f-7503-570a-b125-e08aa9dc7eed
 }
 
 public enum __ABI_test_component {
@@ -1943,6 +1943,14 @@ public enum __ABI_test_component {
             return result
         }
 
+        internal func InObjectImpl(_ value: UnsafeMutablePointer<Ctest_component.IInspectable>?) throws -> HSTRING? {
+            var result: HSTRING?
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.InObject(pThis, value, &result))
+            }
+            return result
+        }
+
         internal func InEnumImpl(_ value: __x_ABI_Ctest__component_CSigned) throws -> HSTRING? {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
@@ -1963,6 +1971,12 @@ public enum __ABI_test_component {
             }
         }
 
+        internal func OutObjectImpl(_ value: inout UnsafeMutablePointer<Ctest_component.IInspectable>?) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.OutObject(pThis, &value))
+            }
+        }
+
         internal func OutBlittableStructImpl(_ value: inout __x_ABI_Ctest__component_CBlittableStruct) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OutBlittableStruct(pThis, &value))
@@ -1979,6 +1993,14 @@ public enum __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OutEnum(pThis, &value))
             }
+        }
+
+        internal func ReturnObjectImpl() throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
+            var result: UnsafeMutablePointer<Ctest_component.IInspectable>?
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnObject(pThis, &result))
+            }
+            return result
         }
 
         internal func ReturnEnumImpl() throws -> __x_ABI_Ctest__component_CSigned {
@@ -2074,6 +2096,20 @@ public enum __ABI_test_component {
         internal func put_IdImpl(_ value: UnsafeMutablePointer<__x_ABI_C__FIReference_1_GUID>?) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_Id(pThis, value))
+            }
+        }
+
+        internal func get_ItemsSourceImpl() throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
+            var value: UnsafeMutablePointer<Ctest_component.IInspectable>?
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_ItemsSource(pThis, &value))
+            }
+            return value
+        }
+
+        internal func put_ItemsSourceImpl(_ value: UnsafeMutablePointer<Ctest_component.IInspectable>?) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.put_ItemsSource(pThis, value))
             }
         }
 
@@ -2297,6 +2333,14 @@ public enum __ABI_test_component {
             return result
         }
 
+        open func InObjectImpl(_ value: UnsafeMutablePointer<Ctest_component.IInspectable>?) throws -> HSTRING? {
+            var result: HSTRING?
+            _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.InObject(pThis, value, &result))
+            }
+            return result
+        }
+
         open func InEnumImpl(_ value: __x_ABI_Ctest__component_CSigned) throws -> HSTRING? {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
@@ -2317,6 +2361,12 @@ public enum __ABI_test_component {
             }
         }
 
+        open func OutObjectImpl(_ value: inout UnsafeMutablePointer<Ctest_component.IInspectable>?) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.OutObject(pThis, &value))
+            }
+        }
+
         open func OutBlittableStructImpl(_ value: inout __x_ABI_Ctest__component_CBlittableStruct) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OutBlittableStruct(pThis, &value))
@@ -2333,6 +2383,14 @@ public enum __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OutEnum(pThis, &value))
             }
+        }
+
+        open func ReturnObjectImpl() throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
+            var result: UnsafeMutablePointer<Ctest_component.IInspectable>?
+            _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnObject(pThis, &result))
+            }
+            return result
         }
 
         open func ReturnEnumImpl() throws -> __x_ABI_Ctest__component_CSigned {
@@ -2467,6 +2525,16 @@ public enum __ABI_test_component {
             } catch { return failWith(err: E_FAIL) } 
         },
 
+        InObject: {
+            do {
+                guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                let value: test_component.IInspectable? = .from($1)
+                let result = try __unwrapped__instance.inObject(value)
+                $2?.initialize(to: try! HString(result).detach())
+                return S_OK
+            } catch { return failWith(err: E_FAIL) } 
+        },
+
         InEnum: {
             do {
                 guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
@@ -2493,6 +2561,19 @@ public enum __ABI_test_component {
                 var value: String = ""
                 try __unwrapped__instance.outString(&value)
                 $1?.initialize(to: try! HString(value).detach())
+                return S_OK
+            } catch { return failWith(err: E_FAIL) } 
+        },
+
+        OutObject: {
+            do {
+                guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                var value: Any?
+                try __unwrapped__instance.outObject(&value)
+                fatalError("not impl")
+                $1?.initialize(to: nil)
+
+               // $1?.initialize(to: RawPointer(value))
                 return S_OK
             } catch { return failWith(err: E_FAIL) } 
         },
@@ -2524,6 +2605,17 @@ public enum __ABI_test_component {
                 var value: test_component.Signed = .init(0)
                 try __unwrapped__instance.outEnum(&value)
                 $1?.initialize(to: value)
+                return S_OK
+            } catch { return failWith(err: E_FAIL) } 
+        },
+
+        ReturnObject: {
+            do {
+                guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                let result = try __unwrapped__instance.returnObject()
+                fatalError("not impl")
+                $1?.initialize(to: nil)
+                //$1?.initialize(to: RawPointer(result))
                 return S_OK
             } catch { return failWith(err: E_FAIL) } 
         },
@@ -2673,6 +2765,14 @@ public enum __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Method(pThis))
             }
+        }
+
+        internal func ObjectImpl(_ value: __x_ABI_CWindows_CFoundation_CDateTime) throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
+            var result: UnsafeMutablePointer<Ctest_component.IInspectable>?
+            _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Object(pThis, value, &result))
+            }
+            return result
         }
 
         internal func ReturnBlittableStructImpl() throws -> __x_ABI_Ctest__component_CBlittableStruct {

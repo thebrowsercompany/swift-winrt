@@ -1372,7 +1372,7 @@ public static func makeAbi() -> CABI {
                     w.write("var _%: %?\n",
                         get_swift_name(param),
                         bind_type_abi(param.type));
-                    if (is_interface(param.type))
+                    if (is_interface(param.type) || !signature_type)
                     {
                         w.write("%(%)", bind_impl_name(param.type), get_swift_name(param));
                     }

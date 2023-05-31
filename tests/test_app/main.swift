@@ -282,6 +282,18 @@ class SwiftWinRTTests : XCTestCase {
     var id: WinSDK.UUID?
     func fireEvent() {
     }
+
+    func inObject(_ value: Any!) throws -> String {
+      return String(describing: value)
+    }
+
+    func outObject(_ value: inout Any!) throws {
+      fatalError("not impl")
+    }
+
+    func returnObject() throws -> Any! {
+      return nil
+    }
   } 
 
   public func testDelegate() throws {

@@ -1216,12 +1216,6 @@ typedef struct __x_ABI_Ctest__component_CSimpleEventArgs __x_ABI_Ctest__componen
     
 typedef struct __x_ABI_CWindows_CFoundation_CDateTime __x_ABI_CWindows_CFoundation_CDateTime;
 
-#ifndef ____x_ABI_CWindows_CFoundation_CIAsyncAction_FWD_DEFINED__
-#define ____x_ABI_CWindows_CFoundation_CIAsyncAction_FWD_DEFINED__
-    typedef interface __x_ABI_CWindows_CFoundation_CIAsyncAction __x_ABI_CWindows_CFoundation_CIAsyncAction;
-
-#endif // ____x_ABI_CWindows_CFoundation_CIAsyncAction_FWD_DEFINED__
-
 #ifndef ____x_ABI_CWindows_CFoundation_CIClosable_FWD_DEFINED__
 #define ____x_ABI_CWindows_CFoundation_CIClosable_FWD_DEFINED__
     typedef interface __x_ABI_CWindows_CFoundation_CIClosable __x_ABI_CWindows_CFoundation_CIClosable;
@@ -1626,6 +1620,9 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     HRESULT (STDMETHODCALLTYPE* InString)(__x_ABI_Ctest__component_CIClass* This,
         HSTRING value,
         HSTRING* result);
+    HRESULT (STDMETHODCALLTYPE* InObject)(__x_ABI_Ctest__component_CIClass* This,
+        IInspectable* value,
+        HSTRING* result);
     HRESULT (STDMETHODCALLTYPE* InEnum)(__x_ABI_Ctest__component_CIClass* This,
         enum __x_ABI_Ctest__component_CSigned value,
         HSTRING* result);
@@ -1633,12 +1630,16 @@ struct __x_ABI_Ctest__component_CStructWithEnum
         INT32* value);
     HRESULT (STDMETHODCALLTYPE* OutString)(__x_ABI_Ctest__component_CIClass* This,
         HSTRING* value);
+    HRESULT (STDMETHODCALLTYPE* OutObject)(__x_ABI_Ctest__component_CIClass* This,
+        IInspectable** value);
     HRESULT (STDMETHODCALLTYPE* OutBlittableStruct)(__x_ABI_Ctest__component_CIClass* This,
         struct __x_ABI_Ctest__component_CBlittableStruct* value);
     HRESULT (STDMETHODCALLTYPE* OutNonBlittableStruct)(__x_ABI_Ctest__component_CIClass* This,
         struct __x_ABI_Ctest__component_CNonBlittableStruct* value);
     HRESULT (STDMETHODCALLTYPE* OutEnum)(__x_ABI_Ctest__component_CIClass* This,
         enum __x_ABI_Ctest__component_CSigned* value);
+    HRESULT (STDMETHODCALLTYPE* ReturnObject)(__x_ABI_Ctest__component_CIClass* This,
+        IInspectable** result);
     HRESULT (STDMETHODCALLTYPE* ReturnEnum)(__x_ABI_Ctest__component_CIClass* This,
         enum __x_ABI_Ctest__component_CSigned* result);
     HRESULT (STDMETHODCALLTYPE* ReturnReferenceEnum)(__x_ABI_Ctest__component_CIClass* This,
@@ -1666,6 +1667,10 @@ struct __x_ABI_Ctest__component_CStructWithEnum
         __x_ABI_C__FIReference_1_GUID** value);
     HRESULT (STDMETHODCALLTYPE* put_Id)(__x_ABI_Ctest__component_CIClass* This,
         __x_ABI_C__FIReference_1_GUID* value);
+    HRESULT (STDMETHODCALLTYPE* get_ItemsSource)(__x_ABI_Ctest__component_CIClass* This,
+        IInspectable** value);
+    HRESULT (STDMETHODCALLTYPE* put_ItemsSource)(__x_ABI_Ctest__component_CIClass* This,
+        IInspectable* value);
     HRESULT (STDMETHODCALLTYPE* get_BaseProperty)(__x_ABI_Ctest__component_CIClass* This,
         __x_ABI_Ctest__component_CIBase** value);
     HRESULT (STDMETHODCALLTYPE* put_BaseProperty)(__x_ABI_Ctest__component_CIClass* This,
@@ -1941,6 +1946,9 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     HRESULT (STDMETHODCALLTYPE* InString)(__x_ABI_Ctest__component_CIIAmImplementable* This,
         HSTRING value,
         HSTRING* result);
+    HRESULT (STDMETHODCALLTYPE* InObject)(__x_ABI_Ctest__component_CIIAmImplementable* This,
+        IInspectable* value,
+        HSTRING* result);
     HRESULT (STDMETHODCALLTYPE* InEnum)(__x_ABI_Ctest__component_CIIAmImplementable* This,
         enum __x_ABI_Ctest__component_CSigned value,
         HSTRING* result);
@@ -1948,12 +1956,16 @@ struct __x_ABI_Ctest__component_CStructWithEnum
         INT32* value);
     HRESULT (STDMETHODCALLTYPE* OutString)(__x_ABI_Ctest__component_CIIAmImplementable* This,
         HSTRING* value);
+    HRESULT (STDMETHODCALLTYPE* OutObject)(__x_ABI_Ctest__component_CIIAmImplementable* This,
+        IInspectable** value);
     HRESULT (STDMETHODCALLTYPE* OutBlittableStruct)(__x_ABI_Ctest__component_CIIAmImplementable* This,
         struct __x_ABI_Ctest__component_CBlittableStruct* value);
     HRESULT (STDMETHODCALLTYPE* OutNonBlittableStruct)(__x_ABI_Ctest__component_CIIAmImplementable* This,
         struct __x_ABI_Ctest__component_CNonBlittableStruct* value);
     HRESULT (STDMETHODCALLTYPE* OutEnum)(__x_ABI_Ctest__component_CIIAmImplementable* This,
         enum __x_ABI_Ctest__component_CSigned* value);
+    HRESULT (STDMETHODCALLTYPE* ReturnObject)(__x_ABI_Ctest__component_CIIAmImplementable* This,
+        IInspectable** result);
     HRESULT (STDMETHODCALLTYPE* ReturnEnum)(__x_ABI_Ctest__component_CIIAmImplementable* This,
         enum __x_ABI_Ctest__component_CSigned* result);
     HRESULT (STDMETHODCALLTYPE* get_EnumProperty)(__x_ABI_Ctest__component_CIIAmImplementable* This,
@@ -2060,9 +2072,9 @@ struct __x_ABI_Ctest__component_CStructWithEnum
         HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CISimple* This,
             TrustLevel* trustLevel);
         HRESULT (STDMETHODCALLTYPE* Method)(__x_ABI_Ctest__component_CISimple* This);
-    HRESULT (STDMETHODCALLTYPE* Action)(__x_ABI_Ctest__component_CISimple* This,
+    HRESULT (STDMETHODCALLTYPE* Object)(__x_ABI_Ctest__component_CISimple* This,
         struct __x_ABI_CWindows_CFoundation_CDateTime value,
-        __x_ABI_CWindows_CFoundation_CIAsyncAction** operation);
+        IInspectable** result);
     HRESULT (STDMETHODCALLTYPE* ReturnBlittableStruct)(__x_ABI_Ctest__component_CISimple* This,
         struct __x_ABI_Ctest__component_CBlittableStruct* result);
     HRESULT (STDMETHODCALLTYPE* TakeBlittableStruct)(__x_ABI_Ctest__component_CISimple* This,

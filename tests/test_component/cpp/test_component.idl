@@ -104,7 +104,7 @@ namespace test_component
             //Windows.Foundation.IReference<Int32> Reference(Windows.Foundation.DateTime value);
             //Windows.Foundation.IAsyncOperation<Int32> Operation(Windows.Foundation.DateTime value);
             Windows.Foundation.IAsyncAction Action(Windows.Foundation.DateTime value);
-            //Object Object(Windows.Foundation.DateTime value);
+            Object Object(Windows.Foundation.DateTime value);
             static event Windows.Foundation.EventHandler<Object> StaticEvent;
             static void FireStaticEvent();
             //Windows.Foundation.Numerics.Vector2 ReturnVector2();
@@ -140,7 +140,7 @@ namespace test_component
         {
             String InInt32(Int32 value);
             String InString(String value);
-            //  String InObject(Object value);
+            String InObject(Object value);
             //  String InStringable(Windows.Foundation.IStringable value);
             //  String InStruct(Struct value);
             //  String InStructRef(ref const Struct value);
@@ -148,7 +148,7 @@ namespace test_component
 
             void OutInt32(out Int32 value);
             void OutString(out String value);
-            //  void OutObject(out Object value);
+            void OutObject(out Object value);
             //  void OutStringable(out Windows.Foundation.IStringable value);
             void OutBlittableStruct(out BlittableStruct value);
             void OutNonBlittableStruct(out NonBlittableStruct value);
@@ -156,7 +156,7 @@ namespace test_component
 
             // Int32 ReturnInt32();
             // String ReturnString();
-            // Object ReturnObject();
+            Object ReturnObject();
             // Windows.Foundation.IStringable ReturnStringable();
             // Struct ReturnStruct();
             Signed ReturnEnum();
@@ -225,7 +225,7 @@ namespace test_component
 
             String InInt32(Int32 value);
             String InString(String value);
-            //  String InObject(Object value);
+            String InObject(Object value);
             //  String InStringable(Windows.Foundation.IStringable value);
             //  String InStruct(Struct value);
             //  String InStructRef(ref const Struct value);
@@ -233,7 +233,7 @@ namespace test_component
 
             void OutInt32(out Int32 value);
             void OutString(out String value);
-            //  void OutObject(out Object value);
+            void OutObject(out Object value);
             //  void OutStringable(out Windows.Foundation.IStringable value);
             void OutBlittableStruct(out BlittableStruct value);
             void OutNonBlittableStruct(out NonBlittableStruct value);
@@ -241,7 +241,7 @@ namespace test_component
 
             // Int32 ReturnInt32();
             // String ReturnString();
-            // Object ReturnObject();
+            Object ReturnObject();
             // Windows.Foundation.IStringable ReturnStringable();
             // Struct ReturnStruct();
             Signed ReturnEnum();
@@ -296,7 +296,7 @@ namespace test_component
             Windows.Foundation.IReference<Int32> StartValue;
             Windows.Foundation.IReference<Guid> Id;
 
-            //Object ItemsSource;
+            Object ItemsSource;
             // Windows.Foundation.Collections.IVector<Simple> Children { get; };
 
             Base BaseProperty;

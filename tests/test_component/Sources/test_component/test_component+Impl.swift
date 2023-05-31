@@ -53,6 +53,9 @@ public enum __IMPL_test_component {
             return .init(from: result)
         }
 
+        public func inObject(_ value: Any!) throws -> String {
+            fatalError("not impl")
+        }
         public func inEnum(_ value: Signed) throws -> String {
             let result = try _default.InEnumImpl(value)
             return .init(from: result)
@@ -69,6 +72,10 @@ public enum __IMPL_test_component {
             WindowsDeleteString(_value)
         }
 
+        public func outObject(_ value: inout Any!) throws {
+          fatalError("not impl")
+        }
+
         public func outBlittableStruct(_ value: inout BlittableStruct) throws {
             var _value: __x_ABI_Ctest__component_CBlittableStruct = .init()
             try _default.OutBlittableStructImpl(&_value)
@@ -83,6 +90,10 @@ public enum __IMPL_test_component {
 
         public func outEnum(_ value: inout Signed) throws {
             try _default.OutEnumImpl(&value)
+        }
+
+        public func returnObject() throws -> Any! {
+            fatalError("not impl")
         }
 
         public func returnEnum() throws -> Signed {

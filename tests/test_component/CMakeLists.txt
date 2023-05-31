@@ -11,6 +11,7 @@ set(SWIFT_WINRT_PARAMETERS
 "-support test_component"
 "-test"
 "-cmake"
+"-log"
 "-output ${CMAKE_CURRENT_SOURCE_DIR}"
 "-reference ${CMAKE_SYSTEM_VERSION}"
 )
@@ -24,10 +25,10 @@ add_subdirectory(Sources)
 
 # re-run swiftwinrt to ensure the bindings get updated
 set(SWIFTWINRT_PARAM_FILE ${CMAKE_CURRENT_BINARY_DIR}/SwiftWinRT.rsp)
-add_custom_target(GenerateBindings
-  BYPRODUCTS ${CMAKE_CURRENT_SOURCE_DIR}/Sources/test_component/test_component.swift
-  DEPENDS ${SWIFTWINRT_PARAM_FILE}
-  DEPENDS ${WINMD_FILE}
-  COMMAND ${CMAKE_BINARY_DIR}/swiftwinrt/swiftwinrt.exe @${SWIFTWINRT_PARAM_FILE})
-add_dependencies(GenerateBindings swiftwinrt)
-add_dependencies(test_component GenerateBindings)
+#add_custom_target(GenerateBindings
+#  BYPRODUCTS ${CMAKE_CURRENT_SOURCE_DIR}/Sources/test_component/test_component.swift
+#  DEPENDS ${SWIFTWINRT_PARAM_FILE}
+#  DEPENDS ${WINMD_FILE}
+#  COMMAND ${CMAKE_BINARY_DIR}/swiftwinrt/swiftwinrt.exe @${SWIFTWINRT_PARAM_FILE})
+#add_dependencies(GenerateBindings swiftwinrt)
+#add_dependencies(test_component GenerateBindings)

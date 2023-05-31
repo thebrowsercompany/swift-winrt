@@ -453,6 +453,10 @@ public final class Class : WinRTClass, IBasic {
         return .init(from: result)
     }
 
+    public func inObject(_ value: Any?) throws -> String {
+      fatalError("not impl")  
+    }
+
     public func inEnum(_ value: Signed) throws -> String {
         let result = try _default.InEnumImpl(value)
         return .init(from: result)
@@ -469,6 +473,9 @@ public final class Class : WinRTClass, IBasic {
         WindowsDeleteString(_value)
     }
 
+    public func outObject(_ value: inout Any?) throws {
+    }
+
     public func outBlittableStruct(_ value: inout BlittableStruct) throws {
         var _value: __x_ABI_Ctest__component_CBlittableStruct = .init()
         try _default.OutBlittableStructImpl(&_value)
@@ -483,6 +490,10 @@ public final class Class : WinRTClass, IBasic {
 
     public func outEnum(_ value: inout Signed) throws {
         try _default.OutEnumImpl(&value)
+    }
+
+    public func returnObject() throws -> Any! {
+        fatalError("not impl")
     }
 
     public func returnEnum() throws -> Signed {
@@ -577,6 +588,16 @@ public final class Class : WinRTClass, IBasic {
             let wrapper = __ABI_test_component.IBasicWrapper(newValue)
             let _newValue = try! wrapper?.toABI { $0 }
             try! _default.put_ImplementationImpl(_newValue)
+        }
+    }
+
+    public var itemsSource : Any! {
+        get {
+            fatalError("not impl")
+        }
+
+        set {
+          fatalError("not impl")
         }
     }
 
@@ -802,6 +823,10 @@ public final class Simple : WinRTClass {
     }
     public func method() throws {
         try _default.MethodImpl()
+    }
+
+    public func object(_ value: test_component.DateTime) throws -> Any! {
+        fatalError("not impl")
     }
 
     public func returnBlittableStruct() throws -> BlittableStruct {
@@ -1227,12 +1252,15 @@ public typealias AnyIBasic = any IBasic
 public protocol IIAmImplementable : IWinRTObject {
     func inInt32(_ value: Int32) throws -> String
     func inString(_ value: String) throws -> String
+    func inObject(_ value: Any!) throws -> String
     func inEnum(_ value: test_component.Signed) throws -> String
     func outInt32(_ value: inout Int32) throws
     func outString(_ value: inout String) throws
+    func outObject(_ value: inout Any!) throws
     func outBlittableStruct(_ value: inout test_component.BlittableStruct) throws
     func outNonBlittableStruct(_ value: inout test_component.NonBlittableStruct) throws
     func outEnum(_ value: inout test_component.Signed) throws
+    func returnObject() throws -> Any!
     func returnEnum() throws -> test_component.Signed
     func fireEvent() throws
     var enumProperty: test_component.Fruit { get set }
