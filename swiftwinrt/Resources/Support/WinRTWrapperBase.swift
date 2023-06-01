@@ -2,7 +2,7 @@ import C_BINDINGS_MODULE
 import WinSDK
 
 public protocol IWinRTObject: AnyObject {
-
+  
 }
 
 public protocol Initializable {

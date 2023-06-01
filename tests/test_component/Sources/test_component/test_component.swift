@@ -454,7 +454,9 @@ public final class Class : WinRTClass, IBasic {
     }
 
     public func inObject(_ value: Any?) throws -> String {
-      fatalError("not impl")  
+      let iinsp = IInspectable.boxValue(value)
+      let result = try _default.InObjectImpl(RawPointer(iinsp))
+      return .init(from: result)
     }
 
     public func inEnum(_ value: Signed) throws -> String {
@@ -1454,7 +1456,7 @@ extension test_component.SwiftifiableNames {
 }
 extension test_component.SwiftifiableNames: Hashable, Codable {}
 
-extension test_component.Unsigned {
+extension test_component.Unsigned : WinRTEnum {
     public static var first : test_component.Unsigned {
         __x_ABI_Ctest__component_CUnsigned_First
     }

@@ -2570,11 +2570,10 @@ public enum __ABI_test_component {
                 guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 var value: Any?
                 try __unwrapped__instance.outObject(&value)
-                fatalError("not impl")
                 $1?.initialize(to: nil)
+                fatalError("not impl")
 
-               // $1?.initialize(to: RawPointer(value))
-                return S_OK
+               // return S_OK
             } catch { return failWith(err: E_FAIL) } 
         },
 
@@ -2613,10 +2612,9 @@ public enum __ABI_test_component {
             do {
                 guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 let result = try __unwrapped__instance.returnObject()
-                fatalError("not impl")
                 $1?.initialize(to: nil)
-                //$1?.initialize(to: RawPointer(result))
-                return S_OK
+                fatalError("not impl")
+                //return S_OK
             } catch { return failWith(err: E_FAIL) } 
         },
 

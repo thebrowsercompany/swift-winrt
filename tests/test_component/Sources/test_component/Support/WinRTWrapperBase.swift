@@ -2,9 +2,18 @@ import Ctest_component
 import WinSDK
 
 public protocol IWinRTObject: AnyObject {
-
+  var thisPtr: test_component.IInspectable { get }
 }
 
+// TODO: default implementation to make compiler happy ya dig
+extension IWinRTObject {
+  public var thisPtr: test_component.IInspectable { 
+    get { 
+      let thisptr: UnsafeMutableRawPointer? = .init(mutating: nil)
+      return .init(thisptr!)
+    }
+  }
+}
 public protocol Initializable {
   init()
 }

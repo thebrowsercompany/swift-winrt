@@ -44,7 +44,33 @@ namespace winrt::test_component::implementation
 
     hstring Class::InObject(Windows::Foundation::IInspectable const& value)
     {
-        return value.as<IStringable>().ToString();
+        if (m_implementation)
+        {
+            return m_implementation.InObject(value);
+        }
+        if (auto stringable = value.try_as<IStringable>())
+        {
+            return stringable.ToString();
+        }
+        else if (auto pv = value.try_as<IPropertyValue>())
+        {
+            switch (pv.Type())
+            {
+            case PropertyType::UInt8:
+                return winrt::to_hstring(pv.GetUInt8());
+            case PropertyType::Int16:
+                return winrt::to_hstring(pv.GetInt16());
+            case PropertyType::UInt16:
+                return winrt::to_hstring(pv.GetUInt16());
+            case PropertyType::Int32:
+                return winrt::to_hstring(pv.GetInt32());
+            case PropertyType::Int64:
+                return winrt::to_hstring(pv.GetInt64());
+            default:
+                throw hresult_not_implemented(L"Unimplemented switch case");
+            }
+        }
+        return L"unknown type";
     }
 
     hstring Class::InStringable(Windows::Foundation::IStringable const& value)

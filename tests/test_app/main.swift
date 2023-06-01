@@ -234,6 +234,13 @@ class SwiftWinRTTests : XCTestCase {
     func getThat() -> Int32 { that }
   }
   
+  struct Person
+  {
+    var firstName: String
+    var lastName: String
+    var age: Int
+  }
+
   class MyImplementableDelegate: IIAmImplementable {
     private var thisCount = 9
     func inInt32(_ value: Int32) -> String {
@@ -283,16 +290,18 @@ class SwiftWinRTTests : XCTestCase {
     func fireEvent() {
     }
 
+    private var object: Any?
     func inObject(_ value: Any!) throws -> String {
+      object = value
       return String(describing: value)
     }
 
     func outObject(_ value: inout Any!) throws {
-      fatalError("not impl")
+      value = object
     }
 
     func returnObject() throws -> Any! {
-      return nil
+      return object
     }
   } 
 
@@ -753,6 +762,13 @@ class SwiftWinRTTests : XCTestCase {
       XCTAssertEqual("\(error)", message)
     }
   }
+
+  public func testValueBoxing() {
+    let value:Int = 2
+    let classy = Class()
+    let result = try! classy.inObject(value)
+    XCTAssertEqual("2", result)
+  }
 }
  
 var tests: [XCTestCaseEntry] = [
@@ -777,6 +793,7 @@ var tests: [XCTestCaseEntry] = [
     ("testUnicode", SwiftWinRTTests.testUnicode),
     ("testVector", SwiftWinRTTests.testVector),
     ("testErrorInfo", SwiftWinRTTests.testErrorInfo),
+    ("testValueBoxing", SwiftWinRTTests.testValueBoxing),
   ])
 ]
 

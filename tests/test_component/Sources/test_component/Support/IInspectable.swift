@@ -4,6 +4,10 @@
 import Ctest_component
 import Foundation
 
+// TODO: put these in different file
+protocol WinRTStruct {}
+protocol WinRTEnum {}
+
 open class IInspectable: IUnknown {
   override open class var IID: IID { IID_IInspectable }
 
@@ -38,8 +42,8 @@ open class IInspectable: IUnknown {
 // }
 // internal typealias Composable = IBaseNoOverrides
 public enum __ABI {
-    fileprivate typealias AnyObjectWrapper = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>
-    fileprivate static var IInspectableVTable: Ctest_component.IInspectableVtbl = .init(
+    internal typealias AnyObjectWrapper = InterfaceWrapperBase<__Impl.IInspectableImpl>
+    internal static var IInspectableVTable: Ctest_component.IInspectableVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
             guard riid.pointee == IUnknown.IID ||
@@ -120,5 +124,64 @@ extension IInspectable {
         let className = try! GetSwiftClassName() 
         let baseType = NSClassFromString(className) as! any UnsealedWinRTClass.Type
         return baseType._makeFromAbi.from(abi: self.pUnk.borrow) as! T
+  }
+}
+
+public enum __Impl {
+  public class IInspectableImpl : AbiInterfaceImpl {
+      public typealias CABI = Ctest_component.IInspectable
+      public typealias SwiftABI = test_component.IInspectable
+      public typealias SwiftProjection = AnyObject
+      private (set) public var _default:SwiftABI
+      public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+          guard let abi = abi else { return nil }
+          if let instance = __ABI.AnyObjectWrapper.tryUnwrapFrom(abi: abi) {
+            return instance
+          }
+
+          let insp: IInspectable = .init(abi)
+          // We don't use the `Composable` type here because we have to get the actual implementation of this base 
+          // class and then get *that types* composing creator. This allows us to be able to properly create a derived type.
+          // Note that we'll *never* be trying to create an app implemented object at this point
+          let className = try! insp.GetSwiftClassName()
+          let baseType = NSClassFromString(className) as! any UnsealedWinRTClass.Type
+          return baseType._makeFromAbi.from(abi: insp.pUnk.borrow) as? AnyObject
+      }
+
+      public init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+          _default = SwiftABI(fromAbi)
+      }
+
+      public static func makeAbi() -> CABI {
+          let vtblPtr = withUnsafeMutablePointer(to: &__ABI.IInspectableVTable) { $0 }
+          return .init(lpVtbl: vtblPtr)
+      }
+  }
+}
+
+public extension test_component.IInspectable {
+  // Box the swift object into something that can be understood by WinRT, this is done
+  // with the following conditions:
+  //   1. If the object is itself an IWinRTObject, get the IInspectable ptr representing
+  //      that object
+  //   2. Check the known primitive types and Windows.Foundation types which can be wrapped
+  //      in a PropertyValue
+  //   3. Check if wrapping a WinRTEnum, if so -
+  static func boxValue(_ swift: Any?) -> test_component.IInspectable? {
+    guard let swift else { return nil }
+    if let winrtObj = swift as? IWinRTObject {
+      return winrtObj.thisPtr
+    } else if let propertyValue = PropertyValue.createFrom(swift) {
+      return propertyValue
+    } else if swift is WinRTEnum {
+      fatalError("cant create enum")
+    } else if swift is WinRTStruct {
+      fatalError("can't creat struct")
+    } else {
+      let wrapper = __ABI.AnyObjectWrapper(swift as AnyObject)
+      let abi = try! wrapper?.toABI{ $0 }
+      guard let abi else { return nil }
+      return .init(abi)
+    }
   }
 }
