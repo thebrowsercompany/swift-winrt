@@ -49,6 +49,9 @@ public protocol AbiInterfaceImpl : AbiImpl & AbiInterface {
     var _default: SwiftABI { get }
 }
 
+public protocol WinRTAbiBridge: AbiInterfaceImpl where SwiftABI: IInspectable {}
+internal typealias AnyWinRTAbiBridge = any WinRTAbiBridge
+
 // The WinRTWrapperBase class wraps an AbiImpl and is used for wrapping and unwrapping swift
 // objects at the ABI layer. The contract for how to do this is defined by the AbiImpl protocol
 open class WinRTWrapperBase<CInterface, Prototype> {
@@ -119,7 +122,10 @@ open class InterfaceWrapperBase<I: AbiInterfaceImpl> : WinRTWrapperBase2<I> {
         guard let impl = impl else { return nil }
         // try to see if already wrapping an ABI pointer and if so, use that
         if let internalImpl = impl as? I {
-            let abi: UnsafeMutablePointer<I.CABI> = RawPointer(internalImpl._default)!
+            let abi: UnsafeMutablePointer<I.CABI> = RawPointer(internalImpl)!
+            super.init(abi.pointee, impl)
+        } else if let winrtClass = impl as? AnyWinRTClass,
+            let abi: UnsafeMutablePointer<I.CABI> = RawPointer(winrtClass) {
             super.init(abi.pointee, impl)
         } else {
             let abi = I.makeAbi()

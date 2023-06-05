@@ -5,8 +5,8 @@ import Ctest_component
 import Foundation
 
 // TODO: put these in different file
-protocol WinRTStruct {}
-protocol WinRTEnum {}
+public protocol WinRTStruct {}
+public protocol WinRTEnum {}
 
 open class IInspectable: IUnknown {
   override open class var IID: IID { IID_IInspectable }
@@ -128,7 +128,7 @@ extension IInspectable {
 }
 
 public enum __Impl {
-  public class IInspectableImpl : AbiInterfaceImpl {
+  public class IInspectableImpl : WinRTAbiBridge {
       public typealias CABI = Ctest_component.IInspectable
       public typealias SwiftABI = test_component.IInspectable
       public typealias SwiftProjection = AnyObject
@@ -156,32 +156,5 @@ public enum __Impl {
           let vtblPtr = withUnsafeMutablePointer(to: &__ABI.IInspectableVTable) { $0 }
           return .init(lpVtbl: vtblPtr)
       }
-  }
-}
-
-public extension test_component.IInspectable {
-  // Box the swift object into something that can be understood by WinRT, this is done
-  // with the following conditions:
-  //   1. If the object is itself an IWinRTObject, get the IInspectable ptr representing
-  //      that object
-  //   2. Check the known primitive types and Windows.Foundation types which can be wrapped
-  //      in a PropertyValue
-  //   3. Check if wrapping a WinRTEnum, if so -
-  static func boxValue(_ swift: Any?) -> test_component.IInspectable? {
-    guard let swift else { return nil }
-    if let winrtObj = swift as? IWinRTObject {
-      return winrtObj.thisPtr
-    } else if let propertyValue = PropertyValue.createFrom(swift) {
-      return propertyValue
-    } else if swift is WinRTEnum {
-      fatalError("cant create enum")
-    } else if swift is WinRTStruct {
-      fatalError("can't creat struct")
-    } else {
-      let wrapper = __ABI.AnyObjectWrapper(swift as AnyObject)
-      let abi = try! wrapper?.toABI{ $0 }
-      guard let abi else { return nil }
-      return .init(abi)
-    }
   }
 }

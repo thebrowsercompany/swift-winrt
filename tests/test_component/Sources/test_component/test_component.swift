@@ -454,7 +454,7 @@ public final class Class : WinRTClass, IBasic {
     }
 
     public func inObject(_ value: Any?) throws -> String {
-      let iinsp = IInspectable.boxValue(value)
+      let iinsp = ValueBoxer.boxValue(value)
       let result = try _default.InObjectImpl(RawPointer(iinsp))
       return .init(from: result)
     }

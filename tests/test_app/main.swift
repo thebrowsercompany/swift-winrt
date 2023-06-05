@@ -764,7 +764,7 @@ class SwiftWinRTTests : XCTestCase {
   }
 
   public func testValueBoxing() {
-    let value:Int = 2
+    let value: Int = 2
     let classy = Class()
     let result = try! classy.inObject(value)
     XCTAssertEqual("2", result)
