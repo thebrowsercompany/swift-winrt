@@ -1,3 +1,5 @@
+import Ctest_component
+import Foundation
 
 public class ValueBoxer
 {
@@ -24,6 +26,25 @@ public class ValueBoxer
       guard let abi else { return nil }
       return .init(abi)
     }
+  }
+
+  static func unboxValue(_ value: UnsafeMutablePointer<Ctest_component.IInspectable>?) -> Any? {
+    guard let value else { return nil }
+    // Try to unwrap an app implemented object. If one doesn't exist then we'll create the proper WinRT type below
+    if let instance = __ABI.AnyObjectWrapper.tryUnwrapFrom(abi: value) {
+      return instance
+    }
+
+    // Try unwrapping the object, if the type name isn't specified then we'll default to just returning an IInspectable
+    // object.
+    // Note that we'll *never* be trying to create an app implemented object at this point
+    let inspVal = IInspectable(value)
+    let className = try! inspVal.GetSwiftClassName() 
+    guard let baseType = NSClassFromString(className) as? any UnsealedWinRTClass.Type else {
+      print("unable to unwrap \(className), defaulting to IInspectable")
+      return inspVal
+    }
+    return baseType._makeFromAbi.from(abi: value)
   }
 
 }

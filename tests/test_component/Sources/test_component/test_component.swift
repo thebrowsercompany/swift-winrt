@@ -495,7 +495,8 @@ public final class Class : WinRTClass, IBasic {
     }
 
     public func returnObject() throws -> Any! {
-        fatalError("not impl")
+        let result = try _default.ReturnObjectImpl()
+        return ValueBoxer.unboxValue(result)
     }
 
     public func returnEnum() throws -> Signed {

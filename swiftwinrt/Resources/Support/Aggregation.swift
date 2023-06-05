@@ -5,6 +5,7 @@ public protocol WinRTClass : IWinRTObject, Equatable {
     func _getABI<T>() -> UnsafeMutablePointer<T>?
 }
 
+public typealias AnyWinRTClass = any WinRTClass
 public protocol MakeFromAbi {
     associatedtype CABI
     associatedtype SwiftProjection

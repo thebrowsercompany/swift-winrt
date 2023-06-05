@@ -293,6 +293,7 @@ class SwiftWinRTTests : XCTestCase {
     private var object: Any?
     func inObject(_ value: Any!) throws -> String {
       object = value
+      guard let value else { return "nil" }
       return String(describing: value)
     }
 
@@ -765,9 +766,17 @@ class SwiftWinRTTests : XCTestCase {
 
   public func testValueBoxing() {
     let value: Int = 2
-    let classy = Class()
-    let result = try! classy.inObject(value)
+    var classy = Class()
+    var result = try! classy.inObject(value)
     XCTAssertEqual("2", result)
+
+    let impl = MyImplementableDelegate()
+    classy = Class("with delegate", .orange, impl)
+
+    let person = Person(firstName: "John", lastName: "Doe", age: 32)
+    result = try! classy.inObject(person)
+    XCTAssertEqual(result, String(describing: person))
+
   }
 }
  

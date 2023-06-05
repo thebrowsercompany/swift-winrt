@@ -2528,7 +2528,7 @@ public enum __ABI_test_component {
         InObject: {
             do {
                 guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-                let value: test_component.IInspectable? = .from($1)
+                let value: Any? = ValueBoxer.unboxValue($1)
                 let result = try __unwrapped__instance.inObject(value)
                 $2?.initialize(to: try! HString(result).detach())
                 return S_OK
