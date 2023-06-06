@@ -2,19 +2,19 @@
 import Ctest_component
 
 public enum __IMPL_test_component_Delegates {
-    public class InDelegateImpl : WinRTDelegate {
+    public class InDelegateImpl : WinRTDelegateBridge {
         public typealias Data = (String)
         public typealias Return = ()
-        public var token: EventRegistrationToken?
+        public typealias CABI = __x_ABI_Ctest__component_CDelegates_CIInDelegate
         public var handler: (Data) -> Return
         public required init(handler: @escaping (Data) -> Return){
             self.handler = handler
         }
     }
-    public class SignalDelegateImpl : WinRTDelegate {
+    public class SignalDelegateImpl : WinRTDelegateBridge {
         public typealias Data = ()
         public typealias Return = ()
-        public var token: EventRegistrationToken?
+        public typealias CABI = __x_ABI_Ctest__component_CDelegates_CISignalDelegate
         public var handler: (Data) -> Return
         public required init(handler: @escaping (Data) -> Return){
             self.handler = handler

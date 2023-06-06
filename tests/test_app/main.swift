@@ -469,6 +469,8 @@ class SwiftWinRTTests : XCTestCase {
     func doThat(_ val: Int32) {
       print("Swift Double! - Do that: ", val)
     }
+
+    var thisPtr: test_component.IInspectable { (self as IBasic).thisPtr }
   }
 
   public func testDoubleDelegate() throws {
@@ -734,7 +736,7 @@ class SwiftWinRTTests : XCTestCase {
     XCTAssertFalse(NullValues.isInterfaceNull(NoopClosable()))
     XCTAssertFalse(NullValues.isGenericInterfaceNull([""].toVector()))
     XCTAssertFalse(NullValues.isClassNull(NoopClosable()))
-    XCTAssertFalse(NullValues.isDelegateNull(VoidToVoidDelegate(handler: {})))
+    XCTAssertFalse(NullValues.isDelegateNull({}))
 
     XCTAssertNil(NullValues.getNullObject())
     XCTAssertNil(NullValues.getNullInterface())
@@ -768,15 +770,27 @@ class SwiftWinRTTests : XCTestCase {
     let value: Int = 2
     var classy = Class()
     var result = try! classy.inObject(value)
-    XCTAssertEqual("2", result)
+    XCTAssertEqual("\(value)", result)
+
+    let words = "hello world"
+    result = try! classy.inObject(words)
+    XCTAssertEqual(words, result)
+
+    // check that a basic winrt class works
+    let derived = Derived()
+    result = try! classy.inObject(derived)
+    XCTAssertEqual(NSStringFromClass(Derived.self), result)
+
+    // Check that the runtime class name returned is the swift class name
+    let person = Person(firstName: "John", lastName: "Doe", age: 32)
+    result = try! classy.inObject(derived)
+    XCTAssertEqual(NSStringFromClass(Derived.self), result)
 
     let impl = MyImplementableDelegate()
     classy = Class("with delegate", .orange, impl)
 
-    let person = Person(firstName: "John", lastName: "Doe", age: 32)
     result = try! classy.inObject(person)
     XCTAssertEqual(result, String(describing: person))
-
   }
 }
  

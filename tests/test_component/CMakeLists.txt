@@ -25,10 +25,16 @@ add_subdirectory(Sources)
 
 # re-run swiftwinrt to ensure the bindings get updated
 set(SWIFTWINRT_PARAM_FILE ${CMAKE_CURRENT_BINARY_DIR}/SwiftWinRT.rsp)
-#add_custom_target(GenerateBindings
-#  BYPRODUCTS ${CMAKE_CURRENT_SOURCE_DIR}/Sources/test_component/test_component.swift
-#  DEPENDS ${SWIFTWINRT_PARAM_FILE}
-#  DEPENDS ${WINMD_FILE}
-#  COMMAND ${CMAKE_BINARY_DIR}/swiftwinrt/swiftwinrt.exe @${SWIFTWINRT_PARAM_FILE})
-#add_dependencies(GenerateBindings swiftwinrt)
-#add_dependencies(test_component GenerateBindings)
+# set the NO_AUTO_CODEGEN environment variable to disable this behavior when needing to
+# work on hand-generated bindings
+if (NOT DEFINED ENV{NO_AUTO_CODEGEN})
+    add_custom_target(GenerateBindings
+      BYPRODUCTS ${CMAKE_CURRENT_SOURCE_DIR}/Sources/test_component/test_component.swift
+      DEPENDS ${SWIFTWINRT_PARAM_FILE}
+      DEPENDS ${WINMD_FILE}
+      COMMAND ${CMAKE_BINARY_DIR}/swiftwinrt/swiftwinrt.exe @${SWIFTWINRT_PARAM_FILE})
+    add_dependencies(GenerateBindings swiftwinrt)
+    add_dependencies(test_component GenerateBindings)
+else()
+    message(STATUS "Skipping auto codegen")
+endif()

@@ -6,6 +6,7 @@ public protocol WinRTClass : IWinRTObject, Equatable {
 }
 
 public typealias AnyWinRTClass = any WinRTClass
+
 public protocol MakeFromAbi {
     associatedtype CABI
     associatedtype SwiftProjection
@@ -41,6 +42,15 @@ public extension WinRTClass {
     func `as`<Interface: SUPPORT_MODULE.IInspectable>() throws -> Interface {
         try _getDefaultAsIInspectable().QueryInterface()
     }
+}
+
+// TODO: default implementation to make compiler happy ya dig
+extension WinRTClass {
+  public var thisPtr: SUPPORT_MODULE.IInspectable { 
+    get { 
+      return _getDefaultAsIInspectable()
+    }
+  }
 }
 
 extension UnsealedWinRTClass {

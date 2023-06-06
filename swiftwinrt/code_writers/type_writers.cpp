@@ -34,8 +34,8 @@ static void write_swift_type(writer& w, metadata_type const& type, bool allow_im
         {
             auto args_type = generic_params[0];
             // '^' escapes the '@'
-            w.write("^@escaping (%.IInspectable, %) -> ()",
-                w.support, bind<write_swift_type>(*args_type, /* allow_implicit_unwrap: */ false));
+            w.write("^@escaping (Any, %) -> ()",
+                bind<write_swift_type>(*args_type, /* allow_implicit_unwrap: */ false));
             return;
         }
 
@@ -68,7 +68,7 @@ void write_swift_type_identifier_ex(writer& w, metadata_type const& type, bool e
     {
         if (elem_type->type() == ElementType::Object)
         {
-            w.write("%.IInspectable", w.support);
+            w.write("Any");
         }
         else
         {

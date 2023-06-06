@@ -4,6 +4,10 @@
 import C_BINDINGS_MODULE
 import Foundation
 
+// TODO: put these in different file
+public protocol WinRTStruct {}
+public protocol WinRTEnum {}
+
 open class IInspectable: IUnknown {
   override open class var IID: IID { IID_IInspectable }
 
@@ -37,16 +41,47 @@ open class IInspectable: IUnknown {
 //      internal typealias swift_overrides = test_component.IInspectable
 // }
 // internal typealias Composable = IBaseNoOverrides
-public enum __ABI {
-    fileprivate typealias AnyObjectWrapper = WinRTWrapperBase<C_BINDINGS_MODULE.IInspectable, AnyObject>
-    fileprivate static var IInspectableVTable: C_BINDINGS_MODULE.IInspectableVtbl = .init(
+public enum __ABI_ {
+    public class AnyWrapper : InterfaceWrapperBase<__Impl_.IInspectableImpl> {
+      public init?(_ swift: Any?) {
+        guard let swift else { return nil }
+        if let winrtObj = swift as? IWinRTObject {
+          super.init(winrtObj)
+        } else if let propertyValue = PropertyValue.createFrom(swift) {
+          super.init(propertyValue)
+        } else if swift is WinRTEnum {
+          fatalError("cant create enum")
+        } else if swift is WinRTStruct {
+          fatalError("can't create struct")
+        } else {
+          super.init(swift as AnyObject)
+        }
+      }
+
+      public static func unwrapFrom(abi: UnsafeMutablePointer<__Impl_.IInspectableImpl.CABI>?) -> Any? {
+        guard let abi = abi else { return nil }
+        if let instance = tryUnwrapFrom(abi: abi) {
+          return instance
+        }
+
+        let insp: IInspectable = .init(abi)
+        let className = try! insp.GetSwiftClassName()
+        guard let baseType = NSClassFromString(className) as? any UnsealedWinRTClass.Type else {
+          print("unable to unwrap \(className), defaulting to IInspectable")
+          return insp
+        }
+        return baseType._makeFromAbi.from(abi: insp.pUnk.borrow)
+      }
+    }
+
+    internal static var IInspectableVTable: C_BINDINGS_MODULE.IInspectableVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
             guard riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
                   riid.pointee == IIAgileObject.IID else { 
-                      guard let instance = AnyObjectWrapper.tryUnwrapFrom(raw: $0) as? any UnsealedWinRTClass,
+                      guard let instance = AnyWrapper.tryUnwrapFrom(raw: $0) as? any UnsealedWinRTClass,
                             let inner = instance._inner else { return E_NOINTERFACE }
                         
                     return inner.pointee.lpVtbl.pointee.QueryInterface(inner, riid, ppvObject)
@@ -58,13 +93,13 @@ public enum __ABI {
         },
 
         AddRef: {
-             guard let wrapper = AnyObjectWrapper.fromRaw($0) else { return 1 }
+             guard let wrapper = AnyWrapper.fromRaw($0) else { return 1 }
              _ = wrapper.retain()
              return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
         },
 
         Release: {
-            guard let wrapper = AnyObjectWrapper.fromRaw($0) else { return 1 }
+            guard let wrapper = AnyWrapper.fromRaw($0) else { return 1 }
             return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
         },
 
@@ -80,7 +115,7 @@ public enum __ABI {
         },
 
         GetRuntimeClassName: {
-            guard let instance = AnyObjectWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            guard let instance = AnyWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             guard let unsealed = instance as? any UnsealedWinRTClass else {
                 let string = NSStringFromClass(type(of: instance))
                 let hstring = try! HString(string).detach()
@@ -102,23 +137,29 @@ public enum __ABI {
 
 extension ComposableImpl where CABI == C_BINDINGS_MODULE.IInspectable {
   public static func makeAbi() -> CABI {
-    let vtblPtr = withUnsafeMutablePointer(to: &__ABI.IInspectableVTable) { $0 }
+    let vtblPtr = withUnsafeMutablePointer(to: &__ABI_.IInspectableVTable) { $0 }
     return .init(lpVtbl: vtblPtr)
   }
 }
 
-extension IInspectable {
-  public func unwrap<T>() -> T {
-        // Try to unwrap an app implemented object. If one doesn't exist then we'll create the proper WinRT type below
-        if let instance = __ABI.AnyObjectWrapper.tryUnwrapFrom(abi: RawPointer(self)) {
-            return instance as! T
-        }
+public enum __Impl_ {
+  public class IInspectableImpl : WinRTAbiBridge {
+      public typealias CABI = C_BINDINGS_MODULE.IInspectable
+      public typealias SwiftABI = SUPPORT_MODULE.IInspectable
+      public typealias SwiftProjection = AnyObject
+      private (set) public var _default:SwiftABI
+      public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+          guard let abi else { return nil }
+          return IInspectable(abi)
+      }
 
-        // We don't use the `Composable` type here because we have to get the actual implementation of this base 
-        // class and then get *that types* composing creator. This allows us to be able to properly create a derived type.
-        // Note that we'll *never* be trying to create an app implemented object at this point
-        let className = try! GetSwiftClassName() 
-        let baseType = NSClassFromString(className) as! any UnsealedWinRTClass.Type
-        return baseType._makeFromAbi.from(abi: self.pUnk.borrow) as! T
+      public init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+          _default = SwiftABI(fromAbi)
+      }
+
+      public static func makeAbi() -> CABI {
+          let vtblPtr = withUnsafeMutablePointer(to: &__ABI_.IInspectableVTable) { $0 }
+          return .init(lpVtbl: vtblPtr)
+      }
   }
 }

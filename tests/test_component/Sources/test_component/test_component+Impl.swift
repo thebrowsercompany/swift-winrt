@@ -2,11 +2,12 @@
 import Ctest_component
 
 public enum __IMPL_test_component {
-    public class IBasicImpl : IBasic, AbiInterfaceImpl {
+    public class IBasicImpl : IBasic, WinRTAbiBridge {
         public typealias CABI = __x_ABI_Ctest__component_CIBasic
         public typealias SwiftABI = __ABI_test_component.IBasic
         public typealias SwiftProjection = AnyIBasic
         private (set) public var _default: SwiftABI
+        public var thisPtr: test_component.IInspectable { _default }
         public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IBasicImpl(abi)
@@ -25,11 +26,12 @@ public enum __IMPL_test_component {
 
     }
 
-    public class IIAmImplementableImpl : IIAmImplementable, AbiInterfaceImpl {
+    public class IIAmImplementableImpl : IIAmImplementable, WinRTAbiBridge {
         public typealias CABI = __x_ABI_Ctest__component_CIIAmImplementable
         public typealias SwiftABI = __ABI_test_component.IIAmImplementable
         public typealias SwiftProjection = AnyIIAmImplementable
         private (set) public var _default: SwiftABI
+        public var thisPtr: test_component.IInspectable { _default }
         public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IIAmImplementableImpl(abi)
@@ -54,8 +56,12 @@ public enum __IMPL_test_component {
         }
 
         public func inObject(_ value: Any!) throws -> String {
-            fatalError("not impl")
+            let valueWrapper = __ABI_.AnyWrapper(value)
+            let _value = try! valueWrapper?.toABI { $0 }
+            let result = try _default.InObjectImpl(_value)
+            return .init(from: result)
         }
+
         public func inEnum(_ value: Signed) throws -> String {
             let result = try _default.InEnumImpl(value)
             return .init(from: result)
@@ -73,7 +79,9 @@ public enum __IMPL_test_component {
         }
 
         public func outObject(_ value: inout Any!) throws {
-          fatalError("not impl")
+            var _value: UnsafeMutablePointer<Ctest_component.IInspectable>?
+            try _default.OutObjectImpl(&_value)
+            value = __ABI_.AnyWrapper.unwrapFrom(abi: _value)
         }
 
         public func outBlittableStruct(_ value: inout BlittableStruct) throws {
@@ -93,7 +101,8 @@ public enum __IMPL_test_component {
         }
 
         public func returnObject() throws -> Any! {
-            fatalError("not impl")
+            let result = try _default.ReturnObjectImpl()
+            return __ABI_.AnyWrapper.unwrapFrom(abi: result)
         }
 
         public func returnEnum() throws -> Signed {
@@ -131,11 +140,12 @@ public enum __IMPL_test_component {
 
     }
 
-    public class ISimpleDelegateImpl : ISimpleDelegate, AbiInterfaceImpl {
+    public class ISimpleDelegateImpl : ISimpleDelegate, WinRTAbiBridge {
         public typealias CABI = __x_ABI_Ctest__component_CISimpleDelegate
         public typealias SwiftABI = __ABI_test_component.ISimpleDelegate
         public typealias SwiftProjection = AnyISimpleDelegate
         private (set) public var _default: SwiftABI
+        public var thisPtr: test_component.IInspectable { _default }
         public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return ISimpleDelegateImpl(abi)
@@ -158,10 +168,10 @@ public enum __IMPL_test_component {
 
     }
 
-    public class VoidToVoidDelegateImpl : WinRTDelegate {
+    public class VoidToVoidDelegateImpl : WinRTDelegateBridge {
         public typealias Data = ()
         public typealias Return = ()
-        public var token: EventRegistrationToken?
+        public typealias CABI = __x_ABI_Ctest__component_CIVoidToVoidDelegate
         public var handler: (Data) -> Return
         public required init(handler: @escaping (Data) -> Return){
             self.handler = handler
@@ -741,19 +751,19 @@ public enum __IMPL_test_component {
 
     }
 
-    internal class __x_ABI_C__FIEventHandler_1_IInspectableImpl : WinRTDelegate {
-        internal typealias Data = (test_component.IInspectable?, test_component.IInspectable?)
+    internal class __x_ABI_C__FIEventHandler_1_IInspectableImpl : WinRTDelegateBridge {
+        internal typealias Data = (Any?, Any?)
         internal typealias Return = ()
-        internal var token: EventRegistrationToken?
+        internal typealias CABI = __x_ABI_C__FIEventHandler_1_IInspectable
         internal var handler: (Data) -> Return
         internal required init(handler: @escaping (Data) -> Return){
             self.handler = handler
         }
     }
-    internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsImpl : WinRTDelegate {
+    internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsImpl : WinRTDelegateBridge {
         internal typealias Data = (Simple?, SimpleEventArgs)
         internal typealias Return = ()
-        internal var token: EventRegistrationToken?
+        internal typealias CABI = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs
         internal var handler: (Data) -> Return
         internal required init(handler: @escaping (Data) -> Return){
             self.handler = handler

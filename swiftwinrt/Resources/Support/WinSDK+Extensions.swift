@@ -3,6 +3,7 @@
 
 import WinSDK
 
+public typealias LPVOID = UnsafeMutableRawPointer
 public typealias REFIID = UnsafePointer<IID>
 
 // winnt.h

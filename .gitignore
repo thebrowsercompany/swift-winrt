@@ -18,3 +18,5 @@ tests/test_component/Sources/CWinRT/include
 # IDEs
 .vs/
 .vscode/
+
+swiftwinrt.log

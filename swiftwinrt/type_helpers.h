@@ -415,6 +415,7 @@ namespace swiftwinrt
                     case ElementType::String:
                     case ElementType::GenericInst:
                     case ElementType::Char:
+                    case ElementType::Object:
                         result = false;
                         return;
                 }

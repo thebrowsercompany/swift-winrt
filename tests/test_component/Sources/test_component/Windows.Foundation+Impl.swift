@@ -44,6 +44,7 @@ public enum __IMPL_Windows_Foundation {
         public typealias SwiftABI = __ABI_Windows_Foundation.IClosable
         public typealias SwiftProjection = AnyIClosable
         private (set) public var _default: SwiftABI
+        public var thisPtr: test_component.IInspectable { _default }
         public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IClosableImpl(abi)
@@ -129,6 +130,34 @@ public enum __IMPL_Windows_Foundation {
         public func getPoint() -> Point { _value as! Point }
         public func getSize() -> Size { _value as! Size }
         public func getRect() -> Rect { _value as! Rect }
+        
+    public var thisPtr: test_component.IInspectable { fatalError("not implemented") }
+
+    }
+
+    public class IStringableImpl : IStringable, WinRTAbiBridge {
+        public typealias CABI = __x_ABI_CWindows_CFoundation_CIStringable
+        public typealias SwiftABI = __ABI_Windows_Foundation.IStringable
+        public typealias SwiftProjection = AnyIStringable
+        private (set) public var _default: SwiftABI
+        public var thisPtr: test_component.IInspectable { _default }
+        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+            guard let abi = abi else { return nil }
+            return IStringableImpl(abi)
+        }
+        public init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+            _default = SwiftABI(fromAbi)
+        }
+
+        public static func makeAbi() -> CABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Foundation.IStringableVTable) { $0 }
+            return .init(lpVtbl: vtblPtr)
+        }
+        public func toString() throws -> String {
+            let value = try _default.ToStringImpl()
+            return .init(from: value)
+        }
+
     }
 
     public class AsyncActionCompletedHandlerImpl : WinRTDelegate {

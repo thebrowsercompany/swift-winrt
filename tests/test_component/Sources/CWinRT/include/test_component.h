@@ -1228,6 +1228,12 @@ typedef struct __x_ABI_CWindows_CFoundation_CDateTime __x_ABI_CWindows_CFoundati
 
 #endif // ____x_ABI_CWindows_CFoundation_CIPropertyValue_FWD_DEFINED__
 
+#ifndef ____x_ABI_CWindows_CFoundation_CIStringable_FWD_DEFINED__
+#define ____x_ABI_CWindows_CFoundation_CIStringable_FWD_DEFINED__
+    typedef interface __x_ABI_CWindows_CFoundation_CIStringable __x_ABI_CWindows_CFoundation_CIStringable;
+
+#endif // ____x_ABI_CWindows_CFoundation_CIStringable_FWD_DEFINED__
+
 #ifndef ____x_ABI_Ctest__component_CDelegates_CIInDelegate_FWD_DEFINED__
 #define ____x_ABI_Ctest__component_CDelegates_CIInDelegate_FWD_DEFINED__
 typedef interface __x_ABI_Ctest__component_CDelegates_CIInDelegate __x_ABI_Ctest__component_CDelegates_CIInDelegate;
@@ -1632,6 +1638,8 @@ struct __x_ABI_Ctest__component_CStructWithEnum
         HSTRING* value);
     HRESULT (STDMETHODCALLTYPE* OutObject)(__x_ABI_Ctest__component_CIClass* This,
         IInspectable** value);
+    HRESULT (STDMETHODCALLTYPE* OutStringable)(__x_ABI_Ctest__component_CIClass* This,
+        __x_ABI_CWindows_CFoundation_CIStringable** value);
     HRESULT (STDMETHODCALLTYPE* OutBlittableStruct)(__x_ABI_Ctest__component_CIClass* This,
         struct __x_ABI_Ctest__component_CBlittableStruct* value);
     HRESULT (STDMETHODCALLTYPE* OutNonBlittableStruct)(__x_ABI_Ctest__component_CIClass* This,

@@ -44,6 +44,15 @@ public extension WinRTClass {
     }
 }
 
+// TODO: default implementation to make compiler happy ya dig
+extension WinRTClass {
+  public var thisPtr: test_component.IInspectable { 
+    get { 
+      return _getDefaultAsIInspectable()
+    }
+  }
+}
+
 extension UnsealedWinRTClass {
     public func GetRuntimeClassName() -> HString {
         if let inner = _inner {

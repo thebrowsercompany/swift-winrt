@@ -270,7 +270,6 @@ Where <spec> is one or more of:
             metadata_cache mdCache{ c };
 
             auto include = args.values("include");
-            include.push_back("Windows.Foundation.PropertyValue");
             include_only_used_filter mf{ mdCache, include };
 
             if (settings.verbose)

@@ -66,11 +66,13 @@ namespace winrt::test_component::implementation
                 return winrt::to_hstring(pv.GetInt32());
             case PropertyType::Int64:
                 return winrt::to_hstring(pv.GetInt64());
+            case PropertyType::String:
+                return pv.GetString();
             default:
                 throw hresult_not_implemented(L"Unimplemented switch case");
             }
         }
-        return L"unknown type";
+        return winrt::get_class_name(value);
     }
 
     hstring Class::InStringable(Windows::Foundation::IStringable const& value)

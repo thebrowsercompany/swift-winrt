@@ -1,8 +1,8 @@
-import Ctest_component
+import C_BINDINGS_MODULE
 
 extension PropertyValue
 {
-    static func createInt(_ value: Int) -> test_component.IInspectable {
+    static func createInt(_ value: Int) -> SUPPORT_MODULE.IInspectable {
        #if arch(x86_64) || arch(arm64)
            return PropertyValue.createInt64(Int64(value))
         #elseif arch(i386) || arch(arm)
@@ -12,7 +12,7 @@ extension PropertyValue
         #endif
     }
     
-    static func createUInt(_ value: UInt) -> test_component.IInspectable {
+    static func createUInt(_ value: UInt) -> SUPPORT_MODULE.IInspectable {
         #if arch(x86_64) || arch(arm64)
            return PropertyValue.createUInt64(UInt64(value))
         #elseif arch(i386) || arch(arm)
@@ -22,7 +22,7 @@ extension PropertyValue
         #endif
     }
 
-    static func createFrom(_ any: Any) -> test_component.IInspectable? {
+    static func createFrom(_ any: Any) -> SUPPORT_MODULE.IInspectable? {
         if let _value = any as? String {
           return PropertyValue.createString(_value)
         } else if let _value = any as? Int {

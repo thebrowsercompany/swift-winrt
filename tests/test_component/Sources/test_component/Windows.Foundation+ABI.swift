@@ -13,8 +13,8 @@ private var IID___x_ABI_CWindows_CFoundation_CIPropertyValue: IID {
     IID(Data1: 0x4BD682DD, Data2: 0x7554, Data3: 0x40E9, Data4: ( 0x9A,0x9B,0x82,0x65,0x4E,0xDE,0x7E,0x62 ))// 4BD682DD-7554-40E9-9A9B-82654EDE7E62
 }
 
-private var IID___x_ABI_CWindows_CFoundation_CIPropertyValueStatics: IID {
-    IID(Data1: 0x629BDBC8, Data2: 0xD932, Data3: 0x4FF4, Data4: ( 0x96,0xB9,0x8D,0x96,0xC5,0xC1,0xE8,0x58 ))// 629BDBC8-D932-4FF4-96B9-8D96C5C1E858
+private var IID___x_ABI_CWindows_CFoundation_CIStringable: IID {
+    IID(Data1: 0x96369F54, Data2: 0x8EB6, Data3: 0x48F0, Data4: ( 0xAB,0xCE,0xC1,0xB2,0x11,0xE6,0x27,0xC3 ))// 96369F54-8EB6-48F0-ABCE-C1B211E627C3
 }
 
 public enum __ABI_Windows_Foundation {
@@ -649,171 +649,84 @@ public enum __ABI_Windows_Foundation {
             super.init(abi, impl)
         }
     }
-    open class IPropertyValueStatics: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_CWindows_CFoundation_CIPropertyValueStatics }
+    open class IStringable: test_component.IInspectable {
+        override public class var IID: IID { IID___x_ABI_CWindows_CFoundation_CIStringable }
 
-        internal func CreateEmptyImpl() throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-            var propertyValue: UnsafeMutablePointer<Ctest_component.IInspectable>?
-            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValueStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateEmpty(pThis, &propertyValue))
+        open func ToStringImpl() throws -> HSTRING? {
+            var value: HSTRING?
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIStringable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.ToString(pThis, &value))
             }
-            return propertyValue
-        }
-
-        internal func CreateUInt8Impl(_ value: UINT8) throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-            var propertyValue: UnsafeMutablePointer<Ctest_component.IInspectable>?
-            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValueStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateUInt8(pThis, value, &propertyValue))
-            }
-            return propertyValue
-        }
-
-        internal func CreateInt16Impl(_ value: INT16) throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-            var propertyValue: UnsafeMutablePointer<Ctest_component.IInspectable>?
-            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValueStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInt16(pThis, value, &propertyValue))
-            }
-            return propertyValue
-        }
-
-        internal func CreateUInt16Impl(_ value: UINT16) throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-            var propertyValue: UnsafeMutablePointer<Ctest_component.IInspectable>?
-            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValueStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateUInt16(pThis, value, &propertyValue))
-            }
-            return propertyValue
-        }
-
-        internal func CreateInt32Impl(_ value: INT32) throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-            var propertyValue: UnsafeMutablePointer<Ctest_component.IInspectable>?
-            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValueStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInt32(pThis, value, &propertyValue))
-            }
-            return propertyValue
-        }
-
-        internal func CreateUInt32Impl(_ value: UINT32) throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-            var propertyValue: UnsafeMutablePointer<Ctest_component.IInspectable>?
-            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValueStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateUInt32(pThis, value, &propertyValue))
-            }
-            return propertyValue
-        }
-
-        internal func CreateInt64Impl(_ value: INT64) throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-            var propertyValue: UnsafeMutablePointer<Ctest_component.IInspectable>?
-            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValueStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInt64(pThis, value, &propertyValue))
-            }
-            return propertyValue
-        }
-
-        internal func CreateUInt64Impl(_ value: UINT64) throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-            var propertyValue: UnsafeMutablePointer<Ctest_component.IInspectable>?
-            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValueStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateUInt64(pThis, value, &propertyValue))
-            }
-            return propertyValue
-        }
-
-        internal func CreateSingleImpl(_ value: FLOAT) throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-            var propertyValue: UnsafeMutablePointer<Ctest_component.IInspectable>?
-            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValueStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateSingle(pThis, value, &propertyValue))
-            }
-            return propertyValue
-        }
-
-        internal func CreateDoubleImpl(_ value: DOUBLE) throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-            var propertyValue: UnsafeMutablePointer<Ctest_component.IInspectable>?
-            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValueStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateDouble(pThis, value, &propertyValue))
-            }
-            return propertyValue
-        }
-
-        internal func CreateChar16Impl(_ value: WCHAR) throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-            var propertyValue: UnsafeMutablePointer<Ctest_component.IInspectable>?
-            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValueStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateChar16(pThis, value, &propertyValue))
-            }
-            return propertyValue
-        }
-
-        internal func CreateBooleanImpl(_ value: boolean) throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-            var propertyValue: UnsafeMutablePointer<Ctest_component.IInspectable>?
-            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValueStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateBoolean(pThis, value, &propertyValue))
-            }
-            return propertyValue
-        }
-
-        internal func CreateStringImpl(_ value: HSTRING?) throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-            var propertyValue: UnsafeMutablePointer<Ctest_component.IInspectable>?
-            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValueStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateString(pThis, value, &propertyValue))
-            }
-            return propertyValue
-        }
-
-        internal func CreateInspectableImpl(_ value: UnsafeMutablePointer<Ctest_component.IInspectable>?) throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-            var propertyValue: UnsafeMutablePointer<Ctest_component.IInspectable>?
-            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValueStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInspectable(pThis, value, &propertyValue))
-            }
-            return propertyValue
-        }
-
-        internal func CreateGuidImpl(_ value: GUID) throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-            var propertyValue: UnsafeMutablePointer<Ctest_component.IInspectable>?
-            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValueStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateGuid(pThis, value, &propertyValue))
-            }
-            return propertyValue
-        }
-
-        internal func CreateDateTimeImpl(_ value: __x_ABI_CWindows_CFoundation_CDateTime) throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-            var propertyValue: UnsafeMutablePointer<Ctest_component.IInspectable>?
-            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValueStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateDateTime(pThis, value, &propertyValue))
-            }
-            return propertyValue
-        }
-
-        internal func CreateTimeSpanImpl(_ value: __x_ABI_CWindows_CFoundation_CTimeSpan) throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-            var propertyValue: UnsafeMutablePointer<Ctest_component.IInspectable>?
-            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValueStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateTimeSpan(pThis, value, &propertyValue))
-            }
-            return propertyValue
-        }
-
-        internal func CreatePointImpl(_ value: __x_ABI_CWindows_CFoundation_CPoint) throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-            var propertyValue: UnsafeMutablePointer<Ctest_component.IInspectable>?
-            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValueStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.CreatePoint(pThis, value, &propertyValue))
-            }
-            return propertyValue
-        }
-
-        internal func CreateSizeImpl(_ value: __x_ABI_CWindows_CFoundation_CSize) throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-            var propertyValue: UnsafeMutablePointer<Ctest_component.IInspectable>?
-            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValueStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateSize(pThis, value, &propertyValue))
-            }
-            return propertyValue
-        }
-
-        internal func CreateRectImpl(_ value: __x_ABI_CWindows_CFoundation_CRect) throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-            var propertyValue: UnsafeMutablePointer<Ctest_component.IInspectable>?
-            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValueStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateRect(pThis, value, &propertyValue))
-            }
-            return propertyValue
+            return value
         }
 
     }
 
+    internal static var IStringableVTable: __x_ABI_CWindows_CFoundation_CIStringableVtbl = .init(
+        QueryInterface: {
+            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+
+            guard riid.pointee == IUnknown.IID ||
+                  riid.pointee == IInspectable.IID || 
+                  riid.pointee == ISwiftImplemented.IID ||
+                  riid.pointee == IIAgileObject.IID ||
+                  riid.pointee == __ABI_Windows_Foundation.IStringableWrapper.IID else { 
+                    guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
+                          let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
+                    return cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, riid, ppvObject) 
+
+            }
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
+        },
+
+        AddRef: {
+             guard let wrapper = IStringableWrapper.fromRaw($0) else { return 1 }
+             _ = wrapper.retain()
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+        },
+
+        Release: {
+            guard let wrapper = IStringableWrapper.fromRaw($0) else { return 1 }
+            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+        },
+
+        GetIids: {
+            let size = MemoryLayout<IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+            iids[0] = IUnknown.IID
+            iids[1] = IInspectable.IID
+            iids[2] = __ABI_Windows_Foundation.IStringableWrapper.IID
+            $1!.pointee = 3
+            $2!.pointee = iids
+            return S_OK
+        },
+
+        GetRuntimeClassName: {
+            _ = $0
+            let hstring = try! HString("Windows.Foundation.IStringable").detach()
+            $1!.pointee = hstring
+            return S_OK
+        },
+
+        GetTrustLevel: {
+            _ = $0
+            $1!.pointee = TrustLevel(rawValue: 0)
+            return S_OK
+        },
+
+        ToString: {
+            do {
+                guard let __unwrapped__instance = IStringableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                let value = try __unwrapped__instance.toString()
+                $1?.initialize(to: try! HString(value).detach())
+                return S_OK
+            } catch { return failWith(err: E_FAIL) } 
+        }
+    )
+
+    public typealias IStringableWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.IStringableImpl>
 }
 extension __x_ABI_CWindows_CFoundation_CDateTime {
         public static func from(swift: test_component.DateTime) -> __x_ABI_CWindows_CFoundation_CDateTime {

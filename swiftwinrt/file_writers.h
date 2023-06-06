@@ -156,7 +156,6 @@ namespace swiftwinrt
                 write_interface_generic(w, inst.get());
             }
             w.write("%", w.filter.bind_each<write_interface_abi>(members.interfaces));
-            w.write("%", w.filter.bind_each<write_delegate_abi>(members.delegates));
             w.write("%", w.filter.bind_each<write_struct_abi>(members.structs));
             w.write("%", w.filter.bind_each<write_class_abi>(members.classes));
         }
@@ -165,11 +164,12 @@ namespace swiftwinrt
         // at the ABI layer for when we have swift implemented interfaces
         for (auto& [_, inst] : members.generic_instantiations)
         {
-            write_ireference_init_extension(w, inst.get());
+            write_generic_extension(w, inst.get());
         }
 
         w.write("%", w.filter.bind_each<write_struct_init_extension>(members.structs));
         w.write("%", w.filter.bind_each<write_composable_impl_extension>(members.classes));
+        w.write("%", w.filter.bind_each<write_delegate_abi>(members.delegates));
 
         w.swap();
         write_preamble(w);
