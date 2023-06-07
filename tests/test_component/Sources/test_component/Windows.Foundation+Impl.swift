@@ -170,3 +170,27 @@ public enum __IMPL_Windows_Foundation {
         }
     }
 }
+@_spi(__MakeFromAbi_DoNotImport)
+public class IClosable_MakeFromAbi : MakeFromAbi {
+    public typealias CABI = __x_ABI_CWindows_CFoundation_CIClosable
+    public typealias SwiftABI = __ABI_Windows_Foundation.IClosable
+    public typealias SwiftProjection = AnyIClosable
+    public static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
+        guard let abi else { return nil }
+        let swiftAbi: SwiftABI = try! test_component.IInspectable(abi).QueryInterface()
+        return __IMPL_Windows_Foundation.IClosableImpl(RawPointer(swiftAbi)!)
+    }
+}
+
+@_spi(__MakeFromAbi_DoNotImport)
+public class IStringable_MakeFromAbi : MakeFromAbi {
+    public typealias CABI = __x_ABI_CWindows_CFoundation_CIStringable
+    public typealias SwiftABI = __ABI_Windows_Foundation.IStringable
+    public typealias SwiftProjection = AnyIStringable
+    public static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
+        guard let abi else { return nil }
+        let swiftAbi: SwiftABI = try! test_component.IInspectable(abi).QueryInterface()
+        return __IMPL_Windows_Foundation.IStringableImpl(RawPointer(swiftAbi)!)
+    }
+}
+

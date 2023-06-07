@@ -44,7 +44,6 @@ public extension WinRTClass {
     }
 }
 
-// TODO: default implementation to make compiler happy ya dig
 extension WinRTClass {
   public var thisPtr: SUPPORT_MODULE.IInspectable { 
     get { 

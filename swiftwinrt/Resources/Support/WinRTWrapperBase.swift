@@ -5,6 +5,9 @@ public protocol IWinRTObject: AnyObject {
   var thisPtr: SUPPORT_MODULE.IInspectable { get }
 }
 
+public protocol CanMakeFromAbi {
+    static var _makeFromAbi: any MakeFromAbi.Type { get }
+}
 public protocol Initializable {
   init()
 }
@@ -146,8 +149,8 @@ open class InterfaceWrapperBase<I: AbiInterfaceImpl> : WinRTWrapperBase2<I> {
         } else if let winrtClass = swiftObj as? AnyWinRTClass {
             let abi: UnsafeMutablePointer<I.CABI>? = RawPointer(winrtClass)
             return try body(abi!)
-        } else if let swiftAbi = impl as? I.SwiftABI {
-            let abi: UnsafeMutablePointer<I.CABI>? = RawPointer(winrtClass)
+        } else if let swiftAbi = swiftObj as? I.SwiftABI {
+            let abi: UnsafeMutablePointer<I.CABI>? = RawPointer(swiftAbi)
             return try body(abi!)
         } else {
             return try super.toABI(body)

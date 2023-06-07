@@ -786,6 +786,13 @@ class SwiftWinRTTests : XCTestCase {
     result = try! classy.inObject(derived)
     XCTAssertEqual(NSStringFromClass(Derived.self), result)
 
+    var anyObj: Any?
+    try! classy.outObject(&anyObj)
+    let obj = anyObj as! test_component.IStringable
+    XCTAssertEqual("123", try! obj.toString())
+
+    // Add a swift implementation so this will test the roundtripping of swift
+    // objects
     let impl = MyImplementableDelegate()
     classy = Class("with delegate", .orange, impl)
 
@@ -793,7 +800,7 @@ class SwiftWinRTTests : XCTestCase {
     XCTAssertEqual(result, String(describing: person))
   }
 }
- 
+
 var tests: [XCTestCaseEntry] = [
   testCase([
     ("testAggregation", SwiftWinRTTests.testAggregation),

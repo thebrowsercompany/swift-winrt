@@ -33,7 +33,7 @@ extension IInspectable {
   // get_swift_module defined in common.h in the code generator
   private func GetSwiftModule(from ns: String) -> String {
     if ns.starts(with: "Windows.Foundation") {
-       return "WindowsFoundation"
+       return "SUPPORT_MODULE"
     } else if ns.starts(with: "Microsoft.UI.Xaml") || ns.starts(with: "Windows.UI.Xaml") {
       return "WinUI"
     } else if ns.starts(with: "Windows") {

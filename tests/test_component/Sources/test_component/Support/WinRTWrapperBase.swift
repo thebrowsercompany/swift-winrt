@@ -5,6 +5,9 @@ public protocol IWinRTObject: AnyObject {
   var thisPtr: test_component.IInspectable { get }
 }
 
+public protocol CanMakeFromAbi {
+    static var _makeFromAbi: any MakeFromAbi.Type { get }
+}
 public protocol Initializable {
   init()
 }

@@ -46,17 +46,14 @@ public enum __ABI_ {
       public init?(_ swift: Any?) {
         guard let swift else { return nil }
         if let winrtObj = swift as? IWinRTObject {
-          print("winrtobj")
           super.init(winrtObj)
         } else if let propertyValue = PropertyValue.createFrom(swift) {
-          print("prop val")
           super.init(propertyValue)
         } else if swift is WinRTEnum {
           fatalError("cant create enum")
         } else if swift is WinRTStruct {
           fatalError("can't create struct")
         } else {
-          print("swift")
           super.init(swift as AnyObject)
         }
       }
@@ -69,11 +66,17 @@ public enum __ABI_ {
 
         let insp: IInspectable = .init(abi)
         let className = try! insp.GetSwiftClassName()
-        guard let baseType = NSClassFromString(className) as? any UnsealedWinRTClass.Type else {
-          print("unable to unwrap \(className), defaulting to IInspectable")
-          return insp
+        if let baseType = NSClassFromString(className) as? any UnsealedWinRTClass.Type {
+          return baseType._makeFromAbi.from(abi: insp.pUnk.borrow)
+        } 
+        
+        let abiMaker = "\(className)_MakeFromAbi"
+        if let implType = NSClassFromString(abiMaker) as? any MakeFromAbi.Type {
+          return implType.from(abi: insp.pUnk.borrow)
         }
-        return baseType._makeFromAbi.from(abi: insp.pUnk.borrow)
+
+        print("unable to make \(className) from abi, defaulting to IInspectable")
+        return insp
       }
     }
 

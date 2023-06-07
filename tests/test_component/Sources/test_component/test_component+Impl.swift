@@ -794,3 +794,39 @@ fileprivate extension test_component.Signed {
         self = result
     }
 } 
+@_spi(__MakeFromAbi_DoNotImport)
+public class IBasic_MakeFromAbi : MakeFromAbi {
+    public typealias CABI = __x_ABI_Ctest__component_CIBasic
+    public typealias SwiftABI = __ABI_test_component.IBasic
+    public typealias SwiftProjection = AnyIBasic
+    public static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
+        guard let abi else { return nil }
+        let swiftAbi: SwiftABI = try! test_component.IInspectable(abi).QueryInterface()
+        return __IMPL_test_component.IBasicImpl(RawPointer(swiftAbi)!)
+    }
+}
+
+@_spi(__MakeFromAbi_DoNotImport)
+public class IIAmImplementable_MakeFromAbi : MakeFromAbi {
+    public typealias CABI = __x_ABI_Ctest__component_CIIAmImplementable
+    public typealias SwiftABI = __ABI_test_component.IIAmImplementable
+    public typealias SwiftProjection = AnyIIAmImplementable
+    public static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
+        guard let abi else { return nil }
+        let swiftAbi: SwiftABI = try! test_component.IInspectable(abi).QueryInterface()
+        return __IMPL_test_component.IIAmImplementableImpl(RawPointer(swiftAbi)!)
+    }
+}
+
+@_spi(__MakeFromAbi_DoNotImport)
+public class ISimpleDelegate_MakeFromAbi : MakeFromAbi {
+    public typealias CABI = __x_ABI_Ctest__component_CISimpleDelegate
+    public typealias SwiftABI = __ABI_test_component.ISimpleDelegate
+    public typealias SwiftProjection = AnyISimpleDelegate
+    public static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
+        guard let abi else { return nil }
+        let swiftAbi: SwiftABI = try! test_component.IInspectable(abi).QueryInterface()
+        return __IMPL_test_component.ISimpleDelegateImpl(RawPointer(swiftAbi)!)
+    }
+}
+

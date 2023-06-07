@@ -1022,6 +1022,33 @@ public var thisPtr: %.IInspectable { fatalError("not implemented") }
         }
     }
 
+    static void write_interface_abi_bridge(writer& w, interface_type const& type)
+    {
+        if (is_exclusive(type) || !can_write(w, type) ||get_full_type_name(type) == "Windows.Foundation.IPropertyValue") return;
+
+        w.write(R"(^@_spi(__MakeFromAbi_DoNotImport)
+public class %_MakeFromAbi : MakeFromAbi {
+    public typealias CABI = %
+    public typealias SwiftABI = %.%
+    public typealias SwiftProjection = %
+    public static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
+        guard let abi else { return nil }
+        let swiftAbi: SwiftABI = try! %.IInspectable(abi).QueryInterface()
+        return %(RawPointer(swiftAbi)!)
+    }
+}
+
+)",
+            type,
+            bind_type_mangled(type),
+            abi_namespace(type),
+            type,
+            bind<write_swift_interface_existential_identifier>(type), // Do not include outer Optional<>)
+            w.support,
+            bind_impl_fullname(type)
+        );
+    }
+
     static void write_interface_impl(writer& w, interface_type const& type)
     {
         if (is_exclusive(type) || !can_write(w, type)) return;

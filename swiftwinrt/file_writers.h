@@ -237,6 +237,7 @@ namespace swiftwinrt
             write_ireference_init_extension(w, inst.get());
         }
 
+        w.write("%", w.filter.bind_each<write_interface_abi_bridge>(members.interfaces));
 
         w.swap();
         write_preamble(w);
