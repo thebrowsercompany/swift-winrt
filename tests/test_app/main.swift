@@ -52,6 +52,21 @@ class AppDerivedNoOverrides2 : UnsealedDerivedNoOverrides {
   }
 }
 
+class DoubleDelegate : IBasic, ISimpleDelegate {
+  func method() {
+    print("method doubled up")
+  }
+
+  func doThis() {
+    print("Swift Double! - doThis!")
+  }
+
+  func doThat(_ val: Int32) {
+    print("Swift Double! - Do that: ", val)
+  }
+
+}
+
 class SwiftWinRTTests : XCTestCase {
   public func testBlittableStruct() throws {
     let simple = Simple()
@@ -234,7 +249,7 @@ class SwiftWinRTTests : XCTestCase {
     func getThat() -> Int32 { that }
   }
   
-  struct Person
+  struct Person : Equatable
   {
     var firstName: String
     var lastName: String
@@ -455,22 +470,6 @@ class SwiftWinRTTests : XCTestCase {
     func method() {
       print("it's done")
     }
-  }
-
-  class DoubleDelegate : IBasic, ISimpleDelegate {
-    func method() {
-      print("method doubled up")
-    }
-
-    func doThis() {
-      print("Swift Double! - doThis!")
-    }
-
-    func doThat(_ val: Int32) {
-      print("Swift Double! - Do that: ", val)
-    }
-
-    var thisPtr: test_component.IInspectable { (self as IBasic).thisPtr }
   }
 
   public func testDoubleDelegate() throws {
@@ -769,27 +768,42 @@ class SwiftWinRTTests : XCTestCase {
   public func testValueBoxing() {
     let value: Int = 2
     var classy = Class()
+    print("testing int...")
     var result = try! classy.inObject(value)
     XCTAssertEqual("\(value)", result)
 
+    print("testing string...")
     let words = "hello world"
     result = try! classy.inObject(words)
     XCTAssertEqual(words, result)
 
     // check that a basic winrt class works
+    print("testing winrt class...")
     let derived = Derived()
     result = try! classy.inObject(derived)
     XCTAssertEqual(NSStringFromClass(Derived.self), result)
 
+    print("testing swift struct...")
     // Check that the runtime class name returned is the swift class name
     let person = Person(firstName: "John", lastName: "Doe", age: 32)
     result = try! classy.inObject(derived)
     XCTAssertEqual(NSStringFromClass(Derived.self), result)
 
+    print("testing unwrap of interface...")
     var anyObj: Any?
     try! classy.outObject(&anyObj)
     let obj = anyObj as! test_component.IStringable
     XCTAssertEqual("123", try! obj.toString())
+
+    print("testing simple delegate...")
+    let delegate = MySimpleDelegate()
+    result = try! classy.inObject(delegate)
+    XCTAssertEqual("simple", result)
+
+    print("testing DoubleDelegate...")
+    let doubleDelegate = DoubleDelegate()
+    result = try! classy.inObject(doubleDelegate)
+    XCTAssertEqual("simply basic", result)
 
     // Add a swift implementation so this will test the roundtripping of swift
     // objects
@@ -798,6 +812,12 @@ class SwiftWinRTTests : XCTestCase {
 
     result = try! classy.inObject(person)
     XCTAssertEqual(result, String(describing: person))
+
+    try! classy.outObject(&anyObj)
+    XCTAssertEqual(anyObj as! Person, person)
+
+    anyObj = try! classy.returnObject()
+    XCTAssertEqual(anyObj as! Person, person)
   }
 }
 

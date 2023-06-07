@@ -72,6 +72,18 @@ namespace winrt::test_component::implementation
                 throw hresult_not_implemented(L"Unimplemented switch case");
             }
         }
+        else if (auto basic = value.try_as<IBasic>() && value.try_as<ISimpleDelegate>())
+        {
+            return L"simply basic";
+        }
+        else if (auto simple = value.try_as<ISimpleDelegate>())
+        {
+            return L"simple";
+        }
+        else if (auto basic = value.try_as<IBasic>())
+        {
+            return L"basic";
+        }
         return winrt::get_class_name(value);
     }
 
@@ -209,7 +221,14 @@ namespace winrt::test_component::implementation
 
     void Class::OutObject(Windows::Foundation::IInspectable& value)
     {
-        value = make<Value>(123);
+        if (m_implementation)
+        {
+            m_implementation.OutObject(value);
+        }
+        else 
+        {
+            value = make<Value>(123);
+        }
     }
 
     void Class::OutStringable(Windows::Foundation::IStringable& value)
@@ -263,7 +282,14 @@ namespace winrt::test_component::implementation
     }
     Windows::Foundation::IInspectable Class::ReturnObject()
     {
-        return make<Value>(123);
+        if (m_implementation)
+        {
+            return m_implementation.ReturnObject();
+        }
+        else 
+        {
+            return make<Value>(123);
+        }
     }
     Windows::Foundation::IStringable Class::ReturnStringable()
     {

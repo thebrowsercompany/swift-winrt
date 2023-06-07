@@ -80,7 +80,7 @@ public protocol IClosable : IWinRTObject {
 }
 
 extension IClosable {
-  public var thisPtr: test_component.IInspectable {
+  public func makeAbi() -> test_component.IInspectable {
     let wrapper = __ABI_Windows_Foundation.IClosableWrapper(self)
     let _abi = try! wrapper?.toABI { $0 }
     return .init(_abi!)
@@ -88,7 +88,7 @@ extension IClosable {
 }
 public typealias AnyIClosable = any IClosable
 
-public protocol IPropertyValue : IWinRTObject {
+public protocol IPropertyValue : WinRTInterface {
     func getUInt8() throws -> UInt8
     func getInt16() throws -> Int16
     func getUInt16() throws -> UInt16
@@ -113,12 +113,12 @@ public protocol IPropertyValue : IWinRTObject {
 
 public typealias AnyIPropertyValue = any IPropertyValue
 
-public protocol IStringable : IWinRTObject {
+public protocol IStringable : WinRTInterface {
     func toString() throws -> String
 }
 
 extension IStringable {
-  public var thisPtr: test_component.IInspectable {
+  public func makeAbi() -> test_component.IInspectable {
     let wrapper = __ABI_Windows_Foundation.IStringableWrapper(self)
     let _abi = try! wrapper?.toABI { $0 }
     return .init(_abi!)

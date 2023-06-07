@@ -5,6 +5,12 @@ public protocol IWinRTObject: AnyObject {
   var thisPtr: test_component.IInspectable { get }
 }
 
+// ABI pointers are made at runtime, which is why this is a seperate protocol with a function
+// instead of a property
+public protocol WinRTInterface: AnyObject {
+  func makeAbi() -> test_component.IInspectable
+}
+
 public protocol CanMakeFromAbi {
     static var _makeFromAbi: any MakeFromAbi.Type { get }
 }
@@ -62,12 +68,6 @@ open class WinRTWrapperBase<CInterface, Prototype> {
 
     open class var IID: IID { get { fatalError("not implemented") } }
 
-    deinit {
-        // nil out the wrapper, so that we don't try to decrememnt the ref count in the `Release` method, this
-        // causes an infinite loop
-        self.instance.wrapper = nil
-    }
-
     public init(_ pointer: CInterface, _ impl: Prototype) {
         self.instance = ComObject(comInterface: pointer)
         self.swiftObj = impl
@@ -121,12 +121,6 @@ open class InterfaceWrapperBase<I: AbiInterfaceImpl> : WinRTWrapperBase2<I> {
         if let internalImpl = impl as? I {
             let abi: UnsafeMutablePointer<I.CABI> = RawPointer(internalImpl)!
             super.init(abi.pointee, impl)
-        } else if let winrtClass = impl as? AnyWinRTClass,
-            let abi: UnsafeMutablePointer<I.CABI> = RawPointer(winrtClass) {
-            super.init(abi.pointee, impl)
-        } else if let swiftAbi = impl as? I.SwiftABI,
-          let abi: UnsafeMutablePointer<I.CABI> = RawPointer(swiftAbi) {
-          super.init(abi.pointee, impl)
         } else {
             let abi = I.makeAbi()
             super.init(abi, impl)
@@ -145,12 +139,6 @@ open class InterfaceWrapperBase<I: AbiInterfaceImpl> : WinRTWrapperBase2<I> {
         // and return that.
         if let internalImpl = swiftObj as? I {
             let abi: UnsafeMutablePointer<I.CABI>? = RawPointer(internalImpl._default)
-            return try body(abi!)
-        } else if let winrtClass = swiftObj as? AnyWinRTClass {
-            let abi: UnsafeMutablePointer<I.CABI>? = RawPointer(winrtClass)
-            return try body(abi!)
-        } else if let swiftAbi = swiftObj as? I.SwiftABI {
-            let abi: UnsafeMutablePointer<I.CABI>? = RawPointer(swiftAbi)
             return try body(abi!)
         } else {
             return try super.toABI(body)

@@ -814,8 +814,8 @@ bind_impl_fullname(type));
         // Don't bother supporting boxing this class, not only is it an internal implementation which should
         // never be exposed to developers, it's also something we should remove
         // https://linear.app/the-browser-company/issue/WIN-640/remove-ipropertyvalueimpl-and-fix-ireference
-        auto winrtObjConformance = w.write_temp(R"(
-public var thisPtr: %.IInspectable { fatalError("not implemented") }
+        auto winrtInterfaceConformance = w.write_temp(R"(
+    public func makeAbi() -> %.IInspectable { fatalError("not implemented") }
 )", w.support);
 
         w.write(R"(public class IPropertyValueImpl : IPropertyValue, IReference {
@@ -888,7 +888,7 @@ public var thisPtr: %.IInspectable { fatalError("not implemented") }
     %
 }
 
-)", winrtObjConformance);
+)", winrtInterfaceConformance);
 
     }
 
@@ -1133,7 +1133,7 @@ public static func makeAbi() -> CABI {
             }}, interfaces));
 
         w.write("public protocol % : %% {\n", type, implements,
-            implements.empty() ? "IWinRTObject" : "");
+            implements.empty() ? "WinRTInterface" : "");
         {
             auto body_indent = w.push_indent();
             for (auto& method : type.functions)
@@ -1164,10 +1164,10 @@ public static func makeAbi() -> CABI {
 
         if (type.swift_full_name() != "Windows.Foundation.IPropertyValue")
         {
-            // write default thisPtr implementation for this interface. don't do
+            // write default makeAbi implementation for this interface. don't do
             // it for IPropertyValue since this has a custom wrapper implementation
             w.write(R"(extension % {
-  public var thisPtr: %.IInspectable {
+  public func makeAbi() -> %.IInspectable {
     let wrapper = %(self)
     let _abi = try! wrapper?.toABI { $0 }
     return .init(_abi!)

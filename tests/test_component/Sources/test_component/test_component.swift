@@ -1275,12 +1275,12 @@ public struct StructWithEnum: Hashable, Codable {
     }
 }
 
-public protocol IBasic : IWinRTObject {
+public protocol IBasic : WinRTInterface {
     func method() throws
 }
 
 extension IBasic {
-  public var thisPtr: test_component.IInspectable {
+  public func makeAbi() -> test_component.IInspectable {
     let wrapper = __ABI_test_component.IBasicWrapper(self)
     let _abi = try! wrapper?.toABI { $0 }
     return .init(_abi!)
@@ -1288,7 +1288,7 @@ extension IBasic {
 }
 public typealias AnyIBasic = any IBasic
 
-public protocol IIAmImplementable : IWinRTObject {
+public protocol IIAmImplementable : WinRTInterface {
     func inInt32(_ value: Int32) throws -> String
     func inString(_ value: String) throws -> String
     func inObject(_ value: Any!) throws -> String
@@ -1307,7 +1307,7 @@ public protocol IIAmImplementable : IWinRTObject {
 }
 
 extension IIAmImplementable {
-  public var thisPtr: test_component.IInspectable {
+  public func makeAbi() -> test_component.IInspectable {
     let wrapper = __ABI_test_component.IIAmImplementableWrapper(self)
     let _abi = try! wrapper?.toABI { $0 }
     return .init(_abi!)
@@ -1315,13 +1315,13 @@ extension IIAmImplementable {
 }
 public typealias AnyIIAmImplementable = any IIAmImplementable
 
-public protocol ISimpleDelegate : IWinRTObject {
+public protocol ISimpleDelegate : WinRTInterface {
     func doThis() throws
     func doThat(_ val: Int32) throws
 }
 
 extension ISimpleDelegate {
-  public var thisPtr: test_component.IInspectable {
+  public func makeAbi() -> test_component.IInspectable {
     let wrapper = __ABI_test_component.ISimpleDelegateWrapper(self)
     let _abi = try! wrapper?.toABI { $0 }
     return .init(_abi!)
