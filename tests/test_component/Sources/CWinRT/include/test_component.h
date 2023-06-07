@@ -1216,6 +1216,12 @@ typedef struct __x_ABI_Ctest__component_CSimpleEventArgs __x_ABI_Ctest__componen
     
 typedef struct __x_ABI_CWindows_CFoundation_CDateTime __x_ABI_CWindows_CFoundation_CDateTime;
 
+#ifndef ____x_ABI_CWindows_CFoundation_CIAsyncAction_FWD_DEFINED__
+#define ____x_ABI_CWindows_CFoundation_CIAsyncAction_FWD_DEFINED__
+    typedef interface __x_ABI_CWindows_CFoundation_CIAsyncAction __x_ABI_CWindows_CFoundation_CIAsyncAction;
+
+#endif // ____x_ABI_CWindows_CFoundation_CIAsyncAction_FWD_DEFINED__
+
 #ifndef ____x_ABI_CWindows_CFoundation_CIClosable_FWD_DEFINED__
 #define ____x_ABI_CWindows_CFoundation_CIClosable_FWD_DEFINED__
     typedef interface __x_ABI_CWindows_CFoundation_CIClosable __x_ABI_CWindows_CFoundation_CIClosable;
@@ -2080,6 +2086,9 @@ struct __x_ABI_Ctest__component_CStructWithEnum
         HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CISimple* This,
             TrustLevel* trustLevel);
         HRESULT (STDMETHODCALLTYPE* Method)(__x_ABI_Ctest__component_CISimple* This);
+    HRESULT (STDMETHODCALLTYPE* Action)(__x_ABI_Ctest__component_CISimple* This,
+        struct __x_ABI_CWindows_CFoundation_CDateTime value,
+        __x_ABI_CWindows_CFoundation_CIAsyncAction** operation);
     HRESULT (STDMETHODCALLTYPE* Object)(__x_ABI_Ctest__component_CISimple* This,
         struct __x_ABI_CWindows_CFoundation_CDateTime value,
         IInspectable** result);

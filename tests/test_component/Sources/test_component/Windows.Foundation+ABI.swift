@@ -17,6 +17,10 @@ private var IID___x_ABI_CWindows_CFoundation_CIStringable: IID {
     IID(Data1: 0x96369F54, Data2: 0x8EB6, Data3: 0x48F0, Data4: ( 0xAB,0xCE,0xC1,0xB2,0x11,0xE6,0x27,0xC3 ))// 96369F54-8EB6-48F0-ABCE-C1B211E627C3
 }
 
+private var IID___x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler: IID {
+    IID(Data1: 0xA4ED5C81, Data2: 0x76C9, Data3: 0x40BD, Data4: ( 0x8B,0xE6,0xB1,0xD9,0x0F,0xB2,0x0A,0xE7 ))// A4ED5C81-76C9-40BD-8BE6-B1D90FB20AE7
+}
+
 public enum __ABI_Windows_Foundation {
     open class IAsyncAction: test_component.IInspectable {
         override public class var IID: IID { IID___x_ABI_CWindows_CFoundation_CIAsyncAction }
@@ -99,7 +103,7 @@ public enum __ABI_Windows_Foundation {
 
         put_Completed: {
             guard let __unwrapped__instance = IAsyncActionWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            guard let handler = __ABI_Windows_Foundation.AsyncActionCompletedHandlerWrapper.tryUnwrapFrom(abi: $1) else { return E_INVALIDARG }
+            guard let handler = __ABI_Windows_Foundation.AsyncActionCompletedHandlerWrapper.unwrapFrom(abi: $1) else { return E_INVALIDARG }
             __unwrapped__instance.completed = handler
             return S_OK
         },
@@ -753,4 +757,56 @@ extension __x_ABI_CWindows_CFoundation_CDateTime {
             .init(Duration: swift.duration)
         }
     }
-    
+    // MARK - AsyncActionCompletedHandler
+extension __ABI_Windows_Foundation {
+
+    typealias AsyncActionCompletedHandlerWrapper = DelegateWrapperBase<__IMPL_Windows_Foundation.AsyncActionCompletedHandlerImpl>
+    internal static var AsyncActionCompletedHandlerVTable: __x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandlerVtbl = .init(
+        QueryInterface: {
+            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+
+            guard riid.pointee == IUnknown.IID ||
+                  riid.pointee == IInspectable.IID || 
+                  riid.pointee == ISwiftImplemented.IID ||
+                  riid.pointee == IIAgileObject.IID ||
+                  riid.pointee == __ABI_Windows_Foundation.AsyncActionCompletedHandlerWrapper.IID else { 
+                    guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
+                          let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
+                    return cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, riid, ppvObject) 
+
+            }
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
+        },
+
+        AddRef: {
+             guard let wrapper = AsyncActionCompletedHandlerWrapper.fromRaw($0) else { return 1 }
+             _ = wrapper.retain()
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+        },
+
+        Release: {
+            guard let wrapper = AsyncActionCompletedHandlerWrapper.fromRaw($0) else { return 1 }
+            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+        },
+
+        Invoke: {
+            guard let __unwrapped__instance = AsyncActionCompletedHandlerWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncAction? = __ABI_Windows_Foundation.IAsyncActionWrapper.unwrapFrom(abi: $1)
+            let asyncStatus: AsyncStatus = $2
+            __unwrapped__instance.handler((asyncInfo, asyncStatus))
+            return S_OK
+        }
+    )
+}
+extension __x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler : HasIID {
+    public static var IID: IID { IID___x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler }
+}
+
+extension WinRTDelegateBridge where CABI == __x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler {
+    public static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Foundation.AsyncActionCompletedHandlerVTable) { $0 }
+        return .init(lpVtbl:vtblPtr)
+    }
+}

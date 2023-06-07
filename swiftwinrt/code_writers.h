@@ -1213,18 +1213,9 @@ public static func makeAbi() -> CABI {
     static void write_delegate(writer& w, delegate_type const& type)
     {
         function_def delegate_method = type.functions[0];
-        auto data = w.write_temp("%", bind<write_comma_param_types>(delegate_method.params));
-        if (data.empty())
-        {
-            // we need to provide an empty tuple for when there aren't parameters in order to compile. we
-            // can't use Void here bc that will create a compiler warning. this is because the `Data` type
-            // for the handler is () when there is no input. Note, that changing this to `Void` doesn't make
-            // this go away
-            data = "()";
-        }
-        w.write("public typealias % = (%) -> %\n",
+        w.write("public typealias % = ((%)) -> %\n",
             type,
-            data,
+            bind<write_comma_param_types>(delegate_method.params),
             bind<write_delegate_return_type>(delegate_method));
     }
 
