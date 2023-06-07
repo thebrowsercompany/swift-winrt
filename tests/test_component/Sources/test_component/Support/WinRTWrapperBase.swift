@@ -1,16 +1,6 @@
 import Ctest_component
 import WinSDK
 
-public protocol IWinRTObject: AnyObject {
-  var thisPtr: test_component.IInspectable { get }
-}
-
-// ABI pointers are made at runtime, which is why this is a seperate protocol with a function
-// instead of a property
-public protocol WinRTInterface: AnyObject {
-  func makeAbi() -> test_component.IInspectable
-}
-
 public protocol CanMakeFromAbi {
     static var _makeFromAbi: any MakeFromAbi.Type { get }
 }
@@ -52,6 +42,7 @@ public protocol AbiInterfaceImpl : AbiBridge & AbiInterface {
 extension AbiInterfaceImpl where SwiftABI: IInspectable {
    public var thisPtr: test_component.IInspectable {  _default }
 }
+
 public protocol WinRTAbiBridge: AbiInterfaceImpl where SwiftABI: IInspectable {}
 internal typealias AnyWinRTAbiBridge = any WinRTAbiBridge
 

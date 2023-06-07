@@ -4,10 +4,6 @@
 import Ctest_component
 import Foundation
 
-// TODO: put these in different file
-public protocol WinRTStruct {}
-public protocol WinRTEnum {}
-
 open class IInspectable: IUnknown {
   override open class var IID: IID { IID_IInspectable }
 
@@ -53,7 +49,6 @@ public enum __ABI_ {
             super.init(abi.pointee, winrtInterface)
           } else if let propertyValue = PropertyValue.createFrom(swift),
             let abi: UnsafeMutablePointer<Ctest_component.IInspectable> = RawPointer(propertyValue) {
-            print("prop value")
             super.init(abi.pointee, propertyValue)
           } else if swift is WinRTEnum {
             fatalError("cant create enum")
@@ -78,7 +73,7 @@ public enum __ABI_ {
             return try super.toABI(body)
         }
       }
-      public static func unwrapFrom(abi: UnsafeMutablePointer<__Impl_.IInspectableImpl.CABI>?) -> Any? {
+      public static func unwrapFrom(abi: UnsafeMutablePointer<Ctest_component.IInspectable>?) -> Any? {
         guard let abi = abi else { return nil }
         if let instance = tryUnwrapFrom(abi: abi) {
           return instance
@@ -165,27 +160,5 @@ extension ComposableImpl where CABI == Ctest_component.IInspectable {
   public static func makeAbi() -> CABI {
     let vtblPtr = withUnsafeMutablePointer(to: &__ABI_.IInspectableVTable) { $0 }
     return .init(lpVtbl: vtblPtr)
-  }
-}
-
-public enum __Impl_ {
-  public class IInspectableImpl : WinRTAbiBridge {
-      public typealias CABI = Ctest_component.IInspectable
-      public typealias SwiftABI = test_component.IInspectable
-      public typealias SwiftProjection = AnyObject
-      private (set) public var _default:SwiftABI
-      public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
-          guard let abi else { return nil }
-          return IInspectable(abi)
-      }
-
-      public init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-          _default = SwiftABI(fromAbi)
-      }
-
-      public static func makeAbi() -> CABI {
-          let vtblPtr = withUnsafeMutablePointer(to: &__ABI_.IInspectableVTable) { $0 }
-          return .init(lpVtbl: vtblPtr)
-      }
   }
 }

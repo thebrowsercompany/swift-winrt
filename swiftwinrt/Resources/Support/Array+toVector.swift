@@ -32,14 +32,6 @@ extension ArrayVector where Element: Equatable {
     }
 }
 
-extension ArrayVector {
-  var thisPtr: SUPPORT_MODULE.IInspectable { 
-    get {
-      fatalError("not implemented")
-    }
-  }
-}
-
 internal class ArrayVectorView<Element> : IVectorView {
     private var storage: Array<Element>
     internal init(_ storage: Array<Element>){
@@ -56,12 +48,4 @@ extension ArrayVectorView where Element: Equatable {
         index = UInt32(foundIndex)
         return true
     }
-}
-
-extension ArrayVectorView {
-  var thisPtr: SUPPORT_MODULE.IInspectable { 
-    get {
-      fatalError("not implemented")
-    }
-  }
 }

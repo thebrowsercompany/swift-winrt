@@ -1,7 +1,7 @@
 import WinSDK
 import Ctest_component
 
-public protocol IMap<Key, Value> : IWinRTObject {
+public protocol IMap<Key, Value> : WinRTInterface {
     associatedtype Key
     associatedtype Value
 
@@ -15,7 +15,7 @@ public protocol IMap<Key, Value> : IWinRTObject {
     func clear()
 }
 
-public protocol IMapView<Key, Value> : IWinRTObject {
+public protocol IMapView<Key, Value> : WinRTInterface {
     associatedtype Key
     associatedtype Value
     
@@ -29,3 +29,18 @@ public protocol IMapView<Key, Value> : IWinRTObject {
 
 public typealias AnyIMap<Key, Value> = any IMap<Key, Value>
 public typealias AnyIMapView<Key, Value> = any IMapView<Key, Value>
+
+// No default implementation for WinRTInterface, this means that
+// app implemented vectors can't be passed to an API that expects
+// Any yet
+extension IMap {
+  public func makeAbi() -> test_component.IInspectable { 
+    fatalError("not implemented")
+  }
+}
+
+extension IMapView {
+  public func makeAbi() -> test_component.IInspectable { 
+    fatalError("not implemented")
+  }
+}

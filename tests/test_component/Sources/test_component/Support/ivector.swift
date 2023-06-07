@@ -5,7 +5,7 @@ import Ctest_component
 // either be created in Swift and passed to the WinRT ABI, or it's created from the WinRT ABI
 // and manipulated from Swift. For code simplicity, we model this the same way we would model
 // a WinRT interface definition of IVector (i.e. non-throwing and using the WinRT API names).
-public protocol IVector<Element> : IWinRTObject, Collection where Index == Int {
+public protocol IVector<Element> : WinRTInterface, Collection where Index == Int {
     associatedtype Element
     // MARK: WinRT APIs
     func getAt(_ index: UInt32) -> Element 
@@ -20,7 +20,7 @@ public protocol IVector<Element> : IWinRTObject, Collection where Index == Int {
     func getView() -> AnyIVectorView<Element>?
 }
 
-public protocol IVectorView<Element> : IWinRTObject, Collection where Index == Int {
+public protocol IVectorView<Element> : WinRTInterface, Collection where Index == Int {
     associatedtype Element
     // MARK: WinRT APIs
     func getAt(_ index: UInt32) -> Element 
@@ -30,3 +30,18 @@ public protocol IVectorView<Element> : IWinRTObject, Collection where Index == I
 
 public typealias AnyIVector<Element> = any IVector<Element>
 public typealias AnyIVectorView<Element> = any IVectorView<Element>
+
+// No default implementation for WinRTInterface, this means that
+// app implemented vectors can't be passed to an API that expects
+// Any yet
+extension IVector {
+  public func makeAbi() -> test_component.IInspectable { 
+    fatalError("not implemented")
+  }
+}
+
+extension IVectorView {
+  public func makeAbi() -> test_component.IInspectable { 
+    fatalError("not implemented")
+  }
+}
