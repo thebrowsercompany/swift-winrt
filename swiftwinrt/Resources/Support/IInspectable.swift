@@ -30,7 +30,7 @@ open class IInspectable: IUnknown {
 // These types are used for composable types which don't provide an overrides interface. Composable types which
 // follow this pattern should define their composability contract like the following:
 // internal class IBaseNoOverrides : OverridesImpl {
-//      internal typealias CABI = Ctest_component.IInspectable
+//      internal typealias CABI = C_BINDINGS_MODULE.IInspectable
 //      internal typealias SwiftABI = __ABI_test_component.IBaseNoOverrides
 //      internal typealias SwiftProjection = BaseNoOverrides
 //      internal typealias c_defaultABI = __x_ABI_Ctest__component_CIBaseNoOverrides
@@ -64,10 +64,10 @@ public enum __ABI_ {
       override public func toABI<ResultType>(_ body: (UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable>) throws -> ResultType)
         throws -> ResultType {
         if let winrtObj = swiftObj as? IWinRTObject {
-            let abi: UnsafeMutablePointer<Ctest_component.IInspectable>? = RawPointer(winrtObj.thisPtr)
+            let abi: UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable>? = RawPointer(winrtObj.thisPtr)
             return try body(abi!)
         } else if let swiftAbi = swiftObj as? IInspectable {
-           let abi: UnsafeMutablePointer<Ctest_component.IInspectable>? = RawPointer(swiftAbi)
+           let abi: UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable>? = RawPointer(swiftAbi)
            return try body(abi!)
         } else {
             return try super.toABI(body)
