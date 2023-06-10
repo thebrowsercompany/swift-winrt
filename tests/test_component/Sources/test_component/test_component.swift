@@ -93,6 +93,7 @@ public final class BaseCollection : WinRTClass, IVector {
         _default = try! fromAbi.QueryInterface()
     }
 
+    public func makeAbi() -> test_component.IInspectable { fatalError("API should not be called") }
     // MARK: Collection
     public var startIndex: Int { 0 }
     public var endIndex: Int { Int(size) }
@@ -199,6 +200,7 @@ public final class BaseMapCollection : WinRTClass, IMap {
         _default = try! fromAbi.QueryInterface()
     }
 
+    public func makeAbi() -> test_component.IInspectable { fatalError("API should not be called") }
     // MARK: WinRT
     public func lookup(_ key: String) -> Base? {
         let _key = try! HString(key)
@@ -319,6 +321,7 @@ public final class Class : WinRTClass, IBasic {
         _default = try! fromAbi.QueryInterface()
     }
 
+    public func makeAbi() -> test_component.IInspectable { fatalError("API should not be called") }
     public init() {
         try! _default = RoActivateInstance(HString("test_component.Class"))
     }
@@ -731,6 +734,7 @@ public final class NoopClosable : WinRTClass, test_component.IClosable {
         _default = try! fromAbi.QueryInterface()
     }
 
+    public func makeAbi() -> test_component.IInspectable { fatalError("API should not be called") }
     public init() {
         try! _default = RoActivateInstance(HString("test_component.NoopClosable"))
     }

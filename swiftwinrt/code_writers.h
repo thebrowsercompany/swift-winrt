@@ -2002,6 +2002,7 @@ public % var % : Event<(%),%> = EventImpl<%>(register: %_%, owner:%)
         s();
 
         std::vector<std::pair<std::string, const metadata_type*>> collection_type_aliases;
+        bool needsWinRTInterfaceConformance = false;
         for (auto&& [interface_name, info] : type.required_interfaces)
         {
             // Filter out which interfaces we actually want to declare on the class.
@@ -2020,6 +2021,10 @@ public % var % : Event<(%),%> = EventImpl<%>(register: %_%, owner:%)
             }
 
             s();
+            // if the class also implements an interface, then it will need to conform to the protocol.
+            // *technically* this is only needed if it implements two or more since there is a default
+            // conformance provided, but it doesn't hurt.
+            needsWinRTInterfaceConformance = true;
 
             // when deriving from collections we want to just derive from `IVector` and will use a typealias to set the Element (this is required by Swift)
             auto name_to_write = interface_name;
@@ -2100,6 +2105,19 @@ private var _default: SwiftABI!
                 base_class ? "public override" : "public",
                 w.support);
             write_default_constructor_declarations(w, type, *default_interface);
+
+            if (needsWinRTInterfaceConformance)
+            {
+                auto modifier = type.is_composable() ? "open" : "public";
+                auto override = type.base_class ? "override " : "";
+                // A WinRTClass needs WinRTInterfaceConformance when it derives from more than 1 interface,
+                // otherwise it won't compile. Rather than simply returning _default we failFast since this
+                // API should never be called.
+                w.write(R"(%% func makeAbi() -> %.IInspectable { fatalError("API should not be called") }
+)", override,
+modifier,
+w.support);
+            }
         }
         for (auto&& [interface_name, factory] : type.factories)
         {

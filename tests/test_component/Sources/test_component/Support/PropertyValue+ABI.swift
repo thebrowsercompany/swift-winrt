@@ -9,14 +9,6 @@ fileprivate var IID___x_ABI_CWindows_CFoundation_CIPropertyValueStatics: IID {
 internal class IPropertyValueStatics: test_component.IInspectable {
       override public class var IID: IID { IID___x_ABI_CWindows_CFoundation_CIPropertyValueStatics }
 
-      internal func CreateEmptyImpl() throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-          var propertyValue: UnsafeMutablePointer<Ctest_component.IInspectable>?
-          _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValueStatics.self) { pThis in
-              try CHECKED(pThis.pointee.lpVtbl.pointee.CreateEmpty(pThis, &propertyValue))
-          }
-          return propertyValue
-      }
-
       internal func CreateUInt8Impl(_ value: UINT8) throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
           var propertyValue: UnsafeMutablePointer<Ctest_component.IInspectable>?
           _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValueStatics.self) { pThis in
