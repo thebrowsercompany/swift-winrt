@@ -1167,11 +1167,11 @@ public static func makeAbi() -> CABI {
             // write default makeAbi implementation for this interface. don't do
             // it for IPropertyValue since this has a custom wrapper implementation
             w.write(R"(extension % {
-  public func makeAbi() -> %.IInspectable {
-    let wrapper = %(self)
-    let _abi = try! wrapper?.toABI { $0 }
-    return .init(_abi!)
-  }
+    public func makeAbi() -> %.IInspectable {
+        let wrapper = %(self)
+        let _abi = try! wrapper?.toABI { $0 }
+        return .init(_abi!)
+    }
 }
 )", typeName, w.support, bind_wrapper_fullname(type));
         }
@@ -1212,6 +1212,10 @@ public static func makeAbi() -> CABI {
 
     static void write_delegate(writer& w, delegate_type const& type)
     {
+        // Delegates require tuples because of the way that the bridges are implemented.
+        // The bridge classes have a typealias for the parameters, and we use those
+        // parameters for the delegate signature to create the bridge. The swift compiler
+        // complains if the typealias isn't placed in a tuple
         function_def delegate_method = type.functions[0];
         w.write("public typealias % = ((%)) -> %\n",
             type,
@@ -2222,7 +2226,7 @@ w.support);
     guard riid.pointee == IUnknown.IID ||
           riid.pointee == IInspectable.IID || 
           riid.pointee == ISwiftImplemented.IID ||
-          riid.pointee == IIAgileObject.IID ||
+          riid.pointee == IAgileObject.IID ||
           riid.pointee == %.IID else { 
         %
     }

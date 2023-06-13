@@ -52,7 +52,7 @@ internal var __x_ABI_C__FIMapView_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMapView_
         guard riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
-              riid.pointee == IIAgileObject.IID ||
+              riid.pointee == IAgileObject.IID ||
               riid.pointee == test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.IID else { 
                 guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
                       let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
@@ -237,7 +237,7 @@ internal var __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTab
         guard riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
-              riid.pointee == IIAgileObject.IID ||
+              riid.pointee == IAgileObject.IID ||
               riid.pointee == test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.IID else { 
                 guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
                       let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
@@ -422,7 +422,7 @@ internal var __x_ABI_C__FIMap_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMap_2_HSTRIN
         guard riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
-              riid.pointee == IIAgileObject.IID ||
+              riid.pointee == IAgileObject.IID ||
               riid.pointee == test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.IID else { 
                 guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
                       let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
@@ -659,7 +659,7 @@ internal var __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: 
         guard riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
-              riid.pointee == IIAgileObject.IID ||
+              riid.pointee == IAgileObject.IID ||
               riid.pointee == test_component.__x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.IID else { 
                 guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
                       let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
@@ -895,7 +895,7 @@ internal var __x_ABI_C__FIVectorView_1_HSTRINGVTable: __x_ABI_C__FIVectorView_1_
         guard riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
-              riid.pointee == IIAgileObject.IID ||
+              riid.pointee == IAgileObject.IID ||
               riid.pointee == test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper.IID else { 
                 guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
                       let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
@@ -1074,7 +1074,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVTable: _
         guard riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
-              riid.pointee == IIAgileObject.IID ||
+              riid.pointee == IAgileObject.IID ||
               riid.pointee == test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID else { 
                 guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
                       let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
@@ -1252,7 +1252,7 @@ internal var __x_ABI_C__FIVector_1_HSTRINGVTable: __x_ABI_C__FIVector_1_HSTRINGV
         guard riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
-              riid.pointee == IIAgileObject.IID ||
+              riid.pointee == IAgileObject.IID ||
               riid.pointee == test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper.IID else { 
                 guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
                       let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
@@ -1569,7 +1569,7 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_A
         guard riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
-              riid.pointee == IIAgileObject.IID ||
+              riid.pointee == IAgileObject.IID ||
               riid.pointee == test_component.__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID else { 
                 guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
                       let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
@@ -1892,7 +1892,7 @@ internal var __x_ABI_C__FIEventHandler_1_IInspectableVTable: __x_ABI_C__FIEventH
         guard riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
-              riid.pointee == IIAgileObject.IID ||
+              riid.pointee == IAgileObject.IID ||
               riid.pointee == __x_ABI_C__FIEventHandler_1_IInspectable.IID else { 
                 guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
                       let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
@@ -1959,7 +1959,7 @@ internal var __x_ABI_C__FIReference_1_intVTable: __x_ABI_C__FIReference_1_intVtb
         guard riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
-              riid.pointee == IIAgileObject.IID ||
+              riid.pointee == IAgileObject.IID ||
               riid.pointee == test_component.__x_ABI_C__FIReference_1_intWrapper.IID else { 
                 guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
                       let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
@@ -2049,7 +2049,7 @@ internal var __x_ABI_C__FIReference_1_GUIDVTable: __x_ABI_C__FIReference_1_GUIDV
         guard riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
-              riid.pointee == IIAgileObject.IID ||
+              riid.pointee == IAgileObject.IID ||
               riid.pointee == test_component.__x_ABI_C__FIReference_1_GUIDWrapper.IID else { 
                 guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
                       let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
@@ -2139,7 +2139,7 @@ internal var __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedVTable: 
         guard riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
-              riid.pointee == IIAgileObject.IID ||
+              riid.pointee == IAgileObject.IID ||
               riid.pointee == test_component.__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper.IID else { 
                 guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
                       let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
@@ -2225,7 +2225,7 @@ internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple
         guard riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
-              riid.pointee == IIAgileObject.IID ||
+              riid.pointee == IAgileObject.IID ||
               riid.pointee == __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs.IID else { 
                 guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
                       let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }

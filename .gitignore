@@ -20,3 +20,4 @@ tests/test_component/Sources/CWinRT/include
 .vscode/
 
 swiftwinrt.log
+resources.aps

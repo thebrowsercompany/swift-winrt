@@ -1284,11 +1284,11 @@ public protocol IBasic : WinRTInterface {
 }
 
 extension IBasic {
-  public func makeAbi() -> test_component.IInspectable {
-    let wrapper = __ABI_test_component.IBasicWrapper(self)
-    let _abi = try! wrapper?.toABI { $0 }
-    return .init(_abi!)
-  }
+    public func makeAbi() -> test_component.IInspectable {
+        let wrapper = __ABI_test_component.IBasicWrapper(self)
+        let _abi = try! wrapper?.toABI { $0 }
+        return .init(_abi!)
+    }
 }
 public typealias AnyIBasic = any IBasic
 
@@ -1311,11 +1311,11 @@ public protocol IIAmImplementable : WinRTInterface {
 }
 
 extension IIAmImplementable {
-  public func makeAbi() -> test_component.IInspectable {
-    let wrapper = __ABI_test_component.IIAmImplementableWrapper(self)
-    let _abi = try! wrapper?.toABI { $0 }
-    return .init(_abi!)
-  }
+    public func makeAbi() -> test_component.IInspectable {
+        let wrapper = __ABI_test_component.IIAmImplementableWrapper(self)
+        let _abi = try! wrapper?.toABI { $0 }
+        return .init(_abi!)
+    }
 }
 public typealias AnyIIAmImplementable = any IIAmImplementable
 
@@ -1325,11 +1325,11 @@ public protocol ISimpleDelegate : WinRTInterface {
 }
 
 extension ISimpleDelegate {
-  public func makeAbi() -> test_component.IInspectable {
-    let wrapper = __ABI_test_component.ISimpleDelegateWrapper(self)
-    let _abi = try! wrapper?.toABI { $0 }
-    return .init(_abi!)
-  }
+    public func makeAbi() -> test_component.IInspectable {
+        let wrapper = __ABI_test_component.ISimpleDelegateWrapper(self)
+        let _abi = try! wrapper?.toABI { $0 }
+        return .init(_abi!)
+    }
 }
 public typealias AnyISimpleDelegate = any ISimpleDelegate
 

@@ -101,7 +101,7 @@ public enum __ABI_ {
             guard riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
-                  riid.pointee == IIAgileObject.IID else { 
+                  riid.pointee == IAgileObject.IID else { 
                       guard let instance = AnyWrapper.tryUnwrapFrom(raw: $0) as? any UnsealedWinRTClass,
                             let inner = instance._inner else { return E_NOINTERFACE }
                         

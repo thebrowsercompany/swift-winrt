@@ -22,7 +22,7 @@ extension __ABI_test_component_Delegates {
             guard riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
-                  riid.pointee == IIAgileObject.IID ||
+                  riid.pointee == IAgileObject.IID ||
                   riid.pointee == __x_ABI_Ctest__component_CDelegates_CIInDelegate.IID else { 
                     guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
                           let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
@@ -74,7 +74,7 @@ extension __ABI_test_component_Delegates {
             guard riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
-                  riid.pointee == IIAgileObject.IID ||
+                  riid.pointee == IAgileObject.IID ||
                   riid.pointee == __x_ABI_Ctest__component_CDelegates_CISignalDelegate.IID else { 
                     guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
                           let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }

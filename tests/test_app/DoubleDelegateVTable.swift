@@ -36,7 +36,7 @@ fileprivate var DoubleDelegateVTable: Ctest_component.IInspectableVtbl = .init(
             return thisAsISimpleDelegate.pointee.lpVtbl.pointee.QueryInterface(thisAsISimpleDelegate, riid, ppvObject)
         } else if riid.pointee == IUnknown.IID ||
                 riid.pointee == IInspectable.IID || 
-                riid.pointee == IIAgileObject.IID || 
+                riid.pointee == IAgileObject.IID || 
                 riid.pointee == ISwiftImplemented.IID {
             _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
             ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
