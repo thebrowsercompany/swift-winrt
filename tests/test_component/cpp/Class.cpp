@@ -44,7 +44,49 @@ namespace winrt::test_component::implementation
 
     hstring Class::InObject(Windows::Foundation::IInspectable const& value)
     {
-        return value.as<IStringable>().ToString();
+        if (m_implementation)
+        {
+            return m_implementation.InObject(value);
+        }
+        if (auto stringable = value.try_as<IStringable>())
+        {
+            return stringable.ToString();
+        }
+        else if (auto pv = value.try_as<IPropertyValue>())
+        {
+            switch (pv.Type())
+            {
+            case PropertyType::UInt8:
+                return winrt::to_hstring(pv.GetUInt8());
+            case PropertyType::Int16:
+                return winrt::to_hstring(pv.GetInt16());
+            case PropertyType::UInt16:
+                return winrt::to_hstring(pv.GetUInt16());
+            case PropertyType::Int32:
+                return winrt::to_hstring(pv.GetInt32());
+            case PropertyType::Int64:
+                return winrt::to_hstring(pv.GetInt64());
+            case PropertyType::String:
+                return pv.GetString();
+            case PropertyType::Char16:
+                throw hresult_invalid_argument(L"char16 not expected - should be boxed as string");
+            default:
+                throw hresult_not_implemented(L"Unimplemented switch case");
+            }
+        }
+        else if (auto basic = value.try_as<IBasic>() && value.try_as<ISimpleDelegate>())
+        {
+            return L"simply basic";
+        }
+        else if (auto simple = value.try_as<ISimpleDelegate>())
+        {
+            return L"simple";
+        }
+        else if (auto basic = value.try_as<IBasic>())
+        {
+            return L"basic";
+        }
+        return winrt::get_class_name(value);
     }
 
     hstring Class::InStringable(Windows::Foundation::IStringable const& value)
@@ -181,7 +223,14 @@ namespace winrt::test_component::implementation
 
     void Class::OutObject(Windows::Foundation::IInspectable& value)
     {
-        value = make<Value>(123);
+        if (m_implementation)
+        {
+            m_implementation.OutObject(value);
+        }
+        else 
+        {
+            value = make<Value>(123);
+        }
     }
 
     void Class::OutStringable(Windows::Foundation::IStringable& value)
@@ -235,7 +284,14 @@ namespace winrt::test_component::implementation
     }
     Windows::Foundation::IInspectable Class::ReturnObject()
     {
-        return make<Value>(123);
+        if (m_implementation)
+        {
+            return m_implementation.ReturnObject();
+        }
+        else 
+        {
+            return make<Value>(123);
+        }
     }
     Windows::Foundation::IStringable Class::ReturnStringable()
     {

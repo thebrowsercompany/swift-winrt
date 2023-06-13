@@ -357,6 +357,13 @@ Where <spec> is one or more of:
                         &moduleDependencies = moduleItr->second]
                     {
                         swiftwinrt::task_group module_group;
+                        module_group.add([&, &namespaces = namespaces]
+                        {
+                            // generics are written on a per module basis because this helps us reduce the
+                            // amount of code that is generated.
+                            auto types = mdCache.compile_namespaces(namespaces, mf);
+                            write_module_generics(module, types, mf);
+                        });
 
                         if (module == settings.support)
                         {
@@ -402,7 +409,7 @@ Where <spec> is one or more of:
                         }
                     });
             }
-
+            
             group.add([] { write_cwinrt_build_files(); });
 
             group.get();

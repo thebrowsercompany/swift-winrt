@@ -155,11 +155,11 @@ namespace swiftwinrt
         using writer_base<writer>::write;
 
         std::string type_namespace;
+        std::string swift_module;
         std::string support;
         std::string c_mod;
         bool abi_types{};
         bool delegate_types{};
-        bool consume_types{};
         bool async_types{};
         bool full_type_names{};
         bool impl_names{};
@@ -227,7 +227,7 @@ namespace swiftwinrt
         {
             auto type_module = get_swift_module(type.TypeNamespace());
 
-            if (type_module != get_swift_module(type_namespace))
+            if (type_module != swift_module)
             {
                 depends.insert(type_module);
             }
@@ -237,7 +237,7 @@ namespace swiftwinrt
         {
             auto type_module = get_swift_module(type.swift_logical_namespace());
 
-            if (type_module != get_swift_module(type_namespace) && !type_module.empty())
+            if (type_module != swift_module && !type_module.empty())
             {
                 depends.insert(type_module);
             }
@@ -263,11 +263,6 @@ namespace swiftwinrt
         [[nodiscard]] auto push_delegate_types(bool value)
         {
             return member_value_guard(this, &writer::delegate_types, value);
-        }
-
-        [[nodiscard]] auto push_consume_types(bool value)
-        {
-            return member_value_guard(this, &writer::consume_types, value);
         }
 
         [[nodiscard]] auto push_full_type_names(bool value)
@@ -551,7 +546,7 @@ namespace swiftwinrt
             else if (type == ElementType::R4) { write("Float"); }
             else if (type == ElementType::R8) { write("Double"); }
             else if (type == ElementType::String) { write("String"); }
-            else if (type == ElementType::Object) { write("%.IInspectable", support); }
+            else if (type == ElementType::Object) { write("Any"); }
             else
             {
                 assert(false);
@@ -622,7 +617,7 @@ namespace swiftwinrt
             }
             else
             {
-                return root_directory() / get_swift_module(type_namespace);
+                return root_directory() / swift_module;
             }
         }
 

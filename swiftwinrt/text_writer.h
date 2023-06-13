@@ -318,11 +318,7 @@ namespace swiftwinrt
     template <typename T>
     struct write_scope_guard
     {
-        write_scope_guard(writer_base<T>& w, bool start_on_new_line = true) noexcept : m_writer(w), m_start_on_new_line(start_on_new_line)
-        {
-        }
-
-        write_scope_guard(writer_base<T>& w, std::string impl_namespace) noexcept : m_writer(w), m_start_on_new_line(true)
+        write_scope_guard(writer_base<T>& w, std::string module = "", bool start_on_new_line = true) noexcept : m_writer(w), m_start_on_new_line(start_on_new_line), m_swift_module(module)
         {
         }
 
@@ -345,6 +341,7 @@ namespace swiftwinrt
         void push(std::string_view const& value, Args const&... args)
         {
             T temp_writer;
+            temp_writer.swift_module = m_swift_module;
             m_lines.push_back(temp_writer.write_temp(value, args...));
         }
 
@@ -352,6 +349,7 @@ namespace swiftwinrt
         writer_base<T>& m_writer;
         std::vector<std::string> m_lines;
         bool m_start_on_new_line{};
+        std::string m_swift_module;
     };
 
 

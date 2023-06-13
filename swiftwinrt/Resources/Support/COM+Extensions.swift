@@ -74,6 +74,6 @@ private var IID_IAgileObject: IID {
     IID(Data1: 0x94ea2b94, Data2: 0xe9cc, Data3: 0x49e0, Data4: ( 0xc0, 0xff, 0xee, 0x64, 0xca, 0x8f, 0x5b, 0x90 )) // 94ea2b94-e9cc-49e0-c0ff-ee64ca8f5b90
 }
 
-public final class IIAgileObject : IUnknown {
+public final class IAgileObject : IUnknown {
     override public class var IID: IID { IID_IAgileObject }
 }

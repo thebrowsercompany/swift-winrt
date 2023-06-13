@@ -4,54 +4,6 @@ import test_component
 import Ctest_component
 import Foundation
 
-class AppDerived : Base {
-  // overriding the default initialzer is a simple test so that we don't need to override any
-  // other initializers
-  override init(){ super.init() }
-
-  var count = 0
-  override func onDoTheThing() {
-    print("we in the app yoooo")
-    count+=1
-  }
-}
-
-class AppDerived2 : UnsealedDerived {
-  var count = 0
-
-  override func onDoTheThing() {
-    print("pt2: we in the app yoooo")
-    count+=1
-  }
-}
-
-class AppDerived3 : UnsealedDerived2 {
-  var count = 0
-  var beforeCount = 0
-  override func onDoTheThing() {
-    print("pt3: we in the app yoooo")
-    count+=1
-  }
-
-  override func onBeforeDoTheThing() {
-    print("before doing it")
-    beforeCount+=1
-  }
-}
-
-class AppDerivedNoOverrides : BaseNoOverrides {
-  override init() {
-    super.init()
-  }
-}
-
-
-class AppDerivedNoOverrides2 : UnsealedDerivedNoOverrides {
-  override init() {
-    super.init()
-  }
-}
-
 class SwiftWinRTTests : XCTestCase {
   public func testBlittableStruct() throws {
     let simple = Simple()
@@ -215,78 +167,8 @@ class SwiftWinRTTests : XCTestCase {
     XCTAssertEqual(outNonBlittableStruct.fourth, "pedro")
   }
 
-  class MySimpleDelegate : ISimpleDelegate {
-    private var thisCount: Int32 = 0
-    private var that: Int32 = 0
-    func doThis()
-    {
-      print("Swift - doThis!")
-      thisCount += 1
-    }
-
-    func doThat(_ val: Int32)
-    {
-      print("Swift - Do that: ", val)
-      that = val
-    }
-
-    func getThisCount() -> Int32 { thisCount }
-    func getThat() -> Int32 { that }
-  }
-  
-  class MyImplementableDelegate: IIAmImplementable {
-    private var thisCount = 9
-    func inInt32(_ value: Int32) -> String {
-      return .init(repeating: "abc", count: Int(value))
-    }
-
-    func inString(_ value: String) -> String {
-      return .init(value.reversed())
-    }
-
-    func inEnum(_ value: Signed) -> String {
-      switch value {
-        case .first: return "1 banana"
-        case .second: return "2 banana"
-        case .third: return "3 banana"
-        default: return "n/a"
-      }
-    }
-
-    func outInt32(_ value: inout Int32) {
-      value = 987
-    }
-
-    func outString(_ value: inout String) {
-      value = "987"
-    }
-
-    func outBlittableStruct(_ value: inout BlittableStruct) {
-      value = .init(first: 9876, second: 54321)
-    }
-
-    func outNonBlittableStruct(_ value: inout NonBlittableStruct) {
-      value = .init(first: "to be", second: "or not", third: 2, fourth: "be, that is the question")
-    }
-
-    func outEnum(_ value: inout Signed) {
-      value = .second
-    }
-
-    func returnEnum() -> Signed {
-      .third
-    }
-
-    var enumProperty: Fruit = .apple
-
-    var id: WinSDK.UUID?
-    func fireEvent() {
-    }
-  } 
-
   public func testDelegate() throws {
     var classy = Class()
-
     do
     {
       print("TESTING ISimpleDelegate")
@@ -432,20 +314,6 @@ class SwiftWinRTTests : XCTestCase {
   class DoTheNewBase : IBasic {
     func method() {
       print("it's done")
-    }
-  }
-
-  class DoubleDelegate : IBasic, ISimpleDelegate {
-    func method() {
-      print("method doubled up")
-    }
-
-    func doThis() {
-      print("Swift Double! - doThis!")
-    }
-
-    func doThat(_ val: Int32) {
-      print("Swift Double! - Do that: ", val)
     }
   }
 
@@ -712,7 +580,7 @@ class SwiftWinRTTests : XCTestCase {
     XCTAssertFalse(NullValues.isInterfaceNull(NoopClosable()))
     XCTAssertFalse(NullValues.isGenericInterfaceNull([""].toVector()))
     XCTAssertFalse(NullValues.isClassNull(NoopClosable()))
-    XCTAssertFalse(NullValues.isDelegateNull(VoidToVoidDelegate(handler: {})))
+    XCTAssertFalse(NullValues.isDelegateNull({}))
 
     XCTAssertNil(NullValues.getNullObject())
     XCTAssertNil(NullValues.getNullInterface())
@@ -742,7 +610,7 @@ class SwiftWinRTTests : XCTestCase {
     }
   }
 }
- 
+
 var tests: [XCTestCaseEntry] = [
   testCase([
     ("testAggregation", SwiftWinRTTests.testAggregation),
@@ -766,7 +634,7 @@ var tests: [XCTestCaseEntry] = [
     ("testVector", SwiftWinRTTests.testVector),
     ("testErrorInfo", SwiftWinRTTests.testErrorInfo),
   ])
-]
+] + valueBoxingTests
 
 RoInitialize(RO_INIT_MULTITHREADED)
 XCTMain(tests)

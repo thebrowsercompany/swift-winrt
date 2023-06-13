@@ -1,10 +1,6 @@
 import Ctest_component
 import Foundation
 
-public protocol WinRTClass : IWinRTObject, Equatable {
-    func _getABI<T>() -> UnsafeMutablePointer<T>?
-}
-
 public protocol MakeFromAbi {
     associatedtype CABI
     associatedtype SwiftProjection
@@ -18,28 +14,6 @@ public protocol MakeComposedAbi : MakeFromAbi where SwiftProjection: UnsealedWin
 public protocol ComposableImpl : AbiInterface where SwiftABI: IInspectable  {
     associatedtype Default : MakeComposedAbi
     static func makeAbi() -> CABI
-}
-
-public protocol UnsealedWinRTClass : WinRTClass {
-    var _inner: UnsafeMutablePointer<Ctest_component.IInspectable>? { get }
-    // rather than require an initializer, expose a type which can create this class.
-    // we do this so app derived types don't have to implement initializers that will
-    // never be called
-    static var _makeFromAbi: any MakeFromAbi.Type { get }
-}
-
-public extension WinRTClass {
-    func _getDefaultAsIInspectable() -> test_component.IInspectable {
-        // Every WinRT interface is binary compatible with IInspectable. asking this class for
-        // the iinspectable will ensure we get the default implementation from whichever derived
-        // class it actually is. 
-        let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = _getABI()!
-        return IInspectable(cDefault)
-    }
-
-    func `as`<Interface: test_component.IInspectable>() throws -> Interface {
-        try _getDefaultAsIInspectable().QueryInterface()
-    }
 }
 
 extension UnsealedWinRTClass {
@@ -58,10 +32,6 @@ extension UnsealedWinRTClass {
             return try! HString(string)
         }
     }
-}
-
-public func ==<T: WinRTClass>(_ lhs: T, _ rhs: T) -> Bool {
-  return lhs._getDefaultAsIInspectable() == rhs._getDefaultAsIInspectable()
 }
 
 public protocol ComposableActivationFactory {

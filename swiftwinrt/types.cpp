@@ -591,7 +591,7 @@ namespace swiftwinrt
     void generic_inst::write_swift_declaration(writer& w) const
     {
         auto push_param_guard = w.push_generic_params(*this);
-        w.write("internal static var %VTable: %Vtbl = .init(\n",
+        w.write("internal var %VTable: %Vtbl = .init(\n",
             mangled_name(),
             mangled_name());
 
@@ -671,7 +671,7 @@ namespace swiftwinrt
         static element_type const r4_type{ ElementType::R4, "Float"sv, "float"sv, "float"sv, "FLOAT"sv, "float"sv, "f4"sv };
         static element_type const r8_type{ ElementType::R8, "Double"sv, "double"sv, "double"sv, "DOUBLE"sv, "double"sv, "f8"sv };
         static element_type const string_type{ ElementType::String, "String"sv, "HSTRING"sv, "HSTRING"sv, "HSTRING"sv, "HSTRING"sv, "string"sv };
-        static element_type const object_type{ ElementType::Object, "IInspectable"sv, "IInspectable"sv, "IInspectable"sv, "IInspectable*"sv, "IInspectable"sv, "cinterface(IInspectable)"sv };
+        static element_type const object_type{ ElementType::Object, "Any"sv, "IInspectable"sv, "IInspectable"sv, "IInspectable*"sv, "IInspectable"sv, "cinterface(IInspectable)"sv };
 
         switch (type)
         {

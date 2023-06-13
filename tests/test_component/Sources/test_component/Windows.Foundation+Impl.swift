@@ -2,11 +2,12 @@
 import Ctest_component
 
 public enum __IMPL_Windows_Foundation {
-    public class IAsyncActionImpl : IAsyncAction, AbiInterfaceImpl {
+    public class IAsyncActionImpl : IAsyncAction, WinRTAbiBridge {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIAsyncAction
         public typealias SwiftABI = __ABI_Windows_Foundation.IAsyncAction
         public typealias SwiftProjection = AnyIAsyncAction
         private (set) public var _default: SwiftABI
+        public var thisPtr: test_component.IInspectable { _default }
         public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IAsyncActionImpl(abi)
@@ -26,8 +27,7 @@ public enum __IMPL_Windows_Foundation {
         public var completed : AsyncActionCompletedHandler! {
             get {
                 let handler = try! _default.get_CompletedImpl()
-                let _handler = __ABI_Windows_Foundation.AsyncActionCompletedHandlerWrapper.tryUnwrapFrom(abi: handler)
-            return _handler
+                return __ABI_Windows_Foundation.AsyncActionCompletedHandlerWrapper.unwrapFrom(abi: handler)
             }
 
             set {
@@ -39,11 +39,12 @@ public enum __IMPL_Windows_Foundation {
 
     }
 
-    public class IClosableImpl : IClosable, AbiInterfaceImpl {
+    public class IClosableImpl : IClosable, WinRTAbiBridge {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIClosable
         public typealias SwiftABI = __ABI_Windows_Foundation.IClosable
         public typealias SwiftProjection = AnyIClosable
         private (set) public var _default: SwiftABI
+        public var thisPtr: test_component.IInspectable { _default }
         public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IClosableImpl(abi)
@@ -104,7 +105,7 @@ public enum __IMPL_Windows_Foundation {
         public var type: PropertyType { propertyType }
         public var isNumericScalar: Bool { 
             switch propertyType {
-                case .int16, .int32, .uint16, .uint8, .int64, .uint64, .single, .double: return true
+                case .int16, .int32, .int64, .uint8, .uint16, .uint32, .uint64, .single, .double: return true
                 default: return false
             }
         }
@@ -129,15 +130,79 @@ public enum __IMPL_Windows_Foundation {
         public func getPoint() -> Point { _value as! Point }
         public func getSize() -> Size { _value as! Size }
         public func getRect() -> Rect { _value as! Rect }
+        
+        public func makeAbi() -> test_component.IInspectable { fatalError("not implemented") }
+
     }
 
-    public class AsyncActionCompletedHandlerImpl : WinRTDelegate {
+    public class IStringableImpl : IStringable, WinRTAbiBridge {
+        public typealias CABI = __x_ABI_CWindows_CFoundation_CIStringable
+        public typealias SwiftABI = __ABI_Windows_Foundation.IStringable
+        public typealias SwiftProjection = AnyIStringable
+        private (set) public var _default: SwiftABI
+        public var thisPtr: test_component.IInspectable { _default }
+        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+            guard let abi = abi else { return nil }
+            return IStringableImpl(abi)
+        }
+        public init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+            _default = SwiftABI(fromAbi)
+        }
+
+        public static func makeAbi() -> CABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Foundation.IStringableVTable) { $0 }
+            return .init(lpVtbl: vtblPtr)
+        }
+        public func toString() throws -> String {
+            let value = try _default.ToStringImpl()
+            return .init(from: value)
+        }
+
+    }
+
+    public class AsyncActionCompletedHandlerImpl : WinRTDelegateBridge {
         public typealias Data = (AnyIAsyncAction?, AsyncStatus)
         public typealias Return = ()
-        public var token: EventRegistrationToken?
+        public typealias CABI = __x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler
         public var handler: (Data) -> Return
         public required init(handler: @escaping (Data) -> Return){
             self.handler = handler
         }
     }
 }
+@_spi(__MakeFromAbi_DoNotImport)
+public class IAsyncAction_MakeFromAbi : MakeFromAbi {
+    public typealias CABI = __x_ABI_CWindows_CFoundation_CIAsyncAction
+    public typealias SwiftABI = __ABI_Windows_Foundation.IAsyncAction
+    public typealias SwiftProjection = AnyIAsyncAction
+    public static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
+        guard let abi else { return nil }
+        let swiftAbi: SwiftABI = try! test_component.IInspectable(abi).QueryInterface()
+        return __IMPL_Windows_Foundation.IAsyncActionImpl(RawPointer(swiftAbi)!)
+    }
+}
+
+@_spi(__MakeFromAbi_DoNotImport)
+public class IClosable_MakeFromAbi : MakeFromAbi {
+    public typealias CABI = __x_ABI_CWindows_CFoundation_CIClosable
+    public typealias SwiftABI = __ABI_Windows_Foundation.IClosable
+    public typealias SwiftProjection = AnyIClosable
+    public static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
+        guard let abi else { return nil }
+        let swiftAbi: SwiftABI = try! test_component.IInspectable(abi).QueryInterface()
+        return __IMPL_Windows_Foundation.IClosableImpl(RawPointer(swiftAbi)!)
+    }
+}
+
+@_spi(__MakeFromAbi_DoNotImport)
+public class IStringable_MakeFromAbi : MakeFromAbi {
+    public typealias CABI = __x_ABI_CWindows_CFoundation_CIStringable
+    public typealias SwiftABI = __ABI_Windows_Foundation.IStringable
+    public typealias SwiftProjection = AnyIStringable
+    public static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
+        guard let abi else { return nil }
+        let swiftAbi: SwiftABI = try! test_component.IInspectable(abi).QueryInterface()
+        return __IMPL_Windows_Foundation.IStringableImpl(RawPointer(swiftAbi)!)
+    }
+}
+

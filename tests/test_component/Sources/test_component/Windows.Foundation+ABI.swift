@@ -13,6 +13,10 @@ private var IID___x_ABI_CWindows_CFoundation_CIPropertyValue: IID {
     IID(Data1: 0x4BD682DD, Data2: 0x7554, Data3: 0x40E9, Data4: ( 0x9A,0x9B,0x82,0x65,0x4E,0xDE,0x7E,0x62 ))// 4BD682DD-7554-40E9-9A9B-82654EDE7E62
 }
 
+private var IID___x_ABI_CWindows_CFoundation_CIStringable: IID {
+    IID(Data1: 0x96369F54, Data2: 0x8EB6, Data3: 0x48F0, Data4: ( 0xAB,0xCE,0xC1,0xB2,0x11,0xE6,0x27,0xC3 ))// 96369F54-8EB6-48F0-ABCE-C1B211E627C3
+}
+
 private var IID___x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler: IID {
     IID(Data1: 0xA4ED5C81, Data2: 0x76C9, Data3: 0x40BD, Data4: ( 0x8B,0xE6,0xB1,0xD9,0x0F,0xB2,0x0A,0xE7 ))// A4ED5C81-76C9-40BD-8BE6-B1D90FB20AE7
 }
@@ -50,7 +54,7 @@ public enum __ABI_Windows_Foundation {
             guard riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
-                  riid.pointee == IIAgileObject.IID ||
+                  riid.pointee == IAgileObject.IID ||
                   riid.pointee == __ABI_Windows_Foundation.IAsyncActionWrapper.IID else { 
                     guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
                           let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
@@ -99,7 +103,7 @@ public enum __ABI_Windows_Foundation {
 
         put_Completed: {
             guard let __unwrapped__instance = IAsyncActionWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            guard let handler = __ABI_Windows_Foundation.AsyncActionCompletedHandlerWrapper.tryUnwrapFrom(abi: $1) else { return E_INVALIDARG }
+            guard let handler = __ABI_Windows_Foundation.AsyncActionCompletedHandlerWrapper.unwrapFrom(abi: $1) else { return E_INVALIDARG }
             __unwrapped__instance.completed = handler
             return S_OK
         },
@@ -141,7 +145,7 @@ public enum __ABI_Windows_Foundation {
             guard riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
-                  riid.pointee == IIAgileObject.IID ||
+                  riid.pointee == IAgileObject.IID ||
                   riid.pointee == __ABI_Windows_Foundation.IClosableWrapper.IID else { 
                     guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
                           let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
@@ -370,7 +374,7 @@ public enum __ABI_Windows_Foundation {
             guard riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
-                  riid.pointee == IIAgileObject.IID ||
+                  riid.pointee == IAgileObject.IID ||
                   riid.pointee == __ABI_Windows_Foundation.IPropertyValueWrapper.IID else { 
                     guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
                           let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
@@ -649,6 +653,114 @@ public enum __ABI_Windows_Foundation {
             super.init(abi, impl)
         }
     }
+    open class IStringable: test_component.IInspectable {
+        override public class var IID: IID { IID___x_ABI_CWindows_CFoundation_CIStringable }
+
+        open func ToStringImpl() throws -> HSTRING? {
+            var value: HSTRING?
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIStringable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.ToString(pThis, &value))
+            }
+            return value
+        }
+
+    }
+
+    internal static var IStringableVTable: __x_ABI_CWindows_CFoundation_CIStringableVtbl = .init(
+        QueryInterface: {
+            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+
+            guard riid.pointee == IUnknown.IID ||
+                  riid.pointee == IInspectable.IID || 
+                  riid.pointee == ISwiftImplemented.IID ||
+                  riid.pointee == IAgileObject.IID ||
+                  riid.pointee == __ABI_Windows_Foundation.IStringableWrapper.IID else { 
+                    guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
+                          let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
+                    return cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, riid, ppvObject) 
+
+            }
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
+        },
+
+        AddRef: {
+             guard let wrapper = IStringableWrapper.fromRaw($0) else { return 1 }
+             _ = wrapper.retain()
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+        },
+
+        Release: {
+            guard let wrapper = IStringableWrapper.fromRaw($0) else { return 1 }
+            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+        },
+
+        GetIids: {
+            let size = MemoryLayout<IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+            iids[0] = IUnknown.IID
+            iids[1] = IInspectable.IID
+            iids[2] = __ABI_Windows_Foundation.IStringableWrapper.IID
+            $1!.pointee = 3
+            $2!.pointee = iids
+            return S_OK
+        },
+
+        GetRuntimeClassName: {
+            _ = $0
+            let hstring = try! HString("Windows.Foundation.IStringable").detach()
+            $1!.pointee = hstring
+            return S_OK
+        },
+
+        GetTrustLevel: {
+            _ = $0
+            $1!.pointee = TrustLevel(rawValue: 0)
+            return S_OK
+        },
+
+        ToString: {
+            do {
+                guard let __unwrapped__instance = IStringableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                let value = try __unwrapped__instance.toString()
+                $1?.initialize(to: try! HString(value).detach())
+                return S_OK
+            } catch { return failWith(err: E_FAIL) } 
+        }
+    )
+
+    public typealias IStringableWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.IStringableImpl>
+}
+extension __x_ABI_CWindows_CFoundation_CDateTime {
+        public static func from(swift: test_component.DateTime) -> __x_ABI_CWindows_CFoundation_CDateTime {
+            .init(UniversalTime: swift.universalTime)
+        }
+    }
+    extension __x_ABI_CWindows_CFoundation_CPoint {
+        public static func from(swift: test_component.Point) -> __x_ABI_CWindows_CFoundation_CPoint {
+            .init(X: swift.x, Y: swift.y)
+        }
+    }
+    extension __x_ABI_CWindows_CFoundation_CRect {
+        public static func from(swift: test_component.Rect) -> __x_ABI_CWindows_CFoundation_CRect {
+            .init(X: swift.x, Y: swift.y, Width: swift.width, Height: swift.height)
+        }
+    }
+    extension __x_ABI_CWindows_CFoundation_CSize {
+        public static func from(swift: test_component.Size) -> __x_ABI_CWindows_CFoundation_CSize {
+            .init(Width: swift.width, Height: swift.height)
+        }
+    }
+    extension __x_ABI_CWindows_CFoundation_CTimeSpan {
+        public static func from(swift: test_component.TimeSpan) -> __x_ABI_CWindows_CFoundation_CTimeSpan {
+            .init(Duration: swift.duration)
+        }
+    }
+    // MARK - AsyncActionCompletedHandler
+extension __ABI_Windows_Foundation {
+
+    typealias AsyncActionCompletedHandlerWrapper = DelegateWrapperBase<__IMPL_Windows_Foundation.AsyncActionCompletedHandlerImpl>
     internal static var AsyncActionCompletedHandlerVTable: __x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandlerVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
@@ -656,8 +768,8 @@ public enum __ABI_Windows_Foundation {
             guard riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
-                  riid.pointee == IIAgileObject.IID ||
-                  riid.pointee == __ABI_Windows_Foundation.AsyncActionCompletedHandlerWrapper.IID else { 
+                  riid.pointee == IAgileObject.IID ||
+                  riid.pointee == __x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler.IID else { 
                     guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
                           let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
                     return cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, riid, ppvObject) 
@@ -687,41 +799,14 @@ public enum __ABI_Windows_Foundation {
             return S_OK
         }
     )
+}
+internal extension __x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler {
+    static var IID: IID { IID___x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler }
+}
 
-    class AsyncActionCompletedHandlerWrapper : WinRTWrapperBase<__x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler, __IMPL_Windows_Foundation.AsyncActionCompletedHandlerImpl> {
-        override class var IID: IID { IID___x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler }
-        init?(_ handler: __IMPL_Windows_Foundation.AsyncActionCompletedHandlerImpl?){
-            guard let handler = handler else { return nil }
-            let abi = withUnsafeMutablePointer(to: &AsyncActionCompletedHandlerVTable) {
-                __x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler(lpVtbl:$0)
-            }
-            super.init(abi, handler)
-        }
+public extension WinRTDelegateBridge where CABI == __x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler {
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Foundation.AsyncActionCompletedHandlerVTable) { $0 }
+        return .init(lpVtbl:vtblPtr)
     }
 }
-extension __x_ABI_CWindows_CFoundation_CDateTime {
-        public static func from(swift: test_component.DateTime) -> __x_ABI_CWindows_CFoundation_CDateTime {
-            .init(UniversalTime: swift.universalTime)
-        }
-    }
-    extension __x_ABI_CWindows_CFoundation_CPoint {
-        public static func from(swift: test_component.Point) -> __x_ABI_CWindows_CFoundation_CPoint {
-            .init(X: swift.x, Y: swift.y)
-        }
-    }
-    extension __x_ABI_CWindows_CFoundation_CRect {
-        public static func from(swift: test_component.Rect) -> __x_ABI_CWindows_CFoundation_CRect {
-            .init(X: swift.x, Y: swift.y, Width: swift.width, Height: swift.height)
-        }
-    }
-    extension __x_ABI_CWindows_CFoundation_CSize {
-        public static func from(swift: test_component.Size) -> __x_ABI_CWindows_CFoundation_CSize {
-            .init(Width: swift.width, Height: swift.height)
-        }
-    }
-    extension __x_ABI_CWindows_CFoundation_CTimeSpan {
-        public static func from(swift: test_component.TimeSpan) -> __x_ABI_CWindows_CFoundation_CTimeSpan {
-            .init(Duration: swift.duration)
-        }
-    }
-    

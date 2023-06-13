@@ -2,7 +2,7 @@
 import Ctest_component
 
 public typealias PropertyType = __x_ABI_CWindows_CFoundation_CPropertyType
-public typealias AsyncActionCompletedHandler = __IMPL_Windows_Foundation.AsyncActionCompletedHandlerImpl
+public typealias AsyncActionCompletedHandler = ((AnyIAsyncAction?, AsyncStatus)) -> ()
 public struct DateTime: Hashable, Codable {
     public var universalTime: Int64 = 0
     public init() {}
@@ -68,20 +68,34 @@ public struct TimeSpan: Hashable, Codable {
     }
 }
 
-public protocol IAsyncAction : IWinRTObject {
+public protocol IAsyncAction : WinRTInterface {
     func getResults() throws
     var completed: test_component.AsyncActionCompletedHandler! { get set }
 }
 
+extension IAsyncAction {
+    public func makeAbi() -> test_component.IInspectable {
+        let wrapper = __ABI_Windows_Foundation.IAsyncActionWrapper(self)
+        let _abi = try! wrapper?.toABI { $0 }
+        return .init(_abi!)
+    }
+}
 public typealias AnyIAsyncAction = any IAsyncAction
 
-public protocol IClosable : IWinRTObject {
+public protocol IClosable : WinRTInterface {
     func close() throws
 }
 
+extension IClosable {
+    public func makeAbi() -> test_component.IInspectable {
+        let wrapper = __ABI_Windows_Foundation.IClosableWrapper(self)
+        let _abi = try! wrapper?.toABI { $0 }
+        return .init(_abi!)
+    }
+}
 public typealias AnyIClosable = any IClosable
 
-public protocol IPropertyValue : IWinRTObject {
+public protocol IPropertyValue : WinRTInterface {
     func getUInt8() throws -> UInt8
     func getInt16() throws -> Int16
     func getUInt16() throws -> UInt16
@@ -105,6 +119,19 @@ public protocol IPropertyValue : IWinRTObject {
 }
 
 public typealias AnyIPropertyValue = any IPropertyValue
+
+public protocol IStringable : WinRTInterface {
+    func toString() throws -> String
+}
+
+extension IStringable {
+    public func makeAbi() -> test_component.IInspectable {
+        let wrapper = __ABI_Windows_Foundation.IStringableWrapper(self)
+        let _abi = try! wrapper?.toABI { $0 }
+        return .init(_abi!)
+    }
+}
+public typealias AnyIStringable = any IStringable
 
 public protocol IReference : IPropertyValue {
     var value: Any { get }

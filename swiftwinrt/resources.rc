@@ -25,6 +25,9 @@ Swift+Extensions RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\Swift+Ext
 TrustLevel+Swift RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\TrustLevel+Swift.swift"
 WinRTWrapperBase RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\WinRTWrapperBase.swift"
 WinSDK+Extensions RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\WinSDK+Extensions.swift"
+PropertyValue RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\PropertyValue.swift"
+PropertyValue+ABI RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\PropertyValue+ABI.swift"
+WinRTProtocols RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\WinRTProtocols.swift"
 
 RESOURCE_NAME_CWINRT_SHIM_C RESOURCE_TYPE_OTHER_FILE "Resources\\CWinRT\\shim.c"
 RESOURCE_NAME_CWINRT_PACKAGE_SWIFT RESOURCE_TYPE_OTHER_FILE "Resources\\CWinRT\\Package.swift"

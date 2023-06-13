@@ -59,8 +59,8 @@ namespace swiftwinrt
             }
             else
             {
-                // generics aren't public and so we use the namespace of the writer
-                w.write("%.%", impl_namespace(w.type_namespace), implName);
+                // generics are written once per module and aren't namespaced
+                w.write("%.%", w.swift_module, implName);
             }
         }
     }
@@ -124,7 +124,8 @@ namespace swiftwinrt
             auto handlerWrapperTypeName = w.write_temp("%Wrapper", type);
             if (w.full_type_names)
             {
-                w.write("%.%", abi_namespace(w.type_namespace), handlerWrapperTypeName);
+                // generics are written once per module and aren't namespaced
+                w.write("%.%", w.swift_module, handlerWrapperTypeName);
             }
             else
             {
@@ -179,31 +180,13 @@ namespace swiftwinrt
         }
         else if (category == param_category::object_type)
         {
-            if (is_interface(type))
-            {
-                w.write("%.unwrapFrom(abi: %)",
-                    bind_wrapper_fullname(type),
-                    name);
-            }
-            else if (is_delegate(type))
-            {
-                if (w.consume_types)
-                {
-                    w.write("_%", name);
-                }
-                else
-                {
-                    w.write("%.tryUnwrapFrom(abi: %)", bind_wrapper_name(type), name);
-                }
-            }
-            else if (is_class(type))
+            if (is_class(type))
             {
                 w.write(".from(abi: %)", name);
             }
             else
             {
-                //TODO: implement generic object type
-                w.write(".from(%)", name);
+                w.write("%.unwrapFrom(abi: %)", bind_wrapper_fullname(type), name);
             }
 
         }
