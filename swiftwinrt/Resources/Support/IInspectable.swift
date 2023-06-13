@@ -41,24 +41,24 @@ public enum __ABI_ {
     public class AnyWrapper : WinRTWrapperBase<C_BINDINGS_MODULE.IInspectable, AnyObject> {
       public init?(_ swift: Any?) {
         guard let swift else { return nil }
-         if let winrtObj = swift as? IWinRTObject,
-            let abi: UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable> = RawPointer(winrtObj.thisPtr) {
-            super.init(abi.pointee, winrtObj)
-          } else if let winrtInterface = swift as? WinRTInterface,
-            let abi: UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable> = RawPointer(winrtInterface.makeAbi()) {
-            super.init(abi.pointee, winrtInterface)
-          } else if let propertyValue = PropertyValue.createFrom(swift),
-            let abi: UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable> = RawPointer(propertyValue) {
-            super.init(abi.pointee, propertyValue)
-          } else if swift is WinRTEnum {
-            fatalError("cant create enum")
-          } else if swift is WinRTStruct {
-            fatalError("can't create struct")
-          } else {
-            let vtblPtr = withUnsafeMutablePointer(to: &IInspectableVTable) { $0 }
-            let cAbi = C_BINDINGS_MODULE.IInspectable(lpVtbl: vtblPtr)
-            super.init(cAbi, swift as AnyObject)
-          }
+        if let winrtObj = swift as? IWinRTObject,
+          let abi: UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable> = RawPointer(winrtObj.thisPtr) {
+          super.init(abi.pointee, winrtObj)
+        } else if let winrtInterface = swift as? WinRTInterface,
+          let abi: UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable> = RawPointer(winrtInterface.makeAbi()) {
+          super.init(abi.pointee, winrtInterface)
+        } else if let propertyValue = PropertyValue.createFrom(swift),
+          let abi: UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable> = RawPointer(propertyValue) {
+          super.init(abi.pointee, propertyValue)
+        } else if swift is WinRTEnum {
+          fatalError("cant create enum")
+        } else if swift is WinRTStruct {
+          fatalError("can't create struct")
+        } else {
+          let vtblPtr = withUnsafeMutablePointer(to: &IInspectableVTable) { $0 }
+          let cAbi = C_BINDINGS_MODULE.IInspectable(lpVtbl: vtblPtr)
+          super.init(cAbi, swift as AnyObject)
+        }
       }
 
       override public func toABI<ResultType>(_ body: (UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable>) throws -> ResultType)

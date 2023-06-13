@@ -105,7 +105,7 @@ public enum __IMPL_Windows_Foundation {
         public var type: PropertyType { propertyType }
         public var isNumericScalar: Bool { 
             switch propertyType {
-                case .int16, .int32, .uint16, .uint8, .int64, .uint64, .single, .double: return true
+                case .int16, .int32, .int64, .uint8, .uint16, .uint32, .uint64, .single, .double: return true
                 default: return false
             }
         }
