@@ -117,42 +117,26 @@ extension PropertyValue
     }
 
     static func createFrom(_ any: Any) -> SUPPORT_MODULE.IInspectable? {
-        if let _value = any as? String {
-          return PropertyValue.createString(_value)
-        } else if let _value = any as? Int {
-          return PropertyValue.createInt(_value)
-        } else if let _value = any as? UInt {
-          return PropertyValue.createUInt(_value)
-        } else if let _value = any as? Int32 {
-          return PropertyValue.createInt32(_value)
-        } else if let _value = any as? UInt8 {
-          return PropertyValue.createUInt8(_value)
-        } else if let _value = any as? Int16 {
-          return PropertyValue.createInt16(_value)
-        } else if let _value = any as? UInt32 {
-          return PropertyValue.createUInt32(_value)
-        } else if let _value = any as? Int64 {
-          return PropertyValue.createInt64(_value)
-        } else if let _value = any as? UInt64 {
-          return PropertyValue.createUInt64(_value)
-        } else if let _value = any as? Float {
-          return PropertyValue.createSingle(_value)
-        } else if let _value = any as? Double {
-          return PropertyValue.createDouble(_value)
-        } else if let _value = any as? Character {
-          return PropertyValue.createString(String(_value))
-        } else if let _value = any as? Bool {
-          return PropertyValue.createBoolean(_value)
-        } else if let _value = any as? DateTime {
-          return PropertyValue.createDateTime(_value)
-        } else if let _value = any as? TimeSpan {
-          return PropertyValue.createTimeSpan(_value)
-        } else if let _value = any as? Point {
-          return PropertyValue.createPoint(_value)
-        } else if let _value = any as? Size {
-          return PropertyValue.createSize(_value)
-        } else {
-          return nil
+        switch any {
+            case let value as String:  return PropertyValue.createString(value)
+            case let value as Int:     return PropertyValue.createInt(value)
+            case let value as Int16:   return PropertyValue.createInt16(value)
+            case let value as Int32:   return PropertyValue.createInt32(value)
+            case let value as Int64:   return PropertyValue.createInt64(value)
+            case let value as UInt:    return PropertyValue.createUInt(value)
+            case let value as UInt8:   return PropertyValue.createUInt8(value)
+            case let value as UInt32:  return PropertyValue.createUInt32(value)
+            case let value as UInt64:  return PropertyValue.createUInt64(value)
+            case let value as Float:   return PropertyValue.createSingle(value)
+            case let value as Double:  return PropertyValue.createDouble(value)
+            case let value as Bool:    return PropertyValue.createBoolean(value)
+            case let value as WinSDK.UUID: return PropertyValue.createGuid(value)
+            case let value as DateTime: return PropertyValue.createDateTime(value)
+            case let value as TimeSpan: return PropertyValue.createTimeSpan(value)
+            case let value as Point:    return PropertyValue.createPoint(value)
+            case let value as Size:     return PropertyValue.createSize(value)
+            case let value as Rect:     return PropertyValue.createRect(value)
+            default: return nil
         }
     }
 }
