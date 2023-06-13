@@ -68,6 +68,8 @@ namespace winrt::test_component::implementation
                 return winrt::to_hstring(pv.GetInt64());
             case PropertyType::String:
                 return pv.GetString();
+            case PropertyType::Char16:
+                throw hresult_invalid_argument(L"char16 not expected - should be boxed as string");
             default:
                 throw hresult_not_implemented(L"Unimplemented switch case");
             }

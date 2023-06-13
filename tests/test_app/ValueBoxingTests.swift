@@ -25,6 +25,17 @@ class ValueBoxingTests : XCTestCase {
     XCTAssertEqual(words, result)
   }
 
+  /*
+  https://linear.app/the-browser-company/issue/WIN-650/some-unicode-conversions-dont-work
+  public func testInChar() {
+    let classy = Class()
+    // regionalIndicatorForUS is 🇺🇸
+    let regionalIndicatorForUS: Character = "\u{1F1FA}\u{1F1F8}"
+    let result = try! classy.inObject(regionalIndicatorForUS)
+    XCTAssertEqual(String(regionalIndicatorForUS), result)
+  }
+  */
+
   public func testInWinRTClass() {
     // Verify that we return the class name of the swift type
     let derived = Derived()

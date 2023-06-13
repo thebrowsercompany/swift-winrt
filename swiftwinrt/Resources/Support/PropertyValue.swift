@@ -52,11 +52,6 @@ internal final class PropertyValue {
         return .init(propertyValue!)
     }
 
-    public static func createChar16(_ value: Character) -> SUPPORT_MODULE.IInspectable {
-        let propertyValue = try! _IPropertyValueStatics.CreateChar16Impl(.init(from: value))
-        return .init(propertyValue!)
-    }
-
     public static func createBoolean(_ value: Bool) -> SUPPORT_MODULE.IInspectable {
         let propertyValue = try! _IPropertyValueStatics.CreateBooleanImpl(.init(from: value))
         return .init(propertyValue!)
@@ -145,7 +140,7 @@ extension PropertyValue
         } else if let _value = any as? Double {
           return PropertyValue.createDouble(_value)
         } else if let _value = any as? Character {
-          return PropertyValue.createChar16(_value)
+          return PropertyValue.createString(String(_value))
         } else if let _value = any as? Bool {
           return PropertyValue.createBoolean(_value)
         } else if let _value = any as? DateTime {

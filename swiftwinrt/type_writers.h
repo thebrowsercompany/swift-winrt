@@ -617,7 +617,6 @@ namespace swiftwinrt
             }
             else
             {
-                assert(swift_module);
                 return root_directory() / swift_module;
             }
         }
