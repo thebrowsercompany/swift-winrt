@@ -19,7 +19,7 @@ namespace swiftwinrt
 
         if (!w.type_namespace.empty() && !w.support.empty())
         {
-            auto module = get_swift_module(w.type_namespace);
+            auto module = w.swift_module;
             if (!settings.test)
             {
                 if (module != w.support)

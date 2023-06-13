@@ -21,7 +21,7 @@ open class Base : UnsealedWinRTClass {
         return nil
     }
 
-    public var thisPtr: test_component.IInspectable { _default }
+    open var thisPtr: test_component.IInspectable { _default }
 
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?) -> Base? {
         guard let abi = abi else { return nil }
@@ -69,7 +69,7 @@ open class Base : UnsealedWinRTClass {
 
 public final class BaseCollection : WinRTClass, IVector {
     public typealias Element = Base?
-    private typealias SwiftABI = __ABI_test_component.IVectorBase
+    private typealias SwiftABI = IVectorBase
     private typealias CABI = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase
     private var _default: SwiftABI!
     public func _getABI<T>() -> UnsafeMutablePointer<T>? {
@@ -131,7 +131,7 @@ public final class BaseCollection : WinRTClass, IVector {
 
     public func getView() -> AnyIVectorView<Base?>? {
         let result = try! _default.GetViewImpl()
-        return __ABI_test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
+        return test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
 
     public func indexOf(_ value: Base?, _ index: inout UInt32) -> Bool {
@@ -176,7 +176,7 @@ public final class BaseCollection : WinRTClass, IVector {
 public final class BaseMapCollection : WinRTClass, IMap {
     public typealias Key = String
     public typealias Value = Base?
-    private typealias SwiftABI = __ABI_test_component.IMapString_Base
+    private typealias SwiftABI = IMapString_Base
     private typealias CABI = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
     private var _default: SwiftABI!
     public func _getABI<T>() -> UnsafeMutablePointer<T>? {
@@ -216,7 +216,7 @@ public final class BaseMapCollection : WinRTClass, IMap {
 
     public func getView() -> AnyIMapView<String, Base?>? {
         let result = try! _default.GetViewImpl()
-        return __ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
+        return test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
 
     public func insert(_ key: String, _ value: Base?) -> Bool {
@@ -259,7 +259,7 @@ open class BaseNoOverrides : UnsealedWinRTClass {
         return nil
     }
 
-    public var thisPtr: test_component.IInspectable { _default }
+    open var thisPtr: test_component.IInspectable { _default }
 
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBaseNoOverrides>?) -> BaseNoOverrides? {
         guard let abi = abi else { return nil }
@@ -340,28 +340,28 @@ public final class Class : WinRTClass, IBasic {
     }
 
     public init(_ arg: AnyIMap<String, String>!, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32) {
-        let argWrapper = __ABI_test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper(arg)
+        let argWrapper = test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper(arg)
         let _arg = try! argWrapper?.toABI { $0 }
         let value = try! Self._IClassFactory.CreateInstance3Impl(_arg, dummy1, dummy2, dummy3)
         _default = __ABI_test_component.IClass(consuming: value!)
     }
 
     public init(_ arg: AnyIMapView<String, String>!, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32, _ dummy4: Int32) {
-        let argWrapper = __ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper(arg)
+        let argWrapper = test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper(arg)
         let _arg = try! argWrapper?.toABI { $0 }
         let value = try! Self._IClassFactory.CreateInstance4Impl(_arg, dummy1, dummy2, dummy3, dummy4)
         _default = __ABI_test_component.IClass(consuming: value!)
     }
 
     public init(_ arg: AnyIVector<String>!, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32, _ dummy4: Int32, _ dummy5: Int32) {
-        let argWrapper = __ABI_test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper(arg)
+        let argWrapper = test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper(arg)
         let _arg = try! argWrapper?.toABI { $0 }
         let value = try! Self._IClassFactory.CreateInstance5Impl(_arg, dummy1, dummy2, dummy3, dummy4, dummy5)
         _default = __ABI_test_component.IClass(consuming: value!)
     }
 
     public init(_ arg: AnyIVectorView<String>!, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32, _ dummy4: Int32, _ dummy5: Int32, _ dummy6: Int32) {
-        let argWrapper = __ABI_test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper(arg)
+        let argWrapper = test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper(arg)
         let _arg = try! argWrapper?.toABI { $0 }
         let value = try! Self._IClassFactory.CreateInstance6Impl(_arg, dummy1, dummy2, dummy3, dummy4, dummy5, dummy6)
         _default = __ABI_test_component.IClass(consuming: value!)
@@ -387,28 +387,28 @@ public final class Class : WinRTClass, IBasic {
     }
 
     public static func inMap(_ value: AnyIMap<String, String>!) -> String {
-        let valueWrapper = __ABI_test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper(value)
+        let valueWrapper = test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         let result = try! _IClassStatics.InMapImpl(_value)
         return .init(from: result)
     }
 
     public static func inMapView(_ value: AnyIMapView<String, String>!) -> String {
-        let valueWrapper = __ABI_test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper(value)
+        let valueWrapper = test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         let result = try! _IClassStatics.InMapViewImpl(_value)
         return .init(from: result)
     }
 
     public static func inVector(_ value: AnyIVector<String>!) -> String {
-        let valueWrapper = __ABI_test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper(value)
+        let valueWrapper = test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         let result = try! _IClassStatics.InVectorImpl(_value)
         return .init(from: result)
     }
 
     public static func inVectorView(_ value: AnyIVectorView<String>!) -> String {
-        let valueWrapper = __ABI_test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper(value)
+        let valueWrapper = test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         let result = try! _IClassStatics.InVectorViewImpl(_value)
         return .init(from: result)
@@ -534,12 +534,12 @@ public final class Class : WinRTClass, IBasic {
 
     public func returnStoredStringVector() throws -> AnyIVector<String>! {
         let result = try _default.ReturnStoredStringVectorImpl()
-        return __ABI_test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper.unwrapFrom(abi: result)
+        return test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
     public func returnMapFromStringToString() throws -> AnyIMap<String, String>! {
         let result = try _default.ReturnMapFromStringToStringImpl()
-        return __ABI_test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
+        return test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
     public func returnChar() throws -> Character {
@@ -598,7 +598,7 @@ public final class Class : WinRTClass, IBasic {
         }
 
         set {
-            let wrapper = __ABI_test_component.__x_ABI_C__FIReference_1_GUIDWrapper(newValue)
+            let wrapper = test_component.__x_ABI_C__FIReference_1_GUIDWrapper(newValue)
             let _newValue = try! wrapper?.toABI { $0 }
             try! _default.put_IdImpl(_newValue)
         }
@@ -637,7 +637,7 @@ public final class Class : WinRTClass, IBasic {
         }
 
         set {
-            let wrapper = __ABI_test_component.__x_ABI_C__FIReference_1_intWrapper(newValue)
+            let wrapper = test_component.__x_ABI_C__FIReference_1_intWrapper(newValue)
             let _newValue = try! wrapper?.toABI { $0 }
             try! _default.put_StartValueImpl(_newValue)
         }
@@ -664,7 +664,7 @@ public final class Derived : test_component.Base {
         return super._getABI()
     }
 
-    public override var thisPtr: test_component.IInspectable { _default }
+    override public var thisPtr: test_component.IInspectable { _default }
 
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIDerived>?) -> Derived? {
         guard let abi = abi else { return nil }
@@ -762,7 +762,7 @@ public final class NullValues {
     }
 
     public static func isGenericInterfaceNull(_ value: AnyIVector<String>!) -> Bool {
-        let valueWrapper = __ABI_test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper(value)
+        let valueWrapper = test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         let result = try! _INullValuesStatics.IsGenericInterfaceNullImpl(_value)
         return .init(from: result)
@@ -792,7 +792,7 @@ public final class NullValues {
 
     public static func getNullGenericInterface() -> AnyIVector<String>! {
         let result = try! _INullValuesStatics.GetNullGenericInterfaceImpl()
-        return __ABI_test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper.unwrapFrom(abi: result)
+        return test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
     public static func getNullClass() -> NoopClosable! {
@@ -844,10 +844,10 @@ public final class Simple : WinRTClass {
     private static let _StaticEventRegistrar = StaticEventRegistrar()
     public static var staticEvent : Event<(Any?, Any?),()> = EventImpl<StaticEventRegistrar>(register: _StaticEventRegistrar, owner:_ISimpleStatics)
     private class StaticEventRegistrar : IEventRegistration {
-        typealias Delegate = __IMPL_test_component.__x_ABI_C__FIEventHandler_1_IInspectableImpl
+        typealias Delegate = test_component.__x_ABI_C__FIEventHandler_1_IInspectableImpl
         typealias Owner = __ABI_test_component.ISimpleStatics
         func add(handler: @escaping (Delegate.Data) -> Delegate.Return, for impl: Owner) -> Ctest_component.EventRegistrationToken {
-            let wrapper = __ABI_test_component.__x_ABI_C__FIEventHandler_1_IInspectableWrapper(handler)
+            let wrapper = test_component.__x_ABI_C__FIEventHandler_1_IInspectableWrapper(handler)
             let abi = try! wrapper?.toABI { $0 }
             return try! impl.add_StaticEventImpl(abi)
         }
@@ -956,10 +956,10 @@ public final class Simple : WinRTClass {
     private static let _SimpleEventRegistrar = SimpleEventRegistrar()
     public lazy var simpleEvent : Event<(Simple?, SimpleEventArgs),()> = EventImpl<SimpleEventRegistrar>(register: Self._SimpleEventRegistrar, owner:_default)
     private class SimpleEventRegistrar : IEventRegistration {
-        typealias Delegate = __IMPL_test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsImpl
+        typealias Delegate = test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsImpl
         typealias Owner = __ABI_test_component.ISimple
         func add(handler: @escaping (Delegate.Data) -> Delegate.Return, for impl: Owner) -> Ctest_component.EventRegistrationToken {
-            let wrapper = __ABI_test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper(handler)
+            let wrapper = test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper(handler)
             let abi = try! wrapper?.toABI { $0 }
             return try! impl.add_SimpleEventImpl(abi)
         }
@@ -1014,7 +1014,7 @@ open class UnsealedDerived : test_component.Base {
         return super._getABI()
     }
 
-    public override var thisPtr: test_component.IInspectable { _default }
+    override open var thisPtr: test_component.IInspectable { _default }
 
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived>?) -> UnsealedDerived? {
         guard let abi = abi else { return nil }
@@ -1105,7 +1105,7 @@ open class UnsealedDerived2 : test_component.UnsealedDerived {
         return super._getABI()
     }
 
-    public override var thisPtr: test_component.IInspectable { _default }
+    override open var thisPtr: test_component.IInspectable { _default }
 
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived2>?) -> UnsealedDerived2? {
         guard let abi = abi else { return nil }
@@ -1166,7 +1166,7 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
         return super._getABI()
     }
 
-    public override var thisPtr: test_component.IInspectable { _default }
+    override open var thisPtr: test_component.IInspectable { _default }
 
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides>?) -> UnsealedDerivedNoOverrides? {
         guard let abi = abi else { return nil }
@@ -1524,27 +1524,3 @@ extension test_component.Unsigned {
 }
 extension test_component.Unsigned: Hashable, Codable {}
 
-fileprivate extension Int32 {
-    init?(ref: UnsafeMutablePointer<__x_ABI_C__FIReference_1_int>?) {
-        guard let val = ref else { return nil }
-        var result: INT32 = 0
-        try! CHECKED(val.pointee.lpVtbl.pointee.get_Value(val, &result))
-        self = result
-    }
-} 
-fileprivate extension UUID {
-    init?(ref: UnsafeMutablePointer<__x_ABI_C__FIReference_1_GUID>?) {
-        guard let val = ref else { return nil }
-        var result: GUID = .init()
-        try! CHECKED(val.pointee.lpVtbl.pointee.get_Value(val, &result))
-        self = result
-    }
-} 
-fileprivate extension test_component.Signed {
-    init?(ref: UnsafeMutablePointer<__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned>?) {
-        guard let val = ref else { return nil }
-        var result: Signed = .init(0)
-        try! CHECKED(val.pointee.lpVtbl.pointee.get_Value(val, &result))
-        self = result
-    }
-} 

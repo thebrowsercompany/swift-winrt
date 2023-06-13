@@ -138,7 +138,6 @@ open class InterfaceWrapperBase<I: AbiInterfaceImpl> : WinRTWrapperBase2<I> {
 }
 
 open class DelegateWrapperBase<Delegate: WinRTDelegateBridge> : WinRTWrapperBase<Delegate.CABI, Delegate> {
-    override public class var IID: IID { Delegate.CABI.IID }
     public init?(_ impl: Delegate.SwiftProjection?) {
         guard let impl else { return nil}
         let abi = Delegate.makeAbi()

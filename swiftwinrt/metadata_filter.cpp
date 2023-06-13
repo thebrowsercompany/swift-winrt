@@ -148,6 +148,7 @@ namespace swiftwinrt
             auto& full_type_names = iter->second;
             to_process.pop();
             auto processing_full_name = processing_name.name;
+            if (processing_full_name.empty()) continue;
             if (full_type_names.find(processing_full_name) == full_type_names.end())
             {
                 if (auto s = dynamic_cast<const struct_type*>(processing))

@@ -4,69 +4,6 @@ import test_component
 import Ctest_component
 import Foundation
 
-class AppDerived : Base {
-  // overriding the default initialzer is a simple test so that we don't need to override any
-  // other initializers
-  override init(){ super.init() }
-
-  var count = 0
-  override func onDoTheThing() {
-    print("we in the app yoooo")
-    count+=1
-  }
-}
-
-class AppDerived2 : UnsealedDerived {
-  var count = 0
-
-  override func onDoTheThing() {
-    print("pt2: we in the app yoooo")
-    count+=1
-  }
-}
-
-class AppDerived3 : UnsealedDerived2 {
-  var count = 0
-  var beforeCount = 0
-  override func onDoTheThing() {
-    print("pt3: we in the app yoooo")
-    count+=1
-  }
-
-  override func onBeforeDoTheThing() {
-    print("before doing it")
-    beforeCount+=1
-  }
-}
-
-class AppDerivedNoOverrides : BaseNoOverrides {
-  override init() {
-    super.init()
-  }
-}
-
-
-class AppDerivedNoOverrides2 : UnsealedDerivedNoOverrides {
-  override init() {
-    super.init()
-  }
-}
-
-class DoubleDelegate : IBasic, ISimpleDelegate {
-  func method() {
-    print("method doubled up")
-  }
-
-  func doThis() {
-    print("Swift Double! - doThis!")
-  }
-
-  func doThat(_ val: Int32) {
-    print("Swift Double! - Do that: ", val)
-  }
-
-}
-
 class SwiftWinRTTests : XCTestCase {
   public func testBlittableStruct() throws {
     let simple = Simple()
@@ -230,100 +167,8 @@ class SwiftWinRTTests : XCTestCase {
     XCTAssertEqual(outNonBlittableStruct.fourth, "pedro")
   }
 
-  class MySimpleDelegate : ISimpleDelegate {
-    private var thisCount: Int32 = 0
-    private var that: Int32 = 0
-    func doThis()
-    {
-      print("Swift - doThis!")
-      thisCount += 1
-    }
-
-    func doThat(_ val: Int32)
-    {
-      print("Swift - Do that: ", val)
-      that = val
-    }
-
-    func getThisCount() -> Int32 { thisCount }
-    func getThat() -> Int32 { that }
-  }
-  
-  struct Person : Equatable
-  {
-    var firstName: String
-    var lastName: String
-    var age: Int
-  }
-
-  class MyImplementableDelegate: IIAmImplementable {
-    private var thisCount = 9
-    func inInt32(_ value: Int32) -> String {
-      return .init(repeating: "abc", count: Int(value))
-    }
-
-    func inString(_ value: String) -> String {
-      return .init(value.reversed())
-    }
-
-    func inEnum(_ value: Signed) -> String {
-      switch value {
-        case .first: return "1 banana"
-        case .second: return "2 banana"
-        case .third: return "3 banana"
-        default: return "n/a"
-      }
-    }
-
-    func outInt32(_ value: inout Int32) {
-      value = 987
-    }
-
-    func outString(_ value: inout String) {
-      value = "987"
-    }
-
-    func outBlittableStruct(_ value: inout BlittableStruct) {
-      value = .init(first: 9876, second: 54321)
-    }
-
-    func outNonBlittableStruct(_ value: inout NonBlittableStruct) {
-      value = .init(first: "to be", second: "or not", third: 2, fourth: "be, that is the question")
-    }
-
-    func outEnum(_ value: inout Signed) {
-      value = .second
-    }
-
-    func returnEnum() -> Signed {
-      .third
-    }
-
-    var enumProperty: Fruit = .apple
-
-    var id: WinSDK.UUID?
-    func fireEvent() {
-    }
-
-    private var object: Any?
-    func inObject(_ value: Any!) throws -> String {
-      object = value
-      guard let value else { return "nil" }
-      return String(describing: value)
-    }
-
-    func outObject(_ value: inout Any!) throws {
-      value = object
-    }
-
-    func returnObject() throws -> Any! {
-      return object
-    }
-  } 
-
   public func testDelegate() throws {
     var classy = Class()
-
     do
     {
       print("TESTING ISimpleDelegate")
@@ -764,61 +609,6 @@ class SwiftWinRTTests : XCTestCase {
       XCTAssertEqual("\(error)", message)
     }
   }
-
-  public func testValueBoxing() {
-    let value: Int = 2
-    var classy = Class()
-    print("testing int...")
-    var result = try! classy.inObject(value)
-    XCTAssertEqual("\(value)", result)
-
-    print("testing string...")
-    let words = "hello world"
-    result = try! classy.inObject(words)
-    XCTAssertEqual(words, result)
-
-    // check that a basic winrt class works
-    print("testing winrt class...")
-    let derived = Derived()
-    result = try! classy.inObject(derived)
-    XCTAssertEqual(NSStringFromClass(Derived.self), result)
-
-    print("testing swift struct...")
-    // Check that the runtime class name returned is the swift class name
-    let person = Person(firstName: "John", lastName: "Doe", age: 32)
-    result = try! classy.inObject(derived)
-    XCTAssertEqual(NSStringFromClass(Derived.self), result)
-
-    print("testing unwrap of interface...")
-    var anyObj: Any?
-    try! classy.outObject(&anyObj)
-    let obj = anyObj as! test_component.IStringable
-    XCTAssertEqual("123", try! obj.toString())
-
-    print("testing simple delegate...")
-    let delegate = MySimpleDelegate()
-    result = try! classy.inObject(delegate)
-    XCTAssertEqual("simple", result)
-
-    print("testing DoubleDelegate...")
-    let doubleDelegate = DoubleDelegate()
-    result = try! classy.inObject(doubleDelegate)
-    XCTAssertEqual("simply basic", result)
-
-    // Add a swift implementation so this will test the roundtripping of swift
-    // objects
-    let impl = MyImplementableDelegate()
-    classy = Class("with delegate", .orange, impl)
-
-    result = try! classy.inObject(person)
-    XCTAssertEqual(result, String(describing: person))
-
-    try! classy.outObject(&anyObj)
-    XCTAssertEqual(anyObj as! Person, person)
-
-    anyObj = try! classy.returnObject()
-    XCTAssertEqual(anyObj as! Person, person)
-  }
 }
 
 var tests: [XCTestCaseEntry] = [
@@ -843,9 +633,8 @@ var tests: [XCTestCaseEntry] = [
     ("testUnicode", SwiftWinRTTests.testUnicode),
     ("testVector", SwiftWinRTTests.testVector),
     ("testErrorInfo", SwiftWinRTTests.testErrorInfo),
-    ("testValueBoxing", SwiftWinRTTests.testValueBoxing),
   ])
-]
+] + valueBoxingTests
 
 RoInitialize(RO_INIT_MULTITHREADED)
 XCTMain(tests)

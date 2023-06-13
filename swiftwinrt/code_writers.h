@@ -438,7 +438,7 @@ bind<write_abi_args>(function));
     {
         if (!is_winrt_ireference(type)) return;
 
-        auto format = R"(fileprivate extension % {
+        auto format = R"(internal extension % {
     init?(ref: UnsafeMutablePointer<%>?) {
         guard let val = ref else { return nil }
         var result: %%
@@ -481,21 +481,21 @@ bind<write_abi_args>(function));
         auto delegate_abi_name = w.write_temp("%", bind_type_mangled(inst));
 
         constexpr bool is_generic = std::is_same_v<T, generic_inst>;
-
-        w.write(R"(extension % : HasIID {
-    public static var IID: IID { IID_% }
+        w.write(R"(internal extension % {
+    static var IID: IID { IID_% }
 }
 
-extension WinRTDelegateBridge where CABI == % {
-    public static func makeAbi() -> CABI {
+% extension WinRTDelegateBridge where CABI == % {
+    static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &%.%VTable) { $0 }
         return .init(lpVtbl:vtblPtr)
     }
 }
 )", delegate_abi_name, 
     delegate_abi_name,
+    is_generic ? "internal" : "public",
     delegate_abi_name,
-    abi_namespace(w.type_namespace),
+    is_generic ? w.swift_module : abi_namespace(w.type_namespace),
     is_generic ? delegate_abi_name : w.write_temp("%", inst));
     }
 
@@ -970,7 +970,7 @@ bind_impl_fullname(type));
             {
                 w.generic_param_stack.push_back(info.generic_params);
                 writer::generic_param_guard guard{ &w };
-                swiftAbi = w.write_temp("%.%", abi_namespace(w.type_namespace), bind_type_abi(info.type));
+                swiftAbi = w.write_temp("%", bind_type_abi(info.type));
             }
             w.write("internal lazy var %: % = try! _default.QueryInterface()\n",
                 get_swift_name(info),
@@ -1288,7 +1288,7 @@ public static func makeAbi() -> CABI {
             bind<write_swift_interface_existential_identifier>(type)); // Do not include outer Optional<>
 
         w.write("typealias CABI = %\n", bind_type_mangled(type));
-        w.write("typealias SwiftABI = %.%\n", abi_namespace(w.type_namespace), bind_type_abi(type));
+        w.write("typealias SwiftABI = %\n", bind_type_abi(type));
         w.write("\n");
         w.write("private (set) public var _default: SwiftABI\n");
         w.write("\n");
@@ -1303,8 +1303,8 @@ public static func makeAbi() -> CABI {
         w.write("}\n\n");
 
         w.write("static func makeAbi() -> CABI {\n");
-        w.write("    let vtblPtr = withUnsafeMutablePointer(to: &%.%VTable) { $0 }\n",
-            abi_namespace(w.type_namespace), bind_type_mangled(type));
+        w.write("    let vtblPtr = withUnsafeMutablePointer(to: &%VTable) { $0 }\n",
+            bind_type_mangled(type));
         w.write("    return.init(lpVtbl: vtblPtr)\n");
         w.write("}\n\n");
         
@@ -1346,7 +1346,7 @@ public static func makeAbi() -> CABI {
     // code for after the ABI function is called (such as cleaning up references).
     static write_scope_guard<writer> write_local_param_wrappers(writer& w, function_def const& signature)
     {
-        write_scope_guard guard{ w };
+        write_scope_guard guard{ w, w.swift_module };
 
         for (auto& param : signature.params)
         {
@@ -1371,25 +1371,10 @@ public static func makeAbi() -> CABI {
                 }
                 else if (is_reference_type(param.type) && !is_class(param.type))
                 {
-                    if (is_winrt_eventhandler(param.type) || is_winrt_typedeventhandler(param.type))
-                    {
-                        w.write("let %Handler = %(handler: %)\n",
-                            get_swift_name(param),
-                            bind_impl_fullname(param.type),
-                            get_swift_name(param));
-                        w.write("let %Wrapper = %(%Handler)\n",
-                            get_swift_name(param),
-                            bind_wrapper_fullname(param.type),
-                            get_swift_name(param));
-                    }
-                    else
-                    {
-                        w.write("let %Wrapper = %(%)\n",
-                            get_swift_name(param),
-                            bind_wrapper_fullname(param.type),
-                            get_swift_name(param));
-                    }
-
+                    w.write("let %Wrapper = %(%)\n",
+                        get_swift_name(param),
+                        bind_wrapper_fullname(param.type),
+                        get_swift_name(param));
                     w.write("let _% = try! %Wrapper?.toABI { $0 }\n",
                         get_swift_name(param),
                         get_swift_name(param));
@@ -1452,10 +1437,9 @@ public static func makeAbi() -> CABI {
                         get_swift_name(param),
                         bind<write_type>(*param.type, write_type_params::c_abi));
 
-                    guard.push("% = %.%Impl.from(abi: _%)\n",
+                    guard.push("% = %.from(abi: _%)\n",
                         get_swift_name(param),
-                        impl_namespace(w.type_namespace), 
-                        bind_type_mangled(param.type),
+                        bind_impl_fullname(param.type),
                         get_swift_name(param));
                 }
             }
@@ -2003,8 +1987,13 @@ public % var % : Event<(%),%> = EventImpl<%>(register: %_%, owner:%)
 
         std::vector<std::pair<std::string, const metadata_type*>> collection_type_aliases;
         bool needsWinRTInterfaceConformance = false;
+        bool baseHasWinRTInterfaceConformance = false;
         for (auto&& [interface_name, info] : type.required_interfaces)
         {
+            if (info.base && !info.exclusive && !interface_name.empty())
+            {
+                baseHasWinRTInterfaceConformance = true;
+            }
             // Filter out which interfaces we actually want to declare on the class.
             // We don't want to specify interfaces which come from the base class or which ones are exclusive
             if (info.base || info.exclusive || interface_name.empty()) continue;
@@ -2074,7 +2063,7 @@ public % var % : Event<(%),%> = EventImpl<%>(register: %_%, owner:%)
             {
                 auto generic_type = dynamic_cast<const generic_inst*>(default_interface);
                 guard = w.push_generic_params(*generic_type);
-                swiftAbi = w.write_temp("%.%", abi_namespace(w.type_namespace), bind_type_abi(generic_type));
+                swiftAbi = w.write_temp("%", bind_type_abi(generic_type));
             }
 
             w.write(R"(private typealias SwiftABI = %
@@ -2102,14 +2091,18 @@ private var _default: SwiftABI!
                                          "public",
                 w.c_mod,
                 base_class ? "super._getABI()" : "nil",
-                base_class ? "public override" : "public",
+                base_class ? 
+                            composable ? "override open" : 
+                                         "override public" :
+                            composable ? "open" :
+                                         "public",
                 w.support);
             write_default_constructor_declarations(w, type, *default_interface);
 
             if (needsWinRTInterfaceConformance)
             {
                 auto modifier = type.is_composable() ? "open" : "public";
-                auto override = type.base_class ? "override " : "";
+                auto override = type.base_class && baseHasWinRTInterfaceConformance ? "override " : "";
                 // A WinRTClass needs WinRTInterfaceConformance when it derives from more than 1 interface,
                 // otherwise it won't compile. Rather than simply returning _default we failFast since this
                 // API should never be called.
@@ -2215,6 +2208,14 @@ w.support);
     template <typename T>
     static void write_iunknown_methods(writer& w, T const& type, std::vector<named_interface_info> const& interfaces, bool composed = false)
     {
+        auto iid_type = w.write_temp("%", bind([&](writer& w) {
+            if (is_delegate(type)) {
+                write_type_mangled(w, type);
+            } else {
+                auto full_type_names = w.push_full_type_names(true);
+                write_wrapper_name(w, type);
+            }
+            }));
         w.write(R"(QueryInterface: {
     guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
 %
@@ -2249,7 +2250,7 @@ bind([&](writer& w) {
                     write_query_interface_case(w, type, *iface.second.type,
                         /* cast: */ is_generic_inst(iface.second.type));
                 }}),
-            bind_wrapper_fullname(type),
+            iid_type,
             bind([&](writer & w) {
                if (!composed)
                {
@@ -2321,10 +2322,9 @@ bind([&](writer& w) {
             {
                 if (!can_write(w, iface.second.type)) continue;
 
-                w.write("iids[%] = %.%.IID\n",
+                w.write("iids[%] = %.IID\n",
                     iface_n++,
-                    abi_namespace(iface.second.type),
-                    bind_wrapper_name(iface.second.type)
+                    bind_wrapper_fullname(iface.second.type)
                 );
             }
 
@@ -2539,7 +2539,8 @@ bind([&](writer& w) {
         constexpr bool isDelegate = std::is_same_v<T, delegate_type>;
         constexpr bool isGeneric = std::is_same_v<T, generic_inst>;
         static_assert(isInterface || isDelegate | isGeneric);
-        w.write("internal static var %VTable: %Vtbl = .init(\n",
+        w.write("internal %var %VTable: %Vtbl = .init(\n",
+            isGeneric ? "" : "static ", // generics aren't namespaced since implementations are always internal
             type,
             bind_type_mangled(type));
         {

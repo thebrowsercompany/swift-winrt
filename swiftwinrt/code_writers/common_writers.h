@@ -59,8 +59,8 @@ namespace swiftwinrt
             }
             else
             {
-                // generics aren't public and so we use the namespace of the writer
-                w.write("%.%", impl_namespace(w.type_namespace), implName);
+                // generics are written once per module and aren't namespaced
+                w.write("%.%", w.swift_module, implName);
             }
         }
     }
@@ -124,7 +124,8 @@ namespace swiftwinrt
             auto handlerWrapperTypeName = w.write_temp("%Wrapper", type);
             if (w.full_type_names)
             {
-                w.write("%.%", abi_namespace(w.type_namespace), handlerWrapperTypeName);
+                // generics are written once per module and aren't namespaced
+                w.write("%.%", w.swift_module, handlerWrapperTypeName);
             }
             else
             {

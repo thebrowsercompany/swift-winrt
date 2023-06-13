@@ -769,7 +769,7 @@ extension __ABI_Windows_Foundation {
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
                   riid.pointee == IIAgileObject.IID ||
-                  riid.pointee == __ABI_Windows_Foundation.AsyncActionCompletedHandlerWrapper.IID else { 
+                  riid.pointee == __x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler.IID else { 
                     guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
                           let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
                     return cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, riid, ppvObject) 
@@ -800,12 +800,12 @@ extension __ABI_Windows_Foundation {
         }
     )
 }
-extension __x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler : HasIID {
-    public static var IID: IID { IID___x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler }
+internal extension __x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler {
+    static var IID: IID { IID___x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler }
 }
 
-extension WinRTDelegateBridge where CABI == __x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler {
-    public static func makeAbi() -> CABI {
+public extension WinRTDelegateBridge where CABI == __x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler {
+    static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Foundation.AsyncActionCompletedHandlerVTable) { $0 }
         return .init(lpVtbl:vtblPtr)
     }

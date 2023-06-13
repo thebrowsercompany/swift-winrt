@@ -591,7 +591,7 @@ namespace swiftwinrt
     void generic_inst::write_swift_declaration(writer& w) const
     {
         auto push_param_guard = w.push_generic_params(*this);
-        w.write("internal static var %VTable: %Vtbl = .init(\n",
+        w.write("internal var %VTable: %Vtbl = .init(\n",
             mangled_name(),
             mangled_name());
 

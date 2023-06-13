@@ -35,7 +35,8 @@ namespace swiftwinrt
         auto content = R"(
 set(GENERATED_FILES_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set(SWIFTWINRT_GENERATED_FILES
-%)
+%  %+Generics.swift
+)
 %
 add_library(% SHARED
   ${SWIFTWINRT_GENERATED_FILES}%
@@ -66,10 +67,10 @@ target_include_directories(%
                 w.write("  %+ABI.swift\n", ns);
                 w.write("  %+Impl.swift\n", ns);
                 }, namespaces),
+            module,
             settings.support == module ? "file(GLOB SUPPORT_FILES ${GENERATED_FILES_DIR}/Support/*)" : "",
             module,
             settings.support == module ? "\n  ${SUPPORT_FILES}" : "",
-
             module,
             module,
             w.c_mod,

@@ -10,6 +10,7 @@ set(SWIFTWINRT_GENERATED_FILES
   test_component.Delegates.swift
   test_component.Delegates+ABI.swift
   test_component.Delegates+Impl.swift
+  test_component+Generics.swift
 )
 file(GLOB SUPPORT_FILES ${GENERATED_FILES_DIR}/Support/*)
 add_library(test_component SHARED

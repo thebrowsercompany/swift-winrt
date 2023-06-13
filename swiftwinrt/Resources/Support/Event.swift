@@ -52,7 +52,7 @@ public protocol WinRTDelegate : AnyObject {
     var handler: (Data) -> Return { get }
 }
 
-public protocol WinRTDelegateBridge<Data, Return>: AbiBridge, WinRTDelegate where CABI: HasIID, SwiftProjection == (Data) -> Return {
+public protocol WinRTDelegateBridge<Data, Return>: AbiBridge, WinRTDelegate where SwiftProjection == (Data) -> Return {
 }
 
 public typealias AnyWinRTDelegate = any WinRTDelegate

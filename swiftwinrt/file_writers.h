@@ -135,6 +135,7 @@ namespace swiftwinrt
         writer w;
         w.filter = filter;
         w.type_namespace = ns;
+        w.swift_module = get_swift_module(ns);
         w.support = settings.support;
         w.c_mod = settings.get_c_module_name();
         w.cache = members.cache;
@@ -142,30 +143,14 @@ namespace swiftwinrt
         w.write("%", w.filter.bind_each<write_guid>(members.interfaces));
         w.write("%", w.filter.bind_each<write_guid>(members.delegates));
 
-        for (auto& [_, inst] : members.generic_instantiations)
-        {
-            write_guid_generic(w, inst.get());
-        }
-
         {
             auto abi_ns = abi_namespace(ns);
             auto [namespace_guard, indent_guard] = push_namespace(abi_ns, w, true);
-
-            for (auto& [_, inst] : members.generic_instantiations)
-            {
-                write_interface_generic(w, inst.get());
-            }
             w.write("%", w.filter.bind_each<write_interface_abi>(members.interfaces));
             w.write("%", w.filter.bind_each<write_struct_abi>(members.structs));
             w.write("%", w.filter.bind_each<write_class_abi>(members.classes));
         }
 
-        // we have to write these in both files because they are fileprivate and required for initializing generics
-        // at the ABI layer for when we have swift implemented interfaces
-        for (auto& [_, inst] : members.generic_instantiations)
-        {
-            write_generic_extension(w, inst.get());
-        }
 
         w.write("%", w.filter.bind_each<write_struct_init_extension>(members.structs));
         w.write("%", w.filter.bind_each<write_composable_impl_extension>(members.classes));
@@ -185,6 +170,7 @@ namespace swiftwinrt
         w.support = settings.support;
         w.c_mod = settings.get_c_module_name();
         w.type_namespace = ns;
+        w.swift_module = get_swift_module(ns);
         w.cache = members.cache;
 
         w.write("%", w.filter.bind_each<write_enum_def>(members.enums));
@@ -199,11 +185,7 @@ namespace swiftwinrt
         }
 
         w.write("%", w.filter.bind_each<write_enum_extension>(members.enums));
-        for (auto& [_, inst] : members.generic_instantiations)
-        {
-            write_ireference_init_extension(w, inst.get());
-        }
-
+    
         w.swap();
         write_preamble(w);
 
@@ -218,6 +200,7 @@ namespace swiftwinrt
         w.support = settings.support;
         w.c_mod = settings.get_c_module_name();
         w.type_namespace = ns;
+        w.swift_module = get_swift_module(ns);
         w.cache = members.cache;
 
         {
@@ -226,15 +209,6 @@ namespace swiftwinrt
             auto impl_names = w.push_impl_names(true);
             w.write("%", w.filter.bind_each<write_interface_impl>(members.interfaces));
             w.write("%", w.filter.bind_each<write_delegate_implementation>(members.delegates));
-            for (auto& [_, inst] : members.generic_instantiations)
-            {
-                write_generic_implementation(w, inst.get());
-            }
-        }
-
-        for (auto& [_, inst] : members.generic_instantiations)
-        {
-            write_ireference_init_extension(w, inst.get());
         }
 
         w.write("%", w.filter.bind_each<write_interface_abi_bridge>(members.interfaces));
@@ -243,5 +217,29 @@ namespace swiftwinrt
         write_preamble(w);
 
         w.save_file("Impl");
+    }
+
+    static void write_module_generics(std::string_view const& module, type_cache const& members, include_only_used_filter const& filter)
+    {
+        writer w;
+        w.filter = filter;
+        w.support = settings.support;
+        w.c_mod = settings.get_c_module_name();
+        w.type_namespace = module;
+        w.swift_module = module;
+        w.cache = members.cache;
+
+        for (auto& [_, inst] : members.generic_instantiations)
+        {
+            write_guid_generic(w, inst.get());
+            write_generic_extension(w, inst.get());
+            write_interface_generic(w, inst.get());
+            auto impl_names = w.push_impl_names(true);
+            write_generic_implementation(w, inst.get());
+        }
+
+        w.swap();
+        write_preamble(w);
+        w.save_file("Generics");
     }
 }

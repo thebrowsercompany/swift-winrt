@@ -155,6 +155,7 @@ namespace swiftwinrt
         using writer_base<writer>::write;
 
         std::string type_namespace;
+        std::string swift_module;
         std::string support;
         std::string c_mod;
         bool abi_types{};
@@ -226,7 +227,7 @@ namespace swiftwinrt
         {
             auto type_module = get_swift_module(type.TypeNamespace());
 
-            if (type_module != get_swift_module(type_namespace))
+            if (type_module != swift_module)
             {
                 depends.insert(type_module);
             }
@@ -236,7 +237,7 @@ namespace swiftwinrt
         {
             auto type_module = get_swift_module(type.swift_logical_namespace());
 
-            if (type_module != get_swift_module(type_namespace) && !type_module.empty())
+            if (type_module != swift_module && !type_module.empty())
             {
                 depends.insert(type_module);
             }
@@ -616,7 +617,8 @@ namespace swiftwinrt
             }
             else
             {
-                return root_directory() / get_swift_module(type_namespace);
+                assert(swift_module);
+                return root_directory() / swift_module;
             }
         }
 
