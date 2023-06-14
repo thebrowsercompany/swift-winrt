@@ -8,7 +8,6 @@ namespace swiftwinrt
         auto path = w.root_directory() / "CMakeLists.txt";
         if (!settings.has_project_type(project_type::cmake))
         {
-            std::filesystem::remove(path);
             return;
         }
         w.write("add_subdirectory(CWinRT)\n");
@@ -29,7 +28,6 @@ namespace swiftwinrt
 
         if (!settings.has_project_type(project_type::cmake))
         {
-            std::filesystem::remove(path);
             return;
         }
         auto content = R"(
@@ -88,7 +86,6 @@ target_include_directories(%
         auto path = w.root_directory() / "Package.swift";
         if (!settings.has_project_type(project_type::spm))
         {
-            std::filesystem::remove(path);
             return;
         }
 
@@ -158,7 +155,6 @@ let package = Package(
         auto path = w.root_directory() / module / "Package.swift";
         if (!settings.has_project_type(project_type::spm))
         {
-            std::filesystem::remove(path);
             return;
         }
 
