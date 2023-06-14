@@ -7,7 +7,7 @@ import Ctest_component
 open class IUnknown : HasIID {
   public let pUnk: IUnknownRef
 
-  public class var IID: IID { IID_IUnknown }
+  open class var IID: IID { IID_IUnknown }
 
   public required init(_ pointer: UnsafeMutablePointer<WinSDK.IUnknown>) {
     self.pUnk = IUnknownRef(pointer)

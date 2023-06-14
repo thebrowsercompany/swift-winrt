@@ -87,11 +87,15 @@ public class UnsealedWinRTClassWrapper<Composable: ComposableImpl> : WinRTWrappe
             return instance
         }
 
-        // We don't use the `Composable` type here because we have to get the actual implementation of this base 
-        // class and then get *that types* composing creator. This allows us to be able to properly create a derived type.
+        // When creating a swift class which represents this type, we want to get the class name that we're trying to create
+        // via GetRuntimeClassName so that we can create the proper derived type. For example, the API may return UIElement, 
+        // but we want to return a Button type.
         // Note that we'll *never* be trying to create an app implemented object at this point
         let className = try! overrides.GetSwiftClassName() 
-        let baseType = NSClassFromString(className) as! Composable.Default.SwiftProjection.Type
+        guard let baseType = NSClassFromString(className) as? Composable.Default.SwiftProjection.Type else {
+          // the derived class doesn't exist, which is fine, just return the type the API specifies.
+          return Composable.Default.from(abi: base)!
+        }
         return baseType._makeFromAbi.from(abi: base) as! Composable.Default.SwiftProjection
     }
 }

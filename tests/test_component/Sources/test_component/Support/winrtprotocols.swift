@@ -37,7 +37,7 @@ public extension WinRTClass {
         return IInspectable(cDefault)
     }
 
-    func `as`<Interface: test_component.IInspectable>() throws -> Interface {
+    func `as`<Interface: test_component.IUnknown>() throws -> Interface {
         try _getDefaultAsIInspectable().QueryInterface()
     }
 
