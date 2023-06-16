@@ -36,11 +36,6 @@ public extension WinRTClass {
         let cDefault: UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable> = _getABI()!
         return IInspectable(cDefault)
     }
-
-    func `as`<Interface: SUPPORT_MODULE.IUnknown>() throws -> Interface {
-        try _getDefaultAsIInspectable().QueryInterface()
-    }
-
 }
 
 public func ==<T: WinRTClass>(_ lhs: T, _ rhs: T) -> Bool {
