@@ -126,8 +126,11 @@ namespace swiftwinrt
         auto shim_template = find_resource(RESOURCE_TYPE_OTHER_FILE_STR, RESOURCE_NAME_CWINRT_SHIM_C_STR);
         fill_template_placeholders_to_file(shim_template, dir_path / "shim.c");
 
-        auto package_template = find_resource(RESOURCE_TYPE_OTHER_FILE_STR, RESOURCE_NAME_CWINRT_PACKAGE_SWIFT_STR);
-        fill_template_placeholders_to_file(package_template, dir_path / "Package.swift");
+        if (settings.has_project_type(project_type::spm))
+        {
+            auto package_template = find_resource(RESOURCE_TYPE_OTHER_FILE_STR, RESOURCE_NAME_CWINRT_PACKAGE_SWIFT_STR);
+            fill_template_placeholders_to_file(package_template, dir_path / "Package.swift");
+        }
     }
 
     static void write_namespace_abi(std::string_view const& ns, type_cache const& members, include_only_used_filter const& filter)
