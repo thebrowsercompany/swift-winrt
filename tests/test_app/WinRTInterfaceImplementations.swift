@@ -99,4 +99,6 @@ class MyImplementableDelegate: IIAmImplementable {
     func returnObject() throws -> Any! {
       return object
     }
+
+    lazy var implementableEvent : Event<(String),()> = EventSource<(String),()>()
 } 

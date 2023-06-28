@@ -11,6 +11,26 @@ public enum __IMPL_test_component_Delegates {
             self.handler = handler
         }
     }
+
+    public class InDelegateImpl2 : InDelegateImpl, WinRTDelegateImpl {
+        public typealias SwiftABI = __ABI_test_component_Delegates.InDelegate
+        private (set) public var _default: SwiftABI
+        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+            guard let abi = abi else { return nil }
+
+            let _default = SwiftABI(abi)
+            let handler: (Data) -> Return = {
+              let _data = try! HString($0)
+              try! _default.InvokeImpl(_data.get())
+            }
+            return handler
+        }
+
+         public required init(handler: @escaping (Data) -> Return){
+           fatalError("don't call this")
+        }
+    }
+
     public class SignalDelegateImpl : WinRTDelegateBridge {
         public typealias Data = ()
         public typealias Return = ()

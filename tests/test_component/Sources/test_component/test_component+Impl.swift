@@ -138,6 +138,21 @@ public enum __IMPL_test_component {
             }
         }
 
+        private lazy var _ImplementableEventRegistrar = ImplementableEventRegistrar()
+        public lazy var implementableEvent : Event<(String),()> = EventImpl<ImplementableEventRegistrar>(register: _ImplementableEventRegistrar, owner:_default)
+        private class ImplementableEventRegistrar : IEventRegistration {
+            typealias Delegate = __IMPL_test_component_Delegates.InDelegateImpl
+            typealias Owner = __ABI_test_component.IIAmImplementable
+            func add(handler: @escaping (Delegate.Data) -> Delegate.Return, for impl: Owner) -> Ctest_component.EventRegistrationToken {
+                let wrapper = __ABI_test_component_Delegates.InDelegateWrapper(handler)
+                let abi = try! wrapper?.toABI { $0 }
+                return try! impl.add_ImplementableEventImpl(abi)
+            }
+
+            func remove(token: Ctest_component.EventRegistrationToken, for impl: Owner){
+                try! impl.remove_ImplementableEventImpl(token)
+            }
+        }
     }
 
     public class ISimpleDelegateImpl : ISimpleDelegate, WinRTAbiBridge {

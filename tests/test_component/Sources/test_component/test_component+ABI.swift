@@ -1016,9 +1016,21 @@ public enum __ABI_test_component {
             return S_OK
         },
 
-        add_ImplementableEvent: { _, _, _ in return failWith(err: E_NOTIMPL) },
+        add_ImplementableEvent: {
+          guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+          guard let _handler = __ABI_test_component_Delegates.InDelegateWrapper.unwrapFrom(abi: $1) else { fatalError("que pasa")}
+          guard let disposable = __unwrapped__instance.implementableEvent.addHandler(_handler) as? DisposableWithToken else { fatalError("not expected")}
+          $2?.initialize(to: disposable.token)
+          return S_OK
+        },
 
-        remove_ImplementableEvent: { _, _ in return failWith(err: E_NOTIMPL) },
+        remove_ImplementableEvent: { 
+          guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+          let token: EventRegistrationToken = $1
+          guard let eventSource = __unwrapped__instance.implementableEvent as? EventSource<(String),()> else { fatalError("que pasa")}
+          eventSource.removeHandler(token)
+          return S_OK
+        },
 
         FireEvent: {
             do {

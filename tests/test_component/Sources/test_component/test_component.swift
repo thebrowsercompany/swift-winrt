@@ -1308,6 +1308,7 @@ public protocol IIAmImplementable : WinRTInterface {
     func fireEvent() throws
     var enumProperty: test_component.Fruit { get set }
     var id: UUID? { get set }
+    var implementableEvent: Event<(String), ()> { get }
 }
 
 extension IIAmImplementable {

@@ -14,7 +14,7 @@ public enum __ABI_test_component_Delegates {
 // MARK - InDelegate
 extension __ABI_test_component_Delegates {
 
-    typealias InDelegateWrapper = DelegateWrapperBase<__IMPL_test_component_Delegates.InDelegateImpl>
+    typealias InDelegateWrapper = DelegateWrapperBase<__IMPL_test_component_Delegates.InDelegateImpl2>
     internal static var InDelegateVTable: __x_ABI_Ctest__component_CDelegates_CIInDelegateVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
@@ -52,6 +52,15 @@ extension __ABI_test_component_Delegates {
             return S_OK
         }
     )
+
+    public class InDelegate: IUnknown {
+      override public class var IID: IID { IID___x_ABI_Ctest__component_CDelegates_CIInDelegate }
+      func InvokeImpl(_ value: HSTRING?) throws {
+        _ = try perform(as: __x_ABI_Ctest__component_CDelegates_CIInDelegate.self) { pThis in
+              try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, value))
+        }
+      }
+    }
 }
 internal extension __x_ABI_Ctest__component_CDelegates_CIInDelegate {
     static var IID: IID { IID___x_ABI_Ctest__component_CDelegates_CIInDelegate }
