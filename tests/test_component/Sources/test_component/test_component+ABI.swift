@@ -49,8 +49,16 @@ private var IID___x_ABI_Ctest__component_CIDerived: IID {
     IID(Data1: 0x864F4DCB, Data2: 0xC4FF, Data3: 0x5FBB, Data4: ( 0xB4,0x5D,0xA7,0x3E,0x25,0x7B,0x48,0xA2 ))// 864F4DCB-C4FF-5FBB-B45D-A73E257B48A2
 }
 
+private var IID___x_ABI_Ctest__component_CIEventTester: IID {
+    IID(Data1: 0xDD19BE65, Data2: 0x638D, Data3: 0x519A, Data4: ( 0x81,0xA9,0x73,0x3F,0xDB,0xD8,0x7A,0x17 ))// DD19BE65-638D-519A-81A9-733FDBD87A17
+}
+
+private var IID___x_ABI_Ctest__component_CIEventTesterFactory: IID {
+    IID(Data1: 0x9E6F50EC, Data2: 0x0F53, Data3: 0x5507, Data4: ( 0xB7,0x37,0x14,0x3B,0x1B,0xB3,0x53,0x65 ))// 9E6F50EC-0F53-5507-B737-143B1BB35365
+}
+
 private var IID___x_ABI_Ctest__component_CIIAmImplementable: IID {
-    IID(Data1: 0xD91566A4, Data2: 0xABC6, Data3: 0x573F, Data4: ( 0x81,0xE4,0x43,0x85,0xBD,0x87,0x58,0xFA ))// D91566A4-ABC6-573F-81E4-4385BD8758FA
+    IID(Data1: 0x0B3C0120, Data2: 0xD138, Data3: 0x512B, Data4: ( 0x8D,0x38,0xF5,0x1E,0x35,0xF0,0x65,0xB2 ))// 0B3C0120-D138-512B-8D38-F51E35F065B2
 }
 
 private var IID___x_ABI_Ctest__component_CINullValuesStatics: IID {
@@ -672,6 +680,52 @@ public enum __ABI_test_component {
 
     }
 
+    open class IEventTester: test_component.IInspectable {
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CIEventTester }
+
+        internal func SubscribeImpl() throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIEventTester.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Subscribe(pThis))
+            }
+        }
+
+        internal func UnsubscribeImpl() throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIEventTester.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Unsubscribe(pThis))
+            }
+        }
+
+        internal func GetResultImpl() throws -> HSTRING? {
+            var result: HSTRING?
+            _ = try perform(as: __x_ABI_Ctest__component_CIEventTester.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetResult(pThis, &result))
+            }
+            return result
+        }
+
+        internal func get_CountImpl() throws -> INT32 {
+            var value: INT32 = 0
+            _ = try perform(as: __x_ABI_Ctest__component_CIEventTester.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Count(pThis, &value))
+            }
+            return value
+        }
+
+    }
+
+    open class IEventTesterFactory: test_component.IInspectable {
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CIEventTesterFactory }
+
+        internal func CreateInstanceImpl(_ impl: UnsafeMutablePointer<__x_ABI_Ctest__component_CIIAmImplementable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIEventTester>? {
+            var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIEventTester>?
+            _ = try perform(as: __x_ABI_Ctest__component_CIEventTesterFactory.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, impl, &value))
+            }
+            return value
+        }
+
+    }
+
     open class IIAmImplementable: test_component.IInspectable {
         override public class var IID: IID { IID___x_ABI_Ctest__component_CIIAmImplementable }
 
@@ -801,9 +855,9 @@ public enum __ABI_test_component {
             }
         }
 
-        open func FireEventImpl() throws {
+        open func FireEventImpl(_ data: HSTRING?) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.FireEvent(pThis))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.FireEvent(pThis, data))
             }
         }
 
@@ -1035,7 +1089,8 @@ public enum __ABI_test_component {
         FireEvent: {
             do {
                 guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-                try __unwrapped__instance.fireEvent()
+                let data: String = .init(from: $1)
+                try __unwrapped__instance.fireEvent(data)
                 return S_OK
             } catch { return failWith(err: E_FAIL) } 
         }

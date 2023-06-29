@@ -709,6 +709,62 @@ public final class Derived : test_component.Base {
     override public class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
 }
 
+public final class EventTester : WinRTClass {
+    private typealias SwiftABI = __ABI_test_component.IEventTester
+    private typealias CABI = __x_ABI_Ctest__component_CIEventTester
+    private var _default: SwiftABI!
+    public func _getABI<T>() -> UnsafeMutablePointer<T>? {
+        if T.self == CABI.self {
+            return RawPointer(_default)
+        }   
+        if T.self == Ctest_component.IInspectable.self {
+            return RawPointer(_default)
+        }
+        return nil
+    }
+
+    public var thisPtr: test_component.IInspectable { _default }
+
+    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIEventTester>?) -> EventTester? {
+        guard let abi = abi else { return nil }
+        return .init(fromAbi: .init(abi))
+    }
+
+    public init(fromAbi: test_component.IInspectable) {
+        _default = try! fromAbi.QueryInterface()
+    }
+
+    private static let _IEventTesterFactory: __ABI_test_component.IEventTesterFactory = try! RoGetActivationFactory(HString("test_component.EventTester"))
+    public init(_ impl: AnyIIAmImplementable!) {
+        let implWrapper = __ABI_test_component.IIAmImplementableWrapper(impl)
+        let _impl = try! implWrapper?.toABI { $0 }
+        let value = try! Self._IEventTesterFactory.CreateInstanceImpl(_impl)
+        _default = __ABI_test_component.IEventTester(consuming: value!)
+    }
+
+    public func subscribe() throws {
+        try _default.SubscribeImpl()
+    }
+
+    public func unsubscribe() throws {
+        try _default.UnsubscribeImpl()
+    }
+
+    public func getResult() throws -> String {
+        let result = try _default.GetResultImpl()
+        return .init(from: result)
+    }
+
+    public var count : Int32 {
+        get {
+            let value = try! _default.get_CountImpl()
+            return value
+        }
+
+    }
+
+}
+
 public final class NoopClosable : WinRTClass, test_component.IClosable {
     private typealias SwiftABI = __ABI_Windows_Foundation.IClosable
     private typealias CABI = __x_ABI_CWindows_CFoundation_CIClosable
@@ -1305,7 +1361,7 @@ public protocol IIAmImplementable : WinRTInterface {
     func outEnum(_ value: inout test_component.Signed) throws
     func returnObject() throws -> Any!
     func returnEnum() throws -> test_component.Signed
-    func fireEvent() throws
+    func fireEvent(_ data: String) throws
     var enumProperty: test_component.Fruit { get set }
     var id: UUID? { get set }
     var implementableEvent: Event<(String), ()> { get }

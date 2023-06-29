@@ -90,6 +90,18 @@ typedef interface __x_ABI_Ctest__component_CIVoidToVoidDelegate __x_ABI_Ctest__c
 
 #endif // ____x_ABI_Ctest__component_CIDerived_FWD_DEFINED__
 
+#ifndef ____x_ABI_Ctest__component_CIEventTester_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CIEventTester_FWD_DEFINED__
+    typedef interface __x_ABI_Ctest__component_CIEventTester __x_ABI_Ctest__component_CIEventTester;
+
+#endif // ____x_ABI_Ctest__component_CIEventTester_FWD_DEFINED__
+
+#ifndef ____x_ABI_Ctest__component_CIEventTesterFactory_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CIEventTesterFactory_FWD_DEFINED__
+    typedef interface __x_ABI_Ctest__component_CIEventTesterFactory __x_ABI_Ctest__component_CIEventTesterFactory;
+
+#endif // ____x_ABI_Ctest__component_CIEventTesterFactory_FWD_DEFINED__
+
 #ifndef ____x_ABI_Ctest__component_CIIAmImplementable_FWD_DEFINED__
 #define ____x_ABI_Ctest__component_CIIAmImplementable_FWD_DEFINED__
     typedef interface __x_ABI_Ctest__component_CIIAmImplementable __x_ABI_Ctest__component_CIIAmImplementable;
@@ -1935,6 +1947,79 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     EXTERN_C const IID IID___x_ABI_Ctest__component_CIDerived;
 #endif /* !defined(____x_ABI_Ctest__component_CIDerived_INTERFACE_DEFINED__) */
     
+#if !defined(____x_ABI_Ctest__component_CIEventTester_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CIEventTester_INTERFACE_DEFINED__
+    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IEventTester[] = L"test_component.IEventTester";
+    typedef struct __x_ABI_Ctest__component_CIEventTesterVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CIEventTester* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CIEventTester* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CIEventTester* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_Ctest__component_CIEventTester* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_Ctest__component_CIEventTester* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CIEventTester* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* Subscribe)(__x_ABI_Ctest__component_CIEventTester* This);
+    HRESULT (STDMETHODCALLTYPE* Unsubscribe)(__x_ABI_Ctest__component_CIEventTester* This);
+    HRESULT (STDMETHODCALLTYPE* GetResult)(__x_ABI_Ctest__component_CIEventTester* This,
+        HSTRING* result);
+    HRESULT (STDMETHODCALLTYPE* get_Count)(__x_ABI_Ctest__component_CIEventTester* This,
+        INT32* value);
+
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CIEventTesterVtbl;
+
+    interface __x_ABI_Ctest__component_CIEventTester
+    {
+        CONST_VTBL struct __x_ABI_Ctest__component_CIEventTesterVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CIEventTester;
+#endif /* !defined(____x_ABI_Ctest__component_CIEventTester_INTERFACE_DEFINED__) */
+    
+#if !defined(____x_ABI_Ctest__component_CIEventTesterFactory_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CIEventTesterFactory_INTERFACE_DEFINED__
+    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IEventTesterFactory[] = L"test_component.IEventTesterFactory";
+    typedef struct __x_ABI_Ctest__component_CIEventTesterFactoryVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CIEventTesterFactory* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CIEventTesterFactory* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CIEventTesterFactory* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_Ctest__component_CIEventTesterFactory* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_Ctest__component_CIEventTesterFactory* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CIEventTesterFactory* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* CreateInstance)(__x_ABI_Ctest__component_CIEventTesterFactory* This,
+        __x_ABI_Ctest__component_CIIAmImplementable* impl,
+        __x_ABI_Ctest__component_CIEventTester** value);
+
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CIEventTesterFactoryVtbl;
+
+    interface __x_ABI_Ctest__component_CIEventTesterFactory
+    {
+        CONST_VTBL struct __x_ABI_Ctest__component_CIEventTesterFactoryVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CIEventTesterFactory;
+#endif /* !defined(____x_ABI_Ctest__component_CIEventTesterFactory_INTERFACE_DEFINED__) */
+    
 #if !defined(____x_ABI_Ctest__component_CIIAmImplementable_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIIAmImplementable_INTERFACE_DEFINED__
     extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IIAmImplementable[] = L"test_component.IIAmImplementable";
@@ -1995,7 +2080,8 @@ struct __x_ABI_Ctest__component_CStructWithEnum
         EventRegistrationToken* token);
     HRESULT (STDMETHODCALLTYPE* remove_ImplementableEvent)(__x_ABI_Ctest__component_CIIAmImplementable* This,
         EventRegistrationToken token);
-    HRESULT (STDMETHODCALLTYPE* FireEvent)(__x_ABI_Ctest__component_CIIAmImplementable* This);
+    HRESULT (STDMETHODCALLTYPE* FireEvent)(__x_ABI_Ctest__component_CIIAmImplementable* This,
+        HSTRING data);
 
         END_INTERFACE
     } __x_ABI_Ctest__component_CIIAmImplementableVtbl;

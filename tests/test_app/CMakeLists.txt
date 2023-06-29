@@ -1,4 +1,4 @@
-add_executable(test_app main.swift DoubleDelegateVTable.swift ValueBoxingTests.swift AppDerived.swift WinRTInterfaceImplementations.swift)
+add_executable(test_app main.swift DoubleDelegateVTable.swift ValueBoxingTests.swift AppDerived.swift WinRTInterfaceImplementations.swift EventTests.swift)
 install(TARGETS test_app DESTINATION bin COMPONENT exe)
   
 set_target_properties(test_app PROPERTIES Swift_LANGUAGE_VERSION 5)

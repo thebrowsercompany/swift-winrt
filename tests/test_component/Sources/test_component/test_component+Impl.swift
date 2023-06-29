@@ -110,8 +110,9 @@ public enum __IMPL_test_component {
             return result
         }
 
-        public func fireEvent() throws {
-            try _default.FireEventImpl()
+        public func fireEvent(_ data: String) throws {
+            let _data = try! HString(data)
+            try _default.FireEventImpl(_data.get())
         }
 
         public var enumProperty : Fruit {

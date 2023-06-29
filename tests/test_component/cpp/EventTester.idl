@@ -1,0 +1,14 @@
+import "Windows.Foundation.idl";
+
+namespace test_component
+{
+    runtimeclass EventTester
+    {
+        EventTester(IIAmImplementable impl);
+
+        void Subscribe();
+        void Unsubscribe();
+        String GetResult();
+        Int32 Count { get; };
+    }
+}

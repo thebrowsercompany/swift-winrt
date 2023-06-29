@@ -129,7 +129,7 @@ public protocol TypedEventHandler<Sender, Args> : WinRTDelegate where Data == (S
 public protocol WinRTDelegateBridge<Data, Return>: AbiBridge, WinRTDelegate where SwiftProjection == (Data) -> Return {
 }
 
-public protocol WinRTDelegateImpl : WinRTDelegate, AbiInterfaceImpl {
+public protocol WinRTDelegateImpl<Data, Return> : WinRTDelegateBridge, AbiInterfaceImpl {
 }
 
 
