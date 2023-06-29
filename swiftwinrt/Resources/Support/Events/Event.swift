@@ -1,5 +1,5 @@
 import WinSDK
-import Ctest_component
+import C_BINDINGS_MODULE
 
 public protocol Disposable {
  func dispose()

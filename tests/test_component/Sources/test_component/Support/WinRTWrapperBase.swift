@@ -46,6 +46,7 @@ extension AbiInterfaceImpl where SwiftABI: IInspectable {
 public protocol WinRTAbiBridge: AbiInterfaceImpl where SwiftABI: IInspectable {}
 internal typealias AnyWinRTAbiBridge = any WinRTAbiBridge
 
+
 // The WinRTWrapperBase class wraps an AbiBridge and is used for wrapping and unwrapping swift
 // objects at the ABI layer. The contract for how to do this is defined by the AbiBridge protocol
 open class WinRTWrapperBase<CInterface, Prototype> {
