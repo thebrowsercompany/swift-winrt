@@ -1071,19 +1071,19 @@ public enum __ABI_test_component {
         },
 
         add_ImplementableEvent: {
-          guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-          guard let _handler = __ABI_test_component_Delegates.InDelegateWrapper.unwrapFrom(abi: $1) else { fatalError("que pasa")}
-          guard let disposable = __unwrapped__instance.implementableEvent.addHandler(_handler) as? DisposableWithToken else { fatalError("not expected")}
-          $2?.initialize(to: disposable.token)
-          return S_OK
+            guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            guard let handler = __ABI_test_component_Delegates.InDelegateWrapper.unwrapFrom(abi: $1) else { return E_INVALIDARG }
+            let token = __unwrapped__instance.implementableEvent.addHandler(handler) as! DisposableWithToken
+            $2?.initialize(to: .from(swift: token))
+            return S_OK
         },
 
-        remove_ImplementableEvent: { 
-          guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-          let token: EventRegistrationToken = $1
-          guard let eventSource = __unwrapped__instance.implementableEvent as? EventSource<(String),()> else { fatalError("que pasa")}
-          eventSource.removeHandler(token)
-          return S_OK
+        remove_ImplementableEvent: {
+            guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let token: EventRegistrationToken = $1
+            let __eventSource = __unwrapped__instance.implementableEvent as! RemoveHandler
+            __eventSource.removeHandler(token)
+            return S_OK
         },
 
         FireEvent: {
@@ -1868,6 +1868,17 @@ extension ComposableImpl where CABI == __x_ABI_Ctest__component_CIUnsealedDerive
 }
 // MARK - VoidToVoidDelegate
 extension __ABI_test_component {
+    open class VoidToVoidDelegate: test_component.IUnknown {
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CIVoidToVoidDelegate }
+
+        open func InvokeImpl() throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIVoidToVoidDelegate.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis))
+            }
+        }
+
+    }
+
 
     typealias VoidToVoidDelegateWrapper = DelegateWrapperBase<__IMPL_test_component.VoidToVoidDelegateImpl>
     internal static var VoidToVoidDelegateVTable: __x_ABI_Ctest__component_CIVoidToVoidDelegateVtbl = .init(
@@ -1878,7 +1889,7 @@ extension __ABI_test_component {
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
                   riid.pointee == IAgileObject.IID ||
-                  riid.pointee == __x_ABI_Ctest__component_CIVoidToVoidDelegate.IID else { 
+                  riid.pointee == __ABI_test_component.VoidToVoidDelegateWrapper.IID else { 
                     guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
                           let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
                     return cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, riid, ppvObject) 
@@ -1907,13 +1918,10 @@ extension __ABI_test_component {
         }
     )
 }
-internal extension __x_ABI_Ctest__component_CIVoidToVoidDelegate {
-    static var IID: IID { IID___x_ABI_Ctest__component_CIVoidToVoidDelegate }
-}
-
 public extension WinRTDelegateBridge where CABI == __x_ABI_Ctest__component_CIVoidToVoidDelegate {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.VoidToVoidDelegateVTable) { $0 }
         return .init(lpVtbl:vtblPtr)
     }
 }
+

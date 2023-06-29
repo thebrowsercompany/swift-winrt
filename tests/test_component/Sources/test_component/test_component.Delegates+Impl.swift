@@ -6,38 +6,43 @@ public enum __IMPL_test_component_Delegates {
         public typealias Data = (String)
         public typealias Return = ()
         public typealias CABI = __x_ABI_Ctest__component_CDelegates_CIInDelegate
+        public typealias SwiftABI = __ABI_test_component_Delegates.InDelegate
+
         public var handler: (Data) -> Return
         public required init(handler: @escaping (Data) -> Return){
             self.handler = handler
         }
-    }
 
-    public class InDelegateImpl2 : InDelegateImpl, WinRTDelegateImpl {
-        public typealias SwiftABI = __ABI_test_component_Delegates.InDelegate
-        private (set) public var _default: SwiftABI
         public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
-
             let _default = SwiftABI(abi)
             let handler: (Data) -> Return = {
-              let _data = try! HString($0)
-              try! _default.InvokeImpl(_data.get())
+                let (value) = $0
+                let _value = try! HString(value)
+                try! _default.InvokeImpl(_value.get())
             }
             return handler
         }
-
-         public required init(handler: @escaping (Data) -> Return){
-           fatalError("don't call this")
-        }
     }
-
     public class SignalDelegateImpl : WinRTDelegateBridge {
         public typealias Data = ()
         public typealias Return = ()
         public typealias CABI = __x_ABI_Ctest__component_CDelegates_CISignalDelegate
+        public typealias SwiftABI = __ABI_test_component_Delegates.SignalDelegate
+
         public var handler: (Data) -> Return
         public required init(handler: @escaping (Data) -> Return){
             self.handler = handler
+        }
+
+        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+            guard let abi = abi else { return nil }
+            let _default = SwiftABI(abi)
+            let handler: (Data) -> Return = {
+                let () = $0
+                try! _default.InvokeImpl()
+            }
+            return handler
         }
     }
 }

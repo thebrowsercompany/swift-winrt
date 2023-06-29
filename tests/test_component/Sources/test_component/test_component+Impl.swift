@@ -139,8 +139,8 @@ public enum __IMPL_test_component {
             }
         }
 
-        private lazy var _ImplementableEventRegistrar = ImplementableEventRegistrar()
-        public lazy var implementableEvent : Event<(String),()> = EventImpl<ImplementableEventRegistrar>(register: _ImplementableEventRegistrar, owner:_default)
+        private static let _ImplementableEventRegistrar = ImplementableEventRegistrar()
+        public lazy var implementableEvent : Event<(String),()> = EventImpl<ImplementableEventRegistrar>(register: Self._ImplementableEventRegistrar, owner:_default)
         private class ImplementableEventRegistrar : IEventRegistration {
             typealias Delegate = __IMPL_test_component_Delegates.InDelegateImpl
             typealias Owner = __ABI_test_component.IIAmImplementable
@@ -188,9 +188,21 @@ public enum __IMPL_test_component {
         public typealias Data = ()
         public typealias Return = ()
         public typealias CABI = __x_ABI_Ctest__component_CIVoidToVoidDelegate
+        public typealias SwiftABI = __ABI_test_component.VoidToVoidDelegate
+
         public var handler: (Data) -> Return
         public required init(handler: @escaping (Data) -> Return){
             self.handler = handler
+        }
+
+        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+            guard let abi = abi else { return nil }
+            let _default = SwiftABI(abi)
+            let handler: (Data) -> Return = {
+                let () = $0
+                try! _default.InvokeImpl()
+            }
+            return handler
         }
     }
 }

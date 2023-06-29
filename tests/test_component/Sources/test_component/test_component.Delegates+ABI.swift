@@ -13,8 +13,19 @@ public enum __ABI_test_component_Delegates {
 }
 // MARK - InDelegate
 extension __ABI_test_component_Delegates {
+    open class InDelegate: test_component.IUnknown {
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CDelegates_CIInDelegate }
 
-    typealias InDelegateWrapper = DelegateWrapperBase2<__IMPL_test_component_Delegates.InDelegateImpl2>
+        open func InvokeImpl(_ value: HSTRING?) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CDelegates_CIInDelegate.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, value))
+            }
+        }
+
+    }
+
+
+    typealias InDelegateWrapper = DelegateWrapperBase<__IMPL_test_component_Delegates.InDelegateImpl>
     internal static var InDelegateVTable: __x_ABI_Ctest__component_CDelegates_CIInDelegateVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
@@ -23,7 +34,7 @@ extension __ABI_test_component_Delegates {
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
                   riid.pointee == IAgileObject.IID ||
-                  riid.pointee == __x_ABI_Ctest__component_CDelegates_CIInDelegate.IID else { 
+                  riid.pointee == __ABI_test_component_Delegates.InDelegateWrapper.IID else { 
                     guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
                           let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
                     return cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, riid, ppvObject) 
@@ -52,28 +63,27 @@ extension __ABI_test_component_Delegates {
             return S_OK
         }
     )
-
-    public class InDelegate: IUnknown {
-      override public class var IID: IID { IID___x_ABI_Ctest__component_CDelegates_CIInDelegate }
-      func InvokeImpl(_ value: HSTRING?) throws {
-        _ = try perform(as: __x_ABI_Ctest__component_CDelegates_CIInDelegate.self) { pThis in
-              try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, value))
-        }
-      }
-    }
 }
-internal extension __x_ABI_Ctest__component_CDelegates_CIInDelegate {
-    static var IID: IID { IID___x_ABI_Ctest__component_CDelegates_CIInDelegate }
-}
-
 public extension WinRTDelegateBridge where CABI == __x_ABI_Ctest__component_CDelegates_CIInDelegate {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component_Delegates.InDelegateVTable) { $0 }
         return .init(lpVtbl:vtblPtr)
     }
 }
+
 // MARK - SignalDelegate
 extension __ABI_test_component_Delegates {
+    open class SignalDelegate: test_component.IUnknown {
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CDelegates_CISignalDelegate }
+
+        open func InvokeImpl() throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CDelegates_CISignalDelegate.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis))
+            }
+        }
+
+    }
+
 
     typealias SignalDelegateWrapper = DelegateWrapperBase<__IMPL_test_component_Delegates.SignalDelegateImpl>
     internal static var SignalDelegateVTable: __x_ABI_Ctest__component_CDelegates_CISignalDelegateVtbl = .init(
@@ -84,7 +94,7 @@ extension __ABI_test_component_Delegates {
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
                   riid.pointee == IAgileObject.IID ||
-                  riid.pointee == __x_ABI_Ctest__component_CDelegates_CISignalDelegate.IID else { 
+                  riid.pointee == __ABI_test_component_Delegates.SignalDelegateWrapper.IID else { 
                     guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
                           let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
                     return cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, riid, ppvObject) 
@@ -113,13 +123,10 @@ extension __ABI_test_component_Delegates {
         }
     )
 }
-internal extension __x_ABI_Ctest__component_CDelegates_CISignalDelegate {
-    static var IID: IID { IID___x_ABI_Ctest__component_CDelegates_CISignalDelegate }
-}
-
 public extension WinRTDelegateBridge where CABI == __x_ABI_Ctest__component_CDelegates_CISignalDelegate {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component_Delegates.SignalDelegateVTable) { $0 }
         return .init(lpVtbl:vtblPtr)
     }
 }
+

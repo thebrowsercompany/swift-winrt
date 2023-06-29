@@ -146,7 +146,7 @@ open class DelegateWrapperBase<Delegate: WinRTDelegateBridge> : WinRTWrapperBase
     }
 
     public static func unwrapFrom(abi pointer: UnsafeMutablePointer<Delegate.CABI>?) -> Delegate.SwiftProjection? {
-        guard let unwrapped = tryUnwrapFrom(abi: pointer) else { return nil }
+        guard let unwrapped = tryUnwrapFrom(abi: pointer) else { return Delegate.from(abi: pointer) }
         return unwrapped.handler
     }
 }

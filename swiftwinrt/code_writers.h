@@ -366,10 +366,12 @@ bind<write_abi_args>(function));
             return;
         }
         const bool internal = is_composable_factory || can_mark_internal(type.type());
-        w.write("% class %: %.IInspectable% {\n",
+        auto baseClass = (is_delegate(type) || !type.type().Flags().WindowsRuntime()) ? "IUnknown" : "IInspectable";
+        w.write("% class %: %.%% {\n",
             internal ? "internal" : "open",
             type,
             w.support,
+            baseClass,
             is_composable_factory ? ", ComposableActivationFactory": "");
 
         auto class_indent_guard = w.push_indent();
@@ -426,7 +428,7 @@ bind<write_abi_args>(function));
         {
             type.write_swift_declaration(w);
 
-            if (is_winrt_generic_collection(type))
+            if (!is_winrt_ireference(type))
             {
                 auto generic_params = w.push_generic_params(type);
                 do_write_interface_abi(w, *type.generic_type(), type.functions);
@@ -474,26 +476,23 @@ bind<write_abi_args>(function));
         }
       
     }
-
+    static void write_class_func_body(writer& w, function_def const& function, interface_info const& iface, bool is_noexcept);
+    static void write_comma_param_names(writer& w, std::vector<function_param> const& params);
     template <typename T>
-    static void write_delegate_extension(writer& w, T const& inst)
+    static void write_delegate_extension(writer& w, T const& inst, function_def const& invoke_method)
     {
         auto delegate_abi_name = w.write_temp("%", bind_type_mangled(inst));
 
         constexpr bool is_generic = std::is_same_v<T, generic_inst>;
-        w.write(R"(internal extension % {
-    static var IID: IID { IID_% }
-}
 
-% extension WinRTDelegateBridge where CABI == % {
+        w.write(R"(% extension WinRTDelegateBridge where CABI == % {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &%.%VTable) { $0 }
         return .init(lpVtbl:vtblPtr)
     }
 }
-)", delegate_abi_name, 
-    delegate_abi_name,
-    is_generic ? "internal" : "public",
+
+)", is_generic ? "internal" : "public",
     delegate_abi_name,
     is_generic ? w.swift_module : abi_namespace(w.type_namespace),
     is_generic ? delegate_abi_name : w.write_temp("%", inst));
@@ -507,7 +506,8 @@ bind<write_abi_args>(function));
         }
         else if (is_winrt_eventhandler(inst) || is_winrt_typedeventhandler(inst))
         {
-            write_delegate_extension(w, inst);
+            auto guard{ w.push_generic_params(inst) };
+            write_delegate_extension(w, inst, inst.functions[0]);
         }
     }
 
@@ -550,11 +550,13 @@ typealias % = DelegateWrapperBase<%>
         w.write("extension % {\n", abi_namespace(w.type_namespace));
         {
             auto guard(w.push_indent());
+            do_write_interface_abi(w, type, type.functions);
+
             write_delegate_wrapper(w, type);
             write_vtable(w, type);
         }
         w.write("}\n");
-        write_delegate_extension(w, type);
+        write_delegate_extension(w, type, type.functions[0]);
     }
     
     static void write_struct_abi(writer& w, struct_type const& type)
@@ -700,10 +702,7 @@ typealias % = DelegateWrapperBase<%>
             }
             else
             {
-
-                
                 w.write("&%", get_swift_name(param));
-                
             }
         }
     }
@@ -1101,6 +1100,11 @@ public static func makeAbi() -> CABI {
         {
             write_class_impl_property(w, prop, type_info);
         }
+        
+        for (auto&& event : type.events)
+        {
+            write_class_impl_event(w, event, type_info);
+        }
 
         for (auto&& [interface_name, info] : type.required_interfaces)
         {
@@ -1113,6 +1117,8 @@ public static func makeAbi() -> CABI {
         w.write("}\n\n");
     }
 
+    static void write_comma_param_types(writer& w, std::vector<function_param> const& params);
+    static void write_delegate_return_type(writer& w, function_def const& sig);
     static void write_interface_proto(writer& w, interface_type const& type)
     {
         if (is_exclusive(type) || !can_write(w, type))
@@ -1159,6 +1165,27 @@ public static func makeAbi() -> CABI {
                     bind<write_type>(return_type, write_type_params::swift_allow_implicit_unwrap),
                     prop.setter ? " set" : "");
             }
+
+            for (auto& event : type.events)
+            {
+                writer::generic_param_guard guard{};
+                function_def delegate_method{};
+                if (auto delegateType = dynamic_cast<const delegate_type*>(event.type))
+                {
+                    delegate_method = delegateType->functions[0];
+                }
+                else if (auto genericInst = dynamic_cast<const generic_inst*>(event.type))
+                {
+                    delegate_method = genericInst->functions[0];
+                    guard = w.push_generic_params(*genericInst);
+                }
+                assert(delegate_method.def);
+
+                w.write("var %: Event<(%),%> { get }\n",
+                    get_swift_name(event.def),
+                    bind<write_comma_param_types>(delegate_method.params),
+                    bind<write_delegate_return_type>(delegate_method));
+            }
         }
         w.write("}\n\n");
 
@@ -1200,6 +1227,16 @@ public static func makeAbi() -> CABI {
         }
     }
 
+    static void write_comma_param_names(writer& w, std::vector<function_param> const& params)
+    {
+        separator s{ w };
+        for (auto& param : params)
+        {
+            s();
+            w.write(get_swift_name(param));
+        }
+    }
+
     static void write_comma_param_types(writer& w, std::vector<function_param> const& params)
     {
         separator s{ w };
@@ -1230,9 +1267,20 @@ public static func makeAbi() -> CABI {
     % typealias Data = (%)
     % typealias Return = %
     % typealias CABI = %
+    % typealias SwiftABI = %.%
+
     % var handler: (Data) -> Return
     % required init(handler: ^@escaping (Data) -> Return){
         self.handler = handler
+    }
+
+    % static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        let _default = SwiftABI(abi)
+        let handler: (Data) -> Return = {
+            let (%) = $0
+%        }
+        return handler
     }
 }
 )";
@@ -1251,7 +1299,18 @@ public static func makeAbi() -> CABI {
             access_level,
             bind_type_mangled(type),
             access_level,
-            access_level);
+            is_generic ? w.swift_module : abi_namespace(w.type_namespace),
+            bind_type_abi(type),
+            access_level,
+            access_level,
+            access_level,
+            bind<write_comma_param_names>(invoke_method.params),
+            bind([&](writer& w) {
+                interface_info delegate{ &type };
+                delegate.is_default = true; // so that the _default name is used
+                auto indent_guard{ w.push_indent({3}) };
+                write_class_func_body(w, invoke_method, delegate, true);
+                }));
     }
 
     static void write_delegate_implementation(writer& w, delegate_type const& type)
@@ -2212,14 +2271,6 @@ w.support);
     template <typename T>
     static void write_iunknown_methods(writer& w, T const& type, std::vector<named_interface_info> const& interfaces, bool composed = false)
     {
-        auto iid_type = w.write_temp("%", bind([&](writer& w) {
-            if (is_delegate(type)) {
-                write_type_mangled(w, type);
-            } else {
-                auto full_type_names = w.push_full_type_names(true);
-                write_wrapper_name(w, type);
-            }
-            }));
         w.write(R"(QueryInterface: {
     guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
 %
@@ -2254,7 +2305,7 @@ bind([&](writer& w) {
                     write_query_interface_case(w, type, *iface.second.type,
                         /* cast: */ is_generic_inst(iface.second.type));
                 }}),
-            iid_type,
+            bind_wrapper_fullname(type),
             bind([&](writer & w) {
                if (!composed)
                {
@@ -2472,9 +2523,7 @@ bind([&](writer& w) {
         auto func_name = get_abi_name(method);
 
         // https://linear.app/the-browser-company/issue/WIN-104/swiftwinrt-support-authoring-winrt-events-in-swift
-        if (!can_write(w, function, true) ||
-            is_add_overload(method) ||
-            is_remove_overload(method))
+        if (!can_write(w, function, true))
         {
             write_not_implementable_vtable_method(w, function);
             return;
@@ -2498,6 +2547,14 @@ bind([&](writer& w) {
         else if (is_put_overload(method))
         {
             func_call += w.write_temp("% = %", get_swift_name(method), bind<write_consume_args>(function));
+        }
+        else if (is_add_overload(method))
+        {
+            func_call += w.write_temp("%.addHandler(%) as! DisposableWithToken", get_swift_name(method), bind<write_consume_args>(function));
+        }
+        else if (is_remove_overload(method))
+        {
+            func_call += w.write_temp("% as! RemoveHandler", get_swift_name(method));
         }
         else
         {
@@ -2523,10 +2580,24 @@ bind([&](writer& w) {
             {
                 w.write("let % = ", function.return_type.value().name);
             }
+            else if (is_remove_overload(method))
+            {
+                w.write("let __eventSource = ");
+            }
+
             w.write("%__unwrapped__instance.%\n",
                 needs_try_catch ? "try " : "",
                 func_call);
-            write_abi_ret_val(w, function);
+
+            if (is_remove_overload(method))
+            {
+                assert(function.params.size() == 1);
+                w.write("__eventSource.removeHandler(%)\n", function.params[0].name);
+            }
+            else
+            {
+                write_abi_ret_val(w, function);
+            }
             w.write("return S_OK\n");
         }
         if (needs_try_catch) {

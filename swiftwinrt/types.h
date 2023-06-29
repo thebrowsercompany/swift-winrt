@@ -643,11 +643,6 @@ namespace swiftwinrt
     {
         delegate_type(winmd::reader::TypeDef const& type);
 
-        virtual std::string_view cpp_abi_name() const override
-        {
-            return m_abiName;
-        }
-
         virtual std::string_view cpp_logical_name() const override
         {
             // Even though the ABI name of delegates is different than their swift name, the logical name is still the same as

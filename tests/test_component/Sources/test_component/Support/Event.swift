@@ -5,9 +5,13 @@ public class Event<Data, Return> {
     @discardableResult open func addHandler(_ handler: @escaping (Data) -> Return) -> Disposable? { fatalError("not implemented") }
 }
 
+public protocol RemoveHandler {
+    func removeHandler(_ token: Ctest_component.EventRegistrationToken)
+}
+
 /// EventSource is the class which implements handling event subscriptions, removals,
 /// and invoking events for authoring events in Swift
-public final class EventSource<Data, Return>: Event<Data, Return>
+public final class EventSource<Data, Return>: Event<Data, Return>, RemoveHandler
 {
   public override init(){}
 
@@ -52,6 +56,12 @@ extension Ctest_component.EventRegistrationToken: Hashable {
     }
 }
 
+extension Ctest_component.EventRegistrationToken {
+  public static func from(swift: DisposableWithToken) -> Ctest_component.EventRegistrationToken {
+    return swift.token
+  }
+}
+
 class EventSourceCleanup<Data, Return> : DisposableWithToken {
     private (set) public var token: Ctest_component.EventRegistrationToken
     weak var event: EventSource<Data, Return>?
@@ -81,7 +91,7 @@ public class EventImpl<Register: IEventRegistration>: Event<Register.Delegate.Da
     }
 }
 
-protocol DisposableWithToken : Disposable {
+public protocol DisposableWithToken : Disposable {
     var token: Ctest_component.EventRegistrationToken { get }
 }
 
@@ -117,21 +127,15 @@ public protocol WinRTDelegate : AnyObject {
     var handler: (Data) -> Return { get }
 }
 
-public protocol EventHandler<Args> : WinRTDelegate where Data == (Any, Args), Return == Void {
-  associatedtype Args
+public protocol WinRTDelegateBridge<Data, Return>: AbiInterfaceImpl, WinRTDelegate where SwiftProjection == (Data) -> Return {
 }
 
-public protocol TypedEventHandler<Sender, Args> : WinRTDelegate where Data == (Sender, Args), Return == Void {
-  associatedtype Sender
-  associatedtype Args
+// The WinRTDelegateBridge doesn't actually hold a pointer to the SwiftABI, 
+// rather the handler it creates and gives to the Swift holder keeps a strong
+// reference to the SwiftABI object, which keeps the handler alive. 
+public extension WinRTDelegateBridge {
+    var _default: SwiftABI { fatalError("_default should not be accessed on a WinRTDelegateBridge") }
 }
-
-public protocol WinRTDelegateBridge<Data, Return>: AbiBridge, WinRTDelegate where SwiftProjection == (Data) -> Return {
-}
-
-public protocol WinRTDelegateImpl<Data, Return> : WinRTDelegateBridge, AbiInterfaceImpl {
-}
-
 
 public typealias AnyWinRTDelegate = any WinRTDelegate
 public protocol Disposable {
