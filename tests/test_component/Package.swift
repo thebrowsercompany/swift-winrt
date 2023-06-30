@@ -5,26 +5,25 @@
 import PackageDescription
 
 let package = Package(
-  name: "WinRT",
-  products: [
-    .library(name: "test_component", type: .dynamic, targets: ["test_component"]),
-  ],
-  targets: [
-    .target(
-       name: "CWinRT",
-       exclude: [
-         "CMakeLists.txt"
-       ]
-    ),
-    .target(
-    name: "test_component",
-    dependencies: [
-      "CWinRT",
+    name: "WinRT",
+    products: [
+        .library(name: "test_component", type: .dynamic, targets: ["test_component"]),
     ],
-    exclude: [
-      "CMakeLists.txt"
+    targets: [
+      .target(
+          name: "CWinRT",
+          exclude: [
+              "CMakeLists.txt"
+          ]
+      ),
+      .target(
+          name: "test_component",
+          dependencies: [
+              "CWinRT",
+          ],
+          exclude: [
+              "CMakeLists.txt"
+          ]
+      ),
     ]
-  ),
-
-  ]
 )
