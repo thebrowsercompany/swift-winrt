@@ -9,8 +9,8 @@ public class EventImpl<Register: IEventRegistration>: Event<Register.Delegate.Da
         self.owner = owner
     }
 
-    @discardableResult override public func addHandler(_ handler: @escaping (Register.Delegate.Data) -> Register.Delegate.Return) -> Disposable? {
-        guard let owner = owner else { return nil }
+    @discardableResult override public func addHandler(_ handler: @escaping (Register.Delegate.Data) -> Register.Delegate.Return) -> Disposable {
+        guard let owner = owner else { return NoopDisposable() }
         let token = register.add(handler: handler , for: owner)
         return EventCleanup(token: token, event: register, impl: owner)
     }
@@ -40,4 +40,8 @@ public protocol IEventRegistration<Delegate, Owner> : AnyObject {
 
     func add(handler: @escaping (Delegate.Data) -> Delegate.Return, for: Owner) -> Ctest_component.EventRegistrationToken
     func remove(token: Ctest_component.EventRegistrationToken, for: Owner)
+}
+
+struct NoopDisposable : Disposable {
+    func dispose() {}
 }

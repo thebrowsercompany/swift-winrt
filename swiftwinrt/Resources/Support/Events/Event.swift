@@ -6,5 +6,5 @@ public protocol Disposable {
 }
 
 public class Event<Data, Return> {
-    @discardableResult open func addHandler(_ handler: @escaping (Data) -> Return) -> Disposable? { fatalError("not implemented") }
+    @discardableResult open func addHandler(_ handler: @escaping (Data) -> Return) -> Disposable { fatalError("not implemented") }
 }

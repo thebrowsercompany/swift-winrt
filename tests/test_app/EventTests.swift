@@ -3,12 +3,10 @@ import XCTest
 import test_component
 import Foundation
 
-extension Array where Element == Disposable? {
+extension Array where Element == Disposable {
   mutating func dispose() {
     for item in self {
-      if let item {
-        item.dispose()
-      }
+      item.dispose()
     }
     self.removeAll(keepingCapacity: true)
   }
@@ -19,7 +17,7 @@ class EventTests : XCTestCase {
     let simple = Simple()
     var count = 0
     
-    var disposable = [Disposable?]()
+    var disposable = [Disposable]()
 
     disposable.append(simple.signalEvent.addHandler {
       count+=1
@@ -50,7 +48,7 @@ class EventTests : XCTestCase {
   public func testStaticEvent() throws {
     var static_count = 0
     
-    var disposable = [Disposable?]()
+    var disposable = [Disposable]()
 
     disposable.append(Simple.staticEvent.addHandler { (_,_) in
       static_count+=1
@@ -117,7 +115,7 @@ public func testSwiftImplementedEventWithSwiftListener() throws {
     delegate.fireEvent(expectedResult)
     XCTAssertEqual(count, 2)
   
-    disposer?.dispose()
+    disposer.dispose()
     delegate.fireEvent("unexpected shouldn't get this")
     XCTAssertEqual(count, 2)
 

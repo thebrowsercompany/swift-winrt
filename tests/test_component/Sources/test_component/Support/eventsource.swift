@@ -31,7 +31,7 @@ public final class EventSource<Data, Return>: Event<Data, Return>, RemoveHandler
     handlers.getInvocationList()
   }
 
-  override public func addHandler(_ handler: @escaping (Data) -> Return) -> Disposable? {
+  override public func addHandler(_ handler: @escaping (Data) -> Return) -> Disposable {
     let token = handlers.append(handler)
     return EventSourceCleanup(token: token, event: self)
   }
