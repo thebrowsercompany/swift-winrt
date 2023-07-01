@@ -897,21 +897,20 @@ public final class Simple : WinRTClass {
         try! _ISimpleStatics.FireStaticEventImpl()
     }
 
-    private static let _StaticEventRegistrar = StaticEventRegistrar()
-    public static var staticEvent : Event<(Any?, Any?),()> = EventImpl<StaticEventRegistrar>(register: _StaticEventRegistrar, owner:_ISimpleStatics)
-    private class StaticEventRegistrar : IEventRegistration {
-        typealias Delegate = test_component.__x_ABI_C__FIEventHandler_1_IInspectableImpl
-        typealias Owner = __ABI_test_component.ISimpleStatics
-        func add(handler: @escaping (Delegate.Data) -> Delegate.Return, for impl: Owner) -> Ctest_component.EventRegistrationToken {
-            let wrapper = test_component.__x_ABI_C__FIEventHandler_1_IInspectableWrapper(handler)
-            let abi = try! wrapper?.toABI { $0 }
-            return try! impl.add_StaticEventImpl(abi)
-        }
+    public static var staticEvent : Event<EventHandler<Any?>> = {
+      .init(
+        add: { [weak this = _ISimpleStatics] in
+          guard let this else { return .init() }
+          let wrapper = test_component.__x_ABI_C__FIEventHandler_1_IInspectableWrapper($0)
+          let abi = try! wrapper?.toABI { $0 }
+          return try! this.add_StaticEventImpl(abi)
+        },
+        remove: { [weak this = _ISimpleStatics] in
+         try? this?.remove_StaticEventImpl($0) 
+       }
+      )
+    }()
 
-        func remove(token: Ctest_component.EventRegistrationToken, for impl: Owner){
-            try! impl.remove_StaticEventImpl(token)
-        }
-    }
     public func method() throws {
         try _default.MethodImpl()
     }
@@ -979,51 +978,48 @@ public final class Simple : WinRTClass {
         }
     }
 
-    private static let _InEventRegistrar = InEventRegistrar()
-    public lazy var inEvent : Event<(String),()> = EventImpl<InEventRegistrar>(register: Self._InEventRegistrar, owner:_default)
-    private class InEventRegistrar : IEventRegistration {
-        typealias Delegate = __IMPL_test_component_Delegates.InDelegateImpl
-        typealias Owner = __ABI_test_component.ISimple
-        func add(handler: @escaping (Delegate.Data) -> Delegate.Return, for impl: Owner) -> Ctest_component.EventRegistrationToken {
-            let wrapper = __ABI_test_component_Delegates.InDelegateWrapper(handler)
-            let abi = try! wrapper?.toABI { $0 }
-            return try! impl.add_InEventImpl(abi)
-        }
+    public lazy var inEvent : Event<test_component.InDelegate> = {
+      .init(
+        add: { [weak this = _default] in
+          guard let this else { return .init() }
+          let wrapper = __ABI_test_component_Delegates.InDelegateWrapper($0)
+          let abi = try! wrapper?.toABI { $0 }
+          return try! this.add_InEventImpl(abi)
+        },
+        remove: { [weak this = _default] in
+         try? this?.remove_InEventImpl($0) 
+       }
+      )
+    }()
 
-        func remove(token: Ctest_component.EventRegistrationToken, for impl: Owner){
-            try! impl.remove_InEventImpl(token)
-        }
-    }
-    private static let _SignalEventRegistrar = SignalEventRegistrar()
-    public lazy var signalEvent : Event<(),()> = EventImpl<SignalEventRegistrar>(register: Self._SignalEventRegistrar, owner:_default)
-    private class SignalEventRegistrar : IEventRegistration {
-        typealias Delegate = __IMPL_test_component_Delegates.SignalDelegateImpl
-        typealias Owner = __ABI_test_component.ISimple
-        func add(handler: @escaping (Delegate.Data) -> Delegate.Return, for impl: Owner) -> Ctest_component.EventRegistrationToken {
-            let wrapper = __ABI_test_component_Delegates.SignalDelegateWrapper(handler)
-            let abi = try! wrapper?.toABI { $0 }
-            return try! impl.add_SignalEventImpl(abi)
-        }
+    public lazy var signalEvent : Event<test_component.SignalDelegate> = {
+      .init(
+        add: { [weak this = _default] in
+          guard let this else { return .init() }
+          let wrapper = __ABI_test_component_Delegates.SignalDelegateWrapper($0)
+          let abi = try! wrapper?.toABI { $0 }
+          return try! this.add_SignalEventImpl(abi)
+        },
+        remove: { [weak this = _default] in
+         try? this?.remove_SignalEventImpl($0) 
+       }
+      )
+    }()
 
-        func remove(token: Ctest_component.EventRegistrationToken, for impl: Owner){
-            try! impl.remove_SignalEventImpl(token)
-        }
-    }
-    private static let _SimpleEventRegistrar = SimpleEventRegistrar()
-    public lazy var simpleEvent : Event<(Simple?, SimpleEventArgs),()> = EventImpl<SimpleEventRegistrar>(register: Self._SimpleEventRegistrar, owner:_default)
-    private class SimpleEventRegistrar : IEventRegistration {
-        typealias Delegate = test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsImpl
-        typealias Owner = __ABI_test_component.ISimple
-        func add(handler: @escaping (Delegate.Data) -> Delegate.Return, for impl: Owner) -> Ctest_component.EventRegistrationToken {
-            let wrapper = test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper(handler)
-            let abi = try! wrapper?.toABI { $0 }
-            return try! impl.add_SimpleEventImpl(abi)
-        }
+    public lazy var simpleEvent : Event<TypedEventHandler<Simple?, SimpleEventArgs>> = {
+      .init(
+        add: { [weak this = _default] in
+          guard let this else { return .init() }
+          let wrapper = test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper($0)
+          let abi = try! wrapper?.toABI { $0 }
+          return try! this.add_SimpleEventImpl(abi)
+        },
+        remove: { [weak this = _default] in
+         try? this?.remove_SimpleEventImpl($0) 
+       }
+      )
+    }()
 
-        func remove(token: Ctest_component.EventRegistrationToken, for impl: Owner){
-            try! impl.remove_SimpleEventImpl(token)
-        }
-    }
 }
 
 public final class StaticClass {
@@ -1265,7 +1261,7 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
     override open class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
 }
 
-public typealias VoidToVoidDelegate = (()) -> ()
+public typealias VoidToVoidDelegate = () -> ()
 public struct BlittableStruct: Hashable, Codable {
     public var first: Int32 = 0
     public var second: Int32 = 0
@@ -1364,7 +1360,15 @@ public protocol IIAmImplementable : WinRTInterface {
     func fireEvent(_ data: String) throws
     var enumProperty: test_component.Fruit { get set }
     var id: UUID? { get set }
-    var implementableEvent: Event<(String),()> { get }
+    var implementableEvent: Event<test_component.InDelegate> { get }
+}
+
+public extension EventSource where Handler == test_component.InDelegate {
+    func invoke(_ value: String) {
+        for handler in getInvocationList() {
+            handler(value)
+        }
+    }
 }
 
 extension IIAmImplementable {
@@ -1389,6 +1393,29 @@ extension ISimpleDelegate {
     }
 }
 public typealias AnyISimpleDelegate = any ISimpleDelegate
+
+public protocol InterfaceWithReturnDelegate : WinRTInterface {
+    var eventWithReturn: Event<test_component.ReturnInt32Delegate> { get }
+}
+
+public extension EventSource where Handler == test_component.ReturnInt32Delegate {
+    @discardableResult func invoke() -> Int32 {
+        var result:Int32 = 0
+        for handler in getInvocationList() {
+            result = handler()
+        }
+        return result
+    }
+}
+
+extension InterfaceWithReturnDelegate {
+    public func makeAbi() -> test_component.IInspectable {
+        let wrapper = __ABI_test_component.InterfaceWithReturnDelegateWrapper(self)
+        let _abi = try! wrapper?.toABI { $0 }
+        return .init(_abi!)
+    }
+}
+public typealias AnyInterfaceWithReturnDelegate = any InterfaceWithReturnDelegate
 
 extension test_component.Fruit {
     public static var banana : test_component.Fruit {

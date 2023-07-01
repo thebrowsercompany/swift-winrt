@@ -2,7 +2,7 @@
 import Ctest_component
 
 public typealias PropertyType = __x_ABI_CWindows_CFoundation_CPropertyType
-public typealias AsyncActionCompletedHandler = ((AnyIAsyncAction?, AsyncStatus)) -> ()
+public typealias AsyncActionCompletedHandler = (AnyIAsyncAction?, AsyncStatus) -> ()
 public struct DateTime: Hashable, Codable {
     public var universalTime: Int64 = 0
     public init() {}

@@ -138,16 +138,15 @@ open class InterfaceWrapperBase<I: AbiInterfaceImpl> : WinRTWrapperBase2<I> {
     }
 }
 
-open class DelegateWrapperBase<Delegate: WinRTDelegateBridge> : WinRTWrapperBase<Delegate.CABI, Delegate> {
+open class DelegateWrapperBase<Delegate: WinRTDelegateBridge> : WinRTWrapperBase<Delegate.CABI, Delegate.Handler> {
     public init?(_ impl: Delegate.SwiftProjection?) {
         guard let impl else { return nil}
         let abi = Delegate.makeAbi()
-        let delegate = Delegate(handler: impl)
-        super.init(abi, delegate)
+        super.init(abi, impl)
     }
 
     public static func unwrapFrom(abi pointer: UnsafeMutablePointer<Delegate.CABI>?) -> Delegate.SwiftProjection? {
         guard let unwrapped = tryUnwrapFrom(abi: pointer) else { return Delegate.from(abi: pointer) }
-        return unwrapped.handler
+        return unwrapped
     }
 }

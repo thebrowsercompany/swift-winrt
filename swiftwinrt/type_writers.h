@@ -592,6 +592,10 @@ namespace swiftwinrt
                     for (auto&& generic_arg : generic.generic_params()) {
                         if (!first) write(", ");
                         write(generic_arg);
+                        if (is_reference_type(generic_arg))
+                        {
+                            write("?");
+                        }
                         first = false;
                     }
                     write(">");

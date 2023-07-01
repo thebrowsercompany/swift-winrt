@@ -67,7 +67,7 @@ internal var __x_ABI_C__FIMapView_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMapView_
     AddRef: {
          guard let wrapper = __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.fromRaw($0) else { return 1 }
          _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
     },
 
     Release: {
@@ -252,7 +252,7 @@ internal var __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTab
     AddRef: {
          guard let wrapper = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
          _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
     },
 
     Release: {
@@ -437,7 +437,7 @@ internal var __x_ABI_C__FIMap_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMap_2_HSTRIN
     AddRef: {
          guard let wrapper = __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.fromRaw($0) else { return 1 }
          _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
     },
 
     Release: {
@@ -674,7 +674,7 @@ internal var __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: 
     AddRef: {
          guard let wrapper = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
          _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
     },
 
     Release: {
@@ -910,7 +910,7 @@ internal var __x_ABI_C__FIVectorView_1_HSTRINGVTable: __x_ABI_C__FIVectorView_1_
     AddRef: {
          guard let wrapper = __x_ABI_C__FIVectorView_1_HSTRINGWrapper.fromRaw($0) else { return 1 }
          _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
     },
 
     Release: {
@@ -1089,7 +1089,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVTable: _
     AddRef: {
          guard let wrapper = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
          _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
     },
 
     Release: {
@@ -1267,7 +1267,7 @@ internal var __x_ABI_C__FIVector_1_HSTRINGVTable: __x_ABI_C__FIVector_1_HSTRINGV
     AddRef: {
          guard let wrapper = __x_ABI_C__FIVector_1_HSTRINGWrapper.fromRaw($0) else { return 1 }
          _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
     },
 
     Release: {
@@ -1584,7 +1584,7 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_A
     AddRef: {
          guard let wrapper = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
          _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
     },
 
     Release: {
@@ -1904,7 +1904,7 @@ internal var __x_ABI_C__FIEventHandler_1_IInspectableVTable: __x_ABI_C__FIEventH
     AddRef: {
          guard let wrapper = __x_ABI_C__FIEventHandler_1_IInspectableWrapper.fromRaw($0) else { return 1 }
          _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
     },
 
     Release: {
@@ -1916,7 +1916,7 @@ internal var __x_ABI_C__FIEventHandler_1_IInspectableVTable: __x_ABI_C__FIEventH
         guard let __unwrapped__instance = __x_ABI_C__FIEventHandler_1_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let sender: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: $1)
         let args: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: $2)
-        __unwrapped__instance.handler((sender, args))
+        __unwrapped__instance(sender, args)
         return S_OK
     }
 )
@@ -1934,21 +1934,14 @@ internal class EventHandlerAny: test_component.IUnknown {
 }
 
 internal class __x_ABI_C__FIEventHandler_1_IInspectableImpl : WinRTDelegateBridge {
-    internal typealias Data = (Any?, Any?)
-    internal typealias Return = ()
+    internal typealias Handler = EventHandler<Any?>
     internal typealias CABI = __x_ABI_C__FIEventHandler_1_IInspectable
     internal typealias SwiftABI = test_component.EventHandlerAny
-
-    internal var handler: (Data) -> Return
-    internal required init(handler: @escaping (Data) -> Return){
-        self.handler = handler
-    }
 
     internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
-        let handler: (Data) -> Return = {
-            let (sender, args) = $0
+        let handler: Handler = { (sender, args) in
             let senderWrapper = __ABI_.AnyWrapper(sender)
             let _sender = try! senderWrapper?.toABI { $0 }
             let argsWrapper = __ABI_.AnyWrapper(args)
@@ -1998,7 +1991,7 @@ internal var __x_ABI_C__FIReference_1_intVTable: __x_ABI_C__FIReference_1_intVtb
     AddRef: {
          guard let wrapper = __x_ABI_C__FIReference_1_intWrapper.fromRaw($0) else { return 1 }
          _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
     },
 
     Release: {
@@ -2088,7 +2081,7 @@ internal var __x_ABI_C__FIReference_1_GUIDVTable: __x_ABI_C__FIReference_1_GUIDV
     AddRef: {
          guard let wrapper = __x_ABI_C__FIReference_1_GUIDWrapper.fromRaw($0) else { return 1 }
          _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
     },
 
     Release: {
@@ -2178,7 +2171,7 @@ internal var __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedVTable: 
     AddRef: {
          guard let wrapper = __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper.fromRaw($0) else { return 1 }
          _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
     },
 
     Release: {
@@ -2261,7 +2254,7 @@ internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple
     AddRef: {
          guard let wrapper = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.fromRaw($0) else { return 1 }
          _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
     },
 
     Release: {
@@ -2273,7 +2266,7 @@ internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple
         guard let __unwrapped__instance = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let sender: test_component.Simple? = .from(abi: $1)
         let args: test_component.SimpleEventArgs = .from(abi: $2)
-        __unwrapped__instance.handler((sender, args))
+        __unwrapped__instance(sender, args)
         return S_OK
     }
 )
@@ -2291,21 +2284,14 @@ internal class TypedEventHandlerSimple_SimpleEventArgs: test_component.IUnknown 
 }
 
 internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsImpl : WinRTDelegateBridge {
-    internal typealias Data = (Simple?, SimpleEventArgs)
-    internal typealias Return = ()
+    internal typealias Handler = TypedEventHandler<Simple?, SimpleEventArgs>
     internal typealias CABI = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs
     internal typealias SwiftABI = test_component.TypedEventHandlerSimple_SimpleEventArgs
-
-    internal var handler: (Data) -> Return
-    internal required init(handler: @escaping (Data) -> Return){
-        self.handler = handler
-    }
 
     internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
-        let handler: (Data) -> Return = {
-            let (sender, args) = $0
+        let handler: Handler = { (sender, args) in
             try! _default.InvokeImpl(RawPointer(sender), .from(swift: args))
         }
         return handler

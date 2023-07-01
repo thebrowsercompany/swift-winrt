@@ -186,6 +186,12 @@ typedef interface __x_ABI_Ctest__component_CIVoidToVoidDelegate __x_ABI_Ctest__c
 
 #endif // ____x_ABI_Ctest__component_CIUnsealedDerivedProtectedFactory_FWD_DEFINED__
 
+#ifndef ____x_ABI_Ctest__component_CInterfaceWithReturnDelegate_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CInterfaceWithReturnDelegate_FWD_DEFINED__
+    typedef interface __x_ABI_Ctest__component_CInterfaceWithReturnDelegate __x_ABI_Ctest__component_CInterfaceWithReturnDelegate;
+
+#endif // ____x_ABI_Ctest__component_CInterfaceWithReturnDelegate_FWD_DEFINED__
+
 // Parameterized interface forward declarations (C)
 
 // Collection interface definitions
@@ -1257,6 +1263,12 @@ typedef struct __x_ABI_CWindows_CFoundation_CDateTime __x_ABI_CWindows_CFoundati
 typedef interface __x_ABI_Ctest__component_CDelegates_CIInDelegate __x_ABI_Ctest__component_CDelegates_CIInDelegate;
 
 #endif // ____x_ABI_Ctest__component_CDelegates_CIInDelegate_FWD_DEFINED__
+
+    #ifndef ____x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate_FWD_DEFINED__
+typedef interface __x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate __x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate;
+
+#endif // ____x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate_FWD_DEFINED__
 
     #ifndef ____x_ABI_Ctest__component_CDelegates_CISignalDelegate_FWD_DEFINED__
 #define ____x_ABI_Ctest__component_CDelegates_CISignalDelegate_FWD_DEFINED__
@@ -2618,4 +2630,41 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
     EXTERN_C const IID IID___x_ABI_Ctest__component_CIUnsealedDerivedProtectedFactory;
 #endif /* !defined(____x_ABI_Ctest__component_CIUnsealedDerivedProtectedFactory_INTERFACE_DEFINED__) */
+    
+#if !defined(____x_ABI_Ctest__component_CInterfaceWithReturnDelegate_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CInterfaceWithReturnDelegate_INTERFACE_DEFINED__
+    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_InterfaceWithReturnDelegate[] = L"test_component.InterfaceWithReturnDelegate";
+    typedef struct __x_ABI_Ctest__component_CInterfaceWithReturnDelegateVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CInterfaceWithReturnDelegate* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CInterfaceWithReturnDelegate* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CInterfaceWithReturnDelegate* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_Ctest__component_CInterfaceWithReturnDelegate* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_Ctest__component_CInterfaceWithReturnDelegate* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CInterfaceWithReturnDelegate* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* add_EventWithReturn)(__x_ABI_Ctest__component_CInterfaceWithReturnDelegate* This,
+        __x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate* handler,
+        EventRegistrationToken* token);
+    HRESULT (STDMETHODCALLTYPE* remove_EventWithReturn)(__x_ABI_Ctest__component_CInterfaceWithReturnDelegate* This,
+        EventRegistrationToken token);
+
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CInterfaceWithReturnDelegateVtbl;
+
+    interface __x_ABI_Ctest__component_CInterfaceWithReturnDelegate
+    {
+        CONST_VTBL struct __x_ABI_Ctest__component_CInterfaceWithReturnDelegateVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CInterfaceWithReturnDelegate;
+#endif /* !defined(____x_ABI_Ctest__component_CInterfaceWithReturnDelegate_INTERFACE_DEFINED__) */
     

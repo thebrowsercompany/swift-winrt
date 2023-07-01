@@ -602,7 +602,7 @@ namespace swiftwinrt
         // the swift name for the Invoke method of a delegate is the `handler` property
         if (get_category(method.Parent()) == category::delegate_type && method.Name() != ".ctor")
         {
-            return "handler";
+            return "";
         }
         else if (is_get_overload(method) || is_put_overload(method) || is_add_overload(method))
         {

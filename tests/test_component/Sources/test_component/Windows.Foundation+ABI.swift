@@ -69,7 +69,7 @@ public enum __ABI_Windows_Foundation {
         AddRef: {
              guard let wrapper = IAsyncActionWrapper.fromRaw($0) else { return 1 }
              _ = wrapper.retain()
-             return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
         },
 
         Release: {
@@ -160,7 +160,7 @@ public enum __ABI_Windows_Foundation {
         AddRef: {
              guard let wrapper = IClosableWrapper.fromRaw($0) else { return 1 }
              _ = wrapper.retain()
-             return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
         },
 
         Release: {
@@ -389,7 +389,7 @@ public enum __ABI_Windows_Foundation {
         AddRef: {
              guard let wrapper = IPropertyValueWrapper.fromRaw($0) else { return 1 }
              _ = wrapper.retain()
-             return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
         },
 
         Release: {
@@ -688,7 +688,7 @@ public enum __ABI_Windows_Foundation {
         AddRef: {
              guard let wrapper = IStringableWrapper.fromRaw($0) else { return 1 }
              _ = wrapper.retain()
-             return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
         },
 
         Release: {
@@ -794,7 +794,7 @@ extension __ABI_Windows_Foundation {
         AddRef: {
              guard let wrapper = AsyncActionCompletedHandlerWrapper.fromRaw($0) else { return 1 }
              _ = wrapper.retain()
-             return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
         },
 
         Release: {
@@ -806,7 +806,7 @@ extension __ABI_Windows_Foundation {
             guard let __unwrapped__instance = AsyncActionCompletedHandlerWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let asyncInfo: test_component.AnyIAsyncAction? = __ABI_Windows_Foundation.IAsyncActionWrapper.unwrapFrom(abi: $1)
             let asyncStatus: AsyncStatus = $2
-            __unwrapped__instance.handler((asyncInfo, asyncStatus))
+            __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
         }
     )

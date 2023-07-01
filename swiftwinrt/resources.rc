@@ -29,7 +29,6 @@ PropertyValue+ABI RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\Property
 WinRTProtocols RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\WinRTProtocols.swift"
 Event RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\Events\\Event.swift"
 EventHandlerSubscription RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\Events\\EventHandlerSubscription.swift"
-EventImpl RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\Events\\EventImpl.swift"
 EventSource RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\Events\\EventSource.swift"
 WinRTDelegate RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\Events\\WinRTDelegate.swift"
 

@@ -83,7 +83,7 @@ class MyImplementableDelegate: IIAmImplementable {
 
     var id: WinSDK.UUID?
     func fireEvent(_ data: String) {
-      eventSource.invoke(data)
+      _implementableEvent.invoke(data)
     }
 
     private var object: Any?
@@ -101,6 +101,5 @@ class MyImplementableDelegate: IIAmImplementable {
       return object
     }
 
-    private lazy var eventSource = EventSource<(String),()>()
-    lazy var implementableEvent : Event<(String),()> = eventSource
+    @EventSource<InDelegate> var implementableEvent: Event<InDelegate>
 } 

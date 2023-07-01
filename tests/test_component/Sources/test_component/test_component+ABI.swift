@@ -113,6 +113,10 @@ private var IID___x_ABI_Ctest__component_CIUnsealedDerivedProtectedFactory: IID 
     IID(Data1: 0x84D1FBFC, Data2: 0x0633, Data3: 0x572C, Data4: ( 0xAA,0x3D,0xA8,0xB9,0xBA,0x1D,0x30,0x76 ))// 84D1FBFC-0633-572C-AA3D-A8B9BA1D3076
 }
 
+private var IID___x_ABI_Ctest__component_CInterfaceWithReturnDelegate: IID {
+    IID(Data1: 0xB0EBC406, Data2: 0x17C0, Data3: 0x5703, Data4: ( 0xB9,0xC7,0x50,0xBE,0x67,0x5B,0xBC,0x95 ))// B0EBC406-17C0-5703-B9C7-50BE675BBC95
+}
+
 private var IID___x_ABI_Ctest__component_CIVoidToVoidDelegate: IID {
     IID(Data1: 0x5ED7E415, Data2: 0x84E7, Data3: 0x5E4C, Data4: ( 0x8F,0x68,0xD4,0x65,0x3C,0x39,0xEE,0x46 ))// 5ED7E415-84E7-5E4C-8F68-D4653C39EE46
 }
@@ -208,7 +212,7 @@ public enum __ABI_test_component {
         AddRef: {
              guard let wrapper = IBasicWrapper.fromRaw($0) else { return 1 }
              _ = wrapper.retain()
-             return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
         },
 
         Release: {
@@ -885,7 +889,7 @@ public enum __ABI_test_component {
         AddRef: {
              guard let wrapper = IIAmImplementableWrapper.fromRaw($0) else { return 1 }
              _ = wrapper.retain()
-             return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
         },
 
         Release: {
@@ -1081,8 +1085,7 @@ public enum __ABI_test_component {
         remove_ImplementableEvent: {
             guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let token: EventRegistrationToken = $1
-            let __eventSource = __unwrapped__instance.implementableEvent as! RemoveHandler
-            __eventSource.removeHandler(token)
+            __unwrapped__instance.implementableEvent.removeHandler(token)
             return S_OK
         },
 
@@ -1358,7 +1361,7 @@ public enum __ABI_test_component {
         AddRef: {
              guard let wrapper = ISimpleDelegateWrapper.fromRaw($0) else { return 1 }
              _ = wrapper.retain()
-             return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
         },
 
         Release: {
@@ -1577,6 +1580,96 @@ public enum __ABI_test_component {
 
     }
 
+    open class InterfaceWithReturnDelegate: test_component.IInspectable {
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CInterfaceWithReturnDelegate }
+
+        open func add_EventWithReturnImpl(_ handler: UnsafeMutablePointer<__x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate>?) throws -> EventRegistrationToken {
+            var token: EventRegistrationToken = .init()
+            _ = try perform(as: __x_ABI_Ctest__component_CInterfaceWithReturnDelegate.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.add_EventWithReturn(pThis, handler, &token))
+            }
+            return token
+        }
+
+        open func remove_EventWithReturnImpl(_ token: EventRegistrationToken) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CInterfaceWithReturnDelegate.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.remove_EventWithReturn(pThis, token))
+            }
+        }
+
+    }
+
+    internal static var InterfaceWithReturnDelegateVTable: __x_ABI_Ctest__component_CInterfaceWithReturnDelegateVtbl = .init(
+        QueryInterface: {
+            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+
+            guard riid.pointee == IUnknown.IID ||
+                  riid.pointee == IInspectable.IID || 
+                  riid.pointee == ISwiftImplemented.IID ||
+                  riid.pointee == IAgileObject.IID ||
+                  riid.pointee == __ABI_test_component.InterfaceWithReturnDelegateWrapper.IID else { 
+                    guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
+                          let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
+                    return cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, riid, ppvObject) 
+
+            }
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
+        },
+
+        AddRef: {
+             guard let wrapper = InterfaceWithReturnDelegateWrapper.fromRaw($0) else { return 1 }
+             _ = wrapper.retain()
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+        },
+
+        Release: {
+            guard let wrapper = InterfaceWithReturnDelegateWrapper.fromRaw($0) else { return 1 }
+            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+        },
+
+        GetIids: {
+            let size = MemoryLayout<IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+            iids[0] = IUnknown.IID
+            iids[1] = IInspectable.IID
+            iids[2] = __ABI_test_component.InterfaceWithReturnDelegateWrapper.IID
+            $1!.pointee = 3
+            $2!.pointee = iids
+            return S_OK
+        },
+
+        GetRuntimeClassName: {
+            _ = $0
+            let hstring = try! HString("test_component.InterfaceWithReturnDelegate").detach()
+            $1!.pointee = hstring
+            return S_OK
+        },
+
+        GetTrustLevel: {
+            _ = $0
+            $1!.pointee = TrustLevel(rawValue: 0)
+            return S_OK
+        },
+
+        add_EventWithReturn: {
+            guard let __unwrapped__instance = InterfaceWithReturnDelegateWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            guard let handler = __ABI_test_component_Delegates.ReturnInt32DelegateWrapper.unwrapFrom(abi: $1) else { return E_INVALIDARG }
+            let token = __unwrapped__instance.eventWithReturn.addHandler(handler) as! DisposableWithToken
+            $2?.initialize(to: .from(swift: token))
+            return S_OK
+        },
+
+        remove_EventWithReturn: {
+            guard let __unwrapped__instance = InterfaceWithReturnDelegateWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let token: EventRegistrationToken = $1
+            __unwrapped__instance.eventWithReturn.removeHandler(token)
+            return S_OK
+        }
+    )
+
+    public typealias InterfaceWithReturnDelegateWrapper = InterfaceWrapperBase<__IMPL_test_component.InterfaceWithReturnDelegateImpl>
     public class _ABI_NonBlittableBoolStruct {
         public var val: __x_ABI_Ctest__component_CNonBlittableBoolStruct = .init()
         public init() { }
@@ -1643,7 +1736,7 @@ public enum __ABI_test_component {
         AddRef: {
              guard let wrapper = IBaseOverridesWrapper.fromRaw($0) else { return 1 }
              _ = wrapper.retain()
-             return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
         },
 
         Release: {
@@ -1713,7 +1806,7 @@ public enum __ABI_test_component {
         AddRef: {
              guard let wrapper = IUnsealedDerivedOverridesWrapper.fromRaw($0) else { return 1 }
              _ = wrapper.retain()
-             return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
         },
 
         Release: {
@@ -1790,7 +1883,7 @@ public enum __ABI_test_component {
         AddRef: {
              guard let wrapper = IUnsealedDerivedOverloads2Wrapper.fromRaw($0) else { return 1 }
              _ = wrapper.retain()
-             return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
         },
 
         Release: {
@@ -1903,7 +1996,7 @@ extension __ABI_test_component {
         AddRef: {
              guard let wrapper = VoidToVoidDelegateWrapper.fromRaw($0) else { return 1 }
              _ = wrapper.retain()
-             return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
         },
 
         Release: {
@@ -1913,7 +2006,7 @@ extension __ABI_test_component {
 
         Invoke: {
             guard let __unwrapped__instance = VoidToVoidDelegateWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            __unwrapped__instance.handler(())
+            __unwrapped__instance()
             return S_OK
         }
     )

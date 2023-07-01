@@ -3,43 +3,44 @@ import Ctest_component
 
 public enum __IMPL_test_component_Delegates {
     public class InDelegateImpl : WinRTDelegateBridge {
-        public typealias Data = (String)
-        public typealias Return = ()
+        public typealias Handler = InDelegate
         public typealias CABI = __x_ABI_Ctest__component_CDelegates_CIInDelegate
         public typealias SwiftABI = __ABI_test_component_Delegates.InDelegate
-
-        public var handler: (Data) -> Return
-        public required init(handler: @escaping (Data) -> Return){
-            self.handler = handler
-        }
 
         public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             let _default = SwiftABI(abi)
-            let handler: (Data) -> Return = {
-                let (value) = $0
+            let handler: Handler = { (value) in
                 let _value = try! HString(value)
                 try! _default.InvokeImpl(_value.get())
             }
             return handler
         }
     }
-    public class SignalDelegateImpl : WinRTDelegateBridge {
-        public typealias Data = ()
-        public typealias Return = ()
-        public typealias CABI = __x_ABI_Ctest__component_CDelegates_CISignalDelegate
-        public typealias SwiftABI = __ABI_test_component_Delegates.SignalDelegate
-
-        public var handler: (Data) -> Return
-        public required init(handler: @escaping (Data) -> Return){
-            self.handler = handler
-        }
+    public class ReturnInt32DelegateImpl : WinRTDelegateBridge {
+        public typealias Handler = ReturnInt32Delegate
+        public typealias CABI = __x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate
+        public typealias SwiftABI = __ABI_test_component_Delegates.ReturnInt32Delegate
 
         public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             let _default = SwiftABI(abi)
-            let handler: (Data) -> Return = {
-                let () = $0
+            let handler: Handler = { () in
+                let result = try! _default.InvokeImpl()
+                return result
+            }
+            return handler
+        }
+    }
+    public class SignalDelegateImpl : WinRTDelegateBridge {
+        public typealias Handler = SignalDelegate
+        public typealias CABI = __x_ABI_Ctest__component_CDelegates_CISignalDelegate
+        public typealias SwiftABI = __ABI_test_component_Delegates.SignalDelegate
+
+        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+            guard let abi = abi else { return nil }
+            let _default = SwiftABI(abi)
+            let handler: Handler = { () in
                 try! _default.InvokeImpl()
             }
             return handler
