@@ -33,7 +33,8 @@ static void write_swift_type(writer& w, metadata_type const& type, bool allow_im
         if (is_winrt_eventhandler(generic_typedef))
         {
             auto args_type = generic_params[0];
-            w.write("EventHandler<%>",
+            // '^' escapes the '@'
+            w.write("^@escaping EventHandler<%>",
                 bind<write_swift_type>(*args_type, /* allow_implicit_unwrap: */ false));
             return;
         }
@@ -42,7 +43,8 @@ static void write_swift_type(writer& w, metadata_type const& type, bool allow_im
         {
             auto sender_type = generic_params[0];
             auto args_type = generic_params[1];
-            w.write("TypedEventHandler<%, %>",
+            // '^' escapes the '@'
+            w.write("^@escaping TypedEventHandler<%, %>",
                 bind<write_swift_type>(*sender_type, /* allow_implicit_unwrap: */ false),
                 bind<write_swift_type>(*args_type, /* allow_implicit_unwrap: */ false));
             return;

@@ -958,6 +958,20 @@ type_cache metadata_cache::compile_namespaces(std::vector<std::string_view> cons
                 }
             }
         }
+
+        for (auto& iface : result.interfaces)
+        {
+            if (!is_exclusive(iface.get()) && !iface.get().events.empty())
+            {
+                for (auto& event : iface.get().events)
+                {
+                    if (result.implementable_event_types.find(event.type->swift_full_name()) == result.implementable_event_types.end())
+                    {
+                        result.implementable_event_types.emplace(event.type->swift_full_name(), event.type);
+                    }
+                }
+            }
+        }
  
         // Remove metadata only types
         auto remove_type = [&](auto& list, std::string_view name)

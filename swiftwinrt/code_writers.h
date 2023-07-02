@@ -1120,16 +1120,16 @@ public static func makeAbi() -> CABI {
     static void write_comma_param_types(writer& w, std::vector<function_param> const& params);
     static void write_delegate_return_type(writer& w, function_def const& sig);
 
-    static void write_eventsource_invoke_extension(writer& w, event_def const& event)
+    static void write_eventsource_invoke_extension(writer& w, metadata_type const* event_type)
     {
         writer::generic_param_guard guard{};
         function_def delegate_method{};
         auto access_level = "public";
-        if (auto delegateType = dynamic_cast<const delegate_type*>(event.type))
+        if (auto delegateType = dynamic_cast<const delegate_type*>(event_type))
         {
             delegate_method = delegateType->functions[0];
         }
-        else if (auto genericInst = dynamic_cast<const generic_inst*>(event.type))
+        else if (auto genericInst = dynamic_cast<const generic_inst*>(event_type))
         {
             delegate_method = genericInst->functions[0];
             guard = w.push_generic_params(*genericInst);
@@ -1160,7 +1160,7 @@ public static func makeAbi() -> CABI {
     }
 }
 
-)", access_level, event.type,
+)", access_level, event_type,
     delegate_method.return_type ? "@discardableResult " : "",
     bind<write_function_params>(delegate_method, write_type_params::swift_allow_implicit_unwrap),
     bind<write_return_type_declaration>(delegate_method, write_type_params::swift_allow_implicit_unwrap),
@@ -1220,8 +1220,18 @@ public static func makeAbi() -> CABI {
                 w.write("var %: Event<%> { get }\n",
                     get_swift_name(event.def),
                     event.type);
-
-                eventSourceInvokeLines.push_back(w.write_temp("%", bind<write_eventsource_invoke_extension>(event)));
+                // only write the eventsource extension for interfaces which could be implemented by a swift object
+                // not only does this result in less code generated, it also helps alleviate the issue where different 
+                // interfaces define an event with the same type. For that scenario, we cache the event type on the
+                // writer
+                if (auto delegate = dynamic_cast<const delegate_type*>(event.type))
+                {
+                    if (w.implementableEventTypes.find(delegate) == w.implementableEventTypes.end())
+                    {
+                        w.implementableEventTypes.insert(delegate);
+                        eventSourceInvokeLines.push_back(w.write_temp("%", bind<write_eventsource_invoke_extension>(delegate)));
+                    }
+                }
             }
         }
         w.write("}\n\n");
