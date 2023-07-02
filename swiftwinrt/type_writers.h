@@ -167,7 +167,7 @@ namespace swiftwinrt
         bool writing_generic{};
 
         std::set<std::string> depends;
-        std::set<winmd::reader::Event> events;
+        std::set<const delegate_type*> implementableEventTypes;
         std::vector<generic_param_vector> generic_param_stack;
         swiftwinrt::include_only_used_filter filter;
         swiftwinrt::metadata_cache const* cache;
@@ -592,6 +592,10 @@ namespace swiftwinrt
                     for (auto&& generic_arg : generic.generic_params()) {
                         if (!first) write(", ");
                         write(generic_arg);
+                        if (is_reference_type(generic_arg))
+                        {
+                            write("?");
+                        }
                         first = false;
                     }
                     write(">");

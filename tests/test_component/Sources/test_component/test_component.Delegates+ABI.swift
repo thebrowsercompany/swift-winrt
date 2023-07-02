@@ -5,6 +5,10 @@ private var IID___x_ABI_Ctest__component_CDelegates_CIInDelegate: IID {
     IID(Data1: 0x419EF389, Data2: 0xAF4B, Data3: 0x5676, Data4: ( 0xBC,0xEE,0xE0,0xD7,0x9A,0x5C,0xCA,0xDE ))// 419EF389-AF4B-5676-BCEE-E0D79A5CCADE
 }
 
+private var IID___x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate: IID {
+    IID(Data1: 0xBCB57CF7, Data2: 0x97F9, Data3: 0x5B38, Data4: ( 0x99,0x47,0x39,0xC5,0x14,0x92,0x20,0xF0 ))// BCB57CF7-97F9-5B38-9947-39C5149220F0
+}
+
 private var IID___x_ABI_Ctest__component_CDelegates_CISignalDelegate: IID {
     IID(Data1: 0x9EA7161A, Data2: 0xFCAB, Data3: 0x5037, Data4: ( 0x87,0xF0,0xB5,0x73,0xA5,0xE9,0x7B,0xE9 ))// 9EA7161A-FCAB-5037-87F0-B573A5E97BE9
 }
@@ -13,6 +17,17 @@ public enum __ABI_test_component_Delegates {
 }
 // MARK - InDelegate
 extension __ABI_test_component_Delegates {
+    open class InDelegate: test_component.IUnknown {
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CDelegates_CIInDelegate }
+
+        open func InvokeImpl(_ value: HSTRING?) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CDelegates_CIInDelegate.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, value))
+            }
+        }
+
+    }
+
 
     typealias InDelegateWrapper = DelegateWrapperBase<__IMPL_test_component_Delegates.InDelegateImpl>
     internal static var InDelegateVTable: __x_ABI_Ctest__component_CDelegates_CIInDelegateVtbl = .init(
@@ -23,7 +38,7 @@ extension __ABI_test_component_Delegates {
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
                   riid.pointee == IAgileObject.IID ||
-                  riid.pointee == __x_ABI_Ctest__component_CDelegates_CIInDelegate.IID else { 
+                  riid.pointee == __ABI_test_component_Delegates.InDelegateWrapper.IID else { 
                     guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
                           let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
                     return cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, riid, ppvObject) 
@@ -37,7 +52,7 @@ extension __ABI_test_component_Delegates {
         AddRef: {
              guard let wrapper = InDelegateWrapper.fromRaw($0) else { return 1 }
              _ = wrapper.retain()
-             return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
         },
 
         Release: {
@@ -48,23 +63,93 @@ extension __ABI_test_component_Delegates {
         Invoke: {
             guard let __unwrapped__instance = InDelegateWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let value: String = .init(from: $1)
-            __unwrapped__instance.handler((value))
+            __unwrapped__instance(value)
             return S_OK
         }
     )
 }
-internal extension __x_ABI_Ctest__component_CDelegates_CIInDelegate {
-    static var IID: IID { IID___x_ABI_Ctest__component_CDelegates_CIInDelegate }
-}
-
 public extension WinRTDelegateBridge where CABI == __x_ABI_Ctest__component_CDelegates_CIInDelegate {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component_Delegates.InDelegateVTable) { $0 }
         return .init(lpVtbl:vtblPtr)
     }
 }
+
+// MARK - ReturnInt32Delegate
+extension __ABI_test_component_Delegates {
+    open class ReturnInt32Delegate: test_component.IUnknown {
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate }
+
+        open func InvokeImpl() throws -> INT32 {
+            var result: INT32 = 0
+            _ = try perform(as: __x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, &result))
+            }
+            return result
+        }
+
+    }
+
+
+    typealias ReturnInt32DelegateWrapper = DelegateWrapperBase<__IMPL_test_component_Delegates.ReturnInt32DelegateImpl>
+    internal static var ReturnInt32DelegateVTable: __x_ABI_Ctest__component_CDelegates_CIReturnInt32DelegateVtbl = .init(
+        QueryInterface: {
+            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+
+            guard riid.pointee == IUnknown.IID ||
+                  riid.pointee == IInspectable.IID || 
+                  riid.pointee == ISwiftImplemented.IID ||
+                  riid.pointee == IAgileObject.IID ||
+                  riid.pointee == __ABI_test_component_Delegates.ReturnInt32DelegateWrapper.IID else { 
+                    guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
+                          let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
+                    return cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, riid, ppvObject) 
+
+            }
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
+        },
+
+        AddRef: {
+             guard let wrapper = ReturnInt32DelegateWrapper.fromRaw($0) else { return 1 }
+             _ = wrapper.retain()
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+        },
+
+        Release: {
+            guard let wrapper = ReturnInt32DelegateWrapper.fromRaw($0) else { return 1 }
+            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+        },
+
+        Invoke: {
+            guard let __unwrapped__instance = ReturnInt32DelegateWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let result = __unwrapped__instance()
+            $1?.initialize(to: result)
+            return S_OK
+        }
+    )
+}
+public extension WinRTDelegateBridge where CABI == __x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate {
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component_Delegates.ReturnInt32DelegateVTable) { $0 }
+        return .init(lpVtbl:vtblPtr)
+    }
+}
+
 // MARK - SignalDelegate
 extension __ABI_test_component_Delegates {
+    open class SignalDelegate: test_component.IUnknown {
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CDelegates_CISignalDelegate }
+
+        open func InvokeImpl() throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CDelegates_CISignalDelegate.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis))
+            }
+        }
+
+    }
+
 
     typealias SignalDelegateWrapper = DelegateWrapperBase<__IMPL_test_component_Delegates.SignalDelegateImpl>
     internal static var SignalDelegateVTable: __x_ABI_Ctest__component_CDelegates_CISignalDelegateVtbl = .init(
@@ -75,7 +160,7 @@ extension __ABI_test_component_Delegates {
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
                   riid.pointee == IAgileObject.IID ||
-                  riid.pointee == __x_ABI_Ctest__component_CDelegates_CISignalDelegate.IID else { 
+                  riid.pointee == __ABI_test_component_Delegates.SignalDelegateWrapper.IID else { 
                     guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
                           let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
                     return cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, riid, ppvObject) 
@@ -89,7 +174,7 @@ extension __ABI_test_component_Delegates {
         AddRef: {
              guard let wrapper = SignalDelegateWrapper.fromRaw($0) else { return 1 }
              _ = wrapper.retain()
-             return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
         },
 
         Release: {
@@ -99,18 +184,15 @@ extension __ABI_test_component_Delegates {
 
         Invoke: {
             guard let __unwrapped__instance = SignalDelegateWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            __unwrapped__instance.handler(())
+            __unwrapped__instance()
             return S_OK
         }
     )
 }
-internal extension __x_ABI_Ctest__component_CDelegates_CISignalDelegate {
-    static var IID: IID { IID___x_ABI_Ctest__component_CDelegates_CISignalDelegate }
-}
-
 public extension WinRTDelegateBridge where CABI == __x_ABI_Ctest__component_CDelegates_CISignalDelegate {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component_Delegates.SignalDelegateVTable) { $0 }
         return .init(lpVtbl:vtblPtr)
     }
 }
+

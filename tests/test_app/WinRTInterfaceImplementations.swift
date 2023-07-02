@@ -82,7 +82,8 @@ class MyImplementableDelegate: IIAmImplementable {
     var enumProperty: Fruit = .apple
 
     var id: WinSDK.UUID?
-    func fireEvent() {
+    func fireEvent(_ data: String) {
+      _implementableEvent.invoke(data)
     }
 
     private var object: Any?
@@ -99,4 +100,6 @@ class MyImplementableDelegate: IIAmImplementable {
     func returnObject() throws -> Any! {
       return object
     }
+
+    @EventSource<InDelegate> var implementableEvent: Event<InDelegate>
 } 

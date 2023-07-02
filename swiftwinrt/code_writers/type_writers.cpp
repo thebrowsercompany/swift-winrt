@@ -34,7 +34,7 @@ static void write_swift_type(writer& w, metadata_type const& type, bool allow_im
         {
             auto args_type = generic_params[0];
             // '^' escapes the '@'
-            w.write("^@escaping (Any, %) -> ()",
+            w.write("^@escaping EventHandler<%>",
                 bind<write_swift_type>(*args_type, /* allow_implicit_unwrap: */ false));
             return;
         }
@@ -44,7 +44,7 @@ static void write_swift_type(writer& w, metadata_type const& type, bool allow_im
             auto sender_type = generic_params[0];
             auto args_type = generic_params[1];
             // '^' escapes the '@'
-            w.write("^@escaping (%, %) -> ()",
+            w.write("^@escaping TypedEventHandler<%, %>",
                 bind<write_swift_type>(*sender_type, /* allow_implicit_unwrap: */ false),
                 bind<write_swift_type>(*args_type, /* allow_implicit_unwrap: */ false));
             return;
@@ -122,11 +122,9 @@ void write_swift_type_identifier_ex(writer& w, metadata_type const& type, bool e
         auto&& generic_typedef = *gen_inst->generic_type();
 
         // Special generic types
-        if (is_winrt_ireference(generic_typedef)
-            || is_winrt_eventhandler(generic_typedef)
-            || is_winrt_typedeventhandler(generic_typedef))
+        if (is_winrt_ireference(generic_typedef))
         {
-            throw std::exception("Special types IReference, EventHandler and TypedEventHandler"
+            throw std::exception("Special type IReference"
                 " cannot be represented as a Swift type-identifier syntax node.");
         }
 

@@ -1,5 +1,6 @@
 #include "NullValues.idl"
 #include "Keywords.idl"
+#include "EventTester.idl"
 
 import "Windows.Foundation.idl";
 // import "Windows.Foundation.Numerics.idl";
@@ -165,7 +166,7 @@ namespace test_component
 
             Windows.Foundation.IReference<Guid> Id;
             event test_component.Delegates.InDelegate ImplementableEvent;
-            void FireEvent();
+            void FireEvent(String data);
         }
 
         interface ISimpleDelegate

@@ -161,12 +161,19 @@ public enum __IMPL_Windows_Foundation {
     }
 
     public class AsyncActionCompletedHandlerImpl : WinRTDelegateBridge {
-        public typealias Data = (AnyIAsyncAction?, AsyncStatus)
-        public typealias Return = ()
+        public typealias Handler = AsyncActionCompletedHandler
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler
-        public var handler: (Data) -> Return
-        public required init(handler: @escaping (Data) -> Return){
-            self.handler = handler
+        public typealias SwiftABI = __ABI_Windows_Foundation.AsyncActionCompletedHandler
+
+        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+            guard let abi = abi else { return nil }
+            let _default = SwiftABI(abi)
+            let handler: Handler = { (asyncInfo, asyncStatus) in
+                let asyncInfoWrapper = __ABI_Windows_Foundation.IAsyncActionWrapper(asyncInfo)
+                let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
+                try! _default.InvokeImpl(_asyncInfo, asyncStatus)
+            }
+            return handler
         }
     }
 }

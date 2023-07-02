@@ -361,67 +361,6 @@ class SwiftWinRTTests : XCTestCase {
     XCTAssertEqual(classy.id, id)
   }
 
-  public func testEvents() throws {
-    let simple = Simple()
-    var count = 0
-    var static_count = 0
-    
-    var disposable = [Disposable?]()
-
-    disposable.append(simple.signalEvent.addHandler {
-      print("handler 1 called")
-      count+=1
-    })
-
-    disposable.append(Simple.staticEvent.addHandler { (_,_) in
-      print("static handler 1 called")
-      static_count+=1
-    })
-
-    try simple.fireEvent()
-    XCTAssertEqual(count, 1)
-
-    try simple.fireEvent()
-    XCTAssertEqual(count, 2)
-
-    Simple.fireStaticEvent()
-    XCTAssertEqual(static_count, 1)
-    Simple.fireStaticEvent()
-    XCTAssertEqual(static_count, 2)
-
-    // dispose of the handlers and make sure we
-    // aren't getting more events
-    for dispose in disposable {
-      if let dispose = dispose {
-        dispose.dispose()
-      }
-    }
-    disposable.removeAll(keepingCapacity: true)
-
-    try simple.fireEvent()
-    XCTAssertEqual(count, 2)
-
-    Simple.fireStaticEvent()
-    XCTAssertEqual(static_count, 2)
-
-    // hookup the handlers again and make sure it works, just to be safe
-    simple.signalEvent.addHandler {
-      print("handler 1 called")
-      count+=1
-    }
-
-    disposable.append(Simple.staticEvent.addHandler { (_,_) in
-      print("static handler 1 called")
-      static_count+=1
-    })
-
-    try simple.fireEvent()
-    XCTAssertEqual(count, 3)
-
-    Simple.fireStaticEvent()
-    XCTAssertEqual(static_count, 3)
-  }
-
   public func testAggregation() throws {
     let derived = Derived()
     try derived.doTheThing()
@@ -620,7 +559,6 @@ var tests: [XCTestCaseEntry] = [
     ("testDelegate", SwiftWinRTTests.testDelegate),
     ("testDoubleDelegate", SwiftWinRTTests.testDoubleDelegate),
     ("testEnums", SwiftWinRTTests.testEnums),
-    ("testEvents", SwiftWinRTTests.testEvents),
     ("testIReference", SwiftWinRTTests.testIReference),
     ("testMap_asInput", SwiftWinRTTests.testMap_asInput),
     ("testMap_asReturn", SwiftWinRTTests.testMap_asReturn),
@@ -634,7 +572,7 @@ var tests: [XCTestCaseEntry] = [
     ("testVector", SwiftWinRTTests.testVector),
     ("testErrorInfo", SwiftWinRTTests.testErrorInfo),
   ])
-] + valueBoxingTests
+] + valueBoxingTests + eventTests
 
 RoInitialize(RO_INIT_MULTITHREADED)
 XCTMain(tests)

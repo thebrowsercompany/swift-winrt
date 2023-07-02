@@ -39,7 +39,7 @@ namespace swiftwinrt
         }
 
         auto name = type.generic_type_abi_name();
-        return name == "IReference" || name == "IEventHandler" || name == "ITypedEventHandler"
+        return name == "IReference" || name == "EventHandler" || name == "TypedEventHandler"
             || name == "IVector" || name == "IVectorView" || name == "IMap" || name == "IMapView";
     }
 

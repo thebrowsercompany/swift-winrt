@@ -1,5 +1,5 @@
 import WinSDK
-import Ctest_component
+import C_BINDINGS_MODULE
 
 public typealias EventHandler<Args> = (Any?, Args) -> ()
 public typealias TypedEventHandler<Sender, Args> = (Sender, Args) -> ()
@@ -29,7 +29,7 @@ public struct Event<Handler>
 }
 
 public protocol DisposableWithToken : Disposable {
-    var token: Ctest_component.EventRegistrationToken { get }
+    var token: C_BINDINGS_MODULE.EventRegistrationToken { get }
 }
 
 struct EventCleanup: DisposableWithToken {

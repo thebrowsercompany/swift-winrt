@@ -241,6 +241,14 @@ namespace swiftwinrt
             write_generic_implementation(w, inst.get());
         }
 
+        for (auto& [_, eventType] : members.implementable_event_types)
+        {
+            if (is_generic_inst(eventType))
+            {
+                write_eventsource_invoke_extension(w, eventType);
+            }
+        }
+
         w.swap();
         write_preamble(w);
         w.save_file("Generics");

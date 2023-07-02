@@ -110,8 +110,9 @@ public enum __IMPL_test_component {
             return result
         }
 
-        public func fireEvent() throws {
-            try _default.FireEventImpl()
+        public func fireEvent(_ data: String) throws {
+            let _data = try! HString(data)
+            try _default.FireEventImpl(_data.get())
         }
 
         public var enumProperty : Fruit {
@@ -137,6 +138,20 @@ public enum __IMPL_test_component {
                 try! _default.put_IdImpl(_newValue)
             }
         }
+
+        public lazy var implementableEvent : Event<test_component.InDelegate> = {
+          .init(
+            add: { [weak this = _default] in
+              guard let this else { return .init() }
+              let wrapper = __ABI_test_component_Delegates.InDelegateWrapper($0)
+              let abi = try! wrapper?.toABI { $0 }
+              return try! this.add_ImplementableEventImpl(abi)
+            },
+            remove: { [weak this = _default] in
+             try? this?.remove_ImplementableEventImpl($0) 
+           }
+          )
+        }()
 
     }
 
@@ -168,13 +183,52 @@ public enum __IMPL_test_component {
 
     }
 
+    public class InterfaceWithReturnDelegateImpl : InterfaceWithReturnDelegate, WinRTAbiBridge {
+        public typealias CABI = __x_ABI_Ctest__component_CInterfaceWithReturnDelegate
+        public typealias SwiftABI = __ABI_test_component.InterfaceWithReturnDelegate
+        public typealias SwiftProjection = AnyInterfaceWithReturnDelegate
+        private (set) public var _default: SwiftABI
+        public var thisPtr: test_component.IInspectable { _default }
+        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+            guard let abi = abi else { return nil }
+            return InterfaceWithReturnDelegateImpl(abi)
+        }
+        public init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+            _default = SwiftABI(fromAbi)
+        }
+
+        public static func makeAbi() -> CABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.InterfaceWithReturnDelegateVTable) { $0 }
+            return .init(lpVtbl: vtblPtr)
+        }
+        public lazy var eventWithReturn : Event<test_component.ReturnInt32Delegate> = {
+          .init(
+            add: { [weak this = _default] in
+              guard let this else { return .init() }
+              let wrapper = __ABI_test_component_Delegates.ReturnInt32DelegateWrapper($0)
+              let abi = try! wrapper?.toABI { $0 }
+              return try! this.add_EventWithReturnImpl(abi)
+            },
+            remove: { [weak this = _default] in
+             try? this?.remove_EventWithReturnImpl($0) 
+           }
+          )
+        }()
+
+    }
+
     public class VoidToVoidDelegateImpl : WinRTDelegateBridge {
-        public typealias Data = ()
-        public typealias Return = ()
+        public typealias Handler = VoidToVoidDelegate
         public typealias CABI = __x_ABI_Ctest__component_CIVoidToVoidDelegate
-        public var handler: (Data) -> Return
-        public required init(handler: @escaping (Data) -> Return){
-            self.handler = handler
+        public typealias SwiftABI = __ABI_test_component.VoidToVoidDelegate
+
+        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+            guard let abi = abi else { return nil }
+            let _default = SwiftABI(abi)
+            let handler: Handler = { () in
+                try! _default.InvokeImpl()
+            }
+            return handler
         }
     }
 }
@@ -211,6 +265,18 @@ public class ISimpleDelegate_MakeFromAbi : MakeFromAbi {
         guard let abi else { return nil }
         let swiftAbi: SwiftABI = try! test_component.IInspectable(abi).QueryInterface()
         return __IMPL_test_component.ISimpleDelegateImpl(RawPointer(swiftAbi)!)
+    }
+}
+
+@_spi(__MakeFromAbi_DoNotImport)
+public class InterfaceWithReturnDelegate_MakeFromAbi : MakeFromAbi {
+    public typealias CABI = __x_ABI_Ctest__component_CInterfaceWithReturnDelegate
+    public typealias SwiftABI = __ABI_test_component.InterfaceWithReturnDelegate
+    public typealias SwiftProjection = AnyInterfaceWithReturnDelegate
+    public static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
+        guard let abi else { return nil }
+        let swiftAbi: SwiftABI = try! test_component.IInspectable(abi).QueryInterface()
+        return __IMPL_test_component.InterfaceWithReturnDelegateImpl(RawPointer(swiftAbi)!)
     }
 }
 

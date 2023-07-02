@@ -192,7 +192,11 @@ namespace swiftwinrt
         }
         else if (category == param_category::struct_type)
         {
-            if (w.abi_types)
+            if (type->swift_type_name() == "EventRegistrationToken")
+            {
+                w.write(name);
+            }
+            else if (w.abi_types)
             {
                 w.write(".from(swift: %)", name);
             }

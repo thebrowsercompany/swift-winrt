@@ -46,6 +46,7 @@ extension AbiInterfaceImpl where SwiftABI: IInspectable {
 public protocol WinRTAbiBridge: AbiInterfaceImpl where SwiftABI: IInspectable {}
 internal typealias AnyWinRTAbiBridge = any WinRTAbiBridge
 
+
 // The WinRTWrapperBase class wraps an AbiBridge and is used for wrapping and unwrapping swift
 // objects at the ABI layer. The contract for how to do this is defined by the AbiBridge protocol
 open class WinRTWrapperBase<CInterface, Prototype> {
@@ -137,16 +138,15 @@ open class InterfaceWrapperBase<I: AbiInterfaceImpl> : WinRTWrapperBase2<I> {
     }
 }
 
-open class DelegateWrapperBase<Delegate: WinRTDelegateBridge> : WinRTWrapperBase<Delegate.CABI, Delegate> {
+open class DelegateWrapperBase<Delegate: WinRTDelegateBridge> : WinRTWrapperBase<Delegate.CABI, Delegate.Handler> {
     public init?(_ impl: Delegate.SwiftProjection?) {
         guard let impl else { return nil}
         let abi = Delegate.makeAbi()
-        let delegate = Delegate(handler: impl)
-        super.init(abi, delegate)
+        super.init(abi, impl)
     }
 
     public static func unwrapFrom(abi pointer: UnsafeMutablePointer<Delegate.CABI>?) -> Delegate.SwiftProjection? {
-        guard let unwrapped = tryUnwrapFrom(abi: pointer) else { return nil }
-        return unwrapped.handler
+        guard let unwrapped = tryUnwrapFrom(abi: pointer) else { return Delegate.from(abi: pointer) }
+        return unwrapped
     }
 }
