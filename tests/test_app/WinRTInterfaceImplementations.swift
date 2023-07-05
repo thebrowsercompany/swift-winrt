@@ -83,7 +83,7 @@ class MyImplementableDelegate: IIAmImplementable {
 
     var id: WinSDK.UUID?
     func fireEvent(_ data: String) {
-      _implementableEvent.invoke(data)
+      _implementableEvent.raise?(data)
     }
 
     private var object: Any?
