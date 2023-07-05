@@ -4,9 +4,9 @@ import Ctest_component
 
 /// EventSource is the class which implements handling event subscriptions, removals,
 /// and invoking events for authoring events in Swift
-@propertyWrapper public class EventSource<Handler>
-{
+@propertyWrapper public class EventSource<Handler> {
     private var event: Event<Handler>!
+    private var handlers = EventHandlerSubscriptions<Handler>()
 
     public init() {
         event = .init(
@@ -15,17 +15,11 @@ import Ctest_component
         )
     }
     
-    public var wrappedValue: Event<Handler> {
-        get {
-            return event
-        }
-    }
+    public var wrappedValue: Event<Handler> { event }
     
     public func getInvocationList() -> [Handler] {
       handlers.getInvocationList()
     }
-
-    private var handlers = EventHandlerSubscriptions<Handler>()
 } 
 
 extension Ctest_component.EventRegistrationToken: Hashable {
@@ -36,10 +30,4 @@ extension Ctest_component.EventRegistrationToken: Hashable {
    public func hash(into hasher: inout Hasher) {
         hasher.combine(value)
     }
-}
-
-extension Ctest_component.EventRegistrationToken {
-  public static func from(swift: DisposableWithToken) -> Ctest_component.EventRegistrationToken {
-    return swift.token
-  }
 }

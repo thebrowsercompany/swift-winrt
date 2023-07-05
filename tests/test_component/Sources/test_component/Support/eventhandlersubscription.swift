@@ -2,8 +2,7 @@ import Foundation
 import WinSDK
 import Ctest_component
 
-struct EventHandlerSubscription<Handler>
-{
+struct EventHandlerSubscription<Handler> {
   var handler: Handler
   var token: Ctest_component.EventRegistrationToken
 }

@@ -29,7 +29,7 @@ extension __ABI_test_component_Delegates {
     }
 
 
-    typealias InDelegateWrapper = DelegateWrapperBase<__IMPL_test_component_Delegates.InDelegateImpl>
+    typealias InDelegateWrapper = InterfaceWrapperBase<__IMPL_test_component_Delegates.InDelegateImpl>
     internal static var InDelegateVTable: __x_ABI_Ctest__component_CDelegates_CIInDelegateVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
@@ -91,7 +91,7 @@ extension __ABI_test_component_Delegates {
     }
 
 
-    typealias ReturnInt32DelegateWrapper = DelegateWrapperBase<__IMPL_test_component_Delegates.ReturnInt32DelegateImpl>
+    typealias ReturnInt32DelegateWrapper = InterfaceWrapperBase<__IMPL_test_component_Delegates.ReturnInt32DelegateImpl>
     internal static var ReturnInt32DelegateVTable: __x_ABI_Ctest__component_CDelegates_CIReturnInt32DelegateVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
@@ -151,7 +151,7 @@ extension __ABI_test_component_Delegates {
     }
 
 
-    typealias SignalDelegateWrapper = DelegateWrapperBase<__IMPL_test_component_Delegates.SignalDelegateImpl>
+    typealias SignalDelegateWrapper = InterfaceWrapperBase<__IMPL_test_component_Delegates.SignalDelegateImpl>
     internal static var SignalDelegateVTable: __x_ABI_Ctest__component_CDelegates_CISignalDelegateVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
