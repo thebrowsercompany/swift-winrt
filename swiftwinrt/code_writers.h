@@ -531,7 +531,7 @@ bind<write_abi_args>(function));
         auto impl_name = w.write_temp("%", bind_impl_fullname(type));
         auto wrapper_name = w.write_temp("%", bind_wrapper_name(type));
         auto format = R"(
-typealias % = DelegateWrapperBase<%>
+typealias % = InterfaceWrapperBase<%>
 )";
         w.write(format, wrapper_name, impl_name);
     }
@@ -2564,7 +2564,7 @@ bind([&](writer& w) {
         }
         else if (is_add_overload(method))
         {
-            func_call += w.write_temp(".%.addHandler(%) as! DisposableWithToken", get_swift_name(method), bind<write_consume_args>(function));
+            func_call += w.write_temp(".%.addHandler(%)", get_swift_name(method), bind<write_consume_args>(function));
         }
         else if (is_remove_overload(method))
         {
