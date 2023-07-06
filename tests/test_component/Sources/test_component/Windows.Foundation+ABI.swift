@@ -771,7 +771,7 @@ extension __ABI_Windows_Foundation {
     }
 
 
-    typealias AsyncActionCompletedHandlerWrapper = DelegateWrapperBase<__IMPL_Windows_Foundation.AsyncActionCompletedHandlerImpl>
+    typealias AsyncActionCompletedHandlerWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.AsyncActionCompletedHandlerImpl>
     internal static var AsyncActionCompletedHandlerVTable: __x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandlerVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }

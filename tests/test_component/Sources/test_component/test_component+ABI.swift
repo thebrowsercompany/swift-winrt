@@ -1077,7 +1077,7 @@ public enum __ABI_test_component {
         add_ImplementableEvent: {
             guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             guard let handler = __ABI_test_component_Delegates.InDelegateWrapper.unwrapFrom(abi: $1) else { return E_INVALIDARG }
-            let token = __unwrapped__instance.implementableEvent.addHandler(handler) as! DisposableWithToken
+            let token = __unwrapped__instance.implementableEvent.addHandler(handler)
             $2?.initialize(to: .from(swift: token))
             return S_OK
         },
@@ -1656,7 +1656,7 @@ public enum __ABI_test_component {
         add_EventWithReturn: {
             guard let __unwrapped__instance = InterfaceWithReturnDelegateWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             guard let handler = __ABI_test_component_Delegates.ReturnInt32DelegateWrapper.unwrapFrom(abi: $1) else { return E_INVALIDARG }
-            let token = __unwrapped__instance.eventWithReturn.addHandler(handler) as! DisposableWithToken
+            let token = __unwrapped__instance.eventWithReturn.addHandler(handler)
             $2?.initialize(to: .from(swift: token))
             return S_OK
         },
@@ -1973,7 +1973,7 @@ extension __ABI_test_component {
     }
 
 
-    typealias VoidToVoidDelegateWrapper = DelegateWrapperBase<__IMPL_test_component.VoidToVoidDelegateImpl>
+    typealias VoidToVoidDelegateWrapper = InterfaceWrapperBase<__IMPL_test_component.VoidToVoidDelegateImpl>
     internal static var VoidToVoidDelegateVTable: __x_ABI_Ctest__component_CIVoidToVoidDelegateVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }

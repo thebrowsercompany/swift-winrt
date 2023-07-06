@@ -2,8 +2,7 @@ import Foundation
 import WinSDK
 import C_BINDINGS_MODULE
 
-struct EventHandlerSubscription<Handler>
-{
+struct EventHandlerSubscription<Handler> {
   var handler: Handler
   var token: C_BINDINGS_MODULE.EventRegistrationToken
 }

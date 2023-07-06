@@ -8,8 +8,7 @@ public protocol Disposable {
   func dispose()
 }
 
-public struct Event<Handler>
-{
+public struct Event<Handler> {
     fileprivate var add: (Handler) -> EventRegistrationToken
     fileprivate var remove: (_ token: EventRegistrationToken) -> Void
     
@@ -18,7 +17,7 @@ public struct Event<Handler>
         self.remove = remove
     }
 
-    @discardableResult public func addHandler(_ handler: Handler) -> any Disposable {
+    @discardableResult public func addHandler(_ handler: Handler) -> EventCleanup {
         let token = add(handler)
         return EventCleanup(token: token, closeAction: remove)
     }
@@ -28,18 +27,21 @@ public struct Event<Handler>
     }
 }
 
-public protocol DisposableWithToken : Disposable {
-    var token: Ctest_component.EventRegistrationToken { get }
-}
+public struct EventCleanup: Disposable {
+    fileprivate let token: EventRegistrationToken
+    let closeAction: (_ token: EventRegistrationToken) -> Void
+    public init(token: EventRegistrationToken, closeAction: @escaping (_ token: EventRegistrationToken) -> Void) {
+        self.token = token
+        self.closeAction = closeAction
+    }
 
-struct EventCleanup: DisposableWithToken {
-    var token: EventRegistrationToken
-    var closeAction: (_ token: EventRegistrationToken) -> Void
-    func dispose() {
+    public func dispose() {
         closeAction(token)
     }
 }
 
-public struct NoopDisposable : Disposable {
-    public func dispose() {}
+extension Ctest_component.EventRegistrationToken {
+  public static func from(swift: EventCleanup) -> Ctest_component.EventRegistrationToken {
+    return swift.token
+  }
 }

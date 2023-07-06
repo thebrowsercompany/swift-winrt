@@ -4,9 +4,9 @@ import C_BINDINGS_MODULE
 
 /// EventSource is the class which implements handling event subscriptions, removals,
 /// and invoking events for authoring events in Swift
-@propertyWrapper public class EventSource<Handler>
-{
+@propertyWrapper public class EventSource<Handler> {
     private var event: Event<Handler>!
+    private var handlers = EventHandlerSubscriptions<Handler>()
 
     public init() {
         event = .init(
@@ -15,17 +15,11 @@ import C_BINDINGS_MODULE
         )
     }
     
-    public var wrappedValue: Event<Handler> {
-        get {
-            return event
-        }
-    }
+    public var wrappedValue: Event<Handler> { event }
     
     public func getInvocationList() -> [Handler] {
       handlers.getInvocationList()
     }
-
-    private var handlers = EventHandlerSubscriptions<Handler>()
 } 
 
 extension C_BINDINGS_MODULE.EventRegistrationToken: Hashable {
@@ -36,10 +30,4 @@ extension C_BINDINGS_MODULE.EventRegistrationToken: Hashable {
    public func hash(into hasher: inout Hasher) {
         hasher.combine(value)
     }
-}
-
-extension C_BINDINGS_MODULE.EventRegistrationToken {
-  public static func from(swift: DisposableWithToken) -> C_BINDINGS_MODULE.EventRegistrationToken {
-    return swift.token
-  }
 }
