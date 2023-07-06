@@ -23,7 +23,11 @@ struct EventHandlerSubscriptions<Handler> {
     
     mutating func remove(token: C_BINDINGS_MODULE.EventRegistrationToken) {
         lock.lock()
-        buffer = buffer.filter { $0.token != token }
+        // The semantics when the same event handler is added multiple times
+        // is to append to the end and to remove the last occurrence first.
+        if let index = buffer.lastIndex(where: { $0.token == token }) {
+            buffer.remove(at: index)
+        }
         lock.unlock()
     }
 
