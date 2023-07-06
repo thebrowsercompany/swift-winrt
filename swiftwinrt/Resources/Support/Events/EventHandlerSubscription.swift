@@ -23,7 +23,9 @@ struct EventHandlerSubscriptions<Handler> {
     
     mutating func remove(token: C_BINDINGS_MODULE.EventRegistrationToken) {
         lock.lock()
-        buffer = buffer.filter { $0.token != token }
+        if let index = buffer.firstIndex(where: { $0.token == token }) {
+            buffer.remove(at: index)
+        }
         lock.unlock()
     }
 
