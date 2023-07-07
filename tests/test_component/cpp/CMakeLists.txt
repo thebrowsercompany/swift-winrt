@@ -124,6 +124,8 @@ target_sources(test_component_cpp PRIVATE
     Derived.cpp
     EventTester.h
     EventTester.cpp
+    ListView.h
+    ListView.cpp
     module.cpp
     ${CPPWINRT_OUTPUT}
     #Optional.cpp
