@@ -222,10 +222,6 @@ namespace winrt::test_component::implementation
         test_component::BaseNoOverrides BaseNoOverridesProperty() { return m_baseNoOverrides; }
         void BaseNoOverridesProperty(test_component::BaseNoOverrides const& value) { m_baseNoOverrides = value; }
 
-        winrt::Windows::Foundation::IInspectable ItemsSource() { return m_itemsSource; }
-        void ItemsSource(winrt::Windows::Foundation::IInspectable const& value) {
-            m_itemsSource = value.as< Windows::Foundation::Collections::IVector<winrt::Windows::Foundation::IInspectable>>();
-        }
     private:
         static float s_float;
         bool m_fail{};
@@ -250,7 +246,6 @@ namespace winrt::test_component::implementation
         Windows::Foundation::IReference<winrt::guid> m_id{};
         test_component::Base m_base = test_component::Derived();
         test_component::BaseNoOverrides m_baseNoOverrides { nullptr };
-        Windows::Foundation::Collections::IVector<winrt::Windows::Foundation::IInspectable> m_itemsSource;
         Windows::Foundation::Collections::IVector<hstring> m_vector { winrt::single_threaded_vector<hstring>() };
     };
 

@@ -1,6 +1,7 @@
 #include "NullValues.idl"
 #include "Keywords.idl"
 #include "EventTester.idl"
+#include "Bindable.idl"
 
 import "Windows.Foundation.idl";
 // import "Windows.Foundation.Numerics.idl";
@@ -296,9 +297,6 @@ namespace test_component
 
             Windows.Foundation.IReference<Int32> StartValue;
             Windows.Foundation.IReference<Guid> Id;
-
-            Object ItemsSource;
-            // Windows.Foundation.Collections.IVector<Simple> Children { get; };
 
             Base BaseProperty;
             BaseNoOverrides BaseNoOverridesProperty;

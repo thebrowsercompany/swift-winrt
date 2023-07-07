@@ -26,7 +26,7 @@ private var IID___x_ABI_Ctest__component_CIBasic: IID {
 }
 
 private var IID___x_ABI_Ctest__component_CIClass: IID {
-    IID(Data1: 0xD5C086F3, Data2: 0xA35F, Data3: 0x5B66, Data4: ( 0xAE,0x59,0x4D,0x71,0xD3,0x95,0x53,0xDD ))// D5C086F3-A35F-5B66-AE59-4D71D39553DD
+    IID(Data1: 0x3831069E, Data2: 0xD131, Data3: 0x544C, Data4: ( 0xB7,0x2C,0x1F,0x70,0x84,0x19,0x51,0xBE ))// 3831069E-D131-544C-B72C-1F70841951BE
 }
 
 private var IID___x_ABI_Ctest__component_CIClassFactory: IID {
@@ -59,6 +59,10 @@ private var IID___x_ABI_Ctest__component_CIEventTesterFactory: IID {
 
 private var IID___x_ABI_Ctest__component_CIIAmImplementable: IID {
     IID(Data1: 0x0B3C0120, Data2: 0xD138, Data3: 0x512B, Data4: ( 0x8D,0x38,0xF5,0x1E,0x35,0xF0,0x65,0xB2 ))// 0B3C0120-D138-512B-8D38-F51E35F065B2
+}
+
+private var IID___x_ABI_Ctest__component_CIListView: IID {
+    IID(Data1: 0xF87EE1B7, Data2: 0x99EB, Data3: 0x5678, Data4: ( 0xA1,0x74,0xDE,0xA3,0x52,0x96,0xB4,0x6F ))// F87EE1B7-99EB-5678-A174-DEA35296B46F
 }
 
 private var IID___x_ABI_Ctest__component_CINullValuesStatics: IID {
@@ -466,20 +470,6 @@ public enum __ABI_test_component {
         internal func put_IdImpl(_ value: UnsafeMutablePointer<__x_ABI_C__FIReference_1_GUID>?) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_Id(pThis, value))
-            }
-        }
-
-        internal func get_ItemsSourceImpl() throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-            var value: UnsafeMutablePointer<Ctest_component.IInspectable>?
-            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.get_ItemsSource(pThis, &value))
-            }
-            return value
-        }
-
-        internal func put_ItemsSourceImpl(_ value: UnsafeMutablePointer<Ctest_component.IInspectable>?) throws {
-            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.put_ItemsSource(pThis, value))
             }
         }
 
@@ -1100,6 +1090,39 @@ public enum __ABI_test_component {
     )
 
     public typealias IIAmImplementableWrapper = InterfaceWrapperBase<__IMPL_test_component.IIAmImplementableImpl>
+    open class IListView: test_component.IInspectable {
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CIListView }
+
+        internal func get_ItemsSourceImpl() throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
+            var value: UnsafeMutablePointer<Ctest_component.IInspectable>?
+            _ = try perform(as: __x_ABI_Ctest__component_CIListView.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_ItemsSource(pThis, &value))
+            }
+            return value
+        }
+
+        internal func put_ItemsSourceImpl(_ value: UnsafeMutablePointer<Ctest_component.IInspectable>?) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIListView.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.put_ItemsSource(pThis, value))
+            }
+        }
+
+        internal func add_OnItemAddedImpl(_ handler: UnsafeMutablePointer<__x_ABI_C__FIEventHandler_1_IInspectable>?) throws -> EventRegistrationToken {
+            var token: EventRegistrationToken = .init()
+            _ = try perform(as: __x_ABI_Ctest__component_CIListView.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.add_OnItemAdded(pThis, handler, &token))
+            }
+            return token
+        }
+
+        internal func remove_OnItemAddedImpl(_ token: EventRegistrationToken) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIListView.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.remove_OnItemAdded(pThis, token))
+            }
+        }
+
+    }
+
     open class INullValuesStatics: test_component.IInspectable {
         override public class var IID: IID { IID___x_ABI_Ctest__component_CINullValuesStatics }
 

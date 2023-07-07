@@ -108,6 +108,12 @@ typedef interface __x_ABI_Ctest__component_CIVoidToVoidDelegate __x_ABI_Ctest__c
 
 #endif // ____x_ABI_Ctest__component_CIIAmImplementable_FWD_DEFINED__
 
+#ifndef ____x_ABI_Ctest__component_CIListView_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CIListView_FWD_DEFINED__
+    typedef interface __x_ABI_Ctest__component_CIListView __x_ABI_Ctest__component_CIListView;
+
+#endif // ____x_ABI_Ctest__component_CIListView_FWD_DEFINED__
+
 #ifndef ____x_ABI_Ctest__component_CINullValuesStatics_FWD_DEFINED__
 #define ____x_ABI_Ctest__component_CINullValuesStatics_FWD_DEFINED__
     typedef interface __x_ABI_Ctest__component_CINullValuesStatics __x_ABI_Ctest__component_CINullValuesStatics;
@@ -1705,10 +1711,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
         __x_ABI_C__FIReference_1_GUID** value);
     HRESULT (STDMETHODCALLTYPE* put_Id)(__x_ABI_Ctest__component_CIClass* This,
         __x_ABI_C__FIReference_1_GUID* value);
-    HRESULT (STDMETHODCALLTYPE* get_ItemsSource)(__x_ABI_Ctest__component_CIClass* This,
-        IInspectable** value);
-    HRESULT (STDMETHODCALLTYPE* put_ItemsSource)(__x_ABI_Ctest__component_CIClass* This,
-        IInspectable* value);
     HRESULT (STDMETHODCALLTYPE* get_BaseProperty)(__x_ABI_Ctest__component_CIClass* This,
         __x_ABI_Ctest__component_CIBase** value);
     HRESULT (STDMETHODCALLTYPE* put_BaseProperty)(__x_ABI_Ctest__component_CIClass* This,
@@ -2106,6 +2108,47 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
     EXTERN_C const IID IID___x_ABI_Ctest__component_CIIAmImplementable;
 #endif /* !defined(____x_ABI_Ctest__component_CIIAmImplementable_INTERFACE_DEFINED__) */
+    
+#if !defined(____x_ABI_Ctest__component_CIListView_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CIListView_INTERFACE_DEFINED__
+    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IListView[] = L"test_component.IListView";
+    typedef struct __x_ABI_Ctest__component_CIListViewVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CIListView* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CIListView* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CIListView* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_Ctest__component_CIListView* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_Ctest__component_CIListView* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CIListView* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* get_ItemsSource)(__x_ABI_Ctest__component_CIListView* This,
+        IInspectable** value);
+    HRESULT (STDMETHODCALLTYPE* put_ItemsSource)(__x_ABI_Ctest__component_CIListView* This,
+        IInspectable* value);
+    HRESULT (STDMETHODCALLTYPE* add_OnItemAdded)(__x_ABI_Ctest__component_CIListView* This,
+        __x_ABI_C__FIEventHandler_1_IInspectable* handler,
+        EventRegistrationToken* token);
+    HRESULT (STDMETHODCALLTYPE* remove_OnItemAdded)(__x_ABI_Ctest__component_CIListView* This,
+        EventRegistrationToken token);
+
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CIListViewVtbl;
+
+    interface __x_ABI_Ctest__component_CIListView
+    {
+        CONST_VTBL struct __x_ABI_Ctest__component_CIListViewVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CIListView;
+#endif /* !defined(____x_ABI_Ctest__component_CIListView_INTERFACE_DEFINED__) */
     
 #if !defined(____x_ABI_Ctest__component_CINullValuesStatics_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CINullValuesStatics_INTERFACE_DEFINED__

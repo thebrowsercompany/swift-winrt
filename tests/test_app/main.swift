@@ -572,7 +572,7 @@ var tests: [XCTestCaseEntry] = [
     ("testVector", SwiftWinRTTests.testVector),
     ("testErrorInfo", SwiftWinRTTests.testErrorInfo),
   ])
-] + valueBoxingTests + eventTests
+] + valueBoxingTests + eventTests + bindableTests
 
 RoInitialize(RO_INIT_MULTITHREADED)
 XCTMain(tests)

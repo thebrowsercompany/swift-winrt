@@ -617,19 +617,6 @@ public final class Class : WinRTClass, IBasic {
         }
     }
 
-    public var itemsSource : Any! {
-        get {
-            let value = try! _default.get_ItemsSourceImpl()
-            return __ABI_.AnyWrapper.unwrapFrom(abi: value)
-        }
-
-        set {
-            let wrapper = __ABI_.AnyWrapper(newValue)
-            let _newValue = try! wrapper?.toABI { $0 }
-            try! _default.put_ItemsSourceImpl(_newValue)
-        }
-    }
-
     public var startValue : Int32? {
         get {
             let value = try! _default.get_StartValueImpl()
@@ -762,6 +749,64 @@ public final class EventTester : WinRTClass {
         }
 
     }
+
+}
+
+public final class ListView : WinRTClass {
+    private typealias SwiftABI = __ABI_test_component.IListView
+    private typealias CABI = __x_ABI_Ctest__component_CIListView
+    private var _default: SwiftABI!
+    public func _getABI<T>() -> UnsafeMutablePointer<T>? {
+        if T.self == CABI.self {
+            return RawPointer(_default)
+        }   
+        if T.self == Ctest_component.IInspectable.self {
+            return RawPointer(_default)
+        }
+        return nil
+    }
+
+    public var thisPtr: test_component.IInspectable { _default }
+
+    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIListView>?) -> ListView? {
+        guard let abi = abi else { return nil }
+        return .init(fromAbi: .init(abi))
+    }
+
+    public init(fromAbi: test_component.IInspectable) {
+        _default = try! fromAbi.QueryInterface()
+    }
+
+    public init() {
+        try! _default = RoActivateInstance(HString("test_component.ListView"))
+    }
+
+    public var itemsSource : Any! {
+        get {
+            let value = try! _default.get_ItemsSourceImpl()
+            return __ABI_.AnyWrapper.unwrapFrom(abi: value)
+        }
+
+        set {
+            let wrapper = __ABI_.AnyWrapper(newValue)
+            let _newValue = try! wrapper?.toABI { $0 }
+            try! _default.put_ItemsSourceImpl(_newValue)
+        }
+    }
+
+    public lazy var onItemAdded : Event<EventHandler<Any?>> = {
+      .init(
+        add: { [weak this = _default] in
+          guard let this else { return .init() }
+          let wrapper = test_component.__x_ABI_C__FIEventHandler_1_IInspectableWrapper($0)
+          let abi = try! wrapper?.toABI { $0 }
+          return try! this.add_OnItemAddedImpl(abi)
+        },
+        remove: { [weak this = _default] in
+         try? this?.remove_OnItemAddedImpl($0) 
+       }
+      )
+    }()
 
 }
 

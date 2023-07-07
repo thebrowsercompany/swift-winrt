@@ -54,5 +54,9 @@
                   name="test_component.EventTester"
                   threadingModel="both"
                   xmlns="urn:schemas-microsoft-com:winrt.v1" />
+            <activatableClass
+                  name="test_component.ListView"
+                  threadingModel="both"
+                  xmlns="urn:schemas-microsoft-com:winrt.v1" />
       </file>
 </assembly>
