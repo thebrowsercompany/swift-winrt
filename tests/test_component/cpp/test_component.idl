@@ -285,8 +285,6 @@ namespace test_component
             Windows.Foundation.IReference<Int32> StartValue;
             Windows.Foundation.IReference<Guid> Id;
 
-            // Windows.Foundation.Collections.IVector<Simple> Children { get; };
-
             Base BaseProperty;
             BaseNoOverrides BaseNoOverridesProperty;
         }

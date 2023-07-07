@@ -1,0 +1,12 @@
+import "Windows.Foundation.idl";
+namespace test_component
+{
+    runtimeclass ListView {
+        ListView();
+
+        Object ItemsSource;
+
+        // Event to subscribe to retrieve the item from the ListView once it's been added 
+        event Windows.Foundation.EventHandler<Object> OnItemAdded;
+    };
+}
