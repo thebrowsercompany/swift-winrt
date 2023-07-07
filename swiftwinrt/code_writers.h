@@ -1138,7 +1138,7 @@ public static func makeAbi() -> CABI {
         if (delegate_method.return_type)
         {
             invoke_implementation = w.write_temp(R"(var result:%%
-        for handler in handlers {
+        for handler in getInvocationList() {
             result = handler(%)
         }
         return result)",
@@ -1148,14 +1148,14 @@ public static func makeAbi() -> CABI {
         }
         else
         {
-            invoke_implementation = w.write_temp(R"(for handler in handlers {
+            invoke_implementation = w.write_temp(R"(for handler in getInvocationList() {
             handler(%)
         })", bind<write_comma_param_names>(delegate_method.params));
         }
         
         assert(delegate_method.def);
-        w.write(R"(% extension EventInvoker where Handler == % {
-    %func callAsFunction(%)% {
+        w.write(R"(% extension EventSource where Handler == % {
+    %func invoke(%)% {
         %
     }
 }

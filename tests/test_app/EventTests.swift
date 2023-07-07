@@ -129,23 +129,6 @@ public func testSwiftImplementedEventWithSwiftListener() throws {
   }
 }
 
-// simple type here to validate that we can ignore delegates with return values. This
-// just needs to build
-struct DummyToVerifyBuild {
-    @EventSource<ReturnInt32Delegate> var returnInt32Event: Event<ReturnInt32Delegate>
-    func fireEvent() {
-      _returnInt32Event.raise?()
-
-      guard let invoker = _returnInt32Event.raise else {
-        return
-      }
-
-      for handler in invoker.handlers {
-        handler()
-      }
-    }
-}
-
 var eventTests: [XCTestCaseEntry] = [
   testCase([
     ("EventsOnInstance", EventTests.testEventsOnInstance),
