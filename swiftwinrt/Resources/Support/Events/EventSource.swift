@@ -2,14 +2,6 @@ import Foundation
 import WinSDK
 import C_BINDINGS_MODULE
 
-public struct EventInvoker<Handler> {
-    public let handlers: [Handler]
-    public init?(_ handlers: [Handler]) {
-        guard !handlers.isEmpty else { return nil }
-        self.handlers = handlers
-    } 
-}
-
 /// EventSource is the class which implements handling event subscriptions, removals,
 /// and invoking events for authoring events in Swift
 @propertyWrapper public class EventSource<Handler> {
@@ -24,7 +16,10 @@ public struct EventInvoker<Handler> {
     }
     
     public var wrappedValue: Event<Handler> { event }
-    public var raise: EventInvoker<Handler>? { return .init(handlers.getInvocationList())}
+    
+    public func getInvocationList() -> [Handler] {
+      handlers.getInvocationList()
+    }
 } 
 
 extension C_BINDINGS_MODULE.EventRegistrationToken: Hashable {

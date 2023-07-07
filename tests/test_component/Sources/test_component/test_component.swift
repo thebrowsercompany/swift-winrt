@@ -1363,9 +1363,9 @@ public protocol IIAmImplementable : WinRTInterface {
     var implementableEvent: Event<test_component.InDelegate> { get }
 }
 
-public extension EventInvoker where Handler == test_component.InDelegate {
-    func callAsFunction(_ value: String) {
-        for handler in handlers {
+public extension EventSource where Handler == test_component.InDelegate {
+    func invoke(_ value: String) {
+        for handler in getInvocationList() {
             handler(value)
         }
     }
@@ -1398,10 +1398,10 @@ public protocol InterfaceWithReturnDelegate : WinRTInterface {
     var eventWithReturn: Event<test_component.ReturnInt32Delegate> { get }
 }
 
-public extension EventInvoker where Handler == test_component.ReturnInt32Delegate {
-    @discardableResult func callAsFunction() -> Int32 {
+public extension EventSource where Handler == test_component.ReturnInt32Delegate {
+    @discardableResult func invoke() -> Int32 {
         var result:Int32 = 0
-        for handler in handlers {
+        for handler in getInvocationList() {
             result = handler()
         }
         return result
