@@ -164,9 +164,9 @@ public protocol INotifyCollectionChanged : WinRTInterface {
     var collectionChanged: Event<NotifyCollectionChangedEventHandler> { get }
 }
 
-public extension EventSource where Handler == NotifyCollectionChangedEventHandler {
-    func invoke(_ sender: Any!, _ e: NotifyCollectionChangedEventArgs!) {
-        for handler in getInvocationList() {
+public extension EventInvoker where Handler == NotifyCollectionChangedEventHandler {
+    func callAsFunction(_ sender: Any!, _ e: NotifyCollectionChangedEventArgs!) {
+        for handler in handlers {
             handler(sender, e)
         }
     }
