@@ -7,7 +7,7 @@ import Ctest_component
 // https://linear.app/the-browser-company/issue/WIN-115/swiftwinrt-support-constructor-parameters-for-composable-types
 class NotifyCollectionChangedEventArgsComposableActivationFactoryWithArgs: ComposableActivationFactory {
     typealias Composable = __ABI_Windows_UI_Xaml_Interop.INotifyCollectionChangedEventArgsFactory.Composable
-    let _INotifyCollectionChangedEventArgsFactory: __ABI_Windows_UI_Xaml_Interop.INotifyCollectionChangedEventArgsFactory = try! RoGetActivationFactory(HString("Microsoft.UI.Xaml.Interop.NotifyCollectionChangedEventArgs"))
+    let _INotifyCollectionChangedEventArgsFactory: __ABI_Windows_UI_Xaml_Interop.INotifyCollectionChangedEventArgsFactory = try! RoGetActivationFactory(HString("Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs"))
     private let action: NotifyCollectionChangedAction
     private let newItems: AnyIBindableVector?
     private let oldItems: AnyIBindableVector?

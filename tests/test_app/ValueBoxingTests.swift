@@ -3,7 +3,7 @@ import XCTest
 import test_component
 import Foundation
 
-struct Person : Equatable
+fileprivate struct Person : Equatable
 {
   var firstName: String
   var lastName: String

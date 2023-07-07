@@ -3,9 +3,13 @@ import XCTest
 import test_component
 import Foundation
 
-class Person {
+fileprivate class Person {
   var firstName: String
   var lastName: String
+  init(firstName: String, lastName: String) {
+    self.firstName = firstName
+    self.lastName = lastName
+  }
 }
 
 class BindableTests : XCTestCase {
