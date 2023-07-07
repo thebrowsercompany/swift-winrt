@@ -781,9 +781,7 @@ extension __ABI_Windows_Foundation {
                   riid.pointee == ISwiftImplemented.IID ||
                   riid.pointee == IAgileObject.IID ||
                   riid.pointee == __ABI_Windows_Foundation.AsyncActionCompletedHandlerWrapper.IID else { 
-                    guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
-                          let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
-                    return cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, riid, ppvObject) 
+                    return E_NOINTERFACE
 
             }
             _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)

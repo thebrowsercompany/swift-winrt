@@ -2321,7 +2321,13 @@ bind([&](writer& w) {
                 }}),
             bind_wrapper_fullname(type),
             bind([&](writer & w) {
-               if (!composed)
+               if (is_delegate(type))
+               {
+                    // Delegates don't implement classes so don't try to get to the inner object. This won't work since the swift object
+                    // being held onto is a closure, so trying to unwrap as `AnyObject` will fail
+                    w.write("    return E_NOINTERFACE\n");
+               }
+               else if (!composed)
                {
                         w.write(R"(    guard let instance = WinRTWrapperBase<%.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
                   let cDefault: UnsafeMutablePointer<%.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
