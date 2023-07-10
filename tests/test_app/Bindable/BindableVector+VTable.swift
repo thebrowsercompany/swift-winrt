@@ -20,21 +20,16 @@ public extension BindableVector {
 fileprivate var BindableVectorAsIInspectableVTable: Ctest_component.IInspectableVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        if riid.pointee == __ABI_Windows_UI_Xaml_Interop.IBindableVector.IID {
+        if riid.pointee == __ABI_Microsoft_UI_Xaml_Interop.IBindableVector.IID {
             guard let instance = __ABI_.AnyWrapper.tryUnwrapFrom(raw: $0) as? any BindableVectorBase else { fatalError("unable to unwrap from abi") }
             let iBindableWrapper = IBindableVectorWrapper(instance)
             let thisAsiBindable = try! iBindableWrapper.toABI { $0 }
             return thisAsiBindable.pointee.lpVtbl.pointee.QueryInterface(thisAsiBindable, riid, ppvObject)
-        } else if riid.pointee == __ABI_Windows_UI_Xaml_Interop.INotifyCollectionChanged.IID {
+        } else if riid.pointee == __ABI_Microsoft_UI_Xaml_Interop.INotifyCollectionChanged.IID {
             guard let instance = __ABI_.AnyWrapper.tryUnwrapFrom(raw: $0) as? any BindableVectorBase else { fatalError("unable to unwrap from abi")}
             let iNotifyCollectionChangedWrapper = INotifyCollectionChangedWrapper(instance)
             let thisAsiNotifyCollectionChanged = try! iNotifyCollectionChangedWrapper.toABI { $0 }
             return thisAsiNotifyCollectionChanged.pointee.lpVtbl.pointee.QueryInterface(thisAsiNotifyCollectionChanged, riid, ppvObject)
-        } else if riid.pointee == __ABI_Windows_UI_Xaml_Interop.IBindableIterableWrapper.IID {
-            guard let instance = __ABI_.AnyWrapper.tryUnwrapFrom(raw: $0) as? any BindableVectorBase else { fatalError("unable to unwrap from abi")}
-            let thisAsBindableIterableWrapper = IBindableIterableWrapper(instance)
-            let thisAsBindableIterable = try! thisAsBindableIterableWrapper.toABI { $0 }
-            return thisAsBindableIterable.pointee.lpVtbl.pointee.QueryInterface(thisAsBindableIterable, riid, ppvObject)
         } else if riid.pointee == IUnknown.IID ||
                 riid.pointee == IInspectable.IID || 
                 riid.pointee == IAgileObject.IID || 
@@ -86,15 +81,10 @@ fileprivate var BindableVectorAsIInspectableVTable: Ctest_component.IInspectable
 // We have to handwrite all of the other interface VTables as well since we need to make sure the QueryInterface calls
 // respond to all of the interfaces we care about
 
- fileprivate var IBindableVectorVTable: __x_ABI_CWindows_CUI_CXaml_CInterop_CIBindableVectorVtbl = .init(
+ fileprivate var IBindableVectorVTable: __x_ABI_CMicrosoft_CUI_CXaml_CInterop_CIBindableVectorVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        if riid.pointee == __ABI_Windows_UI_Xaml_Interop.IBindableIterableWrapper.IID {
-            guard let instance = IBindableVectorWrapper.tryUnwrapFrom(raw: pUnk) else { return E_NOINTERFACE }
-            let thisAsBindableIterableWrapper = IBindableIterableWrapper(instance)
-            let thisAsBindableIterable = try! thisAsBindableIterableWrapper.toABI { $0 }
-            return thisAsBindableIterable.pointee.lpVtbl.pointee.QueryInterface(thisAsBindableIterable, riid, ppvObject)
-        } else if riid.pointee == __ABI_Windows_UI_Xaml_Interop.INotifyCollectionChanged.IID {
+        if riid.pointee == __ABI_Microsoft_UI_Xaml_Interop.INotifyCollectionChanged.IID {
             guard let instance = IBindableVectorWrapper.tryUnwrapFrom(raw: pUnk) else { fatalError("unable to unwrap from abi")}
             let iNotifyCollectionChangedWrapper = INotifyCollectionChangedWrapper(instance)
             let thisAsiNotifyCollectionChanged = try! iNotifyCollectionChangedWrapper.toABI { $0 }
@@ -104,7 +94,7 @@ fileprivate var BindableVectorAsIInspectableVTable: Ctest_component.IInspectable
                 riid.pointee == IInspectable.IID || 
                 riid.pointee == ISwiftImplemented.IID ||
                 riid.pointee == IAgileObject.IID ||
-                riid.pointee == __ABI_Windows_UI_Xaml_Interop.IBindableVectorWrapper.IID else { 
+                riid.pointee == __ABI_Microsoft_UI_Xaml_Interop.IBindableVectorWrapper.IID else { 
                 return E_NOINTERFACE
 
         }
@@ -126,12 +116,11 @@ fileprivate var BindableVectorAsIInspectableVTable: Ctest_component.IInspectable
 
     GetIids: {
         let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
-        iids[2] = __ABI_Windows_UI_Xaml_Interop.IBindableVectorWrapper.IID
-        iids[3] = __ABI_Windows_UI_Xaml_Interop.IBindableIterableWrapper.IID
-        $1!.pointee = 4
+        iids[2] = __ABI_Microsoft_UI_Xaml_Interop.IBindableVectorWrapper.IID
+        $1!.pointee = 3
         $2!.pointee = iids
         return S_OK
     },
@@ -166,115 +155,33 @@ fileprivate var BindableVectorAsIInspectableVTable: Ctest_component.IInspectable
         let value = __unwrapped__instance.size
         $1?.initialize(to: value)
         return S_OK
-    },
-
-    GetView: {
-        do {
-            guard let __unwrapped__instance = IBindableVectorWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let result = try __unwrapped__instance.getView()
-            let resultWrapper = __ABI_Windows_UI_Xaml_Interop.IBindableVectorViewWrapper(result)
-            let _result = try! resultWrapper?.toABI { $0 }
-            $1?.initialize(to: _result)
-            return S_OK
-        } catch { return failWith(err: E_FAIL) } 
-    },
-
-    IndexOf: {
-        do {
-            guard let __unwrapped__instance = IBindableVectorWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let value: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: $1)
-            var index: UInt32 = 0
-            let returnValue = try __unwrapped__instance.indexOf(value, &index)
-            $2?.initialize(to: index)
-            $3?.initialize(to: .init(from: returnValue))
-            return S_OK
-        } catch { return failWith(err: E_FAIL) } 
-    },
-
-    SetAt: {
-        do {
-            guard let __unwrapped__instance = IBindableVectorWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let index: UInt32 = $1
-            let value: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: $2)
-            try __unwrapped__instance.setAt(index, value)
-            return S_OK
-        } catch { return failWith(err: E_FAIL) } 
-    },
-
-    InsertAt: {
-        do {
-            guard let __unwrapped__instance = IBindableVectorWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let index: UInt32 = $1
-            let value: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: $2)
-            try __unwrapped__instance.insertAt(index, value)
-            return S_OK
-        } catch { return failWith(err: E_FAIL) } 
-    },
-
-    RemoveAt: {
-        do {
-            guard let __unwrapped__instance = IBindableVectorWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let index: UInt32 = $1
-            try __unwrapped__instance.removeAt(index)
-            return S_OK
-        } catch { return failWith(err: E_FAIL) } 
-    },
-
-    Append: {
-        do {
-            guard let __unwrapped__instance = IBindableVectorWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let value: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: $1)
-            try __unwrapped__instance.append(value)
-            return S_OK
-        } catch { return failWith(err: E_FAIL) } 
-    },
-
-    RemoveAtEnd: {
-        do {
-            guard let __unwrapped__instance = IBindableVectorWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            try __unwrapped__instance.removeAtEnd()
-            return S_OK
-        } catch { return failWith(err: E_FAIL) } 
-    },
-
-    Clear: {
-        do {
-            guard let __unwrapped__instance = IBindableVectorWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            try __unwrapped__instance.clear()
-            return S_OK
-        } catch { return failWith(err: E_FAIL) } 
     }
 )
 
-fileprivate class IBindableVectorWrapper : WinRTWrapperBase<__x_ABI_CWindows_CUI_CXaml_CInterop_CIBindableVector, BindableVectorBase> {
+fileprivate class IBindableVectorWrapper : WinRTWrapperBase<__x_ABI_CMicrosoft_CUI_CXaml_CInterop_CIBindableVector, BindableVectorBase> {
     init(_ vector: BindableVectorBase) {
         let abi = withUnsafeMutablePointer(to: &IBindableVectorVTable) {
-            __x_ABI_CWindows_CUI_CXaml_CInterop_CIBindableVector(lpVtbl:$0)
+            __x_ABI_CMicrosoft_CUI_CXaml_CInterop_CIBindableVector(lpVtbl:$0)
         }
         super.init(abi, vector)
     }
 }
-typealias NotifyCollectionChangedEventHandlerWrapper = InterfaceWrapperBase<__IMPL_Windows_UI_Xaml_Interop.NotifyCollectionChangedEventHandlerImpl>
+typealias NotifyCollectionChangedEventHandlerWrapper = InterfaceWrapperBase<__IMPL_Microsoft_UI_Xaml_Interop.NotifyCollectionChangedEventHandlerImpl>
 
- fileprivate var INotifyCollectionChangedVTable: __x_ABI_CWindows_CUI_CXaml_CInterop_CINotifyCollectionChangedVtbl = .init(
+ fileprivate var INotifyCollectionChangedVTable: __x_ABI_CMicrosoft_CUI_CXaml_CInterop_CINotifyCollectionChangedVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        if riid.pointee == __ABI_Windows_UI_Xaml_Interop.IBindableVector.IID {
+        if riid.pointee == __ABI_Microsoft_UI_Xaml_Interop.IBindableVector.IID {
             guard let instance = INotifyCollectionChangedWrapper.tryUnwrapFrom(raw: $0) else { fatalError("unable to unwrap from abi") }
             let iBindableWrapper = IBindableVectorWrapper(instance)
             let thisAsiBindable = try! iBindableWrapper.toABI { $0 }
             return thisAsiBindable.pointee.lpVtbl.pointee.QueryInterface(thisAsiBindable, riid, ppvObject)
-        } else if riid.pointee == __ABI_Windows_UI_Xaml_Interop.IBindableIterableWrapper.IID {
-            guard let instance = INotifyCollectionChangedWrapper.tryUnwrapFrom(raw: pUnk) else { return E_NOINTERFACE }
-            let thisAsBindableIterableWrapper = IBindableIterableWrapper(instance)
-            let thisAsBindableIterable = try! thisAsBindableIterableWrapper.toABI { $0 }
-            return thisAsBindableIterable.pointee.lpVtbl.pointee.QueryInterface(thisAsBindableIterable, riid, ppvObject)
         }
         guard riid.pointee == IUnknown.IID ||
                 riid.pointee == IInspectable.IID || 
                 riid.pointee == ISwiftImplemented.IID ||
                 riid.pointee == IAgileObject.IID ||
-                riid.pointee == __ABI_Windows_UI_Xaml_Interop.INotifyCollectionChangedWrapper.IID else { 
+                riid.pointee == __ABI_Microsoft_UI_Xaml_Interop.INotifyCollectionChangedWrapper.IID else { 
             return E_NOINTERFACE
         }
         _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
@@ -298,7 +205,7 @@ typealias NotifyCollectionChangedEventHandlerWrapper = InterfaceWrapperBase<__IM
         let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
-        iids[2] = __ABI_Windows_UI_Xaml_Interop.INotifyCollectionChangedWrapper.IID
+        iids[2] = __ABI_Microsoft_UI_Xaml_Interop.INotifyCollectionChangedWrapper.IID
         $1!.pointee = 3
         $2!.pointee = iids
         return S_OK
@@ -333,95 +240,10 @@ typealias NotifyCollectionChangedEventHandlerWrapper = InterfaceWrapperBase<__IM
     }
 )
 
-fileprivate class INotifyCollectionChangedWrapper : WinRTWrapperBase<__x_ABI_CWindows_CUI_CXaml_CInterop_CINotifyCollectionChanged, BindableVectorBase> {
+fileprivate class INotifyCollectionChangedWrapper : WinRTWrapperBase<__x_ABI_CMicrosoft_CUI_CXaml_CInterop_CINotifyCollectionChanged, BindableVectorBase> {
     init(_ vector: BindableVectorBase) {
         let abi = withUnsafeMutablePointer(to: &INotifyCollectionChangedVTable) {
-            __x_ABI_CWindows_CUI_CXaml_CInterop_CINotifyCollectionChanged(lpVtbl:$0)
-        }
-        super.init(abi, vector)
-    }
-}
-
-
-fileprivate var IBindableIterableVTable: __x_ABI_CWindows_CUI_CXaml_CInterop_CIBindableIterableVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-
-        if riid.pointee == __ABI_Windows_UI_Xaml_Interop.IBindableVector.IID {
-            guard let instance = IBindableIterableWrapper.tryUnwrapFrom(raw: $0) else { fatalError("unable to unwrap from abi") }
-            let iBindableWrapper = IBindableVectorWrapper(instance)
-            let thisAsiBindable = try! iBindableWrapper.toABI { $0 }
-            return thisAsiBindable.pointee.lpVtbl.pointee.QueryInterface(thisAsiBindable, riid, ppvObject)
-        } else if riid.pointee == __ABI_Windows_UI_Xaml_Interop.INotifyCollectionChanged.IID {
-            guard let instance = IBindableIterableWrapper.tryUnwrapFrom(raw: $0) else { fatalError("unable to unwrap from abi")}
-            let iNotifyCollectionChangedWrapper = INotifyCollectionChangedWrapper(instance)
-            let thisAsiNotifyCollectionChanged = try! iNotifyCollectionChangedWrapper.toABI { $0 }
-            return thisAsiNotifyCollectionChanged.pointee.lpVtbl.pointee.QueryInterface(thisAsiNotifyCollectionChanged, riid, ppvObject)
-        }
-        guard riid.pointee == IUnknown.IID ||
-                riid.pointee == IInspectable.IID || 
-                riid.pointee == ISwiftImplemented.IID ||
-                riid.pointee == IAgileObject.IID ||
-                riid.pointee == __ABI_Windows_UI_Xaml_Interop.IBindableIterableWrapper.IID else { 
-                return E_NOINTERFACE
-
-        }
-        _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-        ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-        return S_OK
-    },
-
-    AddRef: {
-            guard let wrapper = IBindableIterableWrapper.fromRaw($0) else { return 1 }
-            _ = wrapper.retain()
-            return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = IBindableIterableWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
-    GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
-        iids[0] = IUnknown.IID
-        iids[1] = IInspectable.IID
-        iids[2] = __ABI_Windows_UI_Xaml_Interop.IBindableIterableWrapper.IID
-        $1!.pointee = 3
-        $2!.pointee = iids
-        return S_OK
-    },
-
-    GetRuntimeClassName: {
-        _ = $0
-        let hstring = try! HString("Windows.UI.Xaml.Interop.IBindableIterable").detach()
-        $1!.pointee = hstring
-        return S_OK
-    },
-
-    GetTrustLevel: {
-        _ = $0
-        $1!.pointee = TrustLevel(rawValue: 0)
-        return S_OK
-    },
-
-    First: {
-        do {
-            guard let __unwrapped__instance = IBindableIterableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let result = try __unwrapped__instance.first()
-            let resultWrapper = __ABI_Windows_UI_Xaml_Interop.IBindableIteratorWrapper(result)
-            let _result = try! resultWrapper?.toABI { $0 }
-            $1?.initialize(to: _result)
-            return S_OK
-        } catch { return failWith(err: E_FAIL) } 
-    }
-)
-
-fileprivate class IBindableIterableWrapper : WinRTWrapperBase<__x_ABI_CWindows_CUI_CXaml_CInterop_CIBindableIterable, BindableVectorBase> {
-    init(_ vector: BindableVectorBase) {
-        let abi = withUnsafeMutablePointer(to: &IBindableIterableVTable) {
-            __x_ABI_CWindows_CUI_CXaml_CInterop_CIBindableIterable(lpVtbl:$0)
+            __x_ABI_CMicrosoft_CUI_CXaml_CInterop_CINotifyCollectionChanged(lpVtbl:$0)
         }
         super.init(abi, vector)
     }

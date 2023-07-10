@@ -7,8 +7,7 @@ set(WINMD_FILE
 set(SWIFT_WINRT_PARAMETERS
 "-ns-prefix"
 "-include test_component"
-"-include Windows.UI.Xaml.Interop.IBindableVector"
-"-include Windows.UI.Xaml.Interop.INotifyCollectionChanged"
+"-include Microsoft.UI.Xaml.Interop"
 "-input ${WINMD_FILE}"
 "-support test_component"
 "-test"

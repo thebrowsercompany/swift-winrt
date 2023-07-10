@@ -87,7 +87,7 @@ set(CPPWINRT_EXE_PATH ${NUGET_PACKAGE_INSTALL_ROOT}/bin/cppwinrt.exe)
 add_custom_command(
   OUTPUT ${MIDL_OUTPUT} ${CPPWINRT_OUTPUT} 
   COMMAND midlrt.exe /metadata_dir $ENV{SystemRoot}/system32/winmetadata /winrt /winmd ${WINMD_FILE} /h ${H_FILE} /ns_prefix /nomidl ${MIDL_FILE}
-  COMMAND ${CPPWINRT_EXE_PATH} -input ${WINMD_FILE} -comp ${CPP_WINRT_OUTPUT_DIR} -output ${CPP_WINRT_OUTPUT_DIR} -include test_component -verbose -opt -lib test -overwrite -reference ${CMAKE_SYSTEM_VERSION} -name test_component
+  COMMAND ${CPPWINRT_EXE_PATH} -input ${WINMD_FILE} -comp ${CPP_WINRT_OUTPUT_DIR} -output ${CPP_WINRT_OUTPUT_DIR} -include test_component -include Microsoft.UI.Xaml.Interop -verbose -opt -lib test -overwrite -reference ${CMAKE_SYSTEM_VERSION} -name test_component
   COMMAND ${CPPWINRT_EXE_PATH} -output ${CPP_WINRT_OUTPUT_DIR} -include Windows.Foundation -opt -verbose -reference ${CMAKE_SYSTEM_VERSION}
   DEPENDS ${MIDL_FILE} NullValues.idl Keywords.idl EventTester.idl Bindable.idl
   MAIN_DEPENDENCY ${MIDL_FILE}
@@ -130,6 +130,8 @@ target_sources(test_component_cpp PRIVATE
     #Optional.h
     NoopClosable.cpp
     NoopClosable.h
+    NotifyCollectionChangedEventArgs.cpp
+    NotifyCollectionChangedEventArgs.h
     NullValues.cpp
     NullValues.h
     pch.cpp

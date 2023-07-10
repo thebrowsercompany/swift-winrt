@@ -22,6 +22,7 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmicrosoft-enum-forward-reference"
 
+#include "Microsoft.UI.Xaml.Interop.h"
 #include "Windows.AI.MachineLearning.h"
 #include "Windows.AI.MachineLearning.Preview.h"
 #include "Windows.ApplicationModel.h"

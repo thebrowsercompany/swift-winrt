@@ -10,14 +10,14 @@ namespace winrt::test_component::implementation
     }
     void ListView::ItemsSource(winrt::Windows::Foundation::IInspectable const& value)
     {
-        m_itemsSource = value.as<Windows::UI::Xaml::Interop::IBindableVector>();
+        m_itemsSource = value.as<Microsoft::UI::Xaml::Interop::IBindableVector>();
         // QI the m_itemsSource to INotifyCollectionChanged to simulate what WinUI does
-        auto incc = m_itemsSource.as<Windows::UI::Xaml::Interop::INotifyCollectionChanged>();
-        incc.CollectionChanged([this](auto const&, winrt::Windows::UI::Xaml::Interop::NotifyCollectionChangedEventArgs const& e)
+        auto incc = m_itemsSource.as<Microsoft::UI::Xaml::Interop::INotifyCollectionChanged>();
+        incc.CollectionChanged([this](auto const&, winrt::Microsoft::UI::Xaml::Interop::NotifyCollectionChangedEventArgs const& e)
         {
-            if (e.Action() == winrt::Windows::UI::Xaml::Interop::NotifyCollectionChangedAction::Add)
+            if (e.Action() == winrt::Microsoft::UI::Xaml::Interop::NotifyCollectionChangedAction::Add)
             {
-                AddItemsFromSource(e.NewStartingIndex(), e.NewItems().Size());
+                  AddItemsFromSource(e.NewStartingIndex(), e.NewItems().Size());
             }
         });
     }

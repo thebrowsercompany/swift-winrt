@@ -1,12 +1,43 @@
 import "Windows.Foundation.idl";
 namespace test_component
 {
-    runtimeclass ListView {
+    runtimeclass ListView
+    {
         ListView();
 
         Object ItemsSource;
 
         // Event to subscribe to retrieve the item from the ListView once it's been added 
         event Windows.Foundation.EventHandler<Object> OnItemAdded;
+    };
+}
+
+namespace Microsoft.UI.Xaml.Interop
+{
+    // Modeling these after the WinUI interfaces, but keeping them simple
+    // to only what we need
+    interface IBindableVector
+    {
+        Object GetAt(UInt32 index);
+        UInt32 Size { get; };
+    }
+
+    enum NotifyCollectionChangedAction
+    {
+        Add,
+    };
+
+    runtimeclass NotifyCollectionChangedEventArgs
+    {
+        NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction action, IBindableVector newItems, Int32 newStartingIndex);
+        NotifyCollectionChangedAction Action { get; };
+        IBindableVector NewItems { get; };
+        Int32 NewStartingIndex { get; };
+    };
+
+    delegate void NotifyCollectionChangedEventHandler(Object sender, NotifyCollectionChangedEventArgs args);
+    interface INotifyCollectionChanged
+    {
+        event NotifyCollectionChangedEventHandler CollectionChanged;
     };
 }
