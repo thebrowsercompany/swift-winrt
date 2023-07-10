@@ -30,7 +30,8 @@ if (NOT DEFINED ENV{NO_AUTO_CODEGEN})
       BYPRODUCTS ${CMAKE_CURRENT_SOURCE_DIR}/Sources/test_component/test_component.swift
       DEPENDS ${SWIFTWINRT_PARAM_FILE}
       DEPENDS ${WINMD_FILE}
-      COMMAND ${CMAKE_BINARY_DIR}/swiftwinrt/swiftwinrt.exe @${SWIFTWINRT_PARAM_FILE})
+      COMMAND ${CMAKE_BINARY_DIR}/swiftwinrt/swiftwinrt.exe @${SWIFTWINRT_PARAM_FILE}
+      MESSAGE "Running swiftwinrt...")
     add_dependencies(GenerateBindings swiftwinrt)
     add_dependencies(test_app GenerateBindings)
 else()

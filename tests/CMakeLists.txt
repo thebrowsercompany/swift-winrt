@@ -18,11 +18,10 @@ endif()
 set(SWIFT_BUILD_ARGS ${SWIFT_BUILD_ARGS} -Xswiftc -debug-info-format=codeview -Xlinker -debug)
 
 # SPM requires build config to be in lower case
-string(TOLOWER ${CMAKE_BUILD_TYPE} SPM_BUILD_TYPE)
-set(SWIFT_BUILD_ARGS ${SWIFT_BUILD_ARGS} -c ${SPM_BUILD_TYPE} --scratch-path ${CMAKE_CURRENT_BINARY_DIR})
+set(SWIFT_BUILD_ARGS ${SWIFT_BUILD_ARGS} -c $<LOWER_CASE:${CMAKE_BUILD_TYPE}> --scratch-path ${CMAKE_CURRENT_BINARY_DIR})
 
 set(SWIFT_COMMAND swift build ${SWIFT_BUILD_ARGS})
-set(SPM_BIN_DIR ${CMAKE_CURRENT_BINARY_DIR}/x86_64-unknown-windows-msvc/${SPM_BUILD_TYPE})
+set(SPM_BIN_DIR ${CMAKE_CURRENT_BINARY_DIR}/x86_64-unknown-windows-msvc/${CMAKE_BUILD_TYPE})
 
 ExternalProject_Add(test_app
     SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}
