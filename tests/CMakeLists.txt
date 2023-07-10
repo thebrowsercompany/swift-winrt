@@ -36,7 +36,8 @@ ExternalProject_Add(test_app
 
 ExternalProject_Get_Property(test_app BINARY_DIR)
 
-
+# install is used to copy the built binaries and dependencies to a known location
+# where they can be run from and isn't used for distribution
 install(FILES ${SPM_BIN_DIR}/test_app.exe DESTINATION bin)
 install(FILES ${SPM_BIN_DIR}/test_component.dll DESTINATION bin)
 
