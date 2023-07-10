@@ -19,7 +19,7 @@ set(SWIFT_BUILD_ARGS ${SWIFT_BUILD_ARGS} -Xswiftc -debug-info-format=codeview -X
 
 # SPM requires build config to be in lower case
 string(TOLOWER ${CMAKE_BUILD_TYPE} SPM_BUILD_TYPE)
-set(SWIFT_BUILD_ARGS ${SWIFT_BUILD_ARGS} -c ${SPM_BUILD_TYPE})
+set(SWIFT_BUILD_ARGS ${SWIFT_BUILD_ARGS} -c ${SPM_BUILD_TYPE} --scratch-path ${CMAKE_CURRENT_BINARY_DIR})
 
 set(SWIFT_COMMAND swift build ${SWIFT_BUILD_ARGS})
 
@@ -36,12 +36,7 @@ ExternalProject_Add(test_app
 
 ExternalProject_Get_Property(test_app BINARY_DIR)
 
-set(SPM_BIN_DIR ${BINARY_DIR}/.build/x86_64-unknown-windows-msvc/${SPM_BUILD_TYPE})
-
-set_property(DIRECTORY
-  APPEND
-  PROPERTY ADDITIONAL_CLEAN_FILES ${SPM_BIN_DIR}/
-)
+set(SPM_BIN_DIR ${CMAKE_CURRENT_BINARY_DIR}/x86_64-unknown-windows-msvc/${SPM_BUILD_TYPE})
 
 install(FILES ${SPM_BIN_DIR}/test_app.exe DESTINATION bin)
 install(FILES ${SPM_BIN_DIR}/test_component.dll DESTINATION bin)
