@@ -48,7 +48,7 @@ public class BindableVector<Element> : IVector, BindableVectorBase {
     public func setAt(_ index: UInt32, _ item: Element) {
         let oldItem = storage[Int(index)]
         storage[Int(index)] = item
-        _collectionChanged.raise?(self, argsFor(.replace(index: index, oldItem: oldItem, newItem: item)))
+        //_collectionChanged.raise?(self, argsFor(.replace(index: index, oldItem: oldItem, newItem: item)))
 
     }
     public func insertAt(_ index: UInt32, _ item: Element) { 
@@ -57,46 +57,22 @@ public class BindableVector<Element> : IVector, BindableVectorBase {
     }
     public func removeAt(_ index: UInt32) {
         let removedItem = storage.remove(at: Int(index) )
-        _collectionChanged.raise?(self, argsFor(.remove(index: index, oldItem: removedItem)))
+        //_collectionChanged.raise?(self, argsFor(.remove(index: index, oldItem: removedItem)))
     }
     public func removeAtEnd() { 
         let removedItem = storage.removeLast()
-        _collectionChanged.raise?(self, argsFor(.remove(index: size - 1, oldItem: removedItem)))
+        //_collectionChanged.raise?(self, argsFor(.remove(index: size - 1, oldItem: removedItem)))
     }
     public func clear() { 
         let oldItems = storage
         storage.removeAll()
-        _collectionChanged.raise?(self, argsFor(.reset(items: oldItems)))
+        //_collectionChanged.raise?(self, argsFor(.reset(items: oldItems)))
     }
-    public func getView() -> AnyIVectorView<Element>? { return BindableVectorView(storage) }
+    public func getView() -> AnyIVectorView<Element>? { return nil }
 
     // MARK: IBindableVector
     public func getAt(_ index: UInt32) throws -> Any! {
         return (self as AnyIVector<Element>).getAt(index)
-    }
-
-    public func getView() throws -> test_component.AnyIBindableVectorView! {
-        return BindableVectorView(storage)
-    }
-
-    public func indexOf(_ value: Any!, _ index: inout UInt32) throws -> Bool {
-        (self as AnyIVector<Element>).indexOf(value as! Element, &index)   
-    }
-
-    public func setAt(_ index: UInt32, _ value: Any!) throws {
-        (self as AnyIVector<Element>).setAt(index, value as! Element)
-    }
-
-    public func insertAt(_ index: UInt32, _ value: Any!) throws {
-        (self as AnyIVector<Element>).insertAt(index, value as! Element)
-    }
-
-    public func append(_ value: Any!) throws {
-         (self as AnyIVector<Element>).append(value as! Element)
-    }
-
-    public func first() throws -> test_component.AnyIBindableIterator! {
-        BindableIterator(self)
     }
 
     // MARK: INotifyCollectionChanged
@@ -114,22 +90,12 @@ public extension BindableVector where Element: Equatable {
 
 enum CollectionChangedAction<T> {
     case add(index: UInt32, newItem: T)
-    case remove(index: UInt32, oldItem: T)
-    case replace(index: UInt32, oldItem: T, newItem: T)
-    case reset(items: Array<T>)
 }
-//init(_ action: NotifyCollectionChangedAction, newItems: AnyIBindableVector?, oldItems: AnyIBindableVector?, newIndex: Int32, oldIndex: Int32)
 extension BindableVector {
     func argsFor(_ action: CollectionChangedAction<Element>) -> NotifyCollectionChangedEventArgs {
         switch action {
         case .add(let index, let newItem):
-            return NotifyCollectionChangedEventArgs(.add, newItems: BindableVector([newItem]), oldItems: nil, newIndex: Int32(index), oldIndex: -1)
-        case .remove(let index, let item):
-            return NotifyCollectionChangedEventArgs(.remove, newItems: nil, oldItems: BindableVector([item]), newIndex: -1, oldIndex: Int32(index))
-        case .replace(let index, let oldItem, let newItem):
-            return NotifyCollectionChangedEventArgs(.replace, newItems: BindableVector([newItem]), oldItems: BindableVector([oldItem]), newIndex: Int32(index), oldIndex: Int32(index))
-        case .reset(let items):
-            return NotifyCollectionChangedEventArgs(.replace, newItems: nil, oldItems: BindableVector(items), newIndex: -1, oldIndex: 0)
+            return NotifyCollectionChangedEventArgs(.add, BindableVector([newItem]), Int32(index))
         }
     }
 }
