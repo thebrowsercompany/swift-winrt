@@ -5,9 +5,47 @@ This project is based on the Microsoft created [cppwinrt](https://github.com/mic
 
 Swift/WinRT generates *both* the C ABI definition, which is imported into a Swift module *and* the actual Swift bindings which call into the ABI. 
 
-### Developer Worklow
+## Project Structure
 
-#### Debugging Swift/WinRT
+This project has 4 different main projects:
+1. [SwiftWinRT](./swiftwinrt) (C++)
+2. [TestComponent](./tests/test_component/cpp/) (C++)
+3. [Swift Bindings](./tests/test_component/Sources/) (Swift)
+4. [Test app](./tests/test_app/) (Swift)
+
+For all C++ code (1 and 2 above) - they are built with **CMake**
+For all Swift code (3 and 4 above) - they are built with **SPM**
+
+## Developer Worklow
+
+### Integrated Build with CMake
+
+While SPM is the driving force for all Swift related code, we still maintain an integrated build system with CMake, which invokes SPM as can be seen [here](./tests/CMakeLists.txt)
+
+You can use the following commands to build the project:
+
+```
+cmake --preset debug
+cmake --build --preset debug --target install
+```
+
+While this is possible, there is a known issue which causes the swiftwinrt build to be dirtied every time, and re-running swiftwinrt in debug mode is very slow! So when you can building/testing in `release` mode will be quicker. Generally, this is the golden path forward for when you don't need to debug tests. However, if you need to debug tests, then you will likely want to build debug. See [below](#optimal-developer-workflow-for-debugging-tests) for optimal `debug` config workflow.
+
+### Debugging Tests in Visual Studio Code
+
+The test code (written in Swift) is easily buildable and debuggable in VS Code. You can build using `Ctrl+Shift+B` and then debug via the standard VSCode debug window (or press `F5`).
+
+**NOTE: When building tests in VSCode, swiftwinrt *is not* re-run, as this only runs the SPM portion of the build.**
+
+#### Optimal developer workflow for debugging tests
+
+If you need to build debug, then the following workflow is recommended:
+1. Open swiftwinrt directory in Visual Studio and select the release configuration (see [Debugging SwiftWinRT in Visual Studio](#debugging-swiftwinrt-in-visual-studio))
+2. Open VSCode to the root of the repo and ensure the `Debug` preset is selected. 
+
+This will let you quickly re-run swiftwinrt in release mode when needed while still being able to only build debug for the tests.
+
+### Debugging Swift/WinRT in Visual Studio
 
 When working on the bindings, the best experience is to use full Visual Studio (*not* VS Code) and open the [swiftwinrt cmake file](./swiftwinrt/CMakeLists.txt)
 in VS and build that way. 
@@ -26,10 +64,10 @@ Select the startup project to `swiftwinrt.exe` and update the debug settings by 
     {
       "type": "default",
       "project": "CMakeLists.txt",
-      "projectTarget": "swiftcodegen.exe (tool\\swiftcodegen_poc\\swiftcodegen.exe)",
-      "name": "swiftcodegen.exe (tool\\swiftcodegen_poc\\swiftcodegen.exe)",
+      "projectTarget": "swiftwinrt.exe (swiftwinrt.exe)",
+      "name": "swiftwinrt.exe (swiftwinrt.exe)",
       "args": [
-        "@C:\\workspace\\chromium\\src\\arc\\ArcCoreDemoWin\\_build\\debug\\Source\\WinRT\\SwiftWinRT.rsp"
+        "@C:\\workspace\\swiftwinrt\\build\\debug\\tests\\test_component\\SwiftWinRT.rsp"
       ]
     }
   ]

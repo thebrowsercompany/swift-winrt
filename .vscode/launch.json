@@ -3,18 +3,11 @@
         {
             "type": "cppvsdbg",
             "request": "launch",
-            "name": "Debug test_app (tests)",
-            "program": "${workspaceFolder:swiftwinrt}\\out\\debug\\bin\\test_app",
+            "name": "test_app",
+            "program": "${workspaceFolder:swiftwinrt}\\out\\${command:cmake.activeBuildPresetName}\\bin\\test_app",
             "args": [],
             "cwd": "${workspaceFolder:swiftwinrt}/tests",
-        },
-        {
-            "type": "cppvsdbg",
-            "request": "launch",
-            "name": "Release test_app (tests)",
-            "program": "${workspaceFolder:swiftwinrt}\\out\\release\\bin\\test_app",
-            "args": [],
-            "cwd": "${workspaceFolder:swiftwinrt}/tests",
+            "preLaunchTask": "Install"
         }
     ]
 }

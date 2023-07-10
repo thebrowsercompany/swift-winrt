@@ -33,6 +33,7 @@ if (NOT DEFINED ENV{NO_AUTO_CODEGEN})
       COMMAND ${CMAKE_BINARY_DIR}/swiftwinrt/swiftwinrt.exe @${SWIFTWINRT_PARAM_FILE}
       COMMENT "Running swiftwinrt...")
     add_dependencies(GenerateBindings swiftwinrt)
+    add_dependencies(GenerateBindings test_component_cpp)
     add_dependencies(test_app GenerateBindings)
 else()
     message(STATUS "Skipping auto codegen")
