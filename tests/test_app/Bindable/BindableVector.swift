@@ -53,7 +53,7 @@ public class BindableVector<Element> : IVector, BindableVectorBase {
     }
     public func insertAt(_ index: UInt32, _ item: Element) { 
         storage.insert(item, at: Int(index))
-        _collectionChanged.raise?(self, argsFor(.add(index: index, newItem: item)))
+        _collectionChanged.invoke(self, argsFor(.add(index: index, newItem: item)))
     }
     public func removeAt(_ index: UInt32) {
         let removedItem = storage.remove(at: Int(index) )

@@ -80,9 +80,9 @@ public protocol INotifyCollectionChanged : WinRTInterface {
     var collectionChanged: Event<NotifyCollectionChangedEventHandler> { get }
 }
 
-public extension EventInvoker where Handler == NotifyCollectionChangedEventHandler {
-    func callAsFunction(_ sender: Any!, _ args: NotifyCollectionChangedEventArgs!) {
-        for handler in handlers {
+public extension EventSource where Handler == NotifyCollectionChangedEventHandler {
+    func invoke(_ sender: Any!, _ args: NotifyCollectionChangedEventArgs!) {
+        for handler in getInvocationList() {
             handler(sender, args)
         }
     }
