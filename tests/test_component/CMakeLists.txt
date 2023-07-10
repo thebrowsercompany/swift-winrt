@@ -10,7 +10,6 @@ set(SWIFT_WINRT_PARAMETERS
 "-input ${WINMD_FILE}"
 "-support test_component"
 "-test"
-"-cmake"
 "-log"
 "-output ${CMAKE_CURRENT_SOURCE_DIR}"
 "-reference ${CMAKE_SYSTEM_VERSION}"
@@ -21,7 +20,6 @@ string(REPLACE ";" "\n" SWIFT_WINRT_PARAMETERS "${SWIFT_WINRT_PARAMETERS}")
 file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/SwiftWinRT.rsp ${SWIFT_WINRT_PARAMETERS})
 
 add_subdirectory(cpp)
-add_subdirectory(Sources)
 
 # re-run swiftwinrt to ensure the bindings get updated
 set(SWIFTWINRT_PARAM_FILE ${CMAKE_CURRENT_BINARY_DIR}/SwiftWinRT.rsp)
@@ -34,7 +32,7 @@ if (NOT DEFINED ENV{NO_AUTO_CODEGEN})
       DEPENDS ${WINMD_FILE}
       COMMAND ${CMAKE_BINARY_DIR}/swiftwinrt/swiftwinrt.exe @${SWIFTWINRT_PARAM_FILE})
     add_dependencies(GenerateBindings swiftwinrt)
-    add_dependencies(test_component GenerateBindings)
+    add_dependencies(test_app GenerateBindings)
 else()
     message(STATUS "Skipping auto codegen")
 endif()
