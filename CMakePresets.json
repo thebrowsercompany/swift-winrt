@@ -49,7 +49,7 @@
     "buildPresets": [
       {
         "name": "debug",
-        "configurePreset": "debug",
+        "configurePreset": "debug"
       },
       {
         "name": "release",
