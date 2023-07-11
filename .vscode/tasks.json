@@ -14,7 +14,7 @@
 				"-Xlinker",
 				"-debug",
 				"--scratch-path",
-				"${workspaceFolder}\\build\\${command:cmake.activeBuildPresetName}",
+				"${workspaceFolder}\\build\\${command:cmake.activeBuildPresetName}\\tests",
 				"-c",
 				"${command:cmake.activeBuildPresetName}"
 			],
