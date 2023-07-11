@@ -44,9 +44,9 @@ public enum __ABI_ {
         if let winrtObj = swift as? IWinRTObject,
           let abi: UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable> = RawPointer(winrtObj.thisPtr) {
           super.init(abi.pointee, winrtObj)
-        } else if let winrtInterface = swift as? WinRTInterface,
-          let abi: UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable> = RawPointer(winrtInterface.makeAbi()) {
-          super.init(abi.pointee, winrtInterface)
+        } else if let winrtInterface = swift as? WinRTInterface {
+          let abiMaker = winrtInterface.getAbiMaker()
+          super.init(abiMaker.makeAbi().pointee, winrtInterface)
         } else if let propertyValue = PropertyValue.createFrom(swift),
           let abi: UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable> = RawPointer(propertyValue) {
           super.init(abi.pointee, propertyValue)

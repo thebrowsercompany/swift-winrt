@@ -1,9 +1,9 @@
 import test_component
 
-protocol BindableVectorBase: IBindableVector, INotifyCollectionChanged {}
+protocol BindableVectorBase: IBindableVector, INotifyCollectionChanged {
+}
 
-
-public class BindableVector<Element> : IVector, BindableVectorBase {
+public class BindableVector<Element> : BindableVectorBase, IVector {
     private var storage: Array<Element>
 
     public init(_ elements: Array<Element>){
@@ -46,9 +46,7 @@ public class BindableVector<Element> : IVector, BindableVectorBase {
     }
 
     public func setAt(_ index: UInt32, _ item: Element) {
-        //let oldItem = storage[Int(index)]
         storage[Int(index)] = item
-        //_collectionChanged.raise?(self, argsFor(.replace(index: index, oldItem: oldItem, newItem: item)))
 
     }
     public func insertAt(_ index: UInt32, _ item: Element) { 
@@ -56,17 +54,13 @@ public class BindableVector<Element> : IVector, BindableVectorBase {
         _collectionChanged.invoke(self, argsFor(.add(index: index, newItem: item)))
     }
     public func removeAt(_ index: UInt32) {
-        let removedItem = storage.remove(at: Int(index) )
-        //_collectionChanged.raise?(self, argsFor(.remove(index: index, oldItem: removedItem)))
+        storage.remove(at: Int(index) )
     }
     public func removeAtEnd() { 
-        let removedItem = storage.removeLast()
-        //_collectionChanged.raise?(self, argsFor(.remove(index: size - 1, oldItem: removedItem)))
+        storage.removeLast()
     }
     public func clear() { 
-        let oldItems = storage
         storage.removeAll()
-        //_collectionChanged.raise?(self, argsFor(.reset(items: oldItems)))
     }
     public func getView() -> AnyIVectorView<Element>? { return nil }
 
