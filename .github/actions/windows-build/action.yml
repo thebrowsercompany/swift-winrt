@@ -25,6 +25,7 @@ runs:
   - name: Build
     shell: bash
     run: |
+      cmake --build --preset ${{ inputs.config }}
       cmake --build --preset ${{ inputs.config }} --target install
 
   - name: Run test app
