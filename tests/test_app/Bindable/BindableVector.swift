@@ -42,11 +42,11 @@ public class BindableVector<Element> : IVector, BindableVectorBase {
     public func indexOf(_ item: Element, _ index: inout UInt32) -> Bool  { return false }
     public func append(_ item: Element) { 
         storage.append(item)
-        _collectionChanged.raise?(self, argsFor(.add(index: size - 1, newItem: item)))
+        _collectionChanged.invoke(self, argsFor(.add(index: size - 1, newItem: item)))
     }
 
     public func setAt(_ index: UInt32, _ item: Element) {
-        let oldItem = storage[Int(index)]
+        //let oldItem = storage[Int(index)]
         storage[Int(index)] = item
         //_collectionChanged.raise?(self, argsFor(.replace(index: index, oldItem: oldItem, newItem: item)))
 
