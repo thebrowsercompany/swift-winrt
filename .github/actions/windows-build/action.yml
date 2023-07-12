@@ -16,18 +16,28 @@ runs:
     uses: compnerd/gha-setup-swift@main
     with:
       branch: development
-      tag: DEVELOPMENT-SNAPSHOT-2023-04-01-a
+      tag: DEVELOPMENT-SNAPSHOT-2023-07-04-a
 
   - name: Configure CMake
-    shell: bash
+    shell: cmd
     run: cmake --preset ${{ inputs.config }}
 
   - name: Build
-    shell: bash
+    shell: cmd
     run: |
       cmake --build --preset ${{ inputs.config }}
       cmake --build --preset ${{ inputs.config }} --target install
 
+ # Right now this is failing due to line-ending differences, need to figure out how to fix that
+ # - name: Validate Checked-In Files are Up-To-Date
+ #   shell: powershell
+ #   run: |
+ #     $dirty = git status --porcelain
+ #     if ($dirty) {
+ #       git diff
+ #       throw "Checked in files are not up-to-date, re-run swiftwinrt before checking-in: \n$dirty"
+ #     }
+      
   - name: Run test app
     shell: cmd
     run: .\out\${{ inputs.config }}\bin\test_app.exe

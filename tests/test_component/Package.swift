@@ -11,18 +11,12 @@ let package = Package(
     ],
     targets: [
       .target(
-          name: "CWinRT",
-          exclude: [
-              "CMakeLists.txt"
-          ]
+          name: "CWinRT"
       ),
       .target(
           name: "test_component",
           dependencies: [
               "CWinRT",
-          ],
-          exclude: [
-              "CMakeLists.txt"
           ]
       ),
     ]

@@ -1,0 +1,40 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "swift",
+			"args": [
+				"build",
+				"--product",
+				"test_app",
+				"-Xswiftc",
+				"-g",
+				"-Xswiftc",
+				"-debug-info-format=codeview",
+				"-Xlinker",
+				"-debug",
+				"--scratch-path",
+				"${workspaceFolder}\\build\\${command:cmake.activeBuildPresetName}\\tests",
+				"-c",
+				"${command:cmake.activeBuildPresetName}"
+			],
+			"cwd": "tests",
+			"disableTaskQueue": true,
+			"problemMatcher": [
+				"$swiftc"
+			],
+			"group": "build",
+			"label": "swift: Build test_app",
+			"detail": "swift build (test_app)"
+		},
+		{
+			"type": "cmake",
+			"label": "Install",
+			"command": "install",
+			"targets": [
+				"all"
+			],
+			"detail": "install test app"
+		}
+	]
+}

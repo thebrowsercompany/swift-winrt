@@ -1,0 +1,13 @@
+{
+    "configurations": [
+        {
+            "type": "cppvsdbg",
+            "request": "launch",
+            "name": "test_app",
+            "program": "${workspaceFolder:swiftwinrt}\\out\\${command:cmake.activeBuildPresetName}\\bin\\test_app",
+            "args": [],
+            "cwd": "${workspaceFolder:swiftwinrt}/tests",
+            "preLaunchTask": "Install"
+        }
+    ]
+}

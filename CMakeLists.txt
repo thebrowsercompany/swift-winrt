@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 3.15.1) # For Swift support
-project(swiftwinrt LANGUAGES C CXX Swift)
+cmake_minimum_required(VERSION 3.15.1)
+project(swiftwinrt LANGUAGES C CXX)
 
 option(BUILD_SHARED_LIBS "Build shared libraries by default" YES)
 

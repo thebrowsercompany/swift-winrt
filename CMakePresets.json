@@ -9,7 +9,7 @@
         {
             "name": "base",
             "hidden": true,
-            "generator": "Ninja",
+            "generator": "NMake Makefiles",
             "architecture": {
                 "value": "x64",
                 "strategy": "external"
@@ -18,7 +18,8 @@
                 "CMAKE_C_COMPILER": "cl",
                 "CMAKE_CXX_COMPILER": "cl",
                 "CMAKE_SYSTEM_VERSION": "10.0.17763.0",
-                "CMAKE_MODULE_PATH": "${sourceDir}/cmake"
+                "CMAKE_MODULE_PATH": "${sourceDir}/cmake",
+                "CMAKE_SKIP_INSTALL_ALL_DEPENDENCY": true
             },
           "environment": {
             "PATH": "$penv{DevEnvDir}\\CommonExtensions\\Microsoft\\CMake\\Ninja;$penv{PATH}"
