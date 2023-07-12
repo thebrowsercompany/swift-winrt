@@ -19,11 +19,11 @@ runs:
       tag: DEVELOPMENT-SNAPSHOT-2023-07-04-a
 
   - name: Configure CMake
-    shell: bash
+    shell: cmd
     run: cmake --preset ${{ inputs.config }}
 
   - name: Build
-    shell: bash
+    shell: cmd
     run: |
       cmake --build --preset ${{ inputs.config }}
       cmake --build --preset ${{ inputs.config }} --target install
