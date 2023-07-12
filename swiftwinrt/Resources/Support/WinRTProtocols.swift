@@ -13,7 +13,7 @@ public protocol IWinRTObject: AnyObject {
 // this is a seperate protocol with a function instead of a property
 public protocol WinRTInterface: AnyObject {
   @_spi(WinRTInternal)
-  func getAbiMaker() -> () -> UnsafeMutablePointer<Ctest_component.IInspectable>
+  func getAbiMaker() -> () -> UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable>
 }
 
 public protocol WinRTClass : IWinRTObject, Equatable {
