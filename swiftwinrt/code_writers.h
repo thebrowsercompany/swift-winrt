@@ -2483,9 +2483,8 @@ bind([&](writer& w) {
             }
             else
             {
-                w.write("%?.thisPtr.copyTo(%)\n", param_name, return_param_name);
+                w.write("%?.copyTo(%)\n", param_name, return_param_name);
             }
-
             return;
         }
 

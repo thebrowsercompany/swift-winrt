@@ -44,5 +44,16 @@ public func ==<T: WinRTClass>(_ lhs: T, _ rhs: T) -> Bool {
 }
 
 extension WinRTClass {
+
     public var thisPtr: test_component.IInspectable { _getDefaultAsIInspectable() }
+}
+extension WinRTClass {
+  public func copyTo<Type>(_ ptr: UnsafeMutablePointer<UnsafeMutablePointer<Type>?>?) {
+    guard let ptr else { return }
+    let result: UnsafeMutablePointer<Type> = _getABI()!
+    result.withMemoryRebound(to: Ctest_component.IInspectable.self, capacity: 1) { 
+      _ = $0.pointee.lpVtbl.pointee.AddRef($0)
+    }
+    ptr.initialize(to: result)
+  }
 }
