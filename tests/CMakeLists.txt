@@ -25,6 +25,7 @@ add_custom_target(test_app ALL
   COMMENT "Running Swift build..."
   BYPRODUCTS ${SPM_BIN_DIR}/test_app.exe
   DEPENDS GenerateBindings
+  VERBATIM
 )
 
 # install is used to copy the built binaries and dependencies to a known location
