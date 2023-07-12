@@ -18,6 +18,10 @@ runs:
       branch: development
       tag: DEVELOPMENT-SNAPSHOT-2023-07-04-a
 
+  - name: Ignore auto crlf
+    uses: powershell
+    run:  git config --local core.autocrlf false
+      
   - name: Configure CMake
     shell: cmd
     run: cmake --preset ${{ inputs.config }}
