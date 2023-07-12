@@ -33,6 +33,7 @@ runs:
     run: |
       $dirty = git status --porcelain
       if ($dirty) {
+        git diff
         throw "Checked in files are not up-to-date, re-run swiftwinrt before checking-in: \n$dirty"
       }
       
