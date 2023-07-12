@@ -1,8 +1,6 @@
 set(CMAKE_TEST_OUTPUT ${CMAKE_BINARY_DIR})
 set(CMAKE_TEST_COMPONENT_OUTPUT ${CMAKE_BINARY_DIR}/generated/test_component)
 
-include(ExternalProject)
-
 set(SWIFT_BUILD_ARGS --skip-update -Xswiftc -g)
 
 # workaround for swiftc hang: https://linear.app/the-browser-company/issue/WIN-96/fix-swiftc-hanging-on-ci-machines
@@ -21,18 +19,13 @@ set(SWIFT_BUILD_ARGS ${SWIFT_BUILD_ARGS} -c $<LOWER_CASE:${CMAKE_BUILD_TYPE}> --
 set(SWIFT_COMMAND swift build ${SWIFT_BUILD_ARGS})
 set(SPM_BIN_DIR ${CMAKE_CURRENT_BINARY_DIR}/x86_64-unknown-windows-msvc/${CMAKE_BUILD_TYPE})
 
-ExternalProject_Add(test_app
-    SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}
-    INSTALL_COMMAND ""
-    CONFIGURE_COMMAND ""
-    BUILD_COMMAND "${SWIFT_COMMAND}"
-    BUILD_IN_SOURCE true
-    BUILD_ALWAYS ON
-    BUILD_BYPRODUCTS ${SPM_BIN_DIR}/test_app.exe
-    COMMENT "Running Swift build..."
+add_custom_target(test_app ALL
+  COMMAND ${SWIFT_COMMAND}
+  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+  COMMENT "Running Swift build..."
+  BYPRODUCTS ${SPM_BIN_DIR}/test_app.exe
+  DEPENDS GenerateBindings
 )
-
-ExternalProject_Get_Property(test_app BINARY_DIR)
 
 # install is used to copy the built binaries and dependencies to a known location
 # where they can be run from and isn't used for distribution

@@ -32,4 +32,3 @@ add_custom_target(GenerateBindings
     COMMENT "Running swiftwinrt...")
 add_dependencies(GenerateBindings swiftwinrt)
 add_dependencies(GenerateBindings test_component_cpp)
-add_dependencies(test_app GenerateBindings)
