@@ -1704,6 +1704,13 @@ struct __x_ABI_Ctest__component_CStructWithEnum
         enum __x_ABI_Ctest__component_CFruit* value);
     HRESULT (STDMETHODCALLTYPE* put_EnumProperty)(__x_ABI_Ctest__component_CIClass* This,
         enum __x_ABI_Ctest__component_CFruit value);
+<<<<<<< HEAD
+=======
+    HRESULT (STDMETHODCALLTYPE* ReturnStoredStringVector)(__x_ABI_Ctest__component_CIClass* This,
+        __x_ABI_C__FIVector_1_HSTRING** result);
+    HRESULT (STDMETHODCALLTYPE* ReturnMapFromStringToString)(__x_ABI_Ctest__component_CIClass* This,
+        __x_ABI_C__FIMap_2_HSTRING_HSTRING** result);
+>>>>>>> 4c9cc34 (Revert "fix line endings")
     HRESULT (STDMETHODCALLTYPE* ReturnChar)(__x_ABI_Ctest__component_CIClass* This,
         WCHAR* result);
     HRESULT (STDMETHODCALLTYPE* InChar)(__x_ABI_Ctest__component_CIClass* This,
@@ -1870,6 +1877,21 @@ struct __x_ABI_Ctest__component_CStructWithEnum
         INT32* result);
     HRESULT (STDMETHODCALLTYPE* get_StaticProperty)(__x_ABI_Ctest__component_CIClassStatics* This,
         INT32* value);
+<<<<<<< HEAD
+=======
+    HRESULT (STDMETHODCALLTYPE* InMap)(__x_ABI_Ctest__component_CIClassStatics* This,
+        __x_ABI_C__FIMap_2_HSTRING_HSTRING* value,
+        HSTRING* result);
+    HRESULT (STDMETHODCALLTYPE* InMapView)(__x_ABI_Ctest__component_CIClassStatics* This,
+        __x_ABI_C__FIMapView_2_HSTRING_HSTRING* value,
+        HSTRING* result);
+    HRESULT (STDMETHODCALLTYPE* InVector)(__x_ABI_Ctest__component_CIClassStatics* This,
+        __x_ABI_C__FIVector_1_HSTRING* value,
+        HSTRING* result);
+    HRESULT (STDMETHODCALLTYPE* InVectorView)(__x_ABI_Ctest__component_CIClassStatics* This,
+        __x_ABI_C__FIVectorView_1_HSTRING* value,
+        HSTRING* result);
+>>>>>>> 4c9cc34 (Revert "fix line endings")
 
         END_INTERFACE
     } __x_ABI_Ctest__component_CIClassStaticsVtbl;
