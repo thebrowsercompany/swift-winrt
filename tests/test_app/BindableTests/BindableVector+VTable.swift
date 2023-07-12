@@ -13,14 +13,13 @@ fileprivate class BindableVectorWrapper : WinRTWrapperBase<Ctest_component.IInsp
     }
 }
 
-extension BindableVector: WinRTInterface2 {
-    public var makeAbi2: AbiMaker {
+extension BindableVector {
+    public func getAbiMaker() -> () -> UnsafeMutablePointer<Ctest_component.IInspectable> {
         let wrapper = BindableVectorWrapper(self)
-        return .init(make: {
-            try! wrapper.toABI{ $0 }
-        })
+        return { try! wrapper.toABI{ $0 } }
      }
 }
+
 fileprivate var BindableVectorAsIInspectableVTable: Ctest_component.IInspectableVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }

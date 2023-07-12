@@ -14,10 +14,9 @@ fileprivate class DoubleDelegateAsIInspectableWrapper : WinRTWrapperBase<Ctest_c
 }
 
 extension DoubleDelegate {
-  func makeAbi() -> test_component.IInspectable { 
+  func getAbiMaker() -> () -> UnsafeMutablePointer<Ctest_component.IInspectable> { 
     let wrapper = DoubleDelegateAsIInspectableWrapper(self)
-    let abi = try! wrapper.toABI { $0 }
-    return .init(abi)
+    return { try! wrapper.toABI { $0 } }
   }
 }
 
