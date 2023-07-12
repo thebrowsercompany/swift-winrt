@@ -44,9 +44,10 @@ public func ==<T: WinRTClass>(_ lhs: T, _ rhs: T) -> Bool {
 }
 
 extension WinRTClass {
-
     public var thisPtr: SUPPORT_MODULE.IInspectable { _getDefaultAsIInspectable() }
 }
+
+@_spi(WinRTInternal)
 extension WinRTClass {
   public func copyTo<Type>(_ ptr: UnsafeMutablePointer<UnsafeMutablePointer<Type>?>?) {
     guard let ptr else { return }

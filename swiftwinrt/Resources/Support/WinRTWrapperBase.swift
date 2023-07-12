@@ -78,12 +78,12 @@ open class WinRTWrapperBase<CInterface, Prototype> {
     @_alwaysEmitIntoClient @inline(__always)
     public func copyTo(_ ptr: UnsafeMutablePointer<UnsafeMutablePointer<CInterface>?>?) {
         guard let ptr else { return }
-        withUnsafeMutablePointer(to:&instance.comInterface){
-          $0.withMemoryRebound(to: C_BINDINGS_MODULE.IInspectable.self, capacity: 1) { 
+        let abi: UnsafeMutablePointer<CInterface> = try! toABI { $0 }
+        abi.withMemoryRebound(to: CWinRT.IInspectable.self, capacity: 1) { 
             _ = $0.pointee.lpVtbl.pointee.AddRef($0)
-          }
-          ptr.initialize(to: $0)
         }
+        
+        ptr.initialize(to: abi)
     }
 
 
