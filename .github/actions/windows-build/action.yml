@@ -28,12 +28,12 @@ runs:
       cmake --build --preset ${{ inputs.config }}
       cmake --build --preset ${{ inputs.config }} --target install
 
-  - name: Ensure No Dirty Files
+  - name: Validate Checked-In Files are Up-To-Date
     shell: powershell
     run: |
       $dirty = git status --porcelain
       if ($dirty) {
-        throw "Dirty files detected, re-run swiftwinrt before checking-in: \n$dirty"
+        throw "Checked in files are not up-to-date, re-run swiftwinrt before checking-in: \n$dirty"
       }
       
   - name: Run test app

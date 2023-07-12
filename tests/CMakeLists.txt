@@ -3,9 +3,7 @@ set(CMAKE_TEST_COMPONENT_OUTPUT ${CMAKE_BINARY_DIR}/generated/test_component)
 
 include(ExternalProject)
 
-# swift package resolving happens in the IDE, there's no need to run it as part of the build and add seconds to
-# what should otherwise be very fast builds
-set(SWIFT_BUILD_ARGS --disable-automatic-resolution --skip-update -Xswiftc -g)
+set(SWIFT_BUILD_ARGS --skip-update -Xswiftc -g)
 
 # workaround for swiftc hang: https://linear.app/the-browser-company/issue/WIN-96/fix-swiftc-hanging-on-ci-machines
 if ($ENV{NUMBER_OF_PROCESSORS} EQUAL 64)
@@ -27,7 +25,7 @@ ExternalProject_Add(test_app
     SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}
     INSTALL_COMMAND ""
     CONFIGURE_COMMAND ""
-    BUILD_COMMAND ${SWIFT_COMMAND}
+    BUILD_COMMAND "${SWIFT_COMMAND}"
     BUILD_IN_SOURCE true
     BUILD_ALWAYS ON
     BUILD_BYPRODUCTS ${SPM_BIN_DIR}/test_app.exe
