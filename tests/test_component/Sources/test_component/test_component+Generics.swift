@@ -286,7 +286,7 @@ internal var __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTab
         guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let key: String = .init(from: $1)
         let result = __unwrapped__instance.lookup(key)
-        result?.thisPtr.copyTo($2)
+        result?.copyTo($2)
         return S_OK
     },
 
@@ -705,7 +705,7 @@ internal var __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: 
         guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let key: String = .init(from: $1)
         let result = __unwrapped__instance.lookup(key)
-        result?.thisPtr.copyTo($2)
+        result?.copyTo($2)
         return S_OK
     },
 
@@ -1119,7 +1119,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVTable: _
         guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let index: UInt32 = $1
         let result = __unwrapped__instance.getAt(index)
-        result?.thisPtr.copyTo($2)
+        result?.copyTo($2)
         return S_OK
     },
 
@@ -1613,7 +1613,7 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_A
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let index: UInt32 = $1
         let result = __unwrapped__instance.getAt(index)
-        result?.thisPtr.copyTo($2)
+        result?.copyTo($2)
         return S_OK
     },
 

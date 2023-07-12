@@ -16,6 +16,11 @@ public protocol WinRTInterface: AnyObject {
   func getAbiMaker() -> () -> UnsafeMutablePointer<Ctest_component.IInspectable>
 }
 
+public protocol WinRTInterface2: AnyObject {
+  @_spi(WinRTInternal)
+  func makeAbi() -> test_component.IInspectable
+}
+
 public protocol WinRTClass : IWinRTObject, Equatable {
     func _getABI<T>() -> UnsafeMutablePointer<T>?
 }
@@ -44,9 +49,10 @@ public func ==<T: WinRTClass>(_ lhs: T, _ rhs: T) -> Bool {
 }
 
 extension WinRTClass {
-
     public var thisPtr: test_component.IInspectable { _getDefaultAsIInspectable() }
 }
+
+@_spi(WinRTInternal)
 extension WinRTClass {
   public func copyTo<Type>(_ ptr: UnsafeMutablePointer<UnsafeMutablePointer<Type>?>?) {
     guard let ptr else { return }
