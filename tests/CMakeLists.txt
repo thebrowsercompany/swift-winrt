@@ -1,6 +1,10 @@
 set(CMAKE_TEST_OUTPUT ${CMAKE_BINARY_DIR})
 set(CMAKE_TEST_COMPONENT_OUTPUT ${CMAKE_BINARY_DIR}/generated/test_component)
 
+if (NOT EXISTS ${CMAKE_TEST_COMPONENT_OUTPUT})
+  file(MAKE_DIRECTORY ${CMAKE_TEST_COMPONENT_OUTPUT})
+endif()
+
 set(SWIFT_BUILD_ARGS --skip-update -Xswiftc -g)
 
 # workaround for swiftc hang: https://linear.app/the-browser-company/issue/WIN-96/fix-swiftc-hanging-on-ci-machines
