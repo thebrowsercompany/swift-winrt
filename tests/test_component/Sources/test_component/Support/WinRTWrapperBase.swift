@@ -75,6 +75,18 @@ open class WinRTWrapperBase<CInterface, Prototype> {
         }
     }
 
+    @_alwaysEmitIntoClient @inline(__always)
+    public func copyTo(_ ptr: UnsafeMutablePointer<UnsafeMutablePointer<CInterface>?>?) {
+        guard let ptr else { return }
+        withUnsafeMutablePointer(to:&instance.comInterface){
+          $0.withMemoryRebound(to: Ctest_component.IInspectable.self, capacity: 1) { 
+            _ = $0.pointee.lpVtbl.pointee.AddRef($0)
+          }
+          ptr.initialize(to: $0)
+        }
+    }
+
+
     public static func fromRaw(_ pUnk: UnsafeMutableRawPointer?) -> Unmanaged<WinRTWrapperBase>? {
       guard let pUnk = pUnk else { return nil }
       return pUnk.assumingMemoryBound(to: WinRTWrapperBase.ComObject.self).pointee.wrapper

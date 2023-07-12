@@ -112,8 +112,7 @@ public enum __ABI_Windows_Foundation {
             guard let __unwrapped__instance = IAsyncActionWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let handler = __unwrapped__instance.completed
             let handlerWrapper = __ABI_Windows_Foundation.AsyncActionCompletedHandlerWrapper(handler)
-            let _handler = try! handlerWrapper?.toABI { $0 }
-            $1?.initialize(to: _handler)
+            handlerWrapper?.copyTo($1)
             return S_OK
         },
 

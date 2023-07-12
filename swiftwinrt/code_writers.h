@@ -188,6 +188,8 @@ namespace swiftwinrt
 
         if (category == param_category::object_type)
         {
+            if (is_out) throw std::exception("out parameters of reference types should not be converted directly to abi types");
+
             if (is_class(signature_type))
             {
                 w.write("RawPointer(%)", param_name);
@@ -229,6 +231,7 @@ namespace swiftwinrt
         }
         else if(category == param_category::generic_type)
         {
+            if (is_out) throw std::exception("out parameters of generic types should not be converted directly to abi types");
             // When passing generics to the ABI we wrap them before making the
             // api call for easy passing to the ABI
             w.write("_%", param_name);
@@ -2468,15 +2471,22 @@ bind([&](writer& w) {
                 type->swift_type_name(),
                 param_name);
         }
-        else if (is_reference_type(type) && !is_class(type))
+        else if (is_reference_type(type))
         {
-            w.write("let %Wrapper = %(%)\n",
-                param_name,
+            if (!is_class(type))
+            {
+                w.write("let %Wrapper = %(%)\n",
+                    param_name,
                     bind_wrapper_fullname(type),
-                param_name);
-            w.write("let _% = try! %Wrapper?.toABI { $0 }\n",
-                param_name,
-                param_name);
+                    param_name);
+                w.write("%Wrapper?.copyTo(%)\n", param_name, return_param_name);
+            }
+            else
+            {
+                w.write("%?.thisPtr.copyTo(%)\n", param_name, return_param_name);
+            }
+
+            return;
         }
 
         w.write("%?.initialize(to: %)\n",
