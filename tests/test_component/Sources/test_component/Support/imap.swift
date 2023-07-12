@@ -34,13 +34,13 @@ public typealias AnyIMapView<Key, Value> = any IMapView<Key, Value>
 // app implemented vectors can't be passed to an API that expects
 // Any yet
 extension IMap {
-  public func makeAbi() -> test_component.IInspectable { 
-    fatalError("not implemented")
-  }
+  public func getAbiMaker() -> () -> UnsafeMutablePointer<Ctest_component.IInspectable> { 
+    fatalError("notimplemented")
+  } 
 }
 
 extension IMapView {
-  public func makeAbi() -> test_component.IInspectable { 
+  public func getAbiMaker() -> () -> UnsafeMutablePointer<Ctest_component.IInspectable> { 
     fatalError("not implemented")
   }
 }

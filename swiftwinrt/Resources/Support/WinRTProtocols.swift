@@ -9,19 +9,11 @@ public protocol IWinRTObject: AnyObject {
   var thisPtr: SUPPORT_MODULE.IInspectable { get }
 }
 
-@_spi(WinRTInternal)
-public struct AbiMaker {
-  internal var makeAbi: () -> UnsafeMutablePointer<Ctest_component.IInspectable>
-  public init(make: @escaping () -> UnsafeMutablePointer<Ctest_component.IInspectable>){
-    self.makeAbi = make
-  }
-}
-
 // ABI pointers for interfaces are made at runtime, which is why
 // this is a seperate protocol with a function instead of a property
 public protocol WinRTInterface: AnyObject {
   @_spi(WinRTInternal)
-  func getAbiMaker() -> AbiMaker { get }
+  func getAbiMaker() -> () -> UnsafeMutablePointer<Ctest_component.IInspectable>
 }
 
 public protocol WinRTClass : IWinRTObject, Equatable {
