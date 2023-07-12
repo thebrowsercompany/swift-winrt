@@ -40,11 +40,15 @@ extension IUnknown {
   public func perform<Type, ResultType>(as type: Type.Type,
                                         _ body: (UnsafeMutablePointer<Type>) throws -> ResultType)
       throws -> ResultType {
-    guard let pUnk = UnsafeMutableRawPointer(self.pUnk.borrow) else {
-      throw Error(hr: E_INVALIDARG)
-    }
-    let pThis = pUnk.bindMemory(to: Type.self, capacity: 1)
-
+    let pThis = UnsafeMutableRawPointer(self.pUnk.borrow).bindMemory(to: Type.self, capacity: 1)
     return try body(pThis)
+  }
+}
+
+extension IUnknown {
+  public func copyTo<Type>(_ ptr: UnsafeMutablePointer<UnsafeMutablePointer<Type>?>?) {
+    guard let ptr else { return }
+    // use .ref to add a reference to the pointer
+    ptr.pointee = UnsafeMutableRawPointer(self.pUnk.ref).bindMemory(to: Type.self, capacity: 1)
   }
 }

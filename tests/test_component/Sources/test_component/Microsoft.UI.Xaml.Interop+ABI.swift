@@ -103,8 +103,7 @@ public enum __ABI_Microsoft_UI_Xaml_Interop {
                 let index: UInt32 = $1
                 let result = try __unwrapped__instance.getAt(index)
                 let resultWrapper = __ABI_.AnyWrapper(result)
-                let _result = try! resultWrapper?.toABI { $0 }
-                $2?.initialize(to: _result)
+                resultWrapper?.copyTo($2)
                 return S_OK
             } catch { return failWith(err: E_FAIL) } 
         },

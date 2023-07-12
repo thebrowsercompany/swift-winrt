@@ -128,11 +128,9 @@ internal var __x_ABI_C__FIMapView_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMapView_
         var second: test_component.AnyIMapView<String, String>?
         __unwrapped__instance.split(&first, &second)
         let firstWrapper = test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper(first)
-        let _first = try! firstWrapper?.toABI { $0 }
-        $1?.initialize(to: _first)
+        firstWrapper?.copyTo($1)
         let secondWrapper = test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper(second)
-        let _second = try! secondWrapper?.toABI { $0 }
-        $2?.initialize(to: _second)
+        secondWrapper?.copyTo($2)
         return S_OK
     }
 )
@@ -288,7 +286,7 @@ internal var __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTab
         guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let key: String = .init(from: $1)
         let result = __unwrapped__instance.lookup(key)
-        $2?.initialize(to: RawPointer(result))
+        result?.thisPtr.copyTo($2)
         return S_OK
     },
 
@@ -313,11 +311,9 @@ internal var __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTab
         var second: test_component.AnyIMapView<String, test_component.Base?>?
         __unwrapped__instance.split(&first, &second)
         let firstWrapper = test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper(first)
-        let _first = try! firstWrapper?.toABI { $0 }
-        $1?.initialize(to: _first)
+        firstWrapper?.copyTo($1)
         let secondWrapper = test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper(second)
-        let _second = try! secondWrapper?.toABI { $0 }
-        $2?.initialize(to: _second)
+        secondWrapper?.copyTo($2)
         return S_OK
     }
 )
@@ -496,8 +492,7 @@ internal var __x_ABI_C__FIMap_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMap_2_HSTRIN
         guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let result = __unwrapped__instance.getView()
         let resultWrapper = test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper(result)
-        let _result = try! resultWrapper?.toABI { $0 }
-        $1?.initialize(to: _result)
+        resultWrapper?.copyTo($1)
         return S_OK
     },
 
@@ -710,7 +705,7 @@ internal var __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: 
         guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let key: String = .init(from: $1)
         let result = __unwrapped__instance.lookup(key)
-        $2?.initialize(to: RawPointer(result))
+        result?.thisPtr.copyTo($2)
         return S_OK
     },
 
@@ -733,8 +728,7 @@ internal var __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: 
         guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let result = __unwrapped__instance.getView()
         let resultWrapper = test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper(result)
-        let _result = try! resultWrapper?.toABI { $0 }
-        $1?.initialize(to: _result)
+        resultWrapper?.copyTo($1)
         return S_OK
     },
 
@@ -1125,7 +1119,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVTable: _
         guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let index: UInt32 = $1
         let result = __unwrapped__instance.getAt(index)
-        $2?.initialize(to: RawPointer(result))
+        result?.thisPtr.copyTo($2)
         return S_OK
     },
 
@@ -1318,8 +1312,7 @@ internal var __x_ABI_C__FIVector_1_HSTRINGVTable: __x_ABI_C__FIVector_1_HSTRINGV
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let result = __unwrapped__instance.getView()
         let resultWrapper = test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper(result)
-        let _result = try! resultWrapper?.toABI { $0 }
-        $1?.initialize(to: _result)
+        resultWrapper?.copyTo($1)
         return S_OK
     },
 
@@ -1620,7 +1613,7 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_A
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let index: UInt32 = $1
         let result = __unwrapped__instance.getAt(index)
-        $2?.initialize(to: RawPointer(result))
+        result?.thisPtr.copyTo($2)
         return S_OK
     },
 
@@ -1635,8 +1628,7 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_A
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let result = __unwrapped__instance.getView()
         let resultWrapper = test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper(result)
-        let _result = try! resultWrapper?.toABI { $0 }
-        $1?.initialize(to: _result)
+        resultWrapper?.copyTo($1)
         return S_OK
     },
 

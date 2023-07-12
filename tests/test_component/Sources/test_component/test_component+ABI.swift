@@ -977,8 +977,7 @@ public enum __ABI_test_component {
                 var value: Any?
                 try __unwrapped__instance.outObject(&value)
                 let valueWrapper = __ABI_.AnyWrapper(value)
-                let _value = try! valueWrapper?.toABI { $0 }
-                $1?.initialize(to: _value)
+                valueWrapper?.copyTo($1)
                 return S_OK
             } catch { return failWith(err: E_FAIL) } 
         },
@@ -1019,8 +1018,7 @@ public enum __ABI_test_component {
                 guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 let result = try __unwrapped__instance.returnObject()
                 let resultWrapper = __ABI_.AnyWrapper(result)
-                let _result = try! resultWrapper?.toABI { $0 }
-                $1?.initialize(to: _result)
+                resultWrapper?.copyTo($1)
                 return S_OK
             } catch { return failWith(err: E_FAIL) } 
         },
@@ -1052,8 +1050,7 @@ public enum __ABI_test_component {
             guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let value = __unwrapped__instance.id
             let valueWrapper = test_component.__x_ABI_C__FIReference_1_GUIDWrapper(value)
-            let _value = try! valueWrapper?.toABI { $0 }
-            $1?.initialize(to: _value)
+            valueWrapper?.copyTo($1)
             return S_OK
         },
 
