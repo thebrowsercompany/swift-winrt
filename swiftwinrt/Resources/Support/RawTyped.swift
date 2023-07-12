@@ -3,18 +3,26 @@
 
 import WinSDK
 
+public func RawPointer<T: IUnknown, U>(_ pUnk: T) -> UnsafeMutablePointer<U> {
+  return UnsafeMutableRawPointer(pUnk.pUnk.borrow).bindMemory(to: U.self, capacity: 1)
+}
+
 public func RawPointer<T: IUnknown, U>(_ pUnk: T?) -> UnsafeMutablePointer<U>? {
-  guard let pUnk = pUnk else { return nil }
-  if let pUnk: UnsafeMutableRawPointer = UnsafeMutableRawPointer(pUnk.pUnk.borrow) {
-    return pUnk.bindMemory(to: U.self, capacity: 1)
-  }
-  return nil
+  guard let pUnk else { return nil }
+  let result: UnsafeMutablePointer<U> = RawPointer(pUnk)
+  return result
 }
 
 public func RawPointer<T: WinRTClass, U>(_ obj: T?) -> UnsafeMutablePointer<U>? {
   return obj?._getABI()
 }
 
+public func RawPointer<T: AbiInterfaceImpl, U>(_ obj: T) -> UnsafeMutablePointer<U> {
+  return RawPointer(obj._default)
+}
+
 public func RawPointer<T: AbiInterfaceImpl, U>(_ obj: T?) -> UnsafeMutablePointer<U>? {
-  return RawPointer(obj?._default)
+  guard let obj else { return nil}
+  let result: UnsafeMutablePointer<U> = RawPointer(obj)
+  return result
 }

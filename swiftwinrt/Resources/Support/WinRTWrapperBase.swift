@@ -78,8 +78,10 @@ open class WinRTWrapperBase<CInterface, Prototype> {
     @_alwaysEmitIntoClient @inline(__always)
     public func copyTo(_ ptr: UnsafeMutablePointer<UnsafeMutablePointer<CInterface>?>?) {
         guard let ptr else { return }
+        // Use toABI as derived classes may override this to get the ABI pointer of the swift
+        // object they are holding onto
         let abi: UnsafeMutablePointer<CInterface> = try! toABI { $0 }
-        abi.withMemoryRebound(to: CWinRT.IInspectable.self, capacity: 1) { 
+        abi.withMemoryRebound(to: C_BINDINGS_MODULE.IInspectable.self, capacity: 1) { 
             _ = $0.pointee.lpVtbl.pointee.AddRef($0)
         }
         
@@ -102,9 +104,8 @@ open class WinRTWrapperBase<CInterface, Prototype> {
     public static func tryUnwrapFrom(abi pointer: UnsafeMutablePointer<CInterface>?) -> Prototype? {
         guard let pointer = pointer else { return nil }
         let delegate = IUnknown(pointer)
-        let wrapperOpt: ISwiftImplemented? = try? delegate.QueryInterface()
-        guard let wrapper = wrapperOpt,
-              let pUnk = UnsafeMutableRawPointer(wrapper.pUnk.borrow) else { return nil }
+        guard let wrapper: ISwiftImplemented = try? delegate.QueryInterface() else { return nil }
+        let pUnk = UnsafeMutableRawPointer(wrapper.pUnk.borrow)
 
           // try to get the original wrapper so we can get the apps implementation. if that doesn't
           // exist, then return nil
@@ -123,7 +124,7 @@ open class InterfaceWrapperBase<I: AbiInterfaceImpl> : WinRTWrapperBase2<I> {
         guard let impl = impl else { return nil }
         // try to see if already wrapping an ABI pointer and if so, use that
         if let internalImpl = impl as? I {
-            let abi: UnsafeMutablePointer<I.CABI> = RawPointer(internalImpl)!
+            let abi: UnsafeMutablePointer<I.CABI> = RawPointer(internalImpl)
             super.init(abi.pointee, impl)
         } else {
             let abi = I.makeAbi()
@@ -142,8 +143,8 @@ open class InterfaceWrapperBase<I: AbiInterfaceImpl> : WinRTWrapperBase2<I> {
         // If this is an implementation then we're holding onto a WinRT object pointer, get that pointer
         // and return that.
         if let internalImpl = swiftObj as? I {
-            let abi: UnsafeMutablePointer<I.CABI>? = RawPointer(internalImpl._default)
-            return try body(abi!)
+            let abi: UnsafeMutablePointer<I.CABI> = RawPointer(internalImpl._default)
+            return try body(abi)
         } else {
             return try super.toABI(body)
         }
