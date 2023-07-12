@@ -35,13 +35,13 @@ public typealias AnyIVectorView<Element> = any IVectorView<Element>
 // app implemented vectors can't be passed to an API that expects
 // Any yet
 extension IVector {
-  public func makeAbi() -> SUPPORT_MODULE.IInspectable { 
+  public func getAbiMaker() -> () -> UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable> { 
     fatalError("not implemented")
   }
 }
 
 extension IVectorView {
-  public func makeAbi() -> SUPPORT_MODULE.IInspectable { 
+  public func getAbiMaker() -> () -> UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable> { 
     fatalError("not implemented")
   }
 }

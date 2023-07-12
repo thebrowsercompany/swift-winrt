@@ -74,10 +74,9 @@ public protocol IAsyncAction : WinRTInterface {
 }
 
 extension IAsyncAction {
-    public func makeAbi() -> test_component.IInspectable {
+    public func getAbiMaker() -> () -> UnsafeMutablePointer<Ctest_component.IInspectable> {
         let wrapper = __ABI_Windows_Foundation.IAsyncActionWrapper(self)
-        let _abi = try! wrapper?.toABI { $0 }
-        return .init(_abi!)
+        return { try! wrapper!.toABI { $0.withMemoryRebound(to: Ctest_component.IInspectable.self, capacity: 1) { $0 } } } 
     }
 }
 public typealias AnyIAsyncAction = any IAsyncAction
@@ -87,10 +86,9 @@ public protocol IClosable : WinRTInterface {
 }
 
 extension IClosable {
-    public func makeAbi() -> test_component.IInspectable {
+    public func getAbiMaker() -> () -> UnsafeMutablePointer<Ctest_component.IInspectable> {
         let wrapper = __ABI_Windows_Foundation.IClosableWrapper(self)
-        let _abi = try! wrapper?.toABI { $0 }
-        return .init(_abi!)
+        return { try! wrapper!.toABI { $0.withMemoryRebound(to: Ctest_component.IInspectable.self, capacity: 1) { $0 } } } 
     }
 }
 public typealias AnyIClosable = any IClosable
@@ -125,10 +123,9 @@ public protocol IStringable : WinRTInterface {
 }
 
 extension IStringable {
-    public func makeAbi() -> test_component.IInspectable {
+    public func getAbiMaker() -> () -> UnsafeMutablePointer<Ctest_component.IInspectable> {
         let wrapper = __ABI_Windows_Foundation.IStringableWrapper(self)
-        let _abi = try! wrapper?.toABI { $0 }
-        return .init(_abi!)
+        return { try! wrapper!.toABI { $0.withMemoryRebound(to: Ctest_component.IInspectable.self, capacity: 1) { $0 } } } 
     }
 }
 public typealias AnyIStringable = any IStringable

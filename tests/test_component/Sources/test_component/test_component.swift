@@ -93,7 +93,7 @@ public final class BaseCollection : WinRTClass, IVector {
         _default = try! fromAbi.QueryInterface()
     }
 
-    public func makeAbi() -> test_component.IInspectable { fatalError("API should not be called") }
+    public func getAbiMaker() -> () -> UnsafeMutablePointer<Ctest_component.IInspectable> { fatalError("API should not be called") }
     // MARK: Collection
     public var startIndex: Int { 0 }
     public var endIndex: Int { Int(size) }
@@ -200,7 +200,7 @@ public final class BaseMapCollection : WinRTClass, IMap {
         _default = try! fromAbi.QueryInterface()
     }
 
-    public func makeAbi() -> test_component.IInspectable { fatalError("API should not be called") }
+    public func getAbiMaker() -> () -> UnsafeMutablePointer<Ctest_component.IInspectable> { fatalError("API should not be called") }
     // MARK: WinRT
     public func lookup(_ key: String) -> Base? {
         let _key = try! HString(key)
@@ -321,7 +321,7 @@ public final class Class : WinRTClass, IBasic {
         _default = try! fromAbi.QueryInterface()
     }
 
-    public func makeAbi() -> test_component.IInspectable { fatalError("API should not be called") }
+    public func getAbiMaker() -> () -> UnsafeMutablePointer<Ctest_component.IInspectable> { fatalError("API should not be called") }
     public init() {
         try! _default = RoActivateInstance(HString("test_component.Class"))
     }
@@ -867,7 +867,7 @@ public final class NoopClosable : WinRTClass, test_component.IClosable {
         _default = try! fromAbi.QueryInterface()
     }
 
-    public func makeAbi() -> test_component.IInspectable { fatalError("API should not be called") }
+    public func getAbiMaker() -> () -> UnsafeMutablePointer<Ctest_component.IInspectable> { fatalError("API should not be called") }
     public init() {
         try! _default = RoActivateInstance(HString("test_component.NoopClosable"))
     }
@@ -1413,10 +1413,9 @@ public protocol IBasic : WinRTInterface {
 }
 
 extension IBasic {
-    public func makeAbi() -> test_component.IInspectable {
+    public func getAbiMaker() -> () -> UnsafeMutablePointer<Ctest_component.IInspectable> {
         let wrapper = __ABI_test_component.IBasicWrapper(self)
-        let _abi = try! wrapper?.toABI { $0 }
-        return .init(_abi!)
+        return { try! wrapper!.toABI { $0.withMemoryRebound(to: Ctest_component.IInspectable.self, capacity: 1) { $0 } } } 
     }
 }
 public typealias AnyIBasic = any IBasic
@@ -1449,10 +1448,9 @@ public extension EventSource where Handler == test_component.InDelegate {
 }
 
 extension IIAmImplementable {
-    public func makeAbi() -> test_component.IInspectable {
+    public func getAbiMaker() -> () -> UnsafeMutablePointer<Ctest_component.IInspectable> {
         let wrapper = __ABI_test_component.IIAmImplementableWrapper(self)
-        let _abi = try! wrapper?.toABI { $0 }
-        return .init(_abi!)
+        return { try! wrapper!.toABI { $0.withMemoryRebound(to: Ctest_component.IInspectable.self, capacity: 1) { $0 } } } 
     }
 }
 public typealias AnyIIAmImplementable = any IIAmImplementable
@@ -1463,10 +1461,9 @@ public protocol ISimpleDelegate : WinRTInterface {
 }
 
 extension ISimpleDelegate {
-    public func makeAbi() -> test_component.IInspectable {
+    public func getAbiMaker() -> () -> UnsafeMutablePointer<Ctest_component.IInspectable> {
         let wrapper = __ABI_test_component.ISimpleDelegateWrapper(self)
-        let _abi = try! wrapper?.toABI { $0 }
-        return .init(_abi!)
+        return { try! wrapper!.toABI { $0.withMemoryRebound(to: Ctest_component.IInspectable.self, capacity: 1) { $0 } } } 
     }
 }
 public typealias AnyISimpleDelegate = any ISimpleDelegate
@@ -1486,10 +1483,9 @@ public extension EventSource where Handler == test_component.ReturnInt32Delegate
 }
 
 extension InterfaceWithReturnDelegate {
-    public func makeAbi() -> test_component.IInspectable {
+    public func getAbiMaker() -> () -> UnsafeMutablePointer<Ctest_component.IInspectable> {
         let wrapper = __ABI_test_component.InterfaceWithReturnDelegateWrapper(self)
-        let _abi = try! wrapper?.toABI { $0 }
-        return .init(_abi!)
+        return { try! wrapper!.toABI { $0.withMemoryRebound(to: Ctest_component.IInspectable.self, capacity: 1) { $0 } } } 
     }
 }
 public typealias AnyInterfaceWithReturnDelegate = any InterfaceWithReturnDelegate

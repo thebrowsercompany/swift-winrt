@@ -62,21 +62,20 @@ public final class NotifyCollectionChangedEventArgs : WinRTClass {
 }
 
 public typealias NotifyCollectionChangedEventHandler = (Any?, NotifyCollectionChangedEventArgs?) -> ()
-public protocol IBindableVector : WinRTInterface2 {
+public protocol IBindableVector : WinRTInterface {
     func getAt(_ index: UInt32) throws -> Any!
     var size: UInt32 { get }
 }
 
 extension IBindableVector {
-    public var makeAbi2: AbiMaker {
+    public func getAbiMaker() -> () -> UnsafeMutablePointer<Ctest_component.IInspectable> {
         let wrapper = __ABI_Microsoft_UI_Xaml_Interop.IBindableVectorWrapper(self)
-        let _abi =  { try! wrapper!.toABI { $0.withMemoryRebound(to: Ctest_component.IInspectable.self, capacity: 1) { $0 } } } 
-        return .init(make: _abi)
+        return { try! wrapper!.toABI { $0.withMemoryRebound(to: Ctest_component.IInspectable.self, capacity: 1) { $0 } } } 
     }
 }
 public typealias AnyIBindableVector = any IBindableVector
 
-public protocol INotifyCollectionChanged : WinRTInterface2 {
+public protocol INotifyCollectionChanged : WinRTInterface {
     var collectionChanged: Event<NotifyCollectionChangedEventHandler> { get }
 }
 
@@ -89,10 +88,9 @@ public extension EventSource where Handler == NotifyCollectionChangedEventHandle
 }
 
 extension INotifyCollectionChanged {
-    public var makeAbi2: AbiMaker {
+    public func getAbiMaker() -> () -> UnsafeMutablePointer<Ctest_component.IInspectable> {
         let wrapper = __ABI_Microsoft_UI_Xaml_Interop.INotifyCollectionChangedWrapper(self)
-        let _abi =  { try! wrapper!.toABI { $0.withMemoryRebound(to: Ctest_component.IInspectable.self, capacity: 1) { $0 } } } 
-        return .init(make: _abi)
+        return { try! wrapper!.toABI { $0.withMemoryRebound(to: Ctest_component.IInspectable.self, capacity: 1) { $0 } } } 
     }
 }
 public typealias AnyINotifyCollectionChanged = any INotifyCollectionChanged
