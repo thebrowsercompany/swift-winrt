@@ -3,7 +3,7 @@ import XCTest
 import test_component
 import Foundation
 
-fileprivate struct Person {
+fileprivate class Person {
   var firstName: String
   var lastName: String
   init(firstName: String, lastName: String) {

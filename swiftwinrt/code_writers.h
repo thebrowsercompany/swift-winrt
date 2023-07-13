@@ -817,8 +817,8 @@ bind_impl_fullname(type));
         // never be exposed to developers, it's also something we should remove
         // https://linear.app/the-browser-company/issue/WIN-640/remove-ipropertyvalueimpl-and-fix-ireference
         auto winrtInterfaceConformance = w.write_temp(R"(
-    public func getAbiMaker() -> () -> UnsafeMutablePointer<%.IInspectable> { fatalError("not implemented") }
-)", w.c_mod);
+    public func makeAbi() -> %.IInspectable { fatalError("not implemented") }
+)", w.support);
 
         w.write(R"(public class IPropertyValueImpl : IPropertyValue, IReference {
     var _value: Any
@@ -1245,15 +1245,16 @@ public static func makeAbi() -> CABI {
         }
         if (type.swift_full_name() != "Windows.Foundation.IPropertyValue")
         {
-            // write default getAbiMaker implementation for this interface. don't do
+            // write default makeAbi implementation for this interface. don't do
             // it for IPropertyValue since this has a custom wrapper implementation
             w.write(R"(extension % {
-    public func getAbiMaker() -> () -> UnsafeMutablePointer<%.IInspectable> {
+    public func makeAbi() -> %.IInspectable {
         let wrapper = %(self)
-        return { try! wrapper!.toABI { $0.withMemoryRebound(to: %.IInspectable.self, capacity: 1) { $0 } } } 
+        let _abi = try! wrapper?.toABI { $0 }
+        return .init(_abi!)
     }
 }
-)", typeName, w.c_mod, bind_wrapper_fullname(type), w.c_mod);
+)", typeName, w.support, bind_wrapper_fullname(type));
         }
 
         // Declare a short form for the existential version of the type, e.g. AnyClosable for "any IClosable"
@@ -2185,10 +2186,10 @@ private var _default: SwiftABI!
                 // A WinRTClass needs WinRTInterfaceConformance when it derives from more than 1 interface,
                 // otherwise it won't compile. Rather than simply returning _default we failFast since this
                 // API should never be called.
-                w.write(R"(%% func getAbiMaker() -> () -> UnsafeMutablePointer<%.IInspectable> { fatalError("API should not be called") }
+                w.write(R"(%% func makeAbi() -> %.IInspectable { fatalError("API should not be called") }
 )", override,
 modifier,
-w.c_mod);
+w.support);
             }
         }
         for (auto&& [interface_name, factory] : type.factories)

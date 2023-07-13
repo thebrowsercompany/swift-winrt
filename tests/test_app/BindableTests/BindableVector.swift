@@ -1,9 +1,9 @@
 import test_component
 
-protocol BindableVectorBase: IBindableVector, INotifyCollectionChanged {
-}
+protocol BindableVectorBase: IBindableVector, INotifyCollectionChanged {}
 
-public class BindableVector<Element> : BindableVectorBase, IVector {
+
+public class BindableVector<Element> : IVector, BindableVectorBase {
     private var storage: Array<Element>
 
     public init(_ elements: Array<Element>){
@@ -60,6 +60,7 @@ public class BindableVector<Element> : BindableVectorBase, IVector {
         storage.removeLast()
     }
     public func clear() { 
+        let oldItems = storage
         storage.removeAll()
     }
     public func getView() -> AnyIVectorView<Element>? { return nil }
