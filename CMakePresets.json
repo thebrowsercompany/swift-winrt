@@ -9,7 +9,7 @@
         {
             "name": "base",
             "hidden": true,
-            "generator": "NMake Makefiles",
+            "generator": "Ninja",
             "architecture": {
                 "value": "x64",
                 "strategy": "external"
