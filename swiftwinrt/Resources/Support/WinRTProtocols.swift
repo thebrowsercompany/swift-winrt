@@ -12,8 +12,8 @@ public protocol IWinRTObject: AnyObject {
 // ABI pointers for interfaces are made at runtime, which is why
 // this is a seperate protocol with a function instead of a property
 public protocol WinRTInterface: AnyObject {
-  @_spi(WinRTInternal)
-  func makeAbi() -> SUPPORT_MODULE.IInspectable
+    @_spi(WinRTInternal)
+    func makeAbi() -> SUPPORT_MODULE.IInspectable
 }
 
 public protocol WinRTClass : IWinRTObject, Equatable {
