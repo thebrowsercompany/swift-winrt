@@ -68,9 +68,10 @@ public protocol IBindableVector : WinRTInterface {
 }
 
 extension IBindableVector {
-    public func getAbiMaker() -> () -> UnsafeMutablePointer<Ctest_component.IInspectable> {
+    public func makeAbi() -> test_component.IInspectable {
         let wrapper = __ABI_Microsoft_UI_Xaml_Interop.IBindableVectorWrapper(self)
-        return { try! wrapper!.toABI { $0.withMemoryRebound(to: Ctest_component.IInspectable.self, capacity: 1) { $0 } } } 
+        let _abi = try! wrapper?.toABI { $0 }
+        return .init(_abi!)
     }
 }
 public typealias AnyIBindableVector = any IBindableVector
@@ -88,9 +89,10 @@ public extension EventSource where Handler == NotifyCollectionChangedEventHandle
 }
 
 extension INotifyCollectionChanged {
-    public func getAbiMaker() -> () -> UnsafeMutablePointer<Ctest_component.IInspectable> {
+    public func makeAbi() -> test_component.IInspectable {
         let wrapper = __ABI_Microsoft_UI_Xaml_Interop.INotifyCollectionChangedWrapper(self)
-        return { try! wrapper!.toABI { $0.withMemoryRebound(to: Ctest_component.IInspectable.self, capacity: 1) { $0 } } } 
+        let _abi = try! wrapper?.toABI { $0 }
+        return .init(_abi!)
     }
 }
 public typealias AnyINotifyCollectionChanged = any INotifyCollectionChanged
