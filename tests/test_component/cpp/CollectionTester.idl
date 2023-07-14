@@ -1,0 +1,19 @@
+import "Windows.Foundation.idl";
+
+namespace test_component
+{
+    runtimeclass CollectionTester
+    {
+        CollectionTester();
+
+        // static String InIterable(Windows.Foundation.Collections.IIterable<String> value);
+        // static String InIterablePair(Windows.Foundation.Collections.IIterable<Windows.Foundation.Collections.IKeyValuePair<String, String> > value);
+        static String InMap(Windows.Foundation.Collections.IMap<String, String> value);
+        static String InMapView(Windows.Foundation.Collections.IMapView<String, String> value);
+        static String InVector(Windows.Foundation.Collections.IVector<String> value);
+        static String InVectorView(Windows.Foundation.Collections.IVectorView<String> value);
+            
+        Windows.Foundation.Collections.IVector<String> ReturnStoredStringVector();
+        Windows.Foundation.Collections.IMap<String, String> ReturnMapFromStringToString();
+    }
+}
