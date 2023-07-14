@@ -128,6 +128,9 @@ namespace swiftwinrt
             }
             else {
                 auto last_ns_index = include.find_last_of('.');
+                if (last_ns_index == include.npos){
+                    swiftwinrt::throw_invalid("Namespace '", include, "' not found");
+                }
                 auto ns = include.substr(0, last_ns_index);
                 auto name = include.substr(last_ns_index + 1);
                 auto type = &cache.find(ns, name);
