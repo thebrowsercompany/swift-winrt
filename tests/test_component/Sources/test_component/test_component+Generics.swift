@@ -949,8 +949,7 @@ internal var __x_ABI_C__FIVectorView_1_IInspectableVTable: __x_ABI_C__FIVectorVi
         let index: UInt32 = $1
         let result = __unwrapped__instance.getAt(index)
         let resultWrapper = __ABI_.AnyWrapper(result)
-        let _result = try! resultWrapper?.toABI { $0 }
-        $2?.initialize(to: _result)
+        resultWrapper?.copyTo($2)
         return S_OK
     },
 
@@ -1488,8 +1487,7 @@ internal var __x_ABI_C__FIVector_1_IInspectableVTable: __x_ABI_C__FIVector_1_IIn
         let index: UInt32 = $1
         let result = __unwrapped__instance.getAt(index)
         let resultWrapper = __ABI_.AnyWrapper(result)
-        let _result = try! resultWrapper?.toABI { $0 }
-        $2?.initialize(to: _result)
+        resultWrapper?.copyTo($2)
         return S_OK
     },
 
@@ -1504,8 +1502,7 @@ internal var __x_ABI_C__FIVector_1_IInspectableVTable: __x_ABI_C__FIVector_1_IIn
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let result = __unwrapped__instance.getView()
         let resultWrapper = test_component.__x_ABI_C__FIVectorView_1_IInspectableWrapper(result)
-        let _result = try! resultWrapper?.toABI { $0 }
-        $1?.initialize(to: _result)
+        resultWrapper?.copyTo($1)
         return S_OK
     },
 
