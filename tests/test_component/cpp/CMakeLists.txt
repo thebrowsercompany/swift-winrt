@@ -124,16 +124,12 @@ target_sources(test_component_cpp PRIVATE
     Derived.cpp
     EventTester.h
     EventTester.cpp
-    ListView.h
-    ListView.cpp
     module.cpp
     ${CPPWINRT_OUTPUT}
     #Optional.cpp
     #Optional.h
     NoopClosable.cpp
     NoopClosable.h
-    NotifyCollectionChangedEventArgs.cpp
-    NotifyCollectionChangedEventArgs.h
     NullValues.cpp
     NullValues.h
     pch.cpp
