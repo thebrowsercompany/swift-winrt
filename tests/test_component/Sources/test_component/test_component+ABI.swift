@@ -63,7 +63,7 @@ private var IID___x_ABI_Ctest__component_CICollectionTester: IID {
 }
 
 private var IID___x_ABI_Ctest__component_CICollectionTesterStatics: IID {
-    IID(Data1: 0x4C7B13F2, Data2: 0x4F03, Data3: 0x5EEA, Data4: ( 0x88,0x4E,0xFE,0x86,0x98,0xB2,0x84,0x22 ))// 4C7B13F2-4F03-5EEA-884E-FE8698B28422
+    IID(Data1: 0xB4A76DAD, Data2: 0xCC18, Data3: 0x560A, Data4: ( 0xBD,0x9D,0x46,0xA6,0xD7,0x85,0x68,0x55 ))// B4A76DAD-CC18-560A-BD9D-46A6D7856855
 }
 
 =======
@@ -142,6 +142,10 @@ private var IID___x_ABI_Ctest__component_CIUnsealedDerivedProtectedFactory: IID 
 
 private var IID___x_ABI_Ctest__component_CInterfaceWithReturnDelegate: IID {
     IID(Data1: 0xB0EBC406, Data2: 0x17C0, Data3: 0x5703, Data4: ( 0xB9,0xC7,0x50,0xBE,0x67,0x5B,0xBC,0x95 ))// B0EBC406-17C0-5703-B9C7-50BE675BBC95
+}
+
+private var IID___x_ABI_Ctest__component_CIGetFirstObjectInCollection: IID {
+    IID(Data1: 0x84A5A5D8, Data2: 0xC059, Data3: 0x59E5, Data4: ( 0x93,0x4E,0xEC,0xA0,0x05,0x52,0x2E,0x71 ))// 84A5A5D8-C059-59E5-934E-ECA005522E71
 }
 
 private var IID___x_ABI_Ctest__component_CIVoidToVoidDelegate: IID {
@@ -739,6 +743,12 @@ public enum __ABI_test_component {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InVectorView(pThis, value, &result))
             }
             return result
+        }
+
+        internal func InVectorObjectImpl(_ value: UnsafeMutablePointer<__x_ABI_C__FIVector_1_IInspectable>?, _ callback: UnsafeMutablePointer<__x_ABI_Ctest__component_CIGetFirstObjectInCollection>?) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CICollectionTesterStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.InVectorObject(pThis, value, callback))
+            }
         }
 
     }
@@ -2069,6 +2079,64 @@ extension ComposableImpl where CABI == __x_ABI_Ctest__component_CIUnsealedDerive
         return .init(lpVtbl: vtblPtr)
     }
 }
+// MARK - GetFirstObjectInCollection
+extension __ABI_test_component {
+    open class GetFirstObjectInCollection: test_component.IUnknown {
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CIGetFirstObjectInCollection }
+
+        open func InvokeImpl(_ item: UnsafeMutablePointer<Ctest_component.IInspectable>?) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIGetFirstObjectInCollection.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, item))
+            }
+        }
+
+    }
+
+
+    typealias GetFirstObjectInCollectionWrapper = InterfaceWrapperBase<__IMPL_test_component.GetFirstObjectInCollectionImpl>
+    internal static var GetFirstObjectInCollectionVTable: __x_ABI_Ctest__component_CIGetFirstObjectInCollectionVtbl = .init(
+        QueryInterface: {
+            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+
+            guard riid.pointee == IUnknown.IID ||
+                  riid.pointee == IInspectable.IID || 
+                  riid.pointee == ISwiftImplemented.IID ||
+                  riid.pointee == IAgileObject.IID ||
+                  riid.pointee == __ABI_test_component.GetFirstObjectInCollectionWrapper.IID else { 
+                    return E_NOINTERFACE
+
+            }
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
+        },
+
+        AddRef: {
+             guard let wrapper = GetFirstObjectInCollectionWrapper.fromRaw($0) else { return 1 }
+             _ = wrapper.retain()
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+        },
+
+        Release: {
+            guard let wrapper = GetFirstObjectInCollectionWrapper.fromRaw($0) else { return 1 }
+            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+        },
+
+        Invoke: {
+            guard let __unwrapped__instance = GetFirstObjectInCollectionWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let item: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: $1)
+            __unwrapped__instance(item)
+            return S_OK
+        }
+    )
+}
+public extension WinRTDelegateBridge where CABI == __x_ABI_Ctest__component_CIGetFirstObjectInCollection {
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.GetFirstObjectInCollectionVTable) { $0 }
+        return .init(lpVtbl:vtblPtr)
+    }
+}
+
 // MARK - VoidToVoidDelegate
 extension __ABI_test_component {
     open class VoidToVoidDelegate: test_component.IUnknown {

@@ -8,6 +8,8 @@
 				"--product",
 				"test_app",
 				"-Xswiftc",
+				"-disable-round-trip-debug-types",
+				"-Xswiftc",
 				"-g",
 				"-Xswiftc",
 				"-debug-info-format=codeview",

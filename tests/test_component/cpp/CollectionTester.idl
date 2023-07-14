@@ -2,6 +2,7 @@ import "Windows.Foundation.idl";
 
 namespace test_component
 {
+    delegate void GetFirstObjectInCollection(Object item);
     runtimeclass CollectionTester
     {
         CollectionTester();
@@ -12,7 +13,8 @@ namespace test_component
         static String InMapView(Windows.Foundation.Collections.IMapView<String, String> value);
         static String InVector(Windows.Foundation.Collections.IVector<String> value);
         static String InVectorView(Windows.Foundation.Collections.IVectorView<String> value);
-            
+        static void InVectorObject(Windows.Foundation.Collections.IVector<Object> value, GetFirstObjectInCollection callback);
+
         Windows.Foundation.Collections.IVector<String> ReturnStoredStringVector();
         Windows.Foundation.Collections.IMap<String, String> ReturnMapFromStringToString();
     }

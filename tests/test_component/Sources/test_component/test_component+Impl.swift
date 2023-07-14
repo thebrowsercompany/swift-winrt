@@ -217,6 +217,22 @@ public enum __IMPL_test_component {
 
     }
 
+    public class GetFirstObjectInCollectionImpl : WinRTDelegateBridge {
+        public typealias Handler = GetFirstObjectInCollection
+        public typealias CABI = __x_ABI_Ctest__component_CIGetFirstObjectInCollection
+        public typealias SwiftABI = __ABI_test_component.GetFirstObjectInCollection
+
+        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+            guard let abi = abi else { return nil }
+            let _default = SwiftABI(abi)
+            let handler: Handler = { (item) in
+                let itemWrapper = __ABI_.AnyWrapper(item)
+                let _item = try! itemWrapper?.toABI { $0 }
+                try! _default.InvokeImpl(_item)
+            }
+            return handler
+        }
+    }
     public class VoidToVoidDelegateImpl : WinRTDelegateBridge {
         public typealias Handler = VoidToVoidDelegate
         public typealias CABI = __x_ABI_Ctest__component_CIVoidToVoidDelegate

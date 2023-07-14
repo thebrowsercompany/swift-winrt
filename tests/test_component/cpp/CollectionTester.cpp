@@ -34,6 +34,13 @@ namespace winrt::test_component::implementation
         return value.GetAt(0);
     }
     
+    void CollectionTester::InVectorObject(winrt::Windows::Foundation::Collections::IVector<Windows::Foundation::IInspectable> const& value, winrt::test_component::GetFirstObjectInCollection const& callback)
+    {
+        auto item = value.GetAt(0);
+
+        callback(item);
+    }
+
     Windows::Foundation::Collections::IVector<hstring> CollectionTester::ReturnStoredStringVector()
     {
         if (m_vector.Size() == 0)
