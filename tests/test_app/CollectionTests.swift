@@ -4,37 +4,42 @@ import Foundation
 
 class CollectionTests : XCTestCase {
   
-  public func testVector() throws {
+  public func testVector_asInput() throws {
     let array = ["Hello", "Goodbye", "Goodnight"]
 
-    var result = CollectionTester.inVector(array.toVector())
-    print(result)
+    let result = CollectionTester.inVector(array.toVector())
     XCTAssertEqual(result, "Hello")
+  }
 
-    let classy = CollectionTester()
-    let vector = try classy.returnStoredStringVector()!
+  public func testVector_asReturn() throws {
+    let tester = CollectionTester()
+    let vector = try tester.returnStoredStringVector()!
     XCTAssertEqual(vector.count, 1)
-    print(vector[0])
+    XCTAssertEqual(vector[0], "Hello")
+  }
 
-    result = CollectionTester.inVector(vector)
-
-    print(result)
-    XCTAssertEqual(result, vector[0])
+  public func testVector_mutate() throws {
+    let tester = CollectionTester()
+    let vector = try tester.returnStoredStringVector()!
+    XCTAssertEqual(vector.count, 1)
 
     vector.append("Goodbye")
     XCTAssertEqual(vector.count, 2)
+
     // Make sure the returned vector has the same data
     // as the one we modified
-    let vector2 = try classy.returnStoredStringVector()!
+    let vector2 = try tester.returnStoredStringVector()!
     XCTAssertEqual(vector2.count, vector.count)
     XCTAssertEqual(vector2[0], vector2[0])
     XCTAssertEqual(vector2[1], vector2[1])
+    XCTAssertEqual(vector2[1], "Goodbye")
 
     vector2.append("Goodnight")
 
     XCTAssertEqual(vector2.count, 3)
     XCTAssertEqual(vector.count, 3)
     XCTAssertEqual(vector2[2], vector2[2])
+    XCTAssertEqual(vector2[2], "Goodnight")
   }
 
   public func testMap_asInput() {
@@ -44,8 +49,8 @@ class CollectionTests : XCTestCase {
   }
   
   public func testMap_asReturn() throws {
-    let classy = CollectionTester()
-    let map = try classy.returnMapFromStringToString()!
+    let tester = CollectionTester()
+    let map = try tester.returnMapFromStringToString()!
     XCTAssertEqual(map.count, 1)
     XCTAssert(map.hasKey("A"))
     XCTAssertEqual(map.lookup("A"), "Alpha")
@@ -53,8 +58,8 @@ class CollectionTests : XCTestCase {
   }
 
   public func testMap_mutate() throws {
-    let classy = CollectionTester()
-    let map = try classy.returnMapFromStringToString()!
+    let tester = CollectionTester()
+    let map = try tester.returnMapFromStringToString()!
     XCTAssert(map.hasKey("A"))
     XCTAssertEqual(map.lookup("A"), "Alpha")
     
@@ -71,7 +76,9 @@ var collectionTests: [XCTestCaseEntry] = [
     ("testMap_asInput", CollectionTests.testMap_asInput),
     ("testMap_asReturn", CollectionTests.testMap_asReturn),
     ("testMap_mutate", CollectionTests.testMap_mutate),
-    ("testVector", CollectionTests.testVector),
+    ("testVector_asInput", CollectionTests.testVector_asInput),
+    ("testVector_asReturn", CollectionTests.testVector_asReturn),
+    ("testVector_mutate", CollectionTests.testVector_mutate),
   ])
 ]
 
