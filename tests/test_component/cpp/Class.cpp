@@ -154,48 +154,6 @@ namespace winrt::test_component::implementation
         }
     }
 
-    hstring Class::InIterable(Windows::Foundation::Collections::IIterable<hstring> const& value)
-    {
-        return value.First().Current();
-    }
-    hstring Class::InIterablePair(Windows::Foundation::Collections::IIterable<Windows::Foundation::Collections::IKeyValuePair<hstring, hstring>> const& value)
-    {
-        return value.First().Current().Key();
-    }
-    /*Windows::Foundation::IAsyncOperation<hstring> Class::InAsyncIterable(Windows::Foundation::Collections::IIterable<hstring> value)
-    {
-        co_return value.First().Current();
-    }
-    Windows::Foundation::IAsyncOperation<hstring> Class::InAsyncIterablePair(Windows::Foundation::Collections::IIterable<Windows::Foundation::Collections::IKeyValuePair<hstring, hstring>> value)
-    {
-        co_return value.First().Current().Key();
-    }*/
-    hstring Class::InMap(Windows::Foundation::Collections::IMap<hstring, hstring> const& value)
-    {
-        return value.Lookup(L"A");
-    }
-    hstring Class::InMapView(Windows::Foundation::Collections::IMapView<hstring, hstring> const& value)
-    {
-        return value.Lookup(L"A");
-    }
-   /* Windows::Foundation::IAsyncOperation<hstring> Class::InAsyncMapView(Windows::Foundation::Collections::IMapView<hstring, hstring> value)
-    {
-        co_return value.Lookup(L"test");
-    }*/
-    hstring Class::InVector(Windows::Foundation::Collections::IVector<hstring> const& value)
-    {
-        if (value.Size() == 0) return L"empty";
-        
-        return value.GetAt(0);
-    }
-    hstring Class::InVectorView(Windows::Foundation::Collections::IVectorView<hstring> const& value)
-    {
-        return value.GetAt(0);
-    }
-    /*Windows::Foundation::IAsyncOperation<hstring> Class::InAsyncVectorView(Windows::Foundation::Collections::IVectorView<hstring> value)
-    {
-        co_return value.GetAt(0);
-    }*/
 
     void Class::OutInt32(int32_t& value)
     {
@@ -559,22 +517,6 @@ namespace winrt::test_component::implementation
         {
             return m_id;
         }
-    }
-
-    Windows::Foundation::Collections::IVector<hstring> Class::ReturnStoredStringVector()
-    {
-        if (m_vector.Size() == 0)
-        {
-            m_vector.Append(L"Hello");
-        }
-        return m_vector;
-    }
-    
-    Windows::Foundation::Collections::IMap<hstring, hstring> Class::ReturnMapFromStringToString()
-    {
-        auto map = winrt::single_threaded_map<hstring, hstring>();
-        map.Insert(L"A", L"Alpha");
-        return map;
     }
 
     /* TODO: COR-762 once we enable async/await we can bring this back

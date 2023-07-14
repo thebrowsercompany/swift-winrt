@@ -386,34 +386,6 @@ public final class Class : WinRTClass, IBasic {
         return result
     }
 
-    public static func inMap(_ value: AnyIMap<String, String>!) -> String {
-        let valueWrapper = test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper(value)
-        let _value = try! valueWrapper?.toABI { $0 }
-        let result = try! _IClassStatics.InMapImpl(_value)
-        return .init(from: result)
-    }
-
-    public static func inMapView(_ value: AnyIMapView<String, String>!) -> String {
-        let valueWrapper = test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper(value)
-        let _value = try! valueWrapper?.toABI { $0 }
-        let result = try! _IClassStatics.InMapViewImpl(_value)
-        return .init(from: result)
-    }
-
-    public static func inVector(_ value: AnyIVector<String>!) -> String {
-        let valueWrapper = test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper(value)
-        let _value = try! valueWrapper?.toABI { $0 }
-        let result = try! _IClassStatics.InVectorImpl(_value)
-        return .init(from: result)
-    }
-
-    public static func inVectorView(_ value: AnyIVectorView<String>!) -> String {
-        let valueWrapper = test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper(value)
-        let _value = try! valueWrapper?.toABI { $0 }
-        let result = try! _IClassStatics.InVectorViewImpl(_value)
-        return .init(from: result)
-    }
-
     public static var staticProperty : Int32 {
         get {
             let value = try! _IClassStatics.get_StaticPropertyImpl()
@@ -532,16 +504,6 @@ public final class Class : WinRTClass, IBasic {
         return .init(ref: result)
     }
 
-    public func returnStoredStringVector() throws -> AnyIVector<String>! {
-        let result = try _default.ReturnStoredStringVectorImpl()
-        return test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper.unwrapFrom(abi: result)
-    }
-
-    public func returnMapFromStringToString() throws -> AnyIMap<String, String>! {
-        let result = try _default.ReturnMapFromStringToStringImpl()
-        return test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
-    }
-
     public func returnChar() throws -> Character {
         let result = try _default.ReturnCharImpl()
         return .init(from: result)
@@ -617,19 +579,6 @@ public final class Class : WinRTClass, IBasic {
         }
     }
 
-    public var itemsSource : Any! {
-        get {
-            let value = try! _default.get_ItemsSourceImpl()
-            return __ABI_.AnyWrapper.unwrapFrom(abi: value)
-        }
-
-        set {
-            let wrapper = __ABI_.AnyWrapper(newValue)
-            let _newValue = try! wrapper?.toABI { $0 }
-            try! _default.put_ItemsSourceImpl(_newValue)
-        }
-    }
-
     public var startValue : Int32? {
         get {
             let value = try! _default.get_StartValueImpl()
@@ -646,6 +595,76 @@ public final class Class : WinRTClass, IBasic {
     internal lazy var _IBasic: __ABI_test_component.IBasic = try! _default.QueryInterface()
     public func method() throws {
         try _IBasic.MethodImpl()
+    }
+
+}
+
+public final class CollectionTester : WinRTClass {
+    private typealias SwiftABI = __ABI_test_component.ICollectionTester
+    private typealias CABI = __x_ABI_Ctest__component_CICollectionTester
+    private var _default: SwiftABI!
+    public func _getABI<T>() -> UnsafeMutablePointer<T>? {
+        if T.self == CABI.self {
+            return RawPointer(_default)
+        }   
+        if T.self == Ctest_component.IInspectable.self {
+            return RawPointer(_default)
+        }
+        return nil
+    }
+
+    public var thisPtr: test_component.IInspectable { _default }
+
+    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CICollectionTester>?) -> CollectionTester? {
+        guard let abi = abi else { return nil }
+        return .init(fromAbi: .init(abi))
+    }
+
+    public init(fromAbi: test_component.IInspectable) {
+        _default = try! fromAbi.QueryInterface()
+    }
+
+    public init() {
+        try! _default = RoActivateInstance(HString("test_component.CollectionTester"))
+    }
+
+    private static let _ICollectionTesterStatics: __ABI_test_component.ICollectionTesterStatics = try! RoGetActivationFactory(HString("test_component.CollectionTester"))
+    public static func inMap(_ value: AnyIMap<String, String>!) -> String {
+        let valueWrapper = test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper(value)
+        let _value = try! valueWrapper?.toABI { $0 }
+        let result = try! _ICollectionTesterStatics.InMapImpl(_value)
+        return .init(from: result)
+    }
+
+    public static func inMapView(_ value: AnyIMapView<String, String>!) -> String {
+        let valueWrapper = test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper(value)
+        let _value = try! valueWrapper?.toABI { $0 }
+        let result = try! _ICollectionTesterStatics.InMapViewImpl(_value)
+        return .init(from: result)
+    }
+
+    public static func inVector(_ value: AnyIVector<String>!) -> String {
+        let valueWrapper = test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper(value)
+        let _value = try! valueWrapper?.toABI { $0 }
+        let result = try! _ICollectionTesterStatics.InVectorImpl(_value)
+        return .init(from: result)
+    }
+
+    public static func inVectorView(_ value: AnyIVectorView<String>!) -> String {
+        let valueWrapper = test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper(value)
+        let _value = try! valueWrapper?.toABI { $0 }
+        let result = try! _ICollectionTesterStatics.InVectorViewImpl(_value)
+        return .init(from: result)
+    }
+
+    public func returnStoredStringVector() throws -> AnyIVector<String>! {
+        let result = try _default.ReturnStoredStringVectorImpl()
+        return test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper.unwrapFrom(abi: result)
+    }
+
+    public func returnMapFromStringToString() throws -> AnyIMap<String, String>! {
+        let result = try _default.ReturnMapFromStringToStringImpl()
+        return test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
 }

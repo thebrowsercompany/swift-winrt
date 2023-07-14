@@ -26,7 +26,7 @@ private var IID___x_ABI_Ctest__component_CIBasic: IID {
 }
 
 private var IID___x_ABI_Ctest__component_CIClass: IID {
-    IID(Data1: 0xD5C086F3, Data2: 0xA35F, Data3: 0x5B66, Data4: ( 0xAE,0x59,0x4D,0x71,0xD3,0x95,0x53,0xDD ))// D5C086F3-A35F-5B66-AE59-4D71D39553DD
+    IID(Data1: 0x1E9F3DF1, Data2: 0xDB1E, Data3: 0x58F2, Data4: ( 0xBF,0xA1,0x6E,0x4B,0xC2,0x3F,0x11,0x5D ))// 1E9F3DF1-DB1E-58F2-BFA1-6E4BC23F115D
 }
 
 private var IID___x_ABI_Ctest__component_CIClassFactory: IID {
@@ -38,11 +38,19 @@ private var IID___x_ABI_Ctest__component_CIClassFactory2: IID {
 }
 
 private var IID___x_ABI_Ctest__component_CIClassStatics: IID {
-    IID(Data1: 0x102C428D, Data2: 0xFBD3, Data3: 0x5649, Data4: ( 0xB1,0xB2,0x80,0xBC,0xC7,0xB0,0x04,0xE1 ))// 102C428D-FBD3-5649-B1B2-80BCC7B004E1
+    IID(Data1: 0x2E573677, Data2: 0xD7B8, Data3: 0x5305, Data4: ( 0x8F,0x9D,0x1B,0x23,0x15,0xE3,0x77,0x8B ))// 2E573677-D7B8-5305-8F9D-1B2315E3778B
 }
 
 private var IID___x_ABI_Ctest__component_CIClassStatics2: IID {
     IID(Data1: 0xB341C098, Data2: 0x033D, Data3: 0x5445, Data4: ( 0x86,0x80,0x70,0x3A,0x93,0xBC,0xDF,0x81 ))// B341C098-033D-5445-8680-703A93BCDF81
+}
+
+private var IID___x_ABI_Ctest__component_CICollectionTester: IID {
+    IID(Data1: 0xF8B13FDD, Data2: 0xB785, Data3: 0x53D4, Data4: ( 0xBC,0x69,0xFA,0x7D,0x02,0xBD,0x88,0xE6 ))// F8B13FDD-B785-53D4-BC69-FA7D02BD88E6
+}
+
+private var IID___x_ABI_Ctest__component_CICollectionTesterStatics: IID {
+    IID(Data1: 0x4C7B13F2, Data2: 0x4F03, Data3: 0x5EEA, Data4: ( 0x88,0x4E,0xFE,0x86,0x98,0xB2,0x84,0x22 ))// 4C7B13F2-4F03-5EEA-884E-FE8698B28422
 }
 
 private var IID___x_ABI_Ctest__component_CIDerived: IID {
@@ -403,22 +411,6 @@ public enum __ABI_test_component {
             }
         }
 
-        internal func ReturnStoredStringVectorImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIVector_1_HSTRING>? {
-            var result: UnsafeMutablePointer<__x_ABI_C__FIVector_1_HSTRING>?
-            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnStoredStringVector(pThis, &result))
-            }
-            return result
-        }
-
-        internal func ReturnMapFromStringToStringImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIMap_2_HSTRING_HSTRING>? {
-            var result: UnsafeMutablePointer<__x_ABI_C__FIMap_2_HSTRING_HSTRING>?
-            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnMapFromStringToString(pThis, &result))
-            }
-            return result
-        }
-
         internal func ReturnCharImpl() throws -> WCHAR {
             var result: WCHAR = 0
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
@@ -466,20 +458,6 @@ public enum __ABI_test_component {
         internal func put_IdImpl(_ value: UnsafeMutablePointer<__x_ABI_C__FIReference_1_GUID>?) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_Id(pThis, value))
-            }
-        }
-
-        internal func get_ItemsSourceImpl() throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-            var value: UnsafeMutablePointer<Ctest_component.IInspectable>?
-            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.get_ItemsSource(pThis, &value))
-            }
-            return value
-        }
-
-        internal func put_ItemsSourceImpl(_ value: UnsafeMutablePointer<Ctest_component.IInspectable>?) throws {
-            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.put_ItemsSource(pThis, value))
             }
         }
 
@@ -604,38 +582,6 @@ public enum __ABI_test_component {
             return value
         }
 
-        internal func InMapImpl(_ value: UnsafeMutablePointer<__x_ABI_C__FIMap_2_HSTRING_HSTRING>?) throws -> HSTRING? {
-            var result: HSTRING?
-            _ = try perform(as: __x_ABI_Ctest__component_CIClassStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.InMap(pThis, value, &result))
-            }
-            return result
-        }
-
-        internal func InMapViewImpl(_ value: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?) throws -> HSTRING? {
-            var result: HSTRING?
-            _ = try perform(as: __x_ABI_Ctest__component_CIClassStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.InMapView(pThis, value, &result))
-            }
-            return result
-        }
-
-        internal func InVectorImpl(_ value: UnsafeMutablePointer<__x_ABI_C__FIVector_1_HSTRING>?) throws -> HSTRING? {
-            var result: HSTRING?
-            _ = try perform(as: __x_ABI_Ctest__component_CIClassStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.InVector(pThis, value, &result))
-            }
-            return result
-        }
-
-        internal func InVectorViewImpl(_ value: UnsafeMutablePointer<__x_ABI_C__FIVectorView_1_HSTRING>?) throws -> HSTRING? {
-            var result: HSTRING?
-            _ = try perform(as: __x_ABI_Ctest__component_CIClassStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.InVectorView(pThis, value, &result))
-            }
-            return result
-        }
-
     }
 
     open class IClassStatics2: test_component.IInspectable {
@@ -661,6 +607,64 @@ public enum __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CIClassStatics2.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_StaticPropertyFloat(pThis, value))
             }
+        }
+
+    }
+
+    open class ICollectionTester: test_component.IInspectable {
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CICollectionTester }
+
+        internal func ReturnStoredStringVectorImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIVector_1_HSTRING>? {
+            var result: UnsafeMutablePointer<__x_ABI_C__FIVector_1_HSTRING>?
+            _ = try perform(as: __x_ABI_Ctest__component_CICollectionTester.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnStoredStringVector(pThis, &result))
+            }
+            return result
+        }
+
+        internal func ReturnMapFromStringToStringImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIMap_2_HSTRING_HSTRING>? {
+            var result: UnsafeMutablePointer<__x_ABI_C__FIMap_2_HSTRING_HSTRING>?
+            _ = try perform(as: __x_ABI_Ctest__component_CICollectionTester.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnMapFromStringToString(pThis, &result))
+            }
+            return result
+        }
+
+    }
+
+    open class ICollectionTesterStatics: test_component.IInspectable {
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CICollectionTesterStatics }
+
+        internal func InMapImpl(_ value: UnsafeMutablePointer<__x_ABI_C__FIMap_2_HSTRING_HSTRING>?) throws -> HSTRING? {
+            var result: HSTRING?
+            _ = try perform(as: __x_ABI_Ctest__component_CICollectionTesterStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.InMap(pThis, value, &result))
+            }
+            return result
+        }
+
+        internal func InMapViewImpl(_ value: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?) throws -> HSTRING? {
+            var result: HSTRING?
+            _ = try perform(as: __x_ABI_Ctest__component_CICollectionTesterStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.InMapView(pThis, value, &result))
+            }
+            return result
+        }
+
+        internal func InVectorImpl(_ value: UnsafeMutablePointer<__x_ABI_C__FIVector_1_HSTRING>?) throws -> HSTRING? {
+            var result: HSTRING?
+            _ = try perform(as: __x_ABI_Ctest__component_CICollectionTesterStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.InVector(pThis, value, &result))
+            }
+            return result
+        }
+
+        internal func InVectorViewImpl(_ value: UnsafeMutablePointer<__x_ABI_C__FIVectorView_1_HSTRING>?) throws -> HSTRING? {
+            var result: HSTRING?
+            _ = try perform(as: __x_ABI_Ctest__component_CICollectionTesterStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.InVectorView(pThis, value, &result))
+            }
+            return result
         }
 
     }

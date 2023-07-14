@@ -69,16 +69,6 @@ namespace winrt::test_component::implementation
         Class(Windows::Foundation::Collections::IVector<hstring> const& arg, int32_t dummy1, int32_t dummy2, int32_t dummy3, int32_t dummy4, int32_t dummy5);
         Class(Windows::Foundation::Collections::IVectorView<hstring> const& arg, int32_t dummy1, int32_t dummy2, int32_t dummy3, int32_t dummy4, int32_t dummy5, int32_t dummy6);
 
-        static hstring InIterable(Windows::Foundation::Collections::IIterable<hstring> const& value);
-        static hstring InIterablePair(Windows::Foundation::Collections::IIterable<Windows::Foundation::Collections::IKeyValuePair<hstring, hstring>> const& value);
-        // Windows::Foundation::IAsyncOperation<hstring> InAsyncIterable(Windows::Foundation::Collections::IIterable<hstring> value);
-        // Windows::Foundation::IAsyncOperation<hstring> InAsyncIterablePair(Windows::Foundation::Collections::IIterable<Windows::Foundation::Collections::IKeyValuePair<hstring, hstring>> value);
-        static hstring InMap(Windows::Foundation::Collections::IMap<hstring, hstring> const& value);
-        static hstring InMapView(Windows::Foundation::Collections::IMapView<hstring, hstring> const& value);
-        //static Windows::Foundation::IAsyncOperation<hstring> InAsyncMapView(Windows::Foundation::Collections::IMapView<hstring, hstring> value);
-        static hstring InVector(Windows::Foundation::Collections::IVector<hstring> const& value);
-        static hstring InVectorView(Windows::Foundation::Collections::IVectorView<hstring> const& value);
-        static Windows::Foundation::IAsyncOperation<hstring> InAsyncVectorView(Windows::Foundation::Collections::IVectorView<hstring> value);
 
         void SetDelegate(test_component::ISimpleDelegate const& value)
         {
@@ -136,8 +126,6 @@ namespace winrt::test_component::implementation
         com_array<Windows::Foundation::IInspectable> ReturnObjectArray();
         com_array<Windows::Foundation::IStringable> ReturnStringableArray();
         com_array<Signed> ReturnEnumArray();
-        Windows::Foundation::Collections::IVector<hstring> ReturnStoredStringVector();
-        Windows::Foundation::Collections::IMap<hstring, hstring> ReturnMapFromStringToString();
 
         Fruit EnumProperty() const;
         void EnumProperty(Fruit const& value);
@@ -222,10 +210,6 @@ namespace winrt::test_component::implementation
         test_component::BaseNoOverrides BaseNoOverridesProperty() { return m_baseNoOverrides; }
         void BaseNoOverridesProperty(test_component::BaseNoOverrides const& value) { m_baseNoOverrides = value; }
 
-        winrt::Windows::Foundation::IInspectable ItemsSource() { return m_itemsSource; }
-        void ItemsSource(winrt::Windows::Foundation::IInspectable const& value) {
-            m_itemsSource = value.as< Windows::Foundation::Collections::IVector<winrt::Windows::Foundation::IInspectable>>();
-        }
     private:
         static float s_float;
         bool m_fail{};
@@ -250,8 +234,6 @@ namespace winrt::test_component::implementation
         Windows::Foundation::IReference<winrt::guid> m_id{};
         test_component::Base m_base = test_component::Derived();
         test_component::BaseNoOverrides m_baseNoOverrides { nullptr };
-        Windows::Foundation::Collections::IVector<winrt::Windows::Foundation::IInspectable> m_itemsSource;
-        Windows::Foundation::Collections::IVector<hstring> m_vector { winrt::single_threaded_vector<hstring>() };
     };
 
     /*

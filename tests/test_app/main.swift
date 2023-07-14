@@ -447,67 +447,6 @@ class SwiftWinRTTests : XCTestCase {
     _ = try classy.inString("\u{E909}")
   }
   
-  public func testVector() throws {
-    let array = ["Hello", "Goodbye", "Goodnight"]
-
-    var result = Class.inVector(array.toVector())
-    print(result)
-    XCTAssertEqual(result, "Hello")
-
-    let classy = Class()
-    let vector = try classy.returnStoredStringVector()!
-    XCTAssertEqual(vector.count, 1)
-    print(vector[0])
-
-    result = Class.inVector(vector)
-
-    print(result)
-    XCTAssertEqual(result, vector[0])
-
-    vector.append("Goodbye")
-    XCTAssertEqual(vector.count, 2)
-    // Make sure the returned vector has the same data
-    // as the one we modified
-    let vector2 = try classy.returnStoredStringVector()!
-    XCTAssertEqual(vector2.count, vector.count)
-    XCTAssertEqual(vector2[0], vector2[0])
-    XCTAssertEqual(vector2[1], vector2[1])
-
-    vector2.append("Goodnight")
-
-    XCTAssertEqual(vector2.count, 3)
-    XCTAssertEqual(vector.count, 3)
-    XCTAssertEqual(vector2[2], vector2[2])
-  }
-
-  public func testMap_asInput() {
-    let dictionary = ["A": "Alpha"]
-    let value = Class.inMap(dictionary.toMap())
-    XCTAssertEqual(value, "Alpha")
-  }
-  
-  public func testMap_asReturn() throws {
-    let classy = Class()
-    let map = try classy.returnMapFromStringToString()!
-    XCTAssertEqual(map.count, 1)
-    XCTAssert(map.hasKey("A"))
-    XCTAssertEqual(map.lookup("A"), "Alpha")
-    XCTAssert(!map.hasKey("Z"))
-  }
-
-  public func testMap_mutate() throws {
-    let classy = Class()
-    let map = try classy.returnMapFromStringToString()!
-    XCTAssert(map.hasKey("A"))
-    XCTAssertEqual(map.lookup("A"), "Alpha")
-    
-    XCTAssert(map.insert("A", "Aleph")) // Returns true if replacing
-    XCTAssert(map.hasKey("A"))
-    XCTAssertEqual(map.lookup("A"), "Aleph")
-    let value = Class.inMap(map)
-    XCTAssertEqual(value, "Aleph")
-  }
-  
   public func testNullValues() {
     XCTAssertTrue(NullValues.isObjectNull(nil))
     XCTAssertTrue(NullValues.isInterfaceNull(nil))
@@ -560,19 +499,15 @@ var tests: [XCTestCaseEntry] = [
     ("testDoubleDelegate", SwiftWinRTTests.testDoubleDelegate),
     ("testEnums", SwiftWinRTTests.testEnums),
     ("testIReference", SwiftWinRTTests.testIReference),
-    ("testMap_asInput", SwiftWinRTTests.testMap_asInput),
-    ("testMap_asReturn", SwiftWinRTTests.testMap_asReturn),
-    ("testMap_mutate", SwiftWinRTTests.testMap_mutate),
     ("testNonBlittableStruct", SwiftWinRTTests.testNonBlittableStruct),
     ("testNonDefaultMethods", SwiftWinRTTests.testNonDefaultMethods),
     ("testNullValues", SwiftWinRTTests.testNullValues),
     ("testOutParams", SwiftWinRTTests.testOutParams),
     ("testStaticMethods", SwiftWinRTTests.testStaticMethods),
     ("testUnicode", SwiftWinRTTests.testUnicode),
-    ("testVector", SwiftWinRTTests.testVector),
     ("testErrorInfo", SwiftWinRTTests.testErrorInfo),
   ])
-] + valueBoxingTests + eventTests
+] + valueBoxingTests + eventTests + collectionTests
 
 RoInitialize(RO_INIT_MULTITHREADED)
 XCTMain(tests)
