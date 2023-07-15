@@ -1365,10 +1365,8 @@ public protocol IBasic : WinRTInterface {
 
 extension IBasic {
     public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
-        let wrapper = __ABI_test_component.IBasicWrapper(self)
-        let _abi = try! wrapper?.toABI { $0 }
-        guard let _abi else { fatalError("created abi was null") }
-        return _abi.pointee.lpVtbl.pointee.QueryInterface(_abi, riid, ppvObj)
+        guard let wrapper = __ABI_test_component.IBasicWrapper(self) else { fatalError("created abi was null")  }
+        return wrapper.queryInterface(riid, ppvObj)
     }
 }
 public typealias AnyIBasic = any IBasic
@@ -1402,10 +1400,8 @@ public extension EventSource where Handler == test_component.InDelegate {
 
 extension IIAmImplementable {
     public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
-        let wrapper = __ABI_test_component.IIAmImplementableWrapper(self)
-        let _abi = try! wrapper?.toABI { $0 }
-        guard let _abi else { fatalError("created abi was null") }
-        return _abi.pointee.lpVtbl.pointee.QueryInterface(_abi, riid, ppvObj)
+        guard let wrapper = __ABI_test_component.IIAmImplementableWrapper(self) else { fatalError("created abi was null")  }
+        return wrapper.queryInterface(riid, ppvObj)
     }
 }
 public typealias AnyIIAmImplementable = any IIAmImplementable
@@ -1417,10 +1413,8 @@ public protocol ISimpleDelegate : WinRTInterface {
 
 extension ISimpleDelegate {
     public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
-        let wrapper = __ABI_test_component.ISimpleDelegateWrapper(self)
-        let _abi = try! wrapper?.toABI { $0 }
-        guard let _abi else { fatalError("created abi was null") }
-        return _abi.pointee.lpVtbl.pointee.QueryInterface(_abi, riid, ppvObj)
+        guard let wrapper = __ABI_test_component.ISimpleDelegateWrapper(self) else { fatalError("created abi was null")  }
+        return wrapper.queryInterface(riid, ppvObj)
     }
 }
 public typealias AnyISimpleDelegate = any ISimpleDelegate
@@ -1441,10 +1435,8 @@ public extension EventSource where Handler == test_component.ReturnInt32Delegate
 
 extension InterfaceWithReturnDelegate {
     public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
-        let wrapper = __ABI_test_component.InterfaceWithReturnDelegateWrapper(self)
-        let _abi = try! wrapper?.toABI { $0 }
-        guard let _abi else { fatalError("created abi was null") }
-        return _abi.pointee.lpVtbl.pointee.QueryInterface(_abi, riid, ppvObj)
+        guard let wrapper = __ABI_test_component.InterfaceWithReturnDelegateWrapper(self) else { fatalError("created abi was null")  }
+        return wrapper.queryInterface(riid, ppvObj)
     }
 }
 public typealias AnyInterfaceWithReturnDelegate = any InterfaceWithReturnDelegate
