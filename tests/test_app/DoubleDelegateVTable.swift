@@ -3,12 +3,6 @@ import Ctest_component
 import Foundation
 
 extension DoubleDelegate {
-  func makeAbi() -> test_component.IInspectable { 
-    return (self as! AnyWinRTClass).thisPtr
-  }
-}
-
-extension DoubleDelegate: CustomQueryInterface {
     @_spi(WinRTInternal)
     public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
         if riid.pointee == __ABI_test_component.IBasic.IID {
@@ -25,16 +19,3 @@ extension DoubleDelegate: CustomQueryInterface {
     }
 }
 
-// TODO: Handwritten in app for now to get all tests passing, but this will be code-gened
-extension MySimpleDelegate: CustomQueryInterface {
-    @_spi(WinRTInternal)
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
-        if riid.pointee == __ABI_test_component.ISimpleDelegate.IID {
-            guard let iSimpleDelegateWrapper = __ABI_test_component.ISimpleDelegateWrapper(self) else { fatalError("failed to create wrapper") }
-            let thisAsISimpleDelegate = try! iSimpleDelegateWrapper.toABI { $0 }
-            return thisAsISimpleDelegate.pointee.lpVtbl.pointee.QueryInterface(thisAsISimpleDelegate, riid, ppvObj)
-        } else {
-            return E_NOINTERFACE
-        }
-    }
-}

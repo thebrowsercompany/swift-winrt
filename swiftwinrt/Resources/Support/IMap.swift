@@ -1,7 +1,7 @@
 import WinSDK
 import C_BINDINGS_MODULE
 
-public protocol IMap<Key, Value> : WinRTInterface {
+public protocol IMap<Key, Value> {
     associatedtype Key
     associatedtype Value
 
@@ -15,7 +15,7 @@ public protocol IMap<Key, Value> : WinRTInterface {
     func clear()
 }
 
-public protocol IMapView<Key, Value> : WinRTInterface {
+public protocol IMapView<Key, Value> {
     associatedtype Key
     associatedtype Value
     
@@ -29,18 +29,3 @@ public protocol IMapView<Key, Value> : WinRTInterface {
 
 public typealias AnyIMap<Key, Value> = any IMap<Key, Value>
 public typealias AnyIMapView<Key, Value> = any IMapView<Key, Value>
-
-// No default implementation for WinRTInterface, this means that
-// app implemented vectors can't be passed to an API that expects
-// Any yet
-extension IMap {
-  public func makeAbi() -> SUPPORT_MODULE.IInspectable { 
-    fatalError("not implemented")
-  }
-}
-
-extension IMapView {
-  public func makeAbi() -> SUPPORT_MODULE.IInspectable { 
-    fatalError("not implemented")
-  }
-}

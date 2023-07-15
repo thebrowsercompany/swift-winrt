@@ -9,13 +9,8 @@ public protocol IWinRTObject: AnyObject {
   var thisPtr: SUPPORT_MODULE.IInspectable { get }
 }
 
-// ABI pointers for interfaces are made at runtime, which is why
-// this is a seperate protocol with a function instead of a property
-public protocol WinRTInterface: AnyObject {
-    @_spi(WinRTInternal)
-    func makeAbi() -> SUPPORT_MODULE.IInspectable
+public protocol WinRTInterface: AnyObject, CustomQueryInterface {
 }
-
 
 public protocol CustomQueryInterface {
   @_spi(WinRTInternal)

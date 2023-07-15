@@ -131,7 +131,7 @@ public enum __IMPL_Windows_Foundation {
         public func getSize() -> Size { _value as! Size }
         public func getRect() -> Rect { _value as! Rect }
         
-        public func makeAbi() -> test_component.IInspectable { fatalError("not implemented") }
+        public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { fatalError("not implemented") }
 
     }
 
