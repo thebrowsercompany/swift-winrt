@@ -166,14 +166,6 @@ namespace swiftwinrt
                             to_process.emplace(attributed.type);
                         }
                     }
-
-                    // This dependency isn't specified in metadata, but we need to specify it now because it's a known
-                    // special case that Xaml Applications derive from IXamlMetadataProvider
-                    if (c->swift_full_name() == "Microsoft.UI.Xaml.Application")
-                    {
-                        auto metadata_provider = &cache.find("Microsoft.UI.Xaml.Markup", "IXamlMetadataProvider");
-                        to_process.emplace(metadata_provider);
-                    }
                 }
                 else if (auto i = dynamic_cast<const interface_type*>(processing))
                 {

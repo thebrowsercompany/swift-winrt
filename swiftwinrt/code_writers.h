@@ -2308,12 +2308,6 @@ bind([&](writer& w) {
                 auto indent = w.push_indent();
                 
                 type_name typeName(type);
-                // workaround right now for the fact that if the relationship isn't specified in metadata
-                if (typeName.name == "IApplicationOverrides" && typeName.name_space == "Microsoft.UI.Xaml")
-                {
-                    auto metadata_provider = &w.cache->find("Microsoft.UI.Xaml.Markup", "IXamlMetadataProvider");
-                    write_query_interface_case(w, type, *metadata_provider, /* cast: */ true);
-                }
                 for (auto&& iface : interfaces)
                 {
                     if (!can_write(w, iface.second.type)) continue;
