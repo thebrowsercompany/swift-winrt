@@ -29,6 +29,7 @@ public protocol UnsealedWinRTClass : WinRTClass {
     // never be called
     static var _makeFromAbi: any MakeFromAbi.Type { get }
 }
+public typealias AnyUnsealedWinRTClass = any UnsealedWinRTClass
 
 public extension WinRTClass {
     fileprivate func _getDefaultAsIInspectable() -> SUPPORT_MODULE.IInspectable {
