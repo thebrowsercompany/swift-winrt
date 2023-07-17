@@ -52,7 +52,7 @@ extension WinRTClass {
 extension WinRTClass {
     @_spi(WinRTInternal)
     public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
-      queryInterfaceImpl(riid, ppvObj)
+        queryInterfaceImpl(riid, ppvObj)
     }
 
     fileprivate func queryInterfaceImpl(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
