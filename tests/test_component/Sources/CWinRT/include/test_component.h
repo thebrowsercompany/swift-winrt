@@ -12,11 +12,11 @@
 #include "Windows.Foundation.Collections.h"
 
 /* Forward Declarations */
-#ifndef ____x_ABI_Ctest__component_CIGetFirstObjectInCollection_FWD_DEFINED__
-#define ____x_ABI_Ctest__component_CIGetFirstObjectInCollection_FWD_DEFINED__
-typedef interface __x_ABI_Ctest__component_CIGetFirstObjectInCollection __x_ABI_Ctest__component_CIGetFirstObjectInCollection;
+#ifndef ____x_ABI_Ctest__component_CIObjectHandler_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CIObjectHandler_FWD_DEFINED__
+typedef interface __x_ABI_Ctest__component_CIObjectHandler __x_ABI_Ctest__component_CIObjectHandler;
 
-#endif // ____x_ABI_Ctest__component_CIGetFirstObjectInCollection_FWD_DEFINED__
+#endif // ____x_ABI_Ctest__component_CIObjectHandler_FWD_DEFINED__
 
     #ifndef ____x_ABI_Ctest__component_CIVoidToVoidDelegate_FWD_DEFINED__
 #define ____x_ABI_Ctest__component_CIVoidToVoidDelegate_FWD_DEFINED__
@@ -1612,31 +1612,31 @@ struct __x_ABI_Ctest__component_CStructWithEnum
         enum __x_ABI_Ctest__component_CSwiftifiableNames Names;
 };
 
-#if !defined(____x_ABI_Ctest__component_CIGetFirstObjectInCollection_INTERFACE_DEFINED__)
-    #define ____x_ABI_Ctest__component_CIGetFirstObjectInCollection_INTERFACE_DEFINED__
-    typedef struct __x_ABI_Ctest__component_CIGetFirstObjectInCollectionVtbl
+#if !defined(____x_ABI_Ctest__component_CIObjectHandler_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CIObjectHandler_INTERFACE_DEFINED__
+    typedef struct __x_ABI_Ctest__component_CIObjectHandlerVtbl
     {
         BEGIN_INTERFACE
 
-        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CIGetFirstObjectInCollection* This,
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CIObjectHandler* This,
             REFIID riid,
             void** ppvObject);
-        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CIGetFirstObjectInCollection* This);
-        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CIGetFirstObjectInCollection* This);
-        HRESULT (STDMETHODCALLTYPE* Invoke)(__x_ABI_Ctest__component_CIGetFirstObjectInCollection* This,
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CIObjectHandler* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CIObjectHandler* This);
+        HRESULT (STDMETHODCALLTYPE* Invoke)(__x_ABI_Ctest__component_CIObjectHandler* This,
         IInspectable* item);
 
         END_INTERFACE
-    } __x_ABI_Ctest__component_CIGetFirstObjectInCollectionVtbl;
+    } __x_ABI_Ctest__component_CIObjectHandlerVtbl;
 
-    interface __x_ABI_Ctest__component_CIGetFirstObjectInCollection
+    interface __x_ABI_Ctest__component_CIObjectHandler
     {
-        CONST_VTBL struct __x_ABI_Ctest__component_CIGetFirstObjectInCollectionVtbl* lpVtbl;
+        CONST_VTBL struct __x_ABI_Ctest__component_CIObjectHandlerVtbl* lpVtbl;
     };
 
     
-    EXTERN_C const IID IID___x_ABI_Ctest__component_CIGetFirstObjectInCollection;
-    #endif /* !defined(____x_ABI_Ctest__component_CIGetFirstObjectInCollection_INTERFACE_DEFINED__) */
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CIObjectHandler;
+    #endif /* !defined(____x_ABI_Ctest__component_CIObjectHandler_INTERFACE_DEFINED__) */
     
 #if !defined(____x_ABI_Ctest__component_CIVoidToVoidDelegate_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIVoidToVoidDelegate_INTERFACE_DEFINED__
@@ -2215,9 +2215,10 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     HRESULT (STDMETHODCALLTYPE* InVectorView)(__x_ABI_Ctest__component_CICollectionTesterStatics* This,
         __x_ABI_C__FIVectorView_1_HSTRING* value,
         HSTRING* result);
-    HRESULT (STDMETHODCALLTYPE* InVectorObject)(__x_ABI_Ctest__component_CICollectionTesterStatics* This,
+    HRESULT (STDMETHODCALLTYPE* GetObjectAt)(__x_ABI_Ctest__component_CICollectionTesterStatics* This,
         __x_ABI_C__FIVector_1_IInspectable* value,
-        __x_ABI_Ctest__component_CIGetFirstObjectInCollection* callback);
+        UINT32 index,
+        __x_ABI_Ctest__component_CIObjectHandler* callback);
 
         END_INTERFACE
     } __x_ABI_Ctest__component_CICollectionTesterStaticsVtbl;

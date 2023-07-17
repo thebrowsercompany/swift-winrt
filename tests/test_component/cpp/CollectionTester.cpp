@@ -34,10 +34,9 @@ namespace winrt::test_component::implementation
         return value.GetAt(0);
     }
     
-    void CollectionTester::InVectorObject(winrt::Windows::Foundation::Collections::IVector<Windows::Foundation::IInspectable> const& value, winrt::test_component::GetFirstObjectInCollection const& callback)
+    void CollectionTester::GetObjectAt(winrt::Windows::Foundation::Collections::IVector<winrt::Windows::Foundation::IInspectable> const& value, uint32_t index, winrt::test_component::ObjectHandler const& callback)
     {
-        auto item = value.GetAt(0);
-
+        auto item = value.GetAt(index);
         callback(item);
     }
 

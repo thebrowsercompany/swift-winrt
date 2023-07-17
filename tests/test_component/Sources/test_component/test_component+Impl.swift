@@ -217,10 +217,10 @@ public enum __IMPL_test_component {
 
     }
 
-    public class GetFirstObjectInCollectionImpl : WinRTDelegateBridge {
-        public typealias Handler = GetFirstObjectInCollection
-        public typealias CABI = __x_ABI_Ctest__component_CIGetFirstObjectInCollection
-        public typealias SwiftABI = __ABI_test_component.GetFirstObjectInCollection
+    public class ObjectHandlerImpl : WinRTDelegateBridge {
+        public typealias Handler = ObjectHandler
+        public typealias CABI = __x_ABI_Ctest__component_CIObjectHandler
+        public typealias SwiftABI = __ABI_test_component.ObjectHandler
 
         public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }

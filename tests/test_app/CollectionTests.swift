@@ -46,7 +46,7 @@ class CollectionTests : XCTestCase {
     let person = Person(firstName: "John", lastName: "Doe", age: 42)
     let array:[Any?] = [person, "Goodbye", 1]
 
-    CollectionTester.inVectorObject(array.toVector()) { 
+    CollectionTester.getObjectAt(array.toVector(), 0) { 
         XCTAssertEqual($0 as! Person, person)
     }
   }

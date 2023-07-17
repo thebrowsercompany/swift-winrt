@@ -13,7 +13,7 @@ namespace winrt::test_component::implementation
         static hstring InMapView(winrt::Windows::Foundation::Collections::IMapView<hstring, hstring> const& value);
         static hstring InVector(winrt::Windows::Foundation::Collections::IVector<hstring> const& value);
         static hstring InVectorView(winrt::Windows::Foundation::Collections::IVectorView<hstring> const& value);
-        static void InVectorObject(winrt::Windows::Foundation::Collections::IVector<winrt::Windows::Foundation::IInspectable> const& value, winrt::test_component::GetFirstObjectInCollection const& callback);
+        static void GetObjectAt(winrt::Windows::Foundation::Collections::IVector<winrt::Windows::Foundation::IInspectable> const& value, uint32_t index, winrt::test_component::ObjectHandler const& callback);
 
         winrt::Windows::Foundation::Collections::IVector<hstring> ReturnStoredStringVector();
         winrt::Windows::Foundation::Collections::IMap<hstring, hstring> ReturnMapFromStringToString();

@@ -657,12 +657,12 @@ public final class CollectionTester : WinRTClass {
         return .init(from: result)
     }
 
-    public static func inVectorObject(_ value: AnyIVector<Any?>!, _ callback: GetFirstObjectInCollection!) {
+    public static func getObjectAt(_ value: AnyIVector<Any?>!, _ index: UInt32, _ callback: ObjectHandler!) {
         let valueWrapper = test_component.__x_ABI_C__FIVector_1_IInspectableWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
-        let callbackWrapper = __ABI_test_component.GetFirstObjectInCollectionWrapper(callback)
+        let callbackWrapper = __ABI_test_component.ObjectHandlerWrapper(callback)
         let _callback = try! callbackWrapper?.toABI { $0 }
-        try! _ICollectionTesterStatics.InVectorObjectImpl(_value, _callback)
+        try! _ICollectionTesterStatics.GetObjectAtImpl(_value, index, _callback)
     }
 
     public func returnStoredStringVector() throws -> AnyIVector<String>! {
@@ -1288,7 +1288,7 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
     override open class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
 }
 
-public typealias GetFirstObjectInCollection = (Any?) -> ()
+public typealias ObjectHandler = (Any?) -> ()
 public typealias VoidToVoidDelegate = () -> ()
 public struct BlittableStruct: Hashable, Codable {
     public var first: Int32 = 0
