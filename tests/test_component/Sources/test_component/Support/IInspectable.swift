@@ -41,14 +41,16 @@ public enum __ABI_ {
     public class AnyWrapper : WinRTWrapperBase<Ctest_component.IInspectable, AnyObject> {
       public init?(_ swift: Any?) {
         guard let swift else { return nil }
-        if let winrtObj = swift as? IWinRTObject,
-          let abi: UnsafeMutablePointer<Ctest_component.IInspectable> = RawPointer(winrtObj.thisPtr) {
+        if let winrtObj = swift as? IWinRTObject {
+          let abi: UnsafeMutablePointer<Ctest_component.IInspectable> = RawPointer(winrtObj.thisPtr)
           super.init(abi.pointee, winrtObj)
-        } else if let winrtInterface = swift as? WinRTInterface,
-          let abi: UnsafeMutablePointer<Ctest_component.IInspectable> = RawPointer(winrtInterface.makeAbi()) {
-          super.init(abi.pointee, winrtInterface)
-        } else if let propertyValue = PropertyValue.createFrom(swift),
-          let abi: UnsafeMutablePointer<Ctest_component.IInspectable> = RawPointer(propertyValue) {
+        } else if let winrtInterface = swift as? WinRTInterface {
+          // Hold a reference to created ABI on the stack here so that it doesn't get released before we can use it.
+          let abi = winrtInterface.makeAbi()
+          let abiPtr: UnsafeMutablePointer<Ctest_component.IInspectable> = RawPointer(abi)
+          super.init(abiPtr.pointee, winrtInterface)
+        } else if let propertyValue = PropertyValue.createFrom(swift) {
+          let abi: UnsafeMutablePointer<Ctest_component.IInspectable> = RawPointer(propertyValue)
           super.init(abi.pointee, propertyValue)
         } else if swift is WinRTEnum {
           fatalError("cant create enum")
@@ -64,11 +66,11 @@ public enum __ABI_ {
       override public func toABI<ResultType>(_ body: (UnsafeMutablePointer<Ctest_component.IInspectable>) throws -> ResultType)
         throws -> ResultType {
         if let winrtObj = swiftObj as? IWinRTObject {
-            let abi: UnsafeMutablePointer<Ctest_component.IInspectable>? = RawPointer(winrtObj.thisPtr)
-            return try body(abi!)
+            let abi: UnsafeMutablePointer<Ctest_component.IInspectable> = RawPointer(winrtObj.thisPtr)
+            return try body(abi)
         } else if let swiftAbi = swiftObj as? IInspectable {
-           let abi: UnsafeMutablePointer<Ctest_component.IInspectable>? = RawPointer(swiftAbi)
-           return try body(abi!)
+           let abi: UnsafeMutablePointer<Ctest_component.IInspectable> = RawPointer(swiftAbi)
+           return try body(abi)
         } else {
             return try super.toABI(body)
         }

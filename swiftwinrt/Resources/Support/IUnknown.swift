@@ -35,13 +35,13 @@ open class IUnknown : HasIID {
     try CHECKED(pUnk.pointee.lpVtbl.pointee.QueryInterface(pUnk, iid, ppvObject))
   }
 
-  @_alwaysEmitIntoClient @inline(__always)
+  @_alwaysEmitIntoClient @inline(__always) @discardableResult
   public func AddRef() -> ULONG {
     let pUnk: UnsafeMutablePointer<WinSDK.IUnknown>! = self.pUnk.borrow
     return pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
   }
 
-  @_alwaysEmitIntoClient @inline(__always)
+  @_alwaysEmitIntoClient @inline(__always) @discardableResult
   public func Release() -> ULONG {
     let pUnk: UnsafeMutablePointer<WinSDK.IUnknown>! = self.pUnk.borrow
     return pUnk.pointee.lpVtbl.pointee.Release(pUnk)

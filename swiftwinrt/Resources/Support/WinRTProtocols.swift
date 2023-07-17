@@ -12,7 +12,8 @@ public protocol IWinRTObject: AnyObject {
 // ABI pointers for interfaces are made at runtime, which is why
 // this is a seperate protocol with a function instead of a property
 public protocol WinRTInterface: AnyObject {
-  func makeAbi() -> SUPPORT_MODULE.IInspectable
+    @_spi(WinRTInternal)
+    func makeAbi() -> SUPPORT_MODULE.IInspectable
 }
 
 public protocol WinRTClass : IWinRTObject, Equatable {
@@ -44,4 +45,16 @@ public func ==<T: WinRTClass>(_ lhs: T, _ rhs: T) -> Bool {
 
 extension WinRTClass {
     public var thisPtr: SUPPORT_MODULE.IInspectable { _getDefaultAsIInspectable() }
+}
+
+@_spi(WinRTInternal)
+extension WinRTClass {
+  public func copyTo<Type>(_ ptr: UnsafeMutablePointer<UnsafeMutablePointer<Type>?>?) {
+    guard let ptr else { return }
+    let result: UnsafeMutablePointer<Type> = _getABI()!
+    result.withMemoryRebound(to: C_BINDINGS_MODULE.IInspectable.self, capacity: 1) { 
+      _ = $0.pointee.lpVtbl.pointee.AddRef($0)
+    }
+    ptr.initialize(to: result)
+  }
 }

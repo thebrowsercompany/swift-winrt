@@ -112,24 +112,25 @@ namespace swiftwinrt
         processing_queue to_process;
         for (auto& include : includes)
         {
-            auto last_ns_index = include.find_last_of('.');
-            if (last_ns_index == include.npos) {
+            auto nsIter = cache.namespaces.find(include);
+            if (nsIter != cache.namespaces.end()) {
                 // If this is a namespace, then grab all types and add to queue for processing
                 auto nsIter = cache.namespaces.find(include);
-                if (nsIter != cache.namespaces.end())
+                add_ns_types_to_queue(to_process, nsIter->second.classes);
+                add_ns_types_to_queue(to_process, nsIter->second.interfaces);
+                add_ns_types_to_queue(to_process, nsIter->second.delegates);
+                add_ns_types_to_queue(to_process, nsIter->second.enums);
+                add_ns_types_to_queue(to_process, nsIter->second.structs);
+                for (const auto [name, inst] : nsIter->second.generic_instantiations)
                 {
-                    add_ns_types_to_queue(to_process, nsIter->second.classes);
-                    add_ns_types_to_queue(to_process, nsIter->second.interfaces);
-                    add_ns_types_to_queue(to_process, nsIter->second.delegates);
-                    add_ns_types_to_queue(to_process, nsIter->second.enums);
-                    add_ns_types_to_queue(to_process, nsIter->second.structs);
-                    for (const auto [name, inst] : nsIter->second.generic_instantiations)
-                    {
-                        to_process.push(&inst);
-                    }
+                    to_process.push(&inst);
                 }
             }
             else {
+                auto last_ns_index = include.find_last_of('.');
+                if (last_ns_index == include.npos){
+                    swiftwinrt::throw_invalid("Namespace '", include, "' not found");
+                }
                 auto ns = include.substr(0, last_ns_index);
                 auto name = include.substr(last_ns_index + 1);
                 auto type = &cache.find(ns, name);

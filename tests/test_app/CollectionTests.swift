@@ -42,6 +42,15 @@ class CollectionTests : XCTestCase {
     XCTAssertEqual(vector2[2], "Goodnight")
   }
 
+  public func testVectorObject_toCallback() throws {
+    let person = Person(firstName: "John", lastName: "Doe", age: 42)
+    let array:[Any?] = [person, "Goodbye", 1]
+
+    CollectionTester.getObjectAt(array.toVector(), 0) { 
+        XCTAssertEqual($0 as! Person, person)
+    }
+  }
+
   public func testMap_asInput() {
     let dictionary = ["A": "Alpha"]
     let value = CollectionTester.inMap(dictionary.toMap())
@@ -79,6 +88,7 @@ var collectionTests: [XCTestCaseEntry] = [
     ("testVector_asInput", CollectionTests.testVector_asInput),
     ("testVector_asReturn", CollectionTests.testVector_asReturn),
     ("testVector_mutate", CollectionTests.testVector_mutate),
+    ("testVectorObject_toCallback", CollectionTests.testVectorObject_toCallback),
   ])
 ]
 

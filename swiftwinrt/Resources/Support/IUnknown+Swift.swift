@@ -40,11 +40,7 @@ extension IUnknown {
   public func perform<Type, ResultType>(as type: Type.Type,
                                         _ body: (UnsafeMutablePointer<Type>) throws -> ResultType)
       throws -> ResultType {
-    guard let pUnk = UnsafeMutableRawPointer(self.pUnk.borrow) else {
-      throw Error(hr: E_INVALIDARG)
-    }
-    let pThis = pUnk.bindMemory(to: Type.self, capacity: 1)
-
+    let pThis = UnsafeMutableRawPointer(self.pUnk.borrow).bindMemory(to: Type.self, capacity: 1)
     return try body(pThis)
   }
 }

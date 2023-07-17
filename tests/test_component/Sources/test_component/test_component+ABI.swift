@@ -50,7 +50,7 @@ private var IID___x_ABI_Ctest__component_CICollectionTester: IID {
 }
 
 private var IID___x_ABI_Ctest__component_CICollectionTesterStatics: IID {
-    IID(Data1: 0x4C7B13F2, Data2: 0x4F03, Data3: 0x5EEA, Data4: ( 0x88,0x4E,0xFE,0x86,0x98,0xB2,0x84,0x22 ))// 4C7B13F2-4F03-5EEA-884E-FE8698B28422
+    IID(Data1: 0xB357268D, Data2: 0x1A80, Data3: 0x5A61, Data4: ( 0xB3,0xEF,0x13,0x22,0x4B,0xE0,0x63,0x10 ))// B357268D-1A80-5A61-B3EF-13224BE06310
 }
 
 private var IID___x_ABI_Ctest__component_CIDerived: IID {
@@ -123,6 +123,10 @@ private var IID___x_ABI_Ctest__component_CIUnsealedDerivedProtectedFactory: IID 
 
 private var IID___x_ABI_Ctest__component_CInterfaceWithReturnDelegate: IID {
     IID(Data1: 0xB0EBC406, Data2: 0x17C0, Data3: 0x5703, Data4: ( 0xB9,0xC7,0x50,0xBE,0x67,0x5B,0xBC,0x95 ))// B0EBC406-17C0-5703-B9C7-50BE675BBC95
+}
+
+private var IID___x_ABI_Ctest__component_CIObjectHandler: IID {
+    IID(Data1: 0x5DD35752, Data2: 0x9800, Data3: 0x5961, Data4: ( 0x80,0xDE,0xFC,0x5E,0x20,0x9E,0x6E,0x2D ))// 5DD35752-9800-5961-80DE-FC5E209E6E2D
 }
 
 private var IID___x_ABI_Ctest__component_CIVoidToVoidDelegate: IID {
@@ -667,6 +671,12 @@ public enum __ABI_test_component {
             return result
         }
 
+        internal func GetObjectAtImpl(_ value: UnsafeMutablePointer<__x_ABI_C__FIVector_1_IInspectable>?, _ index: UINT32, _ callback: UnsafeMutablePointer<__x_ABI_Ctest__component_CIObjectHandler>?) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CICollectionTesterStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetObjectAt(pThis, value, index, callback))
+            }
+        }
+
     }
 
     open class IDerived: test_component.IInspectable {
@@ -991,8 +1001,7 @@ public enum __ABI_test_component {
                 var value: Any?
                 try __unwrapped__instance.outObject(&value)
                 let valueWrapper = __ABI_.AnyWrapper(value)
-                let _value = try! valueWrapper?.toABI { $0 }
-                $1?.initialize(to: _value)
+                valueWrapper?.copyTo($1)
                 return S_OK
             } catch { return failWith(err: E_FAIL) } 
         },
@@ -1033,8 +1042,7 @@ public enum __ABI_test_component {
                 guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 let result = try __unwrapped__instance.returnObject()
                 let resultWrapper = __ABI_.AnyWrapper(result)
-                let _result = try! resultWrapper?.toABI { $0 }
-                $1?.initialize(to: _result)
+                resultWrapper?.copyTo($1)
                 return S_OK
             } catch { return failWith(err: E_FAIL) } 
         },
@@ -1066,8 +1074,7 @@ public enum __ABI_test_component {
             guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let value = __unwrapped__instance.id
             let valueWrapper = test_component.__x_ABI_C__FIReference_1_GUIDWrapper(value)
-            let _value = try! valueWrapper?.toABI { $0 }
-            $1?.initialize(to: _value)
+            valueWrapper?.copyTo($1)
             return S_OK
         },
 
@@ -1963,6 +1970,64 @@ extension ComposableImpl where CABI == __x_ABI_Ctest__component_CIUnsealedDerive
         return .init(lpVtbl: vtblPtr)
     }
 }
+// MARK - ObjectHandler
+extension __ABI_test_component {
+    open class ObjectHandler: test_component.IUnknown {
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CIObjectHandler }
+
+        open func InvokeImpl(_ item: UnsafeMutablePointer<Ctest_component.IInspectable>?) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIObjectHandler.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, item))
+            }
+        }
+
+    }
+
+
+    typealias ObjectHandlerWrapper = InterfaceWrapperBase<__IMPL_test_component.ObjectHandlerImpl>
+    internal static var ObjectHandlerVTable: __x_ABI_Ctest__component_CIObjectHandlerVtbl = .init(
+        QueryInterface: {
+            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+
+            guard riid.pointee == IUnknown.IID ||
+                  riid.pointee == IInspectable.IID || 
+                  riid.pointee == ISwiftImplemented.IID ||
+                  riid.pointee == IAgileObject.IID ||
+                  riid.pointee == __ABI_test_component.ObjectHandlerWrapper.IID else { 
+                    return E_NOINTERFACE
+
+            }
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
+        },
+
+        AddRef: {
+             guard let wrapper = ObjectHandlerWrapper.fromRaw($0) else { return 1 }
+             _ = wrapper.retain()
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+        },
+
+        Release: {
+            guard let wrapper = ObjectHandlerWrapper.fromRaw($0) else { return 1 }
+            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+        },
+
+        Invoke: {
+            guard let __unwrapped__instance = ObjectHandlerWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let item: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: $1)
+            __unwrapped__instance(item)
+            return S_OK
+        }
+    )
+}
+public extension WinRTDelegateBridge where CABI == __x_ABI_Ctest__component_CIObjectHandler {
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.ObjectHandlerVTable) { $0 }
+        return .init(lpVtbl:vtblPtr)
+    }
+}
+
 // MARK - VoidToVoidDelegate
 extension __ABI_test_component {
     open class VoidToVoidDelegate: test_component.IUnknown {
