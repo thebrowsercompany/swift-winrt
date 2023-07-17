@@ -817,8 +817,8 @@ bind_impl_fullname(type));
         // never be exposed to developers, it's also something we should remove
         // https://linear.app/the-browser-company/issue/WIN-640/remove-ipropertyvalueimpl-and-fix-ireference
         auto winrtInterfaceConformance = w.write_temp(R"(
-    public func makeAbi() -> %.IInspectable { fatalError("not implemented") }
-)", w.support);
+    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { fatalError("not implemented") }
+)");
 
         w.write(R"(public class IPropertyValueImpl : IPropertyValue, IReference {
     var _value: Any
@@ -1245,16 +1245,15 @@ public static func makeAbi() -> CABI {
         }
         if (type.swift_full_name() != "Windows.Foundation.IPropertyValue")
         {
-            // write default makeAbi implementation for this interface. don't do
+            // write default queryInterface implementation for this interface. don't do
             // it for IPropertyValue since this has a custom wrapper implementation
             w.write(R"(extension % {
-    public func makeAbi() -> %.IInspectable {
-        let wrapper = %(self)
-        let _abi = try! wrapper?.toABI { $0 }
-        return .init(_abi!)
+    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+        guard let wrapper = %(self) else { fatalError("created abi was null")  }
+        return wrapper.queryInterface(riid, ppvObj)
     }
 }
-)", typeName, w.support, bind_wrapper_fullname(type));
+)", typeName, bind_wrapper_fullname(type));
         }
 
         // Declare a short form for the existential version of the type, e.g. AnyClosable for "any IClosable"
@@ -2066,13 +2065,13 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         s();
 
         std::vector<std::pair<std::string, const metadata_type*>> collection_type_aliases;
-        bool needsWinRTInterfaceConformance = false;
-        bool baseHasWinRTInterfaceConformance = false;
+        bool needsCustomQueryInterfaceConformance = false;
+        bool baseHasCustomQueryInterfaceConformance = false;
         for (auto&& [interface_name, info] : type.required_interfaces)
         {
             if (info.base && !info.exclusive && !interface_name.empty())
             {
-                baseHasWinRTInterfaceConformance = true;
+                baseHasCustomQueryInterfaceConformance = true;
             }
             // Filter out which interfaces we actually want to declare on the class.
             // We don't want to specify interfaces which come from the base class or which ones are exclusive
@@ -2091,9 +2090,7 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
 
             s();
             // if the class also implements an interface, then it will need to conform to the protocol.
-            // *technically* this is only needed if it implements two or more since there is a default
-            // conformance provided, but it doesn't hurt.
-            needsWinRTInterfaceConformance = true;
+            needsCustomQueryInterfaceConformance = true;
 
             // when deriving from collections we want to just derive from `IVector` and will use a typealias to set the Element (this is required by Swift)
             auto name_to_write = interface_name;
@@ -2179,17 +2176,17 @@ private var _default: SwiftABI!
                 w.support);
             write_default_constructor_declarations(w, type, *default_interface);
 
-            if (needsWinRTInterfaceConformance)
+            if (needsCustomQueryInterfaceConformance)
             {
                 auto modifier = type.is_composable() ? "open" : "public";
-                auto override = type.base_class && baseHasWinRTInterfaceConformance ? "override " : "";
-                // A WinRTClass needs WinRTInterfaceConformance when it derives from more than 1 interface,
-                // otherwise it won't compile. Rather than simply returning _default we failFast since this
-                // API should never be called.
-                w.write(R"(%% func makeAbi() -> %.IInspectable { fatalError("API should not be called") }
-)", override,
-modifier,
-w.support);
+                auto override = type.base_class && baseHasCustomQueryInterfaceConformance ? "override " : "";
+                // A WinRTClass needs CustomQueryInterface conformance when it derives from 1 or more interfaces,
+                // otherwise it won't compile. At the end of the day, the winrt object it's holding onto will appropriately
+                // respond to QueryInterface calls, so call into the default implementation.
+                auto baseComposable = type.base_class && type.base_class->is_composable();
+                auto baseType = type.is_composable() || baseComposable ? "AnyUnsealedWinRTClass" : "AnyWinRTClass";
+                w.write(R"(%% func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { return (self as %).queryInterface(riid, ppvObj)   }
+)", override, modifier, baseType);
             }
         }
         for (auto&& [interface_name, factory] : type.factories)
@@ -2308,12 +2305,6 @@ bind([&](writer& w) {
                 auto indent = w.push_indent();
                 
                 type_name typeName(type);
-                // workaround right now for the fact that if the relationship isn't specified in metadata
-                if (typeName.name == "IApplicationOverrides" && typeName.name_space == "Microsoft.UI.Xaml")
-                {
-                    auto metadata_provider = &w.cache->find("Microsoft.UI.Xaml.Markup", "IXamlMetadataProvider");
-                    write_query_interface_case(w, type, *metadata_provider, /* cast: */ true);
-                }
                 for (auto&& iface : interfaces)
                 {
                     if (!can_write(w, iface.second.type)) continue;

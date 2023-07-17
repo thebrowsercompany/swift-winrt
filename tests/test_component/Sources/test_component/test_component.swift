@@ -93,7 +93,7 @@ public final class BaseCollection : WinRTClass, IVector {
         _default = try! fromAbi.QueryInterface()
     }
 
-    public func makeAbi() -> test_component.IInspectable { fatalError("API should not be called") }
+    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { return (self as AnyWinRTClass).queryInterface(riid, ppvObj)   }
     // MARK: Collection
     public var startIndex: Int { 0 }
     public var endIndex: Int { Int(size) }
@@ -200,7 +200,7 @@ public final class BaseMapCollection : WinRTClass, IMap {
         _default = try! fromAbi.QueryInterface()
     }
 
-    public func makeAbi() -> test_component.IInspectable { fatalError("API should not be called") }
+    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { return (self as AnyWinRTClass).queryInterface(riid, ppvObj)   }
     // MARK: WinRT
     public func lookup(_ key: String) -> Base? {
         let _key = try! HString(key)
@@ -321,7 +321,7 @@ public final class Class : WinRTClass, IBasic {
         _default = try! fromAbi.QueryInterface()
     }
 
-    public func makeAbi() -> test_component.IInspectable { fatalError("API should not be called") }
+    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { return (self as AnyWinRTClass).queryInterface(riid, ppvObj)   }
     public init() {
         try! _default = RoActivateInstance(HString("test_component.Class"))
     }
@@ -817,7 +817,7 @@ public final class NoopClosable : WinRTClass, test_component.IClosable {
         _default = try! fromAbi.QueryInterface()
     }
 
-    public func makeAbi() -> test_component.IInspectable { fatalError("API should not be called") }
+    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { return (self as AnyWinRTClass).queryInterface(riid, ppvObj)   }
     public init() {
         try! _default = RoActivateInstance(HString("test_component.NoopClosable"))
     }
@@ -1364,10 +1364,9 @@ public protocol IBasic : WinRTInterface {
 }
 
 extension IBasic {
-    public func makeAbi() -> test_component.IInspectable {
-        let wrapper = __ABI_test_component.IBasicWrapper(self)
-        let _abi = try! wrapper?.toABI { $0 }
-        return .init(_abi!)
+    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+        guard let wrapper = __ABI_test_component.IBasicWrapper(self) else { fatalError("created abi was null")  }
+        return wrapper.queryInterface(riid, ppvObj)
     }
 }
 public typealias AnyIBasic = any IBasic
@@ -1400,10 +1399,9 @@ public extension EventSource where Handler == test_component.InDelegate {
 }
 
 extension IIAmImplementable {
-    public func makeAbi() -> test_component.IInspectable {
-        let wrapper = __ABI_test_component.IIAmImplementableWrapper(self)
-        let _abi = try! wrapper?.toABI { $0 }
-        return .init(_abi!)
+    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+        guard let wrapper = __ABI_test_component.IIAmImplementableWrapper(self) else { fatalError("created abi was null")  }
+        return wrapper.queryInterface(riid, ppvObj)
     }
 }
 public typealias AnyIIAmImplementable = any IIAmImplementable
@@ -1414,10 +1412,9 @@ public protocol ISimpleDelegate : WinRTInterface {
 }
 
 extension ISimpleDelegate {
-    public func makeAbi() -> test_component.IInspectable {
-        let wrapper = __ABI_test_component.ISimpleDelegateWrapper(self)
-        let _abi = try! wrapper?.toABI { $0 }
-        return .init(_abi!)
+    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+        guard let wrapper = __ABI_test_component.ISimpleDelegateWrapper(self) else { fatalError("created abi was null")  }
+        return wrapper.queryInterface(riid, ppvObj)
     }
 }
 public typealias AnyISimpleDelegate = any ISimpleDelegate
@@ -1437,10 +1434,9 @@ public extension EventSource where Handler == test_component.ReturnInt32Delegate
 }
 
 extension InterfaceWithReturnDelegate {
-    public func makeAbi() -> test_component.IInspectable {
-        let wrapper = __ABI_test_component.InterfaceWithReturnDelegateWrapper(self)
-        let _abi = try! wrapper?.toABI { $0 }
-        return .init(_abi!)
+    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+        guard let wrapper = __ABI_test_component.InterfaceWithReturnDelegateWrapper(self) else { fatalError("created abi was null")  }
+        return wrapper.queryInterface(riid, ppvObj)
     }
 }
 public typealias AnyInterfaceWithReturnDelegate = any InterfaceWithReturnDelegate

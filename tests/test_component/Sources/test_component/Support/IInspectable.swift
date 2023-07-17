@@ -41,21 +41,9 @@ public enum __ABI_ {
     public class AnyWrapper : WinRTWrapperBase<Ctest_component.IInspectable, AnyObject> {
       public init?(_ swift: Any?) {
         guard let swift else { return nil }
-        if let winrtObj = swift as? IWinRTObject {
-          let abi: UnsafeMutablePointer<Ctest_component.IInspectable> = RawPointer(winrtObj.thisPtr)
-          super.init(abi.pointee, winrtObj)
-        } else if let winrtInterface = swift as? WinRTInterface {
-          // Hold a reference to created ABI on the stack here so that it doesn't get released before we can use it.
-          let abi = winrtInterface.makeAbi()
-          let abiPtr: UnsafeMutablePointer<Ctest_component.IInspectable> = RawPointer(abi)
-          super.init(abiPtr.pointee, winrtInterface)
-        } else if let propertyValue = PropertyValue.createFrom(swift) {
+         if let propertyValue = PropertyValue.createFrom(swift) {
           let abi: UnsafeMutablePointer<Ctest_component.IInspectable> = RawPointer(propertyValue)
           super.init(abi.pointee, propertyValue)
-        } else if swift is WinRTEnum {
-          fatalError("cant create enum")
-        } else if swift is WinRTStruct {
-          fatalError("can't create struct")
         } else {
           let vtblPtr = withUnsafeMutablePointer(to: &IInspectableVTable) { $0 }
           let cAbi = Ctest_component.IInspectable(lpVtbl: vtblPtr)
@@ -65,10 +53,7 @@ public enum __ABI_ {
 
       override public func toABI<ResultType>(_ body: (UnsafeMutablePointer<Ctest_component.IInspectable>) throws -> ResultType)
         throws -> ResultType {
-        if let winrtObj = swiftObj as? IWinRTObject {
-            let abi: UnsafeMutablePointer<Ctest_component.IInspectable> = RawPointer(winrtObj.thisPtr)
-            return try body(abi)
-        } else if let swiftAbi = swiftObj as? IInspectable {
+        if let swiftAbi = swiftObj as? IInspectable {
            let abi: UnsafeMutablePointer<Ctest_component.IInspectable> = RawPointer(swiftAbi)
            return try body(abi)
         } else {
@@ -100,19 +85,19 @@ public enum __ABI_ {
     internal static var IInspectableVTable: Ctest_component.IInspectableVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-            guard riid.pointee == IUnknown.IID ||
+            if riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
-                  riid.pointee == IAgileObject.IID else { 
-                      guard let instance = AnyWrapper.tryUnwrapFrom(raw: $0) as? any UnsealedWinRTClass,
-                            let inner = instance._inner else { return E_NOINTERFACE }
-                        
-                    return inner.pointee.lpVtbl.pointee.QueryInterface(inner, riid, ppvObject)
-
+                  riid.pointee == IAgileObject.IID { 
+              _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+              ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+              return S_OK
             }
-            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-            return S_OK
+            let swiftObj = AnyWrapper.tryUnwrapFrom(raw: pUnk)
+            if let customQueryInterface = swiftObj as? CustomQueryInterface {
+              return customQueryInterface.queryInterface(riid, ppvObject)
+            }
+            return E_NOINTERFACE
         },
 
         AddRef: {

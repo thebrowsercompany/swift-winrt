@@ -74,10 +74,9 @@ public protocol IAsyncAction : WinRTInterface {
 }
 
 extension IAsyncAction {
-    public func makeAbi() -> test_component.IInspectable {
-        let wrapper = __ABI_Windows_Foundation.IAsyncActionWrapper(self)
-        let _abi = try! wrapper?.toABI { $0 }
-        return .init(_abi!)
+    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+        guard let wrapper = __ABI_Windows_Foundation.IAsyncActionWrapper(self) else { fatalError("created abi was null")  }
+        return wrapper.queryInterface(riid, ppvObj)
     }
 }
 public typealias AnyIAsyncAction = any IAsyncAction
@@ -87,10 +86,9 @@ public protocol IClosable : WinRTInterface {
 }
 
 extension IClosable {
-    public func makeAbi() -> test_component.IInspectable {
-        let wrapper = __ABI_Windows_Foundation.IClosableWrapper(self)
-        let _abi = try! wrapper?.toABI { $0 }
-        return .init(_abi!)
+    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+        guard let wrapper = __ABI_Windows_Foundation.IClosableWrapper(self) else { fatalError("created abi was null")  }
+        return wrapper.queryInterface(riid, ppvObj)
     }
 }
 public typealias AnyIClosable = any IClosable
@@ -125,10 +123,9 @@ public protocol IStringable : WinRTInterface {
 }
 
 extension IStringable {
-    public func makeAbi() -> test_component.IInspectable {
-        let wrapper = __ABI_Windows_Foundation.IStringableWrapper(self)
-        let _abi = try! wrapper?.toABI { $0 }
-        return .init(_abi!)
+    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+        guard let wrapper = __ABI_Windows_Foundation.IStringableWrapper(self) else { fatalError("created abi was null")  }
+        return wrapper.queryInterface(riid, ppvObj)
     }
 }
 public typealias AnyIStringable = any IStringable
