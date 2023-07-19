@@ -13,7 +13,7 @@ public protocol WinRTInterface: AnyObject, CustomQueryInterface {
 }
 
 public protocol CustomQueryInterface {
-  @_spi(WinRTInternal)
+  @_spi(WinRTImplements)
   func queryInterface(_ iid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT
 }
 

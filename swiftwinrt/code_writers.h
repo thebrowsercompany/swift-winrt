@@ -2095,6 +2095,10 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         std::vector<std::pair<std::string, const metadata_type*>> collection_type_aliases;
         bool needsCustomQueryInterfaceConformance = composable;
         bool baseHasCustomQueryInterfaceConformance = base_class ? base_class->is_composable() : false;
+        // list of overridable interfaces which are needed for the implementation of CustomQueryInterface.
+        // when we get a delegating QI for one of these interfaces, we want to return ourselves instead of
+        // delegating to the inner non-delegating QI. For any other interface, we will delegate to the inner
+        // as that will be where the implementation is.
         std::vector<named_interface_info> overridable_interfaces;
         for (auto&& [interface_name, info] : type.required_interfaces)
         {
