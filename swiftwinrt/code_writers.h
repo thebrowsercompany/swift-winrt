@@ -1263,7 +1263,10 @@ public static func makeAbi() -> CABI {
                 query_interface_lines.push_back(w.write_temp("%", bind<write_query_interface_case>(interface_info{ &type }, indent)));
 
                 for (auto [name, info] : type.required_interfaces) {
-                    query_interface_lines.push_back(w.write_temp("%", bind<write_query_interface_case>(info, indent)));
+                    if (can_write(w, info.type))
+                    {
+                        query_interface_lines.push_back(w.write_temp("%", bind<write_query_interface_case>(info, indent)));
+                    }
                 }
 
                 query_interface_lines.push_back(w.write_temp("%default: return E_NOINTERFACE", indent));

@@ -51,7 +51,7 @@ extension WinRTClass {
 
 @_spi(WinRTInternal)
 public func queryInterface(sealed obj: AnyWinRTClass, _ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
-   guard let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = obj._getABI() else { return E_NOINTERFACE }
+   guard let cDefault: UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable> = obj._getABI() else { return E_NOINTERFACE }
   return cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, riid, ppvObj) 
 }
 
