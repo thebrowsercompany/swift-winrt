@@ -26,8 +26,8 @@ set(SWIFTWINRT_PARAM_FILE ${CMAKE_CURRENT_BINARY_DIR}/SwiftWinRT.rsp)
 # the language server needs to be killed before running swiftwinrt
 # https://linear.app/the-browser-company/issue/WIN-161/swift-file-cannot-be-saved-locked-by-sourcekit-lsp
 add_custom_target(KillLSP
-    COMMAND taskkill /im sourcekit-lsp.exe /f 2>NUL
-    COMMENT "Killing Language Server"
+    COMMAND (taskkill /im sourcekit-lsp.exe /f 2> nul || echo ...success) # need to || echo to ignore errors when the process isn't running
+    COMMENT "Shutting down Language Server process"
     VERBATIM
 )
 add_custom_target(GenerateBindings
