@@ -1,4 +1,6 @@
 // Swift Array to IVector Adaptor
+import WinSDK
+
 extension Array {
     public func toVector() -> AnyIVector<Element> {
         ArrayVector(self)
@@ -32,6 +34,12 @@ extension ArrayVector where Element: Equatable {
     }
 }
 
+extension ArrayVector {
+    public func queryInterface(_ riid: REFIID, _ ppv: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+        return E_NOINTERFACE
+    }
+}
+
 internal class ArrayVectorView<Element> : IVectorView {
     private var storage: Array<Element>
     internal init(_ storage: Array<Element>){
@@ -47,5 +55,11 @@ extension ArrayVectorView where Element: Equatable {
         guard let foundIndex = storage.firstIndex(of: item) else { return false }
         index = UInt32(foundIndex)
         return true
+    }
+}
+
+extension ArrayVectorView {
+    public func queryInterface(_ riid: REFIID, _ ppv: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+        return E_NOINTERFACE
     }
 }

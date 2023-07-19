@@ -32,6 +32,14 @@ open class Base : UnsealedWinRTClass {
         _default = try! fromAbi.QueryInterface()
     }
 
+    open func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { 
+        switch riid.pointee {
+           case __ABI_test_component.IBaseOverridesWrapper.IID:
+                let wrapper = __ABI_test_component.IBaseOverridesWrapper(self)
+                return wrapper!.queryInterface(riid, ppvObj)
+            default: return test_component.queryInterface(unsealed: self, riid, ppvObj)
+        }
+    }
     private static var _IBaseProtectedFactory : __ABI_test_component.IBaseProtectedFactory =  try! RoGetActivationFactory(HString("test_component.Base"))
     public init() {
         self._default = MakeComposed(Self._IBaseProtectedFactory, &_inner, self)
@@ -93,7 +101,9 @@ public final class BaseCollection : WinRTClass, IVector {
         _default = try! fromAbi.QueryInterface()
     }
 
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { return (self as AnyWinRTClass).queryInterface(riid, ppvObj)   }
+    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { 
+        return test_component.queryInterface(sealed: self, riid, ppvObj)
+    }
     // MARK: Collection
     public var startIndex: Int { 0 }
     public var endIndex: Int { Int(size) }
@@ -200,7 +210,9 @@ public final class BaseMapCollection : WinRTClass, IMap {
         _default = try! fromAbi.QueryInterface()
     }
 
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { return (self as AnyWinRTClass).queryInterface(riid, ppvObj)   }
+    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { 
+        return test_component.queryInterface(sealed: self, riid, ppvObj)
+    }
     // MARK: WinRT
     public func lookup(_ key: String) -> Base? {
         let _key = try! HString(key)
@@ -270,6 +282,9 @@ open class BaseNoOverrides : UnsealedWinRTClass {
         _default = try! fromAbi.QueryInterface()
     }
 
+    open func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { 
+        return test_component.queryInterface(unsealed: self, riid, ppvObj)
+    }
     private static var _IBaseNoOverridesProtectedFactory : __ABI_test_component.IBaseNoOverridesProtectedFactory =  try! RoGetActivationFactory(HString("test_component.BaseNoOverrides"))
     public init() {
         self._default = MakeComposed(Self._IBaseNoOverridesProtectedFactory, &_inner, self)
@@ -321,7 +336,9 @@ public final class Class : WinRTClass, IBasic {
         _default = try! fromAbi.QueryInterface()
     }
 
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { return (self as AnyWinRTClass).queryInterface(riid, ppvObj)   }
+    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { 
+        return test_component.queryInterface(sealed: self, riid, ppvObj)
+    }
     public init() {
         try! _default = RoActivateInstance(HString("test_component.Class"))
     }
@@ -817,7 +834,9 @@ public final class NoopClosable : WinRTClass, test_component.IClosable {
         _default = try! fromAbi.QueryInterface()
     }
 
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { return (self as AnyWinRTClass).queryInterface(riid, ppvObj)   }
+    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { 
+        return test_component.queryInterface(sealed: self, riid, ppvObj)
+    }
     public init() {
         try! _default = RoActivateInstance(HString("test_component.NoopClosable"))
     }
@@ -1105,6 +1124,17 @@ open class UnsealedDerived : test_component.Base {
         super.init(fromAbi: fromAbi)
     }
 
+    override open func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { 
+        switch riid.pointee {
+           case __ABI_test_component.IUnsealedDerivedOverloads2Wrapper.IID:
+                let wrapper = __ABI_test_component.IUnsealedDerivedOverloads2Wrapper(self)
+                return wrapper!.queryInterface(riid, ppvObj)
+           case __ABI_test_component.IUnsealedDerivedOverridesWrapper.IID:
+                let wrapper = __ABI_test_component.IUnsealedDerivedOverridesWrapper(self)
+                return wrapper!.queryInterface(riid, ppvObj)
+            default: return super.queryInterface(riid, ppvObj)
+        }
+    }
     private static var _IUnsealedDerivedProtectedFactory : __ABI_test_component.IUnsealedDerivedProtectedFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerived"))
     override public init() {
         super.init(Self._IUnsealedDerivedProtectedFactory) 
@@ -1196,6 +1226,9 @@ open class UnsealedDerived2 : test_component.UnsealedDerived {
         super.init(fromAbi: fromAbi)
     }
 
+    override open func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { 
+        return super.queryInterface(riid, ppvObj)
+    }
     private static var _IUnsealedDerived2ProtectedFactory : __ABI_test_component.IUnsealedDerived2ProtectedFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerived2"))
     override public init() {
         super.init(Self._IUnsealedDerived2ProtectedFactory) 
@@ -1257,6 +1290,9 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
         super.init(fromAbi: fromAbi)
     }
 
+    override open func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { 
+        return super.queryInterface(riid, ppvObj)
+    }
     private static var _IUnsealedDerivedNoOverridesProtectedFactory : __ABI_test_component.IUnsealedDerivedNoOverridesProtectedFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerivedNoOverrides"))
     override public init() {
         super.init(Self._IUnsealedDerivedNoOverridesProtectedFactory) 

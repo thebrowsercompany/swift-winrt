@@ -56,20 +56,19 @@ private var IID___x_ABI_C__FIMapView_2_HSTRING_HSTRING: IID {
 internal var __x_ABI_C__FIMapView_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMapView_2_HSTRING_HSTRINGVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-
-        guard riid.pointee == IUnknown.IID ||
+        if riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
               riid.pointee == IAgileObject.IID ||
-              riid.pointee == test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.IID else { 
-                guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
-                      let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
-                return cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, riid, ppvObject) 
-
+              riid.pointee == __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.IID { 
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
         }
-        _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-        ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-        return S_OK
+
+        guard let instance = __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
+        return instance.queryInterface(riid, ppvObject)
+
     },
 
     AddRef: {
@@ -230,6 +229,9 @@ internal class __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl : IMapView, AbiInterfa
 
     }
 
+    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+        return E_NOINTERFACE
+    } 
 }
 
 private var IID___x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase: IID {
@@ -239,20 +241,19 @@ private var IID___x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase:
 internal var __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-
-        guard riid.pointee == IUnknown.IID ||
+        if riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
               riid.pointee == IAgileObject.IID ||
-              riid.pointee == test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.IID else { 
-                guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
-                      let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
-                return cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, riid, ppvObject) 
-
+              riid.pointee == __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.IID { 
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
         }
-        _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-        ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-        return S_OK
+
+        guard let instance = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
+        return instance.queryInterface(riid, ppvObject)
+
     },
 
     AddRef: {
@@ -413,6 +414,9 @@ internal class __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseIm
 
     }
 
+    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+        return E_NOINTERFACE
+    } 
 }
 
 private var IID___x_ABI_C__FIMap_2_HSTRING_HSTRING: IID {
@@ -422,20 +426,19 @@ private var IID___x_ABI_C__FIMap_2_HSTRING_HSTRING: IID {
 internal var __x_ABI_C__FIMap_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMap_2_HSTRING_HSTRINGVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-
-        guard riid.pointee == IUnknown.IID ||
+        if riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
               riid.pointee == IAgileObject.IID ||
-              riid.pointee == test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.IID else { 
-                guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
-                      let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
-                return cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, riid, ppvObject) 
-
+              riid.pointee == __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.IID { 
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
         }
-        _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-        ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-        return S_OK
+
+        guard let instance = __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
+        return instance.queryInterface(riid, ppvObject)
+
     },
 
     AddRef: {
@@ -649,6 +652,9 @@ internal class __x_ABI_C__FIMap_2_HSTRING_HSTRINGImpl : IMap, AbiInterfaceImpl {
 
     }
 
+    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+        return E_NOINTERFACE
+    } 
 }
 
 private var IID___x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase: IID {
@@ -658,20 +664,19 @@ private var IID___x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase: IID
 internal var __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-
-        guard riid.pointee == IUnknown.IID ||
+        if riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
               riid.pointee == IAgileObject.IID ||
-              riid.pointee == test_component.__x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.IID else { 
-                guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
-                      let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
-                return cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, riid, ppvObject) 
-
+              riid.pointee == __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.IID { 
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
         }
-        _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-        ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-        return S_OK
+
+        guard let instance = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
+        return instance.queryInterface(riid, ppvObject)
+
     },
 
     AddRef: {
@@ -884,6 +889,9 @@ internal class __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl :
 
     }
 
+    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+        return E_NOINTERFACE
+    } 
 }
 
 private var IID___x_ABI_C__FIVectorView_1_IInspectable: IID {
@@ -893,20 +901,19 @@ private var IID___x_ABI_C__FIVectorView_1_IInspectable: IID {
 internal var __x_ABI_C__FIVectorView_1_IInspectableVTable: __x_ABI_C__FIVectorView_1_IInspectableVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-
-        guard riid.pointee == IUnknown.IID ||
+        if riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
               riid.pointee == IAgileObject.IID ||
-              riid.pointee == test_component.__x_ABI_C__FIVectorView_1_IInspectableWrapper.IID else { 
-                guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
-                      let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
-                return cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, riid, ppvObject) 
-
+              riid.pointee == __x_ABI_C__FIVectorView_1_IInspectableWrapper.IID { 
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
         }
-        _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-        ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-        return S_OK
+
+        guard let instance = __x_ABI_C__FIVectorView_1_IInspectableWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
+        return instance.queryInterface(riid, ppvObject)
+
     },
 
     AddRef: {
@@ -1065,6 +1072,9 @@ internal class __x_ABI_C__FIVectorView_1_IInspectableImpl : IVectorView, AbiInte
 
     }
 
+    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+        return E_NOINTERFACE
+    } 
 }
 
 private var IID___x_ABI_C__FIVectorView_1_HSTRING: IID {
@@ -1074,20 +1084,19 @@ private var IID___x_ABI_C__FIVectorView_1_HSTRING: IID {
 internal var __x_ABI_C__FIVectorView_1_HSTRINGVTable: __x_ABI_C__FIVectorView_1_HSTRINGVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-
-        guard riid.pointee == IUnknown.IID ||
+        if riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
               riid.pointee == IAgileObject.IID ||
-              riid.pointee == test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper.IID else { 
-                guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
-                      let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
-                return cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, riid, ppvObject) 
-
+              riid.pointee == __x_ABI_C__FIVectorView_1_HSTRINGWrapper.IID { 
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
         }
-        _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-        ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-        return S_OK
+
+        guard let instance = __x_ABI_C__FIVectorView_1_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
+        return instance.queryInterface(riid, ppvObject)
+
     },
 
     AddRef: {
@@ -1244,6 +1253,9 @@ internal class __x_ABI_C__FIVectorView_1_HSTRINGImpl : IVectorView, AbiInterface
 
     }
 
+    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+        return E_NOINTERFACE
+    } 
 }
 
 private var IID___x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase: IID {
@@ -1253,20 +1265,19 @@ private var IID___x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase: IID 
 internal var __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-
-        guard riid.pointee == IUnknown.IID ||
+        if riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
               riid.pointee == IAgileObject.IID ||
-              riid.pointee == test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID else { 
-                guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
-                      let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
-                return cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, riid, ppvObject) 
-
+              riid.pointee == __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID { 
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
         }
-        _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-        ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-        return S_OK
+
+        guard let instance = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
+        return instance.queryInterface(riid, ppvObject)
+
     },
 
     AddRef: {
@@ -1422,6 +1433,9 @@ internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl : 
 
     }
 
+    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+        return E_NOINTERFACE
+    } 
 }
 
 private var IID___x_ABI_C__FIVector_1_IInspectable: IID {
@@ -1431,20 +1445,19 @@ private var IID___x_ABI_C__FIVector_1_IInspectable: IID {
 internal var __x_ABI_C__FIVector_1_IInspectableVTable: __x_ABI_C__FIVector_1_IInspectableVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-
-        guard riid.pointee == IUnknown.IID ||
+        if riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
               riid.pointee == IAgileObject.IID ||
-              riid.pointee == test_component.__x_ABI_C__FIVector_1_IInspectableWrapper.IID else { 
-                guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
-                      let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
-                return cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, riid, ppvObject) 
-
+              riid.pointee == __x_ABI_C__FIVector_1_IInspectableWrapper.IID { 
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
         }
-        _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-        ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-        return S_OK
+
+        guard let instance = __x_ABI_C__FIVector_1_IInspectableWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
+        return instance.queryInterface(riid, ppvObject)
+
     },
 
     AddRef: {
@@ -1743,6 +1756,9 @@ internal class __x_ABI_C__FIVector_1_IInspectableImpl : IVector, AbiInterfaceImp
 
     }
 
+    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+        return E_NOINTERFACE
+    } 
 }
 
 private var IID___x_ABI_C__FIVector_1_HSTRING: IID {
@@ -1752,20 +1768,19 @@ private var IID___x_ABI_C__FIVector_1_HSTRING: IID {
 internal var __x_ABI_C__FIVector_1_HSTRINGVTable: __x_ABI_C__FIVector_1_HSTRINGVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-
-        guard riid.pointee == IUnknown.IID ||
+        if riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
               riid.pointee == IAgileObject.IID ||
-              riid.pointee == test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper.IID else { 
-                guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
-                      let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
-                return cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, riid, ppvObject) 
-
+              riid.pointee == __x_ABI_C__FIVector_1_HSTRINGWrapper.IID { 
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
         }
-        _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-        ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-        return S_OK
+
+        guard let instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
+        return instance.queryInterface(riid, ppvObject)
+
     },
 
     AddRef: {
@@ -2059,6 +2074,9 @@ internal class __x_ABI_C__FIVector_1_HSTRINGImpl : IVector, AbiInterfaceImpl {
 
     }
 
+    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+        return E_NOINTERFACE
+    } 
 }
 
 private var IID___x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase: IID {
@@ -2068,20 +2086,19 @@ private var IID___x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase: IID {
 internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-
-        guard riid.pointee == IUnknown.IID ||
+        if riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
               riid.pointee == IAgileObject.IID ||
-              riid.pointee == test_component.__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID else { 
-                guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
-                      let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
-                return cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, riid, ppvObject) 
-
+              riid.pointee == __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID { 
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
         }
-        _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-        ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-        return S_OK
+
+        guard let instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
+        return instance.queryInterface(riid, ppvObject)
+
     },
 
     AddRef: {
@@ -2371,6 +2388,9 @@ internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl : IVec
 
     }
 
+    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+        return E_NOINTERFACE
+    } 
 }
 
 private var IID___x_ABI_C__FIEventHandler_1_IInspectable: IID {
@@ -2387,18 +2407,17 @@ internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIEventHandler_1
 internal var __x_ABI_C__FIEventHandler_1_IInspectableVTable: __x_ABI_C__FIEventHandler_1_IInspectableVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-
-        guard riid.pointee == IUnknown.IID ||
+        if riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
               riid.pointee == IAgileObject.IID ||
-              riid.pointee == test_component.__x_ABI_C__FIEventHandler_1_IInspectableWrapper.IID else { 
-                return E_NOINTERFACE
-
+              riid.pointee == __x_ABI_C__FIEventHandler_1_IInspectableWrapper.IID { 
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
         }
-        _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-        ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-        return S_OK
+
+        return failWith(err: E_NOINTERFACE)
     },
 
     AddRef: {
@@ -2466,26 +2485,19 @@ internal extension Int32 {
 internal var __x_ABI_C__FIReference_1_intVTable: __x_ABI_C__FIReference_1_intVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        if riid.pointee == __ABI_Windows_Foundation.IPropertyValueWrapper.IID {
-            guard let instance = __x_ABI_C__FIReference_1_intWrapper.tryUnwrapFrom(raw: pUnk) else { return E_NOINTERFACE }
-            guard let inner = __ABI_Windows_Foundation.IPropertyValueWrapper(instance) else { return E_INVALIDARG }
-            let pThis = try! inner.toABI { $0 }
-            return pThis.pointee.lpVtbl.pointee.QueryInterface(pThis, riid, ppvObject)
-        }
-
-        guard riid.pointee == IUnknown.IID ||
+        if riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
               riid.pointee == IAgileObject.IID ||
-              riid.pointee == test_component.__x_ABI_C__FIReference_1_intWrapper.IID else { 
-                guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
-                      let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
-                return cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, riid, ppvObject) 
-
+              riid.pointee == __x_ABI_C__FIReference_1_intWrapper.IID { 
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
         }
-        _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-        ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-        return S_OK
+
+        guard let instance = __x_ABI_C__FIReference_1_intWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
+        return instance.queryInterface(riid, ppvObject)
+
     },
 
     AddRef: {
@@ -2556,26 +2568,19 @@ internal extension UUID {
 internal var __x_ABI_C__FIReference_1_GUIDVTable: __x_ABI_C__FIReference_1_GUIDVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        if riid.pointee == __ABI_Windows_Foundation.IPropertyValueWrapper.IID {
-            guard let instance = __x_ABI_C__FIReference_1_GUIDWrapper.tryUnwrapFrom(raw: pUnk) else { return E_NOINTERFACE }
-            guard let inner = __ABI_Windows_Foundation.IPropertyValueWrapper(instance) else { return E_INVALIDARG }
-            let pThis = try! inner.toABI { $0 }
-            return pThis.pointee.lpVtbl.pointee.QueryInterface(pThis, riid, ppvObject)
-        }
-
-        guard riid.pointee == IUnknown.IID ||
+        if riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
               riid.pointee == IAgileObject.IID ||
-              riid.pointee == test_component.__x_ABI_C__FIReference_1_GUIDWrapper.IID else { 
-                guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
-                      let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
-                return cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, riid, ppvObject) 
-
+              riid.pointee == __x_ABI_C__FIReference_1_GUIDWrapper.IID { 
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
         }
-        _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-        ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-        return S_OK
+
+        guard let instance = __x_ABI_C__FIReference_1_GUIDWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
+        return instance.queryInterface(riid, ppvObject)
+
     },
 
     AddRef: {
@@ -2646,26 +2651,19 @@ internal extension test_component.Signed {
 internal var __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedVTable: __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        if riid.pointee == __ABI_Windows_Foundation.IPropertyValueWrapper.IID {
-            guard let instance = __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper.tryUnwrapFrom(raw: pUnk) else { return E_NOINTERFACE }
-            guard let inner = __ABI_Windows_Foundation.IPropertyValueWrapper(instance) else { return E_INVALIDARG }
-            let pThis = try! inner.toABI { $0 }
-            return pThis.pointee.lpVtbl.pointee.QueryInterface(pThis, riid, ppvObject)
-        }
-
-        guard riid.pointee == IUnknown.IID ||
+        if riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
               riid.pointee == IAgileObject.IID ||
-              riid.pointee == test_component.__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper.IID else { 
-                guard let instance = WinRTWrapperBase<Ctest_component.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
-                      let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
-                return cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, riid, ppvObject) 
-
+              riid.pointee == __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper.IID { 
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
         }
-        _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-        ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-        return S_OK
+
+        guard let instance = __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
+        return instance.queryInterface(riid, ppvObject)
+
     },
 
     AddRef: {
@@ -2735,18 +2733,17 @@ internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FITypedEventHand
 internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsVTable: __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-
-        guard riid.pointee == IUnknown.IID ||
+        if riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
               riid.pointee == IAgileObject.IID ||
-              riid.pointee == test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.IID else { 
-                return E_NOINTERFACE
-
+              riid.pointee == __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.IID { 
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
         }
-        _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-        ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-        return S_OK
+
+        return failWith(err: E_NOINTERFACE)
     },
 
     AddRef: {

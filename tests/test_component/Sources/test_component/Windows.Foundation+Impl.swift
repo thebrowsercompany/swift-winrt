@@ -131,7 +131,14 @@ public enum __IMPL_Windows_Foundation {
         public func getSize() -> Size { _value as! Size }
         public func getRect() -> Rect { _value as! Rect }
         
-        public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { fatalError("not implemented") }
+        public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { 
+             if riid.pointee == __ABI_Windows_Foundation.IPropertyValueWrapper.IID {
+                guard let thisAsIPropValue = __ABI_Windows_Foundation.IPropertyValueWrapper(self) else { fatalError("creating non-nil wrapper shouldn't fail") }
+                return thisAsIPropValue.queryInterface(riid, ppvObj)
+            } else {
+                return E_NOINTERFACE
+            }
+        }
 
     }
 

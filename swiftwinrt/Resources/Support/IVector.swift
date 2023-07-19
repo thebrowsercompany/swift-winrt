@@ -5,7 +5,7 @@ import C_BINDINGS_MODULE
 // either be created in Swift and passed to the WinRT ABI, or it's created from the WinRT ABI
 // and manipulated from Swift. For code simplicity, we model this the same way we would model
 // a WinRT interface definition of IVector (i.e. non-throwing and using the WinRT API names).
-public protocol IVector<Element> : Collection where Index == Int {
+public protocol IVector<Element> : CustomQueryInterface, Collection where Index == Int {
     associatedtype Element
     // MARK: WinRT APIs
     func getAt(_ index: UInt32) -> Element 
@@ -20,7 +20,7 @@ public protocol IVector<Element> : Collection where Index == Int {
     func getView() -> AnyIVectorView<Element>?
 }
 
-public protocol IVectorView<Element> : Collection where Index == Int {
+public protocol IVectorView<Element> : CustomQueryInterface, Collection where Index == Int {
     associatedtype Element
     // MARK: WinRT APIs
     func getAt(_ index: UInt32) -> Element 
