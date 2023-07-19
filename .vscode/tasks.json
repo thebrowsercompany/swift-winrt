@@ -7,10 +7,31 @@
 				"build",
 				"--product",
 				"test_app",
-				"-Xswiftc",
-				"-disable-round-trip-debug-types",
-				"-Xswiftc",
-				"-g",
+				"-Xlinker",
+				"-debug:dwarf",
+				"--scratch-path",
+				"${workspaceFolder}\\build\\${command:cmake.activeBuildPresetName}\\tests",
+				"-c",
+				"${command:cmake.activeBuildPresetName}"
+			],
+			"cwd": "tests",
+			"disableTaskQueue": true,
+			"problemMatcher": [
+				"$swiftc"
+			],
+			"group": {
+				"isDefault": true,
+				"kind": "build"
+			},
+			"label": "swift: Build test_app",
+			"detail": "swift build (test_app)"
+		},
+		{
+			"type": "swift",
+			"args": [
+				"build",
+				"--product",
+				"test_app",
 				"-Xswiftc",
 				"-debug-info-format=codeview",
 				"-Xlinker",
@@ -26,8 +47,8 @@
 				"$swiftc"
 			],
 			"group": "build",
-			"label": "swift: Build test_app",
-			"detail": "swift build (test_app)"
+			"label": "swift: Build test_app (pdb)",
+			"detail": "swift build (test_app) (pdb)"
 		},
 		{
 			"type": "cmake",
