@@ -1,9 +1,18 @@
 {
     "configurations": [
         {
-            "type": "cppvsdbg",
+            "type": "lldb",
             "request": "launch",
             "name": "test_app",
+            "program": "${workspaceFolder:swiftwinrt}\\out\\${command:cmake.activeBuildPresetName}\\bin\\test_app",
+            "args": [],
+            "cwd": "${workspaceFolder:swiftwinrt}/tests",
+            "preLaunchTask": "Install"
+        },
+        {
+            "type": "cppvsdbg",
+            "request": "launch",
+            "name": "test_app (pdb)",
             "program": "${workspaceFolder:swiftwinrt}\\out\\${command:cmake.activeBuildPresetName}\\bin\\test_app",
             "args": [],
             "cwd": "${workspaceFolder:swiftwinrt}/tests",
