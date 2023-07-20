@@ -3,6 +3,7 @@
 Aggregation RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\Aggregation.swift"
 Array+toVector RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\Array+toVector.swift"
 COM+Extensions RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\COM+Extensions.swift"
+CustomQueryInterface RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\CustomQueryInterface.swift"
 Debugging RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\Debugging.swift"
 Dictionary+toMap RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\Dictionary+toMap.swift"
 Error RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\Error.swift"

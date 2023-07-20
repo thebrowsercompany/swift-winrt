@@ -31,7 +31,7 @@ namespace swiftwinrt
                 {
                     if (import == w.support)
                     {
-                        w.write("@_spi(WinRTInternal) ");
+                        w.write("@_spi(WinRTInternal) @_spi(WinRTImplements) ");
                     }
                     w.write("import %\n", import);
                 }

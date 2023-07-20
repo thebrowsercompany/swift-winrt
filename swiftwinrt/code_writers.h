@@ -813,11 +813,12 @@ bind_impl_fullname(type));
     static void write_class_impl_event(writer& w, event_def const& event, interface_info const& iface);
     static void write_property_value_impl(writer& w)
     {
-        // Don't bother supporting boxing this class, not only is it an internal implementation which should
-        // never be exposed to developers, it's also something we should remove
-        // https://linear.app/the-browser-company/issue/WIN-640/remove-ipropertyvalueimpl-and-fix-ireference
         auto winrtInterfaceConformance = w.write_temp(R"(
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { fatalError("not implemented") }
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { 
+        guard iid == __ABI_Windows_Foundation.IPropertyValueWrapper.IID else { return nil }
+        guard let thisAsIPropValue = __ABI_Windows_Foundation.IPropertyValueWrapper(self) else { fatalError("creating non-nil wrapper shouldn't fail") }
+        return thisAsIPropValue.queryInterface(iid)
+    }
 )");
 
         w.write(R"(public class IPropertyValueImpl : IPropertyValue, IReference {
@@ -1122,7 +1123,7 @@ public static func makeAbi() -> CABI {
 
     static void write_comma_param_types(writer& w, std::vector<function_param> const& params);
     static void write_delegate_return_type(writer& w, function_def const& sig);
-
+    static void write_query_interface_case(writer& w, interface_info const& iface);
     static void write_eventsource_invoke_extension(writer& w, metadata_type const* event_type)
     {
         writer::generic_param_guard guard{};
@@ -1246,14 +1247,31 @@ public static func makeAbi() -> CABI {
         if (type.swift_full_name() != "Windows.Foundation.IPropertyValue")
         {
             // write default queryInterface implementation for this interface. don't do
-            // it for IPropertyValue since this has a custom wrapper implementation
-            w.write(R"(extension % {
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
-        guard let wrapper = %(self) else { fatalError("created abi was null")  }
-        return wrapper.queryInterface(riid, ppvObj)
-    }
-}
-)", typeName, bind_wrapper_fullname(type));
+            // it for IPropertyValue since this has a custom wrapper implementation. We write
+            // this implementation so when an app code derives from a single WinRT interface
+            // they don't need to write the queryInterface implementation themselves. We
+            // know for a fact that we're only here in the scenario that a single WinRT
+            // interface is implemented because if they implement multiple interfaces, they
+            // have to write the queryInterface implementation themselves. 
+            w.write("extension % {\n", typeName);
+            w.write("    public func queryInterface(_ iid: IID) -> IUnknownRef? {\n");
+            w.write("        switch iid {\n");
+            auto indent{ w.push_indent({3}) };
+
+            w.write("%", bind<write_query_interface_case>(interface_info{ &type }));
+
+            for (auto [name, info] : type.required_interfaces) {
+                if (can_write(w, info.type))
+                {
+                    w.write("%", bind<write_query_interface_case>(info));
+                }
+            }
+
+            w.write("default: return nil\n");
+            indent.end();
+            w.write("        }\n");
+            w.write("    }\n");
+            w.write("}\n");
         }
 
         // Declare a short form for the existential version of the type, e.g. AnyClosable for "any IClosable"
@@ -1426,6 +1444,8 @@ public static func makeAbi() -> CABI {
         {
             write_class_impl_event(w, event, info);
         }
+
+        w.write("public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }\n");
         indent_guard.end();
         w.write("}\n\n");
     }
@@ -2065,13 +2085,28 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         s();
 
         std::vector<std::pair<std::string, const metadata_type*>> collection_type_aliases;
-        bool needsCustomQueryInterfaceConformance = false;
-        bool baseHasCustomQueryInterfaceConformance = false;
+        bool needsCustomQueryInterfaceConformance = composable;
+        bool baseHasCustomQueryInterfaceConformance = base_class && base_class->is_composable();
+        // list of overridable interfaces which are needed for the implementation of CustomQueryInterface.
+        // when we get a delegating QI for one of these interfaces, we want to return ourselves instead of
+        // delegating to the inner non-delegating QI. For any other interface, we will delegate to the inner
+        // as that will be where the implementation is.
+        std::vector<named_interface_info> overridable_interfaces;
         for (auto&& [interface_name, info] : type.required_interfaces)
         {
             if (info.base && !info.exclusive && !interface_name.empty())
             {
                 baseHasCustomQueryInterfaceConformance = true;
+            }
+            if (info.overridable && !info.base)
+            {
+                // overridable interfaces are still considered exclusive, so check here before
+                // we skip this interface
+                overridable_interfaces.push_back({ interface_name, info });
+                // Don't need to set needsCustomQueryInterfaceConformance here since we set it to true
+                // for composable types and an overridable interface implies composibility, but doing so for
+                // posterity
+                needsCustomQueryInterfaceConformance = true;
             }
             // Filter out which interfaces we actually want to declare on the class.
             // We don't want to specify interfaces which come from the base class or which ones are exclusive
@@ -2143,10 +2178,13 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
                 swiftAbi = w.write_temp("%", bind_type_abi(generic_type));
             }
 
+            auto modifier = composable ? "open" : "public";
+            auto override = type.base_class ? "override " : "";
+
             w.write(R"(private typealias SwiftABI = %
 private typealias CABI = %
 private var _default: SwiftABI!
-% func _getABI<T>() -> UnsafeMutablePointer<T>? {
+%% func _getABI<T>() -> UnsafeMutablePointer<T>? {
     if T.self == CABI.self {
         return RawPointer(_default)
     }   
@@ -2156,37 +2194,55 @@ private var _default: SwiftABI!
     return %
 }
 
-% var thisPtr: %.IInspectable { _default }
+%% var thisPtr: %.IInspectable { _default }
 
 )",
                 swiftAbi,
                 bind_type_mangled(default_interface),
-                base_class ? 
-                            composable ? "override open" : 
-                                         "override public" :
-                            composable ? "open" :
-                                         "public",
+                override,
+                modifier,
                 w.c_mod,
                 base_class ? "super._getABI()" : "nil",
-                base_class ? 
-                            composable ? "override open" : 
-                                         "override public" :
-                            composable ? "open" :
-                                         "public",
+                override,
+                modifier,
                 w.support);
             write_default_constructor_declarations(w, type, *default_interface);
 
+            // composable types will always need CustomQueryInterface conformance so that derived types can
+            // override the queryInterface call
             if (needsCustomQueryInterfaceConformance)
             {
-                auto modifier = type.is_composable() ? "open" : "public";
-                auto override = type.base_class && baseHasCustomQueryInterfaceConformance ? "override " : "";
+                w.write("%% func queryInterface(_ iid: IID) -> IUnknownRef? {\n", override, modifier);
+
                 // A WinRTClass needs CustomQueryInterface conformance when it derives from 1 or more interfaces,
                 // otherwise it won't compile. At the end of the day, the winrt object it's holding onto will appropriately
                 // respond to QueryInterface calls, so call into the default implementation.
                 auto baseComposable = type.base_class && type.base_class->is_composable();
-                auto baseType = type.is_composable() || baseComposable ? "AnyUnsealedWinRTClass" : "AnyWinRTClass";
-                w.write(R"(%% func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { return (self as %).queryInterface(riid, ppvObj)   }
-)", override, modifier, baseType);
+                auto label = composable || baseComposable ? "unsealed" : "sealed";
+                std::string base_case;
+                if (base_class)
+                {
+                    base_case = "super.queryInterface(iid)";
+                }
+                else
+                {
+                    base_case = w.write_temp("%.queryInterface(%: self, iid)", w.support, label);
+                }
+                if (overridable_interfaces.empty())
+                {
+                    w.write("    return %", base_case);
+                }
+                else
+                {
+                    w.write("    switch iid {\n");
+                    for (auto& [_, info] : overridable_interfaces) {
+                        auto indent{ w.push_indent({2}) };
+                        w.write("%", bind<write_query_interface_case>(info));
+                    }
+                    w.write("        default: return %\n", base_case);
+                    w.write("    }\n");
+                }
+                w.write("}\n");
             }
         }
         for (auto&& [interface_name, factory] : type.factories)
@@ -2256,88 +2312,51 @@ private var _default: SwiftABI!
         write_class_impl(w, type);
     }
 
-    
-
-    template <typename T>
-    static void write_query_interface_case(writer& w, T const& type, metadata_type const& iface, bool cast)
+    static void write_query_interface_case(writer& w, interface_info const& iface)
     {
-        w.write("if riid.pointee == %.IID {\n", bind_wrapper_fullname(iface));
-        {
-            auto indent = w.push_indent();
-
-            std::string cast_expr;
-            if (cast)
-            {
-                cast_expr = w.write_temp(" as? any %",
-                    bind<write_swift_type_identifier>(iface)); // Do not include outer Optional<>
-            }
-
-            w.write("guard let instance = %.tryUnwrapFrom(raw: pUnk)% else { return E_NOINTERFACE }\n",
-                bind_wrapper_name(type), cast_expr);
-            w.write("guard let inner = %(instance) else { return E_INVALIDARG }\n",
-                bind_wrapper_fullname(iface));
-            w.write("let pThis = try! inner.toABI { $0 }\n");
-            w.write("return pThis.pointee.lpVtbl.pointee.QueryInterface(pThis, riid, ppvObject)\n");
-        };
-        w.write("}\n");
+        w.write("case %.IID:\n", bind_wrapper_fullname(iface.type));
+        w.write("    let wrapper = %(self)\n", bind_wrapper_fullname(iface.type));
+        w.write("    return wrapper!.queryInterface(iid)\n");
     }
 
     template <typename T>
     static void write_iunknown_methods(writer& w, T const& type, std::vector<named_interface_info> const& interfaces, bool composed = false)
     {
+        auto wrapper_name = w.write_temp("%", bind_wrapper_name(type));
         w.write(R"(QueryInterface: {
     guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-%
-    guard riid.pointee == IUnknown.IID ||
-          riid.pointee == IInspectable.IID || 
-          riid.pointee == ISwiftImplemented.IID ||
-          riid.pointee == IAgileObject.IID ||
-          riid.pointee == %.IID else { 
-        %
+    ppvObject.pointee = nil
+
+    switch riid.pointee {
+        case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, %.IID:
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
+        default:
+            %
     }
-    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-    return S_OK
 },
 
 )",
-bind([&](writer& w) {
-                auto indent = w.push_indent();
-                
-                type_name typeName(type);
-                for (auto&& iface : interfaces)
-                {
-                    if (!can_write(w, iface.second.type)) continue;
+    wrapper_name,
+    bind([&](writer & w) {
+        // Delegates are implemented as simple closures in Swift, which can't implement CustomQueryInterface
+        if (is_delegate(type))
+        { 
+            w.write("return failWith(err: E_NOINTERFACE)");
+        }
+        else
+        {
+            std::string cast_expr;
+            constexpr bool isGeneric = std::is_same_v<T, generic_inst>;
 
-                    // Swift fails to implicitly convert a derived interface to its generic base interface without a cast
-                    write_query_interface_case(w, type, *iface.second.type,
-                        /* cast: */ is_generic_inst(iface.second.type));
-                }}),
-            bind_wrapper_fullname(type),
-            bind([&](writer & w) {
-               if (is_delegate(type))
-               {
-                    // Delegates don't implement classes so don't try to get to the inner object. This won't work since the swift object
-                    // being held onto is a closure, so trying to unwrap as `AnyObject` will fail
-                    w.write("    return E_NOINTERFACE\n");
-               }
-               else if (!composed)
-               {
-                        w.write(R"(    guard let instance = WinRTWrapperBase<%.IInspectable, AnyObject>.tryUnwrapFrom(raw: $0) as? any WinRTClass,
-                  let cDefault: UnsafeMutablePointer<%.IInspectable> = instance._getABI() else { return E_NOINTERFACE }
-            return cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, riid, ppvObject) 
-)", w.c_mod, w.c_mod);
-               }
-               else
-               {
-                   w.write(R"(    guard let instance = %.tryUnwrapFrom(raw: $0),
-                    let inner = instance._inner else { return E_INVALIDARG }
-                
-            return inner.pointee.lpVtbl.pointee.QueryInterface(inner, riid, ppvObject)
-)", bind_wrapper_name(type));
-               }
-            })
-    );
+            w.write(R"(guard let instance = %.tryUnwrapFrom(raw: pUnk)%,
+                  let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+            ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+            return S_OK
+)", wrapper_name, cast_expr);
+        }
+    }));
 
         w.write(R"(AddRef: {
      guard let wrapper = %.fromRaw($0) else { return 1 }
@@ -2345,18 +2364,14 @@ bind([&](writer& w) {
      return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
 },
 
-)",
-            bind_wrapper_name(type)
-        );
+)", wrapper_name);
 
         w.write(R"(Release: {
     guard let wrapper = %.fromRaw($0) else { return 1 }
     return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
 },
 
-)",
-            bind_wrapper_name(type)
-);
+)", wrapper_name);
     }
 
     static void write_iunknown_methods(writer& w, generic_inst const& type)
@@ -2724,5 +2739,4 @@ bind([&](writer& w) {
             other_composable_interfaces.push_back(*iter);
         }
     }
-
 }

@@ -74,9 +74,13 @@ public protocol IAsyncAction : WinRTInterface {
 }
 
 extension IAsyncAction {
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
-        guard let wrapper = __ABI_Windows_Foundation.IAsyncActionWrapper(self) else { fatalError("created abi was null")  }
-        return wrapper.queryInterface(riid, ppvObj)
+    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+        switch iid {
+            case __ABI_Windows_Foundation.IAsyncActionWrapper.IID:
+                let wrapper = __ABI_Windows_Foundation.IAsyncActionWrapper(self)
+                return wrapper!.queryInterface(iid)
+            default: return nil
+        }
     }
 }
 public typealias AnyIAsyncAction = any IAsyncAction
@@ -86,9 +90,13 @@ public protocol IClosable : WinRTInterface {
 }
 
 extension IClosable {
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
-        guard let wrapper = __ABI_Windows_Foundation.IClosableWrapper(self) else { fatalError("created abi was null")  }
-        return wrapper.queryInterface(riid, ppvObj)
+    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+        switch iid {
+            case __ABI_Windows_Foundation.IClosableWrapper.IID:
+                let wrapper = __ABI_Windows_Foundation.IClosableWrapper(self)
+                return wrapper!.queryInterface(iid)
+            default: return nil
+        }
     }
 }
 public typealias AnyIClosable = any IClosable
@@ -123,9 +131,13 @@ public protocol IStringable : WinRTInterface {
 }
 
 extension IStringable {
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
-        guard let wrapper = __ABI_Windows_Foundation.IStringableWrapper(self) else { fatalError("created abi was null")  }
-        return wrapper.queryInterface(riid, ppvObj)
+    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+        switch iid {
+            case __ABI_Windows_Foundation.IStringableWrapper.IID:
+                let wrapper = __ABI_Windows_Foundation.IStringableWrapper(self)
+                return wrapper!.queryInterface(iid)
+            default: return nil
+        }
     }
 }
 public typealias AnyIStringable = any IStringable

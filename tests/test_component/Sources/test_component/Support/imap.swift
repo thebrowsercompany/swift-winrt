@@ -1,7 +1,7 @@
 import WinSDK
 import Ctest_component
 
-public protocol IMap<Key, Value> {
+public protocol IMap<Key, Value>: CustomQueryInterface {
     associatedtype Key
     associatedtype Value
 
@@ -15,7 +15,7 @@ public protocol IMap<Key, Value> {
     func clear()
 }
 
-public protocol IMapView<Key, Value> {
+public protocol IMapView<Key, Value>: CustomQueryInterface {
     associatedtype Key
     associatedtype Value
     

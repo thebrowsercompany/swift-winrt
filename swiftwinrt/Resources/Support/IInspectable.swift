@@ -85,6 +85,7 @@ public enum __ABI_ {
     internal static var IInspectableVTable: C_BINDINGS_MODULE.IInspectableVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+            ppvObject.pointee = nil
             if riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
@@ -94,8 +95,10 @@ public enum __ABI_ {
               return S_OK
             }
             let swiftObj = AnyWrapper.tryUnwrapFrom(raw: pUnk)
-            if let customQueryInterface = swiftObj as? CustomQueryInterface {
-              return customQueryInterface.queryInterface(riid, ppvObject)
+            if let customQueryInterface = swiftObj as? CustomQueryInterface,
+               let result = customQueryInterface.queryInterface(riid.pointee) {
+                ppvObject.pointee = UnsafeMutableRawPointer(result.ref)
+                return S_OK
             }
             return E_NOINTERFACE
         },

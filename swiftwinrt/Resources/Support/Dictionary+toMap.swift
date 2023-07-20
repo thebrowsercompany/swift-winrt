@@ -1,3 +1,5 @@
+import WinSDK
+
 // Swift Dictionary to IMap Adaptor
 extension Dictionary {
     public func toMap() -> AnyIMap<Key, Value> {
@@ -24,6 +26,10 @@ internal class DictionaryMap<Key, Value> : IMap where Key : Hashable {
     func clear() { storage.removeAll(keepingCapacity: true) }
 }
 
+extension DictionaryMap {
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+}
+
 internal class DictionaryMapView<Key, Value> : IMapView where Key : Hashable {
     private var storage: Dictionary<Key, Value>
     internal init(_ storage: Dictionary<Key, Value>){
@@ -38,4 +44,8 @@ internal class DictionaryMapView<Key, Value> : IMapView where Key : Hashable {
         _ second: inout AnyIMapView<Key, Value>?) {
         fatalError("Not implemented: DictionaryMapView.Split")
     }
+}
+
+extension DictionaryMapView {
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
 }

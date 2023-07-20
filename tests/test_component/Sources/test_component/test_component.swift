@@ -32,6 +32,14 @@ open class Base : UnsealedWinRTClass {
         _default = try! fromAbi.QueryInterface()
     }
 
+    open func queryInterface(_ iid: IID) -> IUnknownRef? {
+        switch iid {
+            case __ABI_test_component.IBaseOverridesWrapper.IID:
+                let wrapper = __ABI_test_component.IBaseOverridesWrapper(self)
+                return wrapper!.queryInterface(iid)
+            default: return test_component.queryInterface(unsealed: self, iid)
+        }
+    }
     private static var _IBaseProtectedFactory : __ABI_test_component.IBaseProtectedFactory =  try! RoGetActivationFactory(HString("test_component.Base"))
     public init() {
         self._default = MakeComposed(Self._IBaseProtectedFactory, &_inner, self)
@@ -93,7 +101,8 @@ public final class BaseCollection : WinRTClass, IVector {
         _default = try! fromAbi.QueryInterface()
     }
 
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { return (self as AnyWinRTClass).queryInterface(riid, ppvObj)   }
+    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+        return test_component.queryInterface(sealed: self, iid)}
     // MARK: Collection
     public var startIndex: Int { 0 }
     public var endIndex: Int { Int(size) }
@@ -200,7 +209,8 @@ public final class BaseMapCollection : WinRTClass, IMap {
         _default = try! fromAbi.QueryInterface()
     }
 
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { return (self as AnyWinRTClass).queryInterface(riid, ppvObj)   }
+    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+        return test_component.queryInterface(sealed: self, iid)}
     // MARK: WinRT
     public func lookup(_ key: String) -> Base? {
         let _key = try! HString(key)
@@ -270,6 +280,8 @@ open class BaseNoOverrides : UnsealedWinRTClass {
         _default = try! fromAbi.QueryInterface()
     }
 
+    open func queryInterface(_ iid: IID) -> IUnknownRef? {
+        return test_component.queryInterface(unsealed: self, iid)}
     private static var _IBaseNoOverridesProtectedFactory : __ABI_test_component.IBaseNoOverridesProtectedFactory =  try! RoGetActivationFactory(HString("test_component.BaseNoOverrides"))
     public init() {
         self._default = MakeComposed(Self._IBaseNoOverridesProtectedFactory, &_inner, self)
@@ -321,7 +333,8 @@ public final class Class : WinRTClass, IBasic {
         _default = try! fromAbi.QueryInterface()
     }
 
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { return (self as AnyWinRTClass).queryInterface(riid, ppvObj)   }
+    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+        return test_component.queryInterface(sealed: self, iid)}
     public init() {
         try! _default = RoActivateInstance(HString("test_component.Class"))
     }
@@ -817,7 +830,8 @@ public final class NoopClosable : WinRTClass, test_component.IClosable {
         _default = try! fromAbi.QueryInterface()
     }
 
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { return (self as AnyWinRTClass).queryInterface(riid, ppvObj)   }
+    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+        return test_component.queryInterface(sealed: self, iid)}
     public init() {
         try! _default = RoActivateInstance(HString("test_component.NoopClosable"))
     }
@@ -1105,6 +1119,17 @@ open class UnsealedDerived : test_component.Base {
         super.init(fromAbi: fromAbi)
     }
 
+    override open func queryInterface(_ iid: IID) -> IUnknownRef? {
+        switch iid {
+            case __ABI_test_component.IUnsealedDerivedOverloads2Wrapper.IID:
+                let wrapper = __ABI_test_component.IUnsealedDerivedOverloads2Wrapper(self)
+                return wrapper!.queryInterface(iid)
+            case __ABI_test_component.IUnsealedDerivedOverridesWrapper.IID:
+                let wrapper = __ABI_test_component.IUnsealedDerivedOverridesWrapper(self)
+                return wrapper!.queryInterface(iid)
+            default: return super.queryInterface(iid)
+        }
+    }
     private static var _IUnsealedDerivedProtectedFactory : __ABI_test_component.IUnsealedDerivedProtectedFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerived"))
     override public init() {
         super.init(Self._IUnsealedDerivedProtectedFactory) 
@@ -1196,6 +1221,8 @@ open class UnsealedDerived2 : test_component.UnsealedDerived {
         super.init(fromAbi: fromAbi)
     }
 
+    override open func queryInterface(_ iid: IID) -> IUnknownRef? {
+        return super.queryInterface(iid)}
     private static var _IUnsealedDerived2ProtectedFactory : __ABI_test_component.IUnsealedDerived2ProtectedFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerived2"))
     override public init() {
         super.init(Self._IUnsealedDerived2ProtectedFactory) 
@@ -1257,6 +1284,8 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
         super.init(fromAbi: fromAbi)
     }
 
+    override open func queryInterface(_ iid: IID) -> IUnknownRef? {
+        return super.queryInterface(iid)}
     private static var _IUnsealedDerivedNoOverridesProtectedFactory : __ABI_test_component.IUnsealedDerivedNoOverridesProtectedFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerivedNoOverrides"))
     override public init() {
         super.init(Self._IUnsealedDerivedNoOverridesProtectedFactory) 
@@ -1364,9 +1393,13 @@ public protocol IBasic : WinRTInterface {
 }
 
 extension IBasic {
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
-        guard let wrapper = __ABI_test_component.IBasicWrapper(self) else { fatalError("created abi was null")  }
-        return wrapper.queryInterface(riid, ppvObj)
+    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+        switch iid {
+            case __ABI_test_component.IBasicWrapper.IID:
+                let wrapper = __ABI_test_component.IBasicWrapper(self)
+                return wrapper!.queryInterface(iid)
+            default: return nil
+        }
     }
 }
 public typealias AnyIBasic = any IBasic
@@ -1399,9 +1432,13 @@ public extension EventSource where Handler == test_component.InDelegate {
 }
 
 extension IIAmImplementable {
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
-        guard let wrapper = __ABI_test_component.IIAmImplementableWrapper(self) else { fatalError("created abi was null")  }
-        return wrapper.queryInterface(riid, ppvObj)
+    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+        switch iid {
+            case __ABI_test_component.IIAmImplementableWrapper.IID:
+                let wrapper = __ABI_test_component.IIAmImplementableWrapper(self)
+                return wrapper!.queryInterface(iid)
+            default: return nil
+        }
     }
 }
 public typealias AnyIIAmImplementable = any IIAmImplementable
@@ -1412,9 +1449,13 @@ public protocol ISimpleDelegate : WinRTInterface {
 }
 
 extension ISimpleDelegate {
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
-        guard let wrapper = __ABI_test_component.ISimpleDelegateWrapper(self) else { fatalError("created abi was null")  }
-        return wrapper.queryInterface(riid, ppvObj)
+    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+        switch iid {
+            case __ABI_test_component.ISimpleDelegateWrapper.IID:
+                let wrapper = __ABI_test_component.ISimpleDelegateWrapper(self)
+                return wrapper!.queryInterface(iid)
+            default: return nil
+        }
     }
 }
 public typealias AnyISimpleDelegate = any ISimpleDelegate
@@ -1434,9 +1475,13 @@ public extension EventSource where Handler == test_component.ReturnInt32Delegate
 }
 
 extension InterfaceWithReturnDelegate {
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
-        guard let wrapper = __ABI_test_component.InterfaceWithReturnDelegateWrapper(self) else { fatalError("created abi was null")  }
-        return wrapper.queryInterface(riid, ppvObj)
+    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+        switch iid {
+            case __ABI_test_component.InterfaceWithReturnDelegateWrapper.IID:
+                let wrapper = __ABI_test_component.InterfaceWithReturnDelegateWrapper(self)
+                return wrapper!.queryInterface(iid)
+            default: return nil
+        }
     }
 }
 public typealias AnyInterfaceWithReturnDelegate = any InterfaceWithReturnDelegate
