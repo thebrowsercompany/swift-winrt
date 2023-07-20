@@ -216,7 +216,7 @@ public enum __ABI_test_component {
             }
 
             guard let instance = IBasicWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-            return instance.queryInterface(riid, ppvObject)
+            return instance.queryInterface(riid.pointee, &ppvObject.pointee)
 
         },
 
@@ -894,7 +894,7 @@ public enum __ABI_test_component {
             }
 
             guard let instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-            return instance.queryInterface(riid, ppvObject)
+            return instance.queryInterface(riid.pointee, &ppvObject.pointee)
 
         },
 
@@ -1362,7 +1362,7 @@ public enum __ABI_test_component {
             }
 
             guard let instance = ISimpleDelegateWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-            return instance.queryInterface(riid, ppvObject)
+            return instance.queryInterface(riid.pointee, &ppvObject.pointee)
 
         },
 
@@ -1621,7 +1621,7 @@ public enum __ABI_test_component {
             }
 
             guard let instance = InterfaceWithReturnDelegateWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-            return instance.queryInterface(riid, ppvObject)
+            return instance.queryInterface(riid.pointee, &ppvObject.pointee)
 
         },
 
@@ -1734,7 +1734,7 @@ public enum __ABI_test_component {
             }
 
             guard let instance = IBaseOverridesWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-            return instance.queryInterface(riid, ppvObject)
+            return instance.queryInterface(riid.pointee, &ppvObject.pointee)
 
         },
 
@@ -1796,7 +1796,7 @@ public enum __ABI_test_component {
             }
 
             guard let instance = IUnsealedDerivedOverridesWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-            return instance.queryInterface(riid, ppvObject)
+            return instance.queryInterface(riid.pointee, &ppvObject.pointee)
 
         },
 
@@ -1859,7 +1859,7 @@ public enum __ABI_test_component {
             }
 
             guard let instance = IUnsealedDerivedOverloads2Wrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-            return instance.queryInterface(riid, ppvObject)
+            return instance.queryInterface(riid.pointee, &ppvObject.pointee)
 
         },
 

@@ -12,11 +12,6 @@ public protocol IWinRTObject: AnyObject {
 public protocol WinRTInterface: AnyObject, CustomQueryInterface {
 }
 
-public protocol CustomQueryInterface {
-  @_spi(WinRTImplements)
-  func queryInterface(_ iid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT
-}
-
 public protocol WinRTClass : IWinRTObject, CustomQueryInterface, Equatable {
     func _getABI<T>() -> UnsafeMutablePointer<T>?
 }
@@ -47,32 +42,6 @@ public func ==<T: WinRTClass>(_ lhs: T, _ rhs: T) -> Bool {
 
 extension WinRTClass {
     public var thisPtr: test_component.IInspectable { _getDefaultAsIInspectable() }
-}
-
-@_spi(WinRTInternal)
-public func queryInterface(sealed obj: AnyWinRTClass, _ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
-   guard let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = obj._getABI() else { return E_NOINTERFACE }
-  return cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, riid, ppvObj) 
-}
-
-extension WinRTClass {
-    @_spi(WinRTInternal)
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
-        test_component.queryInterface(sealed: self, riid, ppvObj)
-    }
-}
-
-extension UnsealedWinRTClass {
-    @_spi(WinRTInternal)
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
-        test_component.queryInterface(unsealed: self, riid, ppvObj)
-    }
-}
-
-@_spi(WinRTInternal)
-public func queryInterface(unsealed obj: AnyUnsealedWinRTClass, _ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
-  guard let inner = obj._inner ?? obj._getABI() else { return E_NOINTERFACE }
-  return inner.pointee.lpVtbl.pointee.QueryInterface(inner, riid, ppvObj)
 }
 
 @_spi(WinRTInternal)

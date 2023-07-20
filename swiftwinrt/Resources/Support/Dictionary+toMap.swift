@@ -27,7 +27,7 @@ internal class DictionaryMap<Key, Value> : IMap where Key : Hashable {
 }
 
 extension DictionaryMap {
-    public func queryInterface(_ riid: REFIID, _ ppv: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult  {
         return E_NOINTERFACE
     }
 }
@@ -49,7 +49,7 @@ internal class DictionaryMapView<Key, Value> : IMapView where Key : Hashable {
 }
 
 extension DictionaryMapView {
-    public func queryInterface(_ riid: REFIID, _ ppv: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult  {
         return E_NOINTERFACE
     }
 }

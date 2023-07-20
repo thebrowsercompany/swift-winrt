@@ -814,10 +814,10 @@ bind_impl_fullname(type));
     static void write_property_value_impl(writer& w)
     {
         auto winrtInterfaceConformance = w.write_temp(R"(
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { 
-         if riid.pointee == __ABI_Windows_Foundation.IPropertyValueWrapper.IID {
+    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult { 
+         if iid == __ABI_Windows_Foundation.IPropertyValueWrapper.IID {
             guard let thisAsIPropValue = __ABI_Windows_Foundation.IPropertyValueWrapper(self) else { fatalError("creating non-nil wrapper shouldn't fail") }
-            return thisAsIPropValue.queryInterface(riid, ppvObj)
+            return thisAsIPropValue.queryInterface(iid, &result)
         } else {
             return E_NOINTERFACE
         }
@@ -1273,8 +1273,8 @@ public static func makeAbi() -> CABI {
             }
 
             w.write(R"(extension % {
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
-        switch riid.pointee {
+    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
+        switch iid {
 %
         }
     }
@@ -1453,7 +1453,7 @@ public static func makeAbi() -> CABI {
             write_class_impl_event(w, event, info);
         }
 
-        w.write(R"(public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+        w.write(R"(public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
     return E_NOINTERFACE
 } 
 )");
@@ -2231,16 +2231,15 @@ composable ? "override open" :
                 // otherwise it won't compile. At the end of the day, the winrt object it's holding onto will appropriately
                 // respond to QueryInterface calls, so call into the default implementation.
                 auto baseComposable = type.base_class && type.base_class->is_composable();
-                //auto base_case = "queryInterfaceImpl(riid, ppvObj)";
                 auto label = composable || baseComposable ? "unsealed" : "sealed";
                 std::string base_case;
                 if (base_class)
                 {
-                    base_case = "super.queryInterface(riid, ppvObj)";
+                    base_case = "super.queryInterface(iid, &result)";
                 } 
                 else
                 {
-                    base_case = w.write_temp("%.queryInterface(%: self, riid, ppvObj)", w.support, label);
+                    base_case = w.write_temp("%.queryInterface(%: self, iid, &result)", w.support, label);
                 }
                 std::vector<std::string> query_interface_lines;
                 if (overridable_interfaces.empty())
@@ -2250,7 +2249,7 @@ composable ? "override open" :
                 else
                 {
                     query_interface_lines.reserve(overridable_interfaces.size() * 3 + 3);
-                    query_interface_lines.push_back(w.write_temp("    switch riid.pointee {\n"));
+                    query_interface_lines.push_back(w.write_temp("    switch iid {\n"));
                     for (auto& [_, info] : overridable_interfaces) {
                         query_interface_lines.push_back(w.write_temp("%", bind<write_query_interface_case>(info, indent{2})));
                     }
@@ -2258,7 +2257,7 @@ composable ? "override open" :
                     query_interface_lines.push_back(w.write_temp("    }"));
                 }
 
-                w.write(R"(%% func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { 
+                w.write(R"(%% func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult { 
 %
 }
 )", override, modifier, query_interface_lines);
@@ -2336,7 +2335,7 @@ composable ? "override open" :
         auto guard{ w.push_indent(indent) };
         w.write("case %.IID:\n", bind_wrapper_fullname(iface.type));
         w.write("    let wrapper = %(self)\n", bind_wrapper_fullname(iface.type));
-        w.write("    return wrapper!.queryInterface(riid, ppvObj)\n");
+        w.write("    return wrapper!.queryInterface(iid, &result)\n");
     }
 
     template <typename T>
@@ -2372,7 +2371,7 @@ composable ? "override open" :
             constexpr bool isGeneric = std::is_same_v<T, generic_inst>;
 
             w.write(R"(guard let instance = %.tryUnwrapFrom(raw: pUnk)% else { return failWith(err: E_NOINTERFACE )}
-    return instance.queryInterface(riid, ppvObject)
+    return instance.queryInterface(riid.pointee, &ppvObject.pointee)
 )", wrapper_name, cast_expr);
         }
     }));

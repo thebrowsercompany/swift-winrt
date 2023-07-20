@@ -67,7 +67,7 @@ internal var __x_ABI_C__FIMapView_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMapView_
         }
 
         guard let instance = __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-        return instance.queryInterface(riid, ppvObject)
+        return instance.queryInterface(riid.pointee, &ppvObject.pointee)
 
     },
 
@@ -229,7 +229,7 @@ internal class __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl : IMapView, AbiInterfa
 
     }
 
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
         return E_NOINTERFACE
     } 
 }
@@ -252,7 +252,7 @@ internal var __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTab
         }
 
         guard let instance = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-        return instance.queryInterface(riid, ppvObject)
+        return instance.queryInterface(riid.pointee, &ppvObject.pointee)
 
     },
 
@@ -414,7 +414,7 @@ internal class __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseIm
 
     }
 
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
         return E_NOINTERFACE
     } 
 }
@@ -437,7 +437,7 @@ internal var __x_ABI_C__FIMap_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMap_2_HSTRIN
         }
 
         guard let instance = __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-        return instance.queryInterface(riid, ppvObject)
+        return instance.queryInterface(riid.pointee, &ppvObject.pointee)
 
     },
 
@@ -652,7 +652,7 @@ internal class __x_ABI_C__FIMap_2_HSTRING_HSTRINGImpl : IMap, AbiInterfaceImpl {
 
     }
 
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
         return E_NOINTERFACE
     } 
 }
@@ -675,7 +675,7 @@ internal var __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: 
         }
 
         guard let instance = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-        return instance.queryInterface(riid, ppvObject)
+        return instance.queryInterface(riid.pointee, &ppvObject.pointee)
 
     },
 
@@ -889,7 +889,7 @@ internal class __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl :
 
     }
 
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
         return E_NOINTERFACE
     } 
 }
@@ -912,7 +912,7 @@ internal var __x_ABI_C__FIVectorView_1_IInspectableVTable: __x_ABI_C__FIVectorVi
         }
 
         guard let instance = __x_ABI_C__FIVectorView_1_IInspectableWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-        return instance.queryInterface(riid, ppvObject)
+        return instance.queryInterface(riid.pointee, &ppvObject.pointee)
 
     },
 
@@ -1072,7 +1072,7 @@ internal class __x_ABI_C__FIVectorView_1_IInspectableImpl : IVectorView, AbiInte
 
     }
 
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
         return E_NOINTERFACE
     } 
 }
@@ -1095,7 +1095,7 @@ internal var __x_ABI_C__FIVectorView_1_HSTRINGVTable: __x_ABI_C__FIVectorView_1_
         }
 
         guard let instance = __x_ABI_C__FIVectorView_1_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-        return instance.queryInterface(riid, ppvObject)
+        return instance.queryInterface(riid.pointee, &ppvObject.pointee)
 
     },
 
@@ -1253,7 +1253,7 @@ internal class __x_ABI_C__FIVectorView_1_HSTRINGImpl : IVectorView, AbiInterface
 
     }
 
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
         return E_NOINTERFACE
     } 
 }
@@ -1276,7 +1276,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVTable: _
         }
 
         guard let instance = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-        return instance.queryInterface(riid, ppvObject)
+        return instance.queryInterface(riid.pointee, &ppvObject.pointee)
 
     },
 
@@ -1433,7 +1433,7 @@ internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl : 
 
     }
 
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
         return E_NOINTERFACE
     } 
 }
@@ -1456,7 +1456,7 @@ internal var __x_ABI_C__FIVector_1_IInspectableVTable: __x_ABI_C__FIVector_1_IIn
         }
 
         guard let instance = __x_ABI_C__FIVector_1_IInspectableWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-        return instance.queryInterface(riid, ppvObject)
+        return instance.queryInterface(riid.pointee, &ppvObject.pointee)
 
     },
 
@@ -1756,7 +1756,7 @@ internal class __x_ABI_C__FIVector_1_IInspectableImpl : IVector, AbiInterfaceImp
 
     }
 
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
         return E_NOINTERFACE
     } 
 }
@@ -1779,7 +1779,7 @@ internal var __x_ABI_C__FIVector_1_HSTRINGVTable: __x_ABI_C__FIVector_1_HSTRINGV
         }
 
         guard let instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-        return instance.queryInterface(riid, ppvObject)
+        return instance.queryInterface(riid.pointee, &ppvObject.pointee)
 
     },
 
@@ -2074,7 +2074,7 @@ internal class __x_ABI_C__FIVector_1_HSTRINGImpl : IVector, AbiInterfaceImpl {
 
     }
 
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
         return E_NOINTERFACE
     } 
 }
@@ -2097,7 +2097,7 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_A
         }
 
         guard let instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-        return instance.queryInterface(riid, ppvObject)
+        return instance.queryInterface(riid.pointee, &ppvObject.pointee)
 
     },
 
@@ -2388,7 +2388,7 @@ internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl : IVec
 
     }
 
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
         return E_NOINTERFACE
     } 
 }
@@ -2496,7 +2496,7 @@ internal var __x_ABI_C__FIReference_1_intVTable: __x_ABI_C__FIReference_1_intVtb
         }
 
         guard let instance = __x_ABI_C__FIReference_1_intWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-        return instance.queryInterface(riid, ppvObject)
+        return instance.queryInterface(riid.pointee, &ppvObject.pointee)
 
     },
 
@@ -2579,7 +2579,7 @@ internal var __x_ABI_C__FIReference_1_GUIDVTable: __x_ABI_C__FIReference_1_GUIDV
         }
 
         guard let instance = __x_ABI_C__FIReference_1_GUIDWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-        return instance.queryInterface(riid, ppvObject)
+        return instance.queryInterface(riid.pointee, &ppvObject.pointee)
 
     },
 
@@ -2662,7 +2662,7 @@ internal var __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedVTable: 
         }
 
         guard let instance = __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-        return instance.queryInterface(riid, ppvObject)
+        return instance.queryInterface(riid.pointee, &ppvObject.pointee)
 
     },
 

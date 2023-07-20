@@ -61,7 +61,7 @@ public enum __ABI_Windows_Foundation {
             }
 
             guard let instance = IAsyncActionWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-            return instance.queryInterface(riid, ppvObject)
+            return instance.queryInterface(riid.pointee, &ppvObject.pointee)
 
         },
 
@@ -150,7 +150,7 @@ public enum __ABI_Windows_Foundation {
             }
 
             guard let instance = IClosableWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-            return instance.queryInterface(riid, ppvObject)
+            return instance.queryInterface(riid.pointee, &ppvObject.pointee)
 
         },
 
@@ -378,7 +378,7 @@ public enum __ABI_Windows_Foundation {
             }
 
             guard let instance = IPropertyValueWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-            return instance.queryInterface(riid, ppvObject)
+            return instance.queryInterface(riid.pointee, &ppvObject.pointee)
 
         },
 
@@ -676,7 +676,7 @@ public enum __ABI_Windows_Foundation {
             }
 
             guard let instance = IStringableWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-            return instance.queryInterface(riid, ppvObject)
+            return instance.queryInterface(riid.pointee, &ppvObject.pointee)
 
         },
 

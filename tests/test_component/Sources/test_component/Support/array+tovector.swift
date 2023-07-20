@@ -35,7 +35,7 @@ extension ArrayVector where Element: Equatable {
 }
 
 extension ArrayVector {
-    public func queryInterface(_ riid: REFIID, _ ppv: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult  {
         return E_NOINTERFACE
     }
 }
@@ -59,7 +59,7 @@ extension ArrayVectorView where Element: Equatable {
 }
 
 extension ArrayVectorView {
-    public func queryInterface(_ riid: REFIID, _ ppv: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult  {
         return E_NOINTERFACE
     }
 }

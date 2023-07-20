@@ -74,11 +74,11 @@ public protocol IAsyncAction : WinRTInterface {
 }
 
 extension IAsyncAction {
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
-        switch riid.pointee {
+    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
+        switch iid {
             case __ABI_Windows_Foundation.IAsyncActionWrapper.IID:
                 let wrapper = __ABI_Windows_Foundation.IAsyncActionWrapper(self)
-                return wrapper!.queryInterface(riid, ppvObj)
+                return wrapper!.queryInterface(iid, &result)
             default: return E_NOINTERFACE
         }
     }
@@ -90,11 +90,11 @@ public protocol IClosable : WinRTInterface {
 }
 
 extension IClosable {
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
-        switch riid.pointee {
+    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
+        switch iid {
             case __ABI_Windows_Foundation.IClosableWrapper.IID:
                 let wrapper = __ABI_Windows_Foundation.IClosableWrapper(self)
-                return wrapper!.queryInterface(riid, ppvObj)
+                return wrapper!.queryInterface(iid, &result)
             default: return E_NOINTERFACE
         }
     }
@@ -131,11 +131,11 @@ public protocol IStringable : WinRTInterface {
 }
 
 extension IStringable {
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
-        switch riid.pointee {
+    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
+        switch iid {
             case __ABI_Windows_Foundation.IStringableWrapper.IID:
                 let wrapper = __ABI_Windows_Foundation.IStringableWrapper(self)
-                return wrapper!.queryInterface(riid, ppvObj)
+                return wrapper!.queryInterface(iid, &result)
             default: return E_NOINTERFACE
         }
     }

@@ -32,12 +32,12 @@ open class Base : UnsealedWinRTClass {
         _default = try! fromAbi.QueryInterface()
     }
 
-    open func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { 
-        switch riid.pointee {
+    open func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult { 
+        switch iid {
             case __ABI_test_component.IBaseOverridesWrapper.IID:
                 let wrapper = __ABI_test_component.IBaseOverridesWrapper(self)
-                return wrapper!.queryInterface(riid, ppvObj)
-            default: return test_component.queryInterface(unsealed: self, riid, ppvObj)
+                return wrapper!.queryInterface(iid, &result)
+            default: return test_component.queryInterface(unsealed: self, iid, &result)
         }
     }
     private static var _IBaseProtectedFactory : __ABI_test_component.IBaseProtectedFactory =  try! RoGetActivationFactory(HString("test_component.Base"))
@@ -101,8 +101,8 @@ public final class BaseCollection : WinRTClass, IVector {
         _default = try! fromAbi.QueryInterface()
     }
 
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { 
-        return test_component.queryInterface(sealed: self, riid, ppvObj)
+    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult { 
+        return test_component.queryInterface(sealed: self, iid, &result)
     }
     // MARK: Collection
     public var startIndex: Int { 0 }
@@ -210,8 +210,8 @@ public final class BaseMapCollection : WinRTClass, IMap {
         _default = try! fromAbi.QueryInterface()
     }
 
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { 
-        return test_component.queryInterface(sealed: self, riid, ppvObj)
+    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult { 
+        return test_component.queryInterface(sealed: self, iid, &result)
     }
     // MARK: WinRT
     public func lookup(_ key: String) -> Base? {
@@ -282,8 +282,8 @@ open class BaseNoOverrides : UnsealedWinRTClass {
         _default = try! fromAbi.QueryInterface()
     }
 
-    open func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { 
-        return test_component.queryInterface(unsealed: self, riid, ppvObj)
+    open func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult { 
+        return test_component.queryInterface(unsealed: self, iid, &result)
     }
     private static var _IBaseNoOverridesProtectedFactory : __ABI_test_component.IBaseNoOverridesProtectedFactory =  try! RoGetActivationFactory(HString("test_component.BaseNoOverrides"))
     public init() {
@@ -336,8 +336,8 @@ public final class Class : WinRTClass, IBasic {
         _default = try! fromAbi.QueryInterface()
     }
 
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { 
-        return test_component.queryInterface(sealed: self, riid, ppvObj)
+    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult { 
+        return test_component.queryInterface(sealed: self, iid, &result)
     }
     public init() {
         try! _default = RoActivateInstance(HString("test_component.Class"))
@@ -834,8 +834,8 @@ public final class NoopClosable : WinRTClass, test_component.IClosable {
         _default = try! fromAbi.QueryInterface()
     }
 
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { 
-        return test_component.queryInterface(sealed: self, riid, ppvObj)
+    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult { 
+        return test_component.queryInterface(sealed: self, iid, &result)
     }
     public init() {
         try! _default = RoActivateInstance(HString("test_component.NoopClosable"))
@@ -1124,15 +1124,15 @@ open class UnsealedDerived : test_component.Base {
         super.init(fromAbi: fromAbi)
     }
 
-    override open func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { 
-        switch riid.pointee {
+    override open func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult { 
+        switch iid {
             case __ABI_test_component.IUnsealedDerivedOverloads2Wrapper.IID:
                 let wrapper = __ABI_test_component.IUnsealedDerivedOverloads2Wrapper(self)
-                return wrapper!.queryInterface(riid, ppvObj)
+                return wrapper!.queryInterface(iid, &result)
             case __ABI_test_component.IUnsealedDerivedOverridesWrapper.IID:
                 let wrapper = __ABI_test_component.IUnsealedDerivedOverridesWrapper(self)
-                return wrapper!.queryInterface(riid, ppvObj)
-            default: return super.queryInterface(riid, ppvObj)
+                return wrapper!.queryInterface(iid, &result)
+            default: return super.queryInterface(iid, &result)
         }
     }
     private static var _IUnsealedDerivedProtectedFactory : __ABI_test_component.IUnsealedDerivedProtectedFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerived"))
@@ -1226,8 +1226,8 @@ open class UnsealedDerived2 : test_component.UnsealedDerived {
         super.init(fromAbi: fromAbi)
     }
 
-    override open func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { 
-        return super.queryInterface(riid, ppvObj)
+    override open func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult { 
+        return super.queryInterface(iid, &result)
     }
     private static var _IUnsealedDerived2ProtectedFactory : __ABI_test_component.IUnsealedDerived2ProtectedFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerived2"))
     override public init() {
@@ -1290,8 +1290,8 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
         super.init(fromAbi: fromAbi)
     }
 
-    override open func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT { 
-        return super.queryInterface(riid, ppvObj)
+    override open func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult { 
+        return super.queryInterface(iid, &result)
     }
     private static var _IUnsealedDerivedNoOverridesProtectedFactory : __ABI_test_component.IUnsealedDerivedNoOverridesProtectedFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerivedNoOverrides"))
     override public init() {
@@ -1400,11 +1400,11 @@ public protocol IBasic : WinRTInterface {
 }
 
 extension IBasic {
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
-        switch riid.pointee {
+    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
+        switch iid {
             case __ABI_test_component.IBasicWrapper.IID:
                 let wrapper = __ABI_test_component.IBasicWrapper(self)
-                return wrapper!.queryInterface(riid, ppvObj)
+                return wrapper!.queryInterface(iid, &result)
             default: return E_NOINTERFACE
         }
     }
@@ -1439,11 +1439,11 @@ public extension EventSource where Handler == test_component.InDelegate {
 }
 
 extension IIAmImplementable {
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
-        switch riid.pointee {
+    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
+        switch iid {
             case __ABI_test_component.IIAmImplementableWrapper.IID:
                 let wrapper = __ABI_test_component.IIAmImplementableWrapper(self)
-                return wrapper!.queryInterface(riid, ppvObj)
+                return wrapper!.queryInterface(iid, &result)
             default: return E_NOINTERFACE
         }
     }
@@ -1456,11 +1456,11 @@ public protocol ISimpleDelegate : WinRTInterface {
 }
 
 extension ISimpleDelegate {
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
-        switch riid.pointee {
+    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
+        switch iid {
             case __ABI_test_component.ISimpleDelegateWrapper.IID:
                 let wrapper = __ABI_test_component.ISimpleDelegateWrapper(self)
-                return wrapper!.queryInterface(riid, ppvObj)
+                return wrapper!.queryInterface(iid, &result)
             default: return E_NOINTERFACE
         }
     }
@@ -1482,11 +1482,11 @@ public extension EventSource where Handler == test_component.ReturnInt32Delegate
 }
 
 extension InterfaceWithReturnDelegate {
-    public func queryInterface(_ riid: REFIID, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
-        switch riid.pointee {
+    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
+        switch iid {
             case __ABI_test_component.InterfaceWithReturnDelegateWrapper.IID:
                 let wrapper = __ABI_test_component.InterfaceWithReturnDelegateWrapper(self)
-                return wrapper!.queryInterface(riid, ppvObj)
+                return wrapper!.queryInterface(iid, &result)
             default: return E_NOINTERFACE
         }
     }
