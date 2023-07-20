@@ -208,7 +208,7 @@ public enum __ABI_test_component {
             ppvObject.pointee = nil
 
             switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IBasicWrapper.IID
+                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IBasicWrapper.IID:
                     _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
@@ -885,7 +885,7 @@ public enum __ABI_test_component {
             ppvObject.pointee = nil
 
             switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IIAmImplementableWrapper.IID
+                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IIAmImplementableWrapper.IID:
                     _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
@@ -1352,7 +1352,7 @@ public enum __ABI_test_component {
             ppvObject.pointee = nil
 
             switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, ISimpleDelegateWrapper.IID
+                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, ISimpleDelegateWrapper.IID:
                     _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
@@ -1610,7 +1610,7 @@ public enum __ABI_test_component {
             ppvObject.pointee = nil
 
             switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, InterfaceWithReturnDelegateWrapper.IID
+                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, InterfaceWithReturnDelegateWrapper.IID:
                     _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
@@ -1722,7 +1722,7 @@ public enum __ABI_test_component {
             ppvObject.pointee = nil
 
             switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IBaseOverridesWrapper.IID
+                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IBaseOverridesWrapper.IID:
                     _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
@@ -1783,7 +1783,7 @@ public enum __ABI_test_component {
             ppvObject.pointee = nil
 
             switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IUnsealedDerivedOverridesWrapper.IID
+                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IUnsealedDerivedOverridesWrapper.IID:
                     _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
@@ -1845,7 +1845,7 @@ public enum __ABI_test_component {
             ppvObject.pointee = nil
 
             switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IUnsealedDerivedOverloads2Wrapper.IID
+                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IUnsealedDerivedOverloads2Wrapper.IID:
                     _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
@@ -1956,7 +1956,7 @@ extension __ABI_test_component {
             ppvObject.pointee = nil
 
             switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, ObjectHandlerWrapper.IID
+                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, ObjectHandlerWrapper.IID:
                     _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
@@ -2012,7 +2012,7 @@ extension __ABI_test_component {
             ppvObject.pointee = nil
 
             switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, VoidToVoidDelegateWrapper.IID
+                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, VoidToVoidDelegateWrapper.IID:
                     _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK

@@ -53,7 +53,7 @@ public enum __ABI_Windows_Foundation {
             ppvObject.pointee = nil
 
             switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IAsyncActionWrapper.IID
+                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IAsyncActionWrapper.IID:
                     _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
@@ -141,7 +141,7 @@ public enum __ABI_Windows_Foundation {
             ppvObject.pointee = nil
 
             switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IClosableWrapper.IID
+                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IClosableWrapper.IID:
                     _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
@@ -368,7 +368,7 @@ public enum __ABI_Windows_Foundation {
             ppvObject.pointee = nil
 
             switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IPropertyValueWrapper.IID
+                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IPropertyValueWrapper.IID:
                     _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
@@ -665,7 +665,7 @@ public enum __ABI_Windows_Foundation {
             ppvObject.pointee = nil
 
             switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IStringableWrapper.IID
+                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IStringableWrapper.IID:
                     _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
@@ -769,7 +769,7 @@ extension __ABI_Windows_Foundation {
             ppvObject.pointee = nil
 
             switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, AsyncActionCompletedHandlerWrapper.IID
+                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, AsyncActionCompletedHandlerWrapper.IID:
                     _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK

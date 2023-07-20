@@ -1398,8 +1398,10 @@ extension IBasic {
             case __ABI_test_component.IBasicWrapper.IID:
                 let wrapper = __ABI_test_component.IBasicWrapper(self)
                 return wrapper!.queryInterface(iid, &result)
-            default: return E_NOINTERFACE        }
+            default: return E_NOINTERFACE
+        }
     }
+}
 public typealias AnyIBasic = any IBasic
 
 public protocol IIAmImplementable : WinRTInterface {
@@ -1435,8 +1437,10 @@ extension IIAmImplementable {
             case __ABI_test_component.IIAmImplementableWrapper.IID:
                 let wrapper = __ABI_test_component.IIAmImplementableWrapper(self)
                 return wrapper!.queryInterface(iid, &result)
-            default: return E_NOINTERFACE        }
+            default: return E_NOINTERFACE
+        }
     }
+}
 public typealias AnyIIAmImplementable = any IIAmImplementable
 
 public protocol ISimpleDelegate : WinRTInterface {
@@ -1450,8 +1454,10 @@ extension ISimpleDelegate {
             case __ABI_test_component.ISimpleDelegateWrapper.IID:
                 let wrapper = __ABI_test_component.ISimpleDelegateWrapper(self)
                 return wrapper!.queryInterface(iid, &result)
-            default: return E_NOINTERFACE        }
+            default: return E_NOINTERFACE
+        }
     }
+}
 public typealias AnyISimpleDelegate = any ISimpleDelegate
 
 public protocol InterfaceWithReturnDelegate : WinRTInterface {
@@ -1474,8 +1480,10 @@ extension InterfaceWithReturnDelegate {
             case __ABI_test_component.InterfaceWithReturnDelegateWrapper.IID:
                 let wrapper = __ABI_test_component.InterfaceWithReturnDelegateWrapper(self)
                 return wrapper!.queryInterface(iid, &result)
-            default: return E_NOINTERFACE        }
+            default: return E_NOINTERFACE
+        }
     }
+}
 public typealias AnyInterfaceWithReturnDelegate = any InterfaceWithReturnDelegate
 
 extension test_component.Fruit {

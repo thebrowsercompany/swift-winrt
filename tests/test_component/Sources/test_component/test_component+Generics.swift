@@ -59,7 +59,7 @@ internal var __x_ABI_C__FIMapView_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMapView_
         ppvObject.pointee = nil
 
         switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.IID
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.IID:
                 _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
@@ -243,7 +243,7 @@ internal var __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTab
         ppvObject.pointee = nil
 
         switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.IID:
                 _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
@@ -427,7 +427,7 @@ internal var __x_ABI_C__FIMap_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMap_2_HSTRIN
         ppvObject.pointee = nil
 
         switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.IID
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.IID:
                 _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
@@ -664,7 +664,7 @@ internal var __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: 
         ppvObject.pointee = nil
 
         switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.IID:
                 _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
@@ -900,7 +900,7 @@ internal var __x_ABI_C__FIVectorView_1_IInspectableVTable: __x_ABI_C__FIVectorVi
         ppvObject.pointee = nil
 
         switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIVectorView_1_IInspectableWrapper.IID
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIVectorView_1_IInspectableWrapper.IID:
                 _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
@@ -1082,7 +1082,7 @@ internal var __x_ABI_C__FIVectorView_1_HSTRINGVTable: __x_ABI_C__FIVectorView_1_
         ppvObject.pointee = nil
 
         switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIVectorView_1_HSTRINGWrapper.IID
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIVectorView_1_HSTRINGWrapper.IID:
                 _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
@@ -1262,7 +1262,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVTable: _
         ppvObject.pointee = nil
 
         switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID:
                 _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
@@ -1441,7 +1441,7 @@ internal var __x_ABI_C__FIVector_1_IInspectableVTable: __x_ABI_C__FIVector_1_IIn
         ppvObject.pointee = nil
 
         switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIVector_1_IInspectableWrapper.IID
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIVector_1_IInspectableWrapper.IID:
                 _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
@@ -1763,7 +1763,7 @@ internal var __x_ABI_C__FIVector_1_HSTRINGVTable: __x_ABI_C__FIVector_1_HSTRINGV
         ppvObject.pointee = nil
 
         switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIVector_1_HSTRINGWrapper.IID
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIVector_1_HSTRINGWrapper.IID:
                 _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
@@ -2080,7 +2080,7 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_A
         ppvObject.pointee = nil
 
         switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID:
                 _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
@@ -2400,7 +2400,7 @@ internal var __x_ABI_C__FIEventHandler_1_IInspectableVTable: __x_ABI_C__FIEventH
         ppvObject.pointee = nil
 
         switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIEventHandler_1_IInspectableWrapper.IID
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIEventHandler_1_IInspectableWrapper.IID:
                 _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
@@ -2477,7 +2477,7 @@ internal var __x_ABI_C__FIReference_1_intVTable: __x_ABI_C__FIReference_1_intVtb
         ppvObject.pointee = nil
 
         switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIReference_1_intWrapper.IID
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIReference_1_intWrapper.IID:
                 _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
@@ -2559,7 +2559,7 @@ internal var __x_ABI_C__FIReference_1_GUIDVTable: __x_ABI_C__FIReference_1_GUIDV
         ppvObject.pointee = nil
 
         switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIReference_1_GUIDWrapper.IID
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIReference_1_GUIDWrapper.IID:
                 _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
@@ -2641,7 +2641,7 @@ internal var __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedVTable: 
         ppvObject.pointee = nil
 
         switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper.IID
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper.IID:
                 _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
@@ -2722,7 +2722,7 @@ internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple
         ppvObject.pointee = nil
 
         switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.IID
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.IID:
                 _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK

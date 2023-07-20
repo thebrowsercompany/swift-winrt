@@ -36,7 +36,7 @@ extension __ABI_test_component_Delegates {
             ppvObject.pointee = nil
 
             switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, InDelegateWrapper.IID
+                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, InDelegateWrapper.IID:
                     _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
@@ -94,7 +94,7 @@ extension __ABI_test_component_Delegates {
             ppvObject.pointee = nil
 
             switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, ReturnInt32DelegateWrapper.IID
+                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, ReturnInt32DelegateWrapper.IID:
                     _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
@@ -150,7 +150,7 @@ extension __ABI_test_component_Delegates {
             ppvObject.pointee = nil
 
             switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, SignalDelegateWrapper.IID
+                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, SignalDelegateWrapper.IID:
                     _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK

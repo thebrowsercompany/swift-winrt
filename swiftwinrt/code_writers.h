@@ -1270,10 +1270,11 @@ public static func makeAbi() -> CABI {
                 }
             }
 
-            w.write("default: return E_NOINTERFACE");
+            w.write("default: return E_NOINTERFACE\n");
             indent.end();
             w.write("        }\n");
             w.write("    }\n");
+            w.write("}\n");
         }
 
         // Declare a short form for the existential version of the type, e.g. AnyClosable for "any IClosable"
@@ -2332,7 +2333,7 @@ private var _default: SwiftABI!
     ppvObject.pointee = nil
 
     switch riid.pointee {
-        case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, %.IID
+        case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, %.IID:
             _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
             ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
             return S_OK
