@@ -2182,10 +2182,13 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
                 swiftAbi = w.write_temp("%", bind_type_abi(generic_type));
             }
 
+            auto modifier = composable ? "open" : "public";
+            auto override = type.base_class ? "override " : "";
+
             w.write(R"(private typealias SwiftABI = %
 private typealias CABI = %
 private var _default: SwiftABI!
-% func _getABI<T>() -> UnsafeMutablePointer<T>? {
+%% func _getABI<T>() -> UnsafeMutablePointer<T>? {
     if T.self == CABI.self {
         return RawPointer(_default)
     }   
@@ -2195,23 +2198,17 @@ private var _default: SwiftABI!
     return %
 }
 
-% var thisPtr: %.IInspectable { _default }
+%% var thisPtr: %.IInspectable { _default }
 
 )",
-swiftAbi,
-bind_type_mangled(default_interface),
-base_class ?
-composable ? "override open" :
-    "override public" :
-                composable ? "open" :
-                "public",
+                swiftAbi,
+                bind_type_mangled(default_interface),
+                override,
+                modifier,
                 w.c_mod,
                 base_class ? "super._getABI()" : "nil",
-                base_class ?
-                composable ? "override open" :
-                "override public" :
-                composable ? "open" :
-                "public",
+                override,
+                modifier,
                 w.support);
             write_default_constructor_declarations(w, type, *default_interface);
 
@@ -2219,8 +2216,6 @@ composable ? "override open" :
             // override the queryInterface call
             if (needsCustomQueryInterfaceConformance)
             {
-                auto modifier = composable ? "open" : "public";
-                auto override = type.base_class ? "override " : "";
                 w.write("%% func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {\n", override, modifier);
 
                 // A WinRTClass needs CustomQueryInterface conformance when it derives from 1 or more interfaces,
