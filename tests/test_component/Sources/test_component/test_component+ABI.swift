@@ -213,8 +213,10 @@ public enum __ABI_test_component {
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
                 default:
-                    guard let instance = IBasicWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-            return instance.queryInterface(riid.pointee, &ppvObject.pointee)
+                    guard let instance = IBasicWrapper.tryUnwrapFrom(raw: pUnk),
+                          let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                    ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                    return S_OK
 
             }
         },
@@ -890,8 +892,10 @@ public enum __ABI_test_component {
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
                 default:
-                    guard let instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-            return instance.queryInterface(riid.pointee, &ppvObject.pointee)
+                    guard let instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: pUnk),
+                          let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                    ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                    return S_OK
 
             }
         },
@@ -1357,8 +1361,10 @@ public enum __ABI_test_component {
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
                 default:
-                    guard let instance = ISimpleDelegateWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-            return instance.queryInterface(riid.pointee, &ppvObject.pointee)
+                    guard let instance = ISimpleDelegateWrapper.tryUnwrapFrom(raw: pUnk),
+                          let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                    ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                    return S_OK
 
             }
         },
@@ -1615,8 +1621,10 @@ public enum __ABI_test_component {
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
                 default:
-                    guard let instance = InterfaceWithReturnDelegateWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-            return instance.queryInterface(riid.pointee, &ppvObject.pointee)
+                    guard let instance = InterfaceWithReturnDelegateWrapper.tryUnwrapFrom(raw: pUnk),
+                          let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                    ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                    return S_OK
 
             }
         },
@@ -1727,8 +1735,10 @@ public enum __ABI_test_component {
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
                 default:
-                    guard let instance = IBaseOverridesWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-            return instance.queryInterface(riid.pointee, &ppvObject.pointee)
+                    guard let instance = IBaseOverridesWrapper.tryUnwrapFrom(raw: pUnk),
+                          let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                    ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                    return S_OK
 
             }
         },
@@ -1788,8 +1798,10 @@ public enum __ABI_test_component {
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
                 default:
-                    guard let instance = IUnsealedDerivedOverridesWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-            return instance.queryInterface(riid.pointee, &ppvObject.pointee)
+                    guard let instance = IUnsealedDerivedOverridesWrapper.tryUnwrapFrom(raw: pUnk),
+                          let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                    ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                    return S_OK
 
             }
         },
@@ -1850,8 +1862,10 @@ public enum __ABI_test_component {
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
                 default:
-                    guard let instance = IUnsealedDerivedOverloads2Wrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-            return instance.queryInterface(riid.pointee, &ppvObject.pointee)
+                    guard let instance = IUnsealedDerivedOverloads2Wrapper.tryUnwrapFrom(raw: pUnk),
+                          let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                    ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                    return S_OK
 
             }
         },

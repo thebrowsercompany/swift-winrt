@@ -1,41 +1,43 @@
 import Ctest_component
 import WinSDK
 
-// Redefine types so authors don't need to add WinSDK to their imports
 public typealias IID = WinSDK.IID
-public typealias HResult = WinSDK.HRESULT
-public typealias QueryInterfaceResult = UnsafeMutableRawPointer
 
 public protocol CustomQueryInterface {
-  @_spi(WinRTImplements)
-  func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult
+    @_spi(WinRTImplements)
+    func queryInterface(_ iid: IID) -> IUnknownRef?
 }
 
 @_spi(WinRTInternal)
-public func queryInterface(sealed obj: AnyWinRTClass, _ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
-    guard let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = obj._getABI() else { return E_NOINTERFACE }
+public func queryInterface(sealed obj: AnyWinRTClass, _ iid: IID) -> IUnknownRef? {
+    guard let cDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = obj._getABI() else { return nil }
+
     var iid = iid
-    return cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, &iid, &result) 
+    var result: UnsafeMutableRawPointer?
+    guard cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, &iid, &result) == S_OK, let result else { return nil }
+    return IUnknownRef(consuming: result)
 }
 
 extension WinRTClass {
     @_spi(WinRTInternal)
-    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
-        test_component.queryInterface(sealed: self, iid, &result)
+    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+        test_component.queryInterface(sealed: self, iid)
     }
 }
 
 extension UnsealedWinRTClass {
     @_spi(WinRTInternal)
-    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
-        test_component.queryInterface(unsealed: self, iid, &result)
+    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+        test_component.queryInterface(unsealed: self, iid)
     }
 }
 
 @_spi(WinRTInternal)
-public func queryInterface(unsealed obj: AnyUnsealedWinRTClass, _ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
-  guard let inner = obj._inner ?? obj._getABI() else { return E_NOINTERFACE }
-  var iid = iid
-  return inner.pointee.lpVtbl.pointee.QueryInterface(inner, &iid, &result)
+public func queryInterface(unsealed obj: AnyUnsealedWinRTClass, _ iid: IID) -> IUnknownRef? {
+    guard let inner = obj._inner ?? obj._getABI() else { return nil }
+    var iid = iid
+    var result: UnsafeMutableRawPointer?
+    guard inner.pointee.lpVtbl.pointee.QueryInterface(inner, &iid, &result) == S_OK, let result else { return nil }
+    return IUnknownRef(consuming: result)
 }
 

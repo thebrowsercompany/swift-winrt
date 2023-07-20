@@ -58,8 +58,10 @@ public enum __ABI_Windows_Foundation {
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
                 default:
-                    guard let instance = IAsyncActionWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-            return instance.queryInterface(riid.pointee, &ppvObject.pointee)
+                    guard let instance = IAsyncActionWrapper.tryUnwrapFrom(raw: pUnk),
+                          let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                    ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                    return S_OK
 
             }
         },
@@ -146,8 +148,10 @@ public enum __ABI_Windows_Foundation {
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
                 default:
-                    guard let instance = IClosableWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-            return instance.queryInterface(riid.pointee, &ppvObject.pointee)
+                    guard let instance = IClosableWrapper.tryUnwrapFrom(raw: pUnk),
+                          let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                    ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                    return S_OK
 
             }
         },
@@ -373,8 +377,10 @@ public enum __ABI_Windows_Foundation {
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
                 default:
-                    guard let instance = IPropertyValueWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-            return instance.queryInterface(riid.pointee, &ppvObject.pointee)
+                    guard let instance = IPropertyValueWrapper.tryUnwrapFrom(raw: pUnk),
+                          let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                    ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                    return S_OK
 
             }
         },
@@ -670,8 +676,10 @@ public enum __ABI_Windows_Foundation {
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
                 default:
-                    guard let instance = IStringableWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-            return instance.queryInterface(riid.pointee, &ppvObject.pointee)
+                    guard let instance = IStringableWrapper.tryUnwrapFrom(raw: pUnk),
+                          let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                    ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                    return S_OK
 
             }
         },

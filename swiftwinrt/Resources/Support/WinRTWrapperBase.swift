@@ -88,16 +88,17 @@ open class WinRTWrapperBase<CInterface, Prototype> {
         ptr.initialize(to: abi)
     }
 
-    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
+    public func queryInterface(_ iid: IID) -> IUnknownRef? {
         // Use toABI as derived classes may override this to get the ABI pointer of the swift
         // object they are holding onto
         try! toABI {
             $0.withMemoryRebound(to: WinSDK.IUnknown.self, capacity: 1) {
                 var iid = iid
-                return $0.pointee.lpVtbl.pointee.QueryInterface($0, &iid, &result)
+                var result: UnsafeMutableRawPointer?
+                guard $0.pointee.lpVtbl.pointee.QueryInterface($0, &iid, &result) == S_OK, let result else { return nil }
+                return IUnknownRef(consuming: result)
             }
         }
-       
     }
 
     public static func fromRaw(_ pUnk: UnsafeMutableRawPointer?) -> Unmanaged<WinRTWrapperBase>? {

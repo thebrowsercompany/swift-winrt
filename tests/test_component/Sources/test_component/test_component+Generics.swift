@@ -64,8 +64,10 @@ internal var __x_ABI_C__FIMapView_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMapView_
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-        return instance.queryInterface(riid.pointee, &ppvObject.pointee)
+                guard let instance = __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
 
         }
     },
@@ -228,9 +230,7 @@ internal class __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl : IMapView, AbiInterfa
 
     }
 
-    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
-        return E_NOINTERFACE
-    } 
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase: IID {
@@ -248,8 +248,10 @@ internal var __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTab
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-        return instance.queryInterface(riid.pointee, &ppvObject.pointee)
+                guard let instance = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
 
         }
     },
@@ -412,9 +414,7 @@ internal class __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseIm
 
     }
 
-    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
-        return E_NOINTERFACE
-    } 
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIMap_2_HSTRING_HSTRING: IID {
@@ -432,8 +432,10 @@ internal var __x_ABI_C__FIMap_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMap_2_HSTRIN
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-        return instance.queryInterface(riid.pointee, &ppvObject.pointee)
+                guard let instance = __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
 
         }
     },
@@ -649,9 +651,7 @@ internal class __x_ABI_C__FIMap_2_HSTRING_HSTRINGImpl : IMap, AbiInterfaceImpl {
 
     }
 
-    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
-        return E_NOINTERFACE
-    } 
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase: IID {
@@ -669,8 +669,10 @@ internal var __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: 
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-        return instance.queryInterface(riid.pointee, &ppvObject.pointee)
+                guard let instance = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
 
         }
     },
@@ -885,9 +887,7 @@ internal class __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl :
 
     }
 
-    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
-        return E_NOINTERFACE
-    } 
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIVectorView_1_IInspectable: IID {
@@ -905,8 +905,10 @@ internal var __x_ABI_C__FIVectorView_1_IInspectableVTable: __x_ABI_C__FIVectorVi
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIVectorView_1_IInspectableWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-        return instance.queryInterface(riid.pointee, &ppvObject.pointee)
+                guard let instance = __x_ABI_C__FIVectorView_1_IInspectableWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
 
         }
     },
@@ -1067,9 +1069,7 @@ internal class __x_ABI_C__FIVectorView_1_IInspectableImpl : IVectorView, AbiInte
 
     }
 
-    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
-        return E_NOINTERFACE
-    } 
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIVectorView_1_HSTRING: IID {
@@ -1087,8 +1087,10 @@ internal var __x_ABI_C__FIVectorView_1_HSTRINGVTable: __x_ABI_C__FIVectorView_1_
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIVectorView_1_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-        return instance.queryInterface(riid.pointee, &ppvObject.pointee)
+                guard let instance = __x_ABI_C__FIVectorView_1_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
 
         }
     },
@@ -1247,9 +1249,7 @@ internal class __x_ABI_C__FIVectorView_1_HSTRINGImpl : IVectorView, AbiInterface
 
     }
 
-    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
-        return E_NOINTERFACE
-    } 
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase: IID {
@@ -1267,8 +1267,10 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVTable: _
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-        return instance.queryInterface(riid.pointee, &ppvObject.pointee)
+                guard let instance = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
 
         }
     },
@@ -1426,9 +1428,7 @@ internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl : 
 
     }
 
-    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
-        return E_NOINTERFACE
-    } 
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIVector_1_IInspectable: IID {
@@ -1446,8 +1446,10 @@ internal var __x_ABI_C__FIVector_1_IInspectableVTable: __x_ABI_C__FIVector_1_IIn
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIVector_1_IInspectableWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-        return instance.queryInterface(riid.pointee, &ppvObject.pointee)
+                guard let instance = __x_ABI_C__FIVector_1_IInspectableWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
 
         }
     },
@@ -1748,9 +1750,7 @@ internal class __x_ABI_C__FIVector_1_IInspectableImpl : IVector, AbiInterfaceImp
 
     }
 
-    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
-        return E_NOINTERFACE
-    } 
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIVector_1_HSTRING: IID {
@@ -1768,8 +1768,10 @@ internal var __x_ABI_C__FIVector_1_HSTRINGVTable: __x_ABI_C__FIVector_1_HSTRINGV
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-        return instance.queryInterface(riid.pointee, &ppvObject.pointee)
+                guard let instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
 
         }
     },
@@ -2065,9 +2067,7 @@ internal class __x_ABI_C__FIVector_1_HSTRINGImpl : IVector, AbiInterfaceImpl {
 
     }
 
-    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
-        return E_NOINTERFACE
-    } 
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase: IID {
@@ -2085,8 +2085,10 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_A
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-        return instance.queryInterface(riid.pointee, &ppvObject.pointee)
+                guard let instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
 
         }
     },
@@ -2378,9 +2380,7 @@ internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl : IVec
 
     }
 
-    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
-        return E_NOINTERFACE
-    } 
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIEventHandler_1_IInspectable: IID {
@@ -2482,8 +2482,10 @@ internal var __x_ABI_C__FIReference_1_intVTable: __x_ABI_C__FIReference_1_intVtb
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIReference_1_intWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-        return instance.queryInterface(riid.pointee, &ppvObject.pointee)
+                guard let instance = __x_ABI_C__FIReference_1_intWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
 
         }
     },
@@ -2564,8 +2566,10 @@ internal var __x_ABI_C__FIReference_1_GUIDVTable: __x_ABI_C__FIReference_1_GUIDV
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIReference_1_GUIDWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-        return instance.queryInterface(riid.pointee, &ppvObject.pointee)
+                guard let instance = __x_ABI_C__FIReference_1_GUIDWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
 
         }
     },
@@ -2646,8 +2650,10 @@ internal var __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedVTable: 
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
-        return instance.queryInterface(riid.pointee, &ppvObject.pointee)
+                guard let instance = __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
 
         }
     },

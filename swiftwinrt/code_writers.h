@@ -814,13 +814,10 @@ bind_impl_fullname(type));
     static void write_property_value_impl(writer& w)
     {
         auto winrtInterfaceConformance = w.write_temp(R"(
-    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult { 
-         if iid == __ABI_Windows_Foundation.IPropertyValueWrapper.IID {
-            guard let thisAsIPropValue = __ABI_Windows_Foundation.IPropertyValueWrapper(self) else { fatalError("creating non-nil wrapper shouldn't fail") }
-            return thisAsIPropValue.queryInterface(iid, &result)
-        } else {
-            return E_NOINTERFACE
-        }
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { 
+        guard iid == __ABI_Windows_Foundation.IPropertyValueWrapper.IID else { return nil }
+        guard let thisAsIPropValue = __ABI_Windows_Foundation.IPropertyValueWrapper(self) else { fatalError("creating non-nil wrapper shouldn't fail") }
+        return thisAsIPropValue.queryInterface(iid)
     }
 )");
 
@@ -1257,7 +1254,7 @@ public static func makeAbi() -> CABI {
             // interface is implemented because if they implement multiple interfaces, they
             // have to write the queryInterface implementation themselves. 
             w.write("extension % {\n", typeName);
-            w.write("    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {\n");
+            w.write("    public func queryInterface(_ iid: IID) -> IUnknownRef? {\n");
             w.write("        switch iid {\n");
             auto indent{ w.push_indent({3}) };
 
@@ -1270,7 +1267,7 @@ public static func makeAbi() -> CABI {
                 }
             }
 
-            w.write("default: return E_NOINTERFACE\n");
+            w.write("default: return nil\n");
             indent.end();
             w.write("        }\n");
             w.write("    }\n");
@@ -1448,10 +1445,7 @@ public static func makeAbi() -> CABI {
             write_class_impl_event(w, event, info);
         }
 
-        w.write(R"(public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
-    return E_NOINTERFACE
-} 
-)");
+        w.write("public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }\n");
         indent_guard.end();
         w.write("}\n\n");
     }
@@ -2092,7 +2086,7 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
 
         std::vector<std::pair<std::string, const metadata_type*>> collection_type_aliases;
         bool needsCustomQueryInterfaceConformance = composable;
-        bool baseHasCustomQueryInterfaceConformance = base_class ? base_class->is_composable() : false;
+        bool baseHasCustomQueryInterfaceConformance = base_class && base_class->is_composable();
         // list of overridable interfaces which are needed for the implementation of CustomQueryInterface.
         // when we get a delegating QI for one of these interfaces, we want to return ourselves instead of
         // delegating to the inner non-delegating QI. For any other interface, we will delegate to the inner
@@ -2109,7 +2103,8 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
                 // overridable interfaces are still considered exclusive, so check here before
                 // we skip this interface
                 overridable_interfaces.push_back({ interface_name, info });
-                // Don't need to set needsCustomQueryInterfaceConformance here, but doing so for
+                // Don't need to set needsCustomQueryInterfaceConformance here since we set it to true
+                // for composable types and an overridable interface implies composibility, but doing so for
                 // posterity
                 needsCustomQueryInterfaceConformance = true;
             }
@@ -2217,7 +2212,7 @@ private var _default: SwiftABI!
             // override the queryInterface call
             if (needsCustomQueryInterfaceConformance)
             {
-                w.write("%% func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {\n", override, modifier);
+                w.write("%% func queryInterface(_ iid: IID) -> IUnknownRef? {\n", override, modifier);
 
                 // A WinRTClass needs CustomQueryInterface conformance when it derives from 1 or more interfaces,
                 // otherwise it won't compile. At the end of the day, the winrt object it's holding onto will appropriately
@@ -2227,11 +2222,11 @@ private var _default: SwiftABI!
                 std::string base_case;
                 if (base_class)
                 {
-                    base_case = "super.queryInterface(iid, &result)";
+                    base_case = "super.queryInterface(iid)";
                 }
                 else
                 {
-                    base_case = w.write_temp("%.queryInterface(%: self, iid, &result)", w.support, label);
+                    base_case = w.write_temp("%.queryInterface(%: self, iid)", w.support, label);
                 }
                 if (overridable_interfaces.empty())
                 {
@@ -2321,7 +2316,7 @@ private var _default: SwiftABI!
     {
         w.write("case %.IID:\n", bind_wrapper_fullname(iface.type));
         w.write("    let wrapper = %(self)\n", bind_wrapper_fullname(iface.type));
-        w.write("    return wrapper!.queryInterface(iid, &result)\n");
+        w.write("    return wrapper!.queryInterface(iid)\n");
     }
 
     template <typename T>
@@ -2355,8 +2350,10 @@ private var _default: SwiftABI!
             std::string cast_expr;
             constexpr bool isGeneric = std::is_same_v<T, generic_inst>;
 
-            w.write(R"(guard let instance = %.tryUnwrapFrom(raw: pUnk)% else { return failWith(err: E_NOINTERFACE )}
-    return instance.queryInterface(riid.pointee, &ppvObject.pointee)
+            w.write(R"(guard let instance = %.tryUnwrapFrom(raw: pUnk)%,
+                  let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+            ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+            return S_OK
 )", wrapper_name, cast_expr);
         }
     }));

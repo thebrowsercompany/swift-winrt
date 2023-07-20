@@ -95,8 +95,10 @@ public enum __ABI_ {
               return S_OK
             }
             let swiftObj = AnyWrapper.tryUnwrapFrom(raw: pUnk)
-            if let customQueryInterface = swiftObj as? CustomQueryInterface {
-              return customQueryInterface.queryInterface(riid.pointee, &ppvObject.pointee)
+            if let customQueryInterface = swiftObj as? CustomQueryInterface,
+               let result = customQueryInterface.queryInterface(riid.pointee) {
+                ppvObject.pointee = UnsafeMutableRawPointer(result.ref)
+                return S_OK
             }
             return E_NOINTERFACE
         },
