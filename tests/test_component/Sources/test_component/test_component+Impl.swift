@@ -20,8 +20,8 @@ public enum __IMPL_test_component {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IBasicVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
-        public func method() throws {
-            try _default.MethodImpl()
+        public func method() {
+            try! _default.MethodImpl()
         }
 
     }

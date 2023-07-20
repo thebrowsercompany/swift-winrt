@@ -1838,9 +1838,10 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         // typename Element must be Base? and not Base!,
         // and declaring GetAt(_: UInt32) -> Base! would not bind to GetAt(_: UInt32) -> Element.
         auto is_winrt_collection = is_winrt_generic_collection(iface.type);
+        auto is_no_except = is_winrt_collection || is_noexcept(function.def);
         auto&& type_params = is_winrt_collection
             ? write_type_params::swift : write_type_params::swift_allow_implicit_unwrap;
-        auto maybe_throws = is_winrt_collection ? "" : " throws";
+        auto maybe_throws = is_no_except ? "" : " throws";
         w.write("% func %(%)%% {\n",
             iface.overridable ? "open" : "public",
             get_swift_name(function),
@@ -1849,7 +1850,7 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
             bind<write_return_type_declaration>(function, type_params));
         {
             auto indent = w.push_indent();
-            write_class_func_body(w, function, iface, is_winrt_collection);
+            write_class_func_body(w, function, iface, is_no_except);
         }
         w.write("}\n\n");
     }

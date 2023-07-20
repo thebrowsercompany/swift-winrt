@@ -6,14 +6,14 @@
 import "Windows.Foundation.idl";
 // import "Windows.Foundation.Numerics.idl";
 
-//namespace Windows.Foundation.Metadata
-//{
-//    [attributeusage(target_method, target_property)]
-//    [attributename("noexcept2")]
-//    attribute NoExceptionAttribute
-//    {
-//    }
-//}
+namespace Windows.Foundation.Metadata
+{
+    [attributeusage(target_method, target_property)]
+    [attributename("noexcept2")]
+    attribute NoExceptionAttribute
+    {
+    }
+}
 
 
 namespace test_component
@@ -178,6 +178,7 @@ namespace test_component
 
         interface IBasic
         {
+            [noexcept2]
             void Method();
         }
 
@@ -267,9 +268,9 @@ namespace test_component
             // Struct[] ReturnStructArray();
             // Signed[] ReturnEnumArray();
 
-            // [noexcept2] void NoexceptVoid();
-            // [noexcept2] Int32 NoexceptInt32();
-            // [noexcept2] String NoexceptString();
+            [noexcept2] void NoexceptVoid();
+            [noexcept2] Int32 NoexceptInt32();
+            [noexcept2] String NoexceptString();
 
             // event Windows.Foundation.TypedEventHandler<Class, DeferrableEventArgs> DeferrableEvent;
             // Windows.Foundation.IAsyncOperation<Int32> RaiseDeferrableEventAsync();

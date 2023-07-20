@@ -293,7 +293,7 @@ class SwiftWinRTTests : XCTestCase {
     XCTAssertEqual(Class.staticPropertyFloat, 4.0)
     XCTAssertEqual(Class.staticTestReturnFloat(), 42.24)
     let classy = Class()
-    try classy.method()
+    classy.method()
   }
 
   public func testChar() throws {
@@ -321,10 +321,10 @@ class SwiftWinRTTests : XCTestCase {
     let classy = Class()
     let newBase = DoTheNewBase()
     classy.implementation = newBase
-    try classy.method()
+    classy.method()
 
     var implReturn = classy.implementation!
-    try implReturn.method()
+    implReturn.method()
 
     XCTAssertIdentical(implReturn, newBase, "incorrect swift object returned")
 
@@ -336,7 +336,7 @@ class SwiftWinRTTests : XCTestCase {
     classy.implementation = double
     try classy.setDelegate(double)
 
-    try classy.method()
+    classy.method()
 
     let delegate = try classy.getDelegate()!
     try delegate.doThis()
@@ -486,6 +486,14 @@ class SwiftWinRTTests : XCTestCase {
     } catch {
       XCTAssertEqual("\(error)", message)
     }
+  }
+
+  public func testNoExcept() throws {
+    let classy = Class()
+    classy.noexceptVoid()
+    classy.method()
+    XCTAssertEqual(classy.noexceptInt32(), 123)
+    XCTAssertEqual(classy.noexceptString(), "123")
   }
 }
 
