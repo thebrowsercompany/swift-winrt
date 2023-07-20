@@ -517,6 +517,20 @@ public final class Class : WinRTClass, IBasic {
         return .init(ref: result)
     }
 
+    public func noexceptVoid() {
+        try! _default.NoexceptVoidImpl()
+    }
+
+    public func noexceptInt32() -> Int32 {
+        let result = try! _default.NoexceptInt32Impl()
+        return result
+    }
+
+    public func noexceptString() -> String {
+        let result = try! _default.NoexceptStringImpl()
+        return .init(from: result)
+    }
+
     public func returnChar() throws -> Character {
         let result = try _default.ReturnCharImpl()
         return .init(from: result)
@@ -606,8 +620,8 @@ public final class Class : WinRTClass, IBasic {
     }
 
     internal lazy var _IBasic: __ABI_test_component.IBasic = try! _default.QueryInterface()
-    public func method() throws {
-        try _IBasic.MethodImpl()
+    public func method() {
+        try! _IBasic.MethodImpl()
     }
 
 }
@@ -1389,7 +1403,7 @@ public struct StructWithEnum: Hashable, Codable {
 }
 
 public protocol IBasic : WinRTInterface {
-    func method() throws
+    func method()
 }
 
 extension IBasic {

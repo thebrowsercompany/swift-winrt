@@ -26,7 +26,7 @@ private var IID___x_ABI_Ctest__component_CIBasic: IID {
 }
 
 private var IID___x_ABI_Ctest__component_CIClass: IID {
-    IID(Data1: 0x1E9F3DF1, Data2: 0xDB1E, Data3: 0x58F2, Data4: ( 0xBF,0xA1,0x6E,0x4B,0xC2,0x3F,0x11,0x5D ))// 1E9F3DF1-DB1E-58F2-BFA1-6E4BC23F115D
+    IID(Data1: 0x6C4D9280, Data2: 0xC652, Data3: 0x5CFE, Data4: ( 0xB6,0x94,0x77,0xE1,0xE8,0x7A,0xB4,0x00 ))// 6C4D9280-C652-5CFE-B694-77E1E87AB400
 }
 
 private var IID___x_ABI_Ctest__component_CIClassFactory: IID {
@@ -413,6 +413,28 @@ public enum __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_EnumProperty(pThis, value))
             }
+        }
+
+        internal func NoexceptVoidImpl() throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.NoexceptVoid(pThis))
+            }
+        }
+
+        internal func NoexceptInt32Impl() throws -> INT32 {
+            var result: INT32 = 0
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.NoexceptInt32(pThis, &result))
+            }
+            return result
+        }
+
+        internal func NoexceptStringImpl() throws -> HSTRING? {
+            var result: HSTRING?
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.NoexceptString(pThis, &result))
+            }
+            return result
         }
 
         internal func ReturnCharImpl() throws -> WCHAR {
