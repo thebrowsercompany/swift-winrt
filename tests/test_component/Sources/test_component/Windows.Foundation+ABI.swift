@@ -52,19 +52,16 @@ public enum __ABI_Windows_Foundation {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
             ppvObject.pointee = nil
 
-            if riid.pointee == IUnknown.IID ||
-                  riid.pointee == IInspectable.IID || 
-                  riid.pointee == ISwiftImplemented.IID ||
-                  riid.pointee == IAgileObject.IID ||
-                  riid.pointee == IAsyncActionWrapper.IID { 
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            }
-
-            guard let instance = IAsyncActionWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
+            switch riid.pointee {
+                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IAsyncActionWrapper.IID
+                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                    return S_OK
+                default:
+                    guard let instance = IAsyncActionWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
             return instance.queryInterface(riid.pointee, &ppvObject.pointee)
 
+            }
         },
 
         AddRef: {
@@ -143,19 +140,16 @@ public enum __ABI_Windows_Foundation {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
             ppvObject.pointee = nil
 
-            if riid.pointee == IUnknown.IID ||
-                  riid.pointee == IInspectable.IID || 
-                  riid.pointee == ISwiftImplemented.IID ||
-                  riid.pointee == IAgileObject.IID ||
-                  riid.pointee == IClosableWrapper.IID { 
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            }
-
-            guard let instance = IClosableWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
+            switch riid.pointee {
+                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IClosableWrapper.IID
+                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                    return S_OK
+                default:
+                    guard let instance = IClosableWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
             return instance.queryInterface(riid.pointee, &ppvObject.pointee)
 
+            }
         },
 
         AddRef: {
@@ -373,19 +367,16 @@ public enum __ABI_Windows_Foundation {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
             ppvObject.pointee = nil
 
-            if riid.pointee == IUnknown.IID ||
-                  riid.pointee == IInspectable.IID || 
-                  riid.pointee == ISwiftImplemented.IID ||
-                  riid.pointee == IAgileObject.IID ||
-                  riid.pointee == IPropertyValueWrapper.IID { 
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            }
-
-            guard let instance = IPropertyValueWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
+            switch riid.pointee {
+                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IPropertyValueWrapper.IID
+                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                    return S_OK
+                default:
+                    guard let instance = IPropertyValueWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
             return instance.queryInterface(riid.pointee, &ppvObject.pointee)
 
+            }
         },
 
         AddRef: {
@@ -673,19 +664,16 @@ public enum __ABI_Windows_Foundation {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
             ppvObject.pointee = nil
 
-            if riid.pointee == IUnknown.IID ||
-                  riid.pointee == IInspectable.IID || 
-                  riid.pointee == ISwiftImplemented.IID ||
-                  riid.pointee == IAgileObject.IID ||
-                  riid.pointee == IStringableWrapper.IID { 
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            }
-
-            guard let instance = IStringableWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
+            switch riid.pointee {
+                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IStringableWrapper.IID
+                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                    return S_OK
+                default:
+                    guard let instance = IStringableWrapper.tryUnwrapFrom(raw: pUnk) else { return failWith(err: E_NOINTERFACE )}
             return instance.queryInterface(riid.pointee, &ppvObject.pointee)
 
+            }
         },
 
         AddRef: {
@@ -780,17 +768,14 @@ extension __ABI_Windows_Foundation {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
             ppvObject.pointee = nil
 
-            if riid.pointee == IUnknown.IID ||
-                  riid.pointee == IInspectable.IID || 
-                  riid.pointee == ISwiftImplemented.IID ||
-                  riid.pointee == IAgileObject.IID ||
-                  riid.pointee == AsyncActionCompletedHandlerWrapper.IID { 
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
+            switch riid.pointee {
+                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, AsyncActionCompletedHandlerWrapper.IID
+                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                    return S_OK
+                default:
+                    return failWith(err: E_NOINTERFACE)
             }
-
-            return failWith(err: E_NOINTERFACE)
         },
 
         AddRef: {

@@ -125,14 +125,6 @@ namespace swiftwinrt
             write(std::to_string(value));
         }
 
-        void write(std::vector<std::string> lines)
-        {
-            for (auto&& line : lines)
-            {
-                write(line);
-            }
-        }
-
         template <typename... Args>
         void write_printf(char const* format, Args const&... args)
         {

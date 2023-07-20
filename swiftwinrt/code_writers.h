@@ -1126,7 +1126,7 @@ public static func makeAbi() -> CABI {
 
     static void write_comma_param_types(writer& w, std::vector<function_param> const& params);
     static void write_delegate_return_type(writer& w, function_def const& sig);
-    static void write_query_interface_case(writer& w, interface_info const& iface, indent indent);
+    static void write_query_interface_case(writer& w, interface_info const& iface);
     static void write_eventsource_invoke_extension(writer& w, metadata_type const* event_type)
     {
         writer::generic_param_guard guard{};
@@ -1256,30 +1256,24 @@ public static func makeAbi() -> CABI {
             // know for a fact that we're only here in the scenario that a single WinRT
             // interface is implemented because if they implement multiple interfaces, they
             // have to write the queryInterface implementation themselves. 
-            std::vector<std::string> query_interface_lines;
-            query_interface_lines.reserve(type.required_interfaces.size() * 3 + 3);
-            {
-                indent indent{ 3 };
-                query_interface_lines.push_back(w.write_temp("%", bind<write_query_interface_case>(interface_info{ &type }, indent)));
+            w.write("extension % {\n", typeName);
+            w.write("    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {\n");
+            w.write("        switch iid {\n");
+            auto indent{ w.push_indent({3}) };
 
-                for (auto [name, info] : type.required_interfaces) {
-                    if (can_write(w, info.type))
-                    {
-                        query_interface_lines.push_back(w.write_temp("%", bind<write_query_interface_case>(info, indent)));
-                    }
+            w.write("%", bind<write_query_interface_case>(interface_info{ &type }));
+
+            for (auto [name, info] : type.required_interfaces) {
+                if (can_write(w, info.type))
+                {
+                    w.write("%", bind<write_query_interface_case>(info));
                 }
-
-                query_interface_lines.push_back(w.write_temp("%default: return E_NOINTERFACE", indent));
             }
 
-            w.write(R"(extension % {
-    public func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {
-        switch iid {
-%
-        }
-    }
-}
-)", typeName, query_interface_lines);
+            w.write("default: return E_NOINTERFACE");
+            indent.end();
+            w.write("        }\n");
+            w.write("    }\n");
         }
 
         // Declare a short form for the existential version of the type, e.g. AnyClosable for "any IClosable"
@@ -2227,6 +2221,8 @@ composable ? "override open" :
             {
                 auto modifier = composable ? "open" : "public";
                 auto override = type.base_class ? "override " : "";
+                w.write("%% func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult {\n", override, modifier);
+
                 // A WinRTClass needs CustomQueryInterface conformance when it derives from 1 or more interfaces,
                 // otherwise it won't compile. At the end of the day, the winrt object it's holding onto will appropriately
                 // respond to QueryInterface calls, so call into the default implementation.
@@ -2236,31 +2232,26 @@ composable ? "override open" :
                 if (base_class)
                 {
                     base_case = "super.queryInterface(iid, &result)";
-                } 
+                }
                 else
                 {
                     base_case = w.write_temp("%.queryInterface(%: self, iid, &result)", w.support, label);
                 }
-                std::vector<std::string> query_interface_lines;
                 if (overridable_interfaces.empty())
                 {
-                    query_interface_lines.push_back(w.write_temp("    return %", base_case));
+                    w.write("    return %", base_case);
                 }
                 else
                 {
-                    query_interface_lines.reserve(overridable_interfaces.size() * 3 + 3);
-                    query_interface_lines.push_back(w.write_temp("    switch iid {\n"));
+                    w.write("    switch iid {\n");
                     for (auto& [_, info] : overridable_interfaces) {
-                        query_interface_lines.push_back(w.write_temp("%", bind<write_query_interface_case>(info, indent{2})));
+                        auto indent{ w.push_indent({2}) };
+                        w.write("%", bind<write_query_interface_case>(info));
                     }
-                    query_interface_lines.push_back(w.write_temp("        default: return %\n", base_case));
-                    query_interface_lines.push_back(w.write_temp("    }"));
+                    w.write("        default: return %\n", base_case);
+                    w.write("    }\n");
                 }
-
-                w.write(R"(%% func queryInterface(_ iid: IID, _ result: inout QueryInterfaceResult?) -> HResult { 
-%
-}
-)", override, modifier, query_interface_lines);
+                w.write("}\n");
             }
         }
         for (auto&& [interface_name, factory] : type.factories)
@@ -2330,9 +2321,8 @@ composable ? "override open" :
         write_class_impl(w, type);
     }
 
-    static void write_query_interface_case(writer& w, interface_info const& iface, indent indent)
+    static void write_query_interface_case(writer& w, interface_info const& iface)
     {
-        auto guard{ w.push_indent(indent) };
         w.write("case %.IID:\n", bind_wrapper_fullname(iface.type));
         w.write("    let wrapper = %(self)\n", bind_wrapper_fullname(iface.type));
         w.write("    return wrapper!.queryInterface(iid, &result)\n");
@@ -2346,17 +2336,14 @@ composable ? "override open" :
     guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
     ppvObject.pointee = nil
 
-    if riid.pointee == IUnknown.IID ||
-          riid.pointee == IInspectable.IID || 
-          riid.pointee == ISwiftImplemented.IID ||
-          riid.pointee == IAgileObject.IID ||
-          riid.pointee == %.IID { 
-        _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-        ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-        return S_OK
+    switch riid.pointee {
+        case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, %.IID
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+            return S_OK
+        default:
+            %
     }
-
-    %
 },
 
 )",

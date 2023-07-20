@@ -35,17 +35,14 @@ extension __ABI_test_component_Delegates {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
             ppvObject.pointee = nil
 
-            if riid.pointee == IUnknown.IID ||
-                  riid.pointee == IInspectable.IID || 
-                  riid.pointee == ISwiftImplemented.IID ||
-                  riid.pointee == IAgileObject.IID ||
-                  riid.pointee == InDelegateWrapper.IID { 
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
+            switch riid.pointee {
+                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, InDelegateWrapper.IID
+                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                    return S_OK
+                default:
+                    return failWith(err: E_NOINTERFACE)
             }
-
-            return failWith(err: E_NOINTERFACE)
         },
 
         AddRef: {
@@ -96,17 +93,14 @@ extension __ABI_test_component_Delegates {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
             ppvObject.pointee = nil
 
-            if riid.pointee == IUnknown.IID ||
-                  riid.pointee == IInspectable.IID || 
-                  riid.pointee == ISwiftImplemented.IID ||
-                  riid.pointee == IAgileObject.IID ||
-                  riid.pointee == ReturnInt32DelegateWrapper.IID { 
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
+            switch riid.pointee {
+                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, ReturnInt32DelegateWrapper.IID
+                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                    return S_OK
+                default:
+                    return failWith(err: E_NOINTERFACE)
             }
-
-            return failWith(err: E_NOINTERFACE)
         },
 
         AddRef: {
@@ -155,17 +149,14 @@ extension __ABI_test_component_Delegates {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
             ppvObject.pointee = nil
 
-            if riid.pointee == IUnknown.IID ||
-                  riid.pointee == IInspectable.IID || 
-                  riid.pointee == ISwiftImplemented.IID ||
-                  riid.pointee == IAgileObject.IID ||
-                  riid.pointee == SignalDelegateWrapper.IID { 
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
+            switch riid.pointee {
+                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, SignalDelegateWrapper.IID
+                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                    return S_OK
+                default:
+                    return failWith(err: E_NOINTERFACE)
             }
-
-            return failWith(err: E_NOINTERFACE)
         },
 
         AddRef: {

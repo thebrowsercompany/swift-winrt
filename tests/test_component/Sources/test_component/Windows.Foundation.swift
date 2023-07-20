@@ -79,10 +79,8 @@ extension IAsyncAction {
             case __ABI_Windows_Foundation.IAsyncActionWrapper.IID:
                 let wrapper = __ABI_Windows_Foundation.IAsyncActionWrapper(self)
                 return wrapper!.queryInterface(iid, &result)
-            default: return E_NOINTERFACE
-        }
+            default: return E_NOINTERFACE        }
     }
-}
 public typealias AnyIAsyncAction = any IAsyncAction
 
 public protocol IClosable : WinRTInterface {
@@ -95,10 +93,8 @@ extension IClosable {
             case __ABI_Windows_Foundation.IClosableWrapper.IID:
                 let wrapper = __ABI_Windows_Foundation.IClosableWrapper(self)
                 return wrapper!.queryInterface(iid, &result)
-            default: return E_NOINTERFACE
-        }
+            default: return E_NOINTERFACE        }
     }
-}
 public typealias AnyIClosable = any IClosable
 
 public protocol IPropertyValue : WinRTInterface {
@@ -136,10 +132,8 @@ extension IStringable {
             case __ABI_Windows_Foundation.IStringableWrapper.IID:
                 let wrapper = __ABI_Windows_Foundation.IStringableWrapper(self)
                 return wrapper!.queryInterface(iid, &result)
-            default: return E_NOINTERFACE
-        }
+            default: return E_NOINTERFACE        }
     }
-}
 public typealias AnyIStringable = any IStringable
 
 public protocol IReference : IPropertyValue {
