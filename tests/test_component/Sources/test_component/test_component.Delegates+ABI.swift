@@ -33,6 +33,8 @@ extension __ABI_test_component_Delegates {
     internal static var InDelegateVTable: __x_ABI_Ctest__component_CDelegates_CIInDelegateVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+            ppvObject.pointee = nil
+
             if riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
@@ -92,6 +94,8 @@ extension __ABI_test_component_Delegates {
     internal static var ReturnInt32DelegateVTable: __x_ABI_Ctest__component_CDelegates_CIReturnInt32DelegateVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+            ppvObject.pointee = nil
+
             if riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
@@ -149,6 +153,8 @@ extension __ABI_test_component_Delegates {
     internal static var SignalDelegateVTable: __x_ABI_Ctest__component_CDelegates_CISignalDelegateVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+            ppvObject.pointee = nil
+
             if riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||

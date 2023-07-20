@@ -50,6 +50,8 @@ public enum __ABI_Windows_Foundation {
     internal static var IAsyncActionVTable: __x_ABI_CWindows_CFoundation_CIAsyncActionVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+            ppvObject.pointee = nil
+
             if riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
@@ -139,6 +141,8 @@ public enum __ABI_Windows_Foundation {
     internal static var IClosableVTable: __x_ABI_CWindows_CFoundation_CIClosableVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+            ppvObject.pointee = nil
+
             if riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
@@ -367,6 +371,8 @@ public enum __ABI_Windows_Foundation {
     internal static var IPropertyValueVTable: __x_ABI_CWindows_CFoundation_CIPropertyValueVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+            ppvObject.pointee = nil
+
             if riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
@@ -665,6 +671,8 @@ public enum __ABI_Windows_Foundation {
     internal static var IStringableVTable: __x_ABI_CWindows_CFoundation_CIStringableVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+            ppvObject.pointee = nil
+
             if riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
@@ -770,6 +778,8 @@ extension __ABI_Windows_Foundation {
     internal static var AsyncActionCompletedHandlerVTable: __x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandlerVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+            ppvObject.pointee = nil
+
             if riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||

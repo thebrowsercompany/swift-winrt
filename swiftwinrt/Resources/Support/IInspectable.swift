@@ -85,6 +85,7 @@ public enum __ABI_ {
     internal static var IInspectableVTable: C_BINDINGS_MODULE.IInspectableVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+            ppvObject.pointee = nil
             if riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||

@@ -2344,6 +2344,8 @@ composable ? "override open" :
         auto wrapper_name = w.write_temp("%", bind_wrapper_name(type));
         w.write(R"(QueryInterface: {
     guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+    ppvObject.pointee = nil
+
     if riid.pointee == IUnknown.IID ||
           riid.pointee == IInspectable.IID || 
           riid.pointee == ISwiftImplemented.IID ||

@@ -205,6 +205,8 @@ public enum __ABI_test_component {
     internal static var IBasicVTable: __x_ABI_Ctest__component_CIBasicVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+            ppvObject.pointee = nil
+
             if riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
@@ -883,6 +885,8 @@ public enum __ABI_test_component {
     internal static var IIAmImplementableVTable: __x_ABI_Ctest__component_CIIAmImplementableVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+            ppvObject.pointee = nil
+
             if riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
@@ -1351,6 +1355,8 @@ public enum __ABI_test_component {
     internal static var ISimpleDelegateVTable: __x_ABI_Ctest__component_CISimpleDelegateVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+            ppvObject.pointee = nil
+
             if riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
@@ -1610,6 +1616,8 @@ public enum __ABI_test_component {
     internal static var InterfaceWithReturnDelegateVTable: __x_ABI_Ctest__component_CInterfaceWithReturnDelegateVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+            ppvObject.pointee = nil
+
             if riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
@@ -1723,6 +1731,8 @@ public enum __ABI_test_component {
     internal static var IBaseOverridesVTable: __x_ABI_Ctest__component_CIBaseOverridesVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+            ppvObject.pointee = nil
+
             if riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
@@ -1785,6 +1795,8 @@ public enum __ABI_test_component {
     internal static var IUnsealedDerivedOverridesVTable: __x_ABI_Ctest__component_CIUnsealedDerivedOverridesVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+            ppvObject.pointee = nil
+
             if riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
@@ -1848,6 +1860,8 @@ public enum __ABI_test_component {
     internal static var IUnsealedDerivedOverloads2VTable: __x_ABI_Ctest__component_CIUnsealedDerivedOverloads2Vtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+            ppvObject.pointee = nil
+
             if riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
@@ -1960,6 +1974,8 @@ extension __ABI_test_component {
     internal static var ObjectHandlerVTable: __x_ABI_Ctest__component_CIObjectHandlerVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+            ppvObject.pointee = nil
+
             if riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||
@@ -2017,6 +2033,8 @@ extension __ABI_test_component {
     internal static var VoidToVoidDelegateVTable: __x_ABI_Ctest__component_CIVoidToVoidDelegateVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+            ppvObject.pointee = nil
+
             if riid.pointee == IUnknown.IID ||
                   riid.pointee == IInspectable.IID || 
                   riid.pointee == ISwiftImplemented.IID ||

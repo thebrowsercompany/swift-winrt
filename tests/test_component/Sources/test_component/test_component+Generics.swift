@@ -56,6 +56,8 @@ private var IID___x_ABI_C__FIMapView_2_HSTRING_HSTRING: IID {
 internal var __x_ABI_C__FIMapView_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMapView_2_HSTRING_HSTRINGVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
         if riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
@@ -241,6 +243,8 @@ private var IID___x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase:
 internal var __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
         if riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
@@ -426,6 +430,8 @@ private var IID___x_ABI_C__FIMap_2_HSTRING_HSTRING: IID {
 internal var __x_ABI_C__FIMap_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMap_2_HSTRING_HSTRINGVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
         if riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
@@ -664,6 +670,8 @@ private var IID___x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase: IID
 internal var __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
         if riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
@@ -901,6 +909,8 @@ private var IID___x_ABI_C__FIVectorView_1_IInspectable: IID {
 internal var __x_ABI_C__FIVectorView_1_IInspectableVTable: __x_ABI_C__FIVectorView_1_IInspectableVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
         if riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
@@ -1084,6 +1094,8 @@ private var IID___x_ABI_C__FIVectorView_1_HSTRING: IID {
 internal var __x_ABI_C__FIVectorView_1_HSTRINGVTable: __x_ABI_C__FIVectorView_1_HSTRINGVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
         if riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
@@ -1265,6 +1277,8 @@ private var IID___x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase: IID 
 internal var __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
         if riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
@@ -1445,6 +1459,8 @@ private var IID___x_ABI_C__FIVector_1_IInspectable: IID {
 internal var __x_ABI_C__FIVector_1_IInspectableVTable: __x_ABI_C__FIVector_1_IInspectableVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
         if riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
@@ -1768,6 +1784,8 @@ private var IID___x_ABI_C__FIVector_1_HSTRING: IID {
 internal var __x_ABI_C__FIVector_1_HSTRINGVTable: __x_ABI_C__FIVector_1_HSTRINGVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
         if riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
@@ -2086,6 +2104,8 @@ private var IID___x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase: IID {
 internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
         if riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
@@ -2407,6 +2427,8 @@ internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIEventHandler_1
 internal var __x_ABI_C__FIEventHandler_1_IInspectableVTable: __x_ABI_C__FIEventHandler_1_IInspectableVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
         if riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
@@ -2485,6 +2507,8 @@ internal extension Int32 {
 internal var __x_ABI_C__FIReference_1_intVTable: __x_ABI_C__FIReference_1_intVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
         if riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
@@ -2568,6 +2592,8 @@ internal extension UUID {
 internal var __x_ABI_C__FIReference_1_GUIDVTable: __x_ABI_C__FIReference_1_GUIDVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
         if riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
@@ -2651,6 +2677,8 @@ internal extension test_component.Signed {
 internal var __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedVTable: __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
         if riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
@@ -2733,6 +2761,8 @@ internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FITypedEventHand
 internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsVTable: __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
         if riid.pointee == IUnknown.IID ||
               riid.pointee == IInspectable.IID || 
               riid.pointee == ISwiftImplemented.IID ||
