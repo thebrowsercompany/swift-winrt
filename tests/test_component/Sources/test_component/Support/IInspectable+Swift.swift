@@ -3,6 +3,13 @@
 
 import Ctest_component
 
+// usually thrown when a call to IInspectable.GetRuntimeClassName
+// returns a class name that we cannot resolve. This should
+// never be exposed to developers.
+struct InvalidRuntimeClassName: Swift.Error {
+  let className: String
+}
+
 extension IInspectable {
   public func GetIids() throws -> [IID] {
     var iids: UnsafeMutablePointer<IID>?
@@ -51,10 +58,10 @@ extension IInspectable {
   }
 
   public func GetSwiftClassName() throws -> String {
-    let className = try! String(hString: GetRuntimeClassName())
+    let className = try String(hString: GetRuntimeClassName())
     let lastNsIndex = className.lastIndex(of: ".")
     guard let lastNsIndex = lastNsIndex else {
-      fatalError("invalid class name")
+      throw InvalidRuntimeClassName(className: className)
     }
     let ns = className.prefix(upTo: lastNsIndex)
     let lastNsIndexPlus1 = className.index(after: lastNsIndex)

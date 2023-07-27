@@ -91,8 +91,8 @@ public class UnsealedWinRTClassWrapper<Composable: ComposableImpl> : WinRTWrappe
         // via GetRuntimeClassName so that we can create the proper derived type. For example, the API may return UIElement, 
         // but we want to return a Button type.
         // Note that we'll *never* be trying to create an app implemented object at this point
-        let className = try! overrides.GetSwiftClassName() 
-        guard let baseType = NSClassFromString(className) as? Composable.Default.SwiftProjection.Type else {
+        let className = try? overrides.GetSwiftClassName() 
+        guard let className, let baseType = NSClassFromString(className) as? Composable.Default.SwiftProjection.Type else {
           // the derived class doesn't exist, which is fine, just return the type the API specifies.
           return Composable.Default.from(abi: base)!
         }

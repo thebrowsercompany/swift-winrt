@@ -67,7 +67,9 @@ public enum __ABI_ {
         }
 
         let insp: IInspectable = .init(abi)
-        let className = try! insp.GetSwiftClassName()
+        let className = try? insp.GetSwiftClassName()
+        guard let className else { return insp }
+        
         if let baseType = NSClassFromString(className) as? any UnsealedWinRTClass.Type {
           return baseType._makeFromAbi.from(abi: insp.pUnk.borrow)
         } 
