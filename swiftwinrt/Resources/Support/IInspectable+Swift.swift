@@ -3,6 +3,8 @@
 
 import C_BINDINGS_MODULE
 
+struct InvalidRuntimeClassNameError: Swift.Error {}
+
 extension IInspectable {
   public func GetIids() throws -> [IID] {
     var iids: UnsafeMutablePointer<IID>?
@@ -51,10 +53,10 @@ extension IInspectable {
   }
 
   public func GetSwiftClassName() throws -> String {
-    let className = try! String(hString: GetRuntimeClassName())
+    let className = try String(hString: GetRuntimeClassName())
     let lastNsIndex = className.lastIndex(of: ".")
     guard let lastNsIndex = lastNsIndex else {
-      fatalError("invalid class name")
+      throw InvalidRuntimeClassNameError()
     }
     let ns = className.prefix(upTo: lastNsIndex)
     let lastNsIndexPlus1 = className.index(after: lastNsIndex)
