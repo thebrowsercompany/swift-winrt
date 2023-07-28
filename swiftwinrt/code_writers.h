@@ -990,7 +990,7 @@ bind_impl_fullname(type));
 
             for (const auto& prop : iface->properties)
             {
-                write_documentation_comment(w, type_definition, property.def.Name());
+                write_documentation_comment(w, type_definition, prop.def.Name());
                 write_class_impl_property(w, prop, info);
             }
 
@@ -1010,7 +1010,7 @@ bind_impl_fullname(type));
 
             for (const auto& prop : gti->properties)
             {
-                write_documentation_comment(w, type_definition, property.def.Name());
+                write_documentation_comment(w, type_definition, prop.def.Name());
                 write_class_impl_property(w, prop, info);
             }
 
