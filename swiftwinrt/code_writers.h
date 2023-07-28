@@ -12,6 +12,8 @@ namespace swiftwinrt
         {
             return;
         }
+
+        write_documentation_comment(w, type);
         w.write("public typealias % = %\n", type, bind_type_mangled(type));
     }
 
@@ -382,7 +384,7 @@ bind<write_abi_args>(function));
             auto overrides_format = "internal typealias Composable = %.Composable\n\n";
             w.write(overrides_format, get_full_swift_type_name(w, get_exclusive_to(type)));
         }
-      
+
         auto abi_guard = w.push_abi_types(true);
 
         auto iid_format = "override public class var IID: IID { IID_% }\n\n";
@@ -445,7 +447,7 @@ bind<write_abi_args>(function));
         try! CHECKED(val.pointee.lpVtbl.pointee.get_Value(val, &result))
         %
     }
-} 
+}
 )";
         auto generic_param = type.generic_params()[0];
         w.add_depends(*generic_param);
@@ -472,7 +474,7 @@ bind<write_abi_args>(function));
                 bind<write_default_init_assignment>(*generic_param, projection_layer::c_abi),
                 blittable ? "self = result" : "self.init(from: result)");
         }
-      
+
     }
     static void write_class_func_body(writer& w, function_def const& function, interface_info const& iface, bool is_noexcept);
     static void write_comma_param_names(writer& w, std::vector<function_param> const& params);
@@ -514,7 +516,7 @@ bind<write_abi_args>(function));
         // Don't write generic interfaces defintions at the ABI layer, we need an actual
         // instantiation of the type in order to create vtables and actual implementations
         if (!can_write(w, type) || type.is_generic()) return;
-   
+
         do_write_interface_abi(w, type, type.functions);
         if (!is_exclusive(type))
         {
@@ -540,7 +542,7 @@ typealias % = InterfaceWrapperBase<%>
     {
         write_delegate_wrapper(w, generic);
     }
-    
+
     static void write_delegate_abi(writer& w, delegate_type const& type)
     {
         if (type.is_generic()) return;
@@ -556,7 +558,7 @@ typealias % = InterfaceWrapperBase<%>
         w.write("}\n");
         write_delegate_extension(w, type, type.functions[0]);
     }
-    
+
     static void write_struct_abi(writer& w, struct_type const& type)
     {
         bool is_blittable = is_struct_blittable(type);
@@ -666,7 +668,7 @@ typealias % = InterfaceWrapperBase<%>
                     assert(!param.in());
                     assert(param.out());
                     w.write("var %: %%\n",
-                        get_swift_name(param), 
+                        get_swift_name(param),
                         bind<write_type>(*param.type, write_type_params::swift),
                         bind<write_default_init_assignment>(*param.type, projection_layer::swift));
                 }
@@ -754,7 +756,7 @@ typealias % = InterfaceWrapperBase<%>
         //     ... AddRef, Release, QI, ...
         //     HRESULT (STDMETHODCALLTYPE * Foo)(__x_ABI_IMyInterface* pThis, int number)
         //   }
-        // 
+        //
         //   struct __x_ABI_IMyInterface {
         //     const __x_ABI_MyObjectVTable* lpVtbl;
         //   }
@@ -809,7 +811,7 @@ bind_impl_fullname(type));
     static void write_property_value_impl(writer& w)
     {
         auto winrtInterfaceConformance = w.write_temp(R"(
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { 
+    public func queryInterface(_ iid: IID) -> IUnknownRef? {
         guard iid == __ABI_Windows_Foundation.IPropertyValueWrapper.IID else { return nil }
         guard let thisAsIPropValue = __ABI_Windows_Foundation.IPropertyValueWrapper(self) else { fatalError("creating non-nil wrapper shouldn't fail") }
         return thisAsIPropValue.queryInterface(iid)
@@ -857,7 +859,7 @@ bind_impl_fullname(type));
     }
 
     public var type: PropertyType { propertyType }
-    public var isNumericScalar: Bool { 
+    public var isNumericScalar: Bool {
         switch propertyType {
             case .int16, .int32, .int64, .uint8, .uint16, .uint32, .uint64, .single, .double: return true
             default: return false
@@ -879,7 +881,7 @@ bind_impl_fullname(type));
     public func getBoolean() -> Bool { _value as! Bool }
     public func getString() -> String { _value as! String }
     public func getGuid() -> UUID { _value as! UUID }
-    public func getDateTime() -> DateTime { _value as! DateTime } 
+    public func getDateTime() -> DateTime { _value as! DateTime }
     public func getTimeSpan() -> TimeSpan { _value as! TimeSpan }
     public func getPoint() -> Point { _value as! Point }
     public func getSize() -> Size { _value as! Size }
@@ -908,7 +910,7 @@ bind_impl_fullname(type));
     i+1
 }
 
-%func index(of: Element) -> Int? { 
+%func index(of: Element) -> Int? {
     var index: UInt32 = 0
     let result = indexOf(of, &index)
     guard result else { return nil }
@@ -950,12 +952,14 @@ bind_impl_fullname(type));
         w.write("// MARK: WinRT\n");
     }
 
-    static void write_interface_impl_members(writer& w, interface_info const& info, bool is_class)
+    static void write_interface_impl_members(writer& w, interface_info const& info, typedef_base const& type_definition)
     {
+        bool is_class = swiftwinrt::is_class(&type_definition);
+
         if (info.overridable && is_class)
         {
             // when implementing default overrides, we want to call to the inner non-delegating IUnknown
-            // as this will get us to the inner object. otherwise we'll end up with a stack overflow 
+            // as this will get us to the inner object. otherwise we'll end up with a stack overflow
             // because we'll be calling the same method on ourselves
             w.write("internal lazy var %: %.% = try! IUnknown(_inner!.borrow).QueryInterface()\n",
                 get_swift_name(info),
@@ -980,16 +984,19 @@ bind_impl_fullname(type));
         {
             for (const auto& method : iface->functions)
             {
+                write_documentation_comment(w, type_definition, method.def.Name());
                 write_class_impl_func(w, method, info);
             }
 
             for (const auto& prop : iface->properties)
             {
+                write_documentation_comment(w, type_definition, property.def.Name());
                 write_class_impl_property(w, prop, info);
             }
 
             for (const auto& event : iface->events)
             {
+                write_documentation_comment(w, type_definition, event.def.Name());
                 write_class_impl_event(w, event, info);
             }
         }
@@ -997,16 +1004,19 @@ bind_impl_fullname(type));
         {
             for (const auto& method : gti->functions)
             {
+                write_documentation_comment(w, type_definition, method.def.Name());
                 write_class_impl_func(w, method, info);
             }
 
             for (const auto& prop : gti->properties)
             {
+                write_documentation_comment(w, type_definition, property.def.Name());
                 write_class_impl_property(w, prop, info);
             }
 
             for (const auto& event : gti->events)
             {
+                write_documentation_comment(w, type_definition, event.def.Name());
                 write_class_impl_event(w, event, info);
             }
         }
@@ -1097,7 +1107,7 @@ public static func makeAbi() -> CABI {
         {
             write_class_impl_property(w, prop, type_info);
         }
-        
+
         for (const auto& event : type.events)
         {
             write_class_impl_event(w, event, type_info);
@@ -1107,7 +1117,7 @@ public static func makeAbi() -> CABI {
         {
             if (!can_write(w, info.type)) { continue; }
 
-            write_interface_impl_members(w, info, /* is_class: */ false);
+            write_interface_impl_members(w, info, /* type_definition: */ type);
         }
 
         class_indent_guard.end();
@@ -1149,7 +1159,7 @@ public static func makeAbi() -> CABI {
             handler(%)
         })", bind<write_comma_param_names>(delegate_method.params));
         }
-        
+
         assert(delegate_method.def);
         w.write(R"(% extension EventSource where Handler == % {
     %func invoke(%)% {
@@ -1193,6 +1203,7 @@ public static func makeAbi() -> CABI {
         }
 
         std::vector<std::string> eventSourceInvokeLines;
+        write_documentation_comment(w, type);
         w.write("public protocol % : %% {\n", type, implements,
             implements.empty() ? "WinRTInterface" : "");
         {
@@ -1212,6 +1223,7 @@ public static func makeAbi() -> CABI {
                 auto maybe_throws = is_noexcept(type, method) ? "" : " throws";
                 auto type_params = swift_write_type_params_for(type);
 
+                write_documentation_comment(w, type, method.def.Name());
                 w.write("func %(%)%%\n",
                     get_swift_name(method),
                     bind<write_function_params>(method, type_params),
@@ -1224,6 +1236,7 @@ public static func makeAbi() -> CABI {
                 if (!can_write(w, prop)) continue;
                 auto full_type_name = w.push_full_type_names(true);
                 const auto& return_type = *prop.getter->return_type->type;
+                write_documentation_comment(w, type, prop.def.Name());
                 w.write("var %: % { get% }\n",
                     get_swift_name(prop),
                     bind<write_type>(return_type, swift_write_type_params_for(type)),
@@ -1232,11 +1245,12 @@ public static func makeAbi() -> CABI {
 
             for (const auto& event : type.events)
             {
+                write_documentation_comment(w, type, event.def.Name());
                 w.write("var %: Event<%> { get }\n",
                     get_swift_name(event.def),
                     event.type);
                 // only write the eventsource extension for interfaces which could be implemented by a swift object
-                // not only does this result in less code generated, it also helps alleviate the issue where different 
+                // not only does this result in less code generated, it also helps alleviate the issue where different
                 // interfaces define an event with the same type. For that scenario, we cache the event type on the
                 // writer
                 if (!type.is_generic())
@@ -1266,7 +1280,7 @@ public static func makeAbi() -> CABI {
             // they don't need to write the queryInterface implementation themselves. We
             // know for a fact that we're only here in the scenario that a single WinRT
             // interface is implemented because if they implement multiple interfaces, they
-            // have to write the queryInterface implementation themselves. 
+            // have to write the queryInterface implementation themselves.
             w.write("extension % {\n", typeName);
             w.write("    public func queryInterface(_ iid: IID) -> IUnknownRef? {\n");
             w.write("        switch iid {\n");
@@ -1379,7 +1393,7 @@ public static func makeAbi() -> CABI {
         auto return_type = w.write_temp("%", bind<write_delegate_return_type>(invoke_method));
         constexpr bool is_generic = std::is_same_v<T, generic_inst>;
         auto access_level = is_generic ? "internal" : "public";
-        
+
         auto handlerType = w.write_temp("%", bind<write_swift_type_identifier>(type));
         auto abi_guard = w.push_abi_types(is_generic);
         w.write(format,
@@ -1446,7 +1460,7 @@ public static func makeAbi() -> CABI {
             bind_type_mangled(type));
         w.write("    return.init(lpVtbl: vtblPtr)\n");
         w.write("}\n\n");
-        
+
         interface_info info{ &type };
         info.is_default = true; // mark as default so we use the name "_default"
         write_collection_protocol_conformance(w, info);
@@ -1684,7 +1698,7 @@ public init<Factory: ComposableActivationFactory>(_ factory : Factory) {
             else
             {
                 auto override_composable_init = R"(override public init() {
-    super.init(Self._%) 
+    super.init(Self._%)
     let parentDefault: UnsafeMutablePointer<%> = super._getABI()!
     self._default = try! IInspectable(parentDefault).QueryInterface()
     _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
@@ -1830,7 +1844,7 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
                 w.write("let wrapper = %(newValue)\n", bind_wrapper_fullname(prop.type));
                 w.write("let _newValue = try! wrapper?.toABI { $0 }\n");
             }
-  
+
             w.write("try! %.%Impl(%)\n",
                 impl,
                 get_swift_name(prop.setter.value()),
@@ -1839,7 +1853,7 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
             set_indent_guard.end();
             w.write("}\n");
         }
-        
+
         // TODO: https://linear.app/the-browser-company/issue/WIN-82/support-setters-not-defined-in-same-api-contract-as-getters
         // right now require that both getter and setter are defined in the same version
         if (prop.getter)
@@ -1856,7 +1870,7 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
             // don't write methods which are really properties
             return;
         }
-     
+
         auto is_no_except = is_noexcept(*iface.type, function);
         auto type_params = swift_write_type_params_for(*iface.type);
         auto maybe_throws = is_no_except ? "" : " throws";
@@ -1872,7 +1886,7 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         }
         w.write("}\n\n");
     }
-  
+
     static void write_class_impl_event(writer& w, event_def const& def, interface_info const& iface)
     {
         auto event = def.def;
@@ -1885,7 +1899,7 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
       return try! this.add_%Impl(abi)
     },
     remove: { [weak this = %] in
-     try? this?.remove_%Impl($0) 
+     try? this?.remove_%Impl($0)
    }
   )
 }()
@@ -1903,7 +1917,7 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
             delegate_method = genericInst->functions[0];
             guard = w.push_generic_params(*genericInst);
         }
-        
+
         assert(delegate_method.def);
         w.write(format,
             iface.attributed ? "static" : "lazy", // public %
@@ -1946,7 +1960,7 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         }
     }
 
-    static void write_static_methods(writer& w, attributed_type const& statics, class_type const& type)
+    static void write_static_members(writer& w, attributed_type const& statics, class_type const& type)
     {
         if (auto ifaceType = dynamic_cast<const interface_type*>(statics.type))
         {
@@ -1965,6 +1979,7 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
                     continue;
                 }
 
+                write_documentation_comment(w, type, method.def.Name());
                 w.write("public static func %(%)% {\n",
                     get_swift_name(method),
                     bind<write_function_params>(method, write_type_params::swift_allow_implicit_unwrap),
@@ -1979,11 +1994,13 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
             static_info.attributed = true;
             for (const auto& static_prop : ifaceType->properties)
             {
+                write_documentation_comment(w, type, static_prop.def.Name());
                 write_class_impl_property(w, static_prop, static_info);
             }
 
             for (const auto& event : ifaceType->events)
             {
+                write_documentation_comment(w, type, event.def.Name());
                 write_class_impl_event(w, event, static_info);
             }
         }
@@ -2048,7 +2065,7 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
             w.write("%% class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }\n",
                 parent.base_class ? "override " : "", modifier);
         }
-    }   
+    }
 
     // write the default implementation for makeAbi. this way we don't need to expose the internal implementation
     // details of the vtable to external modules.
@@ -2057,7 +2074,7 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         if (!overridable.is_composable())
         {
             return;
-        }   
+        }
 
         for (const auto& [_, info] : overridable.required_interfaces)
         {
@@ -2085,6 +2102,7 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         bool composable = type.is_composable();
         auto modifier = composable ? "open" : "public final";
 
+        write_documentation_comment(w, type);
         if (base_class)
         {
             w.write("% class % : %", modifier, typeName, get_full_swift_type_name(w, base_class));
@@ -2177,7 +2195,7 @@ private var _default: SwiftABI!
 %% func _getABI<T>() -> UnsafeMutablePointer<T>? {
     if T.self == CABI.self {
         return RawPointer(_default)
-    }   
+    }
     if T.self == %.IInspectable.self {
         return RawPointer(_default)
     }
@@ -2247,7 +2265,7 @@ private var _default: SwiftABI!
 
             if (factory.statics)
             {
-                write_static_methods(w, factory, type);
+                write_static_members(w, factory, type);
             }
 
             if (factory.composable)
@@ -2272,9 +2290,9 @@ private var _default: SwiftABI!
             // Don't reimplement P/M/E for interfaces which are implemented on a base class
             if (!info.base)
             {
-                write_interface_impl_members(w, info, /* is_class: */ true);
+                write_interface_impl_members(w, info, /* type_definition: */ type);
             }
-          
+
             // Generate definitions for how to compose overloads and create wrappers of this type.
             if (info.overridable && !info.base)
             {
@@ -2341,7 +2359,7 @@ private var _default: SwiftABI!
     bind([&](writer & w) {
         // Delegates are implemented as simple closures in Swift, which can't implement CustomQueryInterface
         if (is_delegate(type))
-        { 
+        {
             w.write("return failWith(err: E_NOINTERFACE)");
         }
         else
@@ -2385,7 +2403,7 @@ private var _default: SwiftABI!
             write_iunknown_methods(w, type, {});
         }
     }
-    
+
     template <typename T>
     static void write_iinspectable_methods(writer& w, T const& type, std::vector<named_interface_info> const& interfaces, bool composed = false)
     {
@@ -2399,7 +2417,7 @@ private var _default: SwiftABI!
             w.write("iids[0] = IUnknown.IID\n");
             w.write("iids[1] = IInspectable.IID\n");
             w.write("iids[2] = %.IID\n", bind_wrapper_fullname(type));
-            
+
             auto iface_n = 3;
             for (const auto& iface : interfaces)
             {
@@ -2454,7 +2472,7 @@ private var _default: SwiftABI!
     {
         write_iinspectable_methods(w, type, type.required_interfaces);
     }
-    
+
     // assigns return or out parameters in vtable methods
     static void do_write_abi_val_assignment(writer& w, const metadata_type* type, std::string_view const& param_name, std::string_view const& return_param_name)
     {
@@ -2700,7 +2718,7 @@ private var _default: SwiftABI!
                     }
                 }
             }
-           
+
         }
 
         w.write(R"(

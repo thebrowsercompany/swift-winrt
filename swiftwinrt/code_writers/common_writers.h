@@ -170,6 +170,34 @@ namespace swiftwinrt
         };
     }
 
+    static void write_documentation_comment(writer& w, const typedef_base& type, std::string_view member_name = {})
+    {
+        std::string doc_url;
+        auto ns = type.swift_abi_namespace();
+        if (ns.starts_with("Microsoft.UI") || ns.starts_with("Microsoft.Windows") || ns.starts_with("Microsoft.Graphics"))
+        {
+            doc_url = "https://learn.microsoft.com/en-us/windows/windows-app-sdk/api/winrt/";
+        }
+        else
+        {
+            return;
+        }
+
+        doc_url += type.swift_abi_namespace();
+        doc_url += ".";
+        doc_url += type.cpp_abi_name();
+        if (!member_name.empty())
+        {
+            doc_url += ".";
+            doc_url += member_name;
+        }
+
+        std::transform(doc_url.begin(), doc_url.end(), doc_url.begin(),
+            [](unsigned char c){ return std::tolower(c); });
+
+        w.write("/// Documentation: %\n", doc_url);
+    }
+
     static void write_consume_type(writer& w, metadata_type const* type, std::string_view const& name)
     {
         TypeDef signature_type{};
