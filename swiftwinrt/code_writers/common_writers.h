@@ -173,8 +173,8 @@ namespace swiftwinrt
     static void write_documentation_comment(writer& w, const typedef_base& type, std::string_view member_name = {})
     {
         std::string doc_url;
-        auto ns = type.swift_abi_namespace();
-        if (ns.starts_with("Microsoft.UI") || ns.starts_with("Microsoft.Windows") || ns.starts_with("Microsoft.Graphics"))
+        auto full_type_name = type.swift_full_name();
+        if (full_type_name.starts_with("Microsoft.UI") || full_type_name.starts_with("Microsoft.Windows") || full_type_name.starts_with("Microsoft.Graphics"))
         {
             doc_url = "https://learn.microsoft.com/en-us/windows/windows-app-sdk/api/winrt/";
         }
