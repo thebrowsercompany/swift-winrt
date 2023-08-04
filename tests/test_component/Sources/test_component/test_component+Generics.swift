@@ -2450,11 +2450,13 @@ internal class __x_ABI_C__FIEventHandler_1_IInspectableImpl : WinRTDelegateBridg
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, args) in
+            do {
             let senderWrapper = __ABI_.AnyWrapper(sender)
             let _sender = try! senderWrapper?.toABI { $0 }
             let argsWrapper = __ABI_.AnyWrapper(args)
             let _args = try! argsWrapper?.toABI { $0 }
-            try! _default.InvokeImpl(_sender, _args)
+            try _default.InvokeImpl(_sender, _args)
+            } catch {}
         }
         return handler
     }
@@ -2778,7 +2780,9 @@ internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimp
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, args) in
-            try! _default.InvokeImpl(RawPointer(sender), .from(swift: args))
+            do {
+            try _default.InvokeImpl(RawPointer(sender), .from(swift: args))
+            } catch {}
         }
         return handler
     }

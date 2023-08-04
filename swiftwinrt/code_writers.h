@@ -1330,6 +1330,20 @@ public static func makeAbi() -> CABI {
     template <typename T>
     static void do_write_delegate_implementation(writer& w, T const& type, function_def const& invoke_method)
     {
+        std::string handler_impl;
+        // invoke methods with return types are super rare, because there
+        // is no good way to return a default value if the handler throws,
+        // these will fail fast
+        interface_info delegate{ &type };
+        delegate.is_default = true; // so that the _default name is used
+        const bool is_noexcept = invoke_method.return_type.has_value();
+        if (is_noexcept) {
+            handler_impl = w.write_temp("%", bind<write_class_func_body>(invoke_method, delegate, is_noexcept));
+        } else {
+            handler_impl = w.write_temp(R"(do {
+%} catch {}
+)", bind<write_class_func_body>(invoke_method, delegate, is_noexcept));
+        }
         auto format = R"(% class % : WinRTDelegateBridge {
     % typealias Handler = %
     % typealias CABI = %
@@ -1363,10 +1377,8 @@ public static func makeAbi() -> CABI {
             access_level,
             bind<write_comma_param_names>(invoke_method.params),
             bind([&](writer& w) {
-                interface_info delegate{ &type };
-                delegate.is_default = true; // so that the _default name is used
                 auto indent_guard{ w.push_indent({3}) };
-                write_class_func_body(w, invoke_method, delegate, true);
+                w.write(handler_impl);
                 }));
     }
 

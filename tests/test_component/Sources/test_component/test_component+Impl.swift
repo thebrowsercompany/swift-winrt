@@ -226,9 +226,11 @@ public enum __IMPL_test_component {
             guard let abi = abi else { return nil }
             let _default = SwiftABI(abi)
             let handler: Handler = { (item) in
+                do {
                 let itemWrapper = __ABI_.AnyWrapper(item)
                 let _item = try! itemWrapper?.toABI { $0 }
-                try! _default.InvokeImpl(_item)
+                try _default.InvokeImpl(_item)
+                } catch {}
             }
             return handler
         }
@@ -242,7 +244,9 @@ public enum __IMPL_test_component {
             guard let abi = abi else { return nil }
             let _default = SwiftABI(abi)
             let handler: Handler = { () in
-                try! _default.InvokeImpl()
+                do {
+                try _default.InvokeImpl()
+                } catch {}
             }
             return handler
         }

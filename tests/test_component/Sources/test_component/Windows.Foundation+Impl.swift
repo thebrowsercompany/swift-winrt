@@ -173,9 +173,11 @@ public enum __IMPL_Windows_Foundation {
             guard let abi = abi else { return nil }
             let _default = SwiftABI(abi)
             let handler: Handler = { (asyncInfo, asyncStatus) in
+                do {
                 let asyncInfoWrapper = __ABI_Windows_Foundation.IAsyncActionWrapper(asyncInfo)
                 let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
-                try! _default.InvokeImpl(_asyncInfo, asyncStatus)
+                try _default.InvokeImpl(_asyncInfo, asyncStatus)
+                } catch {}
             }
             return handler
         }

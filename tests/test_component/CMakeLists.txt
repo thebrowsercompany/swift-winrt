@@ -36,6 +36,12 @@ add_custom_target(GenerateBindings
     DEPENDS ${WINMD_FILE}
     COMMAND ${CMAKE_BINARY_DIR}/swiftwinrt/swiftwinrt.exe @${SWIFTWINRT_PARAM_FILE}
     COMMENT "Running swiftwinrt...")
+
+# make sure swiftwinrt and test_component_cpp builds run before killing the language server,
+# otherwise it could start again and hold locks to files
+add_dependencies(KillLSP swiftwinrt)
+add_dependencies(KillLSP test_component_cpp)
+
 add_dependencies(GenerateBindings swiftwinrt)
 add_dependencies(GenerateBindings test_component_cpp)
 add_dependencies(GenerateBindings KillLSP)
