@@ -60,8 +60,14 @@ public extension ComposableActivationFactory {
 // considered the "controlling unknown", meaning all QI calls for IUnknown and IInspectable should come to the swift object and we
 // forward other calls to the inner object
 
-public func MakeComposed<Factory: ComposableActivationFactory>(_ factory: Factory, _ inner: inout UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable>?, _ this: Factory.Composable.Default.SwiftProjection) -> Factory.Composable.Default.SwiftABI {
-    let wrapper:UnsealedWinRTClassWrapper<Factory.Composable>? = .init(this)
+public func MakeComposed<Factory: ComposableActivationFactory>(_ factory: Factory,  _ inner: inout UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable>?, _ this: Factory.Composable.Default.SwiftProjection) -> Factory.Composable.Default.SwiftABI {
+    let wrapper:UnsealedWinRTClassWrapper<Factory.Composable>? = { 
+        if type(of: this) != Factory.Composable.Default.SwiftProjection.self {
+            return .init(this)
+        } else {
+            return nil
+        }
+    }()
 
     let abi = try! wrapper?.toABI { $0 }
     let baseInsp = abi?.withMemoryRebound(to: C_BINDINGS_MODULE.IInspectable.self, capacity: 1) { $0 }
