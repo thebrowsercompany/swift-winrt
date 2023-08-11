@@ -25,7 +25,9 @@ extension UnsealedWinRTClass {
             // to get the associated XamlType. We aren't using Xaml for swift, so we don't actually
             // need or want the framework to think it's dealing with custom types.
             var name: HSTRING?
-            try! CHECKED(inner.pointee.lpVtbl.pointee.GetRuntimeClassName(inner, &name)) 
+            try! inner.borrow.withMemoryRebound(to: C_BINDINGS_MODULE.IInspectable.self, capacity: 1) {
+                _ = try CHECKED($0.pointee.lpVtbl.pointee.GetRuntimeClassName($0, &name))
+            }
             return .init(consuming: name)
         } else {
             let string = NSStringFromClass(type(of: self))
@@ -60,9 +62,10 @@ public extension ComposableActivationFactory {
 // considered the "controlling unknown", meaning all QI calls for IUnknown and IInspectable should come to the swift object and we
 // forward other calls to the inner object
 
-public func MakeComposed<Factory: ComposableActivationFactory>(_ factory: Factory,  _ inner: inout UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable>?, _ this: Factory.Composable.Default.SwiftProjection) -> Factory.Composable.Default.SwiftABI {
+public func MakeComposed<Factory: ComposableActivationFactory>(_ factory: Factory,  _ inner: inout IUnknownRef?, _ this: Factory.Composable.Default.SwiftProjection) -> Factory.Composable.Default.SwiftABI {
+    let aggregated = type(of: this) != Factory.Composable.Default.SwiftProjection.self 
     let wrapper:UnsealedWinRTClassWrapper<Factory.Composable>? = { 
-        if type(of: this) != Factory.Composable.Default.SwiftProjection.self {
+        if aggregated {
             return .init(this)
         } else {
             return nil
@@ -71,8 +74,20 @@ public func MakeComposed<Factory: ComposableActivationFactory>(_ factory: Factor
 
     let abi = try! wrapper?.toABI { $0 }
     let baseInsp = abi?.withMemoryRebound(to: C_BINDINGS_MODULE.IInspectable.self, capacity: 1) { $0 }
-    let base = try! factory.CreateInstanceImpl(baseInsp, &inner)
-    return Factory.Composable.Default.SwiftABI(base!)
+    var innerInsp: UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable>? = nil
+    let base = try! factory.CreateInstanceImpl(baseInsp, &innerInsp)
+    guard let innerInsp, let base else {
+        fatalError("Unexpected nil returned after successful creation")
+    }
+
+    let baseRef = IUnknownRef(consuming: base)
+    let innerRef = IUnknownRef(consuming: innerInsp)
+    if aggregated {
+        inner = innerRef
+    } else {
+        inner = baseRef
+    }
+    return Factory.Composable.Default.SwiftABI(base)
 }
 
 public class UnsealedWinRTClassWrapper<Composable: ComposableImpl> : WinRTWrapperBase<Composable.CABI, Composable.Default.SwiftProjection> {

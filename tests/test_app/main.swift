@@ -515,7 +515,7 @@ var tests: [XCTestCaseEntry] = [
     ("testUnicode", SwiftWinRTTests.testUnicode),
     ("testErrorInfo", SwiftWinRTTests.testErrorInfo),
   ])
-] + valueBoxingTests + eventTests + collectionTests
+] + valueBoxingTests + eventTests + collectionTests + aggregationTests
 
 RoInitialize(RO_INIT_MULTITHREADED)
-XCTMain(tests)
+XCTMain(aggregationTests)

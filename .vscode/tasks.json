@@ -58,6 +58,12 @@
 				"all"
 			],
 			"detail": "install test app"
-		}
+		},
+		{
+			"type": "shell",
+			"label": "kill lsp",
+			"command": "taskkill /im sourcekit-lsp.exe /f",
+			"problemMatcher": [],
+		},
 	]
 }
