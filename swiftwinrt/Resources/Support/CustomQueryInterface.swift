@@ -34,7 +34,7 @@ extension UnsealedWinRTClass {
 
 @_spi(WinRTInternal)
 public func queryInterface(unsealed obj: AnyUnsealedWinRTClass, _ iid: IID) -> IUnknownRef? {
-    guard let inner = obj._inner ?? obj._getABI() else { return nil }
+    guard let inner = obj._inner?.borrow ?? obj._getABI() else { return nil }
     var iid = iid
     var result: UnsafeMutableRawPointer?
     guard inner.pointee.lpVtbl.pointee.QueryInterface(inner, &iid, &result) == S_OK, let result else { return nil }

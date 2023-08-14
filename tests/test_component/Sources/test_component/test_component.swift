@@ -7,7 +7,7 @@ public typealias Signed = __x_ABI_Ctest__component_CSigned
 public typealias SwiftifiableNames = __x_ABI_Ctest__component_CSwiftifiableNames
 public typealias Unsigned = __x_ABI_Ctest__component_CUnsigned
 open class Base : UnsealedWinRTClass {
-    private (set) public var _inner: UnsafeMutablePointer<Ctest_component.IInspectable>?
+    private (set) public var _inner: IUnknownRef?
     private typealias SwiftABI = __ABI_test_component.IBase
     private typealias CABI = __x_ABI_Ctest__component_CIBase
     private var _default: SwiftABI!
@@ -53,7 +53,7 @@ open class Base : UnsealedWinRTClass {
         try _default.DoTheThingImpl()
     }
 
-    internal lazy var _IBaseOverrides: __ABI_test_component.IBaseOverrides = try! IUnknown(_inner!).QueryInterface()
+    internal lazy var _IBaseOverrides: __ABI_test_component.IBaseOverrides = try! IUnknown(_inner!.borrow).QueryInterface()
     open func onDoTheThing() throws {
         try _IBaseOverrides.OnDoTheThingImpl()
     }
@@ -255,7 +255,7 @@ public final class BaseMapCollection : WinRTClass, IMap {
 }
 
 open class BaseNoOverrides : UnsealedWinRTClass {
-    private (set) public var _inner: UnsafeMutablePointer<Ctest_component.IInspectable>?
+    private (set) public var _inner: IUnknownRef?
     private typealias SwiftABI = __ABI_test_component.IBaseNoOverrides
     private typealias CABI = __x_ABI_Ctest__component_CIBaseNoOverrides
     private var _default: SwiftABI!
@@ -1144,9 +1144,9 @@ open class UnsealedDerived : test_component.Base {
             default: return super.queryInterface(iid)
         }
     }
-    private static var _IUnsealedDerivedProtectedFactory : __ABI_test_component.IUnsealedDerivedProtectedFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerived"))
+    private static var _IUnsealedDerivedFactory : __ABI_test_component.IUnsealedDerivedFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerived"))
     override public init() {
-        super.init(Self._IUnsealedDerivedProtectedFactory) 
+        super.init(Self._IUnsealedDerivedFactory) 
         let parentDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = super._getABI()!
         self._default = try! IInspectable(parentDefault).QueryInterface()
         _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
@@ -1169,7 +1169,7 @@ open class UnsealedDerived : test_component.Base {
         }
     }
 
-    internal lazy var _IUnsealedDerivedOverloads2: __ABI_test_component.IUnsealedDerivedOverloads2 = try! IUnknown(_inner!).QueryInterface()
+    internal lazy var _IUnsealedDerivedOverloads2: __ABI_test_component.IUnsealedDerivedOverloads2 = try! IUnknown(_inner!.borrow).QueryInterface()
     open func onAfterDoTheThing() throws {
         try _IUnsealedDerivedOverloads2.OnAfterDoTheThingImpl()
     }
@@ -1189,7 +1189,7 @@ open class UnsealedDerived : test_component.Base {
     }
     internal typealias Composable = IUnsealedDerivedOverloads2
     override open class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
-    internal lazy var _IUnsealedDerivedOverrides: __ABI_test_component.IUnsealedDerivedOverrides = try! IUnknown(_inner!).QueryInterface()
+    internal lazy var _IUnsealedDerivedOverrides: __ABI_test_component.IUnsealedDerivedOverrides = try! IUnknown(_inner!.borrow).QueryInterface()
     open func onBeforeDoTheThing() throws {
         try _IUnsealedDerivedOverrides.OnBeforeDoTheThingImpl()
     }

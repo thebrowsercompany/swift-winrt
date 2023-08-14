@@ -25,7 +25,9 @@ extension UnsealedWinRTClass {
             // to get the associated XamlType. We aren't using Xaml for swift, so we don't actually
             // need or want the framework to think it's dealing with custom types.
             var name: HSTRING?
-            try! CHECKED(inner.pointee.lpVtbl.pointee.GetRuntimeClassName(inner, &name)) 
+            try! inner.borrow.withMemoryRebound(to: Ctest_component.IInspectable.self, capacity: 1) {
+                _ = try CHECKED($0.pointee.lpVtbl.pointee.GetRuntimeClassName($0, &name))
+            }
             return .init(consuming: name)
         } else {
             let string = NSStringFromClass(type(of: self))
@@ -53,20 +55,43 @@ public extension ComposableActivationFactory {
     }
 }
 
-// When composing WinRT types, we need to use the composable factory of the most derived type. For types with a deep hierarchy
-// structure (i.e. WinUI) there are many base classes, but we only need to call CreateInstance on the most derived. This will 
-// give us back the "inner" object, which represents a non-delegating pointer to the base type. We need to hold onto this pointer for QI
-// calls so that we can send calls to the inner object when the app doesn't override methods. In COM terms, the swift object is
-// considered the "controlling unknown", meaning all QI calls for IUnknown and IInspectable should come to the swift object and we
-// forward other calls to the inner object
+// At a high level, aggregation simply requires the WinRT object to have a pointer back to the Swift world, so that it can call
+// overridable methods on the class. This Swift pointer is given to the WinRT object during construction. The construction of the
+// WinRT object returns us two different pointers:
 
-public func MakeComposed<Factory: ComposableActivationFactory>(_ factory: Factory, _ inner: inout UnsafeMutablePointer<Ctest_component.IInspectable>?, _ this: Factory.Composable.Default.SwiftProjection) -> Factory.Composable.Default.SwiftABI {
-    let wrapper:UnsealedWinRTClassWrapper<Factory.Composable>? = .init(this)
+// 1. A non-delegating "inner" pointer. A non-delegating pointer means that any QueryInterface calls won't "delegate" back into the Swift world
+// 2. A pointer to the default interface.
+
+// Below is a table which shows what the input parameters to CreateInstance is, and what we should do with the
+// output parameters in order to properly aggregate a type. For reference, a constructor for a winrt object (without any parameters) 
+// looks like this:
+
+// CreateInstance(IInspectable* baseInsp, IInspectable** innerInsp, IInspectable** result)
+
+// |  Aggregating? |  baseInsp (Swift pointer) | innerInsp (C++ pointer) | result (C++)             |
+// |---------------|---------------------------|-------------------------|--------------------------|
+// |  Yes          |  self                     |  stored on swift object |  ignored or stored       |
+// |  No           |  nil                      |  ignored                |  stored on swift object  |
+public func MakeComposed<Factory: ComposableActivationFactory>(_ factory: Factory,  _ inner: inout IUnknownRef?, _ this: Factory.Composable.Default.SwiftProjection) -> Factory.Composable.Default.SwiftABI {
+    let aggregated = type(of: this) != Factory.Composable.Default.SwiftProjection.self 
+    let wrapper:UnsealedWinRTClassWrapper<Factory.Composable>? = .init(aggregated ? this : nil)
 
     let abi = try! wrapper?.toABI { $0 }
     let baseInsp = abi?.withMemoryRebound(to: Ctest_component.IInspectable.self, capacity: 1) { $0 }
-    let base = try! factory.CreateInstanceImpl(baseInsp, &inner)
-    return Factory.Composable.Default.SwiftABI(base!)
+    var innerInsp: UnsafeMutablePointer<Ctest_component.IInspectable>? = nil
+    let base = try! factory.CreateInstanceImpl(baseInsp, &innerInsp)
+    guard let innerInsp, let base else {
+        fatalError("Unexpected nil returned after successful creation")
+    }
+
+    let baseRef = IUnknownRef(consuming: base)
+    let innerRef = IUnknownRef(consuming: innerInsp)
+    if aggregated {
+        inner = innerRef
+    } else {
+        inner = baseRef
+    }
+    return Factory.Composable.Default.SwiftABI(base)
 }
 
 public class UnsealedWinRTClassWrapper<Composable: ComposableImpl> : WinRTWrapperBase<Composable.CABI, Composable.Default.SwiftProjection> {

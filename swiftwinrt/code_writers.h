@@ -960,7 +960,7 @@ bind_impl_fullname(type));
             // when implementing default overrides, we want to call to the inner non-delegating IUnknown
             // as this will get us to the inner object. otherwise we'll end up with a stack overflow 
             // because we'll be calling the same method on ourselves
-            w.write("internal lazy var %: %.% = try! IUnknown(_inner!).QueryInterface()\n",
+            w.write("internal lazy var %: %.% = try! IUnknown(_inner!.borrow).QueryInterface()\n",
                 get_swift_name(info),
                 abi_namespace(info.type->swift_logical_namespace()),
                 info.type->swift_type_name());
@@ -2155,7 +2155,7 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
 
         if (composable && !base_class)
         {
-            w.write("private (set) public var _inner: UnsafeMutablePointer<%.IInspectable>?\n", w.c_mod);
+            w.write("private (set) public var _inner: IUnknownRef?\n");
         }
 
         for (auto&& collection_type_alias : collection_type_aliases)

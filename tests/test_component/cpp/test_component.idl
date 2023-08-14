@@ -397,8 +397,7 @@ namespace test_component
         };
 
         unsealed runtimeclass UnsealedDerived : Base {
-            protected UnsealedDerived();
-
+            UnsealedDerived();
             Int32 Prop;
 
             overridable void OnBeforeDoTheThing();

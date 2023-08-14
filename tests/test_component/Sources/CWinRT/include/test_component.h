@@ -174,6 +174,12 @@ typedef interface __x_ABI_Ctest__component_CIVoidToVoidDelegate __x_ABI_Ctest__c
 
 #endif // ____x_ABI_Ctest__component_CIUnsealedDerived2ProtectedFactory_FWD_DEFINED__
 
+#ifndef ____x_ABI_Ctest__component_CIUnsealedDerivedFactory_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CIUnsealedDerivedFactory_FWD_DEFINED__
+    typedef interface __x_ABI_Ctest__component_CIUnsealedDerivedFactory __x_ABI_Ctest__component_CIUnsealedDerivedFactory;
+
+#endif // ____x_ABI_Ctest__component_CIUnsealedDerivedFactory_FWD_DEFINED__
+
 #ifndef ____x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides_FWD_DEFINED__
 #define ____x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides_FWD_DEFINED__
     typedef interface __x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides __x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides;
@@ -197,12 +203,6 @@ typedef interface __x_ABI_Ctest__component_CIVoidToVoidDelegate __x_ABI_Ctest__c
     typedef interface __x_ABI_Ctest__component_CIUnsealedDerivedOverrides __x_ABI_Ctest__component_CIUnsealedDerivedOverrides;
 
 #endif // ____x_ABI_Ctest__component_CIUnsealedDerivedOverrides_FWD_DEFINED__
-
-#ifndef ____x_ABI_Ctest__component_CIUnsealedDerivedProtectedFactory_FWD_DEFINED__
-#define ____x_ABI_Ctest__component_CIUnsealedDerivedProtectedFactory_FWD_DEFINED__
-    typedef interface __x_ABI_Ctest__component_CIUnsealedDerivedProtectedFactory __x_ABI_Ctest__component_CIUnsealedDerivedProtectedFactory;
-
-#endif // ____x_ABI_Ctest__component_CIUnsealedDerivedProtectedFactory_FWD_DEFINED__
 
 #ifndef ____x_ABI_Ctest__component_CInterfaceWithReturnDelegate_FWD_DEFINED__
 #define ____x_ABI_Ctest__component_CInterfaceWithReturnDelegate_FWD_DEFINED__
@@ -2775,6 +2775,42 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     EXTERN_C const IID IID___x_ABI_Ctest__component_CIUnsealedDerived2ProtectedFactory;
 #endif /* !defined(____x_ABI_Ctest__component_CIUnsealedDerived2ProtectedFactory_INTERFACE_DEFINED__) */
     
+#if !defined(____x_ABI_Ctest__component_CIUnsealedDerivedFactory_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CIUnsealedDerivedFactory_INTERFACE_DEFINED__
+    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IUnsealedDerivedFactory[] = L"test_component.IUnsealedDerivedFactory";
+    typedef struct __x_ABI_Ctest__component_CIUnsealedDerivedFactoryVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CIUnsealedDerivedFactory* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CIUnsealedDerivedFactory* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CIUnsealedDerivedFactory* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_Ctest__component_CIUnsealedDerivedFactory* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_Ctest__component_CIUnsealedDerivedFactory* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CIUnsealedDerivedFactory* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* CreateInstance)(__x_ABI_Ctest__component_CIUnsealedDerivedFactory* This,
+        IInspectable* baseInterface,
+        IInspectable** innerInterface,
+        __x_ABI_Ctest__component_CIUnsealedDerived** value);
+
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CIUnsealedDerivedFactoryVtbl;
+
+    interface __x_ABI_Ctest__component_CIUnsealedDerivedFactory
+    {
+        CONST_VTBL struct __x_ABI_Ctest__component_CIUnsealedDerivedFactoryVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CIUnsealedDerivedFactory;
+#endif /* !defined(____x_ABI_Ctest__component_CIUnsealedDerivedFactory_INTERFACE_DEFINED__) */
+    
 #if !defined(____x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides_INTERFACE_DEFINED__
     extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IUnsealedDerivedNoOverrides[] = L"test_component.IUnsealedDerivedNoOverrides";
@@ -2908,42 +2944,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
     EXTERN_C const IID IID___x_ABI_Ctest__component_CIUnsealedDerivedOverrides;
 #endif /* !defined(____x_ABI_Ctest__component_CIUnsealedDerivedOverrides_INTERFACE_DEFINED__) */
-    
-#if !defined(____x_ABI_Ctest__component_CIUnsealedDerivedProtectedFactory_INTERFACE_DEFINED__)
-    #define ____x_ABI_Ctest__component_CIUnsealedDerivedProtectedFactory_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IUnsealedDerivedProtectedFactory[] = L"test_component.IUnsealedDerivedProtectedFactory";
-    typedef struct __x_ABI_Ctest__component_CIUnsealedDerivedProtectedFactoryVtbl
-    {
-        BEGIN_INTERFACE
-
-        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CIUnsealedDerivedProtectedFactory* This,
-            REFIID riid,
-            void** ppvObject);
-        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CIUnsealedDerivedProtectedFactory* This);
-        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CIUnsealedDerivedProtectedFactory* This);
-        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_Ctest__component_CIUnsealedDerivedProtectedFactory* This,
-            ULONG* iidCount,
-            IID** iids);
-        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_Ctest__component_CIUnsealedDerivedProtectedFactory* This,
-            HSTRING* className);
-        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CIUnsealedDerivedProtectedFactory* This,
-            TrustLevel* trustLevel);
-        HRESULT (STDMETHODCALLTYPE* CreateInstance)(__x_ABI_Ctest__component_CIUnsealedDerivedProtectedFactory* This,
-        IInspectable* baseInterface,
-        IInspectable** innerInterface,
-        __x_ABI_Ctest__component_CIUnsealedDerived** value);
-
-        END_INTERFACE
-    } __x_ABI_Ctest__component_CIUnsealedDerivedProtectedFactoryVtbl;
-
-    interface __x_ABI_Ctest__component_CIUnsealedDerivedProtectedFactory
-    {
-        CONST_VTBL struct __x_ABI_Ctest__component_CIUnsealedDerivedProtectedFactoryVtbl* lpVtbl;
-    };
-
-    
-    EXTERN_C const IID IID___x_ABI_Ctest__component_CIUnsealedDerivedProtectedFactory;
-#endif /* !defined(____x_ABI_Ctest__component_CIUnsealedDerivedProtectedFactory_INTERFACE_DEFINED__) */
     
 #if !defined(____x_ABI_Ctest__component_CInterfaceWithReturnDelegate_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CInterfaceWithReturnDelegate_INTERFACE_DEFINED__

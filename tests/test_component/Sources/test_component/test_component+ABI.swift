@@ -101,6 +101,10 @@ private var IID___x_ABI_Ctest__component_CIUnsealedDerived2ProtectedFactory: IID
     IID(Data1: 0x0978D147, Data2: 0x77BF, Data3: 0x5E0A, Data4: ( 0xA1,0x64,0xCA,0x95,0x1B,0xCA,0xB8,0xB4 ))// 0978D147-77BF-5E0A-A164-CA951BCAB8B4
 }
 
+private var IID___x_ABI_Ctest__component_CIUnsealedDerivedFactory: IID {
+    IID(Data1: 0x3496ED92, Data2: 0x7A72, Data3: 0x5271, Data4: ( 0x9B,0xC4,0x4D,0x3D,0xA0,0x80,0x3C,0xA8 ))// 3496ED92-7A72-5271-9BC4-4D3DA0803CA8
+}
+
 private var IID___x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides: IID {
     IID(Data1: 0x3CD27E28, Data2: 0x2DFF, Data3: 0x5A17, Data4: ( 0x82,0x63,0x1B,0xFA,0x75,0x04,0x34,0xAA ))// 3CD27E28-2DFF-5A17-8263-1BFA750434AA
 }
@@ -115,10 +119,6 @@ private var IID___x_ABI_Ctest__component_CIUnsealedDerivedOverloads2: IID {
 
 private var IID___x_ABI_Ctest__component_CIUnsealedDerivedOverrides: IID {
     IID(Data1: 0x828DCEE6, Data2: 0xF93A, Data3: 0x5A4D, Data4: ( 0xBC,0xEE,0xF7,0xC1,0xDE,0xE4,0xEB,0x4E ))// 828DCEE6-F93A-5A4D-BCEE-F7C1DEE4EB4E
-}
-
-private var IID___x_ABI_Ctest__component_CIUnsealedDerivedProtectedFactory: IID {
-    IID(Data1: 0x84D1FBFC, Data2: 0x0633, Data3: 0x572C, Data4: ( 0xAA,0x3D,0xA8,0xB9,0xBA,0x1D,0x30,0x76 ))// 84D1FBFC-0633-572C-AA3D-A8B9BA1D3076
 }
 
 private var IID___x_ABI_Ctest__component_CInterfaceWithReturnDelegate: IID {
@@ -1556,6 +1556,21 @@ public enum __ABI_test_component {
 
     }
 
+    internal class IUnsealedDerivedFactory: test_component.IInspectable, ComposableActivationFactory {
+        internal typealias Composable = test_component.UnsealedDerived.Composable
+
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedFactory }
+
+        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<Ctest_component.IInspectable>?, _ innerInterface: inout UnsafeMutablePointer<Ctest_component.IInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived>? {
+            var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived>?
+            _ = try perform(as: __x_ABI_Ctest__component_CIUnsealedDerivedFactory.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, baseInterface, &innerInterface, &value))
+            }
+            return value
+        }
+
+    }
+
     open class IUnsealedDerivedNoOverrides: test_component.IInspectable {
         override public class var IID: IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides }
 
@@ -1594,21 +1609,6 @@ public enum __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CIUnsealedDerivedOverrides.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OnBeforeDoTheThing(pThis))
             }
-        }
-
-    }
-
-    internal class IUnsealedDerivedProtectedFactory: test_component.IInspectable, ComposableActivationFactory {
-        internal typealias Composable = test_component.UnsealedDerived.Composable
-
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedProtectedFactory }
-
-        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<Ctest_component.IInspectable>?, _ innerInterface: inout UnsafeMutablePointer<Ctest_component.IInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived>? {
-            var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived>?
-            _ = try perform(as: __x_ABI_Ctest__component_CIUnsealedDerivedProtectedFactory.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, baseInterface, &innerInterface, &value))
-            }
-            return value
         }
 
     }
