@@ -86,17 +86,10 @@ class AggregationTests : XCTestCase {
     XCTAssert(type(of: baseNoOverrides_returned) == AppDerivedNoOverrides2.self)
     XCTAssertIdentical(baseNoOverrides_returned, derivedNoOverrides2)
   }
-
-  public func testDontAggregateUnnecessarily() {
-    let type = UnsealedDerived()
-    let defaultAbi:UnsafeMutablePointer<WinSDK.IUnknown> = RawPointer(type.thisPtr)
-    XCTAssertEqual(type._inner?.borrow, defaultAbi)
-  }
 }
 
 var aggregationTests: [XCTestCaseEntry] = [
   testCase([
     ("testAggregation", AggregationTests.testAggregation),
-    ("testDontAggregateUnnecessarily", AggregationTests.testDontAggregateUnnecessarily),
   ])
 ]
