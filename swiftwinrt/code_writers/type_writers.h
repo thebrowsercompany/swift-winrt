@@ -19,6 +19,7 @@ namespace swiftwinrt
     {
         projection_layer layer;
         bool allow_implicit_unwrap = false;
+        bool omit_generic_args = false;
 
         static const write_type_params swift;
         static const write_type_params c_abi;

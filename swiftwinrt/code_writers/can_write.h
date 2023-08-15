@@ -143,20 +143,6 @@ namespace swiftwinrt
         auto category = get_category(type.type());
         if (category == category::enum_type) return true;
 
-        // TODO: WIN-65 swiftwinrt: support generic types
-        auto generics = type.type().GenericParam();
-        if (!empty(generics))
-        {
-            // don't write abi types bc that will put it in a UnsafeMutablePointer<>
-            auto non_mangled = w.push_mangled_names(false);
-            auto written = w.write_temp("%", type);
-            auto can_write = !written.empty();
-            if (!can_write)
-            {
-                return false;
-            }
-        }
-
         if (auto iface = dynamic_cast<const interface_type*>(&type))
         {
             if (!can_write_default(iface->required_interfaces))

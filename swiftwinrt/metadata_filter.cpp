@@ -54,6 +54,8 @@ namespace swiftwinrt
 
     inline void add_delegate_dependencies_to_queue(processing_queue& to_process, delegate_type const& type)
     {
+        if (type.functions.empty()) return;
+
         auto invoke_func = type.functions[0];
         if (invoke_func.return_type)
         {
@@ -113,9 +115,8 @@ namespace swiftwinrt
         for (auto& include : includes)
         {
             auto nsIter = cache.namespaces.find(include);
+            // If this is a namespace, then grab all types and add to queue for processing
             if (nsIter != cache.namespaces.end()) {
-                // If this is a namespace, then grab all types and add to queue for processing
-                auto nsIter = cache.namespaces.find(include);
                 add_ns_types_to_queue(to_process, nsIter->second.classes);
                 add_ns_types_to_queue(to_process, nsIter->second.interfaces);
                 add_ns_types_to_queue(to_process, nsIter->second.delegates);

@@ -118,6 +118,14 @@ void metadata_cache::process_namespace_types(
         target.interfaces.emplace_back(i);
         [[maybe_unused]] auto [itr, added] = table.emplace(i.TypeName(), target.interfaces.back());
         XLANG_ASSERT(added);
+
+        // emplace the generic parameters for the interface. these are dummy types like "T" or "V"
+        // and are used for later resolution of types
+        for (auto& param : i.GenericParam())
+        {
+            target.interfaces.back().generic_params.emplace_back(param.Name());
+            table.emplace(param.Name(), target.interfaces.back().generic_params.back());
+        }
     }
 
     target.classes.reserve(members.classes.size());
@@ -149,30 +157,35 @@ void metadata_cache::process_namespace_dependencies(namespace_cache& target)
     for (auto& enumType : target.enums)
     {
         process_enum_dependencies(state, enumType);
+        XLANG_ASSERT(!state.parent_generic_iface);
         XLANG_ASSERT(!state.parent_generic_inst);
     }
 
     for (auto& structType : target.structs)
     {
         process_struct_dependencies(state, structType);
+        XLANG_ASSERT(!state.parent_generic_iface);
         XLANG_ASSERT(!state.parent_generic_inst);
     }
 
     for (auto& delegateType : target.delegates)
     {
         process_delegate_dependencies(state, delegateType);
+        XLANG_ASSERT(!state.parent_generic_iface);
         XLANG_ASSERT(!state.parent_generic_inst);
     }
 
     for (auto& interfaceType : target.interfaces)
     {
         process_interface_dependencies(state, interfaceType);
+        XLANG_ASSERT(!state.parent_generic_iface);
         XLANG_ASSERT(!state.parent_generic_inst);
     }
 
     for (auto& classType : target.classes)
     {
         process_class_dependencies(state, classType);
+        XLANG_ASSERT(!state.parent_generic_iface);
         XLANG_ASSERT(!state.parent_generic_inst);
     }
 }
@@ -445,19 +458,7 @@ void metadata_cache::process_interface_dependencies(init_state& state, interface
 
     if (type.is_generic())
     {
-        // only add interface info for non-generic interfaces since we won't be able to resolve references otherwise.
-        // this is what we use to know that IReference<T> derives from IPropertyValue
-        for (auto const& iface : type.type().InterfaceImpl())
-        {
-            if (!swiftwinrt::is_generic(iface.Interface()))
-            {
-                interface_info info;
-                info.type = &find_dependent_type(state, iface.Interface());
-                type_name name{ iface.Interface() };
-                type.required_interfaces.push_back(std::make_pair(std::string(name.name), info));
-            }
-        }
-        return;
+        state.parent_generic_iface = &type;
     }
 
     for (auto const& interfaces : get_interfaces(state, type.type()))
@@ -484,6 +485,8 @@ void metadata_cache::process_interface_dependencies(init_state& state, interface
     {
         type.events.push_back(process_event(state, event));
     }
+
+    state.parent_generic_iface = nullptr;
 }
 
 void metadata_cache::process_class_dependencies(init_state& state, class_type& type)
@@ -745,6 +748,18 @@ metadata_type const& metadata_cache::find_dependent_type(init_state& state, Type
                     swiftwinrt::throw_invalid("GenericTypeIndex out of range");
                 }
             }
+            else if (state.parent_generic_iface)
+            {
+                if (t.index < state.parent_generic_iface->generic_params.size())
+                {
+                    result = &state.parent_generic_iface->generic_params[t.index];
+                }
+                else
+                {
+                    XLANG_ASSERT(false);
+                    swiftwinrt::throw_invalid("GenericTypeIndex out of range");
+                }
+            }
             else
             {
                 XLANG_ASSERT(false);
@@ -805,62 +820,71 @@ metadata_type const& metadata_cache::find_dependent_type(init_state& state, Gene
         genericParams.push_back(&find_dependent_type(state, param));
     }
 
-    generic_inst inst{ genericType, std::move(genericParams) };
-    auto [itr, added] = state.target->generic_instantiations.emplace(inst.swift_full_name(), std::move(inst));
-    if (added)
+    if (state.parent_generic_iface != nullptr)
     {
-        auto restore = std::exchange(state.parent_generic_inst, &itr->second);
-        auto check_dependency = [&, &itr = itr](auto const& t)
-        {
-            auto mdType = &find_dependent_type(state, t);
-            if (auto genericType = dynamic_cast<generic_inst const*>(mdType))
-            {
-                itr->second.dependencies.push_back(genericType);
-            }
-        };
-
-        for (auto const& iface : genericType->type().InterfaceImpl())
-        {
-            check_dependency(iface.Interface());
-        }
-
-        for (auto const& fn : genericType->type().MethodList())
-        {
-            if (fn.Name() == ".ctor"sv)
-            {
-                continue;
-            }
-
-            // TODO: Duplicated effort!
-            itr->second.functions.push_back(process_function(state, fn));
-
-            auto sig = fn.Signature();
-            if (sig.ReturnType())
-            {
-                check_dependency(sig.ReturnType().Type());
-            }
-
-            for (auto const& param : sig.Params())
-            {
-                check_dependency(param.Type());
-            }
-        }
-
-        for (auto const& prop : genericType->type().PropertyList())
-        {
-            itr->second.properties.push_back(process_property(state, prop ));
-        }
-
-        for (auto const& event : genericType->type().EventList())
-        {
-            itr->second.events.push_back(process_event(state, event));
-        }
-
-
-        state.parent_generic_inst = restore;
+        // not a generic_inst, but an interface type, just return the generic type
+        return *genericType;
     }
+    else
+    {
+        generic_inst inst{ genericType, std::move(genericParams) };
+        auto [itr, added] = state.target->generic_instantiations.emplace(inst.swift_full_name(), std::move(inst));
+        if (added)
+        {
+            auto restore = std::exchange(state.parent_generic_inst, &itr->second);
+            auto check_dependency = [&, &itr = itr](auto const& t)
+            {
+                auto mdType = &find_dependent_type(state, t);
+                if (auto genericType = dynamic_cast<generic_inst const*>(mdType))
+                {
+                    itr->second.dependencies.push_back(genericType);
+                }
+            };
 
-    return itr->second;
+            for (auto const& iface : genericType->type().InterfaceImpl())
+            {
+                check_dependency(iface.Interface());
+            }
+
+            for (auto const& fn : genericType->type().MethodList())
+            {
+                if (fn.Name() == ".ctor"sv)
+                {
+                    continue;
+                }
+
+                // TODO: Duplicated effort!
+                itr->second.functions.push_back(process_function(state, fn));
+
+                auto sig = fn.Signature();
+                if (sig.ReturnType())
+                {
+                    check_dependency(sig.ReturnType().Type());
+                }
+
+                for (auto const& param : sig.Params())
+                {
+                    check_dependency(param.Type());
+                }
+            }
+
+            for (auto const& prop : genericType->type().PropertyList())
+            {
+                itr->second.properties.push_back(process_property(state, prop));
+            }
+
+            for (auto const& event : genericType->type().EventList())
+            {
+                itr->second.events.push_back(process_event(state, event));
+            }
+
+
+            state.parent_generic_inst = restore;
+        }
+
+        return itr->second;
+    }
+   
 }
 
 template <typename T>

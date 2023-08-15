@@ -665,8 +665,9 @@ namespace swiftwinrt
     };
 
     struct class_type;
+    struct generic_type_parameter;
 
-    struct interface_type final : typedef_base
+    struct interface_type : typedef_base
     {
         interface_type(winmd::reader::TypeDef const& type) :
             typedef_base(type)
@@ -684,9 +685,94 @@ namespace swiftwinrt
         std::vector<function_def> functions;
         std::vector<property_def> properties;
         std::vector<event_def> events;
+        std::vector<generic_type_parameter> generic_params;
 
         // When non-null, this interface gets extended with functions from other exclusiveto interfaces on the class
         class_type const* fast_class = nullptr;
+    };
+
+    struct generic_interface_type final : interface_type {
+        generic_interface_type(winmd::reader::TypeDef const& type, generic_param_vector const& params) :
+            interface_type(type),
+            m_genericParams(params)
+        {
+
+        }
+
+    private:
+        generic_param_vector m_genericParams;
+    };
+
+
+    struct generic_type_parameter final : metadata_type {
+        generic_type_parameter(std::string_view name) : param_name(name)
+        {
+        }
+
+        virtual std::string_view swift_full_name() const override
+        {
+            return param_name;
+        }
+
+
+        virtual std::string_view swift_type_name() const override
+        {
+            return param_name;
+        }
+
+        virtual std::string_view swift_abi_namespace() const override
+        {
+            return {};
+        }
+
+        virtual std::string_view swift_logical_namespace() const override
+        {
+            return {};
+        }
+
+        virtual std::string_view cpp_abi_name() const override
+        {
+            return param_name;
+        }
+
+        virtual std::string_view cpp_logical_name() const override
+        {
+            return param_name;
+        }
+
+        virtual std::string_view mangled_name() const override
+        {
+            return param_name;
+        }
+
+        virtual std::string_view generic_param_mangled_name() const override
+        {
+            return param_name;
+        }
+
+        virtual void append_signature(sha1& hash) const override
+        {
+        }
+
+        virtual void write_c_forward_declaration(writer&) const override
+        {
+            // No forward declaration necessary
+        }
+
+        virtual void write_c_abi_param(writer& w) const override {}
+
+        virtual bool is_experimental() const override
+        {
+            return false;
+        }
+
+        virtual void write_swift_declaration(writer&) const override
+        {
+            // no special declaration necessary
+        }
+
+    private:
+        std::string_view param_name;
     };
 
     struct class_type final : typedef_base

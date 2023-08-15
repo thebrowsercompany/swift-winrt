@@ -9,6 +9,10 @@ private var IID___x_ABI_C__FIIterable_1_HSTRING: IID {
     IID(Data1: 0xe2fcc7c1, Data2: 0x3bfc, Data3: 0x5a0b, Data4: ( 0xb2,0xb0,0x72,0xe7,0x69,0xd1,0xcb,0x7e ))// e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e
 }
 
+private var IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable: IID {
+    IID(Data1: 0xfe2f3d47, Data2: 0x5d47, Data3: 0x5499, Data4: ( 0x83,0x74,0x43,0x0c,0x7c,0xda,0x02,0x04 ))// fe2f3d47-5d47-5499-8374-430c7cda0204
+}
+
 private var IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING: IID {
     IID(Data1: 0xe9bdaaf0, Data2: 0xcbf6, Data3: 0x5c72, Data4: ( 0xbe,0x90,0x29,0xcb,0xf3,0xa1,0x31,0x9b ))// e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b
 }
@@ -29,6 +33,10 @@ private var IID___x_ABI_C__FIIterator_1_HSTRING: IID {
     IID(Data1: 0x8c304ebb, Data2: 0x6615, Data3: 0x50a4, Data4: ( 0x88,0x29,0x87,0x9e,0xcd,0x44,0x32,0x36 ))// 8c304ebb-6615-50a4-8829-879ecd443236
 }
 
+private var IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable: IID {
+    IID(Data1: 0x5db5fa32, Data2: 0x707c, Data3: 0x5849, Data4: ( 0xa0,0x6b,0x91,0xc8,0xeb,0x9d,0x10,0xe8 ))// 5db5fa32-707c-5849-a06b-91c8eb9d10e8
+}
+
 private var IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING: IID {
     IID(Data1: 0x05eb86f1, Data2: 0x7140, Data3: 0x5517, Data4: ( 0xb8,0x8d,0xcb,0xae,0xbe,0x57,0xe6,0xb1 ))// 05eb86f1-7140-5517-b88d-cbaebe57e6b1
 }
@@ -41,12 +49,206 @@ private var IID___x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase: IID {
     IID(Data1: 0xa8f692bf, Data2: 0xebba, Data3: 0x5b53, Data4: ( 0x90,0xd3,0x89,0x00,0x9b,0xcc,0x98,0x14 ))// a8f692bf-ebba-5b53-90d3-89009bcc9814
 }
 
+private var IID___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable: IID {
+    IID(Data1: 0x09335560, Data2: 0x6c6b, Data3: 0x5a26, Data4: ( 0x93,0x48,0x97,0xb7,0x81,0x13,0x2b,0x20 ))// 09335560-6c6b-5a26-9348-97b781132b20
+}
+
 private var IID___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING: IID {
     IID(Data1: 0x60310303, Data2: 0x49c5, Data3: 0x52e6, Data4: ( 0xab,0xc6,0xa9,0xb3,0x6e,0xcc,0xc7,0x16 ))// 60310303-49c5-52e6-abc6-a9b36eccc716
 }
 
 private var IID___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase: IID {
     IID(Data1: 0xc6bff2b3, Data2: 0x09a5, Data3: 0x5fcf, Data4: ( 0xb0,0x78,0x69,0x43,0xdd,0x21,0x5d,0xe7 ))// c6bff2b3-09a5-5fcf-b078-6943dd215de7
+}
+
+private var IID___x_ABI_C__FIMapChangedEventArgs_1_HSTRING: IID {
+    IID(Data1: 0x60141efb, Data2: 0xf2f9, Data3: 0x5377, Data4: ( 0x96,0xfd,0xf8,0xc6,0x0d,0x95,0x58,0xb5 ))// 60141efb-f2f9-5377-96fd-f8c60d9558b5
+}
+
+private var IID___x_ABI_C__FIMapView_2_HSTRING_IInspectable: IID {
+    IID(Data1: 0xbb78502a, Data2: 0xf79d, Data3: 0x54fa, Data4: ( 0x92,0xc9,0x90,0xc5,0x03,0x9f,0xdf,0x7e ))// bb78502a-f79d-54fa-92c9-90c5039fdf7e
+}
+
+internal var __x_ABI_C__FIMapView_2_HSTRING_IInspectableVTable: __x_ABI_C__FIMapView_2_HSTRING_IInspectableVtbl = .init(
+    QueryInterface: {
+        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
+        switch riid.pointee {
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.IID:
+                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                return S_OK
+            default:
+                guard let instance = __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
+
+        }
+    },
+
+    AddRef: {
+         guard let wrapper = __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.fromRaw($0) else { return 1 }
+         _ = wrapper.retain()
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+    },
+
+    Release: {
+        guard let wrapper = __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.fromRaw($0) else { return 1 }
+        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+    },
+
+    GetIids: {
+        let size = MemoryLayout<IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.IID
+        iids[3] = __ABI_Windows_Foundation_Collections.IIterable`1Wrapper.IID
+        $1!.pointee = 4
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.Collections.IMapView`2<String, Any>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    Lookup: {
+        guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let key: String = .init(from: $1)
+        let result = __unwrapped__instance.lookup(key)
+        let resultWrapper = __ABI_.AnyWrapper(result)
+        resultWrapper?.copyTo($2)
+        return S_OK
+    },
+
+    get_Size: {
+        guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.size
+        $1?.initialize(to: result)
+        return S_OK
+    },
+
+    HasKey: {
+        guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let key: String = .init(from: $1)
+        let result = __unwrapped__instance.hasKey(key)
+        $2?.initialize(to: .init(from: result))
+        return S_OK
+    },
+
+    Split: {
+        guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        var first: test_component.AnyIMapView<String, Any?>?
+        var second: test_component.AnyIMapView<String, Any?>?
+        __unwrapped__instance.split(&first, &second)
+        let firstWrapper = test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper(first)
+        firstWrapper?.copyTo($1)
+        let secondWrapper = test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper(second)
+        secondWrapper?.copyTo($2)
+        return S_OK
+    }
+)
+typealias __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl>
+internal class IMapViewString_Any: test_component.IInspectable {
+    override public class var IID: IID { IID___x_ABI_C__FIMapView_2_HSTRING_IInspectable }
+
+    internal func LookupImpl(_ key: HSTRING?) throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
+        var result: UnsafeMutablePointer<Ctest_component.IInspectable>?
+        _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, key, &result))
+        }
+        return result
+    }
+
+    internal func get_SizeImpl() throws -> UINT32 {
+        var result: UINT32 = 0
+        _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
+        }
+        return result
+    }
+
+    internal func HasKeyImpl(_ key: HSTRING?) throws -> boolean {
+        var result: boolean = 0
+        _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.HasKey(pThis, key, &result))
+        }
+        return result
+    }
+
+    internal func SplitImpl(_ first: inout UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_IInspectable>?, _ second: inout UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_IInspectable>?) throws {
+        _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &first, &second))
+        }
+    }
+
+}
+
+internal class __x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl : IMapView, AbiInterfaceImpl {
+    typealias Key = String
+    typealias Value = Any?
+    typealias SwiftProjection = AnyIMapView<String, Any?>
+    typealias CABI = __x_ABI_C__FIMapView_2_HSTRING_IInspectable
+    typealias SwiftABI = IMapViewString_Any
+
+    private (set) public var _default: SwiftABI
+
+    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl(abi)
+    }
+
+    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+        _default = SwiftABI(fromAbi)
+    }
+
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIMapView_2_HSTRING_IInspectableVTable) { $0 }
+        return.init(lpVtbl: vtblPtr)
+    }
+
+    // MARK: WinRT
+    public func lookup(_ key: String) -> Any? {
+        let _key = try! HString(key)
+        let result = try! _default.LookupImpl(_key.get())
+        return __ABI_.AnyWrapper.unwrapFrom(abi: result)
+    }
+
+    public func hasKey(_ key: String) -> Bool {
+        let _key = try! HString(key)
+        let result = try! _default.HasKeyImpl(_key.get())
+        return .init(from: result)
+    }
+
+    public func split(_ first: inout AnyIMapView<String, Any?>?, _ second: inout AnyIMapView<String, Any?>?) {
+        var _first: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_IInspectable>?
+        var _second: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_IInspectable>?
+        try! _default.SplitImpl(&_first, &_second)
+        first = test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl.from(abi: _first)
+        second = test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl.from(abi: _second)
+    }
+
+    public var size : UInt32 {
+        get {
+            let result = try! _default.get_SizeImpl()
+            return result
+        }
+
+    }
+
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIMapView_2_HSTRING_HSTRING: IID {
@@ -85,11 +287,12 @@ internal var __x_ABI_C__FIMapView_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMapView_
 
     GetIids: {
         let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.IID
-        $1!.pointee = 3
+        iids[3] = __ABI_Windows_Foundation_Collections.IIterable`1Wrapper.IID
+        $1!.pointee = 4
         $2!.pointee = iids
         return S_OK
     },
@@ -269,11 +472,12 @@ internal var __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTab
 
     GetIids: {
         let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
-        $1!.pointee = 3
+        iids[3] = __ABI_Windows_Foundation_Collections.IIterable`1Wrapper.IID
+        $1!.pointee = 4
         $2!.pointee = iids
         return S_OK
     },
@@ -417,6 +621,246 @@ internal class __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseIm
     public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
 }
 
+private var IID___x_ABI_C__FIMap_2_HSTRING_IInspectable: IID {
+    IID(Data1: 0x1b0d3570, Data2: 0x0877, Data3: 0x5ec2, Data4: ( 0x8a,0x2c,0x3b,0x95,0x39,0x50,0x6a,0xca ))// 1b0d3570-0877-5ec2-8a2c-3b9539506aca
+}
+
+internal var __x_ABI_C__FIMap_2_HSTRING_IInspectableVTable: __x_ABI_C__FIMap_2_HSTRING_IInspectableVtbl = .init(
+    QueryInterface: {
+        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
+        switch riid.pointee {
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.IID:
+                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                return S_OK
+            default:
+                guard let instance = __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
+
+        }
+    },
+
+    AddRef: {
+         guard let wrapper = __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.fromRaw($0) else { return 1 }
+         _ = wrapper.retain()
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+    },
+
+    Release: {
+        guard let wrapper = __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.fromRaw($0) else { return 1 }
+        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+    },
+
+    GetIids: {
+        let size = MemoryLayout<IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.IID
+        iids[3] = __ABI_Windows_Foundation_Collections.IIterable`1Wrapper.IID
+        $1!.pointee = 4
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.Collections.IMap`2<String, Any>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    Lookup: {
+        guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let key: String = .init(from: $1)
+        let result = __unwrapped__instance.lookup(key)
+        let resultWrapper = __ABI_.AnyWrapper(result)
+        resultWrapper?.copyTo($2)
+        return S_OK
+    },
+
+    get_Size: {
+        guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.size
+        $1?.initialize(to: result)
+        return S_OK
+    },
+
+    HasKey: {
+        guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let key: String = .init(from: $1)
+        let result = __unwrapped__instance.hasKey(key)
+        $2?.initialize(to: .init(from: result))
+        return S_OK
+    },
+
+    GetView: {
+        guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.getView()
+        let resultWrapper = test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper(result)
+        resultWrapper?.copyTo($1)
+        return S_OK
+    },
+
+    Insert: {
+        guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let key: String = .init(from: $1)
+        let value: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: $2)
+        let result = __unwrapped__instance.insert(key, value)
+        $3?.initialize(to: .init(from: result))
+        return S_OK
+    },
+
+    Remove: {
+        guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let key: String = .init(from: $1)
+        __unwrapped__instance.remove(key)
+        return S_OK
+    },
+
+    Clear: {
+        guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        __unwrapped__instance.clear()
+        return S_OK
+    }
+)
+typealias __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMap_2_HSTRING_IInspectableImpl>
+internal class IMapString_Any: test_component.IInspectable {
+    override public class var IID: IID { IID___x_ABI_C__FIMap_2_HSTRING_IInspectable }
+
+    internal func LookupImpl(_ key: HSTRING?) throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
+        var result: UnsafeMutablePointer<Ctest_component.IInspectable>?
+        _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, key, &result))
+        }
+        return result
+    }
+
+    internal func get_SizeImpl() throws -> UINT32 {
+        var result: UINT32 = 0
+        _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
+        }
+        return result
+    }
+
+    internal func HasKeyImpl(_ key: HSTRING?) throws -> boolean {
+        var result: boolean = 0
+        _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.HasKey(pThis, key, &result))
+        }
+        return result
+    }
+
+    internal func GetViewImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_IInspectable>? {
+        var result: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_IInspectable>?
+        _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &result))
+        }
+        return result
+    }
+
+    internal func InsertImpl(_ key: HSTRING?, _ value: UnsafeMutablePointer<Ctest_component.IInspectable>?) throws -> boolean {
+        var result: boolean = 0
+        _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Insert(pThis, key, value, &result))
+        }
+        return result
+    }
+
+    internal func RemoveImpl(_ key: HSTRING?) throws {
+        _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Remove(pThis, key))
+        }
+    }
+
+    internal func ClearImpl() throws {
+        _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Clear(pThis))
+        }
+    }
+
+}
+
+internal class __x_ABI_C__FIMap_2_HSTRING_IInspectableImpl : IMap, AbiInterfaceImpl {
+    typealias Key = String
+    typealias Value = Any?
+    typealias SwiftProjection = AnyIMap<String, Any?>
+    typealias CABI = __x_ABI_C__FIMap_2_HSTRING_IInspectable
+    typealias SwiftABI = IMapString_Any
+
+    private (set) public var _default: SwiftABI
+
+    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIMap_2_HSTRING_IInspectableImpl(abi)
+    }
+
+    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+        _default = SwiftABI(fromAbi)
+    }
+
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIMap_2_HSTRING_IInspectableVTable) { $0 }
+        return.init(lpVtbl: vtblPtr)
+    }
+
+    // MARK: WinRT
+    public func lookup(_ key: String) -> Any? {
+        let _key = try! HString(key)
+        let result = try! _default.LookupImpl(_key.get())
+        return __ABI_.AnyWrapper.unwrapFrom(abi: result)
+    }
+
+    public func hasKey(_ key: String) -> Bool {
+        let _key = try! HString(key)
+        let result = try! _default.HasKeyImpl(_key.get())
+        return .init(from: result)
+    }
+
+    public func getView() -> AnyIMapView<String, Any?>? {
+        let result = try! _default.GetViewImpl()
+        return test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
+    }
+
+    public func insert(_ key: String, _ value: Any?) -> Bool {
+        let _key = try! HString(key)
+        let valueWrapper = __ABI_.AnyWrapper(value)
+        let _value = try! valueWrapper?.toABI { $0 }
+        let result = try! _default.InsertImpl(_key.get(), _value)
+        return .init(from: result)
+    }
+
+    public func remove(_ key: String) {
+        let _key = try! HString(key)
+        try! _default.RemoveImpl(_key.get())
+    }
+
+    public func clear() {
+        try! _default.ClearImpl()
+    }
+
+    public var size : UInt32 {
+        get {
+            let result = try! _default.get_SizeImpl()
+            return result
+        }
+
+    }
+
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+}
+
 private var IID___x_ABI_C__FIMap_2_HSTRING_HSTRING: IID {
     IID(Data1: 0xf6d1f700, Data2: 0x49c2, Data3: 0x52ae, Data4: ( 0x81,0x54,0x82,0x6f,0x99,0x08,0x77,0x3c ))// f6d1f700-49c2-52ae-8154-826f9908773c
 }
@@ -453,11 +897,12 @@ internal var __x_ABI_C__FIMap_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMap_2_HSTRIN
 
     GetIids: {
         let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.IID
-        $1!.pointee = 3
+        iids[3] = __ABI_Windows_Foundation_Collections.IIterable`1Wrapper.IID
+        $1!.pointee = 4
         $2!.pointee = iids
         return S_OK
     },
@@ -690,11 +1135,12 @@ internal var __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: 
 
     GetIids: {
         let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
-        $1!.pointee = 3
+        iids[3] = __ABI_Windows_Foundation_Collections.IIterable`1Wrapper.IID
+        $1!.pointee = 4
         $2!.pointee = iids
         return S_OK
     },
@@ -890,6 +1336,14 @@ internal class __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl :
     public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
 }
 
+private var IID___x_ABI_C__FIObservableMap_2_HSTRING_IInspectable: IID {
+    IID(Data1: 0x236aac9d, Data2: 0xfb12, Data3: 0x5c4d, Data4: ( 0xa4,0x1c,0x9e,0x44,0x5f,0xb4,0xd7,0xec ))// 236aac9d-fb12-5c4d-a41c-9e445fb4d7ec
+}
+
+private var IID___x_ABI_C__FIObservableMap_2_HSTRING_HSTRING: IID {
+    IID(Data1: 0x1e036276, Data2: 0x2f60, Data3: 0x55f6, Data4: ( 0xb7,0xf3,0xf8,0x60,0x79,0xe6,0x90,0x0b ))// 1e036276-2f60-55f6-b7f3-f86079e6900b
+}
+
 private var IID___x_ABI_C__FIVectorView_1_IInspectable: IID {
     IID(Data1: 0xa6487363, Data2: 0xb074, Data3: 0x5c60, Data4: ( 0xab,0x16,0x86,0x6d,0xce,0x4e,0xe5,0x4d ))// a6487363-b074-5c60-ab16-866dce4ee54d
 }
@@ -926,11 +1380,12 @@ internal var __x_ABI_C__FIVectorView_1_IInspectableVTable: __x_ABI_C__FIVectorVi
 
     GetIids: {
         let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIVectorView_1_IInspectableWrapper.IID
-        $1!.pointee = 3
+        iids[3] = __ABI_Windows_Foundation_Collections.IIterable`1Wrapper.IID
+        $1!.pointee = 4
         $2!.pointee = iids
         return S_OK
     },
@@ -1108,11 +1563,12 @@ internal var __x_ABI_C__FIVectorView_1_HSTRINGVTable: __x_ABI_C__FIVectorView_1_
 
     GetIids: {
         let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper.IID
-        $1!.pointee = 3
+        iids[3] = __ABI_Windows_Foundation_Collections.IIterable`1Wrapper.IID
+        $1!.pointee = 4
         $2!.pointee = iids
         return S_OK
     },
@@ -1288,11 +1744,12 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVTable: _
 
     GetIids: {
         let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
-        $1!.pointee = 3
+        iids[3] = __ABI_Windows_Foundation_Collections.IIterable`1Wrapper.IID
+        $1!.pointee = 4
         $2!.pointee = iids
         return S_OK
     },
@@ -1467,11 +1924,12 @@ internal var __x_ABI_C__FIVector_1_IInspectableVTable: __x_ABI_C__FIVector_1_IIn
 
     GetIids: {
         let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIVector_1_IInspectableWrapper.IID
-        $1!.pointee = 3
+        iids[3] = __ABI_Windows_Foundation_Collections.IIterable`1Wrapper.IID
+        $1!.pointee = 4
         $2!.pointee = iids
         return S_OK
     },
@@ -1789,11 +2247,12 @@ internal var __x_ABI_C__FIVector_1_HSTRINGVTable: __x_ABI_C__FIVector_1_HSTRINGV
 
     GetIids: {
         let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper.IID
-        $1!.pointee = 3
+        iids[3] = __ABI_Windows_Foundation_Collections.IIterable`1Wrapper.IID
+        $1!.pointee = 4
         $2!.pointee = iids
         return S_OK
     },
@@ -2106,11 +2565,12 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_A
 
     GetIids: {
         let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
-        $1!.pointee = 3
+        iids[3] = __ABI_Windows_Foundation_Collections.IIterable`1Wrapper.IID
+        $1!.pointee = 4
         $2!.pointee = iids
         return S_OK
     },
@@ -2381,6 +2841,14 @@ internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl : IVec
     }
 
     public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+}
+
+private var IID___x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectable: IID {
+    IID(Data1: 0x24f981e5, Data2: 0xddca, Data3: 0x538d, Data4: ( 0xaa,0xda,0xa5,0x99,0x06,0x08,0x4c,0xf1 ))// 24f981e5-ddca-538d-aada-a59906084cf1
+}
+
+private var IID___x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRING: IID {
+    IID(Data1: 0xe2663f37, Data2: 0x2e1b, Data3: 0x500c, Data4: ( 0xad,0x68,0xc3,0xed,0x7a,0x8f,0x74,0xc8 ))// e2663f37-2e1b-500c-ad68-c3ed7a8f74c8
 }
 
 private var IID___x_ABI_C__FIEventHandler_1_IInspectable: IID {

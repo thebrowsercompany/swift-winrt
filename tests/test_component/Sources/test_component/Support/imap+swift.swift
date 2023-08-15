@@ -1,5 +1,7 @@
 // Swift Dictionary-like extensions to IMap[View]
 extension IMap {
+    public typealias Key = K
+    public typealias Value = V
     public var count: Int { Int(size) }
     public var underestimatedCount: Int { Int(size) }
     public var isEmpty: Bool { size == 0 }

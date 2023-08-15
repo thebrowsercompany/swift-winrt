@@ -10,11 +10,11 @@ const write_type_params write_type_params::swift{ projection_layer::swift };
 const write_type_params write_type_params::c_abi{ projection_layer::c_abi };
 const write_type_params write_type_params::swift_allow_implicit_unwrap{ projection_layer::swift, true };
 
-void write_swift_type_identifier_ex(writer& w, metadata_type const& type, bool existential);
+void write_swift_type_identifier_ex(writer& w, metadata_type const& type, bool existential, bool omit_generic_args);
 
 // Writes the Swift code representation of a WinRT type at the Swift projection layer
 // as a 'type' syntax node.
-static void write_swift_type(writer& w, metadata_type const& type, bool allow_implicit_unwrap)
+static void write_swift_type(writer& w, metadata_type const& type, bool allow_implicit_unwrap, bool omit_generic_args)
 {
     char optional_suffix = allow_implicit_unwrap ? '!' : '?';
 
@@ -25,28 +25,43 @@ static void write_swift_type(writer& w, metadata_type const& type, bool allow_im
         auto&& generic_params = gen_inst->generic_params();
         if (is_winrt_ireference(generic_typedef))
         {
+            assert(!omit_generic_args); // there is no generic type to omit args from
             auto boxed_type = generic_params[0];
-            w.write("%?", bind<write_swift_type>(*boxed_type, /* allow_implicit_unwrap: */ false));
+            w.write("%?", bind<write_swift_type>(*boxed_type, /* allow_implicit_unwrap: */ false, /* omit_generic_args */false));
             return;
         }
 
         if (is_winrt_eventhandler(generic_typedef))
         {
-            auto args_type = generic_params[0];
-            // '^' escapes the '@'
-            w.write("^@escaping EventHandler<%>",
-                bind<write_swift_type>(*args_type, /* allow_implicit_unwrap: */ false));
+            if (omit_generic_args)
+            {
+                w.write("EventHandler");
+            }
+            else
+            {
+                auto args_type = generic_params[0];
+                // '^' escapes the '@'
+                w.write("^@escaping EventHandler<%>",
+                    bind<write_swift_type>(*args_type, /* allow_implicit_unwrap: */ false, /* omit_generic_args */ false));
+            }
             return;
         }
 
         if (is_winrt_typedeventhandler(generic_typedef))
         {
-            auto sender_type = generic_params[0];
-            auto args_type = generic_params[1];
-            // '^' escapes the '@'
-            w.write("^@escaping TypedEventHandler<%, %>",
-                bind<write_swift_type>(*sender_type, /* allow_implicit_unwrap: */ false),
-                bind<write_swift_type>(*args_type, /* allow_implicit_unwrap: */ false));
+            if (omit_generic_args)
+            {
+                w.write("TypedEventHandler");
+            }
+            else
+            {
+                auto sender_type = generic_params[0];
+                auto args_type = generic_params[1];
+                // '^' escapes the '@'
+                w.write("^@escaping TypedEventHandler<%, %>",
+                    bind<write_swift_type>(*sender_type, /* allow_implicit_unwrap: */ false, /* omit_generic_args */ false),
+                    bind<write_swift_type>(*args_type, /* allow_implicit_unwrap: */ false, /* omit_generic_args */ false));
+            }
             return;
         }
     }
@@ -54,7 +69,7 @@ static void write_swift_type(writer& w, metadata_type const& type, bool allow_im
     if (is_reference_type(&type))
     {
         bool existential = is_interface(&type);
-        w.write("%%", bind<write_swift_type_identifier_ex>(type, existential), optional_suffix);
+        w.write("%%", bind<write_swift_type_identifier_ex>(type, existential, omit_generic_args), optional_suffix);
     }
     else
     {
@@ -62,7 +77,7 @@ static void write_swift_type(writer& w, metadata_type const& type, bool allow_im
     }
 }
 
-void write_swift_type_identifier_ex(writer& w, metadata_type const& type, bool existential)
+void write_swift_type_identifier_ex(writer& w, metadata_type const& type, bool existential, bool omit_generic_args)
 {
     if (auto elem_type = dynamic_cast<const element_type*>(&type))
     {
@@ -116,9 +131,24 @@ void write_swift_type_identifier_ex(writer& w, metadata_type const& type, bool e
         }
         
         w.write(remove_backtick(type.swift_type_name()));
+
+        if (omit_generic_args == false && iface != nullptr && existential && !iface->generic_params.empty())
+        {
+            // if writing an extistential then we always want to put the generic types in the name
+            w.write("<");
+            separator sep{ w };
+            for (auto&& gen_arg : iface->generic_params)
+            {
+                sep();
+                // Implicitly unwrap optionals are illegal on generic arguments
+                write_swift_type(w, gen_arg, /* allow_implicit_unwrap: */ false, /* omit_generic_args */ false);
+            }
+            w.write(">");
+        }
     }
     else if (auto gen_inst = dynamic_cast<const generic_inst*>(&type))
     {
+        assert(!omit_generic_args); // can't omit generic args from an actual instantiation of a generic type
         auto&& generic_typedef = *gen_inst->generic_type();
 
         // Special generic types
@@ -128,7 +158,7 @@ void write_swift_type_identifier_ex(writer& w, metadata_type const& type, bool e
                 " cannot be represented as a Swift type-identifier syntax node.");
         }
 
-        write_swift_type_identifier_ex(w, generic_typedef, existential);
+        write_swift_type_identifier_ex(w, generic_typedef, existential,/* omit_generic_args */ true);
 
         w.write("<");
         separator sep{ w };
@@ -137,9 +167,13 @@ void write_swift_type_identifier_ex(writer& w, metadata_type const& type, bool e
             sep();
 
             // Implicitly unwrap optionals are illegal on generic arguments
-            write_swift_type(w, *gen_arg, /* allow_implicit_unwrap: */ false);
+            write_swift_type(w, *gen_arg, /* allow_implicit_unwrap: */ false, /* omit_generic_args */ false);
         }
         w.write(">");
+    }
+    else if (auto param = dynamic_cast<const generic_type_parameter*>(&type))
+    {
+        w.write(param->swift_type_name());
     }
     else
     {
@@ -148,12 +182,12 @@ void write_swift_type_identifier_ex(writer& w, metadata_type const& type, bool e
 }
 
 void swiftwinrt::write_swift_type_identifier(writer& w, metadata_type const& type) {
-    write_swift_type_identifier_ex(w, type, /* existential: */ false);
+    write_swift_type_identifier_ex(w, type, /* existential: */ false, /* omit_generic_args */ false);
 }
 
 void swiftwinrt::write_swift_interface_existential_identifier(writer& w, metadata_type const& iface) {
     assert(is_interface(iface));
-    write_swift_type_identifier_ex(w, iface, /* existential: */ true);
+    write_swift_type_identifier_ex(w, iface, /* existential: */ true, /* omit_generic_args */ false);
 }
 
 // Writes the Swift code representation of a WinRT type at the C ABI projection layer
@@ -233,7 +267,7 @@ void swiftwinrt::write_type(writer& w, metadata_type const& type, write_type_par
 {
     if (params.layer == projection_layer::swift)
     {
-        write_swift_type(w, type, params.allow_implicit_unwrap);
+        write_swift_type(w, type, params.allow_implicit_unwrap, params.omit_generic_args);
     }
     else
     {

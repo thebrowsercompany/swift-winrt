@@ -516,7 +516,9 @@ bind<write_abi_args>(function));
 
     static void write_interface_abi(writer& w, interface_type const& type)
     {
-        if (!can_write(w, type)) return;
+        // Don't write generic interfaces defintions at the ABI layer, we need an actual
+        // instantiation of the type in order to create vtables and actual implementations
+        if (!can_write(w, type) || type.is_generic()) return;
    
         do_write_interface_abi(w, type, type.functions);
         if (!is_exclusive(type))
@@ -549,6 +551,7 @@ typealias % = InterfaceWrapperBase<%>
     
     static void write_delegate_abi(writer& w, delegate_type const& type)
     {
+        if (type.is_generic()) return;
         w.write("// MARK - %\n", type);
         w.write("extension % {\n", abi_namespace(w.type_namespace));
         {
@@ -971,8 +974,7 @@ bind_impl_fullname(type));
             auto swiftAbi = w.write_temp("%.%", abi_namespace(info.type->swift_logical_namespace()), info.type->swift_type_name());
             if (is_winrt_generic_collection(info.type))
             {
-                w.generic_param_stack.push_back(info.generic_params);
-                writer::generic_param_guard guard{ &w };
+                auto guard{ w.push_generic_params(info) };
                 swiftAbi = w.write_temp("%", bind_type_abi(info.type));
             }
             w.write("internal lazy var %: % = try! _default.QueryInterface()\n",
@@ -1027,7 +1029,7 @@ bind_impl_fullname(type));
 
     static void write_interface_abi_bridge(writer& w, interface_type const& type)
     {
-        if (is_exclusive(type) || !can_write(w, type) ||get_full_type_name(type) == "Windows.Foundation.IPropertyValue") return;
+        if (type.is_generic() || is_exclusive(type) || !can_write(w, type) || get_full_type_name(type) == "Windows.Foundation.IPropertyValue") return;
 
         w.write(R"(^@_spi(__MakeFromAbi_DoNotImport)
 public class %_MakeFromAbi : MakeFromAbi {
@@ -1054,7 +1056,7 @@ public class %_MakeFromAbi : MakeFromAbi {
 
     static void write_interface_impl(writer& w, interface_type const& type)
     {
-        if (is_exclusive(type) || !can_write(w, type)) return;
+        if (is_exclusive(type) || !can_write(w, type) || type.is_generic()) return;
 
         if (get_full_type_name(type) == "Windows.Foundation.IPropertyValue")
         {
@@ -1177,7 +1179,7 @@ public static func makeAbi() -> CABI {
             return;
         }
 
-        auto typeName = type.swift_type_name();
+        auto typeName = swiftwinrt::remove_backtick(type.swift_type_name());
         bool is_property_set = typeName == "IPropertySet"sv;
         auto interfaces = type.required_interfaces;
         separator s{ w };
@@ -1195,12 +1197,19 @@ public static func makeAbi() -> CABI {
             implements.empty() ? "WinRTInterface" : "");
         {
             auto body_indent = w.push_indent();
+            if (type.is_generic())
+            {
+                for (auto& param : type.type().GenericParam())
+                {
+                    w.write("associatedtype %\n", param.Name());
+                }
+            }
             for (auto& method : type.functions)
             {
                 if (!can_write(w, method)) continue;
 
                 auto full_type_name = w.push_full_type_names(true);
-                auto maybe_throws = is_noexcept(method.def) ? "" : " throws";
+                auto maybe_throws = is_winrt_generic_collection(type) || is_noexcept(method.def) ? "" : " throws";
                 w.write("func %(%)%%\n",
                     get_swift_name(method),
                     bind<write_function_params>(method, write_type_params::swift_allow_implicit_unwrap),
@@ -1228,12 +1237,15 @@ public static func makeAbi() -> CABI {
                 // not only does this result in less code generated, it also helps alleviate the issue where different 
                 // interfaces define an event with the same type. For that scenario, we cache the event type on the
                 // writer
-                if (auto delegate = dynamic_cast<const delegate_type*>(event.type))
+                if (!type.is_generic())
                 {
-                    if (w.implementableEventTypes.find(delegate) == w.implementableEventTypes.end())
+                    if (auto delegate = dynamic_cast<const delegate_type*>(event.type))
                     {
-                        w.implementableEventTypes.insert(delegate);
-                        eventSourceInvokeLines.push_back(w.write_temp("%", bind<write_eventsource_invoke_extension>(delegate)));
+                        if (w.implementableEventTypes.find(delegate) == w.implementableEventTypes.end())
+                        {
+                            w.implementableEventTypes.insert(delegate);
+                            eventSourceInvokeLines.push_back(w.write_temp("%", bind<write_eventsource_invoke_extension>(delegate)));
+                        }
                     }
                 }
             }
@@ -1244,7 +1256,7 @@ public static func makeAbi() -> CABI {
         {
             w.write(line);
         }
-        if (type.swift_full_name() != "Windows.Foundation.IPropertyValue")
+        if (!type.is_generic() && type.swift_full_name() != "Windows.Foundation.IPropertyValue")
         {
             // write default queryInterface implementation for this interface. don't do
             // it for IPropertyValue since this has a custom wrapper implementation. We write
@@ -1273,9 +1285,8 @@ public static func makeAbi() -> CABI {
             w.write("    }\n");
             w.write("}\n");
         }
-
         // Declare a short form for the existential version of the type, e.g. AnyClosable for "any IClosable"
-        w.write("public typealias Any% = any %\n\n", typeName, typeName);
+        w.write("public typealias Any% = any %\n\n", type, type);
     }
 
     static void write_ireference(writer& w)
@@ -1320,6 +1331,11 @@ public static func makeAbi() -> CABI {
 
     static void write_delegate(writer& w, delegate_type const& type)
     {
+        if (type.is_generic()) return;
+        // Delegates require tuples because of the way that the bridges are implemented.
+        // The bridge classes have a typealias for the parameters, and we use those
+        // parameters for the delegate signature to create the bridge. The swift compiler
+        // complains if the typealias isn't placed in a tuple
         function_def delegate_method = type.functions[0];
         w.write("public typealias % = (%) -> %\n",
             type,
@@ -1372,7 +1388,7 @@ public static func makeAbi() -> CABI {
 
     static void write_delegate_implementation(writer& w, delegate_type const& type)
     {
-        if (can_write(w, type))
+        if (can_write(w, type) && !type.is_generic())
         {
             auto delegate_method = type.functions[0];
             do_write_delegate_implementation(w, type, delegate_method);
@@ -2269,8 +2285,7 @@ private var _default: SwiftABI!
         {
             if (interface_name.empty() || !can_write(w, info.type)) { continue; }
 
-            w.generic_param_stack.push_back(info.generic_params);
-            writer::generic_param_guard guard2{ &w };
+            auto guard2{ w.push_generic_params(info) };
             // Don't reimplement P/M/E for interfaces which are implemented on a base class
             if (!info.base)
             {

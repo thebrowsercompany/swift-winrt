@@ -1,3 +1,7 @@
 {
-    "swift.autoGenerateLaunchConfigurations": false
+    "swift.autoGenerateLaunchConfigurations": false,
+    "files.associations": {
+        "utility": "cpp",
+        "xstring": "cpp"
+    }
 }
