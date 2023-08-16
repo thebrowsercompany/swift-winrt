@@ -3,7 +3,6 @@
 namespace swiftwinrt
 {
     static bool can_write(writer& w, typedef_base const& type);
-    static bool can_write(generic_inst const& type);
     static bool can_write(writer& w, const metadata_type* type)
     {
         if (auto typed = dynamic_cast<const typedef_base*>(type))

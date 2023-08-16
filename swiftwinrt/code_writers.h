@@ -428,15 +428,12 @@ bind<write_abi_args>(function));
 
     static void write_interface_generic(writer& w, generic_inst const& type)
     {
-        if (can_write(type))
-        {
-            type.write_swift_declaration(w);
+        type.write_swift_declaration(w);
 
-            if (!is_winrt_ireference(type))
-            {
-                auto generic_params = w.push_generic_params(type);
-                do_write_interface_abi(w, *type.generic_type(), type.functions);
-            }
+        if (!is_winrt_ireference(type))
+        {
+            auto generic_params = w.push_generic_params(type);
+            do_write_interface_abi(w, *type.generic_type(), type.functions);
         }
     }
 
@@ -544,10 +541,7 @@ typealias % = InterfaceWrapperBase<%>
 
     static void write_generic_delegate_wrapper(writer& w, generic_inst const& generic)
     {
-        if (can_write(generic))
-        {
-            write_delegate_wrapper(w, generic);
-        }
+        write_delegate_wrapper(w, generic);
     }
     
     static void write_delegate_abi(writer& w, delegate_type const& type)
@@ -1188,12 +1182,9 @@ public static func makeAbi() -> CABI {
         auto interfaces = type.required_interfaces;
         separator s{ w };
         auto implements = w.write_temp("%", bind_each([&](writer& w, std::pair<std::string, interface_info> const& iface) {
-            // TODO: https://linear.app/the-browser-company/issue/WIN-103/swiftwinrt-write-iasyncinfo
-            if (!iface.first.ends_with("IAsyncInfo") && can_write(w, iface.second.type))
-            {
-                s();
-                write_swift_type_identifier(w, *iface.second.type);
-            }}, interfaces));
+            s();
+            write_swift_type_identifier(w, *iface.second.type);
+            }, interfaces));
 
         // check the type name is a collection so we don't get any potential unknown or unwanted
         // typenames like IMapChangedEventArgs
@@ -1479,8 +1470,6 @@ public static func makeAbi() -> CABI {
 
     static void write_generic_implementation(writer& w, generic_inst const& type)
     {
-        if (!can_write(type)) return;
-
         auto generics_guard = w.push_generic_params(type);
         if (is_delegate(type))
         {
