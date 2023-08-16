@@ -10,10 +10,6 @@ namespace swiftwinrt
         {
             return can_write(w, *typed);
         }
-        if (auto generics = dynamic_cast<const generic_inst*>(type))
-        {
-            return can_write(*generics);
-        }
         if (auto mapped = dynamic_cast<const mapped_type*>(type))
         {
             // TODO: https://linear.app/the-browser-company/issue/WIN-103/swiftwinrt-write-iasyncinfo
@@ -25,20 +21,6 @@ namespace swiftwinrt
     static bool can_write(writer& w, TypeDef const& type)
     {
         return can_write(w, &w.cache->find(type.TypeNamespace(), type.TypeName()));
-    }
-
-    static bool can_write(generic_inst const& type)
-    {
-        // TODO: WIN-275: Code generation for nested generics
-        for (auto genarg : type.generic_params())
-        {
-            if (is_generic_inst(genarg))
-            {
-                return true;
-            }
-        }
-
-        return true;
     }
 
     static bool can_write(writer& w, function_def const& function, bool allow_special = false)
