@@ -21,8 +21,8 @@ static void write_swift_type(writer& w, metadata_type const& type, bool allow_im
     // Handle types with special codegen
     if (auto gen_inst = dynamic_cast<const generic_inst*>(&type))
     {
-        auto&& generic_typedef = *gen_inst->generic_type();
-        auto&& generic_params = gen_inst->generic_params();
+        const auto& generic_typedef = *gen_inst->generic_type();
+        const auto& generic_params = gen_inst->generic_params();
         if (is_winrt_ireference(generic_typedef))
         {
             assert(!omit_generic_args); // there is no generic type to omit args from
@@ -137,7 +137,7 @@ void write_swift_type_identifier_ex(writer& w, metadata_type const& type, bool e
             // if writing an extistential then we always want to put the generic types in the name
             w.write("<");
             separator sep{ w };
-            for (auto&& gen_arg : iface->generic_params)
+            for (const auto& gen_arg : iface->generic_params)
             {
                 sep();
                 // Implicitly unwrap optionals are illegal on generic arguments
@@ -149,7 +149,7 @@ void write_swift_type_identifier_ex(writer& w, metadata_type const& type, bool e
     else if (auto gen_inst = dynamic_cast<const generic_inst*>(&type))
     {
         assert(!omit_generic_args); // can't omit generic args from an actual instantiation of a generic type
-        auto&& generic_typedef = *gen_inst->generic_type();
+        const auto& generic_typedef = *gen_inst->generic_type();
 
         // Special generic types
         if (is_winrt_ireference(generic_typedef))
@@ -162,7 +162,7 @@ void write_swift_type_identifier_ex(writer& w, metadata_type const& type, bool e
 
         w.write("<");
         separator sep{ w };
-        for (auto&& gen_arg : gen_inst->generic_params())
+        for (const auto& gen_arg : gen_inst->generic_params())
         {
             sep();
 
