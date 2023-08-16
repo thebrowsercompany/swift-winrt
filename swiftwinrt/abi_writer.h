@@ -100,9 +100,15 @@ namespace swiftwinrt
     // Don't write "built-in types" since these are defined in other header files
     // These aren't completely removed from metadata because we need to generate them
     // on the swift side
+    static std::set<std::string_view> removed_types = {
+        "Windows.Foundation.Collections.CollectionChange",
+        "Windows.Foundation.Collections.IVectorChangedEventArgs",
+        "Windows.Foundation.IAsyncInfo",
+        "Windows.Foundation.AsyncStatus"
+    };     
     static bool should_write(metadata_type const& type)
     {
-        return !use_sdk_c_header_definition(type);
+        return !removed_types.contains(type.swift_full_name());
     }
 
     static void write_includes(writer& w, type_cache const& types, std::string_view fileName)

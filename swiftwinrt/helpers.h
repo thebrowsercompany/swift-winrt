@@ -912,15 +912,4 @@ namespace swiftwinrt
 
         return true;
     }
-
-    inline bool use_sdk_c_header_definition(metadata_type const& type)
-    {
-        static std::set<std::string_view> removed_types = {
-            "Windows.Foundation.Collections.CollectionChange",
-            "Windows.Foundation.Collections.IVectorChangedEventArgs",
-            "Windows.Foundation.IAsyncInfo",
-            "Windows.Foundation.AsyncStatus"
-        };        
-        return removed_types.contains(type.swift_full_name());
-    }
 }
