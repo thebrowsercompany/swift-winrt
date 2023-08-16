@@ -7,10 +7,8 @@ namespace swiftwinrt
 {
     static void write_enum_def(writer& w, enum_type const& type)
     {
-        // Async status is defined in it's own header with a nice name of AsyncStatus.
         // Metadata attributes don't have backing code
-        if (get_full_type_name(type) == "Windows.Foundation.AsyncStatus" ||
-            type.swift_logical_namespace() == "Windows.Foundation.Metadata" || !can_write(w, type))
+        if (type.swift_logical_namespace() == "Windows.Foundation.Metadata" || !can_write(w, type))
         {
             return;
         }
@@ -19,8 +17,7 @@ namespace swiftwinrt
 
     static void write_enum_extension(writer& w, enum_type const& type)
     {
-        if (get_full_type_name(type) == "Windows.Foundation.AsyncStatus" ||
-            type.swift_logical_namespace() == "Windows.Foundation.Metadata" || !can_write(w, type))
+        if (type.swift_logical_namespace() == "Windows.Foundation.Metadata" || !can_write(w, type))
         {
             return;
         }
@@ -1184,7 +1181,7 @@ public static func makeAbi() -> CABI {
         auto implements = w.write_temp("%", bind_each([&](writer& w, std::pair<std::string, interface_info> const& iface) {
             s();
             write_swift_type_identifier(w, *iface.second.type);
-            }, interfaces));
+        }, interfaces));
 
         // check the type name is a collection so we don't get any potential unknown or unwanted
         // typenames like IMapChangedEventArgs

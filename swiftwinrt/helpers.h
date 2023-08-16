@@ -809,7 +809,6 @@ namespace swiftwinrt
             }
             if (mapped->swift_type_name() == "EventRegistrationToken") return param_category::struct_type;
             if (mapped->swift_type_name() == "IAsyncInfo") return param_category::object_type;
-            if (mapped->swift_type_name() == "AsyncStatus") return param_category::enum_type;
             if (mapped->swift_type_name() == "HResult") return param_category::fundamental_type;
             assert(false); // unexpected mapped type
         }
@@ -912,5 +911,16 @@ namespace swiftwinrt
         }
 
         return true;
+    }
+
+    inline bool use_sdk_c_header_definition(metadata_type const& type)
+    {
+        static std::set<std::string_view> removed_types = {
+            "Windows.Foundation.Collections.CollectionChange",
+            "Windows.Foundation.Collections.IVectorChangedEventArgs",
+            "Windows.Foundation.IAsyncInfo",
+            "Windows.Foundation.AsyncStatus"
+        };        
+        return removed_types.contains(type.swift_full_name());
     }
 }

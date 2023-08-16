@@ -131,6 +131,14 @@ namespace swiftwinrt
             auto package_template = find_resource(RESOURCE_TYPE_OTHER_FILE_STR, RESOURCE_NAME_CWINRT_PACKAGE_SWIFT_STR);
             fill_template_placeholders_to_file(package_template, dir_path / "Package.swift");
         }
+
+        auto support_files = get_named_resources_of_type(
+            GetModuleHandle(NULL), RESOURCE_TYPE_C_INCLUDE_FILE_STR, /* make_lowercase: */ true);
+        for (const auto& support_file : support_files)
+        {
+            auto path = dir_path / "include" / (support_file.first + ".h");
+            fill_template_placeholders_to_file(support_file.second, path);
+        }
     }
 
     static void write_namespace_abi(std::string_view const& ns, type_cache const& members, include_only_used_filter const& filter)

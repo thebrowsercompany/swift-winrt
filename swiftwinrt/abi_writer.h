@@ -100,14 +100,9 @@ namespace swiftwinrt
     // Don't write "built-in types" since these are defined in other header files
     // These aren't completely removed from metadata because we need to generate them
     // on the swift side
-    static std::set<std::string_view> removed_types = {
-        "Windows.Foundation.Collections.CollectionChange",
-        "Windows.Foundation.Collections.IVectorChangedEventArgs"
-    };
-
     static bool should_write(metadata_type const& type)
     {
-        return !removed_types.contains(type.swift_full_name());
+        return !use_sdk_c_header_definition(type);
     }
 
     static void write_includes(writer& w, type_cache const& types, std::string_view fileName)
@@ -115,7 +110,7 @@ namespace swiftwinrt
         // Forced dependencies
         w.write(R"^-^(// Header files for imported files
 #include "inspectable.h"
-#include "AsyncInfo.h"
+#include "CAsyncInfo.h"
 #include "EventToken.h"
 #include "windowscontracts.h"
 )^-^");
