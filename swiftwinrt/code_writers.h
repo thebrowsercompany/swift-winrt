@@ -118,7 +118,7 @@ namespace swiftwinrt
         }
 
         auto abi_guard = w.push_mangled_names(true);
-
+        auto mangled = w.push_abi_types(true);
         auto guid = attribute.Value().FixedArgs();
         auto format = R"(private var IID_%: IID {
     IID(%)// %
@@ -369,10 +369,11 @@ bind<write_abi_args>(function));
             return;
         }
         const bool internal = is_composable_factory || can_mark_internal(type.type());
+        auto name = w.write_temp("%", type);
         auto baseClass = (is_delegate(type) || !type.type().Flags().WindowsRuntime()) ? "IUnknown" : "IInspectable";
         w.write("% class %: %.%% {\n",
             internal ? "internal" : "open",
-            type,
+            bind_type_abi(type),
             w.support,
             baseClass,
             is_composable_factory ? ", ComposableActivationFactory": "");
@@ -1069,6 +1070,8 @@ public class %_MakeFromAbi : MakeFromAbi {
 
         auto class_indent_guard = w.push_indent();
 
+        write_generic_typealiases(w, type);
+
         w.write(R"(public typealias CABI = %
 public typealias SwiftABI = %.%
 public typealias SwiftProjection = %
@@ -1191,7 +1194,19 @@ public static func makeAbi() -> CABI {
                 write_swift_type_identifier(w, *iface.second.type);
             }}, interfaces));
 
-
+        // check the type name is a collection so we don't get any potential unknown or unwanted
+        // typenames like IMapChangedEventArgs
+        if (is_winrt_generic_collection(type))
+        {
+            if (typeName.starts_with("IVector"))
+            {
+                implements.append(", Collection where Element == T, Index == Int");
+            }
+            else if (typeName.starts_with("IMap"))
+            {
+                implements.append(" where T == AnyIKeyValuePair<K,V>?");
+            }
+        }
         std::vector<std::string> eventSourceInvokeLines;
         w.write("public protocol % : %% {\n", type, implements,
             implements.empty() ? "WinRTInterface" : "");
@@ -1209,12 +1224,14 @@ public static func makeAbi() -> CABI {
                 if (!can_write(w, method)) continue;
 
                 auto full_type_name = w.push_full_type_names(true);
-                auto maybe_throws = is_winrt_generic_collection(type) || is_noexcept(method.def) ? "" : " throws";
+                auto maybe_throws = is_noexcept(type, method) ? "" : " throws";
+                auto type_params = swift_write_type_params_for(type);
+
                 w.write("func %(%)%%\n",
                     get_swift_name(method),
-                    bind<write_function_params>(method, write_type_params::swift_allow_implicit_unwrap),
+                    bind<write_function_params>(method, type_params),
                     maybe_throws,
-                    bind<write_return_type_declaration>(method, write_type_params::swift_allow_implicit_unwrap));
+                    bind<write_return_type_declaration>(method, type_params));
             }
 
             for (auto& prop : type.properties)
@@ -1331,7 +1348,6 @@ public static func makeAbi() -> CABI {
 
     static void write_delegate(writer& w, delegate_type const& type)
     {
-        if (type.is_generic()) return;
         // Delegates require tuples because of the way that the bridges are implemented.
         // The bridge classes have a typealias for the parameters, and we use those
         // parameters for the delegate signature to create the bridge. The swift compiler
@@ -1405,20 +1421,7 @@ public static func makeAbi() -> CABI {
 
         auto indent_guard = w.push_indent();
 
-        auto&& generic_params = type.generic_params();
-        if (type.swift_type_name().starts_with("IVector")) // IVector and IVectorView
-        {
-            w.write("typealias Element = %\n", bind<write_type>(*generic_params[0], write_type_params::swift));
-        }
-        else if (type.swift_type_name().starts_with("IMap")) // IMap and IMapView
-        {
-            w.write("typealias Key = %\n", bind<write_type>(*generic_params[0], write_type_params::swift));
-            w.write("typealias Value = %\n", bind<write_type>(*generic_params[1], write_type_params::swift));
-        }
-        else
-        {
-            assert(!"Unexpected collection type");
-        }
+        write_generic_typealiases(w, type);
 
         w.write("typealias SwiftProjection = %\n",
             bind<write_swift_interface_existential_identifier>(type)); // Do not include outer Optional<>
@@ -1461,6 +1464,13 @@ public static func makeAbi() -> CABI {
             write_class_impl_event(w, event, info);
         }
 
+        for (auto&& [interface_name, info] : type.required_interfaces)
+        {
+            if (!can_write(w, info.type)) { continue; }
+
+            write_interface_impl_members(w, info, /* is_class: */ false);
+        }
+
         w.write("public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }\n");
         indent_guard.end();
         w.write("}\n\n");
@@ -1476,7 +1486,7 @@ public static func makeAbi() -> CABI {
             auto delegate_method = type.functions[0];
             do_write_delegate_implementation(w, type, delegate_method);
         }
-        else if (is_winrt_generic_collection(type))
+        else if (!is_winrt_ireference(type))
         {
             write_collection_implementation(w, type);
         }
@@ -1775,7 +1785,7 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
             w.write("public %var % : % {\n",
                 iface.attributed ? "static " : "",
                 get_swift_name(prop),
-                bind<write_type>(*prop.getter->return_type->type, write_type_params::swift_allow_implicit_unwrap));
+                bind<write_type>(*prop.getter->return_type->type, swift_write_type_params_for(*iface.type)));
         }
         auto property_indent_guard = w.push_indent();
 
@@ -1848,15 +1858,9 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
             // don't write methods which are really properties
             return;
         }
-
-        // When implementing a generic collection interface,
-        // we cannot use implicit unwrapping, because of Swift limitations:
-        // typename Element must be Base? and not Base!,
-        // and declaring GetAt(_: UInt32) -> Base! would not bind to GetAt(_: UInt32) -> Element.
-        auto is_winrt_collection = is_winrt_generic_collection(iface.type);
-        auto is_no_except = is_winrt_collection || is_noexcept(function.def);
-        auto&& type_params = is_winrt_collection
-            ? write_type_params::swift : write_type_params::swift_allow_implicit_unwrap;
+     
+        auto is_no_except = is_noexcept(*iface.type, function);
+        auto type_params = swift_write_type_params_for(*iface.type);
         auto maybe_throws = is_no_except ? "" : " throws";
         w.write("% func %(%)%% {\n",
             iface.overridable ? "open" : "public",
@@ -2101,7 +2105,6 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         separator s{ w };
         s();
 
-        std::vector<std::pair<std::string, const metadata_type*>> collection_type_aliases;
         bool needsCustomQueryInterfaceConformance = composable;
         bool baseHasCustomQueryInterfaceConformance = base_class && base_class->is_composable();
         // list of overridable interfaces which are needed for the implementation of CustomQueryInterface.
@@ -2129,37 +2132,14 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
             // We don't want to specify interfaces which come from the base class or which ones are exclusive
             if (info.base || info.exclusive || interface_name.empty()) continue;
 
-            // TODO: WIN-274 Code generation for IIterable/IIterator
-            // TODO: WIN-124 Code generation for IObservableVector and IObservableMap
-            auto name = info.type->swift_full_name();
-            if (name.starts_with("Windows.Foundation.Collections.IIterable")
-                || name.starts_with("Windows.Foundation.Collections.IIterator")
-                || name.starts_with("Windows.Foundation.Collections.IObservableVector")
-                || name.starts_with("Windows.Foundation.Collections.IObservableMap"))
-            {
-                continue;
-            }
-
             s();
             // if the class also implements an interface, then it will need to conform to the protocol.
             needsCustomQueryInterfaceConformance = true;
 
             // when deriving from collections we want to just derive from `IVector` and will use a typealias to set the Element (this is required by Swift)
             auto name_to_write = interface_name;
-            if (is_winrt_generic_collection(info.type))
+            if (is_generic_inst(info.type))
             {
-                if (interface_name.starts_with("IVector"))
-                {
-                    collection_type_aliases.emplace_back(
-                        std::make_pair("Element", info.generic_params[0]));
-                }
-                else if (interface_name.starts_with("IMap"))
-                {
-                    collection_type_aliases.emplace_back(
-                        std::make_pair("Key", info.generic_params[0]));
-                    collection_type_aliases.emplace_back(
-                        std::make_pair("Value", info.generic_params[1]));
-                }
                 name_to_write = interface_name.substr(0, interface_name.find_first_of('<'));
             }
             w.write(name_to_write);
@@ -2174,12 +2154,7 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
             w.write("private (set) public var _inner: UnsafeMutablePointer<%.IInspectable>?\n", w.c_mod);
         }
 
-        for (auto&& collection_type_alias : collection_type_aliases)
-        {
-            w.write("public typealias % = %\n",
-                collection_type_alias.first,
-                bind<write_type>(*collection_type_alias.second, write_type_params::swift));
-        }
+        write_generic_typealiases(w, type);
 
         writer::generic_param_guard guard;
 
@@ -2469,15 +2444,7 @@ private var _default: SwiftABI!
 
     static void write_iinspectable_methods(writer& w, generic_inst const& type)
     {
-        if (auto ifaceType = dynamic_cast<const interface_type*>(type.generic_type()))
-        {
-            write_iinspectable_methods(w, type, ifaceType->required_interfaces);
-
-        }
-        else
-        {
-            write_iinspectable_methods(w, type, {});
-        }
+        write_iinspectable_methods(w, type, type.required_interfaces);
     }
     
     // assigns return or out parameters in vtable methods

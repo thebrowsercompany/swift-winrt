@@ -3,6 +3,9 @@ import Ctest_component
 
 public enum __IMPL_Windows_Foundation_Collections {
     public class IPropertySetImpl : IPropertySet, WinRTAbiBridge {
+        public typealias K = String
+        public typealias V = Any?
+        public typealias T = AnyIKeyValuePair<String, Any?>?
         public typealias CABI = __x_ABI_CWindows_CFoundation_CCollections_CIPropertySet
         public typealias SwiftABI = __ABI_Windows_Foundation_Collections.IPropertySet
         public typealias SwiftProjection = AnyIPropertySet
@@ -20,6 +23,21 @@ public enum __IMPL_Windows_Foundation_Collections {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Foundation_Collections.IPropertySetVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
+        internal lazy var _IObservableMap: IObservableMapString_Any = try! _default.QueryInterface()
+        public lazy var mapChanged : Event<MapChangedEventHandler<String, Any?>> = {
+          .init(
+            add: { [weak this = _IObservableMap] in
+              guard let this else { return .init() }
+              let wrapper = test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper($0)
+              let abi = try! wrapper?.toABI { $0 }
+              return try! this.add_MapChangedImpl(abi)
+            },
+            remove: { [weak this = _IObservableMap] in
+             try? this?.remove_MapChangedImpl($0) 
+           }
+          )
+        }()
+
         internal lazy var _IMap: IMapString_Any = try! _default.QueryInterface()
         public func lookup(_ key: String) -> Any? {
             let _key = try! HString(key)
@@ -61,6 +79,12 @@ public enum __IMPL_Windows_Foundation_Collections {
                 return result
             }
 
+        }
+
+        internal lazy var _IIterable: IIterableIKeyValuePairString_Any = try! _default.QueryInterface()
+        public func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
+            let result = try! _IIterable.FirstImpl()
+            return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
         }
 
     }

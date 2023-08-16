@@ -1,6 +1,5 @@
 // Default Swift Collection protocol implementation for IVector
-public extension IVector: Collection where Index == Int {
-    typealias Element = T
+public extension IVector {
     var startIndex: Int { 0 }
     var endIndex: Int { count }
     var count: Int { Int(size) }
@@ -27,8 +26,7 @@ public extension IVector: Collection where Index == Int {
     }
 }
 
-public extension IVectorView: Collection where Index == Int {
-    typealias Element = T
+public extension IVectorView {
     var startIndex: Int { 0 }
     var endIndex: Int { count }
     var count: Int { Int(size) }

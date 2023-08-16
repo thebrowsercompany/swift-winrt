@@ -139,7 +139,7 @@ namespace swiftwinrt
         {
             namespace_cache* target;
             generic_inst const* parent_generic_inst = nullptr;
-            interface_type const* parent_generic_iface = nullptr;
+            typedef_base const* parent_generic_iface_or_delegate = nullptr;
         };
 
         void process_namespace_dependencies(namespace_cache& target);

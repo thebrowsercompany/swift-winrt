@@ -1227,6 +1227,14 @@ public enum __ABI_test_component {
             }
         }
 
+        internal func ActionImpl(_ value: __x_ABI_CWindows_CFoundation_CDateTime) throws -> UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIAsyncAction>? {
+            var operation: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIAsyncAction>?
+            _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Action(pThis, value, &operation))
+            }
+            return operation
+        }
+
         internal func ObjectImpl(_ value: __x_ABI_CWindows_CFoundation_CDateTime) throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
             var result: UnsafeMutablePointer<Ctest_component.IInspectable>?
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in

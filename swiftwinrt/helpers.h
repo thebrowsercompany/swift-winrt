@@ -215,6 +215,12 @@ namespace swiftwinrt
         return is_remove_overload(method) || has_attribute(method, metadata_namespace, "NoExceptionAttribute");
     }
 
+    inline bool is_noexcept(metadata_type const& type, function_def const& method)
+    {
+        if (is_winrt_generic_collection(type)) return true;
+        return is_noexcept(method.def);
+    }
+
     inline bool has_fastabi(TypeDef const& type)
     {
         return settings.fastabi && has_attribute(type, metadata_namespace, "FastAbiAttribute");
@@ -813,7 +819,6 @@ namespace swiftwinrt
         }
 
         // delegates, interfaces, and classes are all object type
-        assert(!is_generic_def(type));
         return param_category::object_type;
     }
 

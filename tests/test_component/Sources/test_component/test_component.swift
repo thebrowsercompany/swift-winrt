@@ -75,8 +75,8 @@ open class Base : UnsealedWinRTClass {
     open class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
 }
 
-public final class BaseCollection : WinRTClass, IVector {
-    public typealias Element = Base?
+public final class BaseCollection : WinRTClass, IVector, IIterable {
+    public typealias T = Base?
     private typealias SwiftABI = IVectorBase
     private typealias CABI = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase
     private var _default: SwiftABI!
@@ -180,11 +180,19 @@ public final class BaseCollection : WinRTClass, IVector {
 
     }
 
+    internal lazy var _IIterable: IIterableBase = try! _default.QueryInterface()
+    // MARK: WinRT
+    public func first() -> AnyIIterator<Base?>? {
+        let result = try! _IIterable.FirstImpl()
+        return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
+    }
+
 }
 
-public final class BaseMapCollection : WinRTClass, IMap {
-    public typealias Key = String
-    public typealias Value = Base?
+public final class BaseMapCollection : WinRTClass, IMap, IIterable {
+    public typealias K = String
+    public typealias V = Base?
+    public typealias T = AnyIKeyValuePair<String, Base?>?
     private typealias SwiftABI = IMapString_Base
     private typealias CABI = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
     private var _default: SwiftABI!
@@ -250,6 +258,13 @@ public final class BaseMapCollection : WinRTClass, IMap {
             return result
         }
 
+    }
+
+    internal lazy var _IIterable: IIterableIKeyValuePairString_Base = try! _default.QueryInterface()
+    // MARK: WinRT
+    public func first() -> AnyIIterator<AnyIKeyValuePair<String, Base?>?>? {
+        let result = try! _IIterable.FirstImpl()
+        return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
 
 }
@@ -968,6 +983,11 @@ public final class Simple : WinRTClass {
 
     public func method() throws {
         try _default.MethodImpl()
+    }
+
+    public func action(_ value: test_component.DateTime) throws -> test_component.AnyIAsyncAction! {
+        let operation = try _default.ActionImpl(.from(swift: value))
+        return __ABI_Windows_Foundation.IAsyncActionWrapper.unwrapFrom(abi: operation)
     }
 
     public func object(_ value: test_component.DateTime) throws -> Any! {

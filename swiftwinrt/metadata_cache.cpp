@@ -100,6 +100,14 @@ void metadata_cache::process_namespace_types(
         target.delegates.emplace_back(d);
         [[maybe_unused]] auto [itr, added] = table.emplace(d.TypeName(), target.delegates.back());
         XLANG_ASSERT(added);
+
+        // emplace the generic parameters for the delegate. these are dummy types like "T" or "V"
+        // and are used for later resolution of types
+        for (auto& param : d.GenericParam())
+        {
+            target.delegates.back().generic_params.emplace_back(param.Name());
+            table.emplace(param.Name(), target.delegates.back().generic_params.back());
+        }
     }
 
     target.interfaces.reserve(members.interfaces.size());
@@ -157,35 +165,35 @@ void metadata_cache::process_namespace_dependencies(namespace_cache& target)
     for (auto& enumType : target.enums)
     {
         process_enum_dependencies(state, enumType);
-        XLANG_ASSERT(!state.parent_generic_iface);
+        XLANG_ASSERT(!state.parent_generic_iface_or_delegate);
         XLANG_ASSERT(!state.parent_generic_inst);
     }
 
     for (auto& structType : target.structs)
     {
         process_struct_dependencies(state, structType);
-        XLANG_ASSERT(!state.parent_generic_iface);
+        XLANG_ASSERT(!state.parent_generic_iface_or_delegate);
         XLANG_ASSERT(!state.parent_generic_inst);
     }
 
     for (auto& delegateType : target.delegates)
     {
         process_delegate_dependencies(state, delegateType);
-        XLANG_ASSERT(!state.parent_generic_iface);
+        XLANG_ASSERT(!state.parent_generic_iface_or_delegate);
         XLANG_ASSERT(!state.parent_generic_inst);
     }
 
     for (auto& interfaceType : target.interfaces)
     {
         process_interface_dependencies(state, interfaceType);
-        XLANG_ASSERT(!state.parent_generic_iface);
+        XLANG_ASSERT(!state.parent_generic_iface_or_delegate);
         XLANG_ASSERT(!state.parent_generic_inst);
     }
 
     for (auto& classType : target.classes)
     {
         process_class_dependencies(state, classType);
-        XLANG_ASSERT(!state.parent_generic_iface);
+        XLANG_ASSERT(!state.parent_generic_iface_or_delegate);
         XLANG_ASSERT(!state.parent_generic_inst);
     }
 }
@@ -243,7 +251,6 @@ void metadata_cache::get_interfaces_impl(init_state& state, writer& w, get_inter
 
         auto type = impl.Interface();
         info.type = &find_dependent_type(state, type);
-
         info.is_default = has_attribute(impl, "Windows.Foundation.Metadata", "DefaultAttribute");
         info.defaulted = !base && (defaulted || info.is_default);
         writer::generic_param_guard guard;
@@ -253,6 +260,7 @@ void metadata_cache::get_interfaces_impl(init_state& state, writer& w, get_inter
             info.generic_params = w.generic_param_stack.back();
         }
         auto name = w.write_temp("%", info.type);
+     
         {
             // This is for correctness rather than an optimization (but helps performance as well).
             // If the interface was not previously inserted, carry on and recursively insert it.
@@ -433,7 +441,7 @@ void metadata_cache::process_delegate_dependencies(init_state& state, delegate_t
     // We only care about instantiations of generic types, so early exit as we won't be able to resolve references
     if (type.is_generic())
     {
-        return;
+        state.parent_generic_iface_or_delegate = &type;
     }
 
     // Delegates only have a single function - Invoke - that we care about
@@ -450,6 +458,8 @@ void metadata_cache::process_delegate_dependencies(init_state& state, delegate_t
 
     // Should be exactly one function named 'Invoke'
     XLANG_ASSERT(type.functions.size() == 1);
+
+    state.parent_generic_iface_or_delegate = nullptr;
 }
 
 void metadata_cache::process_interface_dependencies(init_state& state, interface_type& type)
@@ -458,7 +468,7 @@ void metadata_cache::process_interface_dependencies(init_state& state, interface
 
     if (type.is_generic())
     {
-        state.parent_generic_iface = &type;
+        state.parent_generic_iface_or_delegate = &type;
     }
 
     for (auto const& interfaces : get_interfaces(state, type.type()))
@@ -486,7 +496,7 @@ void metadata_cache::process_interface_dependencies(init_state& state, interface
         type.events.push_back(process_event(state, event));
     }
 
-    state.parent_generic_iface = nullptr;
+    state.parent_generic_iface_or_delegate = nullptr;
 }
 
 void metadata_cache::process_class_dependencies(init_state& state, class_type& type)
@@ -748,11 +758,11 @@ metadata_type const& metadata_cache::find_dependent_type(init_state& state, Type
                     swiftwinrt::throw_invalid("GenericTypeIndex out of range");
                 }
             }
-            else if (state.parent_generic_iface)
+            else if (state.parent_generic_iface_or_delegate)
             {
-                if (t.index < state.parent_generic_iface->generic_params.size())
+                if (t.index < state.parent_generic_iface_or_delegate->generic_params.size())
                 {
-                    result = &state.parent_generic_iface->generic_params[t.index];
+                    result = &state.parent_generic_iface_or_delegate->generic_params[t.index];
                 }
                 else
                 {
@@ -820,7 +830,7 @@ metadata_type const& metadata_cache::find_dependent_type(init_state& state, Gene
         genericParams.push_back(&find_dependent_type(state, param));
     }
 
-    if (state.parent_generic_iface != nullptr)
+    if (state.parent_generic_iface_or_delegate != nullptr)
     {
         // not a generic_inst, but an interface type, just return the generic type
         return *genericType;
@@ -841,9 +851,18 @@ metadata_type const& metadata_cache::find_dependent_type(init_state& state, Gene
                 }
             };
 
-            for (auto const& iface : genericType->type().InterfaceImpl())
+            for (auto&& iface : get_interfaces(state, genericType->type()))
             {
-                check_dependency(iface.Interface());
+                itr->second.required_interfaces.push_back(iface);
+
+                if (auto genericType = dynamic_cast<generic_inst const*>(iface.second.type))
+                {
+                    itr->second.dependencies.push_back(genericType);
+                    for (auto&& iface: get_interfaces(state, genericType->generic_type()->type()))
+                    {
+                        itr->second.required_interfaces.push_back(iface);
+                    }
+                }
             }
 
             for (auto const& fn : genericType->type().MethodList())

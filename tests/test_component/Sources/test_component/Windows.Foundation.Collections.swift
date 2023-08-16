@@ -2,9 +2,10 @@
 import Ctest_component
 
 public typealias CollectionChange = __x_ABI_CWindows_CFoundation_CCollections_CCollectionChange
-public final class PropertySet : WinRTClass, IMap, IPropertySet {
-    public typealias Key = String
-    public typealias Value = Any?
+public final class PropertySet : WinRTClass, IObservableMap, IMap, IIterable, IPropertySet {
+    public typealias K = String
+    public typealias V = Any?
+    public typealias T = AnyIKeyValuePair<String, Any?>?
     private typealias SwiftABI = __ABI_Windows_Foundation_Collections.IPropertySet
     private typealias CABI = __x_ABI_CWindows_CFoundation_CCollections_CIPropertySet
     private var _default: SwiftABI!
@@ -34,6 +35,22 @@ public final class PropertySet : WinRTClass, IMap, IPropertySet {
     public init() {
         try! _default = RoActivateInstance(HString("Windows.Foundation.Collections.PropertySet"))
     }
+
+    internal lazy var _IObservableMap: IObservableMapString_Any = try! _default.QueryInterface()
+    // MARK: WinRT
+    public lazy var mapChanged : Event<MapChangedEventHandler<String, Any?>> = {
+      .init(
+        add: { [weak this = _IObservableMap] in
+          guard let this else { return .init() }
+          let wrapper = test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper($0)
+          let abi = try! wrapper?.toABI { $0 }
+          return try! this.add_MapChangedImpl(abi)
+        },
+        remove: { [weak this = _IObservableMap] in
+         try? this?.remove_MapChangedImpl($0) 
+       }
+      )
+    }()
 
     internal lazy var _IMap: IMapString_Any = try! _default.QueryInterface()
     // MARK: WinRT
@@ -79,11 +96,19 @@ public final class PropertySet : WinRTClass, IMap, IPropertySet {
 
     }
 
+    internal lazy var _IIterable: IIterableIKeyValuePairString_Any = try! _default.QueryInterface()
+    // MARK: WinRT
+    public func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
+        let result = try! _IIterable.FirstImpl()
+        return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
+    }
+
 }
 
-public final class StringMap : WinRTClass, IMap {
-    public typealias Key = String
-    public typealias Value = String
+public final class StringMap : WinRTClass, IMap, IIterable, IObservableMap {
+    public typealias K = String
+    public typealias V = String
+    public typealias T = AnyIKeyValuePair<String, String>?
     private typealias SwiftABI = IMapString_String
     private typealias CABI = __x_ABI_C__FIMap_2_HSTRING_HSTRING
     private var _default: SwiftABI!
@@ -156,11 +181,35 @@ public final class StringMap : WinRTClass, IMap {
 
     }
 
+    internal lazy var _IIterable: IIterableIKeyValuePairString_String = try! _default.QueryInterface()
+    // MARK: WinRT
+    public func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
+        let result = try! _IIterable.FirstImpl()
+        return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
+    }
+
+    internal lazy var _IObservableMap: IObservableMapString_String = try! _default.QueryInterface()
+    // MARK: WinRT
+    public lazy var mapChanged : Event<MapChangedEventHandler<String, String>> = {
+      .init(
+        add: { [weak this = _IObservableMap] in
+          guard let this else { return .init() }
+          let wrapper = test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper($0)
+          let abi = try! wrapper?.toABI { $0 }
+          return try! this.add_MapChangedImpl(abi)
+        },
+        remove: { [weak this = _IObservableMap] in
+         try? this?.remove_MapChangedImpl($0) 
+       }
+      )
+    }()
+
 }
 
-public final class ValueSet : WinRTClass, IMap, IPropertySet {
-    public typealias Key = String
-    public typealias Value = Any?
+public final class ValueSet : WinRTClass, IObservableMap, IMap, IIterable, IPropertySet {
+    public typealias K = String
+    public typealias V = Any?
+    public typealias T = AnyIKeyValuePair<String, Any?>?
     private typealias SwiftABI = __ABI_Windows_Foundation_Collections.IPropertySet
     private typealias CABI = __x_ABI_CWindows_CFoundation_CCollections_CIPropertySet
     private var _default: SwiftABI!
@@ -190,6 +239,22 @@ public final class ValueSet : WinRTClass, IMap, IPropertySet {
     public init() {
         try! _default = RoActivateInstance(HString("Windows.Foundation.Collections.ValueSet"))
     }
+
+    internal lazy var _IObservableMap: IObservableMapString_Any = try! _default.QueryInterface()
+    // MARK: WinRT
+    public lazy var mapChanged : Event<MapChangedEventHandler<String, Any?>> = {
+      .init(
+        add: { [weak this = _IObservableMap] in
+          guard let this else { return .init() }
+          let wrapper = test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper($0)
+          let abi = try! wrapper?.toABI { $0 }
+          return try! this.add_MapChangedImpl(abi)
+        },
+        remove: { [weak this = _IObservableMap] in
+         try? this?.remove_MapChangedImpl($0) 
+       }
+      )
+    }()
 
     internal lazy var _IMap: IMapString_Any = try! _default.QueryInterface()
     // MARK: WinRT
@@ -235,11 +300,20 @@ public final class ValueSet : WinRTClass, IMap, IPropertySet {
 
     }
 
+    internal lazy var _IIterable: IIterableIKeyValuePairString_Any = try! _default.QueryInterface()
+    // MARK: WinRT
+    public func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
+        let result = try! _IIterable.FirstImpl()
+        return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
+    }
+
 }
 
+public typealias MapChangedEventHandler<K,V> = (AnyIObservableMap<K, V>?, AnyIMapChangedEventArgs<K>?) -> ()
+public typealias VectorChangedEventHandler<T> = (AnyIObservableVector<T>?, AnyIVectorChangedEventArgs?) -> ()
 public protocol IIterable<T> : WinRTInterface {
     associatedtype T
-    func first() -> test_component.AnyIIterator<T>!
+    func first() -> test_component.AnyIIterator<T>?
 }
 
 public typealias AnyIIterable<T> = any IIterable<T>
@@ -270,23 +344,23 @@ public protocol IMapChangedEventArgs<K> : WinRTInterface {
 
 public typealias AnyIMapChangedEventArgs<K> = any IMapChangedEventArgs<K>
 
-public protocol IMapView<K,V> : IIterable {
+public protocol IMapView<K,V> : IIterable where T == AnyIKeyValuePair<K,V>? {
     associatedtype K
     associatedtype V
     func lookup(_ key: K) -> V
     func hasKey(_ key: K) -> Bool
-    func split(_ first: inout test_component.AnyIMapView<K, V>!, _ second: inout test_component.AnyIMapView<K, V>!)
+    func split(_ first: inout test_component.AnyIMapView<K, V>?, _ second: inout test_component.AnyIMapView<K, V>?)
     var size: UInt32 { get }
 }
 
 public typealias AnyIMapView<K,V> = any IMapView<K,V>
 
-public protocol IMap<K,V> : IIterable {
+public protocol IMap<K,V> : IIterable where T == AnyIKeyValuePair<K,V>? {
     associatedtype K
     associatedtype V
     func lookup(_ key: K) -> V
     func hasKey(_ key: K) -> Bool
-    func getView() -> test_component.AnyIMapView<K, V>!
+    func getView() -> test_component.AnyIMapView<K, V>?
     func insert(_ key: K, _ value: V) -> Bool
     func remove(_ key: K)
     func clear()
@@ -310,7 +384,7 @@ public protocol IObservableVector<T> : IIterable, IVector {
 
 public typealias AnyIObservableVector<T> = any IObservableVector<T>
 
-public protocol IPropertySet : IMap<String, Any?> {
+public protocol IPropertySet : IObservableMap<String, Any?>, IMap<String, Any?>, IIterable<AnyIKeyValuePair<String, Any?>?> {
 }
 
 extension IPropertySet {
@@ -319,8 +393,14 @@ extension IPropertySet {
             case __ABI_Windows_Foundation_Collections.IPropertySetWrapper.IID:
                 let wrapper = __ABI_Windows_Foundation_Collections.IPropertySetWrapper(self)
                 return wrapper!.queryInterface(iid)
+            case test_component.__x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper.IID:
+                let wrapper = test_component.__x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper(self)
+                return wrapper!.queryInterface(iid)
             case test_component.__x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.IID:
                 let wrapper = test_component.__x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper(self)
+                return wrapper!.queryInterface(iid)
+            case test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.IID:
+                let wrapper = test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper(self)
                 return wrapper!.queryInterface(iid)
             default: return nil
         }
@@ -345,7 +425,7 @@ extension IVectorChangedEventArgs {
 }
 public typealias AnyIVectorChangedEventArgs = any IVectorChangedEventArgs
 
-public protocol IVectorView<T> : IIterable {
+public protocol IVectorView<T> : IIterable, Collection where Element == T, Index == Int {
     associatedtype T
     func getAt(_ index: UInt32) -> T
     func indexOf(_ value: T, _ index: inout UInt32) -> Bool
@@ -354,10 +434,10 @@ public protocol IVectorView<T> : IIterable {
 
 public typealias AnyIVectorView<T> = any IVectorView<T>
 
-public protocol IVector<T> : IIterable {
+public protocol IVector<T> : IIterable, Collection where Element == T, Index == Int {
     associatedtype T
     func getAt(_ index: UInt32) -> T
-    func getView() -> test_component.AnyIVectorView<T>!
+    func getView() -> test_component.AnyIVectorView<T>?
     func indexOf(_ value: T, _ index: inout UInt32) -> Bool
     func setAt(_ index: UInt32, _ value: T)
     func insertAt(_ index: UInt32, _ value: T)

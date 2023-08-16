@@ -34,13 +34,11 @@ namespace swiftwinrt
         {
             if (is_generic_inst(genarg))
             {
-                return false;
+                return true;
             }
         }
 
-        auto name = type.generic_type_abi_name();
-        return name == "IReference" || name == "EventHandler" || name == "TypedEventHandler"
-            || name == "IVector" || name == "IVectorView" || name == "IMap" || name == "IMapView";
+        return true;
     }
 
     static bool can_write(writer& w, function_def const& function, bool allow_special = false)
@@ -52,8 +50,6 @@ namespace swiftwinrt
 
         auto method_name = get_swift_name(method);
 
-        // TODO: WIN-30 swiftwinrt: support async/await
-        if (function.is_async()) return false;
         for (auto& param : function.params)
         {
             auto param_name = get_swift_name(param);
@@ -117,17 +113,6 @@ namespace swiftwinrt
             // so we'll return false
             if (iface.second.is_default)
             {
-                // TODO: WIN-274 Code generation for IIterable/IIterator
-                // TODO: WIN-124 Code generation for IObservableVector and IObservableMap
-                auto name = iface.second.type->swift_full_name();
-                if (name.starts_with("Windows.Foundation.Collections.IIterable")
-                    || name.starts_with("Windows.Foundation.Collections.IIterator")
-                    || name.starts_with("Windows.Foundation.Collections.IObservableVector")
-                    || name.starts_with("Windows.Foundation.Collections.IObservableMap"))
-                {
-                    return false;
-                }
-
                 if (iface.first.empty()) return false;
             }
         }

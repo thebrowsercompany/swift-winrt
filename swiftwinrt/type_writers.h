@@ -436,16 +436,17 @@ namespace swiftwinrt
                 }
                 else
                 {
+                    auto format = mangled_names || abi_types ? "%%" : "%<%>";
+                    auto seperator = mangled_names || abi_types ? "_" : ",";
                     auto generic_type = dynamic_cast<const typedef_base*>(type);
-                    ;
-                    write("%<%>", typeName, bind_each([&](writer& w, GenericParam generic_param) {
+                    write(format, typeName, bind_each([&](writer& w, GenericParam generic_param) {
                         if (first)
                         {
                             first = false;
                         }
                         else
                         {
-                            w.write(",");
+                            w.write(seperator);
                         }
 
                         w.write(generic_param.Name());
