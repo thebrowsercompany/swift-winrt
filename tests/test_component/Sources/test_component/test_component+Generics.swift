@@ -3516,12 +3516,13 @@ internal var __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableVTable: __x_ABI_C_
 
     GetIids: {
         let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+        let iids = CoTaskMemAlloc(UInt64(size) * 5).assumingMemoryBound(to: IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper.IID
         iids[3] = test_component.__x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.IID
-        $1!.pointee = 4
+        iids[4] = test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.IID
+        $1!.pointee = 5
         $2!.pointee = iids
         return S_OK
     },
@@ -3577,6 +3578,7 @@ internal class IObservableMapString_Any: test_component.IInspectable {
 internal class __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableImpl : IObservableMap, AbiInterfaceImpl {
     typealias K = String
     typealias V = Any?
+    typealias T = AnyIKeyValuePair<String, Any?>?
     typealias SwiftProjection = AnyIObservableMap<String, Any?>
     typealias CABI = __x_ABI_C__FIObservableMap_2_HSTRING_IInspectable
     typealias SwiftABI = IObservableMapString_Any
@@ -3655,6 +3657,12 @@ internal class __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableImpl : IObservab
 
     }
 
+    internal lazy var _IIterable: IIterableIKeyValuePairString_Any = try! _default.QueryInterface()
+    public func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
+        let result = try! _IIterable.FirstImpl()
+        return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
+    }
+
     public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
 }
 
@@ -3694,12 +3702,13 @@ internal var __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIOb
 
     GetIids: {
         let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+        let iids = CoTaskMemAlloc(UInt64(size) * 5).assumingMemoryBound(to: IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper.IID
         iids[3] = test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.IID
-        $1!.pointee = 4
+        iids[4] = test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.IID
+        $1!.pointee = 5
         $2!.pointee = iids
         return S_OK
     },
@@ -3755,6 +3764,7 @@ internal class IObservableMapString_String: test_component.IInspectable {
 internal class __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGImpl : IObservableMap, AbiInterfaceImpl {
     typealias K = String
     typealias V = String
+    typealias T = AnyIKeyValuePair<String, String>?
     typealias SwiftProjection = AnyIObservableMap<String, String>
     typealias CABI = __x_ABI_C__FIObservableMap_2_HSTRING_HSTRING
     typealias SwiftABI = IObservableMapString_String
@@ -3830,6 +3840,12 @@ internal class __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGImpl : IObservableMap
             return result
         }
 
+    }
+
+    internal lazy var _IIterable: IIterableIKeyValuePairString_String = try! _default.QueryInterface()
+    public func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
+        let result = try! _IIterable.FirstImpl()
+        return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
     public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
@@ -3975,6 +3991,7 @@ internal class __x_ABI_C__FIVectorView_1_IInspectableImpl : IVectorView, AbiInte
     }
 
     // MARK: Collection
+    typealias Element = T
     var startIndex: Int { 0 }
     var endIndex: Int { Int(size) }
     func index(after i: Int) -> Int {
@@ -4163,6 +4180,7 @@ internal class __x_ABI_C__FIVectorView_1_HSTRINGImpl : IVectorView, AbiInterface
     }
 
     // MARK: Collection
+    typealias Element = T
     var startIndex: Int { 0 }
     var endIndex: Int { Int(size) }
     func index(after i: Int) -> Int {
@@ -4350,6 +4368,7 @@ internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl : 
     }
 
     // MARK: Collection
+    typealias Element = T
     var startIndex: Int { 0 }
     var endIndex: Int { Int(size) }
     func index(after i: Int) -> Int {
@@ -4633,6 +4652,7 @@ internal class __x_ABI_C__FIVector_1_IInspectableImpl : IVector, AbiInterfaceImp
     }
 
     // MARK: Collection
+    typealias Element = T
     var startIndex: Int { 0 }
     var endIndex: Int { Int(size) }
     func index(after i: Int) -> Int {
@@ -4961,6 +4981,7 @@ internal class __x_ABI_C__FIVector_1_HSTRINGImpl : IVector, AbiInterfaceImpl {
     }
 
     // MARK: Collection
+    typealias Element = T
     var startIndex: Int { 0 }
     var endIndex: Int { Int(size) }
     func index(after i: Int) -> Int {
@@ -5285,6 +5306,7 @@ internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl : IVec
     }
 
     // MARK: Collection
+    typealias Element = T
     var startIndex: Int { 0 }
     var endIndex: Int { Int(size) }
     func index(after i: Int) -> Int {
@@ -5374,6 +5396,13 @@ private var IID___x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectable: IID {
     IID(Data1: 0x24f981e5, Data2: 0xddca, Data3: 0x538d, Data4: ( 0xaa,0xda,0xa5,0x99,0x06,0x08,0x4c,0xf1 ))// 24f981e5-ddca-538d-aada-a59906084cf1
 }
 
+internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectable {
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableVTable) { $0 }
+        return .init(lpVtbl:vtblPtr)
+    }
+}
+
 internal var __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableVTable: __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
@@ -5440,6 +5469,13 @@ internal class __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableImpl : W
 }
 private var IID___x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRING: IID {
     IID(Data1: 0xe2663f37, Data2: 0x2e1b, Data3: 0x500c, Data4: ( 0xad,0x68,0xc3,0xed,0x7a,0x8f,0x74,0xc8 ))// e2663f37-2e1b-500c-ad68-c3ed7a8f74c8
+}
+
+internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRING {
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGVTable) { $0 }
+        return .init(lpVtbl:vtblPtr)
+    }
 }
 
 internal var __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGVTable: __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGVtbl = .init(

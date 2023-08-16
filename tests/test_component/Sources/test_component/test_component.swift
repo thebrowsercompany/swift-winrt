@@ -104,6 +104,7 @@ public final class BaseCollection : WinRTClass, IVector, IIterable {
     public func queryInterface(_ iid: IID) -> IUnknownRef? {
         return test_component.queryInterface(sealed: self, iid)}
     // MARK: Collection
+    public typealias Element = T
     public var startIndex: Int { 0 }
     public var endIndex: Int { Int(size) }
     public func index(after i: Int) -> Int {

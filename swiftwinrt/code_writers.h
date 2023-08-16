@@ -508,7 +508,7 @@ bind<write_abi_args>(function));
         {
             write_ireference_init_extension(w, inst);
         }
-        else if (is_winrt_eventhandler(inst) || is_winrt_typedeventhandler(inst))
+        else if (is_delegate(inst))
         {
             auto guard{ w.push_generic_params(inst) };
             write_delegate_extension(w, inst, inst.functions[0]);
@@ -909,6 +909,7 @@ bind_impl_fullname(type));
         if (typeName.starts_with("IVector"))
         {
             w.write(R"(// MARK: Collection
+%typealias Element = T
 %var startIndex: Int { 0 }
 %var endIndex: Int { Int(size) }
 %func index(after i: Int) -> Int {
@@ -922,7 +923,7 @@ bind_impl_fullname(type));
     return Int(index)
 }
 %var count: Int { Int(size) }
-)", modifier, modifier, modifier, modifier, modifier);
+)", modifier, modifier, modifier, modifier, modifier, modifier);
             if (typeName.starts_with("IVectorView"))
             {
                 w.write(R"(
