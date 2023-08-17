@@ -103,8 +103,6 @@ namespace swiftwinrt
     static std::set<std::string_view> removed_types = {
         "Windows.Foundation.Collections.CollectionChange",
         "Windows.Foundation.Collections.IVectorChangedEventArgs",
-        "Windows.Foundation.IAsyncInfo",
-        "Windows.Foundation.AsyncStatus"
     };     
     static bool should_write(metadata_type const& type)
     {
@@ -116,7 +114,6 @@ namespace swiftwinrt
         // Forced dependencies
         w.write(R"^-^(// Header files for imported files
 #include "inspectable.h"
-#include "CAsyncInfo.h"
 #include "EventToken.h"
 #include "windowscontracts.h"
 )^-^");
