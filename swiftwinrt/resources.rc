@@ -30,6 +30,8 @@ Event RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\Events\\Event.swift"
 EventHandlerSubscription RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\Events\\EventHandlerSubscription.swift"
 EventSource RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\Events\\EventSource.swift"
 WinRTDelegate RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\Events\\WinRTDelegate.swift"
+FutureValue RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\FutureValue.swift"
+WaitableEvent RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\WaitableEvent.swift"
 
 RESOURCE_NAME_CWINRT_SHIM_C RESOURCE_TYPE_OTHER_FILE "Resources\\CWinRT\\shim.c"
 RESOURCE_NAME_CWINRT_PACKAGE_SWIFT RESOURCE_TYPE_OTHER_FILE "Resources\\CWinRT\\Package.swift"

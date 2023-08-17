@@ -26,7 +26,7 @@ private var IID___x_ABI_Ctest__component_CIBasic: IID {
 }
 
 private var IID___x_ABI_Ctest__component_CIClass: IID {
-    IID(Data1: 0x6C4D9280, Data2: 0xC652, Data3: 0x5CFE, Data4: ( 0xB6,0x94,0x77,0xE1,0xE8,0x7A,0xB4,0x00 ))// 6C4D9280-C652-5CFE-B694-77E1E87AB400
+    IID(Data1: 0xEBCBC0CD, Data2: 0x48DD, Data3: 0x56BA, Data4: ( 0xBB,0xE2,0xCD,0x0B,0xE5,0xA3,0x06,0x76 ))// EBCBC0CD-48DD-56BA-BBE2-CD0BE5A30676
 }
 
 private var IID___x_ABI_Ctest__component_CIClassFactory: IID {
@@ -53,6 +53,10 @@ private var IID___x_ABI_Ctest__component_CICollectionTesterStatics: IID {
     IID(Data1: 0xB357268D, Data2: 0x1A80, Data3: 0x5A61, Data4: ( 0xB3,0xEF,0x13,0x22,0x4B,0xE0,0x63,0x10 ))// B357268D-1A80-5A61-B3EF-13224BE06310
 }
 
+private var IID___x_ABI_Ctest__component_CIDeferrableEventArgs: IID {
+    IID(Data1: 0xDA7B0340, Data2: 0x93E0, Data3: 0x5D49, Data4: ( 0xA7,0xF3,0x0F,0xCA,0x6E,0x90,0x02,0x3C ))// DA7B0340-93E0-5D49-A7F3-0FCA6E90023C
+}
+
 private var IID___x_ABI_Ctest__component_CIDerived: IID {
     IID(Data1: 0x864F4DCB, Data2: 0xC4FF, Data3: 0x5FBB, Data4: ( 0xB4,0x5D,0xA7,0x3E,0x25,0x7B,0x48,0xA2 ))// 864F4DCB-C4FF-5FBB-B45D-A73E257B48A2
 }
@@ -74,7 +78,7 @@ private var IID___x_ABI_Ctest__component_CINullValuesStatics: IID {
 }
 
 private var IID___x_ABI_Ctest__component_CISimple: IID {
-    IID(Data1: 0xDFE1A506, Data2: 0xBC5C, Data3: 0x581B, Data4: ( 0xA2,0xCB,0x27,0xF7,0xC0,0x9C,0x60,0xFE ))// DFE1A506-BC5C-581B-A2CB-27F7C09C60FE
+    IID(Data1: 0xBAC2883F, Data2: 0x0E80, Data3: 0x5319, Data4: ( 0x88,0xE6,0x9B,0xFE,0x73,0x3B,0x7A,0x66 ))// BAC2883F-0E80-5319-88E6-9BFE733B7A66
 }
 
 private var IID___x_ABI_Ctest__component_CISimpleDelegate: IID {
@@ -437,6 +441,28 @@ public enum __ABI_test_component {
             return result
         }
 
+        internal func add_DeferrableEventImpl(_ handler: UnsafeMutablePointer<__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs>?) throws -> EventRegistrationToken {
+            var token: EventRegistrationToken = .init()
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.add_DeferrableEvent(pThis, handler, &token))
+            }
+            return token
+        }
+
+        internal func remove_DeferrableEventImpl(_ token: EventRegistrationToken) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.remove_DeferrableEvent(pThis, token))
+            }
+        }
+
+        internal func RaiseDeferrableEventAsyncImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIAsyncOperation_1_int>? {
+            var operation: UnsafeMutablePointer<__x_ABI_C__FIAsyncOperation_1_int>?
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.RaiseDeferrableEventAsync(pThis, &operation))
+            }
+            return operation
+        }
+
         internal func ReturnCharImpl() throws -> WCHAR {
             var result: WCHAR = 0
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
@@ -696,6 +722,25 @@ public enum __ABI_test_component {
         internal func GetObjectAtImpl(_ value: UnsafeMutablePointer<__x_ABI_C__FIVector_1_IInspectable>?, _ index: UINT32, _ callback: UnsafeMutablePointer<__x_ABI_Ctest__component_CIObjectHandler>?) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CICollectionTesterStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetObjectAt(pThis, value, index, callback))
+            }
+        }
+
+    }
+
+    open class IDeferrableEventArgs: test_component.IInspectable {
+        override public class var IID: IID { IID___x_ABI_Ctest__component_CIDeferrableEventArgs }
+
+        internal func GetDeferralImpl() throws -> UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIDeferral>? {
+            var result: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIDeferral>?
+            _ = try perform(as: __x_ABI_Ctest__component_CIDeferrableEventArgs.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetDeferral(pThis, &result))
+            }
+            return result
+        }
+
+        internal func IncrementCounterImpl() throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIDeferrableEventArgs.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.IncrementCounter(pThis))
             }
         }
 
@@ -1225,6 +1270,14 @@ public enum __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Method(pThis))
             }
+        }
+
+        internal func OperationImpl(_ value: __x_ABI_CWindows_CFoundation_CDateTime) throws -> UnsafeMutablePointer<__x_ABI_C__FIAsyncOperation_1_int>? {
+            var operation: UnsafeMutablePointer<__x_ABI_C__FIAsyncOperation_1_int>?
+            _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Operation(pThis, value, &operation))
+            }
+            return operation
         }
 
         internal func ActionImpl(_ value: __x_ABI_CWindows_CFoundation_CDateTime) throws -> UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIAsyncAction>? {

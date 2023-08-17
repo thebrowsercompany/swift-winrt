@@ -24,6 +24,7 @@ namespace swiftwinrt
         static const write_type_params swift;
         static const write_type_params c_abi;
         static const write_type_params swift_allow_implicit_unwrap;
+        static const write_type_params swift_omit_generics;
     };
 
     // Writes the Swift code representation of a WinRT type as a 'type' syntax node.

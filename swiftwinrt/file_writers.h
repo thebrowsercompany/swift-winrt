@@ -190,11 +190,6 @@ namespace swiftwinrt
         w.write("%", w.filter.bind_each<write_struct>(members.structs));
         w.write("%", w.filter.bind_each<write_interface_proto>(members.interfaces));
 
-        if (ns == "Windows.Foundation")
-        {
-            write_ireference(w);
-        }
-
         w.write("%", w.filter.bind_each<write_enum_extension>(members.enums));
     
         w.swap();

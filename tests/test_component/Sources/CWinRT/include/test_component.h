@@ -101,6 +101,12 @@ typedef interface __x_ABI_Ctest__component_CIVoidToVoidDelegate __x_ABI_Ctest__c
 
 #endif // ____x_ABI_Ctest__component_CICollectionTesterStatics_FWD_DEFINED__
 
+#ifndef ____x_ABI_Ctest__component_CIDeferrableEventArgs_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CIDeferrableEventArgs_FWD_DEFINED__
+    typedef interface __x_ABI_Ctest__component_CIDeferrableEventArgs __x_ABI_Ctest__component_CIDeferrableEventArgs;
+
+#endif // ____x_ABI_Ctest__component_CIDeferrableEventArgs_FWD_DEFINED__
+
 #ifndef ____x_ABI_Ctest__component_CIDerived_FWD_DEFINED__
 #define ____x_ABI_Ctest__component_CIDerived_FWD_DEFINED__
     typedef interface __x_ABI_Ctest__component_CIDerived __x_ABI_Ctest__component_CIDerived;
@@ -213,6 +219,82 @@ typedef interface __x_ABI_Ctest__component_CIVoidToVoidDelegate __x_ABI_Ctest__c
 
 // Collection interface definitions
 
+typedef interface __x_ABI_C__FIAsyncOperationCompletedHandler_1_int __x_ABI_C__FIAsyncOperationCompletedHandler_1_int;
+
+#if !defined(____x_ABI_C__FIAsyncOperation_1_int_INTERFACE_DEFINED__)
+    #define ____x_ABI_C__FIAsyncOperation_1_int_INTERFACE_DEFINED__
+
+    typedef interface __x_ABI_C__FIAsyncOperation_1_int __x_ABI_C__FIAsyncOperation_1_int;
+
+    //  Declare the parameterized interface IID.
+    EXTERN_C const IID IID___x_ABI_C__FIAsyncOperation_1_int;
+
+    typedef struct __x_ABI_C__FIAsyncOperation_1_intVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_C__FIAsyncOperation_1_int* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_C__FIAsyncOperation_1_int* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_C__FIAsyncOperation_1_int* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_C__FIAsyncOperation_1_int* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_C__FIAsyncOperation_1_int* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_C__FIAsyncOperation_1_int* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* put_Completed)(__x_ABI_C__FIAsyncOperation_1_int* This,
+        __x_ABI_C__FIAsyncOperationCompletedHandler_1_int* handler);
+    HRESULT (STDMETHODCALLTYPE* get_Completed)(__x_ABI_C__FIAsyncOperation_1_int* This,
+        __x_ABI_C__FIAsyncOperationCompletedHandler_1_int** result);
+    HRESULT (STDMETHODCALLTYPE* GetResults)(__x_ABI_C__FIAsyncOperation_1_int* This,
+        INT32* result);
+
+        END_INTERFACE
+    } __x_ABI_C__FIAsyncOperation_1_intVtbl;
+
+    interface __x_ABI_C__FIAsyncOperation_1_int
+    {
+        CONST_VTBL struct __x_ABI_C__FIAsyncOperation_1_intVtbl* lpVtbl;
+    };
+
+    
+    #endif // ____x_ABI_C__FIAsyncOperation_1_int_INTERFACE_DEFINED__
+    
+#if !defined(____x_ABI_C__FIAsyncOperationCompletedHandler_1_int_INTERFACE_DEFINED__)
+    #define ____x_ABI_C__FIAsyncOperationCompletedHandler_1_int_INTERFACE_DEFINED__
+
+    typedef interface __x_ABI_C__FIAsyncOperationCompletedHandler_1_int __x_ABI_C__FIAsyncOperationCompletedHandler_1_int;
+
+    //  Declare the parameterized interface IID.
+    EXTERN_C const IID IID___x_ABI_C__FIAsyncOperationCompletedHandler_1_int;
+
+    typedef struct __x_ABI_C__FIAsyncOperationCompletedHandler_1_intVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_C__FIAsyncOperationCompletedHandler_1_int* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_C__FIAsyncOperationCompletedHandler_1_int* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_C__FIAsyncOperationCompletedHandler_1_int* This);
+        HRESULT (STDMETHODCALLTYPE* Invoke)(__x_ABI_C__FIAsyncOperationCompletedHandler_1_int* This,
+        __x_ABI_C__FIAsyncOperation_1_int* asyncInfo,
+        enum __x_ABI_CWindows_CFoundation_CAsyncStatus asyncStatus);
+
+        END_INTERFACE
+    } __x_ABI_C__FIAsyncOperationCompletedHandler_1_intVtbl;
+
+    interface __x_ABI_C__FIAsyncOperationCompletedHandler_1_int
+    {
+        CONST_VTBL struct __x_ABI_C__FIAsyncOperationCompletedHandler_1_intVtbl* lpVtbl;
+    };
+
+    
+    #endif // ____x_ABI_C__FIAsyncOperationCompletedHandler_1_int_INTERFACE_DEFINED__
+    
 #if !defined(____x_ABI_C__FIIterator_1_IInspectable_INTERFACE_DEFINED__)
     #define ____x_ABI_C__FIIterator_1_IInspectable_INTERFACE_DEFINED__
 
@@ -1416,6 +1498,38 @@ typedef enum __x_ABI_Ctest__component_CSigned __x_ABI_Ctest__component_CSigned;
     
     #endif // ____x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned_INTERFACE_DEFINED__
     
+#if !defined(____x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs_INTERFACE_DEFINED__)
+    #define ____x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs_INTERFACE_DEFINED__
+
+    typedef interface __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs;
+
+    //  Declare the parameterized interface IID.
+    EXTERN_C const IID IID___x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs;
+
+    typedef struct __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs* This);
+        HRESULT (STDMETHODCALLTYPE* Invoke)(__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs* This,
+        __x_ABI_Ctest__component_CIClass* sender,
+        __x_ABI_Ctest__component_CIDeferrableEventArgs* args);
+
+        END_INTERFACE
+    } __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsVtbl;
+
+    interface __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs
+    {
+        CONST_VTBL struct __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsVtbl* lpVtbl;
+    };
+
+    
+    #endif // ____x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs_INTERFACE_DEFINED__
+    
 typedef struct __x_ABI_Ctest__component_CSimpleEventArgs __x_ABI_Ctest__component_CSimpleEventArgs;
 
 #if !defined(____x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs_INTERFACE_DEFINED__)
@@ -1450,13 +1564,27 @@ typedef struct __x_ABI_Ctest__component_CSimpleEventArgs __x_ABI_Ctest__componen
     
     #endif // ____x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs_INTERFACE_DEFINED__
     
+typedef enum __x_ABI_CWindows_CFoundation_CAsyncStatus __x_ABI_CWindows_CFoundation_CAsyncStatus;
+
 typedef struct __x_ABI_CWindows_CFoundation_CDateTime __x_ABI_CWindows_CFoundation_CDateTime;
+
+#ifndef ____x_ABI_CWindows_CFoundation_CIDeferral_FWD_DEFINED__
+#define ____x_ABI_CWindows_CFoundation_CIDeferral_FWD_DEFINED__
+    typedef interface __x_ABI_CWindows_CFoundation_CIDeferral __x_ABI_CWindows_CFoundation_CIDeferral;
+
+#endif // ____x_ABI_CWindows_CFoundation_CIDeferral_FWD_DEFINED__
 
 #ifndef ____x_ABI_CWindows_CFoundation_CIAsyncAction_FWD_DEFINED__
 #define ____x_ABI_CWindows_CFoundation_CIAsyncAction_FWD_DEFINED__
     typedef interface __x_ABI_CWindows_CFoundation_CIAsyncAction __x_ABI_CWindows_CFoundation_CIAsyncAction;
 
 #endif // ____x_ABI_CWindows_CFoundation_CIAsyncAction_FWD_DEFINED__
+
+#ifndef ____x_ABI_CWindows_CFoundation_CIAsyncInfo_FWD_DEFINED__
+#define ____x_ABI_CWindows_CFoundation_CIAsyncInfo_FWD_DEFINED__
+    typedef interface __x_ABI_CWindows_CFoundation_CIAsyncInfo __x_ABI_CWindows_CFoundation_CIAsyncInfo;
+
+#endif // ____x_ABI_CWindows_CFoundation_CIAsyncInfo_FWD_DEFINED__
 
 #ifndef ____x_ABI_CWindows_CFoundation_CIClosable_FWD_DEFINED__
 #define ____x_ABI_CWindows_CFoundation_CIClosable_FWD_DEFINED__
@@ -1935,6 +2063,13 @@ struct __x_ABI_Ctest__component_CStructWithEnum
         INT32* result);
     HRESULT (STDMETHODCALLTYPE* NoexceptString)(__x_ABI_Ctest__component_CIClass* This,
         HSTRING* result);
+    HRESULT (STDMETHODCALLTYPE* add_DeferrableEvent)(__x_ABI_Ctest__component_CIClass* This,
+        __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs* handler,
+        EventRegistrationToken* token);
+    HRESULT (STDMETHODCALLTYPE* remove_DeferrableEvent)(__x_ABI_Ctest__component_CIClass* This,
+        EventRegistrationToken token);
+    HRESULT (STDMETHODCALLTYPE* RaiseDeferrableEventAsync)(__x_ABI_Ctest__component_CIClass* This,
+        __x_ABI_C__FIAsyncOperation_1_int** operation);
     HRESULT (STDMETHODCALLTYPE* ReturnChar)(__x_ABI_Ctest__component_CIClass* This,
         WCHAR* result);
     HRESULT (STDMETHODCALLTYPE* InChar)(__x_ABI_Ctest__component_CIClass* This,
@@ -2236,6 +2371,41 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     EXTERN_C const IID IID___x_ABI_Ctest__component_CICollectionTesterStatics;
 #endif /* !defined(____x_ABI_Ctest__component_CICollectionTesterStatics_INTERFACE_DEFINED__) */
     
+#if !defined(____x_ABI_Ctest__component_CIDeferrableEventArgs_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CIDeferrableEventArgs_INTERFACE_DEFINED__
+    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IDeferrableEventArgs[] = L"test_component.IDeferrableEventArgs";
+    typedef struct __x_ABI_Ctest__component_CIDeferrableEventArgsVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CIDeferrableEventArgs* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CIDeferrableEventArgs* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CIDeferrableEventArgs* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_Ctest__component_CIDeferrableEventArgs* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_Ctest__component_CIDeferrableEventArgs* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CIDeferrableEventArgs* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* GetDeferral)(__x_ABI_Ctest__component_CIDeferrableEventArgs* This,
+        __x_ABI_CWindows_CFoundation_CIDeferral** result);
+    HRESULT (STDMETHODCALLTYPE* IncrementCounter)(__x_ABI_Ctest__component_CIDeferrableEventArgs* This);
+
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CIDeferrableEventArgsVtbl;
+
+    interface __x_ABI_Ctest__component_CIDeferrableEventArgs
+    {
+        CONST_VTBL struct __x_ABI_Ctest__component_CIDeferrableEventArgsVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CIDeferrableEventArgs;
+#endif /* !defined(____x_ABI_Ctest__component_CIDeferrableEventArgs_INTERFACE_DEFINED__) */
+    
 #if !defined(____x_ABI_Ctest__component_CIDerived_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIDerived_INTERFACE_DEFINED__
     extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IDerived[] = L"test_component.IDerived";
@@ -2497,6 +2667,9 @@ struct __x_ABI_Ctest__component_CStructWithEnum
         HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CISimple* This,
             TrustLevel* trustLevel);
         HRESULT (STDMETHODCALLTYPE* Method)(__x_ABI_Ctest__component_CISimple* This);
+    HRESULT (STDMETHODCALLTYPE* Operation)(__x_ABI_Ctest__component_CISimple* This,
+        struct __x_ABI_CWindows_CFoundation_CDateTime value,
+        __x_ABI_C__FIAsyncOperation_1_int** operation);
     HRESULT (STDMETHODCALLTYPE* Action)(__x_ABI_Ctest__component_CISimple* This,
         struct __x_ABI_CWindows_CFoundation_CDateTime value,
         __x_ABI_CWindows_CFoundation_CIAsyncAction** operation);

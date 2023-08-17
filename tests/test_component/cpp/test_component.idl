@@ -104,7 +104,7 @@ namespace test_component
             void Method();
             
             //Windows.Foundation.IReference<Int32> Reference(Windows.Foundation.DateTime value);
-            //Windows.Foundation.IAsyncOperation<Int32> Operation(Windows.Foundation.DateTime value);
+            Windows.Foundation.IAsyncOperation<Int32> Operation(Windows.Foundation.DateTime value);
             Windows.Foundation.IAsyncAction Action(Windows.Foundation.DateTime value);
             Object Object(Windows.Foundation.DateTime value);
             static event Windows.Foundation.EventHandler<Object> StaticEvent;
@@ -126,11 +126,11 @@ namespace test_component
             void FireEvent();
         }
 
-        //runtimeclass DeferrableEventArgs
-        //{
-            // Windows.Foundation.Deferral GetDeferral();
-            // void IncrementCounter();
-        //}
+        runtimeclass DeferrableEventArgs
+        {
+             Windows.Foundation.Deferral GetDeferral();
+             void IncrementCounter();
+        }
 
         //runtimeclass Optional
         //{
@@ -272,8 +272,8 @@ namespace test_component
             [noexcept2] Int32 NoexceptInt32();
             [noexcept2] String NoexceptString();
 
-            // event Windows.Foundation.TypedEventHandler<Class, DeferrableEventArgs> DeferrableEvent;
-            // Windows.Foundation.IAsyncOperation<Int32> RaiseDeferrableEventAsync();
+             event Windows.Foundation.TypedEventHandler<Class, DeferrableEventArgs> DeferrableEvent;
+             Windows.Foundation.IAsyncOperation<Int32> RaiseDeferrableEventAsync();
 
             // static Boolean TestNoMakeDetection();
             // static Int32 StaticPropertyWithAsyncSetter;

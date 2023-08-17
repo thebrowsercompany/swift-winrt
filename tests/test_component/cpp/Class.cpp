@@ -519,7 +519,6 @@ namespace winrt::test_component::implementation
         }
     }
 
-    /* TODO: COR-762 once we enable async/await we can bring this back
     event_token Class::DeferrableEvent(TypedEventHandler<test_component::Class, test_component::DeferrableEventArgs> const& handler)
     {
         return m_deferrableEvent.add(handler);
@@ -537,7 +536,7 @@ namespace winrt::test_component::implementation
         co_await args->wait_for_deferrals();
         co_return args->m_counter;
     }
-*/
+
     // This test validates that defining WINRT_NO_MAKE_DETECTION actually
     // allows an implementation to be final and have a private destructor.
     // This is *not* recommended as there are no safeguards for direct and

@@ -1,9 +1,6 @@
 import WinSDK
 import Ctest_component
 
-public typealias EventHandler<Args> = (Any?, Args) -> ()
-public typealias TypedEventHandler<Sender, Args> = (Sender, Args) -> ()
-
 public protocol Disposable {
   func dispose()
 }

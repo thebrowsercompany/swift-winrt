@@ -1,9 +1,6 @@
 import WinSDK
 import C_BINDINGS_MODULE
 
-public typealias EventHandler<Args> = (Any?, Args) -> ()
-public typealias TypedEventHandler<Sender, Args> = (Sender, Args) -> ()
-
 public protocol Disposable {
   func dispose()
 }

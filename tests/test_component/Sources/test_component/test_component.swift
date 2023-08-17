@@ -562,6 +562,11 @@ public final class Class : WinRTClass, IBasic {
         return .init(from: result)
     }
 
+    public func raiseDeferrableEventAsync() throws -> AnyIAsyncOperation<Int32>! {
+        let operation = try _default.RaiseDeferrableEventAsyncImpl()
+        return test_component.__x_ABI_C__FIAsyncOperation_1_intWrapper.unwrapFrom(abi: operation)
+    }
+
     public func returnChar() throws -> Character {
         let result = try _default.ReturnCharImpl()
         return .init(from: result)
@@ -650,6 +655,20 @@ public final class Class : WinRTClass, IBasic {
         }
     }
 
+    public lazy var deferrableEvent : Event<TypedEventHandler<Class?, DeferrableEventArgs?>> = {
+      .init(
+        add: { [weak this = _default] in
+          guard let this else { return .init() }
+          let wrapper = test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsWrapper($0)
+          let abi = try! wrapper?.toABI { $0 }
+          return try! this.add_DeferrableEventImpl(abi)
+        },
+        remove: { [weak this = _default] in
+         try? this?.remove_DeferrableEventImpl($0) 
+       }
+      )
+    }()
+
     internal lazy var _IBasic: __ABI_test_component.IBasic = try! _default.QueryInterface()
     public func method() {
         try! _IBasic.MethodImpl()
@@ -734,6 +753,42 @@ public final class CollectionTester : WinRTClass {
     public func returnMapFromStringToString() throws -> AnyIMap<String, String>! {
         let result = try _default.ReturnMapFromStringToStringImpl()
         return test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
+    }
+
+}
+
+public final class DeferrableEventArgs : WinRTClass {
+    private typealias SwiftABI = __ABI_test_component.IDeferrableEventArgs
+    private typealias CABI = __x_ABI_Ctest__component_CIDeferrableEventArgs
+    private var _default: SwiftABI!
+    public func _getABI<T>() -> UnsafeMutablePointer<T>? {
+        if T.self == CABI.self {
+            return RawPointer(_default)
+        }   
+        if T.self == Ctest_component.IInspectable.self {
+            return RawPointer(_default)
+        }
+        return nil
+    }
+
+    public var thisPtr: test_component.IInspectable { _default }
+
+    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIDeferrableEventArgs>?) -> DeferrableEventArgs? {
+        guard let abi = abi else { return nil }
+        return .init(fromAbi: .init(abi))
+    }
+
+    public init(fromAbi: test_component.IInspectable) {
+        _default = try! fromAbi.QueryInterface()
+    }
+
+    public func getDeferral() throws -> test_component.Deferral! {
+        let result = try _default.GetDeferralImpl()
+        return .from(abi: result)
+    }
+
+    public func incrementCounter() throws {
+        try _default.IncrementCounterImpl()
     }
 
 }
@@ -1014,6 +1069,11 @@ public final class Simple : WinRTClass {
 
     public func method() throws {
         try _default.MethodImpl()
+    }
+
+    public func operation(_ value: test_component.DateTime) throws -> AnyIAsyncOperation<Int32>! {
+        let operation = try _default.OperationImpl(.from(swift: value))
+        return test_component.__x_ABI_C__FIAsyncOperation_1_intWrapper.unwrapFrom(abi: operation)
     }
 
     public func action(_ value: test_component.DateTime) throws -> test_component.AnyIAsyncAction! {

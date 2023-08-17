@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include "Class.g.h"
-//#include "DeferrableEventArgs.g.h"
+#include "DeferrableEventArgs.g.h"
 namespace winrt::test_component::implementation
 {
 
@@ -134,9 +134,9 @@ namespace winrt::test_component::implementation
         int32_t NoexceptInt32() noexcept;
         hstring NoexceptString() noexcept;
 
-        //event_token DeferrableEvent(Windows::Foundation::TypedEventHandler<test_component::Class, test_component::DeferrableEventArgs> const& handler);
-        //void DeferrableEvent(event_token const& token);
-        //Windows::Foundation::IAsyncOperation<int> RaiseDeferrableEventAsync();
+        event_token DeferrableEvent(Windows::Foundation::TypedEventHandler<test_component::Class, test_component::DeferrableEventArgs> const& handler);
+        void DeferrableEvent(event_token const& token);
+        Windows::Foundation::IAsyncOperation<int> RaiseDeferrableEventAsync();
 
         static bool TestNoMakeDetection();
 
@@ -213,7 +213,7 @@ namespace winrt::test_component::implementation
     private:
         static float s_float;
         bool m_fail{};
-        //event<Windows::Foundation::TypedEventHandler<test_component::Class, test_component::DeferrableEventArgs>> m_deferrableEvent;
+        event<Windows::Foundation::TypedEventHandler<test_component::Class, test_component::DeferrableEventArgs>> m_deferrableEvent;
 
         template<typename T>
         static void simulate_rpc_behavior(array_view<T> const& value)
@@ -236,14 +236,13 @@ namespace winrt::test_component::implementation
         test_component::BaseNoOverrides m_baseNoOverrides { nullptr };
     };
 
-    /*
+    
     struct DeferrableEventArgs : DeferrableEventArgsT<DeferrableEventArgs>, deferrable_event_args<DeferrableEventArgs>
     {
         DeferrableEventArgs() = default;
         void IncrementCounter() { ++m_counter; }
         std::atomic<int> m_counter = 0;
     };
-    */
 
 }
 namespace winrt::test_component::factory_implementation

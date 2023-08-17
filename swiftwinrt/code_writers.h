@@ -817,6 +817,7 @@ bind_impl_fullname(type));
 )");
 
         w.write(R"(public class IPropertyValueImpl : IPropertyValue, IReference {
+    public typealias T = Any
     var _value: Any
     var propertyType : PropertyType
 
@@ -1175,7 +1176,6 @@ public static func makeAbi() -> CABI {
         }
 
         auto typeName = swiftwinrt::remove_backtick(type.swift_type_name());
-        bool is_property_set = typeName == "IPropertySet"sv;
         auto interfaces = type.required_interfaces;
         separator s{ w };
         auto implements = w.write_temp("%", bind_each([&](writer& w, std::pair<std::string, interface_info> const& iface) {
@@ -1196,6 +1196,15 @@ public static func makeAbi() -> CABI {
                 implements.append(" where T == AnyIKeyValuePair<K,V>?");
             }
         }
+        else if (is_winrt_async_result_type(type))
+        {
+            implements.append(", FutureValue");
+            if (typeName == "IAsyncAction")
+            {
+                implements.append(" where TResult == Void");
+            }
+        }
+
         std::vector<std::string> eventSourceInvokeLines;
         w.write("public protocol % : %% {\n", type, implements,
             implements.empty() ? "WinRTInterface" : "");
@@ -1230,7 +1239,7 @@ public static func makeAbi() -> CABI {
                 const auto& return_type = *prop.getter->return_type->type;
                 w.write("var %: % { get% }\n",
                     get_swift_name(prop),
-                    bind<write_type>(return_type, write_type_params::swift_allow_implicit_unwrap),
+                    bind<write_type>(return_type, swift_write_type_params_for(type)),
                     prop.setter ? " set" : "");
             }
 
@@ -1293,14 +1302,28 @@ public static func makeAbi() -> CABI {
         }
         // Declare a short form for the existential version of the type, e.g. AnyClosable for "any IClosable"
         w.write("public typealias Any% = any %\n\n", type, type);
-    }
 
-    static void write_ireference(writer& w)
-    {
-        w.write(R"(public protocol IReference : IPropertyValue {
-    var value: Any { get }
+        if (is_winrt_async_result_type(type))
+        {
+            std::string return_statement;
+            const metadata_type* result_type = nullptr;
+            if (type.generic_params.size() > 0) {
+                return_statement = w.write_temp(" -> %", type.generic_params[0]);
+            }
+            w.write(R"(public extension % {
+    ^@MainActor
+    func get() async throws% {
+        if status == .started {
+            let event = WaitableEvent()
+            completed = { _, _ in
+                Task { await event.signal() }
+            }
+            await event.wait()
+        }%
+    }
 }
-)");
+)", bind<write_swift_type_identifier>(type), return_statement, !return_statement.empty() ? "\n        return try getResults()" : "");
+        }
     }
 
     static void write_delegate_return_type(writer& w, function_def const& sig)

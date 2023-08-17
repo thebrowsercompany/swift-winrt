@@ -1092,6 +1092,18 @@ namespace swiftwinrt
         return is_winrt_typedeventhandler(*type);
     }
 
+    inline bool is_winrt_async_result_type(metadata_type const& type)
+    {
+        if (type.swift_logical_namespace() == winrt_foundation_namespace)
+        {
+            auto type_name = type.swift_type_name();
+
+            return type_name == "IAsyncAction" ||
+                type_name.starts_with("IAsyncOperation");
+        }
+        return false;
+    }
+
     inline bool is_winrt_generic_collection(metadata_type const& type)
     {
         if (type.swift_logical_namespace() == winrt_collections_namespace)

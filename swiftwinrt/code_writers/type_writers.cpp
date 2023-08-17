@@ -9,6 +9,8 @@ using namespace swiftwinrt;
 const write_type_params write_type_params::swift{ projection_layer::swift };
 const write_type_params write_type_params::c_abi{ projection_layer::c_abi };
 const write_type_params write_type_params::swift_allow_implicit_unwrap{ projection_layer::swift, true };
+const write_type_params write_type_params::swift_omit_generics{ projection_layer::swift, false, true };
+
 
 void write_swift_type_identifier_ex(writer& w, metadata_type const& type, bool existential, bool omit_generic_args);
 
@@ -31,36 +33,21 @@ static void write_swift_type(writer& w, metadata_type const& type, bool allow_im
             return;
         }
 
-        if (is_winrt_eventhandler(generic_typedef))
+        if (is_delegate(gen_inst))
         {
-            if (omit_generic_args)
-            {
-                w.write("EventHandler");
-            }
-            else
-            {
-                auto args_type = generic_params[0];
-                // '^' escapes the '@'
-                w.write("^@escaping EventHandler<%>",
-                    bind<write_swift_type>(*args_type, /* allow_implicit_unwrap: */ false, /* omit_generic_args */ false));
-            }
-            return;
-        }
+            w.write(remove_backtick(gen_inst->swift_type_name()));
 
-        if (is_winrt_typedeventhandler(generic_typedef))
-        {
-            if (omit_generic_args)
+            if (!omit_generic_args)
             {
-                w.write("TypedEventHandler");
-            }
-            else
-            {
-                auto sender_type = generic_params[0];
-                auto args_type = generic_params[1];
-                // '^' escapes the '@'
-                w.write("^@escaping TypedEventHandler<%, %>",
-                    bind<write_swift_type>(*sender_type, /* allow_implicit_unwrap: */ false, /* omit_generic_args */ false),
-                    bind<write_swift_type>(*args_type, /* allow_implicit_unwrap: */ false, /* omit_generic_args */ false));
+                w.write("<");
+                separator sep{ w };
+                for (const auto& gen_arg : generic_params)
+                {
+                    sep();
+                    // Implicitly unwrap optionals are illegal on generic arguments
+                    write_swift_type(w, *gen_arg, /* allow_implicit_unwrap: */ false, /* omit_generic_args */ false);
+                }
+                w.write(">%", optional_suffix);
             }
             return;
         }
@@ -132,12 +119,12 @@ void write_swift_type_identifier_ex(writer& w, metadata_type const& type, bool e
         
         w.write(remove_backtick(type.swift_type_name()));
 
-        if (omit_generic_args == false && iface != nullptr && existential && !iface->generic_params.empty())
+        if (omit_generic_args == false && !type_def->generic_params.empty())
         {
             // if writing an extistential then we always want to put the generic types in the name
             w.write("<");
             separator sep{ w };
-            for (const auto& gen_arg : iface->generic_params)
+            for (const auto& gen_arg : type_def->generic_params)
             {
                 sep();
                 // Implicitly unwrap optionals are illegal on generic arguments
@@ -148,7 +135,6 @@ void write_swift_type_identifier_ex(writer& w, metadata_type const& type, bool e
     }
     else if (auto gen_inst = dynamic_cast<const generic_inst*>(&type))
     {
-        assert(!omit_generic_args); // can't omit generic args from an actual instantiation of a generic type
         const auto& generic_typedef = *gen_inst->generic_type();
 
         // Special generic types
@@ -182,7 +168,7 @@ void write_swift_type_identifier_ex(writer& w, metadata_type const& type, bool e
 }
 
 void swiftwinrt::write_swift_type_identifier(writer& w, metadata_type const& type) {
-    write_swift_type_identifier_ex(w, type, /* existential: */ false, /* omit_generic_args */ false);
+    write_swift_type_identifier_ex(w, type, /* existential: */ false, /* omit_generic_args */ true);
 }
 
 void swiftwinrt::write_swift_interface_existential_identifier(writer& w, metadata_type const& iface) {
