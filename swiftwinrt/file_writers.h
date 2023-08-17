@@ -133,7 +133,7 @@ namespace swiftwinrt
         }
 
         auto support_files = get_named_resources_of_type(
-            GetModuleHandle(NULL), RESOURCE_TYPE_C_INCLUDE_FILE_STR, /* make_lowercase: */ true);
+            GetModuleHandle(nullptr), RESOURCE_TYPE_C_INCLUDE_FILE_STR, /* make_lowercase: */ true);
         for (const auto& support_file : support_files)
         {
             auto path = dir_path / "include" / (support_file.first + ".h");
