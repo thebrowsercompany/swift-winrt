@@ -37,6 +37,91 @@ public enum __IMPL_Windows_Foundation {
             }
         }
 
+        internal lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo = try! _default.QueryInterface()
+        public func cancel() throws {
+            try _IAsyncInfo.CancelImpl()
+        }
+
+        public func close() throws {
+            try _IAsyncInfo.CloseImpl()
+        }
+
+        public var errorCode : HRESULT {
+            get {
+                let result = try! _IAsyncInfo.get_ErrorCodeImpl()
+                return result
+            }
+
+        }
+
+        public var id : UInt32 {
+            get {
+                let result = try! _IAsyncInfo.get_IdImpl()
+                return result
+            }
+
+        }
+
+        public var status : AsyncStatus {
+            get {
+                let result = try! _IAsyncInfo.get_StatusImpl()
+                return result
+            }
+
+        }
+
+    }
+
+    public class IAsyncInfoImpl : IAsyncInfo, WinRTAbiBridge {
+        public typealias CABI = __x_ABI_CWindows_CFoundation_CIAsyncInfo
+        public typealias SwiftABI = __ABI_Windows_Foundation.IAsyncInfo
+        public typealias SwiftProjection = AnyIAsyncInfo
+        private (set) public var _default: SwiftABI
+        public var thisPtr: test_component.IInspectable { _default }
+        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+            guard let abi = abi else { return nil }
+            return IAsyncInfoImpl(abi)
+        }
+        public init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+            _default = SwiftABI(fromAbi)
+        }
+
+        public static func makeAbi() -> CABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Foundation.IAsyncInfoVTable) { $0 }
+            return .init(lpVtbl: vtblPtr)
+        }
+        public func cancel() throws {
+            try _default.CancelImpl()
+        }
+
+        public func close() throws {
+            try _default.CloseImpl()
+        }
+
+        public var errorCode : HRESULT {
+            get {
+                let result = try! _default.get_ErrorCodeImpl()
+                return result
+            }
+
+        }
+
+        public var id : UInt32 {
+            get {
+                let result = try! _default.get_IdImpl()
+                return result
+            }
+
+        }
+
+        public var status : AsyncStatus {
+            get {
+                let result = try! _default.get_StatusImpl()
+                return result
+            }
+
+        }
+
     }
 
     public class IClosableImpl : IClosable, WinRTAbiBridge {
@@ -190,6 +275,18 @@ public class IAsyncAction_MakeFromAbi : MakeFromAbi {
         guard let abi else { return nil }
         let swiftAbi: SwiftABI = try! test_component.IInspectable(abi).QueryInterface()
         return __IMPL_Windows_Foundation.IAsyncActionImpl(RawPointer(swiftAbi)!)
+    }
+}
+
+@_spi(__MakeFromAbi_DoNotImport)
+public class IAsyncInfo_MakeFromAbi : MakeFromAbi {
+    public typealias CABI = __x_ABI_CWindows_CFoundation_CIAsyncInfo
+    public typealias SwiftABI = __ABI_Windows_Foundation.IAsyncInfo
+    public typealias SwiftProjection = AnyIAsyncInfo
+    public static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
+        guard let abi else { return nil }
+        let swiftAbi: SwiftABI = try! test_component.IInspectable(abi).QueryInterface()
+        return __IMPL_Windows_Foundation.IAsyncInfoImpl(RawPointer(swiftAbi)!)
     }
 }
 

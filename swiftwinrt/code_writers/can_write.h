@@ -9,11 +9,6 @@ namespace swiftwinrt
         {
             return can_write(w, *typed);
         }
-        if (auto mapped = dynamic_cast<const mapped_type*>(type))
-        {
-            // TODO: https://linear.app/the-browser-company/issue/WIN-103/swiftwinrt-write-iasyncinfo
-            if (mapped->type().TypeName() == "IAsyncInfo") return false;
-        }
         return true;
     }
 

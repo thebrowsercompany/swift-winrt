@@ -60,17 +60,6 @@ void metadata_cache::process_namespace_types(
     target.enums.reserve(members.enums.size());
     for (auto const& e : members.enums)
     {
-        // 'AsyncStatus' is an enum
-        if (isFoundationNamespace)
-        {
-            if (auto ptr = mapped_type::from_typedef(e))
-            {
-                [[maybe_unused]] auto [itr, added] = table.emplace(e.TypeName(), *ptr);
-                XLANG_ASSERT(added);
-                continue;
-            }
-        }
-
         target.enums.emplace_back(e);
         [[maybe_unused]] auto [itr, added] = table.emplace(e.TypeName(), target.enums.back());
         XLANG_ASSERT(added);
@@ -113,16 +102,6 @@ void metadata_cache::process_namespace_types(
     target.interfaces.reserve(members.interfaces.size());
     for (auto const& i : members.interfaces)
     {
-        // 'IAsyncInfo' is an interface
-        if (isFoundationNamespace)
-        {
-            if (auto ptr = mapped_type::from_typedef(i))
-            {
-                [[maybe_unused]] auto [itr, added] = table.emplace(i.TypeName(), *ptr);
-                XLANG_ASSERT(added);
-                continue;
-            }
-        }
         target.interfaces.emplace_back(i);
         [[maybe_unused]] auto [itr, added] = table.emplace(i.TypeName(), target.interfaces.back());
         XLANG_ASSERT(added);
@@ -473,11 +452,7 @@ void metadata_cache::process_interface_dependencies(init_state& state, interface
 
     for (auto const& interfaces : get_interfaces(state, type.type()))
     {
-        // TODO: https://linear.app/the-browser-company/issue/WIN-103/swiftwinrt-write-iasyncinfo
-        if (!interfaces.first.ends_with("IAsyncInfo"))
-        {
-            type.required_interfaces.push_back(interfaces);
-        }
+        type.required_interfaces.push_back(interfaces);
     }
 
     for (auto const& method : type.type().MethodList())

@@ -3,7 +3,6 @@
 #pragma once
 // Header files for imported files
 #include "inspectable.h"
-#include "AsyncInfo.h"
 #include "EventToken.h"
 #include "windowscontracts.h"
 #include "Windows.Foundation.h"

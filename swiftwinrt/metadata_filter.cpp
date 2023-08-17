@@ -34,7 +34,7 @@ namespace swiftwinrt
 
     inline void add_interface_dependencies_to_queue(processing_queue& to_process, interface_type const& type)
     {
-        for (auto& member : type.functions)
+        for (const auto& member : type.functions)
         {
             if (member.return_type)
             {
@@ -45,7 +45,15 @@ namespace swiftwinrt
                 to_process.emplace(param.type);
             }
         }
+        for (const auto& prop : type.properties)
+        {
+            to_process.emplace(prop.type);
+        }
 
+        for (const auto& event : type.events)
+        {
+            to_process.emplace(event.type);
+        }
         for (auto& [_, required] : type.required_interfaces)
         {
             to_process.emplace(required.type);

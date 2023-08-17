@@ -5,6 +5,10 @@ private var IID___x_ABI_CWindows_CFoundation_CIAsyncAction: IID {
     IID(Data1: 0x5A648006, Data2: 0x843A, Data3: 0x4DA9, Data4: ( 0x86,0x5B,0x9D,0x26,0xE5,0xDF,0xAD,0x7B ))// 5A648006-843A-4DA9-865B-9D26E5DFAD7B
 }
 
+private var IID___x_ABI_CWindows_CFoundation_CIAsyncInfo: IID {
+    IID(Data1: 0x00000036, Data2: 0x0000, Data3: 0x0000, Data4: ( 0xC0,0x00,0x00,0x00,0x00,0x00,0x00,0x46 ))// 00000036-0000-0000-C000-000000000046
+}
+
 private var IID___x_ABI_CWindows_CFoundation_CIClosable: IID {
     IID(Data1: 0x30D5A829, Data2: 0x7FA4, Data3: 0x4026, Data4: ( 0x83,0xBB,0xD7,0x5B,0xAE,0x4E,0xA9,0x9E ))// 30D5A829-7FA4-4026-83BB-D75BAE4EA99E
 }
@@ -79,11 +83,12 @@ public enum __ABI_Windows_Foundation {
 
         GetIids: {
             let size = MemoryLayout<IID>.size
-            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+            let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
             iids[2] = __ABI_Windows_Foundation.IAsyncActionWrapper.IID
-            $1!.pointee = 3
+            iids[3] = __ABI_Windows_Foundation.IAsyncInfoWrapper.IID
+            $1!.pointee = 4
             $2!.pointee = iids
             return S_OK
         },
@@ -126,6 +131,140 @@ public enum __ABI_Windows_Foundation {
     )
 
     public typealias IAsyncActionWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.IAsyncActionImpl>
+    open class IAsyncInfo: test_component.IInspectable {
+        override public class var IID: IID { IID___x_ABI_CWindows_CFoundation_CIAsyncInfo }
+
+        open func get_IdImpl() throws -> UINT32 {
+            var result: UINT32 = 0
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIAsyncInfo.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Id(pThis, &result))
+            }
+            return result
+        }
+
+        open func get_StatusImpl() throws -> __x_ABI_CWindows_CFoundation_CAsyncStatus {
+            var result: __x_ABI_CWindows_CFoundation_CAsyncStatus = .init(0)
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIAsyncInfo.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Status(pThis, &result))
+            }
+            return result
+        }
+
+        open func get_ErrorCodeImpl() throws -> HRESULT {
+            var result: HRESULT = 0
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIAsyncInfo.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_ErrorCode(pThis, &result))
+            }
+            return result
+        }
+
+        open func CancelImpl() throws {
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIAsyncInfo.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Cancel(pThis))
+            }
+        }
+
+        open func CloseImpl() throws {
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIAsyncInfo.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Close(pThis))
+            }
+        }
+
+    }
+
+    internal static var IAsyncInfoVTable: __x_ABI_CWindows_CFoundation_CIAsyncInfoVtbl = .init(
+        QueryInterface: {
+            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+            ppvObject.pointee = nil
+
+            switch riid.pointee {
+                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IAsyncInfoWrapper.IID:
+                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                    return S_OK
+                default:
+                    guard let instance = IAsyncInfoWrapper.tryUnwrapFrom(raw: pUnk),
+                          let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                    ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                    return S_OK
+
+            }
+        },
+
+        AddRef: {
+             guard let wrapper = IAsyncInfoWrapper.fromRaw($0) else { return 1 }
+             _ = wrapper.retain()
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+        },
+
+        Release: {
+            guard let wrapper = IAsyncInfoWrapper.fromRaw($0) else { return 1 }
+            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+        },
+
+        GetIids: {
+            let size = MemoryLayout<IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+            iids[0] = IUnknown.IID
+            iids[1] = IInspectable.IID
+            iids[2] = __ABI_Windows_Foundation.IAsyncInfoWrapper.IID
+            $1!.pointee = 3
+            $2!.pointee = iids
+            return S_OK
+        },
+
+        GetRuntimeClassName: {
+            _ = $0
+            let hstring = try! HString("Windows.Foundation.IAsyncInfo").detach()
+            $1!.pointee = hstring
+            return S_OK
+        },
+
+        GetTrustLevel: {
+            _ = $0
+            $1!.pointee = TrustLevel(rawValue: 0)
+            return S_OK
+        },
+
+        get_Id: {
+            guard let __unwrapped__instance = IAsyncInfoWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let result = __unwrapped__instance.id
+            $1?.initialize(to: result)
+            return S_OK
+        },
+
+        get_Status: {
+            guard let __unwrapped__instance = IAsyncInfoWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let result = __unwrapped__instance.status
+            $1?.initialize(to: result)
+            return S_OK
+        },
+
+        get_ErrorCode: {
+            guard let __unwrapped__instance = IAsyncInfoWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let result = __unwrapped__instance.errorCode
+            $1?.initialize(to: result)
+            return S_OK
+        },
+
+        Cancel: {
+            do {
+                guard let __unwrapped__instance = IAsyncInfoWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                try __unwrapped__instance.cancel()
+                return S_OK
+            } catch { return failWith(err: E_FAIL) } 
+        },
+
+        Close: {
+            do {
+                guard let __unwrapped__instance = IAsyncInfoWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                try __unwrapped__instance.close()
+                return S_OK
+            } catch { return failWith(err: E_FAIL) } 
+        }
+    )
+
+    public typealias IAsyncInfoWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.IAsyncInfoImpl>
     open class IClosable: test_component.IInspectable {
         override public class var IID: IID { IID___x_ABI_CWindows_CFoundation_CIClosable }
 
@@ -761,7 +900,7 @@ extension __ABI_Windows_Foundation {
     open class AsyncActionCompletedHandler: test_component.IUnknown {
         override public class var IID: IID { IID___x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler }
 
-        open func InvokeImpl(_ asyncInfo: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIAsyncAction>?, _ asyncStatus: AsyncStatus) throws {
+        open func InvokeImpl(_ asyncInfo: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIAsyncAction>?, _ asyncStatus: __x_ABI_CWindows_CFoundation_CAsyncStatus) throws {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, asyncInfo, asyncStatus))
             }
@@ -800,7 +939,7 @@ extension __ABI_Windows_Foundation {
         Invoke: {
             guard let __unwrapped__instance = AsyncActionCompletedHandlerWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let asyncInfo: test_component.AnyIAsyncAction? = __ABI_Windows_Foundation.IAsyncActionWrapper.unwrapFrom(abi: $1)
-            let asyncStatus: AsyncStatus = $2
+            let asyncStatus: test_component.AsyncStatus = $2
             __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
         }

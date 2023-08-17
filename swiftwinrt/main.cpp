@@ -376,6 +376,7 @@ Where <spec> is one or more of:
                         for (auto& ns : namespaces)
                         {
                             module_group.add([&, &ns = ns]
+
                             {
                                 auto types = mdCache.compile_namespaces({ ns }, mf);
                                 write_namespace_abi (ns, types, mf);

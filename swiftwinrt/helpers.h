@@ -809,7 +809,6 @@ namespace swiftwinrt
             }
             if (mapped->swift_type_name() == "EventRegistrationToken") return param_category::struct_type;
             if (mapped->swift_type_name() == "IAsyncInfo") return param_category::object_type;
-            if (mapped->swift_type_name() == "AsyncStatus") return param_category::enum_type;
             if (mapped->swift_type_name() == "HResult") return param_category::fundamental_type;
             assert(false); // unexpected mapped type
         }
