@@ -50,7 +50,7 @@ namespace swiftwinrt
             to_process.emplace(prop.type);
         }
 
-        for (const auto& event: type.events)
+        for (const auto& event : type.events)
         {
             to_process.emplace(event.type);
         }
