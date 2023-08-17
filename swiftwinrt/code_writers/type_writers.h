@@ -19,6 +19,7 @@ namespace swiftwinrt
     {
         projection_layer layer;
         bool allow_implicit_unwrap = false;
+        bool omit_generic_args = false;
 
         static const write_type_params swift;
         static const write_type_params c_abi;
@@ -45,4 +46,6 @@ namespace swiftwinrt
     void write_swift_interface_existential_identifier(writer& w, metadata_type const& iface);
 
     void write_default_init_assignment(writer& w, metadata_type const& sig, projection_layer layer);
+
+    write_type_params swift_write_type_params_for(metadata_type const& type);
 }

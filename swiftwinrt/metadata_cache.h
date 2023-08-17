@@ -93,7 +93,11 @@ namespace swiftwinrt
         type_cache compile_namespaces(std::vector<std::string_view> const& targetNamespaces, metadata_filter const& f);
 
         std::set<std::string_view> get_dependent_namespaces(std::vector<std::string_view> const& targetNamespaces, metadata_filter const& f);
-
+        
+        bool has_namespace(std::string_view typeNamespace) const
+        {
+            return m_typeTable.find(typeNamespace) != m_typeTable.end();
+        }
         metadata_type const* try_find(std::string_view typeNamespace, std::string_view typeName) const
         {
             if (typeNamespace == system_namespace)
@@ -135,6 +139,7 @@ namespace swiftwinrt
         {
             namespace_cache* target;
             generic_inst const* parent_generic_inst = nullptr;
+            typedef_base const* parent_generic_iface_or_delegate = nullptr;
         };
 
         void process_namespace_dependencies(namespace_cache& target);

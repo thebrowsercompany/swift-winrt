@@ -250,6 +250,16 @@ namespace swiftwinrt
             return generic_param_guard{ this };
         }
 
+        [[nodiscard]] auto push_generic_params(interface_info const& info)
+        {
+            if (info.generic_params.empty())
+            {
+                return generic_param_guard{ nullptr };
+            }
+            generic_param_stack.push_back(info.generic_params);
+            return generic_param_guard{ this };
+        }
+
         [[nodiscard]] auto push_abi_types(bool value)
         {
             return member_value_guard(this, &writer::abi_types, value);
@@ -408,19 +418,42 @@ namespace swiftwinrt
                 auto guard{ push_writing_generic(true) };
                 auto typeName = mangled_names ? mangled_name<true>(*type) : std::string(remove_tick(name));
                 bool first = !mangled_names;
-                write("%%", typeName, bind_each([&](writer& w, generic_param_type generic_param) {
-                    if (first)
-                    {
-                        first = false;
-                    }
-                    else
-                    {
-                        w.write("_");
-                    }
+                if (!generic_param_stack.empty())
+                {
+                    write("%%", typeName, bind_each([&](writer& w, generic_param_type generic_param) {
+                        if (first)
+                        {
+                            first = false;
+                        }
+                        else
+                        {
+                            w.write("_");
+                        }
 
-                    w.write(generic_param);
-                    },
-                    generic_param_stack.back()));
+                        w.write(generic_param);
+                        },
+                        generic_param_stack.back()));
+                }
+                else
+                {
+                    auto format = mangled_names || abi_types ? "%%" : "%<%>";
+                    auto seperator = mangled_names || abi_types ? "_" : ",";
+                    auto generic_type = dynamic_cast<const typedef_base*>(type);
+                    write(format, typeName, bind_each([&](writer& w, GenericParam generic_param) {
+                        if (first)
+                        {
+                            first = false;
+                        }
+                        else
+                        {
+                            w.write(seperator);
+                        }
+
+                        w.write(generic_param.Name());
+                        },
+                        generic_type->type().GenericParam()));
+                }
+
                 return;
             }
 

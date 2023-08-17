@@ -1,5 +1,8 @@
 // Swift Dictionary-like extensions to IMap[View]
 extension IMap {
+    public typealias Key = K
+    public typealias Value = V
+
     public var count: Int { Int(size) }
     public var underestimatedCount: Int { Int(size) }
     public var isEmpty: Bool { size == 0 }
@@ -8,7 +11,7 @@ extension IMap {
         get { hasKey(key) ? lookup(key) : nil }
         set(newValue) {
             if let value = newValue {
-                insert(key, value)
+                _ = insert(key, value)
             }
             else {
                 remove(key)
@@ -23,7 +26,7 @@ extension IMap {
     @discardableResult
     public func updateValue(_ value: Value, forKey key: Key) -> Value? {
         let oldValue = hasKey(key) ? lookup(key) : nil
-        insert(key, value)
+        _ = insert(key, value)
         return oldValue
     }
 
@@ -38,6 +41,9 @@ extension IMap {
 }
 
 extension IMapView {
+    public typealias Key = K
+    public typealias Value = V
+
     public var count: Int { Int(size) }
     public var underestimatedCount: Int { Int(size) }
     public var isEmpty: Bool { size == 0 }

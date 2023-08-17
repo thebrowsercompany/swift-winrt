@@ -3,16 +3,11 @@
 namespace swiftwinrt
 {
     static bool can_write(writer& w, typedef_base const& type);
-    static bool can_write(generic_inst const& type);
     static bool can_write(writer& w, const metadata_type* type)
     {
         if (auto typed = dynamic_cast<const typedef_base*>(type))
         {
             return can_write(w, *typed);
-        }
-        if (auto generics = dynamic_cast<const generic_inst*>(type))
-        {
-            return can_write(*generics);
         }
         if (auto mapped = dynamic_cast<const mapped_type*>(type))
         {
@@ -27,22 +22,6 @@ namespace swiftwinrt
         return can_write(w, &w.cache->find(type.TypeNamespace(), type.TypeName()));
     }
 
-    static bool can_write(generic_inst const& type)
-    {
-        // TODO: WIN-275: Code generation for nested generics
-        for (auto genarg : type.generic_params())
-        {
-            if (is_generic_inst(genarg))
-            {
-                return false;
-            }
-        }
-
-        auto name = type.generic_type_abi_name();
-        return name == "IReference" || name == "EventHandler" || name == "TypedEventHandler"
-            || name == "IVector" || name == "IVectorView" || name == "IMap" || name == "IMapView";
-    }
-
     static bool can_write(writer& w, function_def const& function, bool allow_special = false)
     {
         auto method = function.def;
@@ -52,8 +31,6 @@ namespace swiftwinrt
 
         auto method_name = get_swift_name(method);
 
-        // TODO: WIN-30 swiftwinrt: support async/await
-        if (function.is_async()) return false;
         for (auto& param : function.params)
         {
             auto param_name = get_swift_name(param);
@@ -117,17 +94,6 @@ namespace swiftwinrt
             // so we'll return false
             if (iface.second.is_default)
             {
-                // TODO: WIN-274 Code generation for IIterable/IIterator
-                // TODO: WIN-124 Code generation for IObservableVector and IObservableMap
-                auto name = iface.second.type->swift_full_name();
-                if (name.starts_with("Windows.Foundation.Collections.IIterable")
-                    || name.starts_with("Windows.Foundation.Collections.IIterator")
-                    || name.starts_with("Windows.Foundation.Collections.IObservableVector")
-                    || name.starts_with("Windows.Foundation.Collections.IObservableMap"))
-                {
-                    return false;
-                }
-
                 if (iface.first.empty()) return false;
             }
         }
@@ -142,20 +108,6 @@ namespace swiftwinrt
 
         auto category = get_category(type.type());
         if (category == category::enum_type) return true;
-
-        // TODO: WIN-65 swiftwinrt: support generic types
-        auto generics = type.type().GenericParam();
-        if (!empty(generics))
-        {
-            // don't write abi types bc that will put it in a UnsafeMutablePointer<>
-            auto non_mangled = w.push_mangled_names(false);
-            auto written = w.write_temp("%", type);
-            auto can_write = !written.empty();
-            if (!can_write)
-            {
-                return false;
-            }
-        }
 
         if (auto iface = dynamic_cast<const interface_type*>(&type))
         {

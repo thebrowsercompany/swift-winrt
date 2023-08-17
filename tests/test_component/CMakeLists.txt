@@ -7,6 +7,7 @@ set(WINMD_FILE
 set(SWIFT_WINRT_PARAMETERS
 "-ns-prefix"
 "-include test_component"
+"-include Windows.Foundation.Collections"
 "-input ${WINMD_FILE}"
 "-support test_component"
 "-test"

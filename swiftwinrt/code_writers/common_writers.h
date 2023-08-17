@@ -1,6 +1,8 @@
 #pragma once
 #include "../helpers.h"
 #include "../type_writers.h"
+#include "type_writers.h"
+
 namespace swiftwinrt
 {
     template <typename T>
@@ -232,6 +234,54 @@ namespace swiftwinrt
         {
             auto format = ".init(from: %)";
             w.write(format, name);
+        }
+    }
+
+    inline void write_generic_typealiases(writer& w, metadata_type const& type)
+    {
+        std::vector<named_interface_info> required_interfaces;
+        bool is_public_alias = true;
+        if (auto iface = dynamic_cast<const interface_type*>(&type))
+        {
+            required_interfaces = iface->required_interfaces;
+        }
+        else if (auto classType = dynamic_cast<const class_type*>(&type))
+        {
+            required_interfaces = classType->required_interfaces;
+        }
+        else if (auto genericInst = dynamic_cast<const generic_inst*>(&type))
+        {
+            is_public_alias = false;
+            required_interfaces = genericInst->required_interfaces;
+            required_interfaces.emplace_back(type.swift_type_name(), interface_info{ &type });
+        }
+
+        // required_interfaces will duplicate the generic type requirements for interfaces
+        // which derive from others. For example, if we're writing IPropertySet, then required_interfaces
+        // will contain IObservableMap<String, Any?>, IMap<String, Any?>, and IIterable<IKeyValuePair<String, Any?>>
+        // The typealiases for IObservableMap<String, Any?> and IMap<String, Any?> will be identical, so only 
+        // write them once
+        std::set<std::string> typealiases;
+
+        for (const auto& [_name, info] : required_interfaces)
+        {
+            if (auto iface = dynamic_cast<const generic_inst*>(info.type))
+            {
+                auto genericType = dynamic_cast<const interface_type*>(iface->generic_type());
+                auto&& generic_params = iface->generic_params();
+
+                for (size_t i = 0; i < generic_params.size(); i++)
+                {
+                    auto [str, added] = typealiases.insert(w.write_temp("%typealias % = %\n",
+                        is_public_alias ? "public ": "",
+                        genericType->generic_params[i].swift_type_name(),
+                        bind<write_type>(*generic_params[i], write_type_params::swift)));
+                    if (added)
+                    {
+                        w.write(*str);
+                    }
+                }
+            }
         }
     }
 }

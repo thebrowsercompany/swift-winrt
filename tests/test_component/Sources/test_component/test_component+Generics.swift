@@ -5,48 +5,2359 @@ private var IID___x_ABI_C__FIIterable_1_IInspectable: IID {
     IID(Data1: 0x092b849b, Data2: 0x60b1, Data3: 0x52be, Data4: ( 0xa4,0x4a,0x6f,0xe8,0xe9,0x33,0xcb,0xe4 ))// 092b849b-60b1-52be-a44a-6fe8e933cbe4
 }
 
+internal var __x_ABI_C__FIIterable_1_IInspectableVTable: __x_ABI_C__FIIterable_1_IInspectableVtbl = .init(
+    QueryInterface: {
+        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
+        switch riid.pointee {
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIIterable_1_IInspectableWrapper.IID:
+                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                return S_OK
+            default:
+                guard let instance = __x_ABI_C__FIIterable_1_IInspectableWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
+
+        }
+    },
+
+    AddRef: {
+         guard let wrapper = __x_ABI_C__FIIterable_1_IInspectableWrapper.fromRaw($0) else { return 1 }
+         _ = wrapper.retain()
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+    },
+
+    Release: {
+        guard let wrapper = __x_ABI_C__FIIterable_1_IInspectableWrapper.fromRaw($0) else { return 1 }
+        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+    },
+
+    GetIids: {
+        let size = MemoryLayout<IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIIterable_1_IInspectableWrapper.IID
+        $1!.pointee = 3
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.Collections.IIterable`1<Any>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    First: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterable_1_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.first()
+        let resultWrapper = test_component.__x_ABI_C__FIIterator_1_IInspectableWrapper(result)
+        resultWrapper?.copyTo($1)
+        return S_OK
+    }
+)
+typealias __x_ABI_C__FIIterable_1_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1_IInspectableImpl>
+internal class IIterableAny: test_component.IInspectable {
+    override public class var IID: IID { IID___x_ABI_C__FIIterable_1_IInspectable }
+
+    internal func FirstImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIIterator_1_IInspectable>? {
+        var result: UnsafeMutablePointer<__x_ABI_C__FIIterator_1_IInspectable>?
+        _ = try perform(as: __x_ABI_C__FIIterable_1_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &result))
+        }
+        return result
+    }
+
+}
+
+internal class __x_ABI_C__FIIterable_1_IInspectableImpl : IIterable, AbiInterfaceImpl {
+    typealias T = Any?
+    typealias SwiftProjection = AnyIIterable<Any?>
+    typealias CABI = __x_ABI_C__FIIterable_1_IInspectable
+    typealias SwiftABI = IIterableAny
+
+    private (set) public var _default: SwiftABI
+
+    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIIterable_1_IInspectableImpl(abi)
+    }
+
+    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+        _default = SwiftABI(fromAbi)
+    }
+
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1_IInspectableVTable) { $0 }
+        return.init(lpVtbl: vtblPtr)
+    }
+
+    // MARK: WinRT
+    public func first() -> AnyIIterator<Any?>? {
+        let result = try! _default.FirstImpl()
+        return test_component.__x_ABI_C__FIIterator_1_IInspectableWrapper.unwrapFrom(abi: result)
+    }
+
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+}
+
 private var IID___x_ABI_C__FIIterable_1_HSTRING: IID {
     IID(Data1: 0xe2fcc7c1, Data2: 0x3bfc, Data3: 0x5a0b, Data4: ( 0xb2,0xb0,0x72,0xe7,0x69,0xd1,0xcb,0x7e ))// e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e
+}
+
+internal var __x_ABI_C__FIIterable_1_HSTRINGVTable: __x_ABI_C__FIIterable_1_HSTRINGVtbl = .init(
+    QueryInterface: {
+        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
+        switch riid.pointee {
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIIterable_1_HSTRINGWrapper.IID:
+                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                return S_OK
+            default:
+                guard let instance = __x_ABI_C__FIIterable_1_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
+
+        }
+    },
+
+    AddRef: {
+         guard let wrapper = __x_ABI_C__FIIterable_1_HSTRINGWrapper.fromRaw($0) else { return 1 }
+         _ = wrapper.retain()
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+    },
+
+    Release: {
+        guard let wrapper = __x_ABI_C__FIIterable_1_HSTRINGWrapper.fromRaw($0) else { return 1 }
+        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+    },
+
+    GetIids: {
+        let size = MemoryLayout<IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIIterable_1_HSTRINGWrapper.IID
+        $1!.pointee = 3
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.Collections.IIterable`1<String>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    First: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterable_1_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.first()
+        let resultWrapper = test_component.__x_ABI_C__FIIterator_1_HSTRINGWrapper(result)
+        resultWrapper?.copyTo($1)
+        return S_OK
+    }
+)
+typealias __x_ABI_C__FIIterable_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1_HSTRINGImpl>
+internal class IIterableString: test_component.IInspectable {
+    override public class var IID: IID { IID___x_ABI_C__FIIterable_1_HSTRING }
+
+    internal func FirstImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIIterator_1_HSTRING>? {
+        var result: UnsafeMutablePointer<__x_ABI_C__FIIterator_1_HSTRING>?
+        _ = try perform(as: __x_ABI_C__FIIterable_1_HSTRING.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &result))
+        }
+        return result
+    }
+
+}
+
+internal class __x_ABI_C__FIIterable_1_HSTRINGImpl : IIterable, AbiInterfaceImpl {
+    typealias T = String
+    typealias SwiftProjection = AnyIIterable<String>
+    typealias CABI = __x_ABI_C__FIIterable_1_HSTRING
+    typealias SwiftABI = IIterableString
+
+    private (set) public var _default: SwiftABI
+
+    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIIterable_1_HSTRINGImpl(abi)
+    }
+
+    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+        _default = SwiftABI(fromAbi)
+    }
+
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1_HSTRINGVTable) { $0 }
+        return.init(lpVtbl: vtblPtr)
+    }
+
+    // MARK: WinRT
+    public func first() -> AnyIIterator<String>? {
+        let result = try! _default.FirstImpl()
+        return test_component.__x_ABI_C__FIIterator_1_HSTRINGWrapper.unwrapFrom(abi: result)
+    }
+
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+}
+
+private var IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable: IID {
+    IID(Data1: 0xfe2f3d47, Data2: 0x5d47, Data3: 0x5499, Data4: ( 0x83,0x74,0x43,0x0c,0x7c,0xda,0x02,0x04 ))// fe2f3d47-5d47-5499-8374-430c7cda0204
+}
+
+internal var __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableVTable: __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableVtbl = .init(
+    QueryInterface: {
+        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
+        switch riid.pointee {
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.IID:
+                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                return S_OK
+            default:
+                guard let instance = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
+
+        }
+    },
+
+    AddRef: {
+         guard let wrapper = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.fromRaw($0) else { return 1 }
+         _ = wrapper.retain()
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+    },
+
+    Release: {
+        guard let wrapper = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.fromRaw($0) else { return 1 }
+        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+    },
+
+    GetIids: {
+        let size = MemoryLayout<IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.IID
+        $1!.pointee = 3
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.Collections.IIterable`1<Windows.Foundation.Collections.IKeyValuePair`2<String, Any>>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    First: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.first()
+        let resultWrapper = test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper(result)
+        resultWrapper?.copyTo($1)
+        return S_OK
+    }
+)
+typealias __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl>
+internal class IIterableIKeyValuePairString_Any: test_component.IInspectable {
+    override public class var IID: IID { IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable }
+
+    internal func FirstImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable>? {
+        var result: UnsafeMutablePointer<__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable>?
+        _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &result))
+        }
+        return result
+    }
+
+}
+
+internal class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl : IIterable, AbiInterfaceImpl {
+    typealias T = AnyIKeyValuePair<String, Any?>?
+    typealias SwiftProjection = AnyIIterable<AnyIKeyValuePair<String, Any?>?>
+    typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable
+    typealias SwiftABI = IIterableIKeyValuePairString_Any
+
+    private (set) public var _default: SwiftABI
+
+    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl(abi)
+    }
+
+    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+        _default = SwiftABI(fromAbi)
+    }
+
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableVTable) { $0 }
+        return.init(lpVtbl: vtblPtr)
+    }
+
+    // MARK: WinRT
+    public func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
+        let result = try! _default.FirstImpl()
+        return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
+    }
+
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING: IID {
     IID(Data1: 0xe9bdaaf0, Data2: 0xcbf6, Data3: 0x5c72, Data4: ( 0xbe,0x90,0x29,0xcb,0xf3,0xa1,0x31,0x9b ))// e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b
 }
 
+internal var __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGVtbl = .init(
+    QueryInterface: {
+        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
+        switch riid.pointee {
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.IID:
+                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                return S_OK
+            default:
+                guard let instance = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
+
+        }
+    },
+
+    AddRef: {
+         guard let wrapper = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.fromRaw($0) else { return 1 }
+         _ = wrapper.retain()
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+    },
+
+    Release: {
+        guard let wrapper = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.fromRaw($0) else { return 1 }
+        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+    },
+
+    GetIids: {
+        let size = MemoryLayout<IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.IID
+        $1!.pointee = 3
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.Collections.IIterable`1<Windows.Foundation.Collections.IKeyValuePair`2<String, String>>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    First: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.first()
+        let resultWrapper = test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper(result)
+        resultWrapper?.copyTo($1)
+        return S_OK
+    }
+)
+typealias __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl>
+internal class IIterableIKeyValuePairString_String: test_component.IInspectable {
+    override public class var IID: IID { IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING }
+
+    internal func FirstImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING>? {
+        var result: UnsafeMutablePointer<__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING>?
+        _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &result))
+        }
+        return result
+    }
+
+}
+
+internal class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl : IIterable, AbiInterfaceImpl {
+    typealias T = AnyIKeyValuePair<String, String>?
+    typealias SwiftProjection = AnyIIterable<AnyIKeyValuePair<String, String>?>
+    typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING
+    typealias SwiftABI = IIterableIKeyValuePairString_String
+
+    private (set) public var _default: SwiftABI
+
+    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl(abi)
+    }
+
+    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+        _default = SwiftABI(fromAbi)
+    }
+
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGVTable) { $0 }
+        return.init(lpVtbl: vtblPtr)
+    }
+
+    // MARK: WinRT
+    public func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
+        let result = try! _default.FirstImpl()
+        return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
+    }
+
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+}
+
 private var IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase: IID {
     IID(Data1: 0x9ee59ac2, Data2: 0xef36, Data3: 0x560b, Data4: ( 0x8a,0xdc,0xd3,0xea,0x78,0xbd,0x58,0x2b ))// 9ee59ac2-ef36-560b-8adc-d3ea78bd582b
+}
+
+internal var __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
+    QueryInterface: {
+        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
+        switch riid.pointee {
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.IID:
+                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                return S_OK
+            default:
+                guard let instance = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
+
+        }
+    },
+
+    AddRef: {
+         guard let wrapper = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
+         _ = wrapper.retain()
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+    },
+
+    Release: {
+        guard let wrapper = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
+        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+    },
+
+    GetIids: {
+        let size = MemoryLayout<IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
+        $1!.pointee = 3
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.Collections.IIterable`1<Windows.Foundation.Collections.IKeyValuePair`2<String, test_component.Base>>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    First: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.first()
+        let resultWrapper = test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper(result)
+        resultWrapper?.copyTo($1)
+        return S_OK
+    }
+)
+typealias __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl>
+internal class IIterableIKeyValuePairString_Base: test_component.IInspectable {
+    override public class var IID: IID { IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
+
+    internal func FirstImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>? {
+        var result: UnsafeMutablePointer<__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
+        _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &result))
+        }
+        return result
+    }
+
+}
+
+internal class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl : IIterable, AbiInterfaceImpl {
+    typealias T = AnyIKeyValuePair<String, Base?>?
+    typealias SwiftProjection = AnyIIterable<AnyIKeyValuePair<String, Base?>?>
+    typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
+    typealias SwiftABI = IIterableIKeyValuePairString_Base
+
+    private (set) public var _default: SwiftABI
+
+    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
+    }
+
+    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+        _default = SwiftABI(fromAbi)
+    }
+
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
+        return.init(lpVtbl: vtblPtr)
+    }
+
+    // MARK: WinRT
+    public func first() -> AnyIIterator<AnyIKeyValuePair<String, Base?>?>? {
+        let result = try! _default.FirstImpl()
+        return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
+    }
+
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBase: IID {
     IID(Data1: 0xb826dcab, Data2: 0xca2a, Data3: 0x5fbc, Data4: ( 0x8c,0xbd,0xed,0x75,0x9a,0x9a,0x1c,0x00 ))// b826dcab-ca2a-5fbc-8cbd-ed759a9a1c00
 }
 
+internal var __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
+    QueryInterface: {
+        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
+        switch riid.pointee {
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID:
+                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                return S_OK
+            default:
+                guard let instance = __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
+
+        }
+    },
+
+    AddRef: {
+         guard let wrapper = __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
+         _ = wrapper.retain()
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+    },
+
+    Release: {
+        guard let wrapper = __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
+        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+    },
+
+    GetIids: {
+        let size = MemoryLayout<IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
+        $1!.pointee = 3
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.Collections.IIterable`1<test_component.Base>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    First: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.first()
+        let resultWrapper = test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper(result)
+        resultWrapper?.copyTo($1)
+        return S_OK
+    }
+)
+typealias __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseImpl>
+internal class IIterableBase: test_component.IInspectable {
+    override public class var IID: IID { IID___x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBase }
+
+    internal func FirstImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase>? {
+        var result: UnsafeMutablePointer<__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase>?
+        _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &result))
+        }
+        return result
+    }
+
+}
+
+internal class __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseImpl : IIterable, AbiInterfaceImpl {
+    typealias T = Base?
+    typealias SwiftProjection = AnyIIterable<Base?>
+    typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBase
+    typealias SwiftABI = IIterableBase
+
+    private (set) public var _default: SwiftABI
+
+    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
+    }
+
+    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+        _default = SwiftABI(fromAbi)
+    }
+
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
+        return.init(lpVtbl: vtblPtr)
+    }
+
+    // MARK: WinRT
+    public func first() -> AnyIIterator<Base?>? {
+        let result = try! _default.FirstImpl()
+        return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
+    }
+
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+}
+
 private var IID___x_ABI_C__FIIterator_1_IInspectable: IID {
     IID(Data1: 0x44a94f2d, Data2: 0x04f8, Data3: 0x5091, Data4: ( 0xb3,0x36,0xbe,0x78,0x92,0xdd,0x10,0xbe ))// 44a94f2d-04f8-5091-b336-be7892dd10be
+}
+
+internal var __x_ABI_C__FIIterator_1_IInspectableVTable: __x_ABI_C__FIIterator_1_IInspectableVtbl = .init(
+    QueryInterface: {
+        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
+        switch riid.pointee {
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIIterator_1_IInspectableWrapper.IID:
+                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                return S_OK
+            default:
+                guard let instance = __x_ABI_C__FIIterator_1_IInspectableWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
+
+        }
+    },
+
+    AddRef: {
+         guard let wrapper = __x_ABI_C__FIIterator_1_IInspectableWrapper.fromRaw($0) else { return 1 }
+         _ = wrapper.retain()
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+    },
+
+    Release: {
+        guard let wrapper = __x_ABI_C__FIIterator_1_IInspectableWrapper.fromRaw($0) else { return 1 }
+        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+    },
+
+    GetIids: {
+        let size = MemoryLayout<IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIIterator_1_IInspectableWrapper.IID
+        $1!.pointee = 3
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.Collections.IIterator`1<Any>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    get_Current: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterator_1_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.current
+        let resultWrapper = __ABI_.AnyWrapper(result)
+        resultWrapper?.copyTo($1)
+        return S_OK
+    },
+
+    get_HasCurrent: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterator_1_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.hasCurrent
+        $1?.initialize(to: .init(from: result))
+        return S_OK
+    },
+
+    MoveNext: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterator_1_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.moveNext()
+        $1?.initialize(to: .init(from: result))
+        return S_OK
+    },
+
+    GetMany: { _, _, _, _ in return failWith(err: E_NOTIMPL) }
+)
+typealias __x_ABI_C__FIIterator_1_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1_IInspectableImpl>
+internal class IIteratorAny: test_component.IInspectable {
+    override public class var IID: IID { IID___x_ABI_C__FIIterator_1_IInspectable }
+
+    internal func get_CurrentImpl() throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
+        var result: UnsafeMutablePointer<Ctest_component.IInspectable>?
+        _ = try perform(as: __x_ABI_C__FIIterator_1_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
+        }
+        return result
+    }
+
+    internal func get_HasCurrentImpl() throws -> boolean {
+        var result: boolean = 0
+        _ = try perform(as: __x_ABI_C__FIIterator_1_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
+        }
+        return result
+    }
+
+    internal func MoveNextImpl() throws -> boolean {
+        var result: boolean = 0
+        _ = try perform(as: __x_ABI_C__FIIterator_1_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
+        }
+        return result
+    }
+
+}
+
+internal class __x_ABI_C__FIIterator_1_IInspectableImpl : IIterator, AbiInterfaceImpl {
+    typealias T = Any?
+    typealias SwiftProjection = AnyIIterator<Any?>
+    typealias CABI = __x_ABI_C__FIIterator_1_IInspectable
+    typealias SwiftABI = IIteratorAny
+
+    private (set) public var _default: SwiftABI
+
+    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIIterator_1_IInspectableImpl(abi)
+    }
+
+    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+        _default = SwiftABI(fromAbi)
+    }
+
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1_IInspectableVTable) { $0 }
+        return.init(lpVtbl: vtblPtr)
+    }
+
+    // MARK: WinRT
+    public func moveNext() -> Bool {
+        let result = try! _default.MoveNextImpl()
+        return .init(from: result)
+    }
+
+    public var current : Any? {
+        get {
+            let result = try! _default.get_CurrentImpl()
+            return __ABI_.AnyWrapper.unwrapFrom(abi: result)
+        }
+
+    }
+
+    public var hasCurrent : Bool {
+        get {
+            let result = try! _default.get_HasCurrentImpl()
+            return .init(from: result)
+        }
+
+    }
+
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterator_1_HSTRING: IID {
     IID(Data1: 0x8c304ebb, Data2: 0x6615, Data3: 0x50a4, Data4: ( 0x88,0x29,0x87,0x9e,0xcd,0x44,0x32,0x36 ))// 8c304ebb-6615-50a4-8829-879ecd443236
 }
 
+internal var __x_ABI_C__FIIterator_1_HSTRINGVTable: __x_ABI_C__FIIterator_1_HSTRINGVtbl = .init(
+    QueryInterface: {
+        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
+        switch riid.pointee {
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIIterator_1_HSTRINGWrapper.IID:
+                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                return S_OK
+            default:
+                guard let instance = __x_ABI_C__FIIterator_1_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
+
+        }
+    },
+
+    AddRef: {
+         guard let wrapper = __x_ABI_C__FIIterator_1_HSTRINGWrapper.fromRaw($0) else { return 1 }
+         _ = wrapper.retain()
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+    },
+
+    Release: {
+        guard let wrapper = __x_ABI_C__FIIterator_1_HSTRINGWrapper.fromRaw($0) else { return 1 }
+        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+    },
+
+    GetIids: {
+        let size = MemoryLayout<IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIIterator_1_HSTRINGWrapper.IID
+        $1!.pointee = 3
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.Collections.IIterator`1<String>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    get_Current: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterator_1_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.current
+        $1?.initialize(to: try! HString(result).detach())
+        return S_OK
+    },
+
+    get_HasCurrent: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterator_1_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.hasCurrent
+        $1?.initialize(to: .init(from: result))
+        return S_OK
+    },
+
+    MoveNext: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterator_1_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.moveNext()
+        $1?.initialize(to: .init(from: result))
+        return S_OK
+    },
+
+    GetMany: { _, _, _, _ in return failWith(err: E_NOTIMPL) }
+)
+typealias __x_ABI_C__FIIterator_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1_HSTRINGImpl>
+internal class IIteratorString: test_component.IInspectable {
+    override public class var IID: IID { IID___x_ABI_C__FIIterator_1_HSTRING }
+
+    internal func get_CurrentImpl() throws -> HSTRING? {
+        var result: HSTRING?
+        _ = try perform(as: __x_ABI_C__FIIterator_1_HSTRING.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
+        }
+        return result
+    }
+
+    internal func get_HasCurrentImpl() throws -> boolean {
+        var result: boolean = 0
+        _ = try perform(as: __x_ABI_C__FIIterator_1_HSTRING.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
+        }
+        return result
+    }
+
+    internal func MoveNextImpl() throws -> boolean {
+        var result: boolean = 0
+        _ = try perform(as: __x_ABI_C__FIIterator_1_HSTRING.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
+        }
+        return result
+    }
+
+}
+
+internal class __x_ABI_C__FIIterator_1_HSTRINGImpl : IIterator, AbiInterfaceImpl {
+    typealias T = String
+    typealias SwiftProjection = AnyIIterator<String>
+    typealias CABI = __x_ABI_C__FIIterator_1_HSTRING
+    typealias SwiftABI = IIteratorString
+
+    private (set) public var _default: SwiftABI
+
+    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIIterator_1_HSTRINGImpl(abi)
+    }
+
+    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+        _default = SwiftABI(fromAbi)
+    }
+
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1_HSTRINGVTable) { $0 }
+        return.init(lpVtbl: vtblPtr)
+    }
+
+    // MARK: WinRT
+    public func moveNext() -> Bool {
+        let result = try! _default.MoveNextImpl()
+        return .init(from: result)
+    }
+
+    public var current : String {
+        get {
+            let result = try! _default.get_CurrentImpl()
+            return .init(from: result)
+        }
+
+    }
+
+    public var hasCurrent : Bool {
+        get {
+            let result = try! _default.get_HasCurrentImpl()
+            return .init(from: result)
+        }
+
+    }
+
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+}
+
+private var IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable: IID {
+    IID(Data1: 0x5db5fa32, Data2: 0x707c, Data3: 0x5849, Data4: ( 0xa0,0x6b,0x91,0xc8,0xeb,0x9d,0x10,0xe8 ))// 5db5fa32-707c-5849-a06b-91c8eb9d10e8
+}
+
+internal var __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableVTable: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableVtbl = .init(
+    QueryInterface: {
+        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
+        switch riid.pointee {
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.IID:
+                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                return S_OK
+            default:
+                guard let instance = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
+
+        }
+    },
+
+    AddRef: {
+         guard let wrapper = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.fromRaw($0) else { return 1 }
+         _ = wrapper.retain()
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+    },
+
+    Release: {
+        guard let wrapper = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.fromRaw($0) else { return 1 }
+        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+    },
+
+    GetIids: {
+        let size = MemoryLayout<IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.IID
+        $1!.pointee = 3
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.Collections.IIterator`1<Windows.Foundation.Collections.IKeyValuePair`2<String, Any>>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    get_Current: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.current
+        let resultWrapper = test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper(result)
+        resultWrapper?.copyTo($1)
+        return S_OK
+    },
+
+    get_HasCurrent: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.hasCurrent
+        $1?.initialize(to: .init(from: result))
+        return S_OK
+    },
+
+    MoveNext: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.moveNext()
+        $1?.initialize(to: .init(from: result))
+        return S_OK
+    },
+
+    GetMany: { _, _, _, _ in return failWith(err: E_NOTIMPL) }
+)
+typealias __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl>
+internal class IIteratorIKeyValuePairString_Any: test_component.IInspectable {
+    override public class var IID: IID { IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable }
+
+    internal func get_CurrentImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable>? {
+        var result: UnsafeMutablePointer<__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable>?
+        _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
+        }
+        return result
+    }
+
+    internal func get_HasCurrentImpl() throws -> boolean {
+        var result: boolean = 0
+        _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
+        }
+        return result
+    }
+
+    internal func MoveNextImpl() throws -> boolean {
+        var result: boolean = 0
+        _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
+        }
+        return result
+    }
+
+}
+
+internal class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl : IIterator, AbiInterfaceImpl {
+    typealias T = AnyIKeyValuePair<String, Any?>?
+    typealias SwiftProjection = AnyIIterator<AnyIKeyValuePair<String, Any?>?>
+    typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable
+    typealias SwiftABI = IIteratorIKeyValuePairString_Any
+
+    private (set) public var _default: SwiftABI
+
+    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl(abi)
+    }
+
+    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+        _default = SwiftABI(fromAbi)
+    }
+
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableVTable) { $0 }
+        return.init(lpVtbl: vtblPtr)
+    }
+
+    // MARK: WinRT
+    public func moveNext() -> Bool {
+        let result = try! _default.MoveNextImpl()
+        return .init(from: result)
+    }
+
+    public var current : AnyIKeyValuePair<String, Any?>? {
+        get {
+            let result = try! _default.get_CurrentImpl()
+            return test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
+        }
+
+    }
+
+    public var hasCurrent : Bool {
+        get {
+            let result = try! _default.get_HasCurrentImpl()
+            return .init(from: result)
+        }
+
+    }
+
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+}
+
 private var IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING: IID {
     IID(Data1: 0x05eb86f1, Data2: 0x7140, Data3: 0x5517, Data4: ( 0xb8,0x8d,0xcb,0xae,0xbe,0x57,0xe6,0xb1 ))// 05eb86f1-7140-5517-b88d-cbaebe57e6b1
+}
+
+internal var __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGVtbl = .init(
+    QueryInterface: {
+        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
+        switch riid.pointee {
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.IID:
+                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                return S_OK
+            default:
+                guard let instance = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
+
+        }
+    },
+
+    AddRef: {
+         guard let wrapper = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.fromRaw($0) else { return 1 }
+         _ = wrapper.retain()
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+    },
+
+    Release: {
+        guard let wrapper = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.fromRaw($0) else { return 1 }
+        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+    },
+
+    GetIids: {
+        let size = MemoryLayout<IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.IID
+        $1!.pointee = 3
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.Collections.IIterator`1<Windows.Foundation.Collections.IKeyValuePair`2<String, String>>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    get_Current: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.current
+        let resultWrapper = test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper(result)
+        resultWrapper?.copyTo($1)
+        return S_OK
+    },
+
+    get_HasCurrent: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.hasCurrent
+        $1?.initialize(to: .init(from: result))
+        return S_OK
+    },
+
+    MoveNext: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.moveNext()
+        $1?.initialize(to: .init(from: result))
+        return S_OK
+    },
+
+    GetMany: { _, _, _, _ in return failWith(err: E_NOTIMPL) }
+)
+typealias __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl>
+internal class IIteratorIKeyValuePairString_String: test_component.IInspectable {
+    override public class var IID: IID { IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING }
+
+    internal func get_CurrentImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING>? {
+        var result: UnsafeMutablePointer<__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING>?
+        _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
+        }
+        return result
+    }
+
+    internal func get_HasCurrentImpl() throws -> boolean {
+        var result: boolean = 0
+        _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
+        }
+        return result
+    }
+
+    internal func MoveNextImpl() throws -> boolean {
+        var result: boolean = 0
+        _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
+        }
+        return result
+    }
+
+}
+
+internal class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl : IIterator, AbiInterfaceImpl {
+    typealias T = AnyIKeyValuePair<String, String>?
+    typealias SwiftProjection = AnyIIterator<AnyIKeyValuePair<String, String>?>
+    typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING
+    typealias SwiftABI = IIteratorIKeyValuePairString_String
+
+    private (set) public var _default: SwiftABI
+
+    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl(abi)
+    }
+
+    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+        _default = SwiftABI(fromAbi)
+    }
+
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGVTable) { $0 }
+        return.init(lpVtbl: vtblPtr)
+    }
+
+    // MARK: WinRT
+    public func moveNext() -> Bool {
+        let result = try! _default.MoveNextImpl()
+        return .init(from: result)
+    }
+
+    public var current : AnyIKeyValuePair<String, String>? {
+        get {
+            let result = try! _default.get_CurrentImpl()
+            return test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
+        }
+
+    }
+
+    public var hasCurrent : Bool {
+        get {
+            let result = try! _default.get_HasCurrentImpl()
+            return .init(from: result)
+        }
+
+    }
+
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase: IID {
     IID(Data1: 0xbe30f8a4, Data2: 0x7d2e, Data3: 0x55fa, Data4: ( 0x91,0xd0,0xf0,0x21,0xdf,0xe4,0x6d,0x06 ))// be30f8a4-7d2e-55fa-91d0-f021dfe46d06
 }
 
+internal var __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
+    QueryInterface: {
+        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
+        switch riid.pointee {
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.IID:
+                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                return S_OK
+            default:
+                guard let instance = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
+
+        }
+    },
+
+    AddRef: {
+         guard let wrapper = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
+         _ = wrapper.retain()
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+    },
+
+    Release: {
+        guard let wrapper = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
+        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+    },
+
+    GetIids: {
+        let size = MemoryLayout<IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
+        $1!.pointee = 3
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.Collections.IIterator`1<Windows.Foundation.Collections.IKeyValuePair`2<String, test_component.Base>>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    get_Current: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.current
+        let resultWrapper = test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper(result)
+        resultWrapper?.copyTo($1)
+        return S_OK
+    },
+
+    get_HasCurrent: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.hasCurrent
+        $1?.initialize(to: .init(from: result))
+        return S_OK
+    },
+
+    MoveNext: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.moveNext()
+        $1?.initialize(to: .init(from: result))
+        return S_OK
+    },
+
+    GetMany: { _, _, _, _ in return failWith(err: E_NOTIMPL) }
+)
+typealias __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl>
+internal class IIteratorIKeyValuePairString_Base: test_component.IInspectable {
+    override public class var IID: IID { IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
+
+    internal func get_CurrentImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>? {
+        var result: UnsafeMutablePointer<__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
+        _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
+        }
+        return result
+    }
+
+    internal func get_HasCurrentImpl() throws -> boolean {
+        var result: boolean = 0
+        _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
+        }
+        return result
+    }
+
+    internal func MoveNextImpl() throws -> boolean {
+        var result: boolean = 0
+        _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
+        }
+        return result
+    }
+
+}
+
+internal class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl : IIterator, AbiInterfaceImpl {
+    typealias T = AnyIKeyValuePair<String, Base?>?
+    typealias SwiftProjection = AnyIIterator<AnyIKeyValuePair<String, Base?>?>
+    typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
+    typealias SwiftABI = IIteratorIKeyValuePairString_Base
+
+    private (set) public var _default: SwiftABI
+
+    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
+    }
+
+    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+        _default = SwiftABI(fromAbi)
+    }
+
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
+        return.init(lpVtbl: vtblPtr)
+    }
+
+    // MARK: WinRT
+    public func moveNext() -> Bool {
+        let result = try! _default.MoveNextImpl()
+        return .init(from: result)
+    }
+
+    public var current : AnyIKeyValuePair<String, Base?>? {
+        get {
+            let result = try! _default.get_CurrentImpl()
+            return test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
+        }
+
+    }
+
+    public var hasCurrent : Bool {
+        get {
+            let result = try! _default.get_HasCurrentImpl()
+            return .init(from: result)
+        }
+
+    }
+
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+}
+
 private var IID___x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase: IID {
     IID(Data1: 0xa8f692bf, Data2: 0xebba, Data3: 0x5b53, Data4: ( 0x90,0xd3,0x89,0x00,0x9b,0xcc,0x98,0x14 ))// a8f692bf-ebba-5b53-90d3-89009bcc9814
+}
+
+internal var __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
+    QueryInterface: {
+        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
+        switch riid.pointee {
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID:
+                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                return S_OK
+            default:
+                guard let instance = __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
+
+        }
+    },
+
+    AddRef: {
+         guard let wrapper = __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
+         _ = wrapper.retain()
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+    },
+
+    Release: {
+        guard let wrapper = __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
+        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+    },
+
+    GetIids: {
+        let size = MemoryLayout<IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
+        $1!.pointee = 3
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.Collections.IIterator`1<test_component.Base>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    get_Current: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.current
+        result?.copyTo($1)
+        return S_OK
+    },
+
+    get_HasCurrent: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.hasCurrent
+        $1?.initialize(to: .init(from: result))
+        return S_OK
+    },
+
+    MoveNext: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.moveNext()
+        $1?.initialize(to: .init(from: result))
+        return S_OK
+    },
+
+    GetMany: { _, _, _, _ in return failWith(err: E_NOTIMPL) }
+)
+typealias __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseImpl>
+internal class IIteratorBase: test_component.IInspectable {
+    override public class var IID: IID { IID___x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase }
+
+    internal func get_CurrentImpl() throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>? {
+        var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?
+        _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
+        }
+        return result
+    }
+
+    internal func get_HasCurrentImpl() throws -> boolean {
+        var result: boolean = 0
+        _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
+        }
+        return result
+    }
+
+    internal func MoveNextImpl() throws -> boolean {
+        var result: boolean = 0
+        _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
+        }
+        return result
+    }
+
+}
+
+internal class __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseImpl : IIterator, AbiInterfaceImpl {
+    typealias T = Base?
+    typealias SwiftProjection = AnyIIterator<Base?>
+    typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase
+    typealias SwiftABI = IIteratorBase
+
+    private (set) public var _default: SwiftABI
+
+    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
+    }
+
+    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+        _default = SwiftABI(fromAbi)
+    }
+
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
+        return.init(lpVtbl: vtblPtr)
+    }
+
+    // MARK: WinRT
+    public func moveNext() -> Bool {
+        let result = try! _default.MoveNextImpl()
+        return .init(from: result)
+    }
+
+    public var current : Base? {
+        get {
+            let result = try! _default.get_CurrentImpl()
+            return .from(abi: result)
+        }
+
+    }
+
+    public var hasCurrent : Bool {
+        get {
+            let result = try! _default.get_HasCurrentImpl()
+            return .init(from: result)
+        }
+
+    }
+
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+}
+
+private var IID___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable: IID {
+    IID(Data1: 0x09335560, Data2: 0x6c6b, Data3: 0x5a26, Data4: ( 0x93,0x48,0x97,0xb7,0x81,0x13,0x2b,0x20 ))// 09335560-6c6b-5a26-9348-97b781132b20
+}
+
+internal var __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableVTable: __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableVtbl = .init(
+    QueryInterface: {
+        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
+        switch riid.pointee {
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.IID:
+                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                return S_OK
+            default:
+                guard let instance = __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
+
+        }
+    },
+
+    AddRef: {
+         guard let wrapper = __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.fromRaw($0) else { return 1 }
+         _ = wrapper.retain()
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+    },
+
+    Release: {
+        guard let wrapper = __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.fromRaw($0) else { return 1 }
+        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+    },
+
+    GetIids: {
+        let size = MemoryLayout<IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.IID
+        $1!.pointee = 3
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.Collections.IKeyValuePair`2<String, Any>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    get_Key: {
+        guard let __unwrapped__instance = __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.key
+        $1?.initialize(to: try! HString(result).detach())
+        return S_OK
+    },
+
+    get_Value: {
+        guard let __unwrapped__instance = __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.value
+        let resultWrapper = __ABI_.AnyWrapper(result)
+        resultWrapper?.copyTo($1)
+        return S_OK
+    }
+)
+typealias __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl>
+internal class IKeyValuePairString_Any: test_component.IInspectable {
+    override public class var IID: IID { IID___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable }
+
+    internal func get_KeyImpl() throws -> HSTRING? {
+        var result: HSTRING?
+        _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
+        }
+        return result
+    }
+
+    internal func get_ValueImpl() throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
+        var result: UnsafeMutablePointer<Ctest_component.IInspectable>?
+        _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Value(pThis, &result))
+        }
+        return result
+    }
+
+}
+
+internal class __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl : IKeyValuePair, AbiInterfaceImpl {
+    typealias K = String
+    typealias V = Any?
+    typealias SwiftProjection = AnyIKeyValuePair<String, Any?>
+    typealias CABI = __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable
+    typealias SwiftABI = IKeyValuePairString_Any
+
+    private (set) public var _default: SwiftABI
+
+    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl(abi)
+    }
+
+    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+        _default = SwiftABI(fromAbi)
+    }
+
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableVTable) { $0 }
+        return.init(lpVtbl: vtblPtr)
+    }
+
+    // MARK: WinRT
+    public var key : String {
+        get {
+            let result = try! _default.get_KeyImpl()
+            return .init(from: result)
+        }
+
+    }
+
+    public var value : Any? {
+        get {
+            let result = try! _default.get_ValueImpl()
+            return __ABI_.AnyWrapper.unwrapFrom(abi: result)
+        }
+
+    }
+
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING: IID {
     IID(Data1: 0x60310303, Data2: 0x49c5, Data3: 0x52e6, Data4: ( 0xab,0xc6,0xa9,0xb3,0x6e,0xcc,0xc7,0x16 ))// 60310303-49c5-52e6-abc6-a9b36eccc716
 }
 
+internal var __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGVtbl = .init(
+    QueryInterface: {
+        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
+        switch riid.pointee {
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.IID:
+                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                return S_OK
+            default:
+                guard let instance = __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
+
+        }
+    },
+
+    AddRef: {
+         guard let wrapper = __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.fromRaw($0) else { return 1 }
+         _ = wrapper.retain()
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+    },
+
+    Release: {
+        guard let wrapper = __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.fromRaw($0) else { return 1 }
+        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+    },
+
+    GetIids: {
+        let size = MemoryLayout<IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.IID
+        $1!.pointee = 3
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.Collections.IKeyValuePair`2<String, String>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    get_Key: {
+        guard let __unwrapped__instance = __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.key
+        $1?.initialize(to: try! HString(result).detach())
+        return S_OK
+    },
+
+    get_Value: {
+        guard let __unwrapped__instance = __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.value
+        $1?.initialize(to: try! HString(result).detach())
+        return S_OK
+    }
+)
+typealias __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl>
+internal class IKeyValuePairString_String: test_component.IInspectable {
+    override public class var IID: IID { IID___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING }
+
+    internal func get_KeyImpl() throws -> HSTRING? {
+        var result: HSTRING?
+        _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
+        }
+        return result
+    }
+
+    internal func get_ValueImpl() throws -> HSTRING? {
+        var result: HSTRING?
+        _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Value(pThis, &result))
+        }
+        return result
+    }
+
+}
+
+internal class __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl : IKeyValuePair, AbiInterfaceImpl {
+    typealias K = String
+    typealias V = String
+    typealias SwiftProjection = AnyIKeyValuePair<String, String>
+    typealias CABI = __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING
+    typealias SwiftABI = IKeyValuePairString_String
+
+    private (set) public var _default: SwiftABI
+
+    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl(abi)
+    }
+
+    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+        _default = SwiftABI(fromAbi)
+    }
+
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGVTable) { $0 }
+        return.init(lpVtbl: vtblPtr)
+    }
+
+    // MARK: WinRT
+    public var key : String {
+        get {
+            let result = try! _default.get_KeyImpl()
+            return .init(from: result)
+        }
+
+    }
+
+    public var value : String {
+        get {
+            let result = try! _default.get_ValueImpl()
+            return .init(from: result)
+        }
+
+    }
+
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+}
+
 private var IID___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase: IID {
     IID(Data1: 0xc6bff2b3, Data2: 0x09a5, Data3: 0x5fcf, Data4: ( 0xb0,0x78,0x69,0x43,0xdd,0x21,0x5d,0xe7 ))// c6bff2b3-09a5-5fcf-b078-6943dd215de7
+}
+
+internal var __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
+    QueryInterface: {
+        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
+        switch riid.pointee {
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.IID:
+                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                return S_OK
+            default:
+                guard let instance = __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
+
+        }
+    },
+
+    AddRef: {
+         guard let wrapper = __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
+         _ = wrapper.retain()
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+    },
+
+    Release: {
+        guard let wrapper = __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
+        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+    },
+
+    GetIids: {
+        let size = MemoryLayout<IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
+        $1!.pointee = 3
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.Collections.IKeyValuePair`2<String, test_component.Base>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    get_Key: {
+        guard let __unwrapped__instance = __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.key
+        $1?.initialize(to: try! HString(result).detach())
+        return S_OK
+    },
+
+    get_Value: {
+        guard let __unwrapped__instance = __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.value
+        result?.copyTo($1)
+        return S_OK
+    }
+)
+typealias __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl>
+internal class IKeyValuePairString_Base: test_component.IInspectable {
+    override public class var IID: IID { IID___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
+
+    internal func get_KeyImpl() throws -> HSTRING? {
+        var result: HSTRING?
+        _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
+        }
+        return result
+    }
+
+    internal func get_ValueImpl() throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>? {
+        var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?
+        _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Value(pThis, &result))
+        }
+        return result
+    }
+
+}
+
+internal class __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl : IKeyValuePair, AbiInterfaceImpl {
+    typealias K = String
+    typealias V = Base?
+    typealias SwiftProjection = AnyIKeyValuePair<String, Base?>
+    typealias CABI = __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
+    typealias SwiftABI = IKeyValuePairString_Base
+
+    private (set) public var _default: SwiftABI
+
+    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
+    }
+
+    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+        _default = SwiftABI(fromAbi)
+    }
+
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
+        return.init(lpVtbl: vtblPtr)
+    }
+
+    // MARK: WinRT
+    public var key : String {
+        get {
+            let result = try! _default.get_KeyImpl()
+            return .init(from: result)
+        }
+
+    }
+
+    public var value : Base? {
+        get {
+            let result = try! _default.get_ValueImpl()
+            return .from(abi: result)
+        }
+
+    }
+
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+}
+
+private var IID___x_ABI_C__FIMapChangedEventArgs_1_HSTRING: IID {
+    IID(Data1: 0x60141efb, Data2: 0xf2f9, Data3: 0x5377, Data4: ( 0x96,0xfd,0xf8,0xc6,0x0d,0x95,0x58,0xb5 ))// 60141efb-f2f9-5377-96fd-f8c60d9558b5
+}
+
+internal var __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGVTable: __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGVtbl = .init(
+    QueryInterface: {
+        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
+        switch riid.pointee {
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper.IID:
+                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                return S_OK
+            default:
+                guard let instance = __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
+
+        }
+    },
+
+    AddRef: {
+         guard let wrapper = __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper.fromRaw($0) else { return 1 }
+         _ = wrapper.retain()
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+    },
+
+    Release: {
+        guard let wrapper = __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper.fromRaw($0) else { return 1 }
+        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+    },
+
+    GetIids: {
+        let size = MemoryLayout<IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper.IID
+        $1!.pointee = 3
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.Collections.IMapChangedEventArgs`1<String>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    get_CollectionChange: {
+        guard let __unwrapped__instance = __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.collectionChange
+        $1?.initialize(to: result)
+        return S_OK
+    },
+
+    get_Key: {
+        guard let __unwrapped__instance = __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.key
+        $1?.initialize(to: try! HString(result).detach())
+        return S_OK
+    }
+)
+typealias __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMapChangedEventArgs_1_HSTRINGImpl>
+internal class IMapChangedEventArgsString: test_component.IInspectable {
+    override public class var IID: IID { IID___x_ABI_C__FIMapChangedEventArgs_1_HSTRING }
+
+    internal func get_CollectionChangeImpl() throws -> __x_ABI_CWindows_CFoundation_CCollections_CCollectionChange {
+        var result: __x_ABI_CWindows_CFoundation_CCollections_CCollectionChange = .init(0)
+        _ = try perform(as: __x_ABI_C__FIMapChangedEventArgs_1_HSTRING.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_CollectionChange(pThis, &result))
+        }
+        return result
+    }
+
+    internal func get_KeyImpl() throws -> HSTRING? {
+        var result: HSTRING?
+        _ = try perform(as: __x_ABI_C__FIMapChangedEventArgs_1_HSTRING.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
+        }
+        return result
+    }
+
+}
+
+internal class __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGImpl : IMapChangedEventArgs, AbiInterfaceImpl {
+    typealias K = String
+    typealias SwiftProjection = AnyIMapChangedEventArgs<String>
+    typealias CABI = __x_ABI_C__FIMapChangedEventArgs_1_HSTRING
+    typealias SwiftABI = IMapChangedEventArgsString
+
+    private (set) public var _default: SwiftABI
+
+    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGImpl(abi)
+    }
+
+    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+        _default = SwiftABI(fromAbi)
+    }
+
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIMapChangedEventArgs_1_HSTRINGVTable) { $0 }
+        return.init(lpVtbl: vtblPtr)
+    }
+
+    // MARK: WinRT
+    public var collectionChange : test_component.CollectionChange {
+        get {
+            let result = try! _default.get_CollectionChangeImpl()
+            return result
+        }
+
+    }
+
+    public var key : String {
+        get {
+            let result = try! _default.get_KeyImpl()
+            return .init(from: result)
+        }
+
+    }
+
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+}
+
+private var IID___x_ABI_C__FIMapView_2_HSTRING_IInspectable: IID {
+    IID(Data1: 0xbb78502a, Data2: 0xf79d, Data3: 0x54fa, Data4: ( 0x92,0xc9,0x90,0xc5,0x03,0x9f,0xdf,0x7e ))// bb78502a-f79d-54fa-92c9-90c5039fdf7e
+}
+
+internal var __x_ABI_C__FIMapView_2_HSTRING_IInspectableVTable: __x_ABI_C__FIMapView_2_HSTRING_IInspectableVtbl = .init(
+    QueryInterface: {
+        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
+        switch riid.pointee {
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.IID:
+                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                return S_OK
+            default:
+                guard let instance = __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
+
+        }
+    },
+
+    AddRef: {
+         guard let wrapper = __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.fromRaw($0) else { return 1 }
+         _ = wrapper.retain()
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+    },
+
+    Release: {
+        guard let wrapper = __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.fromRaw($0) else { return 1 }
+        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+    },
+
+    GetIids: {
+        let size = MemoryLayout<IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.IID
+        iids[3] = test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.IID
+        $1!.pointee = 4
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.Collections.IMapView`2<String, Any>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    Lookup: {
+        guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let key: String = .init(from: $1)
+        let result = __unwrapped__instance.lookup(key)
+        let resultWrapper = __ABI_.AnyWrapper(result)
+        resultWrapper?.copyTo($2)
+        return S_OK
+    },
+
+    get_Size: {
+        guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.size
+        $1?.initialize(to: result)
+        return S_OK
+    },
+
+    HasKey: {
+        guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let key: String = .init(from: $1)
+        let result = __unwrapped__instance.hasKey(key)
+        $2?.initialize(to: .init(from: result))
+        return S_OK
+    },
+
+    Split: {
+        guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        var first: test_component.AnyIMapView<String, Any?>?
+        var second: test_component.AnyIMapView<String, Any?>?
+        __unwrapped__instance.split(&first, &second)
+        let firstWrapper = test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper(first)
+        firstWrapper?.copyTo($1)
+        let secondWrapper = test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper(second)
+        secondWrapper?.copyTo($2)
+        return S_OK
+    }
+)
+typealias __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl>
+internal class IMapViewString_Any: test_component.IInspectable {
+    override public class var IID: IID { IID___x_ABI_C__FIMapView_2_HSTRING_IInspectable }
+
+    internal func LookupImpl(_ key: HSTRING?) throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
+        var result: UnsafeMutablePointer<Ctest_component.IInspectable>?
+        _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, key, &result))
+        }
+        return result
+    }
+
+    internal func get_SizeImpl() throws -> UINT32 {
+        var result: UINT32 = 0
+        _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
+        }
+        return result
+    }
+
+    internal func HasKeyImpl(_ key: HSTRING?) throws -> boolean {
+        var result: boolean = 0
+        _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.HasKey(pThis, key, &result))
+        }
+        return result
+    }
+
+    internal func SplitImpl(_ first: inout UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_IInspectable>?, _ second: inout UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_IInspectable>?) throws {
+        _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &first, &second))
+        }
+    }
+
+}
+
+internal class __x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl : IMapView, AbiInterfaceImpl {
+    typealias T = AnyIKeyValuePair<String, Any?>?
+    typealias K = String
+    typealias V = Any?
+    typealias SwiftProjection = AnyIMapView<String, Any?>
+    typealias CABI = __x_ABI_C__FIMapView_2_HSTRING_IInspectable
+    typealias SwiftABI = IMapViewString_Any
+
+    private (set) public var _default: SwiftABI
+
+    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl(abi)
+    }
+
+    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+        _default = SwiftABI(fromAbi)
+    }
+
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIMapView_2_HSTRING_IInspectableVTable) { $0 }
+        return.init(lpVtbl: vtblPtr)
+    }
+
+    // MARK: WinRT
+    public func lookup(_ key: String) -> Any? {
+        let _key = try! HString(key)
+        let result = try! _default.LookupImpl(_key.get())
+        return __ABI_.AnyWrapper.unwrapFrom(abi: result)
+    }
+
+    public func hasKey(_ key: String) -> Bool {
+        let _key = try! HString(key)
+        let result = try! _default.HasKeyImpl(_key.get())
+        return .init(from: result)
+    }
+
+    public func split(_ first: inout AnyIMapView<String, Any?>?, _ second: inout AnyIMapView<String, Any?>?) {
+        var _first: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_IInspectable>?
+        var _second: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_IInspectable>?
+        try! _default.SplitImpl(&_first, &_second)
+        first = test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl.from(abi: _first)
+        second = test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl.from(abi: _second)
+    }
+
+    public var size : UInt32 {
+        get {
+            let result = try! _default.get_SizeImpl()
+            return result
+        }
+
+    }
+
+    internal lazy var _IIterable: IIterableIKeyValuePairString_Any = try! _default.QueryInterface()
+    public func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
+        let result = try! _IIterable.FirstImpl()
+        return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
+    }
+
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIMapView_2_HSTRING_HSTRING: IID {
@@ -85,11 +2396,12 @@ internal var __x_ABI_C__FIMapView_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMapView_
 
     GetIids: {
         let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.IID
-        $1!.pointee = 3
+        iids[3] = test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.IID
+        $1!.pointee = 4
         $2!.pointee = iids
         return S_OK
     },
@@ -179,8 +2491,9 @@ internal class IMapViewString_String: test_component.IInspectable {
 }
 
 internal class __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl : IMapView, AbiInterfaceImpl {
-    typealias Key = String
-    typealias Value = String
+    typealias T = AnyIKeyValuePair<String, String>?
+    typealias K = String
+    typealias V = String
     typealias SwiftProjection = AnyIMapView<String, String>
     typealias CABI = __x_ABI_C__FIMapView_2_HSTRING_HSTRING
     typealias SwiftABI = IMapViewString_String
@@ -230,6 +2543,12 @@ internal class __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl : IMapView, AbiInterfa
 
     }
 
+    internal lazy var _IIterable: IIterableIKeyValuePairString_String = try! _default.QueryInterface()
+    public func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
+        let result = try! _IIterable.FirstImpl()
+        return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
+    }
+
     public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
 }
 
@@ -269,11 +2588,12 @@ internal var __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTab
 
     GetIids: {
         let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
-        $1!.pointee = 3
+        iids[3] = test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
+        $1!.pointee = 4
         $2!.pointee = iids
         return S_OK
     },
@@ -363,8 +2683,9 @@ internal class IMapViewString_Base: test_component.IInspectable {
 }
 
 internal class __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl : IMapView, AbiInterfaceImpl {
-    typealias Key = String
-    typealias Value = Base?
+    typealias T = AnyIKeyValuePair<String, Base?>?
+    typealias K = String
+    typealias V = Base?
     typealias SwiftProjection = AnyIMapView<String, Base?>
     typealias CABI = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
     typealias SwiftABI = IMapViewString_Base
@@ -414,6 +2735,259 @@ internal class __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseIm
 
     }
 
+    internal lazy var _IIterable: IIterableIKeyValuePairString_Base = try! _default.QueryInterface()
+    public func first() -> AnyIIterator<AnyIKeyValuePair<String, Base?>?>? {
+        let result = try! _IIterable.FirstImpl()
+        return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
+    }
+
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+}
+
+private var IID___x_ABI_C__FIMap_2_HSTRING_IInspectable: IID {
+    IID(Data1: 0x1b0d3570, Data2: 0x0877, Data3: 0x5ec2, Data4: ( 0x8a,0x2c,0x3b,0x95,0x39,0x50,0x6a,0xca ))// 1b0d3570-0877-5ec2-8a2c-3b9539506aca
+}
+
+internal var __x_ABI_C__FIMap_2_HSTRING_IInspectableVTable: __x_ABI_C__FIMap_2_HSTRING_IInspectableVtbl = .init(
+    QueryInterface: {
+        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
+        switch riid.pointee {
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.IID:
+                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                return S_OK
+            default:
+                guard let instance = __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
+
+        }
+    },
+
+    AddRef: {
+         guard let wrapper = __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.fromRaw($0) else { return 1 }
+         _ = wrapper.retain()
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+    },
+
+    Release: {
+        guard let wrapper = __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.fromRaw($0) else { return 1 }
+        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+    },
+
+    GetIids: {
+        let size = MemoryLayout<IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.IID
+        iids[3] = test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.IID
+        $1!.pointee = 4
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.Collections.IMap`2<String, Any>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    Lookup: {
+        guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let key: String = .init(from: $1)
+        let result = __unwrapped__instance.lookup(key)
+        let resultWrapper = __ABI_.AnyWrapper(result)
+        resultWrapper?.copyTo($2)
+        return S_OK
+    },
+
+    get_Size: {
+        guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.size
+        $1?.initialize(to: result)
+        return S_OK
+    },
+
+    HasKey: {
+        guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let key: String = .init(from: $1)
+        let result = __unwrapped__instance.hasKey(key)
+        $2?.initialize(to: .init(from: result))
+        return S_OK
+    },
+
+    GetView: {
+        guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.getView()
+        let resultWrapper = test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper(result)
+        resultWrapper?.copyTo($1)
+        return S_OK
+    },
+
+    Insert: {
+        guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let key: String = .init(from: $1)
+        let value: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: $2)
+        let result = __unwrapped__instance.insert(key, value)
+        $3?.initialize(to: .init(from: result))
+        return S_OK
+    },
+
+    Remove: {
+        guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let key: String = .init(from: $1)
+        __unwrapped__instance.remove(key)
+        return S_OK
+    },
+
+    Clear: {
+        guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        __unwrapped__instance.clear()
+        return S_OK
+    }
+)
+typealias __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMap_2_HSTRING_IInspectableImpl>
+internal class IMapString_Any: test_component.IInspectable {
+    override public class var IID: IID { IID___x_ABI_C__FIMap_2_HSTRING_IInspectable }
+
+    internal func LookupImpl(_ key: HSTRING?) throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
+        var result: UnsafeMutablePointer<Ctest_component.IInspectable>?
+        _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, key, &result))
+        }
+        return result
+    }
+
+    internal func get_SizeImpl() throws -> UINT32 {
+        var result: UINT32 = 0
+        _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
+        }
+        return result
+    }
+
+    internal func HasKeyImpl(_ key: HSTRING?) throws -> boolean {
+        var result: boolean = 0
+        _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.HasKey(pThis, key, &result))
+        }
+        return result
+    }
+
+    internal func GetViewImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_IInspectable>? {
+        var result: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_IInspectable>?
+        _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &result))
+        }
+        return result
+    }
+
+    internal func InsertImpl(_ key: HSTRING?, _ value: UnsafeMutablePointer<Ctest_component.IInspectable>?) throws -> boolean {
+        var result: boolean = 0
+        _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Insert(pThis, key, value, &result))
+        }
+        return result
+    }
+
+    internal func RemoveImpl(_ key: HSTRING?) throws {
+        _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Remove(pThis, key))
+        }
+    }
+
+    internal func ClearImpl() throws {
+        _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Clear(pThis))
+        }
+    }
+
+}
+
+internal class __x_ABI_C__FIMap_2_HSTRING_IInspectableImpl : IMap, AbiInterfaceImpl {
+    typealias T = AnyIKeyValuePair<String, Any?>?
+    typealias K = String
+    typealias V = Any?
+    typealias SwiftProjection = AnyIMap<String, Any?>
+    typealias CABI = __x_ABI_C__FIMap_2_HSTRING_IInspectable
+    typealias SwiftABI = IMapString_Any
+
+    private (set) public var _default: SwiftABI
+
+    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIMap_2_HSTRING_IInspectableImpl(abi)
+    }
+
+    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+        _default = SwiftABI(fromAbi)
+    }
+
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIMap_2_HSTRING_IInspectableVTable) { $0 }
+        return.init(lpVtbl: vtblPtr)
+    }
+
+    // MARK: WinRT
+    public func lookup(_ key: String) -> Any? {
+        let _key = try! HString(key)
+        let result = try! _default.LookupImpl(_key.get())
+        return __ABI_.AnyWrapper.unwrapFrom(abi: result)
+    }
+
+    public func hasKey(_ key: String) -> Bool {
+        let _key = try! HString(key)
+        let result = try! _default.HasKeyImpl(_key.get())
+        return .init(from: result)
+    }
+
+    public func getView() -> AnyIMapView<String, Any?>? {
+        let result = try! _default.GetViewImpl()
+        return test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
+    }
+
+    public func insert(_ key: String, _ value: Any?) -> Bool {
+        let _key = try! HString(key)
+        let valueWrapper = __ABI_.AnyWrapper(value)
+        let _value = try! valueWrapper?.toABI { $0 }
+        let result = try! _default.InsertImpl(_key.get(), _value)
+        return .init(from: result)
+    }
+
+    public func remove(_ key: String) {
+        let _key = try! HString(key)
+        try! _default.RemoveImpl(_key.get())
+    }
+
+    public func clear() {
+        try! _default.ClearImpl()
+    }
+
+    public var size : UInt32 {
+        get {
+            let result = try! _default.get_SizeImpl()
+            return result
+        }
+
+    }
+
+    internal lazy var _IIterable: IIterableIKeyValuePairString_Any = try! _default.QueryInterface()
+    public func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
+        let result = try! _IIterable.FirstImpl()
+        return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
+    }
+
     public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
 }
 
@@ -453,11 +3027,12 @@ internal var __x_ABI_C__FIMap_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMap_2_HSTRIN
 
     GetIids: {
         let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.IID
-        $1!.pointee = 3
+        iids[3] = test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.IID
+        $1!.pointee = 4
         $2!.pointee = iids
         return S_OK
     },
@@ -587,8 +3162,9 @@ internal class IMapString_String: test_component.IInspectable {
 }
 
 internal class __x_ABI_C__FIMap_2_HSTRING_HSTRINGImpl : IMap, AbiInterfaceImpl {
-    typealias Key = String
-    typealias Value = String
+    typealias T = AnyIKeyValuePair<String, String>?
+    typealias K = String
+    typealias V = String
     typealias SwiftProjection = AnyIMap<String, String>
     typealias CABI = __x_ABI_C__FIMap_2_HSTRING_HSTRING
     typealias SwiftABI = IMapString_String
@@ -651,6 +3227,12 @@ internal class __x_ABI_C__FIMap_2_HSTRING_HSTRINGImpl : IMap, AbiInterfaceImpl {
 
     }
 
+    internal lazy var _IIterable: IIterableIKeyValuePairString_String = try! _default.QueryInterface()
+    public func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
+        let result = try! _IIterable.FirstImpl()
+        return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
+    }
+
     public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
 }
 
@@ -690,11 +3272,12 @@ internal var __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: 
 
     GetIids: {
         let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
-        $1!.pointee = 3
+        iids[3] = test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
+        $1!.pointee = 4
         $2!.pointee = iids
         return S_OK
     },
@@ -824,8 +3407,9 @@ internal class IMapString_Base: test_component.IInspectable {
 }
 
 internal class __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl : IMap, AbiInterfaceImpl {
-    typealias Key = String
-    typealias Value = Base?
+    typealias T = AnyIKeyValuePair<String, Base?>?
+    typealias K = String
+    typealias V = Base?
     typealias SwiftProjection = AnyIMap<String, Base?>
     typealias CABI = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
     typealias SwiftABI = IMapString_Base
@@ -887,6 +3471,383 @@ internal class __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl :
 
     }
 
+    internal lazy var _IIterable: IIterableIKeyValuePairString_Base = try! _default.QueryInterface()
+    public func first() -> AnyIIterator<AnyIKeyValuePair<String, Base?>?>? {
+        let result = try! _IIterable.FirstImpl()
+        return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
+    }
+
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+}
+
+private var IID___x_ABI_C__FIObservableMap_2_HSTRING_IInspectable: IID {
+    IID(Data1: 0x236aac9d, Data2: 0xfb12, Data3: 0x5c4d, Data4: ( 0xa4,0x1c,0x9e,0x44,0x5f,0xb4,0xd7,0xec ))// 236aac9d-fb12-5c4d-a41c-9e445fb4d7ec
+}
+
+internal var __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableVTable: __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableVtbl = .init(
+    QueryInterface: {
+        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
+        switch riid.pointee {
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper.IID:
+                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                return S_OK
+            default:
+                guard let instance = __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
+
+        }
+    },
+
+    AddRef: {
+         guard let wrapper = __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper.fromRaw($0) else { return 1 }
+         _ = wrapper.retain()
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+    },
+
+    Release: {
+        guard let wrapper = __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper.fromRaw($0) else { return 1 }
+        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+    },
+
+    GetIids: {
+        let size = MemoryLayout<IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 5).assumingMemoryBound(to: IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper.IID
+        iids[3] = test_component.__x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.IID
+        iids[4] = test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.IID
+        $1!.pointee = 5
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.Collections.IObservableMap`2<String, Any>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    add_MapChanged: {
+        guard let __unwrapped__instance = __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        guard let vhnd = test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: $1) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.mapChanged.addHandler(vhnd)
+        $2?.initialize(to: .from(swift: result))
+        return S_OK
+    },
+
+    remove_MapChanged: {
+        guard let __unwrapped__instance = __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let token: EventRegistrationToken = $1
+        __unwrapped__instance.mapChanged.removeHandler(token)
+        return S_OK
+    }
+)
+typealias __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIObservableMap_2_HSTRING_IInspectableImpl>
+internal class IObservableMapString_Any: test_component.IInspectable {
+    override public class var IID: IID { IID___x_ABI_C__FIObservableMap_2_HSTRING_IInspectable }
+
+    internal func add_MapChangedImpl(_ vhnd: UnsafeMutablePointer<__x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectable>?) throws -> EventRegistrationToken {
+        var result: EventRegistrationToken = .init()
+        _ = try perform(as: __x_ABI_C__FIObservableMap_2_HSTRING_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.add_MapChanged(pThis, vhnd, &result))
+        }
+        return result
+    }
+
+    internal func remove_MapChangedImpl(_ token: EventRegistrationToken) throws {
+        _ = try perform(as: __x_ABI_C__FIObservableMap_2_HSTRING_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.remove_MapChanged(pThis, token))
+        }
+    }
+
+}
+
+internal class __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableImpl : IObservableMap, AbiInterfaceImpl {
+    typealias K = String
+    typealias V = Any?
+    typealias T = AnyIKeyValuePair<String, Any?>?
+    typealias SwiftProjection = AnyIObservableMap<String, Any?>
+    typealias CABI = __x_ABI_C__FIObservableMap_2_HSTRING_IInspectable
+    typealias SwiftABI = IObservableMapString_Any
+
+    private (set) public var _default: SwiftABI
+
+    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableImpl(abi)
+    }
+
+    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+        _default = SwiftABI(fromAbi)
+    }
+
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIObservableMap_2_HSTRING_IInspectableVTable) { $0 }
+        return.init(lpVtbl: vtblPtr)
+    }
+
+    // MARK: WinRT
+    public lazy var mapChanged : Event<MapChangedEventHandler<String, Any?>> = {
+      .init(
+        add: { [weak this = _default] in
+          guard let this else { return .init() }
+          let wrapper = test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper($0)
+          let abi = try! wrapper?.toABI { $0 }
+          return try! this.add_MapChangedImpl(abi)
+        },
+        remove: { [weak this = _default] in
+         try? this?.remove_MapChangedImpl($0) 
+       }
+      )
+    }()
+
+    internal lazy var _IMap: IMapString_Any = try! _default.QueryInterface()
+    public func lookup(_ key: String) -> Any? {
+        let _key = try! HString(key)
+        let result = try! _IMap.LookupImpl(_key.get())
+        return __ABI_.AnyWrapper.unwrapFrom(abi: result)
+    }
+
+    public func hasKey(_ key: String) -> Bool {
+        let _key = try! HString(key)
+        let result = try! _IMap.HasKeyImpl(_key.get())
+        return .init(from: result)
+    }
+
+    public func getView() -> AnyIMapView<String, Any?>? {
+        let result = try! _IMap.GetViewImpl()
+        return test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
+    }
+
+    public func insert(_ key: String, _ value: Any?) -> Bool {
+        let _key = try! HString(key)
+        let valueWrapper = __ABI_.AnyWrapper(value)
+        let _value = try! valueWrapper?.toABI { $0 }
+        let result = try! _IMap.InsertImpl(_key.get(), _value)
+        return .init(from: result)
+    }
+
+    public func remove(_ key: String) {
+        let _key = try! HString(key)
+        try! _IMap.RemoveImpl(_key.get())
+    }
+
+    public func clear() {
+        try! _IMap.ClearImpl()
+    }
+
+    public var size : UInt32 {
+        get {
+            let result = try! _IMap.get_SizeImpl()
+            return result
+        }
+
+    }
+
+    internal lazy var _IIterable: IIterableIKeyValuePairString_Any = try! _default.QueryInterface()
+    public func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
+        let result = try! _IIterable.FirstImpl()
+        return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
+    }
+
+    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+}
+
+private var IID___x_ABI_C__FIObservableMap_2_HSTRING_HSTRING: IID {
+    IID(Data1: 0x1e036276, Data2: 0x2f60, Data3: 0x55f6, Data4: ( 0xb7,0xf3,0xf8,0x60,0x79,0xe6,0x90,0x0b ))// 1e036276-2f60-55f6-b7f3-f86079e6900b
+}
+
+internal var __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGVtbl = .init(
+    QueryInterface: {
+        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
+        switch riid.pointee {
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper.IID:
+                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                return S_OK
+            default:
+                guard let instance = __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
+
+        }
+    },
+
+    AddRef: {
+         guard let wrapper = __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper.fromRaw($0) else { return 1 }
+         _ = wrapper.retain()
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+    },
+
+    Release: {
+        guard let wrapper = __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper.fromRaw($0) else { return 1 }
+        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+    },
+
+    GetIids: {
+        let size = MemoryLayout<IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 5).assumingMemoryBound(to: IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper.IID
+        iids[3] = test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.IID
+        iids[4] = test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.IID
+        $1!.pointee = 5
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.Collections.IObservableMap`2<String, String>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    add_MapChanged: {
+        guard let __unwrapped__instance = __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        guard let vhnd = test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: $1) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.mapChanged.addHandler(vhnd)
+        $2?.initialize(to: .from(swift: result))
+        return S_OK
+    },
+
+    remove_MapChanged: {
+        guard let __unwrapped__instance = __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let token: EventRegistrationToken = $1
+        __unwrapped__instance.mapChanged.removeHandler(token)
+        return S_OK
+    }
+)
+typealias __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGImpl>
+internal class IObservableMapString_String: test_component.IInspectable {
+    override public class var IID: IID { IID___x_ABI_C__FIObservableMap_2_HSTRING_HSTRING }
+
+    internal func add_MapChangedImpl(_ vhnd: UnsafeMutablePointer<__x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRING>?) throws -> EventRegistrationToken {
+        var result: EventRegistrationToken = .init()
+        _ = try perform(as: __x_ABI_C__FIObservableMap_2_HSTRING_HSTRING.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.add_MapChanged(pThis, vhnd, &result))
+        }
+        return result
+    }
+
+    internal func remove_MapChangedImpl(_ token: EventRegistrationToken) throws {
+        _ = try perform(as: __x_ABI_C__FIObservableMap_2_HSTRING_HSTRING.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.remove_MapChanged(pThis, token))
+        }
+    }
+
+}
+
+internal class __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGImpl : IObservableMap, AbiInterfaceImpl {
+    typealias K = String
+    typealias V = String
+    typealias T = AnyIKeyValuePair<String, String>?
+    typealias SwiftProjection = AnyIObservableMap<String, String>
+    typealias CABI = __x_ABI_C__FIObservableMap_2_HSTRING_HSTRING
+    typealias SwiftABI = IObservableMapString_String
+
+    private (set) public var _default: SwiftABI
+
+    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGImpl(abi)
+    }
+
+    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+        _default = SwiftABI(fromAbi)
+    }
+
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGVTable) { $0 }
+        return.init(lpVtbl: vtblPtr)
+    }
+
+    // MARK: WinRT
+    public lazy var mapChanged : Event<MapChangedEventHandler<String, String>> = {
+      .init(
+        add: { [weak this = _default] in
+          guard let this else { return .init() }
+          let wrapper = test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper($0)
+          let abi = try! wrapper?.toABI { $0 }
+          return try! this.add_MapChangedImpl(abi)
+        },
+        remove: { [weak this = _default] in
+         try? this?.remove_MapChangedImpl($0) 
+       }
+      )
+    }()
+
+    internal lazy var _IMap: IMapString_String = try! _default.QueryInterface()
+    public func lookup(_ key: String) -> String {
+        let _key = try! HString(key)
+        let result = try! _IMap.LookupImpl(_key.get())
+        return .init(from: result)
+    }
+
+    public func hasKey(_ key: String) -> Bool {
+        let _key = try! HString(key)
+        let result = try! _IMap.HasKeyImpl(_key.get())
+        return .init(from: result)
+    }
+
+    public func getView() -> AnyIMapView<String, String>? {
+        let result = try! _IMap.GetViewImpl()
+        return test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
+    }
+
+    public func insert(_ key: String, _ value: String) -> Bool {
+        let _key = try! HString(key)
+        let _value = try! HString(value)
+        let result = try! _IMap.InsertImpl(_key.get(), _value.get())
+        return .init(from: result)
+    }
+
+    public func remove(_ key: String) {
+        let _key = try! HString(key)
+        try! _IMap.RemoveImpl(_key.get())
+    }
+
+    public func clear() {
+        try! _IMap.ClearImpl()
+    }
+
+    public var size : UInt32 {
+        get {
+            let result = try! _IMap.get_SizeImpl()
+            return result
+        }
+
+    }
+
+    internal lazy var _IIterable: IIterableIKeyValuePairString_String = try! _default.QueryInterface()
+    public func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
+        let result = try! _IIterable.FirstImpl()
+        return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
+    }
+
     public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
 }
 
@@ -926,11 +3887,12 @@ internal var __x_ABI_C__FIVectorView_1_IInspectableVTable: __x_ABI_C__FIVectorVi
 
     GetIids: {
         let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIVectorView_1_IInspectableWrapper.IID
-        $1!.pointee = 3
+        iids[3] = test_component.__x_ABI_C__FIIterable_1_IInspectableWrapper.IID
+        $1!.pointee = 4
         $2!.pointee = iids
         return S_OK
     },
@@ -1007,7 +3969,7 @@ internal class IVectorViewAny: test_component.IInspectable {
 }
 
 internal class __x_ABI_C__FIVectorView_1_IInspectableImpl : IVectorView, AbiInterfaceImpl {
-    typealias Element = Any?
+    typealias T = Any?
     typealias SwiftProjection = AnyIVectorView<Any?>
     typealias CABI = __x_ABI_C__FIVectorView_1_IInspectable
     typealias SwiftABI = IVectorViewAny
@@ -1029,6 +3991,7 @@ internal class __x_ABI_C__FIVectorView_1_IInspectableImpl : IVectorView, AbiInte
     }
 
     // MARK: Collection
+    typealias Element = T
     var startIndex: Int { 0 }
     var endIndex: Int { Int(size) }
     func index(after i: Int) -> Int {
@@ -1067,6 +4030,12 @@ internal class __x_ABI_C__FIVectorView_1_IInspectableImpl : IVectorView, AbiInte
             return result
         }
 
+    }
+
+    internal lazy var _IIterable: IIterableAny = try! _default.QueryInterface()
+    public func first() -> AnyIIterator<Any?>? {
+        let result = try! _IIterable.FirstImpl()
+        return test_component.__x_ABI_C__FIIterator_1_IInspectableWrapper.unwrapFrom(abi: result)
     }
 
     public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
@@ -1108,11 +4077,12 @@ internal var __x_ABI_C__FIVectorView_1_HSTRINGVTable: __x_ABI_C__FIVectorView_1_
 
     GetIids: {
         let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper.IID
-        $1!.pointee = 3
+        iids[3] = test_component.__x_ABI_C__FIIterable_1_HSTRINGWrapper.IID
+        $1!.pointee = 4
         $2!.pointee = iids
         return S_OK
     },
@@ -1188,7 +4158,7 @@ internal class IVectorViewString: test_component.IInspectable {
 }
 
 internal class __x_ABI_C__FIVectorView_1_HSTRINGImpl : IVectorView, AbiInterfaceImpl {
-    typealias Element = String
+    typealias T = String
     typealias SwiftProjection = AnyIVectorView<String>
     typealias CABI = __x_ABI_C__FIVectorView_1_HSTRING
     typealias SwiftABI = IVectorViewString
@@ -1210,6 +4180,7 @@ internal class __x_ABI_C__FIVectorView_1_HSTRINGImpl : IVectorView, AbiInterface
     }
 
     // MARK: Collection
+    typealias Element = T
     var startIndex: Int { 0 }
     var endIndex: Int { Int(size) }
     func index(after i: Int) -> Int {
@@ -1247,6 +4218,12 @@ internal class __x_ABI_C__FIVectorView_1_HSTRINGImpl : IVectorView, AbiInterface
             return result
         }
 
+    }
+
+    internal lazy var _IIterable: IIterableString = try! _default.QueryInterface()
+    public func first() -> AnyIIterator<String>? {
+        let result = try! _IIterable.FirstImpl()
+        return test_component.__x_ABI_C__FIIterator_1_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
     public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
@@ -1288,11 +4265,12 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVTable: _
 
     GetIids: {
         let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
-        $1!.pointee = 3
+        iids[3] = test_component.__x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
+        $1!.pointee = 4
         $2!.pointee = iids
         return S_OK
     },
@@ -1368,7 +4346,7 @@ internal class IVectorViewBase: test_component.IInspectable {
 }
 
 internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl : IVectorView, AbiInterfaceImpl {
-    typealias Element = Base?
+    typealias T = Base?
     typealias SwiftProjection = AnyIVectorView<Base?>
     typealias CABI = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase
     typealias SwiftABI = IVectorViewBase
@@ -1390,6 +4368,7 @@ internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl : 
     }
 
     // MARK: Collection
+    typealias Element = T
     var startIndex: Int { 0 }
     var endIndex: Int { Int(size) }
     func index(after i: Int) -> Int {
@@ -1426,6 +4405,12 @@ internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl : 
             return result
         }
 
+    }
+
+    internal lazy var _IIterable: IIterableBase = try! _default.QueryInterface()
+    public func first() -> AnyIIterator<Base?>? {
+        let result = try! _IIterable.FirstImpl()
+        return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
 
     public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
@@ -1467,11 +4452,12 @@ internal var __x_ABI_C__FIVector_1_IInspectableVTable: __x_ABI_C__FIVector_1_IIn
 
     GetIids: {
         let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIVector_1_IInspectableWrapper.IID
-        $1!.pointee = 3
+        iids[3] = test_component.__x_ABI_C__FIIterable_1_IInspectableWrapper.IID
+        $1!.pointee = 4
         $2!.pointee = iids
         return S_OK
     },
@@ -1644,7 +4630,7 @@ internal class IVectorAny: test_component.IInspectable {
 }
 
 internal class __x_ABI_C__FIVector_1_IInspectableImpl : IVector, AbiInterfaceImpl {
-    typealias Element = Any?
+    typealias T = Any?
     typealias SwiftProjection = AnyIVector<Any?>
     typealias CABI = __x_ABI_C__FIVector_1_IInspectable
     typealias SwiftABI = IVectorAny
@@ -1666,6 +4652,7 @@ internal class __x_ABI_C__FIVector_1_IInspectableImpl : IVector, AbiInterfaceImp
     }
 
     // MARK: Collection
+    typealias Element = T
     var startIndex: Int { 0 }
     var endIndex: Int { Int(size) }
     func index(after i: Int) -> Int {
@@ -1750,6 +4737,12 @@ internal class __x_ABI_C__FIVector_1_IInspectableImpl : IVector, AbiInterfaceImp
 
     }
 
+    internal lazy var _IIterable: IIterableAny = try! _default.QueryInterface()
+    public func first() -> AnyIIterator<Any?>? {
+        let result = try! _IIterable.FirstImpl()
+        return test_component.__x_ABI_C__FIIterator_1_IInspectableWrapper.unwrapFrom(abi: result)
+    }
+
     public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
 }
 
@@ -1789,11 +4782,12 @@ internal var __x_ABI_C__FIVector_1_HSTRINGVTable: __x_ABI_C__FIVector_1_HSTRINGV
 
     GetIids: {
         let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper.IID
-        $1!.pointee = 3
+        iids[3] = test_component.__x_ABI_C__FIIterable_1_HSTRINGWrapper.IID
+        $1!.pointee = 4
         $2!.pointee = iids
         return S_OK
     },
@@ -1965,7 +4959,7 @@ internal class IVectorString: test_component.IInspectable {
 }
 
 internal class __x_ABI_C__FIVector_1_HSTRINGImpl : IVector, AbiInterfaceImpl {
-    typealias Element = String
+    typealias T = String
     typealias SwiftProjection = AnyIVector<String>
     typealias CABI = __x_ABI_C__FIVector_1_HSTRING
     typealias SwiftABI = IVectorString
@@ -1987,6 +4981,7 @@ internal class __x_ABI_C__FIVector_1_HSTRINGImpl : IVector, AbiInterfaceImpl {
     }
 
     // MARK: Collection
+    typealias Element = T
     var startIndex: Int { 0 }
     var endIndex: Int { Int(size) }
     func index(after i: Int) -> Int {
@@ -2067,6 +5062,12 @@ internal class __x_ABI_C__FIVector_1_HSTRINGImpl : IVector, AbiInterfaceImpl {
 
     }
 
+    internal lazy var _IIterable: IIterableString = try! _default.QueryInterface()
+    public func first() -> AnyIIterator<String>? {
+        let result = try! _IIterable.FirstImpl()
+        return test_component.__x_ABI_C__FIIterator_1_HSTRINGWrapper.unwrapFrom(abi: result)
+    }
+
     public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
 }
 
@@ -2106,11 +5107,12 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_A
 
     GetIids: {
         let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
-        $1!.pointee = 3
+        iids[3] = test_component.__x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
+        $1!.pointee = 4
         $2!.pointee = iids
         return S_OK
     },
@@ -2282,7 +5284,7 @@ internal class IVectorBase: test_component.IInspectable {
 }
 
 internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl : IVector, AbiInterfaceImpl {
-    typealias Element = Base?
+    typealias T = Base?
     typealias SwiftProjection = AnyIVector<Base?>
     typealias CABI = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase
     typealias SwiftABI = IVectorBase
@@ -2304,6 +5306,7 @@ internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl : IVec
     }
 
     // MARK: Collection
+    typealias Element = T
     var startIndex: Int { 0 }
     var endIndex: Int { Int(size) }
     func index(after i: Int) -> Int {
@@ -2380,9 +5383,165 @@ internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl : IVec
 
     }
 
+    internal lazy var _IIterable: IIterableBase = try! _default.QueryInterface()
+    public func first() -> AnyIIterator<Base?>? {
+        let result = try! _IIterable.FirstImpl()
+        return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
+    }
+
     public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
 }
 
+private var IID___x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectable: IID {
+    IID(Data1: 0x24f981e5, Data2: 0xddca, Data3: 0x538d, Data4: ( 0xaa,0xda,0xa5,0x99,0x06,0x08,0x4c,0xf1 ))// 24f981e5-ddca-538d-aada-a59906084cf1
+}
+
+internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectable {
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableVTable) { $0 }
+        return .init(lpVtbl:vtblPtr)
+    }
+}
+
+internal var __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableVTable: __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableVtbl = .init(
+    QueryInterface: {
+        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
+        switch riid.pointee {
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper.IID:
+                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                return S_OK
+            default:
+                return failWith(err: E_NOINTERFACE)
+        }
+    },
+
+    AddRef: {
+         guard let wrapper = __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper.fromRaw($0) else { return 1 }
+         _ = wrapper.retain()
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+    },
+
+    Release: {
+        guard let wrapper = __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper.fromRaw($0) else { return 1 }
+        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+    },
+
+    Invoke: {
+        guard let __unwrapped__instance = __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let sender: test_component.AnyIObservableMap<String, Any?>? = test_component.__x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: $1)
+        let event: test_component.AnyIMapChangedEventArgs<String>? = test_component.__x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper.unwrapFrom(abi: $2)
+        __unwrapped__instance(sender, event)
+        return S_OK
+    }
+)
+typealias __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableImpl>
+internal class MapChangedEventHandlerString_Any: test_component.IUnknown {
+    override public class var IID: IID { IID___x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectable }
+
+    internal func InvokeImpl(_ sender: UnsafeMutablePointer<__x_ABI_C__FIObservableMap_2_HSTRING_IInspectable>?, _ event: UnsafeMutablePointer<__x_ABI_C__FIMapChangedEventArgs_1_HSTRING>?) throws {
+        _ = try perform(as: __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, sender, event))
+        }
+    }
+
+}
+
+internal class __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableImpl : WinRTDelegateBridge {
+    internal typealias Handler = MapChangedEventHandler<String, Any?>
+    internal typealias CABI = __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectable
+    internal typealias SwiftABI = test_component.MapChangedEventHandlerString_Any
+
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        let _default = SwiftABI(abi)
+        let handler: Handler = { (sender, event) in
+            let senderWrapper = test_component.__x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper(sender)
+            let _sender = try! senderWrapper?.toABI { $0 }
+            let eventWrapper = test_component.__x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper(event)
+            let _event = try! eventWrapper?.toABI { $0 }
+            try! _default.InvokeImpl(_sender, _event)
+        }
+        return handler
+    }
+}
+private var IID___x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRING: IID {
+    IID(Data1: 0xe2663f37, Data2: 0x2e1b, Data3: 0x500c, Data4: ( 0xad,0x68,0xc3,0xed,0x7a,0x8f,0x74,0xc8 ))// e2663f37-2e1b-500c-ad68-c3ed7a8f74c8
+}
+
+internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRING {
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGVTable) { $0 }
+        return .init(lpVtbl:vtblPtr)
+    }
+}
+
+internal var __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGVTable: __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGVtbl = .init(
+    QueryInterface: {
+        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
+        switch riid.pointee {
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper.IID:
+                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                return S_OK
+            default:
+                return failWith(err: E_NOINTERFACE)
+        }
+    },
+
+    AddRef: {
+         guard let wrapper = __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper.fromRaw($0) else { return 1 }
+         _ = wrapper.retain()
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+    },
+
+    Release: {
+        guard let wrapper = __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper.fromRaw($0) else { return 1 }
+        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+    },
+
+    Invoke: {
+        guard let __unwrapped__instance = __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let sender: test_component.AnyIObservableMap<String, String>? = test_component.__x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: $1)
+        let event: test_component.AnyIMapChangedEventArgs<String>? = test_component.__x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper.unwrapFrom(abi: $2)
+        __unwrapped__instance(sender, event)
+        return S_OK
+    }
+)
+typealias __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGImpl>
+internal class MapChangedEventHandlerString_String: test_component.IUnknown {
+    override public class var IID: IID { IID___x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRING }
+
+    internal func InvokeImpl(_ sender: UnsafeMutablePointer<__x_ABI_C__FIObservableMap_2_HSTRING_HSTRING>?, _ event: UnsafeMutablePointer<__x_ABI_C__FIMapChangedEventArgs_1_HSTRING>?) throws {
+        _ = try perform(as: __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRING.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, sender, event))
+        }
+    }
+
+}
+
+internal class __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGImpl : WinRTDelegateBridge {
+    internal typealias Handler = MapChangedEventHandler<String, String>
+    internal typealias CABI = __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRING
+    internal typealias SwiftABI = test_component.MapChangedEventHandlerString_String
+
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        let _default = SwiftABI(abi)
+        let handler: Handler = { (sender, event) in
+            let senderWrapper = test_component.__x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper(sender)
+            let _sender = try! senderWrapper?.toABI { $0 }
+            let eventWrapper = test_component.__x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper(event)
+            let _event = try! eventWrapper?.toABI { $0 }
+            try! _default.InvokeImpl(_sender, _event)
+        }
+        return handler
+    }
+}
 private var IID___x_ABI_C__FIEventHandler_1_IInspectable: IID {
     IID(Data1: 0xc50898f6, Data2: 0xc536, Data3: 0x5f47, Data4: ( 0x85,0x83,0x8b,0x2c,0x24,0x38,0xa1,0x3b ))// c50898f6-c536-5f47-8583-8b2c2438a13b
 }
@@ -2428,7 +5587,6 @@ internal var __x_ABI_C__FIEventHandler_1_IInspectableVTable: __x_ABI_C__FIEventH
         return S_OK
     }
 )
-
 typealias __x_ABI_C__FIEventHandler_1_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIEventHandler_1_IInspectableImpl>
 internal class EventHandlerAny: test_component.IUnknown {
     override public class var IID: IID { IID___x_ABI_C__FIEventHandler_1_IInspectable }
@@ -2756,7 +5914,6 @@ internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple
         return S_OK
     }
 )
-
 typealias __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsImpl>
 internal class TypedEventHandlerSimple_SimpleEventArgs: test_component.IUnknown {
     override public class var IID: IID { IID___x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs }

@@ -369,6 +369,7 @@ namespace swiftwinrt
         std::string_view m_mangledName;
         std::string_view m_signature;
     };
+    struct generic_type_parameter;
 
     struct typedef_base : metadata_type
     {
@@ -492,6 +493,8 @@ namespace swiftwinrt
         {
             // not implemented by everyone yet
         }
+
+        std::vector<generic_type_parameter> generic_params;
 
     protected:
 
@@ -620,6 +623,8 @@ namespace swiftwinrt
         bool exclusive{};
         bool fastabi{};
         bool attributed{};
+        bool first{}; // TODO: better name
+
         // A pair of (relativeContract, version) where 'relativeContract' is the contract the interface was introduced
         // in relative to the contract history of the class. E.g. if a class goes from contract 'A' to 'B' to 'C',
         // 'relativeContract' would be '0' for an interface introduced in contract 'A', '1' for an interface introduced
@@ -666,7 +671,7 @@ namespace swiftwinrt
 
     struct class_type;
 
-    struct interface_type final : typedef_base
+    struct interface_type : typedef_base
     {
         interface_type(winmd::reader::TypeDef const& type) :
             typedef_base(type)
@@ -687,6 +692,77 @@ namespace swiftwinrt
 
         // When non-null, this interface gets extended with functions from other exclusiveto interfaces on the class
         class_type const* fast_class = nullptr;
+    };
+
+    struct generic_type_parameter final : metadata_type {
+        generic_type_parameter(std::string_view name) : param_name(name)
+        {
+        }
+
+        virtual std::string_view swift_full_name() const override
+        {
+            return param_name;
+        }
+
+
+        virtual std::string_view swift_type_name() const override
+        {
+            return param_name;
+        }
+
+        virtual std::string_view swift_abi_namespace() const override
+        {
+            return {};
+        }
+
+        virtual std::string_view swift_logical_namespace() const override
+        {
+            return {};
+        }
+
+        virtual std::string_view cpp_abi_name() const override
+        {
+            return param_name;
+        }
+
+        virtual std::string_view cpp_logical_name() const override
+        {
+            return param_name;
+        }
+
+        virtual std::string_view mangled_name() const override
+        {
+            return param_name;
+        }
+
+        virtual std::string_view generic_param_mangled_name() const override
+        {
+            return param_name;
+        }
+
+        virtual void append_signature(sha1& hash) const override
+        {
+        }
+
+        virtual void write_c_forward_declaration(writer&) const override
+        {
+            // No forward declaration necessary
+        }
+
+        virtual void write_c_abi_param(writer& w) const override {}
+
+        virtual bool is_experimental() const override
+        {
+            return false;
+        }
+
+        virtual void write_swift_declaration(writer&) const override
+        {
+            // no special declaration necessary
+        }
+
+    private:
+        std::string_view param_name;
     };
 
     struct class_type final : typedef_base
@@ -876,6 +952,8 @@ namespace swiftwinrt
         std::vector<event_def> events;
 
         virtual void write_swift_declaration(writer&) const override;
+
+        std::vector<named_interface_info> required_interfaces;
     private:
 
         typedef_base const* m_genericType;
@@ -1019,12 +1097,16 @@ namespace swiftwinrt
         if (type.swift_logical_namespace() == winrt_collections_namespace)
         {
             auto type_name = type.swift_type_name();
-            return type_name.starts_with("IVector") || // Covers IVectorView
-                type_name.starts_with("IMap") || // Covers IMapView
-                type_name.starts_with("IIterator") ||
-                type_name.starts_with("IIterable") ||
-                type_name.starts_with("IObservableMap") ||
-                type_name.starts_with("IObservableVector");
+
+            // Add backtick to ensure we don't match with interfaces like IVectorChangedEventArgs
+            return type_name.starts_with("IVector`") ||
+                type_name.starts_with("IVectorView`") ||
+                type_name.starts_with("IMap`") ||
+                type_name.starts_with("IMapView`") ||
+                type_name.starts_with("IIterator`") ||
+                type_name.starts_with("IIterable`") ||
+                type_name.starts_with("IObservableMap`") ||
+                type_name.starts_with("IObservableVector`");
         }
         return false;
     }

@@ -83,7 +83,6 @@ namespace swiftwinrt
         return swiftwinrt::is_generic(m_type);
     }
 
-
     winmd::reader::ElementType enum_type::underlying_type() const
     {
         return underlying_enum_type(m_type);
@@ -617,12 +616,8 @@ namespace swiftwinrt
         w.write(R"(
 )
 )");
-        if (is_delegate)
-        {
-            write_generic_delegate_wrapper(w, *this);
-            return;
-        }
-        else if (is_winrt_generic_collection(*this))
+   
+        if (!is_winrt_ireference(*this))
         {
             w.write("typealias % = InterfaceWrapperBase<%>\n",
                 bind_wrapper_name(*this),
