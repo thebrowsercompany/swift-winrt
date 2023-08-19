@@ -623,7 +623,6 @@ namespace swiftwinrt
         bool exclusive{};
         bool fastabi{};
         bool attributed{};
-        bool first{}; // TODO: better name
 
         // A pair of (relativeContract, version) where 'relativeContract' is the contract the interface was introduced
         // in relative to the contract history of the class. E.g. if a class goes from contract 'A' to 'B' to 'C',
@@ -1126,5 +1125,24 @@ namespace swiftwinrt
     inline bool is_winrt_generic_collection(const metadata_type* type)
     {
         return is_winrt_generic_collection(*type);
+    }
+
+    inline bool needs_collection_conformance(metadata_type const& type)
+    {
+        if (type.swift_logical_namespace() == winrt_collections_namespace)
+        {
+            auto type_name = type.swift_type_name();
+
+            // Add backtick to ensure we don't match with interfaces like IVectorChangedEventArgs
+            return type_name.starts_with("IVector`") ||
+                type_name.starts_with("IVectorView`") ||
+                type_name.starts_with("IObservableVector`");
+        }
+        return false;
+    }
+
+    inline bool needs_collection_conformance(const metadata_type* type)
+    {
+        return needs_collection_conformance(*type);
     }
 }

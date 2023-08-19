@@ -898,7 +898,7 @@ bind_impl_fullname(type));
     {
         auto modifier = w.impl_names ? "" : "public ";
         auto typeName = info.type->swift_type_name();
-        if (typeName.starts_with("IVector"))
+        if (typeName.starts_with("IVector") || typeName.starts_with("IObservableVector"))
         {
             w.write(R"(// MARK: Collection
 %typealias Element = T
@@ -974,11 +974,6 @@ bind_impl_fullname(type));
             w.write("internal lazy var %: % = try! _default.QueryInterface()\n",
                 get_swift_name(info),
                 swiftAbi);
-        }
-
-        if (is_class && is_winrt_generic_collection(info.type))
-        {
-            write_collection_protocol_conformance(w, info);
         }
 
         if (auto iface = dynamic_cast<const interface_type*>(info.type))
@@ -1392,7 +1387,8 @@ public static func makeAbi() -> CABI {
         auto return_type = w.write_temp("%", bind<write_delegate_return_type>(invoke_method));
         constexpr bool is_generic = std::is_same_v<T, generic_inst>;
         auto access_level = is_generic ? "internal" : "public";
-        auto handlerType = w.write_temp("%", type);
+        
+        auto handlerType = w.write_temp("%", bind<write_swift_type_identifier>(type));
         auto abi_guard = w.push_abi_types(is_generic);
         w.write(format,
             access_level,
@@ -1423,7 +1419,7 @@ public static func makeAbi() -> CABI {
         }
     }
 
-    static void write_collection_implementation(writer& w, generic_inst const& type)
+    static void write_generic_interface_implementation(writer& w, generic_inst const& type)
     {
         // Due to https://linear.app/the-browser-company/issue/WIN-148/investigate-possible-compiler-bug-crash-when-generating-collection
         // we have to generate the protocol conformance for the Collection protocol (see "// MARK: Collection" below). We shouldn't have to
@@ -1498,7 +1494,7 @@ public static func makeAbi() -> CABI {
         }
         else if (!is_winrt_ireference(type))
         {
-            write_collection_implementation(w, type);
+            write_generic_interface_implementation(w, type);
         }
     }
 
@@ -2269,11 +2265,18 @@ private var _default: SwiftABI!
         }
 
         bool has_overrides = false;
+        bool has_collection_conformance = false;
         for (const auto& [interface_name, info] : type.required_interfaces)
         {
             if (interface_name.empty() || !can_write(w, info.type)) { continue; }
 
             auto guard2{ w.push_generic_params(info) };
+            if (needs_collection_conformance(info.type) && !info.base && !has_collection_conformance)
+            {
+                has_collection_conformance = true;
+                write_collection_protocol_conformance(w, info);
+            }
+
             // Don't reimplement P/M/E for interfaces which are implemented on a base class
             if (!info.base)
             {

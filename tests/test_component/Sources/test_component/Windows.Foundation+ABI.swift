@@ -9,6 +9,10 @@ private var IID___x_ABI_CWindows_CFoundation_CIAsyncInfo: IID {
     IID(Data1: 0x00000036, Data2: 0x0000, Data3: 0x0000, Data4: ( 0xC0,0x00,0x00,0x00,0x00,0x00,0x00,0x46 ))// 00000036-0000-0000-C000-000000000046
 }
 
+private var IID___x_ABI_C__FIAsyncOperationWithProgress_2_TResult_TProgress: IID {
+    IID(Data1: 0xB5D036D7, Data2: 0xE297, Data3: 0x498F, Data4: ( 0xBA,0x60,0x02,0x89,0xE7,0x6E,0x23,0xDD ))// B5D036D7-E297-498F-BA60-0289E76E23DD
+}
+
 private var IID___x_ABI_C__FIAsyncOperation_1_TResult: IID {
     IID(Data1: 0x9FC2B0BB, Data2: 0xE446, Data3: 0x44E2, Data4: ( 0xAA,0x61,0x9C,0xAB,0x8F,0x63,0x6A,0xF2 ))// 9FC2B0BB-E446-44E2-AA61-9CAB8F636AF2
 }
@@ -43,6 +47,14 @@ private var IID___x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler: IID 
 
 private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1_TResult: IID {
     IID(Data1: 0xFCDCF02C, Data2: 0xE5D8, Data3: 0x4478, Data4: ( 0x91,0x5A,0x4D,0x90,0xB7,0x4B,0x83,0xA5 ))// FCDCF02C-E5D8-4478-915A-4D90B74B83A5
+}
+
+private var IID___x_ABI_C__FIAsyncOperationProgressHandler_2_TResult_TProgress: IID {
+    IID(Data1: 0x55690902, Data2: 0x0AAB, Data3: 0x421A, Data4: ( 0x87,0x78,0xF8,0xCE,0x50,0x26,0xD7,0x58 ))// 55690902-0AAB-421A-8778-F8CE5026D758
+}
+
+private var IID___x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_TResult_TProgress: IID {
+    IID(Data1: 0xE85DF41D, Data2: 0x6AA7, Data3: 0x46E3, Data4: ( 0xA8,0xE2,0xF0,0x09,0xD8,0x40,0xC6,0x27 ))// E85DF41D-6AA7-46E3-A8E2-F009D840C627
 }
 
 private var IID___x_ABI_CWindows_CFoundation_CIDeferralCompletedHandler: IID {

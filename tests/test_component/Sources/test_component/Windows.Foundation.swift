@@ -51,6 +51,8 @@ public final class Deferral : WinRTClass, IClosable {
 
 public typealias AsyncActionCompletedHandler = (AnyIAsyncAction?, AsyncStatus) -> ()
 public typealias AsyncOperationCompletedHandler<TResult> = (AnyIAsyncOperation<TResult>?, AsyncStatus) -> ()
+public typealias AsyncOperationProgressHandler<TResult,TProgress> = (AnyIAsyncOperationWithProgress<TResult, TProgress>?, TProgress) -> ()
+public typealias AsyncOperationWithProgressCompletedHandler<TResult,TProgress> = (AnyIAsyncOperationWithProgress<TResult, TProgress>?, AsyncStatus) -> ()
 public typealias DeferralCompletedHandler = () -> ()
 public typealias EventHandler<T> = (Any?, T) -> ()
 public typealias TypedEventHandler<TSender,TResult> = (TSender, TResult) -> ()
@@ -171,6 +173,29 @@ extension IAsyncInfo {
 }
 public typealias AnyIAsyncInfo = any IAsyncInfo
 
+public protocol IAsyncOperationWithProgress<TResult,TProgress> : IAsyncInfo, FutureValue {
+    associatedtype TResult
+    associatedtype TProgress
+    func getResults() throws -> TResult
+    var progress: test_component.AsyncOperationProgressHandler<TResult, TProgress>? { get set }
+    var completed: test_component.AsyncOperationWithProgressCompletedHandler<TResult, TProgress>? { get set }
+}
+
+public typealias AnyIAsyncOperationWithProgress<TResult,TProgress> = any IAsyncOperationWithProgress<TResult,TProgress>
+
+public extension IAsyncOperationWithProgress {
+    @MainActor
+    func get() async throws -> TResult {
+        if status == .started {
+            let event = WaitableEvent()
+            completed = { _, _ in
+                Task { await event.signal() }
+            }
+            await event.wait()
+        }
+        return try getResults()
+    }
+}
 public protocol IAsyncOperation<TResult> : IAsyncInfo, FutureValue {
     associatedtype TResult
     func getResults() throws -> TResult

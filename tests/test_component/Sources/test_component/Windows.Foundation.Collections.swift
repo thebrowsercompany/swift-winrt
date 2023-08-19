@@ -40,7 +40,6 @@ public final class PropertySet : WinRTClass, IObservableMap, IMap, IIterable, IP
     }
 
     internal lazy var _IObservableMap: IObservableMapString_Any = try! _default.QueryInterface()
-    // MARK: WinRT
     public lazy var mapChanged : Event<MapChangedEventHandler<String, Any?>> = {
       .init(
         add: { [weak this = _IObservableMap] in
@@ -56,7 +55,6 @@ public final class PropertySet : WinRTClass, IObservableMap, IMap, IIterable, IP
     }()
 
     internal lazy var _IMap: IMapString_Any = try! _default.QueryInterface()
-    // MARK: WinRT
     public func lookup(_ key: String) -> Any? {
         let _key = try! HString(key)
         let result = try! _IMap.LookupImpl(_key.get())
@@ -100,7 +98,6 @@ public final class PropertySet : WinRTClass, IObservableMap, IMap, IIterable, IP
     }
 
     internal lazy var _IIterable: IIterableIKeyValuePairString_Any = try! _default.QueryInterface()
-    // MARK: WinRT
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
         let result = try! _IIterable.FirstImpl()
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
@@ -145,7 +142,6 @@ public final class StringMap : WinRTClass, IMap, IIterable, IObservableMap {
         try! _default = RoActivateInstance(HString("Windows.Foundation.Collections.StringMap"))
     }
 
-    // MARK: WinRT
     public func lookup(_ key: String) -> String {
         let _key = try! HString(key)
         let result = try! _default.LookupImpl(_key.get())
@@ -188,14 +184,12 @@ public final class StringMap : WinRTClass, IMap, IIterable, IObservableMap {
     }
 
     internal lazy var _IIterable: IIterableIKeyValuePairString_String = try! _default.QueryInterface()
-    // MARK: WinRT
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
         let result = try! _IIterable.FirstImpl()
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
     internal lazy var _IObservableMap: IObservableMapString_String = try! _default.QueryInterface()
-    // MARK: WinRT
     public lazy var mapChanged : Event<MapChangedEventHandler<String, String>> = {
       .init(
         add: { [weak this = _IObservableMap] in
@@ -250,7 +244,6 @@ public final class ValueSet : WinRTClass, IObservableMap, IMap, IIterable, IProp
     }
 
     internal lazy var _IObservableMap: IObservableMapString_Any = try! _default.QueryInterface()
-    // MARK: WinRT
     public lazy var mapChanged : Event<MapChangedEventHandler<String, Any?>> = {
       .init(
         add: { [weak this = _IObservableMap] in
@@ -266,7 +259,6 @@ public final class ValueSet : WinRTClass, IObservableMap, IMap, IIterable, IProp
     }()
 
     internal lazy var _IMap: IMapString_Any = try! _default.QueryInterface()
-    // MARK: WinRT
     public func lookup(_ key: String) -> Any? {
         let _key = try! HString(key)
         let result = try! _IMap.LookupImpl(_key.get())
@@ -310,7 +302,6 @@ public final class ValueSet : WinRTClass, IObservableMap, IMap, IIterable, IProp
     }
 
     internal lazy var _IIterable: IIterableIKeyValuePairString_Any = try! _default.QueryInterface()
-    // MARK: WinRT
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
         let result = try! _IIterable.FirstImpl()
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)

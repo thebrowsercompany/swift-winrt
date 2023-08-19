@@ -2,6 +2,31 @@
 import Ctest_component
 
 public enum __IMPL_test_component {
+    public class IAsyncMethodsImpl : IAsyncMethods, WinRTAbiBridge {
+        public typealias CABI = __x_ABI_Ctest__component_CIAsyncMethods
+        public typealias SwiftABI = __ABI_test_component.IAsyncMethods
+        public typealias SwiftProjection = AnyIAsyncMethods
+        private (set) public var _default: SwiftABI
+        public var thisPtr: test_component.IInspectable { _default }
+        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+            guard let abi = abi else { return nil }
+            return IAsyncMethodsImpl(abi)
+        }
+        public init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+            _default = SwiftABI(fromAbi)
+        }
+
+        public static func makeAbi() -> CABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IAsyncMethodsVTable) { $0 }
+            return .init(lpVtbl: vtblPtr)
+        }
+        public func operationWithProgress(_ value: test_component.DateTime) throws -> AnyIAsyncOperationWithProgress<Int32, Double>! {
+            let operation = try _default.OperationWithProgressImpl(.from(swift: value))
+            return test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper.unwrapFrom(abi: operation)
+        }
+
+    }
+
     public class IBasicImpl : IBasic, WinRTAbiBridge {
         public typealias CABI = __x_ABI_Ctest__component_CIBasic
         public typealias SwiftABI = __ABI_test_component.IBasic
@@ -155,6 +180,32 @@ public enum __IMPL_test_component {
 
     }
 
+    public class IInterfaceWithObservableVectorImpl : IInterfaceWithObservableVector, WinRTAbiBridge {
+        public typealias CABI = __x_ABI_Ctest__component_CIInterfaceWithObservableVector
+        public typealias SwiftABI = __ABI_test_component.IInterfaceWithObservableVector
+        public typealias SwiftProjection = AnyIInterfaceWithObservableVector
+        private (set) public var _default: SwiftABI
+        public var thisPtr: test_component.IInspectable { _default }
+        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+            guard let abi = abi else { return nil }
+            return IInterfaceWithObservableVectorImpl(abi)
+        }
+        public init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+            _default = SwiftABI(fromAbi)
+        }
+
+        public static func makeAbi() -> CABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IInterfaceWithObservableVectorVTable) { $0 }
+            return .init(lpVtbl: vtblPtr)
+        }
+        public func takeObservable(_ basics: AnyIObservableVector<AnyIBasic?>!) throws {
+            let basicsWrapper = test_component.__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper(basics)
+            let _basics = try! basicsWrapper?.toABI { $0 }
+            try _default.TakeObservableImpl(_basics)
+        }
+
+    }
+
     public class ISimpleDelegateImpl : ISimpleDelegate, WinRTAbiBridge {
         public typealias CABI = __x_ABI_Ctest__component_CISimpleDelegate
         public typealias SwiftABI = __ABI_test_component.ISimpleDelegate
@@ -249,6 +300,18 @@ public enum __IMPL_test_component {
     }
 }
 @_spi(__MakeFromAbi_DoNotImport)
+public class IAsyncMethods_MakeFromAbi : MakeFromAbi {
+    public typealias CABI = __x_ABI_Ctest__component_CIAsyncMethods
+    public typealias SwiftABI = __ABI_test_component.IAsyncMethods
+    public typealias SwiftProjection = AnyIAsyncMethods
+    public static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
+        guard let abi else { return nil }
+        let swiftAbi: SwiftABI = try! test_component.IInspectable(abi).QueryInterface()
+        return __IMPL_test_component.IAsyncMethodsImpl(RawPointer(swiftAbi)!)
+    }
+}
+
+@_spi(__MakeFromAbi_DoNotImport)
 public class IBasic_MakeFromAbi : MakeFromAbi {
     public typealias CABI = __x_ABI_Ctest__component_CIBasic
     public typealias SwiftABI = __ABI_test_component.IBasic
@@ -269,6 +332,18 @@ public class IIAmImplementable_MakeFromAbi : MakeFromAbi {
         guard let abi else { return nil }
         let swiftAbi: SwiftABI = try! test_component.IInspectable(abi).QueryInterface()
         return __IMPL_test_component.IIAmImplementableImpl(RawPointer(swiftAbi)!)
+    }
+}
+
+@_spi(__MakeFromAbi_DoNotImport)
+public class IInterfaceWithObservableVector_MakeFromAbi : MakeFromAbi {
+    public typealias CABI = __x_ABI_Ctest__component_CIInterfaceWithObservableVector
+    public typealias SwiftABI = __ABI_test_component.IInterfaceWithObservableVector
+    public typealias SwiftProjection = AnyIInterfaceWithObservableVector
+    public static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
+        guard let abi else { return nil }
+        let swiftAbi: SwiftABI = try! test_component.IInspectable(abi).QueryInterface()
+        return __IMPL_test_component.IInterfaceWithObservableVectorImpl(RawPointer(swiftAbi)!)
     }
 }
 

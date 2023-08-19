@@ -98,6 +98,22 @@ namespace test_component
             Int32 Value;
         };
 
+        /* just here to make sure things compile, get weird C++ linker error if try to put this on a class:
+        Simple.cpp.obj : error LNK2001: unresolved external symbol 
+        "public: struct winrt::Windows::Foundation::IAsyncOperationWithProgress<int,double> __cdecl winrt::test_component::implementation::Simple::OperationWithProgress(class std::chrono::time_point<struct winrt::clock,class std::chrono::duration<__int64,struct std::ratio<1,10000000> > >)"
+        (?OperationWithProgress@Simple@implementation@test_component@winrt@@QEAA?AU?$IAsyncOperationWithProgress@HN@Foundation@Windows@4@V?$time_point@Uclock@winrt@@V?$duration@_JU?$ratio@$00$0JIJGIA@@std@@@chrono@std@@@chrono@std@@@Z)
+        */
+        interface IAsyncMethods
+        {
+            Windows.Foundation.IAsyncOperationWithProgress<Int32, Double> OperationWithProgress(Windows.Foundation.DateTime value);
+        }
+
+        // Just ensure that IObservableVector compiles
+        interface IInterfaceWithObservableVector
+        {
+            void TakeObservable(Windows.Foundation.Collections.IObservableVector<IBasic> basics);
+        }
+
         runtimeclass Simple
         {
             Simple();
@@ -105,6 +121,7 @@ namespace test_component
             
             //Windows.Foundation.IReference<Int32> Reference(Windows.Foundation.DateTime value);
             Windows.Foundation.IAsyncOperation<Int32> Operation(Windows.Foundation.DateTime value);
+
             Windows.Foundation.IAsyncAction Action(Windows.Foundation.DateTime value);
             Object Object(Windows.Foundation.DateTime value);
             static event Windows.Foundation.EventHandler<Object> StaticEvent;
@@ -421,6 +438,10 @@ namespace test_component
         }
 
         runtimeclass BaseMapCollection : [default] IMap<String, Base>
+        {
+        }
+
+        runtimeclass BaseObservableCollection: [default] IObservableVector<Base>
         {
         }
     }

@@ -188,7 +188,6 @@ public final class BaseCollection : WinRTClass, IVector, IIterable {
     }
 
     internal lazy var _IIterable: IIterableBase = try! _default.QueryInterface()
-    // MARK: WinRT
     public func first() -> AnyIIterator<Base?>? {
         let result = try! _IIterable.FirstImpl()
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
@@ -229,7 +228,6 @@ public final class BaseMapCollection : WinRTClass, IMap, IIterable {
 
     public func queryInterface(_ iid: IID) -> IUnknownRef? {
         return test_component.queryInterface(sealed: self, iid)}
-    // MARK: WinRT
     public func lookup(_ key: String) -> Base? {
         let _key = try! HString(key)
         let result = try! _default.LookupImpl(_key.get())
@@ -271,7 +269,6 @@ public final class BaseMapCollection : WinRTClass, IMap, IIterable {
     }
 
     internal lazy var _IIterable: IIterableIKeyValuePairString_Base = try! _default.QueryInterface()
-    // MARK: WinRT
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, Base?>?>? {
         let result = try! _IIterable.FirstImpl()
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
@@ -334,6 +331,135 @@ open class BaseNoOverrides : UnsealedWinRTClass {
     }
     internal typealias Composable = IBaseNoOverrides
     open class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
+}
+
+public final class BaseObservableCollection : WinRTClass, IObservableVector, IVector, IIterable {
+    public typealias T = Base?
+    private typealias SwiftABI = IObservableVectorBase
+    private typealias CABI = __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase
+    private var _default: SwiftABI!
+    public func _getABI<T>() -> UnsafeMutablePointer<T>? {
+        if T.self == CABI.self {
+            return RawPointer(_default)
+        }   
+        if T.self == Ctest_component.IInspectable.self {
+            return RawPointer(_default)
+        }
+        return nil
+    }
+
+    public var thisPtr: test_component.IInspectable { _default }
+
+    public static func from(abi: UnsafeMutablePointer<__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase>?) -> BaseObservableCollection? {
+        guard let abi = abi else { return nil }
+        return .init(fromAbi: .init(abi))
+    }
+
+    public init(fromAbi: test_component.IInspectable) {
+        _default = try! fromAbi.QueryInterface()
+    }
+
+    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+        return test_component.queryInterface(sealed: self, iid)}
+    // MARK: Collection
+    public typealias Element = T
+    public var startIndex: Int { 0 }
+    public var endIndex: Int { Int(size) }
+    public func index(after i: Int) -> Int {
+        i+1
+    }
+
+    public func index(of: Element) -> Int? { 
+        var index: UInt32 = 0
+        let result = indexOf(of, &index)
+        guard result else { return nil }
+        return Int(index)
+    }
+    public var count: Int { Int(size) }
+
+
+    public subscript(position: Int) -> Element {
+        get {
+            getAt(UInt32(position))
+        }
+        set(newValue) {
+            setAt(UInt32(position), newValue)
+        }
+    }
+
+    public func removeLast() {
+        removeAtEnd()
+    }
+
+    // MARK: WinRT
+    public lazy var vectorChanged : Event<VectorChangedEventHandler<Base?>> = {
+      .init(
+        add: { [weak this = _default] in
+          guard let this else { return .init() }
+          let wrapper = test_component.__x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseWrapper($0)
+          let abi = try! wrapper?.toABI { $0 }
+          return try! this.add_VectorChangedImpl(abi)
+        },
+        remove: { [weak this = _default] in
+         try? this?.remove_VectorChangedImpl($0) 
+       }
+      )
+    }()
+
+    internal lazy var _IVector: IVectorBase = try! _default.QueryInterface()
+    public func getAt(_ index: UInt32) -> Base? {
+        let result = try! _IVector.GetAtImpl(index)
+        return .from(abi: result)
+    }
+
+    public func getView() -> AnyIVectorView<Base?>? {
+        let result = try! _IVector.GetViewImpl()
+        return test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
+    }
+
+    public func indexOf(_ value: Base?, _ index: inout UInt32) -> Bool {
+        let result = try! _IVector.IndexOfImpl(RawPointer(value), &index)
+        return .init(from: result)
+    }
+
+    public func setAt(_ index: UInt32, _ value: Base?) {
+        try! _IVector.SetAtImpl(index, RawPointer(value))
+    }
+
+    public func insertAt(_ index: UInt32, _ value: Base?) {
+        try! _IVector.InsertAtImpl(index, RawPointer(value))
+    }
+
+    public func removeAt(_ index: UInt32) {
+        try! _IVector.RemoveAtImpl(index)
+    }
+
+    public func append(_ value: Base?) {
+        try! _IVector.AppendImpl(RawPointer(value))
+    }
+
+    public func removeAtEnd() {
+        try! _IVector.RemoveAtEndImpl()
+    }
+
+    public func clear() {
+        try! _IVector.ClearImpl()
+    }
+
+    public var size : UInt32 {
+        get {
+            let result = try! _IVector.get_SizeImpl()
+            return result
+        }
+
+    }
+
+    internal lazy var _IIterable: IIterableBase = try! _default.QueryInterface()
+    public func first() -> AnyIIterator<Base?>? {
+        let result = try! _IIterable.FirstImpl()
+        return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
+    }
+
 }
 
 public final class Class : WinRTClass, IBasic {
@@ -1522,6 +1648,22 @@ public struct StructWithEnum: Hashable, Codable {
     }
 }
 
+public protocol IAsyncMethods : WinRTInterface {
+    func operationWithProgress(_ value: test_component.DateTime) throws -> test_component.AnyIAsyncOperationWithProgress<Int32, Double>!
+}
+
+extension IAsyncMethods {
+    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+        switch iid {
+            case __ABI_test_component.IAsyncMethodsWrapper.IID:
+                let wrapper = __ABI_test_component.IAsyncMethodsWrapper(self)
+                return wrapper!.queryInterface(iid)
+            default: return nil
+        }
+    }
+}
+public typealias AnyIAsyncMethods = any IAsyncMethods
+
 public protocol IBasic : WinRTInterface {
     func method()
 }
@@ -1576,6 +1718,22 @@ extension IIAmImplementable {
     }
 }
 public typealias AnyIIAmImplementable = any IIAmImplementable
+
+public protocol IInterfaceWithObservableVector : WinRTInterface {
+    func takeObservable(_ basics: test_component.AnyIObservableVector<test_component.AnyIBasic?>!) throws
+}
+
+extension IInterfaceWithObservableVector {
+    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+        switch iid {
+            case __ABI_test_component.IInterfaceWithObservableVectorWrapper.IID:
+                let wrapper = __ABI_test_component.IInterfaceWithObservableVectorWrapper(self)
+                return wrapper!.queryInterface(iid)
+            default: return nil
+        }
+    }
+}
+public typealias AnyIInterfaceWithObservableVector = any IInterfaceWithObservableVector
 
 public protocol ISimpleDelegate : WinRTInterface {
     func doThis() throws
