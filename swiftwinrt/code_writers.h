@@ -2170,6 +2170,9 @@ private var _default: SwiftABI!
     if T.self == %.IInspectable.self {
         return RawPointer(_default)
     }
+    if T.self == WinSDK.IUnknown.self {
+        return RawPointer(_default)
+    }
     return %
 }
 
