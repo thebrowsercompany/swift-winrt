@@ -1191,14 +1191,6 @@ public static func makeAbi() -> CABI {
                 implements.append(" where T == AnyIKeyValuePair<K,V>?");
             }
         }
-        else if (is_winrt_async_result_type(type))
-        {
-            implements.append(", FutureValue");
-            if (typeName == "IAsyncAction")
-            {
-                implements.append(" where TResult == Void");
-            }
-        }
 
         std::vector<std::string> eventSourceInvokeLines;
         w.write("public protocol % : %% {\n", type, implements,

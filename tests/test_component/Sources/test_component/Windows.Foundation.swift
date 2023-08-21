@@ -121,7 +121,7 @@ public struct TimeSpan: Hashable, Codable {
     }
 }
 
-public protocol IAsyncAction : IAsyncInfo, FutureValue where TResult == Void {
+public protocol IAsyncAction : IAsyncInfo {
     func getResults() throws
     var completed: test_component.AsyncActionCompletedHandler! { get set }
 }
@@ -173,7 +173,7 @@ extension IAsyncInfo {
 }
 public typealias AnyIAsyncInfo = any IAsyncInfo
 
-public protocol IAsyncOperationWithProgress<TResult,TProgress> : IAsyncInfo, FutureValue {
+public protocol IAsyncOperationWithProgress<TResult,TProgress> : IAsyncInfo {
     associatedtype TResult
     associatedtype TProgress
     func getResults() throws -> TResult
@@ -196,7 +196,7 @@ public extension IAsyncOperationWithProgress {
         return try getResults()
     }
 }
-public protocol IAsyncOperation<TResult> : IAsyncInfo, FutureValue {
+public protocol IAsyncOperation<TResult> : IAsyncInfo {
     associatedtype TResult
     func getResults() throws -> TResult
     var completed: test_component.AsyncOperationCompletedHandler<TResult>? { get set }
