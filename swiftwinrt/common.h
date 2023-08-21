@@ -38,7 +38,6 @@ namespace swiftwinrt
 
             w.write("import %\n", w.c_mod);
         }
-        w.write("import WinSDK\n");
         w.write("\n");
     }
 
