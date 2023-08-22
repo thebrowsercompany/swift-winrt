@@ -99,13 +99,7 @@ namespace swiftwinrt
             }
         }
 
-        if (auto iface = dynamic_cast<interface_type const*>(generic.generic_type()))
-        {
-            for (auto& [_, required]: iface->required_interfaces)
-            {
-                to_process.emplace(required.type);
-            }
-        }
+        to_process.emplace(generic.generic_type());
     }
 
     template<typename T>

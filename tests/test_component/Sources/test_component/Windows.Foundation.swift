@@ -3,7 +3,62 @@ import Ctest_component
 
 public typealias AsyncStatus = __x_ABI_CWindows_CFoundation_CAsyncStatus
 public typealias PropertyType = __x_ABI_CWindows_CFoundation_CPropertyType
+public final class Deferral : WinRTClass, IClosable {
+    private typealias SwiftABI = __ABI_Windows_Foundation.IDeferral
+    private typealias CABI = __x_ABI_CWindows_CFoundation_CIDeferral
+    private var _default: SwiftABI!
+    public func _getABI<T>() -> UnsafeMutablePointer<T>? {
+        if T.self == CABI.self {
+            return RawPointer(_default)
+        }   
+        if T.self == Ctest_component.IInspectable.self {
+            return RawPointer(_default)
+        }
+        if T.self == WinSDK.IUnknown.self {
+            return RawPointer(_default)
+        }
+        return nil
+    }
+
+    public var thisPtr: test_component.IInspectable { _default }
+
+    public static func from(abi: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIDeferral>?) -> Deferral? {
+        guard let abi = abi else { return nil }
+        return .init(fromAbi: .init(abi))
+    }
+
+    public init(fromAbi: test_component.IInspectable) {
+        _default = try! fromAbi.QueryInterface()
+    }
+
+    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+        return test_component.queryInterface(sealed: self, iid)}
+    private static let _IDeferralFactory: __ABI_Windows_Foundation.IDeferralFactory = try! RoGetActivationFactory(HString("Windows.Foundation.Deferral"))
+    public init(_ handler: DeferralCompletedHandler!) {
+        let handlerWrapper = __ABI_Windows_Foundation.DeferralCompletedHandlerWrapper(handler)
+        let _handler = try! handlerWrapper?.toABI { $0 }
+        let result = try! Self._IDeferralFactory.CreateImpl(_handler)
+        _default = __ABI_Windows_Foundation.IDeferral(consuming: result!)
+    }
+
+    internal lazy var _IClosable: __ABI_Windows_Foundation.IClosable = try! _default.QueryInterface()
+    public func close() throws {
+        try _IClosable.CloseImpl()
+    }
+
+    public func complete() throws {
+        try _default.CompleteImpl()
+    }
+
+}
+
 public typealias AsyncActionCompletedHandler = (AnyIAsyncAction?, AsyncStatus) -> ()
+public typealias AsyncOperationCompletedHandler<TResult> = (AnyIAsyncOperation<TResult>?, AsyncStatus) -> ()
+public typealias AsyncOperationProgressHandler<TResult,TProgress> = (AnyIAsyncOperationWithProgress<TResult, TProgress>?, TProgress) -> ()
+public typealias AsyncOperationWithProgressCompletedHandler<TResult,TProgress> = (AnyIAsyncOperationWithProgress<TResult, TProgress>?, AsyncStatus) -> ()
+public typealias DeferralCompletedHandler = () -> ()
+public typealias EventHandler<T> = (Any?, T) -> ()
+public typealias TypedEventHandler<TSender,TResult> = (TSender, TResult) -> ()
 public struct DateTime: Hashable, Codable {
     public var universalTime: Int64 = 0
     public init() {}
@@ -89,6 +144,18 @@ extension IAsyncAction {
 }
 public typealias AnyIAsyncAction = any IAsyncAction
 
+public extension IAsyncAction {
+    @MainActor
+    func get() async throws {
+        if status == .started {
+            let event = WaitableEvent()
+            completed = { _, _ in
+                Task { await event.signal() }
+            }
+            await event.wait()
+        }
+    }
+}
 public protocol IAsyncInfo : WinRTInterface {
     func cancel() throws
     func close() throws
@@ -109,6 +176,50 @@ extension IAsyncInfo {
 }
 public typealias AnyIAsyncInfo = any IAsyncInfo
 
+public protocol IAsyncOperationWithProgress<TResult,TProgress> : IAsyncInfo {
+    associatedtype TResult
+    associatedtype TProgress
+    func getResults() throws -> TResult
+    var progress: test_component.AsyncOperationProgressHandler<TResult, TProgress>? { get set }
+    var completed: test_component.AsyncOperationWithProgressCompletedHandler<TResult, TProgress>? { get set }
+}
+
+public typealias AnyIAsyncOperationWithProgress<TResult,TProgress> = any IAsyncOperationWithProgress<TResult,TProgress>
+
+public extension IAsyncOperationWithProgress {
+    @MainActor
+    func get() async throws -> TResult {
+        if status == .started {
+            let event = WaitableEvent()
+            completed = { _, _ in
+                Task { await event.signal() }
+            }
+            await event.wait()
+        }
+        return try getResults()
+    }
+}
+public protocol IAsyncOperation<TResult> : IAsyncInfo {
+    associatedtype TResult
+    func getResults() throws -> TResult
+    var completed: test_component.AsyncOperationCompletedHandler<TResult>? { get set }
+}
+
+public typealias AnyIAsyncOperation<TResult> = any IAsyncOperation<TResult>
+
+public extension IAsyncOperation {
+    @MainActor
+    func get() async throws -> TResult {
+        if status == .started {
+            let event = WaitableEvent()
+            completed = { _, _ in
+                Task { await event.signal() }
+            }
+            await event.wait()
+        }
+        return try getResults()
+    }
+}
 public protocol IClosable : WinRTInterface {
     func close() throws
 }
@@ -150,6 +261,13 @@ public protocol IPropertyValue : WinRTInterface {
 
 public typealias AnyIPropertyValue = any IPropertyValue
 
+public protocol IReference<T> : IPropertyValue {
+    associatedtype T
+    var value: T { get }
+}
+
+public typealias AnyIReference<T> = any IReference<T>
+
 public protocol IStringable : WinRTInterface {
     func toString() throws -> String
 }
@@ -166,9 +284,6 @@ extension IStringable {
 }
 public typealias AnyIStringable = any IStringable
 
-public protocol IReference : IPropertyValue {
-    var value: Any { get }
-}
 extension test_component.AsyncStatus {
     public static var canceled : test_component.AsyncStatus {
         __x_ABI_CWindows_CFoundation_CAsyncStatus_Canceled

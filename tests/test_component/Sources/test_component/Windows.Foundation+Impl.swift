@@ -149,6 +149,7 @@ public enum __IMPL_Windows_Foundation {
     }
 
     public class IPropertyValueImpl : IPropertyValue, IReference {
+        public typealias T = Any
         var _value: Any
         var propertyType : PropertyType
 
@@ -261,6 +262,20 @@ public enum __IMPL_Windows_Foundation {
                 let asyncInfoWrapper = __ABI_Windows_Foundation.IAsyncActionWrapper(asyncInfo)
                 let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
                 try! _default.InvokeImpl(_asyncInfo, asyncStatus)
+            }
+            return handler
+        }
+    }
+    public class DeferralCompletedHandlerImpl : WinRTDelegateBridge {
+        public typealias Handler = DeferralCompletedHandler
+        public typealias CABI = __x_ABI_CWindows_CFoundation_CIDeferralCompletedHandler
+        public typealias SwiftABI = __ABI_Windows_Foundation.DeferralCompletedHandler
+
+        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+            guard let abi = abi else { return nil }
+            let _default = SwiftABI(abi)
+            let handler: Handler = { () in
+                try! _default.InvokeImpl()
             }
             return handler
         }

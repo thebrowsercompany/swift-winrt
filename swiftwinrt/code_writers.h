@@ -817,6 +817,7 @@ bind_impl_fullname(type));
 )");
 
         w.write(R"(public class IPropertyValueImpl : IPropertyValue, IReference {
+    public typealias T = Any
     var _value: Any
     var propertyType : PropertyType
 
@@ -897,7 +898,7 @@ bind_impl_fullname(type));
     {
         auto modifier = w.impl_names ? "" : "public ";
         auto typeName = info.type->swift_type_name();
-        if (typeName.starts_with("IVector"))
+        if (typeName.starts_with("IVector") || typeName.starts_with("IObservableVector"))
         {
             w.write(R"(// MARK: Collection
 %typealias Element = T
@@ -973,11 +974,6 @@ bind_impl_fullname(type));
             w.write("internal lazy var %: % = try! _default.QueryInterface()\n",
                 get_swift_name(info),
                 swiftAbi);
-        }
-
-        if (is_class && is_winrt_generic_collection(info.type))
-        {
-            write_collection_protocol_conformance(w, info);
         }
 
         if (auto iface = dynamic_cast<const interface_type*>(info.type))
@@ -1175,7 +1171,6 @@ public static func makeAbi() -> CABI {
         }
 
         auto typeName = swiftwinrt::remove_backtick(type.swift_type_name());
-        bool is_property_set = typeName == "IPropertySet"sv;
         auto interfaces = type.required_interfaces;
         separator s{ w };
         auto implements = w.write_temp("%", bind_each([&](writer& w, std::pair<std::string, interface_info> const& iface) {
@@ -1196,6 +1191,7 @@ public static func makeAbi() -> CABI {
                 implements.append(" where T == AnyIKeyValuePair<K,V>?");
             }
         }
+
         std::vector<std::string> eventSourceInvokeLines;
         w.write("public protocol % : %% {\n", type, implements,
             implements.empty() ? "WinRTInterface" : "");
@@ -1230,7 +1226,7 @@ public static func makeAbi() -> CABI {
                 const auto& return_type = *prop.getter->return_type->type;
                 w.write("var %: % { get% }\n",
                     get_swift_name(prop),
-                    bind<write_type>(return_type, write_type_params::swift_allow_implicit_unwrap),
+                    bind<write_type>(return_type, swift_write_type_params_for(type)),
                     prop.setter ? " set" : "");
             }
 
@@ -1293,14 +1289,28 @@ public static func makeAbi() -> CABI {
         }
         // Declare a short form for the existential version of the type, e.g. AnyClosable for "any IClosable"
         w.write("public typealias Any% = any %\n\n", type, type);
-    }
 
-    static void write_ireference(writer& w)
-    {
-        w.write(R"(public protocol IReference : IPropertyValue {
-    var value: Any { get }
+        if (is_winrt_async_result_type(type))
+        {
+            std::string return_statement;
+            const metadata_type* result_type = nullptr;
+            if (type.generic_params.size() > 0) {
+                return_statement = w.write_temp(" -> %", type.generic_params[0]);
+            }
+            w.write(R"(public extension % {
+    ^@MainActor
+    func get() async throws% {
+        if status == .started {
+            let event = WaitableEvent()
+            completed = { _, _ in
+                Task { await event.signal() }
+            }
+            await event.wait()
+        }%
+    }
 }
-)");
+)", bind<write_swift_type_identifier>(type), return_statement, !return_statement.empty() ? "\n        return try getResults()" : "");
+        }
     }
 
     static void write_delegate_return_type(writer& w, function_def const& sig)
@@ -1369,7 +1379,8 @@ public static func makeAbi() -> CABI {
         auto return_type = w.write_temp("%", bind<write_delegate_return_type>(invoke_method));
         constexpr bool is_generic = std::is_same_v<T, generic_inst>;
         auto access_level = is_generic ? "internal" : "public";
-        auto handlerType = w.write_temp("%", type);
+        
+        auto handlerType = w.write_temp("%", bind<write_swift_type_identifier>(type));
         auto abi_guard = w.push_abi_types(is_generic);
         w.write(format,
             access_level,
@@ -1400,7 +1411,7 @@ public static func makeAbi() -> CABI {
         }
     }
 
-    static void write_collection_implementation(writer& w, generic_inst const& type)
+    static void write_generic_interface_implementation(writer& w, generic_inst const& type)
     {
         // Due to https://linear.app/the-browser-company/issue/WIN-148/investigate-possible-compiler-bug-crash-when-generating-collection
         // we have to generate the protocol conformance for the Collection protocol (see "// MARK: Collection" below). We shouldn't have to
@@ -1475,7 +1486,7 @@ public static func makeAbi() -> CABI {
         }
         else if (!is_winrt_ireference(type))
         {
-            write_collection_implementation(w, type);
+            write_generic_interface_implementation(w, type);
         }
     }
 
@@ -2246,11 +2257,18 @@ private var _default: SwiftABI!
         }
 
         bool has_overrides = false;
+        bool has_collection_conformance = false;
         for (const auto& [interface_name, info] : type.required_interfaces)
         {
             if (interface_name.empty() || !can_write(w, info.type)) { continue; }
 
             auto guard2{ w.push_generic_params(info) };
+            if (needs_collection_conformance(info.type) && !info.base && !has_collection_conformance)
+            {
+                has_collection_conformance = true;
+                write_collection_protocol_conformance(w, info);
+            }
+
             // Don't reimplement P/M/E for interfaces which are implemented on a base class
             if (!info.base)
             {
