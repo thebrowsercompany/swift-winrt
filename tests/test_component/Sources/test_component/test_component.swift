@@ -345,6 +345,9 @@ public final class BaseObservableCollection : WinRTClass, IObservableVector, IVe
         if T.self == Ctest_component.IInspectable.self {
             return RawPointer(_default)
         }
+        if T.self == WinSDK.IUnknown.self {
+            return RawPointer(_default)
+        }
         return nil
     }
 
@@ -892,6 +895,9 @@ public final class DeferrableEventArgs : WinRTClass {
             return RawPointer(_default)
         }   
         if T.self == Ctest_component.IInspectable.self {
+            return RawPointer(_default)
+        }
+        if T.self == WinSDK.IUnknown.self {
             return RawPointer(_default)
         }
         return nil
