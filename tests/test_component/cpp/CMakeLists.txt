@@ -106,6 +106,8 @@ install(TARGETS test_component_cpp
   COMPONENT lib)
 
 target_sources(test_component_cpp PRIVATE
+    AsyncOperationInt.cpp
+    AsyncOperationInt.h
     StaticClass.cpp
     StaticClass.h
     Base.h

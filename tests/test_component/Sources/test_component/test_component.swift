@@ -6,6 +6,90 @@ public typealias Keywords = __x_ABI_Ctest__component_CKeywords
 public typealias Signed = __x_ABI_Ctest__component_CSigned
 public typealias SwiftifiableNames = __x_ABI_Ctest__component_CSwiftifiableNames
 public typealias Unsigned = __x_ABI_Ctest__component_CUnsigned
+public final class AsyncOperationInt : WinRTClass, IAsyncOperation, test_component.IAsyncInfo {
+    public typealias TResult = Int32
+    private typealias SwiftABI = IAsyncOperationInt32
+    private typealias CABI = __x_ABI_C__FIAsyncOperation_1_int
+    private var _default: SwiftABI!
+    public func _getABI<T>() -> UnsafeMutablePointer<T>? {
+        if T.self == CABI.self {
+            return RawPointer(_default)
+        }   
+        if T.self == Ctest_component.IInspectable.self {
+            return RawPointer(_default)
+        }
+        if T.self == WinSDK.IUnknown.self {
+            return RawPointer(_default)
+        }
+        return nil
+    }
+
+    public var thisPtr: test_component.IInspectable { _default }
+
+    public static func from(abi: UnsafeMutablePointer<__x_ABI_C__FIAsyncOperation_1_int>?) -> AsyncOperationInt? {
+        guard let abi = abi else { return nil }
+        return .init(fromAbi: .init(abi))
+    }
+
+    public init(fromAbi: test_component.IInspectable) {
+        _default = try! fromAbi.QueryInterface()
+    }
+
+    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+        return test_component.queryInterface(sealed: self, iid)}
+    public func getResults() throws -> Int32 {
+        let result = try _default.GetResultsImpl()
+        return result
+    }
+
+    public var completed : AsyncOperationCompletedHandler<Int32>? {
+        get {
+            let result = try! _default.get_CompletedImpl()
+            return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper.unwrapFrom(abi: result)
+        }
+
+        set {
+            let wrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper(newValue)
+            let _newValue = try! wrapper?.toABI { $0 }
+            try! _default.put_CompletedImpl(_newValue)
+        }
+    }
+
+    internal lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo = try! _default.QueryInterface()
+    public func cancel() throws {
+        try _IAsyncInfo.CancelImpl()
+    }
+
+    public func close() throws {
+        try _IAsyncInfo.CloseImpl()
+    }
+
+    public var errorCode : HRESULT {
+        get {
+            let result = try! _IAsyncInfo.get_ErrorCodeImpl()
+            return result
+        }
+
+    }
+
+    public var id : UInt32 {
+        get {
+            let result = try! _IAsyncInfo.get_IdImpl()
+            return result
+        }
+
+    }
+
+    public var status : test_component.AsyncStatus {
+        get {
+            let result = try! _IAsyncInfo.get_StatusImpl()
+            return result
+        }
+
+    }
+
+}
+
 open class Base : UnsealedWinRTClass {
     private (set) public var _inner: IUnknownRef?
     private typealias SwiftABI = __ABI_test_component.IBase
