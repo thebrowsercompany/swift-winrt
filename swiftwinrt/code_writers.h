@@ -966,7 +966,7 @@ bind_impl_fullname(type));
         else if (!info.is_default || (!is_class && info.base))
         {
             auto swiftAbi = w.write_temp("%.%", abi_namespace(info.type->swift_logical_namespace()), info.type->swift_type_name());
-            if (is_winrt_generic_collection(info.type))
+            if (is_generic_inst(info.type))
             {
                 auto guard{ w.push_generic_params(info) };
                 swiftAbi = w.write_temp("%", bind_type_abi(info.type));
@@ -2161,7 +2161,7 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
             auto [ns, name] = get_type_namespace_and_name(*default_interface);
             auto swiftAbi = w.write_temp("%.%", abi_namespace(ns), name);
             std::string defaultVal = "";
-            if (is_winrt_generic_collection(default_interface))
+            if (is_generic_inst(default_interface))
             {
                 auto generic_type = dynamic_cast<const generic_inst*>(default_interface);
                 guard = w.push_generic_params(*generic_type);

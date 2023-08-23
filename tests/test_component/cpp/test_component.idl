@@ -444,4 +444,8 @@ namespace test_component
         runtimeclass BaseObservableCollection: [default] IObservableVector<Base>
         {
         }
+
+        runtimeclass AsyncOperationInt : [default] Windows.Foundation.IAsyncOperation<Int32>
+        {
+        }
     }
