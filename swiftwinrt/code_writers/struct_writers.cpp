@@ -63,6 +63,7 @@ namespace swiftwinrt
 
     void write_struct(writer& w, struct_type const& type)
     {
+        write_documentation_comment(w, type);
         w.write("public struct %: Hashable, Codable {\n", type);
         {
             auto indent_guard1 = w.push_indent();
@@ -73,6 +74,7 @@ namespace swiftwinrt
                 // WIN-65 - swiftwinrt: support generic types
                 if (!can_write(w, field_type)) continue;
 
+                write_documentation_comment(w, type, field.field.Name());
                 w.write("public var %: %%\n",
                     get_swift_name(field),
                     bind<write_type>(*field_type, write_type_params::swift_allow_implicit_unwrap),

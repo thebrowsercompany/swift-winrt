@@ -170,6 +170,49 @@ namespace swiftwinrt
         };
     }
 
+    static void write_documentation_comment(writer& w, const typedef_base& type, std::string_view member_name = {})
+    {
+        // Assume only public types have documentation
+        if (type.type().Flags().Visibility() != TypeVisibility::Public) 
+        {
+            return;
+        }
+
+        std::string doc_url;
+        auto type_namespace = type.type().TypeNamespace();
+        if (type_namespace.starts_with("Windows"))
+        {
+            doc_url = "https://learn.microsoft.com/uwp/api/";
+        }
+        else if (type_namespace.starts_with("Microsoft.UI") || type_namespace.starts_with("Microsoft.Windows") || type_namespace.starts_with("Microsoft.Graphics"))
+        {
+            doc_url = "https://learn.microsoft.com/windows/windows-app-sdk/api/winrt/";
+        }
+        else
+        {
+            return;
+        }
+
+        // Documentation URLs use "-" as the generic arity separator
+        std::string type_name{ type.type().TypeName() };
+        std::replace(begin(type_name), end(type_name), '`', '-');
+
+        doc_url += type_namespace;
+        doc_url += ".";
+        doc_url += type_name;
+        if (!member_name.empty())
+        {
+            doc_url += ".";
+            doc_url += member_name;
+        }
+
+        // Documentation URLs are lower case
+        std::transform(doc_url.begin(), doc_url.end(), doc_url.begin(),
+            [](unsigned char c){ return std::tolower(c); });
+
+        w.write("/// [Open Microsoft documentation](%)\n", doc_url);
+    }
+
     static void write_consume_type(writer& w, metadata_type const* type, std::string_view const& name)
     {
         TypeDef signature_type{};

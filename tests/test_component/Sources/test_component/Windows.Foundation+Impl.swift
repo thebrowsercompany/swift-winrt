@@ -20,10 +20,12 @@ public enum __IMPL_Windows_Foundation {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Foundation.IAsyncActionVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
+        /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncaction.getresults)
         public func getResults() throws {
             try _default.GetResultsImpl()
         }
 
+        /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncaction.completed)
         public var completed : AsyncActionCompletedHandler! {
             get {
                 let handler = try! _default.get_CompletedImpl()
@@ -38,14 +40,17 @@ public enum __IMPL_Windows_Foundation {
         }
 
         internal lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo = try! _default.QueryInterface()
+        /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncaction.cancel)
         public func cancel() throws {
             try _IAsyncInfo.CancelImpl()
         }
 
+        /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncaction.close)
         public func close() throws {
             try _IAsyncInfo.CloseImpl()
         }
 
+        /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncaction.errorcode)
         public var errorCode : HRESULT {
             get {
                 let result = try! _IAsyncInfo.get_ErrorCodeImpl()
@@ -54,6 +59,7 @@ public enum __IMPL_Windows_Foundation {
 
         }
 
+        /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncaction.id)
         public var id : UInt32 {
             get {
                 let result = try! _IAsyncInfo.get_IdImpl()
@@ -62,6 +68,7 @@ public enum __IMPL_Windows_Foundation {
 
         }
 
+        /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncaction.status)
         public var status : AsyncStatus {
             get {
                 let result = try! _IAsyncInfo.get_StatusImpl()
@@ -90,14 +97,17 @@ public enum __IMPL_Windows_Foundation {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Foundation.IAsyncInfoVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
+        /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncinfo.cancel)
         public func cancel() throws {
             try _default.CancelImpl()
         }
 
+        /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncinfo.close)
         public func close() throws {
             try _default.CloseImpl()
         }
 
+        /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncinfo.errorcode)
         public var errorCode : HRESULT {
             get {
                 let result = try! _default.get_ErrorCodeImpl()
@@ -106,6 +116,7 @@ public enum __IMPL_Windows_Foundation {
 
         }
 
+        /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncinfo.id)
         public var id : UInt32 {
             get {
                 let result = try! _default.get_IdImpl()
@@ -114,6 +125,7 @@ public enum __IMPL_Windows_Foundation {
 
         }
 
+        /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncinfo.status)
         public var status : AsyncStatus {
             get {
                 let result = try! _default.get_StatusImpl()
@@ -142,6 +154,7 @@ public enum __IMPL_Windows_Foundation {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Foundation.IClosableVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
+        /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iclosable.close)
         public func close() throws {
             try _default.CloseImpl()
         }
@@ -243,6 +256,7 @@ public enum __IMPL_Windows_Foundation {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Foundation.IStringableVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
+        /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.istringable.tostring)
         public func toString() throws -> String {
             let value = try _default.ToStringImpl()
             return .init(from: value)
