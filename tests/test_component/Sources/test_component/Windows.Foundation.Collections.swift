@@ -12,7 +12,7 @@ public final class PropertySet : WinRTClass, IObservableMap, IMap, IIterable, IP
     public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
-        }   
+        }
         if T.self == Ctest_component.IInspectable.self {
             return RawPointer(_default)
         }
@@ -49,7 +49,7 @@ public final class PropertySet : WinRTClass, IObservableMap, IMap, IIterable, IP
           return try! this.add_MapChangedImpl(abi)
         },
         remove: { [weak this = _IObservableMap] in
-         try? this?.remove_MapChangedImpl($0) 
+         try? this?.remove_MapChangedImpl($0)
        }
       )
     }()
@@ -115,7 +115,7 @@ public final class StringMap : WinRTClass, IMap, IIterable, IObservableMap {
     public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
-        }   
+        }
         if T.self == Ctest_component.IInspectable.self {
             return RawPointer(_default)
         }
@@ -199,7 +199,7 @@ public final class StringMap : WinRTClass, IMap, IIterable, IObservableMap {
           return try! this.add_MapChangedImpl(abi)
         },
         remove: { [weak this = _IObservableMap] in
-         try? this?.remove_MapChangedImpl($0) 
+         try? this?.remove_MapChangedImpl($0)
        }
       )
     }()
@@ -216,7 +216,7 @@ public final class ValueSet : WinRTClass, IObservableMap, IMap, IIterable, IProp
     public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
-        }   
+        }
         if T.self == Ctest_component.IInspectable.self {
             return RawPointer(_default)
         }
@@ -253,7 +253,7 @@ public final class ValueSet : WinRTClass, IObservableMap, IMap, IIterable, IProp
           return try! this.add_MapChangedImpl(abi)
         },
         remove: { [weak this = _IObservableMap] in
-         try? this?.remove_MapChangedImpl($0) 
+         try? this?.remove_MapChangedImpl($0)
        }
       )
     }()

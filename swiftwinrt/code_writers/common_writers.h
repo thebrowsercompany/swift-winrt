@@ -172,9 +172,19 @@ namespace swiftwinrt
 
     static void write_documentation_comment(writer& w, const typedef_base& type, std::string_view member_name = {})
     {
+        // Assume only public types have documentation
+        if (type.type().Flags().Visibility() != TypeVisibility::Public) 
+        {
+            return;
+        }
+
         std::string doc_url;
-        auto full_type_name = type.swift_full_name();
-        if (full_type_name.starts_with("Microsoft.UI") || full_type_name.starts_with("Microsoft.Windows") || full_type_name.starts_with("Microsoft.Graphics"))
+        auto type_namespace = type.type().TypeNamespace();
+        if (type_namespace.starts_with("Windows"))
+        {
+            doc_url = "https://learn.microsoft.com/en-us/uwp/api/";
+        }
+        else if (type_namespace.starts_with("Microsoft.UI") || type_namespace.starts_with("Microsoft.Windows") || type_namespace.starts_with("Microsoft.Graphics"))
         {
             doc_url = "https://learn.microsoft.com/en-us/windows/windows-app-sdk/api/winrt/";
         }
@@ -183,15 +193,20 @@ namespace swiftwinrt
             return;
         }
 
-        doc_url += type.swift_abi_namespace();
+        // Documentation URLs use "-" as the generic arity separator
+        std::string type_name{ type.type().TypeName() };
+        std::replace(begin(type_name), end(type_name), '`', '-');
+
+        doc_url += type_namespace;
         doc_url += ".";
-        doc_url += type.cpp_abi_name();
+        doc_url += type_name;
         if (!member_name.empty())
         {
             doc_url += ".";
             doc_url += member_name;
         }
 
+        // Documentation URLs are lower case
         std::transform(doc_url.begin(), doc_url.end(), doc_url.begin(),
             [](unsigned char c){ return std::tolower(c); });
 

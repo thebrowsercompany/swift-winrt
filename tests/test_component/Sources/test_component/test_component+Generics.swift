@@ -4098,7 +4098,7 @@ internal class __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableImpl : IObservab
           return try! this.add_MapChangedImpl(abi)
         },
         remove: { [weak this = _default] in
-         try? this?.remove_MapChangedImpl($0) 
+         try? this?.remove_MapChangedImpl($0)
        }
       )
     }()
@@ -4284,7 +4284,7 @@ internal class __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGImpl : IObservableMap
           return try! this.add_MapChangedImpl(abi)
         },
         remove: { [weak this = _default] in
-         try? this?.remove_MapChangedImpl($0) 
+         try? this?.remove_MapChangedImpl($0)
        }
       )
     }()
@@ -4465,7 +4465,7 @@ internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseI
         i+1
     }
 
-    func index(of: Element) -> Int? { 
+    func index(of: Element) -> Int? {
         var index: UInt32 = 0
         let result = indexOf(of, &index)
         guard result else { return nil }
@@ -4497,7 +4497,7 @@ internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseI
           return try! this.add_VectorChangedImpl(abi)
         },
         remove: { [weak this = _default] in
-         try? this?.remove_VectorChangedImpl($0) 
+         try? this?.remove_VectorChangedImpl($0)
        }
       )
     }()
@@ -4684,7 +4684,7 @@ internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasi
         i+1
     }
 
-    func index(of: Element) -> Int? { 
+    func index(of: Element) -> Int? {
         var index: UInt32 = 0
         let result = indexOf(of, &index)
         guard result else { return nil }
@@ -4716,7 +4716,7 @@ internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasi
           return try! this.add_VectorChangedImpl(abi)
         },
         remove: { [weak this = _default] in
-         try? this?.remove_VectorChangedImpl($0) 
+         try? this?.remove_VectorChangedImpl($0)
        }
       )
     }()
@@ -4933,7 +4933,7 @@ internal class __x_ABI_C__FIVectorView_1_IInspectableImpl : IVectorView, AbiInte
         i+1
     }
 
-    func index(of: Element) -> Int? { 
+    func index(of: Element) -> Int? {
         var index: UInt32 = 0
         let result = indexOf(of, &index)
         guard result else { return nil }
@@ -5122,7 +5122,7 @@ internal class __x_ABI_C__FIVectorView_1_HSTRINGImpl : IVectorView, AbiInterface
         i+1
     }
 
-    func index(of: Element) -> Int? { 
+    func index(of: Element) -> Int? {
         var index: UInt32 = 0
         let result = indexOf(of, &index)
         guard result else { return nil }
@@ -5310,7 +5310,7 @@ internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl : 
         i+1
     }
 
-    func index(of: Element) -> Int? { 
+    func index(of: Element) -> Int? {
         var index: UInt32 = 0
         let result = indexOf(of, &index)
         guard result else { return nil }
@@ -5498,7 +5498,7 @@ internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicImpl 
         i+1
     }
 
-    func index(of: Element) -> Int? { 
+    func index(of: Element) -> Int? {
         var index: UInt32 = 0
         let result = indexOf(of, &index)
         guard result else { return nil }
@@ -5784,7 +5784,7 @@ internal class __x_ABI_C__FIVector_1_IInspectableImpl : IVector, AbiInterfaceImp
         i+1
     }
 
-    func index(of: Element) -> Int? { 
+    func index(of: Element) -> Int? {
         var index: UInt32 = 0
         let result = indexOf(of, &index)
         guard result else { return nil }
@@ -6113,7 +6113,7 @@ internal class __x_ABI_C__FIVector_1_HSTRINGImpl : IVector, AbiInterfaceImpl {
         i+1
     }
 
-    func index(of: Element) -> Int? { 
+    func index(of: Element) -> Int? {
         var index: UInt32 = 0
         let result = indexOf(of, &index)
         guard result else { return nil }
@@ -6438,7 +6438,7 @@ internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl : IVec
         i+1
     }
 
-    func index(of: Element) -> Int? { 
+    func index(of: Element) -> Int? {
         var index: UInt32 = 0
         let result = indexOf(of, &index)
         guard result else { return nil }
@@ -6760,7 +6760,7 @@ internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicImpl : IV
         i+1
     }
 
-    func index(of: Element) -> Int? { 
+    func index(of: Element) -> Int? {
         var index: UInt32 = 0
         let result = indexOf(of, &index)
         guard result else { return nil }
@@ -7652,7 +7652,7 @@ internal extension Int32 {
         try! CHECKED(val.pointee.lpVtbl.pointee.get_Value(val, &result))
         self = result
     }
-} 
+}
 internal var __x_ABI_C__FIReference_1_intVTable: __x_ABI_C__FIReference_1_intVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
@@ -7736,7 +7736,7 @@ internal extension UUID {
         try! CHECKED(val.pointee.lpVtbl.pointee.get_Value(val, &result))
         self = result
     }
-} 
+}
 internal var __x_ABI_C__FIReference_1_GUIDVTable: __x_ABI_C__FIReference_1_GUIDVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
@@ -7820,7 +7820,7 @@ internal extension test_component.Signed {
         try! CHECKED(val.pointee.lpVtbl.pointee.get_Value(val, &result))
         self = result
     }
-} 
+}
 internal var __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedVTable: __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedVtbl = .init(
     QueryInterface: {
         guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }

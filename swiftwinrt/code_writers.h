@@ -805,9 +805,9 @@ bind_wrapper_name(type),
 bind_impl_fullname(type));
     }
 
-    static void write_class_impl_func(writer& w, function_def const& method, interface_info const& iface);
-    static void write_class_impl_property(writer& w, property_def const& prop, interface_info const& iface);
-    static void write_class_impl_event(writer& w, event_def const& event, interface_info const& iface);
+    static void write_class_impl_func(writer& w, function_def const& method, interface_info const& iface, typedef_base const& type_definition);
+    static void write_class_impl_property(writer& w, property_def const& prop, interface_info const& iface, typedef_base const& type_definition);
+    static void write_class_impl_event(writer& w, event_def const& event, interface_info const& iface, typedef_base const& type_definition);
     static void write_property_value_impl(writer& w)
     {
         auto winrtInterfaceConformance = w.write_temp(R"(
@@ -984,40 +984,34 @@ bind_impl_fullname(type));
         {
             for (const auto& method : iface->functions)
             {
-                write_documentation_comment(w, type_definition, method.def.Name());
-                write_class_impl_func(w, method, info);
+                write_class_impl_func(w, method, info, type_definition);
             }
 
             for (const auto& prop : iface->properties)
             {
-                write_documentation_comment(w, type_definition, prop.def.Name());
-                write_class_impl_property(w, prop, info);
+                write_class_impl_property(w, prop, info, type_definition);
             }
 
             for (const auto& event : iface->events)
             {
-                write_documentation_comment(w, type_definition, event.def.Name());
-                write_class_impl_event(w, event, info);
+                write_class_impl_event(w, event, info, type_definition);
             }
         }
         else if (auto gti = dynamic_cast<const generic_inst*>(info.type))
         {
             for (const auto& method : gti->functions)
             {
-                write_documentation_comment(w, type_definition, method.def.Name());
-                write_class_impl_func(w, method, info);
+                write_class_impl_func(w, method, info, type_definition);
             }
 
             for (const auto& prop : gti->properties)
             {
-                write_documentation_comment(w, type_definition, prop.def.Name());
-                write_class_impl_property(w, prop, info);
+                write_class_impl_property(w, prop, info, type_definition);
             }
 
             for (const auto& event : gti->events)
             {
-                write_documentation_comment(w, type_definition, event.def.Name());
-                write_class_impl_event(w, event, info);
+                write_class_impl_event(w, event, info, type_definition);
             }
         }
         else
@@ -1101,16 +1095,16 @@ public static func makeAbi() -> CABI {
         type_info.is_default = true; // mark as default so we use the name "_default"
         for (const auto& method : type.functions)
         {
-            write_class_impl_func(w, method, type_info);
+            write_class_impl_func(w, method, type_info, type);
         }
         for (const auto& prop : type.properties)
         {
-            write_class_impl_property(w, prop, type_info);
+            write_class_impl_property(w, prop, type_info, type);
         }
 
         for (const auto& event : type.events)
         {
-            write_class_impl_event(w, event, type_info);
+            write_class_impl_event(w, event, type_info, type);
         }
 
         for (const auto& [interface_name, info] : type.required_interfaces)
@@ -1467,22 +1461,22 @@ public static func makeAbi() -> CABI {
 
         for (const auto& method : type.functions)
         {
-            write_class_impl_func(w, method, info);
+            write_class_impl_func(w, method, info, *type.generic_type());
         }
         for (const auto& prop : type.properties)
         {
-            write_class_impl_property(w, prop, info);
+            write_class_impl_property(w, prop, info, *type.generic_type());
         }
         for (const auto& event : type.events)
         {
-            write_class_impl_event(w, event, info);
+            write_class_impl_event(w, event, info, *type.generic_type());
         }
 
         for (const auto& [interface_name, info] : type.required_interfaces)
         {
             if (!can_write(w, info.type)) { continue; }
 
-            write_interface_impl_members(w, info, /* is_class: */ false);
+            write_interface_impl_members(w, info, *type.generic_type());
         }
 
         w.write("public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }\n");
@@ -1786,9 +1780,11 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         }
     }
 
-    static void write_class_impl_property(writer& w, property_def const& prop, interface_info const& iface)
+    static void write_class_impl_property(writer& w, property_def const& prop, interface_info const& iface, typedef_base const& type_definition)
     {
         if (!can_write(w, prop)) return;
+
+        write_documentation_comment(w, type_definition, prop.def.Name());
 
         // TODO: https://linear.app/the-browser-company/issue/WIN-82/support-setters-not-defined-in-same-api-contract-as-getters
         // right now require that both getter and setter are defined in the same version
@@ -1863,7 +1859,7 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         }
     }
 
-    static void write_class_impl_func(writer& w, function_def const& function, interface_info const& iface)
+    static void write_class_impl_func(writer& w, function_def const& function, interface_info const& iface, typedef_base const& type_definition)
     {
         if (function.def.SpecialName() || !can_write(w, function))
         {
@@ -1871,6 +1867,7 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
             return;
         }
 
+        write_documentation_comment(w, type_definition, function.def.Name());
         auto is_no_except = is_noexcept(*iface.type, function);
         auto type_params = swift_write_type_params_for(*iface.type);
         auto maybe_throws = is_no_except ? "" : " throws";
@@ -1887,8 +1884,10 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         w.write("}\n\n");
     }
 
-    static void write_class_impl_event(writer& w, event_def const& def, interface_info const& iface)
+    static void write_class_impl_event(writer& w, event_def const& def, interface_info const& iface, typedef_base const& type_definition)
     {
+        write_documentation_comment(w, type_definition, def.def.Name());
+
         auto event = def.def;
         auto format = R"(public % var % : Event<%> = {
   .init(
@@ -1994,14 +1993,12 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
             static_info.attributed = true;
             for (const auto& static_prop : ifaceType->properties)
             {
-                write_documentation_comment(w, type, static_prop.def.Name());
-                write_class_impl_property(w, static_prop, static_info);
+                write_class_impl_property(w, static_prop, static_info, type);
             }
 
             for (const auto& event : ifaceType->events)
             {
-                write_documentation_comment(w, type, event.def.Name());
-                write_class_impl_event(w, event, static_info);
+                write_class_impl_event(w, event, static_info, type);
             }
         }
     }
