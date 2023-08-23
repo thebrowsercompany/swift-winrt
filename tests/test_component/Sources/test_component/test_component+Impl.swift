@@ -173,7 +173,7 @@ public enum __IMPL_test_component {
               return try! this.add_ImplementableEventImpl(abi)
             },
             remove: { [weak this = _default] in
-             try? this?.remove_ImplementableEventImpl($0)
+             try? this?.remove_ImplementableEventImpl($0) 
            }
           )
         }()
@@ -261,7 +261,7 @@ public enum __IMPL_test_component {
               return try! this.add_EventWithReturnImpl(abi)
             },
             remove: { [weak this = _default] in
-             try? this?.remove_EventWithReturnImpl($0)
+             try? this?.remove_EventWithReturnImpl($0) 
            }
           )
         }()
