@@ -210,7 +210,7 @@ namespace swiftwinrt
         std::transform(doc_url.begin(), doc_url.end(), doc_url.begin(),
             [](unsigned char c){ return std::tolower(c); });
 
-        w.write("/// Documentation: %\n", doc_url);
+        w.write("/// [Open Microsoft documentation](%)\n", doc_url);
     }
 
     static void write_consume_type(writer& w, metadata_type const* type, std::string_view const& name)
