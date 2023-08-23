@@ -182,11 +182,11 @@ namespace swiftwinrt
         auto type_namespace = type.type().TypeNamespace();
         if (type_namespace.starts_with("Windows"))
         {
-            doc_url = "https://learn.microsoft.com/en-us/uwp/api/";
+            doc_url = "https://learn.microsoft.com/uwp/api/";
         }
         else if (type_namespace.starts_with("Microsoft.UI") || type_namespace.starts_with("Microsoft.Windows") || type_namespace.starts_with("Microsoft.Graphics"))
         {
-            doc_url = "https://learn.microsoft.com/en-us/windows/windows-app-sdk/api/winrt/";
+            doc_url = "https://learn.microsoft.com/windows/windows-app-sdk/api/winrt/";
         }
         else
         {

@@ -323,7 +323,7 @@ internal class __x_ABI_C__FIIterable_1_IInspectableImpl : IIterable, AbiInterfac
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iiterable-1.first)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
     public func first() -> AnyIIterator<Any?>? {
         let result = try! _default.FirstImpl()
         return test_component.__x_ABI_C__FIIterator_1_IInspectableWrapper.unwrapFrom(abi: result)
@@ -435,7 +435,7 @@ internal class __x_ABI_C__FIIterable_1_HSTRINGImpl : IIterable, AbiInterfaceImpl
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iiterable-1.first)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
     public func first() -> AnyIIterator<String>? {
         let result = try! _default.FirstImpl()
         return test_component.__x_ABI_C__FIIterator_1_HSTRINGWrapper.unwrapFrom(abi: result)
@@ -547,7 +547,7 @@ internal class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInsp
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iiterable-1.first)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
         let result = try! _default.FirstImpl()
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
@@ -659,7 +659,7 @@ internal class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRI
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iiterable-1.first)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
         let result = try! _default.FirstImpl()
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
@@ -771,7 +771,7 @@ internal class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_A
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iiterable-1.first)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, Base?>?>? {
         let result = try! _default.FirstImpl()
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
@@ -883,7 +883,7 @@ internal class __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseImpl : II
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iiterable-1.first)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
     public func first() -> AnyIIterator<Base?>? {
         let result = try! _default.FirstImpl()
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
@@ -995,7 +995,7 @@ internal class __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicImpl : 
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iiterable-1.first)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
     public func first() -> AnyIIterator<AnyIBasic?>? {
         let result = try! _default.FirstImpl()
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.unwrapFrom(abi: result)
@@ -1139,13 +1139,13 @@ internal class __x_ABI_C__FIIterator_1_IInspectableImpl : IIterator, AbiInterfac
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iiterator-1.movenext)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
     public func moveNext() -> Bool {
         let result = try! _default.MoveNextImpl()
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iiterator-1.current)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     public var current : Any? {
         get {
             let result = try! _default.get_CurrentImpl()
@@ -1154,7 +1154,7 @@ internal class __x_ABI_C__FIIterator_1_IInspectableImpl : IIterator, AbiInterfac
 
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     public var hasCurrent : Bool {
         get {
             let result = try! _default.get_HasCurrentImpl()
@@ -1300,13 +1300,13 @@ internal class __x_ABI_C__FIIterator_1_HSTRINGImpl : IIterator, AbiInterfaceImpl
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iiterator-1.movenext)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
     public func moveNext() -> Bool {
         let result = try! _default.MoveNextImpl()
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iiterator-1.current)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     public var current : String {
         get {
             let result = try! _default.get_CurrentImpl()
@@ -1315,7 +1315,7 @@ internal class __x_ABI_C__FIIterator_1_HSTRINGImpl : IIterator, AbiInterfaceImpl
 
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     public var hasCurrent : Bool {
         get {
             let result = try! _default.get_HasCurrentImpl()
@@ -1462,13 +1462,13 @@ internal class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInsp
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iiterator-1.movenext)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
     public func moveNext() -> Bool {
         let result = try! _default.MoveNextImpl()
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iiterator-1.current)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     public var current : AnyIKeyValuePair<String, Any?>? {
         get {
             let result = try! _default.get_CurrentImpl()
@@ -1477,7 +1477,7 @@ internal class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInsp
 
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     public var hasCurrent : Bool {
         get {
             let result = try! _default.get_HasCurrentImpl()
@@ -1624,13 +1624,13 @@ internal class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRI
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iiterator-1.movenext)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
     public func moveNext() -> Bool {
         let result = try! _default.MoveNextImpl()
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iiterator-1.current)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     public var current : AnyIKeyValuePair<String, String>? {
         get {
             let result = try! _default.get_CurrentImpl()
@@ -1639,7 +1639,7 @@ internal class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRI
 
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     public var hasCurrent : Bool {
         get {
             let result = try! _default.get_HasCurrentImpl()
@@ -1786,13 +1786,13 @@ internal class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_A
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iiterator-1.movenext)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
     public func moveNext() -> Bool {
         let result = try! _default.MoveNextImpl()
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iiterator-1.current)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     public var current : AnyIKeyValuePair<String, Base?>? {
         get {
             let result = try! _default.get_CurrentImpl()
@@ -1801,7 +1801,7 @@ internal class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_A
 
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     public var hasCurrent : Bool {
         get {
             let result = try! _default.get_HasCurrentImpl()
@@ -1947,13 +1947,13 @@ internal class __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseImpl : II
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iiterator-1.movenext)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
     public func moveNext() -> Bool {
         let result = try! _default.MoveNextImpl()
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iiterator-1.current)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     public var current : Base? {
         get {
             let result = try! _default.get_CurrentImpl()
@@ -1962,7 +1962,7 @@ internal class __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseImpl : II
 
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     public var hasCurrent : Bool {
         get {
             let result = try! _default.get_HasCurrentImpl()
@@ -2109,13 +2109,13 @@ internal class __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicImpl : 
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iiterator-1.movenext)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
     public func moveNext() -> Bool {
         let result = try! _default.MoveNextImpl()
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iiterator-1.current)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     public var current : AnyIBasic? {
         get {
             let result = try! _default.get_CurrentImpl()
@@ -2124,7 +2124,7 @@ internal class __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicImpl : 
 
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     public var hasCurrent : Bool {
         get {
             let result = try! _default.get_HasCurrentImpl()
@@ -2255,7 +2255,7 @@ internal class __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl : IKeyValueP
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ikeyvaluepair-2.key)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.key)
     public var key : String {
         get {
             let result = try! _default.get_KeyImpl()
@@ -2264,7 +2264,7 @@ internal class __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl : IKeyValueP
 
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ikeyvaluepair-2.value)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.value)
     public var value : Any? {
         get {
             let result = try! _default.get_ValueImpl()
@@ -2394,7 +2394,7 @@ internal class __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl : IKeyValuePair, 
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ikeyvaluepair-2.key)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.key)
     public var key : String {
         get {
             let result = try! _default.get_KeyImpl()
@@ -2403,7 +2403,7 @@ internal class __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl : IKeyValuePair, 
 
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ikeyvaluepair-2.value)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.value)
     public var value : String {
         get {
             let result = try! _default.get_ValueImpl()
@@ -2533,7 +2533,7 @@ internal class __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CB
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ikeyvaluepair-2.key)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.key)
     public var key : String {
         get {
             let result = try! _default.get_KeyImpl()
@@ -2542,7 +2542,7 @@ internal class __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CB
 
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ikeyvaluepair-2.value)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.value)
     public var value : Base? {
         get {
             let result = try! _default.get_ValueImpl()
@@ -2671,7 +2671,7 @@ internal class __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGImpl : IMapChangedEvent
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imapchangedeventargs-1.collectionchange)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapchangedeventargs-1.collectionchange)
     public var collectionChange : test_component.CollectionChange {
         get {
             let result = try! _default.get_CollectionChangeImpl()
@@ -2680,7 +2680,7 @@ internal class __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGImpl : IMapChangedEvent
 
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imapchangedeventargs-1.key)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapchangedeventargs-1.key)
     public var key : String {
         get {
             let result = try! _default.get_KeyImpl()
@@ -2848,21 +2848,21 @@ internal class __x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl : IMapView, AbiIn
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imapview-2.lookup)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.lookup)
     public func lookup(_ key: String) -> Any? {
         let _key = try! HString(key)
         let result = try! _default.LookupImpl(_key.get())
         return __ABI_.AnyWrapper.unwrapFrom(abi: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imapview-2.haskey)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.haskey)
     public func hasKey(_ key: String) -> Bool {
         let _key = try! HString(key)
         let result = try! _default.HasKeyImpl(_key.get())
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imapview-2.split)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.split)
     public func split(_ first: inout AnyIMapView<String, Any?>?, _ second: inout AnyIMapView<String, Any?>?) {
         var _first: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_IInspectable>?
         var _second: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_IInspectable>?
@@ -2871,7 +2871,7 @@ internal class __x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl : IMapView, AbiIn
         second = test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl.from(abi: _second)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imapview-2.size)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.size)
     public var size : UInt32 {
         get {
             let result = try! _default.get_SizeImpl()
@@ -2881,7 +2881,7 @@ internal class __x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl : IMapView, AbiIn
     }
 
     internal lazy var _IIterable: IIterableIKeyValuePairString_Any = try! _default.QueryInterface()
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imapview-2.first)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
         let result = try! _IIterable.FirstImpl()
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
@@ -3045,21 +3045,21 @@ internal class __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl : IMapView, AbiInterfa
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imapview-2.lookup)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.lookup)
     public func lookup(_ key: String) -> String {
         let _key = try! HString(key)
         let result = try! _default.LookupImpl(_key.get())
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imapview-2.haskey)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.haskey)
     public func hasKey(_ key: String) -> Bool {
         let _key = try! HString(key)
         let result = try! _default.HasKeyImpl(_key.get())
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imapview-2.split)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.split)
     public func split(_ first: inout AnyIMapView<String, String>?, _ second: inout AnyIMapView<String, String>?) {
         var _first: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?
         var _second: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?
@@ -3068,7 +3068,7 @@ internal class __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl : IMapView, AbiInterfa
         second = test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl.from(abi: _second)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imapview-2.size)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.size)
     public var size : UInt32 {
         get {
             let result = try! _default.get_SizeImpl()
@@ -3078,7 +3078,7 @@ internal class __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl : IMapView, AbiInterfa
     }
 
     internal lazy var _IIterable: IIterableIKeyValuePairString_String = try! _default.QueryInterface()
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imapview-2.first)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
         let result = try! _IIterable.FirstImpl()
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
@@ -3242,21 +3242,21 @@ internal class __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseIm
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imapview-2.lookup)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.lookup)
     public func lookup(_ key: String) -> Base? {
         let _key = try! HString(key)
         let result = try! _default.LookupImpl(_key.get())
         return .from(abi: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imapview-2.haskey)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.haskey)
     public func hasKey(_ key: String) -> Bool {
         let _key = try! HString(key)
         let result = try! _default.HasKeyImpl(_key.get())
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imapview-2.split)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.split)
     public func split(_ first: inout AnyIMapView<String, Base?>?, _ second: inout AnyIMapView<String, Base?>?) {
         var _first: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
         var _second: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
@@ -3265,7 +3265,7 @@ internal class __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseIm
         second = test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl.from(abi: _second)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imapview-2.size)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.size)
     public var size : UInt32 {
         get {
             let result = try! _default.get_SizeImpl()
@@ -3275,7 +3275,7 @@ internal class __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseIm
     }
 
     internal lazy var _IIterable: IIterableIKeyValuePairString_Base = try! _default.QueryInterface()
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imapview-2.first)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, Base?>?>? {
         let result = try! _IIterable.FirstImpl()
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
@@ -3480,27 +3480,27 @@ internal class __x_ABI_C__FIMap_2_HSTRING_IInspectableImpl : IMap, AbiInterfaceI
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imap-2.lookup)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.lookup)
     public func lookup(_ key: String) -> Any? {
         let _key = try! HString(key)
         let result = try! _default.LookupImpl(_key.get())
         return __ABI_.AnyWrapper.unwrapFrom(abi: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imap-2.haskey)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.haskey)
     public func hasKey(_ key: String) -> Bool {
         let _key = try! HString(key)
         let result = try! _default.HasKeyImpl(_key.get())
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imap-2.getview)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.getview)
     public func getView() -> AnyIMapView<String, Any?>? {
         let result = try! _default.GetViewImpl()
         return test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imap-2.insert)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.insert)
     public func insert(_ key: String, _ value: Any?) -> Bool {
         let _key = try! HString(key)
         let valueWrapper = __ABI_.AnyWrapper(value)
@@ -3509,18 +3509,18 @@ internal class __x_ABI_C__FIMap_2_HSTRING_IInspectableImpl : IMap, AbiInterfaceI
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imap-2.remove)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.remove)
     public func remove(_ key: String) {
         let _key = try! HString(key)
         try! _default.RemoveImpl(_key.get())
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imap-2.clear)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.clear)
     public func clear() {
         try! _default.ClearImpl()
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imap-2.size)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.size)
     public var size : UInt32 {
         get {
             let result = try! _default.get_SizeImpl()
@@ -3530,7 +3530,7 @@ internal class __x_ABI_C__FIMap_2_HSTRING_IInspectableImpl : IMap, AbiInterfaceI
     }
 
     internal lazy var _IIterable: IIterableIKeyValuePairString_Any = try! _default.QueryInterface()
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imap-2.first)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
         let result = try! _IIterable.FirstImpl()
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
@@ -3734,27 +3734,27 @@ internal class __x_ABI_C__FIMap_2_HSTRING_HSTRINGImpl : IMap, AbiInterfaceImpl {
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imap-2.lookup)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.lookup)
     public func lookup(_ key: String) -> String {
         let _key = try! HString(key)
         let result = try! _default.LookupImpl(_key.get())
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imap-2.haskey)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.haskey)
     public func hasKey(_ key: String) -> Bool {
         let _key = try! HString(key)
         let result = try! _default.HasKeyImpl(_key.get())
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imap-2.getview)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.getview)
     public func getView() -> AnyIMapView<String, String>? {
         let result = try! _default.GetViewImpl()
         return test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imap-2.insert)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.insert)
     public func insert(_ key: String, _ value: String) -> Bool {
         let _key = try! HString(key)
         let _value = try! HString(value)
@@ -3762,18 +3762,18 @@ internal class __x_ABI_C__FIMap_2_HSTRING_HSTRINGImpl : IMap, AbiInterfaceImpl {
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imap-2.remove)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.remove)
     public func remove(_ key: String) {
         let _key = try! HString(key)
         try! _default.RemoveImpl(_key.get())
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imap-2.clear)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.clear)
     public func clear() {
         try! _default.ClearImpl()
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imap-2.size)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.size)
     public var size : UInt32 {
         get {
             let result = try! _default.get_SizeImpl()
@@ -3783,7 +3783,7 @@ internal class __x_ABI_C__FIMap_2_HSTRING_HSTRINGImpl : IMap, AbiInterfaceImpl {
     }
 
     internal lazy var _IIterable: IIterableIKeyValuePairString_String = try! _default.QueryInterface()
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imap-2.first)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
         let result = try! _IIterable.FirstImpl()
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
@@ -3987,45 +3987,45 @@ internal class __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl :
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imap-2.lookup)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.lookup)
     public func lookup(_ key: String) -> Base? {
         let _key = try! HString(key)
         let result = try! _default.LookupImpl(_key.get())
         return .from(abi: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imap-2.haskey)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.haskey)
     public func hasKey(_ key: String) -> Bool {
         let _key = try! HString(key)
         let result = try! _default.HasKeyImpl(_key.get())
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imap-2.getview)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.getview)
     public func getView() -> AnyIMapView<String, Base?>? {
         let result = try! _default.GetViewImpl()
         return test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imap-2.insert)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.insert)
     public func insert(_ key: String, _ value: Base?) -> Bool {
         let _key = try! HString(key)
         let result = try! _default.InsertImpl(_key.get(), RawPointer(value))
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imap-2.remove)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.remove)
     public func remove(_ key: String) {
         let _key = try! HString(key)
         try! _default.RemoveImpl(_key.get())
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imap-2.clear)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.clear)
     public func clear() {
         try! _default.ClearImpl()
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imap-2.size)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.size)
     public var size : UInt32 {
         get {
             let result = try! _default.get_SizeImpl()
@@ -4035,7 +4035,7 @@ internal class __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl :
     }
 
     internal lazy var _IIterable: IIterableIKeyValuePairString_Base = try! _default.QueryInterface()
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.imap-2.first)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, Base?>?>? {
         let result = try! _IIterable.FirstImpl()
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
@@ -4164,7 +4164,7 @@ internal class __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableImpl : IObservab
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablemap-2.mapchanged)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.mapchanged)
     public lazy var mapChanged : Event<MapChangedEventHandler<String, Any?>> = {
       .init(
         add: { [weak this = _default] in
@@ -4180,27 +4180,27 @@ internal class __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableImpl : IObservab
     }()
 
     internal lazy var _IMap: IMapString_Any = try! _default.QueryInterface()
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablemap-2.lookup)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.lookup)
     public func lookup(_ key: String) -> Any? {
         let _key = try! HString(key)
         let result = try! _IMap.LookupImpl(_key.get())
         return __ABI_.AnyWrapper.unwrapFrom(abi: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablemap-2.haskey)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.haskey)
     public func hasKey(_ key: String) -> Bool {
         let _key = try! HString(key)
         let result = try! _IMap.HasKeyImpl(_key.get())
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablemap-2.getview)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.getview)
     public func getView() -> AnyIMapView<String, Any?>? {
         let result = try! _IMap.GetViewImpl()
         return test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablemap-2.insert)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.insert)
     public func insert(_ key: String, _ value: Any?) -> Bool {
         let _key = try! HString(key)
         let valueWrapper = __ABI_.AnyWrapper(value)
@@ -4209,18 +4209,18 @@ internal class __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableImpl : IObservab
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablemap-2.remove)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.remove)
     public func remove(_ key: String) {
         let _key = try! HString(key)
         try! _IMap.RemoveImpl(_key.get())
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablemap-2.clear)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.clear)
     public func clear() {
         try! _IMap.ClearImpl()
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablemap-2.size)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.size)
     public var size : UInt32 {
         get {
             let result = try! _IMap.get_SizeImpl()
@@ -4230,7 +4230,7 @@ internal class __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableImpl : IObservab
     }
 
     internal lazy var _IIterable: IIterableIKeyValuePairString_Any = try! _default.QueryInterface()
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablemap-2.first)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
         let result = try! _IIterable.FirstImpl()
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
@@ -4359,7 +4359,7 @@ internal class __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGImpl : IObservableMap
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablemap-2.mapchanged)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.mapchanged)
     public lazy var mapChanged : Event<MapChangedEventHandler<String, String>> = {
       .init(
         add: { [weak this = _default] in
@@ -4375,27 +4375,27 @@ internal class __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGImpl : IObservableMap
     }()
 
     internal lazy var _IMap: IMapString_String = try! _default.QueryInterface()
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablemap-2.lookup)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.lookup)
     public func lookup(_ key: String) -> String {
         let _key = try! HString(key)
         let result = try! _IMap.LookupImpl(_key.get())
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablemap-2.haskey)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.haskey)
     public func hasKey(_ key: String) -> Bool {
         let _key = try! HString(key)
         let result = try! _IMap.HasKeyImpl(_key.get())
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablemap-2.getview)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.getview)
     public func getView() -> AnyIMapView<String, String>? {
         let result = try! _IMap.GetViewImpl()
         return test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablemap-2.insert)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.insert)
     public func insert(_ key: String, _ value: String) -> Bool {
         let _key = try! HString(key)
         let _value = try! HString(value)
@@ -4403,18 +4403,18 @@ internal class __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGImpl : IObservableMap
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablemap-2.remove)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.remove)
     public func remove(_ key: String) {
         let _key = try! HString(key)
         try! _IMap.RemoveImpl(_key.get())
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablemap-2.clear)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.clear)
     public func clear() {
         try! _IMap.ClearImpl()
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablemap-2.size)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.size)
     public var size : UInt32 {
         get {
             let result = try! _IMap.get_SizeImpl()
@@ -4424,7 +4424,7 @@ internal class __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGImpl : IObservableMap
     }
 
     internal lazy var _IIterable: IIterableIKeyValuePairString_String = try! _default.QueryInterface()
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablemap-2.first)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
         let result = try! _IIterable.FirstImpl()
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
@@ -4581,7 +4581,7 @@ internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseI
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablevector-1.vectorchanged)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.vectorchanged)
     public lazy var vectorChanged : Event<VectorChangedEventHandler<Base?>> = {
       .init(
         add: { [weak this = _default] in
@@ -4597,55 +4597,55 @@ internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseI
     }()
 
     internal lazy var _IVector: IVectorBase = try! _default.QueryInterface()
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablevector-1.getat)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.getat)
     public func getAt(_ index: UInt32) -> Base? {
         let result = try! _IVector.GetAtImpl(index)
         return .from(abi: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablevector-1.getview)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.getview)
     public func getView() -> AnyIVectorView<Base?>? {
         let result = try! _IVector.GetViewImpl()
         return test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablevector-1.indexof)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.indexof)
     public func indexOf(_ value: Base?, _ index: inout UInt32) -> Bool {
         let result = try! _IVector.IndexOfImpl(RawPointer(value), &index)
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablevector-1.setat)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.setat)
     public func setAt(_ index: UInt32, _ value: Base?) {
         try! _IVector.SetAtImpl(index, RawPointer(value))
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablevector-1.insertat)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.insertat)
     public func insertAt(_ index: UInt32, _ value: Base?) {
         try! _IVector.InsertAtImpl(index, RawPointer(value))
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablevector-1.removeat)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.removeat)
     public func removeAt(_ index: UInt32) {
         try! _IVector.RemoveAtImpl(index)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablevector-1.append)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.append)
     public func append(_ value: Base?) {
         try! _IVector.AppendImpl(RawPointer(value))
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablevector-1.removeatend)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.removeatend)
     public func removeAtEnd() {
         try! _IVector.RemoveAtEndImpl()
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablevector-1.clear)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.clear)
     public func clear() {
         try! _IVector.ClearImpl()
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablevector-1.size)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.size)
     public var size : UInt32 {
         get {
             let result = try! _IVector.get_SizeImpl()
@@ -4655,7 +4655,7 @@ internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseI
     }
 
     internal lazy var _IIterable: IIterableBase = try! _default.QueryInterface()
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablevector-1.first)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.first)
     public func first() -> AnyIIterator<Base?>? {
         let result = try! _IIterable.FirstImpl()
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
@@ -4812,7 +4812,7 @@ internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasi
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablevector-1.vectorchanged)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.vectorchanged)
     public lazy var vectorChanged : Event<VectorChangedEventHandler<IBasic?>> = {
       .init(
         add: { [weak this = _default] in
@@ -4828,19 +4828,19 @@ internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasi
     }()
 
     internal lazy var _IVector: IVectorIBasic = try! _default.QueryInterface()
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablevector-1.getat)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.getat)
     public func getAt(_ index: UInt32) -> AnyIBasic? {
         let result = try! _IVector.GetAtImpl(index)
         return __ABI_test_component.IBasicWrapper.unwrapFrom(abi: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablevector-1.getview)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.getview)
     public func getView() -> AnyIVectorView<AnyIBasic?>? {
         let result = try! _IVector.GetViewImpl()
         return test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.unwrapFrom(abi: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablevector-1.indexof)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.indexof)
     public func indexOf(_ value: AnyIBasic?, _ index: inout UInt32) -> Bool {
         let valueWrapper = __ABI_test_component.IBasicWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
@@ -4848,43 +4848,43 @@ internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasi
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablevector-1.setat)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.setat)
     public func setAt(_ index: UInt32, _ value: AnyIBasic?) {
         let valueWrapper = __ABI_test_component.IBasicWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         try! _IVector.SetAtImpl(index, _value)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablevector-1.insertat)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.insertat)
     public func insertAt(_ index: UInt32, _ value: AnyIBasic?) {
         let valueWrapper = __ABI_test_component.IBasicWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         try! _IVector.InsertAtImpl(index, _value)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablevector-1.removeat)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.removeat)
     public func removeAt(_ index: UInt32) {
         try! _IVector.RemoveAtImpl(index)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablevector-1.append)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.append)
     public func append(_ value: AnyIBasic?) {
         let valueWrapper = __ABI_test_component.IBasicWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         try! _IVector.AppendImpl(_value)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablevector-1.removeatend)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.removeatend)
     public func removeAtEnd() {
         try! _IVector.RemoveAtEndImpl()
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablevector-1.clear)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.clear)
     public func clear() {
         try! _IVector.ClearImpl()
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablevector-1.size)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.size)
     public var size : UInt32 {
         get {
             let result = try! _IVector.get_SizeImpl()
@@ -4894,7 +4894,7 @@ internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasi
     }
 
     internal lazy var _IIterable: IIterableIBasic = try! _default.QueryInterface()
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.iobservablevector-1.first)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.first)
     public func first() -> AnyIIterator<AnyIBasic?>? {
         let result = try! _IIterable.FirstImpl()
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.unwrapFrom(abi: result)
@@ -5064,13 +5064,13 @@ internal class __x_ABI_C__FIVectorView_1_IInspectableImpl : IVectorView, AbiInte
         }
     }
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivectorview-1.getat)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.getat)
     public func getAt(_ index: UInt32) -> Any? {
         let result = try! _default.GetAtImpl(index)
         return __ABI_.AnyWrapper.unwrapFrom(abi: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivectorview-1.indexof)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.indexof)
     public func indexOf(_ value: Any?, _ index: inout UInt32) -> Bool {
         let valueWrapper = __ABI_.AnyWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
@@ -5078,7 +5078,7 @@ internal class __x_ABI_C__FIVectorView_1_IInspectableImpl : IVectorView, AbiInte
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivectorview-1.size)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
     public var size : UInt32 {
         get {
             let result = try! _default.get_SizeImpl()
@@ -5088,7 +5088,7 @@ internal class __x_ABI_C__FIVectorView_1_IInspectableImpl : IVectorView, AbiInte
     }
 
     internal lazy var _IIterable: IIterableAny = try! _default.QueryInterface()
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivectorview-1.first)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
     public func first() -> AnyIIterator<Any?>? {
         let result = try! _IIterable.FirstImpl()
         return test_component.__x_ABI_C__FIIterator_1_IInspectableWrapper.unwrapFrom(abi: result)
@@ -5257,20 +5257,20 @@ internal class __x_ABI_C__FIVectorView_1_HSTRINGImpl : IVectorView, AbiInterface
         }
     }
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivectorview-1.getat)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.getat)
     public func getAt(_ index: UInt32) -> String {
         let result = try! _default.GetAtImpl(index)
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivectorview-1.indexof)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.indexof)
     public func indexOf(_ value: String, _ index: inout UInt32) -> Bool {
         let _value = try! HString(value)
         let result = try! _default.IndexOfImpl(_value.get(), &index)
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivectorview-1.size)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
     public var size : UInt32 {
         get {
             let result = try! _default.get_SizeImpl()
@@ -5280,7 +5280,7 @@ internal class __x_ABI_C__FIVectorView_1_HSTRINGImpl : IVectorView, AbiInterface
     }
 
     internal lazy var _IIterable: IIterableString = try! _default.QueryInterface()
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivectorview-1.first)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
     public func first() -> AnyIIterator<String>? {
         let result = try! _IIterable.FirstImpl()
         return test_component.__x_ABI_C__FIIterator_1_HSTRINGWrapper.unwrapFrom(abi: result)
@@ -5449,19 +5449,19 @@ internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl : 
         }
     }
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivectorview-1.getat)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.getat)
     public func getAt(_ index: UInt32) -> Base? {
         let result = try! _default.GetAtImpl(index)
         return .from(abi: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivectorview-1.indexof)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.indexof)
     public func indexOf(_ value: Base?, _ index: inout UInt32) -> Bool {
         let result = try! _default.IndexOfImpl(RawPointer(value), &index)
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivectorview-1.size)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
     public var size : UInt32 {
         get {
             let result = try! _default.get_SizeImpl()
@@ -5471,7 +5471,7 @@ internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl : 
     }
 
     internal lazy var _IIterable: IIterableBase = try! _default.QueryInterface()
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivectorview-1.first)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
     public func first() -> AnyIIterator<Base?>? {
         let result = try! _IIterable.FirstImpl()
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
@@ -5641,13 +5641,13 @@ internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicImpl 
         }
     }
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivectorview-1.getat)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.getat)
     public func getAt(_ index: UInt32) -> AnyIBasic? {
         let result = try! _default.GetAtImpl(index)
         return __ABI_test_component.IBasicWrapper.unwrapFrom(abi: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivectorview-1.indexof)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.indexof)
     public func indexOf(_ value: AnyIBasic?, _ index: inout UInt32) -> Bool {
         let valueWrapper = __ABI_test_component.IBasicWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
@@ -5655,7 +5655,7 @@ internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicImpl 
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivectorview-1.size)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
     public var size : UInt32 {
         get {
             let result = try! _default.get_SizeImpl()
@@ -5665,7 +5665,7 @@ internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicImpl 
     }
 
     internal lazy var _IIterable: IIterableIBasic = try! _default.QueryInterface()
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivectorview-1.first)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
     public func first() -> AnyIIterator<AnyIBasic?>? {
         let result = try! _IIterable.FirstImpl()
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.unwrapFrom(abi: result)
@@ -5940,19 +5940,19 @@ internal class __x_ABI_C__FIVector_1_IInspectableImpl : IVector, AbiInterfaceImp
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.getat)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getat)
     public func getAt(_ index: UInt32) -> Any? {
         let result = try! _default.GetAtImpl(index)
         return __ABI_.AnyWrapper.unwrapFrom(abi: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.getview)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getview)
     public func getView() -> AnyIVectorView<Any?>? {
         let result = try! _default.GetViewImpl()
         return test_component.__x_ABI_C__FIVectorView_1_IInspectableWrapper.unwrapFrom(abi: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.indexof)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.indexof)
     public func indexOf(_ value: Any?, _ index: inout UInt32) -> Bool {
         let valueWrapper = __ABI_.AnyWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
@@ -5960,43 +5960,43 @@ internal class __x_ABI_C__FIVector_1_IInspectableImpl : IVector, AbiInterfaceImp
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.setat)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.setat)
     public func setAt(_ index: UInt32, _ value: Any?) {
         let valueWrapper = __ABI_.AnyWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         try! _default.SetAtImpl(index, _value)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.insertat)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.insertat)
     public func insertAt(_ index: UInt32, _ value: Any?) {
         let valueWrapper = __ABI_.AnyWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         try! _default.InsertAtImpl(index, _value)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.removeat)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeat)
     public func removeAt(_ index: UInt32) {
         try! _default.RemoveAtImpl(index)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.append)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.append)
     public func append(_ value: Any?) {
         let valueWrapper = __ABI_.AnyWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         try! _default.AppendImpl(_value)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.removeatend)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeatend)
     public func removeAtEnd() {
         try! _default.RemoveAtEndImpl()
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.clear)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.clear)
     public func clear() {
         try! _default.ClearImpl()
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.size)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.size)
     public var size : UInt32 {
         get {
             let result = try! _default.get_SizeImpl()
@@ -6006,7 +6006,7 @@ internal class __x_ABI_C__FIVector_1_IInspectableImpl : IVector, AbiInterfaceImp
     }
 
     internal lazy var _IIterable: IIterableAny = try! _default.QueryInterface()
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.first)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.first)
     public func first() -> AnyIIterator<Any?>? {
         let result = try! _IIterable.FirstImpl()
         return test_component.__x_ABI_C__FIIterator_1_IInspectableWrapper.unwrapFrom(abi: result)
@@ -6280,59 +6280,59 @@ internal class __x_ABI_C__FIVector_1_HSTRINGImpl : IVector, AbiInterfaceImpl {
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.getat)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getat)
     public func getAt(_ index: UInt32) -> String {
         let result = try! _default.GetAtImpl(index)
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.getview)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getview)
     public func getView() -> AnyIVectorView<String>? {
         let result = try! _default.GetViewImpl()
         return test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.indexof)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.indexof)
     public func indexOf(_ value: String, _ index: inout UInt32) -> Bool {
         let _value = try! HString(value)
         let result = try! _default.IndexOfImpl(_value.get(), &index)
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.setat)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.setat)
     public func setAt(_ index: UInt32, _ value: String) {
         let _value = try! HString(value)
         try! _default.SetAtImpl(index, _value.get())
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.insertat)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.insertat)
     public func insertAt(_ index: UInt32, _ value: String) {
         let _value = try! HString(value)
         try! _default.InsertAtImpl(index, _value.get())
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.removeat)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeat)
     public func removeAt(_ index: UInt32) {
         try! _default.RemoveAtImpl(index)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.append)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.append)
     public func append(_ value: String) {
         let _value = try! HString(value)
         try! _default.AppendImpl(_value.get())
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.removeatend)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeatend)
     public func removeAtEnd() {
         try! _default.RemoveAtEndImpl()
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.clear)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.clear)
     public func clear() {
         try! _default.ClearImpl()
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.size)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.size)
     public var size : UInt32 {
         get {
             let result = try! _default.get_SizeImpl()
@@ -6342,7 +6342,7 @@ internal class __x_ABI_C__FIVector_1_HSTRINGImpl : IVector, AbiInterfaceImpl {
     }
 
     internal lazy var _IIterable: IIterableString = try! _default.QueryInterface()
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.first)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.first)
     public func first() -> AnyIIterator<String>? {
         let result = try! _IIterable.FirstImpl()
         return test_component.__x_ABI_C__FIIterator_1_HSTRINGWrapper.unwrapFrom(abi: result)
@@ -6616,55 +6616,55 @@ internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl : IVec
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.getat)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getat)
     public func getAt(_ index: UInt32) -> Base? {
         let result = try! _default.GetAtImpl(index)
         return .from(abi: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.getview)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getview)
     public func getView() -> AnyIVectorView<Base?>? {
         let result = try! _default.GetViewImpl()
         return test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.indexof)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.indexof)
     public func indexOf(_ value: Base?, _ index: inout UInt32) -> Bool {
         let result = try! _default.IndexOfImpl(RawPointer(value), &index)
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.setat)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.setat)
     public func setAt(_ index: UInt32, _ value: Base?) {
         try! _default.SetAtImpl(index, RawPointer(value))
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.insertat)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.insertat)
     public func insertAt(_ index: UInt32, _ value: Base?) {
         try! _default.InsertAtImpl(index, RawPointer(value))
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.removeat)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeat)
     public func removeAt(_ index: UInt32) {
         try! _default.RemoveAtImpl(index)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.append)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.append)
     public func append(_ value: Base?) {
         try! _default.AppendImpl(RawPointer(value))
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.removeatend)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeatend)
     public func removeAtEnd() {
         try! _default.RemoveAtEndImpl()
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.clear)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.clear)
     public func clear() {
         try! _default.ClearImpl()
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.size)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.size)
     public var size : UInt32 {
         get {
             let result = try! _default.get_SizeImpl()
@@ -6674,7 +6674,7 @@ internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl : IVec
     }
 
     internal lazy var _IIterable: IIterableBase = try! _default.QueryInterface()
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.first)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.first)
     public func first() -> AnyIIterator<Base?>? {
         let result = try! _IIterable.FirstImpl()
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
@@ -6949,19 +6949,19 @@ internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicImpl : IV
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.getat)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getat)
     public func getAt(_ index: UInt32) -> AnyIBasic? {
         let result = try! _default.GetAtImpl(index)
         return __ABI_test_component.IBasicWrapper.unwrapFrom(abi: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.getview)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getview)
     public func getView() -> AnyIVectorView<AnyIBasic?>? {
         let result = try! _default.GetViewImpl()
         return test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.unwrapFrom(abi: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.indexof)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.indexof)
     public func indexOf(_ value: AnyIBasic?, _ index: inout UInt32) -> Bool {
         let valueWrapper = __ABI_test_component.IBasicWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
@@ -6969,43 +6969,43 @@ internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicImpl : IV
         return .init(from: result)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.setat)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.setat)
     public func setAt(_ index: UInt32, _ value: AnyIBasic?) {
         let valueWrapper = __ABI_test_component.IBasicWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         try! _default.SetAtImpl(index, _value)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.insertat)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.insertat)
     public func insertAt(_ index: UInt32, _ value: AnyIBasic?) {
         let valueWrapper = __ABI_test_component.IBasicWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         try! _default.InsertAtImpl(index, _value)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.removeat)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeat)
     public func removeAt(_ index: UInt32) {
         try! _default.RemoveAtImpl(index)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.append)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.append)
     public func append(_ value: AnyIBasic?) {
         let valueWrapper = __ABI_test_component.IBasicWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         try! _default.AppendImpl(_value)
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.removeatend)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeatend)
     public func removeAtEnd() {
         try! _default.RemoveAtEndImpl()
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.clear)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.clear)
     public func clear() {
         try! _default.ClearImpl()
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.size)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.size)
     public var size : UInt32 {
         get {
             let result = try! _default.get_SizeImpl()
@@ -7015,7 +7015,7 @@ internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicImpl : IV
     }
 
     internal lazy var _IIterable: IIterableIBasic = try! _default.QueryInterface()
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.collections.ivector-1.first)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.first)
     public func first() -> AnyIIterator<AnyIBasic?>? {
         let result = try! _IIterable.FirstImpl()
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.unwrapFrom(abi: result)
@@ -7563,13 +7563,13 @@ internal class __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleImpl : IAsync
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.iasyncoperationwithprogress-2.getresults)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.getresults)
     public func getResults() throws -> Int32 {
         let result = try _default.GetResultsImpl()
         return result
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.iasyncoperationwithprogress-2.progress)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.progress)
     public var progress : AsyncOperationProgressHandler<Int32, Double>? {
         get {
             let result = try! _default.get_ProgressImpl()
@@ -7583,7 +7583,7 @@ internal class __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleImpl : IAsync
         }
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.iasyncoperationwithprogress-2.completed)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.completed)
     public var completed : AsyncOperationWithProgressCompletedHandler<Int32, Double>? {
         get {
             let result = try! _default.get_CompletedImpl()
@@ -7598,17 +7598,17 @@ internal class __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleImpl : IAsync
     }
 
     internal lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo = try! _default.QueryInterface()
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.iasyncoperationwithprogress-2.cancel)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.cancel)
     public func cancel() throws {
         try _IAsyncInfo.CancelImpl()
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.iasyncoperationwithprogress-2.close)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.close)
     public func close() throws {
         try _IAsyncInfo.CloseImpl()
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.iasyncoperationwithprogress-2.errorcode)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.errorcode)
     public var errorCode : HRESULT {
         get {
             let result = try! _IAsyncInfo.get_ErrorCodeImpl()
@@ -7617,7 +7617,7 @@ internal class __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleImpl : IAsync
 
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.iasyncoperationwithprogress-2.id)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.id)
     public var id : UInt32 {
         get {
             let result = try! _IAsyncInfo.get_IdImpl()
@@ -7626,7 +7626,7 @@ internal class __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleImpl : IAsync
 
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.iasyncoperationwithprogress-2.status)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.status)
     public var status : test_component.AsyncStatus {
         get {
             let result = try! _IAsyncInfo.get_StatusImpl()
@@ -7772,13 +7772,13 @@ internal class __x_ABI_C__FIAsyncOperation_1_intImpl : IAsyncOperation, AbiInter
     }
 
     // MARK: WinRT
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.iasyncoperation-1.getresults)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.getresults)
     public func getResults() throws -> Int32 {
         let result = try _default.GetResultsImpl()
         return result
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.iasyncoperation-1.completed)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     public var completed : AsyncOperationCompletedHandler<Int32>? {
         get {
             let result = try! _default.get_CompletedImpl()
@@ -7793,17 +7793,17 @@ internal class __x_ABI_C__FIAsyncOperation_1_intImpl : IAsyncOperation, AbiInter
     }
 
     internal lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo = try! _default.QueryInterface()
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.iasyncoperation-1.cancel)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
     public func cancel() throws {
         try _IAsyncInfo.CancelImpl()
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.iasyncoperation-1.close)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.close)
     public func close() throws {
         try _IAsyncInfo.CloseImpl()
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     public var errorCode : HRESULT {
         get {
             let result = try! _IAsyncInfo.get_ErrorCodeImpl()
@@ -7812,7 +7812,7 @@ internal class __x_ABI_C__FIAsyncOperation_1_intImpl : IAsyncOperation, AbiInter
 
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.iasyncoperation-1.id)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     public var id : UInt32 {
         get {
             let result = try! _IAsyncInfo.get_IdImpl()
@@ -7821,7 +7821,7 @@ internal class __x_ABI_C__FIAsyncOperation_1_intImpl : IAsyncOperation, AbiInter
 
     }
 
-    /// [Open Microsoft documentation](https://learn.microsoft.com/en-us/uwp/api/windows.foundation.iasyncoperation-1.status)
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     public var status : test_component.AsyncStatus {
         get {
             let result = try! _IAsyncInfo.get_StatusImpl()
