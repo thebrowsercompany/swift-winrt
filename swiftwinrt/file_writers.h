@@ -168,7 +168,7 @@ namespace swiftwinrt
         w.write("%", w.filter.bind_each<write_delegate_abi>(members.delegates));
 
         w.swap();
-        write_preamble(w);
+        write_preamble(w, /* swift_code: */ true);
 
 
         w.save_file("ABI");
@@ -193,7 +193,7 @@ namespace swiftwinrt
         w.write("%", w.filter.bind_each<write_enum_extension>(members.enums));
     
         w.swap();
-        write_preamble(w);
+        write_preamble(w, /* swift_code: */ true);
 
         w.save_file();
 
@@ -220,7 +220,7 @@ namespace swiftwinrt
         w.write("%", w.filter.bind_each<write_interface_abi_bridge>(members.interfaces));
 
         w.swap();
-        write_preamble(w);
+        write_preamble(w, /* swift_code: */ true);
 
         w.save_file("Impl");
     }
@@ -253,7 +253,7 @@ namespace swiftwinrt
         }
 
         w.swap();
-        write_preamble(w);
+        write_preamble(w, /* swift_code: */ true);
         w.save_file("Generics");
     }
 }

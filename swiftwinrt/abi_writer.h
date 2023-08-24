@@ -272,7 +272,7 @@ namespace swiftwinrt
     {
         writer w;
         w.type_namespace = fileName;
-        write_preamble(w);
+        write_preamble(w, /* swift_code: */ false);
 
         w.write("#pragma once\n");
         write_includes(w, types, fileName);
@@ -289,7 +289,7 @@ namespace swiftwinrt
     {
         writer w;
         w.c_mod = settings.get_c_module_name();
-        write_preamble(w);
+        write_preamble(w, /* swift_code: */ false);
         w.write(R"(#pragma once
 #include <wtypesbase.h>
 #include <minwindef.h>
