@@ -10,14 +10,8 @@ actor WaitableEvent {
 
     /// Block until the signaled state is `true`.
     func wait() async {
-         guard !signaled else { 
-            #if DEBUG
-            preconditionFailure("message already signaled")
-            #else
-            return
-            #endif
-        }
-        guard observer == nil else { 
+        guard !signaled else { return }
+        guard observer == nil else {
             #if DEBUG
             preconditionFailure("message has already been waited on")
             #else
@@ -31,8 +25,9 @@ actor WaitableEvent {
         }
     }
 
+    /// Signals the event, unblocking any current or future waiter.
     func signal() async {
-        guard !signaled else { 
+        guard !signaled else {
             #if DEBUG
             preconditionFailure("message already signaled")
             #else
