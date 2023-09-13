@@ -112,7 +112,10 @@ namespace swiftwinrt
     static void write_includes(writer& w, type_cache const& types, std::string_view fileName)
     {
         // Forced dependencies
-        w.write(R"^-^(
+        w.write(R"^-^(// Header files for imported files
+#include <inspectable.h>
+#include <EventToken.h>
+#include <windowscontracts.h>
 )^-^");
 
         if (fileName != winrt_foundation_namespace)
