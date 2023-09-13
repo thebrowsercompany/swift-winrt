@@ -4,7 +4,6 @@
 import WinSDK
 
 public typealias LPVOID = UnsafeMutableRawPointer
-public typealias REFIID = UnsafePointer<IID>
 
 // winnt.h
 
@@ -36,6 +35,6 @@ extension WCHAR {
 }
 
 // stdlib.h
-public var MB_MAX : Int { 
+public var MB_MAX : Int {
   Int(___mb_cur_max_func())
 }

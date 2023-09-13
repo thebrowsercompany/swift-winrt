@@ -1,8 +1,6 @@
 import C_BINDINGS_MODULE
 import WinSDK
 
-public typealias IID = WinSDK.IID
-
 public protocol CustomQueryInterface {
     @_spi(WinRTImplements)
     func queryInterface(_ iid: IID) -> IUnknownRef?
@@ -10,7 +8,7 @@ public protocol CustomQueryInterface {
 
 @_spi(WinRTInternal)
 public func queryInterface(sealed obj: AnyWinRTClass, _ iid: IID) -> IUnknownRef? {
-    guard let cDefault: UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable> = obj._getABI() else { return nil }
+    guard let cDefault: UnsafeMutablePointer<NativeIInspectable> = obj._getABI() else { return nil }
 
     var iid = iid
     var result: UnsafeMutableRawPointer?
@@ -40,4 +38,3 @@ public func queryInterface(unsealed obj: AnyUnsealedWinRTClass, _ iid: IID) -> I
     guard inner.pointee.lpVtbl.pointee.QueryInterface(inner, &iid, &result) == S_OK, let result else { return nil }
     return IUnknownRef(consuming: result)
 }
-

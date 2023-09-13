@@ -81,10 +81,10 @@ open class WinRTWrapperBase<CInterface, Prototype> {
         // Use toABI as derived classes may override this to get the ABI pointer of the swift
         // object they are holding onto
         let abi: UnsafeMutablePointer<CInterface> = try! toABI { $0 }
-        abi.withMemoryRebound(to: WinSDK.IUnknown.self, capacity: 1) { 
+        abi.withMemoryRebound(to: NativeIUnknown.self, capacity: 1) {
             _ = $0.pointee.lpVtbl.pointee.AddRef($0)
         }
-        
+
         ptr.initialize(to: abi)
     }
 
@@ -92,7 +92,7 @@ open class WinRTWrapperBase<CInterface, Prototype> {
         // Use toABI as derived classes may override this to get the ABI pointer of the swift
         // object they are holding onto
         try! toABI {
-            $0.withMemoryRebound(to: WinSDK.IUnknown.self, capacity: 1) {
+            $0.withMemoryRebound(to: NativeIUnknown.self, capacity: 1) {
                 var iid = iid
                 var result: UnsafeMutableRawPointer?
                 guard $0.pointee.lpVtbl.pointee.QueryInterface($0, &iid, &result) == S_OK, let result else { return nil }
@@ -110,7 +110,7 @@ open class WinRTWrapperBase<CInterface, Prototype> {
       guard let pUnk = pUnk else { return nil }
       return fromRaw(pUnk)?.takeUnretainedValue().swiftObj
     }
-    
+
     // When unwrapping from the abi, we want to see if the object has an existing implementation so we can use
     // that to get to the existing swift object. if it doesn't exist then we can create a new implementation
     public static func tryUnwrapFrom(abi pointer: UnsafeMutablePointer<CInterface>?) -> Prototype? {

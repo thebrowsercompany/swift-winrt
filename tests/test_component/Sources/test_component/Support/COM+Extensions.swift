@@ -16,13 +16,6 @@ public func ==<T: Equatable>(_ lhs: (T, T, T, T, T, T, T, T),
          lhs.7 == rhs.7
 }
 
-public func ~=(_ lhs: _GUID, _ rhs: _GUID) -> Bool {
-  return lhs.Data1 == rhs.Data1 &&
-         lhs.Data2 == rhs.Data2 &&
-         lhs.Data3 == rhs.Data3 &&
-         lhs.Data4 == rhs.Data4
-}
-
 extension _GUID: CustomStringConvertible {
   public var description: String {
     withUnsafePointer(to: self) { pGUID in
@@ -35,15 +28,6 @@ extension _GUID: CustomStringConvertible {
   }
 }
 
-extension _GUID: Equatable {
-   public static func ==(_ lhs: _GUID, _ rhs: _GUID) -> Bool {
-      return lhs.Data1 == rhs.Data1 &&
-         lhs.Data2 == rhs.Data2 &&
-         lhs.Data3 == rhs.Data3 &&
-         lhs.Data4 == rhs.Data4
-   }
-}
-
 extension UUID {
   /// Create a UUID from a string such as "E621E1F8-C36C-495A-93FC-0C247A3E6E5F"
   ///
@@ -51,7 +35,7 @@ extension UUID {
   public init?(uuidString string: String){
     var _self : _GUID = .init()
 
-    // use UuidFromString because it expects the correct format. 
+    // use UuidFromString because it expects the correct format.
     // See https://devblogs.microsoft.com/oldnewthing/20151015-00/?p=91351
     let result = UuidFromStringA(makeCString(from: string), &_self)
     if result != S_OK { return nil }

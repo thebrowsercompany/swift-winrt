@@ -103,7 +103,7 @@ namespace swiftwinrt
     static std::set<std::string_view> removed_types = {
         "Windows.Foundation.Collections.CollectionChange",
         "Windows.Foundation.Collections.IVectorChangedEventArgs",
-    };     
+    };
     static bool should_write(metadata_type const& type)
     {
         return !removed_types.contains(type.swift_full_name());
@@ -112,10 +112,7 @@ namespace swiftwinrt
     static void write_includes(writer& w, type_cache const& types, std::string_view fileName)
     {
         // Forced dependencies
-        w.write(R"^-^(// Header files for imported files
-#include "inspectable.h"
-#include "EventToken.h"
-#include "windowscontracts.h"
+        w.write(R"^-^(
 )^-^");
 
         if (fileName != winrt_foundation_namespace)
