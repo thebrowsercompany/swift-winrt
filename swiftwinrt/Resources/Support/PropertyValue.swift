@@ -63,7 +63,7 @@ internal final class PropertyValue {
         return .init(propertyValue!)
     }
 
-    public static func createGuid(_ value: WinSDK.UUID) -> SUPPORT_MODULE.IInspectable {
+    public static func createGuid(_ value: GUID) -> SUPPORT_MODULE.IInspectable {
         let propertyValue = try! _IPropertyValueStatics.CreateGuidImpl(value)
         return .init(propertyValue!)
     }
@@ -130,7 +130,7 @@ extension PropertyValue
             case let value as Float:   return PropertyValue.createSingle(value)
             case let value as Double:  return PropertyValue.createDouble(value)
             case let value as Bool:    return PropertyValue.createBoolean(value)
-            case let value as WinSDK.UUID: return PropertyValue.createGuid(value)
+            case let value as GUID:    return PropertyValue.createGuid(value)
             case let value as DateTime: return PropertyValue.createDateTime(value)
             case let value as TimeSpan: return PropertyValue.createTimeSpan(value)
             case let value as Point:    return PropertyValue.createPoint(value)

@@ -4,7 +4,7 @@ import Foundation
 
 extension DoubleDelegate {
     @_spi(WinRTImplements)
-    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         switch iid {
             case __ABI_test_component.IBasic.IID:
                 let iBasicWrapper = __ABI_test_component.IBasicWrapper(self)
@@ -16,4 +16,3 @@ extension DoubleDelegate {
         }
     }
 }
-

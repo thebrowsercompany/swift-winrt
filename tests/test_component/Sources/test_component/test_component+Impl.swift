@@ -105,7 +105,7 @@ public enum __IMPL_test_component {
         }
 
         public func outObject(_ value: inout Any!) throws {
-            var _value: UnsafeMutablePointer<Ctest_component.IInspectable>?
+            var _value: UnsafeMutablePointer<NativeIInspectable>?
             try _default.OutObjectImpl(&_value)
             value = __ABI_.AnyWrapper.unwrapFrom(abi: _value)
         }
@@ -152,7 +152,7 @@ public enum __IMPL_test_component {
             }
         }
 
-        public var id : UUID? {
+        public var id : GUID? {
             get {
                 let value = try! _default.get_IdImpl()
                 return .init(ref: value)

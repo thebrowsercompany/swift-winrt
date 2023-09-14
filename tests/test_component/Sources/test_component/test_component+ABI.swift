@@ -248,7 +248,7 @@ public enum __ABI_test_component {
 
         override public class var IID: IID { IID___x_ABI_Ctest__component_CIBaseNoOverridesProtectedFactory }
 
-        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<Ctest_component.IInspectable>?, _ innerInterface: inout UnsafeMutablePointer<Ctest_component.IInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBaseNoOverrides>? {
+        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<NativeIInspectable>?, _ innerInterface: inout UnsafeMutablePointer<NativeIInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBaseNoOverrides>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBaseNoOverrides>?
             _ = try perform(as: __x_ABI_Ctest__component_CIBaseNoOverridesProtectedFactory.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, baseInterface, &innerInterface, &value))
@@ -274,7 +274,7 @@ public enum __ABI_test_component {
 
         override public class var IID: IID { IID___x_ABI_Ctest__component_CIBaseProtectedFactory }
 
-        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<Ctest_component.IInspectable>?, _ innerInterface: inout UnsafeMutablePointer<Ctest_component.IInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>? {
+        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<NativeIInspectable>?, _ innerInterface: inout UnsafeMutablePointer<NativeIInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?
             _ = try perform(as: __x_ABI_Ctest__component_CIBaseProtectedFactory.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, baseInterface, &innerInterface, &value))
@@ -412,7 +412,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func InObjectImpl(_ value: UnsafeMutablePointer<Ctest_component.IInspectable>?) throws -> HSTRING? {
+        internal func InObjectImpl(_ value: UnsafeMutablePointer<NativeIInspectable>?) throws -> HSTRING? {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InObject(pThis, value, &result))
@@ -440,7 +440,7 @@ public enum __ABI_test_component {
             }
         }
 
-        internal func OutObjectImpl(_ value: inout UnsafeMutablePointer<Ctest_component.IInspectable>?) throws {
+        internal func OutObjectImpl(_ value: inout UnsafeMutablePointer<NativeIInspectable>?) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OutObject(pThis, &value))
             }
@@ -470,8 +470,8 @@ public enum __ABI_test_component {
             }
         }
 
-        internal func ReturnObjectImpl() throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-            var result: UnsafeMutablePointer<Ctest_component.IInspectable>?
+        internal func ReturnObjectImpl() throws -> UnsafeMutablePointer<NativeIInspectable>? {
+            var result: UnsafeMutablePointer<NativeIInspectable>?
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnObject(pThis, &result))
             }
@@ -919,7 +919,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        open func InObjectImpl(_ value: UnsafeMutablePointer<Ctest_component.IInspectable>?) throws -> HSTRING? {
+        open func InObjectImpl(_ value: UnsafeMutablePointer<NativeIInspectable>?) throws -> HSTRING? {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InObject(pThis, value, &result))
@@ -947,7 +947,7 @@ public enum __ABI_test_component {
             }
         }
 
-        open func OutObjectImpl(_ value: inout UnsafeMutablePointer<Ctest_component.IInspectable>?) throws {
+        open func OutObjectImpl(_ value: inout UnsafeMutablePointer<NativeIInspectable>?) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OutObject(pThis, &value))
             }
@@ -971,8 +971,8 @@ public enum __ABI_test_component {
             }
         }
 
-        open func ReturnObjectImpl() throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-            var result: UnsafeMutablePointer<Ctest_component.IInspectable>?
+        open func ReturnObjectImpl() throws -> UnsafeMutablePointer<NativeIInspectable>? {
+            var result: UnsafeMutablePointer<NativeIInspectable>?
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnObject(pThis, &result))
             }
@@ -1236,7 +1236,7 @@ public enum __ABI_test_component {
 
         put_Id: {
             guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let value: UUID? = .init(ref: $1)
+            let value: GUID? = .init(ref: $1)
             __unwrapped__instance.id = value
             return S_OK
         },
@@ -1346,7 +1346,7 @@ public enum __ABI_test_component {
     open class INullValuesStatics: test_component.IInspectable {
         override public class var IID: IID { IID___x_ABI_Ctest__component_CINullValuesStatics }
 
-        internal func IsObjectNullImpl(_ value: UnsafeMutablePointer<Ctest_component.IInspectable>?) throws -> boolean {
+        internal func IsObjectNullImpl(_ value: UnsafeMutablePointer<NativeIInspectable>?) throws -> boolean {
             var result: boolean = 0
             _ = try perform(as: __x_ABI_Ctest__component_CINullValuesStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.IsObjectNull(pThis, value, &result))
@@ -1386,8 +1386,8 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func GetNullObjectImpl() throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-            var result: UnsafeMutablePointer<Ctest_component.IInspectable>?
+        internal func GetNullObjectImpl() throws -> UnsafeMutablePointer<NativeIInspectable>? {
+            var result: UnsafeMutablePointer<NativeIInspectable>?
             _ = try perform(as: __x_ABI_Ctest__component_CINullValuesStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetNullObject(pThis, &result))
             }
@@ -1453,8 +1453,8 @@ public enum __ABI_test_component {
             return operation
         }
 
-        internal func ObjectImpl(_ value: __x_ABI_CWindows_CFoundation_CDateTime) throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-            var result: UnsafeMutablePointer<Ctest_component.IInspectable>?
+        internal func ObjectImpl(_ value: __x_ABI_CWindows_CFoundation_CDateTime) throws -> UnsafeMutablePointer<NativeIInspectable>? {
+            var result: UnsafeMutablePointer<NativeIInspectable>?
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Object(pThis, value, &result))
             }
@@ -1772,7 +1772,7 @@ public enum __ABI_test_component {
 
         override public class var IID: IID { IID___x_ABI_Ctest__component_CIUnsealedDerived2ProtectedFactory }
 
-        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<Ctest_component.IInspectable>?, _ innerInterface: inout UnsafeMutablePointer<Ctest_component.IInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived2>? {
+        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<NativeIInspectable>?, _ innerInterface: inout UnsafeMutablePointer<NativeIInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived2>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived2>?
             _ = try perform(as: __x_ABI_Ctest__component_CIUnsealedDerived2ProtectedFactory.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, baseInterface, &innerInterface, &value))
@@ -1787,7 +1787,7 @@ public enum __ABI_test_component {
 
         override public class var IID: IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedFactory }
 
-        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<Ctest_component.IInspectable>?, _ innerInterface: inout UnsafeMutablePointer<Ctest_component.IInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived>? {
+        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<NativeIInspectable>?, _ innerInterface: inout UnsafeMutablePointer<NativeIInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived>?
             _ = try perform(as: __x_ABI_Ctest__component_CIUnsealedDerivedFactory.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, baseInterface, &innerInterface, &value))
@@ -1807,7 +1807,7 @@ public enum __ABI_test_component {
 
         override public class var IID: IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedNoOverridesProtectedFactory }
 
-        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<Ctest_component.IInspectable>?, _ innerInterface: inout UnsafeMutablePointer<Ctest_component.IInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides>? {
+        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<NativeIInspectable>?, _ innerInterface: inout UnsafeMutablePointer<NativeIInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides>?
             _ = try perform(as: __x_ABI_Ctest__component_CIUnsealedDerivedNoOverridesProtectedFactory.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, baseInterface, &innerInterface, &value))
@@ -2202,7 +2202,7 @@ extension __ABI_test_component {
     open class ObjectHandler: test_component.IUnknown {
         override public class var IID: IID { IID___x_ABI_Ctest__component_CIObjectHandler }
 
-        open func InvokeImpl(_ item: UnsafeMutablePointer<Ctest_component.IInspectable>?) throws {
+        open func InvokeImpl(_ item: UnsafeMutablePointer<NativeIInspectable>?) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIObjectHandler.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, item))
             }

@@ -16,33 +16,6 @@ public func ==<T: Equatable>(_ lhs: (T, T, T, T, T, T, T, T),
          lhs.7 == rhs.7
 }
 
-extension _GUID: CustomStringConvertible {
-  public var description: String {
-    withUnsafePointer(to: self) { pGUID in
-      Array<WCHAR>(unsafeUninitializedCapacity: 40) {
-        $1 = Int(StringFromGUID2(pGUID, $0.baseAddress, CInt($0.count)))
-      }.withUnsafeBufferPointer {
-        String(decodingCString: $0.baseAddress!, as: UTF16.self)
-      }
-    }
-  }
-}
-
-extension UUID {
-  /// Create a UUID from a string such as "E621E1F8-C36C-495A-93FC-0C247A3E6E5F"
-  ///
-  /// returns nil for invalid strings
-  public init?(uuidString string: String){
-    var _self : _GUID = .init()
-
-    // use UuidFromString because it expects the correct format.
-    // See https://devblogs.microsoft.com/oldnewthing/20151015-00/?p=91351
-    let result = UuidFromStringA(makeCString(from: string), &_self)
-    if result != S_OK { return nil }
-    self = _self
-  }
-}
-
 extension IInspectable : Equatable {
   // Test for COM-style equality.
   public static func ==(_ lhs: IInspectable, _ rhs: IInspectable) -> Bool {

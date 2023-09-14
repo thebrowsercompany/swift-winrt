@@ -354,7 +354,7 @@ class SwiftWinRTTests : XCTestCase {
     print("value: ", classy.startValue ?? "N/A")
     XCTAssertEqual(classy.startValue, 23)
 
-    let id: WinSDK.UUID? = .init(uuidString: "E621E1F8-C36C-495A-93FC-0C247A3E6E5F")
+    let id: test_component.IID? = .init(parsingString: "E621E1F8-C36C-495A-93FC-0C247A3E6E5F")
     classy.id = id
 
     print("ID: ", classy.id ?? "00000000-0000-0000-0000-0000000")

@@ -1859,44 +1859,6 @@ typedef interface __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIB
     
     #endif // ____x_ABI_C__FIEventHandler_1_IInspectable_INTERFACE_DEFINED__
     
-#if !defined(____x_ABI_C__FIReference_1_int_INTERFACE_DEFINED__)
-    #define ____x_ABI_C__FIReference_1_int_INTERFACE_DEFINED__
-
-    typedef interface __x_ABI_C__FIReference_1_int __x_ABI_C__FIReference_1_int;
-
-    //  Declare the parameterized interface IID.
-    EXTERN_C const IID IID___x_ABI_C__FIReference_1_int;
-
-    typedef struct __x_ABI_C__FIReference_1_intVtbl
-    {
-        BEGIN_INTERFACE
-
-        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_C__FIReference_1_int* This,
-            REFIID riid,
-            void** ppvObject);
-        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_C__FIReference_1_int* This);
-        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_C__FIReference_1_int* This);
-        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_C__FIReference_1_int* This,
-            ULONG* iidCount,
-            IID** iids);
-        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_C__FIReference_1_int* This,
-            HSTRING* className);
-        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_C__FIReference_1_int* This,
-            TrustLevel* trustLevel);
-        HRESULT (STDMETHODCALLTYPE* get_Value)(__x_ABI_C__FIReference_1_int* This,
-        INT32* result);
-
-        END_INTERFACE
-    } __x_ABI_C__FIReference_1_intVtbl;
-
-    interface __x_ABI_C__FIReference_1_int
-    {
-        CONST_VTBL struct __x_ABI_C__FIReference_1_intVtbl* lpVtbl;
-    };
-
-    
-    #endif // ____x_ABI_C__FIReference_1_int_INTERFACE_DEFINED__
-    
 #if !defined(____x_ABI_C__FIReference_1_GUID_INTERFACE_DEFINED__)
     #define ____x_ABI_C__FIReference_1_GUID_INTERFACE_DEFINED__
 
@@ -1934,6 +1896,44 @@ typedef interface __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIB
 
     
     #endif // ____x_ABI_C__FIReference_1_GUID_INTERFACE_DEFINED__
+    
+#if !defined(____x_ABI_C__FIReference_1_int_INTERFACE_DEFINED__)
+    #define ____x_ABI_C__FIReference_1_int_INTERFACE_DEFINED__
+
+    typedef interface __x_ABI_C__FIReference_1_int __x_ABI_C__FIReference_1_int;
+
+    //  Declare the parameterized interface IID.
+    EXTERN_C const IID IID___x_ABI_C__FIReference_1_int;
+
+    typedef struct __x_ABI_C__FIReference_1_intVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_C__FIReference_1_int* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_C__FIReference_1_int* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_C__FIReference_1_int* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_C__FIReference_1_int* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_C__FIReference_1_int* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_C__FIReference_1_int* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* get_Value)(__x_ABI_C__FIReference_1_int* This,
+        INT32* result);
+
+        END_INTERFACE
+    } __x_ABI_C__FIReference_1_intVtbl;
+
+    interface __x_ABI_C__FIReference_1_int
+    {
+        CONST_VTBL struct __x_ABI_C__FIReference_1_intVtbl* lpVtbl;
+    };
+
+    
+    #endif // ____x_ABI_C__FIReference_1_int_INTERFACE_DEFINED__
     
 typedef enum __x_ABI_Ctest__component_CSigned __x_ABI_Ctest__component_CSigned;
 

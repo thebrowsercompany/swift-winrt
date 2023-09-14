@@ -880,7 +880,7 @@ bind_impl_fullname(type));
     public func getChar16() -> Character { _value as! Character }
     public func getBoolean() -> Bool { _value as! Bool }
     public func getString() -> String { _value as! String }
-    public func getGuid() -> UUID { _value as! UUID }
+    public func getGuid() -> GUID { _value as! GUID }
     public func getDateTime() -> DateTime { _value as! DateTime } 
     public func getTimeSpan() -> TimeSpan { _value as! TimeSpan }
     public func getPoint() -> Point { _value as! Point }
@@ -2193,7 +2193,7 @@ private var _default: SwiftABI!
     if T.self == CABI.self {
         return RawPointer(_default)
     }   
-    if T.self == %.IInspectable.self {
+    if T.self == NativeIInspectable.self {
         return RawPointer(_default)
     }
     if T.self == WinSDK.IUnknown.self {
@@ -2209,7 +2209,6 @@ private var _default: SwiftABI!
                 bind_type_mangled(default_interface),
                 override,
                 modifier,
-                w.c_mod,
                 base_class ? "super._getABI()" : "nil",
                 override,
                 modifier,

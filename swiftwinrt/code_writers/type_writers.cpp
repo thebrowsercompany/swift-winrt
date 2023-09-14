@@ -184,7 +184,7 @@ static void write_c_abi_type(writer& w, metadata_type const& type)
     {
         if (elem_type->type() == ElementType::Object)
         {
-            w.write("UnsafeMutablePointer<%.IInspectable>?", w.c_mod);
+            w.write("UnsafeMutablePointer<NativeIInspectable>?");
         }
         else if (elem_type->type() == ElementType::String)
         {

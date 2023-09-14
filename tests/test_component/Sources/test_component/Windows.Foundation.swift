@@ -15,7 +15,7 @@ public final class Deferral : WinRTClass, IClosable {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == Ctest_component.IInspectable.self {
+        if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
         if T.self == WinSDK.IUnknown.self {
@@ -302,7 +302,7 @@ public protocol IPropertyValue : WinRTInterface {
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue.getstring)
     func getString() throws -> String
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue.getguid)
-    func getGuid() throws -> UUID
+    func getGuid() throws -> GUID
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue.getdatetime)
     func getDateTime() throws -> test_component.DateTime
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue.gettimespan)

@@ -16,6 +16,12 @@
 #define RESOURCE_NAME_CWINRT_PACKAGE_SWIFT CWINRT_PACKAGE_SWIFT
 #define RESOURCE_NAME_CWINRT_PACKAGE_SWIFT_STR "CWINRT_PACKAGE_SWIFT"
 
+#define RESOURCE_NAME_CWINRT_PACKAGE_SWIFT CWINRT_PACKAGE_SWIFT
+#define RESOURCE_NAME_CWINRT_PACKAGE_SWIFT_STR "CWINRT_PACKAGE_SWIFT"
+
+#define RESOURCE_NAME_CWINRT_GUID2_H CWINRT_GUID2
+#define RESOURCE_NAME_CWINRT_GUID2_H_STR "CWINRT_GUID2"
+
 #ifndef RC_INVOKED
 
 #include <span>
@@ -82,7 +88,7 @@ namespace swiftwinrt
                 }
 
                 auto res_data = find_resource(hModule, lpType, lpName);
-                
+
                 // Resources always have ALL_CAPS names (assume ASCII)
                 std::string res_name{ lpName };
                 if (closure.make_lowercase)
