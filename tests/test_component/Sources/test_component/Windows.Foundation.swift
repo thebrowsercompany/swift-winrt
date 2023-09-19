@@ -35,7 +35,7 @@ public final class Deferral : WinRTClass, IClosable {
         _default = try! fromAbi.QueryInterface()
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return test_component.queryInterface(sealed: self, iid)}
     private static let _IDeferralFactory: __ABI_Windows_Foundation.IDeferralFactory = try! RoGetActivationFactory(HString("Windows.Foundation.Deferral"))
     public init(_ handler: DeferralCompletedHandler!) {
@@ -154,7 +154,7 @@ public protocol IAsyncAction : IAsyncInfo {
 }
 
 extension IAsyncAction {
-    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         switch iid {
             case __ABI_Windows_Foundation.IAsyncActionWrapper.IID:
                 let wrapper = __ABI_Windows_Foundation.IAsyncActionWrapper(self)
@@ -195,7 +195,7 @@ public protocol IAsyncInfo : WinRTInterface {
 }
 
 extension IAsyncInfo {
-    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         switch iid {
             case __ABI_Windows_Foundation.IAsyncInfoWrapper.IID:
                 let wrapper = __ABI_Windows_Foundation.IAsyncInfoWrapper(self)
@@ -264,7 +264,7 @@ public protocol IClosable : WinRTInterface {
 }
 
 extension IClosable {
-    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         switch iid {
             case __ABI_Windows_Foundation.IClosableWrapper.IID:
                 let wrapper = __ABI_Windows_Foundation.IClosableWrapper(self)
@@ -337,7 +337,7 @@ public protocol IStringable : WinRTInterface {
 }
 
 extension IStringable {
-    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         switch iid {
             case __ABI_Windows_Foundation.IStringableWrapper.IID:
                 let wrapper = __ABI_Windows_Foundation.IStringableWrapper(self)

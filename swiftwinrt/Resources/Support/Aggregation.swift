@@ -95,7 +95,7 @@ public func MakeComposed<Factory: ComposableActivationFactory>(_ factory: Factor
 }
 
 public class UnsealedWinRTClassWrapper<Composable: ComposableImpl> : WinRTWrapperBase<Composable.CABI, Composable.Default.SwiftProjection> {
-    override public class var IID: IID { Composable.SwiftABI.IID }
+    override public class var IID: SUPPORT_MODULE.IID { Composable.SwiftABI.IID }
 
     public init?(_ impl: Composable.Default.SwiftProjection?) {
         guard let impl = impl else { return nil }

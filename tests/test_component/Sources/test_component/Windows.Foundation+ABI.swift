@@ -2,77 +2,77 @@
 // swiftlint:disable all
 import Ctest_component
 
-private var IID___x_ABI_CWindows_CFoundation_CIAsyncAction: IID {
-    IID(Data1: 0x5A648006, Data2: 0x843A, Data3: 0x4DA9, Data4: ( 0x86,0x5B,0x9D,0x26,0xE5,0xDF,0xAD,0x7B ))// 5A648006-843A-4DA9-865B-9D26E5DFAD7B
+private var IID___x_ABI_CWindows_CFoundation_CIAsyncAction: test_component.IID {
+    .init(Data1: 0x5A648006, Data2: 0x843A, Data3: 0x4DA9, Data4: ( 0x86,0x5B,0x9D,0x26,0xE5,0xDF,0xAD,0x7B ))// 5A648006-843A-4DA9-865B-9D26E5DFAD7B
 }
 
-private var IID___x_ABI_CWindows_CFoundation_CIAsyncInfo: IID {
-    IID(Data1: 0x00000036, Data2: 0x0000, Data3: 0x0000, Data4: ( 0xC0,0x00,0x00,0x00,0x00,0x00,0x00,0x46 ))// 00000036-0000-0000-C000-000000000046
+private var IID___x_ABI_CWindows_CFoundation_CIAsyncInfo: test_component.IID {
+    .init(Data1: 0x00000036, Data2: 0x0000, Data3: 0x0000, Data4: ( 0xC0,0x00,0x00,0x00,0x00,0x00,0x00,0x46 ))// 00000036-0000-0000-C000-000000000046
 }
 
-private var IID___x_ABI_C__FIAsyncOperationWithProgress_2_TResult_TProgress: IID {
-    IID(Data1: 0xB5D036D7, Data2: 0xE297, Data3: 0x498F, Data4: ( 0xBA,0x60,0x02,0x89,0xE7,0x6E,0x23,0xDD ))// B5D036D7-E297-498F-BA60-0289E76E23DD
+private var IID___x_ABI_C__FIAsyncOperationWithProgress_2_TResult_TProgress: test_component.IID {
+    .init(Data1: 0xB5D036D7, Data2: 0xE297, Data3: 0x498F, Data4: ( 0xBA,0x60,0x02,0x89,0xE7,0x6E,0x23,0xDD ))// B5D036D7-E297-498F-BA60-0289E76E23DD
 }
 
-private var IID___x_ABI_C__FIAsyncOperation_1_TResult: IID {
-    IID(Data1: 0x9FC2B0BB, Data2: 0xE446, Data3: 0x44E2, Data4: ( 0xAA,0x61,0x9C,0xAB,0x8F,0x63,0x6A,0xF2 ))// 9FC2B0BB-E446-44E2-AA61-9CAB8F636AF2
+private var IID___x_ABI_C__FIAsyncOperation_1_TResult: test_component.IID {
+    .init(Data1: 0x9FC2B0BB, Data2: 0xE446, Data3: 0x44E2, Data4: ( 0xAA,0x61,0x9C,0xAB,0x8F,0x63,0x6A,0xF2 ))// 9FC2B0BB-E446-44E2-AA61-9CAB8F636AF2
 }
 
-private var IID___x_ABI_CWindows_CFoundation_CIClosable: IID {
-    IID(Data1: 0x30D5A829, Data2: 0x7FA4, Data3: 0x4026, Data4: ( 0x83,0xBB,0xD7,0x5B,0xAE,0x4E,0xA9,0x9E ))// 30D5A829-7FA4-4026-83BB-D75BAE4EA99E
+private var IID___x_ABI_CWindows_CFoundation_CIClosable: test_component.IID {
+    .init(Data1: 0x30D5A829, Data2: 0x7FA4, Data3: 0x4026, Data4: ( 0x83,0xBB,0xD7,0x5B,0xAE,0x4E,0xA9,0x9E ))// 30D5A829-7FA4-4026-83BB-D75BAE4EA99E
 }
 
-private var IID___x_ABI_CWindows_CFoundation_CIDeferral: IID {
-    IID(Data1: 0xD6269732, Data2: 0x3B7F, Data3: 0x46A7, Data4: ( 0xB4,0x0B,0x4F,0xDC,0xA2,0xA2,0xC6,0x93 ))// D6269732-3B7F-46A7-B40B-4FDCA2A2C693
+private var IID___x_ABI_CWindows_CFoundation_CIDeferral: test_component.IID {
+    .init(Data1: 0xD6269732, Data2: 0x3B7F, Data3: 0x46A7, Data4: ( 0xB4,0x0B,0x4F,0xDC,0xA2,0xA2,0xC6,0x93 ))// D6269732-3B7F-46A7-B40B-4FDCA2A2C693
 }
 
-private var IID___x_ABI_CWindows_CFoundation_CIDeferralFactory: IID {
-    IID(Data1: 0x65A1ECC5, Data2: 0x3FB5, Data3: 0x4832, Data4: ( 0x8C,0xA9,0xF0,0x61,0xB2,0x81,0xD1,0x3A ))// 65A1ECC5-3FB5-4832-8CA9-F061B281D13A
+private var IID___x_ABI_CWindows_CFoundation_CIDeferralFactory: test_component.IID {
+    .init(Data1: 0x65A1ECC5, Data2: 0x3FB5, Data3: 0x4832, Data4: ( 0x8C,0xA9,0xF0,0x61,0xB2,0x81,0xD1,0x3A ))// 65A1ECC5-3FB5-4832-8CA9-F061B281D13A
 }
 
-private var IID___x_ABI_CWindows_CFoundation_CIPropertyValue: IID {
-    IID(Data1: 0x4BD682DD, Data2: 0x7554, Data3: 0x40E9, Data4: ( 0x9A,0x9B,0x82,0x65,0x4E,0xDE,0x7E,0x62 ))// 4BD682DD-7554-40E9-9A9B-82654EDE7E62
+private var IID___x_ABI_CWindows_CFoundation_CIPropertyValue: test_component.IID {
+    .init(Data1: 0x4BD682DD, Data2: 0x7554, Data3: 0x40E9, Data4: ( 0x9A,0x9B,0x82,0x65,0x4E,0xDE,0x7E,0x62 ))// 4BD682DD-7554-40E9-9A9B-82654EDE7E62
 }
 
-private var IID___x_ABI_C__FIReference_1_T: IID {
-    IID(Data1: 0x61C17706, Data2: 0x2D65, Data3: 0x11E0, Data4: ( 0x9A,0xE8,0xD4,0x85,0x64,0x01,0x54,0x72 ))// 61C17706-2D65-11E0-9AE8-D48564015472
+private var IID___x_ABI_C__FIReference_1_T: test_component.IID {
+    .init(Data1: 0x61C17706, Data2: 0x2D65, Data3: 0x11E0, Data4: ( 0x9A,0xE8,0xD4,0x85,0x64,0x01,0x54,0x72 ))// 61C17706-2D65-11E0-9AE8-D48564015472
 }
 
-private var IID___x_ABI_CWindows_CFoundation_CIStringable: IID {
-    IID(Data1: 0x96369F54, Data2: 0x8EB6, Data3: 0x48F0, Data4: ( 0xAB,0xCE,0xC1,0xB2,0x11,0xE6,0x27,0xC3 ))// 96369F54-8EB6-48F0-ABCE-C1B211E627C3
+private var IID___x_ABI_CWindows_CFoundation_CIStringable: test_component.IID {
+    .init(Data1: 0x96369F54, Data2: 0x8EB6, Data3: 0x48F0, Data4: ( 0xAB,0xCE,0xC1,0xB2,0x11,0xE6,0x27,0xC3 ))// 96369F54-8EB6-48F0-ABCE-C1B211E627C3
 }
 
-private var IID___x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler: IID {
-    IID(Data1: 0xA4ED5C81, Data2: 0x76C9, Data3: 0x40BD, Data4: ( 0x8B,0xE6,0xB1,0xD9,0x0F,0xB2,0x0A,0xE7 ))// A4ED5C81-76C9-40BD-8BE6-B1D90FB20AE7
+private var IID___x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler: test_component.IID {
+    .init(Data1: 0xA4ED5C81, Data2: 0x76C9, Data3: 0x40BD, Data4: ( 0x8B,0xE6,0xB1,0xD9,0x0F,0xB2,0x0A,0xE7 ))// A4ED5C81-76C9-40BD-8BE6-B1D90FB20AE7
 }
 
-private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1_TResult: IID {
-    IID(Data1: 0xFCDCF02C, Data2: 0xE5D8, Data3: 0x4478, Data4: ( 0x91,0x5A,0x4D,0x90,0xB7,0x4B,0x83,0xA5 ))// FCDCF02C-E5D8-4478-915A-4D90B74B83A5
+private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1_TResult: test_component.IID {
+    .init(Data1: 0xFCDCF02C, Data2: 0xE5D8, Data3: 0x4478, Data4: ( 0x91,0x5A,0x4D,0x90,0xB7,0x4B,0x83,0xA5 ))// FCDCF02C-E5D8-4478-915A-4D90B74B83A5
 }
 
-private var IID___x_ABI_C__FIAsyncOperationProgressHandler_2_TResult_TProgress: IID {
-    IID(Data1: 0x55690902, Data2: 0x0AAB, Data3: 0x421A, Data4: ( 0x87,0x78,0xF8,0xCE,0x50,0x26,0xD7,0x58 ))// 55690902-0AAB-421A-8778-F8CE5026D758
+private var IID___x_ABI_C__FIAsyncOperationProgressHandler_2_TResult_TProgress: test_component.IID {
+    .init(Data1: 0x55690902, Data2: 0x0AAB, Data3: 0x421A, Data4: ( 0x87,0x78,0xF8,0xCE,0x50,0x26,0xD7,0x58 ))// 55690902-0AAB-421A-8778-F8CE5026D758
 }
 
-private var IID___x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_TResult_TProgress: IID {
-    IID(Data1: 0xE85DF41D, Data2: 0x6AA7, Data3: 0x46E3, Data4: ( 0xA8,0xE2,0xF0,0x09,0xD8,0x40,0xC6,0x27 ))// E85DF41D-6AA7-46E3-A8E2-F009D840C627
+private var IID___x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_TResult_TProgress: test_component.IID {
+    .init(Data1: 0xE85DF41D, Data2: 0x6AA7, Data3: 0x46E3, Data4: ( 0xA8,0xE2,0xF0,0x09,0xD8,0x40,0xC6,0x27 ))// E85DF41D-6AA7-46E3-A8E2-F009D840C627
 }
 
-private var IID___x_ABI_CWindows_CFoundation_CIDeferralCompletedHandler: IID {
-    IID(Data1: 0xED32A372, Data2: 0xF3C8, Data3: 0x4FAA, Data4: ( 0x9C,0xFB,0x47,0x01,0x48,0xDA,0x38,0x88 ))// ED32A372-F3C8-4FAA-9CFB-470148DA3888
+private var IID___x_ABI_CWindows_CFoundation_CIDeferralCompletedHandler: test_component.IID {
+    .init(Data1: 0xED32A372, Data2: 0xF3C8, Data3: 0x4FAA, Data4: ( 0x9C,0xFB,0x47,0x01,0x48,0xDA,0x38,0x88 ))// ED32A372-F3C8-4FAA-9CFB-470148DA3888
 }
 
-private var IID___x_ABI_C__FIEventHandler_1_T: IID {
-    IID(Data1: 0x9DE1C535, Data2: 0x6AE1, Data3: 0x11E0, Data4: ( 0x84,0xE1,0x18,0xA9,0x05,0xBC,0xC5,0x3F ))// 9DE1C535-6AE1-11E0-84E1-18A905BCC53F
+private var IID___x_ABI_C__FIEventHandler_1_T: test_component.IID {
+    .init(Data1: 0x9DE1C535, Data2: 0x6AE1, Data3: 0x11E0, Data4: ( 0x84,0xE1,0x18,0xA9,0x05,0xBC,0xC5,0x3F ))// 9DE1C535-6AE1-11E0-84E1-18A905BCC53F
 }
 
-private var IID___x_ABI_C__FITypedEventHandler_2_TSender_TResult: IID {
-    IID(Data1: 0x9DE1C534, Data2: 0x6AE1, Data3: 0x11E0, Data4: ( 0x84,0xE1,0x18,0xA9,0x05,0xBC,0xC5,0x3F ))// 9DE1C534-6AE1-11E0-84E1-18A905BCC53F
+private var IID___x_ABI_C__FITypedEventHandler_2_TSender_TResult: test_component.IID {
+    .init(Data1: 0x9DE1C534, Data2: 0x6AE1, Data3: 0x11E0, Data4: ( 0x84,0xE1,0x18,0xA9,0x05,0xBC,0xC5,0x3F ))// 9DE1C534-6AE1-11E0-84E1-18A905BCC53F
 }
 
 public enum __ABI_Windows_Foundation {
     open class IAsyncAction: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_CWindows_CFoundation_CIAsyncAction }
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIAsyncAction }
 
         open func put_CompletedImpl(_ handler: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler>?) throws {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIAsyncAction.self) { pThis in
@@ -127,8 +127,8 @@ public enum __ABI_Windows_Foundation {
         },
 
         GetIids: {
-            let size = MemoryLayout<IID>.size
-            let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+            let size = MemoryLayout<test_component.IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
             iids[2] = __ABI_Windows_Foundation.IAsyncActionWrapper.IID
@@ -177,7 +177,7 @@ public enum __ABI_Windows_Foundation {
 
     public typealias IAsyncActionWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.IAsyncActionImpl>
     open class IAsyncInfo: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_CWindows_CFoundation_CIAsyncInfo }
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIAsyncInfo }
 
         open func get_IdImpl() throws -> UINT32 {
             var result: UINT32 = 0
@@ -248,8 +248,8 @@ public enum __ABI_Windows_Foundation {
         },
 
         GetIids: {
-            let size = MemoryLayout<IID>.size
-            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+            let size = MemoryLayout<test_component.IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
             iids[2] = __ABI_Windows_Foundation.IAsyncInfoWrapper.IID
@@ -311,7 +311,7 @@ public enum __ABI_Windows_Foundation {
 
     public typealias IAsyncInfoWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.IAsyncInfoImpl>
     open class IClosable: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_CWindows_CFoundation_CIClosable }
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIClosable }
 
         open func CloseImpl() throws {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIClosable.self) { pThis in
@@ -352,8 +352,8 @@ public enum __ABI_Windows_Foundation {
         },
 
         GetIids: {
-            let size = MemoryLayout<IID>.size
-            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+            let size = MemoryLayout<test_component.IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
             iids[2] = __ABI_Windows_Foundation.IClosableWrapper.IID
@@ -386,7 +386,7 @@ public enum __ABI_Windows_Foundation {
 
     public typealias IClosableWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.IClosableImpl>
     open class IDeferral: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_CWindows_CFoundation_CIDeferral }
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIDeferral }
 
         internal func CompleteImpl() throws {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIDeferral.self) { pThis in
@@ -397,7 +397,7 @@ public enum __ABI_Windows_Foundation {
     }
 
     open class IDeferralFactory: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_CWindows_CFoundation_CIDeferralFactory }
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIDeferralFactory }
 
         internal func CreateImpl(_ handler: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIDeferralCompletedHandler>?) throws -> UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIDeferral>? {
             var result: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIDeferral>?
@@ -410,7 +410,7 @@ public enum __ABI_Windows_Foundation {
     }
 
     open class IPropertyValue: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_CWindows_CFoundation_CIPropertyValue }
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIPropertyValue }
 
         open func get_TypeImpl() throws -> __x_ABI_CWindows_CFoundation_CPropertyType {
             var value: __x_ABI_CWindows_CFoundation_CPropertyType = .init(0)
@@ -605,8 +605,8 @@ public enum __ABI_Windows_Foundation {
         },
 
         GetIids: {
-            let size = MemoryLayout<IID>.size
-            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+            let size = MemoryLayout<test_component.IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
             iids[2] = __ABI_Windows_Foundation.IPropertyValueWrapper.IID
@@ -844,7 +844,7 @@ public enum __ABI_Windows_Foundation {
     )
     public class IPropertyValueWrapper : WinRTWrapperBase<__x_ABI_CWindows_CFoundation_CIPropertyValue, test_component.IPropertyValue>
     {
-        override public class var IID: IID { IID___x_ABI_CWindows_CFoundation_CIPropertyValue }
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIPropertyValue }
         public init(_ value: Any) {
             let abi = withUnsafeMutablePointer(to: &IPropertyValueVTable) {
                 __x_ABI_CWindows_CFoundation_CIPropertyValue(lpVtbl: $0)
@@ -861,7 +861,7 @@ public enum __ABI_Windows_Foundation {
         }
     }
     open class IStringable: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_CWindows_CFoundation_CIStringable }
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIStringable }
 
         open func ToStringImpl() throws -> HSTRING? {
             var value: HSTRING?
@@ -904,8 +904,8 @@ public enum __ABI_Windows_Foundation {
         },
 
         GetIids: {
-            let size = MemoryLayout<IID>.size
-            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+            let size = MemoryLayout<test_component.IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
             iids[2] = __ABI_Windows_Foundation.IStringableWrapper.IID
@@ -967,7 +967,7 @@ extension __x_ABI_CWindows_CFoundation_CDateTime {
     // MARK - AsyncActionCompletedHandler
 extension __ABI_Windows_Foundation {
     open class AsyncActionCompletedHandler: test_component.IUnknown {
-        override public class var IID: IID { IID___x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler }
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler }
 
         open func InvokeImpl(_ asyncInfo: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIAsyncAction>?, _ asyncStatus: __x_ABI_CWindows_CFoundation_CAsyncStatus) throws {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler.self) { pThis in
@@ -1024,7 +1024,7 @@ public extension WinRTDelegateBridge where CABI == __x_ABI_CWindows_CFoundation_
 // MARK - DeferralCompletedHandler
 extension __ABI_Windows_Foundation {
     open class DeferralCompletedHandler: test_component.IUnknown {
-        override public class var IID: IID { IID___x_ABI_CWindows_CFoundation_CIDeferralCompletedHandler }
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIDeferralCompletedHandler }
 
         open func InvokeImpl() throws {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIDeferralCompletedHandler.self) { pThis in

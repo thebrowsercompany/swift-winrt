@@ -5,9 +5,9 @@ import Ctest_component
 import Foundation
 
 open class IInspectable: IUnknown {
-  override open class var IID: IID { IID_IInspectable }
+  override open class var IID: test_component.IID { IID_IInspectable }
 
-  public func GetIids(_ iidCount: UnsafeMutablePointer<ULONG>, _ iids: UnsafeMutablePointer<UnsafeMutablePointer<IID>?>?) throws {
+  public func GetIids(_ iidCount: UnsafeMutablePointer<ULONG>, _ iids: UnsafeMutablePointer<UnsafeMutablePointer<test_component.IID>?>?) throws {
     return try perform(as: NativeIInspectable.self) { pThis in
       try CHECKED(pThis.pointee.lpVtbl.pointee.GetIids(pThis, iidCount, iids))
     }
@@ -117,8 +117,8 @@ public enum __ABI_ {
         },
 
         GetIids: {
-            let size = MemoryLayout<IID>.size
-            let iids = CoTaskMemAlloc(UInt64(size) * 2).assumingMemoryBound(to: IID.self)
+            let size = MemoryLayout<test_component.IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 2).assumingMemoryBound(to: test_component.IID.self)
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
 

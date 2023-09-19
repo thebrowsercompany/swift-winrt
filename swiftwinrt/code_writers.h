@@ -119,14 +119,15 @@ namespace swiftwinrt
         auto abi_guard = w.push_mangled_names(true);
         auto mangled = w.push_abi_types(true);
         auto guid = attribute.Value().FixedArgs();
-        auto format = R"(private var IID_%: IID {
-    IID(%)// %
+        auto format = R"(private var IID_%: %.IID {
+    .init(%)// %
 }
 
 )";
 
         w.write(format,
             type,
+            w.support,
             bind<write_guid_value>(guid),
             bind<write_guid_comment>(guid));
     }
@@ -149,14 +150,15 @@ namespace swiftwinrt
         auto iidHash = signatureHash.finalize();
         iidHash[6] = (iidHash[6] & 0x0F) | 0x50;
         iidHash[8] = (iidHash[8] & 0x3F) | 0x80;
-        auto format = R"(private var IID_%: IID {
-    IID(%)// %
+        auto format = R"(private var IID_%: %.IID {
+    .init(%)// %
 }
 
 )";
 
         w.write(format,
             type.mangled_name(),
+            w.support,
             bind<write_guid_value_hash>(iidHash),
             bind<write_guid_comment_hash>(iidHash));
     }
@@ -387,8 +389,8 @@ bind<write_abi_args>(function));
       
         auto abi_guard = w.push_abi_types(true);
 
-        auto iid_format = "override public class var IID: IID { IID_% }\n\n";
-        w.write(iid_format, bind_type_mangled(type));
+        auto iid_format = "override public class var IID: %.IID { IID_% }\n\n";
+        w.write(iid_format, w.support, bind_type_mangled(type));
 
         for (const auto& function : methods)
         {
@@ -713,7 +715,7 @@ typealias % = InterfaceWrapperBase<%>
     {
         w.write(R"(public class IPropertyValueWrapper : WinRTWrapperBase<__x_ABI_CWindows_CFoundation_CIPropertyValue, %.IPropertyValue>
 {
-    override public class var IID: IID { IID___x_ABI_CWindows_CFoundation_CIPropertyValue }
+    override public class var IID: %.IID { IID___x_ABI_CWindows_CFoundation_CIPropertyValue }
     public init(_ value: Any) {
         let abi = withUnsafeMutablePointer(to: &IPropertyValueVTable) {
             __x_ABI_CWindows_CFoundation_CIPropertyValue(lpVtbl: $0)
@@ -729,7 +731,7 @@ typealias % = InterfaceWrapperBase<%>
         super.init(abi, impl)
     }
 }
-)", w.support, w.support);
+)", w.support, w.support, w.support);
 }
 
     static void write_implementable_interface(writer& w, interface_type const& type)
@@ -811,12 +813,12 @@ bind_impl_fullname(type));
     static void write_property_value_impl(writer& w)
     {
         auto winrtInterfaceConformance = w.write_temp(R"(
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { 
+    public func queryInterface(_ iid: %.IID) -> IUnknownRef? { 
         guard iid == __ABI_Windows_Foundation.IPropertyValueWrapper.IID else { return nil }
         guard let thisAsIPropValue = __ABI_Windows_Foundation.IPropertyValueWrapper(self) else { fatalError("creating non-nil wrapper shouldn't fail") }
         return thisAsIPropValue.queryInterface(iid)
     }
-)");
+)", w.support);
 
         w.write(R"(public class IPropertyValueImpl : IPropertyValue, IReference {
     public typealias T = Any
@@ -1276,7 +1278,7 @@ public static func makeAbi() -> CABI {
             // interface is implemented because if they implement multiple interfaces, they
             // have to write the queryInterface implementation themselves. 
             w.write("extension % {\n", typeName);
-            w.write("    public func queryInterface(_ iid: IID) -> IUnknownRef? {\n");
+            w.write("    public func queryInterface(_ iid: %.IID) -> IUnknownRef? {\n", w.support);
             w.write("        switch iid {\n");
             auto indent{ w.push_indent({3}) };
 
@@ -1479,7 +1481,7 @@ public static func makeAbi() -> CABI {
             write_interface_impl_members(w, info, *type.generic_type());
         }
 
-        w.write("public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }\n");
+        w.write("public func queryInterface(_ iid: %.IID) -> IUnknownRef? { nil }\n", w.support);
         indent_guard.end();
         w.write("}\n\n");
     }
@@ -2219,7 +2221,7 @@ private var _default: SwiftABI!
             // override the queryInterface call
             if (needsCustomQueryInterfaceConformance)
             {
-                w.write("%% func queryInterface(_ iid: IID) -> IUnknownRef? {\n", override, modifier);
+                w.write("%% func queryInterface(_ iid: %.IID) -> IUnknownRef? {\n", override, modifier, w.support);
 
                 // A WinRTClass needs CustomQueryInterface conformance when it derives from 1 or more interfaces,
                 // otherwise it won't compile. At the end of the day, the winrt object it's holding onto will appropriately
@@ -2408,8 +2410,8 @@ private var _default: SwiftABI!
         w.write("GetIids: {\n");
         {
             auto indent_guard = w.push_indent();
-            w.write("let size = MemoryLayout<IID>.size\n");
-            w.write("let iids = CoTaskMemAlloc(UInt64(size) * %).assumingMemoryBound(to: IID.self)\n", interface_count);
+            w.write("let size = MemoryLayout<%.IID>.size\n", w.support);
+            w.write("let iids = CoTaskMemAlloc(UInt64(size) * %).assumingMemoryBound(to: %.IID.self)\n", interface_count, w.support);
             w.write("iids[0] = IUnknown.IID\n");
             w.write("iids[1] = IInspectable.IID\n");
             w.write("iids[2] = %.IID\n", bind_wrapper_fullname(type));

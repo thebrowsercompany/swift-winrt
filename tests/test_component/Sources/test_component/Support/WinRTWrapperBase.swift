@@ -14,7 +14,7 @@ public protocol InitializableFromAbi : HasIID {
 }
 
 public protocol HasIID {
-  static var IID: IID { get }
+  static var IID: test_component.IID { get }
 }
 
 public protocol AbiInterface {
@@ -58,7 +58,7 @@ open class WinRTWrapperBase<CInterface, Prototype> {
     public var instance: ComObject
     public var swiftObj: Prototype
 
-    open class var IID: IID { get { fatalError("not implemented") } }
+    open class var IID: test_component.IID { get { fatalError("not implemented") } }
 
     public init(_ pointer: CInterface, _ impl: Prototype) {
         self.instance = ComObject(comInterface: pointer)
@@ -88,7 +88,7 @@ open class WinRTWrapperBase<CInterface, Prototype> {
         ptr.initialize(to: abi)
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         // Use toABI as derived classes may override this to get the ABI pointer of the swift
         // object they are holding onto
         try! toABI {
@@ -131,7 +131,7 @@ open class WinRTWrapperBase2<I: AbiBridge> : WinRTWrapperBase<I.CABI, I.SwiftPro
 }
 
 open class InterfaceWrapperBase<I: AbiInterfaceImpl> : WinRTWrapperBase2<I> {
-    override public class var IID: IID { I.SwiftABI.IID }
+    override public class var IID: test_component.IID { I.SwiftABI.IID }
     public init?(_ impl: I.SwiftProjection?) {
         guard let impl = impl else { return nil }
         // try to see if already wrapping an ABI pointer and if so, use that

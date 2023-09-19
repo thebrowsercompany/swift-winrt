@@ -2,12 +2,12 @@ import Ctest_component
 import WinSDK
 
 // Internal implementation of IPropertyValue
-fileprivate var IID___x_ABI_CWindows_CFoundation_CIPropertyValueStatics: IID {
-    IID(Data1: 0x629BDBC8, Data2: 0xD932, Data3: 0x4FF4, Data4: ( 0x96,0xB9,0x8D,0x96,0xC5,0xC1,0xE8,0x58 ))// 629BDBC8-D932-4FF4-96B9-8D96C5C1E858
+fileprivate var IID___x_ABI_CWindows_CFoundation_CIPropertyValueStatics: test_component.IID {
+    .init(Data1: 0x629BDBC8, Data2: 0xD932, Data3: 0x4FF4, Data4: ( 0x96,0xB9,0x8D,0x96,0xC5,0xC1,0xE8,0x58 ))// 629BDBC8-D932-4FF4-96B9-8D96C5C1E858
 }
 
 internal class IPropertyValueStatics: test_component.IInspectable {
-      override public class var IID: IID { IID___x_ABI_CWindows_CFoundation_CIPropertyValueStatics }
+      override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIPropertyValueStatics }
 
       internal func CreateUInt8Impl(_ value: UINT8) throws -> UnsafeMutablePointer<NativeIInspectable>? {
           var propertyValue: UnsafeMutablePointer<NativeIInspectable>?

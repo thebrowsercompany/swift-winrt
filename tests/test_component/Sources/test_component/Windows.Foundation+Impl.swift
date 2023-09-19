@@ -231,7 +231,7 @@ public enum __IMPL_Windows_Foundation {
         public func getSize() -> Size { _value as! Size }
         public func getRect() -> Rect { _value as! Rect }
         
-        public func queryInterface(_ iid: IID) -> IUnknownRef? { 
+        public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { 
             guard iid == __ABI_Windows_Foundation.IPropertyValueWrapper.IID else { return nil }
             guard let thisAsIPropValue = __ABI_Windows_Foundation.IPropertyValueWrapper(self) else { fatalError("creating non-nil wrapper shouldn't fail") }
             return thisAsIPropValue.queryInterface(iid)

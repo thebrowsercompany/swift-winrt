@@ -625,7 +625,7 @@ namespace swiftwinrt
             return;
         }
         auto format = R"(internal class %: WinRTWrapperBase<%, %> {
-    override class var IID: IID { IID_% }
+    override class var IID: %.IID { IID_% }
     init?(_ value: %?) {
         guard let value = value else { return nil }
         let abi = withUnsafeMutablePointer(to: &%VTable) {
@@ -639,6 +639,7 @@ namespace swiftwinrt
             bind_wrapper_name(*this),
             mangled_name(),
             remove_backtick(generic_type()->cpp_logical_name()),
+            w.support,
             mangled_name(),
             get_full_swift_type_name(w, generic_params()[0]),
             mangled_name(),

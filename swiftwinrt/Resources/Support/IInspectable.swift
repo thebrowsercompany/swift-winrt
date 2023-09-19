@@ -5,9 +5,9 @@ import C_BINDINGS_MODULE
 import Foundation
 
 open class IInspectable: IUnknown {
-  override open class var IID: IID { IID_IInspectable }
+  override open class var IID: SUPPORT_MODULE.IID { IID_IInspectable }
 
-  public func GetIids(_ iidCount: UnsafeMutablePointer<ULONG>, _ iids: UnsafeMutablePointer<UnsafeMutablePointer<IID>?>?) throws {
+  public func GetIids(_ iidCount: UnsafeMutablePointer<ULONG>, _ iids: UnsafeMutablePointer<UnsafeMutablePointer<SUPPORT_MODULE.IID>?>?) throws {
     return try perform(as: NativeIInspectable.self) { pThis in
       try CHECKED(pThis.pointee.lpVtbl.pointee.GetIids(pThis, iidCount, iids))
     }
@@ -117,8 +117,8 @@ public enum __ABI_ {
         },
 
         GetIids: {
-            let size = MemoryLayout<IID>.size
-            let iids = CoTaskMemAlloc(UInt64(size) * 2).assumingMemoryBound(to: IID.self)
+            let size = MemoryLayout<SUPPORT_MODULE.IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 2).assumingMemoryBound(to: SUPPORT_MODULE.IID.self)
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
 

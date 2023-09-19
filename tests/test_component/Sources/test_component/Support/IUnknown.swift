@@ -7,7 +7,7 @@ import Ctest_component
 open class IUnknown : HasIID {
   public let pUnk: IUnknownRef
 
-  open class var IID: IID { IID_IUnknown }
+  open class var IID: test_component.IID { IID_IUnknown }
 
   public required init(_ pointer: UnsafeMutablePointer<NativeIUnknown>) {
     self.pUnk = IUnknownRef(pointer)
