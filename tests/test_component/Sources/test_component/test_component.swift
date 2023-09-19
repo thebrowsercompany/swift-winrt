@@ -830,7 +830,7 @@ public final class Class : WinRTClass, IBasic {
         }
     }
 
-    public var id : GUID? {
+    public var id : test_component.GUID? {
         get {
             let value = try! _default.get_IdImpl()
             return .init(ref: value)
@@ -1786,7 +1786,7 @@ public protocol IIAmImplementable : WinRTInterface {
     func returnEnum() throws -> test_component.Signed
     func fireEvent(_ data: String) throws
     var enumProperty: test_component.Fruit { get set }
-    var id: GUID? { get set }
+    var id: test_component.GUID? { get set }
     var implementableEvent: Event<test_component.InDelegate> { get }
 }
 

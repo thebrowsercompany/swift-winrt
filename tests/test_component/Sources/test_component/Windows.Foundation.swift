@@ -302,7 +302,7 @@ public protocol IPropertyValue : WinRTInterface {
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue.getstring)
     func getString() throws -> String
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue.getguid)
-    func getGuid() throws -> GUID
+    func getGuid() throws -> test_component.GUID
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue.getdatetime)
     func getDateTime() throws -> test_component.DateTime
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue.gettimespan)

@@ -1236,7 +1236,7 @@ public enum __ABI_test_component {
 
         put_Id: {
             guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let value: GUID? = .init(ref: $1)
+            let value: test_component.GUID? = .init(ref: $1)
             __unwrapped__instance.id = value
             return S_OK
         },

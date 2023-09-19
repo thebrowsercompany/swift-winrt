@@ -152,7 +152,7 @@ public enum __IMPL_test_component {
             }
         }
 
-        public var id : GUID? {
+        public var id : test_component.GUID? {
             get {
                 let value = try! _default.get_IdImpl()
                 return .init(ref: value)
