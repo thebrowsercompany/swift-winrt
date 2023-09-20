@@ -312,7 +312,7 @@ namespace swiftwinrt
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmicrosoft-enum-forward-reference"
 
-#if WIN_855_GUID_WORKAROUND
+#if 1 // TODO(WIN-860): Remove workaround once C++ interop issues with WinSDK.GUID are fixed.
 #include "GUID2.h"
 
 // Preemptively include headers before swapping out the IID type

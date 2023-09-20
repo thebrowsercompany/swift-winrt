@@ -1,7 +1,7 @@
 import WinSDK
 import C_BINDINGS_MODULE
 
-#if WIN_855_GUID_WORKAROUND
+#if true // TODO(WIN-860): Remove workaround once C++ interop issues with WinSDK.GUID are fixed.
 public typealias GUID = C_BINDINGS_MODULE.GUID2
 public typealias IID = C_BINDINGS_MODULE.IID2
 public typealias CLSID = C_BINDINGS_MODULE.CLSID2
