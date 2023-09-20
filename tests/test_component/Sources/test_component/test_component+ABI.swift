@@ -2,153 +2,153 @@
 // swiftlint:disable all
 import Ctest_component
 
-private var IID___x_ABI_Ctest__component_CIAsyncMethods: IID {
-    IID(Data1: 0xC76E7341, Data2: 0xF54D, Data3: 0x502B, Data4: ( 0xAA,0x8F,0xF2,0xAD,0x9A,0x48,0xC1,0x3F ))// C76E7341-F54D-502B-AA8F-F2AD9A48C13F
+private var IID___x_ABI_Ctest__component_CIAsyncMethods: test_component.IID {
+    .init(Data1: 0xC76E7341, Data2: 0xF54D, Data3: 0x502B, Data4: ( 0xAA,0x8F,0xF2,0xAD,0x9A,0x48,0xC1,0x3F ))// C76E7341-F54D-502B-AA8F-F2AD9A48C13F
 }
 
-private var IID___x_ABI_Ctest__component_CIBase: IID {
-    IID(Data1: 0xE9FE0BB2, Data2: 0xE1F6, Data3: 0x5E39, Data4: ( 0x92,0xBB,0x2F,0x19,0xFF,0xDE,0x3F,0xDC ))// E9FE0BB2-E1F6-5E39-92BB-2F19FFDE3FDC
+private var IID___x_ABI_Ctest__component_CIBase: test_component.IID {
+    .init(Data1: 0xE9FE0BB2, Data2: 0xE1F6, Data3: 0x5E39, Data4: ( 0x92,0xBB,0x2F,0x19,0xFF,0xDE,0x3F,0xDC ))// E9FE0BB2-E1F6-5E39-92BB-2F19FFDE3FDC
 }
 
-private var IID___x_ABI_Ctest__component_CIBaseNoOverrides: IID {
-    IID(Data1: 0xCAC21C05, Data2: 0xB599, Data3: 0x5D37, Data4: ( 0xA9,0x3A,0xD6,0x0C,0xBD,0xD1,0xD0,0xE8 ))// CAC21C05-B599-5D37-A93A-D60CBDD1D0E8
+private var IID___x_ABI_Ctest__component_CIBaseNoOverrides: test_component.IID {
+    .init(Data1: 0xCAC21C05, Data2: 0xB599, Data3: 0x5D37, Data4: ( 0xA9,0x3A,0xD6,0x0C,0xBD,0xD1,0xD0,0xE8 ))// CAC21C05-B599-5D37-A93A-D60CBDD1D0E8
 }
 
-private var IID___x_ABI_Ctest__component_CIBaseNoOverridesProtectedFactory: IID {
-    IID(Data1: 0x92FC0572, Data2: 0x825F, Data3: 0x5B3F, Data4: ( 0x9B,0x0B,0xF0,0x80,0xA1,0x66,0xEF,0x06 ))// 92FC0572-825F-5B3F-9B0B-F080A166EF06
+private var IID___x_ABI_Ctest__component_CIBaseNoOverridesProtectedFactory: test_component.IID {
+    .init(Data1: 0x92FC0572, Data2: 0x825F, Data3: 0x5B3F, Data4: ( 0x9B,0x0B,0xF0,0x80,0xA1,0x66,0xEF,0x06 ))// 92FC0572-825F-5B3F-9B0B-F080A166EF06
 }
 
-private var IID___x_ABI_Ctest__component_CIBaseOverrides: IID {
-    IID(Data1: 0xEE3CBD78, Data2: 0x04B7, Data3: 0x534F, Data4: ( 0xA7,0x15,0x53,0xDA,0xF5,0x35,0x01,0x3C ))// EE3CBD78-04B7-534F-A715-53DAF535013C
+private var IID___x_ABI_Ctest__component_CIBaseOverrides: test_component.IID {
+    .init(Data1: 0xEE3CBD78, Data2: 0x04B7, Data3: 0x534F, Data4: ( 0xA7,0x15,0x53,0xDA,0xF5,0x35,0x01,0x3C ))// EE3CBD78-04B7-534F-A715-53DAF535013C
 }
 
-private var IID___x_ABI_Ctest__component_CIBaseProtectedFactory: IID {
-    IID(Data1: 0x05CAD233, Data2: 0x20A7, Data3: 0x581F, Data4: ( 0xBD,0x44,0x0D,0x13,0x6C,0x31,0x0E,0x0F ))// 05CAD233-20A7-581F-BD44-0D136C310E0F
+private var IID___x_ABI_Ctest__component_CIBaseProtectedFactory: test_component.IID {
+    .init(Data1: 0x05CAD233, Data2: 0x20A7, Data3: 0x581F, Data4: ( 0xBD,0x44,0x0D,0x13,0x6C,0x31,0x0E,0x0F ))// 05CAD233-20A7-581F-BD44-0D136C310E0F
 }
 
-private var IID___x_ABI_Ctest__component_CIBasic: IID {
-    IID(Data1: 0x636060A1, Data2: 0xE41D, Data3: 0x59DF, Data4: ( 0xA5,0xD3,0xFB,0x7C,0xE7,0xE1,0x79,0x2F ))// 636060A1-E41D-59DF-A5D3-FB7CE7E1792F
+private var IID___x_ABI_Ctest__component_CIBasic: test_component.IID {
+    .init(Data1: 0x636060A1, Data2: 0xE41D, Data3: 0x59DF, Data4: ( 0xA5,0xD3,0xFB,0x7C,0xE7,0xE1,0x79,0x2F ))// 636060A1-E41D-59DF-A5D3-FB7CE7E1792F
 }
 
-private var IID___x_ABI_Ctest__component_CIClass: IID {
-    IID(Data1: 0xEBCBC0CD, Data2: 0x48DD, Data3: 0x56BA, Data4: ( 0xBB,0xE2,0xCD,0x0B,0xE5,0xA3,0x06,0x76 ))// EBCBC0CD-48DD-56BA-BBE2-CD0BE5A30676
+private var IID___x_ABI_Ctest__component_CIClass: test_component.IID {
+    .init(Data1: 0xEBCBC0CD, Data2: 0x48DD, Data3: 0x56BA, Data4: ( 0xBB,0xE2,0xCD,0x0B,0xE5,0xA3,0x06,0x76 ))// EBCBC0CD-48DD-56BA-BBE2-CD0BE5A30676
 }
 
-private var IID___x_ABI_Ctest__component_CIClassFactory: IID {
-    IID(Data1: 0x78914881, Data2: 0xB900, Data3: 0x582A, Data4: ( 0x94,0xB8,0x58,0x19,0x84,0xC0,0xF7,0x8A ))// 78914881-B900-582A-94B8-581984C0F78A
+private var IID___x_ABI_Ctest__component_CIClassFactory: test_component.IID {
+    .init(Data1: 0x78914881, Data2: 0xB900, Data3: 0x582A, Data4: ( 0x94,0xB8,0x58,0x19,0x84,0xC0,0xF7,0x8A ))// 78914881-B900-582A-94B8-581984C0F78A
 }
 
-private var IID___x_ABI_Ctest__component_CIClassFactory2: IID {
-    IID(Data1: 0xF5F62EBE, Data2: 0x931B, Data3: 0x519B, Data4: ( 0x95,0x1A,0xF1,0x4A,0x4B,0xC7,0x83,0xB1 ))// F5F62EBE-931B-519B-951A-F14A4BC783B1
+private var IID___x_ABI_Ctest__component_CIClassFactory2: test_component.IID {
+    .init(Data1: 0xF5F62EBE, Data2: 0x931B, Data3: 0x519B, Data4: ( 0x95,0x1A,0xF1,0x4A,0x4B,0xC7,0x83,0xB1 ))// F5F62EBE-931B-519B-951A-F14A4BC783B1
 }
 
-private var IID___x_ABI_Ctest__component_CIClassStatics: IID {
-    IID(Data1: 0x2E573677, Data2: 0xD7B8, Data3: 0x5305, Data4: ( 0x8F,0x9D,0x1B,0x23,0x15,0xE3,0x77,0x8B ))// 2E573677-D7B8-5305-8F9D-1B2315E3778B
+private var IID___x_ABI_Ctest__component_CIClassStatics: test_component.IID {
+    .init(Data1: 0x2E573677, Data2: 0xD7B8, Data3: 0x5305, Data4: ( 0x8F,0x9D,0x1B,0x23,0x15,0xE3,0x77,0x8B ))// 2E573677-D7B8-5305-8F9D-1B2315E3778B
 }
 
-private var IID___x_ABI_Ctest__component_CIClassStatics2: IID {
-    IID(Data1: 0xB341C098, Data2: 0x033D, Data3: 0x5445, Data4: ( 0x86,0x80,0x70,0x3A,0x93,0xBC,0xDF,0x81 ))// B341C098-033D-5445-8680-703A93BCDF81
+private var IID___x_ABI_Ctest__component_CIClassStatics2: test_component.IID {
+    .init(Data1: 0xB341C098, Data2: 0x033D, Data3: 0x5445, Data4: ( 0x86,0x80,0x70,0x3A,0x93,0xBC,0xDF,0x81 ))// B341C098-033D-5445-8680-703A93BCDF81
 }
 
-private var IID___x_ABI_Ctest__component_CICollectionTester: IID {
-    IID(Data1: 0xF8B13FDD, Data2: 0xB785, Data3: 0x53D4, Data4: ( 0xBC,0x69,0xFA,0x7D,0x02,0xBD,0x88,0xE6 ))// F8B13FDD-B785-53D4-BC69-FA7D02BD88E6
+private var IID___x_ABI_Ctest__component_CICollectionTester: test_component.IID {
+    .init(Data1: 0xF8B13FDD, Data2: 0xB785, Data3: 0x53D4, Data4: ( 0xBC,0x69,0xFA,0x7D,0x02,0xBD,0x88,0xE6 ))// F8B13FDD-B785-53D4-BC69-FA7D02BD88E6
 }
 
-private var IID___x_ABI_Ctest__component_CICollectionTesterStatics: IID {
-    IID(Data1: 0xB357268D, Data2: 0x1A80, Data3: 0x5A61, Data4: ( 0xB3,0xEF,0x13,0x22,0x4B,0xE0,0x63,0x10 ))// B357268D-1A80-5A61-B3EF-13224BE06310
+private var IID___x_ABI_Ctest__component_CICollectionTesterStatics: test_component.IID {
+    .init(Data1: 0xB357268D, Data2: 0x1A80, Data3: 0x5A61, Data4: ( 0xB3,0xEF,0x13,0x22,0x4B,0xE0,0x63,0x10 ))// B357268D-1A80-5A61-B3EF-13224BE06310
 }
 
-private var IID___x_ABI_Ctest__component_CIDeferrableEventArgs: IID {
-    IID(Data1: 0xDA7B0340, Data2: 0x93E0, Data3: 0x5D49, Data4: ( 0xA7,0xF3,0x0F,0xCA,0x6E,0x90,0x02,0x3C ))// DA7B0340-93E0-5D49-A7F3-0FCA6E90023C
+private var IID___x_ABI_Ctest__component_CIDeferrableEventArgs: test_component.IID {
+    .init(Data1: 0xDA7B0340, Data2: 0x93E0, Data3: 0x5D49, Data4: ( 0xA7,0xF3,0x0F,0xCA,0x6E,0x90,0x02,0x3C ))// DA7B0340-93E0-5D49-A7F3-0FCA6E90023C
 }
 
-private var IID___x_ABI_Ctest__component_CIDerived: IID {
-    IID(Data1: 0x864F4DCB, Data2: 0xC4FF, Data3: 0x5FBB, Data4: ( 0xB4,0x5D,0xA7,0x3E,0x25,0x7B,0x48,0xA2 ))// 864F4DCB-C4FF-5FBB-B45D-A73E257B48A2
+private var IID___x_ABI_Ctest__component_CIDerived: test_component.IID {
+    .init(Data1: 0x864F4DCB, Data2: 0xC4FF, Data3: 0x5FBB, Data4: ( 0xB4,0x5D,0xA7,0x3E,0x25,0x7B,0x48,0xA2 ))// 864F4DCB-C4FF-5FBB-B45D-A73E257B48A2
 }
 
-private var IID___x_ABI_Ctest__component_CIEventTester: IID {
-    IID(Data1: 0xDD19BE65, Data2: 0x638D, Data3: 0x519A, Data4: ( 0x81,0xA9,0x73,0x3F,0xDB,0xD8,0x7A,0x17 ))// DD19BE65-638D-519A-81A9-733FDBD87A17
+private var IID___x_ABI_Ctest__component_CIEventTester: test_component.IID {
+    .init(Data1: 0xDD19BE65, Data2: 0x638D, Data3: 0x519A, Data4: ( 0x81,0xA9,0x73,0x3F,0xDB,0xD8,0x7A,0x17 ))// DD19BE65-638D-519A-81A9-733FDBD87A17
 }
 
-private var IID___x_ABI_Ctest__component_CIEventTesterFactory: IID {
-    IID(Data1: 0x9E6F50EC, Data2: 0x0F53, Data3: 0x5507, Data4: ( 0xB7,0x37,0x14,0x3B,0x1B,0xB3,0x53,0x65 ))// 9E6F50EC-0F53-5507-B737-143B1BB35365
+private var IID___x_ABI_Ctest__component_CIEventTesterFactory: test_component.IID {
+    .init(Data1: 0x9E6F50EC, Data2: 0x0F53, Data3: 0x5507, Data4: ( 0xB7,0x37,0x14,0x3B,0x1B,0xB3,0x53,0x65 ))// 9E6F50EC-0F53-5507-B737-143B1BB35365
 }
 
-private var IID___x_ABI_Ctest__component_CIIAmImplementable: IID {
-    IID(Data1: 0x0B3C0120, Data2: 0xD138, Data3: 0x512B, Data4: ( 0x8D,0x38,0xF5,0x1E,0x35,0xF0,0x65,0xB2 ))// 0B3C0120-D138-512B-8D38-F51E35F065B2
+private var IID___x_ABI_Ctest__component_CIIAmImplementable: test_component.IID {
+    .init(Data1: 0x0B3C0120, Data2: 0xD138, Data3: 0x512B, Data4: ( 0x8D,0x38,0xF5,0x1E,0x35,0xF0,0x65,0xB2 ))// 0B3C0120-D138-512B-8D38-F51E35F065B2
 }
 
-private var IID___x_ABI_Ctest__component_CIInterfaceWithObservableVector: IID {
-    IID(Data1: 0x364C232A, Data2: 0xB3A9, Data3: 0x5FD7, Data4: ( 0x91,0x3E,0x53,0x82,0xF7,0x2B,0x64,0xD7 ))// 364C232A-B3A9-5FD7-913E-5382F72B64D7
+private var IID___x_ABI_Ctest__component_CIInterfaceWithObservableVector: test_component.IID {
+    .init(Data1: 0x364C232A, Data2: 0xB3A9, Data3: 0x5FD7, Data4: ( 0x91,0x3E,0x53,0x82,0xF7,0x2B,0x64,0xD7 ))// 364C232A-B3A9-5FD7-913E-5382F72B64D7
 }
 
-private var IID___x_ABI_Ctest__component_CINullValuesStatics: IID {
-    IID(Data1: 0x4F2BB96B, Data2: 0xB91D, Data3: 0x51E5, Data4: ( 0xA5,0x89,0x26,0x52,0xC1,0x65,0xA8,0xB5 ))// 4F2BB96B-B91D-51E5-A589-2652C165A8B5
+private var IID___x_ABI_Ctest__component_CINullValuesStatics: test_component.IID {
+    .init(Data1: 0x4F2BB96B, Data2: 0xB91D, Data3: 0x51E5, Data4: ( 0xA5,0x89,0x26,0x52,0xC1,0x65,0xA8,0xB5 ))// 4F2BB96B-B91D-51E5-A589-2652C165A8B5
 }
 
-private var IID___x_ABI_Ctest__component_CISimple: IID {
-    IID(Data1: 0xBAC2883F, Data2: 0x0E80, Data3: 0x5319, Data4: ( 0x88,0xE6,0x9B,0xFE,0x73,0x3B,0x7A,0x66 ))// BAC2883F-0E80-5319-88E6-9BFE733B7A66
+private var IID___x_ABI_Ctest__component_CISimple: test_component.IID {
+    .init(Data1: 0xBAC2883F, Data2: 0x0E80, Data3: 0x5319, Data4: ( 0x88,0xE6,0x9B,0xFE,0x73,0x3B,0x7A,0x66 ))// BAC2883F-0E80-5319-88E6-9BFE733B7A66
 }
 
-private var IID___x_ABI_Ctest__component_CISimpleDelegate: IID {
-    IID(Data1: 0xB73AD784, Data2: 0xEADD, Data3: 0x54B7, Data4: ( 0xA6,0x8E,0x8A,0xC5,0x6E,0xAB,0x73,0x87 ))// B73AD784-EADD-54B7-A68E-8AC56EAB7387
+private var IID___x_ABI_Ctest__component_CISimpleDelegate: test_component.IID {
+    .init(Data1: 0xB73AD784, Data2: 0xEADD, Data3: 0x54B7, Data4: ( 0xA6,0x8E,0x8A,0xC5,0x6E,0xAB,0x73,0x87 ))// B73AD784-EADD-54B7-A68E-8AC56EAB7387
 }
 
-private var IID___x_ABI_Ctest__component_CISimpleStatics: IID {
-    IID(Data1: 0xC8DCADA0, Data2: 0xFD8E, Data3: 0x5E27, Data4: ( 0x95,0x51,0xA3,0x68,0xFE,0x1D,0x11,0xB2 ))// C8DCADA0-FD8E-5E27-9551-A368FE1D11B2
+private var IID___x_ABI_Ctest__component_CISimpleStatics: test_component.IID {
+    .init(Data1: 0xC8DCADA0, Data2: 0xFD8E, Data3: 0x5E27, Data4: ( 0x95,0x51,0xA3,0x68,0xFE,0x1D,0x11,0xB2 ))// C8DCADA0-FD8E-5E27-9551-A368FE1D11B2
 }
 
-private var IID___x_ABI_Ctest__component_CIStaticClassStatics: IID {
-    IID(Data1: 0x92E618EF, Data2: 0xFF6E, Data3: 0x5975, Data4: ( 0x86,0x8C,0x99,0xAD,0xC1,0x1D,0x36,0xDE ))// 92E618EF-FF6E-5975-868C-99ADC11D36DE
+private var IID___x_ABI_Ctest__component_CIStaticClassStatics: test_component.IID {
+    .init(Data1: 0x92E618EF, Data2: 0xFF6E, Data3: 0x5975, Data4: ( 0x86,0x8C,0x99,0xAD,0xC1,0x1D,0x36,0xDE ))// 92E618EF-FF6E-5975-868C-99ADC11D36DE
 }
 
-private var IID___x_ABI_Ctest__component_CIUnsealedDerived: IID {
-    IID(Data1: 0xB4FA333D, Data2: 0x9BCA, Data3: 0x592D, Data4: ( 0x9D,0xCB,0x18,0xAF,0x96,0xD7,0x6A,0x03 ))// B4FA333D-9BCA-592D-9DCB-18AF96D76A03
+private var IID___x_ABI_Ctest__component_CIUnsealedDerived: test_component.IID {
+    .init(Data1: 0xB4FA333D, Data2: 0x9BCA, Data3: 0x592D, Data4: ( 0x9D,0xCB,0x18,0xAF,0x96,0xD7,0x6A,0x03 ))// B4FA333D-9BCA-592D-9DCB-18AF96D76A03
 }
 
-private var IID___x_ABI_Ctest__component_CIUnsealedDerived2: IID {
-    IID(Data1: 0xA58C23CF, Data2: 0x4DC4, Data3: 0x59C5, Data4: ( 0x8D,0xE3,0x9F,0x06,0x3B,0x21,0x8D,0xDE ))// A58C23CF-4DC4-59C5-8DE3-9F063B218DDE
+private var IID___x_ABI_Ctest__component_CIUnsealedDerived2: test_component.IID {
+    .init(Data1: 0xA58C23CF, Data2: 0x4DC4, Data3: 0x59C5, Data4: ( 0x8D,0xE3,0x9F,0x06,0x3B,0x21,0x8D,0xDE ))// A58C23CF-4DC4-59C5-8DE3-9F063B218DDE
 }
 
-private var IID___x_ABI_Ctest__component_CIUnsealedDerived2ProtectedFactory: IID {
-    IID(Data1: 0x0978D147, Data2: 0x77BF, Data3: 0x5E0A, Data4: ( 0xA1,0x64,0xCA,0x95,0x1B,0xCA,0xB8,0xB4 ))// 0978D147-77BF-5E0A-A164-CA951BCAB8B4
+private var IID___x_ABI_Ctest__component_CIUnsealedDerived2ProtectedFactory: test_component.IID {
+    .init(Data1: 0x0978D147, Data2: 0x77BF, Data3: 0x5E0A, Data4: ( 0xA1,0x64,0xCA,0x95,0x1B,0xCA,0xB8,0xB4 ))// 0978D147-77BF-5E0A-A164-CA951BCAB8B4
 }
 
-private var IID___x_ABI_Ctest__component_CIUnsealedDerivedFactory: IID {
-    IID(Data1: 0x3496ED92, Data2: 0x7A72, Data3: 0x5271, Data4: ( 0x9B,0xC4,0x4D,0x3D,0xA0,0x80,0x3C,0xA8 ))// 3496ED92-7A72-5271-9BC4-4D3DA0803CA8
+private var IID___x_ABI_Ctest__component_CIUnsealedDerivedFactory: test_component.IID {
+    .init(Data1: 0x3496ED92, Data2: 0x7A72, Data3: 0x5271, Data4: ( 0x9B,0xC4,0x4D,0x3D,0xA0,0x80,0x3C,0xA8 ))// 3496ED92-7A72-5271-9BC4-4D3DA0803CA8
 }
 
-private var IID___x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides: IID {
-    IID(Data1: 0x3CD27E28, Data2: 0x2DFF, Data3: 0x5A17, Data4: ( 0x82,0x63,0x1B,0xFA,0x75,0x04,0x34,0xAA ))// 3CD27E28-2DFF-5A17-8263-1BFA750434AA
+private var IID___x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides: test_component.IID {
+    .init(Data1: 0x3CD27E28, Data2: 0x2DFF, Data3: 0x5A17, Data4: ( 0x82,0x63,0x1B,0xFA,0x75,0x04,0x34,0xAA ))// 3CD27E28-2DFF-5A17-8263-1BFA750434AA
 }
 
-private var IID___x_ABI_Ctest__component_CIUnsealedDerivedNoOverridesProtectedFactory: IID {
-    IID(Data1: 0x8D27A3F3, Data2: 0xD785, Data3: 0x53E3, Data4: ( 0x83,0x19,0x6A,0x50,0x97,0xB1,0x04,0xAB ))// 8D27A3F3-D785-53E3-8319-6A5097B104AB
+private var IID___x_ABI_Ctest__component_CIUnsealedDerivedNoOverridesProtectedFactory: test_component.IID {
+    .init(Data1: 0x8D27A3F3, Data2: 0xD785, Data3: 0x53E3, Data4: ( 0x83,0x19,0x6A,0x50,0x97,0xB1,0x04,0xAB ))// 8D27A3F3-D785-53E3-8319-6A5097B104AB
 }
 
-private var IID___x_ABI_Ctest__component_CIUnsealedDerivedOverloads2: IID {
-    IID(Data1: 0xF4CE1AD9, Data2: 0x36B9, Data3: 0x5DC7, Data4: ( 0xA0,0x07,0x3A,0xCD,0xF4,0x22,0xE7,0x05 ))// F4CE1AD9-36B9-5DC7-A007-3ACDF422E705
+private var IID___x_ABI_Ctest__component_CIUnsealedDerivedOverloads2: test_component.IID {
+    .init(Data1: 0xF4CE1AD9, Data2: 0x36B9, Data3: 0x5DC7, Data4: ( 0xA0,0x07,0x3A,0xCD,0xF4,0x22,0xE7,0x05 ))// F4CE1AD9-36B9-5DC7-A007-3ACDF422E705
 }
 
-private var IID___x_ABI_Ctest__component_CIUnsealedDerivedOverrides: IID {
-    IID(Data1: 0x828DCEE6, Data2: 0xF93A, Data3: 0x5A4D, Data4: ( 0xBC,0xEE,0xF7,0xC1,0xDE,0xE4,0xEB,0x4E ))// 828DCEE6-F93A-5A4D-BCEE-F7C1DEE4EB4E
+private var IID___x_ABI_Ctest__component_CIUnsealedDerivedOverrides: test_component.IID {
+    .init(Data1: 0x828DCEE6, Data2: 0xF93A, Data3: 0x5A4D, Data4: ( 0xBC,0xEE,0xF7,0xC1,0xDE,0xE4,0xEB,0x4E ))// 828DCEE6-F93A-5A4D-BCEE-F7C1DEE4EB4E
 }
 
-private var IID___x_ABI_Ctest__component_CInterfaceWithReturnDelegate: IID {
-    IID(Data1: 0xB0EBC406, Data2: 0x17C0, Data3: 0x5703, Data4: ( 0xB9,0xC7,0x50,0xBE,0x67,0x5B,0xBC,0x95 ))// B0EBC406-17C0-5703-B9C7-50BE675BBC95
+private var IID___x_ABI_Ctest__component_CInterfaceWithReturnDelegate: test_component.IID {
+    .init(Data1: 0xB0EBC406, Data2: 0x17C0, Data3: 0x5703, Data4: ( 0xB9,0xC7,0x50,0xBE,0x67,0x5B,0xBC,0x95 ))// B0EBC406-17C0-5703-B9C7-50BE675BBC95
 }
 
-private var IID___x_ABI_Ctest__component_CIObjectHandler: IID {
-    IID(Data1: 0x5DD35752, Data2: 0x9800, Data3: 0x5961, Data4: ( 0x80,0xDE,0xFC,0x5E,0x20,0x9E,0x6E,0x2D ))// 5DD35752-9800-5961-80DE-FC5E209E6E2D
+private var IID___x_ABI_Ctest__component_CIObjectHandler: test_component.IID {
+    .init(Data1: 0x5DD35752, Data2: 0x9800, Data3: 0x5961, Data4: ( 0x80,0xDE,0xFC,0x5E,0x20,0x9E,0x6E,0x2D ))// 5DD35752-9800-5961-80DE-FC5E209E6E2D
 }
 
-private var IID___x_ABI_Ctest__component_CIVoidToVoidDelegate: IID {
-    IID(Data1: 0x5ED7E415, Data2: 0x84E7, Data3: 0x5E4C, Data4: ( 0x8F,0x68,0xD4,0x65,0x3C,0x39,0xEE,0x46 ))// 5ED7E415-84E7-5E4C-8F68-D4653C39EE46
+private var IID___x_ABI_Ctest__component_CIVoidToVoidDelegate: test_component.IID {
+    .init(Data1: 0x5ED7E415, Data2: 0x84E7, Data3: 0x5E4C, Data4: ( 0x8F,0x68,0xD4,0x65,0x3C,0x39,0xEE,0x46 ))// 5ED7E415-84E7-5E4C-8F68-D4653C39EE46
 }
 
 public enum __ABI_test_component {
     open class IAsyncMethods: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CIAsyncMethods }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIAsyncMethods }
 
         open func OperationWithProgressImpl(_ value: __x_ABI_CWindows_CFoundation_CDateTime) throws -> UnsafeMutablePointer<__x_ABI_C__FIAsyncOperationWithProgress_2_int_double>? {
             var operation: UnsafeMutablePointer<__x_ABI_C__FIAsyncOperationWithProgress_2_int_double>?
@@ -191,8 +191,8 @@ public enum __ABI_test_component {
         },
 
         GetIids: {
-            let size = MemoryLayout<IID>.size
-            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+            let size = MemoryLayout<test_component.IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
             iids[2] = __ABI_test_component.IAsyncMethodsWrapper.IID
@@ -228,7 +228,7 @@ public enum __ABI_test_component {
 
     public typealias IAsyncMethodsWrapper = InterfaceWrapperBase<__IMPL_test_component.IAsyncMethodsImpl>
     open class IBase: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CIBase }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBase }
 
         internal func DoTheThingImpl() throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIBase.self) { pThis in
@@ -239,16 +239,16 @@ public enum __ABI_test_component {
     }
 
     open class IBaseNoOverrides: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CIBaseNoOverrides }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseNoOverrides }
 
     }
 
     internal class IBaseNoOverridesProtectedFactory: test_component.IInspectable, ComposableActivationFactory {
         internal typealias Composable = test_component.BaseNoOverrides.Composable
 
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CIBaseNoOverridesProtectedFactory }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseNoOverridesProtectedFactory }
 
-        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<Ctest_component.IInspectable>?, _ innerInterface: inout UnsafeMutablePointer<Ctest_component.IInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBaseNoOverrides>? {
+        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<NativeIInspectable>?, _ innerInterface: inout UnsafeMutablePointer<NativeIInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBaseNoOverrides>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBaseNoOverrides>?
             _ = try perform(as: __x_ABI_Ctest__component_CIBaseNoOverridesProtectedFactory.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, baseInterface, &innerInterface, &value))
@@ -259,7 +259,7 @@ public enum __ABI_test_component {
     }
 
     open class IBaseOverrides: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CIBaseOverrides }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseOverrides }
 
         internal func OnDoTheThingImpl() throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIBaseOverrides.self) { pThis in
@@ -272,9 +272,9 @@ public enum __ABI_test_component {
     internal class IBaseProtectedFactory: test_component.IInspectable, ComposableActivationFactory {
         internal typealias Composable = test_component.Base.Composable
 
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CIBaseProtectedFactory }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseProtectedFactory }
 
-        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<Ctest_component.IInspectable>?, _ innerInterface: inout UnsafeMutablePointer<Ctest_component.IInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>? {
+        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<NativeIInspectable>?, _ innerInterface: inout UnsafeMutablePointer<NativeIInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?
             _ = try perform(as: __x_ABI_Ctest__component_CIBaseProtectedFactory.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, baseInterface, &innerInterface, &value))
@@ -285,7 +285,7 @@ public enum __ABI_test_component {
     }
 
     open class IBasic: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CIBasic }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBasic }
 
         open func MethodImpl() throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIBasic.self) { pThis in
@@ -326,8 +326,8 @@ public enum __ABI_test_component {
         },
 
         GetIids: {
-            let size = MemoryLayout<IID>.size
-            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+            let size = MemoryLayout<test_component.IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
             iids[2] = __ABI_test_component.IBasicWrapper.IID
@@ -360,7 +360,7 @@ public enum __ABI_test_component {
 
     public typealias IBasicWrapper = InterfaceWrapperBase<__IMPL_test_component.IBasicImpl>
     open class IClass: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CIClass }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIClass }
 
         internal func get_ImplementationImpl() throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>?
@@ -412,7 +412,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func InObjectImpl(_ value: UnsafeMutablePointer<Ctest_component.IInspectable>?) throws -> HSTRING? {
+        internal func InObjectImpl(_ value: UnsafeMutablePointer<NativeIInspectable>?) throws -> HSTRING? {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InObject(pThis, value, &result))
@@ -440,7 +440,7 @@ public enum __ABI_test_component {
             }
         }
 
-        internal func OutObjectImpl(_ value: inout UnsafeMutablePointer<Ctest_component.IInspectable>?) throws {
+        internal func OutObjectImpl(_ value: inout UnsafeMutablePointer<NativeIInspectable>?) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OutObject(pThis, &value))
             }
@@ -470,8 +470,8 @@ public enum __ABI_test_component {
             }
         }
 
-        internal func ReturnObjectImpl() throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-            var result: UnsafeMutablePointer<Ctest_component.IInspectable>?
+        internal func ReturnObjectImpl() throws -> UnsafeMutablePointer<NativeIInspectable>? {
+            var result: UnsafeMutablePointer<NativeIInspectable>?
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnObject(pThis, &result))
             }
@@ -633,7 +633,7 @@ public enum __ABI_test_component {
     }
 
     open class IClassFactory: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CIClassFactory }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIClassFactory }
 
         internal func CreateInstanceImpl(_ name: HSTRING?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>?
@@ -686,7 +686,7 @@ public enum __ABI_test_component {
     }
 
     open class IClassFactory2: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CIClassFactory2 }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIClassFactory2 }
 
         internal func CreateInstanceImpl(_ name: HSTRING?, _ fruit: __x_ABI_Ctest__component_CFruit, _ implementation: UnsafeMutablePointer<__x_ABI_Ctest__component_CIIAmImplementable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>?
@@ -699,7 +699,7 @@ public enum __ABI_test_component {
     }
 
     open class IClassStatics: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CIClassStatics }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIClassStatics }
 
         internal func StaticTestImpl() throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIClassStatics.self) { pThis in
@@ -726,7 +726,7 @@ public enum __ABI_test_component {
     }
 
     open class IClassStatics2: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CIClassStatics2 }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIClassStatics2 }
 
         internal func StaticTestReturnFloatImpl() throws -> FLOAT {
             var result: FLOAT = 0.0
@@ -753,7 +753,7 @@ public enum __ABI_test_component {
     }
 
     open class ICollectionTester: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CICollectionTester }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CICollectionTester }
 
         internal func ReturnStoredStringVectorImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIVector_1_HSTRING>? {
             var result: UnsafeMutablePointer<__x_ABI_C__FIVector_1_HSTRING>?
@@ -774,7 +774,7 @@ public enum __ABI_test_component {
     }
 
     open class ICollectionTesterStatics: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CICollectionTesterStatics }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CICollectionTesterStatics }
 
         internal func InMapImpl(_ value: UnsafeMutablePointer<__x_ABI_C__FIMap_2_HSTRING_HSTRING>?) throws -> HSTRING? {
             var result: HSTRING?
@@ -817,7 +817,7 @@ public enum __ABI_test_component {
     }
 
     open class IDeferrableEventArgs: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CIDeferrableEventArgs }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIDeferrableEventArgs }
 
         internal func GetDeferralImpl() throws -> UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIDeferral>? {
             var result: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIDeferral>?
@@ -836,7 +836,7 @@ public enum __ABI_test_component {
     }
 
     open class IDerived: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CIDerived }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIDerived }
 
         internal func get_PropImpl() throws -> INT32 {
             var value: INT32 = 0
@@ -855,7 +855,7 @@ public enum __ABI_test_component {
     }
 
     open class IEventTester: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CIEventTester }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIEventTester }
 
         internal func SubscribeImpl() throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIEventTester.self) { pThis in
@@ -888,7 +888,7 @@ public enum __ABI_test_component {
     }
 
     open class IEventTesterFactory: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CIEventTesterFactory }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIEventTesterFactory }
 
         internal func CreateInstanceImpl(_ impl: UnsafeMutablePointer<__x_ABI_Ctest__component_CIIAmImplementable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIEventTester>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIEventTester>?
@@ -901,7 +901,7 @@ public enum __ABI_test_component {
     }
 
     open class IIAmImplementable: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CIIAmImplementable }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIIAmImplementable }
 
         open func InInt32Impl(_ value: INT32) throws -> HSTRING? {
             var result: HSTRING?
@@ -919,7 +919,7 @@ public enum __ABI_test_component {
             return result
         }
 
-        open func InObjectImpl(_ value: UnsafeMutablePointer<Ctest_component.IInspectable>?) throws -> HSTRING? {
+        open func InObjectImpl(_ value: UnsafeMutablePointer<NativeIInspectable>?) throws -> HSTRING? {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InObject(pThis, value, &result))
@@ -947,7 +947,7 @@ public enum __ABI_test_component {
             }
         }
 
-        open func OutObjectImpl(_ value: inout UnsafeMutablePointer<Ctest_component.IInspectable>?) throws {
+        open func OutObjectImpl(_ value: inout UnsafeMutablePointer<NativeIInspectable>?) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OutObject(pThis, &value))
             }
@@ -971,8 +971,8 @@ public enum __ABI_test_component {
             }
         }
 
-        open func ReturnObjectImpl() throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-            var result: UnsafeMutablePointer<Ctest_component.IInspectable>?
+        open func ReturnObjectImpl() throws -> UnsafeMutablePointer<NativeIInspectable>? {
+            var result: UnsafeMutablePointer<NativeIInspectable>?
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnObject(pThis, &result))
             }
@@ -1068,8 +1068,8 @@ public enum __ABI_test_component {
         },
 
         GetIids: {
-            let size = MemoryLayout<IID>.size
-            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+            let size = MemoryLayout<test_component.IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
             iids[2] = __ABI_test_component.IIAmImplementableWrapper.IID
@@ -1236,7 +1236,7 @@ public enum __ABI_test_component {
 
         put_Id: {
             guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let value: UUID? = .init(ref: $1)
+            let value: test_component.GUID? = .init(ref: $1)
             __unwrapped__instance.id = value
             return S_OK
         },
@@ -1268,7 +1268,7 @@ public enum __ABI_test_component {
 
     public typealias IIAmImplementableWrapper = InterfaceWrapperBase<__IMPL_test_component.IIAmImplementableImpl>
     open class IInterfaceWithObservableVector: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CIInterfaceWithObservableVector }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIInterfaceWithObservableVector }
 
         open func TakeObservableImpl(_ basics: UnsafeMutablePointer<__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasic>?) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIInterfaceWithObservableVector.self) { pThis in
@@ -1309,8 +1309,8 @@ public enum __ABI_test_component {
         },
 
         GetIids: {
-            let size = MemoryLayout<IID>.size
-            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+            let size = MemoryLayout<test_component.IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
             iids[2] = __ABI_test_component.IInterfaceWithObservableVectorWrapper.IID
@@ -1344,9 +1344,9 @@ public enum __ABI_test_component {
 
     public typealias IInterfaceWithObservableVectorWrapper = InterfaceWrapperBase<__IMPL_test_component.IInterfaceWithObservableVectorImpl>
     open class INullValuesStatics: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CINullValuesStatics }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CINullValuesStatics }
 
-        internal func IsObjectNullImpl(_ value: UnsafeMutablePointer<Ctest_component.IInspectable>?) throws -> boolean {
+        internal func IsObjectNullImpl(_ value: UnsafeMutablePointer<NativeIInspectable>?) throws -> boolean {
             var result: boolean = 0
             _ = try perform(as: __x_ABI_Ctest__component_CINullValuesStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.IsObjectNull(pThis, value, &result))
@@ -1386,8 +1386,8 @@ public enum __ABI_test_component {
             return result
         }
 
-        internal func GetNullObjectImpl() throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-            var result: UnsafeMutablePointer<Ctest_component.IInspectable>?
+        internal func GetNullObjectImpl() throws -> UnsafeMutablePointer<NativeIInspectable>? {
+            var result: UnsafeMutablePointer<NativeIInspectable>?
             _ = try perform(as: __x_ABI_Ctest__component_CINullValuesStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetNullObject(pThis, &result))
             }
@@ -1429,7 +1429,7 @@ public enum __ABI_test_component {
     }
 
     open class ISimple: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CISimple }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CISimple }
 
         internal func MethodImpl() throws {
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
@@ -1453,8 +1453,8 @@ public enum __ABI_test_component {
             return operation
         }
 
-        internal func ObjectImpl(_ value: __x_ABI_CWindows_CFoundation_CDateTime) throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-            var result: UnsafeMutablePointer<Ctest_component.IInspectable>?
+        internal func ObjectImpl(_ value: __x_ABI_CWindows_CFoundation_CDateTime) throws -> UnsafeMutablePointer<NativeIInspectable>? {
+            var result: UnsafeMutablePointer<NativeIInspectable>?
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Object(pThis, value, &result))
             }
@@ -1582,7 +1582,7 @@ public enum __ABI_test_component {
     }
 
     open class ISimpleDelegate: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CISimpleDelegate }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CISimpleDelegate }
 
         open func DoThisImpl() throws {
             _ = try perform(as: __x_ABI_Ctest__component_CISimpleDelegate.self) { pThis in
@@ -1629,8 +1629,8 @@ public enum __ABI_test_component {
         },
 
         GetIids: {
-            let size = MemoryLayout<IID>.size
-            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+            let size = MemoryLayout<test_component.IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
             iids[2] = __ABI_test_component.ISimpleDelegateWrapper.IID
@@ -1672,7 +1672,7 @@ public enum __ABI_test_component {
 
     public typealias ISimpleDelegateWrapper = InterfaceWrapperBase<__IMPL_test_component.ISimpleDelegateImpl>
     open class ISimpleStatics: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CISimpleStatics }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CISimpleStatics }
 
         internal func add_StaticEventImpl(_ handler: UnsafeMutablePointer<__x_ABI_C__FIEventHandler_1_IInspectable>?) throws -> EventRegistrationToken {
             var token: EventRegistrationToken = .init()
@@ -1697,7 +1697,7 @@ public enum __ABI_test_component {
     }
 
     open class IStaticClassStatics: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CIStaticClassStatics }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIStaticClassStatics }
 
         internal func get_EnumPropertyImpl() throws -> __x_ABI_Ctest__component_CFruit {
             var value: __x_ABI_Ctest__component_CFruit = .init(0)
@@ -1738,7 +1738,7 @@ public enum __ABI_test_component {
     }
 
     open class IUnsealedDerived: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CIUnsealedDerived }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerived }
 
         internal func get_PropImpl() throws -> INT32 {
             var value: INT32 = 0
@@ -1757,7 +1757,7 @@ public enum __ABI_test_component {
     }
 
     open class IUnsealedDerived2: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CIUnsealedDerived2 }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerived2 }
 
         internal func MethodImpl() throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIUnsealedDerived2.self) { pThis in
@@ -1770,9 +1770,9 @@ public enum __ABI_test_component {
     internal class IUnsealedDerived2ProtectedFactory: test_component.IInspectable, ComposableActivationFactory {
         internal typealias Composable = test_component.UnsealedDerived2.Composable
 
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CIUnsealedDerived2ProtectedFactory }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerived2ProtectedFactory }
 
-        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<Ctest_component.IInspectable>?, _ innerInterface: inout UnsafeMutablePointer<Ctest_component.IInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived2>? {
+        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<NativeIInspectable>?, _ innerInterface: inout UnsafeMutablePointer<NativeIInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived2>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived2>?
             _ = try perform(as: __x_ABI_Ctest__component_CIUnsealedDerived2ProtectedFactory.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, baseInterface, &innerInterface, &value))
@@ -1785,9 +1785,9 @@ public enum __ABI_test_component {
     internal class IUnsealedDerivedFactory: test_component.IInspectable, ComposableActivationFactory {
         internal typealias Composable = test_component.UnsealedDerived.Composable
 
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedFactory }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedFactory }
 
-        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<Ctest_component.IInspectable>?, _ innerInterface: inout UnsafeMutablePointer<Ctest_component.IInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived>? {
+        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<NativeIInspectable>?, _ innerInterface: inout UnsafeMutablePointer<NativeIInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived>?
             _ = try perform(as: __x_ABI_Ctest__component_CIUnsealedDerivedFactory.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, baseInterface, &innerInterface, &value))
@@ -1798,16 +1798,16 @@ public enum __ABI_test_component {
     }
 
     open class IUnsealedDerivedNoOverrides: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides }
 
     }
 
     internal class IUnsealedDerivedNoOverridesProtectedFactory: test_component.IInspectable, ComposableActivationFactory {
         internal typealias Composable = test_component.UnsealedDerivedNoOverrides.Composable
 
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedNoOverridesProtectedFactory }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedNoOverridesProtectedFactory }
 
-        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<Ctest_component.IInspectable>?, _ innerInterface: inout UnsafeMutablePointer<Ctest_component.IInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides>? {
+        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<NativeIInspectable>?, _ innerInterface: inout UnsafeMutablePointer<NativeIInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides>? {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides>?
             _ = try perform(as: __x_ABI_Ctest__component_CIUnsealedDerivedNoOverridesProtectedFactory.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, baseInterface, &innerInterface, &value))
@@ -1818,7 +1818,7 @@ public enum __ABI_test_component {
     }
 
     open class IUnsealedDerivedOverloads2: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedOverloads2 }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedOverloads2 }
 
         internal func OnAfterDoTheThingImpl() throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIUnsealedDerivedOverloads2.self) { pThis in
@@ -1829,7 +1829,7 @@ public enum __ABI_test_component {
     }
 
     open class IUnsealedDerivedOverrides: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedOverrides }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedOverrides }
 
         internal func OnBeforeDoTheThingImpl() throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIUnsealedDerivedOverrides.self) { pThis in
@@ -1840,7 +1840,7 @@ public enum __ABI_test_component {
     }
 
     open class InterfaceWithReturnDelegate: test_component.IInspectable {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CInterfaceWithReturnDelegate }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CInterfaceWithReturnDelegate }
 
         open func add_EventWithReturnImpl(_ handler: UnsafeMutablePointer<__x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate>?) throws -> EventRegistrationToken {
             var token: EventRegistrationToken = .init()
@@ -1889,8 +1889,8 @@ public enum __ABI_test_component {
         },
 
         GetIids: {
-            let size = MemoryLayout<IID>.size
-            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+            let size = MemoryLayout<test_component.IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
             iids[2] = __ABI_test_component.InterfaceWithReturnDelegateWrapper.IID
@@ -2003,8 +2003,8 @@ public enum __ABI_test_component {
         },
 
         GetIids: {
-            let size = MemoryLayout<IID>.size
-            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+            let size = MemoryLayout<test_component.IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
             iids[2] = __ABI_test_component.IBaseOverridesWrapper.IID
@@ -2066,8 +2066,8 @@ public enum __ABI_test_component {
         },
 
         GetIids: {
-            let size = MemoryLayout<IID>.size
-            let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+            let size = MemoryLayout<test_component.IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
             iids[2] = __ABI_test_component.IUnsealedDerivedOverridesWrapper.IID
@@ -2130,8 +2130,8 @@ public enum __ABI_test_component {
         },
 
         GetIids: {
-            let size = MemoryLayout<IID>.size
-            let iids = CoTaskMemAlloc(UInt64(size) * 5).assumingMemoryBound(to: IID.self)
+            let size = MemoryLayout<test_component.IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 5).assumingMemoryBound(to: test_component.IID.self)
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
             iids[2] = __ABI_test_component.IUnsealedDerivedOverloads2Wrapper.IID
@@ -2200,9 +2200,9 @@ extension ComposableImpl where CABI == __x_ABI_Ctest__component_CIUnsealedDerive
 // MARK - ObjectHandler
 extension __ABI_test_component {
     open class ObjectHandler: test_component.IUnknown {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CIObjectHandler }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIObjectHandler }
 
-        open func InvokeImpl(_ item: UnsafeMutablePointer<Ctest_component.IInspectable>?) throws {
+        open func InvokeImpl(_ item: UnsafeMutablePointer<NativeIInspectable>?) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIObjectHandler.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, item))
             }
@@ -2256,7 +2256,7 @@ public extension WinRTDelegateBridge where CABI == __x_ABI_Ctest__component_CIOb
 // MARK - VoidToVoidDelegate
 extension __ABI_test_component {
     open class VoidToVoidDelegate: test_component.IUnknown {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CIVoidToVoidDelegate }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIVoidToVoidDelegate }
 
         open func InvokeImpl() throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIVoidToVoidDelegate.self) { pThis in

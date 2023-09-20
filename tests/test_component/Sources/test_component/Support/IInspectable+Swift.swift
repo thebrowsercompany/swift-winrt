@@ -11,15 +11,15 @@ struct InvalidRuntimeClassName: Swift.Error {
 }
 
 extension IInspectable {
-  public func GetIids() throws -> [IID] {
-    var iids: UnsafeMutablePointer<IID>?
+  public func GetIids() throws -> [test_component.IID] {
+    var iids: UnsafeMutablePointer<test_component.IID>?
     var iidCount: ULONG = 0
 
     try self.GetIids(&iidCount, &iids)
     defer { CoTaskMemFree(iids) }
 
-    return Array<IID>(unsafeUninitializedCapacity: Int(iidCount)) {
-      _ = memcpy($0.baseAddress, iids, MemoryLayout<IID>.stride * Int(iidCount))
+    return Array<test_component.IID>(unsafeUninitializedCapacity: Int(iidCount)) {
+      _ = memcpy($0.baseAddress, iids, MemoryLayout<test_component.IID>.stride * Int(iidCount))
       $1 = Int(iidCount)
     }
   }

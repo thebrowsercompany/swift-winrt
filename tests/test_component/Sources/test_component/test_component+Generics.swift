@@ -2,8 +2,8 @@
 // swiftlint:disable all
 import Ctest_component
 
-private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1_int: IID {
-    IID(Data1: 0xd60cae9d, Data2: 0x88cb, Data3: 0x59f1, Data4: ( 0x85,0x76,0x3f,0xba,0x44,0x79,0x6b,0xe8 ))// d60cae9d-88cb-59f1-8576-3fba44796be8
+private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1_int: test_component.IID {
+    .init(Data1: 0xd60cae9d, Data2: 0x88cb, Data3: 0x59f1, Data4: ( 0x85,0x76,0x3f,0xba,0x44,0x79,0x6b,0xe8 ))// d60cae9d-88cb-59f1-8576-3fba44796be8
 }
 
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationCompletedHandler_1_int {
@@ -49,7 +49,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1_intVTable: __x_ABI_C_
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_intImpl>
 internal class AsyncOperationCompletedHandlerInt32: test_component.IUnknown {
-    override public class var IID: IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1_int }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1_int }
 
     internal func InvokeImpl(_ asyncInfo: UnsafeMutablePointer<__x_ABI_C__FIAsyncOperation_1_int>?, _ asyncStatus: __x_ABI_CWindows_CFoundation_CAsyncStatus) throws {
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1_int.self) { pThis in
@@ -75,8 +75,8 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1_intImpl : WinRTDele
         return handler
     }
 }
-private var IID___x_ABI_C__FIAsyncOperationProgressHandler_2_int_double: IID {
-    IID(Data1: 0xc13682fc, Data2: 0x6466, Data3: 0x5af2, Data4: ( 0x8a,0x68,0x0d,0xa9,0x4b,0x50,0x64,0xf3 ))// c13682fc-6466-5af2-8a68-0da94b5064f3
+private var IID___x_ABI_C__FIAsyncOperationProgressHandler_2_int_double: test_component.IID {
+    .init(Data1: 0xc13682fc, Data2: 0x6466, Data3: 0x5af2, Data4: ( 0x8a,0x68,0x0d,0xa9,0x4b,0x50,0x64,0xf3 ))// c13682fc-6466-5af2-8a68-0da94b5064f3
 }
 
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationProgressHandler_2_int_double {
@@ -122,7 +122,7 @@ internal var __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleVTable: __x_
 )
 typealias __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleImpl>
 internal class AsyncOperationProgressHandlerInt32_Double: test_component.IUnknown {
-    override public class var IID: IID { IID___x_ABI_C__FIAsyncOperationProgressHandler_2_int_double }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationProgressHandler_2_int_double }
 
     internal func InvokeImpl(_ asyncInfo: UnsafeMutablePointer<__x_ABI_C__FIAsyncOperationWithProgress_2_int_double>?, _ progressInfo: DOUBLE) throws {
         _ = try perform(as: __x_ABI_C__FIAsyncOperationProgressHandler_2_int_double.self) { pThis in
@@ -148,8 +148,8 @@ internal class __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleImpl : Win
         return handler
     }
 }
-private var IID___x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_double: IID {
-    IID(Data1: 0x42d14b3d, Data2: 0xcf9b, Data3: 0x5c48, Data4: ( 0x85,0x42,0x74,0xd9,0xf4,0x8f,0x4d,0x27 ))// 42d14b3d-cf9b-5c48-8542-74d9f48f4d27
+private var IID___x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_double: test_component.IID {
+    .init(Data1: 0x42d14b3d, Data2: 0xcf9b, Data3: 0x5c48, Data4: ( 0x85,0x42,0x74,0xd9,0xf4,0x8f,0x4d,0x27 ))// 42d14b3d-cf9b-5c48-8542-74d9f48f4d27
 }
 
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_double {
@@ -195,7 +195,7 @@ internal var __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubl
 )
 typealias __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleImpl>
 internal class AsyncOperationWithProgressCompletedHandlerInt32_Double: test_component.IUnknown {
-    override public class var IID: IID { IID___x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_double }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_double }
 
     internal func InvokeImpl(_ asyncInfo: UnsafeMutablePointer<__x_ABI_C__FIAsyncOperationWithProgress_2_int_double>?, _ asyncStatus: __x_ABI_CWindows_CFoundation_CAsyncStatus) throws {
         _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_double.self) { pThis in
@@ -221,8 +221,8 @@ internal class __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_dou
         return handler
     }
 }
-private var IID___x_ABI_C__FIIterable_1_IInspectable: IID {
-    IID(Data1: 0x092b849b, Data2: 0x60b1, Data3: 0x52be, Data4: ( 0xa4,0x4a,0x6f,0xe8,0xe9,0x33,0xcb,0xe4 ))// 092b849b-60b1-52be-a44a-6fe8e933cbe4
+private var IID___x_ABI_C__FIIterable_1_IInspectable: test_component.IID {
+    .init(Data1: 0x092b849b, Data2: 0x60b1, Data3: 0x52be, Data4: ( 0xa4,0x4a,0x6f,0xe8,0xe9,0x33,0xcb,0xe4 ))// 092b849b-60b1-52be-a44a-6fe8e933cbe4
 }
 
 internal var __x_ABI_C__FIIterable_1_IInspectableVTable: __x_ABI_C__FIIterable_1_IInspectableVtbl = .init(
@@ -256,8 +256,8 @@ internal var __x_ABI_C__FIIterable_1_IInspectableVTable: __x_ABI_C__FIIterable_1
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIIterable_1_IInspectableWrapper.IID
@@ -289,7 +289,7 @@ internal var __x_ABI_C__FIIterable_1_IInspectableVTable: __x_ABI_C__FIIterable_1
 )
 typealias __x_ABI_C__FIIterable_1_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1_IInspectableImpl>
 internal class IIterableAny: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIIterable_1_IInspectable }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1_IInspectable }
 
     internal func FirstImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIIterator_1_IInspectable>? {
         var result: UnsafeMutablePointer<__x_ABI_C__FIIterator_1_IInspectable>?
@@ -330,11 +330,11 @@ internal class __x_ABI_C__FIIterable_1_IInspectableImpl : IIterable, AbiInterfac
         return test_component.__x_ABI_C__FIIterator_1_IInspectableWrapper.unwrapFrom(abi: result)
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIIterable_1_HSTRING: IID {
-    IID(Data1: 0xe2fcc7c1, Data2: 0x3bfc, Data3: 0x5a0b, Data4: ( 0xb2,0xb0,0x72,0xe7,0x69,0xd1,0xcb,0x7e ))// e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e
+private var IID___x_ABI_C__FIIterable_1_HSTRING: test_component.IID {
+    .init(Data1: 0xe2fcc7c1, Data2: 0x3bfc, Data3: 0x5a0b, Data4: ( 0xb2,0xb0,0x72,0xe7,0x69,0xd1,0xcb,0x7e ))// e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e
 }
 
 internal var __x_ABI_C__FIIterable_1_HSTRINGVTable: __x_ABI_C__FIIterable_1_HSTRINGVtbl = .init(
@@ -368,8 +368,8 @@ internal var __x_ABI_C__FIIterable_1_HSTRINGVTable: __x_ABI_C__FIIterable_1_HSTR
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIIterable_1_HSTRINGWrapper.IID
@@ -401,7 +401,7 @@ internal var __x_ABI_C__FIIterable_1_HSTRINGVTable: __x_ABI_C__FIIterable_1_HSTR
 )
 typealias __x_ABI_C__FIIterable_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1_HSTRINGImpl>
 internal class IIterableString: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIIterable_1_HSTRING }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1_HSTRING }
 
     internal func FirstImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIIterator_1_HSTRING>? {
         var result: UnsafeMutablePointer<__x_ABI_C__FIIterator_1_HSTRING>?
@@ -442,11 +442,11 @@ internal class __x_ABI_C__FIIterable_1_HSTRINGImpl : IIterable, AbiInterfaceImpl
         return test_component.__x_ABI_C__FIIterator_1_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable: IID {
-    IID(Data1: 0xfe2f3d47, Data2: 0x5d47, Data3: 0x5499, Data4: ( 0x83,0x74,0x43,0x0c,0x7c,0xda,0x02,0x04 ))// fe2f3d47-5d47-5499-8374-430c7cda0204
+private var IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable: test_component.IID {
+    .init(Data1: 0xfe2f3d47, Data2: 0x5d47, Data3: 0x5499, Data4: ( 0x83,0x74,0x43,0x0c,0x7c,0xda,0x02,0x04 ))// fe2f3d47-5d47-5499-8374-430c7cda0204
 }
 
 internal var __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableVTable: __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableVtbl = .init(
@@ -480,8 +480,8 @@ internal var __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspec
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.IID
@@ -513,7 +513,7 @@ internal var __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspec
 )
 typealias __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl>
 internal class IIterableIKeyValuePairString_Any: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable }
 
     internal func FirstImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable>? {
         var result: UnsafeMutablePointer<__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable>?
@@ -554,11 +554,11 @@ internal class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInsp
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING: IID {
-    IID(Data1: 0xe9bdaaf0, Data2: 0xcbf6, Data3: 0x5c72, Data4: ( 0xbe,0x90,0x29,0xcb,0xf3,0xa1,0x31,0x9b ))// e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b
+private var IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING: test_component.IID {
+    .init(Data1: 0xe9bdaaf0, Data2: 0xcbf6, Data3: 0x5c72, Data4: ( 0xbe,0x90,0x29,0xcb,0xf3,0xa1,0x31,0x9b ))// e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b
 }
 
 internal var __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGVtbl = .init(
@@ -592,8 +592,8 @@ internal var __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.IID
@@ -625,7 +625,7 @@ internal var __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING
 )
 typealias __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl>
 internal class IIterableIKeyValuePairString_String: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING }
 
     internal func FirstImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING>? {
         var result: UnsafeMutablePointer<__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING>?
@@ -666,11 +666,11 @@ internal class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRI
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase: IID {
-    IID(Data1: 0x9ee59ac2, Data2: 0xef36, Data3: 0x560b, Data4: ( 0x8a,0xdc,0xd3,0xea,0x78,0xbd,0x58,0x2b ))// 9ee59ac2-ef36-560b-8adc-d3ea78bd582b
+private var IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase: test_component.IID {
+    .init(Data1: 0x9ee59ac2, Data2: 0xef36, Data3: 0x560b, Data4: ( 0x8a,0xdc,0xd3,0xea,0x78,0xbd,0x58,0x2b ))// 9ee59ac2-ef36-560b-8adc-d3ea78bd582b
 }
 
 internal var __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
@@ -704,8 +704,8 @@ internal var __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
@@ -737,7 +737,7 @@ internal var __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI
 )
 typealias __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl>
 internal class IIterableIKeyValuePairString_Base: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
 
     internal func FirstImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>? {
         var result: UnsafeMutablePointer<__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
@@ -778,11 +778,11 @@ internal class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_A
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBase: IID {
-    IID(Data1: 0xb826dcab, Data2: 0xca2a, Data3: 0x5fbc, Data4: ( 0x8c,0xbd,0xed,0x75,0x9a,0x9a,0x1c,0x00 ))// b826dcab-ca2a-5fbc-8cbd-ed759a9a1c00
+private var IID___x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBase: test_component.IID {
+    .init(Data1: 0xb826dcab, Data2: 0xca2a, Data3: 0x5fbc, Data4: ( 0x8c,0xbd,0xed,0x75,0x9a,0x9a,0x1c,0x00 ))// b826dcab-ca2a-5fbc-8cbd-ed759a9a1c00
 }
 
 internal var __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
@@ -816,8 +816,8 @@ internal var __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
@@ -849,7 +849,7 @@ internal var __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x
 )
 typealias __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseImpl>
 internal class IIterableBase: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBase }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBase }
 
     internal func FirstImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase>? {
         var result: UnsafeMutablePointer<__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase>?
@@ -890,11 +890,11 @@ internal class __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseImpl : II
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasic: IID {
-    IID(Data1: 0x2ec46808, Data2: 0xad2e, Data3: 0x5438, Data4: ( 0xa5,0x84,0xfa,0xb6,0x0a,0x1b,0x07,0xe3 ))// 2ec46808-ad2e-5438-a584-fab60a1b07e3
+private var IID___x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasic: test_component.IID {
+    .init(Data1: 0x2ec46808, Data2: 0xad2e, Data3: 0x5438, Data4: ( 0xa5,0x84,0xfa,0xb6,0x0a,0x1b,0x07,0xe3 ))// 2ec46808-ad2e-5438-a584-fab60a1b07e3
 }
 
 internal var __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicVTable: __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicVtbl = .init(
@@ -928,8 +928,8 @@ internal var __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicVTable: _
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.IID
@@ -961,7 +961,7 @@ internal var __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicVTable: _
 )
 typealias __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicImpl>
 internal class IIterableIBasic: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasic }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasic }
 
     internal func FirstImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic>? {
         var result: UnsafeMutablePointer<__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic>?
@@ -1002,11 +1002,11 @@ internal class __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicImpl : 
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.unwrapFrom(abi: result)
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIIterator_1_IInspectable: IID {
-    IID(Data1: 0x44a94f2d, Data2: 0x04f8, Data3: 0x5091, Data4: ( 0xb3,0x36,0xbe,0x78,0x92,0xdd,0x10,0xbe ))// 44a94f2d-04f8-5091-b336-be7892dd10be
+private var IID___x_ABI_C__FIIterator_1_IInspectable: test_component.IID {
+    .init(Data1: 0x44a94f2d, Data2: 0x04f8, Data3: 0x5091, Data4: ( 0xb3,0x36,0xbe,0x78,0x92,0xdd,0x10,0xbe ))// 44a94f2d-04f8-5091-b336-be7892dd10be
 }
 
 internal var __x_ABI_C__FIIterator_1_IInspectableVTable: __x_ABI_C__FIIterator_1_IInspectableVtbl = .init(
@@ -1040,8 +1040,8 @@ internal var __x_ABI_C__FIIterator_1_IInspectableVTable: __x_ABI_C__FIIterator_1
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIIterator_1_IInspectableWrapper.IID
@@ -1089,10 +1089,10 @@ internal var __x_ABI_C__FIIterator_1_IInspectableVTable: __x_ABI_C__FIIterator_1
 )
 typealias __x_ABI_C__FIIterator_1_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1_IInspectableImpl>
 internal class IIteratorAny: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIIterator_1_IInspectable }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1_IInspectable }
 
-    internal func get_CurrentImpl() throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-        var result: UnsafeMutablePointer<Ctest_component.IInspectable>?
+    internal func get_CurrentImpl() throws -> UnsafeMutablePointer<NativeIInspectable>? {
+        var result: UnsafeMutablePointer<NativeIInspectable>?
         _ = try perform(as: __x_ABI_C__FIIterator_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
         }
@@ -1164,11 +1164,11 @@ internal class __x_ABI_C__FIIterator_1_IInspectableImpl : IIterator, AbiInterfac
 
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIIterator_1_HSTRING: IID {
-    IID(Data1: 0x8c304ebb, Data2: 0x6615, Data3: 0x50a4, Data4: ( 0x88,0x29,0x87,0x9e,0xcd,0x44,0x32,0x36 ))// 8c304ebb-6615-50a4-8829-879ecd443236
+private var IID___x_ABI_C__FIIterator_1_HSTRING: test_component.IID {
+    .init(Data1: 0x8c304ebb, Data2: 0x6615, Data3: 0x50a4, Data4: ( 0x88,0x29,0x87,0x9e,0xcd,0x44,0x32,0x36 ))// 8c304ebb-6615-50a4-8829-879ecd443236
 }
 
 internal var __x_ABI_C__FIIterator_1_HSTRINGVTable: __x_ABI_C__FIIterator_1_HSTRINGVtbl = .init(
@@ -1202,8 +1202,8 @@ internal var __x_ABI_C__FIIterator_1_HSTRINGVTable: __x_ABI_C__FIIterator_1_HSTR
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIIterator_1_HSTRINGWrapper.IID
@@ -1250,7 +1250,7 @@ internal var __x_ABI_C__FIIterator_1_HSTRINGVTable: __x_ABI_C__FIIterator_1_HSTR
 )
 typealias __x_ABI_C__FIIterator_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1_HSTRINGImpl>
 internal class IIteratorString: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIIterator_1_HSTRING }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1_HSTRING }
 
     internal func get_CurrentImpl() throws -> HSTRING? {
         var result: HSTRING?
@@ -1325,11 +1325,11 @@ internal class __x_ABI_C__FIIterator_1_HSTRINGImpl : IIterator, AbiInterfaceImpl
 
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable: IID {
-    IID(Data1: 0x5db5fa32, Data2: 0x707c, Data3: 0x5849, Data4: ( 0xa0,0x6b,0x91,0xc8,0xeb,0x9d,0x10,0xe8 ))// 5db5fa32-707c-5849-a06b-91c8eb9d10e8
+private var IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable: test_component.IID {
+    .init(Data1: 0x5db5fa32, Data2: 0x707c, Data3: 0x5849, Data4: ( 0xa0,0x6b,0x91,0xc8,0xeb,0x9d,0x10,0xe8 ))// 5db5fa32-707c-5849-a06b-91c8eb9d10e8
 }
 
 internal var __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableVTable: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableVtbl = .init(
@@ -1363,8 +1363,8 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspec
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.IID
@@ -1412,7 +1412,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspec
 )
 typealias __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl>
 internal class IIteratorIKeyValuePairString_Any: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable }
 
     internal func get_CurrentImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable>? {
         var result: UnsafeMutablePointer<__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable>?
@@ -1487,11 +1487,11 @@ internal class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInsp
 
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING: IID {
-    IID(Data1: 0x05eb86f1, Data2: 0x7140, Data3: 0x5517, Data4: ( 0xb8,0x8d,0xcb,0xae,0xbe,0x57,0xe6,0xb1 ))// 05eb86f1-7140-5517-b88d-cbaebe57e6b1
+private var IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING: test_component.IID {
+    .init(Data1: 0x05eb86f1, Data2: 0x7140, Data3: 0x5517, Data4: ( 0xb8,0x8d,0xcb,0xae,0xbe,0x57,0xe6,0xb1 ))// 05eb86f1-7140-5517-b88d-cbaebe57e6b1
 }
 
 internal var __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGVtbl = .init(
@@ -1525,8 +1525,8 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.IID
@@ -1574,7 +1574,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING
 )
 typealias __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl>
 internal class IIteratorIKeyValuePairString_String: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING }
 
     internal func get_CurrentImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING>? {
         var result: UnsafeMutablePointer<__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING>?
@@ -1649,11 +1649,11 @@ internal class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRI
 
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase: IID {
-    IID(Data1: 0xbe30f8a4, Data2: 0x7d2e, Data3: 0x55fa, Data4: ( 0x91,0xd0,0xf0,0x21,0xdf,0xe4,0x6d,0x06 ))// be30f8a4-7d2e-55fa-91d0-f021dfe46d06
+private var IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase: test_component.IID {
+    .init(Data1: 0xbe30f8a4, Data2: 0x7d2e, Data3: 0x55fa, Data4: ( 0x91,0xd0,0xf0,0x21,0xdf,0xe4,0x6d,0x06 ))// be30f8a4-7d2e-55fa-91d0-f021dfe46d06
 }
 
 internal var __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
@@ -1687,8 +1687,8 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
@@ -1736,7 +1736,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI
 )
 typealias __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl>
 internal class IIteratorIKeyValuePairString_Base: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
 
     internal func get_CurrentImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>? {
         var result: UnsafeMutablePointer<__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
@@ -1811,11 +1811,11 @@ internal class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_A
 
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase: IID {
-    IID(Data1: 0xa8f692bf, Data2: 0xebba, Data3: 0x5b53, Data4: ( 0x90,0xd3,0x89,0x00,0x9b,0xcc,0x98,0x14 ))// a8f692bf-ebba-5b53-90d3-89009bcc9814
+private var IID___x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase: test_component.IID {
+    .init(Data1: 0xa8f692bf, Data2: 0xebba, Data3: 0x5b53, Data4: ( 0x90,0xd3,0x89,0x00,0x9b,0xcc,0x98,0x14 ))// a8f692bf-ebba-5b53-90d3-89009bcc9814
 }
 
 internal var __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
@@ -1849,8 +1849,8 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
@@ -1897,7 +1897,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x
 )
 typealias __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseImpl>
 internal class IIteratorBase: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase }
 
     internal func get_CurrentImpl() throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>? {
         var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?
@@ -1972,11 +1972,11 @@ internal class __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseImpl : II
 
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic: IID {
-    IID(Data1: 0xfc247a63, Data2: 0xc092, Data3: 0x5c5c, Data4: ( 0x8b,0x94,0x66,0xfb,0xfa,0x60,0xf9,0x5f ))// fc247a63-c092-5c5c-8b94-66fbfa60f95f
+private var IID___x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic: test_component.IID {
+    .init(Data1: 0xfc247a63, Data2: 0xc092, Data3: 0x5c5c, Data4: ( 0x8b,0x94,0x66,0xfb,0xfa,0x60,0xf9,0x5f ))// fc247a63-c092-5c5c-8b94-66fbfa60f95f
 }
 
 internal var __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicVTable: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicVtbl = .init(
@@ -2010,8 +2010,8 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicVTable: _
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.IID
@@ -2059,7 +2059,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicVTable: _
 )
 typealias __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicImpl>
 internal class IIteratorIBasic: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic }
 
     internal func get_CurrentImpl() throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>? {
         var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>?
@@ -2134,11 +2134,11 @@ internal class __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicImpl : 
 
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable: IID {
-    IID(Data1: 0x09335560, Data2: 0x6c6b, Data3: 0x5a26, Data4: ( 0x93,0x48,0x97,0xb7,0x81,0x13,0x2b,0x20 ))// 09335560-6c6b-5a26-9348-97b781132b20
+private var IID___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable: test_component.IID {
+    .init(Data1: 0x09335560, Data2: 0x6c6b, Data3: 0x5a26, Data4: ( 0x93,0x48,0x97,0xb7,0x81,0x13,0x2b,0x20 ))// 09335560-6c6b-5a26-9348-97b781132b20
 }
 
 internal var __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableVTable: __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableVtbl = .init(
@@ -2172,8 +2172,8 @@ internal var __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableVTable: __x_ABI_C__
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.IID
@@ -2212,7 +2212,7 @@ internal var __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableVTable: __x_ABI_C__
 )
 typealias __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl>
 internal class IKeyValuePairString_Any: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable }
 
     internal func get_KeyImpl() throws -> HSTRING? {
         var result: HSTRING?
@@ -2222,8 +2222,8 @@ internal class IKeyValuePairString_Any: test_component.IInspectable {
         return result
     }
 
-    internal func get_ValueImpl() throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-        var result: UnsafeMutablePointer<Ctest_component.IInspectable>?
+    internal func get_ValueImpl() throws -> UnsafeMutablePointer<NativeIInspectable>? {
+        var result: UnsafeMutablePointer<NativeIInspectable>?
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Value(pThis, &result))
         }
@@ -2274,11 +2274,11 @@ internal class __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl : IKeyValueP
 
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING: IID {
-    IID(Data1: 0x60310303, Data2: 0x49c5, Data3: 0x52e6, Data4: ( 0xab,0xc6,0xa9,0xb3,0x6e,0xcc,0xc7,0x16 ))// 60310303-49c5-52e6-abc6-a9b36eccc716
+private var IID___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING: test_component.IID {
+    .init(Data1: 0x60310303, Data2: 0x49c5, Data3: 0x52e6, Data4: ( 0xab,0xc6,0xa9,0xb3,0x6e,0xcc,0xc7,0x16 ))// 60310303-49c5-52e6-abc6-a9b36eccc716
 }
 
 internal var __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGVtbl = .init(
@@ -2312,8 +2312,8 @@ internal var __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIKey
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.IID
@@ -2351,7 +2351,7 @@ internal var __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIKey
 )
 typealias __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl>
 internal class IKeyValuePairString_String: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING }
 
     internal func get_KeyImpl() throws -> HSTRING? {
         var result: HSTRING?
@@ -2413,11 +2413,11 @@ internal class __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl : IKeyValuePair, 
 
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase: IID {
-    IID(Data1: 0xc6bff2b3, Data2: 0x09a5, Data3: 0x5fcf, Data4: ( 0xb0,0x78,0x69,0x43,0xdd,0x21,0x5d,0xe7 ))// c6bff2b3-09a5-5fcf-b078-6943dd215de7
+private var IID___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase: test_component.IID {
+    .init(Data1: 0xc6bff2b3, Data2: 0x09a5, Data3: 0x5fcf, Data4: ( 0xb0,0x78,0x69,0x43,0xdd,0x21,0x5d,0xe7 ))// c6bff2b3-09a5-5fcf-b078-6943dd215de7
 }
 
 internal var __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
@@ -2451,8 +2451,8 @@ internal var __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBas
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
@@ -2490,7 +2490,7 @@ internal var __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBas
 )
 typealias __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl>
 internal class IKeyValuePairString_Base: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
 
     internal func get_KeyImpl() throws -> HSTRING? {
         var result: HSTRING?
@@ -2552,11 +2552,11 @@ internal class __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CB
 
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIMapChangedEventArgs_1_HSTRING: IID {
-    IID(Data1: 0x60141efb, Data2: 0xf2f9, Data3: 0x5377, Data4: ( 0x96,0xfd,0xf8,0xc6,0x0d,0x95,0x58,0xb5 ))// 60141efb-f2f9-5377-96fd-f8c60d9558b5
+private var IID___x_ABI_C__FIMapChangedEventArgs_1_HSTRING: test_component.IID {
+    .init(Data1: 0x60141efb, Data2: 0xf2f9, Data3: 0x5377, Data4: ( 0x96,0xfd,0xf8,0xc6,0x0d,0x95,0x58,0xb5 ))// 60141efb-f2f9-5377-96fd-f8c60d9558b5
 }
 
 internal var __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGVTable: __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGVtbl = .init(
@@ -2590,8 +2590,8 @@ internal var __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGVTable: __x_ABI_C__FIMapC
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper.IID
@@ -2629,7 +2629,7 @@ internal var __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGVTable: __x_ABI_C__FIMapC
 )
 typealias __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMapChangedEventArgs_1_HSTRINGImpl>
 internal class IMapChangedEventArgsString: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIMapChangedEventArgs_1_HSTRING }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIMapChangedEventArgs_1_HSTRING }
 
     internal func get_CollectionChangeImpl() throws -> __x_ABI_CWindows_CFoundation_CCollections_CCollectionChange {
         var result: __x_ABI_CWindows_CFoundation_CCollections_CCollectionChange = .init(0)
@@ -2690,11 +2690,11 @@ internal class __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGImpl : IMapChangedEvent
 
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIMapView_2_HSTRING_IInspectable: IID {
-    IID(Data1: 0xbb78502a, Data2: 0xf79d, Data3: 0x54fa, Data4: ( 0x92,0xc9,0x90,0xc5,0x03,0x9f,0xdf,0x7e ))// bb78502a-f79d-54fa-92c9-90c5039fdf7e
+private var IID___x_ABI_C__FIMapView_2_HSTRING_IInspectable: test_component.IID {
+    .init(Data1: 0xbb78502a, Data2: 0xf79d, Data3: 0x54fa, Data4: ( 0x92,0xc9,0x90,0xc5,0x03,0x9f,0xdf,0x7e ))// bb78502a-f79d-54fa-92c9-90c5039fdf7e
 }
 
 internal var __x_ABI_C__FIMapView_2_HSTRING_IInspectableVTable: __x_ABI_C__FIMapView_2_HSTRING_IInspectableVtbl = .init(
@@ -2728,8 +2728,8 @@ internal var __x_ABI_C__FIMapView_2_HSTRING_IInspectableVTable: __x_ABI_C__FIMap
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.IID
@@ -2790,10 +2790,10 @@ internal var __x_ABI_C__FIMapView_2_HSTRING_IInspectableVTable: __x_ABI_C__FIMap
 )
 typealias __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl>
 internal class IMapViewString_Any: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIMapView_2_HSTRING_IInspectable }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIMapView_2_HSTRING_IInspectable }
 
-    internal func LookupImpl(_ key: HSTRING?) throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-        var result: UnsafeMutablePointer<Ctest_component.IInspectable>?
+    internal func LookupImpl(_ key: HSTRING?) throws -> UnsafeMutablePointer<NativeIInspectable>? {
+        var result: UnsafeMutablePointer<NativeIInspectable>?
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, key, &result))
         }
@@ -2888,11 +2888,11 @@ internal class __x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl : IMapView, AbiIn
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIMapView_2_HSTRING_HSTRING: IID {
-    IID(Data1: 0xac7f26f2, Data2: 0xfeb7, Data3: 0x5b2a, Data4: ( 0x8a,0xc4,0x34,0x5b,0xc6,0x2c,0xae,0xde ))// ac7f26f2-feb7-5b2a-8ac4-345bc62caede
+private var IID___x_ABI_C__FIMapView_2_HSTRING_HSTRING: test_component.IID {
+    .init(Data1: 0xac7f26f2, Data2: 0xfeb7, Data3: 0x5b2a, Data4: ( 0x8a,0xc4,0x34,0x5b,0xc6,0x2c,0xae,0xde ))// ac7f26f2-feb7-5b2a-8ac4-345bc62caede
 }
 
 internal var __x_ABI_C__FIMapView_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMapView_2_HSTRING_HSTRINGVtbl = .init(
@@ -2926,8 +2926,8 @@ internal var __x_ABI_C__FIMapView_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMapView_
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.IID
@@ -2987,7 +2987,7 @@ internal var __x_ABI_C__FIMapView_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMapView_
 )
 typealias __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl>
 internal class IMapViewString_String: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIMapView_2_HSTRING_HSTRING }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIMapView_2_HSTRING_HSTRING }
 
     internal func LookupImpl(_ key: HSTRING?) throws -> HSTRING? {
         var result: HSTRING?
@@ -3085,11 +3085,11 @@ internal class __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl : IMapView, AbiInterfa
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase: IID {
-    IID(Data1: 0x8c4e7f37, Data2: 0x8bf0, Data3: 0x515a, Data4: ( 0x82,0xc1,0x06,0x45,0x55,0x0b,0xf6,0x0b ))// 8c4e7f37-8bf0-515a-82c1-0645550bf60b
+private var IID___x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase: test_component.IID {
+    .init(Data1: 0x8c4e7f37, Data2: 0x8bf0, Data3: 0x515a, Data4: ( 0x82,0xc1,0x06,0x45,0x55,0x0b,0xf6,0x0b ))// 8c4e7f37-8bf0-515a-82c1-0645550bf60b
 }
 
 internal var __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
@@ -3123,8 +3123,8 @@ internal var __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTab
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
@@ -3184,7 +3184,7 @@ internal var __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTab
 )
 typealias __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl>
 internal class IMapViewString_Base: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
 
     internal func LookupImpl(_ key: HSTRING?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>? {
         var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?
@@ -3282,11 +3282,11 @@ internal class __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseIm
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIMap_2_HSTRING_IInspectable: IID {
-    IID(Data1: 0x1b0d3570, Data2: 0x0877, Data3: 0x5ec2, Data4: ( 0x8a,0x2c,0x3b,0x95,0x39,0x50,0x6a,0xca ))// 1b0d3570-0877-5ec2-8a2c-3b9539506aca
+private var IID___x_ABI_C__FIMap_2_HSTRING_IInspectable: test_component.IID {
+    .init(Data1: 0x1b0d3570, Data2: 0x0877, Data3: 0x5ec2, Data4: ( 0x8a,0x2c,0x3b,0x95,0x39,0x50,0x6a,0xca ))// 1b0d3570-0877-5ec2-8a2c-3b9539506aca
 }
 
 internal var __x_ABI_C__FIMap_2_HSTRING_IInspectableVTable: __x_ABI_C__FIMap_2_HSTRING_IInspectableVtbl = .init(
@@ -3320,8 +3320,8 @@ internal var __x_ABI_C__FIMap_2_HSTRING_IInspectableVTable: __x_ABI_C__FIMap_2_H
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.IID
@@ -3400,10 +3400,10 @@ internal var __x_ABI_C__FIMap_2_HSTRING_IInspectableVTable: __x_ABI_C__FIMap_2_H
 )
 typealias __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMap_2_HSTRING_IInspectableImpl>
 internal class IMapString_Any: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIMap_2_HSTRING_IInspectable }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIMap_2_HSTRING_IInspectable }
 
-    internal func LookupImpl(_ key: HSTRING?) throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-        var result: UnsafeMutablePointer<Ctest_component.IInspectable>?
+    internal func LookupImpl(_ key: HSTRING?) throws -> UnsafeMutablePointer<NativeIInspectable>? {
+        var result: UnsafeMutablePointer<NativeIInspectable>?
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, key, &result))
         }
@@ -3434,7 +3434,7 @@ internal class IMapString_Any: test_component.IInspectable {
         return result
     }
 
-    internal func InsertImpl(_ key: HSTRING?, _ value: UnsafeMutablePointer<Ctest_component.IInspectable>?) throws -> boolean {
+    internal func InsertImpl(_ key: HSTRING?, _ value: UnsafeMutablePointer<NativeIInspectable>?) throws -> boolean {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Insert(pThis, key, value, &result))
@@ -3537,11 +3537,11 @@ internal class __x_ABI_C__FIMap_2_HSTRING_IInspectableImpl : IMap, AbiInterfaceI
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIMap_2_HSTRING_HSTRING: IID {
-    IID(Data1: 0xf6d1f700, Data2: 0x49c2, Data3: 0x52ae, Data4: ( 0x81,0x54,0x82,0x6f,0x99,0x08,0x77,0x3c ))// f6d1f700-49c2-52ae-8154-826f9908773c
+private var IID___x_ABI_C__FIMap_2_HSTRING_HSTRING: test_component.IID {
+    .init(Data1: 0xf6d1f700, Data2: 0x49c2, Data3: 0x52ae, Data4: ( 0x81,0x54,0x82,0x6f,0x99,0x08,0x77,0x3c ))// f6d1f700-49c2-52ae-8154-826f9908773c
 }
 
 internal var __x_ABI_C__FIMap_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMap_2_HSTRING_HSTRINGVtbl = .init(
@@ -3575,8 +3575,8 @@ internal var __x_ABI_C__FIMap_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMap_2_HSTRIN
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.IID
@@ -3654,7 +3654,7 @@ internal var __x_ABI_C__FIMap_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMap_2_HSTRIN
 )
 typealias __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGImpl>
 internal class IMapString_String: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIMap_2_HSTRING_HSTRING }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIMap_2_HSTRING_HSTRING }
 
     internal func LookupImpl(_ key: HSTRING?) throws -> HSTRING? {
         var result: HSTRING?
@@ -3790,11 +3790,11 @@ internal class __x_ABI_C__FIMap_2_HSTRING_HSTRINGImpl : IMap, AbiInterfaceImpl {
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase: IID {
-    IID(Data1: 0x73430fe6, Data2: 0xa622, Data3: 0x5945, Data4: ( 0xa5,0x86,0x6f,0x3a,0x84,0xef,0x15,0xe3 ))// 73430fe6-a622-5945-a586-6f3a84ef15e3
+private var IID___x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase: test_component.IID {
+    .init(Data1: 0x73430fe6, Data2: 0xa622, Data3: 0x5945, Data4: ( 0xa5,0x86,0x6f,0x3a,0x84,0xef,0x15,0xe3 ))// 73430fe6-a622-5945-a586-6f3a84ef15e3
 }
 
 internal var __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
@@ -3828,8 +3828,8 @@ internal var __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: 
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
@@ -3907,7 +3907,7 @@ internal var __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: 
 )
 typealias __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl>
 internal class IMapString_Base: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
 
     internal func LookupImpl(_ key: HSTRING?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>? {
         var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?
@@ -4042,11 +4042,11 @@ internal class __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl :
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIObservableMap_2_HSTRING_IInspectable: IID {
-    IID(Data1: 0x236aac9d, Data2: 0xfb12, Data3: 0x5c4d, Data4: ( 0xa4,0x1c,0x9e,0x44,0x5f,0xb4,0xd7,0xec ))// 236aac9d-fb12-5c4d-a41c-9e445fb4d7ec
+private var IID___x_ABI_C__FIObservableMap_2_HSTRING_IInspectable: test_component.IID {
+    .init(Data1: 0x236aac9d, Data2: 0xfb12, Data3: 0x5c4d, Data4: ( 0xa4,0x1c,0x9e,0x44,0x5f,0xb4,0xd7,0xec ))// 236aac9d-fb12-5c4d-a41c-9e445fb4d7ec
 }
 
 internal var __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableVTable: __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableVtbl = .init(
@@ -4080,8 +4080,8 @@ internal var __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableVTable: __x_ABI_C_
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 5).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 5).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper.IID
@@ -4122,7 +4122,7 @@ internal var __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableVTable: __x_ABI_C_
 )
 typealias __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIObservableMap_2_HSTRING_IInspectableImpl>
 internal class IObservableMapString_Any: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIObservableMap_2_HSTRING_IInspectable }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIObservableMap_2_HSTRING_IInspectable }
 
     internal func add_MapChangedImpl(_ vhnd: UnsafeMutablePointer<__x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectable>?) throws -> EventRegistrationToken {
         var result: EventRegistrationToken = .init()
@@ -4237,11 +4237,11 @@ internal class __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableImpl : IObservab
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIObservableMap_2_HSTRING_HSTRING: IID {
-    IID(Data1: 0x1e036276, Data2: 0x2f60, Data3: 0x55f6, Data4: ( 0xb7,0xf3,0xf8,0x60,0x79,0xe6,0x90,0x0b ))// 1e036276-2f60-55f6-b7f3-f86079e6900b
+private var IID___x_ABI_C__FIObservableMap_2_HSTRING_HSTRING: test_component.IID {
+    .init(Data1: 0x1e036276, Data2: 0x2f60, Data3: 0x55f6, Data4: ( 0xb7,0xf3,0xf8,0x60,0x79,0xe6,0x90,0x0b ))// 1e036276-2f60-55f6-b7f3-f86079e6900b
 }
 
 internal var __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGVtbl = .init(
@@ -4275,8 +4275,8 @@ internal var __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIOb
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 5).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 5).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper.IID
@@ -4317,7 +4317,7 @@ internal var __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIOb
 )
 typealias __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGImpl>
 internal class IObservableMapString_String: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIObservableMap_2_HSTRING_HSTRING }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIObservableMap_2_HSTRING_HSTRING }
 
     internal func add_MapChangedImpl(_ vhnd: UnsafeMutablePointer<__x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRING>?) throws -> EventRegistrationToken {
         var result: EventRegistrationToken = .init()
@@ -4431,11 +4431,11 @@ internal class __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGImpl : IObservableMap
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase: IID {
-    IID(Data1: 0x04ca85dc, Data2: 0x5d3e, Data3: 0x573d, Data4: ( 0xb4,0xe3,0x46,0xde,0x30,0x3f,0x6c,0x35 ))// 04ca85dc-5d3e-573d-b4e3-46de303f6c35
+private var IID___x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase: test_component.IID {
+    .init(Data1: 0x04ca85dc, Data2: 0x5d3e, Data3: 0x573d, Data4: ( 0xb4,0xe3,0x46,0xde,0x30,0x3f,0x6c,0x35 ))// 04ca85dc-5d3e-573d-b4e3-46de303f6c35
 }
 
 internal var __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
@@ -4469,8 +4469,8 @@ internal var __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseVTa
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 5).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 5).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
@@ -4511,7 +4511,7 @@ internal var __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseVTa
 )
 typealias __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseImpl>
 internal class IObservableVectorBase: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase }
 
     internal func add_VectorChangedImpl(_ vhnd: UnsafeMutablePointer<__x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBase>?) throws -> EventRegistrationToken {
         var result: EventRegistrationToken = .init()
@@ -4662,11 +4662,11 @@ internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseI
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasic: IID {
-    IID(Data1: 0xd0fc0651, Data2: 0x9791, Data3: 0x5130, Data4: ( 0xa7,0x41,0xb0,0xef,0xea,0xfa,0xbc,0xa9 ))// d0fc0651-9791-5130-a741-b0efeafabca9
+private var IID___x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasic: test_component.IID {
+    .init(Data1: 0xd0fc0651, Data2: 0x9791, Data3: 0x5130, Data4: ( 0xa7,0x41,0xb0,0xef,0xea,0xfa,0xbc,0xa9 ))// d0fc0651-9791-5130-a741-b0efeafabca9
 }
 
 internal var __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicVTable: __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicVtbl = .init(
@@ -4700,8 +4700,8 @@ internal var __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicV
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 5).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 5).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.IID
@@ -4742,7 +4742,7 @@ internal var __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicV
 )
 typealias __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicImpl>
 internal class IObservableVectorIBasic: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasic }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasic }
 
     internal func add_VectorChangedImpl(_ vhnd: UnsafeMutablePointer<__x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasic>?) throws -> EventRegistrationToken {
         var result: EventRegistrationToken = .init()
@@ -4901,11 +4901,11 @@ internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasi
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.unwrapFrom(abi: result)
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIVectorView_1_IInspectable: IID {
-    IID(Data1: 0xa6487363, Data2: 0xb074, Data3: 0x5c60, Data4: ( 0xab,0x16,0x86,0x6d,0xce,0x4e,0xe5,0x4d ))// a6487363-b074-5c60-ab16-866dce4ee54d
+private var IID___x_ABI_C__FIVectorView_1_IInspectable: test_component.IID {
+    .init(Data1: 0xa6487363, Data2: 0xb074, Data3: 0x5c60, Data4: ( 0xab,0x16,0x86,0x6d,0xce,0x4e,0xe5,0x4d ))// a6487363-b074-5c60-ab16-866dce4ee54d
 }
 
 internal var __x_ABI_C__FIVectorView_1_IInspectableVTable: __x_ABI_C__FIVectorView_1_IInspectableVtbl = .init(
@@ -4939,8 +4939,8 @@ internal var __x_ABI_C__FIVectorView_1_IInspectableVTable: __x_ABI_C__FIVectorVi
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIVectorView_1_IInspectableWrapper.IID
@@ -4993,10 +4993,10 @@ internal var __x_ABI_C__FIVectorView_1_IInspectableVTable: __x_ABI_C__FIVectorVi
 )
 typealias __x_ABI_C__FIVectorView_1_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1_IInspectableImpl>
 internal class IVectorViewAny: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIVectorView_1_IInspectable }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1_IInspectable }
 
-    internal func GetAtImpl(_ index: UINT32) throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-        var result: UnsafeMutablePointer<Ctest_component.IInspectable>?
+    internal func GetAtImpl(_ index: UINT32) throws -> UnsafeMutablePointer<NativeIInspectable>? {
+        var result: UnsafeMutablePointer<NativeIInspectable>?
         _ = try perform(as: __x_ABI_C__FIVectorView_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
         }
@@ -5011,7 +5011,7 @@ internal class IVectorViewAny: test_component.IInspectable {
         return result
     }
 
-    internal func IndexOfImpl(_ value: UnsafeMutablePointer<Ctest_component.IInspectable>?, _ index: inout UINT32) throws -> boolean {
+    internal func IndexOfImpl(_ value: UnsafeMutablePointer<NativeIInspectable>?, _ index: inout UINT32) throws -> boolean {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, value, &index, &result))
@@ -5095,11 +5095,11 @@ internal class __x_ABI_C__FIVectorView_1_IInspectableImpl : IVectorView, AbiInte
         return test_component.__x_ABI_C__FIIterator_1_IInspectableWrapper.unwrapFrom(abi: result)
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIVectorView_1_HSTRING: IID {
-    IID(Data1: 0x2f13c006, Data2: 0xa03a, Data3: 0x5f69, Data4: ( 0xb0,0x90,0x75,0xa4,0x3e,0x33,0x42,0x3e ))// 2f13c006-a03a-5f69-b090-75a43e33423e
+private var IID___x_ABI_C__FIVectorView_1_HSTRING: test_component.IID {
+    .init(Data1: 0x2f13c006, Data2: 0xa03a, Data3: 0x5f69, Data4: ( 0xb0,0x90,0x75,0xa4,0x3e,0x33,0x42,0x3e ))// 2f13c006-a03a-5f69-b090-75a43e33423e
 }
 
 internal var __x_ABI_C__FIVectorView_1_HSTRINGVTable: __x_ABI_C__FIVectorView_1_HSTRINGVtbl = .init(
@@ -5133,8 +5133,8 @@ internal var __x_ABI_C__FIVectorView_1_HSTRINGVTable: __x_ABI_C__FIVectorView_1_
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper.IID
@@ -5186,7 +5186,7 @@ internal var __x_ABI_C__FIVectorView_1_HSTRINGVTable: __x_ABI_C__FIVectorView_1_
 )
 typealias __x_ABI_C__FIVectorView_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1_HSTRINGImpl>
 internal class IVectorViewString: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIVectorView_1_HSTRING }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1_HSTRING }
 
     internal func GetAtImpl(_ index: UINT32) throws -> HSTRING? {
         var result: HSTRING?
@@ -5287,11 +5287,11 @@ internal class __x_ABI_C__FIVectorView_1_HSTRINGImpl : IVectorView, AbiInterface
         return test_component.__x_ABI_C__FIIterator_1_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase: IID {
-    IID(Data1: 0x92c07225, Data2: 0x1151, Data3: 0x51be, Data4: ( 0x83,0x03,0xf0,0x11,0x9f,0x4a,0xac,0xe6 ))// 92c07225-1151-51be-8303-f0119f4aace6
+private var IID___x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase: test_component.IID {
+    .init(Data1: 0x92c07225, Data2: 0x1151, Data3: 0x51be, Data4: ( 0x83,0x03,0xf0,0x11,0x9f,0x4a,0xac,0xe6 ))// 92c07225-1151-51be-8303-f0119f4aace6
 }
 
 internal var __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
@@ -5325,8 +5325,8 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVTable: _
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
@@ -5378,7 +5378,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVTable: _
 )
 typealias __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl>
 internal class IVectorViewBase: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase }
 
     internal func GetAtImpl(_ index: UINT32) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>? {
         var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?
@@ -5478,11 +5478,11 @@ internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl : 
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasic: IID {
-    IID(Data1: 0x90050e25, Data2: 0xb754, Data3: 0x51a3, Data4: ( 0x83,0x44,0x87,0xdf,0x43,0xe9,0x03,0xb7 ))// 90050e25-b754-51a3-8344-87df43e903b7
+private var IID___x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasic: test_component.IID {
+    .init(Data1: 0x90050e25, Data2: 0xb754, Data3: 0x51a3, Data4: ( 0x83,0x44,0x87,0xdf,0x43,0xe9,0x03,0xb7 ))// 90050e25-b754-51a3-8344-87df43e903b7
 }
 
 internal var __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicVTable: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicVtbl = .init(
@@ -5516,8 +5516,8 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicVTable:
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.IID
@@ -5570,7 +5570,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicVTable:
 )
 typealias __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicImpl>
 internal class IVectorViewIBasic: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasic }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasic }
 
     internal func GetAtImpl(_ index: UINT32) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>? {
         var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>?
@@ -5672,11 +5672,11 @@ internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicImpl 
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.unwrapFrom(abi: result)
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIVector_1_IInspectable: IID {
-    IID(Data1: 0xb32bdca4, Data2: 0x5e52, Data3: 0x5b27, Data4: ( 0xbc,0x5d,0xd6,0x6a,0x1a,0x26,0x8c,0x2a ))// b32bdca4-5e52-5b27-bc5d-d66a1a268c2a
+private var IID___x_ABI_C__FIVector_1_IInspectable: test_component.IID {
+    .init(Data1: 0xb32bdca4, Data2: 0x5e52, Data3: 0x5b27, Data4: ( 0xbc,0x5d,0xd6,0x6a,0x1a,0x26,0x8c,0x2a ))// b32bdca4-5e52-5b27-bc5d-d66a1a268c2a
 }
 
 internal var __x_ABI_C__FIVector_1_IInspectableVTable: __x_ABI_C__FIVector_1_IInspectableVtbl = .init(
@@ -5710,8 +5710,8 @@ internal var __x_ABI_C__FIVector_1_IInspectableVTable: __x_ABI_C__FIVector_1_IIn
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIVector_1_IInspectableWrapper.IID
@@ -5816,10 +5816,10 @@ internal var __x_ABI_C__FIVector_1_IInspectableVTable: __x_ABI_C__FIVector_1_IIn
 )
 typealias __x_ABI_C__FIVector_1_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVector_1_IInspectableImpl>
 internal class IVectorAny: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIVector_1_IInspectable }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIVector_1_IInspectable }
 
-    internal func GetAtImpl(_ index: UINT32) throws -> UnsafeMutablePointer<Ctest_component.IInspectable>? {
-        var result: UnsafeMutablePointer<Ctest_component.IInspectable>?
+    internal func GetAtImpl(_ index: UINT32) throws -> UnsafeMutablePointer<NativeIInspectable>? {
+        var result: UnsafeMutablePointer<NativeIInspectable>?
         _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
         }
@@ -5842,7 +5842,7 @@ internal class IVectorAny: test_component.IInspectable {
         return result
     }
 
-    internal func IndexOfImpl(_ value: UnsafeMutablePointer<Ctest_component.IInspectable>?, _ index: inout UINT32) throws -> boolean {
+    internal func IndexOfImpl(_ value: UnsafeMutablePointer<NativeIInspectable>?, _ index: inout UINT32) throws -> boolean {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, value, &index, &result))
@@ -5850,13 +5850,13 @@ internal class IVectorAny: test_component.IInspectable {
         return result
     }
 
-    internal func SetAtImpl(_ index: UINT32, _ value: UnsafeMutablePointer<Ctest_component.IInspectable>?) throws {
+    internal func SetAtImpl(_ index: UINT32, _ value: UnsafeMutablePointer<NativeIInspectable>?) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.SetAt(pThis, index, value))
         }
     }
 
-    internal func InsertAtImpl(_ index: UINT32, _ value: UnsafeMutablePointer<Ctest_component.IInspectable>?) throws {
+    internal func InsertAtImpl(_ index: UINT32, _ value: UnsafeMutablePointer<NativeIInspectable>?) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.InsertAt(pThis, index, value))
         }
@@ -5868,7 +5868,7 @@ internal class IVectorAny: test_component.IInspectable {
         }
     }
 
-    internal func AppendImpl(_ value: UnsafeMutablePointer<Ctest_component.IInspectable>?) throws {
+    internal func AppendImpl(_ value: UnsafeMutablePointer<NativeIInspectable>?) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Append(pThis, value))
         }
@@ -6013,11 +6013,11 @@ internal class __x_ABI_C__FIVector_1_IInspectableImpl : IVector, AbiInterfaceImp
         return test_component.__x_ABI_C__FIIterator_1_IInspectableWrapper.unwrapFrom(abi: result)
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIVector_1_HSTRING: IID {
-    IID(Data1: 0x98b9acc1, Data2: 0x4b56, Data3: 0x532e, Data4: ( 0xac,0x73,0x03,0xd5,0x29,0x1c,0xca,0x90 ))// 98b9acc1-4b56-532e-ac73-03d5291cca90
+private var IID___x_ABI_C__FIVector_1_HSTRING: test_component.IID {
+    .init(Data1: 0x98b9acc1, Data2: 0x4b56, Data3: 0x532e, Data4: ( 0xac,0x73,0x03,0xd5,0x29,0x1c,0xca,0x90 ))// 98b9acc1-4b56-532e-ac73-03d5291cca90
 }
 
 internal var __x_ABI_C__FIVector_1_HSTRINGVTable: __x_ABI_C__FIVector_1_HSTRINGVtbl = .init(
@@ -6051,8 +6051,8 @@ internal var __x_ABI_C__FIVector_1_HSTRINGVTable: __x_ABI_C__FIVector_1_HSTRINGV
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper.IID
@@ -6156,7 +6156,7 @@ internal var __x_ABI_C__FIVector_1_HSTRINGVTable: __x_ABI_C__FIVector_1_HSTRINGV
 )
 typealias __x_ABI_C__FIVector_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVector_1_HSTRINGImpl>
 internal class IVectorString: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIVector_1_HSTRING }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIVector_1_HSTRING }
 
     internal func GetAtImpl(_ index: UINT32) throws -> HSTRING? {
         var result: HSTRING?
@@ -6349,11 +6349,11 @@ internal class __x_ABI_C__FIVector_1_HSTRINGImpl : IVector, AbiInterfaceImpl {
         return test_component.__x_ABI_C__FIIterator_1_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase: IID {
-    IID(Data1: 0xcb559561, Data2: 0x6732, Data3: 0x54ba, Data4: ( 0xa0,0x75,0xb5,0x03,0x46,0x27,0x5b,0x9e ))// cb559561-6732-54ba-a075-b50346275b9e
+private var IID___x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase: test_component.IID {
+    .init(Data1: 0xcb559561, Data2: 0x6732, Data3: 0x54ba, Data4: ( 0xa0,0x75,0xb5,0x03,0x46,0x27,0x5b,0x9e ))// cb559561-6732-54ba-a075-b50346275b9e
 }
 
 internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
@@ -6387,8 +6387,8 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_A
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID
@@ -6492,7 +6492,7 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_A
 )
 typealias __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl>
 internal class IVectorBase: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase }
 
     internal func GetAtImpl(_ index: UINT32) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>? {
         var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?
@@ -6681,11 +6681,11 @@ internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl : IVec
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic: IID {
-    IID(Data1: 0x966413d6, Data2: 0x6520, Data3: 0x5148, Data4: ( 0x9f,0xf1,0xf7,0x35,0x9c,0xb4,0x1c,0x6a ))// 966413d6-6520-5148-9ff1-f7359cb41c6a
+private var IID___x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic: test_component.IID {
+    .init(Data1: 0x966413d6, Data2: 0x6520, Data3: 0x5148, Data4: ( 0x9f,0xf1,0xf7,0x35,0x9c,0xb4,0x1c,0x6a ))// 966413d6-6520-5148-9ff1-f7359cb41c6a
 }
 
 internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicVTable: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicVtbl = .init(
@@ -6719,8 +6719,8 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicVTable: __x
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.IID
@@ -6825,7 +6825,7 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicVTable: __x
 )
 typealias __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicImpl>
 internal class IVectorIBasic: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic }
 
     internal func GetAtImpl(_ index: UINT32) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>? {
         var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>?
@@ -7022,11 +7022,11 @@ internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicImpl : IV
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.unwrapFrom(abi: result)
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectable: IID {
-    IID(Data1: 0x24f981e5, Data2: 0xddca, Data3: 0x538d, Data4: ( 0xaa,0xda,0xa5,0x99,0x06,0x08,0x4c,0xf1 ))// 24f981e5-ddca-538d-aada-a59906084cf1
+private var IID___x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectable: test_component.IID {
+    .init(Data1: 0x24f981e5, Data2: 0xddca, Data3: 0x538d, Data4: ( 0xaa,0xda,0xa5,0x99,0x06,0x08,0x4c,0xf1 ))// 24f981e5-ddca-538d-aada-a59906084cf1
 }
 
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectable {
@@ -7072,7 +7072,7 @@ internal var __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableVTable: __
 )
 typealias __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableImpl>
 internal class MapChangedEventHandlerString_Any: test_component.IUnknown {
-    override public class var IID: IID { IID___x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectable }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectable }
 
     internal func InvokeImpl(_ sender: UnsafeMutablePointer<__x_ABI_C__FIObservableMap_2_HSTRING_IInspectable>?, _ event: UnsafeMutablePointer<__x_ABI_C__FIMapChangedEventArgs_1_HSTRING>?) throws {
         _ = try perform(as: __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectable.self) { pThis in
@@ -7100,8 +7100,8 @@ internal class __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableImpl : W
         return handler
     }
 }
-private var IID___x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRING: IID {
-    IID(Data1: 0xe2663f37, Data2: 0x2e1b, Data3: 0x500c, Data4: ( 0xad,0x68,0xc3,0xed,0x7a,0x8f,0x74,0xc8 ))// e2663f37-2e1b-500c-ad68-c3ed7a8f74c8
+private var IID___x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRING: test_component.IID {
+    .init(Data1: 0xe2663f37, Data2: 0x2e1b, Data3: 0x500c, Data4: ( 0xad,0x68,0xc3,0xed,0x7a,0x8f,0x74,0xc8 ))// e2663f37-2e1b-500c-ad68-c3ed7a8f74c8
 }
 
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRING {
@@ -7147,7 +7147,7 @@ internal var __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGVTable: __x_ABI
 )
 typealias __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGImpl>
 internal class MapChangedEventHandlerString_String: test_component.IUnknown {
-    override public class var IID: IID { IID___x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRING }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRING }
 
     internal func InvokeImpl(_ sender: UnsafeMutablePointer<__x_ABI_C__FIObservableMap_2_HSTRING_HSTRING>?, _ event: UnsafeMutablePointer<__x_ABI_C__FIMapChangedEventArgs_1_HSTRING>?) throws {
         _ = try perform(as: __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRING.self) { pThis in
@@ -7175,8 +7175,8 @@ internal class __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGImpl : WinRTD
         return handler
     }
 }
-private var IID___x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBase: IID {
-    IID(Data1: 0x4175f8a0, Data2: 0x51bf, Data3: 0x561d, Data4: ( 0xbe,0xaf,0x41,0x55,0x41,0xdb,0xbf,0x69 ))// 4175f8a0-51bf-561d-beaf-415541dbbf69
+private var IID___x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBase: test_component.IID {
+    .init(Data1: 0x4175f8a0, Data2: 0x51bf, Data3: 0x561d, Data4: ( 0xbe,0xaf,0x41,0x55,0x41,0xdb,0xbf,0x69 ))// 4175f8a0-51bf-561d-beaf-415541dbbf69
 }
 
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBase {
@@ -7222,7 +7222,7 @@ internal var __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__
 )
 typealias __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseImpl>
 internal class VectorChangedEventHandlerBase: test_component.IUnknown {
-    override public class var IID: IID { IID___x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBase }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBase }
 
     internal func InvokeImpl(_ sender: UnsafeMutablePointer<__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase>?, _ event: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CCollections_CIVectorChangedEventArgs>?) throws {
         _ = try perform(as: __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
@@ -7250,8 +7250,8 @@ internal class __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent
         return handler
     }
 }
-private var IID___x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasic: IID {
-    IID(Data1: 0xea4e2c41, Data2: 0x3051, Data3: 0x539a, Data4: ( 0xa0,0xde,0x7e,0x2e,0x2c,0xb0,0xdb,0xf8 ))// ea4e2c41-3051-539a-a0de-7e2e2cb0dbf8
+private var IID___x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasic: test_component.IID {
+    .init(Data1: 0xea4e2c41, Data2: 0x3051, Data3: 0x539a, Data4: ( 0xa0,0xde,0x7e,0x2e,0x2c,0xb0,0xdb,0xf8 ))// ea4e2c41-3051-539a-a0de-7e2e2cb0dbf8
 }
 
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasic {
@@ -7297,7 +7297,7 @@ internal var __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__
 )
 typealias __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicImpl>
 internal class VectorChangedEventHandlerIBasic: test_component.IUnknown {
-    override public class var IID: IID { IID___x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasic }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasic }
 
     internal func InvokeImpl(_ sender: UnsafeMutablePointer<__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasic>?, _ event: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CCollections_CIVectorChangedEventArgs>?) throws {
         _ = try perform(as: __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
@@ -7325,8 +7325,8 @@ internal class __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent
         return handler
     }
 }
-private var IID___x_ABI_C__FIEventHandler_1_IInspectable: IID {
-    IID(Data1: 0xc50898f6, Data2: 0xc536, Data3: 0x5f47, Data4: ( 0x85,0x83,0x8b,0x2c,0x24,0x38,0xa1,0x3b ))// c50898f6-c536-5f47-8583-8b2c2438a13b
+private var IID___x_ABI_C__FIEventHandler_1_IInspectable: test_component.IID {
+    .init(Data1: 0xc50898f6, Data2: 0xc536, Data3: 0x5f47, Data4: ( 0x85,0x83,0x8b,0x2c,0x24,0x38,0xa1,0x3b ))// c50898f6-c536-5f47-8583-8b2c2438a13b
 }
 
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIEventHandler_1_IInspectable {
@@ -7372,9 +7372,9 @@ internal var __x_ABI_C__FIEventHandler_1_IInspectableVTable: __x_ABI_C__FIEventH
 )
 typealias __x_ABI_C__FIEventHandler_1_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIEventHandler_1_IInspectableImpl>
 internal class EventHandlerAny: test_component.IUnknown {
-    override public class var IID: IID { IID___x_ABI_C__FIEventHandler_1_IInspectable }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIEventHandler_1_IInspectable }
 
-    internal func InvokeImpl(_ sender: UnsafeMutablePointer<Ctest_component.IInspectable>?, _ args: UnsafeMutablePointer<Ctest_component.IInspectable>?) throws {
+    internal func InvokeImpl(_ sender: UnsafeMutablePointer<NativeIInspectable>?, _ args: UnsafeMutablePointer<NativeIInspectable>?) throws {
         _ = try perform(as: __x_ABI_C__FIEventHandler_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, sender, args))
         }
@@ -7400,8 +7400,8 @@ internal class __x_ABI_C__FIEventHandler_1_IInspectableImpl : WinRTDelegateBridg
         return handler
     }
 }
-private var IID___x_ABI_C__FIAsyncOperationWithProgress_2_int_double: IID {
-    IID(Data1: 0x17c0e85a, Data2: 0x64cb, Data3: 0x593a, Data4: ( 0x8e,0x4d,0x90,0x1c,0xa8,0x38,0xaa,0x92 ))// 17c0e85a-64cb-593a-8e4d-901ca838aa92
+private var IID___x_ABI_C__FIAsyncOperationWithProgress_2_int_double: test_component.IID {
+    .init(Data1: 0x17c0e85a, Data2: 0x64cb, Data3: 0x593a, Data4: ( 0x8e,0x4d,0x90,0x1c,0xa8,0x38,0xaa,0x92 ))// 17c0e85a-64cb-593a-8e4d-901ca838aa92
 }
 
 internal var __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleVTable: __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleVtbl = .init(
@@ -7435,8 +7435,8 @@ internal var __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleVTable: __x_ABI
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper.IID
@@ -7500,7 +7500,7 @@ internal var __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleVTable: __x_ABI
 )
 typealias __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleImpl>
 internal class IAsyncOperationWithProgressInt32_Double: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIAsyncOperationWithProgress_2_int_double }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationWithProgress_2_int_double }
 
     internal func put_ProgressImpl(_ handler: UnsafeMutablePointer<__x_ABI_C__FIAsyncOperationProgressHandler_2_int_double>?) throws {
         _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2_int_double.self) { pThis in
@@ -7636,11 +7636,11 @@ internal class __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleImpl : IAsync
 
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIAsyncOperation_1_int: IID {
-    IID(Data1: 0x968b9665, Data2: 0x06ed, Data3: 0x5774, Data4: ( 0x8f,0x53,0x8e,0xde,0xab,0xd5,0xf7,0xb5 ))// 968b9665-06ed-5774-8f53-8edeabd5f7b5
+private var IID___x_ABI_C__FIAsyncOperation_1_int: test_component.IID {
+    .init(Data1: 0x968b9665, Data2: 0x06ed, Data3: 0x5774, Data4: ( 0x8f,0x53,0x8e,0xde,0xab,0xd5,0xf7,0xb5 ))// 968b9665-06ed-5774-8f53-8edeabd5f7b5
 }
 
 internal var __x_ABI_C__FIAsyncOperation_1_intVTable: __x_ABI_C__FIAsyncOperation_1_intVtbl = .init(
@@ -7674,8 +7674,8 @@ internal var __x_ABI_C__FIAsyncOperation_1_intVTable: __x_ABI_C__FIAsyncOperatio
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIAsyncOperation_1_intWrapper.IID
@@ -7724,7 +7724,7 @@ internal var __x_ABI_C__FIAsyncOperation_1_intVTable: __x_ABI_C__FIAsyncOperatio
 )
 typealias __x_ABI_C__FIAsyncOperation_1_intWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1_intImpl>
 internal class IAsyncOperationInt32: test_component.IInspectable {
-    override public class var IID: IID { IID___x_ABI_C__FIAsyncOperation_1_int }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1_int }
 
     internal func put_CompletedImpl(_ handler: UnsafeMutablePointer<__x_ABI_C__FIAsyncOperationCompletedHandler_1_int>?) throws {
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_int.self) { pThis in
@@ -7831,11 +7831,95 @@ internal class __x_ABI_C__FIAsyncOperation_1_intImpl : IAsyncOperation, AbiInter
 
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
-private var IID___x_ABI_C__FIReference_1_int: IID {
-    IID(Data1: 0x548cefbd, Data2: 0xbc8a, Data3: 0x5fa0, Data4: ( 0x8d,0xf2,0x95,0x74,0x40,0xfc,0x8b,0xf4 ))// 548cefbd-bc8a-5fa0-8df2-957440fc8bf4
+private var IID___x_ABI_C__FIReference_1_GUID: test_component.IID {
+    .init(Data1: 0x7d50f649, Data2: 0x632c, Data3: 0x51f9, Data4: ( 0x84,0x9a,0xee,0x49,0x42,0x89,0x33,0xea ))// 7d50f649-632c-51f9-849a-ee49428933ea
+}
+
+internal extension GUID {
+    init?(ref: UnsafeMutablePointer<__x_ABI_C__FIReference_1_GUID>?) {
+        guard let val = ref else { return nil }
+        var result: GUID = .init()
+        try! CHECKED(val.pointee.lpVtbl.pointee.get_Value(val, &result))
+        self = result
+    }
+} 
+internal var __x_ABI_C__FIReference_1_GUIDVTable: __x_ABI_C__FIReference_1_GUIDVtbl = .init(
+    QueryInterface: {
+        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+
+        switch riid.pointee {
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIReference_1_GUIDWrapper.IID:
+                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                return S_OK
+            default:
+                guard let instance = __x_ABI_C__FIReference_1_GUIDWrapper.tryUnwrapFrom(raw: pUnk),
+                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                return S_OK
+
+        }
+    },
+
+    AddRef: {
+         guard let wrapper = __x_ABI_C__FIReference_1_GUIDWrapper.fromRaw($0) else { return 1 }
+         _ = wrapper.retain()
+         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+    },
+
+    Release: {
+        guard let wrapper = __x_ABI_C__FIReference_1_GUIDWrapper.fromRaw($0) else { return 1 }
+        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+    },
+
+    GetIids: {
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIReference_1_GUIDWrapper.IID
+        iids[3] = __ABI_Windows_Foundation.IPropertyValueWrapper.IID
+        $1!.pointee = 4
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.IReference`1<GUID>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    get_Value: {
+        guard let __unwrapped__instance = __x_ABI_C__FIReference_1_GUIDWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.value as! GUID
+        $1?.initialize(to: result)
+        return S_OK
+    }
+)
+internal class __x_ABI_C__FIReference_1_GUIDWrapper: WinRTWrapperBase<__x_ABI_C__FIReference_1_GUID, IReference> {
+    override class var IID: test_component.IID { IID___x_ABI_C__FIReference_1_GUID }
+    init?(_ value: GUID?) {
+        guard let value = value else { return nil }
+        let abi = withUnsafeMutablePointer(to: &__x_ABI_C__FIReference_1_GUIDVTable) {
+            __x_ABI_C__FIReference_1_GUID(lpVtbl:$0)
+        }
+        super.init(abi, __IMPL_Windows_Foundation.IPropertyValueImpl(value: value))
+    }
+}
+private var IID___x_ABI_C__FIReference_1_int: test_component.IID {
+    .init(Data1: 0x548cefbd, Data2: 0xbc8a, Data3: 0x5fa0, Data4: ( 0x8d,0xf2,0x95,0x74,0x40,0xfc,0x8b,0xf4 ))// 548cefbd-bc8a-5fa0-8df2-957440fc8bf4
 }
 
 internal extension Int32 {
@@ -7877,8 +7961,8 @@ internal var __x_ABI_C__FIReference_1_intVTable: __x_ABI_C__FIReference_1_intVtb
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIReference_1_intWrapper.IID
@@ -7909,7 +7993,7 @@ internal var __x_ABI_C__FIReference_1_intVTable: __x_ABI_C__FIReference_1_intVtb
     }
 )
 internal class __x_ABI_C__FIReference_1_intWrapper: WinRTWrapperBase<__x_ABI_C__FIReference_1_int, IReference> {
-    override class var IID: IID { IID___x_ABI_C__FIReference_1_int }
+    override class var IID: test_component.IID { IID___x_ABI_C__FIReference_1_int }
     init?(_ value: Int32?) {
         guard let value = value else { return nil }
         let abi = withUnsafeMutablePointer(to: &__x_ABI_C__FIReference_1_intVTable) {
@@ -7918,92 +8002,8 @@ internal class __x_ABI_C__FIReference_1_intWrapper: WinRTWrapperBase<__x_ABI_C__
         super.init(abi, __IMPL_Windows_Foundation.IPropertyValueImpl(value: value))
     }
 }
-private var IID___x_ABI_C__FIReference_1_GUID: IID {
-    IID(Data1: 0x7d50f649, Data2: 0x632c, Data3: 0x51f9, Data4: ( 0x84,0x9a,0xee,0x49,0x42,0x89,0x33,0xea ))// 7d50f649-632c-51f9-849a-ee49428933ea
-}
-
-internal extension UUID {
-    init?(ref: UnsafeMutablePointer<__x_ABI_C__FIReference_1_GUID>?) {
-        guard let val = ref else { return nil }
-        var result: GUID = .init()
-        try! CHECKED(val.pointee.lpVtbl.pointee.get_Value(val, &result))
-        self = result
-    }
-} 
-internal var __x_ABI_C__FIReference_1_GUIDVTable: __x_ABI_C__FIReference_1_GUIDVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIReference_1_GUIDWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                guard let instance = __x_ABI_C__FIReference_1_GUIDWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
-        }
-    },
-
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIReference_1_GUIDWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIReference_1_GUIDWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
-    GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
-        iids[0] = IUnknown.IID
-        iids[1] = IInspectable.IID
-        iids[2] = test_component.__x_ABI_C__FIReference_1_GUIDWrapper.IID
-        iids[3] = __ABI_Windows_Foundation.IPropertyValueWrapper.IID
-        $1!.pointee = 4
-        $2!.pointee = iids
-        return S_OK
-    },
-
-    GetRuntimeClassName: {
-        _ = $0
-        let hstring = try! HString("Windows.Foundation.IReference`1<UUID>").detach()
-        $1!.pointee = hstring
-        return S_OK
-    },
-
-    GetTrustLevel: {
-        _ = $0
-        $1!.pointee = TrustLevel(rawValue: 0)
-        return S_OK
-    },
-
-    get_Value: {
-        guard let __unwrapped__instance = __x_ABI_C__FIReference_1_GUIDWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let result = __unwrapped__instance.value as! UUID
-        $1?.initialize(to: result)
-        return S_OK
-    }
-)
-internal class __x_ABI_C__FIReference_1_GUIDWrapper: WinRTWrapperBase<__x_ABI_C__FIReference_1_GUID, IReference> {
-    override class var IID: IID { IID___x_ABI_C__FIReference_1_GUID }
-    init?(_ value: UUID?) {
-        guard let value = value else { return nil }
-        let abi = withUnsafeMutablePointer(to: &__x_ABI_C__FIReference_1_GUIDVTable) {
-            __x_ABI_C__FIReference_1_GUID(lpVtbl:$0)
-        }
-        super.init(abi, __IMPL_Windows_Foundation.IPropertyValueImpl(value: value))
-    }
-}
-private var IID___x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned: IID {
-    IID(Data1: 0x5888a1ed, Data2: 0xabae, Data3: 0x584f, Data4: ( 0xbf,0x08,0x13,0x1b,0x25,0x42,0x80,0x6b ))// 5888a1ed-abae-584f-bf08-131b2542806b
+private var IID___x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned: test_component.IID {
+    .init(Data1: 0x5888a1ed, Data2: 0xabae, Data3: 0x584f, Data4: ( 0xbf,0x08,0x13,0x1b,0x25,0x42,0x80,0x6b ))// 5888a1ed-abae-584f-bf08-131b2542806b
 }
 
 internal extension test_component.Signed {
@@ -8045,8 +8045,8 @@ internal var __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedVTable: 
     },
 
     GetIids: {
-        let size = MemoryLayout<IID>.size
-        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: IID.self)
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
         iids[0] = IUnknown.IID
         iids[1] = IInspectable.IID
         iids[2] = test_component.__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper.IID
@@ -8077,7 +8077,7 @@ internal var __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedVTable: 
     }
 )
 internal class __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper: WinRTWrapperBase<__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned, IReference> {
-    override class var IID: IID { IID___x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned }
+    override class var IID: test_component.IID { IID___x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned }
     init?(_ value: test_component.Signed?) {
         guard let value = value else { return nil }
         let abi = withUnsafeMutablePointer(to: &__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedVTable) {
@@ -8086,8 +8086,8 @@ internal class __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrappe
         super.init(abi, __IMPL_Windows_Foundation.IPropertyValueImpl(value: value))
     }
 }
-private var IID___x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs: IID {
-    IID(Data1: 0x60e30bb2, Data2: 0x55fe, Data3: 0x5e7e, Data4: ( 0xb1,0xe6,0xf9,0xba,0x28,0x90,0x0a,0x82 ))// 60e30bb2-55fe-5e7e-b1e6-f9ba28900a82
+private var IID___x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs: test_component.IID {
+    .init(Data1: 0x60e30bb2, Data2: 0x55fe, Data3: 0x5e7e, Data4: ( 0xb1,0xe6,0xf9,0xba,0x28,0x90,0x0a,0x82 ))// 60e30bb2-55fe-5e7e-b1e6-f9ba28900a82
 }
 
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs {
@@ -8133,7 +8133,7 @@ internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass_
 )
 typealias __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsImpl>
 internal class TypedEventHandlerClass_DeferrableEventArgs: test_component.IUnknown {
-    override public class var IID: IID { IID___x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs }
 
     internal func InvokeImpl(_ sender: UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>?, _ args: UnsafeMutablePointer<__x_ABI_Ctest__component_CIDeferrableEventArgs>?) throws {
         _ = try perform(as: __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs.self) { pThis in
@@ -8157,8 +8157,8 @@ internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClas
         return handler
     }
 }
-private var IID___x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs: IID {
-    IID(Data1: 0xa0dda56b, Data2: 0x12f6, Data3: 0x52f4, Data4: ( 0x90,0x3d,0x55,0xce,0x8f,0xa7,0x7e,0xac ))// a0dda56b-12f6-52f4-903d-55ce8fa77eac
+private var IID___x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs: test_component.IID {
+    .init(Data1: 0xa0dda56b, Data2: 0x12f6, Data3: 0x52f4, Data4: ( 0x90,0x3d,0x55,0xce,0x8f,0xa7,0x7e,0xac ))// a0dda56b-12f6-52f4-903d-55ce8fa77eac
 }
 
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs {
@@ -8204,7 +8204,7 @@ internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple
 )
 typealias __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsImpl>
 internal class TypedEventHandlerSimple_SimpleEventArgs: test_component.IUnknown {
-    override public class var IID: IID { IID___x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs }
+    override public class var IID: test_component.IID { IID___x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs }
 
     internal func InvokeImpl(_ sender: UnsafeMutablePointer<__x_ABI_Ctest__component_CISimple>?, _ args: __x_ABI_Ctest__component_CSimpleEventArgs) throws {
         _ = try perform(as: __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs.self) { pThis in

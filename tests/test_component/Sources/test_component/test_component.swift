@@ -16,7 +16,7 @@ public final class AsyncOperationInt : WinRTClass, IAsyncOperation, test_compone
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == Ctest_component.IInspectable.self {
+        if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
         if T.self == WinSDK.IUnknown.self {
@@ -36,7 +36,7 @@ public final class AsyncOperationInt : WinRTClass, IAsyncOperation, test_compone
         _default = try! fromAbi.QueryInterface()
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return test_component.queryInterface(sealed: self, iid)}
     public func getResults() throws -> Int32 {
         let result = try _default.GetResultsImpl()
@@ -100,7 +100,7 @@ open class Base : UnsealedWinRTClass {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == Ctest_component.IInspectable.self {
+        if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
         if T.self == WinSDK.IUnknown.self {
@@ -120,7 +120,7 @@ open class Base : UnsealedWinRTClass {
         _default = try! fromAbi.QueryInterface()
     }
 
-    open func queryInterface(_ iid: IID) -> IUnknownRef? {
+    open func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         switch iid {
             case __ABI_test_component.IBaseOverridesWrapper.IID:
                 let wrapper = __ABI_test_component.IBaseOverridesWrapper(self)
@@ -172,7 +172,7 @@ public final class BaseCollection : WinRTClass, IVector, IIterable {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == Ctest_component.IInspectable.self {
+        if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
         if T.self == WinSDK.IUnknown.self {
@@ -192,7 +192,7 @@ public final class BaseCollection : WinRTClass, IVector, IIterable {
         _default = try! fromAbi.QueryInterface()
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return test_component.queryInterface(sealed: self, iid)}
     // MARK: Collection
     public typealias Element = T
@@ -291,7 +291,7 @@ public final class BaseMapCollection : WinRTClass, IMap, IIterable {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == Ctest_component.IInspectable.self {
+        if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
         if T.self == WinSDK.IUnknown.self {
@@ -311,7 +311,7 @@ public final class BaseMapCollection : WinRTClass, IMap, IIterable {
         _default = try! fromAbi.QueryInterface()
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return test_component.queryInterface(sealed: self, iid)}
     public func lookup(_ key: String) -> Base? {
         let _key = try! HString(key)
@@ -370,7 +370,7 @@ open class BaseNoOverrides : UnsealedWinRTClass {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == Ctest_component.IInspectable.self {
+        if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
         if T.self == WinSDK.IUnknown.self {
@@ -390,7 +390,7 @@ open class BaseNoOverrides : UnsealedWinRTClass {
         _default = try! fromAbi.QueryInterface()
     }
 
-    open func queryInterface(_ iid: IID) -> IUnknownRef? {
+    open func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return test_component.queryInterface(unsealed: self, iid)}
     private static var _IBaseNoOverridesProtectedFactory : __ABI_test_component.IBaseNoOverridesProtectedFactory =  try! RoGetActivationFactory(HString("test_component.BaseNoOverrides"))
     public init() {
@@ -402,7 +402,7 @@ open class BaseNoOverrides : UnsealedWinRTClass {
         _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
     }
     internal class IBaseNoOverrides : ComposableImpl {
-        internal typealias CABI = Ctest_component.IInspectable
+        internal typealias CABI = NativeIInspectable
         internal typealias SwiftABI = test_component.IInspectable
         internal class Default : MakeComposedAbi {
             internal typealias SwiftProjection = BaseNoOverrides
@@ -427,7 +427,7 @@ public final class BaseObservableCollection : WinRTClass, IObservableVector, IVe
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == Ctest_component.IInspectable.self {
+        if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
         if T.self == WinSDK.IUnknown.self {
@@ -447,7 +447,7 @@ public final class BaseObservableCollection : WinRTClass, IObservableVector, IVe
         _default = try! fromAbi.QueryInterface()
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return test_component.queryInterface(sealed: self, iid)}
     // MARK: Collection
     public typealias Element = T
@@ -558,7 +558,7 @@ public final class Class : WinRTClass, IBasic {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == Ctest_component.IInspectable.self {
+        if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
         if T.self == WinSDK.IUnknown.self {
@@ -578,7 +578,7 @@ public final class Class : WinRTClass, IBasic {
         _default = try! fromAbi.QueryInterface()
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return test_component.queryInterface(sealed: self, iid)}
     public init() {
         try! _default = RoActivateInstance(HString("test_component.Class"))
@@ -720,7 +720,7 @@ public final class Class : WinRTClass, IBasic {
     }
 
     public func outObject(_ value: inout Any!) throws {
-        var _value: UnsafeMutablePointer<Ctest_component.IInspectable>?
+        var _value: UnsafeMutablePointer<NativeIInspectable>?
         try _default.OutObjectImpl(&_value)
         value = __ABI_.AnyWrapper.unwrapFrom(abi: _value)
     }
@@ -830,7 +830,7 @@ public final class Class : WinRTClass, IBasic {
         }
     }
 
-    public var id : UUID? {
+    public var id : test_component.GUID? {
         get {
             let value = try! _default.get_IdImpl()
             return .init(ref: value)
@@ -898,7 +898,7 @@ public final class CollectionTester : WinRTClass {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == Ctest_component.IInspectable.self {
+        if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
         if T.self == WinSDK.IUnknown.self {
@@ -979,7 +979,7 @@ public final class DeferrableEventArgs : WinRTClass {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == Ctest_component.IInspectable.self {
+        if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
         if T.self == WinSDK.IUnknown.self {
@@ -1018,7 +1018,7 @@ public final class Derived : test_component.Base {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == Ctest_component.IInspectable.self {
+        if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
         if T.self == WinSDK.IUnknown.self {
@@ -1080,7 +1080,7 @@ public final class EventTester : WinRTClass {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == Ctest_component.IInspectable.self {
+        if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
         if T.self == WinSDK.IUnknown.self {
@@ -1139,7 +1139,7 @@ public final class NoopClosable : WinRTClass, test_component.IClosable {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == Ctest_component.IInspectable.self {
+        if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
         if T.self == WinSDK.IUnknown.self {
@@ -1159,7 +1159,7 @@ public final class NoopClosable : WinRTClass, test_component.IClosable {
         _default = try! fromAbi.QueryInterface()
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return test_component.queryInterface(sealed: self, iid)}
     public init() {
         try! _default = RoActivateInstance(HString("test_component.NoopClosable"))
@@ -1241,7 +1241,7 @@ public final class Simple : WinRTClass {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == Ctest_component.IInspectable.self {
+        if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
         if T.self == WinSDK.IUnknown.self {
@@ -1443,7 +1443,7 @@ open class UnsealedDerived : test_component.Base {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == Ctest_component.IInspectable.self {
+        if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
         if T.self == WinSDK.IUnknown.self {
@@ -1464,7 +1464,7 @@ open class UnsealedDerived : test_component.Base {
         super.init(fromAbi: fromAbi)
     }
 
-    override open func queryInterface(_ iid: IID) -> IUnknownRef? {
+    override open func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         switch iid {
             case __ABI_test_component.IUnsealedDerivedOverloads2Wrapper.IID:
                 let wrapper = __ABI_test_component.IUnsealedDerivedOverloads2Wrapper(self)
@@ -1478,14 +1478,14 @@ open class UnsealedDerived : test_component.Base {
     private static var _IUnsealedDerivedFactory : __ABI_test_component.IUnsealedDerivedFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerived"))
     override public init() {
         super.init(Self._IUnsealedDerivedFactory) 
-        let parentDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = super._getABI()!
+        let parentDefault: UnsafeMutablePointer<NativeIInspectable> = super._getABI()!
         self._default = try! IInspectable(parentDefault).QueryInterface()
         _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
     }
 
     override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         super.init(factory)
-        let parentDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = super._getABI()!
+        let parentDefault: UnsafeMutablePointer<NativeIInspectable> = super._getABI()!
         self._default = try! IInspectable(parentDefault).QueryInterface()
         _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
     }
@@ -1548,7 +1548,7 @@ open class UnsealedDerived2 : test_component.UnsealedDerived {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == Ctest_component.IInspectable.self {
+        if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
         if T.self == WinSDK.IUnknown.self {
@@ -1569,19 +1569,19 @@ open class UnsealedDerived2 : test_component.UnsealedDerived {
         super.init(fromAbi: fromAbi)
     }
 
-    override open func queryInterface(_ iid: IID) -> IUnknownRef? {
+    override open func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return super.queryInterface(iid)}
     private static var _IUnsealedDerived2ProtectedFactory : __ABI_test_component.IUnsealedDerived2ProtectedFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerived2"))
     override public init() {
         super.init(Self._IUnsealedDerived2ProtectedFactory) 
-        let parentDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = super._getABI()!
+        let parentDefault: UnsafeMutablePointer<NativeIInspectable> = super._getABI()!
         self._default = try! IInspectable(parentDefault).QueryInterface()
         _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
     }
 
     override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         super.init(factory)
-        let parentDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = super._getABI()!
+        let parentDefault: UnsafeMutablePointer<NativeIInspectable> = super._getABI()!
         self._default = try! IInspectable(parentDefault).QueryInterface()
         _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
     }
@@ -1614,7 +1614,7 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == Ctest_component.IInspectable.self {
+        if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
         if T.self == WinSDK.IUnknown.self {
@@ -1635,24 +1635,24 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
         super.init(fromAbi: fromAbi)
     }
 
-    override open func queryInterface(_ iid: IID) -> IUnknownRef? {
+    override open func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return super.queryInterface(iid)}
     private static var _IUnsealedDerivedNoOverridesProtectedFactory : __ABI_test_component.IUnsealedDerivedNoOverridesProtectedFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerivedNoOverrides"))
     override public init() {
         super.init(Self._IUnsealedDerivedNoOverridesProtectedFactory) 
-        let parentDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = super._getABI()!
+        let parentDefault: UnsafeMutablePointer<NativeIInspectable> = super._getABI()!
         self._default = try! IInspectable(parentDefault).QueryInterface()
         _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
     }
 
     override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         super.init(factory)
-        let parentDefault: UnsafeMutablePointer<Ctest_component.IInspectable> = super._getABI()!
+        let parentDefault: UnsafeMutablePointer<NativeIInspectable> = super._getABI()!
         self._default = try! IInspectable(parentDefault).QueryInterface()
         _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
     }
     internal class IUnsealedDerivedNoOverrides : ComposableImpl {
-        internal typealias CABI = Ctest_component.IInspectable
+        internal typealias CABI = NativeIInspectable
         internal typealias SwiftABI = test_component.IInspectable
         internal class Default : MakeComposedAbi {
             internal typealias SwiftProjection = UnsealedDerivedNoOverrides
@@ -1744,7 +1744,7 @@ public protocol IAsyncMethods : WinRTInterface {
 }
 
 extension IAsyncMethods {
-    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         switch iid {
             case __ABI_test_component.IAsyncMethodsWrapper.IID:
                 let wrapper = __ABI_test_component.IAsyncMethodsWrapper(self)
@@ -1760,7 +1760,7 @@ public protocol IBasic : WinRTInterface {
 }
 
 extension IBasic {
-    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         switch iid {
             case __ABI_test_component.IBasicWrapper.IID:
                 let wrapper = __ABI_test_component.IBasicWrapper(self)
@@ -1786,7 +1786,7 @@ public protocol IIAmImplementable : WinRTInterface {
     func returnEnum() throws -> test_component.Signed
     func fireEvent(_ data: String) throws
     var enumProperty: test_component.Fruit { get set }
-    var id: UUID? { get set }
+    var id: test_component.GUID? { get set }
     var implementableEvent: Event<test_component.InDelegate> { get }
 }
 
@@ -1799,7 +1799,7 @@ public extension EventSource where Handler == test_component.InDelegate {
 }
 
 extension IIAmImplementable {
-    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         switch iid {
             case __ABI_test_component.IIAmImplementableWrapper.IID:
                 let wrapper = __ABI_test_component.IIAmImplementableWrapper(self)
@@ -1815,7 +1815,7 @@ public protocol IInterfaceWithObservableVector : WinRTInterface {
 }
 
 extension IInterfaceWithObservableVector {
-    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         switch iid {
             case __ABI_test_component.IInterfaceWithObservableVectorWrapper.IID:
                 let wrapper = __ABI_test_component.IInterfaceWithObservableVectorWrapper(self)
@@ -1832,7 +1832,7 @@ public protocol ISimpleDelegate : WinRTInterface {
 }
 
 extension ISimpleDelegate {
-    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         switch iid {
             case __ABI_test_component.ISimpleDelegateWrapper.IID:
                 let wrapper = __ABI_test_component.ISimpleDelegateWrapper(self)
@@ -1858,7 +1858,7 @@ public extension EventSource where Handler == test_component.ReturnInt32Delegate
 }
 
 extension InterfaceWithReturnDelegate {
-    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         switch iid {
             case __ABI_test_component.InterfaceWithReturnDelegateWrapper.IID:
                 let wrapper = __ABI_test_component.InterfaceWithReturnDelegateWrapper(self)

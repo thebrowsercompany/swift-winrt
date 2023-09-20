@@ -81,7 +81,7 @@ class MyImplementableDelegate: IIAmImplementable {
 
     var enumProperty: Fruit = .apple
 
-    var id: WinSDK.UUID?
+    var id: test_component.GUID?
     func fireEvent(_ data: String) {
       _implementableEvent.invoke(data)
     }

@@ -10,12 +10,12 @@ extension IUnknown {
   }
 
   public func QueryInterface<Interface: IUnknown>() throws -> Interface {
-    var iid: IID = Interface.IID
+    var iid = Interface.IID
     var pointer: UnsafeMutableRawPointer?
     try CHECKED(self.pUnk.borrow.pointee.lpVtbl.pointee.QueryInterface(self.pUnk.borrow, &iid, &pointer))
     // https://learn.microsoft.com/en-us/windows/win32/api/unknwn/nf-unknwn-iunknown-queryinterface(refiid_void)
     // "Upon successful return, *ppvObject (the dereferenced address) contains a pointer to the requested interface"
-    return Interface(consuming: pointer!.bindMemory(to: WinSDK.IUnknown.self, capacity: 1))
+    return Interface(consuming: pointer!.bindMemory(to: NativeIUnknown.self, capacity: 1))
   }
 }
 
@@ -24,14 +24,14 @@ extension IUnknown {
                                                          outer pUnkOuter: IUnknown? = nil,
                                                          context dwClsContext: CLSCTX = CLSCTX_INPROC_SERVER)
       throws -> Interface {
-    var clsid: CLSID = clsid
-    var iid: IID = Interface.IID
+    var clsid = clsid
+    var iid = Interface.IID
 
     var pointer: UnsafeMutableRawPointer?
     try CHECKED(CoCreateInstance(&clsid, RawPointer(pUnkOuter), DWORD(dwClsContext.rawValue), &iid, &pointer))
     // https://learn.microsoft.com/en-us/windows/win32/api/combaseapi/nf-combaseapi-cocreateinstance
     // "Upon successful return, *ppv contains the requested interface pointer."
-    return Interface(consuming: pointer!.bindMemory(to: WinSDK.IUnknown.self, capacity: 1))
+    return Interface(consuming: pointer!.bindMemory(to: NativeIUnknown.self, capacity: 1))
   }
 }
 

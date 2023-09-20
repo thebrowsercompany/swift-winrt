@@ -30,8 +30,8 @@ public extension WinRTClass {
     fileprivate func _getDefaultAsIInspectable() -> SUPPORT_MODULE.IInspectable {
         // Every WinRT interface is binary compatible with IInspectable. asking this class for
         // the iinspectable will ensure we get the default implementation from whichever derived
-        // class it actually is. 
-        let cDefault: UnsafeMutablePointer<C_BINDINGS_MODULE.IInspectable> = _getABI()!
+        // class it actually is.
+        let cDefault: UnsafeMutablePointer<NativeIInspectable> = _getABI()!
         return IInspectable(cDefault)
     }
 }
@@ -49,7 +49,7 @@ extension WinRTClass {
   public func copyTo<Type>(_ ptr: UnsafeMutablePointer<UnsafeMutablePointer<Type>?>?) {
     guard let ptr else { return }
     let result: UnsafeMutablePointer<Type> = _getABI()!
-    result.withMemoryRebound(to: C_BINDINGS_MODULE.IInspectable.self, capacity: 1) { 
+    result.withMemoryRebound(to: NativeIInspectable.self, capacity: 1) {
       _ = $0.pointee.lpVtbl.pointee.AddRef($0)
     }
     ptr.initialize(to: result)

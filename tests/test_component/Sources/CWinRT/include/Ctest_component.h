@@ -22,6 +22,23 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmicrosoft-enum-forward-reference"
 
+#if WIN_855_GUID_WORKAROUND
+#include "GUID2.h"
+
+// Preemptively include headers before swapping out the IID type
+#include <EventToken.h>
+#include <windowscontracts.h>
+
+// The great lie
+#define GUID GUID2
+#undef REFGUID
+#define REFGUID const GUID* __MIDL_CONST
+#define IID IID2
+#undef REFIID
+#define REFIID const IID* __MIDL_CONST
+#define IInspectable IInspectableWithIID2
+#endif
+
 #include "Windows.AI.MachineLearning.h"
 #include "Windows.AI.MachineLearning.Preview.h"
 #include "Windows.ApplicationModel.h"
