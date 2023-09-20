@@ -22,7 +22,7 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmicrosoft-enum-forward-reference"
 
-// TODO(WIN-860): Remove this after fixing the IID bug with C++ interop
+#if WIN_855_GUID_WORKAROUND
 #include "GUID2.h"
 
 // Preemptively include headers before swapping out the IID type
@@ -37,6 +37,7 @@
 #undef REFIID
 #define REFIID const IID* __MIDL_CONST
 #define IInspectable IInspectableWithIID2
+#endif
 
 #include "Windows.AI.MachineLearning.h"
 #include "Windows.AI.MachineLearning.Preview.h"

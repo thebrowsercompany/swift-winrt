@@ -1,9 +1,10 @@
 import WinSDK
 import Ctest_component
 
+#if WIN_855_GUID_WORKAROUND
 public typealias GUID = Ctest_component.GUID2
 public typealias IID = Ctest_component.IID2
-public typealias CLSID = Ctest_component.IID2
+public typealias CLSID = Ctest_component.CLSID2
 public typealias REFIID = UnsafePointer<Ctest_component.IID2>
 public typealias NativeIUnknown = Ctest_component.IUnknownWithIID2
 public typealias NativeIInspectable = Ctest_component.IInspectableWithIID2
@@ -15,6 +16,15 @@ internal let UuidFromStringA = Ctest_component.Uuid2FromStringA
 internal let RoGetActivationFactory = Ctest_component.RoGetActivationFactoryWithIID2
 internal let RoActivateInstance = Ctest_component.RoActivateInstanceWithIID2
 internal let CoCreateInstance = Ctest_component.CoCreateInstanceWithIID2
+#else
+public typealias GUID = Ctest_component.GUID
+public typealias IID = Ctest_component.IID
+public typealias CLSID = Ctest_component.CLSID
+public typealias REFIID = UnsafePointer<Ctest_component.IID>
+public typealias NativeIUnknown = Ctest_component.IUnknown
+public typealias NativeIInspectable = Ctest_component.IInspectable
+public typealias NativeIInspectableVtbl = Ctest_component.IInspectableVtbl
+#endif
 
 extension GUID: CustomStringConvertible {
    public var description: String {
