@@ -18,6 +18,19 @@ For all Swift code (3 and 4 above) - they are built with **SPM**
  
 ## Developer Worklow
 
+### Initial Setup
+
+Initialize submodules:
+```
+git submodule init
+git submodule update --recursive
+```
+
+Install the required version of the Windows SDK if you don't already have it (currently 10.0.17763):
+```
+winget install --id Microsoft.WindowsSDK.10.0.17763
+```
+
 ### Integrated Build with CMake
 
 While SPM is the driving force for all Swift related code, we still maintain an integrated build system with CMake, which invokes SPM as can be seen [here](./tests/CMakeLists.txt)
