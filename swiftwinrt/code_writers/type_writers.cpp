@@ -87,7 +87,14 @@ void write_swift_type_identifier_ex(writer& w, metadata_type const& type, bool e
     }
     else if (auto systype = dynamic_cast<const system_type*>(&type))
     {
-        w.write(systype->swift_type_name());
+        if (systype->swift_type_name() == "GUID")
+        {
+            w.write("%.GUID", w.support);
+        }
+        else
+        {
+            w.write(systype->swift_type_name());
+        }
     }
     else if (auto type_def = dynamic_cast<const typedef_base*>(&type))
     {
@@ -184,7 +191,7 @@ static void write_c_abi_type(writer& w, metadata_type const& type)
     {
         if (elem_type->type() == ElementType::Object)
         {
-            w.write("UnsafeMutablePointer<%.IInspectable>?", w.c_mod);
+            w.write("UnsafeMutablePointer<NativeIInspectable>?");
         }
         else if (elem_type->type() == ElementType::String)
         {
@@ -205,7 +212,14 @@ static void write_c_abi_type(writer& w, metadata_type const& type)
     }
     else if (auto systype = dynamic_cast<const system_type*>(&type))
     {
-        w.write(systype->cpp_abi_name());
+        if (systype->cpp_abi_name() == "GUID")
+        {
+            w.write("%.GUID", w.support);
+        }
+        else
+        {
+            w.write(systype->cpp_abi_name());
+        }
     }
     else
     {

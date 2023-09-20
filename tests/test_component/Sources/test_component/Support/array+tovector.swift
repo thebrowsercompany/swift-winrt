@@ -38,7 +38,7 @@ extension ArrayVector where T: Equatable {
 }
 
 extension ArrayVector {
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
 internal class ArrayVectorView<T> : IVectorView {
@@ -63,5 +63,5 @@ extension ArrayVectorView where T: Equatable {
 }
 
 extension ArrayVectorView {
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }

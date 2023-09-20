@@ -489,7 +489,7 @@ namespace swiftwinrt
                     auto name = type->mangled_name();
                     if (name == "IInspectable" && !writing_generic)
                     {
-                        write("%.IInspectable", c_mod);
+                        write("NativeIInspectable");
                     }
                     else
                     {
@@ -534,7 +534,7 @@ namespace swiftwinrt
             else if (type == ElementType::R4) { write("FLOAT"); }
             else if (type == ElementType::R8) { write("DOUBLE"); }
             else if (type == ElementType::String) { write("HSTRING"); }
-            else if (type == ElementType::Object) { write("%.IInspectable", c_mod); }
+            else if (type == ElementType::Object) { write("NativeIInspectable"); }
             else
             {
                 assert(false);

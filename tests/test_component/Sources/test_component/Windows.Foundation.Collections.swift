@@ -16,7 +16,7 @@ public final class PropertySet : WinRTClass, IObservableMap, IMap, IIterable, IP
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == Ctest_component.IInspectable.self {
+        if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
         if T.self == WinSDK.IUnknown.self {
@@ -36,7 +36,7 @@ public final class PropertySet : WinRTClass, IObservableMap, IMap, IIterable, IP
         _default = try! fromAbi.QueryInterface()
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return test_component.queryInterface(sealed: self, iid)}
     public init() {
         try! _default = RoActivateInstance(HString("Windows.Foundation.Collections.PropertySet"))
@@ -129,7 +129,7 @@ public final class StringMap : WinRTClass, IMap, IIterable, IObservableMap {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == Ctest_component.IInspectable.self {
+        if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
         if T.self == WinSDK.IUnknown.self {
@@ -149,7 +149,7 @@ public final class StringMap : WinRTClass, IMap, IIterable, IObservableMap {
         _default = try! fromAbi.QueryInterface()
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return test_component.queryInterface(sealed: self, iid)}
     public init() {
         try! _default = RoActivateInstance(HString("Windows.Foundation.Collections.StringMap"))
@@ -240,7 +240,7 @@ public final class ValueSet : WinRTClass, IObservableMap, IMap, IIterable, IProp
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == Ctest_component.IInspectable.self {
+        if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
         if T.self == WinSDK.IUnknown.self {
@@ -260,7 +260,7 @@ public final class ValueSet : WinRTClass, IObservableMap, IMap, IIterable, IProp
         _default = try! fromAbi.QueryInterface()
     }
 
-    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return test_component.queryInterface(sealed: self, iid)}
     public init() {
         try! _default = RoActivateInstance(HString("Windows.Foundation.Collections.ValueSet"))
@@ -450,7 +450,7 @@ public protocol IPropertySet : IObservableMap<String, Any?>, IMap<String, Any?>,
 }
 
 extension IPropertySet {
-    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         switch iid {
             case __ABI_Windows_Foundation_Collections.IPropertySetWrapper.IID:
                 let wrapper = __ABI_Windows_Foundation_Collections.IPropertySetWrapper(self)
@@ -479,7 +479,7 @@ public protocol IVectorChangedEventArgs : WinRTInterface {
 }
 
 extension IVectorChangedEventArgs {
-    public func queryInterface(_ iid: IID) -> IUnknownRef? {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         switch iid {
             case __ABI_Windows_Foundation_Collections.IVectorChangedEventArgsWrapper.IID:
                 let wrapper = __ABI_Windows_Foundation_Collections.IVectorChangedEventArgsWrapper(self)

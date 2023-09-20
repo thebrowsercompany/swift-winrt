@@ -103,7 +103,7 @@ namespace swiftwinrt
     static std::set<std::string_view> removed_types = {
         "Windows.Foundation.Collections.CollectionChange",
         "Windows.Foundation.Collections.IVectorChangedEventArgs",
-    };     
+    };
     static bool should_write(metadata_type const& type)
     {
         return !removed_types.contains(type.swift_full_name());
@@ -113,9 +113,9 @@ namespace swiftwinrt
     {
         // Forced dependencies
         w.write(R"^-^(// Header files for imported files
-#include "inspectable.h"
-#include "EventToken.h"
-#include "windowscontracts.h"
+#include <inspectable.h>
+#include <EventToken.h>
+#include <windowscontracts.h>
 )^-^");
 
         if (fileName != winrt_foundation_namespace)
@@ -311,6 +311,23 @@ namespace swiftwinrt
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmicrosoft-enum-forward-reference"
+
+#if WIN_855_GUID_WORKAROUND
+#include "GUID2.h"
+
+// Preemptively include headers before swapping out the IID type
+#include <EventToken.h>
+#include <windowscontracts.h>
+
+// The great lie
+#define GUID GUID2
+#undef REFGUID
+#define REFGUID const GUID* __MIDL_CONST
+#define IID IID2
+#undef REFIID
+#define REFIID const IID* __MIDL_CONST
+#define IInspectable IInspectableWithIID2
+#endif
 
 )");
         for (auto& [ns, members] : namespaces)

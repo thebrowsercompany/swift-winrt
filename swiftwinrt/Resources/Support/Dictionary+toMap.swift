@@ -30,7 +30,7 @@ internal class DictionaryMap<K, V> : IMap where K : Hashable {
 }
 
 extension DictionaryMap {
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: SUPPORT_MODULE.IID) -> IUnknownRef? { nil }
 }
 
 internal class DictionaryMapView<K, V> : IMapView where K : Hashable {
@@ -54,5 +54,5 @@ internal class DictionaryMapView<K, V> : IMapView where K : Hashable {
 }
 
 extension DictionaryMapView {
-    public func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+    public func queryInterface(_ iid: SUPPORT_MODULE.IID) -> IUnknownRef? { nil }
 }

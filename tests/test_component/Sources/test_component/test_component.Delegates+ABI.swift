@@ -2,16 +2,16 @@
 // swiftlint:disable all
 import Ctest_component
 
-private var IID___x_ABI_Ctest__component_CDelegates_CIInDelegate: IID {
-    IID(Data1: 0x419EF389, Data2: 0xAF4B, Data3: 0x5676, Data4: ( 0xBC,0xEE,0xE0,0xD7,0x9A,0x5C,0xCA,0xDE ))// 419EF389-AF4B-5676-BCEE-E0D79A5CCADE
+private var IID___x_ABI_Ctest__component_CDelegates_CIInDelegate: test_component.IID {
+    .init(Data1: 0x419EF389, Data2: 0xAF4B, Data3: 0x5676, Data4: ( 0xBC,0xEE,0xE0,0xD7,0x9A,0x5C,0xCA,0xDE ))// 419EF389-AF4B-5676-BCEE-E0D79A5CCADE
 }
 
-private var IID___x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate: IID {
-    IID(Data1: 0xBCB57CF7, Data2: 0x97F9, Data3: 0x5B38, Data4: ( 0x99,0x47,0x39,0xC5,0x14,0x92,0x20,0xF0 ))// BCB57CF7-97F9-5B38-9947-39C5149220F0
+private var IID___x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate: test_component.IID {
+    .init(Data1: 0xBCB57CF7, Data2: 0x97F9, Data3: 0x5B38, Data4: ( 0x99,0x47,0x39,0xC5,0x14,0x92,0x20,0xF0 ))// BCB57CF7-97F9-5B38-9947-39C5149220F0
 }
 
-private var IID___x_ABI_Ctest__component_CDelegates_CISignalDelegate: IID {
-    IID(Data1: 0x9EA7161A, Data2: 0xFCAB, Data3: 0x5037, Data4: ( 0x87,0xF0,0xB5,0x73,0xA5,0xE9,0x7B,0xE9 ))// 9EA7161A-FCAB-5037-87F0-B573A5E97BE9
+private var IID___x_ABI_Ctest__component_CDelegates_CISignalDelegate: test_component.IID {
+    .init(Data1: 0x9EA7161A, Data2: 0xFCAB, Data3: 0x5037, Data4: ( 0x87,0xF0,0xB5,0x73,0xA5,0xE9,0x7B,0xE9 ))// 9EA7161A-FCAB-5037-87F0-B573A5E97BE9
 }
 
 public enum __ABI_test_component_Delegates {
@@ -19,7 +19,7 @@ public enum __ABI_test_component_Delegates {
 // MARK - InDelegate
 extension __ABI_test_component_Delegates {
     open class InDelegate: test_component.IUnknown {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CDelegates_CIInDelegate }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CDelegates_CIInDelegate }
 
         open func InvokeImpl(_ value: HSTRING?) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CDelegates_CIInDelegate.self) { pThis in
@@ -75,7 +75,7 @@ public extension WinRTDelegateBridge where CABI == __x_ABI_Ctest__component_CDel
 // MARK - ReturnInt32Delegate
 extension __ABI_test_component_Delegates {
     open class ReturnInt32Delegate: test_component.IUnknown {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate }
 
         open func InvokeImpl() throws -> INT32 {
             var result: INT32 = 0
@@ -133,7 +133,7 @@ public extension WinRTDelegateBridge where CABI == __x_ABI_Ctest__component_CDel
 // MARK - SignalDelegate
 extension __ABI_test_component_Delegates {
     open class SignalDelegate: test_component.IUnknown {
-        override public class var IID: IID { IID___x_ABI_Ctest__component_CDelegates_CISignalDelegate }
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CDelegates_CISignalDelegate }
 
         open func InvokeImpl() throws {
             _ = try perform(as: __x_ABI_Ctest__component_CDelegates_CISignalDelegate.self) { pThis in
