@@ -18,7 +18,7 @@ public final class Deferral : WinRTClass, IClosable {
         if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == WinSDK.IUnknown.self {
+        if T.self == NativeIUnknown.self {
             return RawPointer(_default)
         }
         return nil

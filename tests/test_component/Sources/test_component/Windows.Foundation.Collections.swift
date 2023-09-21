@@ -19,7 +19,7 @@ public final class PropertySet : WinRTClass, IObservableMap, IMap, IIterable, IP
         if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == WinSDK.IUnknown.self {
+        if T.self == NativeIUnknown.self {
             return RawPointer(_default)
         }
         return nil
@@ -132,7 +132,7 @@ public final class StringMap : WinRTClass, IMap, IIterable, IObservableMap {
         if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == WinSDK.IUnknown.self {
+        if T.self == NativeIUnknown.self {
             return RawPointer(_default)
         }
         return nil
@@ -243,7 +243,7 @@ public final class ValueSet : WinRTClass, IObservableMap, IMap, IIterable, IProp
         if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == WinSDK.IUnknown.self {
+        if T.self == NativeIUnknown.self {
             return RawPointer(_default)
         }
         return nil

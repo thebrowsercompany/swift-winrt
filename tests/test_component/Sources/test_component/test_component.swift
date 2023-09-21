@@ -19,7 +19,7 @@ public final class AsyncOperationInt : WinRTClass, IAsyncOperation, test_compone
         if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == WinSDK.IUnknown.self {
+        if T.self == NativeIUnknown.self {
             return RawPointer(_default)
         }
         return nil
@@ -103,7 +103,7 @@ open class Base : UnsealedWinRTClass {
         if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == WinSDK.IUnknown.self {
+        if T.self == NativeIUnknown.self {
             return RawPointer(_default)
         }
         return nil
@@ -175,7 +175,7 @@ public final class BaseCollection : WinRTClass, IVector, IIterable {
         if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == WinSDK.IUnknown.self {
+        if T.self == NativeIUnknown.self {
             return RawPointer(_default)
         }
         return nil
@@ -294,7 +294,7 @@ public final class BaseMapCollection : WinRTClass, IMap, IIterable {
         if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == WinSDK.IUnknown.self {
+        if T.self == NativeIUnknown.self {
             return RawPointer(_default)
         }
         return nil
@@ -373,7 +373,7 @@ open class BaseNoOverrides : UnsealedWinRTClass {
         if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == WinSDK.IUnknown.self {
+        if T.self == NativeIUnknown.self {
             return RawPointer(_default)
         }
         return nil
@@ -430,7 +430,7 @@ public final class BaseObservableCollection : WinRTClass, IObservableVector, IVe
         if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == WinSDK.IUnknown.self {
+        if T.self == NativeIUnknown.self {
             return RawPointer(_default)
         }
         return nil
@@ -561,7 +561,7 @@ public final class Class : WinRTClass, IBasic {
         if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == WinSDK.IUnknown.self {
+        if T.self == NativeIUnknown.self {
             return RawPointer(_default)
         }
         return nil
@@ -901,7 +901,7 @@ public final class CollectionTester : WinRTClass {
         if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == WinSDK.IUnknown.self {
+        if T.self == NativeIUnknown.self {
             return RawPointer(_default)
         }
         return nil
@@ -982,7 +982,7 @@ public final class DeferrableEventArgs : WinRTClass {
         if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == WinSDK.IUnknown.self {
+        if T.self == NativeIUnknown.self {
             return RawPointer(_default)
         }
         return nil
@@ -1021,7 +1021,7 @@ public final class Derived : test_component.Base {
         if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == WinSDK.IUnknown.self {
+        if T.self == NativeIUnknown.self {
             return RawPointer(_default)
         }
         return super._getABI()
@@ -1083,7 +1083,7 @@ public final class EventTester : WinRTClass {
         if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == WinSDK.IUnknown.self {
+        if T.self == NativeIUnknown.self {
             return RawPointer(_default)
         }
         return nil
@@ -1142,7 +1142,7 @@ public final class NoopClosable : WinRTClass, test_component.IClosable {
         if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == WinSDK.IUnknown.self {
+        if T.self == NativeIUnknown.self {
             return RawPointer(_default)
         }
         return nil
@@ -1244,7 +1244,7 @@ public final class Simple : WinRTClass {
         if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == WinSDK.IUnknown.self {
+        if T.self == NativeIUnknown.self {
             return RawPointer(_default)
         }
         return nil
@@ -1446,7 +1446,7 @@ open class UnsealedDerived : test_component.Base {
         if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == WinSDK.IUnknown.self {
+        if T.self == NativeIUnknown.self {
             return RawPointer(_default)
         }
         return super._getABI()
@@ -1551,7 +1551,7 @@ open class UnsealedDerived2 : test_component.UnsealedDerived {
         if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == WinSDK.IUnknown.self {
+        if T.self == NativeIUnknown.self {
             return RawPointer(_default)
         }
         return super._getABI()
@@ -1617,7 +1617,7 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
         if T.self == NativeIInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == WinSDK.IUnknown.self {
+        if T.self == NativeIUnknown.self {
             return RawPointer(_default)
         }
         return super._getABI()
