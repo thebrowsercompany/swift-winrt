@@ -16,10 +16,10 @@ public final class AsyncOperationInt : WinRTClass, IAsyncOperation, test_compone
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == NativeIInspectable.self {
+        if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == NativeIUnknown.self {
+        if T.self == C_IUnknown.self {
             return RawPointer(_default)
         }
         return nil
@@ -100,10 +100,10 @@ open class Base : UnsealedWinRTClass {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == NativeIInspectable.self {
+        if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == NativeIUnknown.self {
+        if T.self == C_IUnknown.self {
             return RawPointer(_default)
         }
         return nil
@@ -172,10 +172,10 @@ public final class BaseCollection : WinRTClass, IVector, IIterable {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == NativeIInspectable.self {
+        if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == NativeIUnknown.self {
+        if T.self == C_IUnknown.self {
             return RawPointer(_default)
         }
         return nil
@@ -291,10 +291,10 @@ public final class BaseMapCollection : WinRTClass, IMap, IIterable {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == NativeIInspectable.self {
+        if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == NativeIUnknown.self {
+        if T.self == C_IUnknown.self {
             return RawPointer(_default)
         }
         return nil
@@ -370,10 +370,10 @@ open class BaseNoOverrides : UnsealedWinRTClass {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == NativeIInspectable.self {
+        if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == NativeIUnknown.self {
+        if T.self == C_IUnknown.self {
             return RawPointer(_default)
         }
         return nil
@@ -402,7 +402,7 @@ open class BaseNoOverrides : UnsealedWinRTClass {
         _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
     }
     internal class IBaseNoOverrides : ComposableImpl {
-        internal typealias CABI = NativeIInspectable
+        internal typealias CABI = C_IInspectable
         internal typealias SwiftABI = test_component.IInspectable
         internal class Default : MakeComposedAbi {
             internal typealias SwiftProjection = BaseNoOverrides
@@ -427,10 +427,10 @@ public final class BaseObservableCollection : WinRTClass, IObservableVector, IVe
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == NativeIInspectable.self {
+        if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == NativeIUnknown.self {
+        if T.self == C_IUnknown.self {
             return RawPointer(_default)
         }
         return nil
@@ -558,10 +558,10 @@ public final class Class : WinRTClass, IBasic {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == NativeIInspectable.self {
+        if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == NativeIUnknown.self {
+        if T.self == C_IUnknown.self {
             return RawPointer(_default)
         }
         return nil
@@ -720,7 +720,7 @@ public final class Class : WinRTClass, IBasic {
     }
 
     public func outObject(_ value: inout Any!) throws {
-        var _value: UnsafeMutablePointer<NativeIInspectable>?
+        var _value: UnsafeMutablePointer<C_IInspectable>?
         try _default.OutObjectImpl(&_value)
         value = __ABI_.AnyWrapper.unwrapFrom(abi: _value)
     }
@@ -898,10 +898,10 @@ public final class CollectionTester : WinRTClass {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == NativeIInspectable.self {
+        if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == NativeIUnknown.self {
+        if T.self == C_IUnknown.self {
             return RawPointer(_default)
         }
         return nil
@@ -979,10 +979,10 @@ public final class DeferrableEventArgs : WinRTClass {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == NativeIInspectable.self {
+        if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == NativeIUnknown.self {
+        if T.self == C_IUnknown.self {
             return RawPointer(_default)
         }
         return nil
@@ -1018,10 +1018,10 @@ public final class Derived : test_component.Base {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == NativeIInspectable.self {
+        if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == NativeIUnknown.self {
+        if T.self == C_IUnknown.self {
             return RawPointer(_default)
         }
         return super._getABI()
@@ -1080,10 +1080,10 @@ public final class EventTester : WinRTClass {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == NativeIInspectable.self {
+        if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == NativeIUnknown.self {
+        if T.self == C_IUnknown.self {
             return RawPointer(_default)
         }
         return nil
@@ -1139,10 +1139,10 @@ public final class NoopClosable : WinRTClass, test_component.IClosable {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == NativeIInspectable.self {
+        if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == NativeIUnknown.self {
+        if T.self == C_IUnknown.self {
             return RawPointer(_default)
         }
         return nil
@@ -1241,10 +1241,10 @@ public final class Simple : WinRTClass {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == NativeIInspectable.self {
+        if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == NativeIUnknown.self {
+        if T.self == C_IUnknown.self {
             return RawPointer(_default)
         }
         return nil
@@ -1443,10 +1443,10 @@ open class UnsealedDerived : test_component.Base {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == NativeIInspectable.self {
+        if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == NativeIUnknown.self {
+        if T.self == C_IUnknown.self {
             return RawPointer(_default)
         }
         return super._getABI()
@@ -1478,14 +1478,14 @@ open class UnsealedDerived : test_component.Base {
     private static var _IUnsealedDerivedFactory : __ABI_test_component.IUnsealedDerivedFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerived"))
     override public init() {
         super.init(Self._IUnsealedDerivedFactory) 
-        let parentDefault: UnsafeMutablePointer<NativeIInspectable> = super._getABI()!
+        let parentDefault: UnsafeMutablePointer<C_IInspectable> = super._getABI()!
         self._default = try! IInspectable(parentDefault).QueryInterface()
         _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
     }
 
     override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         super.init(factory)
-        let parentDefault: UnsafeMutablePointer<NativeIInspectable> = super._getABI()!
+        let parentDefault: UnsafeMutablePointer<C_IInspectable> = super._getABI()!
         self._default = try! IInspectable(parentDefault).QueryInterface()
         _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
     }
@@ -1548,10 +1548,10 @@ open class UnsealedDerived2 : test_component.UnsealedDerived {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == NativeIInspectable.self {
+        if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == NativeIUnknown.self {
+        if T.self == C_IUnknown.self {
             return RawPointer(_default)
         }
         return super._getABI()
@@ -1574,14 +1574,14 @@ open class UnsealedDerived2 : test_component.UnsealedDerived {
     private static var _IUnsealedDerived2ProtectedFactory : __ABI_test_component.IUnsealedDerived2ProtectedFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerived2"))
     override public init() {
         super.init(Self._IUnsealedDerived2ProtectedFactory) 
-        let parentDefault: UnsafeMutablePointer<NativeIInspectable> = super._getABI()!
+        let parentDefault: UnsafeMutablePointer<C_IInspectable> = super._getABI()!
         self._default = try! IInspectable(parentDefault).QueryInterface()
         _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
     }
 
     override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         super.init(factory)
-        let parentDefault: UnsafeMutablePointer<NativeIInspectable> = super._getABI()!
+        let parentDefault: UnsafeMutablePointer<C_IInspectable> = super._getABI()!
         self._default = try! IInspectable(parentDefault).QueryInterface()
         _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
     }
@@ -1614,10 +1614,10 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == NativeIInspectable.self {
+        if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == NativeIUnknown.self {
+        if T.self == C_IUnknown.self {
             return RawPointer(_default)
         }
         return super._getABI()
@@ -1640,19 +1640,19 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
     private static var _IUnsealedDerivedNoOverridesProtectedFactory : __ABI_test_component.IUnsealedDerivedNoOverridesProtectedFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerivedNoOverrides"))
     override public init() {
         super.init(Self._IUnsealedDerivedNoOverridesProtectedFactory) 
-        let parentDefault: UnsafeMutablePointer<NativeIInspectable> = super._getABI()!
+        let parentDefault: UnsafeMutablePointer<C_IInspectable> = super._getABI()!
         self._default = try! IInspectable(parentDefault).QueryInterface()
         _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
     }
 
     override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         super.init(factory)
-        let parentDefault: UnsafeMutablePointer<NativeIInspectable> = super._getABI()!
+        let parentDefault: UnsafeMutablePointer<C_IInspectable> = super._getABI()!
         self._default = try! IInspectable(parentDefault).QueryInterface()
         _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
     }
     internal class IUnsealedDerivedNoOverrides : ComposableImpl {
-        internal typealias CABI = NativeIInspectable
+        internal typealias CABI = C_IInspectable
         internal typealias SwiftABI = test_component.IInspectable
         internal class Default : MakeComposedAbi {
             internal typealias SwiftProjection = UnsealedDerivedNoOverrides

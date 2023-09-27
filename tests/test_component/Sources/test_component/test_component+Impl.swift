@@ -105,7 +105,7 @@ public enum __IMPL_test_component {
         }
 
         public func outObject(_ value: inout Any!) throws {
-            var _value: UnsafeMutablePointer<NativeIInspectable>?
+            var _value: UnsafeMutablePointer<C_IInspectable>?
             try _default.OutObjectImpl(&_value)
             value = __ABI_.AnyWrapper.unwrapFrom(abi: _value)
         }

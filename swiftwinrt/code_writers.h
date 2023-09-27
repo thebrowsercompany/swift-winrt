@@ -2195,10 +2195,10 @@ private var _default: SwiftABI!
     if T.self == CABI.self {
         return RawPointer(_default)
     }   
-    if T.self == NativeIInspectable.self {
+    if T.self == C_IInspectable.self {
         return RawPointer(_default)
     }
-    if T.self == NativeIUnknown.self {
+    if T.self == C_IUnknown.self {
         return RawPointer(_default)
     }
     return %

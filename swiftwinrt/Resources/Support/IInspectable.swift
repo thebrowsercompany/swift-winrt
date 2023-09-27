@@ -4,23 +4,25 @@
 import C_BINDINGS_MODULE
 import Foundation
 
+fileprivate let IID_IInspectable = IID(Data1: 0xAF86E2E0, Data2: 0xB12D, Data3: 0x4C6A, Data4: ( 0x9C, 0x5A, 0xD7, 0xAA, 0x65, 0x10, 0x1E, 0x90 )) // AF86E2E0-B12D-4c6a-9C5A-D7AA65101E90
+
 open class IInspectable: IUnknown {
   override open class var IID: SUPPORT_MODULE.IID { IID_IInspectable }
 
   public func GetIids(_ iidCount: UnsafeMutablePointer<ULONG>, _ iids: UnsafeMutablePointer<UnsafeMutablePointer<SUPPORT_MODULE.IID>?>?) throws {
-    return try perform(as: NativeIInspectable.self) { pThis in
+    return try perform(as: C_IInspectable.self) { pThis in
       try CHECKED(pThis.pointee.lpVtbl.pointee.GetIids(pThis, iidCount, iids))
     }
   }
 
   public func GetRuntimeClassName(_ className: UnsafeMutablePointer<HSTRING?>) throws {
-    return try perform(as: NativeIInspectable.self) { pThis in
+    return try perform(as: C_IInspectable.self) { pThis in
       try CHECKED(pThis.pointee.lpVtbl.pointee.GetRuntimeClassName(pThis, className))
     }
   }
 
   public func GetTrustLevel(_ trustLevel: UnsafeMutablePointer<TrustLevel>?) throws {
-    return try perform(as: NativeIInspectable.self) { pThis in
+    return try perform(as: C_IInspectable.self) { pThis in
       try CHECKED(pThis.pointee.lpVtbl.pointee.GetTrustLevel(pThis, trustLevel))
     }
   }
@@ -30,7 +32,7 @@ open class IInspectable: IUnknown {
 // These types are used for composable types which don't provide an overrides interface. Composable types which
 // follow this pattern should define their composability contract like the following:
 // internal class IBaseNoOverrides : OverridesImpl {
-//      internal typealias CABI = NativeIInspectable
+//      internal typealias CABI = C_IInspectable
 //      internal typealias SwiftABI = __ABI_test_component.IBaseNoOverrides
 //      internal typealias SwiftProjection = BaseNoOverrides
 //      internal typealias c_defaultABI = __x_ABI_Ctest__component_CIBaseNoOverrides
@@ -38,29 +40,29 @@ open class IInspectable: IUnknown {
 // }
 // internal typealias Composable = IBaseNoOverrides
 public enum __ABI_ {
-    public class AnyWrapper : WinRTWrapperBase<NativeIInspectable, AnyObject> {
+    public class AnyWrapper : WinRTWrapperBase<C_IInspectable, AnyObject> {
       public init?(_ swift: Any?) {
         guard let swift else { return nil }
          if let propertyValue = PropertyValue.createFrom(swift) {
-          let abi: UnsafeMutablePointer<NativeIInspectable> = RawPointer(propertyValue)
+          let abi: UnsafeMutablePointer<C_IInspectable> = RawPointer(propertyValue)
           super.init(abi.pointee, propertyValue)
         } else {
           let vtblPtr = withUnsafeMutablePointer(to: &IInspectableVTable) { $0 }
-          let cAbi = NativeIInspectable(lpVtbl: vtblPtr)
+          let cAbi = C_IInspectable(lpVtbl: vtblPtr)
           super.init(cAbi, swift as AnyObject)
         }
       }
 
-      override public func toABI<ResultType>(_ body: (UnsafeMutablePointer<NativeIInspectable>) throws -> ResultType)
+      override public func toABI<ResultType>(_ body: (UnsafeMutablePointer<C_IInspectable>) throws -> ResultType)
         throws -> ResultType {
         if let swiftAbi = swiftObj as? IInspectable {
-           let abi: UnsafeMutablePointer<NativeIInspectable> = RawPointer(swiftAbi)
+           let abi: UnsafeMutablePointer<C_IInspectable> = RawPointer(swiftAbi)
            return try body(abi)
         } else {
             return try super.toABI(body)
         }
       }
-      public static func unwrapFrom(abi: UnsafeMutablePointer<NativeIInspectable>?) -> Any? {
+      public static func unwrapFrom(abi: UnsafeMutablePointer<C_IInspectable>?) -> Any? {
         guard let abi = abi else { return nil }
         if let instance = tryUnwrapFrom(abi: abi) {
           return instance
@@ -84,7 +86,7 @@ public enum __ABI_ {
       }
     }
 
-    internal static var IInspectableVTable: NativeIInspectableVtbl = .init(
+    internal static var IInspectableVTable: C_IInspectableVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
             ppvObject.pointee = nil
@@ -148,7 +150,7 @@ public enum __ABI_ {
     )
 }
 
-extension ComposableImpl where CABI == NativeIInspectable {
+extension ComposableImpl where CABI == C_IInspectable {
   public static func makeAbi() -> CABI {
     let vtblPtr = withUnsafeMutablePointer(to: &__ABI_.IInspectableVTable) { $0 }
     return .init(lpVtbl: vtblPtr)

@@ -8,7 +8,7 @@ public protocol CustomQueryInterface {
 
 @_spi(WinRTInternal)
 public func queryInterface(sealed obj: AnyWinRTClass, _ iid: SUPPORT_MODULE.IID) -> IUnknownRef? {
-    guard let cDefault: UnsafeMutablePointer<NativeIInspectable> = obj._getABI() else { return nil }
+    guard let cDefault: UnsafeMutablePointer<C_IInspectable> = obj._getABI() else { return nil }
 
     var iid = iid
     var result: UnsafeMutableRawPointer?

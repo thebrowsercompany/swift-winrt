@@ -81,7 +81,7 @@ open class WinRTWrapperBase<CInterface, Prototype> {
         // Use toABI as derived classes may override this to get the ABI pointer of the swift
         // object they are holding onto
         let abi: UnsafeMutablePointer<CInterface> = try! toABI { $0 }
-        abi.withMemoryRebound(to: NativeIUnknown.self, capacity: 1) {
+        abi.withMemoryRebound(to: C_IUnknown.self, capacity: 1) {
             _ = $0.pointee.lpVtbl.pointee.AddRef($0)
         }
 
@@ -92,7 +92,7 @@ open class WinRTWrapperBase<CInterface, Prototype> {
         // Use toABI as derived classes may override this to get the ABI pointer of the swift
         // object they are holding onto
         try! toABI {
-            $0.withMemoryRebound(to: NativeIUnknown.self, capacity: 1) {
+            $0.withMemoryRebound(to: C_IUnknown.self, capacity: 1) {
                 var iid = iid
                 var result: UnsafeMutableRawPointer?
                 guard $0.pointee.lpVtbl.pointee.QueryInterface($0, &iid, &result) == S_OK, let result else { return nil }

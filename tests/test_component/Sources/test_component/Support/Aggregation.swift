@@ -25,7 +25,7 @@ extension UnsealedWinRTClass {
             // to get the associated XamlType. We aren't using Xaml for swift, so we don't actually
             // need or want the framework to think it's dealing with custom types.
             var name: HSTRING?
-            try! inner.borrow.withMemoryRebound(to: NativeIInspectable.self, capacity: 1) {
+            try! inner.borrow.withMemoryRebound(to: C_IInspectable.self, capacity: 1) {
                 _ = try CHECKED($0.pointee.lpVtbl.pointee.GetRuntimeClassName($0, &name))
             }
             return .init(consuming: name)
@@ -40,8 +40,8 @@ public protocol ComposableActivationFactory {
     associatedtype Composable : ComposableImpl
 
     func CreateInstanceImpl(
-            _ base: UnsafeMutablePointer<NativeIInspectable>?,
-            _ inner: inout UnsafeMutablePointer<NativeIInspectable>?) throws -> UnsafeMutablePointer<Composable.Default.CABI>?
+            _ base: UnsafeMutablePointer<C_IInspectable>?,
+            _ inner: inout UnsafeMutablePointer<C_IInspectable>?) throws -> UnsafeMutablePointer<Composable.Default.CABI>?
 }
 
 
@@ -49,8 +49,8 @@ public protocol ComposableActivationFactory {
 // https://linear.app/the-browser-company/issue/WIN-110/swiftwinrt-dont-allow-app-to-derive-from-types-without-a-constructor
 public extension ComposableActivationFactory {
     func CreateInstanceImpl(
-            _ base: UnsafeMutablePointer<NativeIInspectable>?,
-            _ inner: inout UnsafeMutablePointer<NativeIInspectable>?) throws -> UnsafeMutablePointer<Composable.Default.CABI>? {
+            _ base: UnsafeMutablePointer<C_IInspectable>?,
+            _ inner: inout UnsafeMutablePointer<C_IInspectable>?) throws -> UnsafeMutablePointer<Composable.Default.CABI>? {
         throw Error(hr: E_NOTIMPL)
     }
 }
@@ -77,8 +77,8 @@ public func MakeComposed<Factory: ComposableActivationFactory>(_ factory: Factor
     let wrapper:UnsealedWinRTClassWrapper<Factory.Composable>? = .init(aggregated ? this : nil)
 
     let abi = try! wrapper?.toABI { $0 }
-    let baseInsp = abi?.withMemoryRebound(to: NativeIInspectable.self, capacity: 1) { $0 }
-    var innerInsp: UnsafeMutablePointer<NativeIInspectable>? = nil
+    let baseInsp = abi?.withMemoryRebound(to: C_IInspectable.self, capacity: 1) { $0 }
+    var innerInsp: UnsafeMutablePointer<C_IInspectable>? = nil
     let base = try! factory.CreateInstanceImpl(baseInsp, &innerInsp)
     guard let innerInsp, let base else {
         fatalError("Unexpected nil returned after successful creation")
