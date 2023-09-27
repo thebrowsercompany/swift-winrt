@@ -125,8 +125,8 @@ namespace swiftwinrt
 
         auto shim_template = find_resource(RESOURCE_TYPE_OTHER_FILE_STR, RESOURCE_NAME_CWINRT_SHIM_C_STR);
         fill_template_placeholders_to_file(shim_template, dir_path / "shim.c");
-        auto guid2_h_template = find_resource(RESOURCE_TYPE_OTHER_FILE_STR, RESOURCE_NAME_CWINRT_GUID2_H_STR);
-        fill_template_placeholders_to_file(guid2_h_template, dir_path / "include" / "GUID2.h");
+        auto guidworkaround_h_template = find_resource(RESOURCE_TYPE_OTHER_FILE_STR, RESOURCE_NAME_CWINRT_CPPINTEROPWORKAROUND_H_STR);
+        fill_template_placeholders_to_file(guidworkaround_h_template, dir_path / "include" / "CppInteropWorkaround.h");
 
         if (settings.has_project_type(project_type::spm))
         {
