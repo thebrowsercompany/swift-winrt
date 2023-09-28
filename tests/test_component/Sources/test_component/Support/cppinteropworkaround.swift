@@ -18,9 +18,9 @@ internal let UuidFromStringA = Ctest_component.UuidFromStringA_Workaround
 internal let RoActivateInstance = Ctest_component.RoActivateInstance_Workaround
 internal let RoGetActivationFactory = Ctest_component.RoGetActivationFactory_Workaround
 internal let StringFromGUID2 = Ctest_component.StringFromGUID2_Workaround
-// internal let SysAllocString = Ctest_component.SysAllocString_Workaround
-// internal let SysFreeString = Ctest_component.SysFreeString_Workaround
-// internal let SysStringLen = Ctest_component.SysStringLen_Workaround
+internal let SysAllocString = Ctest_component.SysAllocString_Workaround
+internal let SysFreeString = Ctest_component.SysFreeString_Workaround
+internal let SysStringLen = Ctest_component.SysStringLen_Workaround
 internal let WindowsCreateString = Ctest_component.WindowsCreateString_Workaround
 internal let WindowsGetStringRawBuffer = Ctest_component.WindowsGetStringRawBuffer_Workaround
 #else
@@ -41,9 +41,9 @@ internal let UuidFromStringA = Ctest_component.UuidFromStringA
 internal let RoActivateInstance = Ctest_component.RoActivateInstance
 internal let RoGetActivationFactory = Ctest_component.RoGetActivationFactory
 internal let StringFromGUID2 = Ctest_component.StringFromGUID2
-// internal let SysAllocString = Ctest_component.SysAllocString
-// internal let SysFreeString = Ctest_component.SysFreeString
-// internal let SysStringLen = Ctest_component.SysStringLen
+internal let SysAllocString = Ctest_component.SysAllocString
+internal let SysFreeString = Ctest_component.SysFreeString
+internal let SysStringLen = Ctest_component.SysStringLen
 internal let WindowsCreateString = Ctest_component.WindowsCreateString
 internal let WindowsGetStringRawBuffer = Ctest_component.WindowsGetStringRawBuffer
 #endif
