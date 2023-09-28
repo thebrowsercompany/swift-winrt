@@ -2269,7 +2269,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CIAsyncMethods_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIAsyncMethods_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IAsyncMethods[] = L"test_component.IAsyncMethods";
     typedef struct __x_ABI_Ctest__component_CIAsyncMethodsVtbl
     {
         BEGIN_INTERFACE
@@ -2304,7 +2303,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CIBase_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIBase_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IBase[] = L"test_component.IBase";
     typedef struct __x_ABI_Ctest__component_CIBaseVtbl
     {
         BEGIN_INTERFACE
@@ -2337,7 +2335,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CIBaseNoOverrides_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIBaseNoOverrides_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IBaseNoOverrides[] = L"test_component.IBaseNoOverrides";
     typedef struct __x_ABI_Ctest__component_CIBaseNoOverridesVtbl
     {
         BEGIN_INTERFACE
@@ -2369,7 +2366,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CIBaseNoOverridesProtectedFactory_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIBaseNoOverridesProtectedFactory_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IBaseNoOverridesProtectedFactory[] = L"test_component.IBaseNoOverridesProtectedFactory";
     typedef struct __x_ABI_Ctest__component_CIBaseNoOverridesProtectedFactoryVtbl
     {
         BEGIN_INTERFACE
@@ -2405,7 +2401,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CIBaseOverrides_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIBaseOverrides_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IBaseOverrides[] = L"test_component.IBaseOverrides";
     typedef struct __x_ABI_Ctest__component_CIBaseOverridesVtbl
     {
         BEGIN_INTERFACE
@@ -2438,7 +2433,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CIBaseProtectedFactory_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIBaseProtectedFactory_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IBaseProtectedFactory[] = L"test_component.IBaseProtectedFactory";
     typedef struct __x_ABI_Ctest__component_CIBaseProtectedFactoryVtbl
     {
         BEGIN_INTERFACE
@@ -2474,7 +2468,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CIBasic_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIBasic_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IBasic[] = L"test_component.IBasic";
     typedef struct __x_ABI_Ctest__component_CIBasicVtbl
     {
         BEGIN_INTERFACE
@@ -2507,7 +2500,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CIClass_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIClass_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IClass[] = L"test_component.IClass";
     typedef struct __x_ABI_Ctest__component_CIClassVtbl
     {
         BEGIN_INTERFACE
@@ -2620,7 +2612,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CIClassFactory_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIClassFactory_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IClassFactory[] = L"test_component.IClassFactory";
     typedef struct __x_ABI_Ctest__component_CIClassFactoryVtbl
     {
         BEGIN_INTERFACE
@@ -2689,7 +2680,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CIClassFactory2_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIClassFactory2_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IClassFactory2[] = L"test_component.IClassFactory2";
     typedef struct __x_ABI_Ctest__component_CIClassFactory2Vtbl
     {
         BEGIN_INTERFACE
@@ -2726,7 +2716,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CIClassStatics_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIClassStatics_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IClassStatics[] = L"test_component.IClassStatics";
     typedef struct __x_ABI_Ctest__component_CIClassStaticsVtbl
     {
         BEGIN_INTERFACE
@@ -2763,7 +2752,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CIClassStatics2_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIClassStatics2_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IClassStatics2[] = L"test_component.IClassStatics2";
     typedef struct __x_ABI_Ctest__component_CIClassStatics2Vtbl
     {
         BEGIN_INTERFACE
@@ -2801,7 +2789,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CICollectionTester_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CICollectionTester_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_ICollectionTester[] = L"test_component.ICollectionTester";
     typedef struct __x_ABI_Ctest__component_CICollectionTesterVtbl
     {
         BEGIN_INTERFACE
@@ -2837,7 +2824,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CICollectionTesterStatics_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CICollectionTesterStatics_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_ICollectionTesterStatics[] = L"test_component.ICollectionTesterStatics";
     typedef struct __x_ABI_Ctest__component_CICollectionTesterStaticsVtbl
     {
         BEGIN_INTERFACE
@@ -2885,7 +2871,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CIDeferrableEventArgs_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIDeferrableEventArgs_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IDeferrableEventArgs[] = L"test_component.IDeferrableEventArgs";
     typedef struct __x_ABI_Ctest__component_CIDeferrableEventArgsVtbl
     {
         BEGIN_INTERFACE
@@ -2920,7 +2905,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CIDerived_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIDerived_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IDerived[] = L"test_component.IDerived";
     typedef struct __x_ABI_Ctest__component_CIDerivedVtbl
     {
         BEGIN_INTERFACE
@@ -2956,7 +2940,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CIEventTester_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIEventTester_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IEventTester[] = L"test_component.IEventTester";
     typedef struct __x_ABI_Ctest__component_CIEventTesterVtbl
     {
         BEGIN_INTERFACE
@@ -2994,7 +2977,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CIEventTesterFactory_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIEventTesterFactory_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IEventTesterFactory[] = L"test_component.IEventTesterFactory";
     typedef struct __x_ABI_Ctest__component_CIEventTesterFactoryVtbl
     {
         BEGIN_INTERFACE
@@ -3029,7 +3011,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CIIAmImplementable_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIIAmImplementable_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IIAmImplementable[] = L"test_component.IIAmImplementable";
     typedef struct __x_ABI_Ctest__component_CIIAmImplementableVtbl
     {
         BEGIN_INTERFACE
@@ -3104,7 +3085,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CIInterfaceWithObservableVector_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIInterfaceWithObservableVector_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IInterfaceWithObservableVector[] = L"test_component.IInterfaceWithObservableVector";
     typedef struct __x_ABI_Ctest__component_CIInterfaceWithObservableVectorVtbl
     {
         BEGIN_INTERFACE
@@ -3138,7 +3118,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CINullValuesStatics_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CINullValuesStatics_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_INullValuesStatics[] = L"test_component.INullValuesStatics";
     typedef struct __x_ABI_Ctest__component_CINullValuesStaticsVtbl
     {
         BEGIN_INTERFACE
@@ -3195,7 +3174,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CISimple_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CISimple_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_ISimple[] = L"test_component.ISimple";
     typedef struct __x_ABI_Ctest__component_CISimpleVtbl
     {
         BEGIN_INTERFACE
@@ -3273,7 +3251,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CISimpleDelegate_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CISimpleDelegate_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_ISimpleDelegate[] = L"test_component.ISimpleDelegate";
     typedef struct __x_ABI_Ctest__component_CISimpleDelegateVtbl
     {
         BEGIN_INTERFACE
@@ -3308,7 +3285,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CISimpleStatics_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CISimpleStatics_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_ISimpleStatics[] = L"test_component.ISimpleStatics";
     typedef struct __x_ABI_Ctest__component_CISimpleStaticsVtbl
     {
         BEGIN_INTERFACE
@@ -3346,7 +3322,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CIStaticClassStatics_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIStaticClassStatics_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IStaticClassStatics[] = L"test_component.IStaticClassStatics";
     typedef struct __x_ABI_Ctest__component_CIStaticClassStaticsVtbl
     {
         BEGIN_INTERFACE
@@ -3390,7 +3365,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CIUnsealedDerived_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIUnsealedDerived_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IUnsealedDerived[] = L"test_component.IUnsealedDerived";
     typedef struct __x_ABI_Ctest__component_CIUnsealedDerivedVtbl
     {
         BEGIN_INTERFACE
@@ -3426,7 +3400,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CIUnsealedDerived2_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIUnsealedDerived2_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IUnsealedDerived2[] = L"test_component.IUnsealedDerived2";
     typedef struct __x_ABI_Ctest__component_CIUnsealedDerived2Vtbl
     {
         BEGIN_INTERFACE
@@ -3459,7 +3432,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CIUnsealedDerived2ProtectedFactory_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIUnsealedDerived2ProtectedFactory_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IUnsealedDerived2ProtectedFactory[] = L"test_component.IUnsealedDerived2ProtectedFactory";
     typedef struct __x_ABI_Ctest__component_CIUnsealedDerived2ProtectedFactoryVtbl
     {
         BEGIN_INTERFACE
@@ -3495,7 +3467,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CIUnsealedDerivedFactory_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIUnsealedDerivedFactory_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IUnsealedDerivedFactory[] = L"test_component.IUnsealedDerivedFactory";
     typedef struct __x_ABI_Ctest__component_CIUnsealedDerivedFactoryVtbl
     {
         BEGIN_INTERFACE
@@ -3531,7 +3502,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IUnsealedDerivedNoOverrides[] = L"test_component.IUnsealedDerivedNoOverrides";
     typedef struct __x_ABI_Ctest__component_CIUnsealedDerivedNoOverridesVtbl
     {
         BEGIN_INTERFACE
@@ -3563,7 +3533,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CIUnsealedDerivedNoOverridesProtectedFactory_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIUnsealedDerivedNoOverridesProtectedFactory_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IUnsealedDerivedNoOverridesProtectedFactory[] = L"test_component.IUnsealedDerivedNoOverridesProtectedFactory";
     typedef struct __x_ABI_Ctest__component_CIUnsealedDerivedNoOverridesProtectedFactoryVtbl
     {
         BEGIN_INTERFACE
@@ -3599,7 +3568,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CIUnsealedDerivedOverloads2_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIUnsealedDerivedOverloads2_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IUnsealedDerivedOverloads2[] = L"test_component.IUnsealedDerivedOverloads2";
     typedef struct __x_ABI_Ctest__component_CIUnsealedDerivedOverloads2Vtbl
     {
         BEGIN_INTERFACE
@@ -3632,7 +3600,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CIUnsealedDerivedOverrides_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIUnsealedDerivedOverrides_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_IUnsealedDerivedOverrides[] = L"test_component.IUnsealedDerivedOverrides";
     typedef struct __x_ABI_Ctest__component_CIUnsealedDerivedOverridesVtbl
     {
         BEGIN_INTERFACE
@@ -3665,7 +3632,6 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
 #if !defined(____x_ABI_Ctest__component_CInterfaceWithReturnDelegate_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CInterfaceWithReturnDelegate_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_test_component_InterfaceWithReturnDelegate[] = L"test_component.InterfaceWithReturnDelegate";
     typedef struct __x_ABI_Ctest__component_CInterfaceWithReturnDelegateVtbl
     {
         BEGIN_INTERFACE

@@ -1,4 +1,3 @@
-
 // The real ivectorchangedeventargs.h will provide different definitions in C vs C++ compilation mode.
 // Override it with ours so we ensure we get the C definitions.
 #pragma once
