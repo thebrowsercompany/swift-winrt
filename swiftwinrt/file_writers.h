@@ -129,6 +129,8 @@ namespace swiftwinrt
         fill_template_placeholders_to_file(guidworkaround_h_template, dir_path / "include" / "CppInteropWorkaround.h");
         auto ivectorchangedeventargs_h_template = find_resource(RESOURCE_TYPE_OTHER_FILE_STR, RESOURCE_NAME_CWINRT_IVECTORCHANGEDEVENTARGS_H_STR);
         fill_template_placeholders_to_file(ivectorchangedeventargs_h_template, dir_path / "include" / "IVectorChangedEventArgs.h");
+        auto restrictederrorinfo_h_template = find_resource(RESOURCE_TYPE_OTHER_FILE_STR, RESOURCE_NAME_CWINRT_RESTRICTEDERRORINFO_H_STR);
+        fill_template_placeholders_to_file(restrictederrorinfo_h_template, dir_path / "include" / "RestrictedErrorInfo.h");
 
         if (settings.has_project_type(project_type::spm))
         {

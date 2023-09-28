@@ -2,41 +2,31 @@
 // when exposing wchar_t or the Windows.h GUID type to Swift.
 #pragma once
 
-#include <windows.h>
-#include <winstring.h>
-#include <roapi.h>
 
 typedef struct GUID_Workaround {
-    unsigned long  Data1;
+    unsigned long Data1;
     unsigned short Data2;
     unsigned short Data3;
-    unsigned char  Data4[8];
+    unsigned char Data4[8];
 } GUID_Workaround;
 
-typedef GUID_Workaround UUID_Workaround;
-typedef GUID_Workaround IID_Workaround;
 typedef GUID_Workaround CLSID_Workaround;
+typedef GUID_Workaround IID_Workaround;
+typedef GUID_Workaround UUID_Workaround;
 
 typedef UINT16 WCHAR_Workaround;
+typedef WCHAR_Workaround OLECHAR_Workaround;
 typedef const WCHAR_Workaround* PCWSTR_Workaround;
+typedef WCHAR_Workaround* LPWSTR_Workaround;
 typedef const WCHAR_Workaround* LPCWSTR_Workaround;
+typedef OLECHAR_Workaround* BSTR_Workaround;
 
 // Functions depending on workaround types
-typedef interface IUnknown_Workaround IUnknown_Workaround;
-typedef interface IInspectable_Workaround IInspectable_Workaround;
+typedef struct IUnknown_Workaround IUnknown_Workaround;
+typedef struct IInspectable_Workaround IInspectable_Workaround;
+typedef struct IRestrictedErrorInfo_Workaround IRestrictedErrorInfo_Workaround;
 
-inline int StringFromGUID2_Workaround(const GUID_Workaround* rguid, UINT16* lpsz, int cchMax) {
-#ifdef __cplusplus
-    return StringFromGUID2(*(GUID*)rguid, (LPOLESTR)lpsz, cchMax);
-#else
-    return StringFromGUID2((REFGUID)rguid, (LPOLESTR)lpsz, cchMax);
-#endif
-}
-
-inline RPC_STATUS UuidFromStringA_Workaround(RPC_CSTR StringUuid, UUID_Workaround* Uuid) {
-    return UuidFromStringA(StringUuid, (UUID*)Uuid);
-}
-
+#include <combaseapi.h>
 inline HRESULT CoCreateInstance_Workaround(
         const CLSID_Workaround* rclsid,
         LPUNKNOWN pUnkOuter,
@@ -50,12 +40,42 @@ inline HRESULT CoCreateInstance_Workaround(
 #endif
 }
 
-inline HRESULT WindowsCreateString_Workaround(const UINT16* sourceString, UINT32 length, HSTRING *string) {
-    return WindowsCreateString((LPCWSTR)sourceString, length, string);
+inline int StringFromGUID2_Workaround(const GUID_Workaround* rguid, UINT16* lpsz, int cchMax) {
+#ifdef __cplusplus
+    return StringFromGUID2(*(GUID*)rguid, (LPOLESTR)lpsz, cchMax);
+#else
+    return StringFromGUID2((REFGUID)rguid, (LPOLESTR)lpsz, cchMax);
+#endif
 }
 
-inline LPCWSTR_Workaround WindowsGetStringRawBuffer_Workaround(HSTRING string, UINT32 *length) {
-    return (LPCWSTR_Workaround)WindowsGetStringRawBuffer(string, length);
+#include <oleauto.h>
+inline BSTR_Workaround SysAllocString_Workaround(const OLECHAR_Workaround *psz) {
+    return (BSTR_Workaround)SysAllocString((const OLECHAR*)psz);
+}
+
+inline void SysFreeString_Workaround(BSTR_Workaround bstrString) {
+    SysFreeString((BSTR)bstrString);
+}
+
+inline UINT SysStringLen_Workaround(BSTR_Workaround pbstr) {
+    return SysStringLen((BSTR)pbstr);
+}
+
+#include <rpc.h>
+inline RPC_STATUS UuidFromStringA_Workaround(RPC_CSTR StringUuid, UUID_Workaround* Uuid) {
+    return UuidFromStringA(StringUuid, (UUID*)Uuid);
+}
+
+#include <roerrorapi.h>
+inline HRESULT GetRestrictedErrorInfo_Workaround(IRestrictedErrorInfo_Workaround **ppRestrictedErrorInfo) {
+    return GetRestrictedErrorInfo((IRestrictedErrorInfo**)ppRestrictedErrorInfo);
+}
+
+#include <roapi.h>
+inline HRESULT RoActivateInstance_Workaround(
+        HSTRING activatableClassId,
+        IInspectable_Workaround** instance) {
+    return RoActivateInstance(activatableClassId, (IInspectable**)instance);
 }
 
 inline HRESULT RoGetActivationFactory_Workaround(
@@ -69,10 +89,18 @@ inline HRESULT RoGetActivationFactory_Workaround(
 #endif
 }
 
-inline HRESULT RoActivateInstance_Workaround(
-        HSTRING activatableClassId,
-        IInspectable_Workaround** instance) {
-    return RoActivateInstance(activatableClassId, (IInspectable**)instance);
+#include <windows.h>
+inline DWORD FormatMessageW_Workaround(DWORD dwFlags, LPCVOID lpSource, DWORD dwMessageId, DWORD dwLanguageId, LPWSTR_Workaround lpBuffer, DWORD nSize, va_list *Arguments) {
+    return FormatMessageW(dwFlags, lpSource, dwMessageId, dwLanguageId, (LPWSTR)lpBuffer, nSize, Arguments);
+}
+
+#include <winstring.h>
+inline HRESULT WindowsCreateString_Workaround(const UINT16* sourceString, UINT32 length, HSTRING *string) {
+    return WindowsCreateString((LPCWSTR)sourceString, length, string);
+}
+
+inline LPCWSTR_Workaround WindowsGetStringRawBuffer_Workaround(HSTRING string, UINT32 *length) {
+    return (LPCWSTR_Workaround)WindowsGetStringRawBuffer(string, length);
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -82,8 +110,8 @@ inline HRESULT RoActivateInstance_Workaround(
 //-------------------------------------------------------------------------------------------------
 // Preemptively include headers before swapping out the IID type
 // This no-op the #includes in generated code, so that it instead relies of our workaround types
-#include <inspectable.h>
 #include <EventToken.h>
+#include <inspectable.h>
 #include <windowscontracts.h>
 
 #define GUID GUID_Workaround
@@ -94,13 +122,23 @@ inline HRESULT RoActivateInstance_Workaround(
 #define REFIID const IID* __MIDL_CONST
 
 #define WCHAR WCHAR_Workaround
+#define OLECHAR WCHAR_Workaround
 #define PCWSTR PCWSTR_Workaround
 #define LPCWSTR LPCWSTR_Workaround
+#define BSTR BSTR_Workaround
 
 #define IUnknown IUnknown_Workaround
 #define IUnknownVtbl IUnknownVtbl_Workaround
 #define IInspectable IInspectable_Workaround
 #define IInspectableVtbl IInspectableVtbl_Workaround
+#define IRestrictedErrorInfo IRestrictedErrorInfo_Workaround
+#define IRestrictedErrorInfoVtbl IRestrictedErrorInfo_WorkaroundVtbl
+#define IID_IRestrictedErrorInfo IID_IRestrictedErrorInfo_Workaround
+
+// Redefine IRestrictedErrorInfo with its workaround name
+#undef __IRestrictedErrorInfo_FWD_DEFINED__
+#undef __IRestrictedErrorInfo_INTERFACE_DEFINED__
+#include "RestrictedErrorInfo.h"
 
 // iunknown.h
 typedef struct IUnknownVtbl
