@@ -35,7 +35,7 @@ inline HRESULT CoCreateInstance_Workaround(
         LPVOID* ppv) {
 #ifdef __cplusplus
     return CoCreateInstance(*(CLSID*)rclsid, pUnkOuter, dwClsContext, *(IID*)riid, ppv);
- #else
+#else
     return CoCreateInstance((REFCLSID)rclsid, pUnkOuter, dwClsContext, (REFIID)riid, ppv);
 #endif
 }
@@ -115,10 +115,10 @@ inline LPCWSTR_Workaround WindowsGetStringRawBuffer_Workaround(HSTRING string, U
 #include <windowscontracts.h>
 
 #define GUID GUID_Workaround
-#undef REFGUID
+#undef REFGUID // REFGUID is a #define, not a typedef
 #define REFGUID const GUID* __MIDL_CONST
 #define IID IID_Workaround
-#undef REFIID
+#undef REFIID // REFIID is a #define, not a typedef
 #define REFIID const IID* __MIDL_CONST
 
 #define WCHAR WCHAR_Workaround

@@ -296,12 +296,10 @@ namespace swiftwinrt
 #include <winnt.h>
 #include <combaseapi.h> // IUnknown, CoCreateInstance
 #include <oleauto.h> // BSTR, Sys***String***
-
 #include <roapi.h> // Ro***
 #include "RestrictedErrorInfo.h" // IRestrictedErrorInfo (C definition)
 #include <roerrorapi.h> // GetRestrictedErrorInfo
 #include <winstring.h> // HSTRING, Windows***String***
-#include "stdlib.h"
 
 // undefine win32 apis which collide with WinRT method names
 #undef GetCurrentTime
