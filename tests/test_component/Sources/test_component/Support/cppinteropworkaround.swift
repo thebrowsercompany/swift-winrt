@@ -2,6 +2,7 @@ import Ctest_component
 
 #if true // TODO(WIN-860): Remove workaround once C++ interop issues with WinSDK.GUID are fixed.
 public typealias WCHAR = Ctest_component.WCHAR_Workaround
+public typealias BSTR = Ctest_component.BSTR_Workaround
 public typealias PCWSTR = Ctest_component.PCWSTR_Workaround?
 public typealias GUID = Ctest_component.GUID_Workaround
 public typealias IID = Ctest_component.IID_Workaround
@@ -25,6 +26,7 @@ internal let WindowsCreateString = Ctest_component.WindowsCreateString_Workaroun
 internal let WindowsGetStringRawBuffer = Ctest_component.WindowsGetStringRawBuffer_Workaround
 #else
 public typealias WCHAR = Ctest_component.WCHAR
+public typealias BSTR = Ctest_component.BSTR
 public typealias PCWSTR = Ctest_component.PCWSTR?
 public typealias GUID = Ctest_component.GUID
 public typealias IID = Ctest_component.IID

@@ -2,6 +2,7 @@ import C_BINDINGS_MODULE
 
 #if true // TODO(WIN-860): Remove workaround once C++ interop issues with WinSDK.GUID are fixed.
 public typealias WCHAR = C_BINDINGS_MODULE.WCHAR_Workaround
+public typealias BSTR = C_BINDINGS_MODULE.BSTR_Workaround
 public typealias PCWSTR = C_BINDINGS_MODULE.PCWSTR_Workaround?
 public typealias GUID = C_BINDINGS_MODULE.GUID_Workaround
 public typealias IID = C_BINDINGS_MODULE.IID_Workaround
@@ -25,6 +26,7 @@ internal let WindowsCreateString = C_BINDINGS_MODULE.WindowsCreateString_Workaro
 internal let WindowsGetStringRawBuffer = C_BINDINGS_MODULE.WindowsGetStringRawBuffer_Workaround
 #else
 public typealias WCHAR = C_BINDINGS_MODULE.WCHAR
+public typealias BSTR = C_BINDINGS_MODULE.BSTR
 public typealias PCWSTR = C_BINDINGS_MODULE.PCWSTR?
 public typealias GUID = C_BINDINGS_MODULE.GUID
 public typealias IID = C_BINDINGS_MODULE.IID

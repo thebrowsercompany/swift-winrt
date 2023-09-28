@@ -2,7 +2,6 @@
 // when exposing wchar_t or the Windows.h GUID type to Swift.
 #pragma once
 
-
 typedef struct GUID_Workaround {
     unsigned long Data1;
     unsigned short Data2;
@@ -50,6 +49,8 @@ inline int StringFromGUID2_Workaround(const GUID_Workaround* rguid, UINT16* lpsz
 
 #include <oleauto.h>
 inline BSTR_Workaround SysAllocString_Workaround(const OLECHAR_Workaround *psz) {
+    // Swift toolchains below 202309?? will hit a build error below
+    // because of a bug in the WinSDK modulemap for OLE headers.
     return (BSTR_Workaround)SysAllocString((const OLECHAR*)psz);
 }
 

@@ -17,9 +17,6 @@ let package = Package(
           name: "test_component",
           dependencies: [
               "CWinRT",
-          ],
-          swiftSettings: [
-            .interoperabilityMode(.Cxx)
           ]
       ),
     ]

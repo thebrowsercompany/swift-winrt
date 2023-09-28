@@ -16,7 +16,7 @@ runs:
     uses: compnerd/gha-setup-swift@main
     with:
       branch: development
-      tag: DEVELOPMENT-SNAPSHOT-2023-07-04-a
+      tag: DEVELOPMENT-SNAPSHOT-2023-08-12-a
 
   - name: Configure CMake
     shell: cmd
