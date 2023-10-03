@@ -28,6 +28,7 @@ jobs:
             NUGET_HASH: ${{ steps.git-hash.outputs.GIT_HASH }}
         with:
           config: release
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Nuget
         shell: cmd
