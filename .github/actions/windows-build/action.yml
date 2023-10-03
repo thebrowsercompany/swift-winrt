@@ -2,6 +2,8 @@ inputs:
   config:
     required: true
     type: string
+  GITHUB_TOKEN:
+    required: true
 
 runs:
   using: "composite"
@@ -16,7 +18,7 @@ runs:
     uses: compnerd/gha-setup-swift@main
     with:
       github-repo: thebrowsercompany/swift-build
-      github-token: ${{ github.token }}
+      github-token: ${{ inputs.GITHUB_TOKEN }}
       release-tag-name: 20230930.2 # Includes https://github.com/apple/swift/pull/68838
       release-asset-name: installer-amd64.exe
 

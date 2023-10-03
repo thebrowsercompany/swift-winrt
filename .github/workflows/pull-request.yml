@@ -15,3 +15,4 @@ jobs:
       - uses: ./.github/actions/windows-build
         with:
           config: debug
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
