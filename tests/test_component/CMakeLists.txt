@@ -31,6 +31,13 @@ add_custom_target(KillLSP
     COMMENT "Shutting down Language Server process"
     VERBATIM
 )
+
+# make sure build of swiftwinrt and test_component_cpp run before we kill the lsp.
+# this way the LSP doesn't have time start up again before running the GenerateBindings
+# target
+add_dependencies(KillLSP swiftwinrt)
+add_dependencies(KillLSP test_component_cpp)
+
 add_custom_target(GenerateBindings
     BYPRODUCTS ${CMAKE_CURRENT_SOURCE_DIR}/Sources/test_component/test_component.swift
     DEPENDS ${SWIFTWINRT_PARAM_FILE}
