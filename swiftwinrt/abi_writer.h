@@ -294,12 +294,12 @@ namespace swiftwinrt
 #include <wtypesbase.h>
 #include <minwindef.h>
 #include <winnt.h>
-#include <combaseapi.h>
-
-#include <roapi.h>
-#include <roerrorapi.h>
-#include <winstring.h>
-#include "stdlib.h"
+#include <combaseapi.h> // IUnknown, CoCreateInstance
+#include <oleauto.h> // BSTR, Sys***String***
+#include <roapi.h> // Ro***
+#include "RestrictedErrorInfo.h" // IRestrictedErrorInfo (C definition)
+#include <roerrorapi.h> // GetRestrictedErrorInfo
+#include <winstring.h> // HSTRING, Windows***String***
 
 // undefine win32 apis which collide with WinRT method names
 #undef GetCurrentTime
@@ -312,22 +312,7 @@ namespace swiftwinrt
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wmicrosoft-enum-forward-reference"
 
-#if 1 // TODO(WIN-860): Remove workaround once C++ interop issues with WinSDK.GUID are fixed.
-#include "GUID2.h"
-
-// Preemptively include headers before swapping out the IID type
-#include <EventToken.h>
-#include <windowscontracts.h>
-
-// The great lie
-#define GUID GUID2
-#undef REFGUID
-#define REFGUID const GUID* __MIDL_CONST
-#define IID IID2
-#undef REFIID
-#define REFIID const IID* __MIDL_CONST
-#define IInspectable IInspectableWithIID2
-#endif
+#include "CppInteropWorkaround.h" // TODO(WIN-860): Remove workaround once C++ interop issues with WinSDK.GUID are fixed.
 
 )");
         for (auto& [ns, members] : namespaces)

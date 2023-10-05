@@ -448,13 +448,9 @@ namespace swiftwinrt
 
         w.write(R"^-^(#if !defined(__%_INTERFACE_DEFINED__)
     #define __%_INTERFACE_DEFINED__
-    extern const __declspec(selectany) _Null_terminated_ WCHAR InterfaceName_%_%[] = L"%";
     )^-^",
             bind_mangled_name_macro(type),
-            bind_mangled_name_macro(type),
-            bind_list("_", namespace_range{ type.swift_abi_namespace() }),
-            type.cpp_abi_name(),
-            type.swift_full_name());
+            bind_mangled_name_macro(type));
 
         func(w, type);
 

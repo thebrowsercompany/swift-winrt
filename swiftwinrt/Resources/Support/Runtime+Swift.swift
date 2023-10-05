@@ -8,14 +8,14 @@ public func RoGetActivationFactory<Factory: IInspectable>(_ activatableClassId: 
   var iid = Factory.IID
   var factory: UnsafeMutableRawPointer?
   try CHECKED(RoGetActivationFactory(activatableClassId.get(), &iid, &factory))
-  let inspectable = IInspectable(consuming: factory!.bindMemory(to: NativeIUnknown.self, capacity: 1))
+  let inspectable = IInspectable(consuming: factory!.bindMemory(to: C_IUnknown.self, capacity: 1))
   return try inspectable.QueryInterface<Factory>()
 }
 
 public func RoActivateInstance<Instance: IInspectable>(_ activatableClassId: HString) throws -> Instance {
-  var instance: UnsafeMutablePointer<NativeIInspectable>?
+  var instance: UnsafeMutablePointer<C_IInspectable>?
   try CHECKED(RoActivateInstance(activatableClassId.get(), &instance))
-  let inspectable = IInspectable(consuming: UnsafeMutableRawPointer(instance!).bindMemory(to: NativeIUnknown.self, capacity: 1))
+  let inspectable = IInspectable(consuming: UnsafeMutableRawPointer(instance!).bindMemory(to: C_IUnknown.self, capacity: 1))
   return try inspectable.QueryInterface<Instance>()
 }
 

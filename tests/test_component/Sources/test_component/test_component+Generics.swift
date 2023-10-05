@@ -1091,8 +1091,8 @@ typealias __x_ABI_C__FIIterator_1_IInspectableWrapper = InterfaceWrapperBase<tes
 internal class IIteratorAny: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1_IInspectable }
 
-    internal func get_CurrentImpl() throws -> UnsafeMutablePointer<NativeIInspectable>? {
-        var result: UnsafeMutablePointer<NativeIInspectable>?
+    internal func get_CurrentImpl() throws -> UnsafeMutablePointer<C_IInspectable>? {
+        var result: UnsafeMutablePointer<C_IInspectable>?
         _ = try perform(as: __x_ABI_C__FIIterator_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
         }
@@ -2222,8 +2222,8 @@ internal class IKeyValuePairString_Any: test_component.IInspectable {
         return result
     }
 
-    internal func get_ValueImpl() throws -> UnsafeMutablePointer<NativeIInspectable>? {
-        var result: UnsafeMutablePointer<NativeIInspectable>?
+    internal func get_ValueImpl() throws -> UnsafeMutablePointer<C_IInspectable>? {
+        var result: UnsafeMutablePointer<C_IInspectable>?
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Value(pThis, &result))
         }
@@ -2792,8 +2792,8 @@ typealias __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper = InterfaceWrapperB
 internal class IMapViewString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMapView_2_HSTRING_IInspectable }
 
-    internal func LookupImpl(_ key: HSTRING?) throws -> UnsafeMutablePointer<NativeIInspectable>? {
-        var result: UnsafeMutablePointer<NativeIInspectable>?
+    internal func LookupImpl(_ key: HSTRING?) throws -> UnsafeMutablePointer<C_IInspectable>? {
+        var result: UnsafeMutablePointer<C_IInspectable>?
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, key, &result))
         }
@@ -3402,8 +3402,8 @@ typealias __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<
 internal class IMapString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMap_2_HSTRING_IInspectable }
 
-    internal func LookupImpl(_ key: HSTRING?) throws -> UnsafeMutablePointer<NativeIInspectable>? {
-        var result: UnsafeMutablePointer<NativeIInspectable>?
+    internal func LookupImpl(_ key: HSTRING?) throws -> UnsafeMutablePointer<C_IInspectable>? {
+        var result: UnsafeMutablePointer<C_IInspectable>?
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, key, &result))
         }
@@ -3434,7 +3434,7 @@ internal class IMapString_Any: test_component.IInspectable {
         return result
     }
 
-    internal func InsertImpl(_ key: HSTRING?, _ value: UnsafeMutablePointer<NativeIInspectable>?) throws -> boolean {
+    internal func InsertImpl(_ key: HSTRING?, _ value: UnsafeMutablePointer<C_IInspectable>?) throws -> boolean {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Insert(pThis, key, value, &result))
@@ -4995,8 +4995,8 @@ typealias __x_ABI_C__FIVectorView_1_IInspectableWrapper = InterfaceWrapperBase<t
 internal class IVectorViewAny: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1_IInspectable }
 
-    internal func GetAtImpl(_ index: UINT32) throws -> UnsafeMutablePointer<NativeIInspectable>? {
-        var result: UnsafeMutablePointer<NativeIInspectable>?
+    internal func GetAtImpl(_ index: UINT32) throws -> UnsafeMutablePointer<C_IInspectable>? {
+        var result: UnsafeMutablePointer<C_IInspectable>?
         _ = try perform(as: __x_ABI_C__FIVectorView_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
         }
@@ -5011,7 +5011,7 @@ internal class IVectorViewAny: test_component.IInspectable {
         return result
     }
 
-    internal func IndexOfImpl(_ value: UnsafeMutablePointer<NativeIInspectable>?, _ index: inout UINT32) throws -> boolean {
+    internal func IndexOfImpl(_ value: UnsafeMutablePointer<C_IInspectable>?, _ index: inout UINT32) throws -> boolean {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, value, &index, &result))
@@ -5818,8 +5818,8 @@ typealias __x_ABI_C__FIVector_1_IInspectableWrapper = InterfaceWrapperBase<test_
 internal class IVectorAny: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVector_1_IInspectable }
 
-    internal func GetAtImpl(_ index: UINT32) throws -> UnsafeMutablePointer<NativeIInspectable>? {
-        var result: UnsafeMutablePointer<NativeIInspectable>?
+    internal func GetAtImpl(_ index: UINT32) throws -> UnsafeMutablePointer<C_IInspectable>? {
+        var result: UnsafeMutablePointer<C_IInspectable>?
         _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
         }
@@ -5842,7 +5842,7 @@ internal class IVectorAny: test_component.IInspectable {
         return result
     }
 
-    internal func IndexOfImpl(_ value: UnsafeMutablePointer<NativeIInspectable>?, _ index: inout UINT32) throws -> boolean {
+    internal func IndexOfImpl(_ value: UnsafeMutablePointer<C_IInspectable>?, _ index: inout UINT32) throws -> boolean {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, value, &index, &result))
@@ -5850,13 +5850,13 @@ internal class IVectorAny: test_component.IInspectable {
         return result
     }
 
-    internal func SetAtImpl(_ index: UINT32, _ value: UnsafeMutablePointer<NativeIInspectable>?) throws {
+    internal func SetAtImpl(_ index: UINT32, _ value: UnsafeMutablePointer<C_IInspectable>?) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.SetAt(pThis, index, value))
         }
     }
 
-    internal func InsertAtImpl(_ index: UINT32, _ value: UnsafeMutablePointer<NativeIInspectable>?) throws {
+    internal func InsertAtImpl(_ index: UINT32, _ value: UnsafeMutablePointer<C_IInspectable>?) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.InsertAt(pThis, index, value))
         }
@@ -5868,7 +5868,7 @@ internal class IVectorAny: test_component.IInspectable {
         }
     }
 
-    internal func AppendImpl(_ value: UnsafeMutablePointer<NativeIInspectable>?) throws {
+    internal func AppendImpl(_ value: UnsafeMutablePointer<C_IInspectable>?) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Append(pThis, value))
         }
@@ -7374,7 +7374,7 @@ typealias __x_ABI_C__FIEventHandler_1_IInspectableWrapper = InterfaceWrapperBase
 internal class EventHandlerAny: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIEventHandler_1_IInspectable }
 
-    internal func InvokeImpl(_ sender: UnsafeMutablePointer<NativeIInspectable>?, _ args: UnsafeMutablePointer<NativeIInspectable>?) throws {
+    internal func InvokeImpl(_ sender: UnsafeMutablePointer<C_IInspectable>?, _ args: UnsafeMutablePointer<C_IInspectable>?) throws {
         _ = try perform(as: __x_ABI_C__FIEventHandler_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, sender, args))
         }

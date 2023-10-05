@@ -16,10 +16,10 @@ public final class PropertySet : WinRTClass, IObservableMap, IMap, IIterable, IP
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == NativeIInspectable.self {
+        if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == NativeIUnknown.self {
+        if T.self == C_IUnknown.self {
             return RawPointer(_default)
         }
         return nil
@@ -129,10 +129,10 @@ public final class StringMap : WinRTClass, IMap, IIterable, IObservableMap {
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == NativeIInspectable.self {
+        if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == NativeIUnknown.self {
+        if T.self == C_IUnknown.self {
             return RawPointer(_default)
         }
         return nil
@@ -240,10 +240,10 @@ public final class ValueSet : WinRTClass, IObservableMap, IMap, IIterable, IProp
         if T.self == CABI.self {
             return RawPointer(_default)
         }   
-        if T.self == NativeIInspectable.self {
+        if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
-        if T.self == NativeIUnknown.self {
+        if T.self == C_IUnknown.self {
             return RawPointer(_default)
         }
         return nil

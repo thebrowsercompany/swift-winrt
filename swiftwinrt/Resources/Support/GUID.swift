@@ -1,30 +1,4 @@
-import WinSDK
 import C_BINDINGS_MODULE
-
-#if true // TODO(WIN-860): Remove workaround once C++ interop issues with WinSDK.GUID are fixed.
-public typealias GUID = C_BINDINGS_MODULE.GUID2
-public typealias IID = C_BINDINGS_MODULE.IID2
-public typealias CLSID = C_BINDINGS_MODULE.CLSID2
-public typealias REFIID = UnsafePointer<C_BINDINGS_MODULE.IID2>
-public typealias NativeIUnknown = C_BINDINGS_MODULE.IUnknownWithIID2
-public typealias NativeIInspectable = C_BINDINGS_MODULE.IInspectableWithIID2
-public typealias NativeIInspectableVtbl = C_BINDINGS_MODULE.IInspectableWithIID2Vtbl
-internal let IID_IUnknown = C_BINDINGS_MODULE.GetIID2OfIUnknown()
-internal let IID_IInspectable = C_BINDINGS_MODULE.GetIID2OfIInspectable()
-internal let StringFromGUID2 = C_BINDINGS_MODULE.StringFromGUID22
-internal let UuidFromStringA = C_BINDINGS_MODULE.Uuid2FromStringA
-internal let RoGetActivationFactory = C_BINDINGS_MODULE.RoGetActivationFactoryWithIID2
-internal let RoActivateInstance = C_BINDINGS_MODULE.RoActivateInstanceWithIID2
-internal let CoCreateInstance = C_BINDINGS_MODULE.CoCreateInstanceWithIID2
-#else
-public typealias GUID = C_BINDINGS_MODULE.GUID
-public typealias IID = C_BINDINGS_MODULE.IID
-public typealias CLSID = C_BINDINGS_MODULE.CLSID
-public typealias REFIID = UnsafePointer<C_BINDINGS_MODULE.IID>
-public typealias NativeIUnknown = C_BINDINGS_MODULE.IUnknown
-public typealias NativeIInspectable = C_BINDINGS_MODULE.IInspectable
-public typealias NativeIInspectableVtbl = C_BINDINGS_MODULE.IInspectableVtbl
-#endif
 
 extension GUID: CustomStringConvertible {
    public var description: String {
