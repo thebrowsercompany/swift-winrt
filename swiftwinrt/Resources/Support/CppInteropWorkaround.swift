@@ -1,9 +1,6 @@
 import C_BINDINGS_MODULE
 
 #if true // TODO(WIN-860): Remove workaround once C++ interop issues with WinSDK.GUID are fixed.
-public typealias WCHAR = C_BINDINGS_MODULE.WCHAR_Workaround
-public typealias BSTR = C_BINDINGS_MODULE.BSTR_Workaround
-public typealias PCWSTR = C_BINDINGS_MODULE.PCWSTR_Workaround?
 public typealias GUID = C_BINDINGS_MODULE.GUID_Workaround
 public typealias IID = C_BINDINGS_MODULE.IID_Workaround
 public typealias CLSID = C_BINDINGS_MODULE.CLSID_Workaround
@@ -17,9 +14,6 @@ internal let RoActivateInstance = C_BINDINGS_MODULE.RoActivateInstance_Workaroun
 internal let RoGetActivationFactory = C_BINDINGS_MODULE.RoGetActivationFactory_Workaround
 internal let StringFromGUID2 = C_BINDINGS_MODULE.StringFromGUID2_Workaround
 #else
-public typealias WCHAR = C_BINDINGS_MODULE.WCHAR
-public typealias BSTR = C_BINDINGS_MODULE.BSTR
-public typealias PCWSTR = C_BINDINGS_MODULE.PCWSTR?
 public typealias GUID = C_BINDINGS_MODULE.GUID
 public typealias IID = C_BINDINGS_MODULE.IID
 public typealias CLSID = C_BINDINGS_MODULE.CLSID
@@ -33,12 +27,3 @@ internal let RoActivateInstance = C_BINDINGS_MODULE.RoActivateInstance
 internal let RoGetActivationFactory = C_BINDINGS_MODULE.RoGetActivationFactory
 internal let StringFromGUID2 = C_BINDINGS_MODULE.StringFromGUID2
 #endif
-
-internal typealias IRestrictedErrorInfo = C_BINDINGS_MODULE.IRestrictedErrorInfo
-internal let GetRestrictedErrorInfo = C_BINDINGS_MODULE.GetRestrictedErrorInfo
-internal let FormatMessageW = C_BINDINGS_MODULE.FormatMessageW
-internal let SysAllocString = C_BINDINGS_MODULE.SysAllocString
-internal let SysFreeString = C_BINDINGS_MODULE.SysFreeString
-internal let SysStringLen = C_BINDINGS_MODULE.SysStringLen
-internal let WindowsCreateString = C_BINDINGS_MODULE.WindowsCreateString
-internal let WindowsGetStringRawBuffer = C_BINDINGS_MODULE.WindowsGetStringRawBuffer
