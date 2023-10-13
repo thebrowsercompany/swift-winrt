@@ -197,6 +197,14 @@ namespace swiftwinrt
 
     bool include_only_used_filter::includes(winmd::reader::TypeDef const& type) const
     {
+        if (settings.exclude.contains(std::string(type.TypeNamespace())))
+        {
+            return false;
+        }
+        else if (settings.exclude.contains(get_full_type_name(type)))
+        {
+            return false;
+        }
         auto ns = types.find(type.TypeNamespace());
         if (ns != types.end())
         {
