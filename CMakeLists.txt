@@ -17,11 +17,11 @@ else()
     set(NUGET_VERSION_WITH_SUFFIX ${NUGET_VERSION}-local)
 endif()
 
-add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/nuget/company.thebrowser.swiftwinrt.nupkg
+add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/nuget/TheBrowserCompany.SwiftWinRT.nupkg
     COMMAND ${CMAKE_BINARY_DIR}/nuget pack ${CMAKE_CURRENT_SOURCE_DIR}\\nuget\\swiftwinrt.nuspec -Properties swiftwinrt_exe=${CMAKE_CURRENT_SOURCE_DIR}\\out\\${CMAKE_BUILD_TYPE}\\bin\\swiftwinrt.exe -Version ${NUGET_VERSION_WITH_SUFFIX}
 )
 
 add_custom_target(nuget
-    DEPENDS ${CMAKE_BINARY_DIR}/nuget/company.thebrowser.swiftwinrt.nupkg)
+    DEPENDS ${CMAKE_BINARY_DIR}/nuget/TheBrowserCompany.SwiftWinRT.nupkg)
 
 add_dependencies(nuget install)

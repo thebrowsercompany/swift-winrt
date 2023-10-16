@@ -1,5 +1,5 @@
 ========================================================================
-The company.browser.swiftwinrt NuGet package automatically generates swift code, 
+The TheBrowserCompany.SwiftWinRT NuGet package automatically generates swift code, 
 enabling you consume Windows Runtime classes.
 ========================================================================
 
