@@ -81,7 +81,6 @@ public enum __ABI_ {
           return implType.from(abi: insp.pUnk.borrow)
         }
 
-        print("unable to make \(className) from abi, defaulting to IInspectable")
         return insp
       }
     }
