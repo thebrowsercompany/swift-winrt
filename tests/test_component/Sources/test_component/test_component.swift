@@ -1869,6 +1869,22 @@ extension InterfaceWithReturnDelegate {
 }
 public typealias AnyInterfaceWithReturnDelegate = any InterfaceWithReturnDelegate
 
+public protocol WithKeyword : WinRTInterface {
+    func withExtension(_ `extension`: String) throws
+}
+
+extension WithKeyword {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        switch iid {
+            case __ABI_test_component.WithKeywordWrapper.IID:
+                let wrapper = __ABI_test_component.WithKeywordWrapper(self)
+                return wrapper!.queryInterface(iid)
+            default: return nil
+        }
+    }
+}
+public typealias AnyWithKeyword = any WithKeyword
+
 extension test_component.Fruit {
     public static var banana : test_component.Fruit {
         __x_ABI_Ctest__component_CFruit_Banana

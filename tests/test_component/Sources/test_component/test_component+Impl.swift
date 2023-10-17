@@ -269,6 +269,31 @@ public enum __IMPL_test_component {
 
     }
 
+    public class WithKeywordImpl : WithKeyword, WinRTAbiBridge {
+        public typealias CABI = __x_ABI_Ctest__component_CWithKeyword
+        public typealias SwiftABI = __ABI_test_component.WithKeyword
+        public typealias SwiftProjection = AnyWithKeyword
+        private (set) public var _default: SwiftABI
+        public var thisPtr: test_component.IInspectable { _default }
+        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+            guard let abi = abi else { return nil }
+            return WithKeywordImpl(abi)
+        }
+        public init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+            _default = SwiftABI(fromAbi)
+        }
+
+        public static func makeAbi() -> CABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.WithKeywordVTable) { $0 }
+            return .init(lpVtbl: vtblPtr)
+        }
+        public func withExtension(_ `extension`: String) throws {
+            let _`extension` = try! HString(`extension`)
+            try _default.WithExtensionImpl(_`extension`.get())
+        }
+
+    }
+
     public class ObjectHandlerImpl : WinRTDelegateBridge {
         public typealias Handler = ObjectHandler
         public typealias CABI = __x_ABI_Ctest__component_CIObjectHandler
@@ -369,6 +394,18 @@ public class InterfaceWithReturnDelegate_MakeFromAbi : MakeFromAbi {
         guard let abi else { return nil }
         let swiftAbi: SwiftABI = try! test_component.IInspectable(abi).QueryInterface()
         return __IMPL_test_component.InterfaceWithReturnDelegateImpl(RawPointer(swiftAbi)!)
+    }
+}
+
+@_spi(__MakeFromAbi_DoNotImport)
+public class WithKeyword_MakeFromAbi : MakeFromAbi {
+    public typealias CABI = __x_ABI_Ctest__component_CWithKeyword
+    public typealias SwiftABI = __ABI_test_component.WithKeyword
+    public typealias SwiftProjection = AnyWithKeyword
+    public static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
+        guard let abi else { return nil }
+        let swiftAbi: SwiftABI = try! test_component.IInspectable(abi).QueryInterface()
+        return __IMPL_test_component.WithKeywordImpl(RawPointer(swiftAbi)!)
     }
 }
 

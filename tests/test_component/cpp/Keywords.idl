@@ -50,4 +50,7 @@ namespace test_component
         While
     };
 
+    interface WithKeyword {
+        void WithExtension(String extension);
+    }
 }

@@ -17,7 +17,7 @@ namespace swiftwinrt
     std::string get_full_swift_type_name(writer const&, TypeDef const& type);
     std::string get_full_swift_type_name(writer const&, const metadata_type* type);
     std::string get_swift_module(std::string_view const& ns);
-    std::string_view get_swift_name(function_param const&);
+    std::string get_swift_name(function_param const&);
 
     param_category get_category(const metadata_type*, TypeDef*);
 

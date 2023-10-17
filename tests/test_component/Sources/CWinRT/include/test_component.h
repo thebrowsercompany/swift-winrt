@@ -227,6 +227,12 @@ typedef interface __x_ABI_Ctest__component_CIVoidToVoidDelegate __x_ABI_Ctest__c
 
 #endif // ____x_ABI_Ctest__component_CInterfaceWithReturnDelegate_FWD_DEFINED__
 
+#ifndef ____x_ABI_Ctest__component_CWithKeyword_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CWithKeyword_FWD_DEFINED__
+    typedef interface __x_ABI_Ctest__component_CWithKeyword __x_ABI_Ctest__component_CWithKeyword;
+
+#endif // ____x_ABI_Ctest__component_CWithKeyword_FWD_DEFINED__
+
 // Parameterized interface forward declarations (C)
 
 // Collection interface definitions
@@ -3665,4 +3671,37 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
     EXTERN_C const IID IID___x_ABI_Ctest__component_CInterfaceWithReturnDelegate;
 #endif /* !defined(____x_ABI_Ctest__component_CInterfaceWithReturnDelegate_INTERFACE_DEFINED__) */
+    
+#if !defined(____x_ABI_Ctest__component_CWithKeyword_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CWithKeyword_INTERFACE_DEFINED__
+    typedef struct __x_ABI_Ctest__component_CWithKeywordVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CWithKeyword* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CWithKeyword* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CWithKeyword* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_Ctest__component_CWithKeyword* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_Ctest__component_CWithKeyword* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CWithKeyword* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* WithExtension)(__x_ABI_Ctest__component_CWithKeyword* This,
+        HSTRING extension);
+
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CWithKeywordVtbl;
+
+    interface __x_ABI_Ctest__component_CWithKeyword
+    {
+        CONST_VTBL struct __x_ABI_Ctest__component_CWithKeywordVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CWithKeyword;
+#endif /* !defined(____x_ABI_Ctest__component_CWithKeyword_INTERFACE_DEFINED__) */
     

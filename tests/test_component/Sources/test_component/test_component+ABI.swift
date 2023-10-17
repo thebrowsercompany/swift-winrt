@@ -138,6 +138,10 @@ private var IID___x_ABI_Ctest__component_CInterfaceWithReturnDelegate: test_comp
     .init(Data1: 0xB0EBC406, Data2: 0x17C0, Data3: 0x5703, Data4: ( 0xB9,0xC7,0x50,0xBE,0x67,0x5B,0xBC,0x95 ))// B0EBC406-17C0-5703-B9C7-50BE675BBC95
 }
 
+private var IID___x_ABI_Ctest__component_CWithKeyword: test_component.IID {
+    .init(Data1: 0xA703474B, Data2: 0x0941, Data3: 0x5409, Data4: ( 0xA8,0x3E,0xD7,0x70,0x48,0x91,0xAE,0x84 ))// A703474B-0941-5409-A83E-D7704891AE84
+}
+
 private var IID___x_ABI_Ctest__component_CIObjectHandler: test_component.IID {
     .init(Data1: 0x5DD35752, Data2: 0x9800, Data3: 0x5961, Data4: ( 0x80,0xDE,0xFC,0x5E,0x20,0x9E,0x6E,0x2D ))// 5DD35752-9800-5961-80DE-FC5E209E6E2D
 }
@@ -1929,6 +1933,82 @@ public enum __ABI_test_component {
     )
 
     public typealias InterfaceWithReturnDelegateWrapper = InterfaceWrapperBase<__IMPL_test_component.InterfaceWithReturnDelegateImpl>
+    open class WithKeyword: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CWithKeyword }
+
+        open func WithExtensionImpl(_ `extension`: HSTRING?) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CWithKeyword.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.WithExtension(pThis, `extension`))
+            }
+        }
+
+    }
+
+    internal static var WithKeywordVTable: __x_ABI_Ctest__component_CWithKeywordVtbl = .init(
+        QueryInterface: {
+            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+            ppvObject.pointee = nil
+
+            switch riid.pointee {
+                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, WithKeywordWrapper.IID:
+                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                    return S_OK
+                default:
+                    guard let instance = WithKeywordWrapper.tryUnwrapFrom(raw: pUnk),
+                          let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                    ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                    return S_OK
+
+            }
+        },
+
+        AddRef: {
+             guard let wrapper = WithKeywordWrapper.fromRaw($0) else { return 1 }
+             _ = wrapper.retain()
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+        },
+
+        Release: {
+            guard let wrapper = WithKeywordWrapper.fromRaw($0) else { return 1 }
+            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+        },
+
+        GetIids: {
+            let size = MemoryLayout<test_component.IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
+            iids[0] = IUnknown.IID
+            iids[1] = IInspectable.IID
+            iids[2] = __ABI_test_component.WithKeywordWrapper.IID
+            $1!.pointee = 3
+            $2!.pointee = iids
+            return S_OK
+        },
+
+        GetRuntimeClassName: {
+            _ = $0
+            let hstring = try! HString("test_component.WithKeyword").detach()
+            $1!.pointee = hstring
+            return S_OK
+        },
+
+        GetTrustLevel: {
+            _ = $0
+            $1!.pointee = TrustLevel(rawValue: 0)
+            return S_OK
+        },
+
+        WithExtension: {
+            do {
+                guard let __unwrapped__instance = WithKeywordWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                let `extension`: String = .init(from: $1)
+                try __unwrapped__instance.withExtension(`extension`)
+                return S_OK
+            } catch { return failWith(err: E_FAIL) } 
+        }
+    )
+
+    public typealias WithKeywordWrapper = InterfaceWrapperBase<__IMPL_test_component.WithKeywordImpl>
     public class _ABI_NonBlittableBoolStruct {
         public var val: __x_ABI_Ctest__component_CNonBlittableBoolStruct = .init()
         public init() { }
