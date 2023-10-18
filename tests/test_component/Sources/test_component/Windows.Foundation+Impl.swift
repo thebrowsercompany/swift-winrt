@@ -203,7 +203,7 @@ public enum __IMPL_Windows_Foundation {
         }
 
         public var type: PropertyType { propertyType }
-        public var isNumericScalar: Bool { 
+        public var isNumericScalar: Bool {
             switch propertyType {
                 case .int16, .int32, .int64, .uint8, .uint16, .uint32, .uint64, .single, .double: return true
                 default: return false
@@ -225,13 +225,13 @@ public enum __IMPL_Windows_Foundation {
         public func getBoolean() -> Bool { _value as! Bool }
         public func getString() -> String { _value as! String }
         public func getGuid() -> test_component.GUID { _value as! test_component.GUID }
-        public func getDateTime() -> DateTime { _value as! DateTime } 
+        public func getDateTime() -> DateTime { _value as! DateTime }
         public func getTimeSpan() -> TimeSpan { _value as! TimeSpan }
         public func getPoint() -> Point { _value as! Point }
         public func getSize() -> Size { _value as! Size }
         public func getRect() -> Rect { _value as! Rect }
         
-        public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { 
+        public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
             guard iid == __ABI_Windows_Foundation.IPropertyValueWrapper.IID else { return nil }
             guard let thisAsIPropValue = __ABI_Windows_Foundation.IPropertyValueWrapper(self) else { fatalError("creating non-nil wrapper shouldn't fail") }
             return thisAsIPropValue.queryInterface(iid)

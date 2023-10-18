@@ -644,6 +644,25 @@ namespace swiftwinrt
         return put_in_backticks_if_needed(std::string(param.Name()));
     }
 
+    inline std::string local_swift_param_name(std::string const& param_name)
+    {
+        std::string local_name = "_";
+        // if the param name starts with backticks
+        if (param_name.starts_with('`'))
+        {
+            local_name.append(param_name.substr(1, param_name.size() - 2));
+        }
+        else {
+            local_name.append(param_name);
+        }
+        return local_name;
+    }
+
+    inline std::string local_swift_param_name(std::string_view const& param_name)
+    {
+        return local_swift_param_name(std::string(param_name));
+    }
+
     inline std::string get_swift_name(function_param const& param)
     {
         return get_swift_name(param.def);

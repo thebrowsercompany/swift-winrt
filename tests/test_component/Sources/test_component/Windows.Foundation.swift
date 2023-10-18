@@ -14,7 +14,7 @@ public final class Deferral : WinRTClass, IClosable {
     public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
-        }   
+        }
         if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }

@@ -174,7 +174,7 @@ public enum __IMPL_test_component {
               return try! this.add_ImplementableEventImpl(abi)
             },
             remove: { [weak this = _default] in
-             try? this?.remove_ImplementableEventImpl($0) 
+             try? this?.remove_ImplementableEventImpl($0)
            }
           )
         }()
@@ -262,7 +262,7 @@ public enum __IMPL_test_component {
               return try! this.add_EventWithReturnImpl(abi)
             },
             remove: { [weak this = _default] in
-             try? this?.remove_EventWithReturnImpl($0) 
+             try? this?.remove_EventWithReturnImpl($0)
            }
           )
         }()
@@ -288,8 +288,8 @@ public enum __IMPL_test_component {
             return .init(lpVtbl: vtblPtr)
         }
         public func withExtension(_ `extension`: String) throws {
-            let _`extension` = try! HString(`extension`)
-            try _default.WithExtensionImpl(_`extension`.get())
+            let _extension = try! HString(`extension`)
+            try _default.WithExtensionImpl(_extension.get())
         }
 
     }
@@ -408,4 +408,3 @@ public class WithKeyword_MakeFromAbi : MakeFromAbi {
         return __IMPL_test_component.WithKeywordImpl(RawPointer(swiftAbi)!)
     }
 }
-
