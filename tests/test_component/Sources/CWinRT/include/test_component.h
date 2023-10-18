@@ -3690,8 +3690,17 @@ struct __x_ABI_Ctest__component_CStructWithEnum
             HSTRING* className);
         HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CWithKeyword* This,
             TrustLevel* trustLevel);
-        HRESULT (STDMETHODCALLTYPE* WithExtension)(__x_ABI_Ctest__component_CWithKeyword* This,
+        HRESULT (STDMETHODCALLTYPE* Enum)(__x_ABI_Ctest__component_CWithKeyword* This,
         HSTRING extension);
+    HRESULT (STDMETHODCALLTYPE* get_Struct)(__x_ABI_Ctest__component_CWithKeyword* This,
+        HSTRING* value);
+    HRESULT (STDMETHODCALLTYPE* put_Struct)(__x_ABI_Ctest__component_CWithKeyword* This,
+        HSTRING value);
+    HRESULT (STDMETHODCALLTYPE* add_Repeat)(__x_ABI_Ctest__component_CWithKeyword* This,
+        __x_ABI_C__FIEventHandler_1_IInspectable* handler,
+        EventRegistrationToken* token);
+    HRESULT (STDMETHODCALLTYPE* remove_Repeat)(__x_ABI_Ctest__component_CWithKeyword* This,
+        EventRegistrationToken token);
 
         END_INTERFACE
     } __x_ABI_Ctest__component_CWithKeywordVtbl;

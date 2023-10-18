@@ -8228,3 +8228,11 @@ internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimp
         return handler
     }
 }
+public extension EventSource where Handler == EventHandler<Any?> {
+    func invoke(_ sender: Any!, _ args: Any!) {
+        for handler in getInvocationList() {
+            handler(sender, args)
+        }
+    }
+}
+

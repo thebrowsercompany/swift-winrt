@@ -1870,7 +1870,9 @@ extension InterfaceWithReturnDelegate {
 public typealias AnyInterfaceWithReturnDelegate = any InterfaceWithReturnDelegate
 
 public protocol WithKeyword : WinRTInterface {
-    func withExtension(_ `extension`: String) throws
+    func `enum`(_ `extension`: String) throws
+    var `struct`: String { get set }
+    var `repeat`: Event<EventHandler<Any?>> { get }
 }
 
 extension WithKeyword {

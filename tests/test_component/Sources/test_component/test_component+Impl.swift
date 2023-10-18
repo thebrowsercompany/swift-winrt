@@ -287,10 +287,36 @@ public enum __IMPL_test_component {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.WithKeywordVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
-        public func withExtension(_ `extension`: String) throws {
+        public func `enum`(_ `extension`: String) throws {
             let _extension = try! HString(`extension`)
-            try _default.WithExtensionImpl(_extension.get())
+            try _default.EnumImpl(_extension.get())
         }
+
+        public var `struct` : String {
+            get {
+                let value = try! _default.get_StructImpl()
+                return .init(from: value)
+            }
+
+            set {
+                let _newValue = try! HString(newValue)
+                try! _default.put_StructImpl(_newValue.get())
+            }
+        }
+
+        public lazy var `repeat` : Event<EventHandler<Any?>> = {
+          .init(
+            add: { [weak this = _default] in
+              guard let this else { return .init() }
+              let wrapper = test_component.__x_ABI_C__FIEventHandler_1_IInspectableWrapper($0)
+              let abi = try! wrapper?.toABI { $0 }
+              return try! this.add_RepeatImpl(abi)
+            },
+            remove: { [weak this = _default] in
+             try? this?.remove_RepeatImpl($0)
+           }
+          )
+        }()
 
     }
 
@@ -408,3 +434,4 @@ public class WithKeyword_MakeFromAbi : MakeFromAbi {
         return __IMPL_test_component.WithKeywordImpl(RawPointer(swiftAbi)!)
     }
 }
+
