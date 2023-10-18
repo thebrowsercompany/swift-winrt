@@ -15,7 +15,7 @@ public final class AsyncOperationInt : WinRTClass, IAsyncOperation, test_compone
     public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
-        }   
+        }
         if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
@@ -99,7 +99,7 @@ open class Base : UnsealedWinRTClass {
     open func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
-        }   
+        }
         if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
@@ -171,7 +171,7 @@ public final class BaseCollection : WinRTClass, IVector, IIterable {
     public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
-        }   
+        }
         if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
@@ -202,7 +202,7 @@ public final class BaseCollection : WinRTClass, IVector, IIterable {
         i+1
     }
 
-    public func index(of: Element) -> Int? { 
+    public func index(of: Element) -> Int? {
         var index: UInt32 = 0
         let result = indexOf(of, &index)
         guard result else { return nil }
@@ -290,7 +290,7 @@ public final class BaseMapCollection : WinRTClass, IMap, IIterable {
     public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
-        }   
+        }
         if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
@@ -369,7 +369,7 @@ open class BaseNoOverrides : UnsealedWinRTClass {
     open func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
-        }   
+        }
         if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
@@ -426,7 +426,7 @@ public final class BaseObservableCollection : WinRTClass, IObservableVector, IVe
     public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
-        }   
+        }
         if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
@@ -457,7 +457,7 @@ public final class BaseObservableCollection : WinRTClass, IObservableVector, IVe
         i+1
     }
 
-    public func index(of: Element) -> Int? { 
+    public func index(of: Element) -> Int? {
         var index: UInt32 = 0
         let result = indexOf(of, &index)
         guard result else { return nil }
@@ -489,7 +489,7 @@ public final class BaseObservableCollection : WinRTClass, IObservableVector, IVe
           return try! this.add_VectorChangedImpl(abi)
         },
         remove: { [weak this = _default] in
-         try? this?.remove_VectorChangedImpl($0) 
+         try? this?.remove_VectorChangedImpl($0)
        }
       )
     }()
@@ -557,7 +557,7 @@ public final class Class : WinRTClass, IBasic {
     public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
-        }   
+        }
         if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
@@ -878,7 +878,7 @@ public final class Class : WinRTClass, IBasic {
           return try! this.add_DeferrableEventImpl(abi)
         },
         remove: { [weak this = _default] in
-         try? this?.remove_DeferrableEventImpl($0) 
+         try? this?.remove_DeferrableEventImpl($0)
        }
       )
     }()
@@ -897,7 +897,7 @@ public final class CollectionTester : WinRTClass {
     public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
-        }   
+        }
         if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
@@ -978,7 +978,7 @@ public final class DeferrableEventArgs : WinRTClass {
     public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
-        }   
+        }
         if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
@@ -1017,7 +1017,7 @@ public final class Derived : test_component.Base {
     override public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
-        }   
+        }
         if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
@@ -1079,7 +1079,7 @@ public final class EventTester : WinRTClass {
     public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
-        }   
+        }
         if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
@@ -1138,7 +1138,7 @@ public final class NoopClosable : WinRTClass, test_component.IClosable {
     public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
-        }   
+        }
         if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
@@ -1240,7 +1240,7 @@ public final class Simple : WinRTClass {
     public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
-        }   
+        }
         if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
@@ -1279,7 +1279,7 @@ public final class Simple : WinRTClass {
           return try! this.add_StaticEventImpl(abi)
         },
         remove: { [weak this = _ISimpleStatics] in
-         try? this?.remove_StaticEventImpl($0) 
+         try? this?.remove_StaticEventImpl($0)
        }
       )
     }()
@@ -1370,7 +1370,7 @@ public final class Simple : WinRTClass {
           return try! this.add_InEventImpl(abi)
         },
         remove: { [weak this = _default] in
-         try? this?.remove_InEventImpl($0) 
+         try? this?.remove_InEventImpl($0)
        }
       )
     }()
@@ -1384,7 +1384,7 @@ public final class Simple : WinRTClass {
           return try! this.add_SignalEventImpl(abi)
         },
         remove: { [weak this = _default] in
-         try? this?.remove_SignalEventImpl($0) 
+         try? this?.remove_SignalEventImpl($0)
        }
       )
     }()
@@ -1398,7 +1398,7 @@ public final class Simple : WinRTClass {
           return try! this.add_SimpleEventImpl(abi)
         },
         remove: { [weak this = _default] in
-         try? this?.remove_SimpleEventImpl($0) 
+         try? this?.remove_SimpleEventImpl($0)
        }
       )
     }()
@@ -1442,7 +1442,7 @@ open class UnsealedDerived : test_component.Base {
     override open func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
-        }   
+        }
         if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
@@ -1477,7 +1477,7 @@ open class UnsealedDerived : test_component.Base {
     }
     private static var _IUnsealedDerivedFactory : __ABI_test_component.IUnsealedDerivedFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerived"))
     override public init() {
-        super.init(Self._IUnsealedDerivedFactory) 
+        super.init(Self._IUnsealedDerivedFactory)
         let parentDefault: UnsafeMutablePointer<C_IInspectable> = super._getABI()!
         self._default = try! IInspectable(parentDefault).QueryInterface()
         _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
@@ -1547,7 +1547,7 @@ open class UnsealedDerived2 : test_component.UnsealedDerived {
     override open func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
-        }   
+        }
         if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
@@ -1573,7 +1573,7 @@ open class UnsealedDerived2 : test_component.UnsealedDerived {
         return super.queryInterface(iid)}
     private static var _IUnsealedDerived2ProtectedFactory : __ABI_test_component.IUnsealedDerived2ProtectedFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerived2"))
     override public init() {
-        super.init(Self._IUnsealedDerived2ProtectedFactory) 
+        super.init(Self._IUnsealedDerived2ProtectedFactory)
         let parentDefault: UnsafeMutablePointer<C_IInspectable> = super._getABI()!
         self._default = try! IInspectable(parentDefault).QueryInterface()
         _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
@@ -1613,7 +1613,7 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
     override open func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
-        }   
+        }
         if T.self == C_IInspectable.self {
             return RawPointer(_default)
         }
@@ -1639,7 +1639,7 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
         return super.queryInterface(iid)}
     private static var _IUnsealedDerivedNoOverridesProtectedFactory : __ABI_test_component.IUnsealedDerivedNoOverridesProtectedFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerivedNoOverrides"))
     override public init() {
-        super.init(Self._IUnsealedDerivedNoOverridesProtectedFactory) 
+        super.init(Self._IUnsealedDerivedNoOverridesProtectedFactory)
         let parentDefault: UnsafeMutablePointer<C_IInspectable> = super._getABI()!
         self._default = try! IInspectable(parentDefault).QueryInterface()
         _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
@@ -1868,6 +1868,24 @@ extension InterfaceWithReturnDelegate {
     }
 }
 public typealias AnyInterfaceWithReturnDelegate = any InterfaceWithReturnDelegate
+
+public protocol WithKeyword : WinRTInterface {
+    func `enum`(_ `extension`: String) throws
+    var `struct`: String { get set }
+    var `repeat`: Event<EventHandler<Any?>> { get }
+}
+
+extension WithKeyword {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        switch iid {
+            case __ABI_test_component.WithKeywordWrapper.IID:
+                let wrapper = __ABI_test_component.WithKeywordWrapper(self)
+                return wrapper!.queryInterface(iid)
+            default: return nil
+        }
+    }
+}
+public typealias AnyWithKeyword = any WithKeyword
 
 extension test_component.Fruit {
     public static var banana : test_component.Fruit {

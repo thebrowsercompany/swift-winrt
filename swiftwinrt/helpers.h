@@ -86,7 +86,7 @@ namespace swiftwinrt
             }
         }
 
-    private: 
+    private:
         void construct(metadata_type const* type)
         {
             // Check if this is a typedef_base, otherwise we could fail trying to get the swift_abi_namespace
@@ -437,7 +437,7 @@ namespace swiftwinrt
         auto class_name = get_attribute_value<ElemSig::SystemType>(attribute, 0).name;
         return type.get_cache().find_required(class_name);
     }
-    
+
     inline TypeDef get_exclusive_to(typedef_base const& type)
     {
         return get_exclusive_to(type.type());
@@ -523,7 +523,7 @@ namespace swiftwinrt
             return name;
         }
     }
-    
+
     inline std::string put_in_backticks_if_needed(std::string name) {
         // any lowercase swift keywords neet to be put in backticks
         static auto keyWords = std::set<std::string>{
@@ -582,7 +582,7 @@ namespace swiftwinrt
         result[0] = tolower(result[0]);
 
         // One or two leading capitals: GetFoo -> getFoo / UInt32 -> uint32
-        // 3+ leading capitals or mixed digits, keep the last one: 
+        // 3+ leading capitals or mixed digits, keep the last one:
         //    UIElement -> uiElement / HELLOWorld -> helloWorld / R8G8B8Alpha -> r8g8b8Alpha
         if (result.size() > 1 && isupper(result[1]) || isdigit(result[1])){
             result[1] = tolower(result[1]);
@@ -639,12 +639,31 @@ namespace swiftwinrt
         return to_camel_case(field.Name());
     }
 
-    inline std::string_view get_swift_name(Param const& param)
+    inline std::string get_swift_name(Param const& param)
     {
-        return param.Name();
+        return put_in_backticks_if_needed(std::string(param.Name()));
     }
 
-    inline std::string_view get_swift_name(function_param const& param)
+    inline std::string local_swift_param_name(std::string const& param_name)
+    {
+        std::string local_name = "_";
+        // if the param name starts with backticks
+        if (param_name.starts_with('`'))
+        {
+            local_name.append(param_name.substr(1, param_name.size() - 2));
+        }
+        else {
+            local_name.append(param_name);
+        }
+        return local_name;
+    }
+
+    inline std::string local_swift_param_name(std::string_view const& param_name)
+    {
+        return local_swift_param_name(std::string(param_name));
+    }
+
+    inline std::string get_swift_name(function_param const& param)
     {
         return get_swift_name(param.def);
     }

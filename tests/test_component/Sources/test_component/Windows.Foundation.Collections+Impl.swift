@@ -35,7 +35,7 @@ public enum __IMPL_Windows_Foundation_Collections {
               return try! this.add_MapChangedImpl(abi)
             },
             remove: { [weak this = _IObservableMap] in
-             try? this?.remove_MapChangedImpl($0) 
+             try? this?.remove_MapChangedImpl($0)
            }
           )
         }()

@@ -174,7 +174,7 @@ public enum __IMPL_test_component {
               return try! this.add_ImplementableEventImpl(abi)
             },
             remove: { [weak this = _default] in
-             try? this?.remove_ImplementableEventImpl($0) 
+             try? this?.remove_ImplementableEventImpl($0)
            }
           )
         }()
@@ -262,7 +262,58 @@ public enum __IMPL_test_component {
               return try! this.add_EventWithReturnImpl(abi)
             },
             remove: { [weak this = _default] in
-             try? this?.remove_EventWithReturnImpl($0) 
+             try? this?.remove_EventWithReturnImpl($0)
+           }
+          )
+        }()
+
+    }
+
+    public class WithKeywordImpl : WithKeyword, WinRTAbiBridge {
+        public typealias CABI = __x_ABI_Ctest__component_CWithKeyword
+        public typealias SwiftABI = __ABI_test_component.WithKeyword
+        public typealias SwiftProjection = AnyWithKeyword
+        private (set) public var _default: SwiftABI
+        public var thisPtr: test_component.IInspectable { _default }
+        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+            guard let abi = abi else { return nil }
+            return WithKeywordImpl(abi)
+        }
+        public init(_ fromAbi: UnsafeMutablePointer<CABI>) {
+            _default = SwiftABI(fromAbi)
+        }
+
+        public static func makeAbi() -> CABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.WithKeywordVTable) { $0 }
+            return .init(lpVtbl: vtblPtr)
+        }
+        public func `enum`(_ `extension`: String) throws {
+            let _extension = try! HString(`extension`)
+            try _default.EnumImpl(_extension.get())
+        }
+
+        public var `struct` : String {
+            get {
+                let value = try! _default.get_StructImpl()
+                return .init(from: value)
+            }
+
+            set {
+                let _newValue = try! HString(newValue)
+                try! _default.put_StructImpl(_newValue.get())
+            }
+        }
+
+        public lazy var `repeat` : Event<EventHandler<Any?>> = {
+          .init(
+            add: { [weak this = _default] in
+              guard let this else { return .init() }
+              let wrapper = test_component.__x_ABI_C__FIEventHandler_1_IInspectableWrapper($0)
+              let abi = try! wrapper?.toABI { $0 }
+              return try! this.add_RepeatImpl(abi)
+            },
+            remove: { [weak this = _default] in
+             try? this?.remove_RepeatImpl($0)
            }
           )
         }()
@@ -369,6 +420,18 @@ public class InterfaceWithReturnDelegate_MakeFromAbi : MakeFromAbi {
         guard let abi else { return nil }
         let swiftAbi: SwiftABI = try! test_component.IInspectable(abi).QueryInterface()
         return __IMPL_test_component.InterfaceWithReturnDelegateImpl(RawPointer(swiftAbi)!)
+    }
+}
+
+@_spi(__MakeFromAbi_DoNotImport)
+public class WithKeyword_MakeFromAbi : MakeFromAbi {
+    public typealias CABI = __x_ABI_Ctest__component_CWithKeyword
+    public typealias SwiftABI = __ABI_test_component.WithKeyword
+    public typealias SwiftProjection = AnyWithKeyword
+    public static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
+        guard let abi else { return nil }
+        let swiftAbi: SwiftABI = try! test_component.IInspectable(abi).QueryInterface()
+        return __IMPL_test_component.WithKeywordImpl(RawPointer(swiftAbi)!)
     }
 }
 

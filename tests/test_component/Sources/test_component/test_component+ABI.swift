@@ -138,6 +138,10 @@ private var IID___x_ABI_Ctest__component_CInterfaceWithReturnDelegate: test_comp
     .init(Data1: 0xB0EBC406, Data2: 0x17C0, Data3: 0x5703, Data4: ( 0xB9,0xC7,0x50,0xBE,0x67,0x5B,0xBC,0x95 ))// B0EBC406-17C0-5703-B9C7-50BE675BBC95
 }
 
+private var IID___x_ABI_Ctest__component_CWithKeyword: test_component.IID {
+    .init(Data1: 0x77E9FBAD, Data2: 0x3DCE, Data3: 0x5E50, Data4: ( 0xB4,0x39,0x91,0x91,0xF5,0x23,0x2A,0x84 ))// 77E9FBAD-3DCE-5E50-B439-9191F5232A84
+}
+
 private var IID___x_ABI_Ctest__component_CIObjectHandler: test_component.IID {
     .init(Data1: 0x5DD35752, Data2: 0x9800, Data3: 0x5961, Data4: ( 0x80,0xDE,0xFC,0x5E,0x20,0x9E,0x6E,0x2D ))// 5DD35752-9800-5961-80DE-FC5E209E6E2D
 }
@@ -1929,6 +1933,139 @@ public enum __ABI_test_component {
     )
 
     public typealias InterfaceWithReturnDelegateWrapper = InterfaceWrapperBase<__IMPL_test_component.InterfaceWithReturnDelegateImpl>
+    open class WithKeyword: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CWithKeyword }
+
+        open func EnumImpl(_ `extension`: HSTRING?) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CWithKeyword.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Enum(pThis, `extension`))
+            }
+        }
+
+        open func get_StructImpl() throws -> HSTRING? {
+            var value: HSTRING?
+            _ = try perform(as: __x_ABI_Ctest__component_CWithKeyword.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Struct(pThis, &value))
+            }
+            return value
+        }
+
+        open func put_StructImpl(_ value: HSTRING?) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CWithKeyword.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.put_Struct(pThis, value))
+            }
+        }
+
+        open func add_RepeatImpl(_ handler: UnsafeMutablePointer<__x_ABI_C__FIEventHandler_1_IInspectable>?) throws -> EventRegistrationToken {
+            var token: EventRegistrationToken = .init()
+            _ = try perform(as: __x_ABI_Ctest__component_CWithKeyword.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.add_Repeat(pThis, handler, &token))
+            }
+            return token
+        }
+
+        open func remove_RepeatImpl(_ token: EventRegistrationToken) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CWithKeyword.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.remove_Repeat(pThis, token))
+            }
+        }
+
+    }
+
+    internal static var WithKeywordVTable: __x_ABI_Ctest__component_CWithKeywordVtbl = .init(
+        QueryInterface: {
+            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+            ppvObject.pointee = nil
+
+            switch riid.pointee {
+                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, WithKeywordWrapper.IID:
+                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                    return S_OK
+                default:
+                    guard let instance = WithKeywordWrapper.tryUnwrapFrom(raw: pUnk),
+                          let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
+                    ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+                    return S_OK
+
+            }
+        },
+
+        AddRef: {
+             guard let wrapper = WithKeywordWrapper.fromRaw($0) else { return 1 }
+             _ = wrapper.retain()
+             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+        },
+
+        Release: {
+            guard let wrapper = WithKeywordWrapper.fromRaw($0) else { return 1 }
+            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+        },
+
+        GetIids: {
+            let size = MemoryLayout<test_component.IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
+            iids[0] = IUnknown.IID
+            iids[1] = IInspectable.IID
+            iids[2] = __ABI_test_component.WithKeywordWrapper.IID
+            $1!.pointee = 3
+            $2!.pointee = iids
+            return S_OK
+        },
+
+        GetRuntimeClassName: {
+            _ = $0
+            let hstring = try! HString("test_component.WithKeyword").detach()
+            $1!.pointee = hstring
+            return S_OK
+        },
+
+        GetTrustLevel: {
+            _ = $0
+            $1!.pointee = TrustLevel(rawValue: 0)
+            return S_OK
+        },
+
+        Enum: {
+            do {
+                guard let __unwrapped__instance = WithKeywordWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                let `extension`: String = .init(from: $1)
+                try __unwrapped__instance.`enum`(`extension`)
+                return S_OK
+            } catch { return failWith(err: E_FAIL) } 
+        },
+
+        get_Struct: {
+            guard let __unwrapped__instance = WithKeywordWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let value = __unwrapped__instance.`struct`
+            $1?.initialize(to: try! HString(value).detach())
+            return S_OK
+        },
+
+        put_Struct: {
+            guard let __unwrapped__instance = WithKeywordWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let value: String = .init(from: $1)
+            __unwrapped__instance.`struct` = value
+            return S_OK
+        },
+
+        add_Repeat: {
+            guard let __unwrapped__instance = WithKeywordWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            guard let handler = test_component.__x_ABI_C__FIEventHandler_1_IInspectableWrapper.unwrapFrom(abi: $1) else { return E_INVALIDARG }
+            let token = __unwrapped__instance.`repeat`.addHandler(handler)
+            $2?.initialize(to: .from(swift: token))
+            return S_OK
+        },
+
+        remove_Repeat: {
+            guard let __unwrapped__instance = WithKeywordWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let token: EventRegistrationToken = $1
+            __unwrapped__instance.`repeat`.removeHandler(token)
+            return S_OK
+        }
+    )
+
+    public typealias WithKeywordWrapper = InterfaceWrapperBase<__IMPL_test_component.WithKeywordImpl>
     public class _ABI_NonBlittableBoolStruct {
         public var val: __x_ABI_Ctest__component_CNonBlittableBoolStruct = .init()
         public init() { }

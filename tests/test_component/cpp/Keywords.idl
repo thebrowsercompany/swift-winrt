@@ -50,4 +50,9 @@ namespace test_component
         While
     };
 
+    interface WithKeyword {
+        void Enum(String extension);
+        String Struct;
+        event Windows.Foundation.EventHandler<Object> Repeat;
+    }
 }
