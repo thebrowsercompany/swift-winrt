@@ -23,11 +23,23 @@ typedef interface __x_ABI_Ctest__component_CIVoidToVoidDelegate __x_ABI_Ctest__c
 
 #endif // ____x_ABI_Ctest__component_CIVoidToVoidDelegate_FWD_DEFINED__
 
-    #ifndef ____x_ABI_Ctest__component_CIAsyncMethods_FWD_DEFINED__
-#define ____x_ABI_Ctest__component_CIAsyncMethods_FWD_DEFINED__
-    typedef interface __x_ABI_Ctest__component_CIAsyncMethods __x_ABI_Ctest__component_CIAsyncMethods;
+    #ifndef ____x_ABI_Ctest__component_CIAsyncMethodsStatics_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CIAsyncMethodsStatics_FWD_DEFINED__
+    typedef interface __x_ABI_Ctest__component_CIAsyncMethodsStatics __x_ABI_Ctest__component_CIAsyncMethodsStatics;
 
-#endif // ____x_ABI_Ctest__component_CIAsyncMethods_FWD_DEFINED__
+#endif // ____x_ABI_Ctest__component_CIAsyncMethodsStatics_FWD_DEFINED__
+
+#ifndef ____x_ABI_Ctest__component_CIAsyncMethodsWithProgress_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CIAsyncMethodsWithProgress_FWD_DEFINED__
+    typedef interface __x_ABI_Ctest__component_CIAsyncMethodsWithProgress __x_ABI_Ctest__component_CIAsyncMethodsWithProgress;
+
+#endif // ____x_ABI_Ctest__component_CIAsyncMethodsWithProgress_FWD_DEFINED__
+
+#ifndef ____x_ABI_Ctest__component_CIAsyncOperationInt_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CIAsyncOperationInt_FWD_DEFINED__
+    typedef interface __x_ABI_Ctest__component_CIAsyncOperationInt __x_ABI_Ctest__component_CIAsyncOperationInt;
+
+#endif // ____x_ABI_Ctest__component_CIAsyncOperationInt_FWD_DEFINED__
 
 #ifndef ____x_ABI_Ctest__component_CIBase_FWD_DEFINED__
 #define ____x_ABI_Ctest__component_CIBase_FWD_DEFINED__
@@ -2315,39 +2327,113 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     EXTERN_C const IID IID___x_ABI_Ctest__component_CIVoidToVoidDelegate;
     #endif /* !defined(____x_ABI_Ctest__component_CIVoidToVoidDelegate_INTERFACE_DEFINED__) */
     
-#if !defined(____x_ABI_Ctest__component_CIAsyncMethods_INTERFACE_DEFINED__)
-    #define ____x_ABI_Ctest__component_CIAsyncMethods_INTERFACE_DEFINED__
-    typedef struct __x_ABI_Ctest__component_CIAsyncMethodsVtbl
+#if !defined(____x_ABI_Ctest__component_CIAsyncMethodsStatics_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CIAsyncMethodsStatics_INTERFACE_DEFINED__
+    typedef struct __x_ABI_Ctest__component_CIAsyncMethodsStaticsVtbl
     {
         BEGIN_INTERFACE
 
-        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CIAsyncMethods* This,
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CIAsyncMethodsStatics* This,
             REFIID riid,
             void** ppvObject);
-        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CIAsyncMethods* This);
-        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CIAsyncMethods* This);
-        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_Ctest__component_CIAsyncMethods* This,
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CIAsyncMethodsStatics* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CIAsyncMethodsStatics* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_Ctest__component_CIAsyncMethodsStatics* This,
             ULONG* iidCount,
             IID** iids);
-        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_Ctest__component_CIAsyncMethods* This,
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_Ctest__component_CIAsyncMethodsStatics* This,
             HSTRING* className);
-        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CIAsyncMethods* This,
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CIAsyncMethodsStatics* This,
             TrustLevel* trustLevel);
-        HRESULT (STDMETHODCALLTYPE* OperationWithProgress)(__x_ABI_Ctest__component_CIAsyncMethods* This,
+        HRESULT (STDMETHODCALLTYPE* GetCompletedAsync)(__x_ABI_Ctest__component_CIAsyncMethodsStatics* This,
+        INT32 result,
+        __x_ABI_C__FIAsyncOperation_1_int** operation);
+    HRESULT (STDMETHODCALLTYPE* GetCompletedWithErrorAsync)(__x_ABI_Ctest__component_CIAsyncMethodsStatics* This,
+        HRESULT errorCode,
+        __x_ABI_C__FIAsyncOperation_1_int** operation);
+    HRESULT (STDMETHODCALLTYPE* GetPendingAsync)(__x_ABI_Ctest__component_CIAsyncMethodsStatics* This,
+        __x_ABI_C__FIAsyncOperation_1_int** operation);
+
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CIAsyncMethodsStaticsVtbl;
+
+    interface __x_ABI_Ctest__component_CIAsyncMethodsStatics
+    {
+        CONST_VTBL struct __x_ABI_Ctest__component_CIAsyncMethodsStaticsVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CIAsyncMethodsStatics;
+#endif /* !defined(____x_ABI_Ctest__component_CIAsyncMethodsStatics_INTERFACE_DEFINED__) */
+    
+#if !defined(____x_ABI_Ctest__component_CIAsyncMethodsWithProgress_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CIAsyncMethodsWithProgress_INTERFACE_DEFINED__
+    typedef struct __x_ABI_Ctest__component_CIAsyncMethodsWithProgressVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CIAsyncMethodsWithProgress* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CIAsyncMethodsWithProgress* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CIAsyncMethodsWithProgress* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_Ctest__component_CIAsyncMethodsWithProgress* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_Ctest__component_CIAsyncMethodsWithProgress* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CIAsyncMethodsWithProgress* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* OperationWithProgress)(__x_ABI_Ctest__component_CIAsyncMethodsWithProgress* This,
         struct __x_ABI_CWindows_CFoundation_CDateTime value,
         __x_ABI_C__FIAsyncOperationWithProgress_2_int_double** operation);
 
         END_INTERFACE
-    } __x_ABI_Ctest__component_CIAsyncMethodsVtbl;
+    } __x_ABI_Ctest__component_CIAsyncMethodsWithProgressVtbl;
 
-    interface __x_ABI_Ctest__component_CIAsyncMethods
+    interface __x_ABI_Ctest__component_CIAsyncMethodsWithProgress
     {
-        CONST_VTBL struct __x_ABI_Ctest__component_CIAsyncMethodsVtbl* lpVtbl;
+        CONST_VTBL struct __x_ABI_Ctest__component_CIAsyncMethodsWithProgressVtbl* lpVtbl;
     };
 
     
-    EXTERN_C const IID IID___x_ABI_Ctest__component_CIAsyncMethods;
-#endif /* !defined(____x_ABI_Ctest__component_CIAsyncMethods_INTERFACE_DEFINED__) */
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CIAsyncMethodsWithProgress;
+#endif /* !defined(____x_ABI_Ctest__component_CIAsyncMethodsWithProgress_INTERFACE_DEFINED__) */
+    
+#if !defined(____x_ABI_Ctest__component_CIAsyncOperationInt_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CIAsyncOperationInt_INTERFACE_DEFINED__
+    typedef struct __x_ABI_Ctest__component_CIAsyncOperationIntVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CIAsyncOperationInt* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CIAsyncOperationInt* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CIAsyncOperationInt* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_Ctest__component_CIAsyncOperationInt* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_Ctest__component_CIAsyncOperationInt* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CIAsyncOperationInt* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* Complete)(__x_ABI_Ctest__component_CIAsyncOperationInt* This,
+        INT32 result);
+    HRESULT (STDMETHODCALLTYPE* CompleteWithError)(__x_ABI_Ctest__component_CIAsyncOperationInt* This,
+        HRESULT errorCode);
+
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CIAsyncOperationIntVtbl;
+
+    interface __x_ABI_Ctest__component_CIAsyncOperationInt
+    {
+        CONST_VTBL struct __x_ABI_Ctest__component_CIAsyncOperationIntVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CIAsyncOperationInt;
+#endif /* !defined(____x_ABI_Ctest__component_CIAsyncOperationInt_INTERFACE_DEFINED__) */
     
 #if !defined(____x_ABI_Ctest__component_CIBase_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIBase_INTERFACE_DEFINED__

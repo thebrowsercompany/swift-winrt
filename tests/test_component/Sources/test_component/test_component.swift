@@ -7,6 +7,25 @@ public typealias Keywords = __x_ABI_Ctest__component_CKeywords
 public typealias Signed = __x_ABI_Ctest__component_CSigned
 public typealias SwiftifiableNames = __x_ABI_Ctest__component_CSwiftifiableNames
 public typealias Unsigned = __x_ABI_Ctest__component_CUnsigned
+public final class AsyncMethods {
+    private static let _IAsyncMethodsStatics: __ABI_test_component.IAsyncMethodsStatics = try! RoGetActivationFactory(HString("test_component.AsyncMethods"))
+    public static func getCompletedAsync(_ result: Int32) -> AnyIAsyncOperation<Int32>! {
+        let operation = try! _IAsyncMethodsStatics.GetCompletedAsyncImpl(result)
+        return test_component.__x_ABI_C__FIAsyncOperation_1_intWrapper.unwrapFrom(abi: operation)
+    }
+
+    public static func getCompletedWithErrorAsync(_ errorCode: HRESULT) -> AnyIAsyncOperation<Int32>! {
+        let operation = try! _IAsyncMethodsStatics.GetCompletedWithErrorAsyncImpl(errorCode)
+        return test_component.__x_ABI_C__FIAsyncOperation_1_intWrapper.unwrapFrom(abi: operation)
+    }
+
+    public static func getPendingAsync() -> AnyIAsyncOperation<Int32>! {
+        let operation = try! _IAsyncMethodsStatics.GetPendingAsyncImpl()
+        return test_component.__x_ABI_C__FIAsyncOperation_1_intWrapper.unwrapFrom(abi: operation)
+    }
+
+}
+
 public final class AsyncOperationInt : WinRTClass, IAsyncOperation, test_component.IAsyncInfo {
     @_spi(WinRTInternal)
     private (set) public var _inner: test_component.IInspectable!
@@ -1717,21 +1736,21 @@ public struct StructWithEnum: Hashable, Codable {
     }
 }
 
-public protocol IAsyncMethods : WinRTInterface {
+public protocol IAsyncMethodsWithProgress : WinRTInterface {
     func operationWithProgress(_ value: test_component.DateTime) throws -> test_component.AnyIAsyncOperationWithProgress<Int32, Double>!
 }
 
-extension IAsyncMethods {
+extension IAsyncMethodsWithProgress {
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         switch iid {
-            case __ABI_test_component.IAsyncMethodsWrapper.IID:
-                let wrapper = __ABI_test_component.IAsyncMethodsWrapper(self)
+            case __ABI_test_component.IAsyncMethodsWithProgressWrapper.IID:
+                let wrapper = __ABI_test_component.IAsyncMethodsWithProgressWrapper(self)
                 return wrapper!.queryInterface(iid)
             default: return nil
         }
     }
 }
-public typealias AnyIAsyncMethods = any IAsyncMethods
+public typealias AnyIAsyncMethodsWithProgress = any IAsyncMethodsWithProgress
 
 public protocol IBasic : WinRTInterface {
     func method()
@@ -2055,4 +2074,3 @@ extension test_component.Unsigned {
     }
 }
 extension test_component.Unsigned: @retroactive Hashable, @retroactive Codable {}
-

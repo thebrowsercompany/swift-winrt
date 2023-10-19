@@ -9,11 +9,11 @@ public enum __IMPL_test_component {
         public typealias SwiftProjection = AnyIAsyncMethods
         public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
-            return IAsyncMethodsImpl(abi)
+            return IAsyncMethodsWithProgressImpl(abi)
         }
 
         public static func makeAbi() -> CABI {
-            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IAsyncMethodsVTable) { $0 }
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IAsyncMethodsWithProgressVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
     }

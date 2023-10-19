@@ -1,3 +1,4 @@
+#include "AsyncMethods.idl"
 #include "NullValues.idl"
 #include "Keywords.idl"
 #include "EventTester.idl"
@@ -97,16 +98,6 @@ namespace test_component
         {
             Int32 Value;
         };
-
-        /* just here to make sure things compile, get weird C++ linker error if try to put this on a class:
-        Simple.cpp.obj : error LNK2001: unresolved external symbol
-        "public: struct winrt::Windows::Foundation::IAsyncOperationWithProgress<int,double> __cdecl winrt::test_component::implementation::Simple::OperationWithProgress(class std::chrono::time_point<struct winrt::clock,class std::chrono::duration<__int64,struct std::ratio<1,10000000> > >)"
-        (?OperationWithProgress@Simple@implementation@test_component@winrt@@QEAA?AU?$IAsyncOperationWithProgress@HN@Foundation@Windows@4@V?$time_point@Uclock@winrt@@V?$duration@_JU?$ratio@$00$0JIJGIA@@std@@@chrono@std@@@chrono@std@@@Z)
-        */
-        interface IAsyncMethods
-        {
-            Windows.Foundation.IAsyncOperationWithProgress<Int32, Double> OperationWithProgress(Windows.Foundation.DateTime value);
-        }
 
         // Just ensure that IObservableVector compiles
         interface IInterfaceWithObservableVector
@@ -460,10 +451,6 @@ namespace test_component
         }
 
         runtimeclass BaseObservableCollection: [default] IObservableVector<Base>
-        {
-        }
-
-        runtimeclass AsyncOperationInt : [default] Windows.Foundation.IAsyncOperation<Int32>
         {
         }
     }

@@ -2,8 +2,16 @@
 // swiftlint:disable all
 import Ctest_component
 
-private var IID___x_ABI_Ctest__component_CIAsyncMethods: test_component.IID {
-    .init(Data1: 0xC76E7341, Data2: 0xF54D, Data3: 0x502B, Data4: ( 0xAA,0x8F,0xF2,0xAD,0x9A,0x48,0xC1,0x3F ))// C76E7341-F54D-502B-AA8F-F2AD9A48C13F
+private var IID___x_ABI_Ctest__component_CIAsyncMethodsStatics: test_component.IID {
+    .init(Data1: 0x4CA9C2EA, Data2: 0x9C2E, Data3: 0x5688, Data4: ( 0x90,0x32,0xC5,0x65,0x78,0x6C,0x72,0x05 ))// 4CA9C2EA-9C2E-5688-9032-C565786C7205
+}
+
+private var IID___x_ABI_Ctest__component_CIAsyncMethodsWithProgress: test_component.IID {
+    .init(Data1: 0xD782777A, Data2: 0xBE43, Data3: 0x55FA, Data4: ( 0x92,0x6E,0x51,0xE6,0x40,0x23,0xD5,0xEC ))// D782777A-BE43-55FA-926E-51E64023D5EC
+}
+
+private var IID___x_ABI_Ctest__component_CIAsyncOperationInt: test_component.IID {
+    .init(Data1: 0x1D730A19, Data2: 0xCD91, Data3: 0x5A59, Data4: ( 0x96,0x83,0x51,0xA6,0x11,0xFA,0x48,0x08 ))// 1D730A19-CD91-5A59-9683-51A611FA4808
 }
 
 private var IID___x_ABI_Ctest__component_CIBase: test_component.IID {
@@ -192,13 +200,13 @@ public enum __ABI_test_component {
 
     }
 
-    internal static var IAsyncMethodsVTable: __x_ABI_Ctest__component_CIAsyncMethodsVtbl = .init(
+    internal static var IAsyncMethodsWithProgressVTable: __x_ABI_Ctest__component_CIAsyncMethodsWithProgressVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
             ppvObject.pointee = nil
 
             switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IAsyncMethodsWrapper.IID:
+                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IAsyncMethodsWithProgressWrapper.IID:
                     _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
@@ -214,7 +222,7 @@ public enum __ABI_test_component {
             let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
-            iids[2] = __ABI_test_component.IAsyncMethodsWrapper.IID
+            iids[2] = __ABI_test_component.IAsyncMethodsWithProgressWrapper.IID
             $1!.pointee = 3
             $2!.pointee = iids
             return S_OK
@@ -222,7 +230,7 @@ public enum __ABI_test_component {
 
         GetRuntimeClassName: {
             _ = $0
-            let hstring = try! HString("test_component.IAsyncMethods").detach()
+            let hstring = try! HString("test_component.IAsyncMethodsWithProgress").detach()
             $1!.pointee = hstring
             return S_OK
         },
@@ -235,7 +243,7 @@ public enum __ABI_test_component {
 
         OperationWithProgress: {
             do {
-                guard let __unwrapped__instance = IAsyncMethodsWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                guard let __unwrapped__instance = IAsyncMethodsWithProgressWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 let value: test_component.DateTime = .from(abi: $1)
                 let operation = try __unwrapped__instance.operationWithProgress(value)
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper(operation)
@@ -2522,4 +2530,3 @@ public extension WinRTDelegateBridge where CABI == __x_ABI_Ctest__component_CIVo
         return .init(lpVtbl:vtblPtr)
     }
 }
-
