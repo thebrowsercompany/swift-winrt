@@ -107,45 +107,26 @@ install(TARGETS test_component_cpp
 
 target_sources(test_component_cpp PRIVATE
     AsyncOperationInt.cpp
-    AsyncOperationInt.h
     StaticClass.cpp
-    StaticClass.h
-    Base.h
     Base.cpp
-    BaseCollection.h
     BaseCollection.cpp
-    BaseMapCollection.h
     BaseMapCollection.cpp
-    BaseNoOverrides.h
     BaseNoOverrides.cpp
     Class.cpp
-    Class.h
-    CollectionTester.h
     CollectionTester.cpp
-    Derived.h
     Derived.cpp
-    EventTester.h
     EventTester.cpp
     module.cpp
     ${CPPWINRT_OUTPUT}
     #Optional.cpp
-    #Optional.h
     NoopClosable.cpp
-    NoopClosable.h
     NullValues.cpp
-    NullValues.h
     pch.cpp
-    pch.h
     Simple.cpp
-    Simple.h
-    UnsealedDerived.h
     UnsealedDerived.cpp
-    UnsealedDerived2.h
     UnsealedDerived2.cpp
-    UnsealedDerivedNoOverrides.h
     UnsealedDerivedNoOverrides.cpp
     exports.def
     #Windows.Class.cpp
-    #Windows.Class.h
     ${MIDL_FILE}
     ${MIDL_OUTPUT})
