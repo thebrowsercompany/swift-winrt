@@ -1367,26 +1367,20 @@ vtable);
             if (type.generic_params.size() > 0) {
                 return_clause = w.write_temp(" -> %", type.generic_params[0]);
             }
-            w.write("public extension % {\n", bind<write_swift_type_identifier>(type));
-            {
-                auto extension_indent{ w.push_indent() };
-                w.write("func get() async throws% {\n", return_clause);
-                {
-                    auto get_indent{ w.push_indent() };
-                    w.write(R"(if status == .started {
-    let event = WaitableEvent()
-    completed = { _, _ in
-        Task { await event.signal() }
-    }
-    await event.wait()
-}
-)");
-                    // Let getResults propagate errors or cancelation
-                    w.write("return try getResults()\n");
-                }
-                w.write("}\n");
+            w.write(R"(public extension % {
+    func get() async throws% {
+        if status == .started {
+            let event = WaitableEvent()
+            completed = { _, _ in
+                Task { await event.signal() }
             }
-            w.write("}\n\n");
+            await event.wait()
+        }
+        return try getResults()
+    }
+}
+
+)", bind<write_swift_type_identifier>(type), return_clause);
         }
     }
 
