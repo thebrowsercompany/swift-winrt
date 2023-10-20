@@ -436,4 +436,4 @@ var tests: [XCTestCaseEntry] = [
 ] + valueBoxingTests + eventTests + collectionTests + aggregationTests + asyncTests
 
 RoInitialize(RO_INIT_MULTITHREADED)
-XCTMain(asyncTests) // Don't let me complete the pull request with this!
+XCTMain(tests)
