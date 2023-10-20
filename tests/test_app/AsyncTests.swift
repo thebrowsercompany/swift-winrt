@@ -17,8 +17,7 @@ class AsyncTests : XCTestCase {
     do {
       _ = try asyncBlock(timeout: 0.1) { try await asyncOperation.get() }
       XCTFail("Expected an error to be thrown")
-    }
-    catch let error as test_component.Error {
+    } catch let error as test_component.Error {
       XCTAssertEqual(error.hr, E_LAYOUTCYCLE)
     }
   }
@@ -37,8 +36,7 @@ class AsyncTests : XCTestCase {
     do {
       _ = try asyncBlock(timeout: 0.1) { try await asyncOperation.get() }
       XCTFail("Expected an error to be thrown")
-    }
-    catch let error as test_component.Error {
+    } catch let error as test_component.Error {
       XCTAssertEqual(error.hr, E_LAYOUTCYCLE)
     }
   }
@@ -65,8 +63,11 @@ class AsyncTests : XCTestCase {
 
     let asyncResult = BoxedResult<Result>()
     Task {
-      do { asyncResult.result = .success(try await body()) }
-      catch { asyncResult.result = .failure(error) }
+      do {
+        asyncResult.result = .success(try await body())
+      } catch {
+        asyncResult.result = .failure(error)
+      }
       WinSDK.SetEvent(event)
     }
 
