@@ -2,17 +2,19 @@ import "Windows.Foundation.idl";
 
 namespace test_component
 {
-    runtimeclass AsyncOperationInt : Windows.Foundation.IAsyncOperation<Int32>
+    interface IAsyncOperationInt
     {
         void Complete(Int32 result);
         void CompleteWithError(HRESULT errorCode);
     }
 
+    runtimeclass AsyncOperationInt : [default]IAsyncOperationInt, Windows.Foundation.IAsyncOperation<Int32> {}
+
     runtimeclass AsyncMethods
     {
         static Windows.Foundation.IAsyncOperation<Int32> GetCompletedAsync(Int32 result);
         static Windows.Foundation.IAsyncOperation<Int32> GetCompletedWithErrorAsync(HRESULT errorCode);
-        static Windows.Foundation.IAsyncOperation<Int32> GetPendingAsync();
+        static AsyncOperationInt GetPendingAsync();
     }
     
     /* just here to make sure things compile, get weird C++ linker error if try to put this on a class:

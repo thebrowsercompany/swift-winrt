@@ -172,7 +172,6 @@ extension IAsyncAction {
 public typealias AnyIAsyncAction = any IAsyncAction
 
 public extension IAsyncAction {
-    @MainActor
     func get() async throws {
         if status == .started {
             let event = WaitableEvent()
@@ -181,8 +180,10 @@ public extension IAsyncAction {
             }
             await event.wait()
         }
+        return try getResults()
     }
 }
+
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncinfo)
 public protocol IAsyncInfo : WinRTInterface {
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncinfo.cancel)
@@ -224,7 +225,6 @@ public protocol IAsyncOperationWithProgress<TResult,TProgress> : IAsyncInfo {
 public typealias AnyIAsyncOperationWithProgress<TResult,TProgress> = any IAsyncOperationWithProgress<TResult,TProgress>
 
 public extension IAsyncOperationWithProgress {
-    @MainActor
     func get() async throws -> TResult {
         if status == .started {
             let event = WaitableEvent()
@@ -236,6 +236,7 @@ public extension IAsyncOperationWithProgress {
         return try getResults()
     }
 }
+
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1)
 public protocol IAsyncOperation<TResult> : IAsyncInfo {
     associatedtype TResult
@@ -248,7 +249,6 @@ public protocol IAsyncOperation<TResult> : IAsyncInfo {
 public typealias AnyIAsyncOperation<TResult> = any IAsyncOperation<TResult>
 
 public extension IAsyncOperation {
-    @MainActor
     func get() async throws -> TResult {
         if status == .started {
             let event = WaitableEvent()
@@ -260,6 +260,7 @@ public extension IAsyncOperation {
         return try getResults()
     }
 }
+
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iclosable)
 public protocol IClosable : WinRTInterface {
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iclosable.close)

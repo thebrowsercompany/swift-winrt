@@ -9,7 +9,7 @@ namespace winrt::test_component::implementation
 
         static winrt::Windows::Foundation::IAsyncOperation<int32_t> GetCompletedAsync(int32_t result);
         static winrt::Windows::Foundation::IAsyncOperation<int32_t> GetCompletedWithErrorAsync(winrt::hresult errorCode);
-        static winrt::Windows::Foundation::IAsyncOperation<int32_t> GetPendingAsync();
+        static winrt::test_component::AsyncOperationInt GetPendingAsync();
     };
 }
 

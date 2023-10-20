@@ -19,9 +19,9 @@ public final class AsyncMethods {
         return test_component.__x_ABI_C__FIAsyncOperation_1_intWrapper.unwrapFrom(abi: operation)
     }
 
-    public static func getPendingAsync() -> AnyIAsyncOperation<Int32>! {
-        let operation = try! _IAsyncMethodsStatics.GetPendingAsyncImpl()
-        return test_component.__x_ABI_C__FIAsyncOperation_1_intWrapper.unwrapFrom(abi: operation)
+    public static func getPendingAsync() -> AsyncOperationInt! {
+        let result = try! _IAsyncMethodsStatics.GetPendingAsyncImpl()
+        return .from(abi: result)
     }
 
 }
@@ -1751,6 +1751,23 @@ extension IAsyncMethodsWithProgress {
     }
 }
 public typealias AnyIAsyncMethodsWithProgress = any IAsyncMethodsWithProgress
+
+public protocol IAsyncOperationInt : WinRTInterface {
+    func complete(_ result: Int32) throws
+    func completeWithError(_ errorCode: HRESULT) throws
+}
+
+extension IAsyncOperationInt {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        switch iid {
+            case __ABI_test_component.IAsyncOperationIntWrapper.IID:
+                let wrapper = __ABI_test_component.IAsyncOperationIntWrapper(self)
+                return wrapper!.queryInterface(iid)
+            default: return nil
+        }
+    }
+}
+public typealias AnyIAsyncOperationInt = any IAsyncOperationInt
 
 public protocol IBasic : WinRTInterface {
     func method()

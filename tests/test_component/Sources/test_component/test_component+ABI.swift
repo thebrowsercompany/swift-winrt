@@ -3,7 +3,7 @@
 import Ctest_component
 
 private var IID___x_ABI_Ctest__component_CIAsyncMethodsStatics: test_component.IID {
-    .init(Data1: 0x4CA9C2EA, Data2: 0x9C2E, Data3: 0x5688, Data4: ( 0x90,0x32,0xC5,0x65,0x78,0x6C,0x72,0x05 ))// 4CA9C2EA-9C2E-5688-9032-C565786C7205
+    .init(Data1: 0x5FAAD8F4, Data2: 0x29D7, Data3: 0x5C26, Data4: ( 0xA8,0x72,0x35,0x42,0xE3,0xE1,0x86,0x7A ))// 5FAAD8F4-29D7-5C26-A872-3542E3E1867A
 }
 
 private var IID___x_ABI_Ctest__component_CIAsyncMethodsWithProgress: test_component.IID {

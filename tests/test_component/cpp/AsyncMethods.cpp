@@ -19,7 +19,7 @@ namespace winrt::test_component::implementation
         return asyncOp;
     }
 
-    winrt::Windows::Foundation::IAsyncOperation<int32_t> AsyncMethods::GetPendingAsync()
+    winrt::test_component::AsyncOperationInt AsyncMethods::GetPendingAsync()
     {
         return winrt::make<AsyncOperationInt>();
     }

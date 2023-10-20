@@ -12,7 +12,7 @@ namespace winrt::test_component::implementation
         winrt::Windows::Foundation::AsyncOperationCompletedHandler<int32_t> completedHandler;
     
     public:
-        AsyncOperationInt()= default;
+        AsyncOperationInt() = default;
 
         uint32_t Id() { return 42; }
         winrt::Windows::Foundation::AsyncStatus Status() { return status; }
@@ -23,6 +23,6 @@ namespace winrt::test_component::implementation
         void CompleteWithError(winrt::hresult errorCode);
         void Completed(winrt::Windows::Foundation::AsyncOperationCompletedHandler<int32_t> const& handler);
         winrt::Windows::Foundation::AsyncOperationCompletedHandler<int32_t> Completed() { return completedHandler; }
-        int32_t GetResults() { return result; }
+        int32_t GetResults();
     };
 }

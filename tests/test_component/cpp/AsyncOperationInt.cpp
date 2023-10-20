@@ -37,4 +37,15 @@ namespace winrt::test_component::implementation
         if (handler && status != winrt::Windows::Foundation::AsyncStatus::Started)
             handler(*this, status);
     }
+
+    int32_t AsyncOperationInt::GetResults()
+    {
+        switch (status)
+        {
+            case winrt::Windows::Foundation::AsyncStatus::Completed: return result;
+            case winrt::Windows::Foundation::AsyncStatus::Canceled: throw winrt::hresult_canceled();
+            case winrt::Windows::Foundation::AsyncStatus::Error: throw winrt::hresult_error(errorCode);
+            default: throw winrt::hresult_illegal_method_call();
+        }
+    }
 }

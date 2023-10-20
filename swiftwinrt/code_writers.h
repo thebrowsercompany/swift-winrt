@@ -1362,24 +1362,31 @@ vtable);
 
         if (is_winrt_async_result_type(type))
         {
-            std::string return_statement;
+            std::string return_clause;
             const metadata_type* result_type = nullptr;
             if (type.generic_params.size() > 0) {
-                return_statement = w.write_temp(" -> %", type.generic_params[0]);
+                return_clause = w.write_temp(" -> %", type.generic_params[0]);
             }
-            w.write(R"(public extension % {
-    ^@MainActor
-    func get() async throws% {
-        if status == .started {
-            let event = WaitableEvent()
-            completed = { _, _ in
-                Task { await event.signal() }
-            }
-            await event.wait()
-        }%
+            w.write("public extension % {\n", bind<write_swift_type_identifier>(type));
+            {
+                auto extension_indent{ w.push_indent() };
+                w.write("func get() async throws% {\n", return_clause);
+                {
+                    auto get_indent{ w.push_indent() };
+                    w.write(R"(if status == .started {
+    let event = WaitableEvent()
+    completed = { _, _ in
+        Task { await event.signal() }
     }
+    await event.wait()
 }
-)", bind<write_swift_type_identifier>(type), return_statement, !return_statement.empty() ? "\n        return try getResults()" : "");
+)");
+                    // Let getResults propagate errors or cancelation
+                    w.write("return try getResults()\n");
+                }
+                w.write("}\n");
+            }
+            w.write("}\n\n");
         }
     }
 

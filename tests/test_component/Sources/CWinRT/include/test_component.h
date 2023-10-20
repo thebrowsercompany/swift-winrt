@@ -2352,7 +2352,7 @@ struct __x_ABI_Ctest__component_CStructWithEnum
         HRESULT errorCode,
         __x_ABI_C__FIAsyncOperation_1_int** operation);
     HRESULT (STDMETHODCALLTYPE* GetPendingAsync)(__x_ABI_Ctest__component_CIAsyncMethodsStatics* This,
-        __x_ABI_C__FIAsyncOperation_1_int** operation);
+        __x_ABI_Ctest__component_CIAsyncOperationInt** result);
 
         END_INTERFACE
     } __x_ABI_Ctest__component_CIAsyncMethodsStaticsVtbl;
