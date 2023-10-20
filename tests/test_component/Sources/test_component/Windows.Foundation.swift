@@ -172,7 +172,19 @@ extension IAsyncAction {
 public typealias AnyIAsyncAction = any IAsyncAction
 
 public extension IAsyncAction {
-    func get() async throws {
+    func getWithAnyThread() async throws {
+        if status == .started {
+            let event = WaitableEvent()
+            completed = { _, _ in
+                Task { await event.signal() }
+            }
+            await event.wait()
+        }
+        return try getResults()
+    }
+
+    @MainActor
+    func getWithMainActor() async throws {
         if status == .started {
             let event = WaitableEvent()
             completed = { _, _ in
@@ -225,7 +237,19 @@ public protocol IAsyncOperationWithProgress<TResult,TProgress> : IAsyncInfo {
 public typealias AnyIAsyncOperationWithProgress<TResult,TProgress> = any IAsyncOperationWithProgress<TResult,TProgress>
 
 public extension IAsyncOperationWithProgress {
-    func get() async throws -> TResult {
+    func getWithAnyThread() async throws -> TResult {
+        if status == .started {
+            let event = WaitableEvent()
+            completed = { _, _ in
+                Task { await event.signal() }
+            }
+            await event.wait()
+        }
+        return try getResults()
+    }
+
+    @MainActor
+    func getWithMainActor() async throws -> TResult {
         if status == .started {
             let event = WaitableEvent()
             completed = { _, _ in
@@ -249,7 +273,19 @@ public protocol IAsyncOperation<TResult> : IAsyncInfo {
 public typealias AnyIAsyncOperation<TResult> = any IAsyncOperation<TResult>
 
 public extension IAsyncOperation {
-    func get() async throws -> TResult {
+    func getWithAnyThread() async throws -> TResult {
+        if status == .started {
+            let event = WaitableEvent()
+            completed = { _, _ in
+                Task { await event.signal() }
+            }
+            await event.wait()
+        }
+        return try getResults()
+    }
+
+    @MainActor
+    func getWithMainActor() async throws -> TResult {
         if status == .started {
             let event = WaitableEvent()
             completed = { _, _ in

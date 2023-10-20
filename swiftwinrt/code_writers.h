@@ -1368,7 +1368,19 @@ vtable);
                 return_clause = w.write_temp(" -> %", type.generic_params[0]);
             }
             w.write(R"(public extension % {
-    func get() async throws% {
+    func getWithAnyThread() async throws% {
+        if status == .started {
+            let event = WaitableEvent()
+            completed = { _, _ in
+                Task { await event.signal() }
+            }
+            await event.wait()
+        }
+        return try getResults()
+    }
+
+    ^@MainActor
+    func getWithMainActor() async throws% {
         if status == .started {
             let event = WaitableEvent()
             completed = { _, _ in
@@ -1380,7 +1392,7 @@ vtable);
     }
 }
 
-)", bind<write_swift_type_identifier>(type), return_clause);
+)", bind<write_swift_type_identifier>(type), return_clause, return_clause);
         }
     }
 
