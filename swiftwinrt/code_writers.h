@@ -2485,31 +2485,12 @@ private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
         }
         else
         {
-            std::string cast_expr;
-            constexpr bool isGeneric = std::is_same_v<T, generic_inst>;
-
-            w.write(R"(guard let instance = %.tryUnwrapFrom(raw: pUnk)%,
-                  let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-            ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-            return S_OK
-)", wrapper_name, cast_expr);
+            w.write("return %.queryInterface(pUnk, riid.pointee, ppvObject)", wrapper_name);
         }
     }));
 
-        w.write(R"(AddRef: {
-     guard let wrapper = %.fromRaw($0) else { return 1 }
-     _ = wrapper.retain()
-     return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-},
-
-)", wrapper_name);
-
-        w.write(R"(Release: {
-    guard let wrapper = %.fromRaw($0) else { return 1 }
-    return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-},
-
-)", wrapper_name);
+        w.write("AddRef: { %.addRef($0) },\n", wrapper_name);
+        w.write("Release: { %.release($0) },\n", wrapper_name);
     }
 
     static void write_iunknown_methods(writer& w, generic_inst const& type)

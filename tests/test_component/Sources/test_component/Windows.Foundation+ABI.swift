@@ -109,25 +109,12 @@ public enum __ABI_Windows_Foundation {
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
                 default:
-                    guard let instance = IAsyncActionWrapper.tryUnwrapFrom(raw: pUnk),
-                          let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                    ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                    return S_OK
-
+                    return IAsyncActionWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
             }
         },
 
-        AddRef: {
-             guard let wrapper = IAsyncActionWrapper.fromRaw($0) else { return 1 }
-             _ = wrapper.retain()
-             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-        },
-
-        Release: {
-            guard let wrapper = IAsyncActionWrapper.fromRaw($0) else { return 1 }
-            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-        },
-
+        AddRef: { IAsyncActionWrapper.addRef($0) },
+        Release: { IAsyncActionWrapper.release($0) },
         GetIids: {
             let size = MemoryLayout<test_component.IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
@@ -230,25 +217,12 @@ public enum __ABI_Windows_Foundation {
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
                 default:
-                    guard let instance = IAsyncInfoWrapper.tryUnwrapFrom(raw: pUnk),
-                          let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                    ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                    return S_OK
-
+                    return IAsyncInfoWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
             }
         },
 
-        AddRef: {
-             guard let wrapper = IAsyncInfoWrapper.fromRaw($0) else { return 1 }
-             _ = wrapper.retain()
-             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-        },
-
-        Release: {
-            guard let wrapper = IAsyncInfoWrapper.fromRaw($0) else { return 1 }
-            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-        },
-
+        AddRef: { IAsyncInfoWrapper.addRef($0) },
+        Release: { IAsyncInfoWrapper.release($0) },
         GetIids: {
             let size = MemoryLayout<test_component.IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
@@ -334,25 +308,12 @@ public enum __ABI_Windows_Foundation {
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
                 default:
-                    guard let instance = IClosableWrapper.tryUnwrapFrom(raw: pUnk),
-                          let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                    ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                    return S_OK
-
+                    return IClosableWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
             }
         },
 
-        AddRef: {
-             guard let wrapper = IClosableWrapper.fromRaw($0) else { return 1 }
-             _ = wrapper.retain()
-             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-        },
-
-        Release: {
-            guard let wrapper = IClosableWrapper.fromRaw($0) else { return 1 }
-            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-        },
-
+        AddRef: { IClosableWrapper.addRef($0) },
+        Release: { IClosableWrapper.release($0) },
         GetIids: {
             let size = MemoryLayout<test_component.IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
@@ -589,25 +550,12 @@ public enum __ABI_Windows_Foundation {
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
                 default:
-                    guard let instance = IPropertyValueWrapper.tryUnwrapFrom(raw: pUnk),
-                          let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                    ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                    return S_OK
-
+                    return IPropertyValueWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
             }
         },
 
-        AddRef: {
-             guard let wrapper = IPropertyValueWrapper.fromRaw($0) else { return 1 }
-             _ = wrapper.retain()
-             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-        },
-
-        Release: {
-            guard let wrapper = IPropertyValueWrapper.fromRaw($0) else { return 1 }
-            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-        },
-
+        AddRef: { IPropertyValueWrapper.addRef($0) },
+        Release: { IPropertyValueWrapper.release($0) },
         GetIids: {
             let size = MemoryLayout<test_component.IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
@@ -888,25 +836,12 @@ public enum __ABI_Windows_Foundation {
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
                 default:
-                    guard let instance = IStringableWrapper.tryUnwrapFrom(raw: pUnk),
-                          let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                    ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                    return S_OK
-
+                    return IStringableWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
             }
         },
 
-        AddRef: {
-             guard let wrapper = IStringableWrapper.fromRaw($0) else { return 1 }
-             _ = wrapper.retain()
-             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-        },
-
-        Release: {
-            guard let wrapper = IStringableWrapper.fromRaw($0) else { return 1 }
-            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-        },
-
+        AddRef: { IStringableWrapper.addRef($0) },
+        Release: { IStringableWrapper.release($0) },
         GetIids: {
             let size = MemoryLayout<test_component.IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
@@ -1000,17 +935,8 @@ extension __ABI_Windows_Foundation {
             }
         },
 
-        AddRef: {
-             guard let wrapper = AsyncActionCompletedHandlerWrapper.fromRaw($0) else { return 1 }
-             _ = wrapper.retain()
-             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-        },
-
-        Release: {
-            guard let wrapper = AsyncActionCompletedHandlerWrapper.fromRaw($0) else { return 1 }
-            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-        },
-
+        AddRef: { AsyncActionCompletedHandlerWrapper.addRef($0) },
+        Release: { AsyncActionCompletedHandlerWrapper.release($0) },
         Invoke: {
             guard let __unwrapped__instance = AsyncActionCompletedHandlerWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let asyncInfo: test_component.AnyIAsyncAction? = __ABI_Windows_Foundation.IAsyncActionWrapper.unwrapFrom(abi: $1)
@@ -1057,17 +983,8 @@ extension __ABI_Windows_Foundation {
             }
         },
 
-        AddRef: {
-             guard let wrapper = DeferralCompletedHandlerWrapper.fromRaw($0) else { return 1 }
-             _ = wrapper.retain()
-             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-        },
-
-        Release: {
-            guard let wrapper = DeferralCompletedHandlerWrapper.fromRaw($0) else { return 1 }
-            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-        },
-
+        AddRef: { DeferralCompletedHandlerWrapper.addRef($0) },
+        Release: { DeferralCompletedHandlerWrapper.release($0) },
         Invoke: {
             guard let __unwrapped__instance = DeferralCompletedHandlerWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             __unwrapped__instance()

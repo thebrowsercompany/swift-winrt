@@ -1,5 +1,5 @@
 import WinSDK
-import Ctest_component
+import C_BINDINGS_MODULE
 
 extension IUnknownRef {
     func copyTo(_ riid: UnsafeMutablePointer<IID_Workaround>?, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
@@ -63,7 +63,7 @@ private class Marshaler {
         self.obj = obj
         var marshalerPtr: LPUNKNOWN?
         try CHECKED(CoCreateFreeThreadedMarshaler(nil, &marshalerPtr))
-        guard let marshalerPtr else { throw test_component.Error(hr: E_FAIL) }
+        guard let marshalerPtr else { throw SUPPORT_MODULE.Error(hr: E_FAIL) }
         marshaler = UnsafeMutableRawPointer(marshalerPtr).bindMemory(to: IMarshal.self, capacity: 1)
     }
 
