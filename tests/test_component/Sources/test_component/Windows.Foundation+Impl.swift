@@ -28,16 +28,8 @@ public enum __IMPL_Windows_Foundation {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncaction.completed)
         public var completed : AsyncActionCompletedHandler! {
-            get {
-                let handler = try! _default.get_CompletedImpl()
-                return __ABI_Windows_Foundation.AsyncActionCompletedHandlerWrapper.unwrapFrom(abi: handler)
-            }
-
-            set {
-                let wrapper = __ABI_Windows_Foundation.AsyncActionCompletedHandlerWrapper(newValue)
-                let _newValue = try! wrapper?.toABI { $0 }
-                try! _default.put_CompletedImpl(_newValue)
-            }
+            get { try! _default.get_CompletedImpl() }
+            set { try! _default.put_CompletedImpl(newValue) }
         }
 
         internal lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo = try! _default.QueryInterface()
@@ -53,29 +45,17 @@ public enum __IMPL_Windows_Foundation {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncaction.errorcode)
         public var errorCode : HRESULT {
-            get {
-                let result = try! _IAsyncInfo.get_ErrorCodeImpl()
-                return result
-            }
-
+            get { try! _IAsyncInfo.get_ErrorCodeImpl() }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncaction.id)
         public var id : UInt32 {
-            get {
-                let result = try! _IAsyncInfo.get_IdImpl()
-                return result
-            }
-
+            get { try! _IAsyncInfo.get_IdImpl() }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncaction.status)
         public var status : AsyncStatus {
-            get {
-                let result = try! _IAsyncInfo.get_StatusImpl()
-                return result
-            }
-
+            get { try! _IAsyncInfo.get_StatusImpl() }
         }
 
     }
@@ -110,29 +90,17 @@ public enum __IMPL_Windows_Foundation {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncinfo.errorcode)
         public var errorCode : HRESULT {
-            get {
-                let result = try! _default.get_ErrorCodeImpl()
-                return result
-            }
-
+            get { try! _default.get_ErrorCodeImpl() }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncinfo.id)
         public var id : UInt32 {
-            get {
-                let result = try! _default.get_IdImpl()
-                return result
-            }
-
+            get { try! _default.get_IdImpl() }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncinfo.status)
         public var status : AsyncStatus {
-            get {
-                let result = try! _default.get_StatusImpl()
-                return result
-            }
-
+            get { try! _default.get_StatusImpl() }
         }
 
     }
@@ -259,8 +227,7 @@ public enum __IMPL_Windows_Foundation {
         }
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.istringable.tostring)
         public func toString() throws -> String {
-            let value = try _default.ToStringImpl()
-            return .init(from: value)
+            try _default.ToStringImpl()
         }
 
     }
@@ -274,9 +241,7 @@ public enum __IMPL_Windows_Foundation {
             guard let abi = abi else { return nil }
             let _default = SwiftABI(abi)
             let handler: Handler = { (asyncInfo, asyncStatus) in
-                let asyncInfoWrapper = __ABI_Windows_Foundation.IAsyncActionWrapper(asyncInfo)
-                let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
-                try! _default.InvokeImpl(_asyncInfo, asyncStatus)
+                try! _default.InvokeImpl(asyncInfo, asyncStatus)
             }
             return handler
         }

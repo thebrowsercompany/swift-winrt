@@ -45,10 +45,8 @@ public final class Deferral : WinRTClass, IClosable {
     }
     private static let _IDeferralFactory: __ABI_Windows_Foundation.IDeferralFactory = try! RoGetActivationFactory(HString("Windows.Foundation.Deferral"))
     public init(_ handler: DeferralCompletedHandler!) {
-        let handlerWrapper = __ABI_Windows_Foundation.DeferralCompletedHandlerWrapper(handler)
-        let _handler = try! handlerWrapper?.toABI { $0 }
-        let result = try! Self._IDeferralFactory.CreateImpl(_handler)
-        _inner = test_component.IInspectable(consuming: result!)
+        _inner = try! Self._IDeferralFactory.CreateImpl(handler)
+
     }
 
     internal lazy var _IClosable: __ABI_Windows_Foundation.IClosable = try! _inner.QueryInterface()

@@ -217,7 +217,11 @@ namespace swiftwinrt
         }
         else if (category == param_category::struct_type)
         {
-            if (is_struct_blittable(signature_type))
+            if (!is_out && type->swift_type_name() == "EventRegistrationToken")
+            {
+                w.write(param_name);
+            }
+            else if (is_struct_blittable(signature_type))
             {
                 w.write(".from(swift: %)", param_name);
             }
@@ -254,6 +258,27 @@ namespace swiftwinrt
     static void write_implementation_args(writer& w, function_def const& function)
     {
         separator s{ w };
+
+        for (const auto& param : function.params)
+        {
+            s();
+            if (param.def.Flags().In())
+            {
+                w.write(get_swift_name(param));
+            }
+            else
+            {
+                w.write("&%", get_swift_name(param));
+            }
+        }
+    }
+
+    static void write_abi_args(writer& w, function_def const& function)
+    {
+        separator s{ w };
+
+        w.write("pThis");
+        s();
         for (auto& param: function.params)
         {
             auto param_name = get_swift_name(param);
@@ -288,27 +313,6 @@ namespace swiftwinrt
                 }
             }
         }
-    }
-
-    static void write_abi_args(writer& w, function_def const& function)
-    {
-        separator s{ w };
-
-        w.write("pThis");
-
-        s();
-        for (const auto& param : function.params)
-        {
-            s();
-            if (param.def.Flags().In())
-            {
-                w.write(get_swift_name(param));
-            }
-            else
-            {
-                w.write("&%", get_swift_name(param));
-            }
-        }
 
         if (function.return_type)
         {
@@ -329,31 +333,6 @@ namespace swiftwinrt
     static void write_consume_return_statement(writer& w, function_def const& signature);
     static write_scope_guard<writer> write_local_param_wrappers(writer& w, function_def const& signature);
 
-    static void write_abi_func_body(writer& w, typedef_base const& type, function_def const& function)
-    {
-        std::string_view func_name = get_abi_name(function);
-        if (function.return_type)
-        {
-            auto return_val = function.return_type.value();
-            w.write("var %: %\n",
-                return_val.name,
-                bind<write_init_return_val_abi>(return_val));
-        }
-
-        w.write(R"(_ = try perform(as: %.self) { pThis in
-    try CHECKED(pThis.pointee.lpVtbl.pointee.%(%))
-)",
-bind_type_mangled(type),
-func_name,
-bind<write_abi_args>(function));
-
-        w.write("}\n");
-        if (function.return_type)
-        {
-            w.write("return %\n", function.return_type.value().name);
-        }
-    }
-
     static void write_return_type_declaration(writer& w, function_def function, write_type_params const& type_params)
     {
         if (!function.return_type)
@@ -365,26 +344,31 @@ bind<write_abi_args>(function));
         write_type(w, *function.return_type->type, type_params);
     }
 
+    static std::vector<function_param> get_projected_params(attributed_type const& factory, function_def const& func);
+    static write_scope_guard<writer> write_local_param_wrappers(writer& w, std::vector<function_param> const& params);
     static void do_write_interface_abi(writer& w, typedef_base const& type, std::vector<function_def> const& methods)
     {
         auto factory_info = try_get_factory_info(w, type);
+        auto classType = try_get_exclusive_to(w, type);
 
-        if (is_exclusive(type) && !can_write(w, get_exclusive_to(type)))
+        if (classType && !can_write(w, classType))
         {
             return;
         }
+
+        const bool isInitializer = factory_info.has_value() && (factory_info->activatable || factory_info->composable);
+        const bool composableFactory = factory_info.has_value() && factory_info->composable;
+
         const bool internal = can_mark_internal(type.type());
         auto name = w.write_temp("%", type);
         auto baseClass = (is_delegate(type) || !type.type().Flags().WindowsRuntime()) ? "IUnknown" : "IInspectable";
         w.write("% class %: %.% {\n",
-            internal ? "internal" : "open",
+            internal ? "internal" : "public",
             bind_type_abi(type),
             w.support,
             baseClass);
 
         auto class_indent_guard = w.push_indent();
-
-        auto abi_guard = w.push_abi_types(true);
 
         auto iid_format = "override public class var IID: %.IID { IID_% }\n\n";
         w.write(iid_format, w.support, bind_type_mangled(type));
@@ -394,16 +378,63 @@ bind<write_abi_args>(function));
             if (!can_write(w, function, true)) continue;
             try
             {
-                auto func_name =  get_abi_name(function);
-                auto abi_guard2 = w.push_abi_types(true);
+                auto func_name = get_abi_name(function);
+                auto full_names = w.push_full_type_names(true);
+
+                auto returnStatement = isInitializer ?
+                    w.write_temp(" -> %", bind_type_abi(classType)) :
+                    w.write_temp("%", bind<write_return_type_declaration>(function, write_type_params::swift));
+
+                std::vector<function_param> params = composableFactory ? get_projected_params(factory_info.value(), function) : function.params;
+                std::string written_params = w.write_temp("%", bind<write_function_params2>(params, write_type_params::swift));
+                if (composableFactory)
+                {
+                    if (params.size() > 0) written_params.append(", ");
+                    written_params.append(w.write_temp("_ _baseInterface: UnsafeMutablePointer<C_IInspectable>?, _ innerInterface: inout %.IInspectable?", w.support));
+                }
+
                 w.write("% func %Impl(%) throws% {\n",
                     internal || is_exclusive(type) ? "internal" : "open",
                     func_name,
-                    bind<write_function_params>(function, write_type_params::c_abi),
-                    bind<write_return_type_declaration>(function, write_type_params::c_abi));
+                    written_params,
+                    returnStatement);
                 {
                     auto function_indent_guard = w.push_indent();
-                    write_abi_func_body(w, type, function);
+                    if (function.return_type)
+                    {
+                        auto return_val = function.return_type.value();
+                        w.write("var %: %\n",
+                            return_val.name,
+                            bind<write_init_return_val_abi>(return_val));
+                    }
+
+                    if (composableFactory)
+                    {
+                        w.write("var _innerInterface: UnsafeMutablePointer<C_IInspectable>?\n");
+                    }
+
+                    auto guard = write_local_param_wrappers(w, params);
+
+                    w.write(R"(_ = try perform(as: %.self) { pThis in
+    try CHECKED(pThis.pointee.lpVtbl.pointee.%(%))
+)",
+bind_type_mangled(type),
+func_name,
+bind<write_abi_args>(function));
+
+w.write("}\n");
+                    if (function.return_type && !isInitializer)
+                    {
+                        w.write("%\n", bind<write_consume_return_statement>(function));
+                    }
+                    else if (isInitializer)
+                    {
+                        if (composableFactory)
+                        {
+                            w.write("innerInterface = %.IInspectable(consuming:  _innerInterface!)\n", w.support);
+                        }
+                        w.write("return %(consuming: %!)\n", bind_type_abi(classType->default_interface), function.return_type->name);
+                    }
                 }
                 w.write("}\n\n");
             }
@@ -1619,21 +1650,17 @@ public static func makeAbi() -> CABI {
 
         auto swift_name = get_swift_name(factory);
         auto return_name = method.return_type.value().name;
-        {
-            auto guard = write_local_param_wrappers(w, method);
-            w.write("let % = try! Self.%.%Impl(%)\n",
-                return_name,
-                swift_name,
-                func_name,
-                bind<write_implementation_args>(method));
-        }
+        auto func_call = w.write_temp("try! Self.%.%Impl(%)\n",
+            swift_name,
+            func_name,
+            bind<write_implementation_args>(method));
         if (auto base_class = type.base_class)
         {
-            w.write("super.init(fromAbi: %.IInspectable(consuming: %!))\n", w.support, return_name);
+            w.write("super.init(fromAbi: %)\n", w.support, func_call);
         }
         else
         {
-            w.write("_inner = %.IInspectable(consuming: %!)\n", w.support, return_name);
+            w.write("_inner = %\n", func_call);
         }
     }
 
@@ -1764,25 +1791,25 @@ public static func makeAbi() -> CABI {
     {
         if (type.base_class)
         {
-            w.write(R"(@_spi(WinRTInternal)
+            w.write(R"(^@_spi(WinRTInternal)
 override public init<Composable: ComposableImpl>(
     composing: Composable.Type,
-    _ createCallback: (UnsafeMutablePointer<C_IInspectable>?, inout UnsafeMutablePointer<C_IInspectable>?) -> UnsafeMutablePointer<Composable.Default.CABI>?)
+    _ createCallback: (UnsafeMutablePointer<C_IInspectable>?, inout %.IInspectable?) -> Composable.Default.SwiftABI)
 {
     super.init(composing: composing, createCallback)
 }
-)");
+)", w.support);
         }
         else
         {
-            w.write(R"(@_spi(WinRTInternal)
+            w.write(R"(^@_spi(WinRTInternal)
 public init<Composable: ComposableImpl>(
     composing: Composable.Type,
-    _ createCallback: (UnsafeMutablePointer<C_IInspectable>?, inout UnsafeMutablePointer<C_IInspectable>?) -> UnsafeMutablePointer<Composable.Default.CABI>?)
+    _ createCallback: (UnsafeMutablePointer<C_IInspectable>?, inout %.IInspectable?) -> Composable.Default.SwiftABI)
 {
     self._inner = MakeComposed(composing: composing, (self as! Composable.Default.SwiftProjection), createCallback)
 }
-)");
+)", w.support);
         }
     }
 
@@ -1812,14 +1839,13 @@ public init<Composable: ComposableImpl>(
 
                     auto return_name = method.return_type.value().name;
                     {
-                        auto guard = write_local_param_wrappers(w, params);
                         if (type.base_class)
                         {
-                            w.write("super.init(composing: Self.Composable.self) { _baseInterface, _innerInterface in \n");
+                            w.write("super.init(composing: Self.Composable.self) { baseInterface, innerInterface in \n");
                         }
                         else
                         {
-                            w.write("self._inner = MakeComposed(composing: Self.Composable.self, self) { _baseInterface, _innerInterface in \n");
+                            w.write("self._inner = MakeComposed(composing: Self.Composable.self, self) { baseInterface, innerInterface in \n");
                         }
                         w.write("    try! Self.%.%Impl(%)\n",
                             get_swift_name(factory_info),
@@ -1883,34 +1909,13 @@ public init<Composable: ComposableImpl>(
     static void write_class_func_body(writer& w, function_def const& function, interface_info const& iface, bool is_noexcept)
     {
         std::string_view func_name = get_abi_name(function);
-        {
-            auto guard = write_local_param_wrappers(w, function);
-
-            auto impl = get_swift_name(iface);
-
-            auto try_flavor = is_noexcept ? "try!" : "try";
-            if (function.return_type)
-            {
-                w.write("let % = % %.%Impl(%)\n",
-                    function.return_type.value().name,
-                    try_flavor,
-                    impl,
-                    func_name,
-                    bind<write_implementation_args>(function));
-            }
-            else
-            {
-                w.write("% %.%Impl(%)\n",
-                    try_flavor,
-                    impl,
-                    func_name,
-                    bind<write_implementation_args>(function));
-            }
-        }
-        if (function.return_type)
-        {
-            w.write("%\n", bind<write_consume_return_statement>(function));
-        }
+        auto impl = get_swift_name(iface);
+        auto try_flavor = is_noexcept ? "try!" : "try";
+        w.write("% %.%Impl(%)\n",
+            try_flavor,
+            impl,
+            func_name,
+            bind<write_implementation_args>(function));
     }
 
     static void write_class_impl_property(writer& w, property_def const& prop, interface_info const& iface, typedef_base const& type_definition)
@@ -1919,75 +1924,26 @@ public init<Composable: ComposableImpl>(
 
         write_documentation_comment(w, type_definition, prop.def.Name());
 
-        // TODO: https://linear.app/the-browser-company/issue/WIN-82/support-setters-not-defined-in-same-api-contract-as-getters
-        // right now require that both getter and setter are defined in the same version
+        auto impl = get_swift_name(iface);
+
         if (prop.getter)
         {
             w.write("public %var % : % {\n",
                 iface.attributed ? "static " : "",
                 get_swift_name(prop),
                 bind<write_type>(*prop.getter->return_type->type, swift_write_type_params_for(*iface.type)));
-        }
-        auto property_indent_guard = w.push_indent();
 
-        auto impl = get_swift_name(iface);
-
-        if (prop.getter)
-        {
-            auto getter_format = R"(get {
-    let % = try! %.%Impl()
-    %
-}
-
-)";
-            auto getterSig = prop.getter.value();
-            auto propn = get_swift_name(prop);
-            w.write(getter_format,
-                getterSig.return_type.value().name,
+            w.write("    get { try! %.%Impl() }\n",
                 impl,
-                get_swift_name(getterSig),
-                bind<write_consume_return_statement>(getterSig));
-        }
+                get_swift_name(prop.getter.value()));
 
-        // TODO: https://linear.app/the-browser-company/issue/WIN-82/support-setters-not-defined-in-same-api-contract-as-getters
-        // right now require that both getter and setter are defined in the same version
-        if (prop.setter && prop.getter)
-        {
-            w.write("set {\n");
-            auto set_indent_guard = w.push_indent();
-
-            std::string extra_init;
-
-            TypeDef signature_type{};
-            auto category = get_category(prop.type, &signature_type);
-            if (category == param_category::string_type)
+            // TODO: https://linear.app/the-browser-company/issue/WIN-82/support-setters-not-defined-in-same-api-contract-as-getters
+            // right now require that both getter and setter are defined in the same version
+            if (prop.setter)
             {
-                w.write("let _newValue = try! HString(newValue)\n");
-            }
-            else if (category == param_category::struct_type && !is_struct_blittable(signature_type))
-            {
-                w.write("let _newValue = %._ABI_%(from: newValue)\n", abi_namespace(signature_type), signature_type.TypeName());
-            }
-            else if (is_reference_type(prop.type) && !is_class(prop.type))
-            {
-                w.write("let wrapper = %(newValue)\n", bind_wrapper_fullname(prop.type));
-                w.write("let _newValue = try! wrapper?.toABI { $0 }\n");
-            }
+                w.write("    set { try! %.%Impl(newValue) }\n", impl, get_swift_name(prop.setter.value()));
 
-            w.write("try! %.%Impl(%)\n",
-                impl,
-                get_swift_name(prop.setter.value()),
-                bind<write_convert_to_abi_arg>("newValue", prop.type, false));
-
-            set_indent_guard.end();
-            w.write("}\n");
-        }
-
-        // TODO: https://linear.app/the-browser-company/issue/WIN-82/support-setters-not-defined-in-same-api-contract-as-getters
-        // right now require that both getter and setter are defined in the same version
-        if (prop.getter)
-        {
-            property_indent_guard.end();
+            }
             w.write("}\n\n");
         }
     }
@@ -2026,9 +1982,7 @@ public init<Composable: ComposableImpl>(
   .init(
     add: { [weak this = %] in
       guard let this else { return .init() }
-      let wrapper = %($0)
-      let abi = try! wrapper?.toABI { $0 }
-      return try! this.add_%Impl(abi)
+      return try! this.add_%Impl($0)
     },
     remove: { [weak this = %] in
      try? this?.remove_%Impl($0)
@@ -2056,7 +2010,6 @@ public init<Composable: ComposableImpl>(
             get_swift_name(event), // var %
             def.type, // Event<%>
             get_swift_name(iface), // weak this = %
-            bind_wrapper_fullname(def.type), // let wrapper = %
             def.def.Name(), // add_&Impl
             get_swift_name(iface), // weak this = %
             def.def.Name() // remove_&Impl
@@ -2067,29 +2020,14 @@ public init<Composable: ComposableImpl>(
     {
         std::string_view func_name = get_abi_name(method);
 
-        {
-            auto guard = write_local_param_wrappers(w, method);
-
-            if (method.return_type)
-            {
-                w.write("let % = try! _%.%Impl(%)\n",
-                    method.return_type.value().name,
-                    statics.swift_type_name(),
-                    func_name,
-                    bind<write_implementation_args>(method));
-            }
-            else
-            {
-                w.write("try! _%.%Impl(%)\n",
-                    statics.swift_type_name(),
-                    func_name,
-                    bind<write_implementation_args>(method));
-            }
-        }
         if (method.return_type)
         {
-            w.write("%\n", bind<write_consume_return_statement>(method));
+            w.write("return ");
         }
+        w.write("try! _%.%Impl(%)\n",
+            statics.swift_type_name(),
+            func_name,
+            bind<write_implementation_args>(method));
     }
 
     static void write_static_members(writer& w, attributed_type const& statics, class_type const& type)
@@ -2112,9 +2050,11 @@ public init<Composable: ComposableImpl>(
                 }
 
                 write_documentation_comment(w, type, method.def.Name());
-                w.write("public static func %(%)% {\n",
+                auto maybe_throws = is_noexcept(type, method) ? "" : " throws";
+                w.write("public static func %(%)%% {\n",
                     get_swift_name(method),
                     bind<write_function_params>(method, write_type_params::swift_allow_implicit_unwrap),
+                    maybe_throws,
                     bind<write_return_type_declaration>(method, write_type_params::swift_allow_implicit_unwrap));
                 {
                     auto indent = w.push_indent();
