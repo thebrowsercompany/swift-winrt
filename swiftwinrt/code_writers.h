@@ -2050,11 +2050,9 @@ public init<Composable: ComposableImpl>(
                 }
 
                 write_documentation_comment(w, type, method.def.Name());
-                auto maybe_throws = is_noexcept(type, method) ? "" : " throws";
-                w.write("public static func %(%)%% {\n",
+                w.write("public static func %(%)% {\n",
                     get_swift_name(method),
                     bind<write_function_params>(method, write_type_params::swift_allow_implicit_unwrap),
-                    maybe_throws,
                     bind<write_return_type_declaration>(method, write_type_params::swift_allow_implicit_unwrap));
                 {
                     auto indent = w.push_indent();

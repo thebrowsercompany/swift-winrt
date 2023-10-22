@@ -611,11 +611,11 @@ public final class Class : WinRTClass, IBasic {
     }
 
     private static let _IClassStatics: __ABI_test_component.IClassStatics = try! RoGetActivationFactory(HString("test_component.Class"))
-    public static func staticTest() throws {
+    public static func staticTest() {
         try! _IClassStatics.StaticTestImpl()
     }
 
-    public static func staticTestReturn() throws -> Int32 {
+    public static func staticTestReturn() -> Int32 {
         return try! _IClassStatics.StaticTestReturnImpl()
     }
 
@@ -624,7 +624,7 @@ public final class Class : WinRTClass, IBasic {
     }
 
     private static let _IClassStatics2: __ABI_test_component.IClassStatics2 = try! RoGetActivationFactory(HString("test_component.Class"))
-    public static func staticTestReturnFloat() throws -> Float {
+    public static func staticTestReturnFloat() -> Float {
         return try! _IClassStatics2.StaticTestReturnFloatImpl()
     }
 
@@ -816,23 +816,23 @@ public final class CollectionTester : WinRTClass {
     }
 
     private static let _ICollectionTesterStatics: __ABI_test_component.ICollectionTesterStatics = try! RoGetActivationFactory(HString("test_component.CollectionTester"))
-    public static func inMap(_ value: AnyIMap<String, String>!) throws -> String {
+    public static func inMap(_ value: AnyIMap<String, String>!) -> String {
         return try! _ICollectionTesterStatics.InMapImpl(value)
     }
 
-    public static func inMapView(_ value: AnyIMapView<String, String>!) throws -> String {
+    public static func inMapView(_ value: AnyIMapView<String, String>!) -> String {
         return try! _ICollectionTesterStatics.InMapViewImpl(value)
     }
 
-    public static func inVector(_ value: AnyIVector<String>!) throws -> String {
+    public static func inVector(_ value: AnyIVector<String>!) -> String {
         return try! _ICollectionTesterStatics.InVectorImpl(value)
     }
 
-    public static func inVectorView(_ value: AnyIVectorView<String>!) throws -> String {
+    public static func inVectorView(_ value: AnyIVectorView<String>!) -> String {
         return try! _ICollectionTesterStatics.InVectorViewImpl(value)
     }
 
-    public static func getObjectAt(_ value: AnyIVector<Any?>!, _ index: UInt32, _ callback: ObjectHandler!) throws {
+    public static func getObjectAt(_ value: AnyIVector<Any?>!, _ index: UInt32, _ callback: ObjectHandler!) {
         try! _ICollectionTesterStatics.GetObjectAtImpl(value, index, callback)
     }
 
@@ -1093,43 +1093,43 @@ public final class NoopClosable : WinRTClass, test_component.IClosable {
 
 public final class NullValues {
     private static let _INullValuesStatics: __ABI_test_component.INullValuesStatics = try! RoGetActivationFactory(HString("test_component.NullValues"))
-    public static func isObjectNull(_ value: Any!) throws -> Bool {
+    public static func isObjectNull(_ value: Any!) -> Bool {
         return try! _INullValuesStatics.IsObjectNullImpl(value)
     }
 
-    public static func isInterfaceNull(_ value: test_component.AnyIClosable!) throws -> Bool {
+    public static func isInterfaceNull(_ value: test_component.AnyIClosable!) -> Bool {
         return try! _INullValuesStatics.IsInterfaceNullImpl(value)
     }
 
-    public static func isGenericInterfaceNull(_ value: AnyIVector<String>!) throws -> Bool {
+    public static func isGenericInterfaceNull(_ value: AnyIVector<String>!) -> Bool {
         return try! _INullValuesStatics.IsGenericInterfaceNullImpl(value)
     }
 
-    public static func isClassNull(_ value: NoopClosable!) throws -> Bool {
+    public static func isClassNull(_ value: NoopClosable!) -> Bool {
         return try! _INullValuesStatics.IsClassNullImpl(value)
     }
 
-    public static func isDelegateNull(_ value: VoidToVoidDelegate!) throws -> Bool {
+    public static func isDelegateNull(_ value: VoidToVoidDelegate!) -> Bool {
         return try! _INullValuesStatics.IsDelegateNullImpl(value)
     }
 
-    public static func getNullObject() throws -> Any! {
+    public static func getNullObject() -> Any! {
         return try! _INullValuesStatics.GetNullObjectImpl()
     }
 
-    public static func getNullInterface() throws -> test_component.AnyIClosable! {
+    public static func getNullInterface() -> test_component.AnyIClosable! {
         return try! _INullValuesStatics.GetNullInterfaceImpl()
     }
 
-    public static func getNullGenericInterface() throws -> AnyIVector<String>! {
+    public static func getNullGenericInterface() -> AnyIVector<String>! {
         return try! _INullValuesStatics.GetNullGenericInterfaceImpl()
     }
 
-    public static func getNullClass() throws -> NoopClosable! {
+    public static func getNullClass() -> NoopClosable! {
         return try! _INullValuesStatics.GetNullClassImpl()
     }
 
-    public static func getNullDelegate() throws -> VoidToVoidDelegate! {
+    public static func getNullDelegate() -> VoidToVoidDelegate! {
         return try! _INullValuesStatics.GetNullDelegateImpl()
     }
 
@@ -1173,7 +1173,7 @@ public final class Simple : WinRTClass {
     }
 
     private static let _ISimpleStatics: __ABI_test_component.ISimpleStatics = try! RoGetActivationFactory(HString("test_component.Simple"))
-    public static func fireStaticEvent() throws {
+    public static func fireStaticEvent() {
         try! _ISimpleStatics.FireStaticEventImpl()
     }
 
@@ -1280,15 +1280,15 @@ public final class Simple : WinRTClass {
 
 public final class StaticClass {
     private static let _IStaticClassStatics: __ABI_test_component.IStaticClassStatics = try! RoGetActivationFactory(HString("test_component.StaticClass"))
-    public static func inEnum(_ value: Signed) throws -> String {
+    public static func inEnum(_ value: Signed) -> String {
         return try! _IStaticClassStatics.InEnumImpl(value)
     }
 
-    public static func inNonBlittableStruct(_ value: NonBlittableStruct) throws -> String {
+    public static func inNonBlittableStruct(_ value: NonBlittableStruct) -> String {
         return try! _IStaticClassStatics.InNonBlittableStructImpl(value)
     }
 
-    public static func takeBase(_ base: Base!) throws {
+    public static func takeBase(_ base: Base!) {
         try! _IStaticClassStatics.TakeBaseImpl(base)
     }
 
