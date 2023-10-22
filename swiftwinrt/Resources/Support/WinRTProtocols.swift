@@ -19,10 +19,6 @@ public typealias AnyWinRTClass = any WinRTClass
 
 public protocol UnsealedWinRTClass : WinRTClass {
     var _inner: IUnknownRef? { get }
-    // rather than require an initializer, expose a type which can create this class.
-    // we do this so app derived types don't have to implement initializers that will
-    // never be called
-    static var _makeFromAbi: any MakeFromAbi.Type { get }
 }
 public typealias AnyUnsealedWinRTClass = any UnsealedWinRTClass
 

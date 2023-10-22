@@ -353,84 +353,63 @@ public enum __IMPL_test_component {
 }
 @_spi(__MakeFromAbi_DoNotImport)
 public class IAsyncMethods_MakeFromAbi : MakeFromAbi {
-    public typealias CABI = __x_ABI_Ctest__component_CIAsyncMethods
-    public typealias SwiftABI = __ABI_test_component.IAsyncMethods
-    public typealias SwiftProjection = AnyIAsyncMethods
-    public static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
-        guard let abi else { return nil }
-        let swiftAbi: SwiftABI = try! test_component.IInspectable(abi).QueryInterface()
+    private typealias SwiftABI = __ABI_test_component.IAsyncMethods
+    public static func from(abi: test_component.IInspectable) -> Any {
+        let swiftAbi: SwiftABI = try! abi.QueryInterface()
         return __IMPL_test_component.IAsyncMethodsImpl(RawPointer(swiftAbi)!)
     }
 }
 
 @_spi(__MakeFromAbi_DoNotImport)
 public class IBasic_MakeFromAbi : MakeFromAbi {
-    public typealias CABI = __x_ABI_Ctest__component_CIBasic
-    public typealias SwiftABI = __ABI_test_component.IBasic
-    public typealias SwiftProjection = AnyIBasic
-    public static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
-        guard let abi else { return nil }
-        let swiftAbi: SwiftABI = try! test_component.IInspectable(abi).QueryInterface()
+    private typealias SwiftABI = __ABI_test_component.IBasic
+    public static func from(abi: test_component.IInspectable) -> Any {
+        let swiftAbi: SwiftABI = try! abi.QueryInterface()
         return __IMPL_test_component.IBasicImpl(RawPointer(swiftAbi)!)
     }
 }
 
 @_spi(__MakeFromAbi_DoNotImport)
 public class IIAmImplementable_MakeFromAbi : MakeFromAbi {
-    public typealias CABI = __x_ABI_Ctest__component_CIIAmImplementable
-    public typealias SwiftABI = __ABI_test_component.IIAmImplementable
-    public typealias SwiftProjection = AnyIIAmImplementable
-    public static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
-        guard let abi else { return nil }
-        let swiftAbi: SwiftABI = try! test_component.IInspectable(abi).QueryInterface()
+    private typealias SwiftABI = __ABI_test_component.IIAmImplementable
+    public static func from(abi: test_component.IInspectable) -> Any {
+        let swiftAbi: SwiftABI = try! abi.QueryInterface()
         return __IMPL_test_component.IIAmImplementableImpl(RawPointer(swiftAbi)!)
     }
 }
 
 @_spi(__MakeFromAbi_DoNotImport)
 public class IInterfaceWithObservableVector_MakeFromAbi : MakeFromAbi {
-    public typealias CABI = __x_ABI_Ctest__component_CIInterfaceWithObservableVector
-    public typealias SwiftABI = __ABI_test_component.IInterfaceWithObservableVector
-    public typealias SwiftProjection = AnyIInterfaceWithObservableVector
-    public static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
-        guard let abi else { return nil }
-        let swiftAbi: SwiftABI = try! test_component.IInspectable(abi).QueryInterface()
+    private typealias SwiftABI = __ABI_test_component.IInterfaceWithObservableVector
+    public static func from(abi: test_component.IInspectable) -> Any {
+        let swiftAbi: SwiftABI = try! abi.QueryInterface()
         return __IMPL_test_component.IInterfaceWithObservableVectorImpl(RawPointer(swiftAbi)!)
     }
 }
 
 @_spi(__MakeFromAbi_DoNotImport)
 public class ISimpleDelegate_MakeFromAbi : MakeFromAbi {
-    public typealias CABI = __x_ABI_Ctest__component_CISimpleDelegate
-    public typealias SwiftABI = __ABI_test_component.ISimpleDelegate
-    public typealias SwiftProjection = AnyISimpleDelegate
-    public static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
-        guard let abi else { return nil }
-        let swiftAbi: SwiftABI = try! test_component.IInspectable(abi).QueryInterface()
+    private typealias SwiftABI = __ABI_test_component.ISimpleDelegate
+    public static func from(abi: test_component.IInspectable) -> Any {
+        let swiftAbi: SwiftABI = try! abi.QueryInterface()
         return __IMPL_test_component.ISimpleDelegateImpl(RawPointer(swiftAbi)!)
     }
 }
 
 @_spi(__MakeFromAbi_DoNotImport)
 public class InterfaceWithReturnDelegate_MakeFromAbi : MakeFromAbi {
-    public typealias CABI = __x_ABI_Ctest__component_CInterfaceWithReturnDelegate
-    public typealias SwiftABI = __ABI_test_component.InterfaceWithReturnDelegate
-    public typealias SwiftProjection = AnyInterfaceWithReturnDelegate
-    public static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
-        guard let abi else { return nil }
-        let swiftAbi: SwiftABI = try! test_component.IInspectable(abi).QueryInterface()
+    private typealias SwiftABI = __ABI_test_component.InterfaceWithReturnDelegate
+    public static func from(abi: test_component.IInspectable) -> Any {
+        let swiftAbi: SwiftABI = try! abi.QueryInterface()
         return __IMPL_test_component.InterfaceWithReturnDelegateImpl(RawPointer(swiftAbi)!)
     }
 }
 
 @_spi(__MakeFromAbi_DoNotImport)
 public class WithKeyword_MakeFromAbi : MakeFromAbi {
-    public typealias CABI = __x_ABI_Ctest__component_CWithKeyword
-    public typealias SwiftABI = __ABI_test_component.WithKeyword
-    public typealias SwiftProjection = AnyWithKeyword
-    public static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
-        guard let abi else { return nil }
-        let swiftAbi: SwiftABI = try! test_component.IInspectable(abi).QueryInterface()
+    private typealias SwiftABI = __ABI_test_component.WithKeyword
+    public static func from(abi: test_component.IInspectable) -> Any {
+        let swiftAbi: SwiftABI = try! abi.QueryInterface()
         return __IMPL_test_component.WithKeywordImpl(RawPointer(swiftAbi)!)
     }
 }

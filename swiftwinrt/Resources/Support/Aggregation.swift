@@ -1,14 +1,8 @@
 import C_BINDINGS_MODULE
 import Foundation
 
-public protocol MakeFromAbi {
-    associatedtype CABI
-    associatedtype SwiftProjection
-    static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection?
-}
-
-public protocol MakeComposedAbi : MakeFromAbi where SwiftProjection: UnsealedWinRTClass {
-    associatedtype SwiftABI : SUPPORT_MODULE.IInspectable
+public protocol MakeComposedAbi : AbiInterface where SwiftABI: SUPPORT_MODULE.IInspectable {
+    associatedtype SwiftProjection : UnsealedWinRTClass
 }
 
 public protocol ComposableImpl : AbiInterface where SwiftABI: IInspectable  {
@@ -112,15 +106,13 @@ public class UnsealedWinRTClassWrapper<Composable: ComposableImpl> : WinRTWrappe
             return instance
         }
 
-        // When creating a swift class which represents this type, we want to get the class name that we're trying to create
-        // via GetRuntimeClassName so that we can create the proper derived type. For example, the API may return UIElement,
-        // but we want to return a Button type.
-        // Note that we'll *never* be trying to create an app implemented object at this point
-        let className = try? overrides.GetSwiftClassName()
-        guard let className, let baseType = NSClassFromString(className) as? Composable.Default.SwiftProjection.Type else {
-          // the derived class doesn't exist, which is fine, just return the type the API specifies.
-          return Composable.Default.from(abi: base)!
+        guard let instance = makeFrom(abi: baseInsp) else {
+            // the derived class doesn't exist, which is fine, just return the type the API specifies.
+            let string = "\(NSStringFromClass(Composable.Default.SwiftProjection.self))_MakeFromAbi"
+            print("making from \(string)")
+            let makerType = NSClassFromString(string) as! any MakeFromAbi.Type
+            return makerType.from(abi: baseInsp) as! Composable.Default.SwiftProjection
         }
-        return baseType._makeFromAbi.from(abi: base) as! Composable.Default.SwiftProjection
+        return instance as! Composable.Default.SwiftProjection
     }
 }

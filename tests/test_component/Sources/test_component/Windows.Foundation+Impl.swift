@@ -298,48 +298,36 @@ public enum __IMPL_Windows_Foundation {
 }
 @_spi(__MakeFromAbi_DoNotImport)
 public class IAsyncAction_MakeFromAbi : MakeFromAbi {
-    public typealias CABI = __x_ABI_CWindows_CFoundation_CIAsyncAction
-    public typealias SwiftABI = __ABI_Windows_Foundation.IAsyncAction
-    public typealias SwiftProjection = AnyIAsyncAction
-    public static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
-        guard let abi else { return nil }
-        let swiftAbi: SwiftABI = try! test_component.IInspectable(abi).QueryInterface()
+    private typealias SwiftABI = __ABI_Windows_Foundation.IAsyncAction
+    public static func from(abi: test_component.IInspectable) -> Any {
+        let swiftAbi: SwiftABI = try! abi.QueryInterface()
         return __IMPL_Windows_Foundation.IAsyncActionImpl(RawPointer(swiftAbi)!)
     }
 }
 
 @_spi(__MakeFromAbi_DoNotImport)
 public class IAsyncInfo_MakeFromAbi : MakeFromAbi {
-    public typealias CABI = __x_ABI_CWindows_CFoundation_CIAsyncInfo
-    public typealias SwiftABI = __ABI_Windows_Foundation.IAsyncInfo
-    public typealias SwiftProjection = AnyIAsyncInfo
-    public static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
-        guard let abi else { return nil }
-        let swiftAbi: SwiftABI = try! test_component.IInspectable(abi).QueryInterface()
+    private typealias SwiftABI = __ABI_Windows_Foundation.IAsyncInfo
+    public static func from(abi: test_component.IInspectable) -> Any {
+        let swiftAbi: SwiftABI = try! abi.QueryInterface()
         return __IMPL_Windows_Foundation.IAsyncInfoImpl(RawPointer(swiftAbi)!)
     }
 }
 
 @_spi(__MakeFromAbi_DoNotImport)
 public class IClosable_MakeFromAbi : MakeFromAbi {
-    public typealias CABI = __x_ABI_CWindows_CFoundation_CIClosable
-    public typealias SwiftABI = __ABI_Windows_Foundation.IClosable
-    public typealias SwiftProjection = AnyIClosable
-    public static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
-        guard let abi else { return nil }
-        let swiftAbi: SwiftABI = try! test_component.IInspectable(abi).QueryInterface()
+    private typealias SwiftABI = __ABI_Windows_Foundation.IClosable
+    public static func from(abi: test_component.IInspectable) -> Any {
+        let swiftAbi: SwiftABI = try! abi.QueryInterface()
         return __IMPL_Windows_Foundation.IClosableImpl(RawPointer(swiftAbi)!)
     }
 }
 
 @_spi(__MakeFromAbi_DoNotImport)
 public class IStringable_MakeFromAbi : MakeFromAbi {
-    public typealias CABI = __x_ABI_CWindows_CFoundation_CIStringable
-    public typealias SwiftABI = __ABI_Windows_Foundation.IStringable
-    public typealias SwiftProjection = AnyIStringable
-    public static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
-        guard let abi else { return nil }
-        let swiftAbi: SwiftABI = try! test_component.IInspectable(abi).QueryInterface()
+    private typealias SwiftABI = __ABI_Windows_Foundation.IStringable
+    public static func from(abi: test_component.IInspectable) -> Any {
+        let swiftAbi: SwiftABI = try! abi.QueryInterface()
         return __IMPL_Windows_Foundation.IStringableImpl(RawPointer(swiftAbi)!)
     }
 }

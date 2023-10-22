@@ -1076,3 +1076,10 @@ public extension WinRTDelegateBridge where CABI == __x_ABI_CWindows_CFoundation_
     }
 }
 
+@_spi(__MakeFromAbi_DoNotImport)
+public class Deferral_MakeFromAbi : MakeFromAbi {
+    public static func from(abi: test_component.IInspectable) -> Any {
+        return Deferral(fromAbi: abi)
+    }
+}
+

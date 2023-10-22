@@ -153,14 +153,9 @@ open class Base : UnsealedWinRTClass {
             internal typealias SwiftProjection = Base
             internal typealias CABI = __x_ABI_Ctest__component_CIBase
             internal typealias SwiftABI = __ABI_test_component.IBase
-            internal static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
-                guard let abi = abi else { return nil }
-                return .init(fromAbi: .init(abi))
-            }
         }
     }
     internal typealias Composable = IBaseOverrides
-    open class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
 }
 
 public final class BaseCollection : WinRTClass, IVector, IIterable {
@@ -408,14 +403,9 @@ open class BaseNoOverrides : UnsealedWinRTClass {
             internal typealias SwiftProjection = BaseNoOverrides
             internal typealias CABI = __x_ABI_Ctest__component_CIBaseNoOverrides
             internal typealias SwiftABI = __ABI_test_component.IBaseNoOverrides
-            internal static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
-                guard let abi = abi else { return nil }
-                return .init(fromAbi: .init(abi))
-            }
         }
     }
     internal typealias Composable = IBaseNoOverrides
-    open class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
 }
 
 public final class BaseObservableCollection : WinRTClass, IObservableVector, IVector, IIterable {
@@ -1062,14 +1052,9 @@ public final class Derived : test_component.Base {
             internal typealias SwiftProjection = Derived
             internal typealias CABI = __x_ABI_Ctest__component_CIDerived
             internal typealias SwiftABI = __ABI_test_component.IDerived
-            internal static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
-                guard let abi = abi else { return nil }
-                return .init(fromAbi: .init(abi))
-            }
         }
     }
     internal typealias Composable = IBaseOverrides
-    override public class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
 }
 
 public final class EventTester : WinRTClass {
@@ -1512,14 +1497,9 @@ open class UnsealedDerived : test_component.Base {
             internal typealias SwiftProjection = UnsealedDerived
             internal typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerived
             internal typealias SwiftABI = __ABI_test_component.IUnsealedDerived
-            internal static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
-                guard let abi = abi else { return nil }
-                return .init(fromAbi: .init(abi))
-            }
         }
     }
     internal typealias Composable = IUnsealedDerivedOverloads2
-    override open class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
     internal lazy var _IUnsealedDerivedOverrides: __ABI_test_component.IUnsealedDerivedOverrides = try! IUnknown(_inner!.borrow).QueryInterface()
     open func onBeforeDoTheThing() throws {
         try _IUnsealedDerivedOverrides.OnBeforeDoTheThingImpl()
@@ -1532,10 +1512,6 @@ open class UnsealedDerived : test_component.Base {
             internal typealias SwiftProjection = UnsealedDerived
             internal typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerived
             internal typealias SwiftABI = __ABI_test_component.IUnsealedDerived
-            internal static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
-                guard let abi = abi else { return nil }
-                return .init(fromAbi: .init(abi))
-            }
         }
     }
 }
@@ -1596,14 +1572,9 @@ open class UnsealedDerived2 : test_component.UnsealedDerived {
             internal typealias SwiftProjection = UnsealedDerived2
             internal typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerived2
             internal typealias SwiftABI = __ABI_test_component.IUnsealedDerived2
-            internal static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
-                guard let abi = abi else { return nil }
-                return .init(fromAbi: .init(abi))
-            }
         }
     }
     internal typealias Composable = IUnsealedDerivedOverloads2
-    override open class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
 }
 
 open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
@@ -1658,14 +1629,9 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
             internal typealias SwiftProjection = UnsealedDerivedNoOverrides
             internal typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides
             internal typealias SwiftABI = __ABI_test_component.IUnsealedDerivedNoOverrides
-            internal static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
-                guard let abi = abi else { return nil }
-                return .init(fromAbi: .init(abi))
-            }
         }
     }
     internal typealias Composable = IUnsealedDerivedNoOverrides
-    override open class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }
 }
 
 public typealias ObjectHandler = (Any?) -> ()

@@ -215,3 +215,24 @@ public enum __ABI_Windows_Foundation_Collections {
 
     public typealias IVectorChangedEventArgsWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation_Collections.IVectorChangedEventArgsImpl>
 }
+@_spi(__MakeFromAbi_DoNotImport)
+public class PropertySet_MakeFromAbi : MakeFromAbi {
+    public static func from(abi: test_component.IInspectable) -> Any {
+        return PropertySet(fromAbi: abi)
+    }
+}
+
+@_spi(__MakeFromAbi_DoNotImport)
+public class StringMap_MakeFromAbi : MakeFromAbi {
+    public static func from(abi: test_component.IInspectable) -> Any {
+        return StringMap(fromAbi: abi)
+    }
+}
+
+@_spi(__MakeFromAbi_DoNotImport)
+public class ValueSet_MakeFromAbi : MakeFromAbi {
+    public static func from(abi: test_component.IInspectable) -> Any {
+        return ValueSet(fromAbi: abi)
+    }
+}
+

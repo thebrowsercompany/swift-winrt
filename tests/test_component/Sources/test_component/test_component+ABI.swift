@@ -2460,3 +2460,115 @@ public extension WinRTDelegateBridge where CABI == __x_ABI_Ctest__component_CIVo
     }
 }
 
+@_spi(__MakeFromAbi_DoNotImport)
+public class AsyncOperationInt_MakeFromAbi : MakeFromAbi {
+    public static func from(abi: test_component.IInspectable) -> Any {
+        return AsyncOperationInt(fromAbi: abi)
+    }
+}
+
+@_spi(__MakeFromAbi_DoNotImport)
+public class Base_MakeFromAbi : MakeFromAbi {
+    public static func from(abi: test_component.IInspectable) -> Any {
+        return Base(fromAbi: abi)
+    }
+}
+
+@_spi(__MakeFromAbi_DoNotImport)
+public class BaseCollection_MakeFromAbi : MakeFromAbi {
+    public static func from(abi: test_component.IInspectable) -> Any {
+        return BaseCollection(fromAbi: abi)
+    }
+}
+
+@_spi(__MakeFromAbi_DoNotImport)
+public class BaseMapCollection_MakeFromAbi : MakeFromAbi {
+    public static func from(abi: test_component.IInspectable) -> Any {
+        return BaseMapCollection(fromAbi: abi)
+    }
+}
+
+@_spi(__MakeFromAbi_DoNotImport)
+public class BaseNoOverrides_MakeFromAbi : MakeFromAbi {
+    public static func from(abi: test_component.IInspectable) -> Any {
+        return BaseNoOverrides(fromAbi: abi)
+    }
+}
+
+@_spi(__MakeFromAbi_DoNotImport)
+public class BaseObservableCollection_MakeFromAbi : MakeFromAbi {
+    public static func from(abi: test_component.IInspectable) -> Any {
+        return BaseObservableCollection(fromAbi: abi)
+    }
+}
+
+@_spi(__MakeFromAbi_DoNotImport)
+public class Class_MakeFromAbi : MakeFromAbi {
+    public static func from(abi: test_component.IInspectable) -> Any {
+        return Class(fromAbi: abi)
+    }
+}
+
+@_spi(__MakeFromAbi_DoNotImport)
+public class CollectionTester_MakeFromAbi : MakeFromAbi {
+    public static func from(abi: test_component.IInspectable) -> Any {
+        return CollectionTester(fromAbi: abi)
+    }
+}
+
+@_spi(__MakeFromAbi_DoNotImport)
+public class DeferrableEventArgs_MakeFromAbi : MakeFromAbi {
+    public static func from(abi: test_component.IInspectable) -> Any {
+        return DeferrableEventArgs(fromAbi: abi)
+    }
+}
+
+@_spi(__MakeFromAbi_DoNotImport)
+public class Derived_MakeFromAbi : MakeFromAbi {
+    public static func from(abi: test_component.IInspectable) -> Any {
+        return Derived(fromAbi: abi)
+    }
+}
+
+@_spi(__MakeFromAbi_DoNotImport)
+public class EventTester_MakeFromAbi : MakeFromAbi {
+    public static func from(abi: test_component.IInspectable) -> Any {
+        return EventTester(fromAbi: abi)
+    }
+}
+
+@_spi(__MakeFromAbi_DoNotImport)
+public class NoopClosable_MakeFromAbi : MakeFromAbi {
+    public static func from(abi: test_component.IInspectable) -> Any {
+        return NoopClosable(fromAbi: abi)
+    }
+}
+
+@_spi(__MakeFromAbi_DoNotImport)
+public class Simple_MakeFromAbi : MakeFromAbi {
+    public static func from(abi: test_component.IInspectable) -> Any {
+        return Simple(fromAbi: abi)
+    }
+}
+
+@_spi(__MakeFromAbi_DoNotImport)
+public class UnsealedDerived_MakeFromAbi : MakeFromAbi {
+    public static func from(abi: test_component.IInspectable) -> Any {
+        return UnsealedDerived(fromAbi: abi)
+    }
+}
+
+@_spi(__MakeFromAbi_DoNotImport)
+public class UnsealedDerived2_MakeFromAbi : MakeFromAbi {
+    public static func from(abi: test_component.IInspectable) -> Any {
+        return UnsealedDerived2(fromAbi: abi)
+    }
+}
+
+@_spi(__MakeFromAbi_DoNotImport)
+public class UnsealedDerivedNoOverrides_MakeFromAbi : MakeFromAbi {
+    public static func from(abi: test_component.IInspectable) -> Any {
+        return UnsealedDerivedNoOverrides(fromAbi: abi)
+    }
+}
+

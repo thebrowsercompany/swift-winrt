@@ -1031,22 +1031,17 @@ bind_impl_fullname(type));
 
         w.write(R"(^@_spi(__MakeFromAbi_DoNotImport)
 public class %_MakeFromAbi : MakeFromAbi {
-    public typealias CABI = %
-    public typealias SwiftABI = %.%
-    public typealias SwiftProjection = %
-    public static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
-        guard let abi else { return nil }
-        let swiftAbi: SwiftABI = try! %.IInspectable(abi).QueryInterface()
+    private typealias SwiftABI = %.%
+    public static func from(abi: %.IInspectable) -> Any {
+        let swiftAbi: SwiftABI = try! abi.QueryInterface()
         return %(RawPointer(swiftAbi)!)
     }
 }
 
 )",
             type,
-            bind_type_mangled(type),
             abi_namespace(type),
             type,
-            bind<write_swift_interface_existential_identifier>(type), // Do not include outer Optional<>)
             w.support,
             bind_impl_fullname(type)
         );
@@ -2026,10 +2021,6 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         internal typealias SwiftProjection = %
         internal typealias CABI = %
         internal typealias SwiftABI = %.%
-        internal static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
-            guard let abi = abi else { return nil }
-            return .init(fromAbi: .init(abi))
-        }
     }
 }
 )";
@@ -2065,8 +2056,6 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         {
             auto modifier = parent.is_composable() ? "open" : "public";
             w.write("internal typealias Composable = %\n", overrides.swift_type_name());
-            w.write("%% class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }\n",
-                parent.base_class ? "override " : "", modifier);
         }
     }
 
@@ -2755,5 +2744,23 @@ private var _default: SwiftABI!
             }
             other_composable_interfaces.push_back(*iter);
         }
+    }
+
+    static void write_class_make_from_abi(writer& w, class_type const& type)
+    {
+        if (!type.default_interface) return;
+
+        w.write(R"(^@_spi(__MakeFromAbi_DoNotImport)
+public class %_MakeFromAbi : MakeFromAbi {
+    public static func from(abi: %.IInspectable) -> Any {
+        return %(fromAbi: abi)
+    }
+}
+
+)",
+type,
+w.support,
+type
+);
     }
 }
