@@ -296,39 +296,3 @@ public enum __IMPL_Windows_Foundation {
         }
     }
 }
-@_spi(__MakeFromAbi_DoNotImport)
-public class IAsyncAction_MakeFromAbi : MakeFromAbi {
-    private typealias SwiftABI = __ABI_Windows_Foundation.IAsyncAction
-    public static func from(abi: test_component.IInspectable) -> Any {
-        let swiftAbi: SwiftABI = try! abi.QueryInterface()
-        return __IMPL_Windows_Foundation.IAsyncActionImpl(RawPointer(swiftAbi)!)
-    }
-}
-
-@_spi(__MakeFromAbi_DoNotImport)
-public class IAsyncInfo_MakeFromAbi : MakeFromAbi {
-    private typealias SwiftABI = __ABI_Windows_Foundation.IAsyncInfo
-    public static func from(abi: test_component.IInspectable) -> Any {
-        let swiftAbi: SwiftABI = try! abi.QueryInterface()
-        return __IMPL_Windows_Foundation.IAsyncInfoImpl(RawPointer(swiftAbi)!)
-    }
-}
-
-@_spi(__MakeFromAbi_DoNotImport)
-public class IClosable_MakeFromAbi : MakeFromAbi {
-    private typealias SwiftABI = __ABI_Windows_Foundation.IClosable
-    public static func from(abi: test_component.IInspectable) -> Any {
-        let swiftAbi: SwiftABI = try! abi.QueryInterface()
-        return __IMPL_Windows_Foundation.IClosableImpl(RawPointer(swiftAbi)!)
-    }
-}
-
-@_spi(__MakeFromAbi_DoNotImport)
-public class IStringable_MakeFromAbi : MakeFromAbi {
-    private typealias SwiftABI = __ABI_Windows_Foundation.IStringable
-    public static func from(abi: test_component.IInspectable) -> Any {
-        let swiftAbi: SwiftABI = try! abi.QueryInterface()
-        return __IMPL_Windows_Foundation.IStringableImpl(RawPointer(swiftAbi)!)
-    }
-}
-

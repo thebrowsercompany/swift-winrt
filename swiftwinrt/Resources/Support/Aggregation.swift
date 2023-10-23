@@ -108,10 +108,7 @@ public class UnsealedWinRTClassWrapper<Composable: ComposableImpl> : WinRTWrappe
 
         guard let instance = makeFrom(abi: baseInsp) else {
             // the derived class doesn't exist, which is fine, just return the type the API specifies.
-            let string = "\(NSStringFromClass(Composable.Default.SwiftProjection.self))_MakeFromAbi"
-            print("making from \(string)")
-            let makerType = NSClassFromString(string) as! any MakeFromAbi.Type
-            return makerType.from(abi: baseInsp) as! Composable.Default.SwiftProjection
+            return make(type: Composable.Default.SwiftProjection.self, from: baseInsp)!
         }
         return instance as! Composable.Default.SwiftProjection
     }

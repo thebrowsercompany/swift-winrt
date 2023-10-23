@@ -385,7 +385,7 @@ public enum __ABI_Windows_Foundation {
     )
 
     public typealias IClosableWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.IClosableImpl>
-    open class IDeferral: test_component.IInspectable {
+    internal class IDeferral: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIDeferral }
 
         internal func CompleteImpl() throws {
@@ -396,7 +396,7 @@ public enum __ABI_Windows_Foundation {
 
     }
 
-    open class IDeferralFactory: test_component.IInspectable {
+    internal class IDeferralFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIDeferralFactory }
 
         internal func CreateImpl(_ handler: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIDeferralCompletedHandler>?) throws -> UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIDeferral>? {
@@ -1073,13 +1073,6 @@ public extension WinRTDelegateBridge where CABI == __x_ABI_CWindows_CFoundation_
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Foundation.DeferralCompletedHandlerVTable) { $0 }
         return .init(lpVtbl:vtblPtr)
-    }
-}
-
-@_spi(__MakeFromAbi_DoNotImport)
-public class Deferral_MakeFromAbi : MakeFromAbi {
-    public static func from(abi: test_component.IInspectable) -> Any {
-        return Deferral(fromAbi: abi)
     }
 }
 

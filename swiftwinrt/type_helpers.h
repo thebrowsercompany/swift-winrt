@@ -68,10 +68,6 @@ namespace swiftwinrt
 
     inline bool can_mark_internal(TypeDef const& type)
     {
-        if (is_exclusive(type))
-        {
-            return true;
-        }
         if (has_attribute(type, metadata_namespace, "ActivatableAttribute"))
         {
             return true;

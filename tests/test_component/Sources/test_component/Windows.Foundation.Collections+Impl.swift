@@ -138,21 +138,3 @@ public enum __IMPL_Windows_Foundation_Collections {
     }
 
 }
-@_spi(__MakeFromAbi_DoNotImport)
-public class IPropertySet_MakeFromAbi : MakeFromAbi {
-    private typealias SwiftABI = __ABI_Windows_Foundation_Collections.IPropertySet
-    public static func from(abi: test_component.IInspectable) -> Any {
-        let swiftAbi: SwiftABI = try! abi.QueryInterface()
-        return __IMPL_Windows_Foundation_Collections.IPropertySetImpl(RawPointer(swiftAbi)!)
-    }
-}
-
-@_spi(__MakeFromAbi_DoNotImport)
-public class IVectorChangedEventArgs_MakeFromAbi : MakeFromAbi {
-    private typealias SwiftABI = __ABI_Windows_Foundation_Collections.IVectorChangedEventArgs
-    public static func from(abi: test_component.IInspectable) -> Any {
-        let swiftAbi: SwiftABI = try! abi.QueryInterface()
-        return __IMPL_Windows_Foundation_Collections.IVectorChangedEventArgsImpl(RawPointer(swiftAbi)!)
-    }
-}
-

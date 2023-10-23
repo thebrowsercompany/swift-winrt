@@ -230,12 +230,12 @@ public enum __ABI_test_component {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper(operation)
                 operationWrapper?.copyTo($2)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(err: E_FAIL) }
         }
     )
 
     public typealias IAsyncMethodsWrapper = InterfaceWrapperBase<__IMPL_test_component.IAsyncMethodsImpl>
-    open class IBase: test_component.IInspectable {
+    internal class IBase: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBase }
 
         internal func DoTheThingImpl() throws {
@@ -246,7 +246,7 @@ public enum __ABI_test_component {
 
     }
 
-    open class IBaseNoOverrides: test_component.IInspectable {
+    internal class IBaseNoOverrides: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseNoOverrides }
 
     }
@@ -266,7 +266,7 @@ public enum __ABI_test_component {
 
     }
 
-    open class IBaseOverrides: test_component.IInspectable {
+    internal class IBaseOverrides: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseOverrides }
 
         internal func OnDoTheThingImpl() throws {
@@ -362,12 +362,12 @@ public enum __ABI_test_component {
                 guard let __unwrapped__instance = IBasicWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 try __unwrapped__instance.method()
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(err: E_FAIL) }
         }
     )
 
     public typealias IBasicWrapper = InterfaceWrapperBase<__IMPL_test_component.IBasicImpl>
-    open class IClass: test_component.IInspectable {
+    internal class IClass: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIClass }
 
         internal func get_ImplementationImpl() throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>? {
@@ -640,7 +640,7 @@ public enum __ABI_test_component {
 
     }
 
-    open class IClassFactory: test_component.IInspectable {
+    internal class IClassFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIClassFactory }
 
         internal func CreateInstanceImpl(_ name: HSTRING?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>? {
@@ -693,7 +693,7 @@ public enum __ABI_test_component {
 
     }
 
-    open class IClassFactory2: test_component.IInspectable {
+    internal class IClassFactory2: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIClassFactory2 }
 
         internal func CreateInstanceImpl(_ name: HSTRING?, _ fruit: __x_ABI_Ctest__component_CFruit, _ implementation: UnsafeMutablePointer<__x_ABI_Ctest__component_CIIAmImplementable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>? {
@@ -706,7 +706,7 @@ public enum __ABI_test_component {
 
     }
 
-    open class IClassStatics: test_component.IInspectable {
+    internal class IClassStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIClassStatics }
 
         internal func StaticTestImpl() throws {
@@ -733,7 +733,7 @@ public enum __ABI_test_component {
 
     }
 
-    open class IClassStatics2: test_component.IInspectable {
+    internal class IClassStatics2: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIClassStatics2 }
 
         internal func StaticTestReturnFloatImpl() throws -> FLOAT {
@@ -760,7 +760,7 @@ public enum __ABI_test_component {
 
     }
 
-    open class ICollectionTester: test_component.IInspectable {
+    internal class ICollectionTester: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CICollectionTester }
 
         internal func ReturnStoredStringVectorImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIVector_1_HSTRING>? {
@@ -781,7 +781,7 @@ public enum __ABI_test_component {
 
     }
 
-    open class ICollectionTesterStatics: test_component.IInspectable {
+    internal class ICollectionTesterStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CICollectionTesterStatics }
 
         internal func InMapImpl(_ value: UnsafeMutablePointer<__x_ABI_C__FIMap_2_HSTRING_HSTRING>?) throws -> HSTRING? {
@@ -824,7 +824,7 @@ public enum __ABI_test_component {
 
     }
 
-    open class IDeferrableEventArgs: test_component.IInspectable {
+    internal class IDeferrableEventArgs: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIDeferrableEventArgs }
 
         internal func GetDeferralImpl() throws -> UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIDeferral>? {
@@ -843,7 +843,7 @@ public enum __ABI_test_component {
 
     }
 
-    open class IDerived: test_component.IInspectable {
+    internal class IDerived: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIDerived }
 
         internal func get_PropImpl() throws -> INT32 {
@@ -862,7 +862,7 @@ public enum __ABI_test_component {
 
     }
 
-    open class IEventTester: test_component.IInspectable {
+    internal class IEventTester: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIEventTester }
 
         internal func SubscribeImpl() throws {
@@ -895,7 +895,7 @@ public enum __ABI_test_component {
 
     }
 
-    open class IEventTesterFactory: test_component.IInspectable {
+    internal class IEventTesterFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIEventTesterFactory }
 
         internal func CreateInstanceImpl(_ impl: UnsafeMutablePointer<__x_ABI_Ctest__component_CIIAmImplementable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIEventTester>? {
@@ -1106,7 +1106,7 @@ public enum __ABI_test_component {
                 let result = try __unwrapped__instance.inInt32(value)
                 $2?.initialize(to: try! HString(result).detach())
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(err: E_FAIL) }
         },
 
         InString: {
@@ -1116,7 +1116,7 @@ public enum __ABI_test_component {
                 let result = try __unwrapped__instance.inString(value)
                 $2?.initialize(to: try! HString(result).detach())
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(err: E_FAIL) }
         },
 
         InObject: {
@@ -1126,7 +1126,7 @@ public enum __ABI_test_component {
                 let result = try __unwrapped__instance.inObject(value)
                 $2?.initialize(to: try! HString(result).detach())
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(err: E_FAIL) }
         },
 
         InEnum: {
@@ -1136,7 +1136,7 @@ public enum __ABI_test_component {
                 let result = try __unwrapped__instance.inEnum(value)
                 $2?.initialize(to: try! HString(result).detach())
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(err: E_FAIL) }
         },
 
         OutInt32: {
@@ -1146,7 +1146,7 @@ public enum __ABI_test_component {
                 try __unwrapped__instance.outInt32(&value)
                 $1?.initialize(to: value)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(err: E_FAIL) }
         },
 
         OutString: {
@@ -1156,7 +1156,7 @@ public enum __ABI_test_component {
                 try __unwrapped__instance.outString(&value)
                 $1?.initialize(to: try! HString(value).detach())
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(err: E_FAIL) }
         },
 
         OutObject: {
@@ -1167,7 +1167,7 @@ public enum __ABI_test_component {
                 let valueWrapper = __ABI_.AnyWrapper(value)
                 valueWrapper?.copyTo($1)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(err: E_FAIL) }
         },
 
         OutBlittableStruct: {
@@ -1177,7 +1177,7 @@ public enum __ABI_test_component {
                 try __unwrapped__instance.outBlittableStruct(&value)
                 $1?.initialize(to: .from(swift: value))
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(err: E_FAIL) }
         },
 
         OutNonBlittableStruct: {
@@ -1188,7 +1188,7 @@ public enum __ABI_test_component {
                 let _value = __ABI_test_component._ABI_NonBlittableStruct(from: value)
                 	$1?.initialize(to: _value.detach())
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(err: E_FAIL) }
         },
 
         OutEnum: {
@@ -1198,7 +1198,7 @@ public enum __ABI_test_component {
                 try __unwrapped__instance.outEnum(&value)
                 $1?.initialize(to: value)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(err: E_FAIL) }
         },
 
         ReturnObject: {
@@ -1208,7 +1208,7 @@ public enum __ABI_test_component {
                 let resultWrapper = __ABI_.AnyWrapper(result)
                 resultWrapper?.copyTo($1)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(err: E_FAIL) }
         },
 
         ReturnEnum: {
@@ -1217,7 +1217,7 @@ public enum __ABI_test_component {
                 let result = try __unwrapped__instance.returnEnum()
                 $1?.initialize(to: result)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(err: E_FAIL) }
         },
 
         get_EnumProperty: {
@@ -1270,7 +1270,7 @@ public enum __ABI_test_component {
                 let data: String = .init(from: $1)
                 try __unwrapped__instance.fireEvent(data)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(err: E_FAIL) }
         }
     )
 
@@ -1346,12 +1346,12 @@ public enum __ABI_test_component {
                 let basics: test_component.AnyIObservableVector<test_component.AnyIBasic?>? = test_component.__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.unwrapFrom(abi: $1)
                 try __unwrapped__instance.takeObservable(basics)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(err: E_FAIL) }
         }
     )
 
     public typealias IInterfaceWithObservableVectorWrapper = InterfaceWrapperBase<__IMPL_test_component.IInterfaceWithObservableVectorImpl>
-    open class INullValuesStatics: test_component.IInspectable {
+    internal class INullValuesStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CINullValuesStatics }
 
         internal func IsObjectNullImpl(_ value: UnsafeMutablePointer<C_IInspectable>?) throws -> boolean {
@@ -1436,7 +1436,7 @@ public enum __ABI_test_component {
 
     }
 
-    open class ISimple: test_component.IInspectable {
+    internal class ISimple: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CISimple }
 
         internal func MethodImpl() throws {
@@ -1665,7 +1665,7 @@ public enum __ABI_test_component {
                 guard let __unwrapped__instance = ISimpleDelegateWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 try __unwrapped__instance.doThis()
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(err: E_FAIL) }
         },
 
         DoThat: {
@@ -1674,7 +1674,7 @@ public enum __ABI_test_component {
                 let val: Int32 = $1
                 try __unwrapped__instance.doThat(val)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(err: E_FAIL) }
         }
     )
 
@@ -1691,6 +1691,7 @@ public enum __ABI_test_component {
     }
 
     open class ISimpleStatics: test_component.IInspectable {
+    internal class ISimpleStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CISimpleStatics }
 
         internal func add_StaticEventImpl(_ handler: UnsafeMutablePointer<__x_ABI_C__FIEventHandler_1_IInspectable>?) throws -> EventRegistrationToken {
@@ -1715,7 +1716,7 @@ public enum __ABI_test_component {
 
     }
 
-    open class IStaticClassStatics: test_component.IInspectable {
+    internal class IStaticClassStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIStaticClassStatics }
 
         internal func get_EnumPropertyImpl() throws -> __x_ABI_Ctest__component_CFruit {
@@ -1756,7 +1757,7 @@ public enum __ABI_test_component {
 
     }
 
-    open class IUnsealedDerived: test_component.IInspectable {
+    internal class IUnsealedDerived: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerived }
 
         internal func get_PropImpl() throws -> INT32 {
@@ -1775,7 +1776,7 @@ public enum __ABI_test_component {
 
     }
 
-    open class IUnsealedDerived2: test_component.IInspectable {
+    internal class IUnsealedDerived2: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerived2 }
 
         internal func MethodImpl() throws {
@@ -1816,7 +1817,7 @@ public enum __ABI_test_component {
 
     }
 
-    open class IUnsealedDerivedNoOverrides: test_component.IInspectable {
+    internal class IUnsealedDerivedNoOverrides: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides }
 
     }
@@ -1836,7 +1837,7 @@ public enum __ABI_test_component {
 
     }
 
-    open class IUnsealedDerivedOverloads2: test_component.IInspectable {
+    internal class IUnsealedDerivedOverloads2: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedOverloads2 }
 
         internal func OnAfterDoTheThingImpl() throws {
@@ -1847,7 +1848,7 @@ public enum __ABI_test_component {
 
     }
 
-    open class IUnsealedDerivedOverrides: test_component.IInspectable {
+    internal class IUnsealedDerivedOverrides: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedOverrides }
 
         internal func OnBeforeDoTheThingImpl() throws {
@@ -2047,7 +2048,7 @@ public enum __ABI_test_component {
                 let `extension`: String = .init(from: $1)
                 try __unwrapped__instance.`enum`(`extension`)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(err: E_FAIL) }
         },
 
         get_Struct: {
@@ -2183,7 +2184,7 @@ public enum __ABI_test_component {
                 guard let __unwrapped__instance = IBaseOverridesWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 try __unwrapped__instance.onDoTheThing()
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(err: E_FAIL) }
         }
     )
     internal typealias IUnsealedDerivedOverridesWrapper = UnsealedWinRTClassWrapper<test_component.UnsealedDerived.IUnsealedDerivedOverrides>
@@ -2247,7 +2248,7 @@ public enum __ABI_test_component {
                 guard let __unwrapped__instance = IUnsealedDerivedOverridesWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 try __unwrapped__instance.onBeforeDoTheThing()
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(err: E_FAIL) }
         }
     )
     internal typealias IUnsealedDerivedOverloads2Wrapper = UnsealedWinRTClassWrapper<test_component.UnsealedDerived.IUnsealedDerivedOverloads2>
@@ -2312,7 +2313,7 @@ public enum __ABI_test_component {
                 guard let __unwrapped__instance = IUnsealedDerivedOverloads2Wrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 try __unwrapped__instance.onAfterDoTheThing()
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(err: E_FAIL) }
         }
     )
 }
@@ -2459,116 +2460,3 @@ public extension WinRTDelegateBridge where CABI == __x_ABI_Ctest__component_CIVo
         return .init(lpVtbl:vtblPtr)
     }
 }
-
-@_spi(__MakeFromAbi_DoNotImport)
-public class AsyncOperationInt_MakeFromAbi : MakeFromAbi {
-    public static func from(abi: test_component.IInspectable) -> Any {
-        return AsyncOperationInt(fromAbi: abi)
-    }
-}
-
-@_spi(__MakeFromAbi_DoNotImport)
-public class Base_MakeFromAbi : MakeFromAbi {
-    public static func from(abi: test_component.IInspectable) -> Any {
-        return Base(fromAbi: abi)
-    }
-}
-
-@_spi(__MakeFromAbi_DoNotImport)
-public class BaseCollection_MakeFromAbi : MakeFromAbi {
-    public static func from(abi: test_component.IInspectable) -> Any {
-        return BaseCollection(fromAbi: abi)
-    }
-}
-
-@_spi(__MakeFromAbi_DoNotImport)
-public class BaseMapCollection_MakeFromAbi : MakeFromAbi {
-    public static func from(abi: test_component.IInspectable) -> Any {
-        return BaseMapCollection(fromAbi: abi)
-    }
-}
-
-@_spi(__MakeFromAbi_DoNotImport)
-public class BaseNoOverrides_MakeFromAbi : MakeFromAbi {
-    public static func from(abi: test_component.IInspectable) -> Any {
-        return BaseNoOverrides(fromAbi: abi)
-    }
-}
-
-@_spi(__MakeFromAbi_DoNotImport)
-public class BaseObservableCollection_MakeFromAbi : MakeFromAbi {
-    public static func from(abi: test_component.IInspectable) -> Any {
-        return BaseObservableCollection(fromAbi: abi)
-    }
-}
-
-@_spi(__MakeFromAbi_DoNotImport)
-public class Class_MakeFromAbi : MakeFromAbi {
-    public static func from(abi: test_component.IInspectable) -> Any {
-        return Class(fromAbi: abi)
-    }
-}
-
-@_spi(__MakeFromAbi_DoNotImport)
-public class CollectionTester_MakeFromAbi : MakeFromAbi {
-    public static func from(abi: test_component.IInspectable) -> Any {
-        return CollectionTester(fromAbi: abi)
-    }
-}
-
-@_spi(__MakeFromAbi_DoNotImport)
-public class DeferrableEventArgs_MakeFromAbi : MakeFromAbi {
-    public static func from(abi: test_component.IInspectable) -> Any {
-        return DeferrableEventArgs(fromAbi: abi)
-    }
-}
-
-@_spi(__MakeFromAbi_DoNotImport)
-public class Derived_MakeFromAbi : MakeFromAbi {
-    public static func from(abi: test_component.IInspectable) -> Any {
-        return Derived(fromAbi: abi)
-    }
-}
-
-@_spi(__MakeFromAbi_DoNotImport)
-public class EventTester_MakeFromAbi : MakeFromAbi {
-    public static func from(abi: test_component.IInspectable) -> Any {
-        return EventTester(fromAbi: abi)
-    }
-}
-
-@_spi(__MakeFromAbi_DoNotImport)
-public class NoopClosable_MakeFromAbi : MakeFromAbi {
-    public static func from(abi: test_component.IInspectable) -> Any {
-        return NoopClosable(fromAbi: abi)
-    }
-}
-
-@_spi(__MakeFromAbi_DoNotImport)
-public class Simple_MakeFromAbi : MakeFromAbi {
-    public static func from(abi: test_component.IInspectable) -> Any {
-        return Simple(fromAbi: abi)
-    }
-}
-
-@_spi(__MakeFromAbi_DoNotImport)
-public class UnsealedDerived_MakeFromAbi : MakeFromAbi {
-    public static func from(abi: test_component.IInspectable) -> Any {
-        return UnsealedDerived(fromAbi: abi)
-    }
-}
-
-@_spi(__MakeFromAbi_DoNotImport)
-public class UnsealedDerived2_MakeFromAbi : MakeFromAbi {
-    public static func from(abi: test_component.IInspectable) -> Any {
-        return UnsealedDerived2(fromAbi: abi)
-    }
-}
-
-@_spi(__MakeFromAbi_DoNotImport)
-public class UnsealedDerivedNoOverrides_MakeFromAbi : MakeFromAbi {
-    public static func from(abi: test_component.IInspectable) -> Any {
-        return UnsealedDerivedNoOverrides(fromAbi: abi)
-    }
-}
-
