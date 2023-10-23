@@ -1368,7 +1368,7 @@ vtable);
                 return_clause = w.write_temp(" -> %", type.generic_params[0]);
             }
             w.write(R"(public extension % {
-    func getWithAnyThread() async throws% {
+    func get() async throws% {
         if status == .started {
             let event = WaitableEvent()
             completed = { _, _ in
@@ -1380,7 +1380,7 @@ vtable);
     }
 
     ^@MainActor
-    func getWithMainActor() async throws% {
+    func getOnMainActor() async throws% {
         if status == .started {
             let event = WaitableEvent()
             completed = { _, _ in
