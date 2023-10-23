@@ -235,7 +235,7 @@ public enum __ABI_test_component {
     )
 
     public typealias IAsyncMethodsWrapper = InterfaceWrapperBase<__IMPL_test_component.IAsyncMethodsImpl>
-    internal class IBase: test_component.IInspectable {
+    open class IBase: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBase }
 
         internal func DoTheThingImpl() throws {
@@ -246,7 +246,7 @@ public enum __ABI_test_component {
 
     }
 
-    internal class IBaseNoOverrides: test_component.IInspectable {
+    open class IBaseNoOverrides: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseNoOverrides }
 
     }
@@ -266,7 +266,7 @@ public enum __ABI_test_component {
 
     }
 
-    internal class IBaseOverrides: test_component.IInspectable {
+    open class IBaseOverrides: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseOverrides }
 
         internal func OnDoTheThingImpl() throws {
@@ -367,7 +367,7 @@ public enum __ABI_test_component {
     )
 
     public typealias IBasicWrapper = InterfaceWrapperBase<__IMPL_test_component.IBasicImpl>
-    internal class IClass: test_component.IInspectable {
+    open class IClass: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIClass }
 
         internal func get_ImplementationImpl() throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>? {
@@ -640,7 +640,7 @@ public enum __ABI_test_component {
 
     }
 
-    internal class IClassFactory: test_component.IInspectable {
+    open class IClassFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIClassFactory }
 
         internal func CreateInstanceImpl(_ name: HSTRING?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>? {
@@ -693,7 +693,7 @@ public enum __ABI_test_component {
 
     }
 
-    internal class IClassFactory2: test_component.IInspectable {
+    open class IClassFactory2: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIClassFactory2 }
 
         internal func CreateInstanceImpl(_ name: HSTRING?, _ fruit: __x_ABI_Ctest__component_CFruit, _ implementation: UnsafeMutablePointer<__x_ABI_Ctest__component_CIIAmImplementable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>? {
@@ -706,7 +706,7 @@ public enum __ABI_test_component {
 
     }
 
-    internal class IClassStatics: test_component.IInspectable {
+    open class IClassStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIClassStatics }
 
         internal func StaticTestImpl() throws {
@@ -733,7 +733,7 @@ public enum __ABI_test_component {
 
     }
 
-    internal class IClassStatics2: test_component.IInspectable {
+    open class IClassStatics2: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIClassStatics2 }
 
         internal func StaticTestReturnFloatImpl() throws -> FLOAT {
@@ -760,7 +760,7 @@ public enum __ABI_test_component {
 
     }
 
-    internal class ICollectionTester: test_component.IInspectable {
+    open class ICollectionTester: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CICollectionTester }
 
         internal func ReturnStoredStringVectorImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIVector_1_HSTRING>? {
@@ -781,7 +781,7 @@ public enum __ABI_test_component {
 
     }
 
-    internal class ICollectionTesterStatics: test_component.IInspectable {
+    open class ICollectionTesterStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CICollectionTesterStatics }
 
         internal func InMapImpl(_ value: UnsafeMutablePointer<__x_ABI_C__FIMap_2_HSTRING_HSTRING>?) throws -> HSTRING? {
@@ -824,7 +824,7 @@ public enum __ABI_test_component {
 
     }
 
-    internal class IDeferrableEventArgs: test_component.IInspectable {
+    open class IDeferrableEventArgs: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIDeferrableEventArgs }
 
         internal func GetDeferralImpl() throws -> UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIDeferral>? {
@@ -843,7 +843,7 @@ public enum __ABI_test_component {
 
     }
 
-    internal class IDerived: test_component.IInspectable {
+    open class IDerived: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIDerived }
 
         internal func get_PropImpl() throws -> INT32 {
@@ -862,7 +862,7 @@ public enum __ABI_test_component {
 
     }
 
-    internal class IEventTester: test_component.IInspectable {
+    open class IEventTester: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIEventTester }
 
         internal func SubscribeImpl() throws {
@@ -895,7 +895,7 @@ public enum __ABI_test_component {
 
     }
 
-    internal class IEventTesterFactory: test_component.IInspectable {
+    open class IEventTesterFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIEventTesterFactory }
 
         internal func CreateInstanceImpl(_ impl: UnsafeMutablePointer<__x_ABI_Ctest__component_CIIAmImplementable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIEventTester>? {
@@ -1351,7 +1351,7 @@ public enum __ABI_test_component {
     )
 
     public typealias IInterfaceWithObservableVectorWrapper = InterfaceWrapperBase<__IMPL_test_component.IInterfaceWithObservableVectorImpl>
-    internal class INullValuesStatics: test_component.IInspectable {
+    open class INullValuesStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CINullValuesStatics }
 
         internal func IsObjectNullImpl(_ value: UnsafeMutablePointer<C_IInspectable>?) throws -> boolean {
@@ -1436,7 +1436,7 @@ public enum __ABI_test_component {
 
     }
 
-    internal class ISimple: test_component.IInspectable {
+    open class ISimple: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CISimple }
 
         internal func MethodImpl() throws {
@@ -1692,6 +1692,7 @@ public enum __ABI_test_component {
 
     open class ISimpleStatics: test_component.IInspectable {
     internal class ISimpleStatics: test_component.IInspectable {
+    open class ISimpleStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CISimpleStatics }
 
         internal func add_StaticEventImpl(_ handler: UnsafeMutablePointer<__x_ABI_C__FIEventHandler_1_IInspectable>?) throws -> EventRegistrationToken {
@@ -1716,7 +1717,7 @@ public enum __ABI_test_component {
 
     }
 
-    internal class IStaticClassStatics: test_component.IInspectable {
+    open class IStaticClassStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIStaticClassStatics }
 
         internal func get_EnumPropertyImpl() throws -> __x_ABI_Ctest__component_CFruit {
@@ -1757,7 +1758,7 @@ public enum __ABI_test_component {
 
     }
 
-    internal class IUnsealedDerived: test_component.IInspectable {
+    open class IUnsealedDerived: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerived }
 
         internal func get_PropImpl() throws -> INT32 {
@@ -1776,7 +1777,7 @@ public enum __ABI_test_component {
 
     }
 
-    internal class IUnsealedDerived2: test_component.IInspectable {
+    open class IUnsealedDerived2: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerived2 }
 
         internal func MethodImpl() throws {
@@ -1817,7 +1818,7 @@ public enum __ABI_test_component {
 
     }
 
-    internal class IUnsealedDerivedNoOverrides: test_component.IInspectable {
+    open class IUnsealedDerivedNoOverrides: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides }
 
     }
@@ -1837,7 +1838,7 @@ public enum __ABI_test_component {
 
     }
 
-    internal class IUnsealedDerivedOverloads2: test_component.IInspectable {
+    open class IUnsealedDerivedOverloads2: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedOverloads2 }
 
         internal func OnAfterDoTheThingImpl() throws {
@@ -1848,7 +1849,7 @@ public enum __ABI_test_component {
 
     }
 
-    internal class IUnsealedDerivedOverrides: test_component.IInspectable {
+    open class IUnsealedDerivedOverrides: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedOverrides }
 
         internal func OnBeforeDoTheThingImpl() throws {

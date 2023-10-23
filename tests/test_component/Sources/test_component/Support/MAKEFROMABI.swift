@@ -8,9 +8,7 @@ public protocol MakeFromAbi {
 }
 
 func make(typeName: SwiftTypeName, from abi: test_component.IInspectable) -> Any? {
-    print("making: \(typeName)")
     guard let makerType = NSClassFromString("\(typeName.module).__MakeFromAbi") as? any MakeFromAbi.Type else {
-        print("failed to find maker type")
         return nil
     }
     return makerType.from(typeName: typeName.typeName, abi: abi)

@@ -69,7 +69,7 @@ public enum __ABI_ {
         }
 
         let insp: IInspectable = .init(abi)
-        return makeFrom(abi: insp)
+        return makeFrom(abi: insp) ?? insp
       }
     }
 

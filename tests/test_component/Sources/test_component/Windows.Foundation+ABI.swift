@@ -385,7 +385,7 @@ public enum __ABI_Windows_Foundation {
     )
 
     public typealias IClosableWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.IClosableImpl>
-    internal class IDeferral: test_component.IInspectable {
+    open class IDeferral: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIDeferral }
 
         internal func CompleteImpl() throws {
@@ -396,7 +396,7 @@ public enum __ABI_Windows_Foundation {
 
     }
 
-    internal class IDeferralFactory: test_component.IInspectable {
+    open class IDeferralFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIDeferralFactory }
 
         internal func CreateImpl(_ handler: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIDeferralCompletedHandler>?) throws -> UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIDeferral>? {
