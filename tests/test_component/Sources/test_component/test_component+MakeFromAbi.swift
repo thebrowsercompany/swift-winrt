@@ -2,154 +2,141 @@
 // swiftlint:disable all
 import Ctest_component
 
-func makeIAsyncActionFrom(abi: IUnknownRef) -> Any {
+func makeIAsyncActionFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_Windows_Foundation.IAsyncAction = try! abi.QueryInterface()
     return __IMPL_Windows_Foundation.IAsyncActionImpl(RawPointer(swiftAbi)!)
 }
-
 func makeIAsyncInfoFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_Windows_Foundation.IAsyncInfo = try! abi.QueryInterface()
     return __IMPL_Windows_Foundation.IAsyncInfoImpl(RawPointer(swiftAbi)!)
 }
-
 func makeIClosableFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_Windows_Foundation.IClosable = try! abi.QueryInterface()
     return __IMPL_Windows_Foundation.IClosableImpl(RawPointer(swiftAbi)!)
 }
-
 func makeIStringableFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_Windows_Foundation.IStringable = try! abi.QueryInterface()
     return __IMPL_Windows_Foundation.IStringableImpl(RawPointer(swiftAbi)!)
 }
-
 func makeIPropertySetFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_Windows_Foundation_Collections.IPropertySet = try! abi.QueryInterface()
     return __IMPL_Windows_Foundation_Collections.IPropertySetImpl(RawPointer(swiftAbi)!)
 }
-
 func makeIVectorChangedEventArgsFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_Windows_Foundation_Collections.IVectorChangedEventArgs = try! abi.QueryInterface()
     return __IMPL_Windows_Foundation_Collections.IVectorChangedEventArgsImpl(RawPointer(swiftAbi)!)
 }
-
 func makeIAsyncMethodsFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_test_component.IAsyncMethods = try! abi.QueryInterface()
     return __IMPL_test_component.IAsyncMethodsImpl(RawPointer(swiftAbi)!)
 }
-
 func makeIBasicFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_test_component.IBasic = try! abi.QueryInterface()
     return __IMPL_test_component.IBasicImpl(RawPointer(swiftAbi)!)
 }
-
 func makeIIAmImplementableFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_test_component.IIAmImplementable = try! abi.QueryInterface()
     return __IMPL_test_component.IIAmImplementableImpl(RawPointer(swiftAbi)!)
 }
-
 func makeIInterfaceWithObservableVectorFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_test_component.IInterfaceWithObservableVector = try! abi.QueryInterface()
     return __IMPL_test_component.IInterfaceWithObservableVectorImpl(RawPointer(swiftAbi)!)
 }
-
 func makeISimpleDelegateFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_test_component.ISimpleDelegate = try! abi.QueryInterface()
     return __IMPL_test_component.ISimpleDelegateImpl(RawPointer(swiftAbi)!)
 }
-
 func makeInterfaceWithReturnDelegateFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_test_component.InterfaceWithReturnDelegate = try! abi.QueryInterface()
     return __IMPL_test_component.InterfaceWithReturnDelegateImpl(RawPointer(swiftAbi)!)
 }
-
 func makeWithKeywordFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_test_component.WithKeyword = try! abi.QueryInterface()
     return __IMPL_test_component.WithKeywordImpl(RawPointer(swiftAbi)!)
 }
-
 func makeDeferralFrom(abi: test_component.IInspectable) -> Any {
     return Deferral(fromAbi: abi)
 }
 
-func makePropertySetFrom(abi: IUnknownRef) -> Any {
+func makePropertySetFrom(abi: test_component.IInspectable) -> Any {
     return PropertySet(fromAbi: abi)
 }
 
-func makeStringMapFrom(abi: IUnknownRef) -> Any {
+func makeStringMapFrom(abi: test_component.IInspectable) -> Any {
     return StringMap(fromAbi: abi)
 }
 
-func makeValueSetFrom(abi: IUnknownRef) -> Any {
+func makeValueSetFrom(abi: test_component.IInspectable) -> Any {
     return ValueSet(fromAbi: abi)
 }
 
-func makeAsyncOperationIntFrom(abi: IUnknownRef) -> Any {
+func makeAsyncOperationIntFrom(abi: test_component.IInspectable) -> Any {
     return AsyncOperationInt(fromAbi: abi)
 }
 
-func makeBaseFrom(abi: IUnknownRef) -> Any {
+func makeBaseFrom(abi: test_component.IInspectable) -> Any {
     return Base(fromAbi: abi)
 }
 
-func makeBaseCollectionFrom(abi: IUnknownRef) -> Any {
+func makeBaseCollectionFrom(abi: test_component.IInspectable) -> Any {
     return BaseCollection(fromAbi: abi)
 }
 
-func makeBaseMapCollectionFrom(abi: IUnknownRef) -> Any {
+func makeBaseMapCollectionFrom(abi: test_component.IInspectable) -> Any {
     return BaseMapCollection(fromAbi: abi)
 }
 
-func makeBaseNoOverridesFrom(abi: IUnknownRef) -> Any {
+func makeBaseNoOverridesFrom(abi: test_component.IInspectable) -> Any {
     return BaseNoOverrides(fromAbi: abi)
 }
 
-func makeBaseObservableCollectionFrom(abi: IUnknownRef) -> Any {
+func makeBaseObservableCollectionFrom(abi: test_component.IInspectable) -> Any {
     return BaseObservableCollection(fromAbi: abi)
 }
 
-func makeClassFrom(abi: IUnknownRef) -> Any {
+func makeClassFrom(abi: test_component.IInspectable) -> Any {
     return Class(fromAbi: abi)
 }
 
-func makeCollectionTesterFrom(abi: IUnknownRef) -> Any {
+func makeCollectionTesterFrom(abi: test_component.IInspectable) -> Any {
     return CollectionTester(fromAbi: abi)
 }
 
-func makeDeferrableEventArgsFrom(abi: IUnknownRef) -> Any {
+func makeDeferrableEventArgsFrom(abi: test_component.IInspectable) -> Any {
     return DeferrableEventArgs(fromAbi: abi)
 }
 
-func makeDerivedFrom(abi: IUnknownRef) -> Any {
+func makeDerivedFrom(abi: test_component.IInspectable) -> Any {
     return Derived(fromAbi: abi)
 }
 
-func makeEventTesterFrom(abi: IUnknownRef) -> Any {
+func makeEventTesterFrom(abi: test_component.IInspectable) -> Any {
     return EventTester(fromAbi: abi)
 }
 
-func makeNoopClosableFrom(abi: IUnknownRef) -> Any {
+func makeNoopClosableFrom(abi: test_component.IInspectable) -> Any {
     return NoopClosable(fromAbi: abi)
 }
 
-func makeSimpleFrom(abi: IUnknownRef) -> Any {
+func makeSimpleFrom(abi: test_component.IInspectable) -> Any {
     return Simple(fromAbi: abi)
 }
 
-func makeUnsealedDerivedFrom(abi: IUnknownRef) -> Any {
+func makeUnsealedDerivedFrom(abi: test_component.IInspectable) -> Any {
     return UnsealedDerived(fromAbi: abi)
 }
 
-func makeUnsealedDerived2From(abi: IUnknownRef) -> Any {
+func makeUnsealedDerived2From(abi: test_component.IInspectable) -> Any {
     return UnsealedDerived2(fromAbi: abi)
 }
 
-func makeUnsealedDerivedNoOverridesFrom(abi: IUnknownRef) -> Any {
+func makeUnsealedDerivedNoOverridesFrom(abi: test_component.IInspectable) -> Any {
     return UnsealedDerivedNoOverrides(fromAbi: abi)
 }
 
 @_spi(__MakeFromAbi_DoNotImport)
 public class __MakeFromAbi: MakeFromAbi {
-    public static func from(typeName: String, abi: IUnknownRef) -> Any? {
+    public static func from(typeName: String, abi: test_component.IInspectable) -> Any? {
         switch typeName {
             case "IAsyncAction": return makeIAsyncActionFrom(abi: abi)
             case "IAsyncInfo": return makeIAsyncInfoFrom(abi: abi)

@@ -14,8 +14,10 @@ public protocol WinRTInterface: AnyObject, CustomQueryInterface {
 }
 
 public protocol WinRTClass : IWinRTObject, CustomQueryInterface, Equatable {
+    @_spi(WinRTInternal)
     func _getABI<T>() -> UnsafeMutablePointer<T>?
-    var _inner: IUnknownRef! { get }
+    @_spi(WinRTInternal)
+    var _inner: SUPPORT_MODULE.IInspectable! { get }
 }
 public typealias AnyWinRTClass = any WinRTClass
 

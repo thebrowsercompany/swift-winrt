@@ -68,8 +68,8 @@ public enum __ABI_ {
           return instance
         }
 
-        let ref = IUnknownRef(consuming: abi)
-        return makeFrom(abi: ref) ?? IInspectable(ref.borrow)
+        let ref = IInspectable(consuming: abi)
+        return makeFrom(abi: ref) ?? ref
       }
     }
 

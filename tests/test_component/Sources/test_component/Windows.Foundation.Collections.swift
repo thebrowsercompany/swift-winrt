@@ -6,13 +6,15 @@ import Ctest_component
 public typealias CollectionChange = __x_ABI_CWindows_CFoundation_CCollections_CCollectionChange
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.propertyset)
 public final class PropertySet : WinRTClass, IObservableMap, IMap, IIterable, IPropertySet {
-    private (set) public var _inner: IUnknownRef!
+    @_spi(WinRTInternal)
+    private (set) public var _inner: test_component.IInspectable!
     public typealias K = String
     public typealias V = Any?
     public typealias T = AnyIKeyValuePair<String, Any?>?
     private typealias SwiftABI = __ABI_Windows_Foundation_Collections.IPropertySet
     private typealias CABI = __x_ABI_CWindows_CFoundation_CCollections_CIPropertySet
     private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
+    @_spi(WinRTInternal)
     public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
@@ -30,10 +32,10 @@ public final class PropertySet : WinRTClass, IObservableMap, IMap, IIterable, IP
 
     public static func from(abi: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CCollections_CIPropertySet>?) -> PropertySet? {
         guard let abi = abi else { return nil }
-        return .init(fromAbi: IUnknownRef(consuming: abi))
+        return .init(fromAbi: test_component.IInspectable(consuming: abi))
     }
 
-    public init(fromAbi: IUnknownRef) {
+    public init(fromAbi: test_component.IInspectable) {
         _inner = fromAbi
     }
 
@@ -121,13 +123,15 @@ public final class PropertySet : WinRTClass, IObservableMap, IMap, IIterable, IP
 
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.stringmap)
 public final class StringMap : WinRTClass, IMap, IIterable, IObservableMap {
-    private (set) public var _inner: IUnknownRef!
+    @_spi(WinRTInternal)
+    private (set) public var _inner: test_component.IInspectable!
     public typealias K = String
     public typealias V = String
     public typealias T = AnyIKeyValuePair<String, String>?
     private typealias SwiftABI = IMapString_String
     private typealias CABI = __x_ABI_C__FIMap_2_HSTRING_HSTRING
     private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
+    @_spi(WinRTInternal)
     public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
@@ -145,10 +149,10 @@ public final class StringMap : WinRTClass, IMap, IIterable, IObservableMap {
 
     public static func from(abi: UnsafeMutablePointer<__x_ABI_C__FIMap_2_HSTRING_HSTRING>?) -> StringMap? {
         guard let abi = abi else { return nil }
-        return .init(fromAbi: IUnknownRef(consuming: abi))
+        return .init(fromAbi: test_component.IInspectable(consuming: abi))
     }
 
-    public init(fromAbi: IUnknownRef) {
+    public init(fromAbi: test_component.IInspectable) {
         _inner = fromAbi
     }
 
@@ -234,13 +238,15 @@ public final class StringMap : WinRTClass, IMap, IIterable, IObservableMap {
 
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.valueset)
 public final class ValueSet : WinRTClass, IObservableMap, IMap, IIterable, IPropertySet {
-    private (set) public var _inner: IUnknownRef!
+    @_spi(WinRTInternal)
+    private (set) public var _inner: test_component.IInspectable!
     public typealias K = String
     public typealias V = Any?
     public typealias T = AnyIKeyValuePair<String, Any?>?
     private typealias SwiftABI = __ABI_Windows_Foundation_Collections.IPropertySet
     private typealias CABI = __x_ABI_CWindows_CFoundation_CCollections_CIPropertySet
     private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
+    @_spi(WinRTInternal)
     public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
@@ -258,10 +264,10 @@ public final class ValueSet : WinRTClass, IObservableMap, IMap, IIterable, IProp
 
     public static func from(abi: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CCollections_CIPropertySet>?) -> ValueSet? {
         guard let abi = abi else { return nil }
-        return .init(fromAbi: IUnknownRef(consuming: abi))
+        return .init(fromAbi: test_component.IInspectable(consuming: abi))
     }
 
-    public init(fromAbi: IUnknownRef) {
+    public init(fromAbi: test_component.IInspectable) {
         _inner = fromAbi
     }
 

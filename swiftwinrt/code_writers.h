@@ -1642,7 +1642,7 @@ public static func makeAbi() -> CABI {
         }
         else
         {
-            w.write("_inner = IUnknownRef(consuming: %!)\n", return_name);
+            w.write("_inner = %.IInspectable(consuming: %!)\n", w.support, return_name);
         }
     }
 
@@ -1745,8 +1745,6 @@ public init<Composable: ComposableImpl>(
 )");
             }
 
-
-
             for (const auto& method : factoryIface->functions)
             {
                 if (!can_write(w, method)) continue;
@@ -1806,14 +1804,15 @@ public init<Composable: ComposableImpl>(
             }
             else
             {
-                w.write("return .init(fromAbi: IUnknownRef(consuming: abi))\n");
+                w.write("return .init(fromAbi: %.IInspectable(consuming: abi))\n", w.support);
             }
         }
         w.write("}\n\n");
 
 
-        w.write("%public init(fromAbi: IUnknownRef) {\n",
-            base_class ? "override " : "");
+        w.write("%public init(fromAbi: %.IInspectable) {\n",
+            base_class ? "override " : "",
+            w.support);
         {
             auto indent = w.push_indent();
             if (base_class)
@@ -2236,9 +2235,11 @@ public init<Composable: ComposableImpl>(
 
         auto class_indent_guard = w.push_indent();
 
-        if (!base_class)
+        if (!base_class && default_interface)
         {
-            w.write("private (set) public var _inner: IUnknownRef!\n");
+            w.write(R"(^@_spi(WinRTInternal)
+private (set) public var _inner: %.IInspectable!
+)", w.support);
         }
 
         write_generic_typealiases(w, type);
@@ -2263,6 +2264,7 @@ public init<Composable: ComposableImpl>(
             w.write(R"(private typealias SwiftABI = %
 private typealias CABI = %
 private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
+^@_spi(WinRTInternal)
 %% func _getABI<T>() -> UnsafeMutablePointer<T>? {
     if T.self == CABI.self {
         return RawPointer(_default)

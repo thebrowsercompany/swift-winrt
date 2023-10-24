@@ -43,14 +43,3 @@ public final class IUnknownRef {
     return self.pUnk
   }
 }
-
-public extension IUnknownRef {
-  func QueryInterface<Interface: SUPPORT_MODULE.IUnknown>() throws -> Interface {
-    var result: UnsafeMutableRawPointer?
-    var iid = Interface.IID
-    try CHECKED(self.pUnk.pointee.lpVtbl.pointee.QueryInterface(self.pUnk, &iid, &result))
-    // https://learn.microsoft.com/en-us/windows/win32/api/unknwn/nf-unknwn-iunknown-queryinterface(refiid_void)
-    // "Upon successful return, *ppvObject (the dereferenced address) contains a pointer to the requested interface"
-    return Interface(consuming: result!.bindMemory(to: C_IUnknown.self, capacity: 1))
-  }
-}

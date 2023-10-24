@@ -31,7 +31,7 @@ public protocol ComposableImpl : AbiInterface where SwiftABI: IInspectable  {
 public func MakeComposed<Composable: ComposableImpl>(
     composing: Composable.Type,
     _ this: Composable.Default.SwiftProjection,
-    _ createCallback: (UnsafeMutablePointer<C_IInspectable>?, inout UnsafeMutablePointer<C_IInspectable>?) -> UnsafeMutablePointer<Composable.Default.CABI>?) -> IUnknownRef {
+    _ createCallback: (UnsafeMutablePointer<C_IInspectable>?, inout UnsafeMutablePointer<C_IInspectable>?) -> UnsafeMutablePointer<Composable.Default.CABI>?) -> SUPPORT_MODULE.IInspectable {
     let aggregated = type(of: this) != Composable.Default.SwiftProjection.self
     let wrapper:UnsealedWinRTClassWrapper<Composable>? = .init(aggregated ? this : nil)
 
@@ -43,8 +43,8 @@ public func MakeComposed<Composable: ComposableImpl>(
         fatalError("Unexpected nil returned after successful creation")
     }
 
-    let baseRef = IUnknownRef(consuming: base)
-    let innerRef = IUnknownRef(consuming: innerInsp)
+    let baseRef = SUPPORT_MODULE.IInspectable(consuming: base)
+    let innerRef = SUPPORT_MODULE.IInspectable(consuming: innerInsp)
     return aggregated ? innerRef : baseRef
 }
 
@@ -58,7 +58,7 @@ public class UnsealedWinRTClassWrapper<Composable: ComposableImpl> : WinRTWrappe
     }
 
     public static func unwrapFrom(base: UnsafeMutablePointer<Composable.Default.CABI>) -> Composable.Default.SwiftProjection {
-        let baseInsp = IUnknownRef(consuming: base)
+        let baseInsp = SUPPORT_MODULE.IInspectable(consuming: base)
         let overrides: Composable.SwiftABI = try! baseInsp.QueryInterface()
 
         // Try to unwrap an app implemented object. If one doesn't exist then we'll create the proper WinRT type below
