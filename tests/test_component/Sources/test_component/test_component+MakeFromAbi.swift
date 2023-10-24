@@ -110,6 +110,10 @@ func makeDerivedFrom(abi: test_component.IInspectable) -> Any {
     return Derived(fromAbi: abi)
 }
 
+func makeDerivedFromNoConstructorFrom(abi: test_component.IInspectable) -> Any {
+    return DerivedFromNoConstructor(fromAbi: abi)
+}
+
 func makeEventTesterFrom(abi: test_component.IInspectable) -> Any {
     return EventTester(fromAbi: abi)
 }
@@ -128,6 +132,14 @@ func makeUnsealedDerivedFrom(abi: test_component.IInspectable) -> Any {
 
 func makeUnsealedDerived2From(abi: test_component.IInspectable) -> Any {
     return UnsealedDerived2(fromAbi: abi)
+}
+
+func makeUnsealedDerivedFromNoConstructorFrom(abi: test_component.IInspectable) -> Any {
+    return UnsealedDerivedFromNoConstructor(fromAbi: abi)
+}
+
+func makeUnsealedDerivedNoConstructorFrom(abi: test_component.IInspectable) -> Any {
+    return UnsealedDerivedNoConstructor(fromAbi: abi)
 }
 
 func makeUnsealedDerivedNoOverridesFrom(abi: test_component.IInspectable) -> Any {

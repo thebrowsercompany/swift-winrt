@@ -66,6 +66,10 @@ private var IID___x_ABI_Ctest__component_CIDerived: test_component.IID {
     .init(Data1: 0x864F4DCB, Data2: 0xC4FF, Data3: 0x5FBB, Data4: ( 0xB4,0x5D,0xA7,0x3E,0x25,0x7B,0x48,0xA2 ))// 864F4DCB-C4FF-5FBB-B45D-A73E257B48A2
 }
 
+private var IID___x_ABI_Ctest__component_CIDerivedFromNoConstructor: test_component.IID {
+    .init(Data1: 0x2A9D928D, Data2: 0xAD55, Data3: 0x59EC, Data4: ( 0x9B,0x73,0xE2,0xED,0x06,0x57,0xE6,0xC4 ))// 2A9D928D-AD55-59EC-9B73-E2ED0657E6C4
+}
+
 private var IID___x_ABI_Ctest__component_CIEventTester: test_component.IID {
     .init(Data1: 0xDD19BE65, Data2: 0x638D, Data3: 0x519A, Data4: ( 0x81,0xA9,0x73,0x3F,0xDB,0xD8,0x7A,0x17 ))// DD19BE65-638D-519A-81A9-733FDBD87A17
 }
@@ -114,12 +118,32 @@ private var IID___x_ABI_Ctest__component_CIUnsealedDerived2: test_component.IID 
     .init(Data1: 0xA58C23CF, Data2: 0x4DC4, Data3: 0x59C5, Data4: ( 0x8D,0xE3,0x9F,0x06,0x3B,0x21,0x8D,0xDE ))// A58C23CF-4DC4-59C5-8DE3-9F063B218DDE
 }
 
+private var IID___x_ABI_Ctest__component_CIUnsealedDerived2Factory: test_component.IID {
+    .init(Data1: 0x136F2143, Data2: 0x1044, Data3: 0x5A97, Data4: ( 0x8C,0x91,0x1E,0xF2,0x81,0x67,0xD9,0xFC ))// 136F2143-1044-5A97-8C91-1EF28167D9FC
+}
+
 private var IID___x_ABI_Ctest__component_CIUnsealedDerived2ProtectedFactory: test_component.IID {
     .init(Data1: 0x0978D147, Data2: 0x77BF, Data3: 0x5E0A, Data4: ( 0xA1,0x64,0xCA,0x95,0x1B,0xCA,0xB8,0xB4 ))// 0978D147-77BF-5E0A-A164-CA951BCAB8B4
 }
 
 private var IID___x_ABI_Ctest__component_CIUnsealedDerivedFactory: test_component.IID {
     .init(Data1: 0xDAF846D2, Data2: 0x8988, Data3: 0x5EE1, Data4: ( 0xA8,0xAA,0x7E,0x81,0xC0,0xF8,0xA9,0xE9 ))// DAF846D2-8988-5EE1-A8AA-7E81C0F8A9E9
+}
+
+private var IID___x_ABI_Ctest__component_CIUnsealedDerivedFromNoConstructor: test_component.IID {
+    .init(Data1: 0xD0FB287A, Data2: 0xCBA2, Data3: 0x5756, Data4: ( 0xB7,0xA5,0x5F,0x3B,0x04,0x03,0x9F,0x67 ))// D0FB287A-CBA2-5756-B7A5-5F3B04039F67
+}
+
+private var IID___x_ABI_Ctest__component_CIUnsealedDerivedFromNoConstructorFactory: test_component.IID {
+    .init(Data1: 0x51E65EEC, Data2: 0x650B, Data3: 0x549E, Data4: ( 0x94,0x0C,0x61,0xB6,0xA1,0x4E,0xEA,0x4B ))// 51E65EEC-650B-549E-940C-61B6A14EEA4B
+}
+
+private var IID___x_ABI_Ctest__component_CIUnsealedDerivedNoConstructor: test_component.IID {
+    .init(Data1: 0x78393D7D, Data2: 0x930B, Data3: 0x57F9, Data4: ( 0x9B,0x04,0x2D,0xCC,0x34,0x80,0xD7,0x46 ))// 78393D7D-930B-57F9-9B04-2DCC3480D746
+}
+
+private var IID___x_ABI_Ctest__component_CIUnsealedDerivedNoConstructorFactory: test_component.IID {
+    .init(Data1: 0xD8B1C0D1, Data2: 0xB48A, Data3: 0x5AA3, Data4: ( 0x98,0xF1,0xFF,0x86,0x8C,0xC4,0xD5,0x71 ))// D8B1C0D1-B48A-5AA3-98F1-FF868CC4D571
 }
 
 private var IID___x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides: test_component.IID {
@@ -853,6 +877,17 @@ public enum __ABI_test_component {
         internal func put_PropImpl(_ value: INT32) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIDerived.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_Prop(pThis, value))
+            }
+        }
+
+    }
+
+    open class IDerivedFromNoConstructor: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIDerivedFromNoConstructor }
+
+        internal func MethodImpl() throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIDerivedFromNoConstructor.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Method(pThis))
             }
         }
 
@@ -1782,6 +1817,19 @@ public enum __ABI_test_component {
 
     }
 
+    open class IUnsealedDerived2Factory: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerived2Factory }
+
+        internal func CreateInstanceImpl(_ prop: INT32, _ baseInterface: UnsafeMutablePointer<C_IInspectable>?, _ innerInterface: inout UnsafeMutablePointer<C_IInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived2>? {
+            var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived2>?
+            _ = try perform(as: __x_ABI_Ctest__component_CIUnsealedDerived2Factory.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, prop, baseInterface, &innerInterface, &value))
+            }
+            return value
+        }
+
+    }
+
     open class IUnsealedDerived2ProtectedFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerived2ProtectedFactory }
 
@@ -1821,6 +1869,34 @@ public enum __ABI_test_component {
             }
             return value
         }
+
+    }
+
+    open class IUnsealedDerivedFromNoConstructor: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedFromNoConstructor }
+
+    }
+
+    open class IUnsealedDerivedFromNoConstructorFactory: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedFromNoConstructorFactory }
+
+        internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<C_IInspectable>?, _ innerInterface: inout UnsafeMutablePointer<C_IInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerivedFromNoConstructor>? {
+            var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerivedFromNoConstructor>?
+            _ = try perform(as: __x_ABI_Ctest__component_CIUnsealedDerivedFromNoConstructorFactory.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, baseInterface, &innerInterface, &value))
+            }
+            return value
+        }
+
+    }
+
+    open class IUnsealedDerivedNoConstructor: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedNoConstructor }
+
+    }
+
+    open class IUnsealedDerivedNoConstructorFactory: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedNoConstructorFactory }
 
     }
 

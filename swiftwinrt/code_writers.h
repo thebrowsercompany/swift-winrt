@@ -1638,12 +1638,63 @@ public static func makeAbi() -> CABI {
         }
         if (auto base_class = type.base_class)
         {
-            w.write("super.init(fromAbi: %)\n", return_name);
+            w.write("super.init(fromAbi: %.IInspectable(consuming: %!))\n", w.support, return_name);
         }
         else
         {
             w.write("_inner = %.IInspectable(consuming: %!)\n", w.support, return_name);
         }
+    }
+
+    // Check if the type has a default constructor. This is a parameterless constructor
+    // in Swift. Note that we don't check the args like we do in has_matching_constructor
+    // because composing constructors project as init() when they really have 2 parameters.
+    static bool has_default_constructor(const class_type* type)
+    {
+        if (type == nullptr) return false;
+
+        for (const auto& [_, factory] : type->factories)
+        {
+            if (factory.composable && factory.defaultComposable)
+            {
+                return true;
+            }
+            else if (factory.activatable && factory.type == nullptr)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    static bool has_matching_constructor(const class_type* type, function_def const& func)
+    {
+        if (type == nullptr) return false;
+
+        for (const auto& [_, factory] : type->factories)
+        {
+            if (auto factoryIface = dynamic_cast<const interface_type*>(factory.type))
+            {
+                for (const auto& method : factoryIface->functions)
+                {
+                    if (method.params.size() == func.params.size())
+                    {
+                        for (size_t i = 0; i < method.params.size(); ++i)
+                        {
+                            if (method.params[i].type != func.params[i].type)
+                            {
+                                break;
+                            }
+                            else if (i == method.params.size() - 1)
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     static void write_factory_constructors(writer& w, metadata_type const& factory, class_type const& type, metadata_type const& default_interface)
@@ -1658,7 +1709,8 @@ public static func makeAbi() -> CABI {
             for (const auto& method : factoryIface->functions)
             {
                 if (!can_write(w, method)) continue;
-
+                 
+                auto baseHasMatchingConstructor = has_matching_constructor(type.base_class, method);
                 w.write("public init(%) {\n", bind<write_function_params>(method, write_type_params::swift_allow_implicit_unwrap));
                 {
                     auto indent = w.push_indent();
@@ -1671,7 +1723,7 @@ public static func makeAbi() -> CABI {
         {
             auto base_class = type.base_class;
 
-            w.write("%public init() {\n", base_class ? "override " : "");
+            w.write("%public init() {\n", has_default_constructor(base_class) ? "override " : "");
             {
                 auto indent = w.push_indent();
                 auto activateInstance = w.write_temp("RoActivateInstance(HString(\"%\"))", get_full_type_name(type));
@@ -1703,28 +1755,14 @@ public static func makeAbi() -> CABI {
         }
     }
 
-    static bool has_default_constructor(class_type const& type)
+    // every composable type needs a special composing constructor to help satisfy swift type initializer
+    // requirements. this constructor is marked as SPI so that it doesn't show up to normal developers
+    // when they are building.
+    static void write_internal_composable_constructor(writer& w, class_type const& type)
     {
-        return true;
-    }
-    static void write_composable_constructor(writer& w, metadata_type const& factory, class_type const& type)
-    {
-        if (auto factoryIface = dynamic_cast<const interface_type*>(&factory))
+        if (type.base_class)
         {
-            auto baseHasDefaultConstructor = type.base_class ? has_default_constructor(*type.base_class) : false;
-            w.write("private static var _% : %.% =  try! RoGetActivationFactory(HString(\"%\"))\n",
-                    factory,
-                    abi_namespace(factory),
-                    factory,
-                    get_full_type_name(type));
-
-            interface_info factory_info{ factoryIface };
-
-            // every composable type needs a special composing constructor to help satisfy swift type initializer
-            // requirements
-            if (type.base_class)
-            {
-                w.write(R"(@_spi(WinRTInternal)
+            w.write(R"(@_spi(WinRTInternal)
 override public init<Composable: ComposableImpl>(
     composing: Composable.Type,
     _ createCallback: (UnsafeMutablePointer<C_IInspectable>?, inout UnsafeMutablePointer<C_IInspectable>?) -> UnsafeMutablePointer<Composable.Default.CABI>?)
@@ -1732,10 +1770,10 @@ override public init<Composable: ComposableImpl>(
     super.init(composing: composing, createCallback)
 }
 )");
-            }
-            else
-            {
-                w.write(R"(@_spi(WinRTInternal)
+        }
+        else
+        {
+            w.write(R"(@_spi(WinRTInternal)
 public init<Composable: ComposableImpl>(
     composing: Composable.Type,
     _ createCallback: (UnsafeMutablePointer<C_IInspectable>?, inout UnsafeMutablePointer<C_IInspectable>?) -> UnsafeMutablePointer<Composable.Default.CABI>?)
@@ -1743,11 +1781,26 @@ public init<Composable: ComposableImpl>(
     self._inner = MakeComposed(composing: composing, (self as! Composable.Default.SwiftProjection), createCallback)
 }
 )");
-            }
+        }
+    }
+
+    static void write_composable_constructor(writer& w, metadata_type const& factory, class_type const& type)
+    {
+        if (auto factoryIface = dynamic_cast<const interface_type*>(&factory))
+        {
+            w.write("private static var _% : %.% =  try! RoGetActivationFactory(HString(\"%\"))\n\n",
+                    factory,
+                    abi_namespace(factory),
+                    factory,
+                    get_full_type_name(type));
+
+            interface_info factory_info{ factoryIface };
 
             for (const auto& method : factoryIface->functions)
             {
                 if (!can_write(w, method)) continue;
+
+                auto baseHasMatchingConstructor = has_matching_constructor(type.base_class, method);
 
                 std::vector<function_param> params;
                 params.reserve(method.params.size() - 2);
@@ -1757,8 +1810,7 @@ public init<Composable: ComposableImpl>(
                     params.push_back(method.params[i]);
                 }
 
-                auto needsOverride = baseHasDefaultConstructor && method.params.size() == 2;
-                w.write("%public init(%) {\n", needsOverride ? "override " : "", bind<write_function_params2>(params, write_type_params::swift_allow_implicit_unwrap));
+                w.write("%public init(%) {\n", baseHasMatchingConstructor ? "override " : "", bind<write_function_params2>(params, write_type_params::swift_allow_implicit_unwrap));
                 {
                     auto indent = w.push_indent();
                     std::string_view func_name = get_abi_name(method);
@@ -1793,6 +1845,7 @@ public init<Composable: ComposableImpl>(
 
         // We unwrap composable types to try and get to any derived type.
         // If not composable, then create a new instance
+        w.write("@_spi(WinRTInternal)\n");
         w.write("public static func from(abi: UnsafeMutablePointer<%>?) -> %? {\n",
             bind_type_mangled(default_interface), type);
         {
@@ -1809,7 +1862,7 @@ public init<Composable: ComposableImpl>(
         }
         w.write("}\n\n");
 
-
+        w.write("@_spi(WinRTInternal)\n");
         w.write("%public init(fromAbi: %.IInspectable) {\n",
             base_class ? "override " : "",
             w.support);
@@ -1825,6 +1878,11 @@ public init<Composable: ComposableImpl>(
             }
         }
         w.write("}\n\n");
+
+        if (type.is_composable())
+        {
+            write_internal_composable_constructor(w, type);
+        }
     }
 
     static void write_class_func_body(writer& w, function_def const& function, interface_info const& iface, bool is_noexcept)

@@ -239,7 +239,7 @@ void metadata_cache::get_interfaces_impl(init_state& state, writer& w, get_inter
             info.generic_params = w.generic_param_stack.back();
         }
         auto name = w.write_temp("%", info.type);
-     
+
         {
             // This is for correctness rather than an optimization (but helps performance as well).
             // If the interface was not previously inserted, carry on and recursively insert it.
@@ -302,7 +302,7 @@ metadata_cache::get_interfaces_t metadata_cache::get_interfaces(init_state& stat
         {
             interfaceType = iFaceType->type();
         }
-        else 
+        else
         {
             interfaceType = dynamic_cast<const mapped_type*>(metadataType)->type();
 
@@ -878,7 +878,6 @@ metadata_type const& metadata_cache::find_dependent_type(init_state& state, Gene
 
         return itr->second;
     }
-   
 }
 
 template <typename T>
@@ -952,7 +951,7 @@ type_cache metadata_cache::compile_namespaces(std::vector<std::string_view> cons
                 result.dependent_namespaces.insert(dependent);
             }
         }
-     
+
         for (auto& generic : itr->second.generic_instantiations)
         {
             if (f.includes_generic(generic.first))
@@ -989,7 +988,7 @@ type_cache metadata_cache::compile_namespaces(std::vector<std::string_view> cons
                 }
             }
         }
- 
+
         // Remove metadata only types
         auto remove_type = [&](auto& list, std::string_view name)
         {
@@ -1097,6 +1096,17 @@ std::map<std::string, attributed_type> metadata_cache::get_attributed_types(Type
                 if (auto visibility = std::get_if<ElemSig::EnumValue>(&std::get<ElemSig>(arg.value).value))
                 {
                     info.visible = std::get<int32_t>(visibility->value) == 2;
+                    if (auto factoryIface = dynamic_cast<const interface_type*>(info.type))
+                    {
+                        for (const auto& method : factoryIface->functions)
+                        {
+                            if (method.params.size() == 2)
+                            {
+                                info.defaultComposable = true;
+                                break;
+                            }
+                        }
+                    }
                     break;
                 }
             }

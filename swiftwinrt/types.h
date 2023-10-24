@@ -641,6 +641,7 @@ namespace swiftwinrt
         bool statics{};
         bool composable{};
         bool visible{};
+        bool defaultComposable{};
     };
 
     struct delegate_type final : typedef_base
@@ -820,7 +821,6 @@ namespace swiftwinrt
         bool is_composable() const;
 
     private:
-
         std::string_view m_abiNamespace;
     };
 

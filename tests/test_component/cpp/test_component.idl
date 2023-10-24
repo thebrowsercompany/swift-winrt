@@ -415,6 +415,18 @@ namespace test_component
             Int32 Prop;
         };
 
+        unsealed runtimeclass UnsealedDerivedNoConstructor: Base {
+
+        }
+
+        runtimeclass DerivedFromNoConstructor: UnsealedDerivedNoConstructor {
+            void Method();
+        }
+
+        unsealed runtimeclass UnsealedDerivedFromNoConstructor: UnsealedDerivedNoConstructor {
+            UnsealedDerivedFromNoConstructor();
+        }
+
         unsealed runtimeclass UnsealedDerived : Base {
             UnsealedDerived();
             UnsealedDerived(Int32 prop);
@@ -433,6 +445,7 @@ namespace test_component
 
         unsealed runtimeclass UnsealedDerived2 : UnsealedDerived {
             protected UnsealedDerived2();
+            UnsealedDerived2(Int32 prop);
 
             void Method();
         }

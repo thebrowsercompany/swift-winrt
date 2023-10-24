@@ -35,6 +35,7 @@ public final class PropertySet : WinRTClass, IObservableMap, IMap, IIterable, IP
         return .init(fromAbi: test_component.IInspectable(consuming: abi))
     }
 
+    @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
         _inner = fromAbi
     }
@@ -152,6 +153,7 @@ public final class StringMap : WinRTClass, IMap, IIterable, IObservableMap {
         return .init(fromAbi: test_component.IInspectable(consuming: abi))
     }
 
+    @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
         _inner = fromAbi
     }
@@ -267,6 +269,7 @@ public final class ValueSet : WinRTClass, IObservableMap, IMap, IIterable, IProp
         return .init(fromAbi: test_component.IInspectable(consuming: abi))
     }
 
+    @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
         _inner = fromAbi
     }

@@ -34,6 +34,7 @@ public final class Deferral : WinRTClass, IClosable {
         return .init(fromAbi: test_component.IInspectable(consuming: abi))
     }
 
+    @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
         _inner = fromAbi
     }
