@@ -41,6 +41,7 @@ public protocol AbiInterfaceImpl : AbiBridge & AbiInterface {
 
 extension AbiInterfaceImpl where SwiftABI: IInspectable {
    public var thisPtr: SUPPORT_MODULE.IInspectable {  _default }
+   public var _inner: SwiftABI { _default } // TODO: just to make code compile for now
 }
 
 public protocol WinRTAbiBridge: AbiInterfaceImpl where SwiftABI: IInspectable {}
@@ -56,11 +57,11 @@ open class WinRTWrapperBase<CInterface, Prototype> {
     }
 
     public var instance: ComObject
-    public var swiftObj: Prototype
+    public var swiftObj: Prototype!
 
     open class var IID: SUPPORT_MODULE.IID { get { fatalError("not implemented") } }
 
-    public init(_ pointer: CInterface, _ impl: Prototype) {
+    public init(_ pointer: CInterface, _ impl: Prototype!) {
         self.instance = ComObject(comInterface: pointer)
         self.swiftObj = impl
         self.instance.wrapper = Unmanaged<WinRTWrapperBase>.passUnretained(self)

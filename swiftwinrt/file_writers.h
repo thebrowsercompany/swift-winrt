@@ -273,7 +273,7 @@ namespace swiftwinrt
 
         w.write("@_spi(__MakeFromAbi_DoNotImport)\n");
         w.write("public class __MakeFromAbi: MakeFromAbi {\n");
-        w.write("    public static func from(typeName: String, abi: %.IInspectable) -> Any? {\n", w.support);
+        w.write("    public static func from(typeName: String, abi: IUnknownRef) -> Any? {\n");
         w.write("        switch typeName {\n");
         {
             auto indent_guard = w.push_indent(indent{ 3 });

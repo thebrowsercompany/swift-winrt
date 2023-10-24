@@ -167,19 +167,21 @@ namespace swiftwinrt
     {
         w.write(" __%Size", get_swift_name(param));
     }
-
-    static void write_function_params(writer& w, function_def const& function, write_type_params const& type_params)
+    static void write_function_params2(writer& w, std::vector<function_param> const& params, write_type_params const& type_params)
     {
         separator s{ w };
 
-        for (const auto& param : function.params)
+        for (const auto& param : params)
         {
             s();
-
             w.write("_ %: ", get_swift_name(param));
             if (param.out()) w.write("inout ");
             write_type(w, *param.type, type_params);
         }
+    }
+    static void write_function_params(writer& w, function_def const& function, write_type_params const& type_params)
+    {
+        write_function_params2(w, function.params, type_params);
     }
 
     static void write_convert_to_abi_arg(writer& w, std::string_view const& param_name, const metadata_type* type, bool is_out)
@@ -366,29 +368,21 @@ bind<write_abi_args>(function));
     static void do_write_interface_abi(writer& w, typedef_base const& type, std::vector<function_def> const& methods)
     {
         auto factory_info = try_get_factory_info(w, type);
-        const bool is_composable_factory = factory_info.has_value() && factory_info.value().composable;
 
         if (is_exclusive(type) && !can_write(w, get_exclusive_to(type)))
         {
             return;
         }
-        const bool internal = is_composable_factory || can_mark_internal(type.type());
+        const bool internal = can_mark_internal(type.type());
         auto name = w.write_temp("%", type);
         auto baseClass = (is_delegate(type) || !type.type().Flags().WindowsRuntime()) ? "IUnknown" : "IInspectable";
-        w.write("% class %: %.%% {\n",
+        w.write("% class %: %.% {\n",
             internal ? "internal" : "open",
             bind_type_abi(type),
             w.support,
-            baseClass,
-            is_composable_factory ? ", ComposableActivationFactory": "");
+            baseClass);
 
         auto class_indent_guard = w.push_indent();
-
-        if (is_composable_factory)
-        {
-            auto overrides_format = "internal typealias Composable = %.Composable\n\n";
-            w.write(overrides_format, get_full_swift_type_name(w, get_exclusive_to(type)));
-        }
 
         auto abi_guard = w.push_abi_types(true);
 
@@ -400,9 +394,7 @@ bind<write_abi_args>(function));
             if (!can_write(w, function, true)) continue;
             try
             {
-                // Composable factories have to have the method be called CreateInstanceImpl, even if the
-                // metadata format specifies something else.
-                auto func_name = is_composable_factory ? "CreateInstance" : get_abi_name(function);
+                auto func_name =  get_abi_name(function);
                 auto abi_guard2 = w.push_abi_types(true);
                 w.write("% func %Impl(%) throws% {\n",
                     internal || is_exclusive(type) ? "internal" : "open",
@@ -966,7 +958,7 @@ bind_impl_fullname(type));
             // when implementing default overrides, we want to call to the inner non-delegating IUnknown
             // as this will get us to the inner object. otherwise we'll end up with a stack overflow
             // because we'll be calling the same method on ourselves
-            w.write("internal lazy var %: %.% = try! IUnknown(_inner!.borrow).QueryInterface()\n",
+            w.write("internal lazy var %: %.% = try! _inner.QueryInterface()\n",
                 get_swift_name(info),
                 abi_namespace(info.type->swift_logical_namespace()),
                 info.type->swift_type_name());
@@ -980,7 +972,7 @@ bind_impl_fullname(type));
                 auto guard{ w.push_generic_params(info) };
                 swiftAbi = w.write_temp("%", bind_type_abi(info.type));
             }
-            w.write("internal lazy var %: % = try! _default.QueryInterface()\n",
+            w.write("internal lazy var %: % = try! _inner.QueryInterface()\n",
                 get_swift_name(info),
                 swiftAbi);
         }
@@ -1516,14 +1508,11 @@ public static func makeAbi() -> CABI {
         }
     }
 
-    // When converting from Swift <-> C we put some local variables on the stack in order to help facilitate
-    // converting between the two worlds. This method will returns a scope guard which will write any necessary
-    // code for after the ABI function is called (such as cleaning up references).
-    static write_scope_guard<writer> write_local_param_wrappers(writer& w, function_def const& signature)
+    static write_scope_guard<writer> write_local_param_wrappers(writer& w, std::vector<function_param> const& params)
     {
         write_scope_guard guard{ w, w.swift_module };
 
-        for (auto& param : signature.params)
+        for (auto& param : params)
         {
             TypeDef signature_type{};
             auto category = get_category(param.type, &signature_type);
@@ -1553,8 +1542,8 @@ public static func makeAbi() -> CABI {
                         bind_wrapper_fullname(param.type),
                         param_name);
                     w.write("let % = try! %Wrapper?.toABI { $0 }\n",
-                       local_param_name,
-                       param_name);
+                        local_param_name,
+                        param_name);
                 }
             }
             else
@@ -1624,6 +1613,14 @@ public static func makeAbi() -> CABI {
         return guard;
     }
 
+    // When converting from Swift <-> C we put some local variables on the stack in order to help facilitate
+    // converting between the two worlds. This method will returns a scope guard which will write any necessary
+    // code for after the ABI function is called (such as cleaning up references).
+    static write_scope_guard<writer> write_local_param_wrappers(writer& w, function_def const& signature)
+    {
+        return write_local_param_wrappers(w, signature.params);
+    }
+
 
     static void write_factory_body(writer& w, function_def const& method, interface_info const& factory, class_type const& type, metadata_type const& default_interface)
     {
@@ -1639,10 +1636,13 @@ public static func makeAbi() -> CABI {
                 func_name,
                 bind<write_implementation_args>(method));
         }
-        w.write("_default = %.%(consuming: %!)\n", abi_namespace(type), default_interface, return_name);
         if (auto base_class = type.base_class)
         {
-            w.write("super.init(fromAbi: try! _default.QueryInterface())\n");
+            w.write("super.init(fromAbi: %)\n", return_name);
+        }
+        else
+        {
+            w.write("_inner = IUnknownRef(consuming: %!)\n", return_name);
         }
     }
 
@@ -1674,57 +1674,116 @@ public static func makeAbi() -> CABI {
             w.write("%public init() {\n", base_class ? "override " : "");
             {
                 auto indent = w.push_indent();
-                w.write("try! _default = RoActivateInstance(HString(\"%\"))\n", get_full_type_name(type));
+                auto activateInstance = w.write_temp("RoActivateInstance(HString(\"%\"))", get_full_type_name(type));
                 if (base_class)
                 {
-                    w.write("super.init(fromAbi: try! _default.QueryInterface())\n");
+                    w.write("super.init(fromAbi: try! %)\n", activateInstance);
+                }
+                else
+                {
+                    w.write("try! _inner = %\n", activateInstance);
                 }
             }
             w.write("}\n\n");
         }
     }
 
+    static void write_composable_function_params(writer& w, function_def const& function)
+    {
+        separator s{ w };
+
+        // skip the last two which are the inner and base interface parameters
+        for (size_t i = 0; i < function.params.size() - 2; ++i)
+        {
+            s();
+            auto param = function.params[i];
+            w.write("_ %: ", get_swift_name(param));
+            assert(!param.out());
+            write_type(w, *param.type, write_type_params::swift_allow_implicit_unwrap);
+        }
+    }
+
+    static bool has_default_constructor(class_type const& type)
+    {
+        return true;
+    }
     static void write_composable_constructor(writer& w, metadata_type const& factory, class_type const& type)
     {
         if (auto factoryIface = dynamic_cast<const interface_type*>(&factory))
         {
+            auto baseHasDefaultConstructor = type.base_class ? has_default_constructor(*type.base_class) : false;
             w.write("private static var _% : %.% =  try! RoGetActivationFactory(HString(\"%\"))\n",
-                factory,
-                abi_namespace(factory),
-                factory,
-                get_full_type_name(type));
+                    factory,
+                    abi_namespace(factory),
+                    factory,
+                    get_full_type_name(type));
 
-            auto base_class = type.base_class;
-            if (!base_class)
+            interface_info factory_info{ factoryIface };
+
+            // every composable type needs a special composing constructor to help satisfy swift type initializer
+            // requirements
+            if (type.base_class)
             {
-                auto base_composable_init = R"(public init() {
-    self._default = MakeComposed(Self._%, &_inner, self)
+                w.write(R"(@_spi(WinRTInternal)
+override public init<Composable: ComposableImpl>(
+    composing: Composable.Type,
+    _ createCallback: (UnsafeMutablePointer<C_IInspectable>?, inout UnsafeMutablePointer<C_IInspectable>?) -> UnsafeMutablePointer<Composable.Default.CABI>?)
+{
+    super.init(composing: composing, createCallback)
 }
-
-public init<Factory: ComposableActivationFactory>(_ factory : Factory) {
-    self._default = try! MakeComposed(factory, &_inner, self as! Factory.Composable.Default.SwiftProjection).QueryInterface()
-    _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
-}
-)";
-                w.write(base_composable_init, factory);
+)");
             }
             else
             {
-                auto override_composable_init = R"(override public init() {
-    super.init(Self._%)
-    let parentDefault: UnsafeMutablePointer<%> = super._getABI()!
-    self._default = try! IInspectable(parentDefault).QueryInterface()
-    _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
+                w.write(R"(@_spi(WinRTInternal)
+public init<Composable: ComposableImpl>(
+    composing: Composable.Type,
+    _ createCallback: (UnsafeMutablePointer<C_IInspectable>?, inout UnsafeMutablePointer<C_IInspectable>?) -> UnsafeMutablePointer<Composable.Default.CABI>?)
+{
+    self._inner = MakeComposed(composing: composing, (self as! Composable.Default.SwiftProjection), createCallback)
 }
+)");
+            }
 
-override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
-    super.init(factory)
-    let parentDefault: UnsafeMutablePointer<%> = super._getABI()!
-    self._default = try! IInspectable(parentDefault).QueryInterface()
-    _ = self._default.Release() // release to reset reference count since QI caused an AddRef on ourselves
-}
-)";
-                w.write(override_composable_init, factory, bind_type_abi(ElementType::Object), bind_type_abi(ElementType::Object));
+
+
+            for (const auto& method : factoryIface->functions)
+            {
+                if (!can_write(w, method)) continue;
+
+                std::vector<function_param> params;
+                params.reserve(method.params.size() - 2);
+                // skip the last two which are the inner and base interface parameters
+                for (size_t i = 0; i < method.params.size() - 2; ++i)
+                {
+                    params.push_back(method.params[i]);
+                }
+
+                auto needsOverride = baseHasDefaultConstructor && method.params.size() == 2;
+                w.write("%public init(%) {\n", needsOverride ? "override " : "", bind<write_function_params2>(params, write_type_params::swift_allow_implicit_unwrap));
+                {
+                    auto indent = w.push_indent();
+                    std::string_view func_name = get_abi_name(method);
+
+                    auto return_name = method.return_type.value().name;
+                    {
+                        auto guard = write_local_param_wrappers(w, params);
+                        if (type.base_class)
+                        {
+                            w.write("super.init(composing: Self.Composable.self) { _baseInterface, _innerInterface in \n");
+                        }
+                        else
+                        {
+                            w.write("self._inner = MakeComposed(composing: Self.Composable.self, self) { _baseInterface, _innerInterface in \n");
+                        }
+                        w.write("    try! Self.%.%Impl(%)\n",
+                            get_swift_name(factory_info),
+                            func_name,
+                            bind<write_implementation_args>(method));
+                        w.write("}\n");
+                    }
+                }
+                w.write("}\n\n");
             }
         }
     }
@@ -1747,20 +1806,23 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
             }
             else
             {
-                w.write("return .init(fromAbi: .init(abi))\n");
+                w.write("return .init(fromAbi: IUnknownRef(consuming: abi))\n");
             }
         }
         w.write("}\n\n");
 
 
-        w.write("%public init(fromAbi: %.IInspectable) {\n",
-            base_class ? "override " : "", w.support);
+        w.write("%public init(fromAbi: IUnknownRef) {\n",
+            base_class ? "override " : "");
         {
             auto indent = w.push_indent();
-            w.write("_default = try! fromAbi.QueryInterface()\n");
             if (base_class)
             {
                 w.write("super.init(fromAbi: fromAbi)\n");
+            }
+            else
+            {
+                w.write("_inner = fromAbi\n");
             }
         }
         w.write("}\n\n");
@@ -2119,8 +2181,7 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         }
         else if (default_interface)
         {
-            auto base_class_string = composable ? "UnsealedWinRTClass" : "WinRTClass";
-            w.write("% class % : %", modifier, typeName, base_class_string);
+            w.write("% class % : WinRTClass", modifier, typeName);
         }
         else
         {
@@ -2175,9 +2236,9 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
 
         auto class_indent_guard = w.push_indent();
 
-        if (composable && !base_class)
+        if (!base_class)
         {
-            w.write("private (set) public var _inner: IUnknownRef?\n");
+            w.write("private (set) public var _inner: IUnknownRef!\n");
         }
 
         write_generic_typealiases(w, type);
@@ -2201,7 +2262,7 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
 
             w.write(R"(private typealias SwiftABI = %
 private typealias CABI = %
-private var _default: SwiftABI!
+private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
 %% func _getABI<T>() -> UnsafeMutablePointer<T>? {
     if T.self == CABI.self {
         return RawPointer(_default)
@@ -2215,7 +2276,7 @@ private var _default: SwiftABI!
     return %
 }
 
-%% var thisPtr: %.IInspectable { _default }
+%% var thisPtr: %.IInspectable { try! _inner.QueryInterface() }
 
 )",
                 swiftAbi,
@@ -2238,7 +2299,6 @@ private var _default: SwiftABI!
                 // otherwise it won't compile. At the end of the day, the winrt object it's holding onto will appropriately
                 // respond to QueryInterface calls, so call into the default implementation.
                 auto baseComposable = type.base_class && type.base_class->is_composable();
-                auto label = composable || baseComposable ? "unsealed" : "sealed";
                 std::string base_case;
                 if (base_class)
                 {
@@ -2246,11 +2306,11 @@ private var _default: SwiftABI!
                 }
                 else
                 {
-                    base_case = w.write_temp("%.queryInterface(%: self, iid)", w.support, label);
+                    base_case = w.write_temp("%.queryInterface(self, iid)", w.support);
                 }
                 if (overridable_interfaces.empty())
                 {
-                    w.write("    return %", base_case);
+                    w.write("    return %\n", base_case);
                 }
                 else
                 {

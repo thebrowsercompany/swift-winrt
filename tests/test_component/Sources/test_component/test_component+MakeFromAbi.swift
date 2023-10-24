@@ -2,7 +2,7 @@
 // swiftlint:disable all
 import Ctest_component
 
-func makeIAsyncActionFrom(abi: test_component.IInspectable) -> Any {
+func makeIAsyncActionFrom(abi: IUnknownRef) -> Any {
     let swiftAbi: __ABI_Windows_Foundation.IAsyncAction = try! abi.QueryInterface()
     return __IMPL_Windows_Foundation.IAsyncActionImpl(RawPointer(swiftAbi)!)
 }
@@ -71,85 +71,85 @@ func makeDeferralFrom(abi: test_component.IInspectable) -> Any {
     return Deferral(fromAbi: abi)
 }
 
-func makePropertySetFrom(abi: test_component.IInspectable) -> Any {
+func makePropertySetFrom(abi: IUnknownRef) -> Any {
     return PropertySet(fromAbi: abi)
 }
 
-func makeStringMapFrom(abi: test_component.IInspectable) -> Any {
+func makeStringMapFrom(abi: IUnknownRef) -> Any {
     return StringMap(fromAbi: abi)
 }
 
-func makeValueSetFrom(abi: test_component.IInspectable) -> Any {
+func makeValueSetFrom(abi: IUnknownRef) -> Any {
     return ValueSet(fromAbi: abi)
 }
 
-func makeAsyncOperationIntFrom(abi: test_component.IInspectable) -> Any {
+func makeAsyncOperationIntFrom(abi: IUnknownRef) -> Any {
     return AsyncOperationInt(fromAbi: abi)
 }
 
-func makeBaseFrom(abi: test_component.IInspectable) -> Any {
+func makeBaseFrom(abi: IUnknownRef) -> Any {
     return Base(fromAbi: abi)
 }
 
-func makeBaseCollectionFrom(abi: test_component.IInspectable) -> Any {
+func makeBaseCollectionFrom(abi: IUnknownRef) -> Any {
     return BaseCollection(fromAbi: abi)
 }
 
-func makeBaseMapCollectionFrom(abi: test_component.IInspectable) -> Any {
+func makeBaseMapCollectionFrom(abi: IUnknownRef) -> Any {
     return BaseMapCollection(fromAbi: abi)
 }
 
-func makeBaseNoOverridesFrom(abi: test_component.IInspectable) -> Any {
+func makeBaseNoOverridesFrom(abi: IUnknownRef) -> Any {
     return BaseNoOverrides(fromAbi: abi)
 }
 
-func makeBaseObservableCollectionFrom(abi: test_component.IInspectable) -> Any {
+func makeBaseObservableCollectionFrom(abi: IUnknownRef) -> Any {
     return BaseObservableCollection(fromAbi: abi)
 }
 
-func makeClassFrom(abi: test_component.IInspectable) -> Any {
+func makeClassFrom(abi: IUnknownRef) -> Any {
     return Class(fromAbi: abi)
 }
 
-func makeCollectionTesterFrom(abi: test_component.IInspectable) -> Any {
+func makeCollectionTesterFrom(abi: IUnknownRef) -> Any {
     return CollectionTester(fromAbi: abi)
 }
 
-func makeDeferrableEventArgsFrom(abi: test_component.IInspectable) -> Any {
+func makeDeferrableEventArgsFrom(abi: IUnknownRef) -> Any {
     return DeferrableEventArgs(fromAbi: abi)
 }
 
-func makeDerivedFrom(abi: test_component.IInspectable) -> Any {
+func makeDerivedFrom(abi: IUnknownRef) -> Any {
     return Derived(fromAbi: abi)
 }
 
-func makeEventTesterFrom(abi: test_component.IInspectable) -> Any {
+func makeEventTesterFrom(abi: IUnknownRef) -> Any {
     return EventTester(fromAbi: abi)
 }
 
-func makeNoopClosableFrom(abi: test_component.IInspectable) -> Any {
+func makeNoopClosableFrom(abi: IUnknownRef) -> Any {
     return NoopClosable(fromAbi: abi)
 }
 
-func makeSimpleFrom(abi: test_component.IInspectable) -> Any {
+func makeSimpleFrom(abi: IUnknownRef) -> Any {
     return Simple(fromAbi: abi)
 }
 
-func makeUnsealedDerivedFrom(abi: test_component.IInspectable) -> Any {
+func makeUnsealedDerivedFrom(abi: IUnknownRef) -> Any {
     return UnsealedDerived(fromAbi: abi)
 }
 
-func makeUnsealedDerived2From(abi: test_component.IInspectable) -> Any {
+func makeUnsealedDerived2From(abi: IUnknownRef) -> Any {
     return UnsealedDerived2(fromAbi: abi)
 }
 
-func makeUnsealedDerivedNoOverridesFrom(abi: test_component.IInspectable) -> Any {
+func makeUnsealedDerivedNoOverridesFrom(abi: IUnknownRef) -> Any {
     return UnsealedDerivedNoOverrides(fromAbi: abi)
 }
 
 @_spi(__MakeFromAbi_DoNotImport)
 public class __MakeFromAbi: MakeFromAbi {
-    public static func from(typeName: String, abi: test_component.IInspectable) -> Any? {
+    public static func from(typeName: String, abi: IUnknownRef) -> Any? {
         switch typeName {
             case "IAsyncAction": return makeIAsyncActionFrom(abi: abi)
             case "IAsyncInfo": return makeIAsyncInfoFrom(abi: abi)

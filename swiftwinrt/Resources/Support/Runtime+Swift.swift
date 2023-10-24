@@ -12,11 +12,10 @@ public func RoGetActivationFactory<Factory: IInspectable>(_ activatableClassId: 
   return try inspectable.QueryInterface<Factory>()
 }
 
-public func RoActivateInstance<Instance: IInspectable>(_ activatableClassId: HString) throws -> Instance {
+public func RoActivateInstance(_ activatableClassId: HString) throws -> IUnknownRef {
   var instance: UnsafeMutablePointer<C_IInspectable>?
   try CHECKED(RoActivateInstance(activatableClassId.get(), &instance))
-  let inspectable = IInspectable(consuming: UnsafeMutableRawPointer(instance!).bindMemory(to: C_IUnknown.self, capacity: 1))
-  return try inspectable.QueryInterface<Instance>()
+  return IUnknownRef(consuming: UnsafeMutableRawPointer(instance!).bindMemory(to: C_IUnknown.self, capacity: 1))
 }
 
 // ISwiftImplemented is a marker interface for code-gen types which are created by swift/winrt. It's used to QI

@@ -251,9 +251,7 @@ public enum __ABI_test_component {
 
     }
 
-    internal class IBaseNoOverridesProtectedFactory: test_component.IInspectable, ComposableActivationFactory {
-        internal typealias Composable = test_component.BaseNoOverrides.Composable
-
+    open class IBaseNoOverridesProtectedFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseNoOverridesProtectedFactory }
 
         internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<C_IInspectable>?, _ innerInterface: inout UnsafeMutablePointer<C_IInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBaseNoOverrides>? {
@@ -277,9 +275,7 @@ public enum __ABI_test_component {
 
     }
 
-    internal class IBaseProtectedFactory: test_component.IInspectable, ComposableActivationFactory {
-        internal typealias Composable = test_component.Base.Composable
-
+    open class IBaseProtectedFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseProtectedFactory }
 
         internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<C_IInspectable>?, _ innerInterface: inout UnsafeMutablePointer<C_IInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>? {
@@ -1786,9 +1782,7 @@ public enum __ABI_test_component {
 
     }
 
-    internal class IUnsealedDerived2ProtectedFactory: test_component.IInspectable, ComposableActivationFactory {
-        internal typealias Composable = test_component.UnsealedDerived2.Composable
-
+    open class IUnsealedDerived2ProtectedFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerived2ProtectedFactory }
 
         internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<C_IInspectable>?, _ innerInterface: inout UnsafeMutablePointer<C_IInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived2>? {
@@ -1801,9 +1795,7 @@ public enum __ABI_test_component {
 
     }
 
-    internal class IUnsealedDerivedFactory: test_component.IInspectable, ComposableActivationFactory {
-        internal typealias Composable = test_component.UnsealedDerived.Composable
-
+    open class IUnsealedDerivedFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedFactory }
 
         internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<C_IInspectable>?, _ innerInterface: inout UnsafeMutablePointer<C_IInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived>? {
@@ -1821,9 +1813,7 @@ public enum __ABI_test_component {
 
     }
 
-    internal class IUnsealedDerivedNoOverridesProtectedFactory: test_component.IInspectable, ComposableActivationFactory {
-        internal typealias Composable = test_component.UnsealedDerivedNoOverrides.Composable
-
+    open class IUnsealedDerivedNoOverridesProtectedFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedNoOverridesProtectedFactory }
 
         internal func CreateInstanceImpl(_ baseInterface: UnsafeMutablePointer<C_IInspectable>?, _ innerInterface: inout UnsafeMutablePointer<C_IInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides>? {
