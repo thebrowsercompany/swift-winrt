@@ -417,6 +417,9 @@ namespace test_component
 
         unsealed runtimeclass UnsealedDerived : Base {
             UnsealedDerived();
+            UnsealedDerived(Int32 prop);
+            UnsealedDerived(String prop1, Base prop2);
+
             Int32 Prop;
 
             overridable void OnBeforeDoTheThing();

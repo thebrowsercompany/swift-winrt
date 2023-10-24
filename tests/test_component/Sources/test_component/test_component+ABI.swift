@@ -119,7 +119,7 @@ private var IID___x_ABI_Ctest__component_CIUnsealedDerived2ProtectedFactory: tes
 }
 
 private var IID___x_ABI_Ctest__component_CIUnsealedDerivedFactory: test_component.IID {
-    .init(Data1: 0x3496ED92, Data2: 0x7A72, Data3: 0x5271, Data4: ( 0x9B,0xC4,0x4D,0x3D,0xA0,0x80,0x3C,0xA8 ))// 3496ED92-7A72-5271-9BC4-4D3DA0803CA8
+    .init(Data1: 0xDAF846D2, Data2: 0x8988, Data3: 0x5EE1, Data4: ( 0xA8,0xAA,0x7E,0x81,0xC0,0xF8,0xA9,0xE9 ))// DAF846D2-8988-5EE1-A8AA-7E81C0F8A9E9
 }
 
 private var IID___x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides: test_component.IID {
@@ -1802,6 +1802,22 @@ public enum __ABI_test_component {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived>?
             _ = try perform(as: __x_ABI_Ctest__component_CIUnsealedDerivedFactory.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, baseInterface, &innerInterface, &value))
+            }
+            return value
+        }
+
+        internal func CreateInstance2Impl(_ prop: INT32, _ baseInterface: UnsafeMutablePointer<C_IInspectable>?, _ innerInterface: inout UnsafeMutablePointer<C_IInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived>? {
+            var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived>?
+            _ = try perform(as: __x_ABI_Ctest__component_CIUnsealedDerivedFactory.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance2(pThis, prop, baseInterface, &innerInterface, &value))
+            }
+            return value
+        }
+
+        internal func CreateInstance3Impl(_ prop1: HSTRING?, _ prop2: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?, _ baseInterface: UnsafeMutablePointer<C_IInspectable>?, _ innerInterface: inout UnsafeMutablePointer<C_IInspectable>?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived>? {
+            var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived>?
+            _ = try perform(as: __x_ABI_Ctest__component_CIUnsealedDerivedFactory.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance3(pThis, prop1, prop2, baseInterface, &innerInterface, &value))
             }
             return value
         }

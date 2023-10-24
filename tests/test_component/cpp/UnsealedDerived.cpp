@@ -4,6 +4,14 @@
 
 namespace winrt::test_component::implementation
 {
+    UnsealedDerived::UnsealedDerived(int32_t prop): m_prop(prop)
+    {
+    }
+
+    UnsealedDerived::UnsealedDerived(hstring const& prop, winrt::test_component::Base const& base)
+    {
+    }
+
     int32_t UnsealedDerived::Prop()
     {
         return m_prop;

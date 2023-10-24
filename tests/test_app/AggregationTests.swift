@@ -11,7 +11,7 @@ class AggregationTests : XCTestCase {
     try derived.doTheThing()
 
     let appDerived = AppDerived()
-    print(type(of: appDerived)) 
+    print(type(of: appDerived))
 
     let b: Base = appDerived as Base
     print(type(of: b))
@@ -34,7 +34,7 @@ class AggregationTests : XCTestCase {
 
     StaticClass.takeBase(appDerived)
     XCTAssertEqual(appDerived.count, 2, "5. count not expected")
-    
+
     StaticClass.takeBase(appDerived2)
     XCTAssertEqual(appDerived2.count, 2, "6. count not expected")
 
@@ -86,10 +86,16 @@ class AggregationTests : XCTestCase {
     XCTAssert(type(of: baseNoOverrides_returned) == AppDerivedNoOverrides2.self)
     XCTAssertIdentical(baseNoOverrides_returned, derivedNoOverrides2)
   }
+
+  public func testCustomConstructorOnUnsealedType() throws {
+    let derived = UnsealedDerived(32)
+    XCTAssertEqual(derived.prop, 32)
+  }
 }
 
 var aggregationTests: [XCTestCaseEntry] = [
   testCase([
     ("testAggregation", AggregationTests.testAggregation),
+    ("testCustomConstructorOnUnsealedType", AggregationTests.testCustomConstructorOnUnsealedType),
   ])
 ]

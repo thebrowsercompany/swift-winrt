@@ -3531,6 +3531,17 @@ struct __x_ABI_Ctest__component_CStructWithEnum
         IInspectable* baseInterface,
         IInspectable** innerInterface,
         __x_ABI_Ctest__component_CIUnsealedDerived** value);
+    HRESULT (STDMETHODCALLTYPE* CreateInstance2)(__x_ABI_Ctest__component_CIUnsealedDerivedFactory* This,
+        INT32 prop,
+        IInspectable* baseInterface,
+        IInspectable** innerInterface,
+        __x_ABI_Ctest__component_CIUnsealedDerived** value);
+    HRESULT (STDMETHODCALLTYPE* CreateInstance3)(__x_ABI_Ctest__component_CIUnsealedDerivedFactory* This,
+        HSTRING prop1,
+        __x_ABI_Ctest__component_CIBase* prop2,
+        IInspectable* baseInterface,
+        IInspectable** innerInterface,
+        __x_ABI_Ctest__component_CIUnsealedDerived** value);
 
         END_INTERFACE
     } __x_ABI_Ctest__component_CIUnsealedDerivedFactoryVtbl;

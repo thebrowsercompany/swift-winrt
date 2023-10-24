@@ -1500,6 +1500,19 @@ open class UnsealedDerived : test_component.Base {
         }
     }
 
+    public init(_ prop: Int32) {
+        super.init(composing: Self.Composable.self) { _baseInterface, _innerInterface in 
+            try! Self._IUnsealedDerivedFactory.CreateInstance2Impl(prop, _baseInterface, &_innerInterface)
+        }
+    }
+
+    public init(_ prop1: String, _ prop2: Base!) {
+        let _prop1 = try! HString(prop1)
+        super.init(composing: Self.Composable.self) { _baseInterface, _innerInterface in 
+            try! Self._IUnsealedDerivedFactory.CreateInstance3Impl(_prop1.get(), RawPointer(prop2), _baseInterface, &_innerInterface)
+        }
+    }
+
     public var prop : Int32 {
         get {
             let value = try! _default.get_PropImpl()
