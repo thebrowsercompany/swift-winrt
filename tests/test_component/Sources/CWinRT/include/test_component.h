@@ -161,6 +161,12 @@ typedef interface __x_ABI_Ctest__component_CIVoidToVoidDelegate __x_ABI_Ctest__c
 
 #endif // ____x_ABI_Ctest__component_CISimpleDelegate_FWD_DEFINED__
 
+#ifndef ____x_ABI_Ctest__component_CISimpleOverrides_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CISimpleOverrides_FWD_DEFINED__
+    typedef interface __x_ABI_Ctest__component_CISimpleOverrides __x_ABI_Ctest__component_CISimpleOverrides;
+
+#endif // ____x_ABI_Ctest__component_CISimpleOverrides_FWD_DEFINED__
+
 #ifndef ____x_ABI_Ctest__component_CISimpleStatics_FWD_DEFINED__
 #define ____x_ABI_Ctest__component_CISimpleStatics_FWD_DEFINED__
     typedef interface __x_ABI_Ctest__component_CISimpleStatics __x_ABI_Ctest__component_CISimpleStatics;
@@ -3288,6 +3294,38 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
     EXTERN_C const IID IID___x_ABI_Ctest__component_CISimpleDelegate;
 #endif /* !defined(____x_ABI_Ctest__component_CISimpleDelegate_INTERFACE_DEFINED__) */
+    
+#if !defined(____x_ABI_Ctest__component_CISimpleOverrides_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CISimpleOverrides_INTERFACE_DEFINED__
+    typedef struct __x_ABI_Ctest__component_CISimpleOverridesVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CISimpleOverrides* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CISimpleOverrides* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CISimpleOverrides* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_Ctest__component_CISimpleOverrides* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_Ctest__component_CISimpleOverrides* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CISimpleOverrides* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* CantActuallyOverrideBecauseNotComposable)(__x_ABI_Ctest__component_CISimpleOverrides* This);
+
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CISimpleOverridesVtbl;
+
+    interface __x_ABI_Ctest__component_CISimpleOverrides
+    {
+        CONST_VTBL struct __x_ABI_Ctest__component_CISimpleOverridesVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CISimpleOverrides;
+#endif /* !defined(____x_ABI_Ctest__component_CISimpleOverrides_INTERFACE_DEFINED__) */
     
 #if !defined(____x_ABI_Ctest__component_CISimpleStatics_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CISimpleStatics_INTERFACE_DEFINED__

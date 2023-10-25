@@ -28,7 +28,7 @@ namespace test_component
             R8G8B8A8Typeless, // Should become r8g8b8a8Typeless (from D3D)
             UUID, // Should become uuid
         };
-        
+
         struct BlittableStruct
         {
             Int32 First;
@@ -68,7 +68,7 @@ namespace test_component
             //  delegate void OutStringArrayDelegate(out String[] value);
             //  delegate void RefStringArrayDelegate(ref String[] value);
             //  delegate test_component.Struct[] StructDelegate();
-        }   
+        }
 
         enum Signed
         {
@@ -99,7 +99,7 @@ namespace test_component
         };
 
         /* just here to make sure things compile, get weird C++ linker error if try to put this on a class:
-        Simple.cpp.obj : error LNK2001: unresolved external symbol 
+        Simple.cpp.obj : error LNK2001: unresolved external symbol
         "public: struct winrt::Windows::Foundation::IAsyncOperationWithProgress<int,double> __cdecl winrt::test_component::implementation::Simple::OperationWithProgress(class std::chrono::time_point<struct winrt::clock,class std::chrono::duration<__int64,struct std::ratio<1,10000000> > >)"
         (?OperationWithProgress@Simple@implementation@test_component@winrt@@QEAA?AU?$IAsyncOperationWithProgress@HN@Foundation@Windows@4@V?$time_point@Uclock@winrt@@V?$duration@_JU?$ratio@$00$0JIJGIA@@std@@@chrono@std@@@chrono@std@@@Z)
         */
@@ -118,7 +118,7 @@ namespace test_component
         {
             Simple();
             void Method();
-            
+
             //Windows.Foundation.IReference<Int32> Reference(Windows.Foundation.DateTime value);
             Windows.Foundation.IAsyncOperation<Int32> Operation(Windows.Foundation.DateTime value);
 
@@ -141,6 +141,8 @@ namespace test_component
             event test_component.Delegates.InDelegate InEvent;
             event Windows.Foundation.TypedEventHandler<Simple, SimpleEventArgs> SimpleEvent;
             void FireEvent();
+
+            overridable void CantActuallyOverrideBecauseNotComposable();
         }
 
         runtimeclass DeferrableEventArgs
@@ -207,12 +209,12 @@ namespace test_component
             static void StaticTest();
             static Int32 StaticTestReturn();
             static Int32 StaticProperty{ get; };
- 
+
             IBasic Implementation;
             // This is used to mimic API contract behavior, such that this will enforce separate types be generated
             [
               constructor_name("test_component.IClassFactory2"),
-              static_name("test_component.IClassStatics2") 
+              static_name("test_component.IClassStatics2")
             ]
             {
                Class(String name, Fruit fruit, IIAmImplementable implementation);
@@ -306,7 +308,7 @@ namespace test_component
             Base BaseProperty;
             BaseNoOverrides BaseNoOverridesProperty;
         }
-        
+
         static runtimeclass StaticClass
         {
             static Fruit EnumProperty;
@@ -371,7 +373,7 @@ namespace test_component
 
             // namespace Parent
             // {
-            //     // This validates namespace inclusion rules. The "...Three.h" header must include the 
+            //     // This validates namespace inclusion rules. The "...Three.h" header must include the
             //     // "...Parent.h" header but skip over the intermediate namespaces as they are empty
             //     // and won't be generated and those won't exist.
 
@@ -432,7 +434,7 @@ namespace test_component
             void Method();
         }
 
-        
+
         runtimeclass BaseCollection : [default] IVector<Base>
         {
         }

@@ -2137,7 +2137,7 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
             {
                 baseHasCustomQueryInterfaceConformance = true;
             }
-            if (info.overridable && !info.base)
+            if (info.overridable && !info.base && composable)
             {
                 // overridable interfaces are still considered exclusive, so check here before
                 // we skip this interface
@@ -2292,6 +2292,12 @@ private var _default: SwiftABI!
             // Don't reimplement P/M/E for interfaces which are implemented on a base class
             if (!info.base)
             {
+                // this is an overridable interface but the type can't actually
+                // be overriden, so skip it
+                if (info.overridable && !composable)
+                {
+                    continue;
+                }
                 write_interface_impl_members(w, info, /* type_definition: */ type);
             }
 
