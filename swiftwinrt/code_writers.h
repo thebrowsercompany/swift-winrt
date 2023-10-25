@@ -1667,28 +1667,51 @@ public static func makeAbi() -> CABI {
         return false;
     }
 
-    static bool has_matching_constructor(const class_type* type, function_def const& func)
+    static std::vector<function_param> get_projected_params(attributed_type const& factory, function_def const& func)
+    {
+        if (factory.composable)
+        {
+            std::vector<function_param> result;
+            result.reserve(func.params.size() - 2);
+            // skip the last two which are the inner and base interface parameters
+            for (size_t i = 0; i < func.params.size() - 2; ++i)
+            {
+                result.push_back(func.params[i]);
+            }
+            return result;
+        }
+        else
+        {
+            return func.params;
+        }
+    }
+
+    static bool has_matching_constructor(const class_type* type, attributed_type const& factory, function_def const& func)
     {
         if (type == nullptr) return false;
+        auto projectedParams = get_projected_params(factory, func);
 
-        for (const auto& [_, factory] : type->factories)
+        for (const auto& [_, baseFactory] : type->factories)
         {
-            if (auto factoryIface = dynamic_cast<const interface_type*>(factory.type))
+            if (auto factoryIface = dynamic_cast<const interface_type*>(baseFactory.type))
             {
-                for (const auto& method : factoryIface->functions)
+                for (const auto& baseMethod : factoryIface->functions)
                 {
-                    if (method.params.size() == func.params.size())
+                    auto baseProjectedParams = get_projected_params(baseFactory, baseMethod);
+                    if (projectedParams.size() == baseProjectedParams.size())
                     {
-                        for (size_t i = 0; i < method.params.size(); ++i)
+                        size_t i = 0;
+                        while(i < baseProjectedParams.size())
                         {
-                            if (method.params[i].type != func.params[i].type)
+                            if (baseProjectedParams[i].type != projectedParams[i].type)
                             {
                                 break;
                             }
-                            else if (i == method.params.size() - 1)
-                            {
-                                return true;
-                            }
+                            ++i;
+                        }
+                        if (i == baseProjectedParams.size())
+                        {
+                            return true;
                         }
                     }
                 }
@@ -1697,21 +1720,22 @@ public static func makeAbi() -> CABI {
         return false;
     }
 
-    static void write_factory_constructors(writer& w, metadata_type const& factory, class_type const& type, metadata_type const& default_interface)
+    static void write_factory_constructors(writer& w, attributed_type const& factory, class_type const& type, metadata_type const& default_interface)
     {
-        if (auto factoryIface = dynamic_cast<const interface_type*>(&factory))
+        if (auto factoryIface = dynamic_cast<const interface_type*>(factory.type))
         {
             interface_info factory_info{ factoryIface };
             auto swift_name = get_swift_name(factory_info);
             w.write("private static let %: %.% = try! RoGetActivationFactory(HString(\"%\"))\n",
-                swift_name, abi_namespace(factory), factory, get_full_type_name(type));
-
+                swift_name, abi_namespace(factoryIface), factory.type, get_full_type_name(type));
             for (const auto& method : factoryIface->functions)
             {
                 if (!can_write(w, method)) continue;
-                 
-                auto baseHasMatchingConstructor = has_matching_constructor(type.base_class, method);
-                w.write("public init(%) {\n", bind<write_function_params>(method, write_type_params::swift_allow_implicit_unwrap));
+
+                auto baseHasMatchingConstructor = has_matching_constructor(type.base_class, factory, method);
+                w.write("%public init(%) {\n", 
+                    baseHasMatchingConstructor ? "override " : "",
+                    bind<write_function_params>(method, write_type_params::swift_allow_implicit_unwrap));
                 {
                     auto indent = w.push_indent();
                     write_factory_body(w, method, factory_info, type, default_interface);
@@ -1737,21 +1761,6 @@ public static func makeAbi() -> CABI {
                 }
             }
             w.write("}\n\n");
-        }
-    }
-
-    static void write_composable_function_params(writer& w, function_def const& function)
-    {
-        separator s{ w };
-
-        // skip the last two which are the inner and base interface parameters
-        for (size_t i = 0; i < function.params.size() - 2; ++i)
-        {
-            s();
-            auto param = function.params[i];
-            w.write("_ %: ", get_swift_name(param));
-            assert(!param.out());
-            write_type(w, *param.type, write_type_params::swift_allow_implicit_unwrap);
         }
     }
 
@@ -1784,32 +1793,25 @@ public init<Composable: ComposableImpl>(
         }
     }
 
-    static void write_composable_constructor(writer& w, metadata_type const& factory, class_type const& type)
+    static void write_composable_constructor(writer& w, attributed_type const& factory, class_type const& type)
     {
-        if (auto factoryIface = dynamic_cast<const interface_type*>(&factory))
+        if (auto factoryIface = dynamic_cast<const interface_type*>(factory.type))
         {
             w.write("private static var _% : %.% =  try! RoGetActivationFactory(HString(\"%\"))\n\n",
-                    factory,
-                    abi_namespace(factory),
-                    factory,
+                    factory.type,
+                    abi_namespace(factoryIface),
+                    factory.type,
                     get_full_type_name(type));
 
             interface_info factory_info{ factoryIface };
-
             for (const auto& method : factoryIface->functions)
             {
                 if (!can_write(w, method)) continue;
+                
+                auto baseHasMatchingConstructor = has_matching_constructor(type.base_class, factory, method);
 
-                auto baseHasMatchingConstructor = has_matching_constructor(type.base_class, method);
-
-                std::vector<function_param> params;
-                params.reserve(method.params.size() - 2);
-                // skip the last two which are the inner and base interface parameters
-                for (size_t i = 0; i < method.params.size() - 2; ++i)
-                {
-                    params.push_back(method.params[i]);
-                }
-
+                std::vector<function_param> params = get_projected_params(factory, method);
+              
                 w.write("%public init(%) {\n", baseHasMatchingConstructor ? "override " : "", bind<write_function_params2>(params, write_type_params::swift_allow_implicit_unwrap));
                 {
                     auto indent = w.push_indent();
@@ -2389,7 +2391,7 @@ private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
         {
             if (factory.activatable)
             {
-                write_factory_constructors(w, *factory.type, type, *default_interface);
+                write_factory_constructors(w, factory, type, *default_interface);
             }
 
             if (factory.statics)
@@ -2399,7 +2401,7 @@ private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
 
             if (factory.composable)
             {
-                write_composable_constructor(w, *factory.type, type);
+                write_composable_constructor(w, factory, type);
             }
         }
 

@@ -29,6 +29,7 @@ public final class Deferral : WinRTClass, IClosable {
 
     public var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
 
+    @_spi(WinRTInternal)
     public static func from(abi: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIDeferral>?) -> Deferral? {
         guard let abi = abi else { return nil }
         return .init(fromAbi: test_component.IInspectable(consuming: abi))

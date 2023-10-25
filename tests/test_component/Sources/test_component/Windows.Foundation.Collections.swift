@@ -30,6 +30,7 @@ public final class PropertySet : WinRTClass, IObservableMap, IMap, IIterable, IP
 
     public var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
 
+    @_spi(WinRTInternal)
     public static func from(abi: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CCollections_CIPropertySet>?) -> PropertySet? {
         guard let abi = abi else { return nil }
         return .init(fromAbi: test_component.IInspectable(consuming: abi))
@@ -148,6 +149,7 @@ public final class StringMap : WinRTClass, IMap, IIterable, IObservableMap {
 
     public var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
 
+    @_spi(WinRTInternal)
     public static func from(abi: UnsafeMutablePointer<__x_ABI_C__FIMap_2_HSTRING_HSTRING>?) -> StringMap? {
         guard let abi = abi else { return nil }
         return .init(fromAbi: test_component.IInspectable(consuming: abi))
@@ -264,6 +266,7 @@ public final class ValueSet : WinRTClass, IObservableMap, IMap, IIterable, IProp
 
     public var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
 
+    @_spi(WinRTInternal)
     public static func from(abi: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CCollections_CIPropertySet>?) -> ValueSet? {
         guard let abi = abi else { return nil }
         return .init(fromAbi: test_component.IInspectable(consuming: abi))

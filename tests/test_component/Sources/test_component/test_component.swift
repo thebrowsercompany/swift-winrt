@@ -30,6 +30,7 @@ public final class AsyncOperationInt : WinRTClass, IAsyncOperation, test_compone
 
     public var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
 
+    @_spi(WinRTInternal)
     public static func from(abi: UnsafeMutablePointer<__x_ABI_C__FIAsyncOperation_1_int>?) -> AsyncOperationInt? {
         guard let abi = abi else { return nil }
         return .init(fromAbi: test_component.IInspectable(consuming: abi))
@@ -118,6 +119,7 @@ open class Base : WinRTClass {
 
     open var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
 
+    @_spi(WinRTInternal)
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?) -> Base? {
         guard let abi = abi else { return nil }
         return UnsealedWinRTClassWrapper<Composable>.unwrapFrom(base: abi)
@@ -195,6 +197,7 @@ public final class BaseCollection : WinRTClass, IVector, IIterable {
 
     public var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
 
+    @_spi(WinRTInternal)
     public static func from(abi: UnsafeMutablePointer<__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase>?) -> BaseCollection? {
         guard let abi = abi else { return nil }
         return .init(fromAbi: test_component.IInspectable(consuming: abi))
@@ -319,6 +322,7 @@ public final class BaseMapCollection : WinRTClass, IMap, IIterable {
 
     public var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
 
+    @_spi(WinRTInternal)
     public static func from(abi: UnsafeMutablePointer<__x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?) -> BaseMapCollection? {
         guard let abi = abi else { return nil }
         return .init(fromAbi: test_component.IInspectable(consuming: abi))
@@ -402,6 +406,7 @@ open class BaseNoOverrides : WinRTClass {
 
     open var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
 
+    @_spi(WinRTInternal)
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBaseNoOverrides>?) -> BaseNoOverrides? {
         guard let abi = abi else { return nil }
         return UnsealedWinRTClassWrapper<Composable>.unwrapFrom(base: abi)
@@ -465,6 +470,7 @@ public final class BaseObservableCollection : WinRTClass, IObservableVector, IVe
 
     public var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
 
+    @_spi(WinRTInternal)
     public static func from(abi: UnsafeMutablePointer<__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase>?) -> BaseObservableCollection? {
         guard let abi = abi else { return nil }
         return .init(fromAbi: test_component.IInspectable(consuming: abi))
@@ -601,6 +607,7 @@ public final class Class : WinRTClass, IBasic {
 
     public var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
 
+    @_spi(WinRTInternal)
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>?) -> Class? {
         guard let abi = abi else { return nil }
         return .init(fromAbi: test_component.IInspectable(consuming: abi))
@@ -946,6 +953,7 @@ public final class CollectionTester : WinRTClass {
 
     public var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
 
+    @_spi(WinRTInternal)
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CICollectionTester>?) -> CollectionTester? {
         guard let abi = abi else { return nil }
         return .init(fromAbi: test_component.IInspectable(consuming: abi))
@@ -1031,6 +1039,7 @@ public final class DeferrableEventArgs : WinRTClass {
 
     public var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
 
+    @_spi(WinRTInternal)
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIDeferrableEventArgs>?) -> DeferrableEventArgs? {
         guard let abi = abi else { return nil }
         return .init(fromAbi: test_component.IInspectable(consuming: abi))
@@ -1072,6 +1081,7 @@ public final class Derived : test_component.Base {
 
     override public var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
 
+    @_spi(WinRTInternal)
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIDerived>?) -> Derived? {
         guard let abi = abi else { return nil }
         return .init(fromAbi: test_component.IInspectable(consuming: abi))
@@ -1129,6 +1139,7 @@ public final class DerivedFromNoConstructor : test_component.UnsealedDerivedNoCo
 
     override public var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
 
+    @_spi(WinRTInternal)
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIDerivedFromNoConstructor>?) -> DerivedFromNoConstructor? {
         guard let abi = abi else { return nil }
         return .init(fromAbi: test_component.IInspectable(consuming: abi))
@@ -1177,6 +1188,7 @@ public final class EventTester : WinRTClass {
 
     public var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
 
+    @_spi(WinRTInternal)
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIEventTester>?) -> EventTester? {
         guard let abi = abi else { return nil }
         return .init(fromAbi: test_component.IInspectable(consuming: abi))
@@ -1240,6 +1252,7 @@ public final class NoopClosable : WinRTClass, test_component.IClosable {
 
     public var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
 
+    @_spi(WinRTInternal)
     public static func from(abi: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIClosable>?) -> NoopClosable? {
         guard let abi = abi else { return nil }
         return .init(fromAbi: test_component.IInspectable(consuming: abi))
@@ -1347,6 +1360,7 @@ public final class Simple : WinRTClass {
 
     public var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
 
+    @_spi(WinRTInternal)
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CISimple>?) -> Simple? {
         guard let abi = abi else { return nil }
         return .init(fromAbi: test_component.IInspectable(consuming: abi))
@@ -1551,6 +1565,7 @@ open class UnsealedDerived : test_component.Base {
 
     override open var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
 
+    @_spi(WinRTInternal)
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived>?) -> UnsealedDerived? {
         guard let abi = abi else { return nil }
         return UnsealedWinRTClassWrapper<Composable>.unwrapFrom(base: abi)
@@ -1662,6 +1677,7 @@ open class UnsealedDerived2 : test_component.UnsealedDerived {
 
     override open var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
 
+    @_spi(WinRTInternal)
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived2>?) -> UnsealedDerived2? {
         guard let abi = abi else { return nil }
         return UnsealedWinRTClassWrapper<Composable>.unwrapFrom(base: abi)
@@ -1734,6 +1750,7 @@ open class UnsealedDerivedFromNoConstructor : test_component.UnsealedDerivedNoCo
 
     override open var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
 
+    @_spi(WinRTInternal)
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerivedFromNoConstructor>?) -> UnsealedDerivedFromNoConstructor? {
         guard let abi = abi else { return nil }
         return UnsealedWinRTClassWrapper<Composable>.unwrapFrom(base: abi)
@@ -1794,6 +1811,7 @@ open class UnsealedDerivedNoConstructor : test_component.Base {
 
     override open var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
 
+    @_spi(WinRTInternal)
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerivedNoConstructor>?) -> UnsealedDerivedNoConstructor? {
         guard let abi = abi else { return nil }
         return UnsealedWinRTClassWrapper<Composable>.unwrapFrom(base: abi)
@@ -1848,6 +1866,7 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
 
     override open var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
 
+    @_spi(WinRTInternal)
     public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides>?) -> UnsealedDerivedNoOverrides? {
         guard let abi = abi else { return nil }
         return UnsealedWinRTClassWrapper<Composable>.unwrapFrom(base: abi)
