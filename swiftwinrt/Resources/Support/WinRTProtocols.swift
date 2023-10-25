@@ -41,7 +41,14 @@ extension WinRTClass {
   }
 
   public func GetRuntimeClassName() -> HString {
-      let string = NSStringFromClass(type(of: self))
+    if type(of: self) != Self.self {
+      // Aggregated, get a string describing the type of the Swift class instead.
+      // Use String(reflecting:) instead of NSStringFromClass because that doesn't
+      // crash on nested classes
+      let string = String(reflecting: type(of: self))
       return try! HString(string)
+    } else {
+      return try! _inner.GetRuntimeClassName()
+    }
   }
 }
