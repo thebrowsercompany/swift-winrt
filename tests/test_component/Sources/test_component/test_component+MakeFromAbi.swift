@@ -6,54 +6,67 @@ func makeIAsyncActionFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_Windows_Foundation.IAsyncAction = try! abi.QueryInterface()
     return __IMPL_Windows_Foundation.IAsyncActionImpl(RawPointer(swiftAbi)!)
 }
+
 func makeIAsyncInfoFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_Windows_Foundation.IAsyncInfo = try! abi.QueryInterface()
     return __IMPL_Windows_Foundation.IAsyncInfoImpl(RawPointer(swiftAbi)!)
 }
+
 func makeIClosableFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_Windows_Foundation.IClosable = try! abi.QueryInterface()
     return __IMPL_Windows_Foundation.IClosableImpl(RawPointer(swiftAbi)!)
 }
+
 func makeIStringableFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_Windows_Foundation.IStringable = try! abi.QueryInterface()
     return __IMPL_Windows_Foundation.IStringableImpl(RawPointer(swiftAbi)!)
 }
+
 func makeIPropertySetFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_Windows_Foundation_Collections.IPropertySet = try! abi.QueryInterface()
     return __IMPL_Windows_Foundation_Collections.IPropertySetImpl(RawPointer(swiftAbi)!)
 }
+
 func makeIVectorChangedEventArgsFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_Windows_Foundation_Collections.IVectorChangedEventArgs = try! abi.QueryInterface()
     return __IMPL_Windows_Foundation_Collections.IVectorChangedEventArgsImpl(RawPointer(swiftAbi)!)
 }
+
 func makeIAsyncMethodsFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_test_component.IAsyncMethods = try! abi.QueryInterface()
     return __IMPL_test_component.IAsyncMethodsImpl(RawPointer(swiftAbi)!)
 }
+
 func makeIBasicFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_test_component.IBasic = try! abi.QueryInterface()
     return __IMPL_test_component.IBasicImpl(RawPointer(swiftAbi)!)
 }
+
 func makeIIAmImplementableFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_test_component.IIAmImplementable = try! abi.QueryInterface()
     return __IMPL_test_component.IIAmImplementableImpl(RawPointer(swiftAbi)!)
 }
+
 func makeIInterfaceWithObservableVectorFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_test_component.IInterfaceWithObservableVector = try! abi.QueryInterface()
     return __IMPL_test_component.IInterfaceWithObservableVectorImpl(RawPointer(swiftAbi)!)
 }
+
 func makeISimpleDelegateFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_test_component.ISimpleDelegate = try! abi.QueryInterface()
     return __IMPL_test_component.ISimpleDelegateImpl(RawPointer(swiftAbi)!)
 }
+
 func makeInterfaceWithReturnDelegateFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_test_component.InterfaceWithReturnDelegate = try! abi.QueryInterface()
     return __IMPL_test_component.InterfaceWithReturnDelegateImpl(RawPointer(swiftAbi)!)
 }
+
 func makeWithKeywordFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_test_component.WithKeyword = try! abi.QueryInterface()
     return __IMPL_test_component.WithKeywordImpl(RawPointer(swiftAbi)!)
 }
+
 func makeDeferralFrom(abi: test_component.IInspectable) -> Any {
     return Deferral(fromAbi: abi)
 }
@@ -138,39 +151,39 @@ func makeUnsealedDerivedNoOverridesFrom(abi: test_component.IInspectable) -> Any
 public class __MakeFromAbi: MakeFromAbi {
     public static func from(typeName: String, abi: test_component.IInspectable) -> Any? {
         switch typeName {
-            case "IAsyncAction": return makeIAsyncActionFrom(abi : abi)
-            case "IAsyncInfo": return makeIAsyncInfoFrom(abi : abi)
-            case "IClosable": return makeIClosableFrom(abi : abi)
-            case "IStringable": return makeIStringableFrom(abi : abi)
-            case "IPropertySet": return makeIPropertySetFrom(abi : abi)
-            case "IVectorChangedEventArgs": return makeIVectorChangedEventArgsFrom(abi : abi)
-            case "IAsyncMethods": return makeIAsyncMethodsFrom(abi : abi)
-            case "IBasic": return makeIBasicFrom(abi : abi)
-            case "IIAmImplementable": return makeIIAmImplementableFrom(abi : abi)
-            case "IInterfaceWithObservableVector": return makeIInterfaceWithObservableVectorFrom(abi : abi)
-            case "ISimpleDelegate": return makeISimpleDelegateFrom(abi : abi)
-            case "InterfaceWithReturnDelegate": return makeInterfaceWithReturnDelegateFrom(abi : abi)
-            case "WithKeyword": return makeWithKeywordFrom(abi : abi)
-            case "Deferral" : return makeDeferralFrom(abi: abi)
-            case "PropertySet" : return makePropertySetFrom(abi: abi)
-            case "StringMap" : return makeStringMapFrom(abi: abi)
-            case "ValueSet" : return makeValueSetFrom(abi: abi)
-            case "AsyncOperationInt" : return makeAsyncOperationIntFrom(abi: abi)
-            case "Base" : return makeBaseFrom(abi: abi)
-            case "BaseCollection" : return makeBaseCollectionFrom(abi: abi)
-            case "BaseMapCollection" : return makeBaseMapCollectionFrom(abi: abi)
-            case "BaseNoOverrides" : return makeBaseNoOverridesFrom(abi: abi)
-            case "BaseObservableCollection" : return makeBaseObservableCollectionFrom(abi: abi)
-            case "Class" : return makeClassFrom(abi: abi)
-            case "CollectionTester" : return makeCollectionTesterFrom(abi: abi)
-            case "DeferrableEventArgs" : return makeDeferrableEventArgsFrom(abi: abi)
-            case "Derived" : return makeDerivedFrom(abi: abi)
-            case "EventTester" : return makeEventTesterFrom(abi: abi)
-            case "NoopClosable" : return makeNoopClosableFrom(abi: abi)
-            case "Simple" : return makeSimpleFrom(abi: abi)
-            case "UnsealedDerived" : return makeUnsealedDerivedFrom(abi: abi)
-            case "UnsealedDerived2" : return makeUnsealedDerived2From(abi: abi)
-            case "UnsealedDerivedNoOverrides" : return makeUnsealedDerivedNoOverridesFrom(abi: abi)
+            case "IAsyncAction": return makeIAsyncActionFrom(abi: abi)
+            case "IAsyncInfo": return makeIAsyncInfoFrom(abi: abi)
+            case "IClosable": return makeIClosableFrom(abi: abi)
+            case "IStringable": return makeIStringableFrom(abi: abi)
+            case "IPropertySet": return makeIPropertySetFrom(abi: abi)
+            case "IVectorChangedEventArgs": return makeIVectorChangedEventArgsFrom(abi: abi)
+            case "IAsyncMethods": return makeIAsyncMethodsFrom(abi: abi)
+            case "IBasic": return makeIBasicFrom(abi: abi)
+            case "IIAmImplementable": return makeIIAmImplementableFrom(abi: abi)
+            case "IInterfaceWithObservableVector": return makeIInterfaceWithObservableVectorFrom(abi: abi)
+            case "ISimpleDelegate": return makeISimpleDelegateFrom(abi: abi)
+            case "InterfaceWithReturnDelegate": return makeInterfaceWithReturnDelegateFrom(abi: abi)
+            case "WithKeyword": return makeWithKeywordFrom(abi: abi)
+            case "Deferral": return makeDeferralFrom(abi: abi)
+            case "PropertySet": return makePropertySetFrom(abi: abi)
+            case "StringMap": return makeStringMapFrom(abi: abi)
+            case "ValueSet": return makeValueSetFrom(abi: abi)
+            case "AsyncOperationInt": return makeAsyncOperationIntFrom(abi: abi)
+            case "Base": return makeBaseFrom(abi: abi)
+            case "BaseCollection": return makeBaseCollectionFrom(abi: abi)
+            case "BaseMapCollection": return makeBaseMapCollectionFrom(abi: abi)
+            case "BaseNoOverrides": return makeBaseNoOverridesFrom(abi: abi)
+            case "BaseObservableCollection": return makeBaseObservableCollectionFrom(abi: abi)
+            case "Class": return makeClassFrom(abi: abi)
+            case "CollectionTester": return makeCollectionTesterFrom(abi: abi)
+            case "DeferrableEventArgs": return makeDeferrableEventArgsFrom(abi: abi)
+            case "Derived": return makeDerivedFrom(abi: abi)
+            case "EventTester": return makeEventTesterFrom(abi: abi)
+            case "NoopClosable": return makeNoopClosableFrom(abi: abi)
+            case "Simple": return makeSimpleFrom(abi: abi)
+            case "UnsealedDerived": return makeUnsealedDerivedFrom(abi: abi)
+            case "UnsealedDerived2": return makeUnsealedDerived2From(abi: abi)
+            case "UnsealedDerivedNoOverrides": return makeUnsealedDerivedNoOverridesFrom(abi: abi)
             default: return nil
         }
     }

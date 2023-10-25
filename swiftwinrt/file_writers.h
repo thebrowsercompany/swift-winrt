@@ -268,8 +268,8 @@ namespace swiftwinrt
         w.type_namespace = module;
         w.swift_module = module;
         w.cache = members.cache;
-        w.write("%", w.filter.bind_each<write_interface_make_from_abi>(members.interfaces));
-        w.write("%", w.filter.bind_each<write_class_make_from_abi>(members.classes));
+        w.write("%", w.filter.bind_each<write_make_from_abi>(members.interfaces));
+        w.write("%", w.filter.bind_each<write_make_from_abi>(members.classes));
 
         w.write("@_spi(__MakeFromAbi_DoNotImport)\n");
         w.write("public class __MakeFromAbi: MakeFromAbi {\n");
@@ -277,8 +277,8 @@ namespace swiftwinrt
         w.write("        switch typeName {\n");
         {
             auto indent_guard = w.push_indent(indent{ 3 });
-            w.write("%", w.filter.bind_each<write_interface_make_from_abi_case>(members.interfaces));
-            w.write("%", w.filter.bind_each<write_class_make_from_abi_case>(members.classes));
+            w.write("%", w.filter.bind_each<write_make_from_abi_case>(members.interfaces));
+            w.write("%", w.filter.bind_each<write_make_from_abi_case>(members.classes));
         }
 
         w.write("            default: return nil\n");

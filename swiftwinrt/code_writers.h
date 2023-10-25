@@ -1025,33 +1025,44 @@ bind_impl_fullname(type));
         }
     }
 
-    static bool skip_write_from_abi(writer& w, interface_type const& type)
+    static bool skip_write_from_abi(writer& w, metadata_type const& type)
     {
-        return (type.is_generic() || is_exclusive(type) || !can_write(w, type) || get_full_type_name(type) == "Windows.Foundation.IPropertyValue");
+        if (auto interfaceType = dynamic_cast<const interface_type*>(&type))
+        {
+            return (interfaceType->is_generic() || is_exclusive(*interfaceType) || !can_write(w, interfaceType) || get_full_type_name(interfaceType) == "Windows.Foundation.IPropertyValue");
+        }
+        else if (auto classType = dynamic_cast<const class_type*>(&type))
+        {
+            return classType->default_interface == nullptr;
+        }
+        return true;
     }
 
-    static void write_interface_make_from_abi_case(writer& w, interface_type const& type)
+    static void write_make_from_abi_case(writer& w, metadata_type const& type)
     {
         if (skip_write_from_abi(w, type)) return;
-        w.write("case \"%\": return make%From(abi : abi)\n", type.swift_type_name(), type.swift_type_name());
+        w.write("case \"%\": return make%From(abi: abi)\n", type.swift_type_name(), type.swift_type_name());
     }
 
-    static void write_interface_make_from_abi(writer& w, interface_type const& type)
+    static void write_make_from_abi(writer& w, metadata_type const& type)
     {
         if (skip_write_from_abi(w, type)) return;
 
-        w.write(R"(func make%From(abi: %.IInspectable) -> Any {
-    let swiftAbi: %.% = try! abi.QueryInterface()
-    return %(RawPointer(swiftAbi)!)
-}
-)",
+        w.write("func make%From(abi: %.IInspectable) -> Any {\n", type.swift_type_name(), w.support);
 
-            type.swift_type_name(),
-            w.support,
-            abi_namespace(type),
-            type.swift_type_name(),
-            bind_impl_fullname(type)
-        );
+        if (is_interface(type))
+        {
+            auto indent = w.push_indent();
+            w.write("let swiftAbi: %.% = try! abi.QueryInterface()\n", abi_namespace(type),
+                type.swift_type_name());
+            w.write("return %(RawPointer(swiftAbi)!)\n", bind_impl_fullname(type));
+        }
+        else if (is_class(&type))
+        {
+            auto indent = w.push_indent();
+            w.write("return %(fromAbi: abi)\n", type.swift_type_name());
+        }
+        w.write("}\n\n");
     }
 
     static void write_interface_impl(writer& w, interface_type const& type)
@@ -2751,26 +2762,5 @@ private var _default: SwiftABI!
             }
             other_composable_interfaces.push_back(*iter);
         }
-    }
-
-    static void write_class_make_from_abi_case(writer& w, class_type const& type)
-    {
-        if (!type.default_interface) return;
-        w.write("case \"%\" : return make%From(abi: abi)\n", type.swift_type_name(), type.swift_type_name());
-    }
-
-    static void write_class_make_from_abi(writer& w, class_type const& type)
-    {
-        if (!type.default_interface) return;
-
-        w.write(R"(func make%From(abi: %.IInspectable) -> Any {
-    return %(fromAbi: abi)
-}
-
-)",
-type.swift_type_name(),
-w.support,
-type.swift_type_name()
-);
     }
 }
