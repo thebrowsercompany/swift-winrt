@@ -1693,6 +1693,8 @@ public static func makeAbi() -> CABI {
 
         for (const auto& [_, baseFactory] : type->factories)
         {
+            // only look at activation or composing constructors
+            if (!baseFactory.activatable && !baseFactory.composable) continue;
             if (auto factoryIface = dynamic_cast<const interface_type*>(baseFactory.type))
             {
                 for (const auto& baseMethod : factoryIface->functions)
@@ -1733,7 +1735,7 @@ public static func makeAbi() -> CABI {
                 if (!can_write(w, method)) continue;
 
                 auto baseHasMatchingConstructor = has_matching_constructor(type.base_class, factory, method);
-                w.write("%public init(%) {\n", 
+                w.write("%public init(%) {\n",
                     baseHasMatchingConstructor ? "override " : "",
                     bind<write_function_params>(method, write_type_params::swift_allow_implicit_unwrap));
                 {
@@ -1807,11 +1809,11 @@ public init<Composable: ComposableImpl>(
             for (const auto& method : factoryIface->functions)
             {
                 if (!can_write(w, method)) continue;
-                
+
                 auto baseHasMatchingConstructor = has_matching_constructor(type.base_class, factory, method);
 
                 std::vector<function_param> params = get_projected_params(factory, method);
-              
+
                 w.write("%public init(%) {\n", baseHasMatchingConstructor ? "override " : "", bind<write_function_params2>(params, write_type_params::swift_allow_implicit_unwrap));
                 {
                     auto indent = w.push_indent();
