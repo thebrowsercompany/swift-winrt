@@ -94,6 +94,10 @@ private var IID___x_ABI_Ctest__component_CISimpleDelegate: test_component.IID {
     .init(Data1: 0xB73AD784, Data2: 0xEADD, Data3: 0x54B7, Data4: ( 0xA6,0x8E,0x8A,0xC5,0x6E,0xAB,0x73,0x87 ))// B73AD784-EADD-54B7-A68E-8AC56EAB7387
 }
 
+private var IID___x_ABI_Ctest__component_CISimpleOverrides: test_component.IID {
+    .init(Data1: 0x2F772B66, Data2: 0xE6BE, Data3: 0x51E4, Data4: ( 0xB9,0x22,0x01,0x9D,0x56,0xF7,0xEF,0xD1 ))// 2F772B66-E6BE-51E4-B922-019D56F7EFD1
+}
+
 private var IID___x_ABI_Ctest__component_CISimpleStatics: test_component.IID {
     .init(Data1: 0xC8DCADA0, Data2: 0xFD8E, Data3: 0x5E27, Data4: ( 0x95,0x51,0xA3,0x68,0xFE,0x1D,0x11,0xB2 ))// C8DCADA0-FD8E-5E27-9551-A368FE1D11B2
 }
@@ -1675,6 +1679,17 @@ public enum __ABI_test_component {
     )
 
     public typealias ISimpleDelegateWrapper = InterfaceWrapperBase<__IMPL_test_component.ISimpleDelegateImpl>
+    open class ISimpleOverrides: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CISimpleOverrides }
+
+        internal func CantActuallyOverrideBecauseNotComposableImpl() throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CISimpleOverrides.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.CantActuallyOverrideBecauseNotComposable(pThis))
+            }
+        }
+
+    }
+
     open class ISimpleStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CISimpleStatics }
 

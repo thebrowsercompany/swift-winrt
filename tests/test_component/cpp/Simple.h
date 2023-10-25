@@ -89,6 +89,7 @@ namespace winrt::test_component::implementation
 
         winrt::event_token SimpleEvent(Windows::Foundation::TypedEventHandler<test_component::Simple, test_component::SimpleEventArgs> const& handler);
         void SimpleEvent(winrt::event_token const& token) noexcept;
+        void CantActuallyOverrideBecauseNotComposable(){}
         private:
         hstring m_stringProp{};
         test_component::BlittableStruct m_blittableStruct{};
