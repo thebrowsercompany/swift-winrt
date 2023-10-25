@@ -885,16 +885,15 @@ template <typename T>
 static void merge_into(std::vector<T>& from, std::vector<std::reference_wrapper<T const>>& to, metadata_filter const& f)
 {
     std::vector<std::reference_wrapper<T const>> result;
-    result.reserve(from.size() + to.size());
+    to.reserve(from.size() + to.size());
     for (auto& cp : from)
     {
         if (f.includes(cp.type()))
         {
-            result.emplace_back(cp);
+            to.emplace_back(cp);
         }
     }
-    result.shrink_to_fit();
-    to.swap(result);
+    to.shrink_to_fit();
 }
 
 std::set<std::string_view> metadata_cache::get_dependent_namespaces(std::vector<std::string_view> const& targetNamespaces, metadata_filter const& f)

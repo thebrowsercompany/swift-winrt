@@ -108,7 +108,7 @@ Where <spec> is one or more of:
         settings.brackets = args.exists("brackets");
         settings.test = args.exists("test");
         settings.output_folder = args.value("output", ".");
-        
+
         settings.support = args.value("support", "Windows");
 
         create_directories(settings.output_folder);
@@ -207,7 +207,7 @@ Where <spec> is one or more of:
 
 
         settings.projection_filter = { settings.include.empty() ? include : settings.include, settings.exclude };
-        
+
         settings.component_filter = { settings.include.empty() ? include : settings.include, settings.exclude };
     }
 
@@ -363,6 +363,7 @@ Where <spec> is one or more of:
                             // amount of code that is generated.
                             auto types = mdCache.compile_namespaces(namespaces, mf);
                             write_module_generics(module, types, mf);
+                            write_module_make_from_abi(module, types, mf);
                         });
 
                         if (module == settings.support)
@@ -386,7 +387,7 @@ Where <spec> is one or more of:
                         }
 
                         module_group.get();
-                        
+
                         // don't write the cmake file if only building a single module
                         if (!settings.test)
                         {
@@ -410,7 +411,7 @@ Where <spec> is one or more of:
                         }
                     });
             }
-            
+
             group.add([] { write_cwinrt_build_files(); });
 
             group.get();
@@ -426,7 +427,7 @@ Where <spec> is one or more of:
             }
             else
             {
-                // don't write the root cmake for the test project, instead just write the 
+                // don't write the root cmake for the test project, instead just write the
                 // cmake file for the single module everything is built into, which doesn't
                 // have any dependencies
                 write_cmake_lists(settings.support, {}, module_map[settings.support]);

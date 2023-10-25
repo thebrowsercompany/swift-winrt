@@ -35,7 +35,14 @@ extension IInspectable {
     try self.GetTrustLevel(&trustLevel)
     return trustLevel
   }
+}
 
+struct SwiftTypeName {
+  let module: String
+  let typeName: String
+}
+
+extension IInspectable {
   // maps the namespace to a swift module. needs to be kept in sync with
   // get_swift_module defined in common.h in the code generator
   private func GetSwiftModule(from ns: String) -> String {
@@ -51,13 +58,14 @@ extension IInspectable {
       return "Win2D"
     } else if ns.starts(with: "Microsoft") {
       return "WinAppSDK"
-    } 
+    }
     var mod: String = ns
     mod.removeAll(where: { $0 == "." })
     return mod
   }
 
-  public func GetSwiftClassName() throws -> String {
+
+  func GetSwiftTypeName() throws -> SwiftTypeName {
     let className = try String(hString: GetRuntimeClassName())
     let lastNsIndex = className.lastIndex(of: ".")
     guard let lastNsIndex = lastNsIndex else {
@@ -66,6 +74,6 @@ extension IInspectable {
     let ns = className.prefix(upTo: lastNsIndex)
     let lastNsIndexPlus1 = className.index(after: lastNsIndex)
     let typeName = className.suffix(from: lastNsIndexPlus1)
-    return GetSwiftModule(from: String(ns)) + "." + typeName
+    return SwiftTypeName(module: GetSwiftModule(from: String(ns)), typeName: String(typeName))
   }
 }

@@ -168,7 +168,6 @@ namespace swiftwinrt
             w.write("%", w.filter.bind_each<write_class_abi>(members.classes));
         }
 
-
         w.write("%", w.filter.bind_each<write_struct_init_extension>(members.structs));
         w.write("%", w.filter.bind_each<write_composable_impl_extension>(members.classes));
         w.write("%", w.filter.bind_each<write_delegate_abi>(members.delegates));
@@ -197,7 +196,7 @@ namespace swiftwinrt
         w.write("%", w.filter.bind_each<write_interface_proto>(members.interfaces));
 
         w.write("%", w.filter.bind_each<write_enum_extension>(members.enums));
-    
+
         w.swap();
         write_preamble(w, /* swift_code: */ true);
 
@@ -222,9 +221,6 @@ namespace swiftwinrt
             w.write("%", w.filter.bind_each<write_interface_impl>(members.interfaces));
             w.write("%", w.filter.bind_each<write_delegate_implementation>(members.delegates));
         }
-
-        w.write("%", w.filter.bind_each<write_interface_abi_bridge>(members.interfaces));
-
         w.swap();
         write_preamble(w, /* swift_code: */ true);
 
@@ -261,5 +257,37 @@ namespace swiftwinrt
         w.swap();
         write_preamble(w, /* swift_code: */ true);
         w.save_file("Generics");
+    }
+
+    static void write_module_make_from_abi(std::string_view const& module, type_cache const& members, include_only_used_filter const& filter)
+    {
+        writer w;
+        w.filter = filter;
+        w.support = settings.support;
+        w.c_mod = settings.get_c_module_name();
+        w.type_namespace = module;
+        w.swift_module = module;
+        w.cache = members.cache;
+        w.write("%", w.filter.bind_each<write_make_from_abi>(members.interfaces));
+        w.write("%", w.filter.bind_each<write_make_from_abi>(members.classes));
+
+        w.write("@_spi(__MakeFromAbi_DoNotImport)\n");
+        w.write("public class __MakeFromAbi: MakeFromAbi {\n");
+        w.write("    public static func from(typeName: String, abi: %.IInspectable) -> Any? {\n", w.support);
+        w.write("        switch typeName {\n");
+        {
+            auto indent_guard = w.push_indent(indent{ 3 });
+            w.write("%", w.filter.bind_each<write_make_from_abi_case>(members.interfaces));
+            w.write("%", w.filter.bind_each<write_make_from_abi_case>(members.classes));
+        }
+
+        w.write("            default: return nil\n");
+        w.write("        }\n");
+        w.write("    }\n");
+        w.write("}\n");
+
+        w.swap();
+        write_preamble(w, /* swift_code: */ true);
+        w.save_file("MakeFromAbi");
     }
 }

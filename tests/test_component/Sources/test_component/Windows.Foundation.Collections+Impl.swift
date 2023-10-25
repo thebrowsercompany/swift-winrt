@@ -138,27 +138,3 @@ public enum __IMPL_Windows_Foundation_Collections {
     }
 
 }
-@_spi(__MakeFromAbi_DoNotImport)
-public class IPropertySet_MakeFromAbi : MakeFromAbi {
-    public typealias CABI = __x_ABI_CWindows_CFoundation_CCollections_CIPropertySet
-    public typealias SwiftABI = __ABI_Windows_Foundation_Collections.IPropertySet
-    public typealias SwiftProjection = AnyIPropertySet
-    public static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
-        guard let abi else { return nil }
-        let swiftAbi: SwiftABI = try! test_component.IInspectable(abi).QueryInterface()
-        return __IMPL_Windows_Foundation_Collections.IPropertySetImpl(RawPointer(swiftAbi)!)
-    }
-}
-
-@_spi(__MakeFromAbi_DoNotImport)
-public class IVectorChangedEventArgs_MakeFromAbi : MakeFromAbi {
-    public typealias CABI = __x_ABI_CWindows_CFoundation_CCollections_CIVectorChangedEventArgs
-    public typealias SwiftABI = __ABI_Windows_Foundation_Collections.IVectorChangedEventArgs
-    public typealias SwiftProjection = AnyIVectorChangedEventArgs
-    public static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
-        guard let abi else { return nil }
-        let swiftAbi: SwiftABI = try! test_component.IInspectable(abi).QueryInterface()
-        return __IMPL_Windows_Foundation_Collections.IVectorChangedEventArgsImpl(RawPointer(swiftAbi)!)
-    }
-}
-

@@ -1025,31 +1025,44 @@ bind_impl_fullname(type));
         }
     }
 
-    static void write_interface_abi_bridge(writer& w, interface_type const& type)
+    static bool skip_write_from_abi(writer& w, metadata_type const& type)
     {
-        if (type.is_generic() || is_exclusive(type) || !can_write(w, type) || get_full_type_name(type) == "Windows.Foundation.IPropertyValue") return;
-
-        w.write(R"(^@_spi(__MakeFromAbi_DoNotImport)
-public class %_MakeFromAbi : MakeFromAbi {
-    public typealias CABI = %
-    public typealias SwiftABI = %.%
-    public typealias SwiftProjection = %
-    public static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
-        guard let abi else { return nil }
-        let swiftAbi: SwiftABI = try! %.IInspectable(abi).QueryInterface()
-        return %(RawPointer(swiftAbi)!)
+        if (auto interfaceType = dynamic_cast<const interface_type*>(&type))
+        {
+            return (interfaceType->is_generic() || is_exclusive(*interfaceType) || !can_write(w, interfaceType) || get_full_type_name(interfaceType) == "Windows.Foundation.IPropertyValue");
+        }
+        else if (auto classType = dynamic_cast<const class_type*>(&type))
+        {
+            return classType->default_interface == nullptr;
+        }
+        return true;
     }
-}
 
-)",
-            type,
-            bind_type_mangled(type),
-            abi_namespace(type),
-            type,
-            bind<write_swift_interface_existential_identifier>(type), // Do not include outer Optional<>)
-            w.support,
-            bind_impl_fullname(type)
-        );
+    static void write_make_from_abi_case(writer& w, metadata_type const& type)
+    {
+        if (skip_write_from_abi(w, type)) return;
+        w.write("case \"%\": return make%From(abi: abi)\n", type.swift_type_name(), type.swift_type_name());
+    }
+
+    static void write_make_from_abi(writer& w, metadata_type const& type)
+    {
+        if (skip_write_from_abi(w, type)) return;
+
+        w.write("func make%From(abi: %.IInspectable) -> Any {\n", type.swift_type_name(), w.support);
+
+        if (is_interface(type))
+        {
+            auto indent = w.push_indent();
+            w.write("let swiftAbi: %.% = try! abi.QueryInterface()\n", abi_namespace(type),
+                type.swift_type_name());
+            w.write("return %(RawPointer(swiftAbi)!)\n", bind_impl_fullname(type));
+        }
+        else if (is_class(&type))
+        {
+            auto indent = w.push_indent();
+            w.write("return %(fromAbi: abi)\n", type.swift_type_name());
+        }
+        w.write("}\n\n");
     }
 
     static void write_interface_impl(writer& w, interface_type const& type)
@@ -2026,10 +2039,6 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         internal typealias SwiftProjection = %
         internal typealias CABI = %
         internal typealias SwiftABI = %.%
-        internal static func from(abi: UnsafeMutableRawPointer?) -> SwiftProjection? {
-            guard let abi = abi else { return nil }
-            return .init(fromAbi: .init(abi))
-        }
     }
 }
 )";
@@ -2065,8 +2074,6 @@ override public init<Factory: ComposableActivationFactory>(_ factory: Factory) {
         {
             auto modifier = parent.is_composable() ? "open" : "public";
             w.write("internal typealias Composable = %\n", overrides.swift_type_name());
-            w.write("%% class var _makeFromAbi : any MakeFromAbi.Type { Composable.Default.self }\n",
-                parent.base_class ? "override " : "", modifier);
         }
     }
 
