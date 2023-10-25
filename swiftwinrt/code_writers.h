@@ -390,7 +390,7 @@ namespace swiftwinrt
                 if (composableFactory)
                 {
                     if (params.size() > 0) written_params.append(", ");
-                    written_params.append(w.write_temp("_ _baseInterface: UnsafeMutablePointer<C_IInspectable>?, _ innerInterface: inout %.IInspectable?", w.support));
+                    written_params.append(w.write_temp("_ baseInterface: UnsealedWinRTClassWrapper<%.Composable>?, _ innerInterface: inout %.IInspectable?", classType, w.support));
                 }
 
                 w.write("% func %Impl(%) throws% {\n",
@@ -411,18 +411,21 @@ namespace swiftwinrt
                     if (composableFactory)
                     {
                         w.write("var _innerInterface: UnsafeMutablePointer<C_IInspectable>?\n");
+                        w.write("let _baseInterface = baseInterface?.toIInspectableABI { $0 }\n");
                     }
 
-                    auto guard = write_local_param_wrappers(w, params);
+                    {
+                        auto guard = write_local_param_wrappers(w, params);
 
-                    w.write(R"(_ = try perform(as: %.self) { pThis in
+                        w.write(R"(_ = try perform(as: %.self) { pThis in
     try CHECKED(pThis.pointee.lpVtbl.pointee.%(%))
+}
 )",
 bind_type_mangled(type),
 func_name,
 bind<write_abi_args>(function));
-
-w.write("}\n");
+                    }
+                  
                     if (function.return_type && !isInitializer)
                     {
                         w.write("%\n", bind<write_consume_return_statement>(function));
@@ -1650,13 +1653,13 @@ public static func makeAbi() -> CABI {
 
         auto swift_name = get_swift_name(factory);
         auto return_name = method.return_type.value().name;
-        auto func_call = w.write_temp("try! Self.%.%Impl(%)\n",
+        auto func_call = w.write_temp("try! Self.%.%Impl(%)",
             swift_name,
             func_name,
             bind<write_implementation_args>(method));
         if (auto base_class = type.base_class)
         {
-            w.write("super.init(fromAbi: %)\n", w.support, func_call);
+            w.write("super.init(fromAbi: %)\n", func_call);
         }
         else
         {
@@ -1794,7 +1797,7 @@ public static func makeAbi() -> CABI {
             w.write(R"(^@_spi(WinRTInternal)
 override public init<Composable: ComposableImpl>(
     composing: Composable.Type,
-    _ createCallback: (UnsafeMutablePointer<C_IInspectable>?, inout %.IInspectable?) -> Composable.Default.SwiftABI)
+    _ createCallback: (UnsealedWinRTClassWrapper<Composable>?, inout %.IInspectable?) -> Composable.Default.SwiftABI)
 {
     super.init(composing: composing, createCallback)
 }
@@ -1805,7 +1808,7 @@ override public init<Composable: ComposableImpl>(
             w.write(R"(^@_spi(WinRTInternal)
 public init<Composable: ComposableImpl>(
     composing: Composable.Type,
-    _ createCallback: (UnsafeMutablePointer<C_IInspectable>?, inout %.IInspectable?) -> Composable.Default.SwiftABI)
+    _ createCallback: (UnsealedWinRTClassWrapper<Composable>?, inout %.IInspectable?) -> Composable.Default.SwiftABI)
 {
     self._inner = MakeComposed(composing: composing, (self as! Composable.Default.SwiftProjection), createCallback)
 }

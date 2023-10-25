@@ -6,14 +6,18 @@ public protocol CustomQueryInterface {
     func queryInterface(_ iid: SUPPORT_MODULE.IID) -> IUnknownRef?
 }
 
+extension IUnknownRef {
+    func queryInterface(_ iid: SUPPORT_MODULE.IID) -> IUnknownRef? {
+        var iid = iid
+        var result: UnsafeMutableRawPointer?
+        guard borrow.pointee.lpVtbl.pointee.QueryInterface(borrow, &iid, &result) == S_OK, let result else { return nil }
+        return IUnknownRef(consuming: result)
+    }
+}
+
 @_spi(WinRTInternal)
 public func queryInterface(_ obj: AnyWinRTClass, _ iid: SUPPORT_MODULE.IID) -> IUnknownRef? {
-    guard let cDefault: UnsafeMutablePointer<C_IInspectable> = obj._getABI() else { return nil }
-
-    var iid = iid
-    var result: UnsafeMutableRawPointer?
-    guard cDefault.pointee.lpVtbl.pointee.QueryInterface(cDefault, &iid, &result) == S_OK, let result else { return nil }
-    return IUnknownRef(consuming: result)
+    obj._inner.pUnk.queryInterface(iid)
 }
 
 extension WinRTClass {

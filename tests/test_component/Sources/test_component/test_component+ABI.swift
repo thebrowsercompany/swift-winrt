@@ -278,9 +278,10 @@ public enum __ABI_test_component {
     public class IBaseNoOverridesProtectedFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseNoOverridesProtectedFactory }
 
-        internal func CreateInstanceImpl(_ _baseInterface: UnsafeMutablePointer<C_IInspectable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IBaseNoOverrides {
+        internal func CreateInstanceImpl(_ baseInterface: UnsealedWinRTClassWrapper<test_component.BaseNoOverrides.Composable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IBaseNoOverrides {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBaseNoOverrides>?
             var _innerInterface: UnsafeMutablePointer<C_IInspectable>?
+            let _baseInterface = baseInterface?.toIInspectableABI { $0 }
             _ = try perform(as: __x_ABI_Ctest__component_CIBaseNoOverridesProtectedFactory.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, _baseInterface, &_innerInterface, &value))
             }
@@ -304,9 +305,10 @@ public enum __ABI_test_component {
     public class IBaseProtectedFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseProtectedFactory }
 
-        internal func CreateInstanceImpl(_ _baseInterface: UnsafeMutablePointer<C_IInspectable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IBase {
+        internal func CreateInstanceImpl(_ baseInterface: UnsealedWinRTClassWrapper<test_component.Base.Composable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IBase {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?
             var _innerInterface: UnsafeMutablePointer<C_IInspectable>?
+            let _baseInterface = baseInterface?.toIInspectableABI { $0 }
             _ = try perform(as: __x_ABI_Ctest__component_CIBaseProtectedFactory.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, _baseInterface, &_innerInterface, &value))
             }
@@ -1917,9 +1919,10 @@ public enum __ABI_test_component {
     public class IUnsealedDerived2Factory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerived2Factory }
 
-        internal func CreateInstanceImpl(_ prop: Int32, _ _baseInterface: UnsafeMutablePointer<C_IInspectable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IUnsealedDerived2 {
+        internal func CreateInstanceImpl(_ prop: Int32, _ baseInterface: UnsealedWinRTClassWrapper<test_component.UnsealedDerived2.Composable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IUnsealedDerived2 {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived2>?
             var _innerInterface: UnsafeMutablePointer<C_IInspectable>?
+            let _baseInterface = baseInterface?.toIInspectableABI { $0 }
             _ = try perform(as: __x_ABI_Ctest__component_CIUnsealedDerived2Factory.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, prop, _baseInterface, &_innerInterface, &value))
             }
@@ -1932,9 +1935,10 @@ public enum __ABI_test_component {
     public class IUnsealedDerived2ProtectedFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerived2ProtectedFactory }
 
-        internal func CreateInstanceImpl(_ _baseInterface: UnsafeMutablePointer<C_IInspectable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IUnsealedDerived2 {
+        internal func CreateInstanceImpl(_ baseInterface: UnsealedWinRTClassWrapper<test_component.UnsealedDerived2.Composable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IUnsealedDerived2 {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived2>?
             var _innerInterface: UnsafeMutablePointer<C_IInspectable>?
+            let _baseInterface = baseInterface?.toIInspectableABI { $0 }
             _ = try perform(as: __x_ABI_Ctest__component_CIUnsealedDerived2ProtectedFactory.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, _baseInterface, &_innerInterface, &value))
             }
@@ -1947,9 +1951,10 @@ public enum __ABI_test_component {
     public class IUnsealedDerivedFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedFactory }
 
-        internal func CreateInstanceImpl(_ _baseInterface: UnsafeMutablePointer<C_IInspectable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IUnsealedDerived {
+        internal func CreateInstanceImpl(_ baseInterface: UnsealedWinRTClassWrapper<test_component.UnsealedDerived.Composable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IUnsealedDerived {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived>?
             var _innerInterface: UnsafeMutablePointer<C_IInspectable>?
+            let _baseInterface = baseInterface?.toIInspectableABI { $0 }
             _ = try perform(as: __x_ABI_Ctest__component_CIUnsealedDerivedFactory.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, _baseInterface, &_innerInterface, &value))
             }
@@ -1957,9 +1962,10 @@ public enum __ABI_test_component {
             return IUnsealedDerived(consuming: value!)
         }
 
-        internal func CreateInstance2Impl(_ prop: Int32, _ _baseInterface: UnsafeMutablePointer<C_IInspectable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IUnsealedDerived {
+        internal func CreateInstance2Impl(_ prop: Int32, _ baseInterface: UnsealedWinRTClassWrapper<test_component.UnsealedDerived.Composable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IUnsealedDerived {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived>?
             var _innerInterface: UnsafeMutablePointer<C_IInspectable>?
+            let _baseInterface = baseInterface?.toIInspectableABI { $0 }
             _ = try perform(as: __x_ABI_Ctest__component_CIUnsealedDerivedFactory.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance2(pThis, prop, _baseInterface, &_innerInterface, &value))
             }
@@ -1967,9 +1973,10 @@ public enum __ABI_test_component {
             return IUnsealedDerived(consuming: value!)
         }
 
-        internal func CreateInstance3Impl(_ prop1: String, _ prop2: test_component.Base?, _ _baseInterface: UnsafeMutablePointer<C_IInspectable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IUnsealedDerived {
+        internal func CreateInstance3Impl(_ prop1: String, _ prop2: test_component.Base?, _ baseInterface: UnsealedWinRTClassWrapper<test_component.UnsealedDerived.Composable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IUnsealedDerived {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived>?
             var _innerInterface: UnsafeMutablePointer<C_IInspectable>?
+            let _baseInterface = baseInterface?.toIInspectableABI { $0 }
             let _prop1 = try! HString(prop1)
             _ = try perform(as: __x_ABI_Ctest__component_CIUnsealedDerivedFactory.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance3(pThis, _prop1.get(), RawPointer(prop2), _baseInterface, &_innerInterface, &value))
@@ -1988,9 +1995,10 @@ public enum __ABI_test_component {
     public class IUnsealedDerivedFromNoConstructorFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedFromNoConstructorFactory }
 
-        internal func CreateInstanceImpl(_ _baseInterface: UnsafeMutablePointer<C_IInspectable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IUnsealedDerivedFromNoConstructor {
+        internal func CreateInstanceImpl(_ baseInterface: UnsealedWinRTClassWrapper<test_component.UnsealedDerivedFromNoConstructor.Composable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IUnsealedDerivedFromNoConstructor {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerivedFromNoConstructor>?
             var _innerInterface: UnsafeMutablePointer<C_IInspectable>?
+            let _baseInterface = baseInterface?.toIInspectableABI { $0 }
             _ = try perform(as: __x_ABI_Ctest__component_CIUnsealedDerivedFromNoConstructorFactory.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, _baseInterface, &_innerInterface, &value))
             }
@@ -2018,9 +2026,10 @@ public enum __ABI_test_component {
     public class IUnsealedDerivedNoOverridesProtectedFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedNoOverridesProtectedFactory }
 
-        internal func CreateInstanceImpl(_ _baseInterface: UnsafeMutablePointer<C_IInspectable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IUnsealedDerivedNoOverrides {
+        internal func CreateInstanceImpl(_ baseInterface: UnsealedWinRTClassWrapper<test_component.UnsealedDerivedNoOverrides.Composable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IUnsealedDerivedNoOverrides {
             var value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides>?
             var _innerInterface: UnsafeMutablePointer<C_IInspectable>?
+            let _baseInterface = baseInterface?.toIInspectableABI { $0 }
             _ = try perform(as: __x_ABI_Ctest__component_CIUnsealedDerivedNoOverridesProtectedFactory.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, _baseInterface, &_innerInterface, &value))
             }

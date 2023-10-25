@@ -112,7 +112,7 @@ open class Base : WinRTClass {
     @_spi(WinRTInternal)
     public init<Composable: ComposableImpl>(
         composing: Composable.Type,
-        _ createCallback: (UnsafeMutablePointer<C_IInspectable>?, inout test_component.IInspectable?) -> Composable.Default.SwiftABI)
+        _ createCallback: (UnsealedWinRTClassWrapper<Composable>?, inout test_component.IInspectable?) -> Composable.Default.SwiftABI)
     {
         self._inner = MakeComposed(composing: composing, (self as! Composable.Default.SwiftProjection), createCallback)
     }
@@ -378,7 +378,7 @@ open class BaseNoOverrides : WinRTClass {
     @_spi(WinRTInternal)
     public init<Composable: ComposableImpl>(
         composing: Composable.Type,
-        _ createCallback: (UnsafeMutablePointer<C_IInspectable>?, inout test_component.IInspectable?) -> Composable.Default.SwiftABI)
+        _ createCallback: (UnsealedWinRTClassWrapper<Composable>?, inout test_component.IInspectable?) -> Composable.Default.SwiftABI)
     {
         self._inner = MakeComposed(composing: composing, (self as! Composable.Default.SwiftProjection), createCallback)
     }
@@ -576,38 +576,31 @@ public final class Class : WinRTClass, IBasic {
     private static let _IClassFactory: __ABI_test_component.IClassFactory = try! RoGetActivationFactory(HString("test_component.Class"))
     public init(_ name: String) {
         _inner = try! Self._IClassFactory.CreateInstanceImpl(name)
-
     }
 
     public init(_ name: String, _ fruit: Fruit) {
         _inner = try! Self._IClassFactory.CreateInstance2Impl(name, fruit)
-
     }
 
     public init(_ arg: AnyIMap<String, String>!, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32) {
         _inner = try! Self._IClassFactory.CreateInstance3Impl(arg, dummy1, dummy2, dummy3)
-
     }
 
     public init(_ arg: AnyIMapView<String, String>!, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32, _ dummy4: Int32) {
         _inner = try! Self._IClassFactory.CreateInstance4Impl(arg, dummy1, dummy2, dummy3, dummy4)
-
     }
 
     public init(_ arg: AnyIVector<String>!, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32, _ dummy4: Int32, _ dummy5: Int32) {
         _inner = try! Self._IClassFactory.CreateInstance5Impl(arg, dummy1, dummy2, dummy3, dummy4, dummy5)
-
     }
 
     public init(_ arg: AnyIVectorView<String>!, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32, _ dummy4: Int32, _ dummy5: Int32, _ dummy6: Int32) {
         _inner = try! Self._IClassFactory.CreateInstance6Impl(arg, dummy1, dummy2, dummy3, dummy4, dummy5, dummy6)
-
     }
 
     private static let _IClassFactory2: __ABI_test_component.IClassFactory2 = try! RoGetActivationFactory(HString("test_component.Class"))
     public init(_ name: String, _ fruit: Fruit, _ implementation: AnyIIAmImplementable!) {
         _inner = try! Self._IClassFactory2.CreateInstanceImpl(name, fruit, implementation)
-
     }
 
     private static let _IClassStatics: __ABI_test_component.IClassStatics = try! RoGetActivationFactory(HString("test_component.Class"))
@@ -1024,7 +1017,6 @@ public final class EventTester : WinRTClass {
     private static let _IEventTesterFactory: __ABI_test_component.IEventTesterFactory = try! RoGetActivationFactory(HString("test_component.EventTester"))
     public init(_ impl: AnyIIAmImplementable!) {
         _inner = try! Self._IEventTesterFactory.CreateInstanceImpl(impl)
-
     }
 
     public func subscribe() throws {
@@ -1333,7 +1325,7 @@ open class UnsealedDerived : test_component.Base {
     @_spi(WinRTInternal)
     override public init<Composable: ComposableImpl>(
         composing: Composable.Type,
-        _ createCallback: (UnsafeMutablePointer<C_IInspectable>?, inout test_component.IInspectable?) -> Composable.Default.SwiftABI)
+        _ createCallback: (UnsealedWinRTClassWrapper<Composable>?, inout test_component.IInspectable?) -> Composable.Default.SwiftABI)
     {
         super.init(composing: composing, createCallback)
     }
@@ -1438,7 +1430,7 @@ open class UnsealedDerived2 : test_component.UnsealedDerived {
     @_spi(WinRTInternal)
     override public init<Composable: ComposableImpl>(
         composing: Composable.Type,
-        _ createCallback: (UnsafeMutablePointer<C_IInspectable>?, inout test_component.IInspectable?) -> Composable.Default.SwiftABI)
+        _ createCallback: (UnsealedWinRTClassWrapper<Composable>?, inout test_component.IInspectable?) -> Composable.Default.SwiftABI)
     {
         super.init(composing: composing, createCallback)
     }
@@ -1511,7 +1503,7 @@ open class UnsealedDerivedFromNoConstructor : test_component.UnsealedDerivedNoCo
     @_spi(WinRTInternal)
     override public init<Composable: ComposableImpl>(
         composing: Composable.Type,
-        _ createCallback: (UnsafeMutablePointer<C_IInspectable>?, inout test_component.IInspectable?) -> Composable.Default.SwiftABI)
+        _ createCallback: (UnsealedWinRTClassWrapper<Composable>?, inout test_component.IInspectable?) -> Composable.Default.SwiftABI)
     {
         super.init(composing: composing, createCallback)
     }
@@ -1572,7 +1564,7 @@ open class UnsealedDerivedNoConstructor : test_component.Base {
     @_spi(WinRTInternal)
     override public init<Composable: ComposableImpl>(
         composing: Composable.Type,
-        _ createCallback: (UnsafeMutablePointer<C_IInspectable>?, inout test_component.IInspectable?) -> Composable.Default.SwiftABI)
+        _ createCallback: (UnsealedWinRTClassWrapper<Composable>?, inout test_component.IInspectable?) -> Composable.Default.SwiftABI)
     {
         super.init(composing: composing, createCallback)
     }
@@ -1627,7 +1619,7 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
     @_spi(WinRTInternal)
     override public init<Composable: ComposableImpl>(
         composing: Composable.Type,
-        _ createCallback: (UnsafeMutablePointer<C_IInspectable>?, inout test_component.IInspectable?) -> Composable.Default.SwiftABI)
+        _ createCallback: (UnsealedWinRTClassWrapper<Composable>?, inout test_component.IInspectable?) -> Composable.Default.SwiftABI)
     {
         super.init(composing: composing, createCallback)
     }
