@@ -6,54 +6,67 @@ func makeIAsyncActionFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_Windows_Foundation.IAsyncAction = try! abi.QueryInterface()
     return __IMPL_Windows_Foundation.IAsyncActionImpl(RawPointer(swiftAbi)!)
 }
+
 func makeIAsyncInfoFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_Windows_Foundation.IAsyncInfo = try! abi.QueryInterface()
     return __IMPL_Windows_Foundation.IAsyncInfoImpl(RawPointer(swiftAbi)!)
 }
+
 func makeIClosableFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_Windows_Foundation.IClosable = try! abi.QueryInterface()
     return __IMPL_Windows_Foundation.IClosableImpl(RawPointer(swiftAbi)!)
 }
+
 func makeIStringableFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_Windows_Foundation.IStringable = try! abi.QueryInterface()
     return __IMPL_Windows_Foundation.IStringableImpl(RawPointer(swiftAbi)!)
 }
+
 func makeIPropertySetFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_Windows_Foundation_Collections.IPropertySet = try! abi.QueryInterface()
     return __IMPL_Windows_Foundation_Collections.IPropertySetImpl(RawPointer(swiftAbi)!)
 }
+
 func makeIVectorChangedEventArgsFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_Windows_Foundation_Collections.IVectorChangedEventArgs = try! abi.QueryInterface()
     return __IMPL_Windows_Foundation_Collections.IVectorChangedEventArgsImpl(RawPointer(swiftAbi)!)
 }
+
 func makeIAsyncMethodsFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_test_component.IAsyncMethods = try! abi.QueryInterface()
     return __IMPL_test_component.IAsyncMethodsImpl(RawPointer(swiftAbi)!)
 }
+
 func makeIBasicFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_test_component.IBasic = try! abi.QueryInterface()
     return __IMPL_test_component.IBasicImpl(RawPointer(swiftAbi)!)
 }
+
 func makeIIAmImplementableFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_test_component.IIAmImplementable = try! abi.QueryInterface()
     return __IMPL_test_component.IIAmImplementableImpl(RawPointer(swiftAbi)!)
 }
+
 func makeIInterfaceWithObservableVectorFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_test_component.IInterfaceWithObservableVector = try! abi.QueryInterface()
     return __IMPL_test_component.IInterfaceWithObservableVectorImpl(RawPointer(swiftAbi)!)
 }
+
 func makeISimpleDelegateFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_test_component.ISimpleDelegate = try! abi.QueryInterface()
     return __IMPL_test_component.ISimpleDelegateImpl(RawPointer(swiftAbi)!)
 }
+
 func makeInterfaceWithReturnDelegateFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_test_component.InterfaceWithReturnDelegate = try! abi.QueryInterface()
     return __IMPL_test_component.InterfaceWithReturnDelegateImpl(RawPointer(swiftAbi)!)
 }
+
 func makeWithKeywordFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_test_component.WithKeyword = try! abi.QueryInterface()
     return __IMPL_test_component.WithKeywordImpl(RawPointer(swiftAbi)!)
 }
+
 func makeDeferralFrom(abi: test_component.IInspectable) -> Any {
     return Deferral(fromAbi: abi)
 }
@@ -177,11 +190,14 @@ public class __MakeFromAbi: MakeFromAbi {
             case "CollectionTester": return makeCollectionTesterFrom(abi: abi)
             case "DeferrableEventArgs": return makeDeferrableEventArgsFrom(abi: abi)
             case "Derived": return makeDerivedFrom(abi: abi)
+            case "DerivedFromNoConstructor": return makeDerivedFromNoConstructorFrom(abi: abi)
             case "EventTester": return makeEventTesterFrom(abi: abi)
             case "NoopClosable": return makeNoopClosableFrom(abi: abi)
             case "Simple": return makeSimpleFrom(abi: abi)
             case "UnsealedDerived": return makeUnsealedDerivedFrom(abi: abi)
             case "UnsealedDerived2": return makeUnsealedDerived2From(abi: abi)
+            case "UnsealedDerivedFromNoConstructor": return makeUnsealedDerivedFromNoConstructorFrom(abi: abi)
+            case "UnsealedDerivedNoConstructor": return makeUnsealedDerivedNoConstructorFrom(abi: abi)
             case "UnsealedDerivedNoOverrides": return makeUnsealedDerivedNoOverridesFrom(abi: abi)
             default: return nil
         }
