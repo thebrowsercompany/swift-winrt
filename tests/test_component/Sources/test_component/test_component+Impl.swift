@@ -18,15 +18,15 @@ public enum __IMPL_test_component {
         }
     }
 
-    class IAsyncMethodsImpl: IAsyncMethods, WinRTAbiImpl {
-        typealias Bridge = IAsyncMethodsBridge
-        let _default: Bridge.SwiftABI
-        var thisPtr: test_component.IInspectable { _default }
-        init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    fileprivate class IAsyncMethodsImpl: IAsyncMethods, WinRTAbiImpl {
+        fileprivate typealias Bridge = IAsyncMethodsBridge
+        fileprivate let _default: Bridge.SwiftABI
+        fileprivate var thisPtr: test_component.IInspectable { _default }
+        fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
             _default = Bridge.SwiftABI(fromAbi)
         }
 
-        func operationWithProgress(_ value: test_component.DateTime) throws -> AnyIAsyncOperationWithProgress<Int32, Double>! {
+        fileprivate func operationWithProgress(_ value: test_component.DateTime) throws -> AnyIAsyncOperationWithProgress<Int32, Double>! {
             try _default.OperationWithProgressImpl(value)
         }
 
@@ -47,15 +47,15 @@ public enum __IMPL_test_component {
         }
     }
 
-    class IBasicImpl: IBasic, WinRTAbiImpl {
-        typealias Bridge = IBasicBridge
-        let _default: Bridge.SwiftABI
-        var thisPtr: test_component.IInspectable { _default }
-        init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    fileprivate class IBasicImpl: IBasic, WinRTAbiImpl {
+        fileprivate typealias Bridge = IBasicBridge
+        fileprivate let _default: Bridge.SwiftABI
+        fileprivate var thisPtr: test_component.IInspectable { _default }
+        fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
             _default = Bridge.SwiftABI(fromAbi)
         }
 
-        func method() {
+        fileprivate func method() {
             try! _default.MethodImpl()
         }
 
@@ -76,77 +76,77 @@ public enum __IMPL_test_component {
         }
     }
 
-    class IIAmImplementableImpl: IIAmImplementable, WinRTAbiImpl {
-        typealias Bridge = IIAmImplementableBridge
-        let _default: Bridge.SwiftABI
-        var thisPtr: test_component.IInspectable { _default }
-        init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    fileprivate class IIAmImplementableImpl: IIAmImplementable, WinRTAbiImpl {
+        fileprivate typealias Bridge = IIAmImplementableBridge
+        fileprivate let _default: Bridge.SwiftABI
+        fileprivate var thisPtr: test_component.IInspectable { _default }
+        fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
             _default = Bridge.SwiftABI(fromAbi)
         }
 
-        func inInt32(_ value: Int32) throws -> String {
+        fileprivate func inInt32(_ value: Int32) throws -> String {
             try _default.InInt32Impl(value)
         }
 
-        func inString(_ value: String) throws -> String {
+        fileprivate func inString(_ value: String) throws -> String {
             try _default.InStringImpl(value)
         }
 
-        func inObject(_ value: Any!) throws -> String {
+        fileprivate func inObject(_ value: Any!) throws -> String {
             try _default.InObjectImpl(value)
         }
 
-        func inEnum(_ value: Signed) throws -> String {
+        fileprivate func inEnum(_ value: Signed) throws -> String {
             try _default.InEnumImpl(value)
         }
 
-        func outInt32(_ value: inout Int32) throws {
+        fileprivate func outInt32(_ value: inout Int32) throws {
             try _default.OutInt32Impl(&value)
         }
 
-        func outString(_ value: inout String) throws {
+        fileprivate func outString(_ value: inout String) throws {
             try _default.OutStringImpl(&value)
         }
 
-        func outObject(_ value: inout Any!) throws {
+        fileprivate func outObject(_ value: inout Any!) throws {
             try _default.OutObjectImpl(&value)
         }
 
-        func outBlittableStruct(_ value: inout BlittableStruct) throws {
+        fileprivate func outBlittableStruct(_ value: inout BlittableStruct) throws {
             try _default.OutBlittableStructImpl(&value)
         }
 
-        func outNonBlittableStruct(_ value: inout NonBlittableStruct) throws {
+        fileprivate func outNonBlittableStruct(_ value: inout NonBlittableStruct) throws {
             try _default.OutNonBlittableStructImpl(&value)
         }
 
-        func outEnum(_ value: inout Signed) throws {
+        fileprivate func outEnum(_ value: inout Signed) throws {
             try _default.OutEnumImpl(&value)
         }
 
-        func returnObject() throws -> Any! {
+        fileprivate func returnObject() throws -> Any! {
             try _default.ReturnObjectImpl()
         }
 
-        func returnEnum() throws -> Signed {
+        fileprivate func returnEnum() throws -> Signed {
             try _default.ReturnEnumImpl()
         }
 
-        func fireEvent(_ data: String) throws {
+        fileprivate func fireEvent(_ data: String) throws {
             try _default.FireEventImpl(data)
         }
 
-        var enumProperty : Fruit {
+        fileprivate var enumProperty : Fruit {
             get { try! _default.get_EnumPropertyImpl() }
             set { try! _default.put_EnumPropertyImpl(newValue) }
         }
 
-        var id : test_component.GUID? {
+        fileprivate var id : test_component.GUID? {
             get { try! _default.get_IdImpl() }
             set { try! _default.put_IdImpl(newValue) }
         }
 
-        lazy var implementableEvent : Event<test_component.InDelegate> = {
+        fileprivate lazy var implementableEvent : Event<test_component.InDelegate> = {
           .init(
             add: { [weak this = _default] in
               guard let this else { return .init() }
@@ -175,15 +175,15 @@ public enum __IMPL_test_component {
         }
     }
 
-    class IInterfaceWithObservableVectorImpl: IInterfaceWithObservableVector, WinRTAbiImpl {
-        typealias Bridge = IInterfaceWithObservableVectorBridge
-        let _default: Bridge.SwiftABI
-        var thisPtr: test_component.IInspectable { _default }
-        init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    fileprivate class IInterfaceWithObservableVectorImpl: IInterfaceWithObservableVector, WinRTAbiImpl {
+        fileprivate typealias Bridge = IInterfaceWithObservableVectorBridge
+        fileprivate let _default: Bridge.SwiftABI
+        fileprivate var thisPtr: test_component.IInspectable { _default }
+        fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
             _default = Bridge.SwiftABI(fromAbi)
         }
 
-        func takeObservable(_ basics: AnyIObservableVector<AnyIBasic?>!) throws {
+        fileprivate func takeObservable(_ basics: AnyIObservableVector<AnyIBasic?>!) throws {
             try _default.TakeObservableImpl(basics)
         }
 
@@ -204,19 +204,19 @@ public enum __IMPL_test_component {
         }
     }
 
-    class ISimpleDelegateImpl: ISimpleDelegate, WinRTAbiImpl {
-        typealias Bridge = ISimpleDelegateBridge
-        let _default: Bridge.SwiftABI
-        var thisPtr: test_component.IInspectable { _default }
-        init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    fileprivate class ISimpleDelegateImpl: ISimpleDelegate, WinRTAbiImpl {
+        fileprivate typealias Bridge = ISimpleDelegateBridge
+        fileprivate let _default: Bridge.SwiftABI
+        fileprivate var thisPtr: test_component.IInspectable { _default }
+        fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
             _default = Bridge.SwiftABI(fromAbi)
         }
 
-        func doThis() throws {
+        fileprivate func doThis() throws {
             try _default.DoThisImpl()
         }
 
-        func doThat(_ val: Int32) throws {
+        fileprivate func doThat(_ val: Int32) throws {
             try _default.DoThatImpl(val)
         }
 
@@ -237,15 +237,15 @@ public enum __IMPL_test_component {
         }
     }
 
-    class InterfaceWithReturnDelegateImpl: InterfaceWithReturnDelegate, WinRTAbiImpl {
-        typealias Bridge = InterfaceWithReturnDelegateBridge
-        let _default: Bridge.SwiftABI
-        var thisPtr: test_component.IInspectable { _default }
-        init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    fileprivate class InterfaceWithReturnDelegateImpl: InterfaceWithReturnDelegate, WinRTAbiImpl {
+        fileprivate typealias Bridge = InterfaceWithReturnDelegateBridge
+        fileprivate let _default: Bridge.SwiftABI
+        fileprivate var thisPtr: test_component.IInspectable { _default }
+        fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
             _default = Bridge.SwiftABI(fromAbi)
         }
 
-        lazy var eventWithReturn : Event<test_component.ReturnInt32Delegate> = {
+        fileprivate lazy var eventWithReturn : Event<test_component.ReturnInt32Delegate> = {
           .init(
             add: { [weak this = _default] in
               guard let this else { return .init() }
@@ -274,24 +274,24 @@ public enum __IMPL_test_component {
         }
     }
 
-    class WithKeywordImpl: WithKeyword, WinRTAbiImpl {
-        typealias Bridge = WithKeywordBridge
-        let _default: Bridge.SwiftABI
-        var thisPtr: test_component.IInspectable { _default }
-        init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    fileprivate class WithKeywordImpl: WithKeyword, WinRTAbiImpl {
+        fileprivate typealias Bridge = WithKeywordBridge
+        fileprivate let _default: Bridge.SwiftABI
+        fileprivate var thisPtr: test_component.IInspectable { _default }
+        fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
             _default = Bridge.SwiftABI(fromAbi)
         }
 
-        func `enum`(_ `extension`: String) throws {
+        fileprivate func `enum`(_ `extension`: String) throws {
             try _default.EnumImpl(`extension`)
         }
 
-        var `struct` : String {
+        fileprivate var `struct` : String {
             get { try! _default.get_StructImpl() }
             set { try! _default.put_StructImpl(newValue) }
         }
 
-        lazy var `repeat` : Event<EventHandler<Any?>> = {
+        fileprivate lazy var `repeat` : Event<EventHandler<Any?>> = {
           .init(
             add: { [weak this = _default] in
               guard let this else { return .init() }

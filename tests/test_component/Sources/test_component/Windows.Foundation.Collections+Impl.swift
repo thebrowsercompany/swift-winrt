@@ -18,11 +18,11 @@ public enum __IMPL_Windows_Foundation_Collections {
         }
     }
 
-    class IPropertySetImpl: IPropertySet, WinRTAbiImpl {
-        typealias Bridge = IPropertySetBridge
-        let _default: Bridge.SwiftABI
-        var thisPtr: test_component.IInspectable { _default }
-        init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    fileprivate class IPropertySetImpl: IPropertySet, WinRTAbiImpl {
+        fileprivate typealias Bridge = IPropertySetBridge
+        fileprivate let _default: Bridge.SwiftABI
+        fileprivate var thisPtr: test_component.IInspectable { _default }
+        fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
             _default = Bridge.SwiftABI(fromAbi)
         }
 
@@ -31,7 +31,7 @@ public enum __IMPL_Windows_Foundation_Collections {
         public typealias T = AnyIKeyValuePair<String, Any?>?
         internal lazy var _IObservableMap: IObservableMapString_Any = try! _default.QueryInterface()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.mapchanged)
-        lazy var mapChanged : Event<MapChangedEventHandler<String, Any?>> = {
+        fileprivate lazy var mapChanged : Event<MapChangedEventHandler<String, Any?>> = {
           .init(
             add: { [weak this = _IObservableMap] in
               guard let this else { return .init() }
@@ -45,43 +45,43 @@ public enum __IMPL_Windows_Foundation_Collections {
 
         internal lazy var _IMap: IMapString_Any = try! _default.QueryInterface()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.lookup)
-        func lookup(_ key: String) -> Any? {
+        fileprivate func lookup(_ key: String) -> Any? {
             try! _IMap.LookupImpl(key)
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.haskey)
-        func hasKey(_ key: String) -> Bool {
+        fileprivate func hasKey(_ key: String) -> Bool {
             try! _IMap.HasKeyImpl(key)
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.getview)
-        func getView() -> AnyIMapView<String, Any?>? {
+        fileprivate func getView() -> AnyIMapView<String, Any?>? {
             try! _IMap.GetViewImpl()
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.insert)
-        func insert(_ key: String, _ value: Any?) -> Bool {
+        fileprivate func insert(_ key: String, _ value: Any?) -> Bool {
             try! _IMap.InsertImpl(key, value)
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.remove)
-        func remove(_ key: String) {
+        fileprivate func remove(_ key: String) {
             try! _IMap.RemoveImpl(key)
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.clear)
-        func clear() {
+        fileprivate func clear() {
             try! _IMap.ClearImpl()
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.size)
-        var size : UInt32 {
+        fileprivate var size : UInt32 {
             get { try! _IMap.get_SizeImpl() }
         }
 
         internal lazy var _IIterable: IIterableIKeyValuePairString_Any = try! _default.QueryInterface()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.first)
-        func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
+        fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
             try! _IIterable.FirstImpl()
         }
 
@@ -102,21 +102,21 @@ public enum __IMPL_Windows_Foundation_Collections {
         }
     }
 
-    class IVectorChangedEventArgsImpl: IVectorChangedEventArgs, WinRTAbiImpl {
-        typealias Bridge = IVectorChangedEventArgsBridge
-        let _default: Bridge.SwiftABI
-        var thisPtr: test_component.IInspectable { _default }
-        init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    fileprivate class IVectorChangedEventArgsImpl: IVectorChangedEventArgs, WinRTAbiImpl {
+        fileprivate typealias Bridge = IVectorChangedEventArgsBridge
+        fileprivate let _default: Bridge.SwiftABI
+        fileprivate var thisPtr: test_component.IInspectable { _default }
+        fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
             _default = Bridge.SwiftABI(fromAbi)
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorchangedeventargs.collectionchange)
-        var collectionChange : CollectionChange {
+        fileprivate var collectionChange : CollectionChange {
             get { try! _default.get_CollectionChangeImpl() }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorchangedeventargs.index)
-        var index : UInt32 {
+        fileprivate var index : UInt32 {
             get { try! _default.get_IndexImpl() }
         }
 

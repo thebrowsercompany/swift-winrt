@@ -1065,14 +1065,14 @@ bind_bridge_fullname(type));
     {
         if (skip_write_from_abi(w, type)) return;
 
-        w.write("func make%From(abi: %.IInspectable) -> Any {\n", type.swift_type_name(), w.support);
+        w.write("fileprivate func make%From(abi: %.IInspectable) -> Any {\n", type.swift_type_name(), w.support);
 
         if (is_interface(type))
         {
             auto indent = w.push_indent();
             w.write("let swiftAbi: %.% = try! abi.QueryInterface()\n", abi_namespace(type),
                 type.swift_type_name());
-            w.write("return %(RawPointer(swiftAbi)!)\n", bind_impl_fullname(type));
+            w.write("return %.from(abi: RawPointer(swiftAbi))!\n", bind_bridge_fullname(type));
         }
         else if (is_class(&type))
         {
@@ -1097,7 +1097,7 @@ bind_bridge_fullname(type));
             swiftABI = w.write_temp("%.%", abi_namespace(type), type);
             vtable = swiftABI;
         }
-        
+
         auto modifier = is_generic ? "internal" : "public";
         w.write(R"(% class % : AbiInterfaceBridge {
     % typealias CABI = %
@@ -1136,11 +1136,11 @@ vtable);
         }
         write_interface_bridge(w, type);
 
-        w.write(R"(class %: %, WinRTAbiImpl {
-    typealias Bridge = %
-    let _default: Bridge.SwiftABI
-    var thisPtr: %.IInspectable { _default }
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        w.write(R"(fileprivate class %: %, WinRTAbiImpl {
+    fileprivate typealias Bridge = %
+    fileprivate let _default: Bridge.SwiftABI
+    fileprivate var thisPtr: %.IInspectable { _default }
+    fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -1487,7 +1487,7 @@ vtable);
     {
         write_interface_bridge(w, type);
 
-        w.write("internal class % : %, AbiInterfaceImpl {\n",
+        w.write("fileprivate class % : %, AbiInterfaceImpl {\n",
             bind_impl_name(type), type.generic_type_abi_name());
 
         auto indent_guard = w.push_indent();
@@ -1944,18 +1944,23 @@ public init<Composable: ComposableImpl>(
         {
             if (iface.overridable)
             {
-                modifier.append("open ");
+                modifier = "open ";
             }
             else
             {
-                modifier.append("public ");
+                modifier = "public ";
             }
+        }
+        else
+        {
+            modifier = "fileprivate ";
         }
 
         if (iface.attributed)
         {
             modifier.append("static ");
         }
+
         return modifier;
     }
 
