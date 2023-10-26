@@ -1,0 +1,38 @@
+name: Build for Nuget.org
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release-and-publish:
+    env:
+      NUGET_VERSION_MAJOR: 0
+      NUGET_VERSION_MINOR: ${{ github.run_number }}
+      NUGET_VERSION_PATCH: 0
+    runs-on: windows-2022
+    name: Swift/WinRT Release Build & Publish
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - uses: ./.github/actions/windows-build
+        env:
+            NUGET_VERSION: ${{ env.NUGET_VERSION_MAJOR}}.${{env.NUGET_VERSION_MINOR }}.${{env.NUGET_VERSION_PATCH }}
+        with:
+          config: release
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build Nuget
+        shell: cmd
+        run: |
+          cmake --build --preset release --target nuget
+
+      - name: Publish NuGet Package
+        uses: actions/upload-artifact@v3
+        with:
+          name: Nuget
+          path: ${{ github.workspace }}\build\release\*.nupkg
