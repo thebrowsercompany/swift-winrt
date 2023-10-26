@@ -1,9 +1,6 @@
 import C_BINDINGS_MODULE
 import WinSDK
 
-public protocol CanMakeFromAbi {
-    static var _makeFromAbi: any MakeFromAbi.Type { get }
-}
 public protocol Initializable {
   init()
 }

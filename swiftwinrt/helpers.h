@@ -447,8 +447,8 @@ namespace swiftwinrt
     {
         return has_attribute(type.type(), "Windows.Foundation.Metadata", "ExclusiveToAttribute");
     }
-
-    inline std::optional<attributed_type> try_get_factory_info(writer& w, typedef_base const& type)
+    
+    inline const class_type* try_get_exclusive_to(writer& w, typedef_base const& type)
     {
         auto attribute = get_attribute(type.type(), metadata_namespace, "ExclusiveToAttribute");
 
@@ -456,20 +456,26 @@ namespace swiftwinrt
         {
             return {};
         }
-        auto interface_name = type.swift_type_name();
         auto class_name = get_attribute_value<ElemSig::SystemType>(attribute, 0).name;
         auto last_ns_index = class_name.find_last_of('.');
         assert(last_ns_index != class_name.npos);
         auto ns = class_name.substr(0, last_ns_index);
         auto name = class_name.substr(last_ns_index + 1);
 
-        auto classType = dynamic_cast<const class_type*>(&w.cache->find(ns, name));
-        assert(classType);
+        return dynamic_cast<const class_type*>(&w.cache->find(ns, name));
+    }
 
-        auto search = classType->factories.find(std::string(interface_name));
-        if (search != classType->factories.end())
+    inline std::optional<attributed_type> try_get_factory_info(writer& w, typedef_base const& type)
+    {
+        auto attribute = get_attribute(type.type(), metadata_namespace, "ExclusiveToAttribute");
+
+        if (auto classType = try_get_exclusive_to(w, type))
         {
-            return search->second;
+            auto search = classType->factories.find(std::string(type.swift_type_name()));
+            if (search != classType->factories.end())
+            {
+                return search->second;
+            }
         }
 
         return {};

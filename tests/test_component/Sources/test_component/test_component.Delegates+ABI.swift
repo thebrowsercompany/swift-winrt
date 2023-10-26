@@ -18,12 +18,13 @@ public enum __ABI_test_component_Delegates {
 }
 // MARK - InDelegate
 extension __ABI_test_component_Delegates {
-    open class InDelegate: test_component.IUnknown {
+    public class InDelegate: test_component.IUnknown {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CDelegates_CIInDelegate }
 
-        open func InvokeImpl(_ value: HSTRING?) throws {
+        open func InvokeImpl(_ value: String) throws {
+            let _value = try! HString(value)
             _ = try perform(as: __x_ABI_Ctest__component_CDelegates_CIInDelegate.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _value.get()))
             }
         }
 
@@ -74,10 +75,10 @@ public extension WinRTDelegateBridge where CABI == __x_ABI_Ctest__component_CDel
 
 // MARK - ReturnInt32Delegate
 extension __ABI_test_component_Delegates {
-    open class ReturnInt32Delegate: test_component.IUnknown {
+    public class ReturnInt32Delegate: test_component.IUnknown {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate }
 
-        open func InvokeImpl() throws -> INT32 {
+        open func InvokeImpl() throws -> Int32 {
             var result: INT32 = 0
             _ = try perform(as: __x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, &result))
@@ -132,7 +133,7 @@ public extension WinRTDelegateBridge where CABI == __x_ABI_Ctest__component_CDel
 
 // MARK - SignalDelegate
 extension __ABI_test_component_Delegates {
-    open class SignalDelegate: test_component.IUnknown {
+    public class SignalDelegate: test_component.IUnknown {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CDelegates_CISignalDelegate }
 
         open func InvokeImpl() throws {

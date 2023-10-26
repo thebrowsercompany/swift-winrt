@@ -12,8 +12,7 @@ public enum __IMPL_test_component_Delegates {
             guard let abi = abi else { return nil }
             let _default = SwiftABI(abi)
             let handler: Handler = { (value) in
-                let _value = try! HString(value)
-                try! _default.InvokeImpl(_value.get())
+                try! _default.InvokeImpl(value)
             }
             return handler
         }
@@ -27,8 +26,7 @@ public enum __IMPL_test_component_Delegates {
             guard let abi = abi else { return nil }
             let _default = SwiftABI(abi)
             let handler: Handler = { () in
-                let result = try! _default.InvokeImpl()
-                return result
+                try! _default.InvokeImpl()
             }
             return handler
         }

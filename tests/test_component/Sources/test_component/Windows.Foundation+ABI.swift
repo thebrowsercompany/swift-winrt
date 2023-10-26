@@ -71,21 +71,23 @@ private var IID___x_ABI_C__FITypedEventHandler_2_TSender_TResult: test_component
 }
 
 public enum __ABI_Windows_Foundation {
-    open class IAsyncAction: test_component.IInspectable {
+    public class IAsyncAction: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIAsyncAction }
 
-        open func put_CompletedImpl(_ handler: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler>?) throws {
+        open func put_CompletedImpl(_ handler: test_component.AsyncActionCompletedHandler?) throws {
+            let handlerWrapper = __ABI_Windows_Foundation.AsyncActionCompletedHandlerWrapper(handler)
+            let _handler = try! handlerWrapper?.toABI { $0 }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIAsyncAction.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.put_Completed(pThis, handler))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.put_Completed(pThis, _handler))
             }
         }
 
-        open func get_CompletedImpl() throws -> UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler>? {
+        open func get_CompletedImpl() throws -> test_component.AsyncActionCompletedHandler? {
             var handler: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler>?
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIAsyncAction.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &handler))
             }
-            return handler
+            return __ABI_Windows_Foundation.AsyncActionCompletedHandlerWrapper.unwrapFrom(abi: handler)
         }
 
         open func GetResultsImpl() throws {
@@ -176,10 +178,10 @@ public enum __ABI_Windows_Foundation {
     )
 
     public typealias IAsyncActionWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.IAsyncActionImpl>
-    open class IAsyncInfo: test_component.IInspectable {
+    public class IAsyncInfo: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIAsyncInfo }
 
-        open func get_IdImpl() throws -> UINT32 {
+        open func get_IdImpl() throws -> UInt32 {
             var result: UINT32 = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIAsyncInfo.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Id(pThis, &result))
@@ -187,7 +189,7 @@ public enum __ABI_Windows_Foundation {
             return result
         }
 
-        open func get_StatusImpl() throws -> __x_ABI_CWindows_CFoundation_CAsyncStatus {
+        open func get_StatusImpl() throws -> test_component.AsyncStatus {
             var result: __x_ABI_CWindows_CFoundation_CAsyncStatus = .init(0)
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIAsyncInfo.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Status(pThis, &result))
@@ -310,7 +312,7 @@ public enum __ABI_Windows_Foundation {
     )
 
     public typealias IAsyncInfoWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.IAsyncInfoImpl>
-    open class IClosable: test_component.IInspectable {
+    public class IClosable: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIClosable }
 
         open func CloseImpl() throws {
@@ -385,7 +387,7 @@ public enum __ABI_Windows_Foundation {
     )
 
     public typealias IClosableWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.IClosableImpl>
-    open class IDeferral: test_component.IInspectable {
+    public class IDeferral: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIDeferral }
 
         internal func CompleteImpl() throws {
@@ -396,23 +398,25 @@ public enum __ABI_Windows_Foundation {
 
     }
 
-    open class IDeferralFactory: test_component.IInspectable {
+    public class IDeferralFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIDeferralFactory }
 
-        internal func CreateImpl(_ handler: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIDeferralCompletedHandler>?) throws -> UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIDeferral>? {
+        internal func CreateImpl(_ handler: test_component.DeferralCompletedHandler?) throws -> IDeferral {
             var result: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIDeferral>?
+            let handlerWrapper = __ABI_Windows_Foundation.DeferralCompletedHandlerWrapper(handler)
+            let _handler = try! handlerWrapper?.toABI { $0 }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIDeferralFactory.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.Create(pThis, handler, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Create(pThis, _handler, &result))
             }
-            return result
+            return IDeferral(consuming: result!)
         }
 
     }
 
-    open class IPropertyValue: test_component.IInspectable {
+    public class IPropertyValue: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIPropertyValue }
 
-        open func get_TypeImpl() throws -> __x_ABI_CWindows_CFoundation_CPropertyType {
+        open func get_TypeImpl() throws -> test_component.PropertyType {
             var value: __x_ABI_CWindows_CFoundation_CPropertyType = .init(0)
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Type(pThis, &value))
@@ -420,15 +424,15 @@ public enum __ABI_Windows_Foundation {
             return value
         }
 
-        open func get_IsNumericScalarImpl() throws -> boolean {
+        open func get_IsNumericScalarImpl() throws -> Bool {
             var value: boolean = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_IsNumericScalar(pThis, &value))
             }
-            return value
+            return .init(from: value)
         }
 
-        open func GetUInt8Impl() throws -> UINT8 {
+        open func GetUInt8Impl() throws -> UInt8 {
             var value: UINT8 = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetUInt8(pThis, &value))
@@ -436,7 +440,7 @@ public enum __ABI_Windows_Foundation {
             return value
         }
 
-        open func GetInt16Impl() throws -> INT16 {
+        open func GetInt16Impl() throws -> Int16 {
             var value: INT16 = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetInt16(pThis, &value))
@@ -444,7 +448,7 @@ public enum __ABI_Windows_Foundation {
             return value
         }
 
-        open func GetUInt16Impl() throws -> UINT16 {
+        open func GetUInt16Impl() throws -> UInt16 {
             var value: UINT16 = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetUInt16(pThis, &value))
@@ -452,7 +456,7 @@ public enum __ABI_Windows_Foundation {
             return value
         }
 
-        open func GetInt32Impl() throws -> INT32 {
+        open func GetInt32Impl() throws -> Int32 {
             var value: INT32 = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetInt32(pThis, &value))
@@ -460,7 +464,7 @@ public enum __ABI_Windows_Foundation {
             return value
         }
 
-        open func GetUInt32Impl() throws -> UINT32 {
+        open func GetUInt32Impl() throws -> UInt32 {
             var value: UINT32 = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetUInt32(pThis, &value))
@@ -468,7 +472,7 @@ public enum __ABI_Windows_Foundation {
             return value
         }
 
-        open func GetInt64Impl() throws -> INT64 {
+        open func GetInt64Impl() throws -> Int64 {
             var value: INT64 = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetInt64(pThis, &value))
@@ -476,7 +480,7 @@ public enum __ABI_Windows_Foundation {
             return value
         }
 
-        open func GetUInt64Impl() throws -> UINT64 {
+        open func GetUInt64Impl() throws -> UInt64 {
             var value: UINT64 = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetUInt64(pThis, &value))
@@ -484,7 +488,7 @@ public enum __ABI_Windows_Foundation {
             return value
         }
 
-        open func GetSingleImpl() throws -> FLOAT {
+        open func GetSingleImpl() throws -> Float {
             var value: FLOAT = 0.0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetSingle(pThis, &value))
@@ -492,7 +496,7 @@ public enum __ABI_Windows_Foundation {
             return value
         }
 
-        open func GetDoubleImpl() throws -> DOUBLE {
+        open func GetDoubleImpl() throws -> Double {
             var value: DOUBLE = 0.0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetDouble(pThis, &value))
@@ -500,28 +504,28 @@ public enum __ABI_Windows_Foundation {
             return value
         }
 
-        open func GetChar16Impl() throws -> WCHAR {
+        open func GetChar16Impl() throws -> Character {
             var value: WCHAR = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetChar16(pThis, &value))
             }
-            return value
+            return .init(from: value)
         }
 
-        open func GetBooleanImpl() throws -> boolean {
+        open func GetBooleanImpl() throws -> Bool {
             var value: boolean = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetBoolean(pThis, &value))
             }
-            return value
+            return .init(from: value)
         }
 
-        open func GetStringImpl() throws -> HSTRING? {
+        open func GetStringImpl() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetString(pThis, &value))
             }
-            return value
+            return .init(from: value)
         }
 
         open func GetGuidImpl() throws -> test_component.GUID {
@@ -532,44 +536,44 @@ public enum __ABI_Windows_Foundation {
             return value
         }
 
-        open func GetDateTimeImpl() throws -> __x_ABI_CWindows_CFoundation_CDateTime {
+        open func GetDateTimeImpl() throws -> test_component.DateTime {
             var value: __x_ABI_CWindows_CFoundation_CDateTime = .init()
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetDateTime(pThis, &value))
             }
-            return value
+            return .from(abi: value)
         }
 
-        open func GetTimeSpanImpl() throws -> __x_ABI_CWindows_CFoundation_CTimeSpan {
+        open func GetTimeSpanImpl() throws -> test_component.TimeSpan {
             var value: __x_ABI_CWindows_CFoundation_CTimeSpan = .init()
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetTimeSpan(pThis, &value))
             }
-            return value
+            return .from(abi: value)
         }
 
-        open func GetPointImpl() throws -> __x_ABI_CWindows_CFoundation_CPoint {
+        open func GetPointImpl() throws -> test_component.Point {
             var value: __x_ABI_CWindows_CFoundation_CPoint = .init()
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetPoint(pThis, &value))
             }
-            return value
+            return .from(abi: value)
         }
 
-        open func GetSizeImpl() throws -> __x_ABI_CWindows_CFoundation_CSize {
+        open func GetSizeImpl() throws -> test_component.Size {
             var value: __x_ABI_CWindows_CFoundation_CSize = .init()
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetSize(pThis, &value))
             }
-            return value
+            return .from(abi: value)
         }
 
-        open func GetRectImpl() throws -> __x_ABI_CWindows_CFoundation_CRect {
+        open func GetRectImpl() throws -> test_component.Rect {
             var value: __x_ABI_CWindows_CFoundation_CRect = .init()
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetRect(pThis, &value))
             }
-            return value
+            return .from(abi: value)
         }
 
     }
@@ -860,15 +864,15 @@ public enum __ABI_Windows_Foundation {
             super.init(abi, impl)
         }
     }
-    open class IStringable: test_component.IInspectable {
+    public class IStringable: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIStringable }
 
-        open func ToStringImpl() throws -> HSTRING? {
+        open func ToStringImpl() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIStringable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ToString(pThis, &value))
             }
-            return value
+            return .init(from: value)
         }
 
     }
@@ -966,12 +970,14 @@ extension __x_ABI_CWindows_CFoundation_CDateTime {
     }
     // MARK - AsyncActionCompletedHandler
 extension __ABI_Windows_Foundation {
-    open class AsyncActionCompletedHandler: test_component.IUnknown {
+    public class AsyncActionCompletedHandler: test_component.IUnknown {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler }
 
-        open func InvokeImpl(_ asyncInfo: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIAsyncAction>?, _ asyncStatus: __x_ABI_CWindows_CFoundation_CAsyncStatus) throws {
+        open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncAction?, _ asyncStatus: test_component.AsyncStatus) throws {
+            let asyncInfoWrapper = __ABI_Windows_Foundation.IAsyncActionWrapper(asyncInfo)
+            let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, asyncInfo, asyncStatus))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
             }
         }
 
@@ -1023,7 +1029,7 @@ public extension WinRTDelegateBridge where CABI == __x_ABI_CWindows_CFoundation_
 
 // MARK - DeferralCompletedHandler
 extension __ABI_Windows_Foundation {
-    open class DeferralCompletedHandler: test_component.IUnknown {
+    public class DeferralCompletedHandler: test_component.IUnknown {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIDeferralCompletedHandler }
 
         open func InvokeImpl() throws {

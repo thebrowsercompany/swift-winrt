@@ -16,7 +16,7 @@ class EventTests : XCTestCase {
   public func testEventsOnInstance() throws {
     let simple = Simple()
     var count = 0
-    
+
     var disposable = [Disposable]()
 
     disposable.append(simple.signalEvent.addHandler {
@@ -47,7 +47,7 @@ class EventTests : XCTestCase {
 
   public func testStaticEvent() throws {
     var static_count = 0
-    
+
     var disposable = [Disposable]()
 
     disposable.append(Simple.staticEvent.addHandler { (_,_) in
@@ -87,7 +87,7 @@ class EventTests : XCTestCase {
     delegate.fireEvent(expectedResult)
     XCTAssertEqual(tester.count, 2)
     XCTAssertEqual(try tester.getResult(), expectedResult)
-  
+
     try tester.unsubscribe()
     delegate.fireEvent("unexpected shouldn't get this")
     XCTAssertEqual(tester.count, 2)
@@ -114,7 +114,7 @@ public func testSwiftImplementedEventWithSwiftListener() throws {
     expectedResult = "fired twice"
     delegate.fireEvent(expectedResult)
     XCTAssertEqual(count, 2)
-  
+
     disposer.dispose()
     delegate.fireEvent("unexpected shouldn't get this")
     XCTAssertEqual(count, 2)

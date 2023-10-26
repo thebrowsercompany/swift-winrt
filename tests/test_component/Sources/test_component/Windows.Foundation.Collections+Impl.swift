@@ -30,9 +30,7 @@ public enum __IMPL_Windows_Foundation_Collections {
           .init(
             add: { [weak this = _IObservableMap] in
               guard let this else { return .init() }
-              let wrapper = test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper($0)
-              let abi = try! wrapper?.toABI { $0 }
-              return try! this.add_MapChangedImpl(abi)
+              return try! this.add_MapChangedImpl($0)
             },
             remove: { [weak this = _IObservableMap] in
              try? this?.remove_MapChangedImpl($0)
@@ -43,37 +41,27 @@ public enum __IMPL_Windows_Foundation_Collections {
         internal lazy var _IMap: IMapString_Any = try! _default.QueryInterface()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.lookup)
         public func lookup(_ key: String) -> Any? {
-            let _key = try! HString(key)
-            let result = try! _IMap.LookupImpl(_key.get())
-            return __ABI_.AnyWrapper.unwrapFrom(abi: result)
+            try! _IMap.LookupImpl(key)
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.haskey)
         public func hasKey(_ key: String) -> Bool {
-            let _key = try! HString(key)
-            let result = try! _IMap.HasKeyImpl(_key.get())
-            return .init(from: result)
+            try! _IMap.HasKeyImpl(key)
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.getview)
         public func getView() -> AnyIMapView<String, Any?>? {
-            let result = try! _IMap.GetViewImpl()
-            return test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
+            try! _IMap.GetViewImpl()
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.insert)
         public func insert(_ key: String, _ value: Any?) -> Bool {
-            let _key = try! HString(key)
-            let valueWrapper = __ABI_.AnyWrapper(value)
-            let _value = try! valueWrapper?.toABI { $0 }
-            let result = try! _IMap.InsertImpl(_key.get(), _value)
-            return .init(from: result)
+            try! _IMap.InsertImpl(key, value)
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.remove)
         public func remove(_ key: String) {
-            let _key = try! HString(key)
-            try! _IMap.RemoveImpl(_key.get())
+            try! _IMap.RemoveImpl(key)
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.clear)
@@ -83,18 +71,13 @@ public enum __IMPL_Windows_Foundation_Collections {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.size)
         public var size : UInt32 {
-            get {
-                let result = try! _IMap.get_SizeImpl()
-                return result
-            }
-
+            get { try! _IMap.get_SizeImpl() }
         }
 
         internal lazy var _IIterable: IIterableIKeyValuePairString_Any = try! _default.QueryInterface()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.first)
         public func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
-            let result = try! _IIterable.FirstImpl()
-            return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
+            try! _IIterable.FirstImpl()
         }
 
     }
@@ -119,20 +102,12 @@ public enum __IMPL_Windows_Foundation_Collections {
         }
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorchangedeventargs.collectionchange)
         public var collectionChange : CollectionChange {
-            get {
-                let value = try! _default.get_CollectionChangeImpl()
-                return value
-            }
-
+            get { try! _default.get_CollectionChangeImpl() }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorchangedeventargs.index)
         public var index : UInt32 {
-            get {
-                let value = try! _default.get_IndexImpl()
-                return value
-            }
-
+            get { try! _default.get_IndexImpl() }
         }
 
     }

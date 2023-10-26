@@ -51,9 +51,11 @@ typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper = InterfaceWr
 internal class AsyncOperationCompletedHandlerInt32: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1_int }
 
-    internal func InvokeImpl(_ asyncInfo: UnsafeMutablePointer<__x_ABI_C__FIAsyncOperation_1_int>?, _ asyncStatus: __x_ABI_CWindows_CFoundation_CAsyncStatus) throws {
+    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<Int32>?, _ asyncStatus: test_component.AsyncStatus) throws {
+        let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1_intWrapper(asyncInfo)
+        let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1_int.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, asyncInfo, asyncStatus))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
         }
     }
 
@@ -68,9 +70,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1_intImpl : WinRTDele
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1_intWrapper(asyncInfo)
-            let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
-            try! _default.InvokeImpl(_asyncInfo, asyncStatus)
+            try! _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -124,9 +124,11 @@ typealias __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper = Inter
 internal class AsyncOperationProgressHandlerInt32_Double: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationProgressHandler_2_int_double }
 
-    internal func InvokeImpl(_ asyncInfo: UnsafeMutablePointer<__x_ABI_C__FIAsyncOperationWithProgress_2_int_double>?, _ progressInfo: DOUBLE) throws {
+    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperationWithProgress<Int32, Double>?, _ progressInfo: Double) throws {
+        let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper(asyncInfo)
+        let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationProgressHandler_2_int_double.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, asyncInfo, progressInfo))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, progressInfo))
         }
     }
 
@@ -141,9 +143,7 @@ internal class __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleImpl : Win
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, progressInfo) in
-            let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper(asyncInfo)
-            let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
-            try! _default.InvokeImpl(_asyncInfo, progressInfo)
+            try! _default.InvokeImpl(asyncInfo, progressInfo)
         }
         return handler
     }
@@ -197,9 +197,11 @@ typealias __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWr
 internal class AsyncOperationWithProgressCompletedHandlerInt32_Double: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_double }
 
-    internal func InvokeImpl(_ asyncInfo: UnsafeMutablePointer<__x_ABI_C__FIAsyncOperationWithProgress_2_int_double>?, _ asyncStatus: __x_ABI_CWindows_CFoundation_CAsyncStatus) throws {
+    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperationWithProgress<Int32, Double>?, _ asyncStatus: test_component.AsyncStatus) throws {
+        let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper(asyncInfo)
+        let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_double.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, asyncInfo, asyncStatus))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
         }
     }
 
@@ -214,9 +216,7 @@ internal class __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_dou
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper(asyncInfo)
-            let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
-            try! _default.InvokeImpl(_asyncInfo, asyncStatus)
+            try! _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -291,12 +291,12 @@ typealias __x_ABI_C__FIIterable_1_IInspectableWrapper = InterfaceWrapperBase<tes
 internal class IIterableAny: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1_IInspectable }
 
-    internal func FirstImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIIterator_1_IInspectable>? {
+    internal func FirstImpl() throws -> test_component.AnyIIterator<Any?>? {
         var result: UnsafeMutablePointer<__x_ABI_C__FIIterator_1_IInspectable>?
         _ = try perform(as: __x_ABI_C__FIIterable_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &result))
         }
-        return result
+        return test_component.__x_ABI_C__FIIterator_1_IInspectableWrapper.unwrapFrom(abi: result)
     }
 
 }
@@ -326,8 +326,7 @@ internal class __x_ABI_C__FIIterable_1_IInspectableImpl : IIterable, AbiInterfac
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
     public func first() -> AnyIIterator<Any?>? {
-        let result = try! _default.FirstImpl()
-        return test_component.__x_ABI_C__FIIterator_1_IInspectableWrapper.unwrapFrom(abi: result)
+        try! _default.FirstImpl()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -403,12 +402,12 @@ typealias __x_ABI_C__FIIterable_1_HSTRINGWrapper = InterfaceWrapperBase<test_com
 internal class IIterableString: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1_HSTRING }
 
-    internal func FirstImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIIterator_1_HSTRING>? {
+    internal func FirstImpl() throws -> test_component.AnyIIterator<String>? {
         var result: UnsafeMutablePointer<__x_ABI_C__FIIterator_1_HSTRING>?
         _ = try perform(as: __x_ABI_C__FIIterable_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &result))
         }
-        return result
+        return test_component.__x_ABI_C__FIIterator_1_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
 }
@@ -438,8 +437,7 @@ internal class __x_ABI_C__FIIterable_1_HSTRINGImpl : IIterable, AbiInterfaceImpl
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
     public func first() -> AnyIIterator<String>? {
-        let result = try! _default.FirstImpl()
-        return test_component.__x_ABI_C__FIIterator_1_HSTRINGWrapper.unwrapFrom(abi: result)
+        try! _default.FirstImpl()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -515,12 +513,12 @@ typealias __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectab
 internal class IIterableIKeyValuePairString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable }
 
-    internal func FirstImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable>? {
+    internal func FirstImpl() throws -> test_component.AnyIIterator<test_component.AnyIKeyValuePair<String, Any?>?>? {
         var result: UnsafeMutablePointer<__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable>?
         _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &result))
         }
-        return result
+        return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
     }
 
 }
@@ -550,8 +548,7 @@ internal class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInsp
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
-        let result = try! _default.FirstImpl()
-        return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
+        try! _default.FirstImpl()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -627,12 +624,12 @@ typealias __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWra
 internal class IIterableIKeyValuePairString_String: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING }
 
-    internal func FirstImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING>? {
+    internal func FirstImpl() throws -> test_component.AnyIIterator<test_component.AnyIKeyValuePair<String, String>?>? {
         var result: UnsafeMutablePointer<__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING>?
         _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &result))
         }
-        return result
+        return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
 }
@@ -662,8 +659,7 @@ internal class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRI
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
-        let result = try! _default.FirstImpl()
-        return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
+        try! _default.FirstImpl()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -739,12 +735,12 @@ typealias __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ct
 internal class IIterableIKeyValuePairString_Base: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
 
-    internal func FirstImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>? {
+    internal func FirstImpl() throws -> test_component.AnyIIterator<test_component.AnyIKeyValuePair<String, test_component.Base?>?>? {
         var result: UnsafeMutablePointer<__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
         _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &result))
         }
-        return result
+        return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
 
 }
@@ -774,8 +770,7 @@ internal class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_A
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, Base?>?>? {
-        let result = try! _default.FirstImpl()
-        return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
+        try! _default.FirstImpl()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -851,12 +846,12 @@ typealias __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseWrapper = Inte
 internal class IIterableBase: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBase }
 
-    internal func FirstImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase>? {
+    internal func FirstImpl() throws -> test_component.AnyIIterator<test_component.Base?>? {
         var result: UnsafeMutablePointer<__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase>?
         _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &result))
         }
-        return result
+        return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
 
 }
@@ -886,8 +881,7 @@ internal class __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseImpl : II
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
     public func first() -> AnyIIterator<Base?>? {
-        let result = try! _default.FirstImpl()
-        return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
+        try! _default.FirstImpl()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -963,12 +957,12 @@ typealias __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = In
 internal class IIterableIBasic: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasic }
 
-    internal func FirstImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic>? {
+    internal func FirstImpl() throws -> test_component.AnyIIterator<test_component.AnyIBasic?>? {
         var result: UnsafeMutablePointer<__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic>?
         _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &result))
         }
-        return result
+        return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.unwrapFrom(abi: result)
     }
 
 }
@@ -998,8 +992,7 @@ internal class __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicImpl : 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
     public func first() -> AnyIIterator<AnyIBasic?>? {
-        let result = try! _default.FirstImpl()
-        return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.unwrapFrom(abi: result)
+        try! _default.FirstImpl()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -1091,28 +1084,28 @@ typealias __x_ABI_C__FIIterator_1_IInspectableWrapper = InterfaceWrapperBase<tes
 internal class IIteratorAny: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1_IInspectable }
 
-    internal func get_CurrentImpl() throws -> UnsafeMutablePointer<C_IInspectable>? {
+    internal func get_CurrentImpl() throws -> Any? {
         var result: UnsafeMutablePointer<C_IInspectable>?
         _ = try perform(as: __x_ABI_C__FIIterator_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
         }
-        return result
+        return __ABI_.AnyWrapper.unwrapFrom(abi: result)
     }
 
-    internal func get_HasCurrentImpl() throws -> boolean {
+    internal func get_HasCurrentImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
         }
-        return result
+        return .init(from: result)
     }
 
-    internal func MoveNextImpl() throws -> boolean {
+    internal func MoveNextImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
         }
-        return result
+        return .init(from: result)
     }
 
 }
@@ -1142,26 +1135,17 @@ internal class __x_ABI_C__FIIterator_1_IInspectableImpl : IIterator, AbiInterfac
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
     public func moveNext() -> Bool {
-        let result = try! _default.MoveNextImpl()
-        return .init(from: result)
+        try! _default.MoveNextImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     public var current : Any? {
-        get {
-            let result = try! _default.get_CurrentImpl()
-            return __ABI_.AnyWrapper.unwrapFrom(abi: result)
-        }
-
+        get { try! _default.get_CurrentImpl() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     public var hasCurrent : Bool {
-        get {
-            let result = try! _default.get_HasCurrentImpl()
-            return .init(from: result)
-        }
-
+        get { try! _default.get_HasCurrentImpl() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -1252,28 +1236,28 @@ typealias __x_ABI_C__FIIterator_1_HSTRINGWrapper = InterfaceWrapperBase<test_com
 internal class IIteratorString: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1_HSTRING }
 
-    internal func get_CurrentImpl() throws -> HSTRING? {
+    internal func get_CurrentImpl() throws -> String {
         var result: HSTRING?
         _ = try perform(as: __x_ABI_C__FIIterator_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
         }
-        return result
+        return .init(from: result)
     }
 
-    internal func get_HasCurrentImpl() throws -> boolean {
+    internal func get_HasCurrentImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
         }
-        return result
+        return .init(from: result)
     }
 
-    internal func MoveNextImpl() throws -> boolean {
+    internal func MoveNextImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
         }
-        return result
+        return .init(from: result)
     }
 
 }
@@ -1303,26 +1287,17 @@ internal class __x_ABI_C__FIIterator_1_HSTRINGImpl : IIterator, AbiInterfaceImpl
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
     public func moveNext() -> Bool {
-        let result = try! _default.MoveNextImpl()
-        return .init(from: result)
+        try! _default.MoveNextImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     public var current : String {
-        get {
-            let result = try! _default.get_CurrentImpl()
-            return .init(from: result)
-        }
-
+        get { try! _default.get_CurrentImpl() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     public var hasCurrent : Bool {
-        get {
-            let result = try! _default.get_HasCurrentImpl()
-            return .init(from: result)
-        }
-
+        get { try! _default.get_HasCurrentImpl() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -1414,28 +1389,28 @@ typealias __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectab
 internal class IIteratorIKeyValuePairString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable }
 
-    internal func get_CurrentImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable>? {
+    internal func get_CurrentImpl() throws -> test_component.AnyIKeyValuePair<String, Any?>? {
         var result: UnsafeMutablePointer<__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable>?
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
         }
-        return result
+        return test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
     }
 
-    internal func get_HasCurrentImpl() throws -> boolean {
+    internal func get_HasCurrentImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
         }
-        return result
+        return .init(from: result)
     }
 
-    internal func MoveNextImpl() throws -> boolean {
+    internal func MoveNextImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
         }
-        return result
+        return .init(from: result)
     }
 
 }
@@ -1465,26 +1440,17 @@ internal class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInsp
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
     public func moveNext() -> Bool {
-        let result = try! _default.MoveNextImpl()
-        return .init(from: result)
+        try! _default.MoveNextImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     public var current : AnyIKeyValuePair<String, Any?>? {
-        get {
-            let result = try! _default.get_CurrentImpl()
-            return test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
-        }
-
+        get { try! _default.get_CurrentImpl() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     public var hasCurrent : Bool {
-        get {
-            let result = try! _default.get_HasCurrentImpl()
-            return .init(from: result)
-        }
-
+        get { try! _default.get_HasCurrentImpl() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -1576,28 +1542,28 @@ typealias __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWra
 internal class IIteratorIKeyValuePairString_String: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING }
 
-    internal func get_CurrentImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING>? {
+    internal func get_CurrentImpl() throws -> test_component.AnyIKeyValuePair<String, String>? {
         var result: UnsafeMutablePointer<__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING>?
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
         }
-        return result
+        return test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
-    internal func get_HasCurrentImpl() throws -> boolean {
+    internal func get_HasCurrentImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
         }
-        return result
+        return .init(from: result)
     }
 
-    internal func MoveNextImpl() throws -> boolean {
+    internal func MoveNextImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
         }
-        return result
+        return .init(from: result)
     }
 
 }
@@ -1627,26 +1593,17 @@ internal class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRI
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
     public func moveNext() -> Bool {
-        let result = try! _default.MoveNextImpl()
-        return .init(from: result)
+        try! _default.MoveNextImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     public var current : AnyIKeyValuePair<String, String>? {
-        get {
-            let result = try! _default.get_CurrentImpl()
-            return test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
-        }
-
+        get { try! _default.get_CurrentImpl() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     public var hasCurrent : Bool {
-        get {
-            let result = try! _default.get_HasCurrentImpl()
-            return .init(from: result)
-        }
-
+        get { try! _default.get_HasCurrentImpl() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -1738,28 +1695,28 @@ typealias __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ct
 internal class IIteratorIKeyValuePairString_Base: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
 
-    internal func get_CurrentImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>? {
+    internal func get_CurrentImpl() throws -> test_component.AnyIKeyValuePair<String, test_component.Base?>? {
         var result: UnsafeMutablePointer<__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
         }
-        return result
+        return test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
 
-    internal func get_HasCurrentImpl() throws -> boolean {
+    internal func get_HasCurrentImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
         }
-        return result
+        return .init(from: result)
     }
 
-    internal func MoveNextImpl() throws -> boolean {
+    internal func MoveNextImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
         }
-        return result
+        return .init(from: result)
     }
 
 }
@@ -1789,26 +1746,17 @@ internal class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_A
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
     public func moveNext() -> Bool {
-        let result = try! _default.MoveNextImpl()
-        return .init(from: result)
+        try! _default.MoveNextImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     public var current : AnyIKeyValuePair<String, Base?>? {
-        get {
-            let result = try! _default.get_CurrentImpl()
-            return test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
-        }
-
+        get { try! _default.get_CurrentImpl() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     public var hasCurrent : Bool {
-        get {
-            let result = try! _default.get_HasCurrentImpl()
-            return .init(from: result)
-        }
-
+        get { try! _default.get_HasCurrentImpl() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -1899,28 +1847,28 @@ typealias __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper = Inte
 internal class IIteratorBase: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase }
 
-    internal func get_CurrentImpl() throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>? {
+    internal func get_CurrentImpl() throws -> test_component.Base? {
         var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
         }
-        return result
+        return .from(abi: result)
     }
 
-    internal func get_HasCurrentImpl() throws -> boolean {
+    internal func get_HasCurrentImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
         }
-        return result
+        return .init(from: result)
     }
 
-    internal func MoveNextImpl() throws -> boolean {
+    internal func MoveNextImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
         }
-        return result
+        return .init(from: result)
     }
 
 }
@@ -1950,26 +1898,17 @@ internal class __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseImpl : II
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
     public func moveNext() -> Bool {
-        let result = try! _default.MoveNextImpl()
-        return .init(from: result)
+        try! _default.MoveNextImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     public var current : Base? {
-        get {
-            let result = try! _default.get_CurrentImpl()
-            return .from(abi: result)
-        }
-
+        get { try! _default.get_CurrentImpl() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     public var hasCurrent : Bool {
-        get {
-            let result = try! _default.get_HasCurrentImpl()
-            return .init(from: result)
-        }
-
+        get { try! _default.get_HasCurrentImpl() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -2061,28 +2000,28 @@ typealias __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = In
 internal class IIteratorIBasic: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic }
 
-    internal func get_CurrentImpl() throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>? {
+    internal func get_CurrentImpl() throws -> test_component.AnyIBasic? {
         var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>?
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
         }
-        return result
+        return __ABI_test_component.IBasicWrapper.unwrapFrom(abi: result)
     }
 
-    internal func get_HasCurrentImpl() throws -> boolean {
+    internal func get_HasCurrentImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
         }
-        return result
+        return .init(from: result)
     }
 
-    internal func MoveNextImpl() throws -> boolean {
+    internal func MoveNextImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
         }
-        return result
+        return .init(from: result)
     }
 
 }
@@ -2112,26 +2051,17 @@ internal class __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicImpl : 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
     public func moveNext() -> Bool {
-        let result = try! _default.MoveNextImpl()
-        return .init(from: result)
+        try! _default.MoveNextImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     public var current : AnyIBasic? {
-        get {
-            let result = try! _default.get_CurrentImpl()
-            return __ABI_test_component.IBasicWrapper.unwrapFrom(abi: result)
-        }
-
+        get { try! _default.get_CurrentImpl() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     public var hasCurrent : Bool {
-        get {
-            let result = try! _default.get_HasCurrentImpl()
-            return .init(from: result)
-        }
-
+        get { try! _default.get_HasCurrentImpl() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -2214,20 +2144,20 @@ typealias __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper = InterfaceWra
 internal class IKeyValuePairString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable }
 
-    internal func get_KeyImpl() throws -> HSTRING? {
+    internal func get_KeyImpl() throws -> String {
         var result: HSTRING?
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
         }
-        return result
+        return .init(from: result)
     }
 
-    internal func get_ValueImpl() throws -> UnsafeMutablePointer<C_IInspectable>? {
+    internal func get_ValueImpl() throws -> Any? {
         var result: UnsafeMutablePointer<C_IInspectable>?
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Value(pThis, &result))
         }
-        return result
+        return __ABI_.AnyWrapper.unwrapFrom(abi: result)
     }
 
 }
@@ -2258,20 +2188,12 @@ internal class __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl : IKeyValueP
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.key)
     public var key : String {
-        get {
-            let result = try! _default.get_KeyImpl()
-            return .init(from: result)
-        }
-
+        get { try! _default.get_KeyImpl() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.value)
     public var value : Any? {
-        get {
-            let result = try! _default.get_ValueImpl()
-            return __ABI_.AnyWrapper.unwrapFrom(abi: result)
-        }
-
+        get { try! _default.get_ValueImpl() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -2353,20 +2275,20 @@ typealias __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper = InterfaceWrapperB
 internal class IKeyValuePairString_String: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING }
 
-    internal func get_KeyImpl() throws -> HSTRING? {
+    internal func get_KeyImpl() throws -> String {
         var result: HSTRING?
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
         }
-        return result
+        return .init(from: result)
     }
 
-    internal func get_ValueImpl() throws -> HSTRING? {
+    internal func get_ValueImpl() throws -> String {
         var result: HSTRING?
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Value(pThis, &result))
         }
-        return result
+        return .init(from: result)
     }
 
 }
@@ -2397,20 +2319,12 @@ internal class __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl : IKeyValuePair, 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.key)
     public var key : String {
-        get {
-            let result = try! _default.get_KeyImpl()
-            return .init(from: result)
-        }
-
+        get { try! _default.get_KeyImpl() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.value)
     public var value : String {
-        get {
-            let result = try! _default.get_ValueImpl()
-            return .init(from: result)
-        }
-
+        get { try! _default.get_ValueImpl() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -2492,20 +2406,20 @@ typealias __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWr
 internal class IKeyValuePairString_Base: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
 
-    internal func get_KeyImpl() throws -> HSTRING? {
+    internal func get_KeyImpl() throws -> String {
         var result: HSTRING?
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
         }
-        return result
+        return .init(from: result)
     }
 
-    internal func get_ValueImpl() throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>? {
+    internal func get_ValueImpl() throws -> test_component.Base? {
         var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Value(pThis, &result))
         }
-        return result
+        return .from(abi: result)
     }
 
 }
@@ -2536,20 +2450,12 @@ internal class __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CB
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.key)
     public var key : String {
-        get {
-            let result = try! _default.get_KeyImpl()
-            return .init(from: result)
-        }
-
+        get { try! _default.get_KeyImpl() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.value)
     public var value : Base? {
-        get {
-            let result = try! _default.get_ValueImpl()
-            return .from(abi: result)
-        }
-
+        get { try! _default.get_ValueImpl() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -2631,7 +2537,7 @@ typealias __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper = InterfaceWrapperBa
 internal class IMapChangedEventArgsString: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMapChangedEventArgs_1_HSTRING }
 
-    internal func get_CollectionChangeImpl() throws -> __x_ABI_CWindows_CFoundation_CCollections_CCollectionChange {
+    internal func get_CollectionChangeImpl() throws -> test_component.CollectionChange {
         var result: __x_ABI_CWindows_CFoundation_CCollections_CCollectionChange = .init(0)
         _ = try perform(as: __x_ABI_C__FIMapChangedEventArgs_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_CollectionChange(pThis, &result))
@@ -2639,12 +2545,12 @@ internal class IMapChangedEventArgsString: test_component.IInspectable {
         return result
     }
 
-    internal func get_KeyImpl() throws -> HSTRING? {
+    internal func get_KeyImpl() throws -> String {
         var result: HSTRING?
         _ = try perform(as: __x_ABI_C__FIMapChangedEventArgs_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
         }
-        return result
+        return .init(from: result)
     }
 
 }
@@ -2674,20 +2580,12 @@ internal class __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGImpl : IMapChangedEvent
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapchangedeventargs-1.collectionchange)
     public var collectionChange : test_component.CollectionChange {
-        get {
-            let result = try! _default.get_CollectionChangeImpl()
-            return result
-        }
-
+        get { try! _default.get_CollectionChangeImpl() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapchangedeventargs-1.key)
     public var key : String {
-        get {
-            let result = try! _default.get_KeyImpl()
-            return .init(from: result)
-        }
-
+        get { try! _default.get_KeyImpl() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -2792,15 +2690,16 @@ typealias __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper = InterfaceWrapperB
 internal class IMapViewString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMapView_2_HSTRING_IInspectable }
 
-    internal func LookupImpl(_ key: HSTRING?) throws -> UnsafeMutablePointer<C_IInspectable>? {
+    internal func LookupImpl(_ key: String) throws -> Any? {
         var result: UnsafeMutablePointer<C_IInspectable>?
+        let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_IInspectable.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, key, &result))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, _key.get(), &result))
         }
-        return result
+        return __ABI_.AnyWrapper.unwrapFrom(abi: result)
     }
 
-    internal func get_SizeImpl() throws -> UINT32 {
+    internal func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -2808,18 +2707,23 @@ internal class IMapViewString_Any: test_component.IInspectable {
         return result
     }
 
-    internal func HasKeyImpl(_ key: HSTRING?) throws -> boolean {
+    internal func HasKeyImpl(_ key: String) throws -> Bool {
         var result: boolean = 0
+        let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_IInspectable.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.HasKey(pThis, key, &result))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.HasKey(pThis, _key.get(), &result))
         }
-        return result
+        return .init(from: result)
     }
 
-    internal func SplitImpl(_ first: inout UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_IInspectable>?, _ second: inout UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_IInspectable>?) throws {
+    internal func SplitImpl(_ first: inout test_component.AnyIMapView<String, Any?>?, _ second: inout test_component.AnyIMapView<String, Any?>?) throws {
+        var _first: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_IInspectable>?
+        var _second: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_IInspectable>?
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_IInspectable.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &first, &second))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &_first, &_second))
         }
+        first = test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl.from(abi: _first)
+        second = test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl.from(abi: _second)
     }
 
 }
@@ -2851,41 +2755,28 @@ internal class __x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl : IMapView, AbiIn
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.lookup)
     public func lookup(_ key: String) -> Any? {
-        let _key = try! HString(key)
-        let result = try! _default.LookupImpl(_key.get())
-        return __ABI_.AnyWrapper.unwrapFrom(abi: result)
+        try! _default.LookupImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.haskey)
     public func hasKey(_ key: String) -> Bool {
-        let _key = try! HString(key)
-        let result = try! _default.HasKeyImpl(_key.get())
-        return .init(from: result)
+        try! _default.HasKeyImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.split)
     public func split(_ first: inout AnyIMapView<String, Any?>?, _ second: inout AnyIMapView<String, Any?>?) {
-        var _first: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_IInspectable>?
-        var _second: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_IInspectable>?
-        try! _default.SplitImpl(&_first, &_second)
-        first = test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl.from(abi: _first)
-        second = test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl.from(abi: _second)
+        try! _default.SplitImpl(&first, &second)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.size)
     public var size : UInt32 {
-        get {
-            let result = try! _default.get_SizeImpl()
-            return result
-        }
-
+        get { try! _default.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableIKeyValuePairString_Any = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
-        let result = try! _IIterable.FirstImpl()
-        return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
+        try! _IIterable.FirstImpl()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -2989,15 +2880,16 @@ typealias __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<t
 internal class IMapViewString_String: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMapView_2_HSTRING_HSTRING }
 
-    internal func LookupImpl(_ key: HSTRING?) throws -> HSTRING? {
+    internal func LookupImpl(_ key: String) throws -> String {
         var result: HSTRING?
+        let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_HSTRING.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, key, &result))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, _key.get(), &result))
         }
-        return result
+        return .init(from: result)
     }
 
-    internal func get_SizeImpl() throws -> UINT32 {
+    internal func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -3005,18 +2897,23 @@ internal class IMapViewString_String: test_component.IInspectable {
         return result
     }
 
-    internal func HasKeyImpl(_ key: HSTRING?) throws -> boolean {
+    internal func HasKeyImpl(_ key: String) throws -> Bool {
         var result: boolean = 0
+        let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_HSTRING.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.HasKey(pThis, key, &result))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.HasKey(pThis, _key.get(), &result))
         }
-        return result
+        return .init(from: result)
     }
 
-    internal func SplitImpl(_ first: inout UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?, _ second: inout UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?) throws {
+    internal func SplitImpl(_ first: inout test_component.AnyIMapView<String, String>?, _ second: inout test_component.AnyIMapView<String, String>?) throws {
+        var _first: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?
+        var _second: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_HSTRING.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &first, &second))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &_first, &_second))
         }
+        first = test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl.from(abi: _first)
+        second = test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl.from(abi: _second)
     }
 
 }
@@ -3048,41 +2945,28 @@ internal class __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl : IMapView, AbiInterfa
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.lookup)
     public func lookup(_ key: String) -> String {
-        let _key = try! HString(key)
-        let result = try! _default.LookupImpl(_key.get())
-        return .init(from: result)
+        try! _default.LookupImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.haskey)
     public func hasKey(_ key: String) -> Bool {
-        let _key = try! HString(key)
-        let result = try! _default.HasKeyImpl(_key.get())
-        return .init(from: result)
+        try! _default.HasKeyImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.split)
     public func split(_ first: inout AnyIMapView<String, String>?, _ second: inout AnyIMapView<String, String>?) {
-        var _first: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?
-        var _second: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?
-        try! _default.SplitImpl(&_first, &_second)
-        first = test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl.from(abi: _first)
-        second = test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl.from(abi: _second)
+        try! _default.SplitImpl(&first, &second)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.size)
     public var size : UInt32 {
-        get {
-            let result = try! _default.get_SizeImpl()
-            return result
-        }
-
+        get { try! _default.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableIKeyValuePairString_String = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
-        let result = try! _IIterable.FirstImpl()
-        return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
+        try! _IIterable.FirstImpl()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -3186,15 +3070,16 @@ typealias __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper
 internal class IMapViewString_Base: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
 
-    internal func LookupImpl(_ key: HSTRING?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>? {
+    internal func LookupImpl(_ key: String) throws -> test_component.Base? {
         var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?
+        let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, key, &result))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, _key.get(), &result))
         }
-        return result
+        return .from(abi: result)
     }
 
-    internal func get_SizeImpl() throws -> UINT32 {
+    internal func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -3202,18 +3087,23 @@ internal class IMapViewString_Base: test_component.IInspectable {
         return result
     }
 
-    internal func HasKeyImpl(_ key: HSTRING?) throws -> boolean {
+    internal func HasKeyImpl(_ key: String) throws -> Bool {
         var result: boolean = 0
+        let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.HasKey(pThis, key, &result))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.HasKey(pThis, _key.get(), &result))
         }
-        return result
+        return .init(from: result)
     }
 
-    internal func SplitImpl(_ first: inout UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?, _ second: inout UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?) throws {
+    internal func SplitImpl(_ first: inout test_component.AnyIMapView<String, test_component.Base?>?, _ second: inout test_component.AnyIMapView<String, test_component.Base?>?) throws {
+        var _first: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
+        var _second: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &first, &second))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &_first, &_second))
         }
+        first = test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl.from(abi: _first)
+        second = test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl.from(abi: _second)
     }
 
 }
@@ -3245,41 +3135,28 @@ internal class __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseIm
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.lookup)
     public func lookup(_ key: String) -> Base? {
-        let _key = try! HString(key)
-        let result = try! _default.LookupImpl(_key.get())
-        return .from(abi: result)
+        try! _default.LookupImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.haskey)
     public func hasKey(_ key: String) -> Bool {
-        let _key = try! HString(key)
-        let result = try! _default.HasKeyImpl(_key.get())
-        return .init(from: result)
+        try! _default.HasKeyImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.split)
     public func split(_ first: inout AnyIMapView<String, Base?>?, _ second: inout AnyIMapView<String, Base?>?) {
-        var _first: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
-        var _second: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
-        try! _default.SplitImpl(&_first, &_second)
-        first = test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl.from(abi: _first)
-        second = test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl.from(abi: _second)
+        try! _default.SplitImpl(&first, &second)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.size)
     public var size : UInt32 {
-        get {
-            let result = try! _default.get_SizeImpl()
-            return result
-        }
-
+        get { try! _default.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableIKeyValuePairString_Base = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, Base?>?>? {
-        let result = try! _IIterable.FirstImpl()
-        return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
+        try! _IIterable.FirstImpl()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -3402,15 +3279,16 @@ typealias __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<
 internal class IMapString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMap_2_HSTRING_IInspectable }
 
-    internal func LookupImpl(_ key: HSTRING?) throws -> UnsafeMutablePointer<C_IInspectable>? {
+    internal func LookupImpl(_ key: String) throws -> Any? {
         var result: UnsafeMutablePointer<C_IInspectable>?
+        let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, key, &result))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, _key.get(), &result))
         }
-        return result
+        return __ABI_.AnyWrapper.unwrapFrom(abi: result)
     }
 
-    internal func get_SizeImpl() throws -> UINT32 {
+    internal func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -3418,33 +3296,38 @@ internal class IMapString_Any: test_component.IInspectable {
         return result
     }
 
-    internal func HasKeyImpl(_ key: HSTRING?) throws -> boolean {
+    internal func HasKeyImpl(_ key: String) throws -> Bool {
         var result: boolean = 0
+        let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.HasKey(pThis, key, &result))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.HasKey(pThis, _key.get(), &result))
         }
-        return result
+        return .init(from: result)
     }
 
-    internal func GetViewImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_IInspectable>? {
+    internal func GetViewImpl() throws -> test_component.AnyIMapView<String, Any?>? {
         var result: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_IInspectable>?
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &result))
         }
-        return result
+        return test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
     }
 
-    internal func InsertImpl(_ key: HSTRING?, _ value: UnsafeMutablePointer<C_IInspectable>?) throws -> boolean {
+    internal func InsertImpl(_ key: String, _ value: Any?) throws -> Bool {
         var result: boolean = 0
+        let _key = try! HString(key)
+        let valueWrapper = __ABI_.AnyWrapper(value)
+        let _value = try! valueWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Insert(pThis, key, value, &result))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Insert(pThis, _key.get(), _value, &result))
         }
-        return result
+        return .init(from: result)
     }
 
-    internal func RemoveImpl(_ key: HSTRING?) throws {
+    internal func RemoveImpl(_ key: String) throws {
+        let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Remove(pThis, key))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Remove(pThis, _key.get()))
         }
     }
 
@@ -3483,37 +3366,27 @@ internal class __x_ABI_C__FIMap_2_HSTRING_IInspectableImpl : IMap, AbiInterfaceI
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.lookup)
     public func lookup(_ key: String) -> Any? {
-        let _key = try! HString(key)
-        let result = try! _default.LookupImpl(_key.get())
-        return __ABI_.AnyWrapper.unwrapFrom(abi: result)
+        try! _default.LookupImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.haskey)
     public func hasKey(_ key: String) -> Bool {
-        let _key = try! HString(key)
-        let result = try! _default.HasKeyImpl(_key.get())
-        return .init(from: result)
+        try! _default.HasKeyImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.getview)
     public func getView() -> AnyIMapView<String, Any?>? {
-        let result = try! _default.GetViewImpl()
-        return test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
+        try! _default.GetViewImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.insert)
     public func insert(_ key: String, _ value: Any?) -> Bool {
-        let _key = try! HString(key)
-        let valueWrapper = __ABI_.AnyWrapper(value)
-        let _value = try! valueWrapper?.toABI { $0 }
-        let result = try! _default.InsertImpl(_key.get(), _value)
-        return .init(from: result)
+        try! _default.InsertImpl(key, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.remove)
     public func remove(_ key: String) {
-        let _key = try! HString(key)
-        try! _default.RemoveImpl(_key.get())
+        try! _default.RemoveImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.clear)
@@ -3523,18 +3396,13 @@ internal class __x_ABI_C__FIMap_2_HSTRING_IInspectableImpl : IMap, AbiInterfaceI
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.size)
     public var size : UInt32 {
-        get {
-            let result = try! _default.get_SizeImpl()
-            return result
-        }
-
+        get { try! _default.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableIKeyValuePairString_Any = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
-        let result = try! _IIterable.FirstImpl()
-        return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
+        try! _IIterable.FirstImpl()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -3656,15 +3524,16 @@ typealias __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_
 internal class IMapString_String: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMap_2_HSTRING_HSTRING }
 
-    internal func LookupImpl(_ key: HSTRING?) throws -> HSTRING? {
+    internal func LookupImpl(_ key: String) throws -> String {
         var result: HSTRING?
+        let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, key, &result))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, _key.get(), &result))
         }
-        return result
+        return .init(from: result)
     }
 
-    internal func get_SizeImpl() throws -> UINT32 {
+    internal func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -3672,33 +3541,37 @@ internal class IMapString_String: test_component.IInspectable {
         return result
     }
 
-    internal func HasKeyImpl(_ key: HSTRING?) throws -> boolean {
+    internal func HasKeyImpl(_ key: String) throws -> Bool {
         var result: boolean = 0
+        let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.HasKey(pThis, key, &result))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.HasKey(pThis, _key.get(), &result))
         }
-        return result
+        return .init(from: result)
     }
 
-    internal func GetViewImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>? {
+    internal func GetViewImpl() throws -> test_component.AnyIMapView<String, String>? {
         var result: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &result))
         }
-        return result
+        return test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
-    internal func InsertImpl(_ key: HSTRING?, _ value: HSTRING?) throws -> boolean {
+    internal func InsertImpl(_ key: String, _ value: String) throws -> Bool {
         var result: boolean = 0
+        let _key = try! HString(key)
+        let _value = try! HString(value)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Insert(pThis, key, value, &result))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Insert(pThis, _key.get(), _value.get(), &result))
         }
-        return result
+        return .init(from: result)
     }
 
-    internal func RemoveImpl(_ key: HSTRING?) throws {
+    internal func RemoveImpl(_ key: String) throws {
+        let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Remove(pThis, key))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Remove(pThis, _key.get()))
         }
     }
 
@@ -3737,36 +3610,27 @@ internal class __x_ABI_C__FIMap_2_HSTRING_HSTRINGImpl : IMap, AbiInterfaceImpl {
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.lookup)
     public func lookup(_ key: String) -> String {
-        let _key = try! HString(key)
-        let result = try! _default.LookupImpl(_key.get())
-        return .init(from: result)
+        try! _default.LookupImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.haskey)
     public func hasKey(_ key: String) -> Bool {
-        let _key = try! HString(key)
-        let result = try! _default.HasKeyImpl(_key.get())
-        return .init(from: result)
+        try! _default.HasKeyImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.getview)
     public func getView() -> AnyIMapView<String, String>? {
-        let result = try! _default.GetViewImpl()
-        return test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
+        try! _default.GetViewImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.insert)
     public func insert(_ key: String, _ value: String) -> Bool {
-        let _key = try! HString(key)
-        let _value = try! HString(value)
-        let result = try! _default.InsertImpl(_key.get(), _value.get())
-        return .init(from: result)
+        try! _default.InsertImpl(key, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.remove)
     public func remove(_ key: String) {
-        let _key = try! HString(key)
-        try! _default.RemoveImpl(_key.get())
+        try! _default.RemoveImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.clear)
@@ -3776,18 +3640,13 @@ internal class __x_ABI_C__FIMap_2_HSTRING_HSTRINGImpl : IMap, AbiInterfaceImpl {
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.size)
     public var size : UInt32 {
-        get {
-            let result = try! _default.get_SizeImpl()
-            return result
-        }
-
+        get { try! _default.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableIKeyValuePairString_String = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
-        let result = try! _IIterable.FirstImpl()
-        return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
+        try! _IIterable.FirstImpl()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -3909,15 +3768,16 @@ typealias __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper = I
 internal class IMapString_Base: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
 
-    internal func LookupImpl(_ key: HSTRING?) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>? {
+    internal func LookupImpl(_ key: String) throws -> test_component.Base? {
         var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?
+        let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, key, &result))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, _key.get(), &result))
         }
-        return result
+        return .from(abi: result)
     }
 
-    internal func get_SizeImpl() throws -> UINT32 {
+    internal func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -3925,33 +3785,36 @@ internal class IMapString_Base: test_component.IInspectable {
         return result
     }
 
-    internal func HasKeyImpl(_ key: HSTRING?) throws -> boolean {
+    internal func HasKeyImpl(_ key: String) throws -> Bool {
         var result: boolean = 0
+        let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.HasKey(pThis, key, &result))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.HasKey(pThis, _key.get(), &result))
         }
-        return result
+        return .init(from: result)
     }
 
-    internal func GetViewImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>? {
+    internal func GetViewImpl() throws -> test_component.AnyIMapView<String, test_component.Base?>? {
         var result: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &result))
         }
-        return result
+        return test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
 
-    internal func InsertImpl(_ key: HSTRING?, _ value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?) throws -> boolean {
+    internal func InsertImpl(_ key: String, _ value: test_component.Base?) throws -> Bool {
         var result: boolean = 0
+        let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Insert(pThis, key, value, &result))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Insert(pThis, _key.get(), RawPointer(value), &result))
         }
-        return result
+        return .init(from: result)
     }
 
-    internal func RemoveImpl(_ key: HSTRING?) throws {
+    internal func RemoveImpl(_ key: String) throws {
+        let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Remove(pThis, key))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Remove(pThis, _key.get()))
         }
     }
 
@@ -3990,35 +3853,27 @@ internal class __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl :
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.lookup)
     public func lookup(_ key: String) -> Base? {
-        let _key = try! HString(key)
-        let result = try! _default.LookupImpl(_key.get())
-        return .from(abi: result)
+        try! _default.LookupImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.haskey)
     public func hasKey(_ key: String) -> Bool {
-        let _key = try! HString(key)
-        let result = try! _default.HasKeyImpl(_key.get())
-        return .init(from: result)
+        try! _default.HasKeyImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.getview)
     public func getView() -> AnyIMapView<String, Base?>? {
-        let result = try! _default.GetViewImpl()
-        return test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
+        try! _default.GetViewImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.insert)
     public func insert(_ key: String, _ value: Base?) -> Bool {
-        let _key = try! HString(key)
-        let result = try! _default.InsertImpl(_key.get(), RawPointer(value))
-        return .init(from: result)
+        try! _default.InsertImpl(key, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.remove)
     public func remove(_ key: String) {
-        let _key = try! HString(key)
-        try! _default.RemoveImpl(_key.get())
+        try! _default.RemoveImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.clear)
@@ -4028,18 +3883,13 @@ internal class __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl :
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.size)
     public var size : UInt32 {
-        get {
-            let result = try! _default.get_SizeImpl()
-            return result
-        }
-
+        get { try! _default.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableIKeyValuePairString_Base = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, Base?>?>? {
-        let result = try! _IIterable.FirstImpl()
-        return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
+        try! _IIterable.FirstImpl()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -4124,10 +3974,12 @@ typealias __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper = InterfaceWr
 internal class IObservableMapString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIObservableMap_2_HSTRING_IInspectable }
 
-    internal func add_MapChangedImpl(_ vhnd: UnsafeMutablePointer<__x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectable>?) throws -> EventRegistrationToken {
+    internal func add_MapChangedImpl(_ vhnd: MapChangedEventHandler<String, Any?>?) throws -> EventRegistrationToken {
         var result: EventRegistrationToken = .init()
+        let vhndWrapper = test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper(vhnd)
+        let _vhnd = try! vhndWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIObservableMap_2_HSTRING_IInspectable.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.add_MapChanged(pThis, vhnd, &result))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.add_MapChanged(pThis, _vhnd, &result))
         }
         return result
     }
@@ -4170,9 +4022,7 @@ internal class __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableImpl : IObservab
       .init(
         add: { [weak this = _default] in
           guard let this else { return .init() }
-          let wrapper = test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper($0)
-          let abi = try! wrapper?.toABI { $0 }
-          return try! this.add_MapChangedImpl(abi)
+          return try! this.add_MapChangedImpl($0)
         },
         remove: { [weak this = _default] in
          try? this?.remove_MapChangedImpl($0)
@@ -4183,37 +4033,27 @@ internal class __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableImpl : IObservab
     internal lazy var _IMap: IMapString_Any = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.lookup)
     public func lookup(_ key: String) -> Any? {
-        let _key = try! HString(key)
-        let result = try! _IMap.LookupImpl(_key.get())
-        return __ABI_.AnyWrapper.unwrapFrom(abi: result)
+        try! _IMap.LookupImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.haskey)
     public func hasKey(_ key: String) -> Bool {
-        let _key = try! HString(key)
-        let result = try! _IMap.HasKeyImpl(_key.get())
-        return .init(from: result)
+        try! _IMap.HasKeyImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.getview)
     public func getView() -> AnyIMapView<String, Any?>? {
-        let result = try! _IMap.GetViewImpl()
-        return test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
+        try! _IMap.GetViewImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.insert)
     public func insert(_ key: String, _ value: Any?) -> Bool {
-        let _key = try! HString(key)
-        let valueWrapper = __ABI_.AnyWrapper(value)
-        let _value = try! valueWrapper?.toABI { $0 }
-        let result = try! _IMap.InsertImpl(_key.get(), _value)
-        return .init(from: result)
+        try! _IMap.InsertImpl(key, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.remove)
     public func remove(_ key: String) {
-        let _key = try! HString(key)
-        try! _IMap.RemoveImpl(_key.get())
+        try! _IMap.RemoveImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.clear)
@@ -4223,18 +4063,13 @@ internal class __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableImpl : IObservab
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.size)
     public var size : UInt32 {
-        get {
-            let result = try! _IMap.get_SizeImpl()
-            return result
-        }
-
+        get { try! _IMap.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableIKeyValuePairString_Any = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
-        let result = try! _IIterable.FirstImpl()
-        return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
+        try! _IIterable.FirstImpl()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -4319,10 +4154,12 @@ typealias __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper = InterfaceWrapper
 internal class IObservableMapString_String: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIObservableMap_2_HSTRING_HSTRING }
 
-    internal func add_MapChangedImpl(_ vhnd: UnsafeMutablePointer<__x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRING>?) throws -> EventRegistrationToken {
+    internal func add_MapChangedImpl(_ vhnd: MapChangedEventHandler<String, String>?) throws -> EventRegistrationToken {
         var result: EventRegistrationToken = .init()
+        let vhndWrapper = test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper(vhnd)
+        let _vhnd = try! vhndWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIObservableMap_2_HSTRING_HSTRING.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.add_MapChanged(pThis, vhnd, &result))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.add_MapChanged(pThis, _vhnd, &result))
         }
         return result
     }
@@ -4365,9 +4202,7 @@ internal class __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGImpl : IObservableMap
       .init(
         add: { [weak this = _default] in
           guard let this else { return .init() }
-          let wrapper = test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper($0)
-          let abi = try! wrapper?.toABI { $0 }
-          return try! this.add_MapChangedImpl(abi)
+          return try! this.add_MapChangedImpl($0)
         },
         remove: { [weak this = _default] in
          try? this?.remove_MapChangedImpl($0)
@@ -4378,36 +4213,27 @@ internal class __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGImpl : IObservableMap
     internal lazy var _IMap: IMapString_String = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.lookup)
     public func lookup(_ key: String) -> String {
-        let _key = try! HString(key)
-        let result = try! _IMap.LookupImpl(_key.get())
-        return .init(from: result)
+        try! _IMap.LookupImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.haskey)
     public func hasKey(_ key: String) -> Bool {
-        let _key = try! HString(key)
-        let result = try! _IMap.HasKeyImpl(_key.get())
-        return .init(from: result)
+        try! _IMap.HasKeyImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.getview)
     public func getView() -> AnyIMapView<String, String>? {
-        let result = try! _IMap.GetViewImpl()
-        return test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
+        try! _IMap.GetViewImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.insert)
     public func insert(_ key: String, _ value: String) -> Bool {
-        let _key = try! HString(key)
-        let _value = try! HString(value)
-        let result = try! _IMap.InsertImpl(_key.get(), _value.get())
-        return .init(from: result)
+        try! _IMap.InsertImpl(key, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.remove)
     public func remove(_ key: String) {
-        let _key = try! HString(key)
-        try! _IMap.RemoveImpl(_key.get())
+        try! _IMap.RemoveImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.clear)
@@ -4417,18 +4243,13 @@ internal class __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGImpl : IObservableMap
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.size)
     public var size : UInt32 {
-        get {
-            let result = try! _IMap.get_SizeImpl()
-            return result
-        }
-
+        get { try! _IMap.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableIKeyValuePairString_String = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
-        let result = try! _IIterable.FirstImpl()
-        return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
+        try! _IIterable.FirstImpl()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -4513,10 +4334,12 @@ typealias __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseWrappe
 internal class IObservableVectorBase: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase }
 
-    internal func add_VectorChangedImpl(_ vhnd: UnsafeMutablePointer<__x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBase>?) throws -> EventRegistrationToken {
+    internal func add_VectorChangedImpl(_ vhnd: VectorChangedEventHandler<test_component.Base?>?) throws -> EventRegistrationToken {
         var result: EventRegistrationToken = .init()
+        let vhndWrapper = test_component.__x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseWrapper(vhnd)
+        let _vhnd = try! vhndWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.add_VectorChanged(pThis, vhnd, &result))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.add_VectorChanged(pThis, _vhnd, &result))
         }
         return result
     }
@@ -4587,9 +4410,7 @@ internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseI
       .init(
         add: { [weak this = _default] in
           guard let this else { return .init() }
-          let wrapper = test_component.__x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseWrapper($0)
-          let abi = try! wrapper?.toABI { $0 }
-          return try! this.add_VectorChangedImpl(abi)
+          return try! this.add_VectorChangedImpl($0)
         },
         remove: { [weak this = _default] in
          try? this?.remove_VectorChangedImpl($0)
@@ -4600,30 +4421,27 @@ internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseI
     internal lazy var _IVector: IVectorBase = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.getat)
     public func getAt(_ index: UInt32) -> Base? {
-        let result = try! _IVector.GetAtImpl(index)
-        return .from(abi: result)
+        try! _IVector.GetAtImpl(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.getview)
     public func getView() -> AnyIVectorView<Base?>? {
-        let result = try! _IVector.GetViewImpl()
-        return test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
+        try! _IVector.GetViewImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.indexof)
     public func indexOf(_ value: Base?, _ index: inout UInt32) -> Bool {
-        let result = try! _IVector.IndexOfImpl(RawPointer(value), &index)
-        return .init(from: result)
+        try! _IVector.IndexOfImpl(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.setat)
     public func setAt(_ index: UInt32, _ value: Base?) {
-        try! _IVector.SetAtImpl(index, RawPointer(value))
+        try! _IVector.SetAtImpl(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.insertat)
     public func insertAt(_ index: UInt32, _ value: Base?) {
-        try! _IVector.InsertAtImpl(index, RawPointer(value))
+        try! _IVector.InsertAtImpl(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.removeat)
@@ -4633,7 +4451,7 @@ internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseI
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.append)
     public func append(_ value: Base?) {
-        try! _IVector.AppendImpl(RawPointer(value))
+        try! _IVector.AppendImpl(value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.removeatend)
@@ -4648,18 +4466,13 @@ internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseI
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.size)
     public var size : UInt32 {
-        get {
-            let result = try! _IVector.get_SizeImpl()
-            return result
-        }
-
+        get { try! _IVector.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableBase = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.first)
     public func first() -> AnyIIterator<Base?>? {
-        let result = try! _IIterable.FirstImpl()
-        return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
+        try! _IIterable.FirstImpl()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -4744,10 +4557,12 @@ typealias __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicWrap
 internal class IObservableVectorIBasic: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasic }
 
-    internal func add_VectorChangedImpl(_ vhnd: UnsafeMutablePointer<__x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasic>?) throws -> EventRegistrationToken {
+    internal func add_VectorChangedImpl(_ vhnd: VectorChangedEventHandler<test_component.AnyIBasic?>?) throws -> EventRegistrationToken {
         var result: EventRegistrationToken = .init()
+        let vhndWrapper = test_component.__x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicWrapper(vhnd)
+        let _vhnd = try! vhndWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.add_VectorChanged(pThis, vhnd, &result))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.add_VectorChanged(pThis, _vhnd, &result))
         }
         return result
     }
@@ -4818,9 +4633,7 @@ internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasi
       .init(
         add: { [weak this = _default] in
           guard let this else { return .init() }
-          let wrapper = test_component.__x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicWrapper($0)
-          let abi = try! wrapper?.toABI { $0 }
-          return try! this.add_VectorChangedImpl(abi)
+          return try! this.add_VectorChangedImpl($0)
         },
         remove: { [weak this = _default] in
          try? this?.remove_VectorChangedImpl($0)
@@ -4831,36 +4644,27 @@ internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasi
     internal lazy var _IVector: IVectorIBasic = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.getat)
     public func getAt(_ index: UInt32) -> AnyIBasic? {
-        let result = try! _IVector.GetAtImpl(index)
-        return __ABI_test_component.IBasicWrapper.unwrapFrom(abi: result)
+        try! _IVector.GetAtImpl(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.getview)
     public func getView() -> AnyIVectorView<AnyIBasic?>? {
-        let result = try! _IVector.GetViewImpl()
-        return test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.unwrapFrom(abi: result)
+        try! _IVector.GetViewImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.indexof)
     public func indexOf(_ value: AnyIBasic?, _ index: inout UInt32) -> Bool {
-        let valueWrapper = __ABI_test_component.IBasicWrapper(value)
-        let _value = try! valueWrapper?.toABI { $0 }
-        let result = try! _IVector.IndexOfImpl(_value, &index)
-        return .init(from: result)
+        try! _IVector.IndexOfImpl(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.setat)
     public func setAt(_ index: UInt32, _ value: AnyIBasic?) {
-        let valueWrapper = __ABI_test_component.IBasicWrapper(value)
-        let _value = try! valueWrapper?.toABI { $0 }
-        try! _IVector.SetAtImpl(index, _value)
+        try! _IVector.SetAtImpl(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.insertat)
     public func insertAt(_ index: UInt32, _ value: AnyIBasic?) {
-        let valueWrapper = __ABI_test_component.IBasicWrapper(value)
-        let _value = try! valueWrapper?.toABI { $0 }
-        try! _IVector.InsertAtImpl(index, _value)
+        try! _IVector.InsertAtImpl(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.removeat)
@@ -4870,9 +4674,7 @@ internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasi
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.append)
     public func append(_ value: AnyIBasic?) {
-        let valueWrapper = __ABI_test_component.IBasicWrapper(value)
-        let _value = try! valueWrapper?.toABI { $0 }
-        try! _IVector.AppendImpl(_value)
+        try! _IVector.AppendImpl(value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.removeatend)
@@ -4887,18 +4689,13 @@ internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasi
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.size)
     public var size : UInt32 {
-        get {
-            let result = try! _IVector.get_SizeImpl()
-            return result
-        }
-
+        get { try! _IVector.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableIBasic = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.first)
     public func first() -> AnyIIterator<AnyIBasic?>? {
-        let result = try! _IIterable.FirstImpl()
-        return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.unwrapFrom(abi: result)
+        try! _IIterable.FirstImpl()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -4995,15 +4792,15 @@ typealias __x_ABI_C__FIVectorView_1_IInspectableWrapper = InterfaceWrapperBase<t
 internal class IVectorViewAny: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1_IInspectable }
 
-    internal func GetAtImpl(_ index: UINT32) throws -> UnsafeMutablePointer<C_IInspectable>? {
+    internal func GetAtImpl(_ index: UInt32) throws -> Any? {
         var result: UnsafeMutablePointer<C_IInspectable>?
         _ = try perform(as: __x_ABI_C__FIVectorView_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
         }
-        return result
+        return __ABI_.AnyWrapper.unwrapFrom(abi: result)
     }
 
-    internal func get_SizeImpl() throws -> UINT32 {
+    internal func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -5011,12 +4808,14 @@ internal class IVectorViewAny: test_component.IInspectable {
         return result
     }
 
-    internal func IndexOfImpl(_ value: UnsafeMutablePointer<C_IInspectable>?, _ index: inout UINT32) throws -> boolean {
+    internal func IndexOfImpl(_ value: Any?, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
+        let valueWrapper = __ABI_.AnyWrapper(value)
+        let _value = try! valueWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIVectorView_1_IInspectable.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, value, &index, &result))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, _value, &index, &result))
         }
-        return result
+        return .init(from: result)
     }
 
 }
@@ -5067,32 +4866,23 @@ internal class __x_ABI_C__FIVectorView_1_IInspectableImpl : IVectorView, AbiInte
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.getat)
     public func getAt(_ index: UInt32) -> Any? {
-        let result = try! _default.GetAtImpl(index)
-        return __ABI_.AnyWrapper.unwrapFrom(abi: result)
+        try! _default.GetAtImpl(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.indexof)
     public func indexOf(_ value: Any?, _ index: inout UInt32) -> Bool {
-        let valueWrapper = __ABI_.AnyWrapper(value)
-        let _value = try! valueWrapper?.toABI { $0 }
-        let result = try! _default.IndexOfImpl(_value, &index)
-        return .init(from: result)
+        try! _default.IndexOfImpl(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
     public var size : UInt32 {
-        get {
-            let result = try! _default.get_SizeImpl()
-            return result
-        }
-
+        get { try! _default.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableAny = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
     public func first() -> AnyIIterator<Any?>? {
-        let result = try! _IIterable.FirstImpl()
-        return test_component.__x_ABI_C__FIIterator_1_IInspectableWrapper.unwrapFrom(abi: result)
+        try! _IIterable.FirstImpl()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -5188,15 +4978,15 @@ typealias __x_ABI_C__FIVectorView_1_HSTRINGWrapper = InterfaceWrapperBase<test_c
 internal class IVectorViewString: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1_HSTRING }
 
-    internal func GetAtImpl(_ index: UINT32) throws -> HSTRING? {
+    internal func GetAtImpl(_ index: UInt32) throws -> String {
         var result: HSTRING?
         _ = try perform(as: __x_ABI_C__FIVectorView_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
         }
-        return result
+        return .init(from: result)
     }
 
-    internal func get_SizeImpl() throws -> UINT32 {
+    internal func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -5204,12 +4994,13 @@ internal class IVectorViewString: test_component.IInspectable {
         return result
     }
 
-    internal func IndexOfImpl(_ value: HSTRING?, _ index: inout UINT32) throws -> boolean {
+    internal func IndexOfImpl(_ value: String, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
+        let _value = try! HString(value)
         _ = try perform(as: __x_ABI_C__FIVectorView_1_HSTRING.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, value, &index, &result))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, _value.get(), &index, &result))
         }
-        return result
+        return .init(from: result)
     }
 
 }
@@ -5260,31 +5051,23 @@ internal class __x_ABI_C__FIVectorView_1_HSTRINGImpl : IVectorView, AbiInterface
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.getat)
     public func getAt(_ index: UInt32) -> String {
-        let result = try! _default.GetAtImpl(index)
-        return .init(from: result)
+        try! _default.GetAtImpl(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.indexof)
     public func indexOf(_ value: String, _ index: inout UInt32) -> Bool {
-        let _value = try! HString(value)
-        let result = try! _default.IndexOfImpl(_value.get(), &index)
-        return .init(from: result)
+        try! _default.IndexOfImpl(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
     public var size : UInt32 {
-        get {
-            let result = try! _default.get_SizeImpl()
-            return result
-        }
-
+        get { try! _default.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableString = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
     public func first() -> AnyIIterator<String>? {
-        let result = try! _IIterable.FirstImpl()
-        return test_component.__x_ABI_C__FIIterator_1_HSTRINGWrapper.unwrapFrom(abi: result)
+        try! _IIterable.FirstImpl()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -5380,15 +5163,15 @@ typealias __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper = In
 internal class IVectorViewBase: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase }
 
-    internal func GetAtImpl(_ index: UINT32) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>? {
+    internal func GetAtImpl(_ index: UInt32) throws -> test_component.Base? {
         var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
         }
-        return result
+        return .from(abi: result)
     }
 
-    internal func get_SizeImpl() throws -> UINT32 {
+    internal func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -5396,12 +5179,12 @@ internal class IVectorViewBase: test_component.IInspectable {
         return result
     }
 
-    internal func IndexOfImpl(_ value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?, _ index: inout UINT32) throws -> boolean {
+    internal func IndexOfImpl(_ value: test_component.Base?, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, value, &index, &result))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, RawPointer(value), &index, &result))
         }
-        return result
+        return .init(from: result)
     }
 
 }
@@ -5452,30 +5235,23 @@ internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl : 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.getat)
     public func getAt(_ index: UInt32) -> Base? {
-        let result = try! _default.GetAtImpl(index)
-        return .from(abi: result)
+        try! _default.GetAtImpl(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.indexof)
     public func indexOf(_ value: Base?, _ index: inout UInt32) -> Bool {
-        let result = try! _default.IndexOfImpl(RawPointer(value), &index)
-        return .init(from: result)
+        try! _default.IndexOfImpl(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
     public var size : UInt32 {
-        get {
-            let result = try! _default.get_SizeImpl()
-            return result
-        }
-
+        get { try! _default.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableBase = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
     public func first() -> AnyIIterator<Base?>? {
-        let result = try! _IIterable.FirstImpl()
-        return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
+        try! _IIterable.FirstImpl()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -5572,15 +5348,15 @@ typealias __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = 
 internal class IVectorViewIBasic: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasic }
 
-    internal func GetAtImpl(_ index: UINT32) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>? {
+    internal func GetAtImpl(_ index: UInt32) throws -> test_component.AnyIBasic? {
         var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>?
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
         }
-        return result
+        return __ABI_test_component.IBasicWrapper.unwrapFrom(abi: result)
     }
 
-    internal func get_SizeImpl() throws -> UINT32 {
+    internal func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -5588,12 +5364,14 @@ internal class IVectorViewIBasic: test_component.IInspectable {
         return result
     }
 
-    internal func IndexOfImpl(_ value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>?, _ index: inout UINT32) throws -> boolean {
+    internal func IndexOfImpl(_ value: test_component.AnyIBasic?, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
+        let valueWrapper = __ABI_test_component.IBasicWrapper(value)
+        let _value = try! valueWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, value, &index, &result))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, _value, &index, &result))
         }
-        return result
+        return .init(from: result)
     }
 
 }
@@ -5644,32 +5422,23 @@ internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicImpl 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.getat)
     public func getAt(_ index: UInt32) -> AnyIBasic? {
-        let result = try! _default.GetAtImpl(index)
-        return __ABI_test_component.IBasicWrapper.unwrapFrom(abi: result)
+        try! _default.GetAtImpl(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.indexof)
     public func indexOf(_ value: AnyIBasic?, _ index: inout UInt32) -> Bool {
-        let valueWrapper = __ABI_test_component.IBasicWrapper(value)
-        let _value = try! valueWrapper?.toABI { $0 }
-        let result = try! _default.IndexOfImpl(_value, &index)
-        return .init(from: result)
+        try! _default.IndexOfImpl(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
     public var size : UInt32 {
-        get {
-            let result = try! _default.get_SizeImpl()
-            return result
-        }
-
+        get { try! _default.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableIBasic = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
     public func first() -> AnyIIterator<AnyIBasic?>? {
-        let result = try! _IIterable.FirstImpl()
-        return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.unwrapFrom(abi: result)
+        try! _IIterable.FirstImpl()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -5818,15 +5587,15 @@ typealias __x_ABI_C__FIVector_1_IInspectableWrapper = InterfaceWrapperBase<test_
 internal class IVectorAny: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVector_1_IInspectable }
 
-    internal func GetAtImpl(_ index: UINT32) throws -> UnsafeMutablePointer<C_IInspectable>? {
+    internal func GetAtImpl(_ index: UInt32) throws -> Any? {
         var result: UnsafeMutablePointer<C_IInspectable>?
         _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
         }
-        return result
+        return __ABI_.AnyWrapper.unwrapFrom(abi: result)
     }
 
-    internal func get_SizeImpl() throws -> UINT32 {
+    internal func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -5834,43 +5603,51 @@ internal class IVectorAny: test_component.IInspectable {
         return result
     }
 
-    internal func GetViewImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIVectorView_1_IInspectable>? {
+    internal func GetViewImpl() throws -> test_component.AnyIVectorView<Any?>? {
         var result: UnsafeMutablePointer<__x_ABI_C__FIVectorView_1_IInspectable>?
         _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &result))
         }
-        return result
+        return test_component.__x_ABI_C__FIVectorView_1_IInspectableWrapper.unwrapFrom(abi: result)
     }
 
-    internal func IndexOfImpl(_ value: UnsafeMutablePointer<C_IInspectable>?, _ index: inout UINT32) throws -> boolean {
+    internal func IndexOfImpl(_ value: Any?, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
+        let valueWrapper = __ABI_.AnyWrapper(value)
+        let _value = try! valueWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, value, &index, &result))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, _value, &index, &result))
         }
-        return result
+        return .init(from: result)
     }
 
-    internal func SetAtImpl(_ index: UINT32, _ value: UnsafeMutablePointer<C_IInspectable>?) throws {
+    internal func SetAtImpl(_ index: UInt32, _ value: Any?) throws {
+        let valueWrapper = __ABI_.AnyWrapper(value)
+        let _value = try! valueWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.SetAt(pThis, index, value))
-        }
-    }
-
-    internal func InsertAtImpl(_ index: UINT32, _ value: UnsafeMutablePointer<C_IInspectable>?) throws {
-        _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.InsertAt(pThis, index, value))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.SetAt(pThis, index, _value))
         }
     }
 
-    internal func RemoveAtImpl(_ index: UINT32) throws {
+    internal func InsertAtImpl(_ index: UInt32, _ value: Any?) throws {
+        let valueWrapper = __ABI_.AnyWrapper(value)
+        let _value = try! valueWrapper?.toABI { $0 }
+        _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.InsertAt(pThis, index, _value))
+        }
+    }
+
+    internal func RemoveAtImpl(_ index: UInt32) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAt(pThis, index))
         }
     }
 
-    internal func AppendImpl(_ value: UnsafeMutablePointer<C_IInspectable>?) throws {
+    internal func AppendImpl(_ value: Any?) throws {
+        let valueWrapper = __ABI_.AnyWrapper(value)
+        let _value = try! valueWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Append(pThis, value))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Append(pThis, _value))
         }
     }
 
@@ -5943,36 +5720,27 @@ internal class __x_ABI_C__FIVector_1_IInspectableImpl : IVector, AbiInterfaceImp
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getat)
     public func getAt(_ index: UInt32) -> Any? {
-        let result = try! _default.GetAtImpl(index)
-        return __ABI_.AnyWrapper.unwrapFrom(abi: result)
+        try! _default.GetAtImpl(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getview)
     public func getView() -> AnyIVectorView<Any?>? {
-        let result = try! _default.GetViewImpl()
-        return test_component.__x_ABI_C__FIVectorView_1_IInspectableWrapper.unwrapFrom(abi: result)
+        try! _default.GetViewImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.indexof)
     public func indexOf(_ value: Any?, _ index: inout UInt32) -> Bool {
-        let valueWrapper = __ABI_.AnyWrapper(value)
-        let _value = try! valueWrapper?.toABI { $0 }
-        let result = try! _default.IndexOfImpl(_value, &index)
-        return .init(from: result)
+        try! _default.IndexOfImpl(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.setat)
     public func setAt(_ index: UInt32, _ value: Any?) {
-        let valueWrapper = __ABI_.AnyWrapper(value)
-        let _value = try! valueWrapper?.toABI { $0 }
-        try! _default.SetAtImpl(index, _value)
+        try! _default.SetAtImpl(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.insertat)
     public func insertAt(_ index: UInt32, _ value: Any?) {
-        let valueWrapper = __ABI_.AnyWrapper(value)
-        let _value = try! valueWrapper?.toABI { $0 }
-        try! _default.InsertAtImpl(index, _value)
+        try! _default.InsertAtImpl(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeat)
@@ -5982,9 +5750,7 @@ internal class __x_ABI_C__FIVector_1_IInspectableImpl : IVector, AbiInterfaceImp
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.append)
     public func append(_ value: Any?) {
-        let valueWrapper = __ABI_.AnyWrapper(value)
-        let _value = try! valueWrapper?.toABI { $0 }
-        try! _default.AppendImpl(_value)
+        try! _default.AppendImpl(value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeatend)
@@ -5999,18 +5765,13 @@ internal class __x_ABI_C__FIVector_1_IInspectableImpl : IVector, AbiInterfaceImp
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.size)
     public var size : UInt32 {
-        get {
-            let result = try! _default.get_SizeImpl()
-            return result
-        }
-
+        get { try! _default.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableAny = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.first)
     public func first() -> AnyIIterator<Any?>? {
-        let result = try! _IIterable.FirstImpl()
-        return test_component.__x_ABI_C__FIIterator_1_IInspectableWrapper.unwrapFrom(abi: result)
+        try! _IIterable.FirstImpl()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -6158,15 +5919,15 @@ typealias __x_ABI_C__FIVector_1_HSTRINGWrapper = InterfaceWrapperBase<test_compo
 internal class IVectorString: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVector_1_HSTRING }
 
-    internal func GetAtImpl(_ index: UINT32) throws -> HSTRING? {
+    internal func GetAtImpl(_ index: UInt32) throws -> String {
         var result: HSTRING?
         _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
         }
-        return result
+        return .init(from: result)
     }
 
-    internal func get_SizeImpl() throws -> UINT32 {
+    internal func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -6174,43 +5935,47 @@ internal class IVectorString: test_component.IInspectable {
         return result
     }
 
-    internal func GetViewImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIVectorView_1_HSTRING>? {
+    internal func GetViewImpl() throws -> test_component.AnyIVectorView<String>? {
         var result: UnsafeMutablePointer<__x_ABI_C__FIVectorView_1_HSTRING>?
         _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &result))
         }
-        return result
+        return test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
-    internal func IndexOfImpl(_ value: HSTRING?, _ index: inout UINT32) throws -> boolean {
+    internal func IndexOfImpl(_ value: String, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
+        let _value = try! HString(value)
         _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, value, &index, &result))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, _value.get(), &index, &result))
         }
-        return result
+        return .init(from: result)
     }
 
-    internal func SetAtImpl(_ index: UINT32, _ value: HSTRING?) throws {
+    internal func SetAtImpl(_ index: UInt32, _ value: String) throws {
+        let _value = try! HString(value)
         _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.SetAt(pThis, index, value))
-        }
-    }
-
-    internal func InsertAtImpl(_ index: UINT32, _ value: HSTRING?) throws {
-        _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.InsertAt(pThis, index, value))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.SetAt(pThis, index, _value.get()))
         }
     }
 
-    internal func RemoveAtImpl(_ index: UINT32) throws {
+    internal func InsertAtImpl(_ index: UInt32, _ value: String) throws {
+        let _value = try! HString(value)
+        _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.InsertAt(pThis, index, _value.get()))
+        }
+    }
+
+    internal func RemoveAtImpl(_ index: UInt32) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAt(pThis, index))
         }
     }
 
-    internal func AppendImpl(_ value: HSTRING?) throws {
+    internal func AppendImpl(_ value: String) throws {
+        let _value = try! HString(value)
         _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Append(pThis, value))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Append(pThis, _value.get()))
         }
     }
 
@@ -6283,33 +6048,27 @@ internal class __x_ABI_C__FIVector_1_HSTRINGImpl : IVector, AbiInterfaceImpl {
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getat)
     public func getAt(_ index: UInt32) -> String {
-        let result = try! _default.GetAtImpl(index)
-        return .init(from: result)
+        try! _default.GetAtImpl(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getview)
     public func getView() -> AnyIVectorView<String>? {
-        let result = try! _default.GetViewImpl()
-        return test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper.unwrapFrom(abi: result)
+        try! _default.GetViewImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.indexof)
     public func indexOf(_ value: String, _ index: inout UInt32) -> Bool {
-        let _value = try! HString(value)
-        let result = try! _default.IndexOfImpl(_value.get(), &index)
-        return .init(from: result)
+        try! _default.IndexOfImpl(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.setat)
     public func setAt(_ index: UInt32, _ value: String) {
-        let _value = try! HString(value)
-        try! _default.SetAtImpl(index, _value.get())
+        try! _default.SetAtImpl(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.insertat)
     public func insertAt(_ index: UInt32, _ value: String) {
-        let _value = try! HString(value)
-        try! _default.InsertAtImpl(index, _value.get())
+        try! _default.InsertAtImpl(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeat)
@@ -6319,8 +6078,7 @@ internal class __x_ABI_C__FIVector_1_HSTRINGImpl : IVector, AbiInterfaceImpl {
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.append)
     public func append(_ value: String) {
-        let _value = try! HString(value)
-        try! _default.AppendImpl(_value.get())
+        try! _default.AppendImpl(value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeatend)
@@ -6335,18 +6093,13 @@ internal class __x_ABI_C__FIVector_1_HSTRINGImpl : IVector, AbiInterfaceImpl {
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.size)
     public var size : UInt32 {
-        get {
-            let result = try! _default.get_SizeImpl()
-            return result
-        }
-
+        get { try! _default.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableString = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.first)
     public func first() -> AnyIIterator<String>? {
-        let result = try! _IIterable.FirstImpl()
-        return test_component.__x_ABI_C__FIIterator_1_HSTRINGWrapper.unwrapFrom(abi: result)
+        try! _IIterable.FirstImpl()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -6494,15 +6247,15 @@ typealias __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper = Interf
 internal class IVectorBase: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase }
 
-    internal func GetAtImpl(_ index: UINT32) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>? {
+    internal func GetAtImpl(_ index: UInt32) throws -> test_component.Base? {
         var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
         }
-        return result
+        return .from(abi: result)
     }
 
-    internal func get_SizeImpl() throws -> UINT32 {
+    internal func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -6510,43 +6263,43 @@ internal class IVectorBase: test_component.IInspectable {
         return result
     }
 
-    internal func GetViewImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase>? {
+    internal func GetViewImpl() throws -> test_component.AnyIVectorView<test_component.Base?>? {
         var result: UnsafeMutablePointer<__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase>?
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &result))
         }
-        return result
+        return test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
 
-    internal func IndexOfImpl(_ value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?, _ index: inout UINT32) throws -> boolean {
+    internal func IndexOfImpl(_ value: test_component.Base?, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, value, &index, &result))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, RawPointer(value), &index, &result))
         }
-        return result
+        return .init(from: result)
     }
 
-    internal func SetAtImpl(_ index: UINT32, _ value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?) throws {
+    internal func SetAtImpl(_ index: UInt32, _ value: test_component.Base?) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.SetAt(pThis, index, value))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.SetAt(pThis, index, RawPointer(value)))
         }
     }
 
-    internal func InsertAtImpl(_ index: UINT32, _ value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?) throws {
+    internal func InsertAtImpl(_ index: UInt32, _ value: test_component.Base?) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.InsertAt(pThis, index, value))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.InsertAt(pThis, index, RawPointer(value)))
         }
     }
 
-    internal func RemoveAtImpl(_ index: UINT32) throws {
+    internal func RemoveAtImpl(_ index: UInt32) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAt(pThis, index))
         }
     }
 
-    internal func AppendImpl(_ value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?) throws {
+    internal func AppendImpl(_ value: test_component.Base?) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Append(pThis, value))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Append(pThis, RawPointer(value)))
         }
     }
 
@@ -6619,30 +6372,27 @@ internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl : IVec
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getat)
     public func getAt(_ index: UInt32) -> Base? {
-        let result = try! _default.GetAtImpl(index)
-        return .from(abi: result)
+        try! _default.GetAtImpl(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getview)
     public func getView() -> AnyIVectorView<Base?>? {
-        let result = try! _default.GetViewImpl()
-        return test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
+        try! _default.GetViewImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.indexof)
     public func indexOf(_ value: Base?, _ index: inout UInt32) -> Bool {
-        let result = try! _default.IndexOfImpl(RawPointer(value), &index)
-        return .init(from: result)
+        try! _default.IndexOfImpl(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.setat)
     public func setAt(_ index: UInt32, _ value: Base?) {
-        try! _default.SetAtImpl(index, RawPointer(value))
+        try! _default.SetAtImpl(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.insertat)
     public func insertAt(_ index: UInt32, _ value: Base?) {
-        try! _default.InsertAtImpl(index, RawPointer(value))
+        try! _default.InsertAtImpl(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeat)
@@ -6652,7 +6402,7 @@ internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl : IVec
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.append)
     public func append(_ value: Base?) {
-        try! _default.AppendImpl(RawPointer(value))
+        try! _default.AppendImpl(value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeatend)
@@ -6667,18 +6417,13 @@ internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl : IVec
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.size)
     public var size : UInt32 {
-        get {
-            let result = try! _default.get_SizeImpl()
-            return result
-        }
-
+        get { try! _default.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableBase = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.first)
     public func first() -> AnyIIterator<Base?>? {
-        let result = try! _IIterable.FirstImpl()
-        return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
+        try! _IIterable.FirstImpl()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -6827,15 +6572,15 @@ typealias __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = Inte
 internal class IVectorIBasic: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic }
 
-    internal func GetAtImpl(_ index: UINT32) throws -> UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>? {
+    internal func GetAtImpl(_ index: UInt32) throws -> test_component.AnyIBasic? {
         var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>?
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
         }
-        return result
+        return __ABI_test_component.IBasicWrapper.unwrapFrom(abi: result)
     }
 
-    internal func get_SizeImpl() throws -> UINT32 {
+    internal func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -6843,43 +6588,51 @@ internal class IVectorIBasic: test_component.IInspectable {
         return result
     }
 
-    internal func GetViewImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasic>? {
+    internal func GetViewImpl() throws -> test_component.AnyIVectorView<test_component.AnyIBasic?>? {
         var result: UnsafeMutablePointer<__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasic>?
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &result))
         }
-        return result
+        return test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.unwrapFrom(abi: result)
     }
 
-    internal func IndexOfImpl(_ value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>?, _ index: inout UINT32) throws -> boolean {
+    internal func IndexOfImpl(_ value: test_component.AnyIBasic?, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
+        let valueWrapper = __ABI_test_component.IBasicWrapper(value)
+        let _value = try! valueWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, value, &index, &result))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, _value, &index, &result))
         }
-        return result
+        return .init(from: result)
     }
 
-    internal func SetAtImpl(_ index: UINT32, _ value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>?) throws {
+    internal func SetAtImpl(_ index: UInt32, _ value: test_component.AnyIBasic?) throws {
+        let valueWrapper = __ABI_test_component.IBasicWrapper(value)
+        let _value = try! valueWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.SetAt(pThis, index, value))
-        }
-    }
-
-    internal func InsertAtImpl(_ index: UINT32, _ value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>?) throws {
-        _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.InsertAt(pThis, index, value))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.SetAt(pThis, index, _value))
         }
     }
 
-    internal func RemoveAtImpl(_ index: UINT32) throws {
+    internal func InsertAtImpl(_ index: UInt32, _ value: test_component.AnyIBasic?) throws {
+        let valueWrapper = __ABI_test_component.IBasicWrapper(value)
+        let _value = try! valueWrapper?.toABI { $0 }
+        _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.InsertAt(pThis, index, _value))
+        }
+    }
+
+    internal func RemoveAtImpl(_ index: UInt32) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAt(pThis, index))
         }
     }
 
-    internal func AppendImpl(_ value: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>?) throws {
+    internal func AppendImpl(_ value: test_component.AnyIBasic?) throws {
+        let valueWrapper = __ABI_test_component.IBasicWrapper(value)
+        let _value = try! valueWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Append(pThis, value))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Append(pThis, _value))
         }
     }
 
@@ -6952,36 +6705,27 @@ internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicImpl : IV
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getat)
     public func getAt(_ index: UInt32) -> AnyIBasic? {
-        let result = try! _default.GetAtImpl(index)
-        return __ABI_test_component.IBasicWrapper.unwrapFrom(abi: result)
+        try! _default.GetAtImpl(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getview)
     public func getView() -> AnyIVectorView<AnyIBasic?>? {
-        let result = try! _default.GetViewImpl()
-        return test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.unwrapFrom(abi: result)
+        try! _default.GetViewImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.indexof)
     public func indexOf(_ value: AnyIBasic?, _ index: inout UInt32) -> Bool {
-        let valueWrapper = __ABI_test_component.IBasicWrapper(value)
-        let _value = try! valueWrapper?.toABI { $0 }
-        let result = try! _default.IndexOfImpl(_value, &index)
-        return .init(from: result)
+        try! _default.IndexOfImpl(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.setat)
     public func setAt(_ index: UInt32, _ value: AnyIBasic?) {
-        let valueWrapper = __ABI_test_component.IBasicWrapper(value)
-        let _value = try! valueWrapper?.toABI { $0 }
-        try! _default.SetAtImpl(index, _value)
+        try! _default.SetAtImpl(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.insertat)
     public func insertAt(_ index: UInt32, _ value: AnyIBasic?) {
-        let valueWrapper = __ABI_test_component.IBasicWrapper(value)
-        let _value = try! valueWrapper?.toABI { $0 }
-        try! _default.InsertAtImpl(index, _value)
+        try! _default.InsertAtImpl(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeat)
@@ -6991,9 +6735,7 @@ internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicImpl : IV
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.append)
     public func append(_ value: AnyIBasic?) {
-        let valueWrapper = __ABI_test_component.IBasicWrapper(value)
-        let _value = try! valueWrapper?.toABI { $0 }
-        try! _default.AppendImpl(_value)
+        try! _default.AppendImpl(value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeatend)
@@ -7008,18 +6750,13 @@ internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicImpl : IV
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.size)
     public var size : UInt32 {
-        get {
-            let result = try! _default.get_SizeImpl()
-            return result
-        }
-
+        get { try! _default.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableIBasic = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.first)
     public func first() -> AnyIIterator<AnyIBasic?>? {
-        let result = try! _IIterable.FirstImpl()
-        return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.unwrapFrom(abi: result)
+        try! _IIterable.FirstImpl()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -7074,9 +6811,13 @@ typealias __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper = Int
 internal class MapChangedEventHandlerString_Any: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectable }
 
-    internal func InvokeImpl(_ sender: UnsafeMutablePointer<__x_ABI_C__FIObservableMap_2_HSTRING_IInspectable>?, _ event: UnsafeMutablePointer<__x_ABI_C__FIMapChangedEventArgs_1_HSTRING>?) throws {
+    internal func InvokeImpl(_ sender: test_component.AnyIObservableMap<String, Any?>?, _ event: test_component.AnyIMapChangedEventArgs<String>?) throws {
+        let senderWrapper = test_component.__x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper(sender)
+        let _sender = try! senderWrapper?.toABI { $0 }
+        let eventWrapper = test_component.__x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper(event)
+        let _event = try! eventWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectable.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, sender, event))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _sender, _event))
         }
     }
 
@@ -7091,11 +6832,7 @@ internal class __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableImpl : W
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, event) in
-            let senderWrapper = test_component.__x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper(sender)
-            let _sender = try! senderWrapper?.toABI { $0 }
-            let eventWrapper = test_component.__x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper(event)
-            let _event = try! eventWrapper?.toABI { $0 }
-            try! _default.InvokeImpl(_sender, _event)
+            try! _default.InvokeImpl(sender, event)
         }
         return handler
     }
@@ -7149,9 +6886,13 @@ typealias __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper = Interfac
 internal class MapChangedEventHandlerString_String: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRING }
 
-    internal func InvokeImpl(_ sender: UnsafeMutablePointer<__x_ABI_C__FIObservableMap_2_HSTRING_HSTRING>?, _ event: UnsafeMutablePointer<__x_ABI_C__FIMapChangedEventArgs_1_HSTRING>?) throws {
+    internal func InvokeImpl(_ sender: test_component.AnyIObservableMap<String, String>?, _ event: test_component.AnyIMapChangedEventArgs<String>?) throws {
+        let senderWrapper = test_component.__x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper(sender)
+        let _sender = try! senderWrapper?.toABI { $0 }
+        let eventWrapper = test_component.__x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper(event)
+        let _event = try! eventWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRING.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, sender, event))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _sender, _event))
         }
     }
 
@@ -7166,11 +6907,7 @@ internal class __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGImpl : WinRTD
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, event) in
-            let senderWrapper = test_component.__x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper(sender)
-            let _sender = try! senderWrapper?.toABI { $0 }
-            let eventWrapper = test_component.__x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper(event)
-            let _event = try! eventWrapper?.toABI { $0 }
-            try! _default.InvokeImpl(_sender, _event)
+            try! _default.InvokeImpl(sender, event)
         }
         return handler
     }
@@ -7224,9 +6961,13 @@ typealias __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBa
 internal class VectorChangedEventHandlerBase: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBase }
 
-    internal func InvokeImpl(_ sender: UnsafeMutablePointer<__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase>?, _ event: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CCollections_CIVectorChangedEventArgs>?) throws {
+    internal func InvokeImpl(_ sender: test_component.AnyIObservableVector<test_component.Base?>?, _ event: test_component.AnyIVectorChangedEventArgs?) throws {
+        let senderWrapper = test_component.__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper(sender)
+        let _sender = try! senderWrapper?.toABI { $0 }
+        let eventWrapper = __ABI_Windows_Foundation_Collections.IVectorChangedEventArgsWrapper(event)
+        let _event = try! eventWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, sender, event))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _sender, _event))
         }
     }
 
@@ -7241,11 +6982,7 @@ internal class __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, event) in
-            let senderWrapper = test_component.__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper(sender)
-            let _sender = try! senderWrapper?.toABI { $0 }
-            let eventWrapper = __ABI_Windows_Foundation_Collections.IVectorChangedEventArgsWrapper(event)
-            let _event = try! eventWrapper?.toABI { $0 }
-            try! _default.InvokeImpl(_sender, _event)
+            try! _default.InvokeImpl(sender, event)
         }
         return handler
     }
@@ -7299,9 +7036,13 @@ typealias __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIB
 internal class VectorChangedEventHandlerIBasic: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasic }
 
-    internal func InvokeImpl(_ sender: UnsafeMutablePointer<__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasic>?, _ event: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CCollections_CIVectorChangedEventArgs>?) throws {
+    internal func InvokeImpl(_ sender: test_component.AnyIObservableVector<test_component.AnyIBasic?>?, _ event: test_component.AnyIVectorChangedEventArgs?) throws {
+        let senderWrapper = test_component.__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper(sender)
+        let _sender = try! senderWrapper?.toABI { $0 }
+        let eventWrapper = __ABI_Windows_Foundation_Collections.IVectorChangedEventArgsWrapper(event)
+        let _event = try! eventWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, sender, event))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _sender, _event))
         }
     }
 
@@ -7316,11 +7057,7 @@ internal class __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, event) in
-            let senderWrapper = test_component.__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper(sender)
-            let _sender = try! senderWrapper?.toABI { $0 }
-            let eventWrapper = __ABI_Windows_Foundation_Collections.IVectorChangedEventArgsWrapper(event)
-            let _event = try! eventWrapper?.toABI { $0 }
-            try! _default.InvokeImpl(_sender, _event)
+            try! _default.InvokeImpl(sender, event)
         }
         return handler
     }
@@ -7374,9 +7111,13 @@ typealias __x_ABI_C__FIEventHandler_1_IInspectableWrapper = InterfaceWrapperBase
 internal class EventHandlerAny: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIEventHandler_1_IInspectable }
 
-    internal func InvokeImpl(_ sender: UnsafeMutablePointer<C_IInspectable>?, _ args: UnsafeMutablePointer<C_IInspectable>?) throws {
+    internal func InvokeImpl(_ sender: Any?, _ args: Any?) throws {
+        let senderWrapper = __ABI_.AnyWrapper(sender)
+        let _sender = try! senderWrapper?.toABI { $0 }
+        let argsWrapper = __ABI_.AnyWrapper(args)
+        let _args = try! argsWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIEventHandler_1_IInspectable.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, sender, args))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _sender, _args))
         }
     }
 
@@ -7391,11 +7132,7 @@ internal class __x_ABI_C__FIEventHandler_1_IInspectableImpl : WinRTDelegateBridg
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, args) in
-            let senderWrapper = __ABI_.AnyWrapper(sender)
-            let _sender = try! senderWrapper?.toABI { $0 }
-            let argsWrapper = __ABI_.AnyWrapper(args)
-            let _args = try! argsWrapper?.toABI { $0 }
-            try! _default.InvokeImpl(_sender, _args)
+            try! _default.InvokeImpl(sender, args)
         }
         return handler
     }
@@ -7502,35 +7239,39 @@ typealias __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper = Interfac
 internal class IAsyncOperationWithProgressInt32_Double: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationWithProgress_2_int_double }
 
-    internal func put_ProgressImpl(_ handler: UnsafeMutablePointer<__x_ABI_C__FIAsyncOperationProgressHandler_2_int_double>?) throws {
+    internal func put_ProgressImpl(_ handler: AsyncOperationProgressHandler<Int32, Double>?) throws {
+        let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper(handler)
+        let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2_int_double.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.put_Progress(pThis, handler))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.put_Progress(pThis, _handler))
         }
     }
 
-    internal func get_ProgressImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIAsyncOperationProgressHandler_2_int_double>? {
+    internal func get_ProgressImpl() throws -> AsyncOperationProgressHandler<Int32, Double>? {
         var result: UnsafeMutablePointer<__x_ABI_C__FIAsyncOperationProgressHandler_2_int_double>?
         _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2_int_double.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Progress(pThis, &result))
         }
-        return result
+        return test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper.unwrapFrom(abi: result)
     }
 
-    internal func put_CompletedImpl(_ handler: UnsafeMutablePointer<__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_double>?) throws {
+    internal func put_CompletedImpl(_ handler: AsyncOperationWithProgressCompletedHandler<Int32, Double>?) throws {
+        let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWrapper(handler)
+        let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2_int_double.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.put_Completed(pThis, handler))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.put_Completed(pThis, _handler))
         }
     }
 
-    internal func get_CompletedImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_double>? {
+    internal func get_CompletedImpl() throws -> AsyncOperationWithProgressCompletedHandler<Int32, Double>? {
         var result: UnsafeMutablePointer<__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_double>?
         _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2_int_double.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &result))
         }
-        return result
+        return test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWrapper.unwrapFrom(abi: result)
     }
 
-    internal func GetResultsImpl() throws -> INT32 {
+    internal func GetResultsImpl() throws -> Int32 {
         var result: INT32 = 0
         _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2_int_double.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &result))
@@ -7566,36 +7307,19 @@ internal class __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleImpl : IAsync
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.getresults)
     public func getResults() throws -> Int32 {
-        let result = try _default.GetResultsImpl()
-        return result
+        try _default.GetResultsImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.progress)
     public var progress : AsyncOperationProgressHandler<Int32, Double>? {
-        get {
-            let result = try! _default.get_ProgressImpl()
-            return test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper.unwrapFrom(abi: result)
-        }
-
-        set {
-            let wrapper = test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper(newValue)
-            let _newValue = try! wrapper?.toABI { $0 }
-            try! _default.put_ProgressImpl(_newValue)
-        }
+        get { try! _default.get_ProgressImpl() }
+        set { try! _default.put_ProgressImpl(newValue) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.completed)
     public var completed : AsyncOperationWithProgressCompletedHandler<Int32, Double>? {
-        get {
-            let result = try! _default.get_CompletedImpl()
-            return test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWrapper.unwrapFrom(abi: result)
-        }
-
-        set {
-            let wrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWrapper(newValue)
-            let _newValue = try! wrapper?.toABI { $0 }
-            try! _default.put_CompletedImpl(_newValue)
-        }
+        get { try! _default.get_CompletedImpl() }
+        set { try! _default.put_CompletedImpl(newValue) }
     }
 
     internal lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo = try! _default.QueryInterface()
@@ -7611,29 +7335,17 @@ internal class __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleImpl : IAsync
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.errorcode)
     public var errorCode : HRESULT {
-        get {
-            let result = try! _IAsyncInfo.get_ErrorCodeImpl()
-            return result
-        }
-
+        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.id)
     public var id : UInt32 {
-        get {
-            let result = try! _IAsyncInfo.get_IdImpl()
-            return result
-        }
-
+        get { try! _IAsyncInfo.get_IdImpl() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.status)
     public var status : test_component.AsyncStatus {
-        get {
-            let result = try! _IAsyncInfo.get_StatusImpl()
-            return result
-        }
-
+        get { try! _IAsyncInfo.get_StatusImpl() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -7726,21 +7438,23 @@ typealias __x_ABI_C__FIAsyncOperation_1_intWrapper = InterfaceWrapperBase<test_c
 internal class IAsyncOperationInt32: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1_int }
 
-    internal func put_CompletedImpl(_ handler: UnsafeMutablePointer<__x_ABI_C__FIAsyncOperationCompletedHandler_1_int>?) throws {
+    internal func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<Int32>?) throws {
+        let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper(handler)
+        let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_int.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.put_Completed(pThis, handler))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.put_Completed(pThis, _handler))
         }
     }
 
-    internal func get_CompletedImpl() throws -> UnsafeMutablePointer<__x_ABI_C__FIAsyncOperationCompletedHandler_1_int>? {
+    internal func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<Int32>? {
         var result: UnsafeMutablePointer<__x_ABI_C__FIAsyncOperationCompletedHandler_1_int>?
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_int.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &result))
         }
-        return result
+        return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper.unwrapFrom(abi: result)
     }
 
-    internal func GetResultsImpl() throws -> INT32 {
+    internal func GetResultsImpl() throws -> Int32 {
         var result: INT32 = 0
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_int.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &result))
@@ -7775,22 +7489,13 @@ internal class __x_ABI_C__FIAsyncOperation_1_intImpl : IAsyncOperation, AbiInter
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.getresults)
     public func getResults() throws -> Int32 {
-        let result = try _default.GetResultsImpl()
-        return result
+        try _default.GetResultsImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     public var completed : AsyncOperationCompletedHandler<Int32>? {
-        get {
-            let result = try! _default.get_CompletedImpl()
-            return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper.unwrapFrom(abi: result)
-        }
-
-        set {
-            let wrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper(newValue)
-            let _newValue = try! wrapper?.toABI { $0 }
-            try! _default.put_CompletedImpl(_newValue)
-        }
+        get { try! _default.get_CompletedImpl() }
+        set { try! _default.put_CompletedImpl(newValue) }
     }
 
     internal lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo = try! _default.QueryInterface()
@@ -7806,29 +7511,17 @@ internal class __x_ABI_C__FIAsyncOperation_1_intImpl : IAsyncOperation, AbiInter
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     public var errorCode : HRESULT {
-        get {
-            let result = try! _IAsyncInfo.get_ErrorCodeImpl()
-            return result
-        }
-
+        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     public var id : UInt32 {
-        get {
-            let result = try! _IAsyncInfo.get_IdImpl()
-            return result
-        }
-
+        get { try! _IAsyncInfo.get_IdImpl() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     public var status : test_component.AsyncStatus {
-        get {
-            let result = try! _IAsyncInfo.get_StatusImpl()
-            return result
-        }
-
+        get { try! _IAsyncInfo.get_StatusImpl() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -8135,9 +7828,9 @@ typealias __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x
 internal class TypedEventHandlerClass_DeferrableEventArgs: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs }
 
-    internal func InvokeImpl(_ sender: UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>?, _ args: UnsafeMutablePointer<__x_ABI_Ctest__component_CIDeferrableEventArgs>?) throws {
+    internal func InvokeImpl(_ sender: test_component.Class?, _ args: test_component.DeferrableEventArgs?) throws {
         _ = try perform(as: __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, sender, args))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, RawPointer(sender), RawPointer(args)))
         }
     }
 
@@ -8152,7 +7845,7 @@ internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClas
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, args) in
-            try! _default.InvokeImpl(RawPointer(sender), RawPointer(args))
+            try! _default.InvokeImpl(sender, args)
         }
         return handler
     }
@@ -8206,9 +7899,9 @@ typealias __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___
 internal class TypedEventHandlerSimple_SimpleEventArgs: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs }
 
-    internal func InvokeImpl(_ sender: UnsafeMutablePointer<__x_ABI_Ctest__component_CISimple>?, _ args: __x_ABI_Ctest__component_CSimpleEventArgs) throws {
+    internal func InvokeImpl(_ sender: test_component.Simple?, _ args: test_component.SimpleEventArgs) throws {
         _ = try perform(as: __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, sender, args))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, RawPointer(sender), .from(swift: args)))
         }
     }
 
@@ -8223,7 +7916,7 @@ internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimp
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, args) in
-            try! _default.InvokeImpl(RawPointer(sender), .from(swift: args))
+            try! _default.InvokeImpl(sender, args)
         }
         return handler
     }
