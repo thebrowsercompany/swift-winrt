@@ -1,4 +1,4 @@
-# swift-winrt
+# Swift/WinRT
 Swift Language Projection for WinRT
 
 This project is based on the Microsoft created [cppwinrt](https://github.com/microsoft/cppwinrt) project and carries the same source structure.
