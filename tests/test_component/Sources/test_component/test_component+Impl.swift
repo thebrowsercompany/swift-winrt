@@ -3,135 +3,150 @@
 import Ctest_component
 
 public enum __IMPL_test_component {
-    public class IAsyncMethodsImpl : IAsyncMethods, WinRTAbiBridge {
+    public class IAsyncMethodsBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_Ctest__component_CIAsyncMethods
         public typealias SwiftABI = __ABI_test_component.IAsyncMethods
         public typealias SwiftProjection = AnyIAsyncMethods
-        private (set) public var _default: SwiftABI
-        public var thisPtr: test_component.IInspectable { _default }
         public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IAsyncMethodsImpl(abi)
-        }
-        public init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-            _default = SwiftABI(fromAbi)
         }
 
         public static func makeAbi() -> CABI {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IAsyncMethodsVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
-        public func operationWithProgress(_ value: test_component.DateTime) throws -> AnyIAsyncOperationWithProgress<Int32, Double>! {
+    }
+
+    class IAsyncMethodsImpl: IAsyncMethods, WinRTAbiImpl {
+        typealias Bridge = IAsyncMethodsBridge
+        let _default: Bridge.SwiftABI
+        var thisPtr: test_component.IInspectable { _default }
+        init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+            _default = Bridge.SwiftABI(fromAbi)
+        }
+
+        func operationWithProgress(_ value: test_component.DateTime) throws -> AnyIAsyncOperationWithProgress<Int32, Double>! {
             try _default.OperationWithProgressImpl(value)
         }
 
     }
 
-    public class IBasicImpl : IBasic, WinRTAbiBridge {
+    public class IBasicBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_Ctest__component_CIBasic
         public typealias SwiftABI = __ABI_test_component.IBasic
         public typealias SwiftProjection = AnyIBasic
-        private (set) public var _default: SwiftABI
-        public var thisPtr: test_component.IInspectable { _default }
         public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IBasicImpl(abi)
-        }
-        public init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-            _default = SwiftABI(fromAbi)
         }
 
         public static func makeAbi() -> CABI {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IBasicVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
-        public func method() {
+    }
+
+    class IBasicImpl: IBasic, WinRTAbiImpl {
+        typealias Bridge = IBasicBridge
+        let _default: Bridge.SwiftABI
+        var thisPtr: test_component.IInspectable { _default }
+        init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+            _default = Bridge.SwiftABI(fromAbi)
+        }
+
+        func method() {
             try! _default.MethodImpl()
         }
 
     }
 
-    public class IIAmImplementableImpl : IIAmImplementable, WinRTAbiBridge {
+    public class IIAmImplementableBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_Ctest__component_CIIAmImplementable
         public typealias SwiftABI = __ABI_test_component.IIAmImplementable
         public typealias SwiftProjection = AnyIIAmImplementable
-        private (set) public var _default: SwiftABI
-        public var thisPtr: test_component.IInspectable { _default }
         public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IIAmImplementableImpl(abi)
-        }
-        public init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-            _default = SwiftABI(fromAbi)
         }
 
         public static func makeAbi() -> CABI {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IIAmImplementableVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
-        public func inInt32(_ value: Int32) throws -> String {
+    }
+
+    class IIAmImplementableImpl: IIAmImplementable, WinRTAbiImpl {
+        typealias Bridge = IIAmImplementableBridge
+        let _default: Bridge.SwiftABI
+        var thisPtr: test_component.IInspectable { _default }
+        init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+            _default = Bridge.SwiftABI(fromAbi)
+        }
+
+        func inInt32(_ value: Int32) throws -> String {
             try _default.InInt32Impl(value)
         }
 
-        public func inString(_ value: String) throws -> String {
+        func inString(_ value: String) throws -> String {
             try _default.InStringImpl(value)
         }
 
-        public func inObject(_ value: Any!) throws -> String {
+        func inObject(_ value: Any!) throws -> String {
             try _default.InObjectImpl(value)
         }
 
-        public func inEnum(_ value: Signed) throws -> String {
+        func inEnum(_ value: Signed) throws -> String {
             try _default.InEnumImpl(value)
         }
 
-        public func outInt32(_ value: inout Int32) throws {
+        func outInt32(_ value: inout Int32) throws {
             try _default.OutInt32Impl(&value)
         }
 
-        public func outString(_ value: inout String) throws {
+        func outString(_ value: inout String) throws {
             try _default.OutStringImpl(&value)
         }
 
-        public func outObject(_ value: inout Any!) throws {
+        func outObject(_ value: inout Any!) throws {
             try _default.OutObjectImpl(&value)
         }
 
-        public func outBlittableStruct(_ value: inout BlittableStruct) throws {
+        func outBlittableStruct(_ value: inout BlittableStruct) throws {
             try _default.OutBlittableStructImpl(&value)
         }
 
-        public func outNonBlittableStruct(_ value: inout NonBlittableStruct) throws {
+        func outNonBlittableStruct(_ value: inout NonBlittableStruct) throws {
             try _default.OutNonBlittableStructImpl(&value)
         }
 
-        public func outEnum(_ value: inout Signed) throws {
+        func outEnum(_ value: inout Signed) throws {
             try _default.OutEnumImpl(&value)
         }
 
-        public func returnObject() throws -> Any! {
+        func returnObject() throws -> Any! {
             try _default.ReturnObjectImpl()
         }
 
-        public func returnEnum() throws -> Signed {
+        func returnEnum() throws -> Signed {
             try _default.ReturnEnumImpl()
         }
 
-        public func fireEvent(_ data: String) throws {
+        func fireEvent(_ data: String) throws {
             try _default.FireEventImpl(data)
         }
 
-        public var enumProperty : Fruit {
+        var enumProperty : Fruit {
             get { try! _default.get_EnumPropertyImpl() }
             set { try! _default.put_EnumPropertyImpl(newValue) }
         }
 
-        public var id : test_component.GUID? {
+        var id : test_component.GUID? {
             get { try! _default.get_IdImpl() }
             set { try! _default.put_IdImpl(newValue) }
         }
 
-        public lazy var implementableEvent : Event<test_component.InDelegate> = {
+        lazy var implementableEvent : Event<test_component.InDelegate> = {
           .init(
             add: { [weak this = _default] in
               guard let this else { return .init() }
@@ -145,77 +160,92 @@ public enum __IMPL_test_component {
 
     }
 
-    public class IInterfaceWithObservableVectorImpl : IInterfaceWithObservableVector, WinRTAbiBridge {
+    public class IInterfaceWithObservableVectorBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_Ctest__component_CIInterfaceWithObservableVector
         public typealias SwiftABI = __ABI_test_component.IInterfaceWithObservableVector
         public typealias SwiftProjection = AnyIInterfaceWithObservableVector
-        private (set) public var _default: SwiftABI
-        public var thisPtr: test_component.IInspectable { _default }
         public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IInterfaceWithObservableVectorImpl(abi)
-        }
-        public init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-            _default = SwiftABI(fromAbi)
         }
 
         public static func makeAbi() -> CABI {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IInterfaceWithObservableVectorVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
-        public func takeObservable(_ basics: AnyIObservableVector<AnyIBasic?>!) throws {
+    }
+
+    class IInterfaceWithObservableVectorImpl: IInterfaceWithObservableVector, WinRTAbiImpl {
+        typealias Bridge = IInterfaceWithObservableVectorBridge
+        let _default: Bridge.SwiftABI
+        var thisPtr: test_component.IInspectable { _default }
+        init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+            _default = Bridge.SwiftABI(fromAbi)
+        }
+
+        func takeObservable(_ basics: AnyIObservableVector<AnyIBasic?>!) throws {
             try _default.TakeObservableImpl(basics)
         }
 
     }
 
-    public class ISimpleDelegateImpl : ISimpleDelegate, WinRTAbiBridge {
+    public class ISimpleDelegateBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_Ctest__component_CISimpleDelegate
         public typealias SwiftABI = __ABI_test_component.ISimpleDelegate
         public typealias SwiftProjection = AnyISimpleDelegate
-        private (set) public var _default: SwiftABI
-        public var thisPtr: test_component.IInspectable { _default }
         public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return ISimpleDelegateImpl(abi)
-        }
-        public init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-            _default = SwiftABI(fromAbi)
         }
 
         public static func makeAbi() -> CABI {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.ISimpleDelegateVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
-        public func doThis() throws {
+    }
+
+    class ISimpleDelegateImpl: ISimpleDelegate, WinRTAbiImpl {
+        typealias Bridge = ISimpleDelegateBridge
+        let _default: Bridge.SwiftABI
+        var thisPtr: test_component.IInspectable { _default }
+        init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+            _default = Bridge.SwiftABI(fromAbi)
+        }
+
+        func doThis() throws {
             try _default.DoThisImpl()
         }
 
-        public func doThat(_ val: Int32) throws {
+        func doThat(_ val: Int32) throws {
             try _default.DoThatImpl(val)
         }
 
     }
 
-    public class InterfaceWithReturnDelegateImpl : InterfaceWithReturnDelegate, WinRTAbiBridge {
+    public class InterfaceWithReturnDelegateBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_Ctest__component_CInterfaceWithReturnDelegate
         public typealias SwiftABI = __ABI_test_component.InterfaceWithReturnDelegate
         public typealias SwiftProjection = AnyInterfaceWithReturnDelegate
-        private (set) public var _default: SwiftABI
-        public var thisPtr: test_component.IInspectable { _default }
         public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return InterfaceWithReturnDelegateImpl(abi)
-        }
-        public init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-            _default = SwiftABI(fromAbi)
         }
 
         public static func makeAbi() -> CABI {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.InterfaceWithReturnDelegateVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
-        public lazy var eventWithReturn : Event<test_component.ReturnInt32Delegate> = {
+    }
+
+    class InterfaceWithReturnDelegateImpl: InterfaceWithReturnDelegate, WinRTAbiImpl {
+        typealias Bridge = InterfaceWithReturnDelegateBridge
+        let _default: Bridge.SwiftABI
+        var thisPtr: test_component.IInspectable { _default }
+        init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+            _default = Bridge.SwiftABI(fromAbi)
+        }
+
+        lazy var eventWithReturn : Event<test_component.ReturnInt32Delegate> = {
           .init(
             add: { [weak this = _default] in
               guard let this else { return .init() }
@@ -229,34 +259,39 @@ public enum __IMPL_test_component {
 
     }
 
-    public class WithKeywordImpl : WithKeyword, WinRTAbiBridge {
+    public class WithKeywordBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_Ctest__component_CWithKeyword
         public typealias SwiftABI = __ABI_test_component.WithKeyword
         public typealias SwiftProjection = AnyWithKeyword
-        private (set) public var _default: SwiftABI
-        public var thisPtr: test_component.IInspectable { _default }
         public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return WithKeywordImpl(abi)
-        }
-        public init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-            _default = SwiftABI(fromAbi)
         }
 
         public static func makeAbi() -> CABI {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.WithKeywordVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
-        public func `enum`(_ `extension`: String) throws {
+    }
+
+    class WithKeywordImpl: WithKeyword, WinRTAbiImpl {
+        typealias Bridge = WithKeywordBridge
+        let _default: Bridge.SwiftABI
+        var thisPtr: test_component.IInspectable { _default }
+        init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+            _default = Bridge.SwiftABI(fromAbi)
+        }
+
+        func `enum`(_ `extension`: String) throws {
             try _default.EnumImpl(`extension`)
         }
 
-        public var `struct` : String {
+        var `struct` : String {
             get { try! _default.get_StructImpl() }
             set { try! _default.put_StructImpl(newValue) }
         }
 
-        public lazy var `repeat` : Event<EventHandler<Any?>> = {
+        lazy var `repeat` : Event<EventHandler<Any?>> = {
           .init(
             add: { [weak this = _default] in
               guard let this else { return .init() }
@@ -270,7 +305,7 @@ public enum __IMPL_test_component {
 
     }
 
-    public class ObjectHandlerImpl : WinRTDelegateBridge {
+    public class ObjectHandlerBridge : WinRTDelegateBridge {
         public typealias Handler = ObjectHandler
         public typealias CABI = __x_ABI_Ctest__component_CIObjectHandler
         public typealias SwiftABI = __ABI_test_component.ObjectHandler
@@ -284,7 +319,7 @@ public enum __IMPL_test_component {
             return handler
         }
     }
-    public class VoidToVoidDelegateImpl : WinRTDelegateBridge {
+    public class VoidToVoidDelegateBridge : WinRTDelegateBridge {
         public typealias Handler = VoidToVoidDelegate
         public typealias CABI = __x_ABI_Ctest__component_CIVoidToVoidDelegate
         public typealias SwiftABI = __ABI_test_component.VoidToVoidDelegate

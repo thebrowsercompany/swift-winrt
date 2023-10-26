@@ -177,7 +177,7 @@ public enum __ABI_Windows_Foundation {
         }
     )
 
-    public typealias IAsyncActionWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.IAsyncActionImpl>
+    public typealias IAsyncActionWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.IAsyncActionBridge>
     public class IAsyncInfo: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIAsyncInfo }
 
@@ -311,7 +311,7 @@ public enum __ABI_Windows_Foundation {
         }
     )
 
-    public typealias IAsyncInfoWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.IAsyncInfoImpl>
+    public typealias IAsyncInfoWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.IAsyncInfoBridge>
     public class IClosable: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIClosable }
 
@@ -386,7 +386,7 @@ public enum __ABI_Windows_Foundation {
         }
     )
 
-    public typealias IClosableWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.IClosableImpl>
+    public typealias IClosableWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.IClosableBridge>
     public class IDeferral: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIDeferral }
 
@@ -941,7 +941,7 @@ public enum __ABI_Windows_Foundation {
         }
     )
 
-    public typealias IStringableWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.IStringableImpl>
+    public typealias IStringableWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.IStringableBridge>
 }
 extension __x_ABI_CWindows_CFoundation_CDateTime {
         public static func from(swift: test_component.DateTime) -> __x_ABI_CWindows_CFoundation_CDateTime {
@@ -984,7 +984,7 @@ extension __ABI_Windows_Foundation {
     }
 
 
-    typealias AsyncActionCompletedHandlerWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.AsyncActionCompletedHandlerImpl>
+    typealias AsyncActionCompletedHandlerWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.AsyncActionCompletedHandlerBridge>
     internal static var AsyncActionCompletedHandlerVTable: __x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandlerVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
@@ -1041,7 +1041,7 @@ extension __ABI_Windows_Foundation {
     }
 
 
-    typealias DeferralCompletedHandlerWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.DeferralCompletedHandlerImpl>
+    typealias DeferralCompletedHandlerWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.DeferralCompletedHandlerBridge>
     internal static var DeferralCompletedHandlerVTable: __x_ABI_CWindows_CFoundation_CIDeferralCompletedHandlerVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }

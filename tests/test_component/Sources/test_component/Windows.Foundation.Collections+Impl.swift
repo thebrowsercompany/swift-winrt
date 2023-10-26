@@ -3,30 +3,35 @@
 import Ctest_component
 
 public enum __IMPL_Windows_Foundation_Collections {
-    public class IPropertySetImpl : IPropertySet, WinRTAbiBridge {
-        public typealias K = String
-        public typealias V = Any?
-        public typealias T = AnyIKeyValuePair<String, Any?>?
+    public class IPropertySetBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CCollections_CIPropertySet
         public typealias SwiftABI = __ABI_Windows_Foundation_Collections.IPropertySet
         public typealias SwiftProjection = AnyIPropertySet
-        private (set) public var _default: SwiftABI
-        public var thisPtr: test_component.IInspectable { _default }
         public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IPropertySetImpl(abi)
-        }
-        public init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-            _default = SwiftABI(fromAbi)
         }
 
         public static func makeAbi() -> CABI {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Foundation_Collections.IPropertySetVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
+    }
+
+    class IPropertySetImpl: IPropertySet, WinRTAbiImpl {
+        typealias Bridge = IPropertySetBridge
+        let _default: Bridge.SwiftABI
+        var thisPtr: test_component.IInspectable { _default }
+        init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+            _default = Bridge.SwiftABI(fromAbi)
+        }
+
+        public typealias K = String
+        public typealias V = Any?
+        public typealias T = AnyIKeyValuePair<String, Any?>?
         internal lazy var _IObservableMap: IObservableMapString_Any = try! _default.QueryInterface()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.mapchanged)
-        public lazy var mapChanged : Event<MapChangedEventHandler<String, Any?>> = {
+        lazy var mapChanged : Event<MapChangedEventHandler<String, Any?>> = {
           .init(
             add: { [weak this = _IObservableMap] in
               guard let this else { return .init() }
@@ -40,73 +45,78 @@ public enum __IMPL_Windows_Foundation_Collections {
 
         internal lazy var _IMap: IMapString_Any = try! _default.QueryInterface()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.lookup)
-        public func lookup(_ key: String) -> Any? {
+        func lookup(_ key: String) -> Any? {
             try! _IMap.LookupImpl(key)
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.haskey)
-        public func hasKey(_ key: String) -> Bool {
+        func hasKey(_ key: String) -> Bool {
             try! _IMap.HasKeyImpl(key)
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.getview)
-        public func getView() -> AnyIMapView<String, Any?>? {
+        func getView() -> AnyIMapView<String, Any?>? {
             try! _IMap.GetViewImpl()
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.insert)
-        public func insert(_ key: String, _ value: Any?) -> Bool {
+        func insert(_ key: String, _ value: Any?) -> Bool {
             try! _IMap.InsertImpl(key, value)
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.remove)
-        public func remove(_ key: String) {
+        func remove(_ key: String) {
             try! _IMap.RemoveImpl(key)
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.clear)
-        public func clear() {
+        func clear() {
             try! _IMap.ClearImpl()
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.size)
-        public var size : UInt32 {
+        var size : UInt32 {
             get { try! _IMap.get_SizeImpl() }
         }
 
         internal lazy var _IIterable: IIterableIKeyValuePairString_Any = try! _default.QueryInterface()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.first)
-        public func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
+        func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
             try! _IIterable.FirstImpl()
         }
 
     }
 
-    public class IVectorChangedEventArgsImpl : IVectorChangedEventArgs, WinRTAbiBridge {
+    public class IVectorChangedEventArgsBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CCollections_CIVectorChangedEventArgs
         public typealias SwiftABI = __ABI_Windows_Foundation_Collections.IVectorChangedEventArgs
         public typealias SwiftProjection = AnyIVectorChangedEventArgs
-        private (set) public var _default: SwiftABI
-        public var thisPtr: test_component.IInspectable { _default }
         public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IVectorChangedEventArgsImpl(abi)
-        }
-        public init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-            _default = SwiftABI(fromAbi)
         }
 
         public static func makeAbi() -> CABI {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Foundation_Collections.IVectorChangedEventArgsVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
+    }
+
+    class IVectorChangedEventArgsImpl: IVectorChangedEventArgs, WinRTAbiImpl {
+        typealias Bridge = IVectorChangedEventArgsBridge
+        let _default: Bridge.SwiftABI
+        var thisPtr: test_component.IInspectable { _default }
+        init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+            _default = Bridge.SwiftABI(fromAbi)
+        }
+
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorchangedeventargs.collectionchange)
-        public var collectionChange : CollectionChange {
+        var collectionChange : CollectionChange {
             get { try! _default.get_CollectionChangeImpl() }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorchangedeventargs.index)
-        public var index : UInt32 {
+        var index : UInt32 {
             get { try! _default.get_IndexImpl() }
         }
 

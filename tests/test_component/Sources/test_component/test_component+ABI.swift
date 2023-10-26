@@ -258,7 +258,7 @@ public enum __ABI_test_component {
         }
     )
 
-    public typealias IAsyncMethodsWrapper = InterfaceWrapperBase<__IMPL_test_component.IAsyncMethodsImpl>
+    public typealias IAsyncMethodsWrapper = InterfaceWrapperBase<__IMPL_test_component.IAsyncMethodsBridge>
     public class IBase: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBase }
 
@@ -392,7 +392,7 @@ public enum __ABI_test_component {
         }
     )
 
-    public typealias IBasicWrapper = InterfaceWrapperBase<__IMPL_test_component.IBasicImpl>
+    public typealias IBasicWrapper = InterfaceWrapperBase<__IMPL_test_component.IBasicBridge>
     public class IClass: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIClass }
 
@@ -1382,7 +1382,7 @@ public enum __ABI_test_component {
         }
     )
 
-    public typealias IIAmImplementableWrapper = InterfaceWrapperBase<__IMPL_test_component.IIAmImplementableImpl>
+    public typealias IIAmImplementableWrapper = InterfaceWrapperBase<__IMPL_test_component.IIAmImplementableBridge>
     public class IInterfaceWithObservableVector: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIInterfaceWithObservableVector }
 
@@ -1460,7 +1460,7 @@ public enum __ABI_test_component {
         }
     )
 
-    public typealias IInterfaceWithObservableVectorWrapper = InterfaceWrapperBase<__IMPL_test_component.IInterfaceWithObservableVectorImpl>
+    public typealias IInterfaceWithObservableVectorWrapper = InterfaceWrapperBase<__IMPL_test_component.IInterfaceWithObservableVectorBridge>
     public class INullValuesStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CINullValuesStatics }
 
@@ -1805,7 +1805,7 @@ public enum __ABI_test_component {
         }
     )
 
-    public typealias ISimpleDelegateWrapper = InterfaceWrapperBase<__IMPL_test_component.ISimpleDelegateImpl>
+    public typealias ISimpleDelegateWrapper = InterfaceWrapperBase<__IMPL_test_component.ISimpleDelegateBridge>
     public class ISimpleOverrides: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CISimpleOverrides }
 
@@ -2152,7 +2152,7 @@ public enum __ABI_test_component {
         }
     )
 
-    public typealias InterfaceWithReturnDelegateWrapper = InterfaceWrapperBase<__IMPL_test_component.InterfaceWithReturnDelegateImpl>
+    public typealias InterfaceWithReturnDelegateWrapper = InterfaceWrapperBase<__IMPL_test_component.InterfaceWithReturnDelegateBridge>
     public class WithKeyword: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CWithKeyword }
 
@@ -2289,7 +2289,7 @@ public enum __ABI_test_component {
         }
     )
 
-    public typealias WithKeywordWrapper = InterfaceWrapperBase<__IMPL_test_component.WithKeywordImpl>
+    public typealias WithKeywordWrapper = InterfaceWrapperBase<__IMPL_test_component.WithKeywordBridge>
     public class _ABI_NonBlittableBoolStruct {
         public var val: __x_ABI_Ctest__component_CNonBlittableBoolStruct = .init()
         public init() { }
@@ -2574,7 +2574,7 @@ extension __ABI_test_component {
     }
 
 
-    typealias ObjectHandlerWrapper = InterfaceWrapperBase<__IMPL_test_component.ObjectHandlerImpl>
+    typealias ObjectHandlerWrapper = InterfaceWrapperBase<__IMPL_test_component.ObjectHandlerBridge>
     internal static var ObjectHandlerVTable: __x_ABI_Ctest__component_CIObjectHandlerVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
@@ -2630,7 +2630,7 @@ extension __ABI_test_component {
     }
 
 
-    typealias VoidToVoidDelegateWrapper = InterfaceWrapperBase<__IMPL_test_component.VoidToVoidDelegateImpl>
+    typealias VoidToVoidDelegateWrapper = InterfaceWrapperBase<__IMPL_test_component.VoidToVoidDelegateBridge>
     internal static var VoidToVoidDelegateVTable: __x_ABI_Ctest__component_CIVoidToVoidDelegateVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }

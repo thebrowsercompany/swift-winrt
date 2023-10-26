@@ -3,7 +3,7 @@
 import Ctest_component
 
 public enum __IMPL_test_component_Delegates {
-    public class InDelegateImpl : WinRTDelegateBridge {
+    public class InDelegateBridge : WinRTDelegateBridge {
         public typealias Handler = InDelegate
         public typealias CABI = __x_ABI_Ctest__component_CDelegates_CIInDelegate
         public typealias SwiftABI = __ABI_test_component_Delegates.InDelegate
@@ -17,7 +17,7 @@ public enum __IMPL_test_component_Delegates {
             return handler
         }
     }
-    public class ReturnInt32DelegateImpl : WinRTDelegateBridge {
+    public class ReturnInt32DelegateBridge : WinRTDelegateBridge {
         public typealias Handler = ReturnInt32Delegate
         public typealias CABI = __x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate
         public typealias SwiftABI = __ABI_test_component_Delegates.ReturnInt32Delegate
@@ -31,7 +31,7 @@ public enum __IMPL_test_component_Delegates {
             return handler
         }
     }
-    public class SignalDelegateImpl : WinRTDelegateBridge {
+    public class SignalDelegateBridge : WinRTDelegateBridge {
         public typealias Handler = SignalDelegate
         public typealias CABI = __x_ABI_Ctest__component_CDelegates_CISignalDelegate
         public typealias SwiftABI = __ABI_test_component_Delegates.SignalDelegate
