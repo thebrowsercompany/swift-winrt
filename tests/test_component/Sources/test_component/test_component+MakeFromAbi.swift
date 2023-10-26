@@ -123,6 +123,10 @@ func makeDerivedFrom(abi: test_component.IInspectable) -> Any {
     return Derived(fromAbi: abi)
 }
 
+func makeDerivedFromNoConstructorFrom(abi: test_component.IInspectable) -> Any {
+    return DerivedFromNoConstructor(fromAbi: abi)
+}
+
 func makeEventTesterFrom(abi: test_component.IInspectable) -> Any {
     return EventTester(fromAbi: abi)
 }
@@ -141,6 +145,14 @@ func makeUnsealedDerivedFrom(abi: test_component.IInspectable) -> Any {
 
 func makeUnsealedDerived2From(abi: test_component.IInspectable) -> Any {
     return UnsealedDerived2(fromAbi: abi)
+}
+
+func makeUnsealedDerivedFromNoConstructorFrom(abi: test_component.IInspectable) -> Any {
+    return UnsealedDerivedFromNoConstructor(fromAbi: abi)
+}
+
+func makeUnsealedDerivedNoConstructorFrom(abi: test_component.IInspectable) -> Any {
+    return UnsealedDerivedNoConstructor(fromAbi: abi)
 }
 
 func makeUnsealedDerivedNoOverridesFrom(abi: test_component.IInspectable) -> Any {
@@ -178,11 +190,14 @@ public class __MakeFromAbi: MakeFromAbi {
             case "CollectionTester": return makeCollectionTesterFrom(abi: abi)
             case "DeferrableEventArgs": return makeDeferrableEventArgsFrom(abi: abi)
             case "Derived": return makeDerivedFrom(abi: abi)
+            case "DerivedFromNoConstructor": return makeDerivedFromNoConstructorFrom(abi: abi)
             case "EventTester": return makeEventTesterFrom(abi: abi)
             case "NoopClosable": return makeNoopClosableFrom(abi: abi)
             case "Simple": return makeSimpleFrom(abi: abi)
             case "UnsealedDerived": return makeUnsealedDerivedFrom(abi: abi)
             case "UnsealedDerived2": return makeUnsealedDerived2From(abi: abi)
+            case "UnsealedDerivedFromNoConstructor": return makeUnsealedDerivedFromNoConstructorFrom(abi: abi)
+            case "UnsealedDerivedNoConstructor": return makeUnsealedDerivedNoConstructorFrom(abi: abi)
             case "UnsealedDerivedNoOverrides": return makeUnsealedDerivedNoOverridesFrom(abi: abi)
             default: return nil
         }

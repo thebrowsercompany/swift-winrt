@@ -50,7 +50,7 @@ class ValueBoxingTests : XCTestCase {
     let classy = Class()
     let person = Person(firstName: "John", lastName: "Doe", age: 32)
     let result = try! classy.inObject(person)
-    XCTAssertEqual("__SwiftValue", result)
+    XCTAssertEqual("Foundation.__SwiftValue", result)
   }
 
   public func testOutInterface() {

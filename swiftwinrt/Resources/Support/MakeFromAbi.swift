@@ -20,10 +20,8 @@ func makeFrom(abi: SUPPORT_MODULE.IInspectable) -> Any? {
     // but we want to return a Button type.
 
     // Note that we'll *never* be trying to create an app implemented object at this point
-    let className = try? abi.GetSwiftTypeName()
-    guard let className else {
-        return nil
-    }
+    guard let className = try? abi.GetSwiftTypeName() else { return nil }
+
     return make(typeName: className, from: abi)
 }
 

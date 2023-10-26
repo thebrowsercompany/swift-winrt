@@ -2,7 +2,7 @@ import C_BINDINGS_MODULE
 import Foundation
 
 public protocol MakeComposedAbi : AbiInterface where SwiftABI: SUPPORT_MODULE.IInspectable {
-    associatedtype SwiftProjection : UnsealedWinRTClass
+    associatedtype SwiftProjection : WinRTClass
 }
 
 public protocol ComposableImpl : AbiInterface where SwiftABI: IInspectable  {
@@ -10,44 +10,6 @@ public protocol ComposableImpl : AbiInterface where SwiftABI: IInspectable  {
     static func makeAbi() -> CABI
 }
 
-extension UnsealedWinRTClass {
-    public func GetRuntimeClassName() -> HString {
-        if let inner = _inner {
-            // if there is an inner object, get the runtime class from there, very rarely do
-            // we want to get the swift name in this sense. the winui runtime will query for
-            // class names and if it isn't recognized, it will call out to IXamlMetadataProvider (IXMP)
-            // to get the associated XamlType. We aren't using Xaml for swift, so we don't actually
-            // need or want the framework to think it's dealing with custom types.
-            var name: HSTRING?
-            try! inner.borrow.withMemoryRebound(to: C_IInspectable.self, capacity: 1) {
-                _ = try CHECKED($0.pointee.lpVtbl.pointee.GetRuntimeClassName($0, &name))
-            }
-            return .init(consuming: name)
-        } else {
-            let string = NSStringFromClass(type(of: self))
-            return try! HString(string)
-        }
-    }
-}
-
-public protocol ComposableActivationFactory {
-    associatedtype Composable : ComposableImpl
-
-    func CreateInstanceImpl(
-            _ base: UnsafeMutablePointer<C_IInspectable>?,
-            _ inner: inout UnsafeMutablePointer<C_IInspectable>?) throws -> UnsafeMutablePointer<Composable.Default.CABI>?
-}
-
-
-// The composition types are unsealed but the app can't override them, we shouldn't generate these constructors. See:
-// https://linear.app/the-browser-company/issue/WIN-110/swiftwinrt-dont-allow-app-to-derive-from-types-without-a-constructor
-public extension ComposableActivationFactory {
-    func CreateInstanceImpl(
-            _ base: UnsafeMutablePointer<C_IInspectable>?,
-            _ inner: inout UnsafeMutablePointer<C_IInspectable>?) throws -> UnsafeMutablePointer<Composable.Default.CABI>? {
-        throw Error(hr: E_NOTIMPL)
-    }
-}
 
 // At a high level, aggregation simply requires the WinRT object to have a pointer back to the Swift world, so that it can call
 // overridable methods on the class. This Swift pointer is given to the WinRT object during construction. The construction of the
@@ -66,26 +28,24 @@ public extension ComposableActivationFactory {
 // |---------------|---------------------------|-------------------------|--------------------------|
 // |  Yes          |  self                     |  stored on swift object |  ignored or stored       |
 // |  No           |  nil                      |  ignored                |  stored on swift object  |
-public func MakeComposed<Factory: ComposableActivationFactory>(_ factory: Factory,  _ inner: inout IUnknownRef?, _ this: Factory.Composable.Default.SwiftProjection) -> Factory.Composable.Default.SwiftABI {
-    let aggregated = type(of: this) != Factory.Composable.Default.SwiftProjection.self
-    let wrapper:UnsealedWinRTClassWrapper<Factory.Composable>? = .init(aggregated ? this : nil)
+public func MakeComposed<Composable: ComposableImpl>(
+    composing: Composable.Type,
+    _ this: Composable.Default.SwiftProjection,
+    _ createCallback: (UnsafeMutablePointer<C_IInspectable>?, inout UnsafeMutablePointer<C_IInspectable>?) -> UnsafeMutablePointer<Composable.Default.CABI>?) -> SUPPORT_MODULE.IInspectable {
+    let aggregated = type(of: this) != Composable.Default.SwiftProjection.self
+    let wrapper:UnsealedWinRTClassWrapper<Composable>? = .init(aggregated ? this : nil)
 
     let abi = try! wrapper?.toABI { $0 }
     let baseInsp = abi?.withMemoryRebound(to: C_IInspectable.self, capacity: 1) { $0 }
     var innerInsp: UnsafeMutablePointer<C_IInspectable>? = nil
-    let base = try! factory.CreateInstanceImpl(baseInsp, &innerInsp)
+    let base = createCallback(baseInsp, &innerInsp)
     guard let innerInsp, let base else {
         fatalError("Unexpected nil returned after successful creation")
     }
 
-    let baseRef = IUnknownRef(consuming: base)
-    let innerRef = IUnknownRef(consuming: innerInsp)
-    if aggregated {
-        inner = innerRef
-    } else {
-        inner = baseRef
-    }
-    return Factory.Composable.Default.SwiftABI(base)
+    let baseRef = SUPPORT_MODULE.IInspectable(consuming: base)
+    let innerRef = SUPPORT_MODULE.IInspectable(consuming: innerInsp)
+    return aggregated ? innerRef : baseRef
 }
 
 public class UnsealedWinRTClassWrapper<Composable: ComposableImpl> : WinRTWrapperBase<Composable.CABI, Composable.Default.SwiftProjection> {
@@ -98,7 +58,7 @@ public class UnsealedWinRTClassWrapper<Composable: ComposableImpl> : WinRTWrappe
     }
 
     public static func unwrapFrom(base: UnsafeMutablePointer<Composable.Default.CABI>) -> Composable.Default.SwiftProjection {
-        let baseInsp = IInspectable(base)
+        let baseInsp = SUPPORT_MODULE.IInspectable(consuming: base)
         let overrides: Composable.SwiftABI = try! baseInsp.QueryInterface()
 
         // Try to unwrap an app implemented object. If one doesn't exist then we'll create the proper WinRT type below

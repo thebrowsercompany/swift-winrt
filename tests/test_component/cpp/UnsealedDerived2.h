@@ -7,6 +7,7 @@ namespace winrt::test_component::implementation
     struct UnsealedDerived2 : UnsealedDerived2T<UnsealedDerived2, test_component::implementation::UnsealedDerived>
     {
         UnsealedDerived2() = default;
+        UnsealedDerived2(int32_t prop);
 
         void Method();
     };

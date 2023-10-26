@@ -1,4 +1,5 @@
 import C_BINDINGS_MODULE
+import Foundation
 
 // Protocols for WinRT types that are used by public APIs
 
@@ -13,31 +14,19 @@ public protocol WinRTInterface: AnyObject, CustomQueryInterface {
 }
 
 public protocol WinRTClass : IWinRTObject, CustomQueryInterface, Equatable {
+    @_spi(WinRTInternal)
     func _getABI<T>() -> UnsafeMutablePointer<T>?
+    @_spi(WinRTInternal)
+    var _inner: SUPPORT_MODULE.IInspectable! { get }
 }
 public typealias AnyWinRTClass = any WinRTClass
 
-public protocol UnsealedWinRTClass : WinRTClass {
-    var _inner: IUnknownRef? { get }
-}
-public typealias AnyUnsealedWinRTClass = any UnsealedWinRTClass
-
-public extension WinRTClass {
-    fileprivate func _getDefaultAsIInspectable() -> SUPPORT_MODULE.IInspectable {
-        // Every WinRT interface is binary compatible with IInspectable. asking this class for
-        // the iinspectable will ensure we get the default implementation from whichever derived
-        // class it actually is.
-        let cDefault: UnsafeMutablePointer<C_IInspectable> = _getABI()!
-        return IInspectable(cDefault)
-    }
-}
-
 public func ==<T: WinRTClass>(_ lhs: T, _ rhs: T) -> Bool {
-  return lhs._getDefaultAsIInspectable() == rhs._getDefaultAsIInspectable()
+  return lhs.thisPtr == rhs.thisPtr
 }
 
 extension WinRTClass {
-    public var thisPtr: SUPPORT_MODULE.IInspectable { _getDefaultAsIInspectable() }
+    public var thisPtr: SUPPORT_MODULE.IInspectable { try! _inner.QueryInterface() }
 }
 
 @_spi(WinRTInternal)
@@ -49,5 +38,17 @@ extension WinRTClass {
       _ = $0.pointee.lpVtbl.pointee.AddRef($0)
     }
     ptr.initialize(to: result)
+  }
+
+  public func GetRuntimeClassName() -> HString {
+    if type(of: self) != Self.self {
+      // Aggregated, get a string describing the type of the Swift class instead.
+      // Use String(reflecting:) instead of NSStringFromClass because that doesn't
+      // crash on nested classes
+      let string = String(reflecting: type(of: self))
+      return try! HString(string)
+    } else {
+      return try! _inner.GetRuntimeClassName()
+    }
   }
 }

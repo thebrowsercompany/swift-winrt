@@ -56,11 +56,11 @@ open class WinRTWrapperBase<CInterface, Prototype> {
     }
 
     public var instance: ComObject
-    public var swiftObj: Prototype
+    public var swiftObj: Prototype!
 
     open class var IID: SUPPORT_MODULE.IID { get { fatalError("not implemented") } }
 
-    public init(_ pointer: CInterface, _ impl: Prototype) {
+    public init(_ pointer: CInterface, _ impl: Prototype!) {
         self.instance = ComObject(comInterface: pointer)
         self.swiftObj = impl
         self.instance.wrapper = Unmanaged<WinRTWrapperBase>.passUnretained(self)

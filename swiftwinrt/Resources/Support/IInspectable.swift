@@ -68,8 +68,8 @@ public enum __ABI_ {
           return instance
         }
 
-        let insp: IInspectable = .init(abi)
-        return makeFrom(abi: insp) ?? insp
+        let ref = IInspectable(consuming: abi)
+        return makeFrom(abi: ref) ?? ref
       }
     }
 
@@ -118,14 +118,12 @@ public enum __ABI_ {
 
         GetRuntimeClassName: {
             guard let instance = AnyWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            guard let unsealed = instance as? any UnsealedWinRTClass else {
-                let string = NSStringFromClass(type(of: instance))
-                let hstring = try! HString(string).detach()
-                $1!.pointee = hstring
-                return S_OK
+            guard let winrtClass = instance as? AnyWinRTClass else {
+              let string = String(reflecting: type(of: instance))
+              $1!.pointee = try! HString(string).detach()
+              return S_OK
             }
-            let hstring = unsealed.GetRuntimeClassName().detach()
-            $1!.pointee = hstring
+            $1!.pointee = winrtClass.GetRuntimeClassName().detach()
             return S_OK
         },
 

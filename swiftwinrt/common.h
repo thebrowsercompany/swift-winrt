@@ -32,11 +32,7 @@ namespace swiftwinrt
 
                 for (auto& import : w.depends)
                 {
-                    if (import == w.support)
-                    {
-                        w.write("@_spi(WinRTInternal) @_spi(WinRTImplements) ");
-                    }
-                    w.write("import %\n", import);
+                    w.write("^@_spi(WinRTInternal) ^@_spi(WinRTImplements) import %\n", import);
                 }
             }
 
