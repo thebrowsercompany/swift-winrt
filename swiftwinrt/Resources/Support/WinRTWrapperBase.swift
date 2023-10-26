@@ -41,7 +41,6 @@ public protocol AbiInterfaceImpl : AbiBridge & AbiInterface {
 
 extension AbiInterfaceImpl where SwiftABI: IInspectable {
    public var thisPtr: SUPPORT_MODULE.IInspectable {  _default }
-   public var _inner: SwiftABI { _default } // TODO: just to make code compile for now
 }
 
 public protocol WinRTAbiBridge: AbiInterfaceImpl where SwiftABI: IInspectable {}

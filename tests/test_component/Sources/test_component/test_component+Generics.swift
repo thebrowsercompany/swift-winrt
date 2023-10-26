@@ -2881,7 +2881,7 @@ internal class __x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl : IMapView, AbiIn
 
     }
 
-    internal lazy var _IIterable: IIterableIKeyValuePairString_Any = try! _inner.QueryInterface()
+    internal lazy var _IIterable: IIterableIKeyValuePairString_Any = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
         let result = try! _IIterable.FirstImpl()
@@ -3078,7 +3078,7 @@ internal class __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl : IMapView, AbiInterfa
 
     }
 
-    internal lazy var _IIterable: IIterableIKeyValuePairString_String = try! _inner.QueryInterface()
+    internal lazy var _IIterable: IIterableIKeyValuePairString_String = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
         let result = try! _IIterable.FirstImpl()
@@ -3275,7 +3275,7 @@ internal class __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseIm
 
     }
 
-    internal lazy var _IIterable: IIterableIKeyValuePairString_Base = try! _inner.QueryInterface()
+    internal lazy var _IIterable: IIterableIKeyValuePairString_Base = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, Base?>?>? {
         let result = try! _IIterable.FirstImpl()
@@ -3530,7 +3530,7 @@ internal class __x_ABI_C__FIMap_2_HSTRING_IInspectableImpl : IMap, AbiInterfaceI
 
     }
 
-    internal lazy var _IIterable: IIterableIKeyValuePairString_Any = try! _inner.QueryInterface()
+    internal lazy var _IIterable: IIterableIKeyValuePairString_Any = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
         let result = try! _IIterable.FirstImpl()
@@ -3783,7 +3783,7 @@ internal class __x_ABI_C__FIMap_2_HSTRING_HSTRINGImpl : IMap, AbiInterfaceImpl {
 
     }
 
-    internal lazy var _IIterable: IIterableIKeyValuePairString_String = try! _inner.QueryInterface()
+    internal lazy var _IIterable: IIterableIKeyValuePairString_String = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
         let result = try! _IIterable.FirstImpl()
@@ -4035,7 +4035,7 @@ internal class __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl :
 
     }
 
-    internal lazy var _IIterable: IIterableIKeyValuePairString_Base = try! _inner.QueryInterface()
+    internal lazy var _IIterable: IIterableIKeyValuePairString_Base = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, Base?>?>? {
         let result = try! _IIterable.FirstImpl()
@@ -4180,7 +4180,7 @@ internal class __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableImpl : IObservab
       )
     }()
 
-    internal lazy var _IMap: IMapString_Any = try! _inner.QueryInterface()
+    internal lazy var _IMap: IMapString_Any = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.lookup)
     public func lookup(_ key: String) -> Any? {
         let _key = try! HString(key)
@@ -4230,7 +4230,7 @@ internal class __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableImpl : IObservab
 
     }
 
-    internal lazy var _IIterable: IIterableIKeyValuePairString_Any = try! _inner.QueryInterface()
+    internal lazy var _IIterable: IIterableIKeyValuePairString_Any = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
         let result = try! _IIterable.FirstImpl()
@@ -4375,7 +4375,7 @@ internal class __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGImpl : IObservableMap
       )
     }()
 
-    internal lazy var _IMap: IMapString_String = try! _inner.QueryInterface()
+    internal lazy var _IMap: IMapString_String = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.lookup)
     public func lookup(_ key: String) -> String {
         let _key = try! HString(key)
@@ -4424,7 +4424,7 @@ internal class __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGImpl : IObservableMap
 
     }
 
-    internal lazy var _IIterable: IIterableIKeyValuePairString_String = try! _inner.QueryInterface()
+    internal lazy var _IIterable: IIterableIKeyValuePairString_String = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
         let result = try! _IIterable.FirstImpl()
@@ -4597,7 +4597,7 @@ internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseI
       )
     }()
 
-    internal lazy var _IVector: IVectorBase = try! _inner.QueryInterface()
+    internal lazy var _IVector: IVectorBase = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.getat)
     public func getAt(_ index: UInt32) -> Base? {
         let result = try! _IVector.GetAtImpl(index)
@@ -4655,7 +4655,7 @@ internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseI
 
     }
 
-    internal lazy var _IIterable: IIterableBase = try! _inner.QueryInterface()
+    internal lazy var _IIterable: IIterableBase = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.first)
     public func first() -> AnyIIterator<Base?>? {
         let result = try! _IIterable.FirstImpl()
@@ -4828,7 +4828,7 @@ internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasi
       )
     }()
 
-    internal lazy var _IVector: IVectorIBasic = try! _inner.QueryInterface()
+    internal lazy var _IVector: IVectorIBasic = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.getat)
     public func getAt(_ index: UInt32) -> AnyIBasic? {
         let result = try! _IVector.GetAtImpl(index)
@@ -4894,7 +4894,7 @@ internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasi
 
     }
 
-    internal lazy var _IIterable: IIterableIBasic = try! _inner.QueryInterface()
+    internal lazy var _IIterable: IIterableIBasic = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.first)
     public func first() -> AnyIIterator<AnyIBasic?>? {
         let result = try! _IIterable.FirstImpl()
@@ -5088,7 +5088,7 @@ internal class __x_ABI_C__FIVectorView_1_IInspectableImpl : IVectorView, AbiInte
 
     }
 
-    internal lazy var _IIterable: IIterableAny = try! _inner.QueryInterface()
+    internal lazy var _IIterable: IIterableAny = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
     public func first() -> AnyIIterator<Any?>? {
         let result = try! _IIterable.FirstImpl()
@@ -5280,7 +5280,7 @@ internal class __x_ABI_C__FIVectorView_1_HSTRINGImpl : IVectorView, AbiInterface
 
     }
 
-    internal lazy var _IIterable: IIterableString = try! _inner.QueryInterface()
+    internal lazy var _IIterable: IIterableString = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
     public func first() -> AnyIIterator<String>? {
         let result = try! _IIterable.FirstImpl()
@@ -5471,7 +5471,7 @@ internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl : 
 
     }
 
-    internal lazy var _IIterable: IIterableBase = try! _inner.QueryInterface()
+    internal lazy var _IIterable: IIterableBase = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
     public func first() -> AnyIIterator<Base?>? {
         let result = try! _IIterable.FirstImpl()
@@ -5665,7 +5665,7 @@ internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicImpl 
 
     }
 
-    internal lazy var _IIterable: IIterableIBasic = try! _inner.QueryInterface()
+    internal lazy var _IIterable: IIterableIBasic = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
     public func first() -> AnyIIterator<AnyIBasic?>? {
         let result = try! _IIterable.FirstImpl()
@@ -6006,7 +6006,7 @@ internal class __x_ABI_C__FIVector_1_IInspectableImpl : IVector, AbiInterfaceImp
 
     }
 
-    internal lazy var _IIterable: IIterableAny = try! _inner.QueryInterface()
+    internal lazy var _IIterable: IIterableAny = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.first)
     public func first() -> AnyIIterator<Any?>? {
         let result = try! _IIterable.FirstImpl()
@@ -6342,7 +6342,7 @@ internal class __x_ABI_C__FIVector_1_HSTRINGImpl : IVector, AbiInterfaceImpl {
 
     }
 
-    internal lazy var _IIterable: IIterableString = try! _inner.QueryInterface()
+    internal lazy var _IIterable: IIterableString = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.first)
     public func first() -> AnyIIterator<String>? {
         let result = try! _IIterable.FirstImpl()
@@ -6674,7 +6674,7 @@ internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl : IVec
 
     }
 
-    internal lazy var _IIterable: IIterableBase = try! _inner.QueryInterface()
+    internal lazy var _IIterable: IIterableBase = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.first)
     public func first() -> AnyIIterator<Base?>? {
         let result = try! _IIterable.FirstImpl()
@@ -7015,7 +7015,7 @@ internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicImpl : IV
 
     }
 
-    internal lazy var _IIterable: IIterableIBasic = try! _inner.QueryInterface()
+    internal lazy var _IIterable: IIterableIBasic = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.first)
     public func first() -> AnyIIterator<AnyIBasic?>? {
         let result = try! _IIterable.FirstImpl()
@@ -7598,7 +7598,7 @@ internal class __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleImpl : IAsync
         }
     }
 
-    internal lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo = try! _inner.QueryInterface()
+    internal lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.cancel)
     public func cancel() throws {
         try _IAsyncInfo.CancelImpl()
@@ -7793,7 +7793,7 @@ internal class __x_ABI_C__FIAsyncOperation_1_intImpl : IAsyncOperation, AbiInter
         }
     }
 
-    internal lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo = try! _inner.QueryInterface()
+    internal lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
     public func cancel() throws {
         try _IAsyncInfo.CancelImpl()

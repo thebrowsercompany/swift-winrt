@@ -24,7 +24,7 @@ public enum __IMPL_Windows_Foundation_Collections {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Foundation_Collections.IPropertySetVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
-        internal lazy var _IObservableMap: IObservableMapString_Any = try! _inner.QueryInterface()
+        internal lazy var _IObservableMap: IObservableMapString_Any = try! _default.QueryInterface()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.mapchanged)
         public lazy var mapChanged : Event<MapChangedEventHandler<String, Any?>> = {
           .init(
@@ -40,7 +40,7 @@ public enum __IMPL_Windows_Foundation_Collections {
           )
         }()
 
-        internal lazy var _IMap: IMapString_Any = try! _inner.QueryInterface()
+        internal lazy var _IMap: IMapString_Any = try! _default.QueryInterface()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.lookup)
         public func lookup(_ key: String) -> Any? {
             let _key = try! HString(key)
@@ -90,7 +90,7 @@ public enum __IMPL_Windows_Foundation_Collections {
 
         }
 
-        internal lazy var _IIterable: IIterableIKeyValuePairString_Any = try! _inner.QueryInterface()
+        internal lazy var _IIterable: IIterableIKeyValuePairString_Any = try! _default.QueryInterface()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.first)
         public func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
             let result = try! _IIterable.FirstImpl()

@@ -40,7 +40,7 @@ public enum __IMPL_Windows_Foundation {
             }
         }
 
-        internal lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo = try! _inner.QueryInterface()
+        internal lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo = try! _default.QueryInterface()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncaction.cancel)
         public func cancel() throws {
             try _IAsyncInfo.CancelImpl()

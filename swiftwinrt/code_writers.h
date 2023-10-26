@@ -953,18 +953,7 @@ bind_impl_fullname(type));
     {
         bool is_class = swiftwinrt::is_class(&type_definition);
 
-        if (info.overridable && is_class)
-        {
-            // when implementing default overrides, we want to call to the inner non-delegating IUnknown
-            // as this will get us to the inner object. otherwise we'll end up with a stack overflow
-            // because we'll be calling the same method on ourselves
-            w.write("internal lazy var %: %.% = try! _inner.QueryInterface()\n",
-                get_swift_name(info),
-                abi_namespace(info.type->swift_logical_namespace()),
-                info.type->swift_type_name());
-
-        }
-        else if (!info.is_default || (!is_class && info.base))
+        if (!info.is_default || (!is_class && info.base))
         {
             auto swiftAbi = w.write_temp("%.%", abi_namespace(info.type->swift_logical_namespace()), info.type->swift_type_name());
             if (is_generic_inst(info.type))
@@ -972,9 +961,11 @@ bind_impl_fullname(type));
                 auto guard{ w.push_generic_params(info) };
                 swiftAbi = w.write_temp("%", bind_type_abi(info.type));
             }
-            w.write("internal lazy var %: % = try! _inner.QueryInterface()\n",
+            auto qiFrom = is_class ? "_inner" : "_default";
+            w.write("internal lazy var %: % = try! %.QueryInterface()\n",
                 get_swift_name(info),
-                swiftAbi);
+                swiftAbi,
+                qiFrom);
         }
 
         if (auto iface = dynamic_cast<const interface_type*>(info.type))
