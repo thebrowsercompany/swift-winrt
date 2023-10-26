@@ -7,6 +7,10 @@ on:
 
 jobs:
   release-and-publish:
+    env:
+      NUGET_VERSION_MAJOR: 0
+      NUGET_VERSION_MINOR: 1
+      NUGET_VERSION_PATCH: ${{ github.run_number }}
     runs-on: windows-2022
     name: Swift/WinRT Release Build & Publish
     permissions:
@@ -16,16 +20,10 @@ jobs:
       - uses: actions/checkout@v3
         with:
           submodules: recursive
-      - name: Get Git Hash
-        id: git-hash
-        shell: powershell
-        run: |
-          $hash=$(git log --format=%h -n1)
-          echo "GIT_HASH=$hash" >> $env:GITHUB_OUTPUT
 
       - uses: ./.github/actions/windows-build
         env:
-            NUGET_HASH: ${{ steps.git-hash.outputs.GIT_HASH }}
+            NUGET_VERSION: ${{ env.NUGET_VERSION_MAJOR }}.${{ env.NUGET_VERSION_MAJOR }}.${{ env.NUGET_VERSION_PATCH }}
         with:
           config: release
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
