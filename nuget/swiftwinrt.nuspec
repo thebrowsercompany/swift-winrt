@@ -13,9 +13,12 @@
     <copyright>© The Browser Company of New York. All rights reserved.</copyright>
     <projectUrl>https://github.com/thebrowsercompany/swiftwinrt</projectUrl>
     <repository type="git" url="https://github.com/thebrowsercompany/swiftwinrt"/>
+    <license type="expression">BSD-3-Clause</license>
+    <readme>readme.md</readme>
   </metadata>
   <files>
     <file src="$swiftwinrt_exe$" target="bin"/>
-    <file src="readme.txt"/>
+    <file src="readme.md"/>
+    <file src="../LICENSE.txt" target=""/>
   </files>
 </package>

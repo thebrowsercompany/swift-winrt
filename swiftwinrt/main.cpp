@@ -109,7 +109,7 @@ Where <spec> is one or more of:
         settings.test = args.exists("test");
         settings.output_folder = args.value("output", ".");
 
-        settings.support = args.value("support", "Windows");
+        settings.support = args.value("support", "WindowsFoundation");
 
         create_directories(settings.output_folder);
         create_directories(writer::root_directory());
