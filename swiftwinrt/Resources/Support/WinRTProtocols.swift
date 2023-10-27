@@ -41,14 +41,10 @@ extension WinRTClass {
   }
 
   public func GetRuntimeClassName() -> HString {
-    if type(of: self) != Self.self {
-      // Aggregated, get a string describing the type of the Swift class instead.
-      // Use String(reflecting:) instead of NSStringFromClass because that doesn't
-      // crash on nested classes
-      let string = String(reflecting: type(of: self))
-      return try! HString(string)
-    } else {
-      return try! _inner.GetRuntimeClassName()
-    }
+    // always use the runtime class name of the inner WinRT object. the winui runtime will query for
+    // class names and if it isn't recognized, it will call out to IXamlMetadataProvider (IXMP)
+    // to get the associated XamlType. We aren't using Xaml for swift, so we don't actually
+    // need or want the framework to think it's dealing with custom types.
+    return try! _inner.GetRuntimeClassName()
   }
 }
