@@ -3,128 +3,143 @@
 import Ctest_component
 
 public enum __IMPL_Windows_Foundation {
-    public class IAsyncActionImpl : IAsyncAction, WinRTAbiBridge {
+    public class IAsyncActionBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIAsyncAction
         public typealias SwiftABI = __ABI_Windows_Foundation.IAsyncAction
         public typealias SwiftProjection = AnyIAsyncAction
-        private (set) public var _default: SwiftABI
-        public var thisPtr: test_component.IInspectable { _default }
         public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IAsyncActionImpl(abi)
-        }
-        public init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-            _default = SwiftABI(fromAbi)
         }
 
         public static func makeAbi() -> CABI {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Foundation.IAsyncActionVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
+    }
+
+    fileprivate class IAsyncActionImpl: IAsyncAction, WinRTAbiImpl {
+        fileprivate typealias Bridge = IAsyncActionBridge
+        fileprivate let _default: Bridge.SwiftABI
+        fileprivate var thisPtr: test_component.IInspectable { _default }
+        fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+            _default = Bridge.SwiftABI(fromAbi)
+        }
+
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncaction.getresults)
-        public func getResults() throws {
+        fileprivate func getResults() throws {
             try _default.GetResultsImpl()
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncaction.completed)
-        public var completed : AsyncActionCompletedHandler! {
+        fileprivate var completed : AsyncActionCompletedHandler! {
             get { try! _default.get_CompletedImpl() }
             set { try! _default.put_CompletedImpl(newValue) }
         }
 
         internal lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo = try! _default.QueryInterface()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncaction.cancel)
-        public func cancel() throws {
+        fileprivate func cancel() throws {
             try _IAsyncInfo.CancelImpl()
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncaction.close)
-        public func close() throws {
+        fileprivate func close() throws {
             try _IAsyncInfo.CloseImpl()
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncaction.errorcode)
-        public var errorCode : HRESULT {
+        fileprivate var errorCode : HRESULT {
             get { try! _IAsyncInfo.get_ErrorCodeImpl() }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncaction.id)
-        public var id : UInt32 {
+        fileprivate var id : UInt32 {
             get { try! _IAsyncInfo.get_IdImpl() }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncaction.status)
-        public var status : AsyncStatus {
+        fileprivate var status : AsyncStatus {
             get { try! _IAsyncInfo.get_StatusImpl() }
         }
 
     }
 
-    public class IAsyncInfoImpl : IAsyncInfo, WinRTAbiBridge {
+    public class IAsyncInfoBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIAsyncInfo
         public typealias SwiftABI = __ABI_Windows_Foundation.IAsyncInfo
         public typealias SwiftProjection = AnyIAsyncInfo
-        private (set) public var _default: SwiftABI
-        public var thisPtr: test_component.IInspectable { _default }
         public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IAsyncInfoImpl(abi)
-        }
-        public init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-            _default = SwiftABI(fromAbi)
         }
 
         public static func makeAbi() -> CABI {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Foundation.IAsyncInfoVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
+    }
+
+    fileprivate class IAsyncInfoImpl: IAsyncInfo, WinRTAbiImpl {
+        fileprivate typealias Bridge = IAsyncInfoBridge
+        fileprivate let _default: Bridge.SwiftABI
+        fileprivate var thisPtr: test_component.IInspectable { _default }
+        fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+            _default = Bridge.SwiftABI(fromAbi)
+        }
+
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncinfo.cancel)
-        public func cancel() throws {
+        fileprivate func cancel() throws {
             try _default.CancelImpl()
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncinfo.close)
-        public func close() throws {
+        fileprivate func close() throws {
             try _default.CloseImpl()
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncinfo.errorcode)
-        public var errorCode : HRESULT {
+        fileprivate var errorCode : HRESULT {
             get { try! _default.get_ErrorCodeImpl() }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncinfo.id)
-        public var id : UInt32 {
+        fileprivate var id : UInt32 {
             get { try! _default.get_IdImpl() }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncinfo.status)
-        public var status : AsyncStatus {
+        fileprivate var status : AsyncStatus {
             get { try! _default.get_StatusImpl() }
         }
 
     }
 
-    public class IClosableImpl : IClosable, WinRTAbiBridge {
+    public class IClosableBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIClosable
         public typealias SwiftABI = __ABI_Windows_Foundation.IClosable
         public typealias SwiftProjection = AnyIClosable
-        private (set) public var _default: SwiftABI
-        public var thisPtr: test_component.IInspectable { _default }
         public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IClosableImpl(abi)
-        }
-        public init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-            _default = SwiftABI(fromAbi)
         }
 
         public static func makeAbi() -> CABI {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Foundation.IClosableVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
+    }
+
+    fileprivate class IClosableImpl: IClosable, WinRTAbiImpl {
+        fileprivate typealias Bridge = IClosableBridge
+        fileprivate let _default: Bridge.SwiftABI
+        fileprivate var thisPtr: test_component.IInspectable { _default }
+        fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+            _default = Bridge.SwiftABI(fromAbi)
+        }
+
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iclosable.close)
-        public func close() throws {
+        fileprivate func close() throws {
             try _default.CloseImpl()
         }
 
@@ -207,32 +222,37 @@ public enum __IMPL_Windows_Foundation {
 
     }
 
-    public class IStringableImpl : IStringable, WinRTAbiBridge {
+    public class IStringableBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIStringable
         public typealias SwiftABI = __ABI_Windows_Foundation.IStringable
         public typealias SwiftProjection = AnyIStringable
-        private (set) public var _default: SwiftABI
-        public var thisPtr: test_component.IInspectable { _default }
         public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IStringableImpl(abi)
-        }
-        public init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-            _default = SwiftABI(fromAbi)
         }
 
         public static func makeAbi() -> CABI {
             let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Foundation.IStringableVTable) { $0 }
             return .init(lpVtbl: vtblPtr)
         }
+    }
+
+    fileprivate class IStringableImpl: IStringable, WinRTAbiImpl {
+        fileprivate typealias Bridge = IStringableBridge
+        fileprivate let _default: Bridge.SwiftABI
+        fileprivate var thisPtr: test_component.IInspectable { _default }
+        fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+            _default = Bridge.SwiftABI(fromAbi)
+        }
+
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.istringable.tostring)
-        public func toString() throws -> String {
+        fileprivate func toString() throws -> String {
             try _default.ToStringImpl()
         }
 
     }
 
-    public class AsyncActionCompletedHandlerImpl : WinRTDelegateBridge {
+    public class AsyncActionCompletedHandlerBridge : WinRTDelegateBridge {
         public typealias Handler = AsyncActionCompletedHandler
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler
         public typealias SwiftABI = __ABI_Windows_Foundation.AsyncActionCompletedHandler
@@ -246,7 +266,7 @@ public enum __IMPL_Windows_Foundation {
             return handler
         }
     }
-    public class DeferralCompletedHandlerImpl : WinRTDelegateBridge {
+    public class DeferralCompletedHandlerBridge : WinRTDelegateBridge {
         public typealias Handler = DeferralCompletedHandler
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIDeferralCompletedHandler
         public typealias SwiftABI = __ABI_Windows_Foundation.DeferralCompletedHandler

@@ -617,7 +617,7 @@ namespace swiftwinrt
         {
             w.write("typealias % = InterfaceWrapperBase<%>\n",
                 bind_wrapper_name(*this),
-                bind_impl_fullname(*this));
+                bind_bridge_fullname(*this));
             return;
         }
         auto format = R"(internal class %: WinRTWrapperBase<%, %> {

@@ -47,7 +47,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1_intVTable: __x_ABI_C_
         return S_OK
     }
 )
-typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_intImpl>
+typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_intBridge>
 internal class AsyncOperationCompletedHandlerInt32: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1_int }
 
@@ -61,7 +61,7 @@ internal class AsyncOperationCompletedHandlerInt32: test_component.IUnknown {
 
 }
 
-internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1_intImpl : WinRTDelegateBridge {
+internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1_intBridge : WinRTDelegateBridge {
     internal typealias Handler = AsyncOperationCompletedHandler<Int32>
     internal typealias CABI = __x_ABI_C__FIAsyncOperationCompletedHandler_1_int
     internal typealias SwiftABI = test_component.AsyncOperationCompletedHandlerInt32
@@ -120,7 +120,7 @@ internal var __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleVTable: __x_
         return S_OK
     }
 )
-typealias __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleImpl>
+typealias __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleBridge>
 internal class AsyncOperationProgressHandlerInt32_Double: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationProgressHandler_2_int_double }
 
@@ -134,7 +134,7 @@ internal class AsyncOperationProgressHandlerInt32_Double: test_component.IUnknow
 
 }
 
-internal class __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleImpl : WinRTDelegateBridge {
+internal class __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleBridge : WinRTDelegateBridge {
     internal typealias Handler = AsyncOperationProgressHandler<Int32, Double>
     internal typealias CABI = __x_ABI_C__FIAsyncOperationProgressHandler_2_int_double
     internal typealias SwiftABI = test_component.AsyncOperationProgressHandlerInt32_Double
@@ -193,7 +193,7 @@ internal var __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubl
         return S_OK
     }
 )
-typealias __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleImpl>
+typealias __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleBridge>
 internal class AsyncOperationWithProgressCompletedHandlerInt32_Double: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_double }
 
@@ -207,7 +207,7 @@ internal class AsyncOperationWithProgressCompletedHandlerInt32_Double: test_comp
 
 }
 
-internal class __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleImpl : WinRTDelegateBridge {
+internal class __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleBridge : WinRTDelegateBridge {
     internal typealias Handler = AsyncOperationWithProgressCompletedHandler<Int32, Double>
     internal typealias CABI = __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_double
     internal typealias SwiftABI = test_component.AsyncOperationWithProgressCompletedHandlerInt32_Double
@@ -287,7 +287,7 @@ internal var __x_ABI_C__FIIterable_1_IInspectableVTable: __x_ABI_C__FIIterable_1
         return S_OK
     }
 )
-typealias __x_ABI_C__FIIterable_1_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1_IInspectableImpl>
+typealias __x_ABI_C__FIIterable_1_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1_IInspectableBridge>
 internal class IIterableAny: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1_IInspectable }
 
@@ -301,31 +301,32 @@ internal class IIterableAny: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterable_1_IInspectableImpl : IIterable, AbiInterfaceImpl {
-    typealias T = Any?
-    typealias SwiftProjection = AnyIIterable<Any?>
-    typealias CABI = __x_ABI_C__FIIterable_1_IInspectable
-    typealias SwiftABI = IIterableAny
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIIterable_1_IInspectableBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIIterable_1_IInspectable
+    internal typealias SwiftABI = IIterableAny
+    internal typealias SwiftProjection = AnyIIterable<Any?>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterable_1_IInspectableImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1_IInspectableVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIIterable_1_IInspectableImpl : IIterable, AbiInterfaceImpl {
+    typealias T = Any?
+    typealias Bridge = __x_ABI_C__FIIterable_1_IInspectableBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
-    public func first() -> AnyIIterator<Any?>? {
+    fileprivate func first() -> AnyIIterator<Any?>? {
         try! _default.FirstImpl()
     }
 
@@ -398,7 +399,7 @@ internal var __x_ABI_C__FIIterable_1_HSTRINGVTable: __x_ABI_C__FIIterable_1_HSTR
         return S_OK
     }
 )
-typealias __x_ABI_C__FIIterable_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1_HSTRINGImpl>
+typealias __x_ABI_C__FIIterable_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1_HSTRINGBridge>
 internal class IIterableString: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1_HSTRING }
 
@@ -412,31 +413,32 @@ internal class IIterableString: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterable_1_HSTRINGImpl : IIterable, AbiInterfaceImpl {
-    typealias T = String
-    typealias SwiftProjection = AnyIIterable<String>
-    typealias CABI = __x_ABI_C__FIIterable_1_HSTRING
-    typealias SwiftABI = IIterableString
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIIterable_1_HSTRINGBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIIterable_1_HSTRING
+    internal typealias SwiftABI = IIterableString
+    internal typealias SwiftProjection = AnyIIterable<String>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterable_1_HSTRINGImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1_HSTRINGVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIIterable_1_HSTRINGImpl : IIterable, AbiInterfaceImpl {
+    typealias T = String
+    typealias Bridge = __x_ABI_C__FIIterable_1_HSTRINGBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
-    public func first() -> AnyIIterator<String>? {
+    fileprivate func first() -> AnyIIterator<String>? {
         try! _default.FirstImpl()
     }
 
@@ -509,7 +511,7 @@ internal var __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspec
         return S_OK
     }
 )
-typealias __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl>
+typealias __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge>
 internal class IIterableIKeyValuePairString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable }
 
@@ -523,31 +525,32 @@ internal class IIterableIKeyValuePairString_Any: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl : IIterable, AbiInterfaceImpl {
-    typealias T = AnyIKeyValuePair<String, Any?>?
-    typealias SwiftProjection = AnyIIterable<AnyIKeyValuePair<String, Any?>?>
-    typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable
-    typealias SwiftABI = IIterableIKeyValuePairString_Any
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable
+    internal typealias SwiftABI = IIterableIKeyValuePairString_Any
+    internal typealias SwiftProjection = AnyIIterable<AnyIKeyValuePair<String, Any?>?>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl : IIterable, AbiInterfaceImpl {
+    typealias T = AnyIKeyValuePair<String, Any?>?
+    typealias Bridge = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
-    public func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
+    fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
         try! _default.FirstImpl()
     }
 
@@ -620,7 +623,7 @@ internal var __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING
         return S_OK
     }
 )
-typealias __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl>
+typealias __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge>
 internal class IIterableIKeyValuePairString_String: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING }
 
@@ -634,31 +637,32 @@ internal class IIterableIKeyValuePairString_String: test_component.IInspectable 
 
 }
 
-internal class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl : IIterable, AbiInterfaceImpl {
-    typealias T = AnyIKeyValuePair<String, String>?
-    typealias SwiftProjection = AnyIIterable<AnyIKeyValuePair<String, String>?>
-    typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING
-    typealias SwiftABI = IIterableIKeyValuePairString_String
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING
+    internal typealias SwiftABI = IIterableIKeyValuePairString_String
+    internal typealias SwiftProjection = AnyIIterable<AnyIKeyValuePair<String, String>?>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl : IIterable, AbiInterfaceImpl {
+    typealias T = AnyIKeyValuePair<String, String>?
+    typealias Bridge = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
-    public func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
+    fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
         try! _default.FirstImpl()
     }
 
@@ -731,7 +735,7 @@ internal var __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI
         return S_OK
     }
 )
-typealias __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl>
+typealias __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge>
 internal class IIterableIKeyValuePairString_Base: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
 
@@ -745,31 +749,32 @@ internal class IIterableIKeyValuePairString_Base: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl : IIterable, AbiInterfaceImpl {
-    typealias T = AnyIKeyValuePair<String, Base?>?
-    typealias SwiftProjection = AnyIIterable<AnyIKeyValuePair<String, Base?>?>
-    typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
-    typealias SwiftABI = IIterableIKeyValuePairString_Base
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
+    internal typealias SwiftABI = IIterableIKeyValuePairString_Base
+    internal typealias SwiftProjection = AnyIIterable<AnyIKeyValuePair<String, Base?>?>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl : IIterable, AbiInterfaceImpl {
+    typealias T = AnyIKeyValuePair<String, Base?>?
+    typealias Bridge = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
-    public func first() -> AnyIIterator<AnyIKeyValuePair<String, Base?>?>? {
+    fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, Base?>?>? {
         try! _default.FirstImpl()
     }
 
@@ -842,7 +847,7 @@ internal var __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x
         return S_OK
     }
 )
-typealias __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseImpl>
+typealias __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseBridge>
 internal class IIterableBase: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBase }
 
@@ -856,31 +861,32 @@ internal class IIterableBase: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseImpl : IIterable, AbiInterfaceImpl {
-    typealias T = Base?
-    typealias SwiftProjection = AnyIIterable<Base?>
-    typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBase
-    typealias SwiftABI = IIterableBase
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBase
+    internal typealias SwiftABI = IIterableBase
+    internal typealias SwiftProjection = AnyIIterable<Base?>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseImpl : IIterable, AbiInterfaceImpl {
+    typealias T = Base?
+    typealias Bridge = __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
-    public func first() -> AnyIIterator<Base?>? {
+    fileprivate func first() -> AnyIIterator<Base?>? {
         try! _default.FirstImpl()
     }
 
@@ -953,7 +959,7 @@ internal var __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicVTable: _
         return S_OK
     }
 )
-typealias __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicImpl>
+typealias __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicBridge>
 internal class IIterableIBasic: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasic }
 
@@ -967,31 +973,32 @@ internal class IIterableIBasic: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicImpl : IIterable, AbiInterfaceImpl {
-    typealias T = AnyIBasic?
-    typealias SwiftProjection = AnyIIterable<AnyIBasic?>
-    typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasic
-    typealias SwiftABI = IIterableIBasic
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasic
+    internal typealias SwiftABI = IIterableIBasic
+    internal typealias SwiftProjection = AnyIIterable<AnyIBasic?>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicImpl : IIterable, AbiInterfaceImpl {
+    typealias T = AnyIBasic?
+    typealias Bridge = __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
-    public func first() -> AnyIIterator<AnyIBasic?>? {
+    fileprivate func first() -> AnyIIterator<AnyIBasic?>? {
         try! _default.FirstImpl()
     }
 
@@ -1080,7 +1087,7 @@ internal var __x_ABI_C__FIIterator_1_IInspectableVTable: __x_ABI_C__FIIterator_1
 
     GetMany: { _, _, _, _ in return failWith(err: E_NOTIMPL) }
 )
-typealias __x_ABI_C__FIIterator_1_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1_IInspectableImpl>
+typealias __x_ABI_C__FIIterator_1_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1_IInspectableBridge>
 internal class IIteratorAny: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1_IInspectable }
 
@@ -1110,41 +1117,42 @@ internal class IIteratorAny: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterator_1_IInspectableImpl : IIterator, AbiInterfaceImpl {
-    typealias T = Any?
-    typealias SwiftProjection = AnyIIterator<Any?>
-    typealias CABI = __x_ABI_C__FIIterator_1_IInspectable
-    typealias SwiftABI = IIteratorAny
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIIterator_1_IInspectableBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIIterator_1_IInspectable
+    internal typealias SwiftABI = IIteratorAny
+    internal typealias SwiftProjection = AnyIIterator<Any?>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterator_1_IInspectableImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1_IInspectableVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIIterator_1_IInspectableImpl : IIterator, AbiInterfaceImpl {
+    typealias T = Any?
+    typealias Bridge = __x_ABI_C__FIIterator_1_IInspectableBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
-    public func moveNext() -> Bool {
+    fileprivate func moveNext() -> Bool {
         try! _default.MoveNextImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
-    public var current : Any? {
+    fileprivate var current : Any? {
         get { try! _default.get_CurrentImpl() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
-    public var hasCurrent : Bool {
+    fileprivate var hasCurrent : Bool {
         get { try! _default.get_HasCurrentImpl() }
     }
 
@@ -1232,7 +1240,7 @@ internal var __x_ABI_C__FIIterator_1_HSTRINGVTable: __x_ABI_C__FIIterator_1_HSTR
 
     GetMany: { _, _, _, _ in return failWith(err: E_NOTIMPL) }
 )
-typealias __x_ABI_C__FIIterator_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1_HSTRINGImpl>
+typealias __x_ABI_C__FIIterator_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1_HSTRINGBridge>
 internal class IIteratorString: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1_HSTRING }
 
@@ -1262,41 +1270,42 @@ internal class IIteratorString: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterator_1_HSTRINGImpl : IIterator, AbiInterfaceImpl {
-    typealias T = String
-    typealias SwiftProjection = AnyIIterator<String>
-    typealias CABI = __x_ABI_C__FIIterator_1_HSTRING
-    typealias SwiftABI = IIteratorString
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIIterator_1_HSTRINGBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIIterator_1_HSTRING
+    internal typealias SwiftABI = IIteratorString
+    internal typealias SwiftProjection = AnyIIterator<String>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterator_1_HSTRINGImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1_HSTRINGVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIIterator_1_HSTRINGImpl : IIterator, AbiInterfaceImpl {
+    typealias T = String
+    typealias Bridge = __x_ABI_C__FIIterator_1_HSTRINGBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
-    public func moveNext() -> Bool {
+    fileprivate func moveNext() -> Bool {
         try! _default.MoveNextImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
-    public var current : String {
+    fileprivate var current : String {
         get { try! _default.get_CurrentImpl() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
-    public var hasCurrent : Bool {
+    fileprivate var hasCurrent : Bool {
         get { try! _default.get_HasCurrentImpl() }
     }
 
@@ -1385,7 +1394,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspec
 
     GetMany: { _, _, _, _ in return failWith(err: E_NOTIMPL) }
 )
-typealias __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl>
+typealias __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge>
 internal class IIteratorIKeyValuePairString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable }
 
@@ -1415,41 +1424,42 @@ internal class IIteratorIKeyValuePairString_Any: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl : IIterator, AbiInterfaceImpl {
-    typealias T = AnyIKeyValuePair<String, Any?>?
-    typealias SwiftProjection = AnyIIterator<AnyIKeyValuePair<String, Any?>?>
-    typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable
-    typealias SwiftABI = IIteratorIKeyValuePairString_Any
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable
+    internal typealias SwiftABI = IIteratorIKeyValuePairString_Any
+    internal typealias SwiftProjection = AnyIIterator<AnyIKeyValuePair<String, Any?>?>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl : IIterator, AbiInterfaceImpl {
+    typealias T = AnyIKeyValuePair<String, Any?>?
+    typealias Bridge = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
-    public func moveNext() -> Bool {
+    fileprivate func moveNext() -> Bool {
         try! _default.MoveNextImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
-    public var current : AnyIKeyValuePair<String, Any?>? {
+    fileprivate var current : AnyIKeyValuePair<String, Any?>? {
         get { try! _default.get_CurrentImpl() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
-    public var hasCurrent : Bool {
+    fileprivate var hasCurrent : Bool {
         get { try! _default.get_HasCurrentImpl() }
     }
 
@@ -1538,7 +1548,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING
 
     GetMany: { _, _, _, _ in return failWith(err: E_NOTIMPL) }
 )
-typealias __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl>
+typealias __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge>
 internal class IIteratorIKeyValuePairString_String: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING }
 
@@ -1568,41 +1578,42 @@ internal class IIteratorIKeyValuePairString_String: test_component.IInspectable 
 
 }
 
-internal class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl : IIterator, AbiInterfaceImpl {
-    typealias T = AnyIKeyValuePair<String, String>?
-    typealias SwiftProjection = AnyIIterator<AnyIKeyValuePair<String, String>?>
-    typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING
-    typealias SwiftABI = IIteratorIKeyValuePairString_String
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING
+    internal typealias SwiftABI = IIteratorIKeyValuePairString_String
+    internal typealias SwiftProjection = AnyIIterator<AnyIKeyValuePair<String, String>?>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl : IIterator, AbiInterfaceImpl {
+    typealias T = AnyIKeyValuePair<String, String>?
+    typealias Bridge = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
-    public func moveNext() -> Bool {
+    fileprivate func moveNext() -> Bool {
         try! _default.MoveNextImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
-    public var current : AnyIKeyValuePair<String, String>? {
+    fileprivate var current : AnyIKeyValuePair<String, String>? {
         get { try! _default.get_CurrentImpl() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
-    public var hasCurrent : Bool {
+    fileprivate var hasCurrent : Bool {
         get { try! _default.get_HasCurrentImpl() }
     }
 
@@ -1691,7 +1702,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI
 
     GetMany: { _, _, _, _ in return failWith(err: E_NOTIMPL) }
 )
-typealias __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl>
+typealias __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge>
 internal class IIteratorIKeyValuePairString_Base: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
 
@@ -1721,41 +1732,42 @@ internal class IIteratorIKeyValuePairString_Base: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl : IIterator, AbiInterfaceImpl {
-    typealias T = AnyIKeyValuePair<String, Base?>?
-    typealias SwiftProjection = AnyIIterator<AnyIKeyValuePair<String, Base?>?>
-    typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
-    typealias SwiftABI = IIteratorIKeyValuePairString_Base
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
+    internal typealias SwiftABI = IIteratorIKeyValuePairString_Base
+    internal typealias SwiftProjection = AnyIIterator<AnyIKeyValuePair<String, Base?>?>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl : IIterator, AbiInterfaceImpl {
+    typealias T = AnyIKeyValuePair<String, Base?>?
+    typealias Bridge = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
-    public func moveNext() -> Bool {
+    fileprivate func moveNext() -> Bool {
         try! _default.MoveNextImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
-    public var current : AnyIKeyValuePair<String, Base?>? {
+    fileprivate var current : AnyIKeyValuePair<String, Base?>? {
         get { try! _default.get_CurrentImpl() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
-    public var hasCurrent : Bool {
+    fileprivate var hasCurrent : Bool {
         get { try! _default.get_HasCurrentImpl() }
     }
 
@@ -1843,7 +1855,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x
 
     GetMany: { _, _, _, _ in return failWith(err: E_NOTIMPL) }
 )
-typealias __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseImpl>
+typealias __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseBridge>
 internal class IIteratorBase: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase }
 
@@ -1873,41 +1885,42 @@ internal class IIteratorBase: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseImpl : IIterator, AbiInterfaceImpl {
-    typealias T = Base?
-    typealias SwiftProjection = AnyIIterator<Base?>
-    typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase
-    typealias SwiftABI = IIteratorBase
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase
+    internal typealias SwiftABI = IIteratorBase
+    internal typealias SwiftProjection = AnyIIterator<Base?>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseImpl : IIterator, AbiInterfaceImpl {
+    typealias T = Base?
+    typealias Bridge = __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
-    public func moveNext() -> Bool {
+    fileprivate func moveNext() -> Bool {
         try! _default.MoveNextImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
-    public var current : Base? {
+    fileprivate var current : Base? {
         get { try! _default.get_CurrentImpl() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
-    public var hasCurrent : Bool {
+    fileprivate var hasCurrent : Bool {
         get { try! _default.get_HasCurrentImpl() }
     }
 
@@ -1996,7 +2009,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicVTable: _
 
     GetMany: { _, _, _, _ in return failWith(err: E_NOTIMPL) }
 )
-typealias __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicImpl>
+typealias __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicBridge>
 internal class IIteratorIBasic: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic }
 
@@ -2026,41 +2039,42 @@ internal class IIteratorIBasic: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicImpl : IIterator, AbiInterfaceImpl {
-    typealias T = AnyIBasic?
-    typealias SwiftProjection = AnyIIterator<AnyIBasic?>
-    typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic
-    typealias SwiftABI = IIteratorIBasic
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic
+    internal typealias SwiftABI = IIteratorIBasic
+    internal typealias SwiftProjection = AnyIIterator<AnyIBasic?>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicImpl : IIterator, AbiInterfaceImpl {
+    typealias T = AnyIBasic?
+    typealias Bridge = __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
-    public func moveNext() -> Bool {
+    fileprivate func moveNext() -> Bool {
         try! _default.MoveNextImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
-    public var current : AnyIBasic? {
+    fileprivate var current : AnyIBasic? {
         get { try! _default.get_CurrentImpl() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
-    public var hasCurrent : Bool {
+    fileprivate var hasCurrent : Bool {
         get { try! _default.get_HasCurrentImpl() }
     }
 
@@ -2140,7 +2154,7 @@ internal var __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableVTable: __x_ABI_C__
         return S_OK
     }
 )
-typealias __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl>
+typealias __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge>
 internal class IKeyValuePairString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable }
 
@@ -2162,37 +2176,38 @@ internal class IKeyValuePairString_Any: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl : IKeyValuePair, AbiInterfaceImpl {
-    typealias K = String
-    typealias V = Any?
-    typealias SwiftProjection = AnyIKeyValuePair<String, Any?>
-    typealias CABI = __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable
-    typealias SwiftABI = IKeyValuePairString_Any
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable
+    internal typealias SwiftABI = IKeyValuePairString_Any
+    internal typealias SwiftProjection = AnyIKeyValuePair<String, Any?>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl : IKeyValuePair, AbiInterfaceImpl {
+    typealias K = String
+    typealias V = Any?
+    typealias Bridge = __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.key)
-    public var key : String {
+    fileprivate var key : String {
         get { try! _default.get_KeyImpl() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.value)
-    public var value : Any? {
+    fileprivate var value : Any? {
         get { try! _default.get_ValueImpl() }
     }
 
@@ -2271,7 +2286,7 @@ internal var __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIKey
         return S_OK
     }
 )
-typealias __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl>
+typealias __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge>
 internal class IKeyValuePairString_String: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING }
 
@@ -2293,37 +2308,38 @@ internal class IKeyValuePairString_String: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl : IKeyValuePair, AbiInterfaceImpl {
-    typealias K = String
-    typealias V = String
-    typealias SwiftProjection = AnyIKeyValuePair<String, String>
-    typealias CABI = __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING
-    typealias SwiftABI = IKeyValuePairString_String
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING
+    internal typealias SwiftABI = IKeyValuePairString_String
+    internal typealias SwiftProjection = AnyIKeyValuePair<String, String>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl : IKeyValuePair, AbiInterfaceImpl {
+    typealias K = String
+    typealias V = String
+    typealias Bridge = __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.key)
-    public var key : String {
+    fileprivate var key : String {
         get { try! _default.get_KeyImpl() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.value)
-    public var value : String {
+    fileprivate var value : String {
         get { try! _default.get_ValueImpl() }
     }
 
@@ -2402,7 +2418,7 @@ internal var __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBas
         return S_OK
     }
 )
-typealias __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl>
+typealias __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge>
 internal class IKeyValuePairString_Base: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
 
@@ -2424,37 +2440,38 @@ internal class IKeyValuePairString_Base: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl : IKeyValuePair, AbiInterfaceImpl {
-    typealias K = String
-    typealias V = Base?
-    typealias SwiftProjection = AnyIKeyValuePair<String, Base?>
-    typealias CABI = __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
-    typealias SwiftABI = IKeyValuePairString_Base
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
+    internal typealias SwiftABI = IKeyValuePairString_Base
+    internal typealias SwiftProjection = AnyIKeyValuePair<String, Base?>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl : IKeyValuePair, AbiInterfaceImpl {
+    typealias K = String
+    typealias V = Base?
+    typealias Bridge = __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.key)
-    public var key : String {
+    fileprivate var key : String {
         get { try! _default.get_KeyImpl() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.value)
-    public var value : Base? {
+    fileprivate var value : Base? {
         get { try! _default.get_ValueImpl() }
     }
 
@@ -2533,7 +2550,7 @@ internal var __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGVTable: __x_ABI_C__FIMapC
         return S_OK
     }
 )
-typealias __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMapChangedEventArgs_1_HSTRINGImpl>
+typealias __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMapChangedEventArgs_1_HSTRINGBridge>
 internal class IMapChangedEventArgsString: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMapChangedEventArgs_1_HSTRING }
 
@@ -2555,36 +2572,37 @@ internal class IMapChangedEventArgsString: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGImpl : IMapChangedEventArgs, AbiInterfaceImpl {
-    typealias K = String
-    typealias SwiftProjection = AnyIMapChangedEventArgs<String>
-    typealias CABI = __x_ABI_C__FIMapChangedEventArgs_1_HSTRING
-    typealias SwiftABI = IMapChangedEventArgsString
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIMapChangedEventArgs_1_HSTRING
+    internal typealias SwiftABI = IMapChangedEventArgsString
+    internal typealias SwiftProjection = AnyIMapChangedEventArgs<String>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIMapChangedEventArgs_1_HSTRINGVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGImpl : IMapChangedEventArgs, AbiInterfaceImpl {
+    typealias K = String
+    typealias Bridge = __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapchangedeventargs-1.collectionchange)
-    public var collectionChange : test_component.CollectionChange {
+    fileprivate var collectionChange : test_component.CollectionChange {
         get { try! _default.get_CollectionChangeImpl() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapchangedeventargs-1.key)
-    public var key : String {
+    fileprivate var key : String {
         get { try! _default.get_KeyImpl() }
     }
 
@@ -2686,7 +2704,7 @@ internal var __x_ABI_C__FIMapView_2_HSTRING_IInspectableVTable: __x_ABI_C__FIMap
         return S_OK
     }
 )
-typealias __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl>
+typealias __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableBridge>
 internal class IMapViewString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMapView_2_HSTRING_IInspectable }
 
@@ -2722,60 +2740,61 @@ internal class IMapViewString_Any: test_component.IInspectable {
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &_first, &_second))
         }
-        first = test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl.from(abi: _first)
-        second = test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl.from(abi: _second)
+        first = test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableBridge.from(abi: _first)
+        second = test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableBridge.from(abi: _second)
     }
 
 }
 
-internal class __x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl : IMapView, AbiInterfaceImpl {
-    typealias T = AnyIKeyValuePair<String, Any?>?
-    typealias K = String
-    typealias V = Any?
-    typealias SwiftProjection = AnyIMapView<String, Any?>
-    typealias CABI = __x_ABI_C__FIMapView_2_HSTRING_IInspectable
-    typealias SwiftABI = IMapViewString_Any
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIMapView_2_HSTRING_IInspectableBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIMapView_2_HSTRING_IInspectable
+    internal typealias SwiftABI = IMapViewString_Any
+    internal typealias SwiftProjection = AnyIMapView<String, Any?>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIMapView_2_HSTRING_IInspectableVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl : IMapView, AbiInterfaceImpl {
+    typealias T = AnyIKeyValuePair<String, Any?>?
+    typealias K = String
+    typealias V = Any?
+    typealias Bridge = __x_ABI_C__FIMapView_2_HSTRING_IInspectableBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.lookup)
-    public func lookup(_ key: String) -> Any? {
+    fileprivate func lookup(_ key: String) -> Any? {
         try! _default.LookupImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.haskey)
-    public func hasKey(_ key: String) -> Bool {
+    fileprivate func hasKey(_ key: String) -> Bool {
         try! _default.HasKeyImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.split)
-    public func split(_ first: inout AnyIMapView<String, Any?>?, _ second: inout AnyIMapView<String, Any?>?) {
+    fileprivate func split(_ first: inout AnyIMapView<String, Any?>?, _ second: inout AnyIMapView<String, Any?>?) {
         try! _default.SplitImpl(&first, &second)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.size)
-    public var size : UInt32 {
+    fileprivate var size : UInt32 {
         get { try! _default.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableIKeyValuePairString_Any = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.first)
-    public func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
+    fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
         try! _IIterable.FirstImpl()
     }
 
@@ -2876,7 +2895,7 @@ internal var __x_ABI_C__FIMapView_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMapView_
         return S_OK
     }
 )
-typealias __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl>
+typealias __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGBridge>
 internal class IMapViewString_String: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMapView_2_HSTRING_HSTRING }
 
@@ -2912,60 +2931,61 @@ internal class IMapViewString_String: test_component.IInspectable {
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &_first, &_second))
         }
-        first = test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl.from(abi: _first)
-        second = test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl.from(abi: _second)
+        first = test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGBridge.from(abi: _first)
+        second = test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGBridge.from(abi: _second)
     }
 
 }
 
-internal class __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl : IMapView, AbiInterfaceImpl {
-    typealias T = AnyIKeyValuePair<String, String>?
-    typealias K = String
-    typealias V = String
-    typealias SwiftProjection = AnyIMapView<String, String>
-    typealias CABI = __x_ABI_C__FIMapView_2_HSTRING_HSTRING
-    typealias SwiftABI = IMapViewString_String
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIMapView_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIMapView_2_HSTRING_HSTRING
+    internal typealias SwiftABI = IMapViewString_String
+    internal typealias SwiftProjection = AnyIMapView<String, String>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIMapView_2_HSTRING_HSTRINGVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl : IMapView, AbiInterfaceImpl {
+    typealias T = AnyIKeyValuePair<String, String>?
+    typealias K = String
+    typealias V = String
+    typealias Bridge = __x_ABI_C__FIMapView_2_HSTRING_HSTRINGBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.lookup)
-    public func lookup(_ key: String) -> String {
+    fileprivate func lookup(_ key: String) -> String {
         try! _default.LookupImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.haskey)
-    public func hasKey(_ key: String) -> Bool {
+    fileprivate func hasKey(_ key: String) -> Bool {
         try! _default.HasKeyImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.split)
-    public func split(_ first: inout AnyIMapView<String, String>?, _ second: inout AnyIMapView<String, String>?) {
+    fileprivate func split(_ first: inout AnyIMapView<String, String>?, _ second: inout AnyIMapView<String, String>?) {
         try! _default.SplitImpl(&first, &second)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.size)
-    public var size : UInt32 {
+    fileprivate var size : UInt32 {
         get { try! _default.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableIKeyValuePairString_String = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.first)
-    public func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
+    fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
         try! _IIterable.FirstImpl()
     }
 
@@ -3066,7 +3086,7 @@ internal var __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTab
         return S_OK
     }
 )
-typealias __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl>
+typealias __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge>
 internal class IMapViewString_Base: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
 
@@ -3102,60 +3122,61 @@ internal class IMapViewString_Base: test_component.IInspectable {
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &_first, &_second))
         }
-        first = test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl.from(abi: _first)
-        second = test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl.from(abi: _second)
+        first = test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge.from(abi: _first)
+        second = test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge.from(abi: _second)
     }
 
 }
 
-internal class __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl : IMapView, AbiInterfaceImpl {
-    typealias T = AnyIKeyValuePair<String, Base?>?
-    typealias K = String
-    typealias V = Base?
-    typealias SwiftProjection = AnyIMapView<String, Base?>
-    typealias CABI = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
-    typealias SwiftABI = IMapViewString_Base
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
+    internal typealias SwiftABI = IMapViewString_Base
+    internal typealias SwiftProjection = AnyIMapView<String, Base?>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl : IMapView, AbiInterfaceImpl {
+    typealias T = AnyIKeyValuePair<String, Base?>?
+    typealias K = String
+    typealias V = Base?
+    typealias Bridge = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.lookup)
-    public func lookup(_ key: String) -> Base? {
+    fileprivate func lookup(_ key: String) -> Base? {
         try! _default.LookupImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.haskey)
-    public func hasKey(_ key: String) -> Bool {
+    fileprivate func hasKey(_ key: String) -> Bool {
         try! _default.HasKeyImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.split)
-    public func split(_ first: inout AnyIMapView<String, Base?>?, _ second: inout AnyIMapView<String, Base?>?) {
+    fileprivate func split(_ first: inout AnyIMapView<String, Base?>?, _ second: inout AnyIMapView<String, Base?>?) {
         try! _default.SplitImpl(&first, &second)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.size)
-    public var size : UInt32 {
+    fileprivate var size : UInt32 {
         get { try! _default.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableIKeyValuePairString_Base = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.first)
-    public func first() -> AnyIIterator<AnyIKeyValuePair<String, Base?>?>? {
+    fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, Base?>?>? {
         try! _IIterable.FirstImpl()
     }
 
@@ -3275,7 +3296,7 @@ internal var __x_ABI_C__FIMap_2_HSTRING_IInspectableVTable: __x_ABI_C__FIMap_2_H
         return S_OK
     }
 )
-typealias __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMap_2_HSTRING_IInspectableImpl>
+typealias __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMap_2_HSTRING_IInspectableBridge>
 internal class IMapString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMap_2_HSTRING_IInspectable }
 
@@ -3339,69 +3360,70 @@ internal class IMapString_Any: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIMap_2_HSTRING_IInspectableImpl : IMap, AbiInterfaceImpl {
-    typealias T = AnyIKeyValuePair<String, Any?>?
-    typealias K = String
-    typealias V = Any?
-    typealias SwiftProjection = AnyIMap<String, Any?>
-    typealias CABI = __x_ABI_C__FIMap_2_HSTRING_IInspectable
-    typealias SwiftABI = IMapString_Any
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIMap_2_HSTRING_IInspectableBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIMap_2_HSTRING_IInspectable
+    internal typealias SwiftABI = IMapString_Any
+    internal typealias SwiftProjection = AnyIMap<String, Any?>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIMap_2_HSTRING_IInspectableImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIMap_2_HSTRING_IInspectableVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIMap_2_HSTRING_IInspectableImpl : IMap, AbiInterfaceImpl {
+    typealias T = AnyIKeyValuePair<String, Any?>?
+    typealias K = String
+    typealias V = Any?
+    typealias Bridge = __x_ABI_C__FIMap_2_HSTRING_IInspectableBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.lookup)
-    public func lookup(_ key: String) -> Any? {
+    fileprivate func lookup(_ key: String) -> Any? {
         try! _default.LookupImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.haskey)
-    public func hasKey(_ key: String) -> Bool {
+    fileprivate func hasKey(_ key: String) -> Bool {
         try! _default.HasKeyImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.getview)
-    public func getView() -> AnyIMapView<String, Any?>? {
+    fileprivate func getView() -> AnyIMapView<String, Any?>? {
         try! _default.GetViewImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.insert)
-    public func insert(_ key: String, _ value: Any?) -> Bool {
+    fileprivate func insert(_ key: String, _ value: Any?) -> Bool {
         try! _default.InsertImpl(key, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.remove)
-    public func remove(_ key: String) {
+    fileprivate func remove(_ key: String) {
         try! _default.RemoveImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.clear)
-    public func clear() {
+    fileprivate func clear() {
         try! _default.ClearImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.size)
-    public var size : UInt32 {
+    fileprivate var size : UInt32 {
         get { try! _default.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableIKeyValuePairString_Any = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.first)
-    public func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
+    fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
         try! _IIterable.FirstImpl()
     }
 
@@ -3520,7 +3542,7 @@ internal var __x_ABI_C__FIMap_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMap_2_HSTRIN
         return S_OK
     }
 )
-typealias __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGImpl>
+typealias __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGBridge>
 internal class IMapString_String: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMap_2_HSTRING_HSTRING }
 
@@ -3583,69 +3605,70 @@ internal class IMapString_String: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIMap_2_HSTRING_HSTRINGImpl : IMap, AbiInterfaceImpl {
-    typealias T = AnyIKeyValuePair<String, String>?
-    typealias K = String
-    typealias V = String
-    typealias SwiftProjection = AnyIMap<String, String>
-    typealias CABI = __x_ABI_C__FIMap_2_HSTRING_HSTRING
-    typealias SwiftABI = IMapString_String
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIMap_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIMap_2_HSTRING_HSTRING
+    internal typealias SwiftABI = IMapString_String
+    internal typealias SwiftProjection = AnyIMap<String, String>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIMap_2_HSTRING_HSTRINGImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIMap_2_HSTRING_HSTRINGVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIMap_2_HSTRING_HSTRINGImpl : IMap, AbiInterfaceImpl {
+    typealias T = AnyIKeyValuePair<String, String>?
+    typealias K = String
+    typealias V = String
+    typealias Bridge = __x_ABI_C__FIMap_2_HSTRING_HSTRINGBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.lookup)
-    public func lookup(_ key: String) -> String {
+    fileprivate func lookup(_ key: String) -> String {
         try! _default.LookupImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.haskey)
-    public func hasKey(_ key: String) -> Bool {
+    fileprivate func hasKey(_ key: String) -> Bool {
         try! _default.HasKeyImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.getview)
-    public func getView() -> AnyIMapView<String, String>? {
+    fileprivate func getView() -> AnyIMapView<String, String>? {
         try! _default.GetViewImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.insert)
-    public func insert(_ key: String, _ value: String) -> Bool {
+    fileprivate func insert(_ key: String, _ value: String) -> Bool {
         try! _default.InsertImpl(key, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.remove)
-    public func remove(_ key: String) {
+    fileprivate func remove(_ key: String) {
         try! _default.RemoveImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.clear)
-    public func clear() {
+    fileprivate func clear() {
         try! _default.ClearImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.size)
-    public var size : UInt32 {
+    fileprivate var size : UInt32 {
         get { try! _default.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableIKeyValuePairString_String = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.first)
-    public func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
+    fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
         try! _IIterable.FirstImpl()
     }
 
@@ -3764,7 +3787,7 @@ internal var __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: 
         return S_OK
     }
 )
-typealias __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl>
+typealias __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge>
 internal class IMapString_Base: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
 
@@ -3826,69 +3849,70 @@ internal class IMapString_Base: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl : IMap, AbiInterfaceImpl {
-    typealias T = AnyIKeyValuePair<String, Base?>?
-    typealias K = String
-    typealias V = Base?
-    typealias SwiftProjection = AnyIMap<String, Base?>
-    typealias CABI = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
-    typealias SwiftABI = IMapString_Base
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
+    internal typealias SwiftABI = IMapString_Base
+    internal typealias SwiftProjection = AnyIMap<String, Base?>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl : IMap, AbiInterfaceImpl {
+    typealias T = AnyIKeyValuePair<String, Base?>?
+    typealias K = String
+    typealias V = Base?
+    typealias Bridge = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.lookup)
-    public func lookup(_ key: String) -> Base? {
+    fileprivate func lookup(_ key: String) -> Base? {
         try! _default.LookupImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.haskey)
-    public func hasKey(_ key: String) -> Bool {
+    fileprivate func hasKey(_ key: String) -> Bool {
         try! _default.HasKeyImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.getview)
-    public func getView() -> AnyIMapView<String, Base?>? {
+    fileprivate func getView() -> AnyIMapView<String, Base?>? {
         try! _default.GetViewImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.insert)
-    public func insert(_ key: String, _ value: Base?) -> Bool {
+    fileprivate func insert(_ key: String, _ value: Base?) -> Bool {
         try! _default.InsertImpl(key, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.remove)
-    public func remove(_ key: String) {
+    fileprivate func remove(_ key: String) {
         try! _default.RemoveImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.clear)
-    public func clear() {
+    fileprivate func clear() {
         try! _default.ClearImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.size)
-    public var size : UInt32 {
+    fileprivate var size : UInt32 {
         get { try! _default.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableIKeyValuePairString_Base = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.first)
-    public func first() -> AnyIIterator<AnyIKeyValuePair<String, Base?>?>? {
+    fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, Base?>?>? {
         try! _IIterable.FirstImpl()
     }
 
@@ -3970,7 +3994,7 @@ internal var __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableVTable: __x_ABI_C_
         return S_OK
     }
 )
-typealias __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIObservableMap_2_HSTRING_IInspectableImpl>
+typealias __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIObservableMap_2_HSTRING_IInspectableBridge>
 internal class IObservableMapString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIObservableMap_2_HSTRING_IInspectable }
 
@@ -3992,33 +4016,34 @@ internal class IObservableMapString_Any: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableImpl : IObservableMap, AbiInterfaceImpl {
-    typealias K = String
-    typealias V = Any?
-    typealias T = AnyIKeyValuePair<String, Any?>?
-    typealias SwiftProjection = AnyIObservableMap<String, Any?>
-    typealias CABI = __x_ABI_C__FIObservableMap_2_HSTRING_IInspectable
-    typealias SwiftABI = IObservableMapString_Any
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIObservableMap_2_HSTRING_IInspectable
+    internal typealias SwiftABI = IObservableMapString_Any
+    internal typealias SwiftProjection = AnyIObservableMap<String, Any?>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIObservableMap_2_HSTRING_IInspectableVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableImpl : IObservableMap, AbiInterfaceImpl {
+    typealias K = String
+    typealias V = Any?
+    typealias T = AnyIKeyValuePair<String, Any?>?
+    typealias Bridge = __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.mapchanged)
-    public lazy var mapChanged : Event<MapChangedEventHandler<String, Any?>> = {
+    fileprivate lazy var mapChanged : Event<MapChangedEventHandler<String, Any?>> = {
       .init(
         add: { [weak this = _default] in
           guard let this else { return .init() }
@@ -4032,43 +4057,43 @@ internal class __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableImpl : IObservab
 
     internal lazy var _IMap: IMapString_Any = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.lookup)
-    public func lookup(_ key: String) -> Any? {
+    fileprivate func lookup(_ key: String) -> Any? {
         try! _IMap.LookupImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.haskey)
-    public func hasKey(_ key: String) -> Bool {
+    fileprivate func hasKey(_ key: String) -> Bool {
         try! _IMap.HasKeyImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.getview)
-    public func getView() -> AnyIMapView<String, Any?>? {
+    fileprivate func getView() -> AnyIMapView<String, Any?>? {
         try! _IMap.GetViewImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.insert)
-    public func insert(_ key: String, _ value: Any?) -> Bool {
+    fileprivate func insert(_ key: String, _ value: Any?) -> Bool {
         try! _IMap.InsertImpl(key, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.remove)
-    public func remove(_ key: String) {
+    fileprivate func remove(_ key: String) {
         try! _IMap.RemoveImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.clear)
-    public func clear() {
+    fileprivate func clear() {
         try! _IMap.ClearImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.size)
-    public var size : UInt32 {
+    fileprivate var size : UInt32 {
         get { try! _IMap.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableIKeyValuePairString_Any = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.first)
-    public func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
+    fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
         try! _IIterable.FirstImpl()
     }
 
@@ -4150,7 +4175,7 @@ internal var __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIOb
         return S_OK
     }
 )
-typealias __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGImpl>
+typealias __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGBridge>
 internal class IObservableMapString_String: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIObservableMap_2_HSTRING_HSTRING }
 
@@ -4172,33 +4197,34 @@ internal class IObservableMapString_String: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGImpl : IObservableMap, AbiInterfaceImpl {
-    typealias K = String
-    typealias V = String
-    typealias T = AnyIKeyValuePair<String, String>?
-    typealias SwiftProjection = AnyIObservableMap<String, String>
-    typealias CABI = __x_ABI_C__FIObservableMap_2_HSTRING_HSTRING
-    typealias SwiftABI = IObservableMapString_String
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIObservableMap_2_HSTRING_HSTRING
+    internal typealias SwiftABI = IObservableMapString_String
+    internal typealias SwiftProjection = AnyIObservableMap<String, String>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGImpl : IObservableMap, AbiInterfaceImpl {
+    typealias K = String
+    typealias V = String
+    typealias T = AnyIKeyValuePair<String, String>?
+    typealias Bridge = __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.mapchanged)
-    public lazy var mapChanged : Event<MapChangedEventHandler<String, String>> = {
+    fileprivate lazy var mapChanged : Event<MapChangedEventHandler<String, String>> = {
       .init(
         add: { [weak this = _default] in
           guard let this else { return .init() }
@@ -4212,43 +4238,43 @@ internal class __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGImpl : IObservableMap
 
     internal lazy var _IMap: IMapString_String = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.lookup)
-    public func lookup(_ key: String) -> String {
+    fileprivate func lookup(_ key: String) -> String {
         try! _IMap.LookupImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.haskey)
-    public func hasKey(_ key: String) -> Bool {
+    fileprivate func hasKey(_ key: String) -> Bool {
         try! _IMap.HasKeyImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.getview)
-    public func getView() -> AnyIMapView<String, String>? {
+    fileprivate func getView() -> AnyIMapView<String, String>? {
         try! _IMap.GetViewImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.insert)
-    public func insert(_ key: String, _ value: String) -> Bool {
+    fileprivate func insert(_ key: String, _ value: String) -> Bool {
         try! _IMap.InsertImpl(key, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.remove)
-    public func remove(_ key: String) {
+    fileprivate func remove(_ key: String) {
         try! _IMap.RemoveImpl(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.clear)
-    public func clear() {
+    fileprivate func clear() {
         try! _IMap.ClearImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.size)
-    public var size : UInt32 {
+    fileprivate var size : UInt32 {
         get { try! _IMap.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableIKeyValuePairString_String = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.first)
-    public func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
+    fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
         try! _IIterable.FirstImpl()
     }
 
@@ -4330,7 +4356,7 @@ internal var __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseVTa
         return S_OK
     }
 )
-typealias __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseImpl>
+typealias __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseBridge>
 internal class IObservableVectorBase: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase }
 
@@ -4352,26 +4378,27 @@ internal class IObservableVectorBase: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseImpl : IObservableVector, AbiInterfaceImpl {
-    typealias T = Base?
-    typealias SwiftProjection = AnyIObservableVector<Base?>
-    typealias CABI = __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase
-    typealias SwiftABI = IObservableVectorBase
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase
+    internal typealias SwiftABI = IObservableVectorBase
+    internal typealias SwiftProjection = AnyIObservableVector<Base?>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseImpl : IObservableVector, AbiInterfaceImpl {
+    typealias T = Base?
+    typealias Bridge = __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: Collection
@@ -4406,7 +4433,7 @@ internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseI
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.vectorchanged)
-    public lazy var vectorChanged : Event<VectorChangedEventHandler<Base?>> = {
+    fileprivate lazy var vectorChanged : Event<VectorChangedEventHandler<Base?>> = {
       .init(
         add: { [weak this = _default] in
           guard let this else { return .init() }
@@ -4420,58 +4447,58 @@ internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseI
 
     internal lazy var _IVector: IVectorBase = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.getat)
-    public func getAt(_ index: UInt32) -> Base? {
+    fileprivate func getAt(_ index: UInt32) -> Base? {
         try! _IVector.GetAtImpl(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.getview)
-    public func getView() -> AnyIVectorView<Base?>? {
+    fileprivate func getView() -> AnyIVectorView<Base?>? {
         try! _IVector.GetViewImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.indexof)
-    public func indexOf(_ value: Base?, _ index: inout UInt32) -> Bool {
+    fileprivate func indexOf(_ value: Base?, _ index: inout UInt32) -> Bool {
         try! _IVector.IndexOfImpl(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.setat)
-    public func setAt(_ index: UInt32, _ value: Base?) {
+    fileprivate func setAt(_ index: UInt32, _ value: Base?) {
         try! _IVector.SetAtImpl(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.insertat)
-    public func insertAt(_ index: UInt32, _ value: Base?) {
+    fileprivate func insertAt(_ index: UInt32, _ value: Base?) {
         try! _IVector.InsertAtImpl(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.removeat)
-    public func removeAt(_ index: UInt32) {
+    fileprivate func removeAt(_ index: UInt32) {
         try! _IVector.RemoveAtImpl(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.append)
-    public func append(_ value: Base?) {
+    fileprivate func append(_ value: Base?) {
         try! _IVector.AppendImpl(value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.removeatend)
-    public func removeAtEnd() {
+    fileprivate func removeAtEnd() {
         try! _IVector.RemoveAtEndImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.clear)
-    public func clear() {
+    fileprivate func clear() {
         try! _IVector.ClearImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.size)
-    public var size : UInt32 {
+    fileprivate var size : UInt32 {
         get { try! _IVector.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableBase = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.first)
-    public func first() -> AnyIIterator<Base?>? {
+    fileprivate func first() -> AnyIIterator<Base?>? {
         try! _IIterable.FirstImpl()
     }
 
@@ -4553,7 +4580,7 @@ internal var __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicV
         return S_OK
     }
 )
-typealias __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicImpl>
+typealias __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicBridge>
 internal class IObservableVectorIBasic: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasic }
 
@@ -4575,26 +4602,27 @@ internal class IObservableVectorIBasic: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicImpl : IObservableVector, AbiInterfaceImpl {
-    typealias T = AnyIBasic?
-    typealias SwiftProjection = AnyIObservableVector<AnyIBasic?>
-    typealias CABI = __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasic
-    typealias SwiftABI = IObservableVectorIBasic
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasic
+    internal typealias SwiftABI = IObservableVectorIBasic
+    internal typealias SwiftProjection = AnyIObservableVector<AnyIBasic?>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicImpl : IObservableVector, AbiInterfaceImpl {
+    typealias T = AnyIBasic?
+    typealias Bridge = __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: Collection
@@ -4629,7 +4657,7 @@ internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasi
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.vectorchanged)
-    public lazy var vectorChanged : Event<VectorChangedEventHandler<IBasic?>> = {
+    fileprivate lazy var vectorChanged : Event<VectorChangedEventHandler<IBasic?>> = {
       .init(
         add: { [weak this = _default] in
           guard let this else { return .init() }
@@ -4643,58 +4671,58 @@ internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasi
 
     internal lazy var _IVector: IVectorIBasic = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.getat)
-    public func getAt(_ index: UInt32) -> AnyIBasic? {
+    fileprivate func getAt(_ index: UInt32) -> AnyIBasic? {
         try! _IVector.GetAtImpl(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.getview)
-    public func getView() -> AnyIVectorView<AnyIBasic?>? {
+    fileprivate func getView() -> AnyIVectorView<AnyIBasic?>? {
         try! _IVector.GetViewImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.indexof)
-    public func indexOf(_ value: AnyIBasic?, _ index: inout UInt32) -> Bool {
+    fileprivate func indexOf(_ value: AnyIBasic?, _ index: inout UInt32) -> Bool {
         try! _IVector.IndexOfImpl(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.setat)
-    public func setAt(_ index: UInt32, _ value: AnyIBasic?) {
+    fileprivate func setAt(_ index: UInt32, _ value: AnyIBasic?) {
         try! _IVector.SetAtImpl(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.insertat)
-    public func insertAt(_ index: UInt32, _ value: AnyIBasic?) {
+    fileprivate func insertAt(_ index: UInt32, _ value: AnyIBasic?) {
         try! _IVector.InsertAtImpl(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.removeat)
-    public func removeAt(_ index: UInt32) {
+    fileprivate func removeAt(_ index: UInt32) {
         try! _IVector.RemoveAtImpl(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.append)
-    public func append(_ value: AnyIBasic?) {
+    fileprivate func append(_ value: AnyIBasic?) {
         try! _IVector.AppendImpl(value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.removeatend)
-    public func removeAtEnd() {
+    fileprivate func removeAtEnd() {
         try! _IVector.RemoveAtEndImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.clear)
-    public func clear() {
+    fileprivate func clear() {
         try! _IVector.ClearImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.size)
-    public var size : UInt32 {
+    fileprivate var size : UInt32 {
         get { try! _IVector.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableIBasic = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.first)
-    public func first() -> AnyIIterator<AnyIBasic?>? {
+    fileprivate func first() -> AnyIIterator<AnyIBasic?>? {
         try! _IIterable.FirstImpl()
     }
 
@@ -4788,7 +4816,7 @@ internal var __x_ABI_C__FIVectorView_1_IInspectableVTable: __x_ABI_C__FIVectorVi
 
     GetMany: { _, _, _, _, _ in return failWith(err: E_NOTIMPL) }
 )
-typealias __x_ABI_C__FIVectorView_1_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1_IInspectableImpl>
+typealias __x_ABI_C__FIVectorView_1_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1_IInspectableBridge>
 internal class IVectorViewAny: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1_IInspectable }
 
@@ -4820,26 +4848,27 @@ internal class IVectorViewAny: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIVectorView_1_IInspectableImpl : IVectorView, AbiInterfaceImpl {
-    typealias T = Any?
-    typealias SwiftProjection = AnyIVectorView<Any?>
-    typealias CABI = __x_ABI_C__FIVectorView_1_IInspectable
-    typealias SwiftABI = IVectorViewAny
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIVectorView_1_IInspectableBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIVectorView_1_IInspectable
+    internal typealias SwiftABI = IVectorViewAny
+    internal typealias SwiftProjection = AnyIVectorView<Any?>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIVectorView_1_IInspectableImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIVectorView_1_IInspectableVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIVectorView_1_IInspectableImpl : IVectorView, AbiInterfaceImpl {
+    typealias T = Any?
+    typealias Bridge = __x_ABI_C__FIVectorView_1_IInspectableBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: Collection
@@ -4865,23 +4894,23 @@ internal class __x_ABI_C__FIVectorView_1_IInspectableImpl : IVectorView, AbiInte
     }
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.getat)
-    public func getAt(_ index: UInt32) -> Any? {
+    fileprivate func getAt(_ index: UInt32) -> Any? {
         try! _default.GetAtImpl(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.indexof)
-    public func indexOf(_ value: Any?, _ index: inout UInt32) -> Bool {
+    fileprivate func indexOf(_ value: Any?, _ index: inout UInt32) -> Bool {
         try! _default.IndexOfImpl(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
-    public var size : UInt32 {
+    fileprivate var size : UInt32 {
         get { try! _default.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableAny = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
-    public func first() -> AnyIIterator<Any?>? {
+    fileprivate func first() -> AnyIIterator<Any?>? {
         try! _IIterable.FirstImpl()
     }
 
@@ -4974,7 +5003,7 @@ internal var __x_ABI_C__FIVectorView_1_HSTRINGVTable: __x_ABI_C__FIVectorView_1_
 
     GetMany: { _, _, _, _, _ in return failWith(err: E_NOTIMPL) }
 )
-typealias __x_ABI_C__FIVectorView_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1_HSTRINGImpl>
+typealias __x_ABI_C__FIVectorView_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1_HSTRINGBridge>
 internal class IVectorViewString: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1_HSTRING }
 
@@ -5005,26 +5034,27 @@ internal class IVectorViewString: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIVectorView_1_HSTRINGImpl : IVectorView, AbiInterfaceImpl {
-    typealias T = String
-    typealias SwiftProjection = AnyIVectorView<String>
-    typealias CABI = __x_ABI_C__FIVectorView_1_HSTRING
-    typealias SwiftABI = IVectorViewString
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIVectorView_1_HSTRINGBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIVectorView_1_HSTRING
+    internal typealias SwiftABI = IVectorViewString
+    internal typealias SwiftProjection = AnyIVectorView<String>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIVectorView_1_HSTRINGImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIVectorView_1_HSTRINGVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIVectorView_1_HSTRINGImpl : IVectorView, AbiInterfaceImpl {
+    typealias T = String
+    typealias Bridge = __x_ABI_C__FIVectorView_1_HSTRINGBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: Collection
@@ -5050,23 +5080,23 @@ internal class __x_ABI_C__FIVectorView_1_HSTRINGImpl : IVectorView, AbiInterface
     }
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.getat)
-    public func getAt(_ index: UInt32) -> String {
+    fileprivate func getAt(_ index: UInt32) -> String {
         try! _default.GetAtImpl(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.indexof)
-    public func indexOf(_ value: String, _ index: inout UInt32) -> Bool {
+    fileprivate func indexOf(_ value: String, _ index: inout UInt32) -> Bool {
         try! _default.IndexOfImpl(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
-    public var size : UInt32 {
+    fileprivate var size : UInt32 {
         get { try! _default.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableString = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
-    public func first() -> AnyIIterator<String>? {
+    fileprivate func first() -> AnyIIterator<String>? {
         try! _IIterable.FirstImpl()
     }
 
@@ -5159,7 +5189,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVTable: _
 
     GetMany: { _, _, _, _, _ in return failWith(err: E_NOTIMPL) }
 )
-typealias __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl>
+typealias __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseBridge>
 internal class IVectorViewBase: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase }
 
@@ -5189,26 +5219,27 @@ internal class IVectorViewBase: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl : IVectorView, AbiInterfaceImpl {
-    typealias T = Base?
-    typealias SwiftProjection = AnyIVectorView<Base?>
-    typealias CABI = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase
-    typealias SwiftABI = IVectorViewBase
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase
+    internal typealias SwiftABI = IVectorViewBase
+    internal typealias SwiftProjection = AnyIVectorView<Base?>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl : IVectorView, AbiInterfaceImpl {
+    typealias T = Base?
+    typealias Bridge = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: Collection
@@ -5234,23 +5265,23 @@ internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl : 
     }
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.getat)
-    public func getAt(_ index: UInt32) -> Base? {
+    fileprivate func getAt(_ index: UInt32) -> Base? {
         try! _default.GetAtImpl(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.indexof)
-    public func indexOf(_ value: Base?, _ index: inout UInt32) -> Bool {
+    fileprivate func indexOf(_ value: Base?, _ index: inout UInt32) -> Bool {
         try! _default.IndexOfImpl(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
-    public var size : UInt32 {
+    fileprivate var size : UInt32 {
         get { try! _default.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableBase = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
-    public func first() -> AnyIIterator<Base?>? {
+    fileprivate func first() -> AnyIIterator<Base?>? {
         try! _IIterable.FirstImpl()
     }
 
@@ -5344,7 +5375,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicVTable:
 
     GetMany: { _, _, _, _, _ in return failWith(err: E_NOTIMPL) }
 )
-typealias __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicImpl>
+typealias __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicBridge>
 internal class IVectorViewIBasic: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasic }
 
@@ -5376,26 +5407,27 @@ internal class IVectorViewIBasic: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicImpl : IVectorView, AbiInterfaceImpl {
-    typealias T = AnyIBasic?
-    typealias SwiftProjection = AnyIVectorView<AnyIBasic?>
-    typealias CABI = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasic
-    typealias SwiftABI = IVectorViewIBasic
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasic
+    internal typealias SwiftABI = IVectorViewIBasic
+    internal typealias SwiftProjection = AnyIVectorView<AnyIBasic?>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicImpl : IVectorView, AbiInterfaceImpl {
+    typealias T = AnyIBasic?
+    typealias Bridge = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: Collection
@@ -5421,23 +5453,23 @@ internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicImpl 
     }
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.getat)
-    public func getAt(_ index: UInt32) -> AnyIBasic? {
+    fileprivate func getAt(_ index: UInt32) -> AnyIBasic? {
         try! _default.GetAtImpl(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.indexof)
-    public func indexOf(_ value: AnyIBasic?, _ index: inout UInt32) -> Bool {
+    fileprivate func indexOf(_ value: AnyIBasic?, _ index: inout UInt32) -> Bool {
         try! _default.IndexOfImpl(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
-    public var size : UInt32 {
+    fileprivate var size : UInt32 {
         get { try! _default.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableIBasic = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
-    public func first() -> AnyIIterator<AnyIBasic?>? {
+    fileprivate func first() -> AnyIIterator<AnyIBasic?>? {
         try! _IIterable.FirstImpl()
     }
 
@@ -5583,7 +5615,7 @@ internal var __x_ABI_C__FIVector_1_IInspectableVTable: __x_ABI_C__FIVector_1_IIn
 
     ReplaceAll: { _, _, _ in return failWith(err: E_NOTIMPL) }
 )
-typealias __x_ABI_C__FIVector_1_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVector_1_IInspectableImpl>
+typealias __x_ABI_C__FIVector_1_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVector_1_IInspectableBridge>
 internal class IVectorAny: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVector_1_IInspectable }
 
@@ -5665,26 +5697,27 @@ internal class IVectorAny: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIVector_1_IInspectableImpl : IVector, AbiInterfaceImpl {
-    typealias T = Any?
-    typealias SwiftProjection = AnyIVector<Any?>
-    typealias CABI = __x_ABI_C__FIVector_1_IInspectable
-    typealias SwiftABI = IVectorAny
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIVector_1_IInspectableBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIVector_1_IInspectable
+    internal typealias SwiftABI = IVectorAny
+    internal typealias SwiftProjection = AnyIVector<Any?>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIVector_1_IInspectableImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIVector_1_IInspectableVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIVector_1_IInspectableImpl : IVector, AbiInterfaceImpl {
+    typealias T = Any?
+    typealias Bridge = __x_ABI_C__FIVector_1_IInspectableBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: Collection
@@ -5719,58 +5752,58 @@ internal class __x_ABI_C__FIVector_1_IInspectableImpl : IVector, AbiInterfaceImp
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getat)
-    public func getAt(_ index: UInt32) -> Any? {
+    fileprivate func getAt(_ index: UInt32) -> Any? {
         try! _default.GetAtImpl(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getview)
-    public func getView() -> AnyIVectorView<Any?>? {
+    fileprivate func getView() -> AnyIVectorView<Any?>? {
         try! _default.GetViewImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.indexof)
-    public func indexOf(_ value: Any?, _ index: inout UInt32) -> Bool {
+    fileprivate func indexOf(_ value: Any?, _ index: inout UInt32) -> Bool {
         try! _default.IndexOfImpl(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.setat)
-    public func setAt(_ index: UInt32, _ value: Any?) {
+    fileprivate func setAt(_ index: UInt32, _ value: Any?) {
         try! _default.SetAtImpl(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.insertat)
-    public func insertAt(_ index: UInt32, _ value: Any?) {
+    fileprivate func insertAt(_ index: UInt32, _ value: Any?) {
         try! _default.InsertAtImpl(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeat)
-    public func removeAt(_ index: UInt32) {
+    fileprivate func removeAt(_ index: UInt32) {
         try! _default.RemoveAtImpl(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.append)
-    public func append(_ value: Any?) {
+    fileprivate func append(_ value: Any?) {
         try! _default.AppendImpl(value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeatend)
-    public func removeAtEnd() {
+    fileprivate func removeAtEnd() {
         try! _default.RemoveAtEndImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.clear)
-    public func clear() {
+    fileprivate func clear() {
         try! _default.ClearImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.size)
-    public var size : UInt32 {
+    fileprivate var size : UInt32 {
         get { try! _default.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableAny = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.first)
-    public func first() -> AnyIIterator<Any?>? {
+    fileprivate func first() -> AnyIIterator<Any?>? {
         try! _IIterable.FirstImpl()
     }
 
@@ -5915,7 +5948,7 @@ internal var __x_ABI_C__FIVector_1_HSTRINGVTable: __x_ABI_C__FIVector_1_HSTRINGV
 
     ReplaceAll: { _, _, _ in return failWith(err: E_NOTIMPL) }
 )
-typealias __x_ABI_C__FIVector_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVector_1_HSTRINGImpl>
+typealias __x_ABI_C__FIVector_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVector_1_HSTRINGBridge>
 internal class IVectorString: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVector_1_HSTRING }
 
@@ -5993,26 +6026,27 @@ internal class IVectorString: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIVector_1_HSTRINGImpl : IVector, AbiInterfaceImpl {
-    typealias T = String
-    typealias SwiftProjection = AnyIVector<String>
-    typealias CABI = __x_ABI_C__FIVector_1_HSTRING
-    typealias SwiftABI = IVectorString
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIVector_1_HSTRINGBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIVector_1_HSTRING
+    internal typealias SwiftABI = IVectorString
+    internal typealias SwiftProjection = AnyIVector<String>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIVector_1_HSTRINGImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIVector_1_HSTRINGVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIVector_1_HSTRINGImpl : IVector, AbiInterfaceImpl {
+    typealias T = String
+    typealias Bridge = __x_ABI_C__FIVector_1_HSTRINGBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: Collection
@@ -6047,58 +6081,58 @@ internal class __x_ABI_C__FIVector_1_HSTRINGImpl : IVector, AbiInterfaceImpl {
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getat)
-    public func getAt(_ index: UInt32) -> String {
+    fileprivate func getAt(_ index: UInt32) -> String {
         try! _default.GetAtImpl(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getview)
-    public func getView() -> AnyIVectorView<String>? {
+    fileprivate func getView() -> AnyIVectorView<String>? {
         try! _default.GetViewImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.indexof)
-    public func indexOf(_ value: String, _ index: inout UInt32) -> Bool {
+    fileprivate func indexOf(_ value: String, _ index: inout UInt32) -> Bool {
         try! _default.IndexOfImpl(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.setat)
-    public func setAt(_ index: UInt32, _ value: String) {
+    fileprivate func setAt(_ index: UInt32, _ value: String) {
         try! _default.SetAtImpl(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.insertat)
-    public func insertAt(_ index: UInt32, _ value: String) {
+    fileprivate func insertAt(_ index: UInt32, _ value: String) {
         try! _default.InsertAtImpl(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeat)
-    public func removeAt(_ index: UInt32) {
+    fileprivate func removeAt(_ index: UInt32) {
         try! _default.RemoveAtImpl(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.append)
-    public func append(_ value: String) {
+    fileprivate func append(_ value: String) {
         try! _default.AppendImpl(value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeatend)
-    public func removeAtEnd() {
+    fileprivate func removeAtEnd() {
         try! _default.RemoveAtEndImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.clear)
-    public func clear() {
+    fileprivate func clear() {
         try! _default.ClearImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.size)
-    public var size : UInt32 {
+    fileprivate var size : UInt32 {
         get { try! _default.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableString = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.first)
-    public func first() -> AnyIIterator<String>? {
+    fileprivate func first() -> AnyIIterator<String>? {
         try! _IIterable.FirstImpl()
     }
 
@@ -6243,7 +6277,7 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_A
 
     ReplaceAll: { _, _, _ in return failWith(err: E_NOTIMPL) }
 )
-typealias __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl>
+typealias __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseBridge>
 internal class IVectorBase: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase }
 
@@ -6317,26 +6351,27 @@ internal class IVectorBase: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl : IVector, AbiInterfaceImpl {
-    typealias T = Base?
-    typealias SwiftProjection = AnyIVector<Base?>
-    typealias CABI = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase
-    typealias SwiftABI = IVectorBase
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase
+    internal typealias SwiftABI = IVectorBase
+    internal typealias SwiftProjection = AnyIVector<Base?>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl : IVector, AbiInterfaceImpl {
+    typealias T = Base?
+    typealias Bridge = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: Collection
@@ -6371,58 +6406,58 @@ internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl : IVec
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getat)
-    public func getAt(_ index: UInt32) -> Base? {
+    fileprivate func getAt(_ index: UInt32) -> Base? {
         try! _default.GetAtImpl(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getview)
-    public func getView() -> AnyIVectorView<Base?>? {
+    fileprivate func getView() -> AnyIVectorView<Base?>? {
         try! _default.GetViewImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.indexof)
-    public func indexOf(_ value: Base?, _ index: inout UInt32) -> Bool {
+    fileprivate func indexOf(_ value: Base?, _ index: inout UInt32) -> Bool {
         try! _default.IndexOfImpl(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.setat)
-    public func setAt(_ index: UInt32, _ value: Base?) {
+    fileprivate func setAt(_ index: UInt32, _ value: Base?) {
         try! _default.SetAtImpl(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.insertat)
-    public func insertAt(_ index: UInt32, _ value: Base?) {
+    fileprivate func insertAt(_ index: UInt32, _ value: Base?) {
         try! _default.InsertAtImpl(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeat)
-    public func removeAt(_ index: UInt32) {
+    fileprivate func removeAt(_ index: UInt32) {
         try! _default.RemoveAtImpl(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.append)
-    public func append(_ value: Base?) {
+    fileprivate func append(_ value: Base?) {
         try! _default.AppendImpl(value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeatend)
-    public func removeAtEnd() {
+    fileprivate func removeAtEnd() {
         try! _default.RemoveAtEndImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.clear)
-    public func clear() {
+    fileprivate func clear() {
         try! _default.ClearImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.size)
-    public var size : UInt32 {
+    fileprivate var size : UInt32 {
         get { try! _default.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableBase = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.first)
-    public func first() -> AnyIIterator<Base?>? {
+    fileprivate func first() -> AnyIIterator<Base?>? {
         try! _IIterable.FirstImpl()
     }
 
@@ -6568,7 +6603,7 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicVTable: __x
 
     ReplaceAll: { _, _, _ in return failWith(err: E_NOTIMPL) }
 )
-typealias __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicImpl>
+typealias __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicBridge>
 internal class IVectorIBasic: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic }
 
@@ -6650,26 +6685,27 @@ internal class IVectorIBasic: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicImpl : IVector, AbiInterfaceImpl {
-    typealias T = AnyIBasic?
-    typealias SwiftProjection = AnyIVector<AnyIBasic?>
-    typealias CABI = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic
-    typealias SwiftABI = IVectorIBasic
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic
+    internal typealias SwiftABI = IVectorIBasic
+    internal typealias SwiftProjection = AnyIVector<AnyIBasic?>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicImpl : IVector, AbiInterfaceImpl {
+    typealias T = AnyIBasic?
+    typealias Bridge = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: Collection
@@ -6704,58 +6740,58 @@ internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicImpl : IV
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getat)
-    public func getAt(_ index: UInt32) -> AnyIBasic? {
+    fileprivate func getAt(_ index: UInt32) -> AnyIBasic? {
         try! _default.GetAtImpl(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getview)
-    public func getView() -> AnyIVectorView<AnyIBasic?>? {
+    fileprivate func getView() -> AnyIVectorView<AnyIBasic?>? {
         try! _default.GetViewImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.indexof)
-    public func indexOf(_ value: AnyIBasic?, _ index: inout UInt32) -> Bool {
+    fileprivate func indexOf(_ value: AnyIBasic?, _ index: inout UInt32) -> Bool {
         try! _default.IndexOfImpl(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.setat)
-    public func setAt(_ index: UInt32, _ value: AnyIBasic?) {
+    fileprivate func setAt(_ index: UInt32, _ value: AnyIBasic?) {
         try! _default.SetAtImpl(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.insertat)
-    public func insertAt(_ index: UInt32, _ value: AnyIBasic?) {
+    fileprivate func insertAt(_ index: UInt32, _ value: AnyIBasic?) {
         try! _default.InsertAtImpl(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeat)
-    public func removeAt(_ index: UInt32) {
+    fileprivate func removeAt(_ index: UInt32) {
         try! _default.RemoveAtImpl(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.append)
-    public func append(_ value: AnyIBasic?) {
+    fileprivate func append(_ value: AnyIBasic?) {
         try! _default.AppendImpl(value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeatend)
-    public func removeAtEnd() {
+    fileprivate func removeAtEnd() {
         try! _default.RemoveAtEndImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.clear)
-    public func clear() {
+    fileprivate func clear() {
         try! _default.ClearImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.size)
-    public var size : UInt32 {
+    fileprivate var size : UInt32 {
         get { try! _default.get_SizeImpl() }
     }
 
     internal lazy var _IIterable: IIterableIBasic = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.first)
-    public func first() -> AnyIIterator<AnyIBasic?>? {
+    fileprivate func first() -> AnyIIterator<AnyIBasic?>? {
         try! _IIterable.FirstImpl()
     }
 
@@ -6807,7 +6843,7 @@ internal var __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableVTable: __
         return S_OK
     }
 )
-typealias __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableImpl>
+typealias __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableBridge>
 internal class MapChangedEventHandlerString_Any: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectable }
 
@@ -6823,7 +6859,7 @@ internal class MapChangedEventHandlerString_Any: test_component.IUnknown {
 
 }
 
-internal class __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableImpl : WinRTDelegateBridge {
+internal class __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableBridge : WinRTDelegateBridge {
     internal typealias Handler = MapChangedEventHandler<String, Any?>
     internal typealias CABI = __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectable
     internal typealias SwiftABI = test_component.MapChangedEventHandlerString_Any
@@ -6882,7 +6918,7 @@ internal var __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGVTable: __x_ABI
         return S_OK
     }
 )
-typealias __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGImpl>
+typealias __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGBridge>
 internal class MapChangedEventHandlerString_String: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRING }
 
@@ -6898,7 +6934,7 @@ internal class MapChangedEventHandlerString_String: test_component.IUnknown {
 
 }
 
-internal class __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGImpl : WinRTDelegateBridge {
+internal class __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGBridge : WinRTDelegateBridge {
     internal typealias Handler = MapChangedEventHandler<String, String>
     internal typealias CABI = __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRING
     internal typealias SwiftABI = test_component.MapChangedEventHandlerString_String
@@ -6957,7 +6993,7 @@ internal var __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__
         return S_OK
     }
 )
-typealias __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseImpl>
+typealias __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseBridge>
 internal class VectorChangedEventHandlerBase: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBase }
 
@@ -6973,7 +7009,7 @@ internal class VectorChangedEventHandlerBase: test_component.IUnknown {
 
 }
 
-internal class __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseImpl : WinRTDelegateBridge {
+internal class __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseBridge : WinRTDelegateBridge {
     internal typealias Handler = VectorChangedEventHandler<Base?>
     internal typealias CABI = __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = test_component.VectorChangedEventHandlerBase
@@ -7032,7 +7068,7 @@ internal var __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__
         return S_OK
     }
 )
-typealias __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicImpl>
+typealias __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicBridge>
 internal class VectorChangedEventHandlerIBasic: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasic }
 
@@ -7048,7 +7084,7 @@ internal class VectorChangedEventHandlerIBasic: test_component.IUnknown {
 
 }
 
-internal class __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicImpl : WinRTDelegateBridge {
+internal class __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicBridge : WinRTDelegateBridge {
     internal typealias Handler = VectorChangedEventHandler<AnyIBasic?>
     internal typealias CABI = __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasic
     internal typealias SwiftABI = test_component.VectorChangedEventHandlerIBasic
@@ -7107,7 +7143,7 @@ internal var __x_ABI_C__FIEventHandler_1_IInspectableVTable: __x_ABI_C__FIEventH
         return S_OK
     }
 )
-typealias __x_ABI_C__FIEventHandler_1_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIEventHandler_1_IInspectableImpl>
+typealias __x_ABI_C__FIEventHandler_1_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIEventHandler_1_IInspectableBridge>
 internal class EventHandlerAny: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIEventHandler_1_IInspectable }
 
@@ -7123,7 +7159,7 @@ internal class EventHandlerAny: test_component.IUnknown {
 
 }
 
-internal class __x_ABI_C__FIEventHandler_1_IInspectableImpl : WinRTDelegateBridge {
+internal class __x_ABI_C__FIEventHandler_1_IInspectableBridge : WinRTDelegateBridge {
     internal typealias Handler = EventHandler<Any?>
     internal typealias CABI = __x_ABI_C__FIEventHandler_1_IInspectable
     internal typealias SwiftABI = test_component.EventHandlerAny
@@ -7235,7 +7271,7 @@ internal var __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleVTable: __x_ABI
         } catch { return failWith(err: E_FAIL) } 
     }
 )
-typealias __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleImpl>
+typealias __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleBridge>
 internal class IAsyncOperationWithProgressInt32_Double: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationWithProgress_2_int_double }
 
@@ -7281,70 +7317,71 @@ internal class IAsyncOperationWithProgressInt32_Double: test_component.IInspecta
 
 }
 
-internal class __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleImpl : IAsyncOperationWithProgress, AbiInterfaceImpl {
-    typealias TResult = Int32
-    typealias TProgress = Double
-    typealias SwiftProjection = AnyIAsyncOperationWithProgress<Int32, Double>
-    typealias CABI = __x_ABI_C__FIAsyncOperationWithProgress_2_int_double
-    typealias SwiftABI = IAsyncOperationWithProgressInt32_Double
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIAsyncOperationWithProgress_2_int_double
+    internal typealias SwiftABI = IAsyncOperationWithProgressInt32_Double
+    internal typealias SwiftProjection = AnyIAsyncOperationWithProgress<Int32, Double>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleImpl : IAsyncOperationWithProgress, AbiInterfaceImpl {
+    typealias TResult = Int32
+    typealias TProgress = Double
+    typealias Bridge = __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.getresults)
-    public func getResults() throws -> Int32 {
+    fileprivate func getResults() throws -> Int32 {
         try _default.GetResultsImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.progress)
-    public var progress : AsyncOperationProgressHandler<Int32, Double>? {
+    fileprivate var progress : AsyncOperationProgressHandler<Int32, Double>? {
         get { try! _default.get_ProgressImpl() }
         set { try! _default.put_ProgressImpl(newValue) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.completed)
-    public var completed : AsyncOperationWithProgressCompletedHandler<Int32, Double>? {
+    fileprivate var completed : AsyncOperationWithProgressCompletedHandler<Int32, Double>? {
         get { try! _default.get_CompletedImpl() }
         set { try! _default.put_CompletedImpl(newValue) }
     }
 
     internal lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.cancel)
-    public func cancel() throws {
+    fileprivate func cancel() throws {
         try _IAsyncInfo.CancelImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.close)
-    public func close() throws {
+    fileprivate func close() throws {
         try _IAsyncInfo.CloseImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.errorcode)
-    public var errorCode : HRESULT {
+    fileprivate var errorCode : HRESULT {
         get { try! _IAsyncInfo.get_ErrorCodeImpl() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.id)
-    public var id : UInt32 {
+    fileprivate var id : UInt32 {
         get { try! _IAsyncInfo.get_IdImpl() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.status)
-    public var status : test_component.AsyncStatus {
+    fileprivate var status : test_component.AsyncStatus {
         get { try! _IAsyncInfo.get_StatusImpl() }
     }
 
@@ -7434,7 +7471,7 @@ internal var __x_ABI_C__FIAsyncOperation_1_intVTable: __x_ABI_C__FIAsyncOperatio
         } catch { return failWith(err: E_FAIL) } 
     }
 )
-typealias __x_ABI_C__FIAsyncOperation_1_intWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1_intImpl>
+typealias __x_ABI_C__FIAsyncOperation_1_intWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1_intBridge>
 internal class IAsyncOperationInt32: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1_int }
 
@@ -7464,63 +7501,64 @@ internal class IAsyncOperationInt32: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIAsyncOperation_1_intImpl : IAsyncOperation, AbiInterfaceImpl {
-    typealias TResult = Int32
-    typealias SwiftProjection = AnyIAsyncOperation<Int32>
-    typealias CABI = __x_ABI_C__FIAsyncOperation_1_int
-    typealias SwiftABI = IAsyncOperationInt32
-
-    private (set) public var _default: SwiftABI
-
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+internal class __x_ABI_C__FIAsyncOperation_1_intBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIAsyncOperation_1_int
+    internal typealias SwiftABI = IAsyncOperationInt32
+    internal typealias SwiftProjection = AnyIAsyncOperation<Int32>
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIAsyncOperation_1_intImpl(abi)
     }
 
-    internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-        _default = SwiftABI(fromAbi)
-    }
-
-    static func makeAbi() -> CABI {
+    internal static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1_intVTable) { $0 }
-        return.init(lpVtbl: vtblPtr)
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIAsyncOperation_1_intImpl : IAsyncOperation, AbiInterfaceImpl {
+    typealias TResult = Int32
+    typealias Bridge = __x_ABI_C__FIAsyncOperation_1_intBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
     }
 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.getresults)
-    public func getResults() throws -> Int32 {
+    fileprivate func getResults() throws -> Int32 {
         try _default.GetResultsImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
-    public var completed : AsyncOperationCompletedHandler<Int32>? {
+    fileprivate var completed : AsyncOperationCompletedHandler<Int32>? {
         get { try! _default.get_CompletedImpl() }
         set { try! _default.put_CompletedImpl(newValue) }
     }
 
     internal lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo = try! _default.QueryInterface()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
-    public func cancel() throws {
+    fileprivate func cancel() throws {
         try _IAsyncInfo.CancelImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.close)
-    public func close() throws {
+    fileprivate func close() throws {
         try _IAsyncInfo.CloseImpl()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
-    public var errorCode : HRESULT {
+    fileprivate var errorCode : HRESULT {
         get { try! _IAsyncInfo.get_ErrorCodeImpl() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
-    public var id : UInt32 {
+    fileprivate var id : UInt32 {
         get { try! _IAsyncInfo.get_IdImpl() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
-    public var status : test_component.AsyncStatus {
+    fileprivate var status : test_component.AsyncStatus {
         get { try! _IAsyncInfo.get_StatusImpl() }
     }
 
@@ -7824,7 +7862,7 @@ internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass_
         return S_OK
     }
 )
-typealias __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsImpl>
+typealias __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsBridge>
 internal class TypedEventHandlerClass_DeferrableEventArgs: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs }
 
@@ -7836,7 +7874,7 @@ internal class TypedEventHandlerClass_DeferrableEventArgs: test_component.IUnkno
 
 }
 
-internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsImpl : WinRTDelegateBridge {
+internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsBridge : WinRTDelegateBridge {
     internal typealias Handler = TypedEventHandler<Class?, DeferrableEventArgs?>
     internal typealias CABI = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs
     internal typealias SwiftABI = test_component.TypedEventHandlerClass_DeferrableEventArgs
@@ -7895,7 +7933,7 @@ internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple
         return S_OK
     }
 )
-typealias __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsImpl>
+typealias __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsBridge>
 internal class TypedEventHandlerSimple_SimpleEventArgs: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs }
 
@@ -7907,7 +7945,7 @@ internal class TypedEventHandlerSimple_SimpleEventArgs: test_component.IUnknown 
 
 }
 
-internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsImpl : WinRTDelegateBridge {
+internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsBridge : WinRTDelegateBridge {
     internal typealias Handler = TypedEventHandler<Simple?, SimpleEventArgs>
     internal typealias CABI = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs
     internal typealias SwiftABI = test_component.TypedEventHandlerSimple_SimpleEventArgs

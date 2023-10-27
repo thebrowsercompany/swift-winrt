@@ -425,7 +425,7 @@ bind_type_mangled(type),
 func_name,
 bind<write_abi_args>(function));
                     }
-                  
+
                     if (function.return_type && !isInitializer)
                     {
                         w.write("%\n", bind<write_consume_return_statement>(function));
@@ -561,7 +561,7 @@ bind<write_abi_args>(function));
     template <typename T>
     static void write_delegate_wrapper(writer& w, T const& type)
     {
-        auto impl_name = w.write_temp("%", bind_impl_fullname(type));
+        auto impl_name = w.write_temp("%", bind_bridge_fullname(type));
         auto wrapper_name = w.write_temp("%", bind_wrapper_name(type));
         auto format = R"(
 typealias % = InterfaceWrapperBase<%>
@@ -833,7 +833,7 @@ typealias % = InterfaceWrapperBase<%>
 public typealias % = InterfaceWrapperBase<%>
 )",
 bind_wrapper_name(type),
-bind_impl_fullname(type));
+bind_bridge_fullname(type));
     }
 
     static void write_class_impl_func(writer& w, function_def const& method, interface_info const& iface, typedef_base const& type_definition);
@@ -1065,14 +1065,14 @@ bind_impl_fullname(type));
     {
         if (skip_write_from_abi(w, type)) return;
 
-        w.write("func make%From(abi: %.IInspectable) -> Any {\n", type.swift_type_name(), w.support);
+        w.write("fileprivate func make%From(abi: %.IInspectable) -> Any {\n", type.swift_type_name(), w.support);
 
         if (is_interface(type))
         {
             auto indent = w.push_indent();
             w.write("let swiftAbi: %.% = try! abi.QueryInterface()\n", abi_namespace(type),
                 type.swift_type_name());
-            w.write("return %(RawPointer(swiftAbi)!)\n", bind_impl_fullname(type));
+            w.write("return %.from(abi: RawPointer(swiftAbi))!\n", bind_bridge_fullname(type));
         }
         else if (is_class(&type))
         {
@@ -1080,6 +1080,49 @@ bind_impl_fullname(type));
             w.write("return %(fromAbi: abi)\n", type.swift_type_name());
         }
         w.write("}\n\n");
+    }
+
+    static void write_interface_bridge(writer& w, metadata_type const& type)
+    {
+        std::string swiftABI;
+        std::string vtable;
+        bool is_generic = is_generic_inst(type);
+        if (is_generic)
+        {
+            swiftABI = w.write_temp("%", bind_type_abi(type));
+            vtable = w.write_temp("%", bind_type_mangled(type));
+        }
+        else
+        {
+            swiftABI = w.write_temp("%.%", abi_namespace(type), type);
+            vtable = swiftABI;
+        }
+
+        auto modifier = is_generic ? "internal" : "public";
+        w.write(R"(% class % : AbiInterfaceBridge {
+    % typealias CABI = %
+    % typealias SwiftABI = %
+    % typealias SwiftProjection = %
+    % static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return %(abi)
+    }
+
+    % static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &%VTable) { $0 }
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+)",
+modifier, bind_bridge_name(type),
+modifier, bind_type_mangled(type),
+modifier, swiftABI,
+modifier, bind<write_swift_interface_existential_identifier>(type), // Do not include outer Optional<>
+modifier,
+bind_impl_name(type),
+modifier,
+vtable);
     }
 
     static void write_interface_impl(writer& w, interface_type const& type)
@@ -1091,40 +1134,24 @@ bind_impl_fullname(type));
             write_property_value_impl(w);
             return;
         }
+        write_interface_bridge(w, type);
 
-        auto format = "public class % : %, WinRTAbiBridge {\n";
-        w.write(format, bind_impl_name(type), type);
+        w.write(R"(fileprivate class %: %, WinRTAbiImpl {
+    fileprivate typealias Bridge = %
+    fileprivate let _default: Bridge.SwiftABI
+    fileprivate var thisPtr: %.IInspectable { _default }
+    fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
+    }
 
+)",
+            bind_impl_name(type),
+            type,
+            bind_bridge_name(type),
+            w.support);
         auto class_indent_guard = w.push_indent();
 
         write_generic_typealiases(w, type);
-
-        w.write(R"(public typealias CABI = %
-public typealias SwiftABI = %.%
-public typealias SwiftProjection = %
-private (set) public var _default: SwiftABI
-public var thisPtr: %.IInspectable { _default }
-public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
-    guard let abi = abi else { return nil }
-    return %(abi)
-}
-public init(_ fromAbi: UnsafeMutablePointer<CABI>) {
-    _default = SwiftABI(fromAbi)
-}
-
-public static func makeAbi() -> CABI {
-    let vtblPtr = withUnsafeMutablePointer(to: &%.%VTable) { $0 }
-    return .init(lpVtbl: vtblPtr)
-}
-)",
-            bind_type_mangled(type),
-            abi_namespace(type),
-            type,
-            bind<write_swift_interface_existential_identifier>(type), // Do not include outer Optional<>
-            w.support,
-            bind_impl_name(type),
-            abi_namespace(type),
-            type);
 
         interface_info type_info{ &type };
         type_info.is_default = true; // mark as default so we use the name "_default"
@@ -1427,7 +1454,7 @@ public static func makeAbi() -> CABI {
         auto abi_guard = w.push_abi_types(is_generic);
         w.write(format,
             access_level,
-            bind_impl_name(type),
+            bind_bridge_name(type),
             access_level,
             handlerType,
             access_level,
@@ -1454,44 +1481,33 @@ public static func makeAbi() -> CABI {
         }
     }
 
+    static void write_interface_bridge(writer& w, metadata_type const& type);
+
     static void write_generic_interface_implementation(writer& w, generic_inst const& type)
     {
-        // Due to https://linear.app/the-browser-company/issue/WIN-148/investigate-possible-compiler-bug-crash-when-generating-collection
-        // we have to generate the protocol conformance for the Collection protocol (see "// MARK: Collection" below). We shouldn't have to
-        // do this because we define an extension on the protocol which does this.
-        w.write("internal class % : %, AbiInterfaceImpl {\n",
+        write_interface_bridge(w, type);
+
+        w.write("fileprivate class % : %, AbiInterfaceImpl {\n",
             bind_impl_name(type), type.generic_type_abi_name());
 
         auto indent_guard = w.push_indent();
 
         write_generic_typealiases(w, type);
 
-        w.write("typealias SwiftProjection = %\n",
-            bind<write_swift_interface_existential_identifier>(type)); // Do not include outer Optional<>
 
-        w.write("typealias CABI = %\n", bind_type_mangled(type));
-        w.write("typealias SwiftABI = %\n", bind_type_abi(type));
-        w.write("\n");
-        w.write("private (set) public var _default: SwiftABI\n");
-        w.write("\n");
+        w.write("typealias Bridge = %\n", bind_bridge_name(type));
+        w.write("let _default: Bridge.SwiftABI\n");
 
-        w.write("static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {\n");
-        w.write("    guard let abi = abi else { return nil }\n");
-        w.write("    return %(abi)\n", bind_impl_name(type));
-        w.write("}\n\n");
-
-        w.write("internal init(_ fromAbi: UnsafeMutablePointer<CABI>) {\n");
-        w.write("    _default = SwiftABI(fromAbi)\n");
-        w.write("}\n\n");
-
-        w.write("static func makeAbi() -> CABI {\n");
-        w.write("    let vtblPtr = withUnsafeMutablePointer(to: &%VTable) { $0 }\n",
-            bind_type_mangled(type));
-        w.write("    return.init(lpVtbl: vtblPtr)\n");
+        w.write("init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {\n");
+        w.write("    _default = Bridge.SwiftABI(fromAbi)\n");
         w.write("}\n\n");
 
         interface_info info{ &type };
         info.is_default = true; // mark as default so we use the name "_default"
+
+        // Due to https://linear.app/the-browser-company/issue/WIN-148/investigate-possible-compiler-bug-crash-when-generating-collection
+        // we have to generate the protocol conformance for the Collection protocol (see "// MARK: Collection" below). We shouldn't have to
+        // do this because we define an extension on the protocol which does this.
         write_collection_protocol_conformance(w, info);
 
         for (const auto& method : type.functions)
@@ -1629,7 +1645,7 @@ public static func makeAbi() -> CABI {
 
                     guard.push("% = %.from(abi: %)\n",
                         param_name,
-                        bind_impl_fullname(param.type),
+                        bind_bridge_fullname(param.type),
                         local_param_name);
                 }
             }
@@ -1921,6 +1937,33 @@ public init<Composable: ComposableImpl>(
             bind<write_implementation_args>(function));
     }
 
+    static std::string modifier_for(typedef_base const& type_definition, interface_info const& iface)
+    {
+        std::string modifier;
+        if (is_class(&type_definition))
+        {
+            if (iface.overridable)
+            {
+                modifier = "open ";
+            }
+            else
+            {
+                modifier = "public ";
+            }
+        }
+        else
+        {
+            modifier = "fileprivate ";
+        }
+
+        if (iface.attributed)
+        {
+            modifier.append("static ");
+        }
+
+        return modifier;
+    }
+
     static void write_class_impl_property(writer& w, property_def const& prop, interface_info const& iface, typedef_base const& type_definition)
     {
         if (!can_write(w, prop)) return;
@@ -1931,8 +1974,8 @@ public init<Composable: ComposableImpl>(
 
         if (prop.getter)
         {
-            w.write("public %var % : % {\n",
-                iface.attributed ? "static " : "",
+            w.write("%var % : % {\n",
+                modifier_for(type_definition, iface),
                 get_swift_name(prop),
                 bind<write_type>(*prop.getter->return_type->type, swift_write_type_params_for(*iface.type)));
 
@@ -1963,8 +2006,8 @@ public init<Composable: ComposableImpl>(
         auto is_no_except = is_noexcept(*iface.type, function);
         auto type_params = swift_write_type_params_for(*iface.type);
         auto maybe_throws = is_no_except ? "" : " throws";
-        w.write("% func %(%)%% {\n",
-            iface.overridable ? "open" : "public",
+        w.write("%func %(%)%% {\n",
+            modifier_for(type_definition, iface),
             get_swift_name(function),
             bind<write_function_params>(function, type_params),
             maybe_throws,
@@ -1981,7 +2024,7 @@ public init<Composable: ComposableImpl>(
         write_documentation_comment(w, type_definition, def.def.Name());
 
         auto event = def.def;
-        auto format = R"(public % var % : Event<%> = {
+        auto format = R"(%var % : Event<%> = {
   .init(
     add: { [weak this = %] in
       guard let this else { return .init() }
@@ -2007,9 +2050,14 @@ public init<Composable: ComposableImpl>(
             guard = w.push_generic_params(*genericInst);
         }
 
+        auto modifier = modifier_for(type_definition, iface);
+        if (!iface.attributed)
+        {
+            modifier.append("lazy ");
+        }
         assert(delegate_method.def);
         w.write(format,
-            iface.attributed ? "static" : "lazy", // public %
+            modifier, // % var
             get_swift_name(event), // var %
             def.type, // Event<%>
             get_swift_name(iface), // weak this = %
@@ -2038,6 +2086,8 @@ public init<Composable: ComposableImpl>(
         if (auto ifaceType = dynamic_cast<const interface_type*>(statics.type))
         {
             interface_info static_info{ statics.type };
+            static_info.attributed = true;
+
             auto impl_name = get_swift_name(static_info);
             w.write("private static let %: %.% = try! RoGetActivationFactory(HString(\"%\"))\n",
                 impl_name,
@@ -2053,7 +2103,8 @@ public init<Composable: ComposableImpl>(
                 }
 
                 write_documentation_comment(w, type, method.def.Name());
-                w.write("public static func %(%)% {\n",
+                w.write("%func %(%)% {\n",
+                    modifier_for(type, static_info),
                     get_swift_name(method),
                     bind<write_function_params>(method, write_type_params::swift_allow_implicit_unwrap),
                     bind<write_return_type_declaration>(method, write_type_params::swift_allow_implicit_unwrap));
@@ -2064,7 +2115,6 @@ public init<Composable: ComposableImpl>(
                 w.write("}\n\n");
             }
 
-            static_info.attributed = true;
             for (const auto& static_prop : ifaceType->properties)
             {
                 write_class_impl_property(w, static_prop, static_info, type);

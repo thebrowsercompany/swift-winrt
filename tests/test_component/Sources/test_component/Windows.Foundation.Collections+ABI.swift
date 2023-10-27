@@ -122,7 +122,7 @@ public enum __ABI_Windows_Foundation_Collections {
         }
     )
 
-    public typealias IPropertySetWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation_Collections.IPropertySetImpl>
+    public typealias IPropertySetWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation_Collections.IPropertySetBridge>
     public class IVectorChangedEventArgs: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CCollections_CIVectorChangedEventArgs }
 
@@ -213,5 +213,5 @@ public enum __ABI_Windows_Foundation_Collections {
         }
     )
 
-    public typealias IVectorChangedEventArgsWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation_Collections.IVectorChangedEventArgsImpl>
+    public typealias IVectorChangedEventArgsWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation_Collections.IVectorChangedEventArgsBridge>
 }

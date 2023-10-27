@@ -38,6 +38,38 @@ namespace swiftwinrt
     }
 
     template<typename T>
+    inline void write_generic_impl_name_base(writer& w, T const& type)
+    {
+        std::string implName = w.write_temp("%", bind_type_mangled(type));
+        if (w.impl_names)
+        {
+            w.write(implName);
+        }
+        else
+        {
+            // generics are written once per module and aren't namespaced
+            w.write("%.%", w.swift_module, implName);
+        }
+    }
+
+    template<typename T>
+    inline void write_generic_bridge_name(writer& w, T const& type)
+    {
+        // for IReference<> types we use the same IPropertyValueImpl class that is
+        // specially generated. this type can hold any value type and implements
+        // the appropriate interface
+        if (is_winrt_ireference(type))
+        {
+            w.write("%.%", impl_namespace("Windows.Foundation"), "IPropertyValueBridge");
+        }
+        else
+        {
+            write_generic_impl_name_base(w, type);
+            w.write("Bridge");
+        }
+    }
+
+    template<typename T>
     inline void write_generic_impl_name(writer& w, T const& type)
     {
         // for IReference<> types we use the same IPropertyValueImpl class that is
@@ -49,21 +81,28 @@ namespace swiftwinrt
         }
         else
         {
-            std::string implName;
-            {
-                auto use_mangled = w.push_mangled_names(true);
-                implName = w.write_temp("%Impl", type);
-            }
+            write_generic_impl_name_base(w, type);
+            w.write("Impl");
+        }
+    }
 
-            if (w.impl_names)
-            {
-                w.write(implName);
-            }
-            else
-            {
-                // generics are written once per module and aren't namespaced
-                w.write("%.%", w.swift_module, implName);
-            }
+    template<typename T>
+    inline void write_impl_name_base(writer& w, T const& type)
+    {
+        type_name type_name{ type };
+        std::string implName = w.write_temp("%", type_name.name);
+
+        if (w.type_namespace != type_name.name_space || w.mangled_names || w.full_type_names)
+        {
+            w.write("%.%", impl_namespace(type_name.name_space), type_name.name);
+        }
+        else if (w.impl_names)
+        {
+            w.write(type_name.name);
+        }
+        else
+        {
+            w.write("%.%", impl_namespace(type_name.name_space), type_name.name);
         }
     }
 
@@ -77,22 +116,8 @@ namespace swiftwinrt
         else
         {
             assert(!is_generic_def(type));
-
-            type_name type_name{ type };
-            std::string implName = w.write_temp("%Impl", type_name.name);
-
-            if (w.type_namespace != type_name.name_space || w.mangled_names || w.full_type_names)
-            {
-                w.write("%.%", impl_namespace(type_name.name_space), implName);
-            }
-            else if (w.impl_names)
-            {
-                w.write(implName);
-            }
-            else
-            {
-                w.write("%.%", impl_namespace(type_name.name_space), implName);
-            }
+            write_impl_name_base(w, type);
+            w.write("Impl");
         }
     }
 
@@ -112,6 +137,41 @@ namespace swiftwinrt
         {
             auto full_name = w.push_full_type_names(true);
             write_impl_name(w, type);
+        };
+    }
+
+    template<typename T>
+    inline void write_bridge_name(writer& w, T const& type)
+    {
+        if (is_generic_inst(type))
+        {
+            write_generic_bridge_name(w, type);
+        }
+        else
+        {
+            assert(!is_generic_def(type));
+
+            write_impl_name_base(w, type);
+            w.write("Bridge");
+        }
+    }
+
+    template <typename T>
+    auto bind_bridge_name(T const& type)
+    {
+        return [&](writer& w)
+        {
+            write_bridge_name(w, type);
+        };
+    }
+
+    template <typename T>
+    auto bind_bridge_fullname(T const& type)
+    {
+        return [&](writer& w)
+        {
+            auto full_name = w.push_full_type_names(true);
+            write_bridge_name(w, type);
         };
     }
 
@@ -173,7 +233,7 @@ namespace swiftwinrt
     static void write_documentation_comment(writer& w, const typedef_base& type, std::string_view member_name = {})
     {
         // Assume only public types have documentation
-        if (type.type().Flags().Visibility() != TypeVisibility::Public) 
+        if (type.type().Flags().Visibility() != TypeVisibility::Public)
         {
             return;
         }
@@ -302,7 +362,7 @@ namespace swiftwinrt
         // required_interfaces will duplicate the generic type requirements for interfaces
         // which derive from others. For example, if we're writing IPropertySet, then required_interfaces
         // will contain IObservableMap<String, Any?>, IMap<String, Any?>, and IIterable<IKeyValuePair<String, Any?>>
-        // The typealiases for IObservableMap<String, Any?> and IMap<String, Any?> will be identical, so only 
+        // The typealiases for IObservableMap<String, Any?> and IMap<String, Any?> will be identical, so only
         // write them once
         std::set<std::string> typealiases;
 
