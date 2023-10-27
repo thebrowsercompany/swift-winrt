@@ -19,6 +19,6 @@
   <files>
     <file src="$swiftwinrt_exe$" target="bin"/>
     <file src="readme.md"/>
-    <file src="../LICENSE.txt" target=""/>
+    <file src="../license.txt" target=""/>
   </files>
 </package>
