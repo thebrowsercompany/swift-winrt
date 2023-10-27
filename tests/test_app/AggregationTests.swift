@@ -1,6 +1,6 @@
 import WinSDK
 import XCTest
-import test_component
+@_spi(WinRTInternal) import test_component
 import Ctest_component
 import Foundation
 
@@ -91,11 +91,29 @@ class AggregationTests : XCTestCase {
     let derived = UnsealedDerived(32)
     XCTAssertEqual(derived.prop, 32)
   }
+
+  public func runtimeClassName(_ base: Base) -> String {
+    return String(hString: base.GetRuntimeClassName())
+  }
+
+  public func testGetRuntimeClassNameReturnsBase() throws {
+    // WinUI calls GetRuntimeClassName when types are being constructed,
+    // so we need to return something that the runtime understands. Without an
+    // IXamlMetadataProvider implementation, returning custom type names will
+    // break the app.
+    let appDerived = AppDerived()
+
+    // In order to validate the test, we have to call GetRuntimeClassName on the base
+    // type. This will make the type check we had think we're being aggregated, where
+    // calling it directly on the AppDerived type won't
+    XCTAssertEqual(runtimeClassName(appDerived), "test_component.Base")
+  }
 }
 
 var aggregationTests: [XCTestCaseEntry] = [
   testCase([
     ("testAggregation", AggregationTests.testAggregation),
     ("testCustomConstructorOnUnsealedType", AggregationTests.testCustomConstructorOnUnsealedType),
+    ("testGetRuntimeClassNameReturnsBase", AggregationTests.testGetRuntimeClassNameReturnsBase)
   ])
 ]
