@@ -92,8 +92,6 @@ class AggregationTests : XCTestCase {
     XCTAssertEqual(derived.prop, 32)
   }
 
-  // Test requires a function which takes a Base type. This ensures
-  // we aren't doing any we
   public func runtimeClassName(_ base: Base) -> String {
     return String(hString: base.GetRuntimeClassName())
   }
