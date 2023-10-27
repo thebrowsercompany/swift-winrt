@@ -23,7 +23,7 @@ jobs:
 
       - uses: ./.github/actions/windows-build
         env:
-            NUGET_VERSION: ${{ env.NUGET_VERSION_MAJOR }}.${{ env.NUGET_VERSION_MAJOR }}.${{ env.NUGET_VERSION_PATCH }}
+            NUGET_VERSION: ${{ env.NUGET_VERSION_MAJOR }}.${{ env.NUGET_VERSION_MINOR }}.${{ env.NUGET_VERSION_PATCH }}
         with:
           config: release
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
