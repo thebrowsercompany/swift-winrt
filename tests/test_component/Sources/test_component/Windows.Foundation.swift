@@ -365,7 +365,7 @@ extension test_component.AsyncStatus {
         __x_ABI_CWindows_CFoundation_CAsyncStatus_Started
     }
 }
-extension test_component.AsyncStatus: Hashable, Codable {}
+extension test_component.AsyncStatus: @retroactive Hashable, @retroactive Codable {}
 
 extension test_component.PropertyType {
     public static var empty : test_component.PropertyType {
@@ -492,5 +492,5 @@ extension test_component.PropertyType {
         __x_ABI_CWindows_CFoundation_CPropertyType_OtherTypeArray
     }
 }
-extension test_component.PropertyType: Hashable, Codable {}
+extension test_component.PropertyType: @retroactive Hashable, @retroactive Codable {}
 
