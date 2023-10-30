@@ -16,7 +16,7 @@ This project has 4 different main projects:
 For all C++ code (1 and 2 above) - they are built with **CMake**
 For all Swift code (3 and 4 above) - they are built with **SPM**
 
-## Developer Worklow
+## Developer Workflow
 
 ### Initial Setup
 
