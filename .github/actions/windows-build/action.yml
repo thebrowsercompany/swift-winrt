@@ -19,7 +19,7 @@ runs:
     with:
       github-repo: thebrowsercompany/swift-build
       github-token: ${{ inputs.GITHUB_TOKEN }}
-      release-tag-name: 20231010.3 # Includes fix to C++ interop for wchar_t
+      release-tag-name: 20231025.2
       release-asset-name: installer-amd64.exe
 
   - name: Configure CMake
