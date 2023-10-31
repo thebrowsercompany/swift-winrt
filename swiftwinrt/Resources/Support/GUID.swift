@@ -1,6 +1,6 @@
 import C_BINDINGS_MODULE
 
-extension GUID: CustomStringConvertible {
+extension GUID: @retroactive CustomStringConvertible {
    public var description: String {
       withUnsafePointer(to: self) { pGUID in
          Array<WCHAR>(unsafeUninitializedCapacity: 40) {
@@ -27,7 +27,7 @@ extension GUID {
    }
 }
 
-extension GUID: Equatable {
+extension GUID: @retroactive Equatable {
    public static func ==(_ lhs: GUID, _ rhs: GUID) -> Bool {
       return lhs.Data1 == rhs.Data1 &&
          lhs.Data2 == rhs.Data2 &&

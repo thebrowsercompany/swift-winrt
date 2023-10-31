@@ -512,5 +512,5 @@ extension test_component.CollectionChange {
         CollectionChange_ItemChanged
     }
 }
-extension test_component.CollectionChange: Hashable, Codable {}
+extension test_component.CollectionChange: @retroactive Hashable, @retroactive Codable {}
 

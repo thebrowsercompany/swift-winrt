@@ -14,15 +14,15 @@ import C_BINDINGS_MODULE
           remove: { self.handlers.remove(token: $0) }
         )
     }
-    
+
     public var wrappedValue: Event<Handler> { event }
-    
+
     public func getInvocationList() -> [Handler] {
       handlers.getInvocationList()
     }
-} 
+}
 
-extension C_BINDINGS_MODULE.EventRegistrationToken: Hashable {
+extension C_BINDINGS_MODULE.EventRegistrationToken: @retroactive Hashable {
   public static func == (lhs: C_BINDINGS_MODULE.EventRegistrationToken, rhs: C_BINDINGS_MODULE.EventRegistrationToken) -> Bool {
     return lhs.value == rhs.value
   }
