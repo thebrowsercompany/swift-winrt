@@ -10,28 +10,25 @@ public typealias Unsigned = __x_ABI_Ctest__component_CUnsigned
 public final class AsyncMethods {
     private static let _IAsyncMethodsStatics: __ABI_test_component.IAsyncMethodsStatics = try! RoGetActivationFactory(HString("test_component.AsyncMethods"))
     public static func getCompletedAsync(_ result: Int32) -> AnyIAsyncOperation<Int32>! {
-        let operation = try! _IAsyncMethodsStatics.GetCompletedAsyncImpl(result)
-        return test_component.__x_ABI_C__FIAsyncOperation_1_intWrapper.unwrapFrom(abi: operation)
+        return try! _IAsyncMethodsStatics.GetCompletedAsyncImpl(result)
     }
 
     public static func getCompletedWithErrorAsync(_ errorCode: HRESULT) -> AnyIAsyncOperation<Int32>! {
-        let operation = try! _IAsyncMethodsStatics.GetCompletedWithErrorAsyncImpl(errorCode)
-        return test_component.__x_ABI_C__FIAsyncOperation_1_intWrapper.unwrapFrom(abi: operation)
+        return try! _IAsyncMethodsStatics.GetCompletedWithErrorAsyncImpl(errorCode)
     }
 
     public static func getPendingAsync() -> AsyncOperationInt! {
-        let result = try! _IAsyncMethodsStatics.GetPendingAsyncImpl()
-        return .from(abi: result)
+        return try! _IAsyncMethodsStatics.GetPendingAsyncImpl()
     }
 
 }
 
-public final class AsyncOperationInt : WinRTClass, IAsyncOperation, test_component.IAsyncInfo {
+public final class AsyncOperationInt : WinRTClass, IAsyncOperationInt, IAsyncOperation, test_component.IAsyncInfo {
     @_spi(WinRTInternal)
     private (set) public var _inner: test_component.IInspectable!
     public typealias TResult = Int32
-    private typealias SwiftABI = IAsyncOperationInt32
-    private typealias CABI = __x_ABI_C__FIAsyncOperation_1_int
+    private typealias SwiftABI = __ABI_test_component.IAsyncOperationInt
+    private typealias CABI = __x_ABI_Ctest__component_CIAsyncOperationInt
     private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
     @_spi(WinRTInternal)
     public func _getABI<T>() -> UnsafeMutablePointer<T>? {
@@ -50,7 +47,7 @@ public final class AsyncOperationInt : WinRTClass, IAsyncOperation, test_compone
     public var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
 
     @_spi(WinRTInternal)
-    public static func from(abi: UnsafeMutablePointer<__x_ABI_C__FIAsyncOperation_1_int>?) -> AsyncOperationInt? {
+    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIAsyncOperationInt>?) -> AsyncOperationInt? {
         guard let abi = abi else { return nil }
         return .init(fromAbi: test_component.IInspectable(consuming: abi))
     }
@@ -63,13 +60,22 @@ public final class AsyncOperationInt : WinRTClass, IAsyncOperation, test_compone
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return test_component.queryInterface(self, iid)
     }
+    public func complete(_ result: Int32) throws {
+        try _default.CompleteImpl(result)
+    }
+
+    public func completeWithError(_ errorCode: HRESULT) throws {
+        try _default.CompleteWithErrorImpl(errorCode)
+    }
+
+    internal lazy var _IAsyncOperation: IAsyncOperationInt32 = try! _inner.QueryInterface()
     public func getResults() throws -> Int32 {
-        try _default.GetResultsImpl()
+        try _IAsyncOperation.GetResultsImpl()
     }
 
     public var completed : AsyncOperationCompletedHandler<Int32>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { try! _IAsyncOperation.get_CompletedImpl() }
+        set { try! _IAsyncOperation.put_CompletedImpl(newValue) }
     }
 
     internal lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo = try! _inner.QueryInterface()
@@ -2091,3 +2097,4 @@ extension test_component.Unsigned {
     }
 }
 extension test_component.Unsigned: @retroactive Hashable, @retroactive Codable {}
+

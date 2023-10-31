@@ -3,10 +3,10 @@
 import Ctest_component
 
 public enum __IMPL_test_component {
-    public class IAsyncMethodsBridge : AbiInterfaceBridge {
-        public typealias CABI = __x_ABI_Ctest__component_CIAsyncMethods
-        public typealias SwiftABI = __ABI_test_component.IAsyncMethods
-        public typealias SwiftProjection = AnyIAsyncMethods
+    public class IAsyncMethodsWithProgressBridge : AbiInterfaceBridge {
+        public typealias CABI = __x_ABI_Ctest__component_CIAsyncMethodsWithProgress
+        public typealias SwiftABI = __ABI_test_component.IAsyncMethodsWithProgress
+        public typealias SwiftProjection = AnyIAsyncMethodsWithProgress
         public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IAsyncMethodsWithProgressImpl(abi)
@@ -18,8 +18,8 @@ public enum __IMPL_test_component {
         }
     }
 
-    fileprivate class IAsyncMethodsImpl: IAsyncMethods, WinRTAbiImpl {
-        fileprivate typealias Bridge = IAsyncMethodsBridge
+    fileprivate class IAsyncMethodsWithProgressImpl: IAsyncMethodsWithProgress, WinRTAbiImpl {
+        fileprivate typealias Bridge = IAsyncMethodsWithProgressBridge
         fileprivate let _default: Bridge.SwiftABI
         fileprivate var thisPtr: test_component.IInspectable { _default }
         fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
@@ -28,6 +28,39 @@ public enum __IMPL_test_component {
 
         fileprivate func operationWithProgress(_ value: test_component.DateTime) throws -> AnyIAsyncOperationWithProgress<Int32, Double>! {
             try _default.OperationWithProgressImpl(value)
+        }
+
+    }
+
+    public class IAsyncOperationIntBridge : AbiInterfaceBridge {
+        public typealias CABI = __x_ABI_Ctest__component_CIAsyncOperationInt
+        public typealias SwiftABI = __ABI_test_component.IAsyncOperationInt
+        public typealias SwiftProjection = AnyIAsyncOperationInt
+        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+            guard let abi = abi else { return nil }
+            return IAsyncOperationIntImpl(abi)
+        }
+
+        public static func makeAbi() -> CABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IAsyncOperationIntVTable) { $0 }
+            return .init(lpVtbl: vtblPtr)
+        }
+    }
+
+    fileprivate class IAsyncOperationIntImpl: IAsyncOperationInt, WinRTAbiImpl {
+        fileprivate typealias Bridge = IAsyncOperationIntBridge
+        fileprivate let _default: Bridge.SwiftABI
+        fileprivate var thisPtr: test_component.IInspectable { _default }
+        fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+            _default = Bridge.SwiftABI(fromAbi)
+        }
+
+        fileprivate func complete(_ result: Int32) throws {
+            try _default.CompleteImpl(result)
+        }
+
+        fileprivate func completeWithError(_ errorCode: HRESULT) throws {
+            try _default.CompleteWithErrorImpl(errorCode)
         }
 
     }

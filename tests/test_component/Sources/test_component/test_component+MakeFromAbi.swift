@@ -32,9 +32,14 @@ fileprivate func makeIVectorChangedEventArgsFrom(abi: test_component.IInspectabl
     return __IMPL_Windows_Foundation_Collections.IVectorChangedEventArgsBridge.from(abi: RawPointer(swiftAbi))!
 }
 
-fileprivate func makeIAsyncMethodsFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_test_component.IAsyncMethods = try! abi.QueryInterface()
-    return __IMPL_test_component.IAsyncMethodsBridge.from(abi: RawPointer(swiftAbi))!
+fileprivate func makeIAsyncMethodsWithProgressFrom(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_test_component.IAsyncMethodsWithProgress = try! abi.QueryInterface()
+    return __IMPL_test_component.IAsyncMethodsWithProgressBridge.from(abi: RawPointer(swiftAbi))!
+}
+
+fileprivate func makeIAsyncOperationIntFrom(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_test_component.IAsyncOperationInt = try! abi.QueryInterface()
+    return __IMPL_test_component.IAsyncOperationIntBridge.from(abi: RawPointer(swiftAbi))!
 }
 
 fileprivate func makeIBasicFrom(abi: test_component.IInspectable) -> Any {
@@ -169,7 +174,8 @@ public class __MakeFromAbi: MakeFromAbi {
             case "IStringable": return makeIStringableFrom(abi: abi)
             case "IPropertySet": return makeIPropertySetFrom(abi: abi)
             case "IVectorChangedEventArgs": return makeIVectorChangedEventArgsFrom(abi: abi)
-            case "IAsyncMethods": return makeIAsyncMethodsFrom(abi: abi)
+            case "IAsyncMethodsWithProgress": return makeIAsyncMethodsWithProgressFrom(abi: abi)
+            case "IAsyncOperationInt": return makeIAsyncOperationIntFrom(abi: abi)
             case "IBasic": return makeIBasicFrom(abi: abi)
             case "IIAmImplementable": return makeIIAmImplementableFrom(abi: abi)
             case "IInterfaceWithObservableVector": return makeIInterfaceWithObservableVectorFrom(abi: abi)
