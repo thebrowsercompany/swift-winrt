@@ -343,7 +343,7 @@ public enum __IMPL_test_component {
         public typealias CABI = __x_ABI_Ctest__component_CIObjectHandler
         public typealias SwiftABI = __ABI_test_component.ObjectHandler
 
-        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        public static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
             guard let abi = abi else { return nil }
             let _default = SwiftABI(abi)
             let handler: Handler = { (item) in
@@ -357,7 +357,7 @@ public enum __IMPL_test_component {
         public typealias CABI = __x_ABI_Ctest__component_CIVoidToVoidDelegate
         public typealias SwiftABI = __ABI_test_component.VoidToVoidDelegate
 
-        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        public static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
             guard let abi = abi else { return nil }
             let _default = SwiftABI(abi)
             let handler: Handler = { () in

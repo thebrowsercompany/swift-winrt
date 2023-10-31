@@ -145,11 +145,27 @@ public enum __IMPL_Windows_Foundation {
 
     }
 
+    public class IPropertyValueBridge : AbiInterfaceBridge {
+        public typealias CABI = __x_ABI_CWindows_CFoundation_CIPropertyValue
+        public typealias SwiftABI = __ABI_Windows_Foundation.IPropertyValue
+        public typealias SwiftProjection = AnyIPropertyValue
+        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+            guard let abi = abi else { return nil }
+            return IPropertyValueImpl(abi)
+        }
+
+        public static func makeAbi() -> CABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Foundation.IPropertyValueVTable) { $0 }
+            return .init(lpVtbl: vtblPtr)
+        }
+    }
+
     public class IPropertyValueImpl : IPropertyValue, IReference {
         public typealias T = Any
         var _value: Any
         var propertyType : PropertyType
 
+        fileprivate init(_ abi: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIPropertyValue>) { fatalError("not implemented") }
         public init(value: Any) {
             _value = value
             if _value is Int32 {
@@ -257,7 +273,7 @@ public enum __IMPL_Windows_Foundation {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler
         public typealias SwiftABI = __ABI_Windows_Foundation.AsyncActionCompletedHandler
 
-        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        public static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
             guard let abi = abi else { return nil }
             let _default = SwiftABI(abi)
             let handler: Handler = { (asyncInfo, asyncStatus) in
@@ -271,7 +287,7 @@ public enum __IMPL_Windows_Foundation {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIDeferralCompletedHandler
         public typealias SwiftABI = __ABI_Windows_Foundation.DeferralCompletedHandler
 
-        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        public static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
             guard let abi = abi else { return nil }
             let _default = SwiftABI(abi)
             let handler: Handler = { () in

@@ -447,7 +447,7 @@ namespace swiftwinrt
     {
         return has_attribute(type.type(), "Windows.Foundation.Metadata", "ExclusiveToAttribute");
     }
-    
+
     inline const class_type* try_get_exclusive_to(writer& w, typedef_base const& type)
     {
         auto attribute = get_attribute(type.type(), metadata_namespace, "ExclusiveToAttribute");
@@ -936,5 +936,10 @@ namespace swiftwinrt
         }
 
         return true;
+    }
+
+    inline bool is_struct(metadata_type const& type)
+    {
+        return dynamic_cast<const struct_type*>(&type) != nullptr;
     }
 }

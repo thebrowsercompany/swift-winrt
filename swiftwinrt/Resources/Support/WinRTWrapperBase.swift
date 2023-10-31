@@ -25,14 +25,13 @@ public protocol AbiBridge {
     associatedtype CABI
     associatedtype SwiftProjection
     static func makeAbi() -> CABI
+    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection?
 }
 
-public protocol ReferenceImpl : AbiBridge where ValueType.ABI == CABI {
-    associatedtype ValueType : InitializableFromAbi
+public protocol ReferenceBridge : AbiBridge, HasIID {
 }
 
 public protocol AbiInterfaceBridge : AbiBridge & AbiInterface {
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection?
 }
 
 public protocol AbiInterfaceImpl<Bridge> {
@@ -133,7 +132,7 @@ open class WinRTWrapperBase<CInterface, Prototype> {
         return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
     }
 
-    open class func queryInterface(_ pUnk: UnsafeMutablePointer<CInterface>, _ iid: SUPPORT_MODULE.IID, _ result: UnsafeMutablePointer<UnsafeMutableRawPointer?>) -> HRESULT {
+    fileprivate static func queryInterfaceBase(_ pUnk: UnsafeMutablePointer<CInterface>, _ riid: UnsafePointer<SUPPORT_MODULE.IID>, _ result: UnsafeMutablePointer<UnsafeMutableRawPointer?>) -> HRESULT {
         guard let instance = tryUnwrapFrom(raw: pUnk) else { return E_FAIL }
         do
         {
@@ -142,7 +141,7 @@ open class WinRTWrapperBase<CInterface, Prototype> {
                     try makeMarshaler(IUnknownRef(pUnk), result)
                 default:
                     guard let customQI = instance as? CustomQueryInterface,
-                          let iUnknownRef = customQI.queryInterface(iid) else { return E_NOINTERFACE }
+                          let iUnknownRef = customQI.queryInterface(riid.pointee) else { return E_NOINTERFACE }
                     result.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
             }
             return S_OK
@@ -153,6 +152,25 @@ open class WinRTWrapperBase<CInterface, Prototype> {
 }
 
 open class WinRTWrapperBase2<I: AbiBridge> : WinRTWrapperBase<I.CABI, I.SwiftProjection> {
+
+    public static func unwrapFrom(abi pointer: UnsafeMutablePointer<I.CABI>?) -> I.SwiftProjection? {
+        guard let pointer = pointer else { return nil }
+        guard let unwrapped = tryUnwrapFrom(abi: pointer) else { return I.from(abi: pointer) }
+        return unwrapped
+    }
+
+    open class func queryInterface(_ pUnk: UnsafeMutablePointer<I.CABI>?, _ riid: UnsafePointer<SUPPORT_MODULE.IID>?, _ ppvObject: UnsafeMutablePointer<UnsafeMutableRawPointer?>?) -> HRESULT {
+        guard let pUnk, let riid, let ppvObject else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+         switch riid.pointee {
+            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, Self.IID:
+                _ = addRef(pUnk)
+                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                return S_OK
+            default:
+                return super.queryInterfaceBase(pUnk, riid, ppvObject)
+        }
+    }
 }
 
 open class InterfaceWrapperBase<I: AbiInterfaceBridge> : WinRTWrapperBase2<I> {
@@ -169,12 +187,6 @@ open class InterfaceWrapperBase<I: AbiInterfaceBridge> : WinRTWrapperBase2<I> {
         }
     }
 
-    public static func unwrapFrom(abi pointer: UnsafeMutablePointer<I.CABI>?) -> I.SwiftProjection? {
-        guard let pointer = pointer else { return nil }
-        guard let unwrapped = tryUnwrapFrom(abi: pointer) else { return I.from(abi: pointer) }
-        return unwrapped
-    }
-
     override public func toABI<ResultType>(_ body: (UnsafeMutablePointer<I.CABI>) throws -> ResultType)
         throws -> ResultType {
         // If this is an implementation then we're holding onto a WinRT object pointer, get that pointer
@@ -184,6 +196,31 @@ open class InterfaceWrapperBase<I: AbiInterfaceBridge> : WinRTWrapperBase2<I> {
             return try body(abi)
         } else {
             return try super.toABI(body)
+        }
+    }
+}
+
+public class ReferenceWrapperBase<I: ReferenceBridge>: WinRTWrapperBase2<I> {
+    override public class var IID: SUPPORT_MODULE.IID { I.IID }
+
+    init?(_ value: I.SwiftProjection?) {
+        guard let value = value else { return nil }
+        let abi = I.makeAbi()
+        super.init(abi, value)
+    }
+
+    override public class func queryInterface(_ pUnk: UnsafeMutablePointer<I.CABI>?, _ riid: UnsafePointer<SUPPORT_MODULE.IID>?, _ ppvObject: UnsafeMutablePointer<UnsafeMutableRawPointer?>?) -> HRESULT {
+        guard let pUnk, let riid, let ppvObject else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+         switch riid.pointee {
+            case __ABI_Windows_Foundation.IPropertyValueWrapper.IID:
+                guard let value = tryUnwrapFrom(raw: pUnk),
+                    let wrapper = __ABI_Windows_Foundation.IPropertyValueWrapper(__IMPL_Windows_Foundation.IPropertyValueImpl(value: value)) else { return E_FAIL }
+                guard let iUnk = wrapper.queryInterface(__ABI_Windows_Foundation.IPropertyValueWrapper.IID) else { return E_NOINTERFACE }
+                ppvObject.pointee = UnsafeMutableRawPointer(iUnk.ref)
+                return S_OK
+            default:
+                return super.queryInterfaceBase(pUnk, riid, ppvObject)
         }
     }
 }

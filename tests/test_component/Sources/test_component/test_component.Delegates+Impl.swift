@@ -8,7 +8,7 @@ public enum __IMPL_test_component_Delegates {
         public typealias CABI = __x_ABI_Ctest__component_CDelegates_CIInDelegate
         public typealias SwiftABI = __ABI_test_component_Delegates.InDelegate
 
-        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        public static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
             guard let abi = abi else { return nil }
             let _default = SwiftABI(abi)
             let handler: Handler = { (value) in
@@ -22,7 +22,7 @@ public enum __IMPL_test_component_Delegates {
         public typealias CABI = __x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate
         public typealias SwiftABI = __ABI_test_component_Delegates.ReturnInt32Delegate
 
-        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        public static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
             guard let abi = abi else { return nil }
             let _default = SwiftABI(abi)
             let handler: Handler = { () in
@@ -36,7 +36,7 @@ public enum __IMPL_test_component_Delegates {
         public typealias CABI = __x_ABI_Ctest__component_CDelegates_CISignalDelegate
         public typealias SwiftABI = __ABI_test_component_Delegates.SignalDelegate
 
-        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        public static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
             guard let abi = abi else { return nil }
             let _default = SwiftABI(abi)
             let handler: Handler = { () in

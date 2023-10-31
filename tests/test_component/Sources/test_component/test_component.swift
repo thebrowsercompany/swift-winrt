@@ -139,7 +139,7 @@ open class Base : WinRTClass {
         composing: Composable.Type,
         _ createCallback: (UnsealedWinRTClassWrapper<Composable>?, inout test_component.IInspectable?) -> Composable.Default.SwiftABI)
     {
-        self._inner = MakeComposed(composing: composing, (self as! Composable.Default.SwiftProjection), createCallback)
+        self._inner = MakeComposed(composing: composing, (self as! Composable.SwiftProjection), createCallback)
     }
     open func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         switch iid {
@@ -166,11 +166,11 @@ open class Base : WinRTClass {
         try _IBaseOverrides.OnDoTheThingImpl()
     }
 
-    internal class IBaseOverrides : ComposableImpl {
+    internal struct IBaseOverrides : ComposableImpl {
         internal typealias CABI = __x_ABI_Ctest__component_CIBaseOverrides
         internal typealias SwiftABI = __ABI_test_component.IBaseOverrides
-        internal class Default : MakeComposedAbi {
-            internal typealias SwiftProjection = Base
+        internal typealias SwiftProjection = Base
+        internal struct Default : AbiInterface {
             internal typealias CABI = __x_ABI_Ctest__component_CIBase
             internal typealias SwiftABI = __ABI_test_component.IBase
         }
@@ -405,7 +405,7 @@ open class BaseNoOverrides : WinRTClass {
         composing: Composable.Type,
         _ createCallback: (UnsealedWinRTClassWrapper<Composable>?, inout test_component.IInspectable?) -> Composable.Default.SwiftABI)
     {
-        self._inner = MakeComposed(composing: composing, (self as! Composable.Default.SwiftProjection), createCallback)
+        self._inner = MakeComposed(composing: composing, (self as! Composable.SwiftProjection), createCallback)
     }
     open func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return test_component.queryInterface(self, iid)
@@ -418,11 +418,11 @@ open class BaseNoOverrides : WinRTClass {
         }
     }
 
-    internal class IBaseNoOverrides : ComposableImpl {
+    internal struct IBaseNoOverrides : ComposableImpl {
         internal typealias CABI = C_IInspectable
         internal typealias SwiftABI = test_component.IInspectable
-        internal class Default : MakeComposedAbi {
-            internal typealias SwiftProjection = BaseNoOverrides
+        internal typealias SwiftProjection = BaseNoOverrides
+        internal struct Default : AbiInterface {
             internal typealias CABI = __x_ABI_Ctest__component_CIBaseNoOverrides
             internal typealias SwiftABI = __ABI_test_component.IBaseNoOverrides
         }
@@ -947,11 +947,11 @@ public final class Derived : test_component.Base {
         set { try! _default.put_PropImpl(newValue) }
     }
 
-    internal class IBaseOverrides : ComposableImpl {
+    internal struct IBaseOverrides : ComposableImpl {
         internal typealias CABI = __x_ABI_Ctest__component_CIBaseOverrides
         internal typealias SwiftABI = __ABI_test_component.IBaseOverrides
-        internal class Default : MakeComposedAbi {
-            internal typealias SwiftProjection = Derived
+        internal typealias SwiftProjection = Derived
+        internal struct Default : AbiInterface {
             internal typealias CABI = __x_ABI_Ctest__component_CIDerived
             internal typealias SwiftABI = __ABI_test_component.IDerived
         }
@@ -994,11 +994,11 @@ public final class DerivedFromNoConstructor : test_component.UnsealedDerivedNoCo
         try _default.MethodImpl()
     }
 
-    internal class IBaseOverrides : ComposableImpl {
+    internal struct IBaseOverrides : ComposableImpl {
         internal typealias CABI = __x_ABI_Ctest__component_CIBaseOverrides
         internal typealias SwiftABI = __ABI_test_component.IBaseOverrides
-        internal class Default : MakeComposedAbi {
-            internal typealias SwiftProjection = DerivedFromNoConstructor
+        internal typealias SwiftProjection = DerivedFromNoConstructor
+        internal struct Default : AbiInterface {
             internal typealias CABI = __x_ABI_Ctest__component_CIDerivedFromNoConstructor
             internal typealias SwiftABI = __ABI_test_component.IDerivedFromNoConstructor
         }
@@ -1395,11 +1395,11 @@ open class UnsealedDerived : test_component.Base {
         try _IUnsealedDerivedOverloads2.OnAfterDoTheThingImpl()
     }
 
-    internal class IUnsealedDerivedOverloads2 : ComposableImpl {
+    internal struct IUnsealedDerivedOverloads2 : ComposableImpl {
         internal typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedOverloads2
         internal typealias SwiftABI = __ABI_test_component.IUnsealedDerivedOverloads2
-        internal class Default : MakeComposedAbi {
-            internal typealias SwiftProjection = UnsealedDerived
+        internal typealias SwiftProjection = UnsealedDerived
+        internal struct Default : AbiInterface {
             internal typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerived
             internal typealias SwiftABI = __ABI_test_component.IUnsealedDerived
         }
@@ -1410,11 +1410,11 @@ open class UnsealedDerived : test_component.Base {
         try _IUnsealedDerivedOverrides.OnBeforeDoTheThingImpl()
     }
 
-    internal class IUnsealedDerivedOverrides : ComposableImpl {
+    internal struct IUnsealedDerivedOverrides : ComposableImpl {
         internal typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedOverrides
         internal typealias SwiftABI = __ABI_test_component.IUnsealedDerivedOverrides
-        internal class Default : MakeComposedAbi {
-            internal typealias SwiftProjection = UnsealedDerived
+        internal typealias SwiftProjection = UnsealedDerived
+        internal struct Default : AbiInterface {
             internal typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerived
             internal typealias SwiftABI = __ABI_test_component.IUnsealedDerived
         }
@@ -1482,11 +1482,11 @@ open class UnsealedDerived2 : test_component.UnsealedDerived {
         try _default.MethodImpl()
     }
 
-    internal class IUnsealedDerivedOverloads2 : ComposableImpl {
+    internal struct IUnsealedDerivedOverloads2 : ComposableImpl {
         internal typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedOverloads2
         internal typealias SwiftABI = __ABI_test_component.IUnsealedDerivedOverloads2
-        internal class Default : MakeComposedAbi {
-            internal typealias SwiftProjection = UnsealedDerived2
+        internal typealias SwiftProjection = UnsealedDerived2
+        internal struct Default : AbiInterface {
             internal typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerived2
             internal typealias SwiftABI = __ABI_test_component.IUnsealedDerived2
         }
@@ -1543,11 +1543,11 @@ open class UnsealedDerivedFromNoConstructor : test_component.UnsealedDerivedNoCo
         }
     }
 
-    internal class IBaseOverrides : ComposableImpl {
+    internal struct IBaseOverrides : ComposableImpl {
         internal typealias CABI = __x_ABI_Ctest__component_CIBaseOverrides
         internal typealias SwiftABI = __ABI_test_component.IBaseOverrides
-        internal class Default : MakeComposedAbi {
-            internal typealias SwiftProjection = UnsealedDerivedFromNoConstructor
+        internal typealias SwiftProjection = UnsealedDerivedFromNoConstructor
+        internal struct Default : AbiInterface {
             internal typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedFromNoConstructor
             internal typealias SwiftABI = __ABI_test_component.IUnsealedDerivedFromNoConstructor
         }
@@ -1598,11 +1598,11 @@ open class UnsealedDerivedNoConstructor : test_component.Base {
     }
     private static var _IUnsealedDerivedNoConstructorFactory : __ABI_test_component.IUnsealedDerivedNoConstructorFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerivedNoConstructor"))
 
-    internal class IBaseOverrides : ComposableImpl {
+    internal struct IBaseOverrides : ComposableImpl {
         internal typealias CABI = __x_ABI_Ctest__component_CIBaseOverrides
         internal typealias SwiftABI = __ABI_test_component.IBaseOverrides
-        internal class Default : MakeComposedAbi {
-            internal typealias SwiftProjection = UnsealedDerivedNoConstructor
+        internal typealias SwiftProjection = UnsealedDerivedNoConstructor
+        internal struct Default : AbiInterface {
             internal typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedNoConstructor
             internal typealias SwiftABI = __ABI_test_component.IUnsealedDerivedNoConstructor
         }
@@ -1659,11 +1659,11 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
         }
     }
 
-    internal class IUnsealedDerivedNoOverrides : ComposableImpl {
+    internal struct IUnsealedDerivedNoOverrides : ComposableImpl {
         internal typealias CABI = C_IInspectable
         internal typealias SwiftABI = test_component.IInspectable
-        internal class Default : MakeComposedAbi {
-            internal typealias SwiftProjection = UnsealedDerivedNoOverrides
+        internal typealias SwiftProjection = UnsealedDerivedNoOverrides
+        internal struct Default : AbiInterface {
             internal typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides
             internal typealias SwiftABI = __ABI_test_component.IUnsealedDerivedNoOverrides
         }

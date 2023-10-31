@@ -55,18 +55,8 @@ namespace swiftwinrt
     template<typename T>
     inline void write_generic_bridge_name(writer& w, T const& type)
     {
-        // for IReference<> types we use the same IPropertyValueImpl class that is
-        // specially generated. this type can hold any value type and implements
-        // the appropriate interface
-        if (is_winrt_ireference(type))
-        {
-            w.write("%.%", impl_namespace("Windows.Foundation"), "IPropertyValueBridge");
-        }
-        else
-        {
-            write_generic_impl_name_base(w, type);
-            w.write("Bridge");
-        }
+        write_generic_impl_name_base(w, type);
+        w.write("Bridge");
     }
 
     template<typename T>
@@ -322,16 +312,9 @@ namespace swiftwinrt
         }
         else if (category == param_category::generic_type)
         {
-            if (is_winrt_ireference(type))
-            {
-                w.write(".init(ref: %)", name);
-            }
-            else
-            {
-                w.write("%.unwrapFrom(abi: %)",
-                    bind_wrapper_fullname(type),
-                    name);
-            }
+            w.write("%.unwrapFrom(abi: %)",
+                bind_wrapper_fullname(type),
+                name);
         }
         else
         {

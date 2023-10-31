@@ -65,20 +65,7 @@ public enum __ABI_Windows_Foundation_Collections {
     }
 
     internal static var IPropertySetVTable: __x_ABI_CWindows_CFoundation_CCollections_CIPropertySetVtbl = .init(
-        QueryInterface: {
-            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-            ppvObject.pointee = nil
-
-            switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IPropertySetWrapper.IID:
-                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                    return S_OK
-                default:
-                    return IPropertySetWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-            }
-        },
-
+        QueryInterface: { IPropertySetWrapper.queryInterface($0, $1, $2) },
         AddRef: { IPropertySetWrapper.addRef($0) },
         Release: { IPropertySetWrapper.release($0) },
         GetIids: {
@@ -132,20 +119,7 @@ public enum __ABI_Windows_Foundation_Collections {
     }
 
     internal static var IVectorChangedEventArgsVTable: __x_ABI_CWindows_CFoundation_CCollections_CIVectorChangedEventArgsVtbl = .init(
-        QueryInterface: {
-            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-            ppvObject.pointee = nil
-
-            switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IVectorChangedEventArgsWrapper.IID:
-                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                    return S_OK
-                default:
-                    return IVectorChangedEventArgsWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-            }
-        },
-
+        QueryInterface: { IVectorChangedEventArgsWrapper.queryInterface($0, $1, $2) },
         AddRef: { IVectorChangedEventArgsWrapper.addRef($0) },
         Release: { IVectorChangedEventArgsWrapper.release($0) },
         GetIids: {

@@ -23,14 +23,20 @@ fileprivate class MarshalWrapper: WinRTWrapperBase2<IMarshalBridge> {
     }
 }
 
-fileprivate class IMarshalBridge: AbiBridge {
+fileprivate struct IMarshalBridge: AbiBridge {
     static func makeAbi() -> C_IMarshal {
-        return C_IMarshal(lpVtbl: &IMarshalVTable)
+        return IMarshal(lpVtbl: &IMarshalVTable)
+    }
+
+    static func from(abi: UnsafeMutablePointer<C_IMarshal>?) -> Marshaler? {
+        guard let abi = abi else { return nil }
+        return try? Marshaler(IUnknownRef(consuming: abi))
     }
 
     typealias CABI = C_IMarshal
     typealias SwiftProjection = Marshaler
 }
+
 private var IMarshalVTable: C_IMarshalVtbl = .init(
     QueryInterface: { pUnk, riid, ppvObject in
         guard let pUnk, let riid, let ppvObject else { return E_INVALIDARG }

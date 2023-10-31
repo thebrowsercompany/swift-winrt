@@ -470,43 +470,42 @@ bind<write_abi_args>(function));
     static void write_ireference_init_extension(writer& w, generic_inst const& type)
     {
         if (!is_winrt_ireference(type)) return;
-
-        auto format = R"(internal extension % {
-    init?(ref: UnsafeMutablePointer<%>?) {
-        guard let val = ref else { return nil }
-        var result: %%
-        try! CHECKED(val.pointee.lpVtbl.pointee.get_Value(val, &result))
-        %
-    }
-}
-)";
         auto generic_param = type.generic_params()[0];
         w.add_depends(*generic_param);
-        if (auto structType = dynamic_cast<const struct_type*>(generic_param))
-        {
-            w.write(format,
-                get_full_swift_type_name(w, structType),
-                type.mangled_name(),
-                structType->mangled_name(),
-                bind<write_default_init_assignment>(*structType, projection_layer::c_abi),
-                "self = .from(abi: result)");
-        }
-        else
-        {
-            bool blittable = true;
-            if (auto elementType = dynamic_cast<const element_type*>(generic_param))
-            {
-                blittable = elementType->is_blittable();
-            }
-            w.write(format,
-                get_full_swift_type_name(w, generic_param),
-                type.mangled_name(),
-                generic_param->cpp_abi_name(),
-                bind<write_default_init_assignment>(*generic_param, projection_layer::c_abi),
-                blittable ? "self = result" : "self.init(from: result)");
-        }
 
+        auto impl_names = w.push_impl_names(true);
+
+        auto c_name = is_struct(*generic_param) ?
+            generic_param->mangled_name() :
+            generic_param->cpp_abi_name();
+
+        w.write(R"(internal struct %: ReferenceBridge {
+    typealias CABI = %
+    typealias SwiftProjection = %
+    static var IID: test_component.IID { IID_% }
+
+    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        guard let val = abi else { return nil }
+        var result: %%
+        try! CHECKED(val.pointee.lpVtbl.pointee.get_Value(val, &result))
+        return %
     }
+
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &%VTable) { $0 }
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+)", bind_bridge_name(type),
+    type.mangled_name(),
+    get_full_swift_type_name(w, generic_param),
+    type.mangled_name(),
+    c_name,
+    bind<write_default_init_assignment>(*generic_param, projection_layer::c_abi),
+    bind<write_consume_type>(generic_param, "result"),
+    type.mangled_name());
+    }
+
     static void write_class_func_body(writer& w, function_def const& function, interface_info const& iface, bool is_noexcept);
     static void write_comma_param_names(writer& w, std::vector<function_param> const& params);
     template <typename T>
@@ -738,40 +737,10 @@ typealias % = InterfaceWrapperBase<%>
         }
     }
 
-    // PropertyValue is special, it's not an interface/prototype we expose to customers
-    // and instead is the glue for boxing types which are of `Any` type in Swift
-    static void write_property_value_wrapper(writer& w)
-    {
-        w.write(R"(public class IPropertyValueWrapper : WinRTWrapperBase<__x_ABI_CWindows_CFoundation_CIPropertyValue, %.IPropertyValue>
-{
-    override public class var IID: %.IID { IID___x_ABI_CWindows_CFoundation_CIPropertyValue }
-    public init(_ value: Any) {
-        let abi = withUnsafeMutablePointer(to: &IPropertyValueVTable) {
-            __x_ABI_CWindows_CFoundation_CIPropertyValue(lpVtbl: $0)
-        }
-        super.init(abi, __IMPL_Windows_Foundation.IPropertyValueImpl(value: value))
-    }
-
-    public init?(_ impl: %.IPropertyValue?) {
-        guard let impl = impl else { return nil }
-        let abi = withUnsafeMutablePointer(to: &IPropertyValueVTable) {
-            __x_ABI_CWindows_CFoundation_CIPropertyValue(lpVtbl: $0)
-        }
-        super.init(abi, impl)
-    }
-}
-)", w.support, w.support, w.support);
-}
-
     static void write_implementable_interface(writer& w, interface_type const& type)
     {
         write_vtable(w, type);
 
-        if (get_full_type_name(type) == "Windows.Foundation.IPropertyValue")
-        {
-            write_property_value_wrapper(w);
-            return;
-        }
         // Define a struct that matches a C++ object with a vtable. As background:
         //
         // in C++ this looks like:
@@ -854,6 +823,7 @@ bind_bridge_fullname(type));
     var _value: Any
     var propertyType : PropertyType
 
+    fileprivate init(_ abi: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIPropertyValue>) { fatalError("not implemented") }
     public init(value: Any) {
         _value = value
         if _value is Int32 {
@@ -1129,12 +1099,12 @@ vtable);
     {
         if (is_exclusive(type) || !can_write(w, type) || type.is_generic()) return;
 
+        write_interface_bridge(w, type);
         if (get_full_type_name(type) == "Windows.Foundation.IPropertyValue")
         {
             write_property_value_impl(w);
             return;
         }
-        write_interface_bridge(w, type);
 
         w.write(R"(fileprivate class %: %, WinRTAbiImpl {
     fileprivate typealias Bridge = %
@@ -1437,7 +1407,7 @@ vtable);
     % typealias CABI = %
     % typealias SwiftABI = %.%
 
-    % static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    % static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (%) in
@@ -1827,7 +1797,7 @@ public init<Composable: ComposableImpl>(
     composing: Composable.Type,
     _ createCallback: (UnsealedWinRTClassWrapper<Composable>?, inout %.IInspectable?) -> Composable.Default.SwiftABI)
 {
-    self._inner = MakeComposed(composing: composing, (self as! Composable.Default.SwiftProjection), createCallback)
+    self._inner = MakeComposed(composing: composing, (self as! Composable.SwiftProjection), createCallback)
 }
 )", w.support);
         }
@@ -2138,11 +2108,11 @@ public init<Composable: ComposableImpl>(
 
         bool use_iinspectable_vtable = type_name(overrides) == type_name(*default_interface);
 
-        auto format = R"(internal class % : ComposableImpl {
+        auto format = R"(internal struct % : ComposableImpl {
     internal typealias CABI = %
     internal typealias SwiftABI = %
-    internal class Default : MakeComposedAbi {
-        internal typealias SwiftProjection = %
+    internal typealias SwiftProjection = %
+    internal struct Default : AbiInterface {
         internal typealias CABI = %
         internal typealias SwiftABI = %.%
     }
@@ -2458,53 +2428,12 @@ private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
         w.write("    return wrapper!.queryInterface(iid)\n");
     }
 
-    template <typename T>
-    static void write_iunknown_methods(writer& w, T const& type, std::vector<named_interface_info> const& interfaces, bool composed = false)
+    static void write_iunknown_methods(writer& w, metadata_type const& type)
     {
         auto wrapper_name = w.write_temp("%", bind_wrapper_name(type));
-        w.write(R"(QueryInterface: {
-    guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-    ppvObject.pointee = nil
-
-    switch riid.pointee {
-        case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, %.IID:
-            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-            ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-            return S_OK
-        default:
-            %
-    }
-},
-
-)",
-    wrapper_name,
-    bind([&](writer & w) {
-        // Delegates are implemented as simple closures in Swift, which can't implement CustomQueryInterface
-        if (is_delegate(type))
-        {
-            w.write("return failWith(err: E_NOINTERFACE)");
-        }
-        else
-        {
-            w.write("return %.queryInterface(pUnk, riid.pointee, ppvObject)", wrapper_name);
-        }
-    }));
-
+        w.write("QueryInterface: { %.queryInterface($0, $1, $2) },\n", wrapper_name);
         w.write("AddRef: { %.addRef($0) },\n", wrapper_name);
         w.write("Release: { %.release($0) },\n", wrapper_name);
-    }
-
-    static void write_iunknown_methods(writer& w, generic_inst const& type)
-    {
-        if (auto ifaceType = dynamic_cast<const interface_type*>(type.generic_type()))
-        {
-            write_iunknown_methods(w, type, ifaceType->required_interfaces);
-
-        }
-        else
-        {
-            write_iunknown_methods(w, type, {});
-        }
     }
 
     template <typename T>
@@ -2681,14 +2610,9 @@ private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
         bool is_get_or_put = true;
         if (is_get_overload(method))
         {
-            func_call += w.write_temp(".%", get_swift_name(method));
-            if (isGeneric)
+            if (!is_winrt_ireference(&type))
             {
-                auto genericInst = (const generic_inst&)type;
-                if (is_winrt_ireference(genericInst.generic_type()))
-                {
-                    func_call.append(w.write_temp(" as! %", get_full_swift_type_name(w, genericInst.generic_params()[0])));
-                }
+                func_call += w.write_temp(".%", get_swift_name(method));
             }
         }
         else if (is_put_overload(method))
@@ -2756,7 +2680,7 @@ private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
             bind_type_mangled(type));
         {
             auto indent = w.push_indent();
-            write_iunknown_methods(w, type, interfaces);
+            write_iunknown_methods(w, type);
             separator s{ w, ",\n\n" };
 
             if (!is_delegate(type))
@@ -2804,7 +2728,7 @@ private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
 
         {
             auto indent = w.push_indent();
-            write_iunknown_methods(w, overrides.type, other_interfaces, true);
+            write_iunknown_methods(w, *overrides.type);
             write_iinspectable_methods(w, overrides.type, other_interfaces, true);
 
             separator s{ w, ",\n\n" };
