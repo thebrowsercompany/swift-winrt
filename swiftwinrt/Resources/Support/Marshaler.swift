@@ -3,7 +3,7 @@ import C_BINDINGS_MODULE
 internal let IID_IMarshal: IID = IID(Data1: 0x01000300, Data2: 0x0000, Data3: 0x0000, Data4: (0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x46)) // 01000300-0000-0000-C000-00000046
 
 fileprivate extension IUnknownRef {
-    func copyTo(_ riid: RIID?, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
+    func copyTo(_ riid: REFIID?, _ ppvObj: UnsafeMutablePointer<LPVOID?>?) -> HRESULT {
         self.borrow.pointee.lpVtbl.pointee.QueryInterface(self.borrow, riid, ppvObj)
     }
 }
