@@ -25,7 +25,7 @@ fileprivate class MarshalWrapper: WinRTWrapperBase2<IMarshalBridge> {
 
 fileprivate struct IMarshalBridge: AbiBridge {
     static func makeAbi() -> C_IMarshal {
-        return IMarshal(lpVtbl: &IMarshalVTable)
+        return C_IMarshal(lpVtbl: &IMarshalVTable)
     }
 
     static func from(abi: UnsafeMutablePointer<C_IMarshal>?) -> Marshaler? {

@@ -136,7 +136,7 @@ open class WinRTWrapperBase<CInterface, Prototype> {
         guard let instance = tryUnwrapFrom(raw: pUnk) else { return E_FAIL }
         do
         {
-            switch iid {
+            switch riid.pointee {
                 case IID_IMarshal:
                     try makeMarshaler(IUnknownRef(pUnk), result)
                 default:
