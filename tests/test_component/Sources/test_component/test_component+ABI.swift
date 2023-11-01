@@ -240,12 +240,12 @@ public enum __ABI_test_component {
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
                 default:
-                    return IAsyncMethodsWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
+                    return IAsyncMethodsWithProgressWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
             }
         },
 
-        AddRef: { IAsyncMethodsWrapper.addRef($0) },
-        Release: { IAsyncMethodsWrapper.release($0) },
+        AddRef: { IAsyncMethodsWithProgressWrapper.addRef($0) },
+        Release: { IAsyncMethodsWithProgressWrapper.release($0) },
         GetIids: {
             let size = MemoryLayout<test_component.IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
@@ -311,25 +311,12 @@ public enum __ABI_test_component {
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
                 default:
-                    guard let instance = IAsyncOperationIntWrapper.tryUnwrapFrom(raw: pUnk),
-                          let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                    ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                    return S_OK
-
+                    return IAsyncOperationIntWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
             }
         },
 
-        AddRef: {
-             guard let wrapper = IAsyncOperationIntWrapper.fromRaw($0) else { return 1 }
-             _ = wrapper.retain()
-             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-        },
-
-        Release: {
-            guard let wrapper = IAsyncOperationIntWrapper.fromRaw($0) else { return 1 }
-            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-        },
-
+        AddRef: { IAsyncOperationIntWrapper.addRef($0) },
+        Release: { IAsyncOperationIntWrapper.release($0) },
         GetIids: {
             let size = MemoryLayout<test_component.IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
