@@ -182,18 +182,6 @@ public extension IAsyncAction {
         }
         return try getResults()
     }
-
-    @MainActor
-    func getOnMainActor() async throws {
-        if status == .started {
-            let event = WaitableEvent()
-            completed = { _, _ in
-                Task { await event.signal() }
-            }
-            await event.wait()
-        }
-        return try getResults()
-    }
 }
 
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncinfo)
@@ -247,18 +235,6 @@ public extension IAsyncOperationWithProgress {
         }
         return try getResults()
     }
-
-    @MainActor
-    func getOnMainActor() async throws -> TResult {
-        if status == .started {
-            let event = WaitableEvent()
-            completed = { _, _ in
-                Task { await event.signal() }
-            }
-            await event.wait()
-        }
-        return try getResults()
-    }
 }
 
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1)
@@ -274,18 +250,6 @@ public typealias AnyIAsyncOperation<TResult> = any IAsyncOperation<TResult>
 
 public extension IAsyncOperation {
     func get() async throws -> TResult {
-        if status == .started {
-            let event = WaitableEvent()
-            completed = { _, _ in
-                Task { await event.signal() }
-            }
-            await event.wait()
-        }
-        return try getResults()
-    }
-
-    @MainActor
-    func getOnMainActor() async throws -> TResult {
         if status == .started {
             let event = WaitableEvent()
             completed = { _, _ in

@@ -1378,21 +1378,9 @@ vtable);
         }
         return try getResults()
     }
-
-    ^@MainActor
-    func getOnMainActor() async throws% {
-        if status == .started {
-            let event = WaitableEvent()
-            completed = { _, _ in
-                Task { await event.signal() }
-            }
-            await event.wait()
-        }
-        return try getResults()
-    }
 }
 
-)", bind<write_swift_type_identifier>(type), return_clause, return_clause);
+)", bind<write_swift_type_identifier>(type), return_clause);
         }
     }
 
