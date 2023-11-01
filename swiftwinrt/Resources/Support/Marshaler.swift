@@ -17,7 +17,7 @@ func makeMarshaler(_ outer: IUnknownRef, _ result: UnsafeMutablePointer<UnsafeMu
     }
 }
 
-fileprivate class MarshalWrapper: WinRTWrapperBase2<IMarshalBridge> {
+fileprivate class MarshalWrapper: WinRTAbiBridgeWrapper<IMarshalBridge> {
     init(_ marshaler: Marshaler){
         super.init(IMarshalBridge.makeAbi(), marshaler)
     }

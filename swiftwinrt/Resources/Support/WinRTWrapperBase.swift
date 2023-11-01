@@ -151,7 +151,7 @@ open class WinRTWrapperBase<CInterface, Prototype> {
     }
 }
 
-open class WinRTWrapperBase2<I: AbiBridge> : WinRTWrapperBase<I.CABI, I.SwiftProjection> {
+open class WinRTAbiBridgeWrapper<I: AbiBridge> : WinRTWrapperBase<I.CABI, I.SwiftProjection> {
 
     public static func unwrapFrom(abi pointer: UnsafeMutablePointer<I.CABI>?) -> I.SwiftProjection? {
         guard let pointer = pointer else { return nil }
@@ -173,7 +173,7 @@ open class WinRTWrapperBase2<I: AbiBridge> : WinRTWrapperBase<I.CABI, I.SwiftPro
     }
 }
 
-open class InterfaceWrapperBase<I: AbiInterfaceBridge> : WinRTWrapperBase2<I> {
+open class InterfaceWrapperBase<I: AbiInterfaceBridge> : WinRTAbiBridgeWrapper<I> {
     override public class var IID: SUPPORT_MODULE.IID { I.SwiftABI.IID }
     public init?(_ impl: I.SwiftProjection?) {
         guard let impl = impl else { return nil }
@@ -200,7 +200,7 @@ open class InterfaceWrapperBase<I: AbiInterfaceBridge> : WinRTWrapperBase2<I> {
     }
 }
 
-public class ReferenceWrapperBase<I: ReferenceBridge>: WinRTWrapperBase2<I> {
+public class ReferenceWrapperBase<I: ReferenceBridge>: WinRTAbiBridgeWrapper<I> {
     override public class var IID: SUPPORT_MODULE.IID { I.IID }
 
     public init?(_ value: I.SwiftProjection?) {

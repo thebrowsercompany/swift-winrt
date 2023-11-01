@@ -40,7 +40,7 @@ public func MakeComposed<Composable: ComposableImpl>(
     return aggregated ? innerInsp : base
 }
 
-public class UnsealedWinRTClassWrapper<Composable: ComposableImpl> : WinRTWrapperBase2<Composable> {
+public class UnsealedWinRTClassWrapper<Composable: ComposableImpl> : WinRTAbiBridgeWrapper<Composable> {
     override public class var IID: SUPPORT_MODULE.IID { Composable.SwiftABI.IID }
     public init?(_ impl: Composable.SwiftProjection?) {
         guard let impl = impl else { return nil }
