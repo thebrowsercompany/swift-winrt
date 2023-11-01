@@ -230,26 +230,9 @@ public enum __ABI_test_component {
     }
 
     internal static var IAsyncMethodsWithProgressVTable: __x_ABI_Ctest__component_CIAsyncMethodsWithProgressVtbl = .init(
-        QueryInterface: {
-            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-            ppvObject.pointee = nil
-
-            switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IAsyncMethodsWithProgressWrapper.IID:
-                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                    return S_OK
-                default:
-                    return IAsyncMethodsWithProgressWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-            }
-        },
-
+        QueryInterface: { IAsyncMethodsWithProgressWrapper.queryInterface($0, $1, $2) },
         AddRef: { IAsyncMethodsWithProgressWrapper.addRef($0) },
         Release: { IAsyncMethodsWithProgressWrapper.release($0) },
-    internal static var IAsyncMethodsVTable: __x_ABI_Ctest__component_CIAsyncMethodsVtbl = .init(
-        QueryInterface: { IAsyncMethodsWrapper.queryInterface($0, $1, $2) },
-        AddRef: { IAsyncMethodsWrapper.addRef($0) },
-        Release: { IAsyncMethodsWrapper.release($0) },
         GetIids: {
             let size = MemoryLayout<test_component.IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
@@ -282,7 +265,7 @@ public enum __ABI_test_component {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper(operation)
                 operationWrapper?.copyTo($2)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) }
+            } catch { return failWith(err: E_FAIL) } 
         }
     )
 
@@ -305,20 +288,7 @@ public enum __ABI_test_component {
     }
 
     internal static var IAsyncOperationIntVTable: __x_ABI_Ctest__component_CIAsyncOperationIntVtbl = .init(
-        QueryInterface: {
-            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-            ppvObject.pointee = nil
-
-            switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IAsyncOperationIntWrapper.IID:
-                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                    return S_OK
-                default:
-                    return IAsyncOperationIntWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-            }
-        },
-
+        QueryInterface: { IAsyncOperationIntWrapper.queryInterface($0, $1, $2) },
         AddRef: { IAsyncOperationIntWrapper.addRef($0) },
         Release: { IAsyncOperationIntWrapper.release($0) },
         GetIids: {
@@ -351,7 +321,7 @@ public enum __ABI_test_component {
                 let result: Int32 = $1
                 try __unwrapped__instance.complete(result)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) }
+            } catch { return failWith(err: E_FAIL) } 
         },
 
         CompleteWithError: {
@@ -360,7 +330,7 @@ public enum __ABI_test_component {
                 let errorCode: HRESULT = $1
                 try __unwrapped__instance.completeWithError(errorCode)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) }
+            } catch { return failWith(err: E_FAIL) } 
         }
     )
 
@@ -468,7 +438,7 @@ public enum __ABI_test_component {
                 guard let __unwrapped__instance = IBasicWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 try __unwrapped__instance.method()
                 return S_OK
-            } catch { return failWith(err: E_FAIL) }
+            } catch { return failWith(err: E_FAIL) } 
         }
     )
 
@@ -1268,7 +1238,7 @@ public enum __ABI_test_component {
                 let result = try __unwrapped__instance.inInt32(value)
                 $2?.initialize(to: try! HString(result).detach())
                 return S_OK
-            } catch { return failWith(err: E_FAIL) }
+            } catch { return failWith(err: E_FAIL) } 
         },
 
         InString: {
@@ -1278,7 +1248,7 @@ public enum __ABI_test_component {
                 let result = try __unwrapped__instance.inString(value)
                 $2?.initialize(to: try! HString(result).detach())
                 return S_OK
-            } catch { return failWith(err: E_FAIL) }
+            } catch { return failWith(err: E_FAIL) } 
         },
 
         InObject: {
@@ -1288,7 +1258,7 @@ public enum __ABI_test_component {
                 let result = try __unwrapped__instance.inObject(value)
                 $2?.initialize(to: try! HString(result).detach())
                 return S_OK
-            } catch { return failWith(err: E_FAIL) }
+            } catch { return failWith(err: E_FAIL) } 
         },
 
         InEnum: {
@@ -1298,7 +1268,7 @@ public enum __ABI_test_component {
                 let result = try __unwrapped__instance.inEnum(value)
                 $2?.initialize(to: try! HString(result).detach())
                 return S_OK
-            } catch { return failWith(err: E_FAIL) }
+            } catch { return failWith(err: E_FAIL) } 
         },
 
         OutInt32: {
@@ -1308,7 +1278,7 @@ public enum __ABI_test_component {
                 try __unwrapped__instance.outInt32(&value)
                 $1?.initialize(to: value)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) }
+            } catch { return failWith(err: E_FAIL) } 
         },
 
         OutString: {
@@ -1318,7 +1288,7 @@ public enum __ABI_test_component {
                 try __unwrapped__instance.outString(&value)
                 $1?.initialize(to: try! HString(value).detach())
                 return S_OK
-            } catch { return failWith(err: E_FAIL) }
+            } catch { return failWith(err: E_FAIL) } 
         },
 
         OutObject: {
@@ -1329,7 +1299,7 @@ public enum __ABI_test_component {
                 let valueWrapper = __ABI_.AnyWrapper(value)
                 valueWrapper?.copyTo($1)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) }
+            } catch { return failWith(err: E_FAIL) } 
         },
 
         OutBlittableStruct: {
@@ -1339,7 +1309,7 @@ public enum __ABI_test_component {
                 try __unwrapped__instance.outBlittableStruct(&value)
                 $1?.initialize(to: .from(swift: value))
                 return S_OK
-            } catch { return failWith(err: E_FAIL) }
+            } catch { return failWith(err: E_FAIL) } 
         },
 
         OutNonBlittableStruct: {
@@ -1350,7 +1320,7 @@ public enum __ABI_test_component {
                 let _value = __ABI_test_component._ABI_NonBlittableStruct(from: value)
                 	$1?.initialize(to: _value.detach())
                 return S_OK
-            } catch { return failWith(err: E_FAIL) }
+            } catch { return failWith(err: E_FAIL) } 
         },
 
         OutEnum: {
@@ -1360,7 +1330,7 @@ public enum __ABI_test_component {
                 try __unwrapped__instance.outEnum(&value)
                 $1?.initialize(to: value)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) }
+            } catch { return failWith(err: E_FAIL) } 
         },
 
         ReturnObject: {
@@ -1370,7 +1340,7 @@ public enum __ABI_test_component {
                 let resultWrapper = __ABI_.AnyWrapper(result)
                 resultWrapper?.copyTo($1)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) }
+            } catch { return failWith(err: E_FAIL) } 
         },
 
         ReturnEnum: {
@@ -1379,7 +1349,7 @@ public enum __ABI_test_component {
                 let result = try __unwrapped__instance.returnEnum()
                 $1?.initialize(to: result)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) }
+            } catch { return failWith(err: E_FAIL) } 
         },
 
         get_EnumProperty: {
@@ -1432,7 +1402,7 @@ public enum __ABI_test_component {
                 let data: String = .init(from: $1)
                 try __unwrapped__instance.fireEvent(data)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) }
+            } catch { return failWith(err: E_FAIL) } 
         }
     )
 
@@ -1484,7 +1454,7 @@ public enum __ABI_test_component {
                 let basics: test_component.AnyIObservableVector<test_component.AnyIBasic?>? = test_component.__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.unwrapFrom(abi: $1)
                 try __unwrapped__instance.takeObservable(basics)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) }
+            } catch { return failWith(err: E_FAIL) } 
         }
     )
 
@@ -1794,7 +1764,7 @@ public enum __ABI_test_component {
                 guard let __unwrapped__instance = ISimpleDelegateWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 try __unwrapped__instance.doThis()
                 return S_OK
-            } catch { return failWith(err: E_FAIL) }
+            } catch { return failWith(err: E_FAIL) } 
         },
 
         DoThat: {
@@ -1803,7 +1773,7 @@ public enum __ABI_test_component {
                 let val: Int32 = $1
                 try __unwrapped__instance.doThat(val)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) }
+            } catch { return failWith(err: E_FAIL) } 
         }
     )
 
@@ -2206,7 +2176,7 @@ public enum __ABI_test_component {
                 let `extension`: String = .init(from: $1)
                 try __unwrapped__instance.`enum`(`extension`)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) }
+            } catch { return failWith(err: E_FAIL) } 
         },
 
         get_Struct: {
@@ -2316,7 +2286,7 @@ public enum __ABI_test_component {
                 guard let __unwrapped__instance = IBaseOverridesWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 try __unwrapped__instance.onDoTheThing()
                 return S_OK
-            } catch { return failWith(err: E_FAIL) }
+            } catch { return failWith(err: E_FAIL) } 
         }
     )
     internal typealias IUnsealedDerivedOverridesWrapper = UnsealedWinRTClassWrapper<test_component.UnsealedDerived.IUnsealedDerivedOverrides>
@@ -2354,7 +2324,7 @@ public enum __ABI_test_component {
                 guard let __unwrapped__instance = IUnsealedDerivedOverridesWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 try __unwrapped__instance.onBeforeDoTheThing()
                 return S_OK
-            } catch { return failWith(err: E_FAIL) }
+            } catch { return failWith(err: E_FAIL) } 
         }
     )
     internal typealias IUnsealedDerivedOverloads2Wrapper = UnsealedWinRTClassWrapper<test_component.UnsealedDerived.IUnsealedDerivedOverloads2>
@@ -2393,7 +2363,7 @@ public enum __ABI_test_component {
                 guard let __unwrapped__instance = IUnsealedDerivedOverloads2Wrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 try __unwrapped__instance.onAfterDoTheThing()
                 return S_OK
-            } catch { return failWith(err: E_FAIL) }
+            } catch { return failWith(err: E_FAIL) } 
         }
     )
 }
@@ -2498,3 +2468,4 @@ public extension WinRTDelegateBridge where CABI == __x_ABI_Ctest__component_CIVo
         return .init(lpVtbl:vtblPtr)
     }
 }
+
