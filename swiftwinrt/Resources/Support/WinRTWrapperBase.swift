@@ -121,6 +121,35 @@ open class WinRTWrapperBase<CInterface, Prototype> {
         guard let wrapper  = pUnk.bindMemory(to: WinRTWrapperBase.ComObject.self, capacity: 1).pointee.wrapper else { return nil }
         return wrapper.takeRetainedValue().swiftObj
     }
+
+    public static func addRef(_ pUnk: UnsafeMutablePointer<CInterface>?) -> ULONG {
+        guard let wrapper = fromRaw(pUnk) else { return 1 }
+        _ = wrapper.retain()
+        return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+    }
+
+    public static func release(_ pUnk: UnsafeMutablePointer<CInterface>?) -> ULONG {
+        guard let wrapper = fromRaw(pUnk) else { return 1 }
+        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+    }
+
+    open class func queryInterface(_ pUnk: UnsafeMutablePointer<CInterface>, _ iid: SUPPORT_MODULE.IID, _ result: UnsafeMutablePointer<UnsafeMutableRawPointer?>) -> HRESULT {
+        guard let instance = tryUnwrapFrom(raw: pUnk) else { return E_FAIL }
+        do
+        {
+            switch iid {
+                case IID_IMarshal:
+                    try makeMarshaler(IUnknownRef(pUnk), result)
+                default:
+                    guard let customQI = instance as? CustomQueryInterface,
+                          let iUnknownRef = customQI.queryInterface(iid) else { return E_NOINTERFACE }
+                    result.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
+            }
+            return S_OK
+        } catch {
+            return (error as? SUPPORT_MODULE.Error)?.hr ?? E_FAIL
+        }
+    }
 }
 
 open class WinRTWrapperBase2<I: AbiBridge> : WinRTWrapperBase<I.CABI, I.SwiftProjection> {

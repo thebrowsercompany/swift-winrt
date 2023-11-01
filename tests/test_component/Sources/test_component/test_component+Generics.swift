@@ -28,17 +28,8 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1_intVTable: __x_ABI_C_
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper.release($0) },
     Invoke: {
         guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let asyncInfo: test_component.AnyIAsyncOperation<Int32>? = test_component.__x_ABI_C__FIAsyncOperation_1_intWrapper.unwrapFrom(abi: $1)
@@ -101,17 +92,8 @@ internal var __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleVTable: __x_
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper.release($0) },
     Invoke: {
         guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let asyncInfo: test_component.AnyIAsyncOperationWithProgress<Int32, Double>? = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper.unwrapFrom(abi: $1)
@@ -174,17 +156,8 @@ internal var __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubl
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWrapper.release($0) },
     Invoke: {
         guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let asyncInfo: test_component.AnyIAsyncOperationWithProgress<Int32, Double>? = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper.unwrapFrom(abi: $1)
@@ -236,25 +209,12 @@ internal var __x_ABI_C__FIIterable_1_IInspectableVTable: __x_ABI_C__FIIterable_1
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIIterable_1_IInspectableWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIIterable_1_IInspectableWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIIterable_1_IInspectableWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIIterable_1_IInspectableWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIIterable_1_IInspectableWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIIterable_1_IInspectableWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
@@ -348,25 +308,12 @@ internal var __x_ABI_C__FIIterable_1_HSTRINGVTable: __x_ABI_C__FIIterable_1_HSTR
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIIterable_1_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIIterable_1_HSTRINGWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIIterable_1_HSTRINGWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIIterable_1_HSTRINGWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIIterable_1_HSTRINGWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIIterable_1_HSTRINGWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
@@ -460,25 +407,12 @@ internal var __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspec
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
@@ -572,25 +506,12 @@ internal var __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
@@ -684,25 +605,12 @@ internal var __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
@@ -796,25 +704,12 @@ internal var __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
@@ -908,25 +803,12 @@ internal var __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicVTable: _
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
@@ -1020,25 +902,12 @@ internal var __x_ABI_C__FIIterator_1_IInspectableVTable: __x_ABI_C__FIIterator_1
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIIterator_1_IInspectableWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIIterator_1_IInspectableWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIIterator_1_IInspectableWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIIterator_1_IInspectableWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIIterator_1_IInspectableWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIIterator_1_IInspectableWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
@@ -1174,25 +1043,12 @@ internal var __x_ABI_C__FIIterator_1_HSTRINGVTable: __x_ABI_C__FIIterator_1_HSTR
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIIterator_1_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIIterator_1_HSTRINGWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIIterator_1_HSTRINGWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIIterator_1_HSTRINGWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIIterator_1_HSTRINGWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIIterator_1_HSTRINGWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
@@ -1327,25 +1183,12 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspec
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
@@ -1481,25 +1324,12 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
@@ -1635,25 +1465,12 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
@@ -1789,25 +1606,12 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
@@ -1942,25 +1746,12 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicVTable: _
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
@@ -2096,25 +1887,12 @@ internal var __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableVTable: __x_ABI_C__
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
@@ -2229,25 +2007,12 @@ internal var __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIKey
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
@@ -2361,25 +2126,12 @@ internal var __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBas
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
@@ -2493,25 +2245,12 @@ internal var __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGVTable: __x_ABI_C__FIMapC
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
@@ -2624,25 +2363,12 @@ internal var __x_ABI_C__FIMapView_2_HSTRING_IInspectableVTable: __x_ABI_C__FIMap
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
@@ -2816,25 +2542,12 @@ internal var __x_ABI_C__FIMapView_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMapView_
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
@@ -3007,25 +2720,12 @@ internal var __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTab
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
@@ -3198,25 +2898,12 @@ internal var __x_ABI_C__FIMap_2_HSTRING_IInspectableVTable: __x_ABI_C__FIMap_2_H
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
@@ -3445,25 +3132,12 @@ internal var __x_ABI_C__FIMap_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMap_2_HSTRIN
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
@@ -3690,25 +3364,12 @@ internal var __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: 
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
@@ -3934,25 +3595,12 @@ internal var __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableVTable: __x_ABI_C_
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 5).assumingMemoryBound(to: test_component.IID.self)
@@ -4115,25 +3763,12 @@ internal var __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIOb
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 5).assumingMemoryBound(to: test_component.IID.self)
@@ -4296,25 +3931,12 @@ internal var __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseVTa
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 5).assumingMemoryBound(to: test_component.IID.self)
@@ -4520,25 +4142,12 @@ internal var __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicV
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 5).assumingMemoryBound(to: test_component.IID.self)
@@ -4744,25 +4353,12 @@ internal var __x_ABI_C__FIVectorView_1_IInspectableVTable: __x_ABI_C__FIVectorVi
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIVectorView_1_IInspectableWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIVectorView_1_IInspectableWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIVectorView_1_IInspectableWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIVectorView_1_IInspectableWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIVectorView_1_IInspectableWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIVectorView_1_IInspectableWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
@@ -4932,25 +4528,12 @@ internal var __x_ABI_C__FIVectorView_1_HSTRINGVTable: __x_ABI_C__FIVectorView_1_
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIVectorView_1_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIVectorView_1_HSTRINGWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIVectorView_1_HSTRINGWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIVectorView_1_HSTRINGWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIVectorView_1_HSTRINGWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIVectorView_1_HSTRINGWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
@@ -5118,25 +4701,12 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVTable: _
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
@@ -5303,25 +4873,12 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicVTable:
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
@@ -5491,25 +5048,12 @@ internal var __x_ABI_C__FIVector_1_IInspectableVTable: __x_ABI_C__FIVector_1_IIn
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIVector_1_IInspectableWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIVector_1_IInspectableWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIVector_1_IInspectableWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIVector_1_IInspectableWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIVector_1_IInspectableWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIVector_1_IInspectableWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
@@ -5825,25 +5369,12 @@ internal var __x_ABI_C__FIVector_1_HSTRINGVTable: __x_ABI_C__FIVector_1_HSTRINGV
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIVector_1_HSTRINGWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIVector_1_HSTRINGWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIVector_1_HSTRINGWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIVector_1_HSTRINGWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIVector_1_HSTRINGWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
@@ -6154,25 +5685,12 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_A
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
@@ -6479,25 +5997,12 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicVTable: __x
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
@@ -6824,17 +6329,8 @@ internal var __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableVTable: __
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper.addRef($0) },
+    Release: { __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper.release($0) },
     Invoke: {
         guard let __unwrapped__instance = __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let sender: test_component.AnyIObservableMap<String, Any?>? = test_component.__x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: $1)
@@ -6899,17 +6395,8 @@ internal var __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGVTable: __x_ABI
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper.addRef($0) },
+    Release: { __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper.release($0) },
     Invoke: {
         guard let __unwrapped__instance = __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let sender: test_component.AnyIObservableMap<String, String>? = test_component.__x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: $1)
@@ -6974,17 +6461,8 @@ internal var __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseWrapper.addRef($0) },
+    Release: { __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseWrapper.release($0) },
     Invoke: {
         guard let __unwrapped__instance = __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let sender: test_component.AnyIObservableVector<test_component.Base?>? = test_component.__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: $1)
@@ -7049,17 +6527,8 @@ internal var __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.addRef($0) },
+    Release: { __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.release($0) },
     Invoke: {
         guard let __unwrapped__instance = __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let sender: test_component.AnyIObservableVector<test_component.AnyIBasic?>? = test_component.__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.unwrapFrom(abi: $1)
@@ -7124,17 +6593,8 @@ internal var __x_ABI_C__FIEventHandler_1_IInspectableVTable: __x_ABI_C__FIEventH
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIEventHandler_1_IInspectableWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIEventHandler_1_IInspectableWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIEventHandler_1_IInspectableWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIEventHandler_1_IInspectableWrapper.release($0) },
     Invoke: {
         guard let __unwrapped__instance = __x_ABI_C__FIEventHandler_1_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let sender: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: $1)
@@ -7188,25 +6648,12 @@ internal var __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleVTable: __x_ABI
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
@@ -7403,25 +6850,12 @@ internal var __x_ABI_C__FIAsyncOperation_1_intVTable: __x_ABI_C__FIAsyncOperatio
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIAsyncOperation_1_intWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIAsyncOperation_1_intWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIAsyncOperation_1_intWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIAsyncOperation_1_intWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIAsyncOperation_1_intWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIAsyncOperation_1_intWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
@@ -7588,25 +7022,12 @@ internal var __x_ABI_C__FIReference_1_GUIDVTable: __x_ABI_C__FIReference_1_GUIDV
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIReference_1_GUIDWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIReference_1_GUIDWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIReference_1_GUIDWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIReference_1_GUIDWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIReference_1_GUIDWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIReference_1_GUIDWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
@@ -7672,25 +7093,12 @@ internal var __x_ABI_C__FIReference_1_intVTable: __x_ABI_C__FIReference_1_intVtb
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIReference_1_intWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIReference_1_intWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIReference_1_intWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIReference_1_intWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIReference_1_intWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIReference_1_intWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
@@ -7756,25 +7164,12 @@ internal var __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedVTable: 
                 ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                 return S_OK
             default:
-                guard let instance = __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper.tryUnwrapFrom(raw: pUnk),
-                      let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                return S_OK
-
+                return __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper.release($0) },
     GetIids: {
         let size = MemoryLayout<test_component.IID>.size
         let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
@@ -7843,17 +7238,8 @@ internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass_
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsWrapper.addRef($0) },
+    Release: { __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsWrapper.release($0) },
     Invoke: {
         guard let __unwrapped__instance = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let sender: test_component.Class? = .from(abi: $1)
@@ -7914,17 +7300,8 @@ internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple
         }
     },
 
-    AddRef: {
-         guard let wrapper = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.fromRaw($0) else { return 1 }
-         _ = wrapper.retain()
-         return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-    },
-
-    Release: {
-        guard let wrapper = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.fromRaw($0) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-    },
-
+    AddRef: { __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.addRef($0) },
+    Release: { __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.release($0) },
     Invoke: {
         guard let __unwrapped__instance = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let sender: test_component.Simple? = .from(abi: $1)

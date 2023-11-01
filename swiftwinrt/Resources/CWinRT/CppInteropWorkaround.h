@@ -15,6 +15,7 @@ typedef GUID_Workaround UUID_Workaround;
 // Functions depending on workaround types
 typedef struct IUnknown_Workaround IUnknown_Workaround;
 typedef struct IInspectable_Workaround IInspectable_Workaround;
+typedef struct IMarshal_Workaround IMarshal_Workaround;
 
 #include <combaseapi.h>
 inline HRESULT CoCreateInstance_Workaround(
@@ -28,6 +29,10 @@ inline HRESULT CoCreateInstance_Workaround(
 #else
     return CoCreateInstance((REFCLSID)rclsid, pUnkOuter, dwClsContext, (REFIID)riid, ppv);
 #endif
+}
+
+inline HRESULT CoCreateFreeThreadedMarshaler_Workaround(IUnknown_Workaround* pUnkOuter, IUnknown_Workaround** ppunkMarshal) {
+    return CoCreateFreeThreadedMarshaler((IUnknown*)pUnkOuter, (IUnknown**)ppunkMarshal);
 }
 
 inline int StringFromGUID2_Workaround(const GUID_Workaround* rguid, LPOLESTR lpsz, int cchMax) {
@@ -78,11 +83,14 @@ inline HRESULT RoGetActivationFactory_Workaround(
 #define IID IID_Workaround
 #undef REFIID // REFIID is a #define, not a typedef
 #define REFIID const IID* __MIDL_CONST
+#define CLSID GUID
 
 #define IUnknown IUnknown_Workaround
 #define IUnknownVtbl IUnknownVtbl_Workaround
 #define IInspectable IInspectable_Workaround
 #define IInspectableVtbl IInspectableVtbl_Workaround
+#define IMarshal IMarshal_Workaround
+#define IMarshalVtbl IMarshalVtbl_Workaround
 
 // iunknown.h
 typedef struct IUnknownVtbl
@@ -141,4 +149,89 @@ typedef struct IInspectableVtbl
 interface IInspectable
 {
     CONST_VTBL struct IInspectableVtbl *lpVtbl;
+};
+
+typedef struct IMarshalVtbl
+{
+    HRESULT ( STDMETHODCALLTYPE *QueryInterface )(
+        IMarshal * This,
+        /* [in] */ REFIID riid,
+        /* [annotation][iid_is][out] */
+        _COM_Outptr_  void **ppvObject);
+
+    ULONG ( STDMETHODCALLTYPE *AddRef )(
+        IMarshal * This);
+
+    ULONG ( STDMETHODCALLTYPE *Release )(
+        IMarshal * This);
+
+    HRESULT ( STDMETHODCALLTYPE *GetUnmarshalClass )(
+        IMarshal * This,
+        /* [annotation][in] */
+        _In_  REFIID riid,
+        /* [annotation][unique][in] */
+        _In_opt_  void *pv,
+        /* [annotation][in] */
+        _In_  DWORD dwDestContext,
+        /* [annotation][unique][in] */
+        _Reserved_  void *pvDestContext,
+        /* [annotation][in] */
+        _In_  DWORD mshlflags,
+        /* [annotation][out] */
+        _Out_  CLSID *pCid);
+
+    HRESULT ( STDMETHODCALLTYPE *GetMarshalSizeMax )(
+        IMarshal * This,
+        /* [annotation][in] */
+        _In_  REFIID riid,
+        /* [annotation][unique][in] */
+        _In_opt_  void *pv,
+        /* [annotation][in] */
+        _In_  DWORD dwDestContext,
+        /* [annotation][unique][in] */
+        _Reserved_  void *pvDestContext,
+        /* [annotation][in] */
+        _In_  DWORD mshlflags,
+        /* [annotation][out] */
+        _Out_  DWORD *pSize);
+
+    HRESULT ( STDMETHODCALLTYPE *MarshalInterface )(
+        IMarshal * This,
+        /* [annotation][unique][in] */
+        _In_  IStream *pStm,
+        /* [annotation][in] */
+        _In_  REFIID riid,
+        /* [annotation][unique][in] */
+        _In_opt_  void *pv,
+        /* [annotation][in] */
+        _In_  DWORD dwDestContext,
+        /* [annotation][unique][in] */
+        _Reserved_  void *pvDestContext,
+        /* [annotation][in] */
+        _In_  DWORD mshlflags);
+
+    HRESULT ( STDMETHODCALLTYPE *UnmarshalInterface )(
+        IMarshal * This,
+        /* [annotation][unique][in] */
+        _In_  IStream *pStm,
+        /* [annotation][in] */
+        _In_  REFIID riid,
+        /* [annotation][out] */
+        _Outptr_  void **ppv);
+
+    HRESULT ( STDMETHODCALLTYPE *ReleaseMarshalData )(
+        IMarshal * This,
+        /* [annotation][unique][in] */
+        _In_  IStream *pStm);
+
+    HRESULT ( STDMETHODCALLTYPE *DisconnectObject )(
+        IMarshal * This,
+        /* [annotation][in] */
+        _In_  DWORD dwReserved);
+
+} IMarshalVtbl;
+
+interface IMarshal
+{
+    CONST_VTBL struct IMarshalVtbl *lpVtbl;
 };

@@ -47,17 +47,8 @@ extension __ABI_test_component_Delegates {
             }
         },
 
-        AddRef: {
-             guard let wrapper = InDelegateWrapper.fromRaw($0) else { return 1 }
-             _ = wrapper.retain()
-             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-        },
-
-        Release: {
-            guard let wrapper = InDelegateWrapper.fromRaw($0) else { return 1 }
-            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-        },
-
+        AddRef: { InDelegateWrapper.addRef($0) },
+        Release: { InDelegateWrapper.release($0) },
         Invoke: {
             guard let __unwrapped__instance = InDelegateWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let value: String = .init(from: $1)
@@ -105,17 +96,8 @@ extension __ABI_test_component_Delegates {
             }
         },
 
-        AddRef: {
-             guard let wrapper = ReturnInt32DelegateWrapper.fromRaw($0) else { return 1 }
-             _ = wrapper.retain()
-             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-        },
-
-        Release: {
-            guard let wrapper = ReturnInt32DelegateWrapper.fromRaw($0) else { return 1 }
-            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-        },
-
+        AddRef: { ReturnInt32DelegateWrapper.addRef($0) },
+        Release: { ReturnInt32DelegateWrapper.release($0) },
         Invoke: {
             guard let __unwrapped__instance = ReturnInt32DelegateWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let result = __unwrapped__instance()
@@ -161,17 +143,8 @@ extension __ABI_test_component_Delegates {
             }
         },
 
-        AddRef: {
-             guard let wrapper = SignalDelegateWrapper.fromRaw($0) else { return 1 }
-             _ = wrapper.retain()
-             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-        },
-
-        Release: {
-            guard let wrapper = SignalDelegateWrapper.fromRaw($0) else { return 1 }
-            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-        },
-
+        AddRef: { SignalDelegateWrapper.addRef($0) },
+        Release: { SignalDelegateWrapper.release($0) },
         Invoke: {
             guard let __unwrapped__instance = SignalDelegateWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             __unwrapped__instance()

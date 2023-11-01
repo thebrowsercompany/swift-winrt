@@ -75,25 +75,12 @@ public enum __ABI_Windows_Foundation_Collections {
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
                 default:
-                    guard let instance = IPropertySetWrapper.tryUnwrapFrom(raw: pUnk),
-                          let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                    ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                    return S_OK
-
+                    return IPropertySetWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
             }
         },
 
-        AddRef: {
-             guard let wrapper = IPropertySetWrapper.fromRaw($0) else { return 1 }
-             _ = wrapper.retain()
-             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-        },
-
-        Release: {
-            guard let wrapper = IPropertySetWrapper.fromRaw($0) else { return 1 }
-            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-        },
-
+        AddRef: { IPropertySetWrapper.addRef($0) },
+        Release: { IPropertySetWrapper.release($0) },
         GetIids: {
             let size = MemoryLayout<test_component.IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 6).assumingMemoryBound(to: test_component.IID.self)
@@ -155,25 +142,12 @@ public enum __ABI_Windows_Foundation_Collections {
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
                 default:
-                    guard let instance = IVectorChangedEventArgsWrapper.tryUnwrapFrom(raw: pUnk),
-                          let iUnknownRef = instance.queryInterface(riid.pointee) else { return failWith(err: E_NOINTERFACE )}
-                    ppvObject.pointee = UnsafeMutableRawPointer(iUnknownRef.ref)
-                    return S_OK
-
+                    return IVectorChangedEventArgsWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
             }
         },
 
-        AddRef: {
-             guard let wrapper = IVectorChangedEventArgsWrapper.fromRaw($0) else { return 1 }
-             _ = wrapper.retain()
-             return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
-        },
-
-        Release: {
-            guard let wrapper = IVectorChangedEventArgsWrapper.fromRaw($0) else { return 1 }
-            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-        },
-
+        AddRef: { IVectorChangedEventArgsWrapper.addRef($0) },
+        Release: { IVectorChangedEventArgsWrapper.release($0) },
         GetIids: {
             let size = MemoryLayout<test_component.IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
