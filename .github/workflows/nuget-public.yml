@@ -6,9 +6,9 @@ on:
 jobs:
   release-and-publish:
     env:
-      NUGET_VERSION_MAJOR: 0
-      NUGET_VERSION_MINOR: ${{ github.run_number }}
-      NUGET_VERSION_PATCH: 0
+      NUGET_PACKAGE_VERSION_MAJOR: 0
+      NUGET_PACKAGE_VERSION_MINOR: ${{ github.run_number }}
+      NUGET_PACKAGE_VERSION_PATCH: 0
     runs-on: windows-2022
     name: Swift/WinRT Release Build & Publish
     permissions:
@@ -21,7 +21,7 @@ jobs:
 
       - uses: ./.github/actions/windows-build
         env:
-            NUGET_VERSION: ${{ env.NUGET_VERSION_MAJOR}}.${{env.NUGET_VERSION_MINOR }}.${{env.NUGET_VERSION_PATCH }}
+            NUGET_PACKAGE_VERSION: ${{ env.NUGET_PACKAGE_VERSION_MAJOR}}.${{env.NUGET_PACKAGE_VERSION_MINOR }}.${{env.NUGET_PACKAGE_VERSION_PATCH }}
         with:
           config: release
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

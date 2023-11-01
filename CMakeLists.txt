@@ -10,14 +10,14 @@ endif()
 add_subdirectory(swiftwinrt)
 add_subdirectory(tests)
 
-if (NOT DEFINED ENV{NUGET_VERSION})
-    set(NUGET_VERSION 0.1.0)
+if (NOT DEFINED ENV{NUGET_PACKAGE_VERSION})
+    set(NUGET_PACKAGE_VERSION 0.1.0)
 else()
-    set(NUGET_VERSION $ENV{NUGET_VERSION})
+    set(NUGET_PACKAGE_VERSION $ENV{NUGET_PACKAGE_VERSION})
 endif()
 
 add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/nuget/TheBrowserCompany.SwiftWinRT.nupkg
-    COMMAND ${CMAKE_BINARY_DIR}/nuget pack ${CMAKE_CURRENT_SOURCE_DIR}\\nuget\\swiftwinrt.nuspec -Properties swiftwinrt_exe=${CMAKE_CURRENT_SOURCE_DIR}\\out\\${CMAKE_BUILD_TYPE}\\bin\\swiftwinrt.exe -Version ${NUGET_VERSION}
+    COMMAND ${CMAKE_BINARY_DIR}/nuget pack ${CMAKE_CURRENT_SOURCE_DIR}\\nuget\\swiftwinrt.nuspec -Properties swiftwinrt_exe=${CMAKE_CURRENT_SOURCE_DIR}\\out\\${CMAKE_BUILD_TYPE}\\bin\\swiftwinrt.exe -Version ${NUGET_PACKAGE_VERSION}
 )
 
 add_custom_target(nuget
