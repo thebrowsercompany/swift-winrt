@@ -1,4 +1,3 @@
-import WinSDK
 import C_BINDINGS_MODULE
 
 fileprivate extension IUnknownRef {
@@ -23,14 +22,14 @@ fileprivate class MarshalWrapper: WinRTWrapperBase2<IMarshalBridge> {
 }
 
 fileprivate class IMarshalBridge: AbiBridge {
-    static func makeAbi() -> IMarshal {
-        return IMarshal(lpVtbl: &IMarshalVTable)
+    static func makeAbi() -> C_IMarshal {
+        return C_IMarshal(lpVtbl: &IMarshalVTable)
     }
 
-    typealias CABI = IMarshal
+    typealias CABI = C_IMarshal
     typealias SwiftProjection = Marshaler
 }
-private var IMarshalVTable: IMarshalVtbl = .init(
+private var IMarshalVTable: C_IMarshalVtbl = .init(
     QueryInterface: { pUnk, riid, ppvObject in
         guard let pUnk, let riid, let ppvObject else { return E_INVALIDARG }
         return riid.withMemoryRebound(to: SUPPORT_MODULE.IID.self, capacity: 1) {
@@ -59,33 +58,33 @@ private class Marshaler {
 
     init(_ obj: IUnknownRef) throws {
         self.obj = obj
-        var marshalerPtr: LPUNKNOWN?
+        var marshalerPtr: UnsafeMutablePointer<C_IUnknown>?
         try CHECKED(CoCreateFreeThreadedMarshaler(nil, &marshalerPtr))
         guard let marshalerPtr else { throw SUPPORT_MODULE.Error(hr: E_FAIL) }
-        marshaler = UnsafeMutableRawPointer(marshalerPtr).bindMemory(to: IMarshal.self, capacity: 1)
+        marshaler = UnsafeMutableRawPointer(marshalerPtr).bindMemory(to: C_IMarshal.self, capacity: 1)
     }
 
     deinit {
         _ = marshaler.pointee.lpVtbl.pointee.Release(marshaler)
     }
 
-    var marshaler: UnsafeMutablePointer<IMarshal>
+    var marshaler: UnsafeMutablePointer<C_IMarshal>
 
     static func GetUnmarshalClass(
-        _ this: UnsafeMutablePointer<IMarshal>?,
-        _ riid: UnsafePointer<WinSDK.IID>?,
+        _ this: UnsafeMutablePointer<C_IMarshal>?,
+        _ riid: REFIID?,
         _ pv: UnsafeMutableRawPointer?,
         _ dwDestContext: DWORD,
         _ pvDestContext: UnsafeMutableRawPointer?,
         _ mshlflags: DWORD,
-        _ pCid: UnsafeMutablePointer<WinSDK.CLSID>?) -> HRESULT {
+        _ pCid: UnsafeMutablePointer<CLSID>?) -> HRESULT {
         guard let marshaler = MarshalWrapper.tryUnwrapFrom(abi: this)?.marshaler else { return E_FAIL }
         return marshaler.pointee.lpVtbl.pointee.GetUnmarshalClass(marshaler, riid, pv, dwDestContext, pvDestContext, mshlflags, pCid)
     }
 
     static func GetMarshalSizeMax(
-        _ this: UnsafeMutablePointer<IMarshal>?,
-        _ riid: UnsafePointer<WinSDK.IID>?, _ pv: UnsafeMutableRawPointer?,
+        _ this: UnsafeMutablePointer<C_IMarshal>?,
+        _ riid: REFIID?, _ pv: UnsafeMutableRawPointer?,
         _ dwDestContext: DWORD,
         _ pvDestContext: UnsafeMutableRawPointer?,
         _ mshlflags: DWORD,
@@ -95,9 +94,9 @@ private class Marshaler {
     }
 
     static func MarshalInterface(
-        _ this: UnsafeMutablePointer<IMarshal>?,
+        _ this: UnsafeMutablePointer<C_IMarshal>?,
         _ pStm: UnsafeMutablePointer<IStream>?,
-        _ riid: UnsafePointer<WinSDK.IID>?,
+        _ riid: REFIID?,
         _ pv: UnsafeMutableRawPointer?,
         _ dwDestContext: DWORD,
         _ pvDestContext: UnsafeMutableRawPointer?,
@@ -107,23 +106,23 @@ private class Marshaler {
     }
 
     static func UnmarshalInterface(
-        _ this: UnsafeMutablePointer<IMarshal>?,
+        _ this: UnsafeMutablePointer<C_IMarshal>?,
         _ pStm: UnsafeMutablePointer<IStream>?,
-        _ riid: UnsafePointer<WinSDK.IID>?,
+        _ riid: REFIID?,
         _ ppv: UnsafeMutablePointer<UnsafeMutableRawPointer?>?) -> HRESULT {
         guard let marshaler = MarshalWrapper.tryUnwrapFrom(abi: this)?.marshaler else { return E_FAIL }
         return marshaler.pointee.lpVtbl.pointee.UnmarshalInterface(marshaler, pStm, riid, ppv)
     }
 
     static func ReleaseMarshalData(
-        _ this: UnsafeMutablePointer<IMarshal>?,
+        _ this: UnsafeMutablePointer<C_IMarshal>?,
         _ pStm: UnsafeMutablePointer<IStream>?) -> HRESULT {
         guard let marshaler = MarshalWrapper.tryUnwrapFrom(abi: this)?.marshaler else { return E_FAIL }
         return marshaler.pointee.lpVtbl.pointee.ReleaseMarshalData(marshaler, pStm)
     }
 
     static func DisconnectObject(
-        _ this: UnsafeMutablePointer<IMarshal>?,
+        _ this: UnsafeMutablePointer<C_IMarshal>?,
         _ dwReserved: DWORD) -> HRESULT {
         guard let marshaler = MarshalWrapper.tryUnwrapFrom(abi: this)?.marshaler else { return E_FAIL }
         return marshaler.pointee.lpVtbl.pointee.DisconnectObject(marshaler, dwReserved)

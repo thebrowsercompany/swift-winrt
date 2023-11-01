@@ -8,11 +8,14 @@ public typealias REFIID = UnsafePointer<C_BINDINGS_MODULE.IID_Workaround>
 public typealias C_IUnknown = C_BINDINGS_MODULE.IUnknown_Workaround
 public typealias C_IInspectable = C_BINDINGS_MODULE.IInspectable_Workaround
 public typealias C_IInspectableVtbl = C_BINDINGS_MODULE.IInspectableVtbl_Workaround
+public typealias C_IMarshal = C_BINDINGS_MODULE.IMarshal_Workaround
+public typealias C_IMarshalVtbl = C_BINDINGS_MODULE.IMarshalVtbl_Workaround
 internal let CoCreateInstance = C_BINDINGS_MODULE.CoCreateInstance_Workaround
 internal let UuidFromStringA = C_BINDINGS_MODULE.UuidFromStringA_Workaround
 internal let RoActivateInstance = C_BINDINGS_MODULE.RoActivateInstance_Workaround
 internal let RoGetActivationFactory = C_BINDINGS_MODULE.RoGetActivationFactory_Workaround
 internal let StringFromGUID2 = C_BINDINGS_MODULE.StringFromGUID2_Workaround
+internal let CoCreateFreeThreadedMarshaler = C_BINDINGS_MODULE.CoCreateFreeThreadedMarshaler_Workaround
 #else
 public typealias GUID = C_BINDINGS_MODULE.GUID
 public typealias IID = C_BINDINGS_MODULE.IID
@@ -21,9 +24,12 @@ public typealias REFIID = UnsafePointer<C_BINDINGS_MODULE.IID>
 public typealias C_IUnknown = C_BINDINGS_MODULE.IUnknown
 public typealias C_IInspectable = C_BINDINGS_MODULE.IInspectable
 public typealias C_IInspectableVtbl = C_BINDINGS_MODULE.IInspectableVtbl
+public typealias C_IMarshal = C_BINDINGS_MODULE.IMarshal
+public typealias C_IMarshalVtbl = C_BINDINGS_MODULE.IMarshalVtbl
 internal let CoCreateInstance = C_BINDINGS_MODULE.CoCreateInstance
 internal let UuidFromStringA = C_BINDINGS_MODULE.UuidFromStringA
 internal let RoActivateInstance = C_BINDINGS_MODULE.RoActivateInstance
 internal let RoGetActivationFactory = C_BINDINGS_MODULE.RoGetActivationFactory
 internal let StringFromGUID2 = C_BINDINGS_MODULE.StringFromGUID2
+internal let CoCreateFreeThreadedMarshaler = C_BINDINGS_MODULE.CoCreateFreeThreadedMarshaler
 #endif
