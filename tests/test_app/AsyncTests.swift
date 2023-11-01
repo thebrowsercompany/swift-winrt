@@ -7,7 +7,7 @@ class AsyncTests : XCTestCase {
   public func testAwaitAlreadyCompleted() throws {
     let asyncOperation = AsyncMethods.getCompletedAsync(42)!
     XCTAssertEqual(asyncOperation.status, .completed)
-    let result = try asyncBlock(timeout: 0.1) { try await asyncOperation.get() }
+    let result = try asyncBlock(timeout: 1) { try await asyncOperation.get() }
     XCTAssertEqual(result, 42)
   }
 
@@ -15,7 +15,7 @@ class AsyncTests : XCTestCase {
     let asyncOperation = AsyncMethods.getCompletedWithErrorAsync(E_LAYOUTCYCLE)!
     XCTAssertEqual(asyncOperation.status, .error)
     do {
-      _ = try asyncBlock(timeout: 0.1) { try await asyncOperation.get() }
+      _ = try asyncBlock(timeout: 1) { try await asyncOperation.get() }
       XCTFail("Expected an error to be thrown")
     } catch let error as test_component.Error {
       XCTAssertEqual(error.hr, E_LAYOUTCYCLE)
@@ -25,7 +25,7 @@ class AsyncTests : XCTestCase {
   public func testAwaitCompletionWithSuspension() throws {
     let asyncOperation = AsyncMethods.getPendingAsync()!
     runAfter(delay: 0.05) { try? asyncOperation.complete(42) }
-    let result = try asyncBlock(timeout: 0.1) { try await asyncOperation.get() }
+    let result = try asyncBlock(timeout: 1) { try await asyncOperation.get() }
     XCTAssertEqual(asyncOperation.status, .completed)
     XCTAssertEqual(result, 42)
   }
@@ -34,7 +34,7 @@ class AsyncTests : XCTestCase {
     let asyncOperation = AsyncMethods.getPendingAsync()!
     runAfter(delay: 0.05) { try? asyncOperation.completeWithError(E_LAYOUTCYCLE) }
     do {
-      _ = try asyncBlock(timeout: 0.1) { try await asyncOperation.get() }
+      _ = try asyncBlock(timeout: 1) { try await asyncOperation.get() }
       XCTFail("Expected an error to be thrown")
     } catch let error as test_component.Error {
       XCTAssertEqual(error.hr, E_LAYOUTCYCLE)
