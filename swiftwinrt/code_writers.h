@@ -482,7 +482,7 @@ bind<write_abi_args>(function));
         w.write(R"(internal struct %: ReferenceBridge {
     typealias CABI = %
     typealias SwiftProjection = %
-    static var IID: test_component.IID { IID_% }
+    static var IID: %.IID { IID_% }
 
     static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let val = abi else { return nil }
@@ -499,6 +499,7 @@ bind<write_abi_args>(function));
 )", bind_bridge_name(type),
     type.mangled_name(),
     get_full_swift_type_name(w, generic_param),
+    w.support,
     type.mangled_name(),
     c_name,
     bind<write_default_init_assignment>(*generic_param, projection_layer::c_abi),

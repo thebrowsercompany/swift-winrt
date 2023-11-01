@@ -61,7 +61,7 @@ public class UnsealedWinRTClassWrapper<Composable: ComposableImpl> : WinRTWrappe
     }
 }
 
-extension ComposableImpl {
+public extension ComposableImpl {
     static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
         guard let abi else { return nil }
         let baseInsp = SUPPORT_MODULE.IInspectable(abi)

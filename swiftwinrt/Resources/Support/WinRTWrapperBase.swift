@@ -203,7 +203,7 @@ open class InterfaceWrapperBase<I: AbiInterfaceBridge> : WinRTWrapperBase2<I> {
 public class ReferenceWrapperBase<I: ReferenceBridge>: WinRTWrapperBase2<I> {
     override public class var IID: SUPPORT_MODULE.IID { I.IID }
 
-    init?(_ value: I.SwiftProjection?) {
+    public init?(_ value: I.SwiftProjection?) {
         guard let value = value else { return nil }
         let abi = I.makeAbi()
         super.init(abi, value)
@@ -220,7 +220,7 @@ public class ReferenceWrapperBase<I: ReferenceBridge>: WinRTWrapperBase2<I> {
                 ppvObject.pointee = UnsafeMutableRawPointer(iUnk.ref)
                 return S_OK
             default:
-                return super.queryInterfaceBase(pUnk, riid, ppvObject)
+                return super.queryInterface(pUnk, riid, ppvObject)
         }
     }
 }
