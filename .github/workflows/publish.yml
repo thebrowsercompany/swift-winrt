@@ -16,7 +16,7 @@ jobs:
       NUGET_PACKAGE_VERSION_MAJOR: 0
       NUGET_PACKAGE_VERSION_MINOR: 1
       NUGET_PACKAGE_VERSION_PATCH: ${{ github.run_number }}
-      NUGET_PACKAGE_VERSION_PRERELEASE_SUFFIX: ${{ github.event.inputs.version_prerelease_identifier && '' || '-' }}${{ github.event.inputs.version_prerelease_identifier }}
+      NUGET_PACKAGE_VERSION_PRERELEASE_SUFFIX: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.version_prerelease_identifier != '' && format('-{0}', github.event.inputs.version_prerelease_identifier) || '' }}
     runs-on: windows-2022
     name: Swift/WinRT Release Build & Publish
     permissions:
