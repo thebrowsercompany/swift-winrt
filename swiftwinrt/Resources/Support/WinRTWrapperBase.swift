@@ -138,7 +138,7 @@ open class WinRTWrapperBase<CInterface, Prototype> {
         do
         {
             switch iid {
-                case unsafeBitCast(IID_IMarshal, to: SUPPORT_MODULE.IID.self):
+                case IID_IMarshal:
                     try makeMarshaler(IUnknownRef(pUnk), result)
                 default:
                     guard let customQI = instance as? CustomQueryInterface,
