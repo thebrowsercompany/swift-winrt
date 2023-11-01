@@ -58,5 +58,9 @@
                   name="test_component.CollectionTester"
                   threadingModel="both"
                   xmlns="urn:schemas-microsoft-com:winrt.v1" />
+            <activatableClass
+                  name="test_component.AsyncMethods"
+                  threadingModel="both"
+                  xmlns="urn:schemas-microsoft-com:winrt.v1" />
       </file>
 </assembly>

@@ -2,8 +2,16 @@
 // swiftlint:disable all
 import Ctest_component
 
-private var IID___x_ABI_Ctest__component_CIAsyncMethods: test_component.IID {
-    .init(Data1: 0xC76E7341, Data2: 0xF54D, Data3: 0x502B, Data4: ( 0xAA,0x8F,0xF2,0xAD,0x9A,0x48,0xC1,0x3F ))// C76E7341-F54D-502B-AA8F-F2AD9A48C13F
+private var IID___x_ABI_Ctest__component_CIAsyncMethodsStatics: test_component.IID {
+    .init(Data1: 0x5FAAD8F4, Data2: 0x29D7, Data3: 0x5C26, Data4: ( 0xA8,0x72,0x35,0x42,0xE3,0xE1,0x86,0x7A ))// 5FAAD8F4-29D7-5C26-A872-3542E3E1867A
+}
+
+private var IID___x_ABI_Ctest__component_CIAsyncMethodsWithProgress: test_component.IID {
+    .init(Data1: 0xD782777A, Data2: 0xBE43, Data3: 0x55FA, Data4: ( 0x92,0x6E,0x51,0xE6,0x40,0x23,0xD5,0xEC ))// D782777A-BE43-55FA-926E-51E64023D5EC
+}
+
+private var IID___x_ABI_Ctest__component_CIAsyncOperationInt: test_component.IID {
+    .init(Data1: 0x1D730A19, Data2: 0xCD91, Data3: 0x5A59, Data4: ( 0x96,0x83,0x51,0xA6,0x11,0xFA,0x48,0x08 ))// 1D730A19-CD91-5A59-9683-51A611FA4808
 }
 
 private var IID___x_ABI_Ctest__component_CIBase: test_component.IID {
@@ -179,12 +187,41 @@ private var IID___x_ABI_Ctest__component_CIVoidToVoidDelegate: test_component.II
 }
 
 public enum __ABI_test_component {
-    public class IAsyncMethods: test_component.IInspectable {
-        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIAsyncMethods }
+    public class IAsyncMethodsStatics: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIAsyncMethodsStatics }
+
+        internal func GetCompletedAsyncImpl(_ result: Int32) throws -> test_component.AnyIAsyncOperation<Int32>? {
+            var operation: UnsafeMutablePointer<__x_ABI_C__FIAsyncOperation_1_int>?
+            _ = try perform(as: __x_ABI_Ctest__component_CIAsyncMethodsStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetCompletedAsync(pThis, result, &operation))
+            }
+            return test_component.__x_ABI_C__FIAsyncOperation_1_intWrapper.unwrapFrom(abi: operation)
+        }
+
+        internal func GetCompletedWithErrorAsyncImpl(_ errorCode: HRESULT) throws -> test_component.AnyIAsyncOperation<Int32>? {
+            var operation: UnsafeMutablePointer<__x_ABI_C__FIAsyncOperation_1_int>?
+            _ = try perform(as: __x_ABI_Ctest__component_CIAsyncMethodsStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetCompletedWithErrorAsync(pThis, errorCode, &operation))
+            }
+            return test_component.__x_ABI_C__FIAsyncOperation_1_intWrapper.unwrapFrom(abi: operation)
+        }
+
+        internal func GetPendingAsyncImpl() throws -> test_component.AsyncOperationInt? {
+            var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIAsyncOperationInt>?
+            _ = try perform(as: __x_ABI_Ctest__component_CIAsyncMethodsStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetPendingAsync(pThis, &result))
+            }
+            return .from(abi: result)
+        }
+
+    }
+
+    public class IAsyncMethodsWithProgress: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIAsyncMethodsWithProgress }
 
         open func OperationWithProgressImpl(_ value: test_component.DateTime) throws -> test_component.AnyIAsyncOperationWithProgress<Int32, Double>? {
             var operation: UnsafeMutablePointer<__x_ABI_C__FIAsyncOperationWithProgress_2_int_double>?
-            _ = try perform(as: __x_ABI_Ctest__component_CIAsyncMethods.self) { pThis in
+            _ = try perform(as: __x_ABI_Ctest__component_CIAsyncMethodsWithProgress.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OperationWithProgress(pThis, .from(swift: value), &operation))
             }
             return test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper.unwrapFrom(abi: operation)
@@ -192,29 +229,29 @@ public enum __ABI_test_component {
 
     }
 
-    internal static var IAsyncMethodsVTable: __x_ABI_Ctest__component_CIAsyncMethodsVtbl = .init(
+    internal static var IAsyncMethodsWithProgressVTable: __x_ABI_Ctest__component_CIAsyncMethodsWithProgressVtbl = .init(
         QueryInterface: {
             guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
             ppvObject.pointee = nil
 
             switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IAsyncMethodsWrapper.IID:
+                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IAsyncMethodsWithProgressWrapper.IID:
                     _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
                     ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
                     return S_OK
                 default:
-                    return IAsyncMethodsWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
+                    return IAsyncMethodsWithProgressWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
             }
         },
 
-        AddRef: { IAsyncMethodsWrapper.addRef($0) },
-        Release: { IAsyncMethodsWrapper.release($0) },
+        AddRef: { IAsyncMethodsWithProgressWrapper.addRef($0) },
+        Release: { IAsyncMethodsWithProgressWrapper.release($0) },
         GetIids: {
             let size = MemoryLayout<test_component.IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
             iids[0] = IUnknown.IID
             iids[1] = IInspectable.IID
-            iids[2] = __ABI_test_component.IAsyncMethodsWrapper.IID
+            iids[2] = __ABI_test_component.IAsyncMethodsWithProgressWrapper.IID
             $1!.pointee = 3
             $2!.pointee = iids
             return S_OK
@@ -222,7 +259,7 @@ public enum __ABI_test_component {
 
         GetRuntimeClassName: {
             _ = $0
-            let hstring = try! HString("test_component.IAsyncMethods").detach()
+            let hstring = try! HString("test_component.IAsyncMethodsWithProgress").detach()
             $1!.pointee = hstring
             return S_OK
         },
@@ -235,7 +272,7 @@ public enum __ABI_test_component {
 
         OperationWithProgress: {
             do {
-                guard let __unwrapped__instance = IAsyncMethodsWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                guard let __unwrapped__instance = IAsyncMethodsWithProgressWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 let value: test_component.DateTime = .from(abi: $1)
                 let operation = try __unwrapped__instance.operationWithProgress(value)
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper(operation)
@@ -245,7 +282,85 @@ public enum __ABI_test_component {
         }
     )
 
-    public typealias IAsyncMethodsWrapper = InterfaceWrapperBase<__IMPL_test_component.IAsyncMethodsBridge>
+    public typealias IAsyncMethodsWithProgressWrapper = InterfaceWrapperBase<__IMPL_test_component.IAsyncMethodsWithProgressBridge>
+    public class IAsyncOperationInt: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIAsyncOperationInt }
+
+        open func CompleteImpl(_ result: Int32) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIAsyncOperationInt.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Complete(pThis, result))
+            }
+        }
+
+        open func CompleteWithErrorImpl(_ errorCode: HRESULT) throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIAsyncOperationInt.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.CompleteWithError(pThis, errorCode))
+            }
+        }
+
+    }
+
+    internal static var IAsyncOperationIntVTable: __x_ABI_Ctest__component_CIAsyncOperationIntVtbl = .init(
+        QueryInterface: {
+            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
+            ppvObject.pointee = nil
+
+            switch riid.pointee {
+                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IAsyncOperationIntWrapper.IID:
+                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+                    return S_OK
+                default:
+                    return IAsyncOperationIntWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
+            }
+        },
+
+        AddRef: { IAsyncOperationIntWrapper.addRef($0) },
+        Release: { IAsyncOperationIntWrapper.release($0) },
+        GetIids: {
+            let size = MemoryLayout<test_component.IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
+            iids[0] = IUnknown.IID
+            iids[1] = IInspectable.IID
+            iids[2] = __ABI_test_component.IAsyncOperationIntWrapper.IID
+            $1!.pointee = 3
+            $2!.pointee = iids
+            return S_OK
+        },
+
+        GetRuntimeClassName: {
+            _ = $0
+            let hstring = try! HString("test_component.IAsyncOperationInt").detach()
+            $1!.pointee = hstring
+            return S_OK
+        },
+
+        GetTrustLevel: {
+            _ = $0
+            $1!.pointee = TrustLevel(rawValue: 0)
+            return S_OK
+        },
+
+        Complete: {
+            do {
+                guard let __unwrapped__instance = IAsyncOperationIntWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                let result: Int32 = $1
+                try __unwrapped__instance.complete(result)
+                return S_OK
+            } catch { return failWith(err: E_FAIL) } 
+        },
+
+        CompleteWithError: {
+            do {
+                guard let __unwrapped__instance = IAsyncOperationIntWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                let errorCode: HRESULT = $1
+                try __unwrapped__instance.completeWithError(errorCode)
+                return S_OK
+            } catch { return failWith(err: E_FAIL) } 
+        }
+    )
+
+    public typealias IAsyncOperationIntWrapper = InterfaceWrapperBase<__IMPL_test_component.IAsyncOperationIntBridge>
     public class IBase: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBase }
 

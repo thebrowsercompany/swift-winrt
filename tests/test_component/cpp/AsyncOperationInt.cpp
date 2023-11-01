@@ -1,39 +1,51 @@
 #include "pch.h"
 #include "AsyncOperationInt.h"
-#include "AsyncOperationInt.g.cpp"
+#include "AsyncOperationInt.g.h"
 
 namespace winrt::test_component::implementation
 {
-    uint32_t AsyncOperationInt::Id()
-    {
-        throw hresult_not_implemented();
-    }
-    winrt::Windows::Foundation::AsyncStatus AsyncOperationInt::Status()
-    {
-        throw hresult_not_implemented();
-    }
-    winrt::hresult AsyncOperationInt::ErrorCode()
-    {
-        throw hresult_not_implemented();
-    }
     void AsyncOperationInt::Cancel()
     {
-        throw hresult_not_implemented();
+        if (status == winrt::Windows::Foundation::AsyncStatus::Started)
+        {
+            status = winrt::Windows::Foundation::AsyncStatus::Canceled;
+            if (completedHandler) completedHandler(*this, status);
+        }
     }
-    void AsyncOperationInt::Close()
+
+    void AsyncOperationInt::Complete(int32_t result)
     {
-        throw hresult_not_implemented();
+        if (status != winrt::Windows::Foundation::AsyncStatus::Started) throw winrt::hresult_illegal_method_call();
+        this->result = result;
+        status = winrt::Windows::Foundation::AsyncStatus::Completed;
+        if (completedHandler)
+            completedHandler(*this, status);
     }
+
+    void AsyncOperationInt::CompleteWithError(winrt::hresult errorCode)
+    {
+        if (status != winrt::Windows::Foundation::AsyncStatus::Started) throw winrt::hresult_illegal_method_call();
+        this->errorCode = errorCode;
+        status = winrt::Windows::Foundation::AsyncStatus::Error;
+        if (completedHandler)
+            completedHandler(*this, status);
+    }
+
     void AsyncOperationInt::Completed(winrt::Windows::Foundation::AsyncOperationCompletedHandler<int32_t> const& handler)
     {
-        throw hresult_not_implemented();
+        completedHandler = handler;
+        if (handler && status != winrt::Windows::Foundation::AsyncStatus::Started)
+            handler(*this, status);
     }
-    winrt::Windows::Foundation::AsyncOperationCompletedHandler<int32_t> AsyncOperationInt::Completed()
-    {
-        throw hresult_not_implemented();
-    }
+
     int32_t AsyncOperationInt::GetResults()
     {
-        throw hresult_not_implemented();
+        switch (status)
+        {
+            case winrt::Windows::Foundation::AsyncStatus::Completed: return result;
+            case winrt::Windows::Foundation::AsyncStatus::Canceled: throw winrt::hresult_canceled();
+            case winrt::Windows::Foundation::AsyncStatus::Error: throw winrt::hresult_error(errorCode);
+            default: throw winrt::hresult_illegal_method_call();
+        }
     }
 }

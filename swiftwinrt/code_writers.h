@@ -1362,13 +1362,12 @@ vtable);
 
         if (is_winrt_async_result_type(type))
         {
-            std::string return_statement;
+            std::string return_clause;
             const metadata_type* result_type = nullptr;
             if (type.generic_params.size() > 0) {
-                return_statement = w.write_temp(" -> %", type.generic_params[0]);
+                return_clause = w.write_temp(" -> %", type.generic_params[0]);
             }
             w.write(R"(public extension % {
-    ^@MainActor
     func get() async throws% {
         if status == .started {
             let event = WaitableEvent()
@@ -1376,10 +1375,12 @@ vtable);
                 Task { await event.signal() }
             }
             await event.wait()
-        }%
+        }
+        return try getResults()
     }
 }
-)", bind<write_swift_type_identifier>(type), return_statement, !return_statement.empty() ? "\n        return try getResults()" : "");
+
+)", bind<write_swift_type_identifier>(type), return_clause);
         }
     }
 

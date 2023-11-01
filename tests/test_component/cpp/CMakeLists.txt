@@ -106,6 +106,7 @@ install(TARGETS test_component_cpp
   COMPONENT lib)
 
 target_sources(test_component_cpp PRIVATE
+    AsyncMethods.cpp
     AsyncOperationInt.cpp
     StaticClass.cpp
     Base.cpp
