@@ -6,6 +6,9 @@ import C_BINDINGS_MODULE
 
 fileprivate let IID_IUnknown = IID(Data1: 0x00000000, Data2: 0x0000, Data3: 0x0000, Data4: ( 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x46 )) // 00000000-0000-0000-C000-000000000046
 
+public protocol IUnknown2: HasIID {
+}
+
 open class IUnknown : HasIID {
   public let pUnk: IUnknownRef
 

@@ -1,7 +1,9 @@
 // Copyright © 2021 Saleem Abdulrasool <compnerd@compnerd.org>
 // SPDX-License-Identifier: BSD-3
 
-import WinSDK
+public protocol IUnknownRef2 {
+  func detach() -> UnsafeMutableRawPointer?
+}
 
 @_fixed_layout
 public final class IUnknownRef {

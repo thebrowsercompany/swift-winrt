@@ -5,11 +5,6 @@ public protocol Initializable {
   init()
 }
 
-public protocol InitializableFromAbi : HasIID {
-    associatedtype ABI
-    init?(ref: UnsafeMutablePointer<ABI>?)
-}
-
 public protocol HasIID {
   static var IID: SUPPORT_MODULE.IID { get }
 }
@@ -19,6 +14,11 @@ public protocol AbiInterface {
     associatedtype SwiftABI : SUPPORT_MODULE.IUnknown
 }
 
+
+public protocol AbiInterface2 {
+    associatedtype CABI
+    associatedtype SwiftABI : ComObject<CABI>
+}
 // A protocol for defining a type which implements a WinRT interface and defines
 // the swift <-> winrt translation
 public protocol AbiBridge {
@@ -28,35 +28,51 @@ public protocol AbiBridge {
     static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection?
 }
 
+public protocol AbiBridge2 {
+    associatedtype CABI
+    associatedtype SwiftProjection
+    static func makeAbi() -> CABI
+    static func from(abi: ComPtr<CABI>?) -> SwiftProjection?
+}
+
 public protocol ReferenceBridge : AbiBridge, HasIID {
 }
 
 public protocol AbiInterfaceBridge : AbiBridge & AbiInterface {
 }
 
+public protocol AbiInterfaceBridge2 : AbiBridge2 & AbiInterface2 {
+}
+
 public protocol AbiInterfaceImpl<Bridge> {
     associatedtype Bridge: AbiInterfaceBridge
     var _default: Bridge.SwiftABI { get }
 }
+
+public protocol AbiInterfaceImpl2<Bridge> {
+    associatedtype Bridge: AbiInterfaceBridge2
+    var _default: Bridge.SwiftABI { get }
+}
 internal typealias AnyAbiInterfaceImpl<Bridge> = any AbiInterfaceImpl<Bridge>
 public protocol WinRTAbiImpl<Bridge>: AbiInterfaceImpl where Bridge.SwiftABI: IInspectable {}
+public protocol WinRTAbiImpl2<Bridge>: AbiInterfaceImpl2 where Bridge.SwiftABI: WinRTObject<Bridge.CABI> {}
 internal typealias AnyWinRTAbiImpl<Bridge> = any WinRTAbiImpl<Bridge>
 
 // The WinRTWrapperBase class wraps an AbiBridge and is used for wrapping and unwrapping swift
 // objects at the ABI layer. The contract for how to do this is defined by the AbiBridge protocol
 open class WinRTWrapperBase<CInterface, Prototype> {
-    public struct ComObject {
+    public struct ComObjectABI {
         public var comInterface: CInterface
         public var wrapper: Unmanaged<WinRTWrapperBase>?
     }
 
-    public var instance: ComObject
+    public var instance: ComObjectABI
     public var swiftObj: Prototype!
 
     open class var IID: SUPPORT_MODULE.IID { get { fatalError("not implemented") } }
 
     public init(_ pointer: CInterface, _ impl: Prototype!) {
-        self.instance = ComObject(comInterface: pointer)
+        self.instance = ComObjectABI(comInterface: pointer)
         self.swiftObj = impl
         self.instance.wrapper = Unmanaged<WinRTWrapperBase>.passUnretained(self)
     }
@@ -98,7 +114,7 @@ open class WinRTWrapperBase<CInterface, Prototype> {
 
     public static func fromRaw(_ pUnk: UnsafeMutableRawPointer?) -> Unmanaged<WinRTWrapperBase>? {
       guard let pUnk = pUnk else { return nil }
-      return pUnk.assumingMemoryBound(to: WinRTWrapperBase.ComObject.self).pointee.wrapper
+      return pUnk.assumingMemoryBound(to: WinRTWrapperBase.ComObjectABI.self).pointee.wrapper
     }
 
     public static func tryUnwrapFrom(raw pUnk: UnsafeMutableRawPointer?) -> Prototype? {
@@ -117,7 +133,7 @@ open class WinRTWrapperBase<CInterface, Prototype> {
           // try to get the original wrapper so we can get the apps implementation. if that doesn't
           // exist, then return nil
 
-        guard let wrapper  = pUnk.bindMemory(to: WinRTWrapperBase.ComObject.self, capacity: 1).pointee.wrapper else { return nil }
+        guard let wrapper  = pUnk.bindMemory(to: WinRTWrapperBase.ComObjectABI.self, capacity: 1).pointee.wrapper else { return nil }
         return wrapper.takeRetainedValue().swiftObj
     }
 
