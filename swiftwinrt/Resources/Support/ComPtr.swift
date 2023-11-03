@@ -2,6 +2,11 @@
 // SPDX-License-Identifier: BSD-3
 import C_BINDINGS_MODULE
 
+// ComPtr is a smart pointer for COM interfaces.  It holds onto the underlying pointer
+// and the semantics of it are meant to mirror that of the ComPtr class in WRL. The
+// design of ComPtr and ComPtrs.intialize is that there should be no use of UnsafeMutablePointer
+// any where else in the code base.  The only place where UnsafeMutablePointer should be used is
+// where it's required at the ABI boundary.
 public class ComPtr<CInterface> {
     fileprivate var pUnk: UnsafeMutablePointer<CInterface>?
 
@@ -17,6 +22,9 @@ public class ComPtr<CInterface> {
         self.init(ptr)
     }
 
+    // Release ownership of the underlying pointer and return it. This is
+    // useful when assigning to an out parameter and avoids an extra Add/Ref
+    // release call.
     public func detach() -> UnsafeMutableRawPointer? {
         let result = pUnk
         pUnk = nil
@@ -43,11 +51,6 @@ public class ComPtr<CInterface> {
         guard let pUnk else { preconditionFailure("asIUnknown called on nil pointer") }
         return try pUnk.withMemoryRebound(to: C_IUnknown.self, capacity: 1) { try body($0) }
     }
-
-    func reset<ResultType>(_ body: (inout UnsafeMutablePointer<CInterface>?) throws -> ResultType) rethrows -> ResultType {
-        release()
-        return try body(&pUnk)
-    }
 }
 
 public extension ComPtr {
@@ -62,7 +65,12 @@ public extension ComPtr {
     }
 }
 
+// ComPtrs properly initializes pointers who have ownership of the underlying raw pointers. This is used at the ABI boundary layer, for example:
+// let (return1, return2) = try ComPtrs.initialize { return1Abi, return2Abi in
+//    try CHECKED(pThis.pointee.lpVtbl.pointee.Method(pThis, &return1Abi, &return2Abi))
+// }
 public struct ComPtrs {
+    // Note: The single initialization methods still return a tuple for ease of code generation
     public static func initialize<I>(to: I.Type, _ body: (inout UnsafeMutableRawPointer?) throws -> ()) rethrows -> (ComPtr<I>?) {
         var ptrRaw: UnsafeMutableRawPointer?
         try body(&ptrRaw)

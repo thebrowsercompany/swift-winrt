@@ -15,7 +15,9 @@ public protocol AbiInterface {
 }
 
 // A protocol for defining a type which implements a WinRT interface and defines
-// the swift <-> winrt translation
+// the swift <-> winrt translation. Note that AbiBridge doesn't depend on the SwiftABI,
+// this is because not all conversions between the ABI and Swift have a SwiftABI implementation.
+// For example, IReference<T> does not since those types are projected to T? in Swift.
 public protocol AbiBridge {
     associatedtype CABI
     associatedtype SwiftProjection
