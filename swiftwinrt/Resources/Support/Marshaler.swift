@@ -23,7 +23,7 @@ fileprivate class MarshalWrapper: WinRTAbiBridgeWrapper<IMarshalBridge> {
     }
 }
 
-fileprivate struct IMarshalBridge: AbiBridge {
+fileprivate enum IMarshalBridge: AbiBridge {
     static func makeAbi() -> C_IMarshal {
         return C_IMarshal(lpVtbl: &IMarshalVTable)
     }

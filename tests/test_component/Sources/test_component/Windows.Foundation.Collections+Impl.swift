@@ -3,7 +3,7 @@
 import Ctest_component
 
 public enum __IMPL_Windows_Foundation_Collections {
-    public class IPropertySetBridge : AbiInterfaceBridge {
+    public enum IPropertySetBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CCollections_CIPropertySet
         public typealias SwiftABI = __ABI_Windows_Foundation_Collections.IPropertySet
         public typealias SwiftProjection = AnyIPropertySet
@@ -87,7 +87,7 @@ public enum __IMPL_Windows_Foundation_Collections {
 
     }
 
-    public class IVectorChangedEventArgsBridge : AbiInterfaceBridge {
+    public enum IVectorChangedEventArgsBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CCollections_CIVectorChangedEventArgs
         public typealias SwiftABI = __ABI_Windows_Foundation_Collections.IVectorChangedEventArgs
         public typealias SwiftProjection = AnyIVectorChangedEventArgs

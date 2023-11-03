@@ -209,7 +209,7 @@ internal class IIterableAny: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterable_1_IInspectableBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIIterable_1_IInspectableBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterable_1_IInspectable
     internal typealias SwiftABI = IIterableAny
     internal typealias SwiftProjection = AnyIIterable<Any?>
@@ -295,7 +295,7 @@ internal class IIterableString: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterable_1_HSTRINGBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIIterable_1_HSTRINGBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterable_1_HSTRING
     internal typealias SwiftABI = IIterableString
     internal typealias SwiftProjection = AnyIIterable<String>
@@ -381,7 +381,7 @@ internal class IIterableIKeyValuePairString_Any: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable
     internal typealias SwiftABI = IIterableIKeyValuePairString_Any
     internal typealias SwiftProjection = AnyIIterable<AnyIKeyValuePair<String, Any?>?>
@@ -467,7 +467,7 @@ internal class IIterableIKeyValuePairString_String: test_component.IInspectable 
 
 }
 
-internal class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING
     internal typealias SwiftABI = IIterableIKeyValuePairString_String
     internal typealias SwiftProjection = AnyIIterable<AnyIKeyValuePair<String, String>?>
@@ -553,7 +553,7 @@ internal class IIterableIKeyValuePairString_Base: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IIterableIKeyValuePairString_Base
     internal typealias SwiftProjection = AnyIIterable<AnyIKeyValuePair<String, Base?>?>
@@ -639,7 +639,7 @@ internal class IIterableBase: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IIterableBase
     internal typealias SwiftProjection = AnyIIterable<Base?>
@@ -725,7 +725,7 @@ internal class IIterableIBasic: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasic
     internal typealias SwiftABI = IIterableIBasic
     internal typealias SwiftProjection = AnyIIterable<AnyIBasic?>
@@ -843,7 +843,7 @@ internal class IIteratorAny: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterator_1_IInspectableBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIIterator_1_IInspectableBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterator_1_IInspectable
     internal typealias SwiftABI = IIteratorAny
     internal typealias SwiftProjection = AnyIIterator<Any?>
@@ -970,7 +970,7 @@ internal class IIteratorString: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterator_1_HSTRINGBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIIterator_1_HSTRINGBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterator_1_HSTRING
     internal typealias SwiftABI = IIteratorString
     internal typealias SwiftProjection = AnyIIterator<String>
@@ -1098,7 +1098,7 @@ internal class IIteratorIKeyValuePairString_Any: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable
     internal typealias SwiftABI = IIteratorIKeyValuePairString_Any
     internal typealias SwiftProjection = AnyIIterator<AnyIKeyValuePair<String, Any?>?>
@@ -1226,7 +1226,7 @@ internal class IIteratorIKeyValuePairString_String: test_component.IInspectable 
 
 }
 
-internal class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING
     internal typealias SwiftABI = IIteratorIKeyValuePairString_String
     internal typealias SwiftProjection = AnyIIterator<AnyIKeyValuePair<String, String>?>
@@ -1354,7 +1354,7 @@ internal class IIteratorIKeyValuePairString_Base: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IIteratorIKeyValuePairString_Base
     internal typealias SwiftProjection = AnyIIterator<AnyIKeyValuePair<String, Base?>?>
@@ -1481,7 +1481,7 @@ internal class IIteratorBase: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IIteratorBase
     internal typealias SwiftProjection = AnyIIterator<Base?>
@@ -1609,7 +1609,7 @@ internal class IIteratorIBasic: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic
     internal typealias SwiftABI = IIteratorIBasic
     internal typealias SwiftProjection = AnyIIterator<AnyIBasic?>
@@ -1720,7 +1720,7 @@ internal class IKeyValuePairString_Any: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable
     internal typealias SwiftABI = IKeyValuePairString_Any
     internal typealias SwiftProjection = AnyIKeyValuePair<String, Any?>
@@ -1826,7 +1826,7 @@ internal class IKeyValuePairString_String: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING
     internal typealias SwiftABI = IKeyValuePairString_String
     internal typealias SwiftProjection = AnyIKeyValuePair<String, String>
@@ -1932,7 +1932,7 @@ internal class IKeyValuePairString_Base: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IKeyValuePairString_Base
     internal typealias SwiftProjection = AnyIKeyValuePair<String, Base?>
@@ -2038,7 +2038,7 @@ internal class IMapChangedEventArgsString: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIMapChangedEventArgs_1_HSTRING
     internal typealias SwiftABI = IMapChangedEventArgsString
     internal typealias SwiftProjection = AnyIMapChangedEventArgs<String>
@@ -2186,7 +2186,7 @@ internal class IMapViewString_Any: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIMapView_2_HSTRING_IInspectableBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIMapView_2_HSTRING_IInspectableBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIMapView_2_HSTRING_IInspectable
     internal typealias SwiftABI = IMapViewString_Any
     internal typealias SwiftProjection = AnyIMapView<String, Any?>
@@ -2351,7 +2351,7 @@ internal class IMapViewString_String: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIMapView_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIMapView_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIMapView_2_HSTRING_HSTRING
     internal typealias SwiftABI = IMapViewString_String
     internal typealias SwiftProjection = AnyIMapView<String, String>
@@ -2516,7 +2516,7 @@ internal class IMapViewString_Base: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IMapViewString_Base
     internal typealias SwiftProjection = AnyIMapView<String, Base?>
@@ -2722,7 +2722,7 @@ internal class IMapString_Any: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIMap_2_HSTRING_IInspectableBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIMap_2_HSTRING_IInspectableBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIMap_2_HSTRING_IInspectable
     internal typealias SwiftABI = IMapString_Any
     internal typealias SwiftProjection = AnyIMap<String, Any?>
@@ -2941,7 +2941,7 @@ internal class IMapString_String: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIMap_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIMap_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIMap_2_HSTRING_HSTRING
     internal typealias SwiftABI = IMapString_String
     internal typealias SwiftProjection = AnyIMap<String, String>
@@ -3159,7 +3159,7 @@ internal class IMapString_Base: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IMapString_Base
     internal typealias SwiftProjection = AnyIMap<String, Base?>
@@ -3300,7 +3300,7 @@ internal class IObservableMapString_Any: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIObservableMap_2_HSTRING_IInspectable
     internal typealias SwiftABI = IObservableMapString_Any
     internal typealias SwiftProjection = AnyIObservableMap<String, Any?>
@@ -3455,7 +3455,7 @@ internal class IObservableMapString_String: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIObservableMap_2_HSTRING_HSTRING
     internal typealias SwiftABI = IObservableMapString_String
     internal typealias SwiftProjection = AnyIObservableMap<String, String>
@@ -3610,7 +3610,7 @@ internal class IObservableVectorBase: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IObservableVectorBase
     internal typealias SwiftProjection = AnyIObservableVector<Base?>
@@ -3808,7 +3808,7 @@ internal class IObservableVectorIBasic: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasic
     internal typealias SwiftABI = IObservableVectorIBasic
     internal typealias SwiftProjection = AnyIObservableVector<AnyIBasic?>
@@ -4028,7 +4028,7 @@ internal class IVectorViewAny: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIVectorView_1_IInspectableBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIVectorView_1_IInspectableBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIVectorView_1_IInspectable
     internal typealias SwiftABI = IVectorViewAny
     internal typealias SwiftProjection = AnyIVectorView<Any?>
@@ -4188,7 +4188,7 @@ internal class IVectorViewString: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIVectorView_1_HSTRINGBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIVectorView_1_HSTRINGBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIVectorView_1_HSTRING
     internal typealias SwiftABI = IVectorViewString
     internal typealias SwiftProjection = AnyIVectorView<String>
@@ -4347,7 +4347,7 @@ internal class IVectorViewBase: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IVectorViewBase
     internal typealias SwiftProjection = AnyIVectorView<Base?>
@@ -4509,7 +4509,7 @@ internal class IVectorViewIBasic: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasic
     internal typealias SwiftABI = IVectorViewIBasic
     internal typealias SwiftProjection = AnyIVectorView<AnyIBasic?>
@@ -4773,7 +4773,7 @@ internal class IVectorAny: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIVector_1_IInspectableBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIVector_1_IInspectableBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIVector_1_IInspectable
     internal typealias SwiftABI = IVectorAny
     internal typealias SwiftProjection = AnyIVector<Any?>
@@ -5076,7 +5076,7 @@ internal class IVectorString: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIVector_1_HSTRINGBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIVector_1_HSTRINGBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIVector_1_HSTRING
     internal typealias SwiftABI = IVectorString
     internal typealias SwiftProjection = AnyIVector<String>
@@ -5375,7 +5375,7 @@ internal class IVectorBase: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IVectorBase
     internal typealias SwiftProjection = AnyIVector<Base?>
@@ -5683,7 +5683,7 @@ internal class IVectorIBasic: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic
     internal typealias SwiftABI = IVectorIBasic
     internal typealias SwiftProjection = AnyIVector<AnyIBasic?>
@@ -6179,7 +6179,7 @@ internal class IAsyncOperationWithProgressInt32_Double: test_component.IInspecta
 
 }
 
-internal class __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIAsyncOperationWithProgress_2_int_double
     internal typealias SwiftABI = IAsyncOperationWithProgressInt32_Double
     internal typealias SwiftProjection = AnyIAsyncOperationWithProgress<Int32, Double>
@@ -6337,7 +6337,7 @@ internal class IAsyncOperationInt32: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIAsyncOperation_1_intBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIAsyncOperation_1_intBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIAsyncOperation_1_int
     internal typealias SwiftABI = IAsyncOperationInt32
     internal typealias SwiftProjection = AnyIAsyncOperation<Int32>
@@ -6405,7 +6405,7 @@ private var IID___x_ABI_C__FIReference_1_GUID: test_component.IID {
     .init(Data1: 0x7d50f649, Data2: 0x632c, Data3: 0x51f9, Data4: ( 0x84,0x9a,0xee,0x49,0x42,0x89,0x33,0xea ))// 7d50f649-632c-51f9-849a-ee49428933ea
 }
 
-internal struct __x_ABI_C__FIReference_1_GUIDBridge: ReferenceBridge {
+internal enum __x_ABI_C__FIReference_1_GUIDBridge: ReferenceBridge {
     typealias CABI = __x_ABI_C__FIReference_1_GUID
     typealias SwiftProjection = GUID
     static var IID: test_component.IID { IID___x_ABI_C__FIReference_1_GUID }
@@ -6463,7 +6463,7 @@ private var IID___x_ABI_C__FIReference_1_int: test_component.IID {
     .init(Data1: 0x548cefbd, Data2: 0xbc8a, Data3: 0x5fa0, Data4: ( 0x8d,0xf2,0x95,0x74,0x40,0xfc,0x8b,0xf4 ))// 548cefbd-bc8a-5fa0-8df2-957440fc8bf4
 }
 
-internal struct __x_ABI_C__FIReference_1_intBridge: ReferenceBridge {
+internal enum __x_ABI_C__FIReference_1_intBridge: ReferenceBridge {
     typealias CABI = __x_ABI_C__FIReference_1_int
     typealias SwiftProjection = Int32
     static var IID: test_component.IID { IID___x_ABI_C__FIReference_1_int }
@@ -6521,7 +6521,7 @@ private var IID___x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned: tes
     .init(Data1: 0x5888a1ed, Data2: 0xabae, Data3: 0x584f, Data4: ( 0xbf,0x08,0x13,0x1b,0x25,0x42,0x80,0x6b ))// 5888a1ed-abae-584f-bf08-131b2542806b
 }
 
-internal struct __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedBridge: ReferenceBridge {
+internal enum __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedBridge: ReferenceBridge {
     typealias CABI = __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned
     typealias SwiftProjection = test_component.Signed
     static var IID: test_component.IID { IID___x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned }

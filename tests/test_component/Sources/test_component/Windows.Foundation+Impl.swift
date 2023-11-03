@@ -3,7 +3,7 @@
 import Ctest_component
 
 public enum __IMPL_Windows_Foundation {
-    public class IAsyncActionBridge : AbiInterfaceBridge {
+    public enum IAsyncActionBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIAsyncAction
         public typealias SwiftABI = __ABI_Windows_Foundation.IAsyncAction
         public typealias SwiftProjection = AnyIAsyncAction
@@ -65,7 +65,7 @@ public enum __IMPL_Windows_Foundation {
 
     }
 
-    public class IAsyncInfoBridge : AbiInterfaceBridge {
+    public enum IAsyncInfoBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIAsyncInfo
         public typealias SwiftABI = __ABI_Windows_Foundation.IAsyncInfo
         public typealias SwiftProjection = AnyIAsyncInfo
@@ -115,7 +115,7 @@ public enum __IMPL_Windows_Foundation {
 
     }
 
-    public class IClosableBridge : AbiInterfaceBridge {
+    public enum IClosableBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIClosable
         public typealias SwiftABI = __ABI_Windows_Foundation.IClosable
         public typealias SwiftProjection = AnyIClosable
@@ -145,7 +145,7 @@ public enum __IMPL_Windows_Foundation {
 
     }
 
-    public class IPropertyValueBridge : AbiInterfaceBridge {
+    public enum IPropertyValueBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIPropertyValue
         public typealias SwiftABI = __ABI_Windows_Foundation.IPropertyValue
         public typealias SwiftProjection = AnyIPropertyValue
@@ -238,7 +238,7 @@ public enum __IMPL_Windows_Foundation {
 
     }
 
-    public class IStringableBridge : AbiInterfaceBridge {
+    public enum IStringableBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIStringable
         public typealias SwiftABI = __ABI_Windows_Foundation.IStringable
         public typealias SwiftProjection = AnyIStringable

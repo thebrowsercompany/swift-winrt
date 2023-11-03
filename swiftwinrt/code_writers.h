@@ -479,7 +479,7 @@ bind<write_abi_args>(function));
             generic_param->mangled_name() :
             generic_param->cpp_abi_name();
 
-        w.write(R"(internal struct %: ReferenceBridge {
+        w.write(R"(internal enum %: ReferenceBridge {
     typealias CABI = %
     typealias SwiftProjection = %
     static var IID: %.IID { IID_% }
@@ -1070,7 +1070,7 @@ bind_bridge_fullname(type));
         }
 
         auto modifier = is_generic ? "internal" : "public";
-        w.write(R"(% class % : AbiInterfaceBridge {
+        w.write(R"(% enum % : AbiInterfaceBridge {
     % typealias CABI = %
     % typealias SwiftABI = %
     % typealias SwiftProjection = %
@@ -2109,11 +2109,11 @@ public init<Composable: ComposableImpl>(
 
         bool use_iinspectable_vtable = type_name(overrides) == type_name(*default_interface);
 
-        auto format = R"(internal struct % : ComposableImpl {
+        auto format = R"(internal enum % : ComposableImpl {
     internal typealias CABI = %
     internal typealias SwiftABI = %
     internal typealias SwiftProjection = %
-    internal struct Default : AbiInterface {
+    internal enum Default : AbiInterface {
         internal typealias CABI = %
         internal typealias SwiftABI = %.%
     }
