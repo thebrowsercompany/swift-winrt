@@ -14,20 +14,7 @@ internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperation
 }
 
 internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1_intVTable: __x_ABI_C__FIAsyncOperationCompletedHandler_1_intVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return failWith(err: E_NOINTERFACE)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper.release($0) },
     Invoke: {
@@ -57,7 +44,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1_intBridge : WinRTDe
     internal typealias CABI = __x_ABI_C__FIAsyncOperationCompletedHandler_1_int
     internal typealias SwiftABI = test_component.AsyncOperationCompletedHandlerInt32
 
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
@@ -78,20 +65,7 @@ internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperation
 }
 
 internal var __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleVTable: __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return failWith(err: E_NOINTERFACE)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper.release($0) },
     Invoke: {
@@ -121,7 +95,7 @@ internal class __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleBridge : W
     internal typealias CABI = __x_ABI_C__FIAsyncOperationProgressHandler_2_int_double
     internal typealias SwiftABI = test_component.AsyncOperationProgressHandlerInt32_Double
 
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, progressInfo) in
@@ -142,20 +116,7 @@ internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperation
 }
 
 internal var __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleVTable: __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return failWith(err: E_NOINTERFACE)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWrapper.release($0) },
     Invoke: {
@@ -185,7 +146,7 @@ internal class __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_dou
     internal typealias CABI = __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_double
     internal typealias SwiftABI = test_component.AsyncOperationWithProgressCompletedHandlerInt32_Double
 
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
@@ -199,20 +160,7 @@ private var IID___x_ABI_C__FIIterable_1_IInspectable: test_component.IID {
 }
 
 internal var __x_ABI_C__FIIterable_1_IInspectableVTable: __x_ABI_C__FIIterable_1_IInspectableVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIIterable_1_IInspectableWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIIterable_1_IInspectableWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIIterable_1_IInspectableWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIIterable_1_IInspectableWrapper.addRef($0) },
     Release: { __x_ABI_C__FIIterable_1_IInspectableWrapper.release($0) },
     GetIids: {
@@ -261,7 +209,7 @@ internal class IIterableAny: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterable_1_IInspectableBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIIterable_1_IInspectableBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterable_1_IInspectable
     internal typealias SwiftABI = IIterableAny
     internal typealias SwiftProjection = AnyIIterable<Any?>
@@ -298,20 +246,7 @@ private var IID___x_ABI_C__FIIterable_1_HSTRING: test_component.IID {
 }
 
 internal var __x_ABI_C__FIIterable_1_HSTRINGVTable: __x_ABI_C__FIIterable_1_HSTRINGVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIIterable_1_HSTRINGWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIIterable_1_HSTRINGWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIIterable_1_HSTRINGWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIIterable_1_HSTRINGWrapper.addRef($0) },
     Release: { __x_ABI_C__FIIterable_1_HSTRINGWrapper.release($0) },
     GetIids: {
@@ -360,7 +295,7 @@ internal class IIterableString: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterable_1_HSTRINGBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIIterable_1_HSTRINGBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterable_1_HSTRING
     internal typealias SwiftABI = IIterableString
     internal typealias SwiftProjection = AnyIIterable<String>
@@ -397,20 +332,7 @@ private var IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IIns
 }
 
 internal var __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableVTable: __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.addRef($0) },
     Release: { __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.release($0) },
     GetIids: {
@@ -459,7 +381,7 @@ internal class IIterableIKeyValuePairString_Any: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable
     internal typealias SwiftABI = IIterableIKeyValuePairString_Any
     internal typealias SwiftProjection = AnyIIterable<AnyIKeyValuePair<String, Any?>?>
@@ -496,20 +418,7 @@ private var IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTR
 }
 
 internal var __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.addRef($0) },
     Release: { __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.release($0) },
     GetIids: {
@@ -558,7 +467,7 @@ internal class IIterableIKeyValuePairString_String: test_component.IInspectable 
 
 }
 
-internal class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING
     internal typealias SwiftABI = IIterableIKeyValuePairString_String
     internal typealias SwiftProjection = AnyIIterable<AnyIKeyValuePair<String, String>?>
@@ -595,20 +504,7 @@ private var IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_
 }
 
 internal var __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.addRef($0) },
     Release: { __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.release($0) },
     GetIids: {
@@ -657,7 +553,7 @@ internal class IIterableIKeyValuePairString_Base: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IIterableIKeyValuePairString_Base
     internal typealias SwiftProjection = AnyIIterable<AnyIKeyValuePair<String, Base?>?>
@@ -694,20 +590,7 @@ private var IID___x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBase: test_c
 }
 
 internal var __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseWrapper.addRef($0) },
     Release: { __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseWrapper.release($0) },
     GetIids: {
@@ -756,7 +639,7 @@ internal class IIterableBase: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IIterableBase
     internal typealias SwiftProjection = AnyIIterable<Base?>
@@ -793,20 +676,7 @@ private var IID___x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasic: test
 }
 
 internal var __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicVTable: __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.addRef($0) },
     Release: { __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.release($0) },
     GetIids: {
@@ -855,7 +725,7 @@ internal class IIterableIBasic: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasic
     internal typealias SwiftABI = IIterableIBasic
     internal typealias SwiftProjection = AnyIIterable<AnyIBasic?>
@@ -892,20 +762,7 @@ private var IID___x_ABI_C__FIIterator_1_IInspectable: test_component.IID {
 }
 
 internal var __x_ABI_C__FIIterator_1_IInspectableVTable: __x_ABI_C__FIIterator_1_IInspectableVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIIterator_1_IInspectableWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIIterator_1_IInspectableWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIIterator_1_IInspectableWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIIterator_1_IInspectableWrapper.addRef($0) },
     Release: { __x_ABI_C__FIIterator_1_IInspectableWrapper.release($0) },
     GetIids: {
@@ -986,7 +843,7 @@ internal class IIteratorAny: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterator_1_IInspectableBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIIterator_1_IInspectableBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterator_1_IInspectable
     internal typealias SwiftABI = IIteratorAny
     internal typealias SwiftProjection = AnyIIterator<Any?>
@@ -1033,20 +890,7 @@ private var IID___x_ABI_C__FIIterator_1_HSTRING: test_component.IID {
 }
 
 internal var __x_ABI_C__FIIterator_1_HSTRINGVTable: __x_ABI_C__FIIterator_1_HSTRINGVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIIterator_1_HSTRINGWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIIterator_1_HSTRINGWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIIterator_1_HSTRINGWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIIterator_1_HSTRINGWrapper.addRef($0) },
     Release: { __x_ABI_C__FIIterator_1_HSTRINGWrapper.release($0) },
     GetIids: {
@@ -1126,7 +970,7 @@ internal class IIteratorString: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterator_1_HSTRINGBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIIterator_1_HSTRINGBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterator_1_HSTRING
     internal typealias SwiftABI = IIteratorString
     internal typealias SwiftProjection = AnyIIterator<String>
@@ -1173,20 +1017,7 @@ private var IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IIns
 }
 
 internal var __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableVTable: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.addRef($0) },
     Release: { __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.release($0) },
     GetIids: {
@@ -1267,7 +1098,7 @@ internal class IIteratorIKeyValuePairString_Any: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable
     internal typealias SwiftABI = IIteratorIKeyValuePairString_Any
     internal typealias SwiftProjection = AnyIIterator<AnyIKeyValuePair<String, Any?>?>
@@ -1314,20 +1145,7 @@ private var IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTR
 }
 
 internal var __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.addRef($0) },
     Release: { __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.release($0) },
     GetIids: {
@@ -1408,7 +1226,7 @@ internal class IIteratorIKeyValuePairString_String: test_component.IInspectable 
 
 }
 
-internal class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING
     internal typealias SwiftABI = IIteratorIKeyValuePairString_String
     internal typealias SwiftProjection = AnyIIterator<AnyIKeyValuePair<String, String>?>
@@ -1455,20 +1273,7 @@ private var IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_
 }
 
 internal var __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.addRef($0) },
     Release: { __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.release($0) },
     GetIids: {
@@ -1549,7 +1354,7 @@ internal class IIteratorIKeyValuePairString_Base: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IIteratorIKeyValuePairString_Base
     internal typealias SwiftProjection = AnyIIterator<AnyIKeyValuePair<String, Base?>?>
@@ -1596,20 +1401,7 @@ private var IID___x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase: test_c
 }
 
 internal var __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.addRef($0) },
     Release: { __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.release($0) },
     GetIids: {
@@ -1689,7 +1481,7 @@ internal class IIteratorBase: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IIteratorBase
     internal typealias SwiftProjection = AnyIIterator<Base?>
@@ -1736,20 +1528,7 @@ private var IID___x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic: test
 }
 
 internal var __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicVTable: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.addRef($0) },
     Release: { __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.release($0) },
     GetIids: {
@@ -1830,7 +1609,7 @@ internal class IIteratorIBasic: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic
     internal typealias SwiftABI = IIteratorIBasic
     internal typealias SwiftProjection = AnyIIterator<AnyIBasic?>
@@ -1877,20 +1656,7 @@ private var IID___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable: test_component
 }
 
 internal var __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableVTable: __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.addRef($0) },
     Release: { __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.release($0) },
     GetIids: {
@@ -1954,7 +1720,7 @@ internal class IKeyValuePairString_Any: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable
     internal typealias SwiftABI = IKeyValuePairString_Any
     internal typealias SwiftProjection = AnyIKeyValuePair<String, Any?>
@@ -1997,20 +1763,7 @@ private var IID___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING: test_component.IID 
 }
 
 internal var __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.addRef($0) },
     Release: { __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.release($0) },
     GetIids: {
@@ -2073,7 +1826,7 @@ internal class IKeyValuePairString_String: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING
     internal typealias SwiftABI = IKeyValuePairString_String
     internal typealias SwiftProjection = AnyIKeyValuePair<String, String>
@@ -2116,20 +1869,7 @@ private var IID___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__C
 }
 
 internal var __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.addRef($0) },
     Release: { __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.release($0) },
     GetIids: {
@@ -2192,7 +1932,7 @@ internal class IKeyValuePairString_Base: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IKeyValuePairString_Base
     internal typealias SwiftProjection = AnyIKeyValuePair<String, Base?>
@@ -2235,20 +1975,7 @@ private var IID___x_ABI_C__FIMapChangedEventArgs_1_HSTRING: test_component.IID {
 }
 
 internal var __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGVTable: __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper.addRef($0) },
     Release: { __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper.release($0) },
     GetIids: {
@@ -2311,7 +2038,7 @@ internal class IMapChangedEventArgsString: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIMapChangedEventArgs_1_HSTRING
     internal typealias SwiftABI = IMapChangedEventArgsString
     internal typealias SwiftProjection = AnyIMapChangedEventArgs<String>
@@ -2353,20 +2080,7 @@ private var IID___x_ABI_C__FIMapView_2_HSTRING_IInspectable: test_component.IID 
 }
 
 internal var __x_ABI_C__FIMapView_2_HSTRING_IInspectableVTable: __x_ABI_C__FIMapView_2_HSTRING_IInspectableVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.addRef($0) },
     Release: { __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.release($0) },
     GetIids: {
@@ -2472,7 +2186,7 @@ internal class IMapViewString_Any: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIMapView_2_HSTRING_IInspectableBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIMapView_2_HSTRING_IInspectableBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIMapView_2_HSTRING_IInspectable
     internal typealias SwiftABI = IMapViewString_Any
     internal typealias SwiftProjection = AnyIMapView<String, Any?>
@@ -2532,20 +2246,7 @@ private var IID___x_ABI_C__FIMapView_2_HSTRING_HSTRING: test_component.IID {
 }
 
 internal var __x_ABI_C__FIMapView_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMapView_2_HSTRING_HSTRINGVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.addRef($0) },
     Release: { __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.release($0) },
     GetIids: {
@@ -2650,7 +2351,7 @@ internal class IMapViewString_String: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIMapView_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIMapView_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIMapView_2_HSTRING_HSTRING
     internal typealias SwiftABI = IMapViewString_String
     internal typealias SwiftProjection = AnyIMapView<String, String>
@@ -2710,20 +2411,7 @@ private var IID___x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase:
 }
 
 internal var __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.addRef($0) },
     Release: { __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.release($0) },
     GetIids: {
@@ -2828,7 +2516,7 @@ internal class IMapViewString_Base: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IMapViewString_Base
     internal typealias SwiftProjection = AnyIMapView<String, Base?>
@@ -2888,20 +2576,7 @@ private var IID___x_ABI_C__FIMap_2_HSTRING_IInspectable: test_component.IID {
 }
 
 internal var __x_ABI_C__FIMap_2_HSTRING_IInspectableVTable: __x_ABI_C__FIMap_2_HSTRING_IInspectableVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.addRef($0) },
     Release: { __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.release($0) },
     GetIids: {
@@ -3047,7 +2722,7 @@ internal class IMapString_Any: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIMap_2_HSTRING_IInspectableBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIMap_2_HSTRING_IInspectableBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIMap_2_HSTRING_IInspectable
     internal typealias SwiftABI = IMapString_Any
     internal typealias SwiftProjection = AnyIMap<String, Any?>
@@ -3122,20 +2797,7 @@ private var IID___x_ABI_C__FIMap_2_HSTRING_HSTRING: test_component.IID {
 }
 
 internal var __x_ABI_C__FIMap_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMap_2_HSTRING_HSTRINGVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.addRef($0) },
     Release: { __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper.release($0) },
     GetIids: {
@@ -3279,7 +2941,7 @@ internal class IMapString_String: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIMap_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIMap_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIMap_2_HSTRING_HSTRING
     internal typealias SwiftABI = IMapString_String
     internal typealias SwiftProjection = AnyIMap<String, String>
@@ -3354,20 +3016,7 @@ private var IID___x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase: tes
 }
 
 internal var __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.addRef($0) },
     Release: { __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.release($0) },
     GetIids: {
@@ -3510,7 +3159,7 @@ internal class IMapString_Base: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IMapString_Base
     internal typealias SwiftProjection = AnyIMap<String, Base?>
@@ -3585,20 +3234,7 @@ private var IID___x_ABI_C__FIObservableMap_2_HSTRING_IInspectable: test_componen
 }
 
 internal var __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableVTable: __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper.addRef($0) },
     Release: { __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper.release($0) },
     GetIids: {
@@ -3664,7 +3300,7 @@ internal class IObservableMapString_Any: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIObservableMap_2_HSTRING_IInspectable
     internal typealias SwiftABI = IObservableMapString_Any
     internal typealias SwiftProjection = AnyIObservableMap<String, Any?>
@@ -3753,20 +3389,7 @@ private var IID___x_ABI_C__FIObservableMap_2_HSTRING_HSTRING: test_component.IID
 }
 
 internal var __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper.addRef($0) },
     Release: { __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper.release($0) },
     GetIids: {
@@ -3832,7 +3455,7 @@ internal class IObservableMapString_String: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIObservableMap_2_HSTRING_HSTRING
     internal typealias SwiftABI = IObservableMapString_String
     internal typealias SwiftProjection = AnyIObservableMap<String, String>
@@ -3921,20 +3544,7 @@ private var IID___x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase
 }
 
 internal var __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.addRef($0) },
     Release: { __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.release($0) },
     GetIids: {
@@ -4000,7 +3610,7 @@ internal class IObservableVectorBase: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IObservableVectorBase
     internal typealias SwiftProjection = AnyIObservableVector<Base?>
@@ -4132,20 +3742,7 @@ private var IID___x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBas
 }
 
 internal var __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicVTable: __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.addRef($0) },
     Release: { __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.release($0) },
     GetIids: {
@@ -4211,7 +3808,7 @@ internal class IObservableVectorIBasic: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasic
     internal typealias SwiftABI = IObservableVectorIBasic
     internal typealias SwiftProjection = AnyIObservableVector<AnyIBasic?>
@@ -4343,20 +3940,7 @@ private var IID___x_ABI_C__FIVectorView_1_IInspectable: test_component.IID {
 }
 
 internal var __x_ABI_C__FIVectorView_1_IInspectableVTable: __x_ABI_C__FIVectorView_1_IInspectableVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIVectorView_1_IInspectableWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIVectorView_1_IInspectableWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIVectorView_1_IInspectableWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIVectorView_1_IInspectableWrapper.addRef($0) },
     Release: { __x_ABI_C__FIVectorView_1_IInspectableWrapper.release($0) },
     GetIids: {
@@ -4444,7 +4028,7 @@ internal class IVectorViewAny: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIVectorView_1_IInspectableBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIVectorView_1_IInspectableBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIVectorView_1_IInspectable
     internal typealias SwiftABI = IVectorViewAny
     internal typealias SwiftProjection = AnyIVectorView<Any?>
@@ -4518,20 +4102,7 @@ private var IID___x_ABI_C__FIVectorView_1_HSTRING: test_component.IID {
 }
 
 internal var __x_ABI_C__FIVectorView_1_HSTRINGVTable: __x_ABI_C__FIVectorView_1_HSTRINGVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIVectorView_1_HSTRINGWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIVectorView_1_HSTRINGWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIVectorView_1_HSTRINGWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIVectorView_1_HSTRINGWrapper.addRef($0) },
     Release: { __x_ABI_C__FIVectorView_1_HSTRINGWrapper.release($0) },
     GetIids: {
@@ -4617,7 +4188,7 @@ internal class IVectorViewString: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIVectorView_1_HSTRINGBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIVectorView_1_HSTRINGBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIVectorView_1_HSTRING
     internal typealias SwiftABI = IVectorViewString
     internal typealias SwiftProjection = AnyIVectorView<String>
@@ -4691,20 +4262,7 @@ private var IID___x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase: test
 }
 
 internal var __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.addRef($0) },
     Release: { __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.release($0) },
     GetIids: {
@@ -4789,7 +4347,7 @@ internal class IVectorViewBase: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IVectorViewBase
     internal typealias SwiftProjection = AnyIVectorView<Base?>
@@ -4863,20 +4421,7 @@ private var IID___x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasic: te
 }
 
 internal var __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicVTable: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.addRef($0) },
     Release: { __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.release($0) },
     GetIids: {
@@ -4964,7 +4509,7 @@ internal class IVectorViewIBasic: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasic
     internal typealias SwiftABI = IVectorViewIBasic
     internal typealias SwiftProjection = AnyIVectorView<AnyIBasic?>
@@ -5038,20 +4583,7 @@ private var IID___x_ABI_C__FIVector_1_IInspectable: test_component.IID {
 }
 
 internal var __x_ABI_C__FIVector_1_IInspectableVTable: __x_ABI_C__FIVector_1_IInspectableVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIVector_1_IInspectableWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIVector_1_IInspectableWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIVector_1_IInspectableWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIVector_1_IInspectableWrapper.addRef($0) },
     Release: { __x_ABI_C__FIVector_1_IInspectableWrapper.release($0) },
     GetIids: {
@@ -5241,7 +4773,7 @@ internal class IVectorAny: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIVector_1_IInspectableBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIVector_1_IInspectableBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIVector_1_IInspectable
     internal typealias SwiftABI = IVectorAny
     internal typealias SwiftProjection = AnyIVector<Any?>
@@ -5359,20 +4891,7 @@ private var IID___x_ABI_C__FIVector_1_HSTRING: test_component.IID {
 }
 
 internal var __x_ABI_C__FIVector_1_HSTRINGVTable: __x_ABI_C__FIVector_1_HSTRINGVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIVector_1_HSTRINGWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIVector_1_HSTRINGWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIVector_1_HSTRINGWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIVector_1_HSTRINGWrapper.addRef($0) },
     Release: { __x_ABI_C__FIVector_1_HSTRINGWrapper.release($0) },
     GetIids: {
@@ -5557,7 +5076,7 @@ internal class IVectorString: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIVector_1_HSTRINGBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIVector_1_HSTRINGBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIVector_1_HSTRING
     internal typealias SwiftABI = IVectorString
     internal typealias SwiftProjection = AnyIVector<String>
@@ -5675,20 +5194,7 @@ private var IID___x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase: test_com
 }
 
 internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.addRef($0) },
     Release: { __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.release($0) },
     GetIids: {
@@ -5869,7 +5375,7 @@ internal class IVectorBase: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IVectorBase
     internal typealias SwiftProjection = AnyIVector<Base?>
@@ -5987,20 +5493,7 @@ private var IID___x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic: test_c
 }
 
 internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicVTable: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.addRef($0) },
     Release: { __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.release($0) },
     GetIids: {
@@ -6190,7 +5683,7 @@ internal class IVectorIBasic: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic
     internal typealias SwiftABI = IVectorIBasic
     internal typealias SwiftProjection = AnyIVector<AnyIBasic?>
@@ -6315,20 +5808,7 @@ internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FMapChangedEvent
 }
 
 internal var __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableVTable: __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return failWith(err: E_NOINTERFACE)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper.addRef($0) },
     Release: { __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper.release($0) },
     Invoke: {
@@ -6360,7 +5840,7 @@ internal class __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableBridge :
     internal typealias CABI = __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectable
     internal typealias SwiftABI = test_component.MapChangedEventHandlerString_Any
 
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, event) in
@@ -6381,20 +5861,7 @@ internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FMapChangedEvent
 }
 
 internal var __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGVTable: __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return failWith(err: E_NOINTERFACE)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper.addRef($0) },
     Release: { __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper.release($0) },
     Invoke: {
@@ -6426,7 +5893,7 @@ internal class __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGBridge : WinR
     internal typealias CABI = __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRING
     internal typealias SwiftABI = test_component.MapChangedEventHandlerString_String
 
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, event) in
@@ -6447,20 +5914,7 @@ internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FVectorChangedEv
 }
 
 internal var __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return failWith(err: E_NOINTERFACE)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseWrapper.addRef($0) },
     Release: { __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseWrapper.release($0) },
     Invoke: {
@@ -6492,7 +5946,7 @@ internal class __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent
     internal typealias CABI = __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = test_component.VectorChangedEventHandlerBase
 
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, event) in
@@ -6513,20 +5967,7 @@ internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FVectorChangedEv
 }
 
 internal var __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicVTable: __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return failWith(err: E_NOINTERFACE)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.addRef($0) },
     Release: { __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.release($0) },
     Invoke: {
@@ -6558,7 +5999,7 @@ internal class __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent
     internal typealias CABI = __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasic
     internal typealias SwiftABI = test_component.VectorChangedEventHandlerIBasic
 
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, event) in
@@ -6579,20 +6020,7 @@ internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIEventHandler_1
 }
 
 internal var __x_ABI_C__FIEventHandler_1_IInspectableVTable: __x_ABI_C__FIEventHandler_1_IInspectableVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIEventHandler_1_IInspectableWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return failWith(err: E_NOINTERFACE)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIEventHandler_1_IInspectableWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIEventHandler_1_IInspectableWrapper.addRef($0) },
     Release: { __x_ABI_C__FIEventHandler_1_IInspectableWrapper.release($0) },
     Invoke: {
@@ -6624,7 +6052,7 @@ internal class __x_ABI_C__FIEventHandler_1_IInspectableBridge : WinRTDelegateBri
     internal typealias CABI = __x_ABI_C__FIEventHandler_1_IInspectable
     internal typealias SwiftABI = test_component.EventHandlerAny
 
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, args) in
@@ -6638,20 +6066,7 @@ private var IID___x_ABI_C__FIAsyncOperationWithProgress_2_int_double: test_compo
 }
 
 internal var __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleVTable: __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper.release($0) },
     GetIids: {
@@ -6764,7 +6179,7 @@ internal class IAsyncOperationWithProgressInt32_Double: test_component.IInspecta
 
 }
 
-internal class __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIAsyncOperationWithProgress_2_int_double
     internal typealias SwiftABI = IAsyncOperationWithProgressInt32_Double
     internal typealias SwiftProjection = AnyIAsyncOperationWithProgress<Int32, Double>
@@ -6840,20 +6255,7 @@ private var IID___x_ABI_C__FIAsyncOperation_1_int: test_component.IID {
 }
 
 internal var __x_ABI_C__FIAsyncOperation_1_intVTable: __x_ABI_C__FIAsyncOperation_1_intVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIAsyncOperation_1_intWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIAsyncOperation_1_intWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIAsyncOperation_1_intWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIAsyncOperation_1_intWrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperation_1_intWrapper.release($0) },
     GetIids: {
@@ -6935,7 +6337,7 @@ internal class IAsyncOperationInt32: test_component.IInspectable {
 
 }
 
-internal class __x_ABI_C__FIAsyncOperation_1_intBridge : AbiInterfaceBridge {
+internal enum __x_ABI_C__FIAsyncOperation_1_intBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIAsyncOperation_1_int
     internal typealias SwiftABI = IAsyncOperationInt32
     internal typealias SwiftProjection = AnyIAsyncOperation<Int32>
@@ -7003,29 +6405,25 @@ private var IID___x_ABI_C__FIReference_1_GUID: test_component.IID {
     .init(Data1: 0x7d50f649, Data2: 0x632c, Data3: 0x51f9, Data4: ( 0x84,0x9a,0xee,0x49,0x42,0x89,0x33,0xea ))// 7d50f649-632c-51f9-849a-ee49428933ea
 }
 
-internal extension GUID {
-    init?(ref: UnsafeMutablePointer<__x_ABI_C__FIReference_1_GUID>?) {
-        guard let val = ref else { return nil }
+internal enum __x_ABI_C__FIReference_1_GUIDBridge: ReferenceBridge {
+    typealias CABI = __x_ABI_C__FIReference_1_GUID
+    typealias SwiftProjection = GUID
+    static var IID: test_component.IID { IID___x_ABI_C__FIReference_1_GUID }
+
+    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        guard let val = abi else { return nil }
         var result: GUID = .init()
         try! CHECKED(val.pointee.lpVtbl.pointee.get_Value(val, &result))
-        self = result
+        return result
+    }
+
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIReference_1_GUIDVTable) { $0 }
+        return .init(lpVtbl: vtblPtr)
     }
 }
 internal var __x_ABI_C__FIReference_1_GUIDVTable: __x_ABI_C__FIReference_1_GUIDVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIReference_1_GUIDWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIReference_1_GUIDWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIReference_1_GUIDWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIReference_1_GUIDWrapper.addRef($0) },
     Release: { __x_ABI_C__FIReference_1_GUIDWrapper.release($0) },
     GetIids: {
@@ -7055,48 +6453,35 @@ internal var __x_ABI_C__FIReference_1_GUIDVTable: __x_ABI_C__FIReference_1_GUIDV
 
     get_Value: {
         guard let __unwrapped__instance = __x_ABI_C__FIReference_1_GUIDWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let result = __unwrapped__instance.value as! GUID
+        let result = __unwrapped__instance
         $1?.initialize(to: result)
         return S_OK
     }
 )
-internal class __x_ABI_C__FIReference_1_GUIDWrapper: WinRTWrapperBase<__x_ABI_C__FIReference_1_GUID, IReference> {
-    override class var IID: test_component.IID { IID___x_ABI_C__FIReference_1_GUID }
-    init?(_ value: GUID?) {
-        guard let value = value else { return nil }
-        let abi = withUnsafeMutablePointer(to: &__x_ABI_C__FIReference_1_GUIDVTable) {
-            __x_ABI_C__FIReference_1_GUID(lpVtbl:$0)
-        }
-        super.init(abi, __IMPL_Windows_Foundation.IPropertyValueImpl(value: value))
-    }
-}
+typealias __x_ABI_C__FIReference_1_GUIDWrapper = ReferenceWrapperBase<test_component.__x_ABI_C__FIReference_1_GUIDBridge>
 private var IID___x_ABI_C__FIReference_1_int: test_component.IID {
     .init(Data1: 0x548cefbd, Data2: 0xbc8a, Data3: 0x5fa0, Data4: ( 0x8d,0xf2,0x95,0x74,0x40,0xfc,0x8b,0xf4 ))// 548cefbd-bc8a-5fa0-8df2-957440fc8bf4
 }
 
-internal extension Int32 {
-    init?(ref: UnsafeMutablePointer<__x_ABI_C__FIReference_1_int>?) {
-        guard let val = ref else { return nil }
+internal enum __x_ABI_C__FIReference_1_intBridge: ReferenceBridge {
+    typealias CABI = __x_ABI_C__FIReference_1_int
+    typealias SwiftProjection = Int32
+    static var IID: test_component.IID { IID___x_ABI_C__FIReference_1_int }
+
+    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        guard let val = abi else { return nil }
         var result: INT32 = 0
         try! CHECKED(val.pointee.lpVtbl.pointee.get_Value(val, &result))
-        self = result
+        return result
+    }
+
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIReference_1_intVTable) { $0 }
+        return .init(lpVtbl: vtblPtr)
     }
 }
 internal var __x_ABI_C__FIReference_1_intVTable: __x_ABI_C__FIReference_1_intVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIReference_1_intWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIReference_1_intWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIReference_1_intWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIReference_1_intWrapper.addRef($0) },
     Release: { __x_ABI_C__FIReference_1_intWrapper.release($0) },
     GetIids: {
@@ -7126,48 +6511,35 @@ internal var __x_ABI_C__FIReference_1_intVTable: __x_ABI_C__FIReference_1_intVtb
 
     get_Value: {
         guard let __unwrapped__instance = __x_ABI_C__FIReference_1_intWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let result = __unwrapped__instance.value as! Int32
+        let result = __unwrapped__instance
         $1?.initialize(to: result)
         return S_OK
     }
 )
-internal class __x_ABI_C__FIReference_1_intWrapper: WinRTWrapperBase<__x_ABI_C__FIReference_1_int, IReference> {
-    override class var IID: test_component.IID { IID___x_ABI_C__FIReference_1_int }
-    init?(_ value: Int32?) {
-        guard let value = value else { return nil }
-        let abi = withUnsafeMutablePointer(to: &__x_ABI_C__FIReference_1_intVTable) {
-            __x_ABI_C__FIReference_1_int(lpVtbl:$0)
-        }
-        super.init(abi, __IMPL_Windows_Foundation.IPropertyValueImpl(value: value))
-    }
-}
+typealias __x_ABI_C__FIReference_1_intWrapper = ReferenceWrapperBase<test_component.__x_ABI_C__FIReference_1_intBridge>
 private var IID___x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned: test_component.IID {
     .init(Data1: 0x5888a1ed, Data2: 0xabae, Data3: 0x584f, Data4: ( 0xbf,0x08,0x13,0x1b,0x25,0x42,0x80,0x6b ))// 5888a1ed-abae-584f-bf08-131b2542806b
 }
 
-internal extension test_component.Signed {
-    init?(ref: UnsafeMutablePointer<__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned>?) {
-        guard let val = ref else { return nil }
+internal enum __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedBridge: ReferenceBridge {
+    typealias CABI = __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned
+    typealias SwiftProjection = test_component.Signed
+    static var IID: test_component.IID { IID___x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned }
+
+    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        guard let val = abi else { return nil }
         var result: Signed = .init(0)
         try! CHECKED(val.pointee.lpVtbl.pointee.get_Value(val, &result))
-        self = result
+        return result
+    }
+
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedVTable) { $0 }
+        return .init(lpVtbl: vtblPtr)
     }
 }
 internal var __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedVTable: __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper.addRef($0) },
     Release: { __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper.release($0) },
     GetIids: {
@@ -7197,21 +6569,12 @@ internal var __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedVTable: 
 
     get_Value: {
         guard let __unwrapped__instance = __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let result = __unwrapped__instance.value as! test_component.Signed
+        let result = __unwrapped__instance
         $1?.initialize(to: result)
         return S_OK
     }
 )
-internal class __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper: WinRTWrapperBase<__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned, IReference> {
-    override class var IID: test_component.IID { IID___x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned }
-    init?(_ value: test_component.Signed?) {
-        guard let value = value else { return nil }
-        let abi = withUnsafeMutablePointer(to: &__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedVTable) {
-            __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned(lpVtbl:$0)
-        }
-        super.init(abi, __IMPL_Windows_Foundation.IPropertyValueImpl(value: value))
-    }
-}
+typealias __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper = ReferenceWrapperBase<test_component.__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedBridge>
 private var IID___x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs: test_component.IID {
     .init(Data1: 0x60e30bb2, Data2: 0x55fe, Data3: 0x5e7e, Data4: ( 0xb1,0xe6,0xf9,0xba,0x28,0x90,0x0a,0x82 ))// 60e30bb2-55fe-5e7e-b1e6-f9ba28900a82
 }
@@ -7224,20 +6587,7 @@ internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FITypedEventHand
 }
 
 internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsVTable: __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return failWith(err: E_NOINTERFACE)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsWrapper.addRef($0) },
     Release: { __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsWrapper.release($0) },
     Invoke: {
@@ -7265,7 +6615,7 @@ internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClas
     internal typealias CABI = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs
     internal typealias SwiftABI = test_component.TypedEventHandlerClass_DeferrableEventArgs
 
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, args) in
@@ -7286,20 +6636,7 @@ internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FITypedEventHand
 }
 
 internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsVTable: __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsVtbl = .init(
-    QueryInterface: {
-        guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-        ppvObject.pointee = nil
-
-        switch riid.pointee {
-            case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.IID:
-                _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                return S_OK
-            default:
-                return failWith(err: E_NOINTERFACE)
-        }
-    },
-
+    QueryInterface: { __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.queryInterface($0, $1, $2) },
     AddRef: { __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.addRef($0) },
     Release: { __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.release($0) },
     Invoke: {
@@ -7327,7 +6664,7 @@ internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimp
     internal typealias CABI = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs
     internal typealias SwiftABI = test_component.TypedEventHandlerSimple_SimpleEventArgs
 
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, args) in

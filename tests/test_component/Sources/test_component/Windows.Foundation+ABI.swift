@@ -99,20 +99,7 @@ public enum __ABI_Windows_Foundation {
     }
 
     internal static var IAsyncActionVTable: __x_ABI_CWindows_CFoundation_CIAsyncActionVtbl = .init(
-        QueryInterface: {
-            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-            ppvObject.pointee = nil
-
-            switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IAsyncActionWrapper.IID:
-                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                    return S_OK
-                default:
-                    return IAsyncActionWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-            }
-        },
-
+        QueryInterface: { IAsyncActionWrapper.queryInterface($0, $1, $2) },
         AddRef: { IAsyncActionWrapper.addRef($0) },
         Release: { IAsyncActionWrapper.release($0) },
         GetIids: {
@@ -207,20 +194,7 @@ public enum __ABI_Windows_Foundation {
     }
 
     internal static var IAsyncInfoVTable: __x_ABI_CWindows_CFoundation_CIAsyncInfoVtbl = .init(
-        QueryInterface: {
-            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-            ppvObject.pointee = nil
-
-            switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IAsyncInfoWrapper.IID:
-                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                    return S_OK
-                default:
-                    return IAsyncInfoWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-            }
-        },
-
+        QueryInterface: { IAsyncInfoWrapper.queryInterface($0, $1, $2) },
         AddRef: { IAsyncInfoWrapper.addRef($0) },
         Release: { IAsyncInfoWrapper.release($0) },
         GetIids: {
@@ -298,20 +272,7 @@ public enum __ABI_Windows_Foundation {
     }
 
     internal static var IClosableVTable: __x_ABI_CWindows_CFoundation_CIClosableVtbl = .init(
-        QueryInterface: {
-            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-            ppvObject.pointee = nil
-
-            switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IClosableWrapper.IID:
-                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                    return S_OK
-                default:
-                    return IClosableWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-            }
-        },
-
+        QueryInterface: { IClosableWrapper.queryInterface($0, $1, $2) },
         AddRef: { IClosableWrapper.addRef($0) },
         Release: { IClosableWrapper.release($0) },
         GetIids: {
@@ -540,20 +501,7 @@ public enum __ABI_Windows_Foundation {
     }
 
     internal static var IPropertyValueVTable: __x_ABI_CWindows_CFoundation_CIPropertyValueVtbl = .init(
-        QueryInterface: {
-            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-            ppvObject.pointee = nil
-
-            switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IPropertyValueWrapper.IID:
-                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                    return S_OK
-                default:
-                    return IPropertyValueWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-            }
-        },
-
+        QueryInterface: { IPropertyValueWrapper.queryInterface($0, $1, $2) },
         AddRef: { IPropertyValueWrapper.addRef($0) },
         Release: { IPropertyValueWrapper.release($0) },
         GetIids: {
@@ -794,24 +742,8 @@ public enum __ABI_Windows_Foundation {
 
         GetRectArray: { _, _, _ in return failWith(err: E_NOTIMPL) }
     )
-    public class IPropertyValueWrapper : WinRTWrapperBase<__x_ABI_CWindows_CFoundation_CIPropertyValue, test_component.IPropertyValue>
-    {
-        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIPropertyValue }
-        public init(_ value: Any) {
-            let abi = withUnsafeMutablePointer(to: &IPropertyValueVTable) {
-                __x_ABI_CWindows_CFoundation_CIPropertyValue(lpVtbl: $0)
-            }
-            super.init(abi, __IMPL_Windows_Foundation.IPropertyValueImpl(value: value))
-        }
 
-        public init?(_ impl: test_component.IPropertyValue?) {
-            guard let impl = impl else { return nil }
-            let abi = withUnsafeMutablePointer(to: &IPropertyValueVTable) {
-                __x_ABI_CWindows_CFoundation_CIPropertyValue(lpVtbl: $0)
-            }
-            super.init(abi, impl)
-        }
-    }
+    public typealias IPropertyValueWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.IPropertyValueBridge>
     public class IStringable: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIStringable }
 
@@ -826,20 +758,7 @@ public enum __ABI_Windows_Foundation {
     }
 
     internal static var IStringableVTable: __x_ABI_CWindows_CFoundation_CIStringableVtbl = .init(
-        QueryInterface: {
-            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-            ppvObject.pointee = nil
-
-            switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IStringableWrapper.IID:
-                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                    return S_OK
-                default:
-                    return IStringableWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-            }
-        },
-
+        QueryInterface: { IStringableWrapper.queryInterface($0, $1, $2) },
         AddRef: { IStringableWrapper.addRef($0) },
         Release: { IStringableWrapper.release($0) },
         GetIids: {
@@ -921,20 +840,7 @@ extension __ABI_Windows_Foundation {
 
     typealias AsyncActionCompletedHandlerWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.AsyncActionCompletedHandlerBridge>
     internal static var AsyncActionCompletedHandlerVTable: __x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandlerVtbl = .init(
-        QueryInterface: {
-            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-            ppvObject.pointee = nil
-
-            switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, AsyncActionCompletedHandlerWrapper.IID:
-                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                    return S_OK
-                default:
-                    return failWith(err: E_NOINTERFACE)
-            }
-        },
-
+        QueryInterface: { AsyncActionCompletedHandlerWrapper.queryInterface($0, $1, $2) },
         AddRef: { AsyncActionCompletedHandlerWrapper.addRef($0) },
         Release: { AsyncActionCompletedHandlerWrapper.release($0) },
         Invoke: {
@@ -969,20 +875,7 @@ extension __ABI_Windows_Foundation {
 
     typealias DeferralCompletedHandlerWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.DeferralCompletedHandlerBridge>
     internal static var DeferralCompletedHandlerVTable: __x_ABI_CWindows_CFoundation_CIDeferralCompletedHandlerVtbl = .init(
-        QueryInterface: {
-            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-            ppvObject.pointee = nil
-
-            switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, DeferralCompletedHandlerWrapper.IID:
-                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                    return S_OK
-                default:
-                    return failWith(err: E_NOINTERFACE)
-            }
-        },
-
+        QueryInterface: { DeferralCompletedHandlerWrapper.queryInterface($0, $1, $2) },
         AddRef: { DeferralCompletedHandlerWrapper.addRef($0) },
         Release: { DeferralCompletedHandlerWrapper.release($0) },
         Invoke: {

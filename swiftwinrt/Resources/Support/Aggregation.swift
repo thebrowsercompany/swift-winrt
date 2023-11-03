@@ -1,12 +1,8 @@
 import C_BINDINGS_MODULE
 import Foundation
 
-public protocol MakeComposedAbi : AbiInterface where SwiftABI: SUPPORT_MODULE.IInspectable {
-    associatedtype SwiftProjection : WinRTClass
-}
-
-public protocol ComposableImpl : AbiInterface where SwiftABI: IInspectable  {
-    associatedtype Default : MakeComposedAbi
+public protocol ComposableImpl : AbiInterfaceBridge where SwiftABI: IInspectable, SwiftProjection: WinRTClass  {
+    associatedtype Default : AbiInterface where Default.SwiftABI: SUPPORT_MODULE.IInspectable
     static func makeAbi() -> CABI
 }
 
@@ -30,9 +26,9 @@ public protocol ComposableImpl : AbiInterface where SwiftABI: IInspectable  {
 // |  No           |  nil                      |  ignored                |  stored on swift object  |
 public func MakeComposed<Composable: ComposableImpl>(
     composing: Composable.Type,
-    _ this: Composable.Default.SwiftProjection,
+    _ this: Composable.SwiftProjection,
     _ createCallback: (UnsealedWinRTClassWrapper<Composable>?, inout SUPPORT_MODULE.IInspectable?) -> Composable.Default.SwiftABI) -> SUPPORT_MODULE.IInspectable {
-    let aggregated = type(of: this) != Composable.Default.SwiftProjection.self
+    let aggregated = type(of: this) != Composable.SwiftProjection.self
     let wrapper:UnsealedWinRTClassWrapper<Composable>? = .init(aggregated ? this : nil)
 
     var innerInsp: SUPPORT_MODULE.IInspectable? = nil
@@ -44,34 +40,35 @@ public func MakeComposed<Composable: ComposableImpl>(
     return aggregated ? innerInsp : base
 }
 
-public class UnsealedWinRTClassWrapper<Composable: ComposableImpl> : WinRTWrapperBase<Composable.CABI, Composable.Default.SwiftProjection> {
+public class UnsealedWinRTClassWrapper<Composable: ComposableImpl> : WinRTAbiBridgeWrapper<Composable> {
     override public class var IID: SUPPORT_MODULE.IID { Composable.SwiftABI.IID }
-
-    public init?(_ impl: Composable.Default.SwiftProjection?) {
+    public init?(_ impl: Composable.SwiftProjection?) {
         guard let impl = impl else { return nil }
         let abi = Composable.makeAbi()
         super.init(abi, impl)
     }
-
-    public static func unwrapFrom(base: UnsafeMutablePointer<Composable.Default.CABI>) -> Composable.Default.SwiftProjection {
+    public static func unwrapFrom(base: UnsafeMutablePointer<Composable.Default.CABI>) -> Composable.SwiftProjection? {
         let baseInsp = SUPPORT_MODULE.IInspectable(consuming: base)
         let overrides: Composable.SwiftABI = try! baseInsp.QueryInterface()
+        return unwrapFrom(abi: RawPointer(overrides))
 
-        // Try to unwrap an app implemented object. If one doesn't exist then we'll create the proper WinRT type below
-        if let instance = tryUnwrapFrom(abi: RawPointer(overrides)) {
-            return instance
-        }
-
-        guard let instance = makeFrom(abi: baseInsp) else {
-            // the derived class doesn't exist, which is fine, just return the type the API specifies.
-            return make(type: Composable.Default.SwiftProjection.self, from: baseInsp)!
-        }
-        return instance as! Composable.Default.SwiftProjection
     }
 
     public func toIInspectableABI<ResultType>(_ body: (UnsafeMutablePointer<C_IInspectable>) throws -> ResultType)
         rethrows -> ResultType {
         let abi = try! toABI { $0 }
         return try abi.withMemoryRebound(to: C_IInspectable.self, capacity: 1) { try body($0) }
+    }
+}
+
+public extension ComposableImpl {
+    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        guard let abi else { return nil }
+        let baseInsp = SUPPORT_MODULE.IInspectable(abi)
+        guard let instance = makeFrom(abi: baseInsp) else {
+            // the derived class doesn't exist, which is fine, just return the type the API specifies.
+            return make(type: Self.SwiftProjection.self, from: baseInsp)
+        }
+        return instance as? Self.SwiftProjection
     }
 }

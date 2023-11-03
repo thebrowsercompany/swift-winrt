@@ -13,7 +13,7 @@ using namespace winmd::reader;
 
 namespace swiftwinrt
 {
-    static void write_iunknown_methods(writer& w, generic_inst const& type);
+    static void write_iunknown_methods(writer& w, metadata_type const& type);
     static void write_iinspectable_methods(writer& w, generic_inst const& type);
 
     template <typename T>
@@ -122,7 +122,7 @@ namespace swiftwinrt
                 }
                 // we use mangled names for enums because otherwise the WinAppSDK enums collide with the Windows ones
                 w.write("    %_%", mangled_name(), field.Name());
-     
+
                 w.write(" = %,\n", value);
                 if (isExperimental)
                 {
@@ -601,7 +601,7 @@ namespace swiftwinrt
                 write_iinspectable_methods(w, *this);
                 s(); // get first separator out of the way for no-op
             }
-        
+
             for (auto&& method : functions)
             {
                 s();
@@ -612,36 +612,20 @@ namespace swiftwinrt
         w.write(R"(
 )
 )");
-   
-        if (!is_winrt_ireference(*this))
+
+        if (is_winrt_ireference(*this))
+        {
+              w.write("typealias % = ReferenceWrapperBase<%>\n",
+                bind_wrapper_name(*this),
+                bind_bridge_fullname(*this));
+        }
+        else
         {
             w.write("typealias % = InterfaceWrapperBase<%>\n",
                 bind_wrapper_name(*this),
                 bind_bridge_fullname(*this));
             return;
         }
-        auto format = R"(internal class %: WinRTWrapperBase<%, %> {
-    override class var IID: %.IID { IID_% }
-    init?(_ value: %?) {
-        guard let value = value else { return nil }
-        let abi = withUnsafeMutablePointer(to: &%VTable) {
-            %(lpVtbl:$0)
-        }
-        super.init(abi, %(value: value))
-    }
-}
-)";
-        w.write(format,
-            bind_wrapper_name(*this),
-            mangled_name(),
-            remove_backtick(generic_type()->cpp_logical_name()),
-            w.support,
-            mangled_name(),
-            get_full_swift_type_name(w, generic_params()[0]),
-            mangled_name(),
-            mangled_name(),
-            bind_impl_name(*this)
-            );
     }
 
     void generic_inst::write_c_abi_param(writer& w) const

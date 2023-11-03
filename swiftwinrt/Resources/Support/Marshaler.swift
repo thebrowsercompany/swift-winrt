@@ -17,20 +17,26 @@ func makeMarshaler(_ outer: IUnknownRef, _ result: UnsafeMutablePointer<UnsafeMu
     }
 }
 
-fileprivate class MarshalWrapper: WinRTWrapperBase2<IMarshalBridge> {
+fileprivate class MarshalWrapper: WinRTAbiBridgeWrapper<IMarshalBridge> {
     init(_ marshaler: Marshaler){
         super.init(IMarshalBridge.makeAbi(), marshaler)
     }
 }
 
-fileprivate class IMarshalBridge: AbiBridge {
+fileprivate enum IMarshalBridge: AbiBridge {
     static func makeAbi() -> C_IMarshal {
         return C_IMarshal(lpVtbl: &IMarshalVTable)
+    }
+
+    static func from(abi: UnsafeMutablePointer<C_IMarshal>?) -> Marshaler? {
+        guard let abi = abi else { return nil }
+        return try? Marshaler(IUnknownRef(consuming: abi))
     }
 
     typealias CABI = C_IMarshal
     typealias SwiftProjection = Marshaler
 }
+
 private var IMarshalVTable: C_IMarshalVtbl = .init(
     QueryInterface: { pUnk, riid, ppvObject in
         guard let pUnk, let riid, let ppvObject else { return E_INVALIDARG }

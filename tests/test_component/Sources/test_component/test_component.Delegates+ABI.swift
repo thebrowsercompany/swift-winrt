@@ -33,20 +33,7 @@ extension __ABI_test_component_Delegates {
 
     typealias InDelegateWrapper = InterfaceWrapperBase<__IMPL_test_component_Delegates.InDelegateBridge>
     internal static var InDelegateVTable: __x_ABI_Ctest__component_CDelegates_CIInDelegateVtbl = .init(
-        QueryInterface: {
-            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-            ppvObject.pointee = nil
-
-            switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, InDelegateWrapper.IID:
-                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                    return S_OK
-                default:
-                    return failWith(err: E_NOINTERFACE)
-            }
-        },
-
+        QueryInterface: { InDelegateWrapper.queryInterface($0, $1, $2) },
         AddRef: { InDelegateWrapper.addRef($0) },
         Release: { InDelegateWrapper.release($0) },
         Invoke: {
@@ -82,20 +69,7 @@ extension __ABI_test_component_Delegates {
 
     typealias ReturnInt32DelegateWrapper = InterfaceWrapperBase<__IMPL_test_component_Delegates.ReturnInt32DelegateBridge>
     internal static var ReturnInt32DelegateVTable: __x_ABI_Ctest__component_CDelegates_CIReturnInt32DelegateVtbl = .init(
-        QueryInterface: {
-            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-            ppvObject.pointee = nil
-
-            switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, ReturnInt32DelegateWrapper.IID:
-                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                    return S_OK
-                default:
-                    return failWith(err: E_NOINTERFACE)
-            }
-        },
-
+        QueryInterface: { ReturnInt32DelegateWrapper.queryInterface($0, $1, $2) },
         AddRef: { ReturnInt32DelegateWrapper.addRef($0) },
         Release: { ReturnInt32DelegateWrapper.release($0) },
         Invoke: {
@@ -129,20 +103,7 @@ extension __ABI_test_component_Delegates {
 
     typealias SignalDelegateWrapper = InterfaceWrapperBase<__IMPL_test_component_Delegates.SignalDelegateBridge>
     internal static var SignalDelegateVTable: __x_ABI_Ctest__component_CDelegates_CISignalDelegateVtbl = .init(
-        QueryInterface: {
-            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-            ppvObject.pointee = nil
-
-            switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, SignalDelegateWrapper.IID:
-                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                    return S_OK
-                default:
-                    return failWith(err: E_NOINTERFACE)
-            }
-        },
-
+        QueryInterface: { SignalDelegateWrapper.queryInterface($0, $1, $2) },
         AddRef: { SignalDelegateWrapper.addRef($0) },
         Release: { SignalDelegateWrapper.release($0) },
         Invoke: {

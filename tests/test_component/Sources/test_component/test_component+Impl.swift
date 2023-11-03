@@ -3,7 +3,7 @@
 import Ctest_component
 
 public enum __IMPL_test_component {
-    public class IAsyncMethodsWithProgressBridge : AbiInterfaceBridge {
+    public enum IAsyncMethodsWithProgressBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_Ctest__component_CIAsyncMethodsWithProgress
         public typealias SwiftABI = __ABI_test_component.IAsyncMethodsWithProgress
         public typealias SwiftProjection = AnyIAsyncMethodsWithProgress
@@ -32,7 +32,7 @@ public enum __IMPL_test_component {
 
     }
 
-    public class IAsyncOperationIntBridge : AbiInterfaceBridge {
+    public enum IAsyncOperationIntBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_Ctest__component_CIAsyncOperationInt
         public typealias SwiftABI = __ABI_test_component.IAsyncOperationInt
         public typealias SwiftProjection = AnyIAsyncOperationInt
@@ -65,7 +65,7 @@ public enum __IMPL_test_component {
 
     }
 
-    public class IBasicBridge : AbiInterfaceBridge {
+    public enum IBasicBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_Ctest__component_CIBasic
         public typealias SwiftABI = __ABI_test_component.IBasic
         public typealias SwiftProjection = AnyIBasic
@@ -94,7 +94,7 @@ public enum __IMPL_test_component {
 
     }
 
-    public class IIAmImplementableBridge : AbiInterfaceBridge {
+    public enum IIAmImplementableBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_Ctest__component_CIIAmImplementable
         public typealias SwiftABI = __ABI_test_component.IIAmImplementable
         public typealias SwiftProjection = AnyIIAmImplementable
@@ -193,7 +193,7 @@ public enum __IMPL_test_component {
 
     }
 
-    public class IInterfaceWithObservableVectorBridge : AbiInterfaceBridge {
+    public enum IInterfaceWithObservableVectorBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_Ctest__component_CIInterfaceWithObservableVector
         public typealias SwiftABI = __ABI_test_component.IInterfaceWithObservableVector
         public typealias SwiftProjection = AnyIInterfaceWithObservableVector
@@ -222,7 +222,7 @@ public enum __IMPL_test_component {
 
     }
 
-    public class ISimpleDelegateBridge : AbiInterfaceBridge {
+    public enum ISimpleDelegateBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_Ctest__component_CISimpleDelegate
         public typealias SwiftABI = __ABI_test_component.ISimpleDelegate
         public typealias SwiftProjection = AnyISimpleDelegate
@@ -255,7 +255,7 @@ public enum __IMPL_test_component {
 
     }
 
-    public class InterfaceWithReturnDelegateBridge : AbiInterfaceBridge {
+    public enum InterfaceWithReturnDelegateBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_Ctest__component_CInterfaceWithReturnDelegate
         public typealias SwiftABI = __ABI_test_component.InterfaceWithReturnDelegate
         public typealias SwiftProjection = AnyInterfaceWithReturnDelegate
@@ -292,7 +292,7 @@ public enum __IMPL_test_component {
 
     }
 
-    public class WithKeywordBridge : AbiInterfaceBridge {
+    public enum WithKeywordBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_Ctest__component_CWithKeyword
         public typealias SwiftABI = __ABI_test_component.WithKeyword
         public typealias SwiftProjection = AnyWithKeyword
@@ -343,7 +343,7 @@ public enum __IMPL_test_component {
         public typealias CABI = __x_ABI_Ctest__component_CIObjectHandler
         public typealias SwiftABI = __ABI_test_component.ObjectHandler
 
-        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        public static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
             guard let abi = abi else { return nil }
             let _default = SwiftABI(abi)
             let handler: Handler = { (item) in
@@ -357,7 +357,7 @@ public enum __IMPL_test_component {
         public typealias CABI = __x_ABI_Ctest__component_CIVoidToVoidDelegate
         public typealias SwiftABI = __ABI_test_component.VoidToVoidDelegate
 
-        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        public static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
             guard let abi = abi else { return nil }
             let _default = SwiftABI(abi)
             let handler: Handler = { () in

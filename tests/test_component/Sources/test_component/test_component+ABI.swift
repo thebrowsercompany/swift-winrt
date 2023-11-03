@@ -230,20 +230,7 @@ public enum __ABI_test_component {
     }
 
     internal static var IAsyncMethodsWithProgressVTable: __x_ABI_Ctest__component_CIAsyncMethodsWithProgressVtbl = .init(
-        QueryInterface: {
-            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-            ppvObject.pointee = nil
-
-            switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IAsyncMethodsWithProgressWrapper.IID:
-                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                    return S_OK
-                default:
-                    return IAsyncMethodsWithProgressWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-            }
-        },
-
+        QueryInterface: { IAsyncMethodsWithProgressWrapper.queryInterface($0, $1, $2) },
         AddRef: { IAsyncMethodsWithProgressWrapper.addRef($0) },
         Release: { IAsyncMethodsWithProgressWrapper.release($0) },
         GetIids: {
@@ -301,20 +288,7 @@ public enum __ABI_test_component {
     }
 
     internal static var IAsyncOperationIntVTable: __x_ABI_Ctest__component_CIAsyncOperationIntVtbl = .init(
-        QueryInterface: {
-            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-            ppvObject.pointee = nil
-
-            switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IAsyncOperationIntWrapper.IID:
-                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                    return S_OK
-                default:
-                    return IAsyncOperationIntWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-            }
-        },
-
+        QueryInterface: { IAsyncOperationIntWrapper.queryInterface($0, $1, $2) },
         AddRef: { IAsyncOperationIntWrapper.addRef($0) },
         Release: { IAsyncOperationIntWrapper.release($0) },
         GetIids: {
@@ -432,20 +406,7 @@ public enum __ABI_test_component {
     }
 
     internal static var IBasicVTable: __x_ABI_Ctest__component_CIBasicVtbl = .init(
-        QueryInterface: {
-            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-            ppvObject.pointee = nil
-
-            switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IBasicWrapper.IID:
-                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                    return S_OK
-                default:
-                    return IBasicWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-            }
-        },
-
+        QueryInterface: { IBasicWrapper.queryInterface($0, $1, $2) },
         AddRef: { IBasicWrapper.addRef($0) },
         Release: { IBasicWrapper.release($0) },
         GetIids: {
@@ -633,7 +594,7 @@ public enum __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnReferenceEnum(pThis, &result))
             }
-            return .init(ref: result)
+            return test_component.__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper.unwrapFrom(abi: result)
         }
 
         internal func get_EnumPropertyImpl() throws -> test_component.Fruit {
@@ -725,7 +686,7 @@ public enum __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_StartValue(pThis, &value))
             }
-            return .init(ref: value)
+            return test_component.__x_ABI_C__FIReference_1_intWrapper.unwrapFrom(abi: value)
         }
 
         internal func put_StartValueImpl(_ value: Int32?) throws {
@@ -741,7 +702,7 @@ public enum __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Id(pThis, &value))
             }
-            return .init(ref: value)
+            return test_component.__x_ABI_C__FIReference_1_GUIDWrapper.unwrapFrom(abi: value)
         }
 
         internal func put_IdImpl(_ value: test_component.GUID?) throws {
@@ -1206,7 +1167,7 @@ public enum __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Id(pThis, &value))
             }
-            return .init(ref: value)
+            return test_component.__x_ABI_C__FIReference_1_GUIDWrapper.unwrapFrom(abi: value)
         }
 
         open func put_IdImpl(_ value: test_component.GUID?) throws {
@@ -1243,20 +1204,7 @@ public enum __ABI_test_component {
     }
 
     internal static var IIAmImplementableVTable: __x_ABI_Ctest__component_CIIAmImplementableVtbl = .init(
-        QueryInterface: {
-            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-            ppvObject.pointee = nil
-
-            switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IIAmImplementableWrapper.IID:
-                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                    return S_OK
-                default:
-                    return IIAmImplementableWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-            }
-        },
-
+        QueryInterface: { IIAmImplementableWrapper.queryInterface($0, $1, $2) },
         AddRef: { IIAmImplementableWrapper.addRef($0) },
         Release: { IIAmImplementableWrapper.release($0) },
         GetIids: {
@@ -1428,7 +1376,7 @@ public enum __ABI_test_component {
 
         put_Id: {
             guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let value: test_component.GUID? = .init(ref: $1)
+            let value: test_component.GUID? = test_component.__x_ABI_C__FIReference_1_GUIDWrapper.unwrapFrom(abi: $1)
             __unwrapped__instance.id = value
             return S_OK
         },
@@ -1473,20 +1421,7 @@ public enum __ABI_test_component {
     }
 
     internal static var IInterfaceWithObservableVectorVTable: __x_ABI_Ctest__component_CIInterfaceWithObservableVectorVtbl = .init(
-        QueryInterface: {
-            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-            ppvObject.pointee = nil
-
-            switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IInterfaceWithObservableVectorWrapper.IID:
-                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                    return S_OK
-                default:
-                    return IInterfaceWithObservableVectorWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-            }
-        },
-
+        QueryInterface: { IInterfaceWithObservableVectorWrapper.queryInterface($0, $1, $2) },
         AddRef: { IInterfaceWithObservableVectorWrapper.addRef($0) },
         Release: { IInterfaceWithObservableVectorWrapper.release($0) },
         GetIids: {
@@ -1797,20 +1732,7 @@ public enum __ABI_test_component {
     }
 
     internal static var ISimpleDelegateVTable: __x_ABI_Ctest__component_CISimpleDelegateVtbl = .init(
-        QueryInterface: {
-            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-            ppvObject.pointee = nil
-
-            switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, ISimpleDelegateWrapper.IID:
-                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                    return S_OK
-                default:
-                    return ISimpleDelegateWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-            }
-        },
-
+        QueryInterface: { ISimpleDelegateWrapper.queryInterface($0, $1, $2) },
         AddRef: { ISimpleDelegateWrapper.addRef($0) },
         Release: { ISimpleDelegateWrapper.release($0) },
         GetIids: {
@@ -2133,20 +2055,7 @@ public enum __ABI_test_component {
     }
 
     internal static var InterfaceWithReturnDelegateVTable: __x_ABI_Ctest__component_CInterfaceWithReturnDelegateVtbl = .init(
-        QueryInterface: {
-            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-            ppvObject.pointee = nil
-
-            switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, InterfaceWithReturnDelegateWrapper.IID:
-                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                    return S_OK
-                default:
-                    return InterfaceWithReturnDelegateWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-            }
-        },
-
+        QueryInterface: { InterfaceWithReturnDelegateWrapper.queryInterface($0, $1, $2) },
         AddRef: { InterfaceWithReturnDelegateWrapper.addRef($0) },
         Release: { InterfaceWithReturnDelegateWrapper.release($0) },
         GetIids: {
@@ -2234,20 +2143,7 @@ public enum __ABI_test_component {
     }
 
     internal static var WithKeywordVTable: __x_ABI_Ctest__component_CWithKeywordVtbl = .init(
-        QueryInterface: {
-            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-            ppvObject.pointee = nil
-
-            switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, WithKeywordWrapper.IID:
-                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                    return S_OK
-                default:
-                    return WithKeywordWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-            }
-        },
-
+        QueryInterface: { WithKeywordWrapper.queryInterface($0, $1, $2) },
         AddRef: { WithKeywordWrapper.addRef($0) },
         Release: { WithKeywordWrapper.release($0) },
         GetIids: {
@@ -2358,20 +2254,7 @@ public enum __ABI_test_component {
     }
     internal typealias IBaseOverridesWrapper = UnsealedWinRTClassWrapper<test_component.Base.IBaseOverrides>
     internal static var IBaseOverridesVTable: __x_ABI_Ctest__component_CIBaseOverridesVtbl = .init(
-        QueryInterface: {
-            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-            ppvObject.pointee = nil
-
-            switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IBaseOverridesWrapper.IID:
-                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                    return S_OK
-                default:
-                    return IBaseOverridesWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-            }
-        },
-
+        QueryInterface: { IBaseOverridesWrapper.queryInterface($0, $1, $2) },
         AddRef: { IBaseOverridesWrapper.addRef($0) },
         Release: { IBaseOverridesWrapper.release($0) },
         GetIids: {
@@ -2408,20 +2291,7 @@ public enum __ABI_test_component {
     )
     internal typealias IUnsealedDerivedOverridesWrapper = UnsealedWinRTClassWrapper<test_component.UnsealedDerived.IUnsealedDerivedOverrides>
     internal static var IUnsealedDerivedOverridesVTable: __x_ABI_Ctest__component_CIUnsealedDerivedOverridesVtbl = .init(
-        QueryInterface: {
-            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-            ppvObject.pointee = nil
-
-            switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IUnsealedDerivedOverridesWrapper.IID:
-                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                    return S_OK
-                default:
-                    return IUnsealedDerivedOverridesWrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-            }
-        },
-
+        QueryInterface: { IUnsealedDerivedOverridesWrapper.queryInterface($0, $1, $2) },
         AddRef: { IUnsealedDerivedOverridesWrapper.addRef($0) },
         Release: { IUnsealedDerivedOverridesWrapper.release($0) },
         GetIids: {
@@ -2459,20 +2329,7 @@ public enum __ABI_test_component {
     )
     internal typealias IUnsealedDerivedOverloads2Wrapper = UnsealedWinRTClassWrapper<test_component.UnsealedDerived.IUnsealedDerivedOverloads2>
     internal static var IUnsealedDerivedOverloads2VTable: __x_ABI_Ctest__component_CIUnsealedDerivedOverloads2Vtbl = .init(
-        QueryInterface: {
-            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-            ppvObject.pointee = nil
-
-            switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, IUnsealedDerivedOverloads2Wrapper.IID:
-                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                    return S_OK
-                default:
-                    return IUnsealedDerivedOverloads2Wrapper.queryInterface(pUnk, riid.pointee, ppvObject)
-            }
-        },
-
+        QueryInterface: { IUnsealedDerivedOverloads2Wrapper.queryInterface($0, $1, $2) },
         AddRef: { IUnsealedDerivedOverloads2Wrapper.addRef($0) },
         Release: { IUnsealedDerivedOverloads2Wrapper.release($0) },
         GetIids: {
@@ -2561,20 +2418,7 @@ extension __ABI_test_component {
 
     typealias ObjectHandlerWrapper = InterfaceWrapperBase<__IMPL_test_component.ObjectHandlerBridge>
     internal static var ObjectHandlerVTable: __x_ABI_Ctest__component_CIObjectHandlerVtbl = .init(
-        QueryInterface: {
-            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-            ppvObject.pointee = nil
-
-            switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, ObjectHandlerWrapper.IID:
-                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                    return S_OK
-                default:
-                    return failWith(err: E_NOINTERFACE)
-            }
-        },
-
+        QueryInterface: { ObjectHandlerWrapper.queryInterface($0, $1, $2) },
         AddRef: { ObjectHandlerWrapper.addRef($0) },
         Release: { ObjectHandlerWrapper.release($0) },
         Invoke: {
@@ -2608,20 +2452,7 @@ extension __ABI_test_component {
 
     typealias VoidToVoidDelegateWrapper = InterfaceWrapperBase<__IMPL_test_component.VoidToVoidDelegateBridge>
     internal static var VoidToVoidDelegateVTable: __x_ABI_Ctest__component_CIVoidToVoidDelegateVtbl = .init(
-        QueryInterface: {
-            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-            ppvObject.pointee = nil
-
-            switch riid.pointee {
-                case IUnknown.IID, IInspectable.IID, ISwiftImplemented.IID, IAgileObject.IID, VoidToVoidDelegateWrapper.IID:
-                    _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-                    ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-                    return S_OK
-                default:
-                    return failWith(err: E_NOINTERFACE)
-            }
-        },
-
+        QueryInterface: { VoidToVoidDelegateWrapper.queryInterface($0, $1, $2) },
         AddRef: { VoidToVoidDelegateWrapper.addRef($0) },
         Release: { VoidToVoidDelegateWrapper.release($0) },
         Invoke: {
