@@ -6,9 +6,6 @@ import Foundation
 
 fileprivate let IID_IInspectable = IID(Data1: 0xAF86E2E0, Data2: 0xB12D, Data3: 0x4C6A, Data4: ( 0x9C, 0x5A, 0xD7, 0xAA, 0x65, 0x10, 0x1E, 0x90 )) // AF86E2E0-B12D-4c6a-9C5A-D7AA65101E90
 
-public protocol IInspectable2: IUnknown2 {
-}
-
 open class IInspectable: IUnknown {
   override open class var IID: SUPPORT_MODULE.IID { IID_IInspectable }
 
@@ -65,13 +62,13 @@ public enum __ABI_ {
             return try super.toABI(body)
         }
       }
-      public static func unwrapFrom(abi: UnsafeMutablePointer<C_IInspectable>?) -> Any? {
+      public static func unwrapFrom(abi: ComPtr<C_IInspectable>?) -> Any? {
         guard let abi = abi else { return nil }
         if let instance = tryUnwrapFrom(abi: abi) {
           return instance
         }
 
-        let ref = IInspectable(consuming: abi)
+        let ref = IInspectable(abi)
         return makeFrom(abi: ref) ?? ref
       }
     }
@@ -91,7 +88,7 @@ public enum __ABI_ {
             let swiftObj = AnyWrapper.tryUnwrapFrom(raw: pUnk)
             if let customQueryInterface = swiftObj as? CustomQueryInterface,
                let result = customQueryInterface.queryInterface(riid.pointee) {
-                ppvObject.pointee = UnsafeMutableRawPointer(result.ref)
+                ppvObject.pointee = result.detach()
                 return S_OK
             }
             return E_NOINTERFACE

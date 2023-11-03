@@ -6,32 +6,17 @@ import C_BINDINGS_MODULE
 
 public func RoGetActivationFactory<Factory: IInspectable>(_ activatableClassId: HString) throws -> Factory {
   var iid = Factory.IID
-  var factory: UnsafeMutableRawPointer?
-  try CHECKED(RoGetActivationFactory(activatableClassId.get(), &iid, &factory))
-  let inspectable = IInspectable(consuming: factory!.bindMemory(to: C_IUnknown.self, capacity: 1))
-  return try inspectable.QueryInterface<Factory>()
-}
-
-public func RoGetActivationFactory<Factory>(_ activatableClassId: HString) throws -> ComObject<Factory> {
-  var iid = ComObject<Factory>.IID
-  let factory = try ComPtrs.initialize(to: Factory.self) { factoryAbi in
+  let (factory) = try ComPtrs.initialize(to: C_IInspectable.self) { factoryAbi in
     try CHECKED(RoGetActivationFactory(activatableClassId.get(), &iid, &factoryAbi))
   }
-  return .init(factory)
+  return try factory.queryInterface<Factory>()
 }
 
 public func RoActivateInstance<Instance: IInspectable>(_ activatableClassId: HString) throws -> Instance {
-  var instance: UnsafeMutablePointer<C_IInspectable>?
-  try CHECKED(RoActivateInstance(activatableClassId.get(), &instance))
-  let inspectable = IInspectable(consuming: UnsafeMutableRawPointer(instance!).bindMemory(to: C_IUnknown.self, capacity: 1))
-  return try inspectable.QueryInterface<Instance>()
-}
-
-public func RoActivateInstance<Instance>(_ activatableClassId: HString) throws -> ComObject<Instance> {
-  let instance = try ComPtrs.initialize { instanceAbi in
+  let (instance) = try ComPtrs.initialize { instanceAbi in
     try CHECKED(RoActivateInstance(activatableClassId.get(), &instanceAbi))
   }
-  return try instance.queryInterface()
+  return try instance.queryInterface<Instance>()
 }
 
 // ISwiftImplemented is a marker interface for code-gen types which are created by swift/winrt. It's used to QI

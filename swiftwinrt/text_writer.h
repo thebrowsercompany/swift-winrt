@@ -316,44 +316,6 @@ namespace swiftwinrt
     };
 
     template <typename T>
-    struct write_scope_guard
-    {
-        write_scope_guard(writer_base<T>& w, std::string module = "", bool start_on_new_line = true) noexcept : m_writer(w), m_start_on_new_line(start_on_new_line), m_swift_module(module)
-        {
-        }
-
-        write_scope_guard(write_scope_guard const&) = delete;
-        write_scope_guard(write_scope_guard&& rhs) : m_writer(rhs.m_writer), m_lines(std::move(rhs.m_lines)) {}
-        ~write_scope_guard() noexcept
-        {
-            auto on_new_line = m_writer.back() == '\n';
-            if (!on_new_line && !m_lines.empty() && m_start_on_new_line)
-            {
-                m_writer.write("\n");
-            }
-            for (auto& line : m_lines)
-            {
-                m_writer.write(line);
-            }
-        }
-
-        template <typename... Args>
-        void push(std::string_view const& value, Args const&... args)
-        {
-            T temp_writer;
-            temp_writer.swift_module = m_swift_module;
-            m_lines.push_back(temp_writer.write_temp(value, args...));
-        }
-
-    private:
-        writer_base<T>& m_writer;
-        std::vector<std::string> m_lines;
-        bool m_start_on_new_line{};
-        std::string m_swift_module;
-    };
-
-
-    template <typename T>
     struct indented_writer_base : writer_base<T>
     {
         struct indent_guard
@@ -364,7 +326,6 @@ namespace swiftwinrt
             }
 
             indent_guard(indent_guard&& rhs) noexcept : m_writer(rhs.m_writer), m_offset(rhs.m_offset) { rhs.m_offset = 0; }
-            //indent_guard& operator=(indent_guard&& rhs) noexcept : m_writer(rhs.m_writer), m_offset(rhs.m_offset) { rhs.m_offset = 0; }
             ~indent_guard() noexcept
             {
                 m_writer.m_indent -= m_offset;
@@ -457,6 +418,56 @@ namespace swiftwinrt
         }
 
         size_t m_indent{};
+    };
+
+
+    template <typename T>
+    struct write_scope_guard
+    {
+        using writer_type = indented_writer_base<T>;
+        write_scope_guard(writer_type& w, std::string module = "", bool start_on_new_line = true) noexcept : m_writer(w), m_start_on_new_line(start_on_new_line), m_swift_module(module)
+        {
+        }
+
+        write_scope_guard(write_scope_guard const&) = delete;
+        write_scope_guard(write_scope_guard&& rhs) : m_writer(rhs.m_writer), m_lines(std::move(rhs.m_lines)) {}
+        ~write_scope_guard() noexcept
+        {
+            if (m_guard.has_value())
+            {
+                m_guard.value().end();
+            }
+            auto on_new_line = m_writer.back() == '\n';
+            if (!on_new_line && !m_lines.empty() && m_start_on_new_line)
+            {
+                m_writer.write("\n");
+            }
+            for (auto& line : m_lines)
+            {
+                m_writer.write(line);
+            }
+        }
+
+        template <typename... Args>
+        void push(std::string_view const& value, Args const&... args)
+        {
+            T temp_writer;
+            temp_writer.swift_module = m_swift_module;
+            m_lines.push_back(temp_writer.write_temp(value, args...));
+        }
+
+        void push_indent(indent indent = { 1 })
+        {
+            m_guard.emplace(m_writer.push_indent(indent));
+        }
+
+    private:
+        writer_type& m_writer;
+        size_t m_offset{};
+        std::vector<std::string> m_lines;
+        std::optional<typename writer_type::indent_guard> m_guard;
+        bool m_start_on_new_line{};
+        std::string m_swift_module;
     };
 
 

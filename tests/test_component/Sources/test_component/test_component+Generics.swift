@@ -19,7 +19,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1_intVTable: __x_ABI_C_
     Release: { __x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper.release($0) },
     Invoke: {
         guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperation<Int32>? = test_component.__x_ABI_C__FIAsyncOperation_1_intWrapper.unwrapFrom(abi: $1)
+        let asyncInfo: test_component.AnyIAsyncOperation<Int32>? = test_component.__x_ABI_C__FIAsyncOperation_1_intWrapper.unwrapFrom(abi: ComPtr($1))
         let asyncStatus: test_component.AsyncStatus = $2
         __unwrapped__instance(asyncInfo, asyncStatus)
         return S_OK
@@ -44,7 +44,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1_intBridge : WinRTDe
     internal typealias CABI = __x_ABI_C__FIAsyncOperationCompletedHandler_1_int
     internal typealias SwiftABI = test_component.AsyncOperationCompletedHandlerInt32
 
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
+    internal static func from(abi: ComPtr<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
@@ -70,7 +70,7 @@ internal var __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleVTable: __x_
     Release: { __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper.release($0) },
     Invoke: {
         guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperationWithProgress<Int32, Double>? = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper.unwrapFrom(abi: $1)
+        let asyncInfo: test_component.AnyIAsyncOperationWithProgress<Int32, Double>? = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper.unwrapFrom(abi: ComPtr($1))
         let progressInfo: Double = $2
         __unwrapped__instance(asyncInfo, progressInfo)
         return S_OK
@@ -95,7 +95,7 @@ internal class __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleBridge : W
     internal typealias CABI = __x_ABI_C__FIAsyncOperationProgressHandler_2_int_double
     internal typealias SwiftABI = test_component.AsyncOperationProgressHandlerInt32_Double
 
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
+    internal static func from(abi: ComPtr<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, progressInfo) in
@@ -121,7 +121,7 @@ internal var __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubl
     Release: { __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWrapper.release($0) },
     Invoke: {
         guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperationWithProgress<Int32, Double>? = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper.unwrapFrom(abi: $1)
+        let asyncInfo: test_component.AnyIAsyncOperationWithProgress<Int32, Double>? = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper.unwrapFrom(abi: ComPtr($1))
         let asyncStatus: test_component.AsyncStatus = $2
         __unwrapped__instance(asyncInfo, asyncStatus)
         return S_OK
@@ -146,7 +146,7 @@ internal class __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_dou
     internal typealias CABI = __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_double
     internal typealias SwiftABI = test_component.AsyncOperationWithProgressCompletedHandlerInt32_Double
 
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
+    internal static func from(abi: ComPtr<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
@@ -200,9 +200,10 @@ internal class IIterableAny: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1_IInspectable }
 
     internal func FirstImpl() throws -> test_component.AnyIIterator<Any?>? {
-        var result: UnsafeMutablePointer<__x_ABI_C__FIIterator_1_IInspectable>?
-        _ = try perform(as: __x_ABI_C__FIIterable_1_IInspectable.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIIterable_1_IInspectable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
+            }
         }
         return test_component.__x_ABI_C__FIIterator_1_IInspectableWrapper.unwrapFrom(abi: result)
     }
@@ -213,7 +214,7 @@ internal enum __x_ABI_C__FIIterable_1_IInspectableBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterable_1_IInspectable
     internal typealias SwiftABI = IIterableAny
     internal typealias SwiftProjection = AnyIIterable<Any?>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterable_1_IInspectableImpl(abi)
     }
@@ -228,7 +229,7 @@ fileprivate class __x_ABI_C__FIIterable_1_IInspectableImpl : IIterable, AbiInter
     typealias T = Any?
     typealias Bridge = __x_ABI_C__FIIterable_1_IInspectableBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -286,9 +287,10 @@ internal class IIterableString: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1_HSTRING }
 
     internal func FirstImpl() throws -> test_component.AnyIIterator<String>? {
-        var result: UnsafeMutablePointer<__x_ABI_C__FIIterator_1_HSTRING>?
-        _ = try perform(as: __x_ABI_C__FIIterable_1_HSTRING.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIIterable_1_HSTRING.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
+            }
         }
         return test_component.__x_ABI_C__FIIterator_1_HSTRINGWrapper.unwrapFrom(abi: result)
     }
@@ -299,7 +301,7 @@ internal enum __x_ABI_C__FIIterable_1_HSTRINGBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterable_1_HSTRING
     internal typealias SwiftABI = IIterableString
     internal typealias SwiftProjection = AnyIIterable<String>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterable_1_HSTRINGImpl(abi)
     }
@@ -314,7 +316,7 @@ fileprivate class __x_ABI_C__FIIterable_1_HSTRINGImpl : IIterable, AbiInterfaceI
     typealias T = String
     typealias Bridge = __x_ABI_C__FIIterable_1_HSTRINGBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -372,9 +374,10 @@ internal class IIterableIKeyValuePairString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable }
 
     internal func FirstImpl() throws -> test_component.AnyIIterator<test_component.AnyIKeyValuePair<String, Any?>?>? {
-        var result: UnsafeMutablePointer<__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable>?
-        _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
+            }
         }
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
     }
@@ -385,7 +388,7 @@ internal enum __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspe
     internal typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable
     internal typealias SwiftABI = IIterableIKeyValuePairString_Any
     internal typealias SwiftProjection = AnyIIterable<AnyIKeyValuePair<String, Any?>?>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl(abi)
     }
@@ -400,7 +403,7 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_II
     typealias T = AnyIKeyValuePair<String, Any?>?
     typealias Bridge = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -458,9 +461,10 @@ internal class IIterableIKeyValuePairString_String: test_component.IInspectable 
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING }
 
     internal func FirstImpl() throws -> test_component.AnyIIterator<test_component.AnyIKeyValuePair<String, String>?>? {
-        var result: UnsafeMutablePointer<__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING>?
-        _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
+            }
         }
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
     }
@@ -471,7 +475,7 @@ internal enum __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRIN
     internal typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING
     internal typealias SwiftABI = IIterableIKeyValuePairString_String
     internal typealias SwiftProjection = AnyIIterable<AnyIKeyValuePair<String, String>?>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl(abi)
     }
@@ -486,7 +490,7 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HS
     typealias T = AnyIKeyValuePair<String, String>?
     typealias Bridge = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -544,9 +548,10 @@ internal class IIterableIKeyValuePairString_Base: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
 
     internal func FirstImpl() throws -> test_component.AnyIIterator<test_component.AnyIKeyValuePair<String, test_component.Base?>?>? {
-        var result: UnsafeMutablePointer<__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
-        _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
+            }
         }
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
@@ -557,7 +562,7 @@ internal enum __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_AB
     internal typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IIterableIKeyValuePairString_Base
     internal typealias SwiftProjection = AnyIIterable<AnyIKeyValuePair<String, Base?>?>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
     }
@@ -572,7 +577,7 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___
     typealias T = AnyIKeyValuePair<String, Base?>?
     typealias Bridge = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -630,9 +635,10 @@ internal class IIterableBase: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBase }
 
     internal func FirstImpl() throws -> test_component.AnyIIterator<test_component.Base?>? {
-        var result: UnsafeMutablePointer<__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase>?
-        _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
+            }
         }
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
@@ -643,7 +649,7 @@ internal enum __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseBridge : A
     internal typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IIterableBase
     internal typealias SwiftProjection = AnyIIterable<Base?>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
     }
@@ -658,7 +664,7 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseImpl :
     typealias T = Base?
     typealias Bridge = __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -716,9 +722,10 @@ internal class IIterableIBasic: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasic }
 
     internal func FirstImpl() throws -> test_component.AnyIIterator<test_component.AnyIBasic?>? {
-        var result: UnsafeMutablePointer<__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic>?
-        _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
+            }
         }
         return test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.unwrapFrom(abi: result)
     }
@@ -729,7 +736,7 @@ internal enum __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicBridge :
     internal typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasic
     internal typealias SwiftABI = IIterableIBasic
     internal typealias SwiftProjection = AnyIIterable<AnyIBasic?>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicImpl(abi)
     }
@@ -744,7 +751,7 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicImpl
     typealias T = AnyIBasic?
     typealias Bridge = __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -818,9 +825,10 @@ internal class IIteratorAny: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1_IInspectable }
 
     internal func get_CurrentImpl() throws -> Any? {
-        var result: UnsafeMutablePointer<C_IInspectable>?
-        _ = try perform(as: __x_ABI_C__FIIterator_1_IInspectable.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIIterator_1_IInspectable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
+            }
         }
         return __ABI_.AnyWrapper.unwrapFrom(abi: result)
     }
@@ -847,7 +855,7 @@ internal enum __x_ABI_C__FIIterator_1_IInspectableBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterator_1_IInspectable
     internal typealias SwiftABI = IIteratorAny
     internal typealias SwiftProjection = AnyIIterator<Any?>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterator_1_IInspectableImpl(abi)
     }
@@ -862,7 +870,7 @@ fileprivate class __x_ABI_C__FIIterator_1_IInspectableImpl : IIterator, AbiInter
     typealias T = Any?
     typealias Bridge = __x_ABI_C__FIIterator_1_IInspectableBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -974,7 +982,7 @@ internal enum __x_ABI_C__FIIterator_1_HSTRINGBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterator_1_HSTRING
     internal typealias SwiftABI = IIteratorString
     internal typealias SwiftProjection = AnyIIterator<String>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterator_1_HSTRINGImpl(abi)
     }
@@ -989,7 +997,7 @@ fileprivate class __x_ABI_C__FIIterator_1_HSTRINGImpl : IIterator, AbiInterfaceI
     typealias T = String
     typealias Bridge = __x_ABI_C__FIIterator_1_HSTRINGBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -1073,9 +1081,10 @@ internal class IIteratorIKeyValuePairString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable }
 
     internal func get_CurrentImpl() throws -> test_component.AnyIKeyValuePair<String, Any?>? {
-        var result: UnsafeMutablePointer<__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable>?
-        _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
+            }
         }
         return test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
     }
@@ -1102,7 +1111,7 @@ internal enum __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspe
     internal typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable
     internal typealias SwiftABI = IIteratorIKeyValuePairString_Any
     internal typealias SwiftProjection = AnyIIterator<AnyIKeyValuePair<String, Any?>?>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl(abi)
     }
@@ -1117,7 +1126,7 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_II
     typealias T = AnyIKeyValuePair<String, Any?>?
     typealias Bridge = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -1201,9 +1210,10 @@ internal class IIteratorIKeyValuePairString_String: test_component.IInspectable 
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING }
 
     internal func get_CurrentImpl() throws -> test_component.AnyIKeyValuePair<String, String>? {
-        var result: UnsafeMutablePointer<__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING>?
-        _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
+            }
         }
         return test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
     }
@@ -1230,7 +1240,7 @@ internal enum __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRIN
     internal typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING
     internal typealias SwiftABI = IIteratorIKeyValuePairString_String
     internal typealias SwiftProjection = AnyIIterator<AnyIKeyValuePair<String, String>?>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl(abi)
     }
@@ -1245,7 +1255,7 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HS
     typealias T = AnyIKeyValuePair<String, String>?
     typealias Bridge = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -1329,9 +1339,10 @@ internal class IIteratorIKeyValuePairString_Base: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
 
     internal func get_CurrentImpl() throws -> test_component.AnyIKeyValuePair<String, test_component.Base?>? {
-        var result: UnsafeMutablePointer<__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
-        _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
+            }
         }
         return test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
@@ -1358,7 +1369,7 @@ internal enum __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_AB
     internal typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IIteratorIKeyValuePairString_Base
     internal typealias SwiftProjection = AnyIIterator<AnyIKeyValuePair<String, Base?>?>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
     }
@@ -1373,7 +1384,7 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___
     typealias T = AnyIKeyValuePair<String, Base?>?
     typealias Bridge = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -1456,9 +1467,10 @@ internal class IIteratorBase: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase }
 
     internal func get_CurrentImpl() throws -> test_component.Base? {
-        var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?
-        _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
+            }
         }
         return .from(abi: result)
     }
@@ -1485,7 +1497,7 @@ internal enum __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseBridge : A
     internal typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IIteratorBase
     internal typealias SwiftProjection = AnyIIterator<Base?>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
     }
@@ -1500,7 +1512,7 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseImpl :
     typealias T = Base?
     typealias Bridge = __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -1584,9 +1596,10 @@ internal class IIteratorIBasic: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic }
 
     internal func get_CurrentImpl() throws -> test_component.AnyIBasic? {
-        var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>?
-        _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
+            }
         }
         return __ABI_test_component.IBasicWrapper.unwrapFrom(abi: result)
     }
@@ -1613,7 +1626,7 @@ internal enum __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicBridge :
     internal typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic
     internal typealias SwiftABI = IIteratorIBasic
     internal typealias SwiftProjection = AnyIIterator<AnyIBasic?>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicImpl(abi)
     }
@@ -1628,7 +1641,7 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicImpl
     typealias T = AnyIBasic?
     typealias Bridge = __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -1711,9 +1724,10 @@ internal class IKeyValuePairString_Any: test_component.IInspectable {
     }
 
     internal func get_ValueImpl() throws -> Any? {
-        var result: UnsafeMutablePointer<C_IInspectable>?
-        _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Value(pThis, &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Value(pThis, &resultAbi))
+            }
         }
         return __ABI_.AnyWrapper.unwrapFrom(abi: result)
     }
@@ -1724,7 +1738,7 @@ internal enum __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge : AbiInterf
     internal typealias CABI = __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable
     internal typealias SwiftABI = IKeyValuePairString_Any
     internal typealias SwiftProjection = AnyIKeyValuePair<String, Any?>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl(abi)
     }
@@ -1740,7 +1754,7 @@ fileprivate class __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl : IKeyVal
     typealias V = Any?
     typealias Bridge = __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -1830,7 +1844,7 @@ internal enum __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge : AbiInterfaceBr
     internal typealias CABI = __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING
     internal typealias SwiftABI = IKeyValuePairString_String
     internal typealias SwiftProjection = AnyIKeyValuePair<String, String>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl(abi)
     }
@@ -1846,7 +1860,7 @@ fileprivate class __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl : IKeyValuePai
     typealias V = String
     typealias Bridge = __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -1923,9 +1937,10 @@ internal class IKeyValuePairString_Base: test_component.IInspectable {
     }
 
     internal func get_ValueImpl() throws -> test_component.Base? {
-        var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?
-        _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Value(pThis, &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Value(pThis, &resultAbi))
+            }
         }
         return .from(abi: result)
     }
@@ -1936,7 +1951,7 @@ internal enum __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBa
     internal typealias CABI = __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IKeyValuePairString_Base
     internal typealias SwiftProjection = AnyIKeyValuePair<String, Base?>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
     }
@@ -1952,7 +1967,7 @@ fileprivate class __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent_
     typealias V = Base?
     typealias Bridge = __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -2042,7 +2057,7 @@ internal enum __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGBridge : AbiInterfaceBri
     internal typealias CABI = __x_ABI_C__FIMapChangedEventArgs_1_HSTRING
     internal typealias SwiftABI = IMapChangedEventArgsString
     internal typealias SwiftProjection = AnyIMapChangedEventArgs<String>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGImpl(abi)
     }
@@ -2057,7 +2072,7 @@ fileprivate class __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGImpl : IMapChangedEv
     typealias K = String
     typealias Bridge = __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -2149,10 +2164,11 @@ internal class IMapViewString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMapView_2_HSTRING_IInspectable }
 
     internal func LookupImpl(_ key: String) throws -> Any? {
-        var result: UnsafeMutablePointer<C_IInspectable>?
-        let _key = try! HString(key)
-        _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_IInspectable.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, _key.get(), &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            let _key = try! HString(key)
+            _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_IInspectable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, _key.get(), &resultAbi))
+            }
         }
         return __ABI_.AnyWrapper.unwrapFrom(abi: result)
     }
@@ -2175,13 +2191,13 @@ internal class IMapViewString_Any: test_component.IInspectable {
     }
 
     internal func SplitImpl(_ first: inout test_component.AnyIMapView<String, Any?>?, _ second: inout test_component.AnyIMapView<String, Any?>?) throws {
-        var _first: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_IInspectable>?
-        var _second: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_IInspectable>?
-        _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_IInspectable.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &_first, &_second))
+        let (_first, _second) = try ComPtrs.initialize { (_firstAbi, _secondAbi) in
+            _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_IInspectable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &_firstAbi, &_secondAbi))
+            }
         }
-        first = test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableBridge.from(abi: _first)
-        second = test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableBridge.from(abi: _second)
+        first = test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: _first)
+        second = test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: _second)
     }
 
 }
@@ -2190,7 +2206,7 @@ internal enum __x_ABI_C__FIMapView_2_HSTRING_IInspectableBridge : AbiInterfaceBr
     internal typealias CABI = __x_ABI_C__FIMapView_2_HSTRING_IInspectable
     internal typealias SwiftABI = IMapViewString_Any
     internal typealias SwiftProjection = AnyIMapView<String, Any?>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl(abi)
     }
@@ -2207,7 +2223,7 @@ fileprivate class __x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl : IMapView, Ab
     typealias V = Any?
     typealias Bridge = __x_ABI_C__FIMapView_2_HSTRING_IInspectableBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -2340,13 +2356,13 @@ internal class IMapViewString_String: test_component.IInspectable {
     }
 
     internal func SplitImpl(_ first: inout test_component.AnyIMapView<String, String>?, _ second: inout test_component.AnyIMapView<String, String>?) throws {
-        var _first: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?
-        var _second: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?
-        _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_HSTRING.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &_first, &_second))
+        let (_first, _second) = try ComPtrs.initialize { (_firstAbi, _secondAbi) in
+            _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_HSTRING.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &_firstAbi, &_secondAbi))
+            }
         }
-        first = test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGBridge.from(abi: _first)
-        second = test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGBridge.from(abi: _second)
+        first = test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: _first)
+        second = test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: _second)
     }
 
 }
@@ -2355,7 +2371,7 @@ internal enum __x_ABI_C__FIMapView_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge 
     internal typealias CABI = __x_ABI_C__FIMapView_2_HSTRING_HSTRING
     internal typealias SwiftABI = IMapViewString_String
     internal typealias SwiftProjection = AnyIMapView<String, String>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl(abi)
     }
@@ -2372,7 +2388,7 @@ fileprivate class __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl : IMapView, AbiInte
     typealias V = String
     typealias Bridge = __x_ABI_C__FIMapView_2_HSTRING_HSTRINGBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -2479,10 +2495,11 @@ internal class IMapViewString_Base: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
 
     internal func LookupImpl(_ key: String) throws -> test_component.Base? {
-        var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?
-        let _key = try! HString(key)
-        _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, _key.get(), &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            let _key = try! HString(key)
+            _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, _key.get(), &resultAbi))
+            }
         }
         return .from(abi: result)
     }
@@ -2505,13 +2522,13 @@ internal class IMapViewString_Base: test_component.IInspectable {
     }
 
     internal func SplitImpl(_ first: inout test_component.AnyIMapView<String, test_component.Base?>?, _ second: inout test_component.AnyIMapView<String, test_component.Base?>?) throws {
-        var _first: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
-        var _second: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
-        _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &_first, &_second))
+        let (_first, _second) = try ComPtrs.initialize { (_firstAbi, _secondAbi) in
+            _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &_firstAbi, &_secondAbi))
+            }
         }
-        first = test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge.from(abi: _first)
-        second = test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge.from(abi: _second)
+        first = test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: _first)
+        second = test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: _second)
     }
 
 }
@@ -2520,7 +2537,7 @@ internal enum __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBri
     internal typealias CABI = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IMapViewString_Base
     internal typealias SwiftProjection = AnyIMapView<String, Base?>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
     }
@@ -2537,7 +2554,7 @@ fileprivate class __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBas
     typealias V = Base?
     typealias Bridge = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -2639,7 +2656,7 @@ internal var __x_ABI_C__FIMap_2_HSTRING_IInspectableVTable: __x_ABI_C__FIMap_2_H
     Insert: {
         guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let key: String = .init(from: $1)
-        let value: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: $2)
+        let value: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: ComPtr($2))
         let result = __unwrapped__instance.insert(key, value)
         $3?.initialize(to: .init(from: result))
         return S_OK
@@ -2663,10 +2680,11 @@ internal class IMapString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMap_2_HSTRING_IInspectable }
 
     internal func LookupImpl(_ key: String) throws -> Any? {
-        var result: UnsafeMutablePointer<C_IInspectable>?
-        let _key = try! HString(key)
-        _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, _key.get(), &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            let _key = try! HString(key)
+            _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, _key.get(), &resultAbi))
+            }
         }
         return __ABI_.AnyWrapper.unwrapFrom(abi: result)
     }
@@ -2689,9 +2707,10 @@ internal class IMapString_Any: test_component.IInspectable {
     }
 
     internal func GetViewImpl() throws -> test_component.AnyIMapView<String, Any?>? {
-        var result: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_IInspectable>?
-        _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &resultAbi))
+            }
         }
         return test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
     }
@@ -2726,7 +2745,7 @@ internal enum __x_ABI_C__FIMap_2_HSTRING_IInspectableBridge : AbiInterfaceBridge
     internal typealias CABI = __x_ABI_C__FIMap_2_HSTRING_IInspectable
     internal typealias SwiftABI = IMapString_Any
     internal typealias SwiftProjection = AnyIMap<String, Any?>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIMap_2_HSTRING_IInspectableImpl(abi)
     }
@@ -2743,7 +2762,7 @@ fileprivate class __x_ABI_C__FIMap_2_HSTRING_IInspectableImpl : IMap, AbiInterfa
     typealias V = Any?
     typealias Bridge = __x_ABI_C__FIMap_2_HSTRING_IInspectableBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -2909,9 +2928,10 @@ internal class IMapString_String: test_component.IInspectable {
     }
 
     internal func GetViewImpl() throws -> test_component.AnyIMapView<String, String>? {
-        var result: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?
-        _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &resultAbi))
+            }
         }
         return test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
     }
@@ -2945,7 +2965,7 @@ internal enum __x_ABI_C__FIMap_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIMap_2_HSTRING_HSTRING
     internal typealias SwiftABI = IMapString_String
     internal typealias SwiftProjection = AnyIMap<String, String>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIMap_2_HSTRING_HSTRINGImpl(abi)
     }
@@ -2962,7 +2982,7 @@ fileprivate class __x_ABI_C__FIMap_2_HSTRING_HSTRINGImpl : IMap, AbiInterfaceImp
     typealias V = String
     typealias Bridge = __x_ABI_C__FIMap_2_HSTRING_HSTRINGBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -3078,7 +3098,7 @@ internal var __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: 
     Insert: {
         guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let key: String = .init(from: $1)
-        let value: test_component.Base? = .from(abi: $2)
+        let value: test_component.Base? = .from(abi: ComPtr($2))
         let result = __unwrapped__instance.insert(key, value)
         $3?.initialize(to: .init(from: result))
         return S_OK
@@ -3102,10 +3122,11 @@ internal class IMapString_Base: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
 
     internal func LookupImpl(_ key: String) throws -> test_component.Base? {
-        var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?
-        let _key = try! HString(key)
-        _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, _key.get(), &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            let _key = try! HString(key)
+            _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, _key.get(), &resultAbi))
+            }
         }
         return .from(abi: result)
     }
@@ -3128,9 +3149,10 @@ internal class IMapString_Base: test_component.IInspectable {
     }
 
     internal func GetViewImpl() throws -> test_component.AnyIMapView<String, test_component.Base?>? {
-        var result: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
-        _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &resultAbi))
+            }
         }
         return test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
@@ -3163,7 +3185,7 @@ internal enum __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge 
     internal typealias CABI = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IMapString_Base
     internal typealias SwiftProjection = AnyIMap<String, Base?>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
     }
@@ -3180,7 +3202,7 @@ fileprivate class __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImp
     typealias V = Base?
     typealias Bridge = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -3265,7 +3287,7 @@ internal var __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableVTable: __x_ABI_C_
 
     add_MapChanged: {
         guard let __unwrapped__instance = __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        guard let vhnd = test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: $1) else { return E_INVALIDARG }
+        guard let vhnd = test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: ComPtr($1)) else { return E_INVALIDARG }
         let result = __unwrapped__instance.mapChanged.addHandler(vhnd)
         $2?.initialize(to: .from(swift: result))
         return S_OK
@@ -3304,7 +3326,7 @@ internal enum __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableBridge : AbiInter
     internal typealias CABI = __x_ABI_C__FIObservableMap_2_HSTRING_IInspectable
     internal typealias SwiftABI = IObservableMapString_Any
     internal typealias SwiftProjection = AnyIObservableMap<String, Any?>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableImpl(abi)
     }
@@ -3321,7 +3343,7 @@ fileprivate class __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableImpl : IObser
     typealias T = AnyIKeyValuePair<String, Any?>?
     typealias Bridge = __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -3420,7 +3442,7 @@ internal var __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIOb
 
     add_MapChanged: {
         guard let __unwrapped__instance = __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        guard let vhnd = test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: $1) else { return E_INVALIDARG }
+        guard let vhnd = test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: ComPtr($1)) else { return E_INVALIDARG }
         let result = __unwrapped__instance.mapChanged.addHandler(vhnd)
         $2?.initialize(to: .from(swift: result))
         return S_OK
@@ -3459,7 +3481,7 @@ internal enum __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGBridge : AbiInterfaceB
     internal typealias CABI = __x_ABI_C__FIObservableMap_2_HSTRING_HSTRING
     internal typealias SwiftABI = IObservableMapString_String
     internal typealias SwiftProjection = AnyIObservableMap<String, String>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGImpl(abi)
     }
@@ -3476,7 +3498,7 @@ fileprivate class __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGImpl : IObservable
     typealias T = AnyIKeyValuePair<String, String>?
     typealias Bridge = __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -3575,7 +3597,7 @@ internal var __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseVTa
 
     add_VectorChanged: {
         guard let __unwrapped__instance = __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        guard let vhnd = test_component.__x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: $1) else { return E_INVALIDARG }
+        guard let vhnd = test_component.__x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: ComPtr($1)) else { return E_INVALIDARG }
         let result = __unwrapped__instance.vectorChanged.addHandler(vhnd)
         $2?.initialize(to: .from(swift: result))
         return S_OK
@@ -3614,7 +3636,7 @@ internal enum __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseBr
     internal typealias CABI = __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IObservableVectorBase
     internal typealias SwiftProjection = AnyIObservableVector<Base?>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
     }
@@ -3629,7 +3651,7 @@ fileprivate class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBa
     typealias T = Base?
     typealias Bridge = __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -3773,7 +3795,7 @@ internal var __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicV
 
     add_VectorChanged: {
         guard let __unwrapped__instance = __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        guard let vhnd = test_component.__x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.unwrapFrom(abi: $1) else { return E_INVALIDARG }
+        guard let vhnd = test_component.__x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.unwrapFrom(abi: ComPtr($1)) else { return E_INVALIDARG }
         let result = __unwrapped__instance.vectorChanged.addHandler(vhnd)
         $2?.initialize(to: .from(swift: result))
         return S_OK
@@ -3812,7 +3834,7 @@ internal enum __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasic
     internal typealias CABI = __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasic
     internal typealias SwiftABI = IObservableVectorIBasic
     internal typealias SwiftProjection = AnyIObservableVector<AnyIBasic?>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicImpl(abi)
     }
@@ -3827,7 +3849,7 @@ fileprivate class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIB
     typealias T = AnyIBasic?
     typealias Bridge = __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -3986,7 +4008,7 @@ internal var __x_ABI_C__FIVectorView_1_IInspectableVTable: __x_ABI_C__FIVectorVi
 
     IndexOf: {
         guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let value: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: $1)
+        let value: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: ComPtr($1))
         var index: UInt32 = 0
         let result = __unwrapped__instance.indexOf(value, &index)
         $2?.initialize(to: index)
@@ -4001,9 +4023,10 @@ internal class IVectorViewAny: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1_IInspectable }
 
     internal func GetAtImpl(_ index: UInt32) throws -> Any? {
-        var result: UnsafeMutablePointer<C_IInspectable>?
-        _ = try perform(as: __x_ABI_C__FIVectorView_1_IInspectable.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIVectorView_1_IInspectable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
+            }
         }
         return __ABI_.AnyWrapper.unwrapFrom(abi: result)
     }
@@ -4032,7 +4055,7 @@ internal enum __x_ABI_C__FIVectorView_1_IInspectableBridge : AbiInterfaceBridge 
     internal typealias CABI = __x_ABI_C__FIVectorView_1_IInspectable
     internal typealias SwiftABI = IVectorViewAny
     internal typealias SwiftProjection = AnyIVectorView<Any?>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIVectorView_1_IInspectableImpl(abi)
     }
@@ -4047,7 +4070,7 @@ fileprivate class __x_ABI_C__FIVectorView_1_IInspectableImpl : IVectorView, AbiI
     typealias T = Any?
     typealias Bridge = __x_ABI_C__FIVectorView_1_IInspectableBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -4192,7 +4215,7 @@ internal enum __x_ABI_C__FIVectorView_1_HSTRINGBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIVectorView_1_HSTRING
     internal typealias SwiftABI = IVectorViewString
     internal typealias SwiftProjection = AnyIVectorView<String>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIVectorView_1_HSTRINGImpl(abi)
     }
@@ -4207,7 +4230,7 @@ fileprivate class __x_ABI_C__FIVectorView_1_HSTRINGImpl : IVectorView, AbiInterf
     typealias T = String
     typealias Bridge = __x_ABI_C__FIVectorView_1_HSTRINGBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -4307,7 +4330,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVTable: _
 
     IndexOf: {
         guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let value: test_component.Base? = .from(abi: $1)
+        let value: test_component.Base? = .from(abi: ComPtr($1))
         var index: UInt32 = 0
         let result = __unwrapped__instance.indexOf(value, &index)
         $2?.initialize(to: index)
@@ -4322,9 +4345,10 @@ internal class IVectorViewBase: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase }
 
     internal func GetAtImpl(_ index: UInt32) throws -> test_component.Base? {
-        var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?
-        _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
+            }
         }
         return .from(abi: result)
     }
@@ -4351,7 +4375,7 @@ internal enum __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseBridge :
     internal typealias CABI = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IVectorViewBase
     internal typealias SwiftProjection = AnyIVectorView<Base?>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
     }
@@ -4366,7 +4390,7 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl
     typealias T = Base?
     typealias Bridge = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -4467,7 +4491,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicVTable:
 
     IndexOf: {
         guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let value: test_component.AnyIBasic? = __ABI_test_component.IBasicWrapper.unwrapFrom(abi: $1)
+        let value: test_component.AnyIBasic? = __ABI_test_component.IBasicWrapper.unwrapFrom(abi: ComPtr($1))
         var index: UInt32 = 0
         let result = __unwrapped__instance.indexOf(value, &index)
         $2?.initialize(to: index)
@@ -4482,9 +4506,10 @@ internal class IVectorViewIBasic: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasic }
 
     internal func GetAtImpl(_ index: UInt32) throws -> test_component.AnyIBasic? {
-        var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>?
-        _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
+            }
         }
         return __ABI_test_component.IBasicWrapper.unwrapFrom(abi: result)
     }
@@ -4513,7 +4538,7 @@ internal enum __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicBridge
     internal typealias CABI = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasic
     internal typealias SwiftABI = IVectorViewIBasic
     internal typealias SwiftProjection = AnyIVectorView<AnyIBasic?>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicImpl(abi)
     }
@@ -4528,7 +4553,7 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicIm
     typealias T = AnyIBasic?
     typealias Bridge = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -4637,7 +4662,7 @@ internal var __x_ABI_C__FIVector_1_IInspectableVTable: __x_ABI_C__FIVector_1_IIn
 
     IndexOf: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let value: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: $1)
+        let value: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: ComPtr($1))
         var index: UInt32 = 0
         let result = __unwrapped__instance.indexOf(value, &index)
         $2?.initialize(to: index)
@@ -4648,7 +4673,7 @@ internal var __x_ABI_C__FIVector_1_IInspectableVTable: __x_ABI_C__FIVector_1_IIn
     SetAt: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let index: UInt32 = $1
-        let value: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: $2)
+        let value: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: ComPtr($2))
         __unwrapped__instance.setAt(index, value)
         return S_OK
     },
@@ -4656,7 +4681,7 @@ internal var __x_ABI_C__FIVector_1_IInspectableVTable: __x_ABI_C__FIVector_1_IIn
     InsertAt: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let index: UInt32 = $1
-        let value: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: $2)
+        let value: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: ComPtr($2))
         __unwrapped__instance.insertAt(index, value)
         return S_OK
     },
@@ -4670,7 +4695,7 @@ internal var __x_ABI_C__FIVector_1_IInspectableVTable: __x_ABI_C__FIVector_1_IIn
 
     Append: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let value: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: $1)
+        let value: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: ComPtr($1))
         __unwrapped__instance.append(value)
         return S_OK
     },
@@ -4696,9 +4721,10 @@ internal class IVectorAny: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVector_1_IInspectable }
 
     internal func GetAtImpl(_ index: UInt32) throws -> Any? {
-        var result: UnsafeMutablePointer<C_IInspectable>?
-        _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
+            }
         }
         return __ABI_.AnyWrapper.unwrapFrom(abi: result)
     }
@@ -4712,9 +4738,10 @@ internal class IVectorAny: test_component.IInspectable {
     }
 
     internal func GetViewImpl() throws -> test_component.AnyIVectorView<Any?>? {
-        var result: UnsafeMutablePointer<__x_ABI_C__FIVectorView_1_IInspectable>?
-        _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &resultAbi))
+            }
         }
         return test_component.__x_ABI_C__FIVectorView_1_IInspectableWrapper.unwrapFrom(abi: result)
     }
@@ -4777,7 +4804,7 @@ internal enum __x_ABI_C__FIVector_1_IInspectableBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIVector_1_IInspectable
     internal typealias SwiftABI = IVectorAny
     internal typealias SwiftProjection = AnyIVector<Any?>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIVector_1_IInspectableImpl(abi)
     }
@@ -4792,7 +4819,7 @@ fileprivate class __x_ABI_C__FIVector_1_IInspectableImpl : IVector, AbiInterface
     typealias T = Any?
     typealias Bridge = __x_ABI_C__FIVector_1_IInspectableBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -5019,9 +5046,10 @@ internal class IVectorString: test_component.IInspectable {
     }
 
     internal func GetViewImpl() throws -> test_component.AnyIVectorView<String>? {
-        var result: UnsafeMutablePointer<__x_ABI_C__FIVectorView_1_HSTRING>?
-        _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &resultAbi))
+            }
         }
         return test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper.unwrapFrom(abi: result)
     }
@@ -5080,7 +5108,7 @@ internal enum __x_ABI_C__FIVector_1_HSTRINGBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIVector_1_HSTRING
     internal typealias SwiftABI = IVectorString
     internal typealias SwiftProjection = AnyIVector<String>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIVector_1_HSTRINGImpl(abi)
     }
@@ -5095,7 +5123,7 @@ fileprivate class __x_ABI_C__FIVector_1_HSTRINGImpl : IVector, AbiInterfaceImpl 
     typealias T = String
     typealias Bridge = __x_ABI_C__FIVector_1_HSTRINGBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -5247,7 +5275,7 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_A
 
     IndexOf: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let value: test_component.Base? = .from(abi: $1)
+        let value: test_component.Base? = .from(abi: ComPtr($1))
         var index: UInt32 = 0
         let result = __unwrapped__instance.indexOf(value, &index)
         $2?.initialize(to: index)
@@ -5258,7 +5286,7 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_A
     SetAt: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let index: UInt32 = $1
-        let value: test_component.Base? = .from(abi: $2)
+        let value: test_component.Base? = .from(abi: ComPtr($2))
         __unwrapped__instance.setAt(index, value)
         return S_OK
     },
@@ -5266,7 +5294,7 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_A
     InsertAt: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let index: UInt32 = $1
-        let value: test_component.Base? = .from(abi: $2)
+        let value: test_component.Base? = .from(abi: ComPtr($2))
         __unwrapped__instance.insertAt(index, value)
         return S_OK
     },
@@ -5280,7 +5308,7 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_A
 
     Append: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let value: test_component.Base? = .from(abi: $1)
+        let value: test_component.Base? = .from(abi: ComPtr($1))
         __unwrapped__instance.append(value)
         return S_OK
     },
@@ -5306,9 +5334,10 @@ internal class IVectorBase: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase }
 
     internal func GetAtImpl(_ index: UInt32) throws -> test_component.Base? {
-        var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?
-        _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
+            }
         }
         return .from(abi: result)
     }
@@ -5322,9 +5351,10 @@ internal class IVectorBase: test_component.IInspectable {
     }
 
     internal func GetViewImpl() throws -> test_component.AnyIVectorView<test_component.Base?>? {
-        var result: UnsafeMutablePointer<__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase>?
-        _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &resultAbi))
+            }
         }
         return test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
@@ -5379,7 +5409,7 @@ internal enum __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseBridge : Abi
     internal typealias CABI = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IVectorBase
     internal typealias SwiftProjection = AnyIVector<Base?>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
     }
@@ -5394,7 +5424,7 @@ fileprivate class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl : I
     typealias T = Base?
     typealias Bridge = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -5547,7 +5577,7 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicVTable: __x
 
     IndexOf: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let value: test_component.AnyIBasic? = __ABI_test_component.IBasicWrapper.unwrapFrom(abi: $1)
+        let value: test_component.AnyIBasic? = __ABI_test_component.IBasicWrapper.unwrapFrom(abi: ComPtr($1))
         var index: UInt32 = 0
         let result = __unwrapped__instance.indexOf(value, &index)
         $2?.initialize(to: index)
@@ -5558,7 +5588,7 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicVTable: __x
     SetAt: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let index: UInt32 = $1
-        let value: test_component.AnyIBasic? = __ABI_test_component.IBasicWrapper.unwrapFrom(abi: $2)
+        let value: test_component.AnyIBasic? = __ABI_test_component.IBasicWrapper.unwrapFrom(abi: ComPtr($2))
         __unwrapped__instance.setAt(index, value)
         return S_OK
     },
@@ -5566,7 +5596,7 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicVTable: __x
     InsertAt: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let index: UInt32 = $1
-        let value: test_component.AnyIBasic? = __ABI_test_component.IBasicWrapper.unwrapFrom(abi: $2)
+        let value: test_component.AnyIBasic? = __ABI_test_component.IBasicWrapper.unwrapFrom(abi: ComPtr($2))
         __unwrapped__instance.insertAt(index, value)
         return S_OK
     },
@@ -5580,7 +5610,7 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicVTable: __x
 
     Append: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let value: test_component.AnyIBasic? = __ABI_test_component.IBasicWrapper.unwrapFrom(abi: $1)
+        let value: test_component.AnyIBasic? = __ABI_test_component.IBasicWrapper.unwrapFrom(abi: ComPtr($1))
         __unwrapped__instance.append(value)
         return S_OK
     },
@@ -5606,9 +5636,10 @@ internal class IVectorIBasic: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic }
 
     internal func GetAtImpl(_ index: UInt32) throws -> test_component.AnyIBasic? {
-        var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>?
-        _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
+            }
         }
         return __ABI_test_component.IBasicWrapper.unwrapFrom(abi: result)
     }
@@ -5622,9 +5653,10 @@ internal class IVectorIBasic: test_component.IInspectable {
     }
 
     internal func GetViewImpl() throws -> test_component.AnyIVectorView<test_component.AnyIBasic?>? {
-        var result: UnsafeMutablePointer<__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasic>?
-        _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &resultAbi))
+            }
         }
         return test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.unwrapFrom(abi: result)
     }
@@ -5687,7 +5719,7 @@ internal enum __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicBridge : A
     internal typealias CABI = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic
     internal typealias SwiftABI = IVectorIBasic
     internal typealias SwiftProjection = AnyIVector<AnyIBasic?>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicImpl(abi)
     }
@@ -5702,7 +5734,7 @@ fileprivate class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicImpl :
     typealias T = AnyIBasic?
     typealias Bridge = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -5813,8 +5845,8 @@ internal var __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableVTable: __
     Release: { __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper.release($0) },
     Invoke: {
         guard let __unwrapped__instance = __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let sender: test_component.AnyIObservableMap<String, Any?>? = test_component.__x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: $1)
-        let event: test_component.AnyIMapChangedEventArgs<String>? = test_component.__x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper.unwrapFrom(abi: $2)
+        let sender: test_component.AnyIObservableMap<String, Any?>? = test_component.__x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: ComPtr($1))
+        let event: test_component.AnyIMapChangedEventArgs<String>? = test_component.__x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper.unwrapFrom(abi: ComPtr($2))
         __unwrapped__instance(sender, event)
         return S_OK
     }
@@ -5840,7 +5872,7 @@ internal class __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableBridge :
     internal typealias CABI = __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectable
     internal typealias SwiftABI = test_component.MapChangedEventHandlerString_Any
 
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
+    internal static func from(abi: ComPtr<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, event) in
@@ -5866,8 +5898,8 @@ internal var __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGVTable: __x_ABI
     Release: { __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper.release($0) },
     Invoke: {
         guard let __unwrapped__instance = __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let sender: test_component.AnyIObservableMap<String, String>? = test_component.__x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: $1)
-        let event: test_component.AnyIMapChangedEventArgs<String>? = test_component.__x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper.unwrapFrom(abi: $2)
+        let sender: test_component.AnyIObservableMap<String, String>? = test_component.__x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: ComPtr($1))
+        let event: test_component.AnyIMapChangedEventArgs<String>? = test_component.__x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper.unwrapFrom(abi: ComPtr($2))
         __unwrapped__instance(sender, event)
         return S_OK
     }
@@ -5893,7 +5925,7 @@ internal class __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGBridge : WinR
     internal typealias CABI = __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRING
     internal typealias SwiftABI = test_component.MapChangedEventHandlerString_String
 
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
+    internal static func from(abi: ComPtr<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, event) in
@@ -5919,8 +5951,8 @@ internal var __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__
     Release: { __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseWrapper.release($0) },
     Invoke: {
         guard let __unwrapped__instance = __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let sender: test_component.AnyIObservableVector<test_component.Base?>? = test_component.__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: $1)
-        let event: test_component.AnyIVectorChangedEventArgs? = __ABI_Windows_Foundation_Collections.IVectorChangedEventArgsWrapper.unwrapFrom(abi: $2)
+        let sender: test_component.AnyIObservableVector<test_component.Base?>? = test_component.__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: ComPtr($1))
+        let event: test_component.AnyIVectorChangedEventArgs? = __ABI_Windows_Foundation_Collections.IVectorChangedEventArgsWrapper.unwrapFrom(abi: ComPtr($2))
         __unwrapped__instance(sender, event)
         return S_OK
     }
@@ -5946,7 +5978,7 @@ internal class __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent
     internal typealias CABI = __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = test_component.VectorChangedEventHandlerBase
 
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
+    internal static func from(abi: ComPtr<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, event) in
@@ -5972,8 +6004,8 @@ internal var __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__
     Release: { __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.release($0) },
     Invoke: {
         guard let __unwrapped__instance = __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let sender: test_component.AnyIObservableVector<test_component.AnyIBasic?>? = test_component.__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.unwrapFrom(abi: $1)
-        let event: test_component.AnyIVectorChangedEventArgs? = __ABI_Windows_Foundation_Collections.IVectorChangedEventArgsWrapper.unwrapFrom(abi: $2)
+        let sender: test_component.AnyIObservableVector<test_component.AnyIBasic?>? = test_component.__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.unwrapFrom(abi: ComPtr($1))
+        let event: test_component.AnyIVectorChangedEventArgs? = __ABI_Windows_Foundation_Collections.IVectorChangedEventArgsWrapper.unwrapFrom(abi: ComPtr($2))
         __unwrapped__instance(sender, event)
         return S_OK
     }
@@ -5999,7 +6031,7 @@ internal class __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent
     internal typealias CABI = __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasic
     internal typealias SwiftABI = test_component.VectorChangedEventHandlerIBasic
 
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
+    internal static func from(abi: ComPtr<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, event) in
@@ -6025,8 +6057,8 @@ internal var __x_ABI_C__FIEventHandler_1_IInspectableVTable: __x_ABI_C__FIEventH
     Release: { __x_ABI_C__FIEventHandler_1_IInspectableWrapper.release($0) },
     Invoke: {
         guard let __unwrapped__instance = __x_ABI_C__FIEventHandler_1_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let sender: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: $1)
-        let args: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: $2)
+        let sender: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: ComPtr($1))
+        let args: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: ComPtr($2))
         __unwrapped__instance(sender, args)
         return S_OK
     }
@@ -6052,7 +6084,7 @@ internal class __x_ABI_C__FIEventHandler_1_IInspectableBridge : WinRTDelegateBri
     internal typealias CABI = __x_ABI_C__FIEventHandler_1_IInspectable
     internal typealias SwiftABI = test_component.EventHandlerAny
 
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
+    internal static func from(abi: ComPtr<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, args) in
@@ -6096,7 +6128,7 @@ internal var __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleVTable: __x_ABI
 
     put_Progress: {
         guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        guard let handler = test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper.unwrapFrom(abi: $1) else { return E_INVALIDARG }
+        guard let handler = test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper.unwrapFrom(abi: ComPtr($1)) else { return E_INVALIDARG }
         __unwrapped__instance.progress = handler
         return S_OK
     },
@@ -6111,7 +6143,7 @@ internal var __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleVTable: __x_ABI
 
     put_Completed: {
         guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        guard let handler = test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWrapper.unwrapFrom(abi: $1) else { return E_INVALIDARG }
+        guard let handler = test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWrapper.unwrapFrom(abi: ComPtr($1)) else { return E_INVALIDARG }
         __unwrapped__instance.completed = handler
         return S_OK
     },
@@ -6146,9 +6178,10 @@ internal class IAsyncOperationWithProgressInt32_Double: test_component.IInspecta
     }
 
     internal func get_ProgressImpl() throws -> AsyncOperationProgressHandler<Int32, Double>? {
-        var result: UnsafeMutablePointer<__x_ABI_C__FIAsyncOperationProgressHandler_2_int_double>?
-        _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2_int_double.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Progress(pThis, &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2_int_double.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Progress(pThis, &resultAbi))
+            }
         }
         return test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper.unwrapFrom(abi: result)
     }
@@ -6162,9 +6195,10 @@ internal class IAsyncOperationWithProgressInt32_Double: test_component.IInspecta
     }
 
     internal func get_CompletedImpl() throws -> AsyncOperationWithProgressCompletedHandler<Int32, Double>? {
-        var result: UnsafeMutablePointer<__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_double>?
-        _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2_int_double.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2_int_double.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
+            }
         }
         return test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWrapper.unwrapFrom(abi: result)
     }
@@ -6183,7 +6217,7 @@ internal enum __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleBridge : AbiIn
     internal typealias CABI = __x_ABI_C__FIAsyncOperationWithProgress_2_int_double
     internal typealias SwiftABI = IAsyncOperationWithProgressInt32_Double
     internal typealias SwiftProjection = AnyIAsyncOperationWithProgress<Int32, Double>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleImpl(abi)
     }
@@ -6199,7 +6233,7 @@ fileprivate class __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleImpl : IAs
     typealias TProgress = Double
     typealias Bridge = __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -6285,7 +6319,7 @@ internal var __x_ABI_C__FIAsyncOperation_1_intVTable: __x_ABI_C__FIAsyncOperatio
 
     put_Completed: {
         guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperation_1_intWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        guard let handler = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper.unwrapFrom(abi: $1) else { return E_INVALIDARG }
+        guard let handler = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper.unwrapFrom(abi: ComPtr($1)) else { return E_INVALIDARG }
         __unwrapped__instance.completed = handler
         return S_OK
     },
@@ -6320,9 +6354,10 @@ internal class IAsyncOperationInt32: test_component.IInspectable {
     }
 
     internal func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<Int32>? {
-        var result: UnsafeMutablePointer<__x_ABI_C__FIAsyncOperationCompletedHandler_1_int>?
-        _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_int.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &result))
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_int.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
+            }
         }
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper.unwrapFrom(abi: result)
     }
@@ -6341,7 +6376,7 @@ internal enum __x_ABI_C__FIAsyncOperation_1_intBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIAsyncOperation_1_int
     internal typealias SwiftABI = IAsyncOperationInt32
     internal typealias SwiftProjection = AnyIAsyncOperation<Int32>
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIAsyncOperation_1_intImpl(abi)
     }
@@ -6356,7 +6391,7 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1_intImpl : IAsyncOperation, AbiIn
     typealias TResult = Int32
     typealias Bridge = __x_ABI_C__FIAsyncOperation_1_intBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -6410,10 +6445,10 @@ internal enum __x_ABI_C__FIReference_1_GUIDBridge: ReferenceBridge {
     typealias SwiftProjection = GUID
     static var IID: test_component.IID { IID___x_ABI_C__FIReference_1_GUID }
 
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let val = abi else { return nil }
         var result: GUID = .init()
-        try! CHECKED(val.pointee.lpVtbl.pointee.get_Value(val, &result))
+        try! CHECKED(val.get().pointee.lpVtbl.pointee.get_Value(val.get(), &result))
         return result
     }
 
@@ -6468,10 +6503,10 @@ internal enum __x_ABI_C__FIReference_1_intBridge: ReferenceBridge {
     typealias SwiftProjection = Int32
     static var IID: test_component.IID { IID___x_ABI_C__FIReference_1_int }
 
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let val = abi else { return nil }
         var result: INT32 = 0
-        try! CHECKED(val.pointee.lpVtbl.pointee.get_Value(val, &result))
+        try! CHECKED(val.get().pointee.lpVtbl.pointee.get_Value(val.get(), &result))
         return result
     }
 
@@ -6526,10 +6561,10 @@ internal enum __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedBridge:
     typealias SwiftProjection = test_component.Signed
     static var IID: test_component.IID { IID___x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned }
 
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let val = abi else { return nil }
         var result: Signed = .init(0)
-        try! CHECKED(val.pointee.lpVtbl.pointee.get_Value(val, &result))
+        try! CHECKED(val.get().pointee.lpVtbl.pointee.get_Value(val.get(), &result))
         return result
     }
 
@@ -6592,8 +6627,8 @@ internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass_
     Release: { __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsWrapper.release($0) },
     Invoke: {
         guard let __unwrapped__instance = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let sender: test_component.Class? = .from(abi: $1)
-        let args: test_component.DeferrableEventArgs? = .from(abi: $2)
+        let sender: test_component.Class? = .from(abi: ComPtr($1))
+        let args: test_component.DeferrableEventArgs? = .from(abi: ComPtr($2))
         __unwrapped__instance(sender, args)
         return S_OK
     }
@@ -6615,7 +6650,7 @@ internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClas
     internal typealias CABI = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs
     internal typealias SwiftABI = test_component.TypedEventHandlerClass_DeferrableEventArgs
 
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
+    internal static func from(abi: ComPtr<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, args) in
@@ -6641,7 +6676,7 @@ internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple
     Release: { __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.release($0) },
     Invoke: {
         guard let __unwrapped__instance = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let sender: test_component.Simple? = .from(abi: $1)
+        let sender: test_component.Simple? = .from(abi: ComPtr($1))
         let args: test_component.SimpleEventArgs = .from(abi: $2)
         __unwrapped__instance(sender, args)
         return S_OK
@@ -6664,7 +6699,7 @@ internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimp
     internal typealias CABI = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs
     internal typealias SwiftABI = test_component.TypedEventHandlerSimple_SimpleEventArgs
 
-    internal static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
+    internal static func from(abi: ComPtr<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, args) in

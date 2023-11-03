@@ -9,7 +9,7 @@ open class ComObject<CInterface>: IUnknown2 {
   }
 
   @_spi(ComObject)
-  public var thisPtr: UnsafeMutablePointer<CInterface> { self.ptr.get() }
+  public var pThis: UnsafeMutablePointer<CInterface> { self.ptr.get() }
 
   open class var IID: test_component.IID { fatalError("class IID not implemented") }
 

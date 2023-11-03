@@ -113,7 +113,7 @@ namespace swiftwinrt
                         std::string from = std::string("abi.").append(get_abi_name(field));
                         w.write("%: %",
                             get_swift_name(field),
-                            bind<write_consume_type>(field.type, from)
+                            bind<write_consume_type>(field.type, from, false)
                         );
                     }
                 }

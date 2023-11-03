@@ -7,7 +7,7 @@ public enum __IMPL_Windows_Foundation {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIAsyncAction
         public typealias SwiftABI = __ABI_Windows_Foundation.IAsyncAction
         public typealias SwiftProjection = AnyIAsyncAction
-        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IAsyncActionImpl(abi)
         }
@@ -22,7 +22,7 @@ public enum __IMPL_Windows_Foundation {
         fileprivate typealias Bridge = IAsyncActionBridge
         fileprivate let _default: Bridge.SwiftABI
         fileprivate var thisPtr: test_component.IInspectable { _default }
-        fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        fileprivate init(_ fromAbi: ComPtr<Bridge.CABI>) {
             _default = Bridge.SwiftABI(fromAbi)
         }
 
@@ -69,7 +69,7 @@ public enum __IMPL_Windows_Foundation {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIAsyncInfo
         public typealias SwiftABI = __ABI_Windows_Foundation.IAsyncInfo
         public typealias SwiftProjection = AnyIAsyncInfo
-        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IAsyncInfoImpl(abi)
         }
@@ -84,7 +84,7 @@ public enum __IMPL_Windows_Foundation {
         fileprivate typealias Bridge = IAsyncInfoBridge
         fileprivate let _default: Bridge.SwiftABI
         fileprivate var thisPtr: test_component.IInspectable { _default }
-        fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        fileprivate init(_ fromAbi: ComPtr<Bridge.CABI>) {
             _default = Bridge.SwiftABI(fromAbi)
         }
 
@@ -119,7 +119,7 @@ public enum __IMPL_Windows_Foundation {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIClosable
         public typealias SwiftABI = __ABI_Windows_Foundation.IClosable
         public typealias SwiftProjection = AnyIClosable
-        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IClosableImpl(abi)
         }
@@ -134,7 +134,7 @@ public enum __IMPL_Windows_Foundation {
         fileprivate typealias Bridge = IClosableBridge
         fileprivate let _default: Bridge.SwiftABI
         fileprivate var thisPtr: test_component.IInspectable { _default }
-        fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        fileprivate init(_ fromAbi: ComPtr<Bridge.CABI>) {
             _default = Bridge.SwiftABI(fromAbi)
         }
 
@@ -149,7 +149,7 @@ public enum __IMPL_Windows_Foundation {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIPropertyValue
         public typealias SwiftABI = __ABI_Windows_Foundation.IPropertyValue
         public typealias SwiftProjection = AnyIPropertyValue
-        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IPropertyValueImpl(abi)
         }
@@ -165,7 +165,7 @@ public enum __IMPL_Windows_Foundation {
         var _value: Any
         var propertyType : PropertyType
 
-        fileprivate init(_ abi: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIPropertyValue>) { fatalError("not implemented") }
+        fileprivate init(_ abi: ComPtr<__x_ABI_CWindows_CFoundation_CIPropertyValue>) { fatalError("not implemented") }
         public init(value: Any) {
             _value = value
             if _value is Int32 {
@@ -242,7 +242,7 @@ public enum __IMPL_Windows_Foundation {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIStringable
         public typealias SwiftABI = __ABI_Windows_Foundation.IStringable
         public typealias SwiftProjection = AnyIStringable
-        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IStringableImpl(abi)
         }
@@ -257,7 +257,7 @@ public enum __IMPL_Windows_Foundation {
         fileprivate typealias Bridge = IStringableBridge
         fileprivate let _default: Bridge.SwiftABI
         fileprivate var thisPtr: test_component.IInspectable { _default }
-        fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        fileprivate init(_ fromAbi: ComPtr<Bridge.CABI>) {
             _default = Bridge.SwiftABI(fromAbi)
         }
 
@@ -273,7 +273,7 @@ public enum __IMPL_Windows_Foundation {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler
         public typealias SwiftABI = __ABI_Windows_Foundation.AsyncActionCompletedHandler
 
-        public static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
+        public static func from(abi: ComPtr<CABI>?) -> Handler? {
             guard let abi = abi else { return nil }
             let _default = SwiftABI(abi)
             let handler: Handler = { (asyncInfo, asyncStatus) in
@@ -287,7 +287,7 @@ public enum __IMPL_Windows_Foundation {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIDeferralCompletedHandler
         public typealias SwiftABI = __ABI_Windows_Foundation.DeferralCompletedHandler
 
-        public static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
+        public static func from(abi: ComPtr<CABI>?) -> Handler? {
             guard let abi = abi else { return nil }
             let _default = SwiftABI(abi)
             let handler: Handler = { () in

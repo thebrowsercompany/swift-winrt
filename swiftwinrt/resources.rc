@@ -27,7 +27,6 @@ Runtime+Swift RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\Runtime+Swif
 StringHelpers RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\StringHelpers.swift"
 Swift+Extensions RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\Swift+Extensions.swift"
 TrustLevel+Swift RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\TrustLevel+Swift.swift"
-WinRTObject RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\WinRTObject.swift"
 WinRTWrapperBase RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\WinRTWrapperBase.swift"
 WinSDK+Extensions RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\WinSDK+Extensions.swift"
 PropertyValue RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\PropertyValue.swift"

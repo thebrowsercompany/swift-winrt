@@ -10,10 +10,6 @@ public protocol IWinRTObject: AnyObject {
   var thisPtr: SUPPORT_MODULE.IInspectable { get }
 }
 
-public protocol IWinRTObject2: AnyObject {
-  var thisPtr: IInspectable2 { get }
-}
-
 public protocol WinRTInterface: AnyObject, CustomQueryInterface {
 }
 
@@ -24,12 +20,6 @@ public protocol WinRTClass : IWinRTObject, CustomQueryInterface, Equatable {
     var _inner: SUPPORT_MODULE.IInspectable! { get }
 }
 
-public protocol WinRTClass2 : IWinRTObject2, CustomQueryInterface, Equatable {
-    @_spi(WinRTInternal)
-    func _getABI<T>() -> UnsafeMutablePointer<T>?
-    @_spi(WinRTInternal)
-    var _inner: IInspectable2! { get }
-}
 public typealias AnyWinRTClass = any WinRTClass
 
 public func ==<T: WinRTClass>(_ lhs: T, _ rhs: T) -> Bool {

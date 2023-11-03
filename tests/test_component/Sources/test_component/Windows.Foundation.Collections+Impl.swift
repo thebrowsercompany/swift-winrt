@@ -7,7 +7,7 @@ public enum __IMPL_Windows_Foundation_Collections {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CCollections_CIPropertySet
         public typealias SwiftABI = __ABI_Windows_Foundation_Collections.IPropertySet
         public typealias SwiftProjection = AnyIPropertySet
-        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IPropertySetImpl(abi)
         }
@@ -22,7 +22,7 @@ public enum __IMPL_Windows_Foundation_Collections {
         fileprivate typealias Bridge = IPropertySetBridge
         fileprivate let _default: Bridge.SwiftABI
         fileprivate var thisPtr: test_component.IInspectable { _default }
-        fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        fileprivate init(_ fromAbi: ComPtr<Bridge.CABI>) {
             _default = Bridge.SwiftABI(fromAbi)
         }
 
@@ -91,7 +91,7 @@ public enum __IMPL_Windows_Foundation_Collections {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CCollections_CIVectorChangedEventArgs
         public typealias SwiftABI = __ABI_Windows_Foundation_Collections.IVectorChangedEventArgs
         public typealias SwiftProjection = AnyIVectorChangedEventArgs
-        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IVectorChangedEventArgsImpl(abi)
         }
@@ -106,7 +106,7 @@ public enum __IMPL_Windows_Foundation_Collections {
         fileprivate typealias Bridge = IVectorChangedEventArgsBridge
         fileprivate let _default: Bridge.SwiftABI
         fileprivate var thisPtr: test_component.IInspectable { _default }
-        fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        fileprivate init(_ fromAbi: ComPtr<Bridge.CABI>) {
             _default = Bridge.SwiftABI(fromAbi)
         }
 

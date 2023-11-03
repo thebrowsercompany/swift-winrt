@@ -2,10 +2,10 @@
 // SPDX-License-Identifier: BSD-3
 import C_BINDINGS_MODULE
 
-public class ComPtr<CInterface>: IUnknownRef2 {
+public class ComPtr<CInterface> {
     fileprivate var pUnk: UnsafeMutablePointer<CInterface>?
 
-    public func ComPtr(_ ptr: UnsafeMutablePointer<CInterface>?) {
+    public init(_ ptr: UnsafeMutablePointer<CInterface>?) {
         self.pUnk = ptr
         asIUnknown {
             _ = $0.pointee.lpVtbl.pointee.AddRef($0)
@@ -44,6 +44,18 @@ public class ComPtr<CInterface>: IUnknownRef2 {
     func reset<ResultType>(_ body: (inout UnsafeMutablePointer<CInterface>?) throws -> ResultType) rethrows -> ResultType {
         release()
         return try body(&pUnk)
+    }
+}
+
+public extension ComPtr {
+    func queryInterface<Interface: IUnknown>() throws -> Interface {
+        let ptr = try self.asIUnknown { pUnk in
+            var iid = Interface.IID
+            return try ComPtrs.initialize(to: C_IUnknown.self) { result in
+                try CHECKED(pUnk.pointee.lpVtbl.pointee.QueryInterface(pUnk, &iid, &result))
+            }
+        }
+        return .init(ptr)
     }
 }
 

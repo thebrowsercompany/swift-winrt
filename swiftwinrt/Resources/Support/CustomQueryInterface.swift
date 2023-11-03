@@ -9,9 +9,11 @@ public protocol CustomQueryInterface {
 extension IUnknownRef {
     func queryInterface(_ iid: SUPPORT_MODULE.IID) -> IUnknownRef? {
         var iid = iid
-        var result: UnsafeMutableRawPointer?
-        guard borrow.pointee.lpVtbl.pointee.QueryInterface(borrow, &iid, &result) == S_OK, let result else { return nil }
-        return IUnknownRef(consuming: result)
+        let (ptr) = try? ComPtrs.initialize(to: C_IUnknown.self) { result in
+            try CHECKED(borrow.pointee.lpVtbl.pointee.QueryInterface(borrow, &iid, &result))
+        }
+        guard let ptr else { return nil}
+        return IUnknownRef(ptr)
     }
 }
 

@@ -11,6 +11,10 @@ public func RawPointer<T: IUnknown, U>(_ pUnk: T) -> UnsafeMutablePointer<U> {
   return UnsafeMutableRawPointer(pUnk.pUnk.borrow).bindMemory(to: U.self, capacity: 1)
 }
 
+public func RawPointer<T: IUnknown, U>(_ pUnk: T) -> ComPtr<U> {
+  return ComPtr(UnsafeMutableRawPointer(pUnk.pUnk.borrow).bindMemory(to: U.self, capacity: 1))
+}
+
 public func RawPointer<T: IUnknown, U>(_ pUnk: T?) -> UnsafeMutablePointer<U>? {
   guard let pUnk else { return nil }
   let result: UnsafeMutablePointer<U> = RawPointer(pUnk)

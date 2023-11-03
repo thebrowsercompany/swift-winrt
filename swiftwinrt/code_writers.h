@@ -292,7 +292,11 @@ namespace swiftwinrt
             {
                 auto category = get_category(param.type);
                 bool is_blittable = is_type_blittable(param.signature.Type());
-                if (category == param_category::struct_type)
+                if (needs_wrapper(category))
+                {
+                    w.write("&%Abi", local_param_name);
+                }
+                else if (category == param_category::struct_type)
                 {
                     if (is_blittable)
                     {
@@ -318,21 +322,37 @@ namespace swiftwinrt
         {
             s();
             auto param_name = function.return_type.value().name;
-            w.write("&%", param_name);
+            if (needs_wrapper(get_category(function.return_type->type)))
+            {
+                w.write("&%Abi", param_name);
+            }
+            else
+            {
+                w.write("&%", param_name);
+            }
         }
     }
 
-    static void write_init_return_val_abi(writer& w, function_return_type const& signature)
+    static std::optional<writer::indent_guard> write_init_return_val_abi(writer& w, function_return_type const& signature)
     {
         auto category = get_category(signature.type);
-        auto guard{ w.push_mangled_names_if_needed(category) };
-        write_type(w, *signature.type, write_type_params::c_abi);
-        write_default_init_assignment(w, *signature.type, projection_layer::c_abi);
+        if (needs_wrapper(category))
+        {
+            w.write("let (%) = try ComPtrs.initialize { %Abi in\n", signature.name, signature.name);
+            return writer::indent_guard(w, 1);
+        }
+        else
+        {
+            w.write("var %: ", signature.name);
+            auto guard{ w.push_mangled_names_if_needed(category) };
+            write_type(w, *signature.type, write_type_params::c_abi);
+            write_default_init_assignment(w, *signature.type, projection_layer::c_abi);
+            w.write("\n");
+            return std::optional<writer::indent_guard>();
+        }
     }
 
     static void write_consume_return_statement(writer& w, function_def const& signature);
-    static write_scope_guard<writer> write_local_param_wrappers(writer& w, function_def const& signature);
-
     static void write_return_type_declaration(writer& w, function_def function, write_type_params const& type_params)
     {
         if (!function.return_type)
@@ -400,23 +420,26 @@ namespace swiftwinrt
                     returnStatement);
                 {
                     auto function_indent_guard = w.push_indent();
+                    std::vector<writer::indent_guard> initialize_result_indent;
                     if (function.return_type)
                     {
-                        auto return_val = function.return_type.value();
-                        w.write("var %: %\n",
-                            return_val.name,
-                            bind<write_init_return_val_abi>(return_val));
-                    }
-
-                    if (composableFactory)
-                    {
-                        w.write("var _innerInterface: UnsafeMutablePointer<C_IInspectable>?\n");
-                        w.write("let _baseInterface = baseInterface?.toIInspectableABI { $0 }\n");
+                        if (auto result = write_init_return_val_abi(w, function.return_type.value()))
+                        {
+                            initialize_result_indent.push_back(std::move(result.value()));
+                        }
                     }
 
                     {
                         auto guard = write_local_param_wrappers(w, params);
 
+                        if (composableFactory)
+                        {
+                            w.write("let _baseInterface = baseInterface?.toIInspectableABI { $0 }\n");
+                            w.write("let (_innerInterface) = try ComPtrs.initialize { _innerInterfaceAbi in\n");
+                            guard.push_indent();
+                            guard.push("}\n");
+                            guard.push("innerInterface = %.IInspectable(_innerInterface)\n", w.support);
+                        }
                         w.write(R"(_ = try perform(as: %.self) { pThis in
     try CHECKED(pThis.pointee.lpVtbl.pointee.%(%))
 }
@@ -426,17 +449,19 @@ func_name,
 bind<write_abi_args>(function));
                     }
 
+                    for (auto&& guard : initialize_result_indent)
+                    {
+                        guard.end();
+                        w.write("}\n");
+                    }
+
                     if (function.return_type && !isInitializer)
                     {
                         w.write("%\n", bind<write_consume_return_statement>(function));
                     }
                     else if (isInitializer)
                     {
-                        if (composableFactory)
-                        {
-                            w.write("innerInterface = %.IInspectable(consuming:  _innerInterface!)\n", w.support);
-                        }
-                        w.write("return %(consuming: %!)\n", bind_type_abi(classType->default_interface), function.return_type->name);
+                        w.write("return %(%)\n", bind_type_abi(classType->default_interface), function.return_type->name);
                     }
                 }
                 w.write("}\n\n");
@@ -484,10 +509,10 @@ bind<write_abi_args>(function));
     typealias SwiftProjection = %
     static var IID: %.IID { IID_% }
 
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let val = abi else { return nil }
         var result: %%
-        try! CHECKED(val.pointee.lpVtbl.pointee.get_Value(val, &result))
+        try! CHECKED(val.get().pointee.lpVtbl.pointee.get_Value(val.get(), &result))
         return %
     }
 
@@ -503,7 +528,7 @@ bind<write_abi_args>(function));
     type.mangled_name(),
     c_name,
     bind<write_default_init_assignment>(*generic_param, projection_layer::c_abi),
-    bind<write_consume_type>(generic_param, "result"),
+    bind<write_consume_type>(generic_param, "result", true),
     type.mangled_name());
     }
 
@@ -619,7 +644,7 @@ typealias % = InterfaceWrapperBase<%>
                         std::string from = std::string("swift.").append(get_swift_name(field));
                         w.write("val.% = %\n",
                             get_abi_name(field),
-                            bind<write_consume_type>(field.type, from)
+                            bind<write_consume_type>(field.type, from, false)
                         );
                     }
 
@@ -660,7 +685,7 @@ typealias % = InterfaceWrapperBase<%>
         w.write("}\n");
     }
 
-    static void write_consume_params(writer& w, function_def const& signature)
+    static void write_convert_vtable_params(writer& w, function_def const& signature)
     {
         int param_number = 1;
         auto full_type_names = w.push_full_type_names(true);
@@ -670,7 +695,7 @@ typealias % = InterfaceWrapperBase<%>
             if (param.signature.Type().is_szarray())
             {
                 // TODO: WIN-32 swiftwinrt: add support for arrays
-                w.write("**TODO: implement szarray in write_consume_params**");
+                w.write("**TODO: implement szarray in write_convert_vtable_params**");
             }
             else
             {
@@ -684,14 +709,14 @@ typealias % = InterfaceWrapperBase<%>
                     {
                         w.write("guard let % = % else { return E_INVALIDARG }\n",
                             get_swift_name(param),
-                            bind<write_consume_type>(param.type, param_name));
+                            bind<write_consume_type>(param.type, param_name, false));
                     }
                     else
                     {
                         w.write("let %: % = %\n",
                             get_swift_name(param),
                             bind<write_type>(*param.type, write_type_params::swift),
-                            bind<write_consume_type>(param.type, param_name));
+                            bind<write_consume_type>(param.type, param_name, false));
                     }
                 }
                 else
@@ -717,7 +742,7 @@ typealias % = InterfaceWrapperBase<%>
 
         auto return_type = signature.return_type.value().type;
         auto return_param_name = put_in_backticks_if_needed(std::string(signature.return_type.value().name));
-        w.write("return %", bind<write_consume_type>(return_type, return_param_name));
+        w.write("return %", bind<write_consume_type>(return_type, return_param_name, true));
     }
 
     static void write_consume_args(writer& w, function_def const& function)
@@ -824,7 +849,7 @@ bind_bridge_fullname(type));
     var _value: Any
     var propertyType : PropertyType
 
-    fileprivate init(_ abi: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIPropertyValue>) { fatalError("not implemented") }
+    fileprivate init(_ abi: ComPtr<__x_ABI_CWindows_CFoundation_CIPropertyValue>) { fatalError("not implemented") }
     public init(value: Any) {
         _value = value
         if _value is Int32 {
@@ -1074,7 +1099,7 @@ bind_bridge_fullname(type));
     % typealias CABI = %
     % typealias SwiftABI = %
     % typealias SwiftProjection = %
-    % static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+    % static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return %(abi)
     }
@@ -1111,7 +1136,7 @@ vtable);
     fileprivate typealias Bridge = %
     fileprivate let _default: Bridge.SwiftABI
     fileprivate var thisPtr: %.IInspectable { _default }
-    fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+    fileprivate init(_ fromAbi: ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -1408,7 +1433,7 @@ vtable);
     % typealias CABI = %
     % typealias SwiftABI = %.%
 
-    % static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
+    % static func from(abi: ComPtr<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (%) in
@@ -1470,7 +1495,7 @@ vtable);
         w.write("typealias Bridge = %\n", bind_bridge_name(type));
         w.write("let _default: Bridge.SwiftABI\n");
 
-        w.write("init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {\n");
+        w.write("init(_ fromAbi: ComPtr<Bridge.CABI>) {\n");
         w.write("    _default = Bridge.SwiftABI(fromAbi)\n");
         w.write("}\n\n");
 
@@ -1521,10 +1546,24 @@ vtable);
         }
     }
 
+    static void write_param_names(writer& w, std::vector<function_param> const& params, std::string_view format)
+    {
+        separator s{ w };
+        for (const auto& param : params)
+        {
+            s();
+            w.write(format, local_swift_param_name(get_swift_name(param)));
+        }
+    }
+
+    // When converting from Swift <-> C we put some local variables on the stack in order to help facilitate
+    // converting between the two worlds. This method will returns a scope guard which will write any necessary
+    // code for after the ABI function is called (such as cleaning up references).
     static write_scope_guard<writer> write_local_param_wrappers(writer& w, std::vector<function_param> const& params)
     {
         write_scope_guard guard{ w, w.swift_module };
 
+        std::vector<function_param> com_ptr_initialize;
         for (auto& param : params)
         {
             TypeDef signature_type{};
@@ -1600,40 +1639,32 @@ vtable);
                         param_name,
                         local_param_name);
                 }
-                else if (category == param_category::object_type)
+                else if (needs_wrapper(category))
                 {
-                    w.write("var %: %\n",
-                        local_param_name,
-                        bind<write_type>(*param.type, write_type_params::c_abi));
-
-                    guard.push("% = %\n", get_swift_name(param),
-                        bind<write_consume_type>(param.type, local_param_name));
+                    com_ptr_initialize.push_back(param);
                 }
-                else if (category == param_category::generic_type)
-                {
-                    w.write("var %: %\n",
-                        local_param_name,
-                        bind<write_type>(*param.type, write_type_params::c_abi));
+            }
+        }
 
-                    guard.push("% = %.from(abi: %)\n",
-                        param_name,
-                        bind_bridge_fullname(param.type),
-                        local_param_name);
-                }
+        if (!com_ptr_initialize.empty())
+        {
+            w.write("let (%) = try ComPtrs.initialize { (%) in\n",
+                bind<write_param_names>(com_ptr_initialize, "%"),
+                bind<write_param_names>(com_ptr_initialize, "%Abi"));
+            guard.push_indent();
+            guard.push("}\n");
+
+            for (const auto& param : com_ptr_initialize)
+            {
+                auto param_name = get_swift_name(param);
+                auto local_param_name = local_swift_param_name(param_name);
+                guard.push("% = %\n", param_name,
+                    bind<write_consume_type>(param.type, local_param_name, true));
             }
         }
 
         return guard;
     }
-
-    // When converting from Swift <-> C we put some local variables on the stack in order to help facilitate
-    // converting between the two worlds. This method will returns a scope guard which will write any necessary
-    // code for after the ABI function is called (such as cleaning up references).
-    static write_scope_guard<writer> write_local_param_wrappers(writer& w, function_def const& signature)
-    {
-        return write_local_param_wrappers(w, signature.params);
-    }
-
 
     static void write_factory_body(writer& w, function_def const& method, interface_info const& factory, class_type const& type, metadata_type const& default_interface)
     {
@@ -1858,7 +1889,7 @@ public init<Composable: ComposableImpl>(
         // We unwrap composable types to try and get to any derived type.
         // If not composable, then create a new instance
         w.write("@_spi(WinRTInternal)\n");
-        w.write("public static func from(abi: UnsafeMutablePointer<%>?) -> %? {\n",
+        w.write("public static func from(abi: ComPtr<%>?) -> %? {\n",
             bind_type_mangled(default_interface), type);
         {
             auto indent = w.push_indent();
@@ -1869,7 +1900,7 @@ public init<Composable: ComposableImpl>(
             }
             else
             {
-                w.write("return .init(fromAbi: %.IInspectable(consuming: abi))\n", w.support);
+                w.write("return .init(fromAbi: %.IInspectable(abi))\n", w.support);
             }
         }
         w.write("}\n\n");
@@ -2647,7 +2678,7 @@ private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
             auto indent_guard = w.push_indent();
             w.write("guard let __unwrapped__instance = %.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }\n",
                 bind_wrapper_name(type));
-            write_consume_params(w, function);
+            write_convert_vtable_params(w, function);
 
             if (function.return_type)
             {

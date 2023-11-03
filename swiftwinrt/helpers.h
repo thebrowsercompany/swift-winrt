@@ -942,4 +942,9 @@ namespace swiftwinrt
     {
         return dynamic_cast<const struct_type*>(&type) != nullptr;
     }
+
+    inline bool needs_wrapper(param_category category)
+    {
+        return category == param_category::object_type || category == param_category::generic_type;
+    }
 }
