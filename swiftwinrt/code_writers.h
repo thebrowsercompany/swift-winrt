@@ -438,7 +438,7 @@ namespace swiftwinrt
                             w.write("let (_innerInterface) = try ComPtrs.initialize { _innerInterfaceAbi in\n");
                             guard.push_indent();
                             guard.push("}\n");
-                            guard.push("innerInterface = %.IInspectable(_innerInterface)\n", w.support);
+                            guard.push("innerInterface = %.IInspectable(_innerInterface!)\n", w.support);
                         }
                         w.write(R"(_ = try perform(as: %.self) { pThis in
     try CHECKED(pThis.pointee.lpVtbl.pointee.%(%))
@@ -461,7 +461,7 @@ bind<write_abi_args>(function));
                     }
                     else if (isInitializer)
                     {
-                        w.write("return %(%)\n", bind_type_abi(classType->default_interface), function.return_type->name);
+                        w.write("return %(%!)\n", bind_type_abi(classType->default_interface), function.return_type->name);
                     }
                 }
                 w.write("}\n\n");

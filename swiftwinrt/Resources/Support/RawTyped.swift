@@ -3,10 +3,6 @@
 
 import WinSDK
 
-public func RawPointer<U>(_ pUnk: ComObject<U>) -> UnsafeMutablePointer<U> {
-  return pUnk.ptr.get()
-}
-
 public func RawPointer<T: IUnknown, U>(_ pUnk: T) -> UnsafeMutablePointer<U> {
   return UnsafeMutableRawPointer(pUnk.pUnk.borrow).bindMemory(to: U.self, capacity: 1)
 }

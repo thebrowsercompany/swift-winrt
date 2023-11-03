@@ -5,14 +5,17 @@ import C_BINDINGS_MODULE
 public class ComPtr<CInterface> {
     fileprivate var pUnk: UnsafeMutablePointer<CInterface>?
 
-    public init(_ ptr: UnsafeMutablePointer<CInterface>?) {
+    public init(_ ptr: UnsafeMutablePointer<CInterface>) {
         self.pUnk = ptr
         asIUnknown {
             _ = $0.pointee.lpVtbl.pointee.AddRef($0)
         }
     }
 
-    fileprivate init() {}
+    public convenience init?(_ ptr: UnsafeMutablePointer<CInterface>?) {
+        guard let ptr else { return nil }
+        self.init(ptr)
+    }
 
     public func detach() -> UnsafeMutableRawPointer? {
         let result = pUnk
@@ -20,7 +23,7 @@ public class ComPtr<CInterface> {
         return UnsafeMutableRawPointer(result)
     }
 
-    func get() -> UnsafeMutablePointer<CInterface> {
+    public func get() -> UnsafeMutablePointer<CInterface> {
       guard let pUnk else { preconditionFailure("get() called on nil pointer") }
       return pUnk
     }
@@ -30,7 +33,7 @@ public class ComPtr<CInterface> {
     }
 
     private func release() {
-        guard let pUnk else { return }
+        guard pUnk != nil else { return }
         asIUnknown {
             _ = $0.pointee.lpVtbl.pointee.Release($0)
         }
@@ -55,49 +58,35 @@ public extension ComPtr {
                 try CHECKED(pUnk.pointee.lpVtbl.pointee.QueryInterface(pUnk, &iid, &result))
             }
         }
-        return .init(ptr)
+        return .init(ptr!)
     }
 }
 
 public struct ComPtrs {
-    public static func initialize<I>(to: I.Type, _ body: (inout UnsafeMutableRawPointer?) throws -> ()) rethrows -> (ComPtr<I>) {
-        let ptr = ComPtr<I>()
-        try ptr.reset { (unsafePtr: inout UnsafeMutablePointer<I>?) in
-            var ptrRaw: UnsafeMutableRawPointer?
-            try body(&ptrRaw)
-            unsafePtr = ptrRaw?.assumingMemoryBound(to: I.self)
-        }
-        return (ptr)
+    public static func initialize<I>(to: I.Type, _ body: (inout UnsafeMutableRawPointer?) throws -> ()) rethrows -> (ComPtr<I>?) {
+        var ptrRaw: UnsafeMutableRawPointer?
+        try body(&ptrRaw)
+        return (ComPtr(ptrRaw?.assumingMemoryBound(to: I.self)))
     }
 
-    public static func initialize<I>(_ body: (inout UnsafeMutablePointer<I>?) throws -> ()) rethrows -> (ComPtr<I>) {
-        let ptr = ComPtr<I>()
-        try ptr.reset(body)
-        return (ptr)
+    public static func initialize<I>(_ body: (inout UnsafeMutablePointer<I>?) throws -> ()) rethrows -> (ComPtr<I>?) {
+        var ptr: UnsafeMutablePointer<I>?
+        try body(&ptr)
+        return (ComPtr(ptr))
     }
 
-    public static func initialize<I, I2>(_ body: (inout UnsafeMutablePointer<I>?, inout UnsafeMutablePointer<I2>?) throws -> ()) rethrows -> (ComPtr<I>, ComPtr<I2>) {
-        let ptr1 = ComPtr<I>()
-        let ptr2 = ComPtr<I2>()
-        try ptr1.reset { ptr1Raw in
-          try ptr2.reset { ptr2Raw in
-            try body(&ptr1Raw, &ptr2Raw)
-          }
-        }
-        return (ptr1, ptr2)
+    public static func initialize<I, I2>(_ body: (inout UnsafeMutablePointer<I>?, inout UnsafeMutablePointer<I2>?) throws -> ()) rethrows -> (ComPtr<I>?, ComPtr<I2>?) {
+        var ptr1: UnsafeMutablePointer<I>?
+        var ptr2: UnsafeMutablePointer<I2>?
+        try body(&ptr1, &ptr2)
+        return (ComPtr(ptr1), ComPtr(ptr2))
     }
 
-    public static func initialize<I, I2, I3>(_ body: (inout UnsafeMutablePointer<I>?, inout UnsafeMutablePointer<I2>?, inout UnsafeMutablePointer<I3>?) throws -> ()) rethrows -> (ComPtr<I>, ComPtr<I2>, ComPtr<I3>) {
-        let ptr1 = ComPtr<I>()
-        let ptr2 = ComPtr<I2>()
-        let ptr3 = ComPtr<I3>()
-        try ptr1.reset { ptr1Raw in
-          try ptr2.reset { ptr2Raw in
-            try ptr3.reset { ptr3raw in
-                try body(&ptr1Raw, &ptr2Raw, &ptr3raw)
-            }
-          }
-        }
-        return (ptr1, ptr2, ptr3)
+    public static func initialize<I, I2, I3>(_ body: (inout UnsafeMutablePointer<I>?, inout UnsafeMutablePointer<I2>?, inout UnsafeMutablePointer<I3>?) throws -> ()) rethrows -> (ComPtr<I>?, ComPtr<I2>?, ComPtr<I3>?) {
+        var ptr1: UnsafeMutablePointer<I>?
+        var ptr2: UnsafeMutablePointer<I2>?
+        var ptr3: UnsafeMutablePointer<I3>?
+        try body(&ptr1, &ptr2, &ptr3)
+        return (ComPtr(ptr1), ComPtr(ptr2), ComPtr(ptr3))
     }
 }

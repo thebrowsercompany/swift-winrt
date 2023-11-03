@@ -9,14 +9,14 @@ public func RoGetActivationFactory<Factory: IInspectable>(_ activatableClassId: 
   let (factory) = try ComPtrs.initialize(to: C_IInspectable.self) { factoryAbi in
     try CHECKED(RoGetActivationFactory(activatableClassId.get(), &iid, &factoryAbi))
   }
-  return try factory.queryInterface<Factory>()
+  return try factory!.queryInterface()
 }
 
 public func RoActivateInstance<Instance: IInspectable>(_ activatableClassId: HString) throws -> Instance {
   let (instance) = try ComPtrs.initialize { instanceAbi in
     try CHECKED(RoActivateInstance(activatableClassId.get(), &instanceAbi))
   }
-  return try instance.queryInterface<Instance>()
+  return try instance!.queryInterface()
 }
 
 // ISwiftImplemented is a marker interface for code-gen types which are created by swift/winrt. It's used to QI

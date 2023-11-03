@@ -9,7 +9,7 @@ extension IUnknown {
     let (pointer) = try ComPtrs.initialize(to: C_IUnknown.self) { abi in
       try CHECKED(self.pUnk.borrow.pointee.lpVtbl.pointee.QueryInterface(self.pUnk.borrow, &iid, &abi))
     }
-    return Interface(pointer)
+    return Interface(pointer!)
   }
 }
 

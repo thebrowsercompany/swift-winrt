@@ -332,7 +332,7 @@ public enum __ABI_Windows_Foundation {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.Create(pThis, _handler, &resultAbi))
                 }
             }
-            return IDeferral(result)
+            return IDeferral(result!)
         }
 
     }

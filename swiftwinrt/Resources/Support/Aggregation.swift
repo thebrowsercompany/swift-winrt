@@ -2,7 +2,7 @@ import C_BINDINGS_MODULE
 import Foundation
 
 public protocol ComposableImpl : AbiInterfaceBridge where SwiftABI: IInspectable, SwiftProjection: WinRTClass  {
-    associatedtype Default : AbiInterface where Default.SwiftABI: test_component.IInspectable
+    associatedtype Default : AbiInterface where Default.SwiftABI: SUPPORT_MODULE.IInspectable
     static func makeAbi() -> CABI
 }
 
@@ -26,11 +26,11 @@ public protocol ComposableImpl : AbiInterfaceBridge where SwiftABI: IInspectable
 public func MakeComposed<Composable: ComposableImpl>(
     composing: Composable.Type,
     _ this: Composable.SwiftProjection,
-    _ createCallback: (UnsealedWinRTClassWrapper<Composable>?, inout test_component.IInspectable?) -> Composable.Default.SwiftABI) -> test_component.IInspectable {
+    _ createCallback: (UnsealedWinRTClassWrapper<Composable>?, inout SUPPORT_MODULE.IInspectable?) -> Composable.Default.SwiftABI) -> SUPPORT_MODULE.IInspectable {
     let aggregated = type(of: this) != Composable.SwiftProjection.self
     let wrapper:UnsealedWinRTClassWrapper<Composable>? = .init(aggregated ? this : nil)
 
-    var innerInsp: test_component.IInspectable? = nil
+    var innerInsp: SUPPORT_MODULE.IInspectable? = nil
     let base = createCallback(wrapper, &innerInsp)
     guard let innerInsp else {
         fatalError("Unexpected nil returned after successful creation")
@@ -40,7 +40,7 @@ public func MakeComposed<Composable: ComposableImpl>(
 }
 
 public class UnsealedWinRTClassWrapper<Composable: ComposableImpl> : WinRTAbiBridgeWrapper<Composable> {
-    override public class var IID: test_component.IID { Composable.SwiftABI.IID }
+    override public class var IID: SUPPORT_MODULE.IID { Composable.SwiftABI.IID }
     public init?(_ impl: Composable.SwiftProjection?) {
         guard let impl = impl else { return nil }
         let abi = Composable.makeAbi()

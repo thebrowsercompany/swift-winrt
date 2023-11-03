@@ -366,9 +366,9 @@ public enum __ABI_test_component {
                         try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, _baseInterface, &_innerInterfaceAbi, &valueAbi))
                     }
                 }
-                innerInterface = test_component.IInspectable(_innerInterface)
+                innerInterface = test_component.IInspectable(_innerInterface!)
             }
-            return IBaseNoOverrides(value)
+            return IBaseNoOverrides(value!)
         }
 
     }
@@ -395,9 +395,9 @@ public enum __ABI_test_component {
                         try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, _baseInterface, &_innerInterfaceAbi, &valueAbi))
                     }
                 }
-                innerInterface = test_component.IInspectable(_innerInterface)
+                innerInterface = test_component.IInspectable(_innerInterface!)
             }
-            return IBase(value)
+            return IBase(value!)
         }
 
     }
@@ -772,7 +772,7 @@ public enum __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, _name.get(), &valueAbi))
                 }
             }
-            return IClass(value)
+            return IClass(value!)
         }
 
         internal func CreateInstance2Impl(_ name: String, _ fruit: test_component.Fruit) throws -> IClass {
@@ -782,7 +782,7 @@ public enum __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance2(pThis, _name.get(), fruit, &valueAbi))
                 }
             }
-            return IClass(value)
+            return IClass(value!)
         }
 
         internal func CreateInstance3Impl(_ arg: test_component.AnyIMap<String, String>?, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32) throws -> IClass {
@@ -793,7 +793,7 @@ public enum __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance3(pThis, _arg, dummy1, dummy2, dummy3, &valueAbi))
                 }
             }
-            return IClass(value)
+            return IClass(value!)
         }
 
         internal func CreateInstance4Impl(_ arg: test_component.AnyIMapView<String, String>?, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32, _ dummy4: Int32) throws -> IClass {
@@ -804,7 +804,7 @@ public enum __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance4(pThis, _arg, dummy1, dummy2, dummy3, dummy4, &valueAbi))
                 }
             }
-            return IClass(value)
+            return IClass(value!)
         }
 
         internal func CreateInstance5Impl(_ arg: test_component.AnyIVector<String>?, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32, _ dummy4: Int32, _ dummy5: Int32) throws -> IClass {
@@ -815,7 +815,7 @@ public enum __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance5(pThis, _arg, dummy1, dummy2, dummy3, dummy4, dummy5, &valueAbi))
                 }
             }
-            return IClass(value)
+            return IClass(value!)
         }
 
         internal func CreateInstance6Impl(_ arg: test_component.AnyIVectorView<String>?, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32, _ dummy4: Int32, _ dummy5: Int32, _ dummy6: Int32) throws -> IClass {
@@ -826,7 +826,7 @@ public enum __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance6(pThis, _arg, dummy1, dummy2, dummy3, dummy4, dummy5, dummy6, &valueAbi))
                 }
             }
-            return IClass(value)
+            return IClass(value!)
         }
 
     }
@@ -843,7 +843,7 @@ public enum __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, _name.get(), fruit, _implementation, &valueAbi))
                 }
             }
-            return IClass(value)
+            return IClass(value!)
         }
 
     }
@@ -1074,7 +1074,7 @@ public enum __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, _impl, &valueAbi))
                 }
             }
-            return IEventTester(value)
+            return IEventTester(value!)
         }
 
     }
@@ -1940,9 +1940,9 @@ public enum __ABI_test_component {
                         try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, prop, _baseInterface, &_innerInterfaceAbi, &valueAbi))
                     }
                 }
-                innerInterface = test_component.IInspectable(_innerInterface)
+                innerInterface = test_component.IInspectable(_innerInterface!)
             }
-            return IUnsealedDerived2(value)
+            return IUnsealedDerived2(value!)
         }
 
     }
@@ -1958,9 +1958,9 @@ public enum __ABI_test_component {
                         try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, _baseInterface, &_innerInterfaceAbi, &valueAbi))
                     }
                 }
-                innerInterface = test_component.IInspectable(_innerInterface)
+                innerInterface = test_component.IInspectable(_innerInterface!)
             }
-            return IUnsealedDerived2(value)
+            return IUnsealedDerived2(value!)
         }
 
     }
@@ -1976,9 +1976,9 @@ public enum __ABI_test_component {
                         try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, _baseInterface, &_innerInterfaceAbi, &valueAbi))
                     }
                 }
-                innerInterface = test_component.IInspectable(_innerInterface)
+                innerInterface = test_component.IInspectable(_innerInterface!)
             }
-            return IUnsealedDerived(value)
+            return IUnsealedDerived(value!)
         }
 
         internal func CreateInstance2Impl(_ prop: Int32, _ baseInterface: UnsealedWinRTClassWrapper<test_component.UnsealedDerived.Composable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IUnsealedDerived {
@@ -1989,9 +1989,9 @@ public enum __ABI_test_component {
                         try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance2(pThis, prop, _baseInterface, &_innerInterfaceAbi, &valueAbi))
                     }
                 }
-                innerInterface = test_component.IInspectable(_innerInterface)
+                innerInterface = test_component.IInspectable(_innerInterface!)
             }
-            return IUnsealedDerived(value)
+            return IUnsealedDerived(value!)
         }
 
         internal func CreateInstance3Impl(_ prop1: String, _ prop2: test_component.Base?, _ baseInterface: UnsealedWinRTClassWrapper<test_component.UnsealedDerived.Composable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IUnsealedDerived {
@@ -2003,9 +2003,9 @@ public enum __ABI_test_component {
                         try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance3(pThis, _prop1.get(), RawPointer(prop2), _baseInterface, &_innerInterfaceAbi, &valueAbi))
                     }
                 }
-                innerInterface = test_component.IInspectable(_innerInterface)
+                innerInterface = test_component.IInspectable(_innerInterface!)
             }
-            return IUnsealedDerived(value)
+            return IUnsealedDerived(value!)
         }
 
     }
@@ -2026,9 +2026,9 @@ public enum __ABI_test_component {
                         try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, _baseInterface, &_innerInterfaceAbi, &valueAbi))
                     }
                 }
-                innerInterface = test_component.IInspectable(_innerInterface)
+                innerInterface = test_component.IInspectable(_innerInterface!)
             }
-            return IUnsealedDerivedFromNoConstructor(value)
+            return IUnsealedDerivedFromNoConstructor(value!)
         }
 
     }
@@ -2059,9 +2059,9 @@ public enum __ABI_test_component {
                         try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, _baseInterface, &_innerInterfaceAbi, &valueAbi))
                     }
                 }
-                innerInterface = test_component.IInspectable(_innerInterface)
+                innerInterface = test_component.IInspectable(_innerInterface!)
             }
-            return IUnsealedDerivedNoOverrides(value)
+            return IUnsealedDerivedNoOverrides(value!)
         }
 
     }

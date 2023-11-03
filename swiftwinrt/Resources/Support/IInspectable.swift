@@ -33,10 +33,10 @@ open class IInspectable: IUnknown {
 // follow this pattern should define their composability contract like the following:
 // internal class IBaseNoOverrides : OverridesImpl {
 //      internal typealias CABI = C_IInspectable
-//      internal typealias SwiftABI = __ABI_test_component.IBaseNoOverrides
+//      internal typealias SwiftABI = __ABI_SUPPORT_MODULE.IBaseNoOverrides
 //      internal typealias SwiftProjection = BaseNoOverrides
 //      internal typealias c_defaultABI = __x_ABI_Ctest__component_CIBaseNoOverrides
-//      internal typealias swift_overrides = test_component.IInspectable
+//      internal typealias swift_overrides = SUPPORT_MODULE.IInspectable
 // }
 // internal typealias Composable = IBaseNoOverrides
 public enum __ABI_ {

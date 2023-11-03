@@ -114,7 +114,7 @@ open class WinRTWrapperBase<CInterface, Prototype> {
         // try to get the original wrapper so we can get the apps implementation. if that doesn't
         // exist, then return nil
         guard let wrapper  = pUnk.bindMemory(to: WinRTWrapperBase.ComObjectABI.self, capacity: 1).pointee.wrapper else { return nil }
-        return wrapper.takeRetainedValue().swiftObj
+        return wrapper.takeUnretainedValue().swiftObj
     }
 
     public static func addRef(_ pUnk: UnsafeMutablePointer<CInterface>?) -> ULONG {
