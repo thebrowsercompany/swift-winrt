@@ -1,6 +1,19 @@
 project(test_component_cpp)
 include(nuget)
 
+# For debug builds, build with clang which enables us to use DWARF symbols
+# and debug both Swift and C++ code using lldb.
+if (${CMAKE_BUILD_TYPE} STREQUAL "DEBUG")
+    set(CMAKE_C_COMPILER clang-cl)
+    set(CMAKE_CXX_COMPILER clang-cl)
+else()
+    # For release builds don't use clang because the C++/WinRT generated code doesn't compile.
+    # It's not immediately clear if this is an issue with C++/WinRT or the compilation flags
+    # being used. But we are only using clang in debug builds to make debugging easier, so
+    # using this little hack for now.
+    set(CMAKE_C_COMPILER cl)
+    set(CMAKE_CXX_COMPILER cl)
+endif()
 set(H_FILE
     ${CMAKE_TEST_COMPONENT_OUTPUT}/test_component.h
 )
@@ -24,7 +37,7 @@ set(MIDL_OUTPUT
     ${WINMD_FILE}
 )
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # change the warning level to 4
@@ -43,6 +56,9 @@ foreach(build_type RELEASE MINSIZEREL RELWITHDEBINFO)
     #       Figure out the best way to make these changes to the build and linker flags
     # string(REPLACE "/INCREMENTAL" "" CMAKE_EXE_LINKER_FLAGS_${build_type} "${CMAKE_EXE_LINKER_FLAGS_${build_type}}")
     # string(APPEND CMAKE_EXE_LINKER_FLAGS_${build_type} " /LTCG:INCREMENTAL /OPT:REF")
+    if (CMAKE_CXX_COMPILER MATCHES "clang-cl")
+        string(APPEND CMAKE_EXE_LINKER_FLAGS_${build_type} " -fuse-ld=lld -Xlinker -debug:dwarf")
+    endif()
 endforeach()
 
 # Always generate symbols for release builds
@@ -51,7 +67,8 @@ string(APPEND CMAKE_SHARED_LINKER_FLAGS_RELEASE " /DEBUG /OPT:REF /OPT:ICF /MAP"
 string(APPEND CMAKE_EXE_LINKER_FLAGS_RELEASE " /DEBUG /OPT:REF /OPT:ICF /MAP")
 
 if (CMAKE_CXX_COMPILER MATCHES "clang-cl")
-    add_compile_options(-Wno-delete-non-virtual-dtor -mcx16 -fno-delayed-template-parsing -Xclang -fcoroutines-ts)
+    add_compile_options(-Wno-delete-non-virtual-dtor -mcx16 -fno-delayed-template-parsing)
+    add_compile_options(-gdwarf)
 else()
     add_compile_options(/permissive- /await)
 endif()

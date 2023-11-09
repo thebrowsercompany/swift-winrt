@@ -71,6 +71,9 @@ public enum __ABI_ {
         let ref = IInspectable(abi)
         return makeFrom(abi: ref) ?? ref
       }
+      public static func tryUnwrapFrom(raw pUnk: UnsafeMutableRawPointer?) -> AnyObject? {
+        tryUnwrapFromBase(raw: pUnk)
+      }
     }
 
     internal static var IInspectableVTable: C_IInspectableVtbl = .init(

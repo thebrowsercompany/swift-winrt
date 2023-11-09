@@ -1,10 +1,10 @@
 {
     "configurations": [
         {
-            "type": "lldb",
+            "type": "swift-lldb",
             "request": "launch",
             "name": "test_app",
-            "program": "${workspaceFolder:swiftwinrt}\\out\\${command:cmake.activeBuildPresetName}\\bin\\test_app",
+            "program": "${workspaceFolder:swiftwinrt}\\out\\${command:cmake.activeBuildPresetName}\\bin\\test_app.exe",
             "args": [],
             "cwd": "${workspaceFolder:swiftwinrt}/tests",
             "preLaunchTask": "Install"

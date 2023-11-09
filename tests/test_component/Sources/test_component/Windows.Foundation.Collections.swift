@@ -13,7 +13,7 @@ public final class PropertySet : WinRTClass, IObservableMap, IMap, IIterable, IP
     public typealias T = AnyIKeyValuePair<String, Any?>?
     private typealias SwiftABI = __ABI_Windows_Foundation_Collections.IPropertySet
     private typealias CABI = __x_ABI_CWindows_CFoundation_CCollections_CIPropertySet
-    private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
+    private var _default: SwiftABI! { try! _inner.QueryInterface() }
     @_spi(WinRTInternal)
     public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
@@ -48,7 +48,7 @@ public final class PropertySet : WinRTClass, IObservableMap, IMap, IIterable, IP
         try! _inner = RoActivateInstance(HString("Windows.Foundation.Collections.PropertySet"))
     }
 
-    internal lazy var _IObservableMap: IObservableMapString_Any = try! _inner.QueryInterface()
+    internal var _IObservableMap: IObservableMapString_Any { try! _inner.QueryInterface() }
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.propertyset.mapchanged)
     public lazy var mapChanged : Event<MapChangedEventHandler<String, Any?>> = {
       .init(
@@ -62,7 +62,7 @@ public final class PropertySet : WinRTClass, IObservableMap, IMap, IIterable, IP
       )
     }()
 
-    internal lazy var _IMap: IMapString_Any = try! _inner.QueryInterface()
+    internal var _IMap: IMapString_Any { try! _inner.QueryInterface() }
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.propertyset.lookup)
     public func lookup(_ key: String) -> Any? {
         try! _IMap.LookupImpl(key)
@@ -98,7 +98,7 @@ public final class PropertySet : WinRTClass, IObservableMap, IMap, IIterable, IP
         get { try! _IMap.get_SizeImpl() }
     }
 
-    internal lazy var _IIterable: IIterableIKeyValuePairString_Any = try! _inner.QueryInterface()
+    internal var _IIterable: IIterableIKeyValuePairString_Any { try! _inner.QueryInterface() }
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.propertyset.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
         try! _IIterable.FirstImpl()
@@ -115,7 +115,7 @@ public final class StringMap : WinRTClass, IMap, IIterable, IObservableMap {
     public typealias T = AnyIKeyValuePair<String, String>?
     private typealias SwiftABI = IMapString_String
     private typealias CABI = __x_ABI_C__FIMap_2_HSTRING_HSTRING
-    private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
+    private var _default: SwiftABI! { try! _inner.QueryInterface() }
     @_spi(WinRTInternal)
     public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
@@ -185,13 +185,13 @@ public final class StringMap : WinRTClass, IMap, IIterable, IObservableMap {
         get { try! _default.get_SizeImpl() }
     }
 
-    internal lazy var _IIterable: IIterableIKeyValuePairString_String = try! _inner.QueryInterface()
+    internal var _IIterable: IIterableIKeyValuePairString_String { try! _inner.QueryInterface() }
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.stringmap.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
         try! _IIterable.FirstImpl()
     }
 
-    internal lazy var _IObservableMap: IObservableMapString_String = try! _inner.QueryInterface()
+    internal var _IObservableMap: IObservableMapString_String { try! _inner.QueryInterface() }
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.stringmap.mapchanged)
     public lazy var mapChanged : Event<MapChangedEventHandler<String, String>> = {
       .init(
@@ -216,7 +216,7 @@ public final class ValueSet : WinRTClass, IObservableMap, IMap, IIterable, IProp
     public typealias T = AnyIKeyValuePair<String, Any?>?
     private typealias SwiftABI = __ABI_Windows_Foundation_Collections.IPropertySet
     private typealias CABI = __x_ABI_CWindows_CFoundation_CCollections_CIPropertySet
-    private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
+    private var _default: SwiftABI! { try! _inner.QueryInterface() }
     @_spi(WinRTInternal)
     public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
@@ -251,7 +251,7 @@ public final class ValueSet : WinRTClass, IObservableMap, IMap, IIterable, IProp
         try! _inner = RoActivateInstance(HString("Windows.Foundation.Collections.ValueSet"))
     }
 
-    internal lazy var _IObservableMap: IObservableMapString_Any = try! _inner.QueryInterface()
+    internal var _IObservableMap: IObservableMapString_Any { try! _inner.QueryInterface() }
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.valueset.mapchanged)
     public lazy var mapChanged : Event<MapChangedEventHandler<String, Any?>> = {
       .init(
@@ -265,7 +265,7 @@ public final class ValueSet : WinRTClass, IObservableMap, IMap, IIterable, IProp
       )
     }()
 
-    internal lazy var _IMap: IMapString_Any = try! _inner.QueryInterface()
+    internal var _IMap: IMapString_Any { try! _inner.QueryInterface() }
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.valueset.lookup)
     public func lookup(_ key: String) -> Any? {
         try! _IMap.LookupImpl(key)
@@ -301,7 +301,7 @@ public final class ValueSet : WinRTClass, IObservableMap, IMap, IIterable, IProp
         get { try! _IMap.get_SizeImpl() }
     }
 
-    internal lazy var _IIterable: IIterableIKeyValuePairString_Any = try! _inner.QueryInterface()
+    internal var _IIterable: IIterableIKeyValuePairString_Any { try! _inner.QueryInterface() }
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.valueset.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
         try! _IIterable.FirstImpl()

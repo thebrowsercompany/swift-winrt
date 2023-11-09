@@ -4,6 +4,10 @@
 
 namespace winrt::test_component::implementation
 {
+    Base::~Base()
+    {
+
+    }
     void Base::DoTheThing()
     {
         overridable().OnDoTheThing();

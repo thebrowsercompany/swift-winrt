@@ -12,7 +12,7 @@ public final class Deferral : WinRTClass, IClosable {
     private (set) public var _inner: test_component.IInspectable!
     private typealias SwiftABI = __ABI_Windows_Foundation.IDeferral
     private typealias CABI = __x_ABI_CWindows_CFoundation_CIDeferral
-    private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
+    private var _default: SwiftABI! { try! _inner.QueryInterface() }
     @_spi(WinRTInternal)
     public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
@@ -48,7 +48,7 @@ public final class Deferral : WinRTClass, IClosable {
         _inner = try! Self._IDeferralFactory.CreateImpl(handler)
     }
 
-    internal lazy var _IClosable: __ABI_Windows_Foundation.IClosable = try! _inner.QueryInterface()
+    internal var _IClosable: __ABI_Windows_Foundation.IClosable { try! _inner.QueryInterface() }
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.deferral.close)
     public func close() throws {
         try _IClosable.CloseImpl()

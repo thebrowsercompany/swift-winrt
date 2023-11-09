@@ -24,7 +24,7 @@ public class ComPtr<CInterface> {
 
     fileprivate init?(takingOwnership ptr: UnsafeMutablePointer<CInterface>?) {
         guard let ptr else { return nil }
-        self.init(ptr)
+        self.pUnk = ptr
     }
 
     // Release ownership of the underlying pointer and return it. This is
@@ -107,7 +107,7 @@ public struct ComPtrs {
         var ptr1: UnsafeMutablePointer<I1>?
         var ptr2: UnsafeMutablePointer<I2>?
         var ptr3: UnsafeMutablePointer<I3>?
-        var ptr3: UnsafeMutablePointer<I4>?
+        var ptr4: UnsafeMutablePointer<I4>?
         try body(&ptr1, &ptr2, &ptr3, &ptr4)
         return (ComPtr(takingOwnership: ptr1), ComPtr(takingOwnership: ptr2), ComPtr(takingOwnership: ptr3), ComPtr(takingOwnership: ptr4))
     }
@@ -116,8 +116,8 @@ public struct ComPtrs {
         var ptr1: UnsafeMutablePointer<I1>?
         var ptr2: UnsafeMutablePointer<I2>?
         var ptr3: UnsafeMutablePointer<I3>?
-        var ptr3: UnsafeMutablePointer<I4>?
-        var ptr3: UnsafeMutablePointer<I5>?
+        var ptr4: UnsafeMutablePointer<I4>?
+        var ptr5: UnsafeMutablePointer<I5>?
         try body(&ptr1, &ptr2, &ptr3, &ptr4, &ptr5)
         return (ComPtr(takingOwnership: ptr1), ComPtr(takingOwnership: ptr2), ComPtr(takingOwnership: ptr3), ComPtr(takingOwnership: ptr4), ComPtr(takingOwnership: ptr5))
     }

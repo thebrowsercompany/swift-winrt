@@ -101,7 +101,7 @@ open class WinRTWrapperBase<CInterface, Prototype> {
       return pUnk.assumingMemoryBound(to: WinRTWrapperBase.ComObjectABI.self).pointee.wrapper
     }
 
-    public static func tryUnwrapFrom(raw pUnk: UnsafeMutableRawPointer?) -> Prototype? {
+    internal static func tryUnwrapFromBase(raw pUnk: UnsafeMutableRawPointer?) -> Prototype? {
       guard let pUnk = pUnk else { return nil }
       return fromRaw(pUnk)?.takeUnretainedValue().swiftObj
     }
@@ -131,7 +131,7 @@ open class WinRTWrapperBase<CInterface, Prototype> {
     }
 
     fileprivate static func queryInterfaceBase(_ pUnk: UnsafeMutablePointer<CInterface>, _ riid: UnsafePointer<SUPPORT_MODULE.IID>, _ result: UnsafeMutablePointer<UnsafeMutableRawPointer?>) -> HRESULT {
-        guard let instance = tryUnwrapFrom(raw: pUnk) else { return E_FAIL }
+        guard let instance = tryUnwrapFromBase(raw: pUnk) else { return E_FAIL }
         do
         {
             switch riid.pointee {
@@ -196,6 +196,10 @@ open class InterfaceWrapperBase<I: AbiInterfaceBridge> : WinRTAbiBridgeWrapper<I
             return try super.toABI(body)
         }
     }
+
+    public static func tryUnwrapFrom(raw pUnk: UnsafeMutableRawPointer?) -> I.SwiftProjection? {
+        tryUnwrapFromBase(raw: pUnk)
+    }
 }
 
 public class ReferenceWrapperBase<I: ReferenceBridge>: WinRTAbiBridgeWrapper<I> {
@@ -220,5 +224,9 @@ public class ReferenceWrapperBase<I: ReferenceBridge>: WinRTAbiBridgeWrapper<I> 
             default:
                 return super.queryInterface(pUnk, riid, ppvObject)
         }
+    }
+
+    public static func tryUnwrapFrom(raw pUnk: UnsafeMutableRawPointer?) -> I.SwiftProjection? {
+        tryUnwrapFromBase(raw: pUnk)
     }
 }

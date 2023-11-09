@@ -992,7 +992,7 @@ bind_bridge_fullname(type));
                 swiftAbi = w.write_temp("%", bind_type_abi(info.type));
             }
             auto qiFrom = is_class ? "_inner" : "_default";
-            w.write("internal lazy var %: % = try! %.QueryInterface()\n",
+            w.write("internal var %: % { try! %.QueryInterface() }\n",
                 get_swift_name(info),
                 swiftAbi,
                 qiFrom);
@@ -1646,6 +1646,11 @@ vtable);
             }
         }
 
+        // At initial writing, ComPtrs.initialize only has overloads for 5 parameters. If we have more than 5
+        // then the generated code won't compile. Rather than check for the number here, just let generated
+        // code not compile so that we can add the overload to ComPtrs.initialize later on. This would also
+        // in theory let someone add a new overload to ComPtrs.initialize with a different number of parameters
+        // on their own as a way to unblock themselves
         if (!com_ptr_initialize.empty())
         {
             w.write("let (%) = try ComPtrs.initialize { (%) in\n",
@@ -1682,12 +1687,16 @@ vtable);
         }
         else
         {
+            if (type.is_composable())
+            {
+                w.write("super.init()\n");
+            }
             w.write("_inner = %\n", func_call);
         }
     }
 
     // Check if the type has a default constructor. This is a parameterless constructor
-    // in Swift. Note that we don't check the args like we do in has_matching_constructor
+    // in Swift. Note that we don't check the args like we do in base_has_matching_constructor
     // because composing constructors project as init() when they really have 2 parameters.
     static bool has_default_constructor(const class_type* type)
     {
@@ -1726,12 +1735,17 @@ vtable);
         }
     }
 
-    static bool has_matching_constructor(const class_type* type, attributed_type const& factory, function_def const& func)
+    static bool base_has_matching_constructor(class_type const& type, attributed_type const& factory, function_def const& func)
     {
-        if (type == nullptr) return false;
         auto projectedParams = get_projected_params(factory, func);
 
-        for (const auto& [_, baseFactory] : type->factories)
+        if (type.base_class == nullptr)
+        {
+            // all composable types derive from ComObject, so they have to override the no-param initializer
+            return type.is_composable() && projectedParams.size() == 0;
+        }
+
+        for (const auto& [_, baseFactory] : type.base_class->factories)
         {
             // only look at activation or composing constructors
             if (!baseFactory.activatable && !baseFactory.composable) continue;
@@ -1774,7 +1788,7 @@ vtable);
             {
                 if (!can_write(w, method)) continue;
 
-                auto baseHasMatchingConstructor = has_matching_constructor(type.base_class, factory, method);
+                auto baseHasMatchingConstructor = base_has_matching_constructor(type, factory, method);
                 w.write("%public init(%) {\n",
                     baseHasMatchingConstructor ? "override " : "",
                     bind<write_function_params>(method, write_type_params::swift_allow_implicit_unwrap));
@@ -1829,7 +1843,8 @@ public init<Composable: ComposableImpl>(
     composing: Composable.Type,
     _ createCallback: (UnsealedWinRTClassWrapper<Composable>?, inout %.IInspectable?) -> Composable.Default.SwiftABI)
 {
-    self._inner = MakeComposed(composing: composing, (self as! Composable.SwiftProjection), createCallback)
+    super.init()
+    self._inner = MakeComposed(composing: composing, (self as! Composable.Class), createCallback)
 }
 )", w.support);
         }
@@ -1850,7 +1865,7 @@ public init<Composable: ComposableImpl>(
             {
                 if (!can_write(w, method)) continue;
 
-                auto baseHasMatchingConstructor = has_matching_constructor(type.base_class, factory, method);
+                auto baseHasMatchingConstructor = base_has_matching_constructor(type, factory, method);
 
                 std::vector<function_param> params = get_projected_params(factory, method);
 
@@ -1867,6 +1882,7 @@ public init<Composable: ComposableImpl>(
                         }
                         else
                         {
+                            w.write("super.init()\n");
                             w.write("self._inner = MakeComposed(composing: Self.Composable.self, self) { baseInterface, innerInterface in \n");
                         }
                         w.write("    try! Self.%.%Impl(%)\n",
@@ -1917,6 +1933,10 @@ public init<Composable: ComposableImpl>(
             }
             else
             {
+                if (type.is_composable())
+                {
+                    w.write("super.init()\n");
+                }
                 w.write("_inner = fromAbi\n");
             }
         }
@@ -2143,7 +2163,8 @@ public init<Composable: ComposableImpl>(
         auto format = R"(internal enum % : ComposableImpl {
     internal typealias CABI = %
     internal typealias SwiftABI = %
-    internal typealias SwiftProjection = %
+    internal typealias Class = %
+    internal typealias SwiftProjection = WinRTClassWeakReference<Class>
     internal enum Default : AbiInterface {
         internal typealias CABI = %
         internal typealias SwiftABI = %.%
@@ -2227,7 +2248,10 @@ public init<Composable: ComposableImpl>(
         }
         else if (default_interface)
         {
-            w.write("% class % : WinRTClass", modifier, typeName);
+            w.write("% class % : %WinRTClass",
+                modifier,
+                typeName,
+                composable ? "ComObject, " : "");
         }
         else
         {
@@ -2310,7 +2334,7 @@ private (set) public var _inner: %.IInspectable!
 
             w.write(R"(private typealias SwiftABI = %
 private typealias CABI = %
-private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
+private var _default: SwiftABI! { try! _inner.QueryInterface() }
 ^@_spi(WinRTInternal)
 %% func _getABI<T>() -> UnsafeMutablePointer<T>? {
     if T.self == CABI.self {
@@ -2678,6 +2702,7 @@ private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
             auto indent_guard = w.push_indent();
             w.write("guard let __unwrapped__instance = %.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }\n",
                 bind_wrapper_name(type));
+
             write_convert_vtable_params(w, function);
 
             if (function.return_type)

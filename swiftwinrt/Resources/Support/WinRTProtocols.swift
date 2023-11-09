@@ -13,6 +13,11 @@ public protocol IWinRTObject: AnyObject {
 public protocol WinRTInterface: AnyObject, CustomQueryInterface {
 }
 
+open class ComObject {
+  public init() {}
+  var identity: ComPtr<C_IUnknown>!
+}
+
 public protocol WinRTClass : IWinRTObject, CustomQueryInterface, Equatable {
     @_spi(WinRTInternal)
     func _getABI<T>() -> UnsafeMutablePointer<T>?

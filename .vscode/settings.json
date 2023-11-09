@@ -34,6 +34,9 @@
         "tuple": "cpp",
         "unordered_map": "cpp",
         "variant": "cpp",
-        "xiosbase": "cpp"
+        "xiosbase": "cpp",
+        "coroutine": "cpp",
+        "resumable": "cpp",
+        "string": "cpp"
     }
 }

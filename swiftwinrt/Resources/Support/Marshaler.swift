@@ -45,7 +45,7 @@ private var IMarshalVTable: C_IMarshalVtbl = .init(
             _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
             return S_OK
         default:
-            guard let obj = MarshalWrapper.tryUnwrapFrom(raw: pUnk)?.obj else { return E_NOINTERFACE }
+            guard let obj = MarshalWrapper.tryUnwrapFromBase(raw: pUnk)?.obj else { return E_NOINTERFACE }
             return obj.copyTo(riid, ppvObject)
         }
     },
