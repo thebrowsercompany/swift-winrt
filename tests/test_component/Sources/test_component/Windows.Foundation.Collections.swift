@@ -52,12 +52,12 @@ public final class PropertySet : WinRTClass, IObservableMap, IMap, IIterable, IP
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.propertyset.mapchanged)
     public lazy var mapChanged : Event<MapChangedEventHandler<String, Any?>> = {
       .init(
-        add: { [weak this = _IObservableMap] in
-          guard let this else { return .init() }
+        add: { [weak self] in
+          guard let this = self?._IObservableMap else { return .init() }
           return try! this.add_MapChangedImpl($0)
         },
-        remove: { [weak this = _IObservableMap] in
-         try? this?.remove_MapChangedImpl($0)
+        remove: { [weak self] in
+         try? self?._IObservableMap.remove_MapChangedImpl($0)
        }
       )
     }()
@@ -195,12 +195,12 @@ public final class StringMap : WinRTClass, IMap, IIterable, IObservableMap {
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.stringmap.mapchanged)
     public lazy var mapChanged : Event<MapChangedEventHandler<String, String>> = {
       .init(
-        add: { [weak this = _IObservableMap] in
-          guard let this else { return .init() }
+        add: { [weak self] in
+          guard let this = self?._IObservableMap else { return .init() }
           return try! this.add_MapChangedImpl($0)
         },
-        remove: { [weak this = _IObservableMap] in
-         try? this?.remove_MapChangedImpl($0)
+        remove: { [weak self] in
+         try? self?._IObservableMap.remove_MapChangedImpl($0)
        }
       )
     }()
@@ -255,12 +255,12 @@ public final class ValueSet : WinRTClass, IObservableMap, IMap, IIterable, IProp
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.valueset.mapchanged)
     public lazy var mapChanged : Event<MapChangedEventHandler<String, Any?>> = {
       .init(
-        add: { [weak this = _IObservableMap] in
-          guard let this else { return .init() }
+        add: { [weak self] in
+          guard let this = self?._IObservableMap else { return .init() }
           return try! this.add_MapChangedImpl($0)
         },
-        remove: { [weak this = _IObservableMap] in
-         try? this?.remove_MapChangedImpl($0)
+        remove: { [weak self] in
+         try? self?._IObservableMap.remove_MapChangedImpl($0)
        }
       )
     }()

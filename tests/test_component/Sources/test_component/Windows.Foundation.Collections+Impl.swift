@@ -33,12 +33,12 @@ public enum __IMPL_Windows_Foundation_Collections {
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.mapchanged)
         fileprivate lazy var mapChanged : Event<MapChangedEventHandler<String, Any?>> = {
           .init(
-            add: { [weak this = _IObservableMap] in
-              guard let this else { return .init() }
+            add: { [weak self] in
+              guard let this = self?._IObservableMap else { return .init() }
               return try! this.add_MapChangedImpl($0)
             },
-            remove: { [weak this = _IObservableMap] in
-             try? this?.remove_MapChangedImpl($0)
+            remove: { [weak self] in
+             try? self?._IObservableMap.remove_MapChangedImpl($0)
            }
           )
         }()

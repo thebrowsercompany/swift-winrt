@@ -181,12 +181,12 @@ public enum __IMPL_test_component {
 
         fileprivate lazy var implementableEvent : Event<test_component.InDelegate> = {
           .init(
-            add: { [weak this = _default] in
-              guard let this else { return .init() }
+            add: { [weak self] in
+              guard let this = self?._default else { return .init() }
               return try! this.add_ImplementableEventImpl($0)
             },
-            remove: { [weak this = _default] in
-             try? this?.remove_ImplementableEventImpl($0)
+            remove: { [weak self] in
+             try? self?._default.remove_ImplementableEventImpl($0)
            }
           )
         }()
@@ -280,12 +280,12 @@ public enum __IMPL_test_component {
 
         fileprivate lazy var eventWithReturn : Event<test_component.ReturnInt32Delegate> = {
           .init(
-            add: { [weak this = _default] in
-              guard let this else { return .init() }
+            add: { [weak self] in
+              guard let this = self?._default else { return .init() }
               return try! this.add_EventWithReturnImpl($0)
             },
-            remove: { [weak this = _default] in
-             try? this?.remove_EventWithReturnImpl($0)
+            remove: { [weak self] in
+             try? self?._default.remove_EventWithReturnImpl($0)
            }
           )
         }()
@@ -326,12 +326,12 @@ public enum __IMPL_test_component {
 
         fileprivate lazy var `repeat` : Event<EventHandler<Any?>> = {
           .init(
-            add: { [weak this = _default] in
-              guard let this else { return .init() }
+            add: { [weak self] in
+              guard let this = self?._default else { return .init() }
               return try! this.add_RepeatImpl($0)
             },
-            remove: { [weak this = _default] in
-             try? this?.remove_RepeatImpl($0)
+            remove: { [weak self] in
+             try? self?._default.remove_RepeatImpl($0)
            }
           )
         }()

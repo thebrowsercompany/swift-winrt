@@ -508,12 +508,12 @@ public final class BaseObservableCollection : WinRTClass, IObservableVector, IVe
     // MARK: WinRT
     public lazy var vectorChanged : Event<VectorChangedEventHandler<Base?>> = {
       .init(
-        add: { [weak this = _default] in
-          guard let this else { return .init() }
+        add: { [weak self] in
+          guard let this = self?._default else { return .init() }
           return try! this.add_VectorChangedImpl($0)
         },
-        remove: { [weak this = _default] in
-         try? this?.remove_VectorChangedImpl($0)
+        remove: { [weak self] in
+         try? self?._default.remove_VectorChangedImpl($0)
        }
       )
     }()
@@ -787,12 +787,12 @@ public final class Class : WinRTClass, IBasic {
 
     public lazy var deferrableEvent : Event<TypedEventHandler<Class?, DeferrableEventArgs?>> = {
       .init(
-        add: { [weak this = _default] in
-          guard let this else { return .init() }
+        add: { [weak self] in
+          guard let this = self?._default else { return .init() }
           return try! this.add_DeferrableEventImpl($0)
         },
-        remove: { [weak this = _default] in
-         try? this?.remove_DeferrableEventImpl($0)
+        remove: { [weak self] in
+         try? self?._default.remove_DeferrableEventImpl($0)
        }
       )
     }()
@@ -1206,13 +1206,8 @@ public final class Simple : WinRTClass {
 
     public static var staticEvent : Event<EventHandler<Any?>> = {
       .init(
-        add: { [weak this = _ISimpleStatics] in
-          guard let this else { return .init() }
-          return try! this.add_StaticEventImpl($0)
-        },
-        remove: { [weak this = _ISimpleStatics] in
-         try? this?.remove_StaticEventImpl($0)
-       }
+        add: { try! _ISimpleStatics.add_StaticEventImpl($0) },
+        remove: { try? _ISimpleStatics.remove_StaticEventImpl($0) }
       )
     }()
 
@@ -1269,36 +1264,36 @@ public final class Simple : WinRTClass {
 
     public lazy var inEvent : Event<test_component.InDelegate> = {
       .init(
-        add: { [weak this = _default] in
-          guard let this else { return .init() }
+        add: { [weak self] in
+          guard let this = self?._default else { return .init() }
           return try! this.add_InEventImpl($0)
         },
-        remove: { [weak this = _default] in
-         try? this?.remove_InEventImpl($0)
+        remove: { [weak self] in
+         try? self?._default.remove_InEventImpl($0)
        }
       )
     }()
 
     public lazy var signalEvent : Event<test_component.SignalDelegate> = {
       .init(
-        add: { [weak this = _default] in
-          guard let this else { return .init() }
+        add: { [weak self] in
+          guard let this = self?._default else { return .init() }
           return try! this.add_SignalEventImpl($0)
         },
-        remove: { [weak this = _default] in
-         try? this?.remove_SignalEventImpl($0)
+        remove: { [weak self] in
+         try? self?._default.remove_SignalEventImpl($0)
        }
       )
     }()
 
     public lazy var simpleEvent : Event<TypedEventHandler<Simple?, SimpleEventArgs>> = {
       .init(
-        add: { [weak this = _default] in
-          guard let this else { return .init() }
+        add: { [weak self] in
+          guard let this = self?._default else { return .init() }
           return try! this.add_SimpleEventImpl($0)
         },
-        remove: { [weak this = _default] in
-         try? this?.remove_SimpleEventImpl($0)
+        remove: { [weak self] in
+         try? self?._default.remove_SimpleEventImpl($0)
        }
       )
     }()

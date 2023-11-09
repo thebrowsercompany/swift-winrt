@@ -2049,13 +2049,22 @@ public init<Composable: ComposableImpl>(
         auto event = def.def;
         auto format = R"(%var % : Event<%> = {
   .init(
-    add: { [weak this = %] in
-      guard let this else { return .init() }
+    add: { [weak self] in
+      guard let this = self?.% else { return .init() }
       return try! this.add_%Impl($0)
     },
-    remove: { [weak this = %] in
-     try? this?.remove_%Impl($0)
+    remove: { [weak self] in
+     try? self?.%.remove_%Impl($0)
    }
+  )
+}()
+
+)";
+
+        auto static_format = R"(%var % : Event<%> = {
+  .init(
+    add: { try! %.add_%Impl($0) },
+    remove: { try? %.remove_%Impl($0) }
   )
 }()
 
@@ -2079,7 +2088,7 @@ public init<Composable: ComposableImpl>(
             modifier.append("lazy ");
         }
         assert(delegate_method.def);
-        w.write(format,
+        w.write(iface.attributed ? static_format : format,
             modifier, // % var
             get_swift_name(event), // var %
             def.type, // Event<%>

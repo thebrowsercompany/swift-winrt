@@ -3351,12 +3351,12 @@ fileprivate class __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableImpl : IObser
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.mapchanged)
     fileprivate lazy var mapChanged : Event<MapChangedEventHandler<String, Any?>> = {
       .init(
-        add: { [weak this = _default] in
-          guard let this else { return .init() }
+        add: { [weak self] in
+          guard let this = self?._default else { return .init() }
           return try! this.add_MapChangedImpl($0)
         },
-        remove: { [weak this = _default] in
-         try? this?.remove_MapChangedImpl($0)
+        remove: { [weak self] in
+         try? self?._default.remove_MapChangedImpl($0)
        }
       )
     }()
@@ -3506,12 +3506,12 @@ fileprivate class __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGImpl : IObservable
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.mapchanged)
     fileprivate lazy var mapChanged : Event<MapChangedEventHandler<String, String>> = {
       .init(
-        add: { [weak this = _default] in
-          guard let this else { return .init() }
+        add: { [weak self] in
+          guard let this = self?._default else { return .init() }
           return try! this.add_MapChangedImpl($0)
         },
-        remove: { [weak this = _default] in
-         try? this?.remove_MapChangedImpl($0)
+        remove: { [weak self] in
+         try? self?._default.remove_MapChangedImpl($0)
        }
       )
     }()
@@ -3689,12 +3689,12 @@ fileprivate class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBa
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.vectorchanged)
     fileprivate lazy var vectorChanged : Event<VectorChangedEventHandler<Base?>> = {
       .init(
-        add: { [weak this = _default] in
-          guard let this else { return .init() }
+        add: { [weak self] in
+          guard let this = self?._default else { return .init() }
           return try! this.add_VectorChangedImpl($0)
         },
-        remove: { [weak this = _default] in
-         try? this?.remove_VectorChangedImpl($0)
+        remove: { [weak self] in
+         try? self?._default.remove_VectorChangedImpl($0)
        }
       )
     }()
@@ -3887,12 +3887,12 @@ fileprivate class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIB
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.vectorchanged)
     fileprivate lazy var vectorChanged : Event<VectorChangedEventHandler<IBasic?>> = {
       .init(
-        add: { [weak this = _default] in
-          guard let this else { return .init() }
+        add: { [weak self] in
+          guard let this = self?._default else { return .init() }
           return try! this.add_VectorChangedImpl($0)
         },
-        remove: { [weak this = _default] in
-         try? this?.remove_VectorChangedImpl($0)
+        remove: { [weak self] in
+         try? self?._default.remove_VectorChangedImpl($0)
        }
       )
     }()
