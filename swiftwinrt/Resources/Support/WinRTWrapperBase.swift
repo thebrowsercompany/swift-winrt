@@ -36,6 +36,13 @@ public protocol AbiInterfaceImpl<Bridge> {
     var _default: Bridge.SwiftABI { get }
 }
 
+@_spi(WinRTInternal)
+extension AbiInterfaceImpl {
+  public func getInterfaceForCaching<T: IUnknown>() -> T {
+    return try! _default.QueryInterface()
+  }
+}
+
 internal typealias AnyAbiInterfaceImpl<Bridge> = any AbiInterfaceImpl<Bridge>
 public protocol WinRTAbiImpl<Bridge>: AbiInterfaceImpl where Bridge.SwiftABI: IInspectable {}
 internal typealias AnyWinRTAbiImpl<Bridge> = any WinRTAbiImpl<Bridge>

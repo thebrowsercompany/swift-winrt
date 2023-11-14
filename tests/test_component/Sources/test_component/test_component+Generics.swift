@@ -2248,7 +2248,7 @@ fileprivate class __x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl : IMapView, Ab
         get { try! _default.get_SizeImpl() }
     }
 
-    internal var _IIterable: IIterableIKeyValuePairString_Any { try! _default.QueryInterface() }
+    private lazy var _IIterable: IIterableIKeyValuePairString_Any! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.first)
     fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
         try! _IIterable.FirstImpl()
@@ -2413,7 +2413,7 @@ fileprivate class __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl : IMapView, AbiInte
         get { try! _default.get_SizeImpl() }
     }
 
-    internal var _IIterable: IIterableIKeyValuePairString_String { try! _default.QueryInterface() }
+    private lazy var _IIterable: IIterableIKeyValuePairString_String! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.first)
     fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
         try! _IIterable.FirstImpl()
@@ -2579,7 +2579,7 @@ fileprivate class __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBas
         get { try! _default.get_SizeImpl() }
     }
 
-    internal var _IIterable: IIterableIKeyValuePairString_Base { try! _default.QueryInterface() }
+    private lazy var _IIterable: IIterableIKeyValuePairString_Base! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.first)
     fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, Base?>?>? {
         try! _IIterable.FirstImpl()
@@ -2802,7 +2802,7 @@ fileprivate class __x_ABI_C__FIMap_2_HSTRING_IInspectableImpl : IMap, AbiInterfa
         get { try! _default.get_SizeImpl() }
     }
 
-    internal var _IIterable: IIterableIKeyValuePairString_Any { try! _default.QueryInterface() }
+    private lazy var _IIterable: IIterableIKeyValuePairString_Any! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.first)
     fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
         try! _IIterable.FirstImpl()
@@ -3022,7 +3022,7 @@ fileprivate class __x_ABI_C__FIMap_2_HSTRING_HSTRINGImpl : IMap, AbiInterfaceImp
         get { try! _default.get_SizeImpl() }
     }
 
-    internal var _IIterable: IIterableIKeyValuePairString_String { try! _default.QueryInterface() }
+    private lazy var _IIterable: IIterableIKeyValuePairString_String! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.first)
     fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
         try! _IIterable.FirstImpl()
@@ -3242,7 +3242,7 @@ fileprivate class __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImp
         get { try! _default.get_SizeImpl() }
     }
 
-    internal var _IIterable: IIterableIKeyValuePairString_Base { try! _default.QueryInterface() }
+    private lazy var _IIterable: IIterableIKeyValuePairString_Base! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.first)
     fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, Base?>?>? {
         try! _IIterable.FirstImpl()
@@ -3361,7 +3361,7 @@ fileprivate class __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableImpl : IObser
       )
     }()
 
-    internal var _IMap: IMapString_Any { try! _default.QueryInterface() }
+    private lazy var _IMap: IMapString_Any! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.lookup)
     fileprivate func lookup(_ key: String) -> Any? {
         try! _IMap.LookupImpl(key)
@@ -3397,7 +3397,7 @@ fileprivate class __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableImpl : IObser
         get { try! _IMap.get_SizeImpl() }
     }
 
-    internal var _IIterable: IIterableIKeyValuePairString_Any { try! _default.QueryInterface() }
+    private lazy var _IIterable: IIterableIKeyValuePairString_Any! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.first)
     fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
         try! _IIterable.FirstImpl()
@@ -3516,7 +3516,7 @@ fileprivate class __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGImpl : IObservable
       )
     }()
 
-    internal var _IMap: IMapString_String { try! _default.QueryInterface() }
+    private lazy var _IMap: IMapString_String! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.lookup)
     fileprivate func lookup(_ key: String) -> String {
         try! _IMap.LookupImpl(key)
@@ -3552,7 +3552,7 @@ fileprivate class __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGImpl : IObservable
         get { try! _IMap.get_SizeImpl() }
     }
 
-    internal var _IIterable: IIterableIKeyValuePairString_String { try! _default.QueryInterface() }
+    private lazy var _IIterable: IIterableIKeyValuePairString_String! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.first)
     fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
         try! _IIterable.FirstImpl()
@@ -3699,7 +3699,7 @@ fileprivate class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBa
       )
     }()
 
-    internal var _IVector: IVectorBase { try! _default.QueryInterface() }
+    private lazy var _IVector: IVectorBase! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.getat)
     fileprivate func getAt(_ index: UInt32) -> Base? {
         try! _IVector.GetAtImpl(index)
@@ -3750,7 +3750,7 @@ fileprivate class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBa
         get { try! _IVector.get_SizeImpl() }
     }
 
-    internal var _IIterable: IIterableBase { try! _default.QueryInterface() }
+    private lazy var _IIterable: IIterableBase! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.first)
     fileprivate func first() -> AnyIIterator<Base?>? {
         try! _IIterable.FirstImpl()
@@ -3897,7 +3897,7 @@ fileprivate class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIB
       )
     }()
 
-    internal var _IVector: IVectorIBasic { try! _default.QueryInterface() }
+    private lazy var _IVector: IVectorIBasic! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.getat)
     fileprivate func getAt(_ index: UInt32) -> AnyIBasic? {
         try! _IVector.GetAtImpl(index)
@@ -3948,7 +3948,7 @@ fileprivate class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIB
         get { try! _IVector.get_SizeImpl() }
     }
 
-    internal var _IIterable: IIterableIBasic { try! _default.QueryInterface() }
+    private lazy var _IIterable: IIterableIBasic! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.first)
     fileprivate func first() -> AnyIIterator<AnyIBasic?>? {
         try! _IIterable.FirstImpl()
@@ -4111,7 +4111,7 @@ fileprivate class __x_ABI_C__FIVectorView_1_IInspectableImpl : IVectorView, AbiI
         get { try! _default.get_SizeImpl() }
     }
 
-    internal var _IIterable: IIterableAny { try! _default.QueryInterface() }
+    private lazy var _IIterable: IIterableAny! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
     fileprivate func first() -> AnyIIterator<Any?>? {
         try! _IIterable.FirstImpl()
@@ -4271,7 +4271,7 @@ fileprivate class __x_ABI_C__FIVectorView_1_HSTRINGImpl : IVectorView, AbiInterf
         get { try! _default.get_SizeImpl() }
     }
 
-    internal var _IIterable: IIterableString { try! _default.QueryInterface() }
+    private lazy var _IIterable: IIterableString! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
     fileprivate func first() -> AnyIIterator<String>? {
         try! _IIterable.FirstImpl()
@@ -4431,7 +4431,7 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl
         get { try! _default.get_SizeImpl() }
     }
 
-    internal var _IIterable: IIterableBase { try! _default.QueryInterface() }
+    private lazy var _IIterable: IIterableBase! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
     fileprivate func first() -> AnyIIterator<Base?>? {
         try! _IIterable.FirstImpl()
@@ -4594,7 +4594,7 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicIm
         get { try! _default.get_SizeImpl() }
     }
 
-    internal var _IIterable: IIterableIBasic { try! _default.QueryInterface() }
+    private lazy var _IIterable: IIterableIBasic! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
     fileprivate func first() -> AnyIIterator<AnyIBasic?>? {
         try! _IIterable.FirstImpl()
@@ -4904,7 +4904,7 @@ fileprivate class __x_ABI_C__FIVector_1_IInspectableImpl : IVector, AbiInterface
         get { try! _default.get_SizeImpl() }
     }
 
-    internal var _IIterable: IIterableAny { try! _default.QueryInterface() }
+    private lazy var _IIterable: IIterableAny! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.first)
     fileprivate func first() -> AnyIIterator<Any?>? {
         try! _IIterable.FirstImpl()
@@ -5208,7 +5208,7 @@ fileprivate class __x_ABI_C__FIVector_1_HSTRINGImpl : IVector, AbiInterfaceImpl 
         get { try! _default.get_SizeImpl() }
     }
 
-    internal var _IIterable: IIterableString { try! _default.QueryInterface() }
+    private lazy var _IIterable: IIterableString! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.first)
     fileprivate func first() -> AnyIIterator<String>? {
         try! _IIterable.FirstImpl()
@@ -5509,7 +5509,7 @@ fileprivate class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl : I
         get { try! _default.get_SizeImpl() }
     }
 
-    internal var _IIterable: IIterableBase { try! _default.QueryInterface() }
+    private lazy var _IIterable: IIterableBase! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.first)
     fileprivate func first() -> AnyIIterator<Base?>? {
         try! _IIterable.FirstImpl()
@@ -5819,7 +5819,7 @@ fileprivate class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicImpl :
         get { try! _default.get_SizeImpl() }
     }
 
-    internal var _IIterable: IIterableIBasic { try! _default.QueryInterface() }
+    private lazy var _IIterable: IIterableIBasic! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.first)
     fileprivate func first() -> AnyIIterator<AnyIBasic?>? {
         try! _IIterable.FirstImpl()
@@ -6255,7 +6255,7 @@ fileprivate class __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleImpl : IAs
         set { try! _default.put_CompletedImpl(newValue) }
     }
 
-    internal var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo { try! _default.QueryInterface() }
+    private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.cancel)
     fileprivate func cancel() throws {
         try _IAsyncInfo.CancelImpl()
@@ -6407,7 +6407,7 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1_intImpl : IAsyncOperation, AbiIn
         set { try! _default.put_CompletedImpl(newValue) }
     }
 
-    internal var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo { try! _default.QueryInterface() }
+    private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
     fileprivate func cancel() throws {
         try _IAsyncInfo.CancelImpl()

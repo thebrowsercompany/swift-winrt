@@ -37,7 +37,7 @@ public enum __IMPL_Windows_Foundation {
             set { try! _default.put_CompletedImpl(newValue) }
         }
 
-        internal var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo { try! _default.QueryInterface() }
+        private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncaction.cancel)
         fileprivate func cancel() throws {
             try _IAsyncInfo.CancelImpl()

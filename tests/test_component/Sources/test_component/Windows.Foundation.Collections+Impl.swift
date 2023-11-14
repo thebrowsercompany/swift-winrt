@@ -29,7 +29,7 @@ public enum __IMPL_Windows_Foundation_Collections {
         public typealias K = String
         public typealias V = Any?
         public typealias T = AnyIKeyValuePair<String, Any?>?
-        internal var _IObservableMap: IObservableMapString_Any { try! _default.QueryInterface() }
+        private lazy var _IObservableMap: IObservableMapString_Any! = getInterfaceForCaching()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.mapchanged)
         fileprivate lazy var mapChanged : Event<MapChangedEventHandler<String, Any?>> = {
           .init(
@@ -43,7 +43,7 @@ public enum __IMPL_Windows_Foundation_Collections {
           )
         }()
 
-        internal var _IMap: IMapString_Any { try! _default.QueryInterface() }
+        private lazy var _IMap: IMapString_Any! = getInterfaceForCaching()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.lookup)
         fileprivate func lookup(_ key: String) -> Any? {
             try! _IMap.LookupImpl(key)
@@ -79,7 +79,7 @@ public enum __IMPL_Windows_Foundation_Collections {
             get { try! _IMap.get_SizeImpl() }
         }
 
-        internal var _IIterable: IIterableIKeyValuePairString_Any { try! _default.QueryInterface() }
+        private lazy var _IIterable: IIterableIKeyValuePairString_Any! = getInterfaceForCaching()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.first)
         fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
             try! _IIterable.FirstImpl()

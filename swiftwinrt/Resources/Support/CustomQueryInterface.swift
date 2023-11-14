@@ -18,13 +18,6 @@ extension IUnknownRef {
 }
 
 @_spi(WinRTInternal)
-public func queryInterface(_ obj: AnyWinRTClass, _ iid: SUPPORT_MODULE.IID) -> IUnknownRef? {
+public func queryInterface(_ obj: WinRTClass, _ iid: SUPPORT_MODULE.IID) -> IUnknownRef? {
     obj._inner.pUnk.queryInterface(iid)
-}
-
-extension WinRTClass {
-    @_spi(WinRTInternal)
-    public func queryInterface(_ iid: SUPPORT_MODULE.IID) -> IUnknownRef? {
-        SUPPORT_MODULE.queryInterface(self, iid)
-    }
 }

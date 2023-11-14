@@ -40,7 +40,7 @@ extension WinRTClassWeakReference: CustomAddRef {
 }
 
 public protocol ComposableImpl<Class> : AbiInterfaceBridge where SwiftABI: IInspectable, SwiftProjection: WinRTClassWeakReference<Class>  {
-    associatedtype Class: WinRTClass & ComObject
+    associatedtype Class: WinRTClass
     associatedtype Default : AbiInterface where Default.SwiftABI: SUPPORT_MODULE.IInspectable
     static func makeAbi() -> CABI
 }

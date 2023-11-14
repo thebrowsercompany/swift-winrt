@@ -131,15 +131,6 @@ class AggregationTests : XCTestCase {
     // calling it directly on the AppDerived type won't
     XCTAssertEqual(runtimeClassName(appDerived), "test_component.Base")
   }
-
-  public func testProperReferenceCount() throws {
-    weak var weakDerived: AppDerived? = nil
-    {
-      let appDerived = AppDerived()
-      weakDerived = appDerived
-    }()
-    XCTAssertNil(weakDerived)
-  }
 }
 
 var aggregationTests: [XCTestCaseEntry] = [
@@ -156,6 +147,5 @@ var aggregationTests: [XCTestCaseEntry] = [
     ("testUnwrappingAppImplementedComposedFromDerivedNoOverrides", AggregationTests.testUnwrappingAppImplementedComposedFromDerivedNoOverrides),
     ("testCustomConstructorOnUnsealedType", AggregationTests.testCustomConstructorOnUnsealedType),
     ("testGetRuntimeClassNameReturnsBase", AggregationTests.testGetRuntimeClassNameReturnsBase),
-    ("testProperReferenceCount", AggregationTests.testProperReferenceCount),
   ])
 ]

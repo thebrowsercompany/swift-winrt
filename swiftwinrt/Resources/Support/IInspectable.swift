@@ -111,7 +111,7 @@ public enum __ABI_ {
 
         GetRuntimeClassName: {
             guard let instance = AnyWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            guard let winrtClass = instance as? AnyWinRTClass else {
+            guard let winrtClass = instance as? WinRTClass else {
               let string = String(reflecting: type(of: instance))
               $1!.pointee = try! HString(string).detach()
               return S_OK

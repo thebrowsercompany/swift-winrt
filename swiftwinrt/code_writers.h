@@ -991,11 +991,9 @@ bind_bridge_fullname(type));
                 auto guard{ w.push_generic_params(info) };
                 swiftAbi = w.write_temp("%", bind_type_abi(info.type));
             }
-            auto qiFrom = is_class ? "_inner" : "_default";
-            w.write("internal var %: % { try! %.QueryInterface() }\n",
+            w.write("private lazy var %: %! = getInterfaceForCaching()\n",
                 get_swift_name(info),
-                swiftAbi,
-                qiFrom);
+                swiftAbi);
         }
 
         if (auto iface = dynamic_cast<const interface_type*>(info.type))
@@ -1687,33 +1685,9 @@ vtable);
         }
         else
         {
-            if (type.is_composable())
-            {
-                w.write("super.init()\n");
-            }
+            w.write("super.init()\n");
             w.write("_inner = %\n", func_call);
         }
-    }
-
-    // Check if the type has a default constructor. This is a parameterless constructor
-    // in Swift. Note that we don't check the args like we do in base_has_matching_constructor
-    // because composing constructors project as init() when they really have 2 parameters.
-    static bool has_default_constructor(const class_type* type)
-    {
-        if (type == nullptr) return false;
-
-        for (const auto& [_, factory] : type->factories)
-        {
-            if (factory.composable && factory.defaultComposable)
-            {
-                return true;
-            }
-            else if (factory.activatable && factory.type == nullptr)
-            {
-                return true;
-            }
-        }
-        return false;
     }
 
     static std::vector<function_param> get_projected_params(attributed_type const& factory, function_def const& func)
@@ -1741,8 +1715,7 @@ vtable);
 
         if (type.base_class == nullptr)
         {
-            // all composable types derive from ComObject, so they have to override the no-param initializer
-            return type.is_composable() && projectedParams.size() == 0;
+            return projectedParams.size() == 0;
         }
 
         for (const auto& [_, baseFactory] : type.base_class->factories)
@@ -1803,7 +1776,7 @@ vtable);
         {
             auto base_class = type.base_class;
 
-            w.write("%public init() {\n", has_default_constructor(base_class) ? "override " : "");
+            w.write("override public init() {\n");
             {
                 auto indent = w.push_indent();
                 auto activateInstance = w.write_temp("RoActivateInstance(HString(\"%\"))", get_full_type_name(type));
@@ -1813,6 +1786,7 @@ vtable);
                 }
                 else
                 {
+                    w.write("super.init()\n");
                     w.write("try! _inner = %\n", activateInstance);
                 }
             }
@@ -1933,10 +1907,7 @@ public init<Composable: ComposableImpl>(
             }
             else
             {
-                if (type.is_composable())
-                {
-                    w.write("super.init()\n");
-                }
+                w.write("super.init()\n");
                 w.write("_inner = fromAbi\n");
             }
         }
@@ -2257,10 +2228,9 @@ public init<Composable: ComposableImpl>(
         }
         else if (default_interface)
         {
-            w.write("% class % : %WinRTClass",
+            w.write("% class % : WinRTClass",
                 modifier,
-                typeName,
-                composable ? "ComObject, " : "");
+                typeName);
         }
         else
         {
@@ -2315,13 +2285,6 @@ public init<Composable: ComposableImpl>(
 
         auto class_indent_guard = w.push_indent();
 
-        if (!base_class && default_interface)
-        {
-            w.write(R"(^@_spi(WinRTInternal)
-private (set) public var _inner: %.IInspectable!
-)", w.support);
-        }
-
         write_generic_typealiases(w, type);
 
         writer::generic_param_guard guard;
@@ -2339,57 +2302,35 @@ private (set) public var _inner: %.IInspectable!
             }
 
             auto modifier = composable ? "open" : "public";
-            auto override = type.base_class ? "override " : "";
 
             w.write(R"(private typealias SwiftABI = %
 private typealias CABI = %
-private var _default: SwiftABI! { try! _inner.QueryInterface() }
+private lazy var _default: SwiftABI! = getInterfaceForCaching()
 ^@_spi(WinRTInternal)
-%% func _getABI<T>() -> UnsafeMutablePointer<T>? {
+override % func _getABI<T>() -> UnsafeMutablePointer<T>? {
     if T.self == CABI.self {
         return RawPointer(_default)
     }
-    if T.self == C_IInspectable.self {
-        return RawPointer(_default)
-    }
-    if T.self == C_IUnknown.self {
-        return RawPointer(_default)
-    }
-    return %
+    return super._getABI()
 }
-
-%% var thisPtr: %.IInspectable { try! _inner.QueryInterface() }
 
 )",
                 swiftAbi,
                 bind_type_mangled(default_interface),
-                override,
-                modifier,
-                base_class ? "super._getABI()" : "nil",
-                override,
-                modifier,
-                w.support);
+                modifier);
             write_default_constructor_declarations(w, type, *default_interface);
 
             // composable types will always need CustomQueryInterface conformance so that derived types can
             // override the queryInterface call
             if (needsCustomQueryInterfaceConformance)
             {
-                w.write("%% func queryInterface(_ iid: %.IID) -> IUnknownRef? {\n", override, modifier, w.support);
+                w.write("override % func queryInterface(_ iid: %.IID) -> IUnknownRef? {\n", modifier, w.support);
 
                 // A WinRTClass needs CustomQueryInterface conformance when it derives from 1 or more interfaces,
                 // otherwise it won't compile. At the end of the day, the winrt object it's holding onto will appropriately
                 // respond to QueryInterface calls, so call into the default implementation.
                 auto baseComposable = type.base_class && type.base_class->is_composable();
-                std::string base_case;
-                if (base_class)
-                {
-                    base_case = "super.queryInterface(iid)";
-                }
-                else
-                {
-                    base_case = w.write_temp("%.queryInterface(self, iid)", w.support);
-                }
+                std::string base_case = "super.queryInterface(iid)";
                 if (overridable_interfaces.empty())
                 {
                     w.write("    return %\n", base_case);
@@ -2476,6 +2417,7 @@ private var _default: SwiftABI! { try! _inner.QueryInterface() }
         {
             write_composable_impl(w, type, *default_interface, true);
         }
+
 
         class_indent_guard.end();
         w.write("}\n\n");
