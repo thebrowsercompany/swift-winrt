@@ -40,6 +40,11 @@ internal typealias AnyAbiInterfaceImpl<Bridge> = any AbiInterfaceImpl<Bridge>
 public protocol WinRTAbiImpl<Bridge>: AbiInterfaceImpl where Bridge.SwiftABI: IInspectable {}
 internal typealias AnyWinRTAbiImpl<Bridge> = any WinRTAbiImpl<Bridge>
 
+internal protocol CustomAddRef {
+    func addRef()
+    func release()
+}
+
 // The WinRTWrapperBase class wraps an AbiBridge and is used for wrapping and unwrapping swift
 // objects at the ABI layer. The contract for how to do this is defined by the AbiBridge protocol
 open class WinRTWrapperBase<CInterface, Prototype> {
@@ -120,14 +125,25 @@ open class WinRTWrapperBase<CInterface, Prototype> {
     }
 
     public static func addRef(_ pUnk: UnsafeMutablePointer<CInterface>?) -> ULONG {
-        guard let wrapper = fromRaw(pUnk) else { return 1 }
-        _ = wrapper.retain()
-        return ULONG(_getRetainCount(wrapper.takeUnretainedValue()))
+        guard let unmanaged = fromRaw(pUnk) else { return 1 }
+        let wrapper = unmanaged.takeUnretainedValue()
+        _ = unmanaged.retain()
+
+        if let customAddRef = wrapper.swiftObj as? CustomAddRef {
+            customAddRef.addRef()
+        }
+        return ULONG(_getRetainCount(wrapper))
     }
 
     public static func release(_ pUnk: UnsafeMutablePointer<CInterface>?) -> ULONG {
-        guard let wrapper = fromRaw(pUnk) else { return 1 }
-        return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
+        guard let unmanaged = fromRaw(pUnk) else { return 1 }
+        let wrapper = unmanaged.takeUnretainedValue()
+        unmanaged.release()
+
+        if let customAddRef = wrapper.swiftObj as? CustomAddRef {
+            customAddRef.release()
+        }
+        return ULONG(_getRetainCount(wrapper))
     }
 
     fileprivate static func queryInterfaceBase(_ pUnk: UnsafeMutablePointer<CInterface>, _ riid: UnsafePointer<SUPPORT_MODULE.IID>, _ result: UnsafeMutablePointer<UnsafeMutableRawPointer?>) -> HRESULT {

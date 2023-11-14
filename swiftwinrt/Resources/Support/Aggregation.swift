@@ -1,6 +1,15 @@
 import C_BINDINGS_MODULE
 import Foundation
 
+// The WinRTClassWeakReference class is a proxy for properly managing the reference count of
+// the WinRTClass that is being aggregated. The aggregated object holds a weak reference to
+// the outer IInspectable (swift) that is passed in during construction. In general, the
+// swift wrappers we create hold strong references to the objects they are wrapping, as we
+// expect an AddRef from WinRT to keep the object alive. Since this doesn't happen for aggregated
+// objects, we need a proxy which sits in the middle. The WinRTClassWeakReference object doesn't
+// keep a strong ref to the swift object, but it forwards all AddRef/Release calls from WinRT
+// to the swift object, to ensure it doesn't get cleaned up. The Swift object in turn holds a strong
+// reference to this object so that it stays alive.
 public final class WinRTClassWeakReference<Class: WinRTClass>: CustomQueryInterface {
     fileprivate weak var instance: Class?
     public init(_ instance: Class){
@@ -9,8 +18,24 @@ public final class WinRTClassWeakReference<Class: WinRTClass>: CustomQueryInterf
 
     @_spi(WinRTImplements)
     public func queryInterface(_ iid: SUPPORT_MODULE.IID) -> IUnknownRef? {
-        guard let instance else  { return nil }
+        guard let instance else { return nil }
         return instance.queryInterface(iid)
+    }
+}
+
+extension WinRTClassWeakReference: CustomAddRef {
+    func addRef() {
+        guard let instance else { return }
+        _ = Unmanaged.passRetained(instance)
+        // WIN-940: The below line is unnecessary, but it seems like this whole method is compiled out
+        // in release builds without it.
+        _ = _getRetainCount(instance)
+    }
+
+    func release() {
+        guard let instance else { return }
+        let unmanaged = Unmanaged.passUnretained(instance)
+        unmanaged.release()
     }
 }
 
@@ -52,6 +77,9 @@ public func MakeComposed<Composable: ComposableImpl>(
 
     if let wrapper {
         this.identity = ComPtr(wrapper.toABIType { $0 })
+        // Storing a strong ref to the wrapper adds a ref to ourselves, remove the
+        // reference
+        wrapper.swiftObj.release()
     }
     return aggregated ? innerInsp : base
 }

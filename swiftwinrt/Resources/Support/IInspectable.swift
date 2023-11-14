@@ -96,18 +96,8 @@ public enum __ABI_ {
             }
             return E_NOINTERFACE
         },
-
-        AddRef: {
-             guard let wrapper = AnyWrapper.fromRaw($0) else { return 1 }
-             _ = wrapper.retain()
-             return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
-        },
-
-        Release: {
-            guard let wrapper = AnyWrapper.fromRaw($0) else { return 1 }
-            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-        },
-
+        AddRef: { AnyWrapper.addRef($0) },
+        Release: { AnyWrapper.release($0) },
         GetIids: {
             let size = MemoryLayout<SUPPORT_MODULE.IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 2).assumingMemoryBound(to: SUPPORT_MODULE.IID.self)

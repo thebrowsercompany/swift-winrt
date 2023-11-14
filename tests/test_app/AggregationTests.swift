@@ -58,7 +58,6 @@ class AggregationTests : XCTestCase {
   public func testUnwrappingAppImplementedComposedTypeBase() throws {
     let classy = Class()
     let appDerived = AppDerived()
-
     classy.baseProperty = appDerived
 
     let base_returned = try XCTUnwrap(classy.baseProperty)
@@ -132,6 +131,15 @@ class AggregationTests : XCTestCase {
     // calling it directly on the AppDerived type won't
     XCTAssertEqual(runtimeClassName(appDerived), "test_component.Base")
   }
+
+  public func testProperReferenceCount() throws {
+    weak var weakDerived: AppDerived? = nil
+    {
+      let appDerived = AppDerived()
+      weakDerived = appDerived
+    }()
+    XCTAssertNil(weakDerived)
+  }
 }
 
 var aggregationTests: [XCTestCaseEntry] = [
@@ -147,6 +155,7 @@ var aggregationTests: [XCTestCaseEntry] = [
     ("testUnwrappingAppImplementedComposedFromBaseNoOverrides", AggregationTests.testUnwrappingAppImplementedComposedFromBaseNoOverrides),
     ("testUnwrappingAppImplementedComposedFromDerivedNoOverrides", AggregationTests.testUnwrappingAppImplementedComposedFromDerivedNoOverrides),
     ("testCustomConstructorOnUnsealedType", AggregationTests.testCustomConstructorOnUnsealedType),
-    ("testGetRuntimeClassNameReturnsBase", AggregationTests.testGetRuntimeClassNameReturnsBase)
+    ("testGetRuntimeClassNameReturnsBase", AggregationTests.testGetRuntimeClassNameReturnsBase),
+    ("testProperReferenceCount", AggregationTests.testProperReferenceCount),
   ])
 ]
