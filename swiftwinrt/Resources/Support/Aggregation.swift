@@ -65,7 +65,7 @@ public protocol ComposableImpl<Class> : AbiInterfaceBridge where SwiftABI: IInsp
 public func MakeComposed<Composable: ComposableImpl>(
     composing: Composable.Type,
     _ this: Composable.Class,
-    _ createCallback: (UnsealedWinRTClassWrapper<Composable>?, inout SUPPORT_MODULE.IInspectable?) -> Composable.Default.SwiftABI) -> SUPPORT_MODULE.IInspectable {
+    _ createCallback: (UnsealedWinRTClassWrapper<Composable>?, inout SUPPORT_MODULE.IInspectable?) -> Composable.Default.SwiftABI) {
     let aggregated = type(of: this) != Composable.Class.self
     let wrapper:UnsealedWinRTClassWrapper<Composable>? = .init(aggregated ? this : nil)
 
@@ -81,7 +81,7 @@ public func MakeComposed<Composable: ComposableImpl>(
         // reference
         wrapper.swiftObj.release()
     }
-    return aggregated ? innerInsp : base
+    this._inner = aggregated ? innerInsp : base
 }
 
 public class UnsealedWinRTClassWrapper<Composable: ComposableImpl> : WinRTAbiBridgeWrapper<Composable> {

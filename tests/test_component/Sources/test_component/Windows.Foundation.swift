@@ -27,8 +27,7 @@ public final class Deferral : WinRTClass, IClosable {
 
     @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
-        super.init()
-        _inner = fromAbi
+        super.init(fromAbi)
     }
 
     override public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
@@ -36,8 +35,7 @@ public final class Deferral : WinRTClass, IClosable {
     }
     private static let _IDeferralFactory: __ABI_Windows_Foundation.IDeferralFactory = try! RoGetActivationFactory(HString("Windows.Foundation.Deferral"))
     public init(_ handler: DeferralCompletedHandler!) {
-        super.init()
-        _inner = try! Self._IDeferralFactory.CreateImpl(handler)
+        super.init(try! Self._IDeferralFactory.CreateImpl(handler))
     }
 
     private lazy var _IClosable: __ABI_Windows_Foundation.IClosable! = getInterfaceForCaching()

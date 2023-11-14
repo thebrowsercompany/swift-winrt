@@ -44,8 +44,7 @@ public final class AsyncOperationInt : WinRTClass, IAsyncOperationInt, IAsyncOpe
 
     @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
-        super.init()
-        _inner = fromAbi
+        super.init(fromAbi)
     }
 
     override public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
@@ -112,8 +111,7 @@ open class Base : WinRTClass {
 
     @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
-        super.init()
-        _inner = fromAbi
+        super.init(fromAbi)
     }
 
     @_spi(WinRTInternal)
@@ -122,7 +120,7 @@ open class Base : WinRTClass {
         _ createCallback: (UnsealedWinRTClassWrapper<Composable>?, inout test_component.IInspectable?) -> Composable.Default.SwiftABI)
     {
         super.init()
-        self._inner = MakeComposed(composing: composing, (self as! Composable.Class), createCallback)
+        MakeComposed(composing: composing, (self as! Composable.Class), createCallback)
     }
     override open func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         switch iid {
@@ -136,7 +134,7 @@ open class Base : WinRTClass {
 
     override public init() {
         super.init()
-        self._inner = MakeComposed(composing: Self.Composable.self, self) { baseInterface, innerInterface in 
+        MakeComposed(composing: Self.Composable.self, self) { baseInterface, innerInterface in 
             try! Self._IBaseProtectedFactory.CreateInstanceImpl(baseInterface, &innerInterface)
         }
     }
@@ -184,8 +182,7 @@ public final class BaseCollection : WinRTClass, IVector, IIterable {
 
     @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
-        super.init()
-        _inner = fromAbi
+        super.init(fromAbi)
     }
 
     override public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
@@ -292,8 +289,7 @@ public final class BaseMapCollection : WinRTClass, IMap, IIterable {
 
     @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
-        super.init()
-        _inner = fromAbi
+        super.init(fromAbi)
     }
 
     override public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
@@ -354,8 +350,7 @@ open class BaseNoOverrides : WinRTClass {
 
     @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
-        super.init()
-        _inner = fromAbi
+        super.init(fromAbi)
     }
 
     @_spi(WinRTInternal)
@@ -364,7 +359,7 @@ open class BaseNoOverrides : WinRTClass {
         _ createCallback: (UnsealedWinRTClassWrapper<Composable>?, inout test_component.IInspectable?) -> Composable.Default.SwiftABI)
     {
         super.init()
-        self._inner = MakeComposed(composing: composing, (self as! Composable.Class), createCallback)
+        MakeComposed(composing: composing, (self as! Composable.Class), createCallback)
     }
     override open func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return super.queryInterface(iid)
@@ -373,7 +368,7 @@ open class BaseNoOverrides : WinRTClass {
 
     override public init() {
         super.init()
-        self._inner = MakeComposed(composing: Self.Composable.self, self) { baseInterface, innerInterface in 
+        MakeComposed(composing: Self.Composable.self, self) { baseInterface, innerInterface in 
             try! Self._IBaseNoOverridesProtectedFactory.CreateInstanceImpl(baseInterface, &innerInterface)
         }
     }
@@ -412,8 +407,7 @@ public final class BaseObservableCollection : WinRTClass, IObservableVector, IVe
 
     @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
-        super.init()
-        _inner = fromAbi
+        super.init(fromAbi)
     }
 
     override public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
@@ -530,53 +524,44 @@ public final class Class : WinRTClass, IBasic {
 
     @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
-        super.init()
-        _inner = fromAbi
+        super.init(fromAbi)
     }
 
     override public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return super.queryInterface(iid)
     }
     override public init() {
-        super.init()
-        try! _inner = RoActivateInstance(HString("test_component.Class"))
+        super.init(try! RoActivateInstance(HString("test_component.Class")))
     }
 
     private static let _IClassFactory: __ABI_test_component.IClassFactory = try! RoGetActivationFactory(HString("test_component.Class"))
     public init(_ name: String) {
-        super.init()
-        _inner = try! Self._IClassFactory.CreateInstanceImpl(name)
+        super.init(try! Self._IClassFactory.CreateInstanceImpl(name))
     }
 
     public init(_ name: String, _ fruit: Fruit) {
-        super.init()
-        _inner = try! Self._IClassFactory.CreateInstance2Impl(name, fruit)
+        super.init(try! Self._IClassFactory.CreateInstance2Impl(name, fruit))
     }
 
     public init(_ arg: AnyIMap<String, String>!, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32) {
-        super.init()
-        _inner = try! Self._IClassFactory.CreateInstance3Impl(arg, dummy1, dummy2, dummy3)
+        super.init(try! Self._IClassFactory.CreateInstance3Impl(arg, dummy1, dummy2, dummy3))
     }
 
     public init(_ arg: AnyIMapView<String, String>!, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32, _ dummy4: Int32) {
-        super.init()
-        _inner = try! Self._IClassFactory.CreateInstance4Impl(arg, dummy1, dummy2, dummy3, dummy4)
+        super.init(try! Self._IClassFactory.CreateInstance4Impl(arg, dummy1, dummy2, dummy3, dummy4))
     }
 
     public init(_ arg: AnyIVector<String>!, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32, _ dummy4: Int32, _ dummy5: Int32) {
-        super.init()
-        _inner = try! Self._IClassFactory.CreateInstance5Impl(arg, dummy1, dummy2, dummy3, dummy4, dummy5)
+        super.init(try! Self._IClassFactory.CreateInstance5Impl(arg, dummy1, dummy2, dummy3, dummy4, dummy5))
     }
 
     public init(_ arg: AnyIVectorView<String>!, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32, _ dummy4: Int32, _ dummy5: Int32, _ dummy6: Int32) {
-        super.init()
-        _inner = try! Self._IClassFactory.CreateInstance6Impl(arg, dummy1, dummy2, dummy3, dummy4, dummy5, dummy6)
+        super.init(try! Self._IClassFactory.CreateInstance6Impl(arg, dummy1, dummy2, dummy3, dummy4, dummy5, dummy6))
     }
 
     private static let _IClassFactory2: __ABI_test_component.IClassFactory2 = try! RoGetActivationFactory(HString("test_component.Class"))
     public init(_ name: String, _ fruit: Fruit, _ implementation: AnyIIAmImplementable!) {
-        super.init()
-        _inner = try! Self._IClassFactory2.CreateInstanceImpl(name, fruit, implementation)
+        super.init(try! Self._IClassFactory2.CreateInstanceImpl(name, fruit, implementation))
     }
 
     private static let _IClassStatics: __ABI_test_component.IClassStatics = try! RoGetActivationFactory(HString("test_component.Class"))
@@ -767,13 +752,11 @@ public final class CollectionTester : WinRTClass {
 
     @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
-        super.init()
-        _inner = fromAbi
+        super.init(fromAbi)
     }
 
     override public init() {
-        super.init()
-        try! _inner = RoActivateInstance(HString("test_component.CollectionTester"))
+        super.init(try! RoActivateInstance(HString("test_component.CollectionTester")))
     }
 
     private static let _ICollectionTesterStatics: __ABI_test_component.ICollectionTesterStatics = try! RoGetActivationFactory(HString("test_component.CollectionTester"))
@@ -827,8 +810,7 @@ public final class DeferrableEventArgs : WinRTClass {
 
     @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
-        super.init()
-        _inner = fromAbi
+        super.init(fromAbi)
     }
 
     public func getDeferral() throws -> test_component.Deferral! {
@@ -946,14 +928,12 @@ public final class EventTester : WinRTClass {
 
     @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
-        super.init()
-        _inner = fromAbi
+        super.init(fromAbi)
     }
 
     private static let _IEventTesterFactory: __ABI_test_component.IEventTesterFactory = try! RoGetActivationFactory(HString("test_component.EventTester"))
     public init(_ impl: AnyIIAmImplementable!) {
-        super.init()
-        _inner = try! Self._IEventTesterFactory.CreateInstanceImpl(impl)
+        super.init(try! Self._IEventTesterFactory.CreateInstanceImpl(impl))
     }
 
     public func subscribe() throws {
@@ -994,16 +974,14 @@ public final class NoopClosable : WinRTClass, test_component.IClosable {
 
     @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
-        super.init()
-        _inner = fromAbi
+        super.init(fromAbi)
     }
 
     override public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return super.queryInterface(iid)
     }
     override public init() {
-        super.init()
-        try! _inner = RoActivateInstance(HString("test_component.NoopClosable"))
+        super.init(try! RoActivateInstance(HString("test_component.NoopClosable")))
     }
 
     public func close() throws {
@@ -1076,13 +1054,11 @@ public final class Simple : WinRTClass {
 
     @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
-        super.init()
-        _inner = fromAbi
+        super.init(fromAbi)
     }
 
     override public init() {
-        super.init()
-        try! _inner = RoActivateInstance(HString("test_component.Simple"))
+        super.init(try! RoActivateInstance(HString("test_component.Simple")))
     }
 
     private static let _ISimpleStatics: __ABI_test_component.ISimpleStatics = try! RoGetActivationFactory(HString("test_component.Simple"))

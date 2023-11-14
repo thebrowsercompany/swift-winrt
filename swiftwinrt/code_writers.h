@@ -1685,9 +1685,30 @@ vtable);
         }
         else
         {
-            w.write("super.init()\n");
-            w.write("_inner = %\n", func_call);
+            w.write("super.init(%)\n", func_call);
         }
+
+    }
+
+    // Check if the type has a default constructor. This is a parameterless constructor
+    // in Swift. Note that we don't check the args like we do in base_has_matching_constructor
+    // because composing constructors project as init() when they really have 2 parameters.
+    static bool has_default_constructor(const class_type* type)
+    {
+        if (type == nullptr) return true;
+
+        for (const auto& [_, factory] : type->factories)
+        {
+            if (factory.composable && factory.defaultComposable)
+            {
+                return true;
+            }
+            else if (factory.activatable && factory.type == nullptr)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     static std::vector<function_param> get_projected_params(attributed_type const& factory, function_def const& func)
@@ -1776,18 +1797,17 @@ vtable);
         {
             auto base_class = type.base_class;
 
-            w.write("override public init() {\n");
+            w.write("%public init() {\n", has_default_constructor(base_class) ? "override " : "");
             {
                 auto indent = w.push_indent();
-                auto activateInstance = w.write_temp("RoActivateInstance(HString(\"%\"))", get_full_type_name(type));
+                auto activateInstance = w.write_temp("try! RoActivateInstance(HString(\"%\"))", get_full_type_name(type));
                 if (base_class)
                 {
-                    w.write("super.init(fromAbi: try! %)\n", activateInstance);
+                    w.write("super.init(fromAbi: %)\n", activateInstance);
                 }
                 else
                 {
-                    w.write("super.init()\n");
-                    w.write("try! _inner = %\n", activateInstance);
+                    w.write("super.init(%)\n", activateInstance);
                 }
             }
             w.write("}\n\n");
@@ -1818,7 +1838,7 @@ public init<Composable: ComposableImpl>(
     _ createCallback: (UnsealedWinRTClassWrapper<Composable>?, inout %.IInspectable?) -> Composable.Default.SwiftABI)
 {
     super.init()
-    self._inner = MakeComposed(composing: composing, (self as! Composable.Class), createCallback)
+    MakeComposed(composing: composing, (self as! Composable.Class), createCallback)
 }
 )", w.support);
         }
@@ -1857,7 +1877,7 @@ public init<Composable: ComposableImpl>(
                         else
                         {
                             w.write("super.init()\n");
-                            w.write("self._inner = MakeComposed(composing: Self.Composable.self, self) { baseInterface, innerInterface in \n");
+                            w.write("MakeComposed(composing: Self.Composable.self, self) { baseInterface, innerInterface in \n");
                         }
                         w.write("    try! Self.%.%Impl(%)\n",
                             get_swift_name(factory_info),
@@ -1907,8 +1927,7 @@ public init<Composable: ComposableImpl>(
             }
             else
             {
-                w.write("super.init()\n");
-                w.write("_inner = fromAbi\n");
+                w.write("super.init(fromAbi)\n");
             }
         }
         w.write("}\n\n");

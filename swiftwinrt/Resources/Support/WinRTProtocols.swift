@@ -22,6 +22,13 @@ open class WinRTClass : ComObject, CustomQueryInterface, Equatable {
     override public init() {
       super.init()
     }
+
+    @_spi(WinRTInternal)
+    public init(_ ptr: SUPPORT_MODULE.IInspectable) {
+      super.init()
+      _inner = ptr
+    }
+
     @_spi(WinRTInternal)
     open func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == C_IInspectable.self {

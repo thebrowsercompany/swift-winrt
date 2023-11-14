@@ -28,16 +28,14 @@ public final class PropertySet : WinRTClass, IObservableMap, IMap, IIterable, IP
 
     @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
-        super.init()
-        _inner = fromAbi
+        super.init(fromAbi)
     }
 
     override public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return super.queryInterface(iid)
     }
     override public init() {
-        super.init()
-        try! _inner = RoActivateInstance(HString("Windows.Foundation.Collections.PropertySet"))
+        super.init(try! RoActivateInstance(HString("Windows.Foundation.Collections.PropertySet")))
     }
 
     private lazy var _IObservableMap: IObservableMapString_Any! = getInterfaceForCaching()
@@ -122,16 +120,14 @@ public final class StringMap : WinRTClass, IMap, IIterable, IObservableMap {
 
     @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
-        super.init()
-        _inner = fromAbi
+        super.init(fromAbi)
     }
 
     override public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return super.queryInterface(iid)
     }
     override public init() {
-        super.init()
-        try! _inner = RoActivateInstance(HString("Windows.Foundation.Collections.StringMap"))
+        super.init(try! RoActivateInstance(HString("Windows.Foundation.Collections.StringMap")))
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.stringmap.lookup)
@@ -215,16 +211,14 @@ public final class ValueSet : WinRTClass, IObservableMap, IMap, IIterable, IProp
 
     @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
-        super.init()
-        _inner = fromAbi
+        super.init(fromAbi)
     }
 
     override public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return super.queryInterface(iid)
     }
     override public init() {
-        super.init()
-        try! _inner = RoActivateInstance(HString("Windows.Foundation.Collections.ValueSet"))
+        super.init(try! RoActivateInstance(HString("Windows.Foundation.Collections.ValueSet")))
     }
 
     private lazy var _IObservableMap: IObservableMapString_Any! = getInterfaceForCaching()
