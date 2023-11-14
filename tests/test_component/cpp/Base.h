@@ -6,7 +6,7 @@ namespace winrt::test_component::implementation
     struct Base : BaseT<Base>
     {
         Base() = default;
-
+        ~Base();
         virtual void DoTheThing();
         virtual void OnDoTheThing();
     };

@@ -24,41 +24,31 @@ public final class AsyncMethods {
 }
 
 public final class AsyncOperationInt : WinRTClass, IAsyncOperationInt, IAsyncOperation, test_component.IAsyncInfo {
-    @_spi(WinRTInternal)
-    private (set) public var _inner: test_component.IInspectable!
     public typealias TResult = Int32
     private typealias SwiftABI = __ABI_test_component.IAsyncOperationInt
     private typealias CABI = __x_ABI_Ctest__component_CIAsyncOperationInt
-    private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
+    private lazy var _default: SwiftABI! = getInterfaceForCaching()
     @_spi(WinRTInternal)
-    public func _getABI<T>() -> UnsafeMutablePointer<T>? {
+    override public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
         }
-        if T.self == C_IInspectable.self {
-            return RawPointer(_default)
-        }
-        if T.self == C_IUnknown.self {
-            return RawPointer(_default)
-        }
-        return nil
+        return super._getABI()
     }
 
-    public var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
-
     @_spi(WinRTInternal)
-    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIAsyncOperationInt>?) -> AsyncOperationInt? {
+    public static func from(abi: ComPtr<__x_ABI_Ctest__component_CIAsyncOperationInt>?) -> AsyncOperationInt? {
         guard let abi = abi else { return nil }
-        return .init(fromAbi: test_component.IInspectable(consuming: abi))
+        return .init(fromAbi: test_component.IInspectable(abi))
     }
 
     @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
-        _inner = fromAbi
+        super.init(fromAbi)
     }
 
-    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
-        return test_component.queryInterface(self, iid)
+    override public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        return super.queryInterface(iid)
     }
     public func complete(_ result: Int32) throws {
         try _default.CompleteImpl(result)
@@ -68,7 +58,7 @@ public final class AsyncOperationInt : WinRTClass, IAsyncOperationInt, IAsyncOpe
         try _default.CompleteWithErrorImpl(errorCode)
     }
 
-    internal lazy var _IAsyncOperation: IAsyncOperationInt32 = try! _inner.QueryInterface()
+    private lazy var _IAsyncOperation: IAsyncOperationInt32! = getInterfaceForCaching()
     public func getResults() throws -> Int32 {
         try _IAsyncOperation.GetResultsImpl()
     }
@@ -78,7 +68,7 @@ public final class AsyncOperationInt : WinRTClass, IAsyncOperationInt, IAsyncOpe
         set { try! _IAsyncOperation.put_CompletedImpl(newValue) }
     }
 
-    internal lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo = try! _inner.QueryInterface()
+    private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
     public func cancel() throws {
         try _IAsyncInfo.CancelImpl()
     }
@@ -99,39 +89,34 @@ public final class AsyncOperationInt : WinRTClass, IAsyncOperationInt, IAsyncOpe
         get { try! _IAsyncInfo.get_StatusImpl() }
     }
 
+    deinit {
+        _default = nil
+        _IAsyncOperation = nil
+        _IAsyncInfo = nil
+    }
 }
 
 open class Base : WinRTClass {
-    @_spi(WinRTInternal)
-    private (set) public var _inner: test_component.IInspectable!
     private typealias SwiftABI = __ABI_test_component.IBase
     private typealias CABI = __x_ABI_Ctest__component_CIBase
-    private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
+    private lazy var _default: SwiftABI! = getInterfaceForCaching()
     @_spi(WinRTInternal)
-    open func _getABI<T>() -> UnsafeMutablePointer<T>? {
+    override open func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
         }
-        if T.self == C_IInspectable.self {
-            return RawPointer(_default)
-        }
-        if T.self == C_IUnknown.self {
-            return RawPointer(_default)
-        }
-        return nil
+        return super._getABI()
     }
 
-    open var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
-
     @_spi(WinRTInternal)
-    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?) -> Base? {
+    public static func from(abi: ComPtr<__x_ABI_Ctest__component_CIBase>?) -> Base? {
         guard let abi = abi else { return nil }
         return UnsealedWinRTClassWrapper<Composable>.unwrapFrom(base: abi)
     }
 
     @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
-        _inner = fromAbi
+        super.init(fromAbi)
     }
 
     @_spi(WinRTInternal)
@@ -139,20 +124,22 @@ open class Base : WinRTClass {
         composing: Composable.Type,
         _ createCallback: (UnsealedWinRTClassWrapper<Composable>?, inout test_component.IInspectable?) -> Composable.Default.SwiftABI)
     {
-        self._inner = MakeComposed(composing: composing, (self as! Composable.SwiftProjection), createCallback)
+        super.init()
+        MakeComposed(composing: composing, (self as! Composable.Class), createCallback)
     }
-    open func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+    override open func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         switch iid {
             case __ABI_test_component.IBaseOverridesWrapper.IID:
                 let wrapper = __ABI_test_component.IBaseOverridesWrapper(self)
                 return wrapper!.queryInterface(iid)
-            default: return test_component.queryInterface(self, iid)
+            default: return super.queryInterface(iid)
         }
     }
     private static var _IBaseProtectedFactory : __ABI_test_component.IBaseProtectedFactory =  try! RoGetActivationFactory(HString("test_component.Base"))
 
-    public init() {
-        self._inner = MakeComposed(composing: Self.Composable.self, self) { baseInterface, innerInterface in 
+    override public init() {
+        super.init()
+        MakeComposed(composing: Self.Composable.self, self) { baseInterface, innerInterface in 
             try! Self._IBaseProtectedFactory.CreateInstanceImpl(baseInterface, &innerInterface)
         }
     }
@@ -161,7 +148,7 @@ open class Base : WinRTClass {
         try _default.DoTheThingImpl()
     }
 
-    internal lazy var _IBaseOverrides: __ABI_test_component.IBaseOverrides = try! _inner.QueryInterface()
+    private lazy var _IBaseOverrides: __ABI_test_component.IBaseOverrides! = getInterfaceForCaching()
     open func onDoTheThing() throws {
         try _IBaseOverrides.OnDoTheThingImpl()
     }
@@ -169,51 +156,46 @@ open class Base : WinRTClass {
     internal enum IBaseOverrides : ComposableImpl {
         internal typealias CABI = __x_ABI_Ctest__component_CIBaseOverrides
         internal typealias SwiftABI = __ABI_test_component.IBaseOverrides
-        internal typealias SwiftProjection = Base
+        internal typealias Class = Base
+        internal typealias SwiftProjection = WinRTClassWeakReference<Class>
         internal enum Default : AbiInterface {
             internal typealias CABI = __x_ABI_Ctest__component_CIBase
             internal typealias SwiftABI = __ABI_test_component.IBase
         }
     }
     internal typealias Composable = IBaseOverrides
+    deinit {
+        _default = nil
+        _IBaseOverrides = nil
+    }
 }
 
 public final class BaseCollection : WinRTClass, IVector, IIterable {
-    @_spi(WinRTInternal)
-    private (set) public var _inner: test_component.IInspectable!
     public typealias T = Base?
     private typealias SwiftABI = IVectorBase
     private typealias CABI = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase
-    private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
+    private lazy var _default: SwiftABI! = getInterfaceForCaching()
     @_spi(WinRTInternal)
-    public func _getABI<T>() -> UnsafeMutablePointer<T>? {
+    override public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
         }
-        if T.self == C_IInspectable.self {
-            return RawPointer(_default)
-        }
-        if T.self == C_IUnknown.self {
-            return RawPointer(_default)
-        }
-        return nil
+        return super._getABI()
     }
 
-    public var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
-
     @_spi(WinRTInternal)
-    public static func from(abi: UnsafeMutablePointer<__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase>?) -> BaseCollection? {
+    public static func from(abi: ComPtr<__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase>?) -> BaseCollection? {
         guard let abi = abi else { return nil }
-        return .init(fromAbi: test_component.IInspectable(consuming: abi))
+        return .init(fromAbi: test_component.IInspectable(abi))
     }
 
     @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
-        _inner = fromAbi
+        super.init(fromAbi)
     }
 
-    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
-        return test_component.queryInterface(self, iid)
+    override public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        return super.queryInterface(iid)
     }
     // MARK: Collection
     public typealias Element = T
@@ -286,51 +268,45 @@ public final class BaseCollection : WinRTClass, IVector, IIterable {
         get { try! _default.get_SizeImpl() }
     }
 
-    internal lazy var _IIterable: IIterableBase = try! _inner.QueryInterface()
+    private lazy var _IIterable: IIterableBase! = getInterfaceForCaching()
     public func first() -> AnyIIterator<Base?>? {
         try! _IIterable.FirstImpl()
     }
 
+    deinit {
+        _default = nil
+        _IIterable = nil
+    }
 }
 
 public final class BaseMapCollection : WinRTClass, IMap, IIterable {
-    @_spi(WinRTInternal)
-    private (set) public var _inner: test_component.IInspectable!
     public typealias K = String
     public typealias V = Base?
     public typealias T = AnyIKeyValuePair<String, Base?>?
     private typealias SwiftABI = IMapString_Base
     private typealias CABI = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
-    private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
+    private lazy var _default: SwiftABI! = getInterfaceForCaching()
     @_spi(WinRTInternal)
-    public func _getABI<T>() -> UnsafeMutablePointer<T>? {
+    override public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
         }
-        if T.self == C_IInspectable.self {
-            return RawPointer(_default)
-        }
-        if T.self == C_IUnknown.self {
-            return RawPointer(_default)
-        }
-        return nil
+        return super._getABI()
     }
 
-    public var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
-
     @_spi(WinRTInternal)
-    public static func from(abi: UnsafeMutablePointer<__x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?) -> BaseMapCollection? {
+    public static func from(abi: ComPtr<__x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?) -> BaseMapCollection? {
         guard let abi = abi else { return nil }
-        return .init(fromAbi: test_component.IInspectable(consuming: abi))
+        return .init(fromAbi: test_component.IInspectable(abi))
     }
 
     @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
-        _inner = fromAbi
+        super.init(fromAbi)
     }
 
-    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
-        return test_component.queryInterface(self, iid)
+    override public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        return super.queryInterface(iid)
     }
     public func lookup(_ key: String) -> Base? {
         try! _default.LookupImpl(key)
@@ -360,44 +336,38 @@ public final class BaseMapCollection : WinRTClass, IMap, IIterable {
         get { try! _default.get_SizeImpl() }
     }
 
-    internal lazy var _IIterable: IIterableIKeyValuePairString_Base = try! _inner.QueryInterface()
+    private lazy var _IIterable: IIterableIKeyValuePairString_Base! = getInterfaceForCaching()
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, Base?>?>? {
         try! _IIterable.FirstImpl()
     }
 
+    deinit {
+        _default = nil
+        _IIterable = nil
+    }
 }
 
 open class BaseNoOverrides : WinRTClass {
-    @_spi(WinRTInternal)
-    private (set) public var _inner: test_component.IInspectable!
     private typealias SwiftABI = __ABI_test_component.IBaseNoOverrides
     private typealias CABI = __x_ABI_Ctest__component_CIBaseNoOverrides
-    private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
+    private lazy var _default: SwiftABI! = getInterfaceForCaching()
     @_spi(WinRTInternal)
-    open func _getABI<T>() -> UnsafeMutablePointer<T>? {
+    override open func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
         }
-        if T.self == C_IInspectable.self {
-            return RawPointer(_default)
-        }
-        if T.self == C_IUnknown.self {
-            return RawPointer(_default)
-        }
-        return nil
+        return super._getABI()
     }
 
-    open var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
-
     @_spi(WinRTInternal)
-    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIBaseNoOverrides>?) -> BaseNoOverrides? {
+    public static func from(abi: ComPtr<__x_ABI_Ctest__component_CIBaseNoOverrides>?) -> BaseNoOverrides? {
         guard let abi = abi else { return nil }
         return UnsealedWinRTClassWrapper<Composable>.unwrapFrom(base: abi)
     }
 
     @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
-        _inner = fromAbi
+        super.init(fromAbi)
     }
 
     @_spi(WinRTInternal)
@@ -405,15 +375,17 @@ open class BaseNoOverrides : WinRTClass {
         composing: Composable.Type,
         _ createCallback: (UnsealedWinRTClassWrapper<Composable>?, inout test_component.IInspectable?) -> Composable.Default.SwiftABI)
     {
-        self._inner = MakeComposed(composing: composing, (self as! Composable.SwiftProjection), createCallback)
+        super.init()
+        MakeComposed(composing: composing, (self as! Composable.Class), createCallback)
     }
-    open func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
-        return test_component.queryInterface(self, iid)
+    override open func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        return super.queryInterface(iid)
     }
     private static var _IBaseNoOverridesProtectedFactory : __ABI_test_component.IBaseNoOverridesProtectedFactory =  try! RoGetActivationFactory(HString("test_component.BaseNoOverrides"))
 
-    public init() {
-        self._inner = MakeComposed(composing: Self.Composable.self, self) { baseInterface, innerInterface in 
+    override public init() {
+        super.init()
+        MakeComposed(composing: Self.Composable.self, self) { baseInterface, innerInterface in 
             try! Self._IBaseNoOverridesProtectedFactory.CreateInstanceImpl(baseInterface, &innerInterface)
         }
     }
@@ -421,51 +393,45 @@ open class BaseNoOverrides : WinRTClass {
     internal enum IBaseNoOverrides : ComposableImpl {
         internal typealias CABI = C_IInspectable
         internal typealias SwiftABI = test_component.IInspectable
-        internal typealias SwiftProjection = BaseNoOverrides
+        internal typealias Class = BaseNoOverrides
+        internal typealias SwiftProjection = WinRTClassWeakReference<Class>
         internal enum Default : AbiInterface {
             internal typealias CABI = __x_ABI_Ctest__component_CIBaseNoOverrides
             internal typealias SwiftABI = __ABI_test_component.IBaseNoOverrides
         }
     }
     internal typealias Composable = IBaseNoOverrides
+    deinit {
+        _default = nil
+    }
 }
 
 public final class BaseObservableCollection : WinRTClass, IObservableVector, IVector, IIterable {
-    @_spi(WinRTInternal)
-    private (set) public var _inner: test_component.IInspectable!
     public typealias T = Base?
     private typealias SwiftABI = IObservableVectorBase
     private typealias CABI = __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase
-    private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
+    private lazy var _default: SwiftABI! = getInterfaceForCaching()
     @_spi(WinRTInternal)
-    public func _getABI<T>() -> UnsafeMutablePointer<T>? {
+    override public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
         }
-        if T.self == C_IInspectable.self {
-            return RawPointer(_default)
-        }
-        if T.self == C_IUnknown.self {
-            return RawPointer(_default)
-        }
-        return nil
+        return super._getABI()
     }
 
-    public var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
-
     @_spi(WinRTInternal)
-    public static func from(abi: UnsafeMutablePointer<__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase>?) -> BaseObservableCollection? {
+    public static func from(abi: ComPtr<__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase>?) -> BaseObservableCollection? {
         guard let abi = abi else { return nil }
-        return .init(fromAbi: test_component.IInspectable(consuming: abi))
+        return .init(fromAbi: test_component.IInspectable(abi))
     }
 
     @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
-        _inner = fromAbi
+        super.init(fromAbi)
     }
 
-    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
-        return test_component.queryInterface(self, iid)
+    override public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        return super.queryInterface(iid)
     }
     // MARK: Collection
     public typealias Element = T
@@ -500,17 +466,17 @@ public final class BaseObservableCollection : WinRTClass, IObservableVector, IVe
     // MARK: WinRT
     public lazy var vectorChanged : Event<VectorChangedEventHandler<Base?>> = {
       .init(
-        add: { [weak this = _default] in
-          guard let this else { return .init() }
+        add: { [weak self] in
+          guard let this = self?._default else { return .init() }
           return try! this.add_VectorChangedImpl($0)
         },
-        remove: { [weak this = _default] in
-         try? this?.remove_VectorChangedImpl($0)
+        remove: { [weak self] in
+         try? self?._default.remove_VectorChangedImpl($0)
        }
       )
     }()
 
-    internal lazy var _IVector: IVectorBase = try! _inner.QueryInterface()
+    private lazy var _IVector: IVectorBase! = getInterfaceForCaching()
     public func getAt(_ index: UInt32) -> Base? {
         try! _IVector.GetAtImpl(index)
     }
@@ -551,81 +517,76 @@ public final class BaseObservableCollection : WinRTClass, IObservableVector, IVe
         get { try! _IVector.get_SizeImpl() }
     }
 
-    internal lazy var _IIterable: IIterableBase = try! _inner.QueryInterface()
+    private lazy var _IIterable: IIterableBase! = getInterfaceForCaching()
     public func first() -> AnyIIterator<Base?>? {
         try! _IIterable.FirstImpl()
     }
 
+    deinit {
+        _default = nil
+        _IVector = nil
+        _IIterable = nil
+    }
 }
 
 public final class Class : WinRTClass, IBasic {
-    @_spi(WinRTInternal)
-    private (set) public var _inner: test_component.IInspectable!
     private typealias SwiftABI = __ABI_test_component.IClass
     private typealias CABI = __x_ABI_Ctest__component_CIClass
-    private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
+    private lazy var _default: SwiftABI! = getInterfaceForCaching()
     @_spi(WinRTInternal)
-    public func _getABI<T>() -> UnsafeMutablePointer<T>? {
+    override public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
         }
-        if T.self == C_IInspectable.self {
-            return RawPointer(_default)
-        }
-        if T.self == C_IUnknown.self {
-            return RawPointer(_default)
-        }
-        return nil
+        return super._getABI()
     }
 
-    public var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
-
     @_spi(WinRTInternal)
-    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIClass>?) -> Class? {
+    public static func from(abi: ComPtr<__x_ABI_Ctest__component_CIClass>?) -> Class? {
         guard let abi = abi else { return nil }
-        return .init(fromAbi: test_component.IInspectable(consuming: abi))
+        return .init(fromAbi: test_component.IInspectable(abi))
     }
 
     @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
-        _inner = fromAbi
+        super.init(fromAbi)
     }
 
-    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
-        return test_component.queryInterface(self, iid)
+    override public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        return super.queryInterface(iid)
     }
-    public init() {
-        try! _inner = RoActivateInstance(HString("test_component.Class"))
+    override public init() {
+        super.init(try! RoActivateInstance(HString("test_component.Class")))
     }
 
     private static let _IClassFactory: __ABI_test_component.IClassFactory = try! RoGetActivationFactory(HString("test_component.Class"))
     public init(_ name: String) {
-        _inner = try! Self._IClassFactory.CreateInstanceImpl(name)
+        super.init(try! Self._IClassFactory.CreateInstanceImpl(name))
     }
 
     public init(_ name: String, _ fruit: Fruit) {
-        _inner = try! Self._IClassFactory.CreateInstance2Impl(name, fruit)
+        super.init(try! Self._IClassFactory.CreateInstance2Impl(name, fruit))
     }
 
     public init(_ arg: AnyIMap<String, String>!, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32) {
-        _inner = try! Self._IClassFactory.CreateInstance3Impl(arg, dummy1, dummy2, dummy3)
+        super.init(try! Self._IClassFactory.CreateInstance3Impl(arg, dummy1, dummy2, dummy3))
     }
 
     public init(_ arg: AnyIMapView<String, String>!, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32, _ dummy4: Int32) {
-        _inner = try! Self._IClassFactory.CreateInstance4Impl(arg, dummy1, dummy2, dummy3, dummy4)
+        super.init(try! Self._IClassFactory.CreateInstance4Impl(arg, dummy1, dummy2, dummy3, dummy4))
     }
 
     public init(_ arg: AnyIVector<String>!, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32, _ dummy4: Int32, _ dummy5: Int32) {
-        _inner = try! Self._IClassFactory.CreateInstance5Impl(arg, dummy1, dummy2, dummy3, dummy4, dummy5)
+        super.init(try! Self._IClassFactory.CreateInstance5Impl(arg, dummy1, dummy2, dummy3, dummy4, dummy5))
     }
 
     public init(_ arg: AnyIVectorView<String>!, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32, _ dummy4: Int32, _ dummy5: Int32, _ dummy6: Int32) {
-        _inner = try! Self._IClassFactory.CreateInstance6Impl(arg, dummy1, dummy2, dummy3, dummy4, dummy5, dummy6)
+        super.init(try! Self._IClassFactory.CreateInstance6Impl(arg, dummy1, dummy2, dummy3, dummy4, dummy5, dummy6))
     }
 
     private static let _IClassFactory2: __ABI_test_component.IClassFactory2 = try! RoGetActivationFactory(HString("test_component.Class"))
     public init(_ name: String, _ fruit: Fruit, _ implementation: AnyIIAmImplementable!) {
-        _inner = try! Self._IClassFactory2.CreateInstanceImpl(name, fruit, implementation)
+        super.init(try! Self._IClassFactory2.CreateInstanceImpl(name, fruit, implementation))
     }
 
     private static let _IClassStatics: __ABI_test_component.IClassStatics = try! RoGetActivationFactory(HString("test_component.Class"))
@@ -779,58 +740,52 @@ public final class Class : WinRTClass, IBasic {
 
     public lazy var deferrableEvent : Event<TypedEventHandler<Class?, DeferrableEventArgs?>> = {
       .init(
-        add: { [weak this = _default] in
-          guard let this else { return .init() }
+        add: { [weak self] in
+          guard let this = self?._default else { return .init() }
           return try! this.add_DeferrableEventImpl($0)
         },
-        remove: { [weak this = _default] in
-         try? this?.remove_DeferrableEventImpl($0)
+        remove: { [weak self] in
+         try? self?._default.remove_DeferrableEventImpl($0)
        }
       )
     }()
 
-    internal lazy var _IBasic: __ABI_test_component.IBasic = try! _inner.QueryInterface()
+    private lazy var _IBasic: __ABI_test_component.IBasic! = getInterfaceForCaching()
     public func method() {
         try! _IBasic.MethodImpl()
     }
 
+    deinit {
+        _default = nil
+        _IBasic = nil
+    }
 }
 
 public final class CollectionTester : WinRTClass {
-    @_spi(WinRTInternal)
-    private (set) public var _inner: test_component.IInspectable!
     private typealias SwiftABI = __ABI_test_component.ICollectionTester
     private typealias CABI = __x_ABI_Ctest__component_CICollectionTester
-    private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
+    private lazy var _default: SwiftABI! = getInterfaceForCaching()
     @_spi(WinRTInternal)
-    public func _getABI<T>() -> UnsafeMutablePointer<T>? {
+    override public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
         }
-        if T.self == C_IInspectable.self {
-            return RawPointer(_default)
-        }
-        if T.self == C_IUnknown.self {
-            return RawPointer(_default)
-        }
-        return nil
+        return super._getABI()
     }
 
-    public var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
-
     @_spi(WinRTInternal)
-    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CICollectionTester>?) -> CollectionTester? {
+    public static func from(abi: ComPtr<__x_ABI_Ctest__component_CICollectionTester>?) -> CollectionTester? {
         guard let abi = abi else { return nil }
-        return .init(fromAbi: test_component.IInspectable(consuming: abi))
+        return .init(fromAbi: test_component.IInspectable(abi))
     }
 
     @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
-        _inner = fromAbi
+        super.init(fromAbi)
     }
 
-    public init() {
-        try! _inner = RoActivateInstance(HString("test_component.CollectionTester"))
+    override public init() {
+        super.init(try! RoActivateInstance(HString("test_component.CollectionTester")))
     }
 
     private static let _ICollectionTesterStatics: __ABI_test_component.ICollectionTesterStatics = try! RoGetActivationFactory(HString("test_component.CollectionTester"))
@@ -862,39 +817,32 @@ public final class CollectionTester : WinRTClass {
         try _default.ReturnMapFromStringToStringImpl()
     }
 
+    deinit {
+        _default = nil
+    }
 }
 
 public final class DeferrableEventArgs : WinRTClass {
-    @_spi(WinRTInternal)
-    private (set) public var _inner: test_component.IInspectable!
     private typealias SwiftABI = __ABI_test_component.IDeferrableEventArgs
     private typealias CABI = __x_ABI_Ctest__component_CIDeferrableEventArgs
-    private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
+    private lazy var _default: SwiftABI! = getInterfaceForCaching()
     @_spi(WinRTInternal)
-    public func _getABI<T>() -> UnsafeMutablePointer<T>? {
+    override public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
         }
-        if T.self == C_IInspectable.self {
-            return RawPointer(_default)
-        }
-        if T.self == C_IUnknown.self {
-            return RawPointer(_default)
-        }
-        return nil
+        return super._getABI()
     }
 
-    public var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
-
     @_spi(WinRTInternal)
-    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIDeferrableEventArgs>?) -> DeferrableEventArgs? {
+    public static func from(abi: ComPtr<__x_ABI_Ctest__component_CIDeferrableEventArgs>?) -> DeferrableEventArgs? {
         guard let abi = abi else { return nil }
-        return .init(fromAbi: test_component.IInspectable(consuming: abi))
+        return .init(fromAbi: test_component.IInspectable(abi))
     }
 
     @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
-        _inner = fromAbi
+        super.init(fromAbi)
     }
 
     public func getDeferral() throws -> test_component.Deferral! {
@@ -905,32 +853,27 @@ public final class DeferrableEventArgs : WinRTClass {
         try _default.IncrementCounterImpl()
     }
 
+    deinit {
+        _default = nil
+    }
 }
 
 public final class Derived : test_component.Base {
     private typealias SwiftABI = __ABI_test_component.IDerived
     private typealias CABI = __x_ABI_Ctest__component_CIDerived
-    private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
+    private lazy var _default: SwiftABI! = getInterfaceForCaching()
     @_spi(WinRTInternal)
     override public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
         }
-        if T.self == C_IInspectable.self {
-            return RawPointer(_default)
-        }
-        if T.self == C_IUnknown.self {
-            return RawPointer(_default)
-        }
         return super._getABI()
     }
 
-    override public var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
-
     @_spi(WinRTInternal)
-    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIDerived>?) -> Derived? {
+    public static func from(abi: ComPtr<__x_ABI_Ctest__component_CIDerived>?) -> Derived? {
         guard let abi = abi else { return nil }
-        return .init(fromAbi: test_component.IInspectable(consuming: abi))
+        return .init(fromAbi: test_component.IInspectable(abi))
     }
 
     @_spi(WinRTInternal)
@@ -950,39 +893,35 @@ public final class Derived : test_component.Base {
     internal enum IBaseOverrides : ComposableImpl {
         internal typealias CABI = __x_ABI_Ctest__component_CIBaseOverrides
         internal typealias SwiftABI = __ABI_test_component.IBaseOverrides
-        internal typealias SwiftProjection = Derived
+        internal typealias Class = Derived
+        internal typealias SwiftProjection = WinRTClassWeakReference<Class>
         internal enum Default : AbiInterface {
             internal typealias CABI = __x_ABI_Ctest__component_CIDerived
             internal typealias SwiftABI = __ABI_test_component.IDerived
         }
     }
     internal typealias Composable = IBaseOverrides
+    deinit {
+        _default = nil
+    }
 }
 
 public final class DerivedFromNoConstructor : test_component.UnsealedDerivedNoConstructor {
     private typealias SwiftABI = __ABI_test_component.IDerivedFromNoConstructor
     private typealias CABI = __x_ABI_Ctest__component_CIDerivedFromNoConstructor
-    private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
+    private lazy var _default: SwiftABI! = getInterfaceForCaching()
     @_spi(WinRTInternal)
     override public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
         }
-        if T.self == C_IInspectable.self {
-            return RawPointer(_default)
-        }
-        if T.self == C_IUnknown.self {
-            return RawPointer(_default)
-        }
         return super._getABI()
     }
 
-    override public var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
-
     @_spi(WinRTInternal)
-    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIDerivedFromNoConstructor>?) -> DerivedFromNoConstructor? {
+    public static func from(abi: ComPtr<__x_ABI_Ctest__component_CIDerivedFromNoConstructor>?) -> DerivedFromNoConstructor? {
         guard let abi = abi else { return nil }
-        return .init(fromAbi: test_component.IInspectable(consuming: abi))
+        return .init(fromAbi: test_component.IInspectable(abi))
     }
 
     @_spi(WinRTInternal)
@@ -997,51 +936,45 @@ public final class DerivedFromNoConstructor : test_component.UnsealedDerivedNoCo
     internal enum IBaseOverrides : ComposableImpl {
         internal typealias CABI = __x_ABI_Ctest__component_CIBaseOverrides
         internal typealias SwiftABI = __ABI_test_component.IBaseOverrides
-        internal typealias SwiftProjection = DerivedFromNoConstructor
+        internal typealias Class = DerivedFromNoConstructor
+        internal typealias SwiftProjection = WinRTClassWeakReference<Class>
         internal enum Default : AbiInterface {
             internal typealias CABI = __x_ABI_Ctest__component_CIDerivedFromNoConstructor
             internal typealias SwiftABI = __ABI_test_component.IDerivedFromNoConstructor
         }
     }
     internal typealias Composable = IBaseOverrides
+    deinit {
+        _default = nil
+    }
 }
 
 public final class EventTester : WinRTClass {
-    @_spi(WinRTInternal)
-    private (set) public var _inner: test_component.IInspectable!
     private typealias SwiftABI = __ABI_test_component.IEventTester
     private typealias CABI = __x_ABI_Ctest__component_CIEventTester
-    private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
+    private lazy var _default: SwiftABI! = getInterfaceForCaching()
     @_spi(WinRTInternal)
-    public func _getABI<T>() -> UnsafeMutablePointer<T>? {
+    override public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
         }
-        if T.self == C_IInspectable.self {
-            return RawPointer(_default)
-        }
-        if T.self == C_IUnknown.self {
-            return RawPointer(_default)
-        }
-        return nil
+        return super._getABI()
     }
 
-    public var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
-
     @_spi(WinRTInternal)
-    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIEventTester>?) -> EventTester? {
+    public static func from(abi: ComPtr<__x_ABI_Ctest__component_CIEventTester>?) -> EventTester? {
         guard let abi = abi else { return nil }
-        return .init(fromAbi: test_component.IInspectable(consuming: abi))
+        return .init(fromAbi: test_component.IInspectable(abi))
     }
 
     @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
-        _inner = fromAbi
+        super.init(fromAbi)
     }
 
     private static let _IEventTesterFactory: __ABI_test_component.IEventTesterFactory = try! RoGetActivationFactory(HString("test_component.EventTester"))
     public init(_ impl: AnyIIAmImplementable!) {
-        _inner = try! Self._IEventTesterFactory.CreateInstanceImpl(impl)
+        super.init(try! Self._IEventTesterFactory.CreateInstanceImpl(impl))
     }
 
     public func subscribe() throws {
@@ -1060,52 +993,48 @@ public final class EventTester : WinRTClass {
         get { try! _default.get_CountImpl() }
     }
 
+    deinit {
+        _default = nil
+    }
 }
 
 public final class NoopClosable : WinRTClass, test_component.IClosable {
-    @_spi(WinRTInternal)
-    private (set) public var _inner: test_component.IInspectable!
     private typealias SwiftABI = __ABI_Windows_Foundation.IClosable
     private typealias CABI = __x_ABI_CWindows_CFoundation_CIClosable
-    private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
+    private lazy var _default: SwiftABI! = getInterfaceForCaching()
     @_spi(WinRTInternal)
-    public func _getABI<T>() -> UnsafeMutablePointer<T>? {
+    override public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
         }
-        if T.self == C_IInspectable.self {
-            return RawPointer(_default)
-        }
-        if T.self == C_IUnknown.self {
-            return RawPointer(_default)
-        }
-        return nil
+        return super._getABI()
     }
 
-    public var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
-
     @_spi(WinRTInternal)
-    public static func from(abi: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIClosable>?) -> NoopClosable? {
+    public static func from(abi: ComPtr<__x_ABI_CWindows_CFoundation_CIClosable>?) -> NoopClosable? {
         guard let abi = abi else { return nil }
-        return .init(fromAbi: test_component.IInspectable(consuming: abi))
+        return .init(fromAbi: test_component.IInspectable(abi))
     }
 
     @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
-        _inner = fromAbi
+        super.init(fromAbi)
     }
 
-    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
-        return test_component.queryInterface(self, iid)
+    override public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        return super.queryInterface(iid)
     }
-    public init() {
-        try! _inner = RoActivateInstance(HString("test_component.NoopClosable"))
+    override public init() {
+        super.init(try! RoActivateInstance(HString("test_component.NoopClosable")))
     }
 
     public func close() throws {
         try _default.CloseImpl()
     }
 
+    deinit {
+        _default = nil
+    }
 }
 
 public final class NullValues {
@@ -1153,40 +1082,30 @@ public final class NullValues {
 }
 
 public final class Simple : WinRTClass {
-    @_spi(WinRTInternal)
-    private (set) public var _inner: test_component.IInspectable!
     private typealias SwiftABI = __ABI_test_component.ISimple
     private typealias CABI = __x_ABI_Ctest__component_CISimple
-    private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
+    private lazy var _default: SwiftABI! = getInterfaceForCaching()
     @_spi(WinRTInternal)
-    public func _getABI<T>() -> UnsafeMutablePointer<T>? {
+    override public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
         }
-        if T.self == C_IInspectable.self {
-            return RawPointer(_default)
-        }
-        if T.self == C_IUnknown.self {
-            return RawPointer(_default)
-        }
-        return nil
+        return super._getABI()
     }
 
-    public var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
-
     @_spi(WinRTInternal)
-    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CISimple>?) -> Simple? {
+    public static func from(abi: ComPtr<__x_ABI_Ctest__component_CISimple>?) -> Simple? {
         guard let abi = abi else { return nil }
-        return .init(fromAbi: test_component.IInspectable(consuming: abi))
+        return .init(fromAbi: test_component.IInspectable(abi))
     }
 
     @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
-        _inner = fromAbi
+        super.init(fromAbi)
     }
 
-    public init() {
-        try! _inner = RoActivateInstance(HString("test_component.Simple"))
+    override public init() {
+        super.init(try! RoActivateInstance(HString("test_component.Simple")))
     }
 
     private static let _ISimpleStatics: __ABI_test_component.ISimpleStatics = try! RoGetActivationFactory(HString("test_component.Simple"))
@@ -1196,13 +1115,8 @@ public final class Simple : WinRTClass {
 
     public static var staticEvent : Event<EventHandler<Any?>> = {
       .init(
-        add: { [weak this = _ISimpleStatics] in
-          guard let this else { return .init() }
-          return try! this.add_StaticEventImpl($0)
-        },
-        remove: { [weak this = _ISimpleStatics] in
-         try? this?.remove_StaticEventImpl($0)
-       }
+        add: { try! _ISimpleStatics.add_StaticEventImpl($0) },
+        remove: { try? _ISimpleStatics.remove_StaticEventImpl($0) }
       )
     }()
 
@@ -1259,40 +1173,43 @@ public final class Simple : WinRTClass {
 
     public lazy var inEvent : Event<test_component.InDelegate> = {
       .init(
-        add: { [weak this = _default] in
-          guard let this else { return .init() }
+        add: { [weak self] in
+          guard let this = self?._default else { return .init() }
           return try! this.add_InEventImpl($0)
         },
-        remove: { [weak this = _default] in
-         try? this?.remove_InEventImpl($0)
+        remove: { [weak self] in
+         try? self?._default.remove_InEventImpl($0)
        }
       )
     }()
 
     public lazy var signalEvent : Event<test_component.SignalDelegate> = {
       .init(
-        add: { [weak this = _default] in
-          guard let this else { return .init() }
+        add: { [weak self] in
+          guard let this = self?._default else { return .init() }
           return try! this.add_SignalEventImpl($0)
         },
-        remove: { [weak this = _default] in
-         try? this?.remove_SignalEventImpl($0)
+        remove: { [weak self] in
+         try? self?._default.remove_SignalEventImpl($0)
        }
       )
     }()
 
     public lazy var simpleEvent : Event<TypedEventHandler<Simple?, SimpleEventArgs>> = {
       .init(
-        add: { [weak this = _default] in
-          guard let this else { return .init() }
+        add: { [weak self] in
+          guard let this = self?._default else { return .init() }
           return try! this.add_SimpleEventImpl($0)
         },
-        remove: { [weak this = _default] in
-         try? this?.remove_SimpleEventImpl($0)
+        remove: { [weak self] in
+         try? self?._default.remove_SimpleEventImpl($0)
        }
       )
     }()
 
+    deinit {
+        _default = nil
+    }
 }
 
 public final class StaticClass {
@@ -1319,25 +1236,17 @@ public final class StaticClass {
 open class UnsealedDerived : test_component.Base {
     private typealias SwiftABI = __ABI_test_component.IUnsealedDerived
     private typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerived
-    private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
+    private lazy var _default: SwiftABI! = getInterfaceForCaching()
     @_spi(WinRTInternal)
     override open func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
         }
-        if T.self == C_IInspectable.self {
-            return RawPointer(_default)
-        }
-        if T.self == C_IUnknown.self {
-            return RawPointer(_default)
-        }
         return super._getABI()
     }
 
-    override open var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
-
     @_spi(WinRTInternal)
-    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived>?) -> UnsealedDerived? {
+    public static func from(abi: ComPtr<__x_ABI_Ctest__component_CIUnsealedDerived>?) -> UnsealedDerived? {
         guard let abi = abi else { return nil }
         return UnsealedWinRTClassWrapper<Composable>.unwrapFrom(base: abi)
     }
@@ -1390,7 +1299,7 @@ open class UnsealedDerived : test_component.Base {
         set { try! _default.put_PropImpl(newValue) }
     }
 
-    internal lazy var _IUnsealedDerivedOverloads2: __ABI_test_component.IUnsealedDerivedOverloads2 = try! _inner.QueryInterface()
+    private lazy var _IUnsealedDerivedOverloads2: __ABI_test_component.IUnsealedDerivedOverloads2! = getInterfaceForCaching()
     open func onAfterDoTheThing() throws {
         try _IUnsealedDerivedOverloads2.OnAfterDoTheThingImpl()
     }
@@ -1398,14 +1307,15 @@ open class UnsealedDerived : test_component.Base {
     internal enum IUnsealedDerivedOverloads2 : ComposableImpl {
         internal typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedOverloads2
         internal typealias SwiftABI = __ABI_test_component.IUnsealedDerivedOverloads2
-        internal typealias SwiftProjection = UnsealedDerived
+        internal typealias Class = UnsealedDerived
+        internal typealias SwiftProjection = WinRTClassWeakReference<Class>
         internal enum Default : AbiInterface {
             internal typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerived
             internal typealias SwiftABI = __ABI_test_component.IUnsealedDerived
         }
     }
     internal typealias Composable = IUnsealedDerivedOverloads2
-    internal lazy var _IUnsealedDerivedOverrides: __ABI_test_component.IUnsealedDerivedOverrides = try! _inner.QueryInterface()
+    private lazy var _IUnsealedDerivedOverrides: __ABI_test_component.IUnsealedDerivedOverrides! = getInterfaceForCaching()
     open func onBeforeDoTheThing() throws {
         try _IUnsealedDerivedOverrides.OnBeforeDoTheThingImpl()
     }
@@ -1413,36 +1323,34 @@ open class UnsealedDerived : test_component.Base {
     internal enum IUnsealedDerivedOverrides : ComposableImpl {
         internal typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedOverrides
         internal typealias SwiftABI = __ABI_test_component.IUnsealedDerivedOverrides
-        internal typealias SwiftProjection = UnsealedDerived
+        internal typealias Class = UnsealedDerived
+        internal typealias SwiftProjection = WinRTClassWeakReference<Class>
         internal enum Default : AbiInterface {
             internal typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerived
             internal typealias SwiftABI = __ABI_test_component.IUnsealedDerived
         }
+    }
+    deinit {
+        _default = nil
+        _IUnsealedDerivedOverloads2 = nil
+        _IUnsealedDerivedOverrides = nil
     }
 }
 
 open class UnsealedDerived2 : test_component.UnsealedDerived {
     private typealias SwiftABI = __ABI_test_component.IUnsealedDerived2
     private typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerived2
-    private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
+    private lazy var _default: SwiftABI! = getInterfaceForCaching()
     @_spi(WinRTInternal)
     override open func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
         }
-        if T.self == C_IInspectable.self {
-            return RawPointer(_default)
-        }
-        if T.self == C_IUnknown.self {
-            return RawPointer(_default)
-        }
         return super._getABI()
     }
 
-    override open var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
-
     @_spi(WinRTInternal)
-    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerived2>?) -> UnsealedDerived2? {
+    public static func from(abi: ComPtr<__x_ABI_Ctest__component_CIUnsealedDerived2>?) -> UnsealedDerived2? {
         guard let abi = abi else { return nil }
         return UnsealedWinRTClassWrapper<Composable>.unwrapFrom(base: abi)
     }
@@ -1485,37 +1393,33 @@ open class UnsealedDerived2 : test_component.UnsealedDerived {
     internal enum IUnsealedDerivedOverloads2 : ComposableImpl {
         internal typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedOverloads2
         internal typealias SwiftABI = __ABI_test_component.IUnsealedDerivedOverloads2
-        internal typealias SwiftProjection = UnsealedDerived2
+        internal typealias Class = UnsealedDerived2
+        internal typealias SwiftProjection = WinRTClassWeakReference<Class>
         internal enum Default : AbiInterface {
             internal typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerived2
             internal typealias SwiftABI = __ABI_test_component.IUnsealedDerived2
         }
     }
     internal typealias Composable = IUnsealedDerivedOverloads2
+    deinit {
+        _default = nil
+    }
 }
 
 open class UnsealedDerivedFromNoConstructor : test_component.UnsealedDerivedNoConstructor {
     private typealias SwiftABI = __ABI_test_component.IUnsealedDerivedFromNoConstructor
     private typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedFromNoConstructor
-    private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
+    private lazy var _default: SwiftABI! = getInterfaceForCaching()
     @_spi(WinRTInternal)
     override open func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
         }
-        if T.self == C_IInspectable.self {
-            return RawPointer(_default)
-        }
-        if T.self == C_IUnknown.self {
-            return RawPointer(_default)
-        }
         return super._getABI()
     }
 
-    override open var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
-
     @_spi(WinRTInternal)
-    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerivedFromNoConstructor>?) -> UnsealedDerivedFromNoConstructor? {
+    public static func from(abi: ComPtr<__x_ABI_Ctest__component_CIUnsealedDerivedFromNoConstructor>?) -> UnsealedDerivedFromNoConstructor? {
         guard let abi = abi else { return nil }
         return UnsealedWinRTClassWrapper<Composable>.unwrapFrom(base: abi)
     }
@@ -1546,37 +1450,33 @@ open class UnsealedDerivedFromNoConstructor : test_component.UnsealedDerivedNoCo
     internal enum IBaseOverrides : ComposableImpl {
         internal typealias CABI = __x_ABI_Ctest__component_CIBaseOverrides
         internal typealias SwiftABI = __ABI_test_component.IBaseOverrides
-        internal typealias SwiftProjection = UnsealedDerivedFromNoConstructor
+        internal typealias Class = UnsealedDerivedFromNoConstructor
+        internal typealias SwiftProjection = WinRTClassWeakReference<Class>
         internal enum Default : AbiInterface {
             internal typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedFromNoConstructor
             internal typealias SwiftABI = __ABI_test_component.IUnsealedDerivedFromNoConstructor
         }
     }
     internal typealias Composable = IBaseOverrides
+    deinit {
+        _default = nil
+    }
 }
 
 open class UnsealedDerivedNoConstructor : test_component.Base {
     private typealias SwiftABI = __ABI_test_component.IUnsealedDerivedNoConstructor
     private typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedNoConstructor
-    private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
+    private lazy var _default: SwiftABI! = getInterfaceForCaching()
     @_spi(WinRTInternal)
     override open func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
         }
-        if T.self == C_IInspectable.self {
-            return RawPointer(_default)
-        }
-        if T.self == C_IUnknown.self {
-            return RawPointer(_default)
-        }
         return super._getABI()
     }
 
-    override open var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
-
     @_spi(WinRTInternal)
-    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerivedNoConstructor>?) -> UnsealedDerivedNoConstructor? {
+    public static func from(abi: ComPtr<__x_ABI_Ctest__component_CIUnsealedDerivedNoConstructor>?) -> UnsealedDerivedNoConstructor? {
         guard let abi = abi else { return nil }
         return UnsealedWinRTClassWrapper<Composable>.unwrapFrom(base: abi)
     }
@@ -1601,37 +1501,33 @@ open class UnsealedDerivedNoConstructor : test_component.Base {
     internal enum IBaseOverrides : ComposableImpl {
         internal typealias CABI = __x_ABI_Ctest__component_CIBaseOverrides
         internal typealias SwiftABI = __ABI_test_component.IBaseOverrides
-        internal typealias SwiftProjection = UnsealedDerivedNoConstructor
+        internal typealias Class = UnsealedDerivedNoConstructor
+        internal typealias SwiftProjection = WinRTClassWeakReference<Class>
         internal enum Default : AbiInterface {
             internal typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedNoConstructor
             internal typealias SwiftABI = __ABI_test_component.IUnsealedDerivedNoConstructor
         }
     }
     internal typealias Composable = IBaseOverrides
+    deinit {
+        _default = nil
+    }
 }
 
 open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
     private typealias SwiftABI = __ABI_test_component.IUnsealedDerivedNoOverrides
     private typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides
-    private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
+    private lazy var _default: SwiftABI! = getInterfaceForCaching()
     @_spi(WinRTInternal)
     override open func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
         }
-        if T.self == C_IInspectable.self {
-            return RawPointer(_default)
-        }
-        if T.self == C_IUnknown.self {
-            return RawPointer(_default)
-        }
         return super._getABI()
     }
 
-    override open var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
-
     @_spi(WinRTInternal)
-    public static func from(abi: UnsafeMutablePointer<__x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides>?) -> UnsealedDerivedNoOverrides? {
+    public static func from(abi: ComPtr<__x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides>?) -> UnsealedDerivedNoOverrides? {
         guard let abi = abi else { return nil }
         return UnsealedWinRTClassWrapper<Composable>.unwrapFrom(base: abi)
     }
@@ -1662,13 +1558,17 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
     internal enum IUnsealedDerivedNoOverrides : ComposableImpl {
         internal typealias CABI = C_IInspectable
         internal typealias SwiftABI = test_component.IInspectable
-        internal typealias SwiftProjection = UnsealedDerivedNoOverrides
+        internal typealias Class = UnsealedDerivedNoOverrides
+        internal typealias SwiftProjection = WinRTClassWeakReference<Class>
         internal enum Default : AbiInterface {
             internal typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides
             internal typealias SwiftABI = __ABI_test_component.IUnsealedDerivedNoOverrides
         }
     }
     internal typealias Composable = IUnsealedDerivedNoOverrides
+    deinit {
+        _default = nil
+    }
 }
 
 public typealias ObjectHandler = (Any?) -> ()

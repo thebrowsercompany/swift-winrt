@@ -11,24 +11,8 @@ open class IUnknown : HasIID {
 
   open class var IID: SUPPORT_MODULE.IID { IID_IUnknown }
 
-  public required init(_ pointer: UnsafeMutablePointer<C_IUnknown>) {
-    self.pUnk = IUnknownRef(pointer)
-  }
-
-  public required init(_ pointer: UnsafeMutableRawPointer) {
-    let pUnk: UnsafeMutablePointer<C_IUnknown> =
-        pointer.bindMemory(to: C_IUnknown.self, capacity: 1)
-    self.pUnk = IUnknownRef(pUnk)
-  }
-
-  public required init(consuming pointer: UnsafeMutablePointer<C_IUnknown>) {
-    self.pUnk = IUnknownRef(consuming: pointer)
-  }
-
-  public init(consuming pointer: UnsafeMutableRawPointer) {
-    let pUnk: UnsafeMutablePointer<C_IUnknown> =
-        pointer.bindMemory(to: C_IUnknown.self, capacity: 1)
-    self.pUnk = IUnknownRef(consuming: pUnk)
+  public required init<CInterface>(_ pointer: ComPtr<CInterface>) {
+    self.pUnk = .init(pointer)
   }
 
   @_alwaysEmitIntoClient @inline(__always)

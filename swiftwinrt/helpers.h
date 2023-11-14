@@ -942,4 +942,19 @@ namespace swiftwinrt
     {
         return dynamic_cast<const struct_type*>(&type) != nullptr;
     }
+
+    inline bool needs_wrapper(param_category category)
+    {
+        return category == param_category::object_type || category == param_category::generic_type;
+    }
+
+    inline bool is_overridable(metadata_type const& type)
+    {
+        if (auto typedefBase = dynamic_cast<const typedef_base*>(&type))
+        {
+            return has_attribute(typedefBase->type(), "Windows.Foundation.Metadata", "OverridableAttribute");
+        }
+        return false;
+    }
+
 }

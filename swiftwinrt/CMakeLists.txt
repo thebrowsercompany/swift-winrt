@@ -1,5 +1,8 @@
 project(swiftwinrt)
 
+set(CMAKE_C_COMPILER cl)
+set(CMAKE_CXX_COMPILER cl)
+
 set(SWIFTWINRT_VERSION_STRING "0.0.1")
 set(MicrosoftWindowsWinMD_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/winmd/src)
 
@@ -30,7 +33,7 @@ string(APPEND CMAKE_SHARED_LINKER_FLAGS_RELEASE " /DEBUG /OPT:REF /OPT:ICF /MAP"
 string(APPEND CMAKE_EXE_LINKER_FLAGS_RELEASE " /DEBUG /OPT:REF /OPT:ICF /MAP")
 
 if (CMAKE_CXX_COMPILER MATCHES "clang-cl")
-    add_compile_options(-Wno-delete-non-virtual-dtor -mcx16 -fno-delayed-template-parsing -Xclang -fcoroutines-ts)
+    add_compile_options(-Wno-delete-non-virtual-dtor -mcx16 -fno-delayed-template-parsing)
 else()
     add_compile_options(/permissive- /await)
 endif()
@@ -47,7 +50,7 @@ endif()
 add_executable(swiftwinrt "")
 target_sources(swiftwinrt PUBLIC
     main.cpp
-    pch.cpp 
+    pch.cpp
     metadata_cache.cpp
     types.cpp
     metadata_filter.cpp

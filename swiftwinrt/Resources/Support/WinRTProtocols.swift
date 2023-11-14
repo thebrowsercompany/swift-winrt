@@ -13,19 +13,48 @@ public protocol IWinRTObject: AnyObject {
 public protocol WinRTInterface: AnyObject, CustomQueryInterface {
 }
 
-public protocol WinRTClass : IWinRTObject, CustomQueryInterface, Equatable {
+open class WinRTClass : CustomQueryInterface, Equatable {
+    public init() {}
+
     @_spi(WinRTInternal)
-    func _getABI<T>() -> UnsafeMutablePointer<T>?
+    public init(_ ptr: SUPPORT_MODULE.IInspectable) {
+      _inner = ptr
+    }
+
     @_spi(WinRTInternal)
-    var _inner: SUPPORT_MODULE.IInspectable! { get }
+    open func _getABI<T>() -> UnsafeMutablePointer<T>? {
+        if T.self == C_IInspectable.self {
+            return UnsafeMutableRawPointer(identity?.get())?.bindMemory(to: T.self, capacity: 1) ?? RawPointer(_inner)
+        }
+        if T.self == C_IUnknown.self {
+            return UnsafeMutableRawPointer(identity?.get())?.bindMemory(to: T.self, capacity: 1) ?? RawPointer(_inner)
+        }
+        return nil
+    }
+
+    @_spi(WinRTInternal)
+    public internal(set) var _inner: SUPPORT_MODULE.IInspectable!
+
+    var identity: ComPtr<C_IInspectable>?
+
+    @_spi(WinRTImplements)
+    open func queryInterface(_ iid: SUPPORT_MODULE.IID) -> IUnknownRef? {
+        SUPPORT_MODULE.queryInterface(self, iid)
+    }
+
+    deinit {
+      // ensure we release the identity pointer before releasing _inner. releasing the _inner
+      // cleans up the underlying COM object.
+      identity = nil
+      _inner = nil
+    }
 }
-public typealias AnyWinRTClass = any WinRTClass
 
 public func ==<T: WinRTClass>(_ lhs: T, _ rhs: T) -> Bool {
   return lhs.thisPtr == rhs.thisPtr
 }
 
-extension WinRTClass {
+extension WinRTClass: IWinRTObject {
     public var thisPtr: SUPPORT_MODULE.IInspectable { try! _inner.QueryInterface() }
 }
 
@@ -46,5 +75,21 @@ extension WinRTClass {
     // to get the associated XamlType. We aren't using Xaml for swift, so we don't actually
     // need or want the framework to think it's dealing with custom types.
     return try! _inner.GetRuntimeClassName()
+  }
+
+  fileprivate func aggregated() -> Bool { identity != nil }
+
+  // Get an interface for caching on a class. This method properly handles
+  // reference counting via releasing the reference added on the Swift object
+  // in the case of being aggregated. The wrapper still has the +1 ref on it,
+  // which will be released when the object is destroyed. We can safely let the
+  // objects be destroyed since _inner is destroyed last. Releasing _inner is what
+  // cleans up the underlying COM object.
+  public func getInterfaceForCaching<T: IUnknown>() -> T {
+    let ptr:T = try! _inner.QueryInterface()
+    if aggregated() {
+      Unmanaged.passUnretained(self).release()
+    }
+    return ptr
   }
 }

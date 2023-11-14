@@ -83,9 +83,10 @@ public enum __ABI_Windows_Foundation {
         }
 
         open func get_CompletedImpl() throws -> test_component.AsyncActionCompletedHandler? {
-            var handler: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler>?
-            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIAsyncAction.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &handler))
+            let (handler) = try ComPtrs.initialize { handlerAbi in
+                _ = try perform(as: __x_ABI_CWindows_CFoundation_CIAsyncAction.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &handlerAbi))
+                }
             }
             return __ABI_Windows_Foundation.AsyncActionCompletedHandlerWrapper.unwrapFrom(abi: handler)
         }
@@ -129,7 +130,7 @@ public enum __ABI_Windows_Foundation {
 
         put_Completed: {
             guard let __unwrapped__instance = IAsyncActionWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            guard let handler = __ABI_Windows_Foundation.AsyncActionCompletedHandlerWrapper.unwrapFrom(abi: $1) else { return E_INVALIDARG }
+            guard let handler = __ABI_Windows_Foundation.AsyncActionCompletedHandlerWrapper.unwrapFrom(abi: ComPtr($1)) else { return E_INVALIDARG }
             __unwrapped__instance.completed = handler
             return S_OK
         },
@@ -324,13 +325,14 @@ public enum __ABI_Windows_Foundation {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIDeferralFactory }
 
         internal func CreateImpl(_ handler: test_component.DeferralCompletedHandler?) throws -> IDeferral {
-            var result: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIDeferral>?
-            let handlerWrapper = __ABI_Windows_Foundation.DeferralCompletedHandlerWrapper(handler)
-            let _handler = try! handlerWrapper?.toABI { $0 }
-            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIDeferralFactory.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.Create(pThis, _handler, &result))
+            let (result) = try ComPtrs.initialize { resultAbi in
+                let handlerWrapper = __ABI_Windows_Foundation.DeferralCompletedHandlerWrapper(handler)
+                let _handler = try! handlerWrapper?.toABI { $0 }
+                _ = try perform(as: __x_ABI_CWindows_CFoundation_CIDeferralFactory.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.Create(pThis, _handler, &resultAbi))
+                }
             }
-            return IDeferral(consuming: result!)
+            return IDeferral(result!)
         }
 
     }
@@ -845,7 +847,7 @@ extension __ABI_Windows_Foundation {
         Release: { AsyncActionCompletedHandlerWrapper.release($0) },
         Invoke: {
             guard let __unwrapped__instance = AsyncActionCompletedHandlerWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let asyncInfo: test_component.AnyIAsyncAction? = __ABI_Windows_Foundation.IAsyncActionWrapper.unwrapFrom(abi: $1)
+            let asyncInfo: test_component.AnyIAsyncAction? = __ABI_Windows_Foundation.IAsyncActionWrapper.unwrapFrom(abi: ComPtr($1))
             let asyncStatus: test_component.AsyncStatus = $2
             __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK

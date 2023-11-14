@@ -33,10 +33,10 @@ open class IInspectable: IUnknown {
 // follow this pattern should define their composability contract like the following:
 // internal class IBaseNoOverrides : OverridesImpl {
 //      internal typealias CABI = C_IInspectable
-//      internal typealias SwiftABI = __ABI_test_component.IBaseNoOverrides
+//      internal typealias SwiftABI = __ABI_SUPPORT_MODULE.IBaseNoOverrides
 //      internal typealias SwiftProjection = BaseNoOverrides
 //      internal typealias c_defaultABI = __x_ABI_Ctest__component_CIBaseNoOverrides
-//      internal typealias swift_overrides = test_component.IInspectable
+//      internal typealias swift_overrides = SUPPORT_MODULE.IInspectable
 // }
 // internal typealias Composable = IBaseNoOverrides
 public enum __ABI_ {
@@ -62,14 +62,17 @@ public enum __ABI_ {
             return try super.toABI(body)
         }
       }
-      public static func unwrapFrom(abi: UnsafeMutablePointer<C_IInspectable>?) -> Any? {
+      public static func unwrapFrom(abi: ComPtr<C_IInspectable>?) -> Any? {
         guard let abi = abi else { return nil }
         if let instance = tryUnwrapFrom(abi: abi) {
           return instance
         }
 
-        let ref = IInspectable(consuming: abi)
+        let ref = IInspectable(abi)
         return makeFrom(abi: ref) ?? ref
+      }
+      public static func tryUnwrapFrom(raw pUnk: UnsafeMutableRawPointer?) -> AnyObject? {
+        tryUnwrapFromBase(raw: pUnk)
       }
     }
 
@@ -88,23 +91,13 @@ public enum __ABI_ {
             let swiftObj = AnyWrapper.tryUnwrapFrom(raw: pUnk)
             if let customQueryInterface = swiftObj as? CustomQueryInterface,
                let result = customQueryInterface.queryInterface(riid.pointee) {
-                ppvObject.pointee = UnsafeMutableRawPointer(result.ref)
+                ppvObject.pointee = result.detach()
                 return S_OK
             }
             return E_NOINTERFACE
         },
-
-        AddRef: {
-             guard let wrapper = AnyWrapper.fromRaw($0) else { return 1 }
-             _ = wrapper.retain()
-             return ULONG(_getRetainCount(wrapper.takeUnretainedValue().swiftObj))
-        },
-
-        Release: {
-            guard let wrapper = AnyWrapper.fromRaw($0) else { return 1 }
-            return ULONG(_getRetainCount(wrapper.takeRetainedValue()))
-        },
-
+        AddRef: { AnyWrapper.addRef($0) },
+        Release: { AnyWrapper.release($0) },
         GetIids: {
             let size = MemoryLayout<SUPPORT_MODULE.IID>.size
             let iids = CoTaskMemAlloc(UInt64(size) * 2).assumingMemoryBound(to: SUPPORT_MODULE.IID.self)
@@ -118,7 +111,7 @@ public enum __ABI_ {
 
         GetRuntimeClassName: {
             guard let instance = AnyWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            guard let winrtClass = instance as? AnyWinRTClass else {
+            guard let winrtClass = instance as? WinRTClass else {
               let string = String(reflecting: type(of: instance))
               $1!.pointee = try! HString(string).detach()
               return S_OK

@@ -7,7 +7,7 @@ public enum __IMPL_test_component {
         public typealias CABI = __x_ABI_Ctest__component_CIAsyncMethodsWithProgress
         public typealias SwiftABI = __ABI_test_component.IAsyncMethodsWithProgress
         public typealias SwiftProjection = AnyIAsyncMethodsWithProgress
-        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IAsyncMethodsWithProgressImpl(abi)
         }
@@ -22,7 +22,7 @@ public enum __IMPL_test_component {
         fileprivate typealias Bridge = IAsyncMethodsWithProgressBridge
         fileprivate let _default: Bridge.SwiftABI
         fileprivate var thisPtr: test_component.IInspectable { _default }
-        fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        fileprivate init(_ fromAbi: ComPtr<Bridge.CABI>) {
             _default = Bridge.SwiftABI(fromAbi)
         }
 
@@ -36,7 +36,7 @@ public enum __IMPL_test_component {
         public typealias CABI = __x_ABI_Ctest__component_CIAsyncOperationInt
         public typealias SwiftABI = __ABI_test_component.IAsyncOperationInt
         public typealias SwiftProjection = AnyIAsyncOperationInt
-        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IAsyncOperationIntImpl(abi)
         }
@@ -51,7 +51,7 @@ public enum __IMPL_test_component {
         fileprivate typealias Bridge = IAsyncOperationIntBridge
         fileprivate let _default: Bridge.SwiftABI
         fileprivate var thisPtr: test_component.IInspectable { _default }
-        fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        fileprivate init(_ fromAbi: ComPtr<Bridge.CABI>) {
             _default = Bridge.SwiftABI(fromAbi)
         }
 
@@ -69,7 +69,7 @@ public enum __IMPL_test_component {
         public typealias CABI = __x_ABI_Ctest__component_CIBasic
         public typealias SwiftABI = __ABI_test_component.IBasic
         public typealias SwiftProjection = AnyIBasic
-        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IBasicImpl(abi)
         }
@@ -84,7 +84,7 @@ public enum __IMPL_test_component {
         fileprivate typealias Bridge = IBasicBridge
         fileprivate let _default: Bridge.SwiftABI
         fileprivate var thisPtr: test_component.IInspectable { _default }
-        fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        fileprivate init(_ fromAbi: ComPtr<Bridge.CABI>) {
             _default = Bridge.SwiftABI(fromAbi)
         }
 
@@ -98,7 +98,7 @@ public enum __IMPL_test_component {
         public typealias CABI = __x_ABI_Ctest__component_CIIAmImplementable
         public typealias SwiftABI = __ABI_test_component.IIAmImplementable
         public typealias SwiftProjection = AnyIIAmImplementable
-        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IIAmImplementableImpl(abi)
         }
@@ -113,7 +113,7 @@ public enum __IMPL_test_component {
         fileprivate typealias Bridge = IIAmImplementableBridge
         fileprivate let _default: Bridge.SwiftABI
         fileprivate var thisPtr: test_component.IInspectable { _default }
-        fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        fileprivate init(_ fromAbi: ComPtr<Bridge.CABI>) {
             _default = Bridge.SwiftABI(fromAbi)
         }
 
@@ -181,12 +181,12 @@ public enum __IMPL_test_component {
 
         fileprivate lazy var implementableEvent : Event<test_component.InDelegate> = {
           .init(
-            add: { [weak this = _default] in
-              guard let this else { return .init() }
+            add: { [weak self] in
+              guard let this = self?._default else { return .init() }
               return try! this.add_ImplementableEventImpl($0)
             },
-            remove: { [weak this = _default] in
-             try? this?.remove_ImplementableEventImpl($0)
+            remove: { [weak self] in
+             try? self?._default.remove_ImplementableEventImpl($0)
            }
           )
         }()
@@ -197,7 +197,7 @@ public enum __IMPL_test_component {
         public typealias CABI = __x_ABI_Ctest__component_CIInterfaceWithObservableVector
         public typealias SwiftABI = __ABI_test_component.IInterfaceWithObservableVector
         public typealias SwiftProjection = AnyIInterfaceWithObservableVector
-        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IInterfaceWithObservableVectorImpl(abi)
         }
@@ -212,7 +212,7 @@ public enum __IMPL_test_component {
         fileprivate typealias Bridge = IInterfaceWithObservableVectorBridge
         fileprivate let _default: Bridge.SwiftABI
         fileprivate var thisPtr: test_component.IInspectable { _default }
-        fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        fileprivate init(_ fromAbi: ComPtr<Bridge.CABI>) {
             _default = Bridge.SwiftABI(fromAbi)
         }
 
@@ -226,7 +226,7 @@ public enum __IMPL_test_component {
         public typealias CABI = __x_ABI_Ctest__component_CISimpleDelegate
         public typealias SwiftABI = __ABI_test_component.ISimpleDelegate
         public typealias SwiftProjection = AnyISimpleDelegate
-        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return ISimpleDelegateImpl(abi)
         }
@@ -241,7 +241,7 @@ public enum __IMPL_test_component {
         fileprivate typealias Bridge = ISimpleDelegateBridge
         fileprivate let _default: Bridge.SwiftABI
         fileprivate var thisPtr: test_component.IInspectable { _default }
-        fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        fileprivate init(_ fromAbi: ComPtr<Bridge.CABI>) {
             _default = Bridge.SwiftABI(fromAbi)
         }
 
@@ -259,7 +259,7 @@ public enum __IMPL_test_component {
         public typealias CABI = __x_ABI_Ctest__component_CInterfaceWithReturnDelegate
         public typealias SwiftABI = __ABI_test_component.InterfaceWithReturnDelegate
         public typealias SwiftProjection = AnyInterfaceWithReturnDelegate
-        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return InterfaceWithReturnDelegateImpl(abi)
         }
@@ -274,18 +274,18 @@ public enum __IMPL_test_component {
         fileprivate typealias Bridge = InterfaceWithReturnDelegateBridge
         fileprivate let _default: Bridge.SwiftABI
         fileprivate var thisPtr: test_component.IInspectable { _default }
-        fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        fileprivate init(_ fromAbi: ComPtr<Bridge.CABI>) {
             _default = Bridge.SwiftABI(fromAbi)
         }
 
         fileprivate lazy var eventWithReturn : Event<test_component.ReturnInt32Delegate> = {
           .init(
-            add: { [weak this = _default] in
-              guard let this else { return .init() }
+            add: { [weak self] in
+              guard let this = self?._default else { return .init() }
               return try! this.add_EventWithReturnImpl($0)
             },
-            remove: { [weak this = _default] in
-             try? this?.remove_EventWithReturnImpl($0)
+            remove: { [weak self] in
+             try? self?._default.remove_EventWithReturnImpl($0)
            }
           )
         }()
@@ -296,7 +296,7 @@ public enum __IMPL_test_component {
         public typealias CABI = __x_ABI_Ctest__component_CWithKeyword
         public typealias SwiftABI = __ABI_test_component.WithKeyword
         public typealias SwiftProjection = AnyWithKeyword
-        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return WithKeywordImpl(abi)
         }
@@ -311,7 +311,7 @@ public enum __IMPL_test_component {
         fileprivate typealias Bridge = WithKeywordBridge
         fileprivate let _default: Bridge.SwiftABI
         fileprivate var thisPtr: test_component.IInspectable { _default }
-        fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        fileprivate init(_ fromAbi: ComPtr<Bridge.CABI>) {
             _default = Bridge.SwiftABI(fromAbi)
         }
 
@@ -326,12 +326,12 @@ public enum __IMPL_test_component {
 
         fileprivate lazy var `repeat` : Event<EventHandler<Any?>> = {
           .init(
-            add: { [weak this = _default] in
-              guard let this else { return .init() }
+            add: { [weak self] in
+              guard let this = self?._default else { return .init() }
               return try! this.add_RepeatImpl($0)
             },
-            remove: { [weak this = _default] in
-             try? this?.remove_RepeatImpl($0)
+            remove: { [weak self] in
+             try? self?._default.remove_RepeatImpl($0)
            }
           )
         }()
@@ -343,7 +343,7 @@ public enum __IMPL_test_component {
         public typealias CABI = __x_ABI_Ctest__component_CIObjectHandler
         public typealias SwiftABI = __ABI_test_component.ObjectHandler
 
-        public static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
+        public static func from(abi: ComPtr<CABI>?) -> Handler? {
             guard let abi = abi else { return nil }
             let _default = SwiftABI(abi)
             let handler: Handler = { (item) in
@@ -357,7 +357,7 @@ public enum __IMPL_test_component {
         public typealias CABI = __x_ABI_Ctest__component_CIVoidToVoidDelegate
         public typealias SwiftABI = __ABI_test_component.VoidToVoidDelegate
 
-        public static func from(abi: UnsafeMutablePointer<CABI>?) -> Handler? {
+        public static func from(abi: ComPtr<CABI>?) -> Handler? {
             guard let abi = abi else { return nil }
             let _default = SwiftABI(abi)
             let handler: Handler = { () in

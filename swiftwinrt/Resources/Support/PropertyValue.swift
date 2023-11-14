@@ -101,17 +101,17 @@ extension PropertyValue
            return PropertyValue.createInt64(Int64(value))
         #elseif arch(i386) || arch(arm)
           return PropertyValue.createInt32(Int32(value))
-        #else 
+        #else
           fatalError("unknown process architecture size")
         #endif
     }
-    
+
     static func createUInt(_ value: UInt) -> SUPPORT_MODULE.IInspectable {
         #if arch(x86_64) || arch(arm64)
            return PropertyValue.createUInt64(UInt64(value))
         #elseif arch(i386) || arch(arm)
           return PropertyValue.createUInt32(UInt32(value))
-        #else 
+        #else
           fatalError("unknown process architecture size")
         #endif
     }

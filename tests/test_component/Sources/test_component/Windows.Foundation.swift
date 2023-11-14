@@ -8,47 +8,37 @@ public typealias AsyncStatus = __x_ABI_CWindows_CFoundation_CAsyncStatus
 public typealias PropertyType = __x_ABI_CWindows_CFoundation_CPropertyType
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.deferral)
 public final class Deferral : WinRTClass, IClosable {
-    @_spi(WinRTInternal)
-    private (set) public var _inner: test_component.IInspectable!
     private typealias SwiftABI = __ABI_Windows_Foundation.IDeferral
     private typealias CABI = __x_ABI_CWindows_CFoundation_CIDeferral
-    private lazy var _default: SwiftABI! = try! _inner.QueryInterface()
+    private lazy var _default: SwiftABI! = getInterfaceForCaching()
     @_spi(WinRTInternal)
-    public func _getABI<T>() -> UnsafeMutablePointer<T>? {
+    override public func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
         }
-        if T.self == C_IInspectable.self {
-            return RawPointer(_default)
-        }
-        if T.self == C_IUnknown.self {
-            return RawPointer(_default)
-        }
-        return nil
+        return super._getABI()
     }
 
-    public var thisPtr: test_component.IInspectable { try! _inner.QueryInterface() }
-
     @_spi(WinRTInternal)
-    public static func from(abi: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIDeferral>?) -> Deferral? {
+    public static func from(abi: ComPtr<__x_ABI_CWindows_CFoundation_CIDeferral>?) -> Deferral? {
         guard let abi = abi else { return nil }
-        return .init(fromAbi: test_component.IInspectable(consuming: abi))
+        return .init(fromAbi: test_component.IInspectable(abi))
     }
 
     @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
-        _inner = fromAbi
+        super.init(fromAbi)
     }
 
-    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
-        return test_component.queryInterface(self, iid)
+    override public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        return super.queryInterface(iid)
     }
     private static let _IDeferralFactory: __ABI_Windows_Foundation.IDeferralFactory = try! RoGetActivationFactory(HString("Windows.Foundation.Deferral"))
     public init(_ handler: DeferralCompletedHandler!) {
-        _inner = try! Self._IDeferralFactory.CreateImpl(handler)
+        super.init(try! Self._IDeferralFactory.CreateImpl(handler))
     }
 
-    internal lazy var _IClosable: __ABI_Windows_Foundation.IClosable = try! _inner.QueryInterface()
+    private lazy var _IClosable: __ABI_Windows_Foundation.IClosable! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.deferral.close)
     public func close() throws {
         try _IClosable.CloseImpl()
@@ -59,6 +49,10 @@ public final class Deferral : WinRTClass, IClosable {
         try _default.CompleteImpl()
     }
 
+    deinit {
+        _IClosable = nil
+        _default = nil
+    }
 }
 
 public typealias AsyncActionCompletedHandler = (AnyIAsyncAction?, AsyncStatus) -> ()

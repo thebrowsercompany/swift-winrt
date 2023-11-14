@@ -1,11 +1,51 @@
 import C_BINDINGS_MODULE
 import Foundation
 
-public protocol ComposableImpl : AbiInterfaceBridge where SwiftABI: IInspectable, SwiftProjection: WinRTClass  {
+// The WinRTClassWeakReference class is a proxy for properly managing the reference count of
+// the WinRTClass that is being aggregated. The aggregated object holds a weak reference to
+// the outer IInspectable (swift) that is passed in during construction. In general, the
+// swift wrappers we create hold strong references to the objects they are wrapping, as we
+// expect an AddRef from WinRT to keep the object alive. Since this doesn't happen for aggregated
+// objects, we need a proxy which sits in the middle. The WinRTClassWeakReference object doesn't
+// keep a strong ref to the swift object, but it forwards all AddRef/Release calls from WinRT
+// to the swift object, to ensure it doesn't get cleaned up. The Swift object in turn holds a strong
+// reference to this object so that it stays alive.
+@_spi(WinRTInternal)
+public final class WinRTClassWeakReference<Class: WinRTClass> {
+    fileprivate weak var instance: Class?
+    public init(_ instance: Class){
+        self.instance = instance
+    }
+}
+
+extension WinRTClassWeakReference: CustomQueryInterface {
+    @_spi(WinRTImplements)
+    public func queryInterface(_ iid: SUPPORT_MODULE.IID) -> IUnknownRef? {
+        guard let instance else { return nil }
+        return instance.queryInterface(iid)
+    }
+}
+
+extension WinRTClassWeakReference: CustomAddRef {
+    func addRef() {
+        guard let instance else { return }
+        let unmanaged = Unmanaged.passUnretained(instance)
+        _ = unmanaged.retain()
+    }
+
+    func release() {
+        guard let instance else { return }
+        let unmanaged = Unmanaged.passUnretained(instance)
+        unmanaged.release()
+    }
+}
+
+@_spi(WinRTInternal)
+public protocol ComposableImpl<Class> : AbiInterfaceBridge where SwiftABI: IInspectable, SwiftProjection: WinRTClassWeakReference<Class>  {
+    associatedtype Class: WinRTClass
     associatedtype Default : AbiInterface where Default.SwiftABI: SUPPORT_MODULE.IInspectable
     static func makeAbi() -> CABI
 }
-
 
 // At a high level, aggregation simply requires the WinRT object to have a pointer back to the Swift world, so that it can call
 // overridable methods on the class. This Swift pointer is given to the WinRT object during construction. The construction of the
@@ -24,11 +64,12 @@ public protocol ComposableImpl : AbiInterfaceBridge where SwiftABI: IInspectable
 // |---------------|---------------------------|-------------------------|--------------------------|
 // |  Yes          |  self                     |  stored on swift object |  ignored or stored       |
 // |  No           |  nil                      |  ignored                |  stored on swift object  |
+@_spi(WinRTInternal)
 public func MakeComposed<Composable: ComposableImpl>(
     composing: Composable.Type,
-    _ this: Composable.SwiftProjection,
-    _ createCallback: (UnsealedWinRTClassWrapper<Composable>?, inout SUPPORT_MODULE.IInspectable?) -> Composable.Default.SwiftABI) -> SUPPORT_MODULE.IInspectable {
-    let aggregated = type(of: this) != Composable.SwiftProjection.self
+    _ this: Composable.Class,
+    _ createCallback: (UnsealedWinRTClassWrapper<Composable>?, inout SUPPORT_MODULE.IInspectable?) -> Composable.Default.SwiftABI) {
+    let aggregated = type(of: this) != Composable.Class.self
     let wrapper:UnsealedWinRTClassWrapper<Composable>? = .init(aggregated ? this : nil)
 
     var innerInsp: SUPPORT_MODULE.IInspectable? = nil
@@ -37,21 +78,36 @@ public func MakeComposed<Composable: ComposableImpl>(
         fatalError("Unexpected nil returned after successful creation")
     }
 
-    return aggregated ? innerInsp : base
+    if let wrapper {
+        this.identity = ComPtr(wrapper.toIInspectableABI { $0 })
+        // Storing a strong ref to the wrapper adds a ref to ourselves, remove the
+        // reference
+        wrapper.swiftObj.release()
+    }
+    this._inner = aggregated ? innerInsp : base
 }
 
+@_spi(WinRTInternal)
 public class UnsealedWinRTClassWrapper<Composable: ComposableImpl> : WinRTAbiBridgeWrapper<Composable> {
     override public class var IID: SUPPORT_MODULE.IID { Composable.SwiftABI.IID }
-    public init?(_ impl: Composable.SwiftProjection?) {
+    public init?(_ impl: Composable.Class?) {
         guard let impl = impl else { return nil }
         let abi = Composable.makeAbi()
-        super.init(abi, impl)
+        super.init(abi, Composable.SwiftProjection(impl))
     }
-    public static func unwrapFrom(base: UnsafeMutablePointer<Composable.Default.CABI>) -> Composable.SwiftProjection? {
-        let baseInsp = SUPPORT_MODULE.IInspectable(consuming: base)
-        let overrides: Composable.SwiftABI = try! baseInsp.QueryInterface()
-        return unwrapFrom(abi: RawPointer(overrides))
+    
+    public static func unwrapFrom(base: ComPtr<Composable.Default.CABI>) -> Composable.Class? {
+        let overrides: Composable.SwiftABI = try! base.queryInterface()
+        if let weakRef = tryUnwrapFrom(abi: RawPointer(overrides)) { return weakRef.instance }
+        guard let instance = makeFrom(abi: overrides) else {
+            // the derived class doesn't exist, which is fine, just return the type the API specifies.
+            return make(type: Composable.Class.self, from: overrides)
+        }
+        return instance as? Composable.Class
+    }
 
+    public static func tryUnwrapFrom(raw pUnk: UnsafeMutableRawPointer?) -> Composable.Class? {
+        tryUnwrapFromBase(raw: pUnk)?.instance
     }
 
     public func toIInspectableABI<ResultType>(_ body: (UnsafeMutablePointer<C_IInspectable>) throws -> ResultType)
@@ -62,13 +118,7 @@ public class UnsealedWinRTClassWrapper<Composable: ComposableImpl> : WinRTAbiBri
 }
 
 public extension ComposableImpl {
-    static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
-        guard let abi else { return nil }
-        let baseInsp = SUPPORT_MODULE.IInspectable(abi)
-        guard let instance = makeFrom(abi: baseInsp) else {
-            // the derived class doesn't exist, which is fine, just return the type the API specifies.
-            return make(type: Self.SwiftProjection.self, from: baseInsp)
-        }
-        return instance as? Self.SwiftProjection
+    static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+        return nil
     }
 }

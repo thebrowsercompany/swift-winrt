@@ -7,7 +7,7 @@ public enum __IMPL_Windows_Foundation_Collections {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CCollections_CIPropertySet
         public typealias SwiftABI = __ABI_Windows_Foundation_Collections.IPropertySet
         public typealias SwiftProjection = AnyIPropertySet
-        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IPropertySetImpl(abi)
         }
@@ -22,28 +22,28 @@ public enum __IMPL_Windows_Foundation_Collections {
         fileprivate typealias Bridge = IPropertySetBridge
         fileprivate let _default: Bridge.SwiftABI
         fileprivate var thisPtr: test_component.IInspectable { _default }
-        fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        fileprivate init(_ fromAbi: ComPtr<Bridge.CABI>) {
             _default = Bridge.SwiftABI(fromAbi)
         }
 
         public typealias K = String
         public typealias V = Any?
         public typealias T = AnyIKeyValuePair<String, Any?>?
-        internal lazy var _IObservableMap: IObservableMapString_Any = try! _default.QueryInterface()
+        private lazy var _IObservableMap: IObservableMapString_Any! = getInterfaceForCaching()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.mapchanged)
         fileprivate lazy var mapChanged : Event<MapChangedEventHandler<String, Any?>> = {
           .init(
-            add: { [weak this = _IObservableMap] in
-              guard let this else { return .init() }
+            add: { [weak self] in
+              guard let this = self?._IObservableMap else { return .init() }
               return try! this.add_MapChangedImpl($0)
             },
-            remove: { [weak this = _IObservableMap] in
-             try? this?.remove_MapChangedImpl($0)
+            remove: { [weak self] in
+             try? self?._IObservableMap.remove_MapChangedImpl($0)
            }
           )
         }()
 
-        internal lazy var _IMap: IMapString_Any = try! _default.QueryInterface()
+        private lazy var _IMap: IMapString_Any! = getInterfaceForCaching()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.lookup)
         fileprivate func lookup(_ key: String) -> Any? {
             try! _IMap.LookupImpl(key)
@@ -79,7 +79,7 @@ public enum __IMPL_Windows_Foundation_Collections {
             get { try! _IMap.get_SizeImpl() }
         }
 
-        internal lazy var _IIterable: IIterableIKeyValuePairString_Any = try! _default.QueryInterface()
+        private lazy var _IIterable: IIterableIKeyValuePairString_Any! = getInterfaceForCaching()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.first)
         fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
             try! _IIterable.FirstImpl()
@@ -91,7 +91,7 @@ public enum __IMPL_Windows_Foundation_Collections {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CCollections_CIVectorChangedEventArgs
         public typealias SwiftABI = __ABI_Windows_Foundation_Collections.IVectorChangedEventArgs
         public typealias SwiftProjection = AnyIVectorChangedEventArgs
-        public static func from(abi: UnsafeMutablePointer<CABI>?) -> SwiftProjection? {
+        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IVectorChangedEventArgsImpl(abi)
         }
@@ -106,7 +106,7 @@ public enum __IMPL_Windows_Foundation_Collections {
         fileprivate typealias Bridge = IVectorChangedEventArgsBridge
         fileprivate let _default: Bridge.SwiftABI
         fileprivate var thisPtr: test_component.IInspectable { _default }
-        fileprivate init(_ fromAbi: UnsafeMutablePointer<Bridge.CABI>) {
+        fileprivate init(_ fromAbi: ComPtr<Bridge.CABI>) {
             _default = Bridge.SwiftABI(fromAbi)
         }
 
