@@ -94,6 +94,12 @@ public final class PropertySet : WinRTClass, IObservableMap, IMap, IIterable, IP
         try! _IIterable.FirstImpl()
     }
 
+    deinit {
+        _IObservableMap = nil
+        _IMap = nil
+        _IIterable = nil
+        _default = nil
+    }
 }
 
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.stringmap)
@@ -185,6 +191,11 @@ public final class StringMap : WinRTClass, IMap, IIterable, IObservableMap {
       )
     }()
 
+    deinit {
+        _default = nil
+        _IIterable = nil
+        _IObservableMap = nil
+    }
 }
 
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.valueset)
@@ -277,6 +288,12 @@ public final class ValueSet : WinRTClass, IObservableMap, IMap, IIterable, IProp
         try! _IIterable.FirstImpl()
     }
 
+    deinit {
+        _IObservableMap = nil
+        _IMap = nil
+        _IIterable = nil
+        _default = nil
+    }
 }
 
 public typealias MapChangedEventHandler<K,V> = (AnyIObservableMap<K, V>?, AnyIMapChangedEventArgs<K>?) -> ()

@@ -49,6 +49,10 @@ public final class Deferral : WinRTClass, IClosable {
         try _default.CompleteImpl()
     }
 
+    deinit {
+        _IClosable = nil
+        _default = nil
+    }
 }
 
 public typealias AsyncActionCompletedHandler = (AnyIAsyncAction?, AsyncStatus) -> ()

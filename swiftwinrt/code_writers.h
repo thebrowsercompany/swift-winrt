@@ -2387,6 +2387,7 @@ override % func _getABI<T>() -> UnsafeMutablePointer<T>? {
 
         bool has_overrides = false;
         bool has_collection_conformance = false;
+        std::vector<std::string> interfaces_to_release;
         for (const auto& [interface_name, info] : type.required_interfaces)
         {
             if (interface_name.empty() || !can_write(w, info.type)) { continue; }
@@ -2407,6 +2408,7 @@ override % func _getABI<T>() -> UnsafeMutablePointer<T>? {
                 {
                     continue;
                 }
+                interfaces_to_release.push_back(get_swift_name(info));
                 write_interface_impl_members(w, info, /* type_definition: */ type);
             }
 
@@ -2437,6 +2439,15 @@ override % func _getABI<T>() -> UnsafeMutablePointer<T>? {
             write_composable_impl(w, type, *default_interface, true);
         }
 
+        if (default_interface)
+        {
+            w.write("deinit {\n");
+            for (const auto& iface : interfaces_to_release)
+            {
+                w.write("    % = nil\n", iface);
+            }
+            w.write("}\n");
+        }
 
         class_indent_guard.end();
         w.write("}\n\n");

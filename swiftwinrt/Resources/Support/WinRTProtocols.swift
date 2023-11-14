@@ -41,6 +41,13 @@ open class WinRTClass : CustomQueryInterface, Equatable {
     open func queryInterface(_ iid: SUPPORT_MODULE.IID) -> IUnknownRef? {
         SUPPORT_MODULE.queryInterface(self, iid)
     }
+
+    deinit {
+      // ensure we release the identity pointer before releasing _inner. releasing the _inner
+      // cleans up the underlying COM object.
+      identity = nil
+      _inner = nil
+    }
 }
 
 public func ==<T: WinRTClass>(_ lhs: T, _ rhs: T) -> Bool {

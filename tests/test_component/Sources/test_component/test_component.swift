@@ -89,6 +89,11 @@ public final class AsyncOperationInt : WinRTClass, IAsyncOperationInt, IAsyncOpe
         get { try! _IAsyncInfo.get_StatusImpl() }
     }
 
+    deinit {
+        _default = nil
+        _IAsyncOperation = nil
+        _IAsyncInfo = nil
+    }
 }
 
 open class Base : WinRTClass {
@@ -159,6 +164,10 @@ open class Base : WinRTClass {
         }
     }
     internal typealias Composable = IBaseOverrides
+    deinit {
+        _default = nil
+        _IBaseOverrides = nil
+    }
 }
 
 public final class BaseCollection : WinRTClass, IVector, IIterable {
@@ -264,6 +273,10 @@ public final class BaseCollection : WinRTClass, IVector, IIterable {
         try! _IIterable.FirstImpl()
     }
 
+    deinit {
+        _default = nil
+        _IIterable = nil
+    }
 }
 
 public final class BaseMapCollection : WinRTClass, IMap, IIterable {
@@ -328,6 +341,10 @@ public final class BaseMapCollection : WinRTClass, IMap, IIterable {
         try! _IIterable.FirstImpl()
     }
 
+    deinit {
+        _default = nil
+        _IIterable = nil
+    }
 }
 
 open class BaseNoOverrides : WinRTClass {
@@ -384,6 +401,9 @@ open class BaseNoOverrides : WinRTClass {
         }
     }
     internal typealias Composable = IBaseNoOverrides
+    deinit {
+        _default = nil
+    }
 }
 
 public final class BaseObservableCollection : WinRTClass, IObservableVector, IVector, IIterable {
@@ -502,6 +522,11 @@ public final class BaseObservableCollection : WinRTClass, IObservableVector, IVe
         try! _IIterable.FirstImpl()
     }
 
+    deinit {
+        _default = nil
+        _IVector = nil
+        _IIterable = nil
+    }
 }
 
 public final class Class : WinRTClass, IBasic {
@@ -730,6 +755,10 @@ public final class Class : WinRTClass, IBasic {
         try! _IBasic.MethodImpl()
     }
 
+    deinit {
+        _default = nil
+        _IBasic = nil
+    }
 }
 
 public final class CollectionTester : WinRTClass {
@@ -788,6 +817,9 @@ public final class CollectionTester : WinRTClass {
         try _default.ReturnMapFromStringToStringImpl()
     }
 
+    deinit {
+        _default = nil
+    }
 }
 
 public final class DeferrableEventArgs : WinRTClass {
@@ -821,6 +853,9 @@ public final class DeferrableEventArgs : WinRTClass {
         try _default.IncrementCounterImpl()
     }
 
+    deinit {
+        _default = nil
+    }
 }
 
 public final class Derived : test_component.Base {
@@ -866,6 +901,9 @@ public final class Derived : test_component.Base {
         }
     }
     internal typealias Composable = IBaseOverrides
+    deinit {
+        _default = nil
+    }
 }
 
 public final class DerivedFromNoConstructor : test_component.UnsealedDerivedNoConstructor {
@@ -906,6 +944,9 @@ public final class DerivedFromNoConstructor : test_component.UnsealedDerivedNoCo
         }
     }
     internal typealias Composable = IBaseOverrides
+    deinit {
+        _default = nil
+    }
 }
 
 public final class EventTester : WinRTClass {
@@ -952,6 +993,9 @@ public final class EventTester : WinRTClass {
         get { try! _default.get_CountImpl() }
     }
 
+    deinit {
+        _default = nil
+    }
 }
 
 public final class NoopClosable : WinRTClass, test_component.IClosable {
@@ -988,6 +1032,9 @@ public final class NoopClosable : WinRTClass, test_component.IClosable {
         try _default.CloseImpl()
     }
 
+    deinit {
+        _default = nil
+    }
 }
 
 public final class NullValues {
@@ -1160,6 +1207,9 @@ public final class Simple : WinRTClass {
       )
     }()
 
+    deinit {
+        _default = nil
+    }
 }
 
 public final class StaticClass {
@@ -1280,6 +1330,11 @@ open class UnsealedDerived : test_component.Base {
             internal typealias SwiftABI = __ABI_test_component.IUnsealedDerived
         }
     }
+    deinit {
+        _default = nil
+        _IUnsealedDerivedOverloads2 = nil
+        _IUnsealedDerivedOverrides = nil
+    }
 }
 
 open class UnsealedDerived2 : test_component.UnsealedDerived {
@@ -1346,6 +1401,9 @@ open class UnsealedDerived2 : test_component.UnsealedDerived {
         }
     }
     internal typealias Composable = IUnsealedDerivedOverloads2
+    deinit {
+        _default = nil
+    }
 }
 
 open class UnsealedDerivedFromNoConstructor : test_component.UnsealedDerivedNoConstructor {
@@ -1400,6 +1458,9 @@ open class UnsealedDerivedFromNoConstructor : test_component.UnsealedDerivedNoCo
         }
     }
     internal typealias Composable = IBaseOverrides
+    deinit {
+        _default = nil
+    }
 }
 
 open class UnsealedDerivedNoConstructor : test_component.Base {
@@ -1448,6 +1509,9 @@ open class UnsealedDerivedNoConstructor : test_component.Base {
         }
     }
     internal typealias Composable = IBaseOverrides
+    deinit {
+        _default = nil
+    }
 }
 
 open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
@@ -1502,6 +1566,9 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
         }
     }
     internal typealias Composable = IUnsealedDerivedNoOverrides
+    deinit {
+        _default = nil
+    }
 }
 
 public typealias ObjectHandler = (Any?) -> ()
