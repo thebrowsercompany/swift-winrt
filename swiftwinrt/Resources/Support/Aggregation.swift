@@ -76,7 +76,7 @@ public func MakeComposed<Composable: ComposableImpl>(
     }
 
     if let wrapper {
-        this.identity = ComPtr(wrapper.toABIType { $0 })
+        this.identity = ComPtr(wrapper.toIInspectableABI { $0 })
         // Storing a strong ref to the wrapper adds a ref to ourselves, remove the
         // reference
         wrapper.swiftObj.release()
@@ -105,15 +105,10 @@ public class UnsealedWinRTClassWrapper<Composable: ComposableImpl> : WinRTAbiBri
         tryUnwrapFromBase(raw: pUnk)?.instance
     }
 
-    public func toABIType<ResultType, ABIType>(_ body: (UnsafeMutablePointer<ABIType>) throws -> ResultType)
-        rethrows -> ResultType {
-        let abi = try! toABI { $0 }
-        return try abi.withMemoryRebound(to: ABIType.self, capacity: 1) { try body($0) }
-    }
-
     public func toIInspectableABI<ResultType>(_ body: (UnsafeMutablePointer<C_IInspectable>) throws -> ResultType)
         rethrows -> ResultType {
-        try toABIType(body)
+        let abi = try! toABI { $0 }
+        return try abi.withMemoryRebound(to: C_IInspectable.self, capacity: 1) { try body($0) }
     }
 }
 

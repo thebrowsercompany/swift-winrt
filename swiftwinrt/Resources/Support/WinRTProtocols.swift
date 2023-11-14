@@ -13,34 +13,29 @@ public protocol IWinRTObject: AnyObject {
 public protocol WinRTInterface: AnyObject, CustomQueryInterface {
 }
 
-open class ComObject {
-  public init() {}
-  var identity: ComPtr<C_IUnknown>!
-}
-
 open class WinRTClass : ComObject, CustomQueryInterface, Equatable {
-    override public init() {
-      super.init()
-    }
+    public init() {}
 
     @_spi(WinRTInternal)
     public init(_ ptr: SUPPORT_MODULE.IInspectable) {
-      super.init()
       _inner = ptr
     }
 
     @_spi(WinRTInternal)
     open func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == C_IInspectable.self {
-            return RawPointer(_inner)
+            return UnsafeMutableRawPointer(identity.get()).bindMemory(to: U.self, capacity: 1) ?? RawPointer(_inner)
         }
         if T.self == C_IUnknown.self {
-            return RawPointer(_inner)
+            return UnsafeMutableRawPointer(identity.get()).bindMemory(to: U.self, capacity: 1) ?? RawPointer(_inner)
         }
         return nil
     }
+
     @_spi(WinRTInternal)
     public internal(set) var _inner: SUPPORT_MODULE.IInspectable!
+
+    var identity: ComPtr<C_IInspectable>?
 
     @_spi(WinRTImplements)
     open func queryInterface(_ iid: SUPPORT_MODULE.IID) -> IUnknownRef? {
