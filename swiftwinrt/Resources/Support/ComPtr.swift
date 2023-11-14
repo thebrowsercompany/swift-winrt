@@ -2,7 +2,8 @@
 // SPDX-License-Identifier: BSD-3
 import C_BINDINGS_MODULE
 
-// ComPtr is a smart pointer for COM interfaces.  It holds onto the underlying pointer
+// ComPtr is a smart pointer for COM interfaces.  It holds on to the underlying pointer
+
 // and the semantics of it are meant to mirror that of the ComPtr class in WRL. The
 // design of ComPtr and ComPtrs.intialize is that there should be no use of UnsafeMutablePointer
 // any where else in the code base.  The only place where UnsafeMutablePointer should be used is
