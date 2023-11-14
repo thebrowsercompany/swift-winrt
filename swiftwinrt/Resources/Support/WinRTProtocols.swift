@@ -13,7 +13,7 @@ public protocol IWinRTObject: AnyObject {
 public protocol WinRTInterface: AnyObject, CustomQueryInterface {
 }
 
-open class WinRTClass : ComObject, CustomQueryInterface, Equatable {
+open class WinRTClass : CustomQueryInterface, Equatable {
     public init() {}
 
     @_spi(WinRTInternal)
@@ -24,10 +24,10 @@ open class WinRTClass : ComObject, CustomQueryInterface, Equatable {
     @_spi(WinRTInternal)
     open func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == C_IInspectable.self {
-            return UnsafeMutableRawPointer(identity?.get()).bindMemory(to: U.self, capacity: 1) ?? RawPointer(_inner)
+            return UnsafeMutableRawPointer(identity?.get())?.bindMemory(to: T.self, capacity: 1) ?? RawPointer(_inner)
         }
         if T.self == C_IUnknown.self {
-            return UnsafeMutableRawPointer(identity?.get()).bindMemory(to: U.self, capacity: 1) ?? RawPointer(_inner)
+            return UnsafeMutableRawPointer(identity?.get())?.bindMemory(to: T.self, capacity: 1) ?? RawPointer(_inner)
         }
         return nil
     }

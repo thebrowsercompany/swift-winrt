@@ -22,3 +22,20 @@ extension IUnknown {
     return try body(pThis)
   }
 }
+
+extension IUnknown {
+  public static func CreateInstance<Interface: IUnknown>(`class` clsid: CLSID,
+                                                         outer pUnkOuter: IUnknown? = nil,
+                                                         context dwClsContext: CLSCTX = CLSCTX_INPROC_SERVER)
+      throws -> Interface {
+    var clsid = clsid
+    var iid = Interface.IID
+
+    let (instance) = try ComPtrs.initialize(to: C_IUnknown.self) { instanceAbi in
+        try CHECKED(CoCreateInstance(&clsid, RawPointer(pUnkOuter), DWORD(dwClsContext.rawValue), &iid, &instanceAbi))
+    }
+    // https://learn.microsoft.com/en-us/windows/win32/api/combaseapi/nf-combaseapi-cocreateinstance
+    // "Upon successful return, *ppv contains the requested interface pointer."
+    return try instance!.queryInterface()
+  }
+}

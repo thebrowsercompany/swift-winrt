@@ -10,12 +10,15 @@ import Foundation
 // keep a strong ref to the swift object, but it forwards all AddRef/Release calls from WinRT
 // to the swift object, to ensure it doesn't get cleaned up. The Swift object in turn holds a strong
 // reference to this object so that it stays alive.
-public final class WinRTClassWeakReference<Class: WinRTClass>: CustomQueryInterface {
+@_spi(WinRTInternal)
+public final class WinRTClassWeakReference<Class: WinRTClass> {
     fileprivate weak var instance: Class?
     public init(_ instance: Class){
         self.instance = instance
     }
+}
 
+extension WinRTClassWeakReference: CustomQueryInterface {
     @_spi(WinRTImplements)
     public func queryInterface(_ iid: SUPPORT_MODULE.IID) -> IUnknownRef? {
         guard let instance else { return nil }
@@ -26,10 +29,8 @@ public final class WinRTClassWeakReference<Class: WinRTClass>: CustomQueryInterf
 extension WinRTClassWeakReference: CustomAddRef {
     func addRef() {
         guard let instance else { return }
-        _ = Unmanaged.passRetained(instance)
-        // WIN-940: The below line is unnecessary, but it seems like this whole method is compiled out
-        // in release builds without it.
-        _ = _getRetainCount(instance)
+        let unmanaged = Unmanaged.passUnretained(instance)
+        _ = unmanaged.retain()
     }
 
     func release() {
@@ -39,6 +40,7 @@ extension WinRTClassWeakReference: CustomAddRef {
     }
 }
 
+@_spi(WinRTInternal)
 public protocol ComposableImpl<Class> : AbiInterfaceBridge where SwiftABI: IInspectable, SwiftProjection: WinRTClassWeakReference<Class>  {
     associatedtype Class: WinRTClass
     associatedtype Default : AbiInterface where Default.SwiftABI: SUPPORT_MODULE.IInspectable
@@ -62,6 +64,7 @@ public protocol ComposableImpl<Class> : AbiInterfaceBridge where SwiftABI: IInsp
 // |---------------|---------------------------|-------------------------|--------------------------|
 // |  Yes          |  self                     |  stored on swift object |  ignored or stored       |
 // |  No           |  nil                      |  ignored                |  stored on swift object  |
+@_spi(WinRTInternal)
 public func MakeComposed<Composable: ComposableImpl>(
     composing: Composable.Type,
     _ this: Composable.Class,
@@ -84,6 +87,7 @@ public func MakeComposed<Composable: ComposableImpl>(
     this._inner = aggregated ? innerInsp : base
 }
 
+@_spi(WinRTInternal)
 public class UnsealedWinRTClassWrapper<Composable: ComposableImpl> : WinRTAbiBridgeWrapper<Composable> {
     override public class var IID: SUPPORT_MODULE.IID { Composable.SwiftABI.IID }
     public init?(_ impl: Composable.Class?) {
