@@ -6,7 +6,8 @@ import C_BINDINGS_MODULE
 
 // and the semantics of it are meant to mirror that of the ComPtr class in WRL. The
 // design of ComPtr and ComPtrs.intialize is that there should be no use of UnsafeMutablePointer
-// any where else in the code base.  The only place where UnsafeMutablePointer should be used is
+// anywhere else in the code base.  The only place where UnsafeMutablePointer should be used is
+
 // where it's required at the ABI boundary.
 public class ComPtr<CInterface> {
     fileprivate var pUnk: UnsafeMutablePointer<CInterface>?
