@@ -40,6 +40,10 @@ extension WinRTClassWeakReference: CustomAddRef {
     }
 }
 
+extension WinRTClassWeakReference: AnyObjectWrapper {
+    var obj: AnyObject? { instance }
+}
+
 @_spi(WinRTInternal)
 public protocol ComposableImpl<Class> : AbiInterfaceBridge where SwiftABI: IInspectable, SwiftProjection: WinRTClassWeakReference<Class>  {
     associatedtype Class: WinRTClass
@@ -95,7 +99,7 @@ public class UnsealedWinRTClassWrapper<Composable: ComposableImpl> : WinRTAbiBri
         let abi = Composable.makeAbi()
         super.init(abi, Composable.SwiftProjection(impl))
     }
-    
+
     public static func unwrapFrom(base: ComPtr<Composable.Default.CABI>) -> Composable.Class? {
         let overrides: Composable.SwiftABI = try! base.queryInterface()
         if let weakRef = tryUnwrapFrom(abi: RawPointer(overrides)) { return weakRef.instance }

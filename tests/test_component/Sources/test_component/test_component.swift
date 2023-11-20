@@ -598,6 +598,10 @@ public final class Class : WinRTClass, IBasic {
         return try! _IClassStatics.StaticTestReturnImpl()
     }
 
+    public static func takeBaseAndGiveToCallbackAsObject(_ base: Base!, _ callback: test_component.InObjectDelegate!) {
+        try! _IClassStatics.TakeBaseAndGiveToCallbackAsObjectImpl(base, callback)
+    }
+
     public static var staticProperty : Int32 {
         get { try! _IClassStatics.get_StaticPropertyImpl() }
     }

@@ -51,7 +51,7 @@ private var IID___x_ABI_Ctest__component_CIClassFactory2: test_component.IID {
 }
 
 private var IID___x_ABI_Ctest__component_CIClassStatics: test_component.IID {
-    .init(Data1: 0x2E573677, Data2: 0xD7B8, Data3: 0x5305, Data4: ( 0x8F,0x9D,0x1B,0x23,0x15,0xE3,0x77,0x8B ))// 2E573677-D7B8-5305-8F9D-1B2315E3778B
+    .init(Data1: 0x3E30803C, Data2: 0x35D4, Data3: 0x52A7, Data4: ( 0xB2,0x11,0xFD,0xC5,0xD6,0xAC,0x48,0x7B ))// 3E30803C-35D4-52A7-B211-FDC5D6AC487B
 }
 
 private var IID___x_ABI_Ctest__component_CIClassStatics2: test_component.IID {
@@ -871,6 +871,14 @@ public enum __ABI_test_component {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_StaticProperty(pThis, &value))
             }
             return value
+        }
+
+        internal func TakeBaseAndGiveToCallbackAsObjectImpl(_ base: test_component.Base?, _ callback: test_component.InObjectDelegate?) throws {
+            let callbackWrapper = __ABI_test_component_Delegates.InObjectDelegateWrapper(callback)
+            let _callback = try! callbackWrapper?.toABI { $0 }
+            _ = try perform(as: __x_ABI_Ctest__component_CIClassStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.TakeBaseAndGiveToCallbackAsObject(pThis, RawPointer(base), _callback))
+            }
         }
 
     }

@@ -6,6 +6,10 @@ private var IID___x_ABI_Ctest__component_CDelegates_CIInDelegate: test_component
     .init(Data1: 0x419EF389, Data2: 0xAF4B, Data3: 0x5676, Data4: ( 0xBC,0xEE,0xE0,0xD7,0x9A,0x5C,0xCA,0xDE ))// 419EF389-AF4B-5676-BCEE-E0D79A5CCADE
 }
 
+private var IID___x_ABI_Ctest__component_CDelegates_CIInObjectDelegate: test_component.IID {
+    .init(Data1: 0x68F889F8, Data2: 0x1A16, Data3: 0x5F6D, Data4: ( 0x8A,0x04,0x24,0x58,0x38,0xEA,0xF3,0xD4 ))// 68F889F8-1A16-5F6D-8A04-245838EAF3D4
+}
+
 private var IID___x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate: test_component.IID {
     .init(Data1: 0xBCB57CF7, Data2: 0x97F9, Data3: 0x5B38, Data4: ( 0x99,0x47,0x39,0xC5,0x14,0x92,0x20,0xF0 ))// BCB57CF7-97F9-5B38-9947-39C5149220F0
 }
@@ -47,6 +51,42 @@ extension __ABI_test_component_Delegates {
 public extension WinRTDelegateBridge where CABI == __x_ABI_Ctest__component_CDelegates_CIInDelegate {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component_Delegates.InDelegateVTable) { $0 }
+        return .init(lpVtbl:vtblPtr)
+    }
+}
+
+// MARK - InObjectDelegate
+extension __ABI_test_component_Delegates {
+    public class InObjectDelegate: test_component.IUnknown {
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CDelegates_CIInObjectDelegate }
+
+        open func InvokeImpl(_ value: Any?) throws {
+            let valueWrapper = __ABI_.AnyWrapper(value)
+            let _value = try! valueWrapper?.toABI { $0 }
+            _ = try perform(as: __x_ABI_Ctest__component_CDelegates_CIInObjectDelegate.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _value))
+            }
+        }
+
+    }
+
+
+    typealias InObjectDelegateWrapper = InterfaceWrapperBase<__IMPL_test_component_Delegates.InObjectDelegateBridge>
+    internal static var InObjectDelegateVTable: __x_ABI_Ctest__component_CDelegates_CIInObjectDelegateVtbl = .init(
+        QueryInterface: { InObjectDelegateWrapper.queryInterface($0, $1, $2) },
+        AddRef: { InObjectDelegateWrapper.addRef($0) },
+        Release: { InObjectDelegateWrapper.release($0) },
+        Invoke: {
+            guard let __unwrapped__instance = InObjectDelegateWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let value: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: ComPtr($1))
+            __unwrapped__instance(value)
+            return S_OK
+        }
+    )
+}
+public extension WinRTDelegateBridge where CABI == __x_ABI_Ctest__component_CDelegates_CIInObjectDelegate {
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component_Delegates.InObjectDelegateVTable) { $0 }
         return .init(lpVtbl:vtblPtr)
     }
 }

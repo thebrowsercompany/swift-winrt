@@ -39,6 +39,10 @@ open class IInspectable: IUnknown {
 //      internal typealias swift_overrides = SUPPORT_MODULE.IInspectable
 // }
 // internal typealias Composable = IBaseNoOverrides
+protocol AnyObjectWrapper {
+    var obj: AnyObject? { get }
+}
+
 public enum __ABI_ {
     public class AnyWrapper : WinRTWrapperBase<C_IInspectable, AnyObject> {
       public init?(_ swift: Any?) {
@@ -65,6 +69,7 @@ public enum __ABI_ {
       public static func unwrapFrom(abi: ComPtr<C_IInspectable>?) -> Any? {
         guard let abi = abi else { return nil }
         if let instance = tryUnwrapFrom(abi: abi) {
+          if let weakRef = instance as? AnyObjectWrapper { return weakRef.obj }
           return instance
         }
 

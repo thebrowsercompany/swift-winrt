@@ -129,7 +129,7 @@ namespace winrt::test_component::implementation
 
         Fruit EnumProperty() const;
         void EnumProperty(Fruit const& value);
-        
+
         void NoexceptVoid() noexcept;
         int32_t NoexceptInt32() noexcept;
         hstring NoexceptString() noexcept;
@@ -175,7 +175,7 @@ namespace winrt::test_component::implementation
 
         test_component::IBasic Implementation()
         {
-            return m_basicImpl != nullptr ? m_basicImpl : make<BasicDelegate>(); 
+            return m_basicImpl != nullptr ? m_basicImpl : make<BasicDelegate>();
         }
         void Implementation(test_component::IBasic const& value)
         {
@@ -190,7 +190,7 @@ namespace winrt::test_component::implementation
         }
 
         Windows::Foundation::IReference<int32_t> StartValue() { return m_startValue; }
-        void StartValue(Windows::Foundation::IReference<int32_t> const& value) { 
+        void StartValue(Windows::Foundation::IReference<int32_t> const& value) {
             m_startValue = value;
             if (m_startValue)
             {
@@ -210,6 +210,7 @@ namespace winrt::test_component::implementation
         test_component::BaseNoOverrides BaseNoOverridesProperty() { return m_baseNoOverrides; }
         void BaseNoOverridesProperty(test_component::BaseNoOverrides const& value) { m_baseNoOverrides = value; }
 
+        static void TakeBaseAndGiveToCallbackAsObject(test_component::Base const& base, test_component::Delegates::InObjectDelegate const& callback) { callback(base);}
     private:
         static float s_float;
         bool m_fail{};
@@ -236,7 +237,7 @@ namespace winrt::test_component::implementation
         test_component::BaseNoOverrides m_baseNoOverrides { nullptr };
     };
 
-    
+
     struct DeferrableEventArgs : DeferrableEventArgsT<DeferrableEventArgs>, deferrable_event_args<DeferrableEventArgs>
     {
         DeferrableEventArgs() = default;
