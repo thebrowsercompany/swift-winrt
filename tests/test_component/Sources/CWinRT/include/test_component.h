@@ -2147,6 +2147,12 @@ typedef interface __x_ABI_Ctest__component_CDelegates_CIInDelegate __x_ABI_Ctest
 
 #endif // ____x_ABI_Ctest__component_CDelegates_CIInDelegate_FWD_DEFINED__
 
+    #ifndef ____x_ABI_Ctest__component_CDelegates_CIInObjectDelegate_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CDelegates_CIInObjectDelegate_FWD_DEFINED__
+typedef interface __x_ABI_Ctest__component_CDelegates_CIInObjectDelegate __x_ABI_Ctest__component_CDelegates_CIInObjectDelegate;
+
+#endif // ____x_ABI_Ctest__component_CDelegates_CIInObjectDelegate_FWD_DEFINED__
+
     #ifndef ____x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate_FWD_DEFINED__
 #define ____x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate_FWD_DEFINED__
 typedef interface __x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate __x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate;
@@ -2871,6 +2877,9 @@ struct __x_ABI_Ctest__component_CStructWithEnum
         INT32* result);
     HRESULT (STDMETHODCALLTYPE* get_StaticProperty)(__x_ABI_Ctest__component_CIClassStatics* This,
         INT32* value);
+    HRESULT (STDMETHODCALLTYPE* TakeBaseAndGiveToCallbackAsObject)(__x_ABI_Ctest__component_CIClassStatics* This,
+        __x_ABI_Ctest__component_CIBase* base,
+        __x_ABI_Ctest__component_CDelegates_CIInObjectDelegate* callback);
 
         END_INTERFACE
     } __x_ABI_Ctest__component_CIClassStaticsVtbl;

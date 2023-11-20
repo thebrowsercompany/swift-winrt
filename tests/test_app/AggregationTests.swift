@@ -131,6 +131,15 @@ class AggregationTests : XCTestCase {
     // calling it directly on the AppDerived type won't
     XCTAssertEqual(runtimeClassName(appDerived), "test_component.Base")
   }
+
+  public func testAggregatedObjectUnwrappedAsAny() throws {
+    let derived = AppDerived()
+    Class.takeBaseAndGiveToCallbackAsObject(derived) { sender in
+      let base = sender as? AppDerived
+      XCTAssertNotNil(derived)
+      XCTAssertIdentical(base, derived)
+    }
+  }
 }
 
 var aggregationTests: [XCTestCaseEntry] = [
@@ -147,5 +156,6 @@ var aggregationTests: [XCTestCaseEntry] = [
     ("testUnwrappingAppImplementedComposedFromDerivedNoOverrides", AggregationTests.testUnwrappingAppImplementedComposedFromDerivedNoOverrides),
     ("testCustomConstructorOnUnsealedType", AggregationTests.testCustomConstructorOnUnsealedType),
     ("testGetRuntimeClassNameReturnsBase", AggregationTests.testGetRuntimeClassNameReturnsBase),
+    ("testAggregatedObjectUnwrappedAsAny", AggregationTests.testAggregatedObjectUnwrappedAsAny),
   ])
 ]

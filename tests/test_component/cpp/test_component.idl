@@ -65,6 +65,7 @@ namespace test_component
             delegate Int32 ReturnInt32Delegate();
             delegate void OutStringDelegate(out String value);
             delegate void OutInt32Delegate(out Int32 value);
+            delegate void InObjectDelegate(Object value);
             //  delegate String[] ReturnStringArrayDelegate();
             //  delegate void OutStringArrayDelegate(out String[] value);
             //  delegate void RefStringArrayDelegate(ref String[] value);
@@ -298,6 +299,7 @@ namespace test_component
 
             Base BaseProperty;
             BaseNoOverrides BaseNoOverridesProperty;
+            static void TakeBaseAndGiveToCallbackAsObject(Base base, test_component.Delegates.InObjectDelegate callback);
         }
 
         static runtimeclass StaticClass
@@ -307,7 +309,6 @@ namespace test_component
             static String InNonBlittableStruct(NonBlittableStruct value);
 
             static void TakeBase(Base base);
-
         }
         //namespace Structs
         //

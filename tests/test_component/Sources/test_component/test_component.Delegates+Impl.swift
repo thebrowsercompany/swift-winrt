@@ -17,6 +17,20 @@ public enum __IMPL_test_component_Delegates {
             return handler
         }
     }
+    public class InObjectDelegateBridge : WinRTDelegateBridge {
+        public typealias Handler = InObjectDelegate
+        public typealias CABI = __x_ABI_Ctest__component_CDelegates_CIInObjectDelegate
+        public typealias SwiftABI = __ABI_test_component_Delegates.InObjectDelegate
+
+        public static func from(abi: ComPtr<CABI>?) -> Handler? {
+            guard let abi = abi else { return nil }
+            let _default = SwiftABI(abi)
+            let handler: Handler = { (value) in
+                try! _default.InvokeImpl(value)
+            }
+            return handler
+        }
+    }
     public class ReturnInt32DelegateBridge : WinRTDelegateBridge {
         public typealias Handler = ReturnInt32Delegate
         public typealias CABI = __x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate

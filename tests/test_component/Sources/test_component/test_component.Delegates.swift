@@ -3,5 +3,6 @@
 import Ctest_component
 
 public typealias InDelegate = (String) -> ()
+public typealias InObjectDelegate = (Any?) -> ()
 public typealias ReturnInt32Delegate = () -> Int32
 public typealias SignalDelegate = () -> ()
