@@ -26,7 +26,7 @@ internal class ArrayVector<T> : IVector {
     func clear() { storage.removeAll() }
     func getView() -> AnyIVectorView<T>? { return ArrayVectorView(storage) }
 
-    func first() -> AnyIIterator<T>? { fatalError("Not implemented: ArrayVector.First") }
+    func first() -> AnyIIterator<T>? { ArrayIterator(storage) }
 }
 
 extension ArrayVector where T: Equatable {
@@ -51,7 +51,7 @@ internal class ArrayVectorView<T> : IVectorView {
     var size : UInt32 { UInt32(storage.count) }
     func indexOf(_ item: T, _ index: inout UInt32) -> Bool  { return false }
 
-    func first() -> AnyIIterator<T>? { fatalError("Not implemented: ArrayVector.First") }
+    func first() -> AnyIIterator<T>? { ArrayIterator(storage) }
 }
 
 extension ArrayVectorView where T: Equatable {
@@ -64,4 +64,18 @@ extension ArrayVectorView where T: Equatable {
 
 extension ArrayVectorView {
     public func queryInterface(_ iid: SUPPORT_MODULE.IID) -> IUnknownRef? { nil }
+}
+
+class ArrayIterator<T>: IIterator {
+    typealias Element = T
+    private let storage: Array<T>
+    private var index: Int = 0
+    init(_ storage: Array<T>){
+        self.storage = storage
+    }
+    func moveNext() -> Bool { index += 1; return index < storage.count }
+    var current: T { storage[index] }
+    var hasCurrent: Bool { index < storage.count }
+
+    func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
 }
