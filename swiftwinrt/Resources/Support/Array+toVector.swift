@@ -68,7 +68,7 @@ extension ArrayVectorView {
 
 class ArrayIterator<T>: IIterator {
     typealias Element = T
-    private var storage: Array<T>
+    private let storage: Array<T>
     private var index: Int = 0
     init(_ storage: Array<T>){
         self.storage = storage
