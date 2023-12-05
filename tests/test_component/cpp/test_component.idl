@@ -443,7 +443,7 @@ namespace test_component
         }
 
 
-        runtimeclass BaseCollection : [default] IVector<Base>
+        unsealed runtimeclass BaseCollection : [default] IVector<Base>
         {
         }
 

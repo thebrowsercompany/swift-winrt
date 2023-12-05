@@ -170,13 +170,13 @@ open class Base : WinRTClass {
     }
 }
 
-public final class BaseCollection : WinRTClass, IVector, IIterable {
+open class BaseCollection : WinRTClass, IVector, IIterable {
     public typealias T = Base?
-    private typealias SwiftABI = IVectorBase
+    private typealias SwiftABI = test_component.IVectorBase
     private typealias CABI = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase
     private lazy var _default: SwiftABI! = getInterfaceForCaching()
     @_spi(WinRTInternal)
-    override public func _getABI<T>() -> UnsafeMutablePointer<T>? {
+    override open func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if T.self == CABI.self {
             return RawPointer(_default)
         }
@@ -186,7 +186,7 @@ public final class BaseCollection : WinRTClass, IVector, IIterable {
     @_spi(WinRTInternal)
     public static func from(abi: ComPtr<__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase>?) -> BaseCollection? {
         guard let abi = abi else { return nil }
-        return .init(fromAbi: test_component.IInspectable(abi))
+        return UnsealedWinRTClassWrapper<Composable>.unwrapFrom(base: abi)
     }
 
     @_spi(WinRTInternal)
@@ -194,9 +194,19 @@ public final class BaseCollection : WinRTClass, IVector, IIterable {
         super.init(fromAbi)
     }
 
-    override public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+    @_spi(WinRTInternal)
+    public init<Composable: ComposableImpl>(
+        composing: Composable.Type,
+        _ createCallback: (UnsealedWinRTClassWrapper<Composable>?, inout test_component.IInspectable?) -> Composable.Default.SwiftABI)
+    {
+        super.init()
+        MakeComposed(composing: composing, (self as! Composable.Class), createCallback)
+    }
+    override open func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return super.queryInterface(iid)
     }
+    private static var _IBaseCollectionFactory : __ABI_test_component.IBaseCollectionFactory =  try! RoGetActivationFactory(HString("test_component.BaseCollection"))
+
     // MARK: Collection
     public typealias Element = T
     public var startIndex: Int { 0 }
@@ -273,6 +283,17 @@ public final class BaseCollection : WinRTClass, IVector, IIterable {
         try! _IIterable.FirstImpl()
     }
 
+    internal enum IVectorBase : ComposableImpl {
+        internal typealias CABI = C_IInspectable
+        internal typealias SwiftABI = test_component.IInspectable
+        internal typealias Class = BaseCollection
+        internal typealias SwiftProjection = WinRTClassWeakReference<Class>
+        internal enum Default : AbiInterface {
+            internal typealias CABI = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase
+            internal typealias SwiftABI = test_component.IVectorBase
+        }
+    }
+    internal typealias Composable = IVectorBase
     deinit {
         _default = nil
         _IIterable = nil
@@ -283,7 +304,7 @@ public final class BaseMapCollection : WinRTClass, IMap, IIterable {
     public typealias K = String
     public typealias V = Base?
     public typealias T = AnyIKeyValuePair<String, Base?>?
-    private typealias SwiftABI = IMapString_Base
+    private typealias SwiftABI = test_component.IMapString_Base
     private typealias CABI = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
     private lazy var _default: SwiftABI! = getInterfaceForCaching()
     @_spi(WinRTInternal)
@@ -408,7 +429,7 @@ open class BaseNoOverrides : WinRTClass {
 
 public final class BaseObservableCollection : WinRTClass, IObservableVector, IVector, IIterable {
     public typealias T = Base?
-    private typealias SwiftABI = IObservableVectorBase
+    private typealias SwiftABI = test_component.IObservableVectorBase
     private typealias CABI = __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase
     private lazy var _default: SwiftABI! = getInterfaceForCaching()
     @_spi(WinRTInternal)

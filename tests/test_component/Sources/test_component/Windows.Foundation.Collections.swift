@@ -107,7 +107,7 @@ public final class StringMap : WinRTClass, IMap, IIterable, IObservableMap {
     public typealias K = String
     public typealias V = String
     public typealias T = AnyIKeyValuePair<String, String>?
-    private typealias SwiftABI = IMapString_String
+    private typealias SwiftABI = test_component.IMapString_String
     private typealias CABI = __x_ABI_C__FIMap_2_HSTRING_HSTRING
     private lazy var _default: SwiftABI! = getInterfaceForCaching()
     @_spi(WinRTInternal)
