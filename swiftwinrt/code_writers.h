@@ -402,7 +402,7 @@ namespace swiftwinrt
                 auto full_names = w.push_full_type_names(true);
 
                 auto returnStatement = isInitializer ?
-                    w.write_temp(" -> %", bind_type_abi(classType)) :
+                    w.write_temp(" -> %", bind_type_abi(classType->default_interface)) :
                     w.write_temp("%", bind<write_return_type_declaration>(function, write_type_params::swift));
 
                 std::vector<function_param> params = composableFactory ? get_projected_params(factory_info.value(), function) : function.params;
@@ -455,6 +455,7 @@ bind<write_abi_args>(function));
                         w.write("}\n");
                     }
 
+                    
                     if (function.return_type && !isInitializer)
                     {
                         w.write("%\n", bind<write_consume_return_statement>(function));
@@ -2166,42 +2167,51 @@ public init<Composable: ComposableImpl>(
     internal typealias SwiftProjection = WinRTClassWeakReference<Class>
     internal enum Default : AbiInterface {
         internal typealias CABI = %
-        internal typealias SwiftABI = %.%
+        internal typealias SwiftABI = %
     }
 }
 )";
 
+        auto composableName = w.write_temp("%", bind_type_abi(overrides));
         // If we're composing a type without any overrides, then we'll just create an IInspectable vtable which wraps
         // this object and provides facilities for reference counting and getting the class name of the swift object.
         w.write(format,
-            overrides.swift_type_name(),
+            composableName,
             bind([&](writer& w) {
-                    if (use_iinspectable_vtable)
-                    {
-                        write_type_mangled(w, ElementType::Object);
-                    }
-                    else
-                    {
-                        write_type_mangled(w, overrides);
-                    }}),
+                if (use_iinspectable_vtable)
+                {
+                    write_type_mangled(w, ElementType::Object);
+                }
+                else
+                {
+                    write_type_mangled(w, overrides);
+                }}),
             bind([&](writer& w) {
-                    if (use_iinspectable_vtable)
-                    {
-                        w.write("%.IInspectable", w.support);
-                    }
-                    else
-                    {
-                        w.write("%.%", abi_namespace(overrides), overrides.swift_type_name());
-                    }}),
+                if (use_iinspectable_vtable)
+                {
+                    w.write("%.IInspectable", w.support);
+                }
+                else
+                {
+                    w.write("%.%", abi_namespace(overrides), composableName);
+                }}),
             parent,
             bind_type_mangled(default_interface),
-            abi_namespace(parent),
-            default_interface);
+            bind([&](writer& w) {
+                if (is_generic_inst(overrides))
+                {
+                    w.write("%.%", w.swift_module, composableName);
+                }
+                else
+                {
+                    w.write("%.%", abi_namespace(parent), default_interface);
+                }
+            }));
 
         if (compose)
         {
             auto modifier = parent.is_composable() ? "open" : "public";
-            w.write("internal typealias Composable = %\n", overrides.swift_type_name());
+            w.write("internal typealias Composable = %\n", composableName);
         }
     }
 
@@ -2317,7 +2327,7 @@ public init<Composable: ComposableImpl>(
             {
                 auto generic_type = dynamic_cast<const generic_inst*>(default_interface);
                 guard = w.push_generic_params(*generic_type);
-                swiftAbi = w.write_temp("%", bind_type_abi(generic_type));
+                swiftAbi = w.write_temp("%.%", w.swift_module, bind_type_abi(generic_type));
             }
 
             auto modifier = composable ? "open" : "public";

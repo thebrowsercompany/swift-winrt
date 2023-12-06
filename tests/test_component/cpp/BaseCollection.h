@@ -22,3 +22,11 @@ namespace winrt::test_component::implementation
         void ReplaceAll(array_view<test_component::Base const> items);
     };
 }
+
+
+namespace winrt::test_component::factory_implementation
+{
+    struct BaseCollection : BaseCollectionT<BaseCollection, implementation::BaseCollection>
+    {
+    };
+}

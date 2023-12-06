@@ -47,6 +47,12 @@ typedef interface __x_ABI_Ctest__component_CIVoidToVoidDelegate __x_ABI_Ctest__c
 
 #endif // ____x_ABI_Ctest__component_CIBase_FWD_DEFINED__
 
+#ifndef ____x_ABI_Ctest__component_CIBaseCollectionProtectedFactory_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CIBaseCollectionProtectedFactory_FWD_DEFINED__
+    typedef interface __x_ABI_Ctest__component_CIBaseCollectionProtectedFactory __x_ABI_Ctest__component_CIBaseCollectionProtectedFactory;
+
+#endif // ____x_ABI_Ctest__component_CIBaseCollectionProtectedFactory_FWD_DEFINED__
+
 #ifndef ____x_ABI_Ctest__component_CIBaseNoOverrides_FWD_DEFINED__
 #define ____x_ABI_Ctest__component_CIBaseNoOverrides_FWD_DEFINED__
     typedef interface __x_ABI_Ctest__component_CIBaseNoOverrides __x_ABI_Ctest__component_CIBaseNoOverrides;
@@ -2472,6 +2478,41 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     
     EXTERN_C const IID IID___x_ABI_Ctest__component_CIBase;
 #endif /* !defined(____x_ABI_Ctest__component_CIBase_INTERFACE_DEFINED__) */
+    
+#if !defined(____x_ABI_Ctest__component_CIBaseCollectionProtectedFactory_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CIBaseCollectionProtectedFactory_INTERFACE_DEFINED__
+    typedef struct __x_ABI_Ctest__component_CIBaseCollectionProtectedFactoryVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CIBaseCollectionProtectedFactory* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CIBaseCollectionProtectedFactory* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CIBaseCollectionProtectedFactory* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_Ctest__component_CIBaseCollectionProtectedFactory* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_Ctest__component_CIBaseCollectionProtectedFactory* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CIBaseCollectionProtectedFactory* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* CreateInstance)(__x_ABI_Ctest__component_CIBaseCollectionProtectedFactory* This,
+        IInspectable* baseInterface,
+        IInspectable** innerInterface,
+        __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase** value);
+
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CIBaseCollectionProtectedFactoryVtbl;
+
+    interface __x_ABI_Ctest__component_CIBaseCollectionProtectedFactory
+    {
+        CONST_VTBL struct __x_ABI_Ctest__component_CIBaseCollectionProtectedFactoryVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CIBaseCollectionProtectedFactory;
+#endif /* !defined(____x_ABI_Ctest__component_CIBaseCollectionProtectedFactory_INTERFACE_DEFINED__) */
     
 #if !defined(____x_ABI_Ctest__component_CIBaseNoOverrides_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIBaseNoOverrides_INTERFACE_DEFINED__

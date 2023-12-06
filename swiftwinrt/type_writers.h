@@ -497,10 +497,18 @@ namespace swiftwinrt
                     }
                 }
             }
-            // In generics, don't use the ABI name or we get IVectorIBase instead of IVectorBase
-            else if (abi_types && !writing_generic)
+            else if (abi_types)
             {
-                write(type->cpp_abi_name());
+                // In generics, don't use the ABI name or we get IVectorIBase instead of IVectorBase
+                if (!writing_generic)
+                {
+                    write(type->cpp_abi_name());
+                }
+                else
+                {
+                    // Otherwise, write the swift type name when writing a swift abi generic type
+                    write(type->swift_type_name());
+                }
             }
             else if (type->swift_logical_namespace() != type_namespace || full_type_names)
             {
