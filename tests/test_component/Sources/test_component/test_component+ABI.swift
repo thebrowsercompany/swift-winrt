@@ -18,8 +18,8 @@ private var IID___x_ABI_Ctest__component_CIBase: test_component.IID {
     .init(Data1: 0xE9FE0BB2, Data2: 0xE1F6, Data3: 0x5E39, Data4: ( 0x92,0xBB,0x2F,0x19,0xFF,0xDE,0x3F,0xDC ))// E9FE0BB2-E1F6-5E39-92BB-2F19FFDE3FDC
 }
 
-private var IID___x_ABI_Ctest__component_CIBaseCollectionFactory: test_component.IID {
-    .init(Data1: 0xD6996627, Data2: 0x615A, Data3: 0x565D, Data4: ( 0x85,0xF2,0x04,0x69,0x6E,0xD2,0x88,0xD0 ))// D6996627-615A-565D-85F2-04696ED288D0
+private var IID___x_ABI_Ctest__component_CIBaseCollectionProtectedFactory: test_component.IID {
+    .init(Data1: 0xB5581456, Data2: 0xA980, Data3: 0x5851, Data4: ( 0xAD,0xA4,0x0A,0x7B,0x27,0x0F,0x6C,0xD9 ))// B5581456-A980-5851-ADA4-0A7B270F6CD9
 }
 
 private var IID___x_ABI_Ctest__component_CIBaseNoOverrides: test_component.IID {
@@ -354,8 +354,21 @@ public enum __ABI_test_component {
 
     }
 
-    public class IBaseCollectionFactory: test_component.IInspectable {
-        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseCollectionFactory }
+    public class IBaseCollectionProtectedFactory: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseCollectionProtectedFactory }
+
+        internal func CreateInstanceImpl(_ baseInterface: UnsealedWinRTClassWrapper<test_component.BaseCollection.Composable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IVectorBase {
+            let (value) = try ComPtrs.initialize { valueAbi in
+                let _baseInterface = baseInterface?.toIInspectableABI { $0 }
+                let (_innerInterface) = try ComPtrs.initialize { _innerInterfaceAbi in
+                    _ = try perform(as: __x_ABI_Ctest__component_CIBaseCollectionProtectedFactory.self) { pThis in
+                        try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, _baseInterface, &_innerInterfaceAbi, &valueAbi))
+                    }
+                }
+                innerInterface = test_component.IInspectable(_innerInterface!)
+            }
+            return IVectorBase(value!)
+        }
 
     }
 

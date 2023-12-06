@@ -47,11 +47,11 @@ typedef interface __x_ABI_Ctest__component_CIVoidToVoidDelegate __x_ABI_Ctest__c
 
 #endif // ____x_ABI_Ctest__component_CIBase_FWD_DEFINED__
 
-#ifndef ____x_ABI_Ctest__component_CIBaseCollectionFactory_FWD_DEFINED__
-#define ____x_ABI_Ctest__component_CIBaseCollectionFactory_FWD_DEFINED__
-    typedef interface __x_ABI_Ctest__component_CIBaseCollectionFactory __x_ABI_Ctest__component_CIBaseCollectionFactory;
+#ifndef ____x_ABI_Ctest__component_CIBaseCollectionProtectedFactory_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CIBaseCollectionProtectedFactory_FWD_DEFINED__
+    typedef interface __x_ABI_Ctest__component_CIBaseCollectionProtectedFactory __x_ABI_Ctest__component_CIBaseCollectionProtectedFactory;
 
-#endif // ____x_ABI_Ctest__component_CIBaseCollectionFactory_FWD_DEFINED__
+#endif // ____x_ABI_Ctest__component_CIBaseCollectionProtectedFactory_FWD_DEFINED__
 
 #ifndef ____x_ABI_Ctest__component_CIBaseNoOverrides_FWD_DEFINED__
 #define ____x_ABI_Ctest__component_CIBaseNoOverrides_FWD_DEFINED__
@@ -2479,36 +2479,40 @@ struct __x_ABI_Ctest__component_CStructWithEnum
     EXTERN_C const IID IID___x_ABI_Ctest__component_CIBase;
 #endif /* !defined(____x_ABI_Ctest__component_CIBase_INTERFACE_DEFINED__) */
     
-#if !defined(____x_ABI_Ctest__component_CIBaseCollectionFactory_INTERFACE_DEFINED__)
-    #define ____x_ABI_Ctest__component_CIBaseCollectionFactory_INTERFACE_DEFINED__
-    typedef struct __x_ABI_Ctest__component_CIBaseCollectionFactoryVtbl
+#if !defined(____x_ABI_Ctest__component_CIBaseCollectionProtectedFactory_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CIBaseCollectionProtectedFactory_INTERFACE_DEFINED__
+    typedef struct __x_ABI_Ctest__component_CIBaseCollectionProtectedFactoryVtbl
     {
         BEGIN_INTERFACE
 
-        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CIBaseCollectionFactory* This,
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CIBaseCollectionProtectedFactory* This,
             REFIID riid,
             void** ppvObject);
-        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CIBaseCollectionFactory* This);
-        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CIBaseCollectionFactory* This);
-        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_Ctest__component_CIBaseCollectionFactory* This,
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CIBaseCollectionProtectedFactory* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CIBaseCollectionProtectedFactory* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_Ctest__component_CIBaseCollectionProtectedFactory* This,
             ULONG* iidCount,
             IID** iids);
-        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_Ctest__component_CIBaseCollectionFactory* This,
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_Ctest__component_CIBaseCollectionProtectedFactory* This,
             HSTRING* className);
-        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CIBaseCollectionFactory* This,
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CIBaseCollectionProtectedFactory* This,
             TrustLevel* trustLevel);
-    
-        END_INTERFACE
-    } __x_ABI_Ctest__component_CIBaseCollectionFactoryVtbl;
+        HRESULT (STDMETHODCALLTYPE* CreateInstance)(__x_ABI_Ctest__component_CIBaseCollectionProtectedFactory* This,
+        IInspectable* baseInterface,
+        IInspectable** innerInterface,
+        __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase** value);
 
-    interface __x_ABI_Ctest__component_CIBaseCollectionFactory
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CIBaseCollectionProtectedFactoryVtbl;
+
+    interface __x_ABI_Ctest__component_CIBaseCollectionProtectedFactory
     {
-        CONST_VTBL struct __x_ABI_Ctest__component_CIBaseCollectionFactoryVtbl* lpVtbl;
+        CONST_VTBL struct __x_ABI_Ctest__component_CIBaseCollectionProtectedFactoryVtbl* lpVtbl;
     };
 
     
-    EXTERN_C const IID IID___x_ABI_Ctest__component_CIBaseCollectionFactory;
-#endif /* !defined(____x_ABI_Ctest__component_CIBaseCollectionFactory_INTERFACE_DEFINED__) */
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CIBaseCollectionProtectedFactory;
+#endif /* !defined(____x_ABI_Ctest__component_CIBaseCollectionProtectedFactory_INTERFACE_DEFINED__) */
     
 #if !defined(____x_ABI_Ctest__component_CIBaseNoOverrides_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIBaseNoOverrides_INTERFACE_DEFINED__

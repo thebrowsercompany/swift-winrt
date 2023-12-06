@@ -205,7 +205,14 @@ open class BaseCollection : WinRTClass, IVector, IIterable {
     override open func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return super.queryInterface(iid)
     }
-    private static var _IBaseCollectionFactory : __ABI_test_component.IBaseCollectionFactory =  try! RoGetActivationFactory(HString("test_component.BaseCollection"))
+    private static var _IBaseCollectionProtectedFactory : __ABI_test_component.IBaseCollectionProtectedFactory =  try! RoGetActivationFactory(HString("test_component.BaseCollection"))
+
+    override public init() {
+        super.init()
+        MakeComposed(composing: Self.Composable.self, self) { baseInterface, innerInterface in 
+            try! Self._IBaseCollectionProtectedFactory.CreateInstanceImpl(baseInterface, &innerInterface)
+        }
+    }
 
     // MARK: Collection
     public typealias Element = T

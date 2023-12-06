@@ -402,7 +402,7 @@ namespace swiftwinrt
                 auto full_names = w.push_full_type_names(true);
 
                 auto returnStatement = isInitializer ?
-                    w.write_temp(" -> %", bind_type_abi(classType)) :
+                    w.write_temp(" -> %", bind_type_abi(classType->default_interface)) :
                     w.write_temp("%", bind<write_return_type_declaration>(function, write_type_params::swift));
 
                 std::vector<function_param> params = composableFactory ? get_projected_params(factory_info.value(), function) : function.params;
@@ -455,6 +455,7 @@ bind<write_abi_args>(function));
                         w.write("}\n");
                     }
 
+                    
                     if (function.return_type && !isInitializer)
                     {
                         w.write("%\n", bind<write_consume_return_statement>(function));

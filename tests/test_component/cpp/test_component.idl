@@ -443,8 +443,10 @@ namespace test_component
         }
 
 
+        // unsealed to verify composable type names for generic default interfaces
         unsealed runtimeclass BaseCollection : [default] IVector<Base>
         {
+            protected BaseCollection();
         }
 
         runtimeclass BaseMapCollection : [default] IMap<String, Base>
