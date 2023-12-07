@@ -27,10 +27,9 @@ extension HWND {
 
 extension WCHAR {
   public init(from val: Character) {
-    let value = try! String(val).withWideChars {
-      $0[0]
-    }
-    self.init(value);
+    // FIXME(compnerd) this needs to be a failable initializer as there may be a
+    // surrogate pair required.
+    self.init(val.utf16.first!)
   }
 }
 
