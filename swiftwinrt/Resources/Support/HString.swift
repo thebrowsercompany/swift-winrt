@@ -2,16 +2,18 @@
 // SPDX-License-Identifier: BSD-3
 
 import C_BINDINGS_MODULE
+import Foundation
+import ucrt
 
 @_fixed_layout
 final public class HString {
   internal private(set) var hString: HSTRING?
   
   public init(_ string: String) throws {
-    self.hString = try string.withWideChars {
-      var out: HSTRING?
-      try CHECKED(WindowsCreateString($0, UINT32(string.count), &out))
-      return out
+    self.hString = try string.withCString(encodedAs: UTF16.self) {
+      var result: HSTRING?
+      try CHECKED(WindowsCreateString($0, UINT32(wcslen($0)), &result))
+      return result
     }
   }
 
