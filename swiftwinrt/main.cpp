@@ -447,6 +447,12 @@ Where <spec> is one or more of:
         catch (std::exception const& e)
         {
             w.write("swiftwinrt : error %\n", e.what());
+            if (settings.log && !log_file.empty())
+            {
+                // We're logging the error to a log file,
+                // but also print it to simplify diagnosing build errors.
+                fprintf(stderr, "error: %s", e.what());
+            }
             result = 1;
         }
 
