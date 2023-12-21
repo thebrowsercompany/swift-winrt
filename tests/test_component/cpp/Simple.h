@@ -71,6 +71,31 @@ namespace winrt::test_component::implementation
             m_nonBlittableStruct = value;
         }
 
+        test_component::StructWithIReference ReturnStructWithReference()
+        {
+            winrt::Windows::Foundation::IReference<int32_t> value1 = 4;
+            winrt::Windows::Foundation::IReference<int32_t> value2 = 2;
+
+            return { value1, value2};
+        }
+
+        void TakeStructWithReference(test_component::StructWithIReference const& value)
+        {
+            if (winrt::unbox_value<int32_t>(value.Value1) != 4 && winrt::unbox_value<int32_t>(value.Value2) != 2)
+            {
+                throw hresult_not_implemented();
+            }
+        }
+
+        test_component::StructWithIReference StructWithReferenceProperty()
+        {
+            return m_structWithIReferenceStruct;
+        }
+        void StructWithReferenceProperty(test_component::StructWithIReference const& value)
+        {
+            m_structWithIReferenceStruct = value;
+        }
+
         hstring StringProperty()
         {
             return m_stringProp;
@@ -94,6 +119,7 @@ namespace winrt::test_component::implementation
         hstring m_stringProp{};
         test_component::BlittableStruct m_blittableStruct{};
         test_component::NonBlittableStruct m_nonBlittableStruct{};
+        test_component::StructWithIReference m_structWithIReferenceStruct{};
         winrt::event<test_component::Delegates::SignalDelegate> m_signalEvent;
         winrt::event<test_component::Delegates::InDelegate> m_inEvent;
         winrt::event<Windows::Foundation::TypedEventHandler<test_component::Simple, test_component::SimpleEventArgs>> m_simpleEvent;

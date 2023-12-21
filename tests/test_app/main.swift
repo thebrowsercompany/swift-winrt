@@ -71,6 +71,31 @@ class SwiftWinRTTests : XCTestCase {
     XCTAssertEqual(nonBlittableStruct.fourth, "Yay!", "not copied correctly")
   }
 
+  public func testStructWithIReference() throws {
+    let simple = Simple()
+    var structWithIReference = try simple.returnStructWithReference()
+
+    XCTAssertEqual(structWithIReference.value1, 4, "not copied correctly")
+    XCTAssertEqual(structWithIReference.value2, 2, "not copied correctly")
+    // takeStructWithReference requires the struct to have these values
+    try simple.takeStructWithReference(structWithIReference)
+
+    structWithIReference = simple.structWithReferenceProperty
+
+    XCTAssertNil(structWithIReference.value1, "not copied correctly")
+    XCTAssertNil(structWithIReference.value2, "not copied correctly")
+
+    simple.structWithReferenceProperty = StructWithIReference(value1: 4, value2: nil)
+    structWithIReference = simple.structWithReferenceProperty
+    XCTAssertEqual(structWithIReference.value1, 4, "not copied correctly")
+    XCTAssertEqual(structWithIReference.value2, nil, "not copied correctly")
+
+    simple.structWithReferenceProperty = StructWithIReference(value1: 4, value2: 2)
+    structWithIReference = simple.structWithReferenceProperty
+    XCTAssertEqual(structWithIReference.value1, 4, "not copied correctly")
+    XCTAssertEqual(structWithIReference.value2, 2, "not copied correctly")
+  }
+
   public func testEnums() throws {
     let classy = Class()
 
@@ -430,6 +455,7 @@ var tests: [XCTestCaseEntry] = [
     ("testNullValues", SwiftWinRTTests.testNullValues),
     ("testOutParams", SwiftWinRTTests.testOutParams),
     ("testStaticMethods", SwiftWinRTTests.testStaticMethods),
+    ("testStructWithIReference", SwiftWinRTTests.testStructWithIReference),
     ("testUnicode", SwiftWinRTTests.testUnicode),
     ("testErrorInfo", SwiftWinRTTests.testErrorInfo),
   ])

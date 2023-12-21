@@ -1176,6 +1176,14 @@ public final class Simple : WinRTClass {
         try _default.TakeBlittableStructImpl(value)
     }
 
+    public func returnStructWithReference() throws -> StructWithIReference {
+        try _default.ReturnStructWithReferenceImpl()
+    }
+
+    public func takeStructWithReference(_ value: StructWithIReference) throws {
+        try _default.TakeStructWithReferenceImpl(value)
+    }
+
     public func returnNonBlittableStruct() throws -> NonBlittableStruct {
         try _default.ReturnNonBlittableStructImpl()
     }
@@ -1201,6 +1209,11 @@ public final class Simple : WinRTClass {
     public var stringProperty : String {
         get { try! _default.get_StringPropertyImpl() }
         set { try! _default.put_StringPropertyImpl(newValue) }
+    }
+
+    public var structWithReferenceProperty : StructWithIReference {
+        get { try! _default.get_StructWithReferencePropertyImpl() }
+        set { try! _default.put_StructWithReferencePropertyImpl(newValue) }
     }
 
     public lazy var inEvent : Event<test_component.InDelegate> = {
@@ -1671,6 +1684,19 @@ public struct StructWithEnum: Hashable, Codable {
     }
     public static func from(abi: __x_ABI_Ctest__component_CStructWithEnum) -> StructWithEnum {
         .init(names: abi.Names)
+    }
+}
+
+public struct StructWithIReference: Hashable, Codable {
+    public var value1: Int32?
+    public var value2: Int32?
+    public init() {}
+    public init(value1: Int32?, value2: Int32?) {
+        self.value1 = value1
+        self.value2 = value2
+    }
+    public static func from(abi: __x_ABI_Ctest__component_CStructWithIReference) -> StructWithIReference {
+        .init(value1: test_component.__x_ABI_C__FIReference_1_intWrapper.unwrapFrom(abi: ComPtr(abi.Value1)), value2: test_component.__x_ABI_C__FIReference_1_intWrapper.unwrapFrom(abi: ComPtr(abi.Value2)))
     }
 }
 

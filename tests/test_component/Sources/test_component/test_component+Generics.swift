@@ -6660,7 +6660,7 @@ internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClas
     }
 }
 private var IID___x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs: test_component.IID {
-    .init(Data1: 0xa0dda56b, Data2: 0x12f6, Data3: 0x52f4, Data4: ( 0x90,0x3d,0x55,0xce,0x8f,0xa7,0x7e,0xac ))// a0dda56b-12f6-52f4-903d-55ce8fa77eac
+    .init(Data1: 0x17d0b9f7, Data2: 0xa3c3, Data3: 0x5961, Data4: ( 0x9a,0x78,0xfb,0x92,0xed,0xa1,0x58,0xc6 ))// 17d0b9f7-a3c3-5961-9a78-fb92eda158c6
 }
 
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs {

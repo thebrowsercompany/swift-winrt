@@ -103,7 +103,7 @@ private var IID___x_ABI_Ctest__component_CINullValuesStatics: test_component.IID
 }
 
 private var IID___x_ABI_Ctest__component_CISimple: test_component.IID {
-    .init(Data1: 0xBAC2883F, Data2: 0x0E80, Data3: 0x5319, Data4: ( 0x88,0xE6,0x9B,0xFE,0x73,0x3B,0x7A,0x66 ))// BAC2883F-0E80-5319-88E6-9BFE733B7A66
+    .init(Data1: 0xAE7B4545, Data2: 0xD9D0, Data3: 0x5655, Data4: ( 0xB1,0xDE,0xA0,0x7D,0xA1,0x3B,0xD8,0x9B ))// AE7B4545-D9D0-5655-B1DE-A07DA13BD89B
 }
 
 private var IID___x_ABI_Ctest__component_CISimpleDelegate: test_component.IID {
@@ -1684,6 +1684,36 @@ public enum __ABI_test_component {
             }
         }
 
+        internal func ReturnStructWithReferenceImpl() throws -> test_component.StructWithIReference {
+            var result: __x_ABI_Ctest__component_CStructWithIReference = .init()
+            _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnStructWithReference(pThis, &result))
+            }
+            return .from(abi: result)
+        }
+
+        internal func TakeStructWithReferenceImpl(_ value: test_component.StructWithIReference) throws {
+            let _value = __ABI_test_component._ABI_StructWithIReference(from: value)
+            _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.TakeStructWithReference(pThis, _value.val))
+            }
+        }
+
+        internal func get_StructWithReferencePropertyImpl() throws -> test_component.StructWithIReference {
+            var value: __x_ABI_Ctest__component_CStructWithIReference = .init()
+            _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_StructWithReferenceProperty(pThis, &value))
+            }
+            return .from(abi: value)
+        }
+
+        internal func put_StructWithReferencePropertyImpl(_ value: test_component.StructWithIReference) throws {
+            let _value = __ABI_test_component._ABI_StructWithIReference(from: value)
+            _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.put_StructWithReferenceProperty(pThis, _value.val))
+            }
+        }
+
         internal func ReturnNonBlittableStructImpl() throws -> test_component.NonBlittableStruct {
             var result: __x_ABI_Ctest__component_CNonBlittableStruct = .init()
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
@@ -2335,6 +2365,28 @@ public enum __ABI_test_component {
             WindowsDeleteString(val.First)
             WindowsDeleteString(val.Second)
             WindowsDeleteString(val.Fourth)
+        }
+    }
+    public class _ABI_StructWithIReference {
+        public var val: __x_ABI_Ctest__component_CStructWithIReference = .init()
+        public init() { }
+        public init(from swift: test_component.StructWithIReference) {
+            let Value1Wrapper = test_component.__x_ABI_C__FIReference_1_intWrapper(swift.value1)
+            Value1Wrapper?.copyTo(&val.Value1)
+            let Value2Wrapper = test_component.__x_ABI_C__FIReference_1_intWrapper(swift.value2)
+            Value2Wrapper?.copyTo(&val.Value2)
+        }
+
+        public func detach() -> __x_ABI_Ctest__component_CStructWithIReference {
+            let result = val
+            val.Value1 = nil
+            val.Value2 = nil
+            return result
+        }
+
+        deinit {
+            _ = val.Value1?.pointee.lpVtbl.pointee.Release(val.Value1)
+            _ = val.Value2?.pointee.lpVtbl.pointee.Release(val.Value2)
         }
     }
     internal typealias IBaseOverridesWrapper = UnsealedWinRTClassWrapper<test_component.Base.IBaseOverrides>

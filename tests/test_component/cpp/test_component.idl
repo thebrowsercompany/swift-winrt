@@ -57,6 +57,12 @@ namespace test_component
             SwiftifiableNames Names;
         };
 
+        struct StructWithIReference
+        {
+            Windows.Foundation.IReference<Int32> Value1;
+            Windows.Foundation.IReference<Int32> Value2;
+        };
+
         namespace Delegates
         {
             delegate void SignalDelegate();
@@ -122,6 +128,10 @@ namespace test_component
             BlittableStruct ReturnBlittableStruct();
             void TakeBlittableStruct(BlittableStruct value);
             BlittableStruct BlittableStructProperty;
+
+            StructWithIReference ReturnStructWithReference();
+            void TakeStructWithReference(StructWithIReference value);
+            StructWithIReference StructWithReferenceProperty;
 
             NonBlittableStruct ReturnNonBlittableStruct();
             void TakeNonBlittableStruct(NonBlittableStruct value);
