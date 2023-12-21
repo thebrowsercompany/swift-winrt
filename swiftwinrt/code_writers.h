@@ -455,7 +455,7 @@ bind<write_abi_args>(function));
                         w.write("}\n");
                     }
 
-                    
+
                     if (function.return_type && !isInitializer)
                     {
                         w.write("%\n", bind<write_consume_return_statement>(function));
@@ -643,10 +643,20 @@ typealias % = InterfaceWrapperBase<%>
                     if (can_write(w, field.type))
                     {
                         std::string from = std::string("swift.").append(get_swift_name(field));
-                        w.write("val.% = %\n",
-                            get_abi_name(field),
-                            bind<write_consume_type>(field.type, from, false)
-                        );
+
+                        if (is_winrt_ireference(field.type))
+                        {
+                            w.write("let %Wrapper = %(%)\n", get_abi_name(field), bind_wrapper_fullname(field.type), from);
+                            w.write("%Wrapper?.copyTo(&val.%)\n", get_abi_name(field), get_abi_name(field));
+                        }
+                        else
+                        {
+                            w.write("val.% = %\n",
+                                get_abi_name(field),
+                                bind<write_consume_type>(field.type, from, false)
+                            );
+                        }
+
                     }
 
                 }
@@ -661,7 +671,8 @@ typealias % = InterfaceWrapperBase<%>
                 for (const auto& member : type.members)
                 {
                     auto field = member.field;
-                    if (get_category(member.type) == param_category::string_type)
+                    if (get_category(member.type) == param_category::string_type ||
+                        is_winrt_ireference(member.type))
                     {
                         w.write("val.% = nil\n", get_abi_name(member));
                     }
@@ -678,6 +689,10 @@ typealias % = InterfaceWrapperBase<%>
                     if (get_category(member.type) == param_category::string_type)
                     {
                         w.write("WindowsDeleteString(val.%)\n", get_abi_name(member));
+                    }
+                    else if (is_winrt_ireference(member.type))
+                    {
+                        w.write("_ = val.%?.pointee.lpVtbl.pointee.Release(val.%)\n", get_abi_name(member), get_abi_name(member));
                     }
                 }
             }

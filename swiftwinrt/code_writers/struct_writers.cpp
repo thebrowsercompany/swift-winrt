@@ -5,7 +5,7 @@
 #include "common.h"
 #include "can_write.h"
 #include "struct_writers.h"
-namespace swiftwinrt 
+namespace swiftwinrt
 {
     void write_struct_initializer_params(writer & w, struct_type const& type)
     {
@@ -19,7 +19,7 @@ namespace swiftwinrt
             {
                 s();
 
-                w.write("%: %", get_swift_name(field), field.type);
+                w.write("%: %", get_swift_name(field), bind<write_type>(*field.type, write_type_params::swift));
             }
 
         }

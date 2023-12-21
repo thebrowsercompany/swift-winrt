@@ -2179,6 +2179,8 @@ typedef struct __x_ABI_Ctest__component_CBlittableStruct __x_ABI_Ctest__componen
 
 typedef struct __x_ABI_Ctest__component_CNonBlittableStruct __x_ABI_Ctest__component_CNonBlittableStruct;
 
+typedef struct __x_ABI_Ctest__component_CStructWithIReference __x_ABI_Ctest__component_CStructWithIReference;
+
 enum __x_ABI_Ctest__component_CFruit
     {
         __x_ABI_Ctest__component_CFruit_Banana = 0,
@@ -2286,6 +2288,12 @@ struct __x_ABI_Ctest__component_CSimpleEventArgs
 struct __x_ABI_Ctest__component_CStructWithEnum
     {
         enum __x_ABI_Ctest__component_CSwiftifiableNames Names;
+};
+
+struct __x_ABI_Ctest__component_CStructWithIReference
+    {
+        __x_ABI_C__FIReference_1_int* Value1;
+    __x_ABI_C__FIReference_1_int* Value2;
 };
 
 #if !defined(____x_ABI_Ctest__component_CIObjectHandler_INTERFACE_DEFINED__)
@@ -3424,6 +3432,14 @@ struct __x_ABI_Ctest__component_CStructWithEnum
         struct __x_ABI_Ctest__component_CBlittableStruct* value);
     HRESULT (STDMETHODCALLTYPE* put_BlittableStructProperty)(__x_ABI_Ctest__component_CISimple* This,
         struct __x_ABI_Ctest__component_CBlittableStruct value);
+    HRESULT (STDMETHODCALLTYPE* ReturnStructWithReference)(__x_ABI_Ctest__component_CISimple* This,
+        struct __x_ABI_Ctest__component_CStructWithIReference* result);
+    HRESULT (STDMETHODCALLTYPE* TakeStructWithReference)(__x_ABI_Ctest__component_CISimple* This,
+        struct __x_ABI_Ctest__component_CStructWithIReference value);
+    HRESULT (STDMETHODCALLTYPE* get_StructWithReferenceProperty)(__x_ABI_Ctest__component_CISimple* This,
+        struct __x_ABI_Ctest__component_CStructWithIReference* value);
+    HRESULT (STDMETHODCALLTYPE* put_StructWithReferenceProperty)(__x_ABI_Ctest__component_CISimple* This,
+        struct __x_ABI_Ctest__component_CStructWithIReference value);
     HRESULT (STDMETHODCALLTYPE* ReturnNonBlittableStruct)(__x_ABI_Ctest__component_CISimple* This,
         struct __x_ABI_Ctest__component_CNonBlittableStruct* result);
     HRESULT (STDMETHODCALLTYPE* TakeNonBlittableStruct)(__x_ABI_Ctest__component_CISimple* This,
