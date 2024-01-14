@@ -24,7 +24,8 @@ runs:
 
   - name: Configure CMake
     shell: cmd
-    run: cmake --preset ${{ inputs.config }}
+    # UCRTVersion is the only environment variable that gives us the Windows SDK version without a trailing '/'
+    run: cmake --preset ${{ inputs.config }} -D CMAKE_SYSTEM_VERSION=%UCRTVersion%
 
   - name: Build
     shell: cmd
