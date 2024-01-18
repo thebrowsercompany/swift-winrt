@@ -192,8 +192,7 @@ namespace swiftwinrt
 
         virtual std::string_view swift_logical_namespace() const override
         {
-            // Currently all mapped types from the System namespace have no namespace
-            return {};
+            return "Foundation";
         }
 
         virtual std::string_view swift_full_name() const override

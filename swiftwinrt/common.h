@@ -22,6 +22,7 @@ namespace swiftwinrt
         }
         if (swift_code && !w.type_namespace.empty() && !w.support.empty())
         {
+            w.write("import Foundation\n");
             auto module = w.swift_module;
             if (!settings.test)
             {
@@ -121,10 +122,10 @@ namespace swiftwinrt
     inline std::string get_full_swift_type_name(writer const& w, const metadata_type* type)
     {
         auto swift_full_name = type->swift_full_name();
-        auto last_ns_index = swift_full_name.find_last_of('.');
         bool use_full_name = w.full_type_names || !w.writing_generic;
-        if (last_ns_index != swift_full_name.npos)
+        if (auto typedefBase = dynamic_cast<const typedef_base*>(type))
         {
+            auto last_ns_index = swift_full_name.find_last_of('.');
             auto ns = swift_full_name.substr(0, last_ns_index);
             auto typeName = swift_full_name.substr(last_ns_index + 1);
             // writing a generic, don't include the '.' because the type name here should
