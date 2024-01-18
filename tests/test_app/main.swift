@@ -379,10 +379,11 @@ class SwiftWinRTTests : XCTestCase {
     print("value: ", classy.startValue ?? "N/A")
     XCTAssertEqual(classy.startValue, 23)
 
-    let id: Foundation.UUID? = .init(uuidString: "E621E1F8-C36C-495A-93FC-0C247A3E6E5F")
+    let uuidString = "E621E1F8-C36C-495A-93FC-0C247A3E6E5F"
+    let id: Foundation.UUID? = .init(uuidString: uuidString)
     classy.id = id
-
-    print("ID: ", classy.id ?? "00000000-0000-0000-0000-0000000")
+    let unwrappedID = try XCTUnwrap(classy.id)
+    XCTAssertEqual("\(unwrappedID)", uuidString)
     XCTAssertEqual(classy.id, id)
   }
 
