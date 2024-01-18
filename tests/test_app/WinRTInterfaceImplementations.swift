@@ -1,3 +1,4 @@
+import Foundation
 import test_component
 import WinSDK
 
@@ -35,7 +36,7 @@ class MySimpleDelegate : ISimpleDelegate {
     func getThat() -> Int32 { that }
  }
 
- 
+
 class MyImplementableDelegate: IIAmImplementable {
     private var thisCount = 9
     func inInt32(_ value: Int32) -> String {
@@ -81,7 +82,7 @@ class MyImplementableDelegate: IIAmImplementable {
 
     var enumProperty: Fruit = .apple
 
-    var id: test_component.GUID?
+    var id: Foundation.UUID?
     func fireEvent(_ data: String) {
       _implementableEvent.invoke(data)
     }
@@ -102,4 +103,4 @@ class MyImplementableDelegate: IIAmImplementable {
     }
 
     @EventSource<InDelegate> var implementableEvent: Event<InDelegate>
-} 
+}

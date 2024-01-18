@@ -380,7 +380,6 @@ namespace swiftwinrt
         switch (category) {
         case param_category::enum_type:
         case param_category::fundamental_type:
-        case param_category::guid_type:
             return true;
         default:
             return false;
@@ -434,7 +433,7 @@ namespace swiftwinrt
 
                     if (get_full_type_name(type_ref) == "System.Guid")
                     {
-                        result = true;
+                        result = false;
                         return;
                     }
                     type_def = find_required(type.TypeRef());

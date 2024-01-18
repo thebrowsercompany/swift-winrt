@@ -1,3 +1,4 @@
+import Foundation
 import C_BINDINGS_MODULE
 
 extension GUID: @retroactive CustomStringConvertible {
@@ -37,3 +38,47 @@ extension GUID: @retroactive Equatable {
 }
 
 public func ~=(_ lhs: GUID, _ rhs: GUID) -> Bool { lhs == rhs}
+
+public extension Foundation.UUID {
+    init(from guid: GUID) {
+        let uuid: uuid_t = (
+            UInt8((guid.Data1 >> 24) & 0xff),
+            UInt8((guid.Data1 >> 16) & 0xff),
+            UInt8((guid.Data1 >> 8) & 0xff),
+            UInt8(guid.Data1 & 0xff),
+            UInt8((guid.Data2 >> 8) & 0xff),
+            UInt8(guid.Data2 & 0xff),
+            UInt8((guid.Data3 >> 8) & 0xff),
+            UInt8(guid.Data3 & 0xff),
+            guid.Data4.0,
+            guid.Data4.1,
+            guid.Data4.2,
+            guid.Data4.3,
+            guid.Data4.4,
+            guid.Data4.5,
+            guid.Data4.6,
+            guid.Data4.7
+        )
+        self.init(uuid: uuid)
+    }
+}
+
+public extension GUID {
+    init(from uuid: Foundation.UUID) {
+        self.init(
+            Data1: UInt32((UInt32(uuid.uuid.0) << 24) | (UInt32(uuid.uuid.1) << 16) | (UInt32(uuid.uuid.2) << 8) | UInt32(uuid.uuid.3)),
+            Data2: UInt16((UInt16(uuid.uuid.4) << 8) | UInt16(uuid.uuid.5)),
+            Data3: UInt16((UInt16(uuid.uuid.6) << 8) | UInt16(uuid.uuid.7)),
+            Data4: (
+                uuid.uuid.8,
+                uuid.uuid.9,
+                uuid.uuid.10,
+                uuid.uuid.11,
+                uuid.uuid.12,
+                uuid.uuid.13,
+                uuid.uuid.14,
+                uuid.uuid.15
+            )
+        )
+    }
+}

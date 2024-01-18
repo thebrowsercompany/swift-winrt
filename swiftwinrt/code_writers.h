@@ -923,7 +923,7 @@ bind_bridge_fullname(type));
     public func getChar16() -> Character { _value as! Character }
     public func getBoolean() -> Bool { _value as! Bool }
     public func getString() -> String { _value as! String }
-    public func getGuid() -> %.GUID { _value as! %.GUID }
+    public func getGuid() -> Foundation.UUID { _value as! Foundation.UUID }
     public func getDateTime() -> DateTime { _value as! DateTime }
     public func getTimeSpan() -> TimeSpan { _value as! TimeSpan }
     public func getPoint() -> Point { _value as! Point }
@@ -932,7 +932,7 @@ bind_bridge_fullname(type));
     %
 }
 
-)", w.support, w.support, winrtInterfaceConformance);
+)", winrtInterfaceConformance);
 
     }
 
