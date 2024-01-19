@@ -18,6 +18,11 @@ fileprivate func makeIClosableFrom(abi: test_component.IInspectable) -> Any {
     return __IMPL_Windows_Foundation.IClosableBridge.from(abi: RawPointer(swiftAbi))!
 }
 
+fileprivate func makeIMemoryBufferReferenceFrom(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_Windows_Foundation.IMemoryBufferReference = try! abi.QueryInterface()
+    return __IMPL_Windows_Foundation.IMemoryBufferReferenceBridge.from(abi: RawPointer(swiftAbi))!
+}
+
 fileprivate func makeIStringableFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_Windows_Foundation.IStringable = try! abi.QueryInterface()
     return __IMPL_Windows_Foundation.IStringableBridge.from(abi: RawPointer(swiftAbi))!
@@ -31,6 +36,11 @@ fileprivate func makeIPropertySetFrom(abi: test_component.IInspectable) -> Any {
 fileprivate func makeIVectorChangedEventArgsFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_Windows_Foundation_Collections.IVectorChangedEventArgs = try! abi.QueryInterface()
     return __IMPL_Windows_Foundation_Collections.IVectorChangedEventArgsBridge.from(abi: RawPointer(swiftAbi))!
+}
+
+fileprivate func makeIBufferFrom(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_Windows_Storage_Streams.IBuffer = try! abi.QueryInterface()
+    return __IMPL_Windows_Storage_Streams.IBufferBridge.from(abi: RawPointer(swiftAbi))!
 }
 
 fileprivate func makeIAsyncMethodsWithProgressFrom(abi: test_component.IInspectable) -> Any {
@@ -177,9 +187,11 @@ public class __MakeFromAbi: MakeFromAbi {
             case "IAsyncAction": return makeIAsyncActionFrom(abi: abi)
             case "IAsyncInfo": return makeIAsyncInfoFrom(abi: abi)
             case "IClosable": return makeIClosableFrom(abi: abi)
+            case "IMemoryBufferReference": return makeIMemoryBufferReferenceFrom(abi: abi)
             case "IStringable": return makeIStringableFrom(abi: abi)
             case "IPropertySet": return makeIPropertySetFrom(abi: abi)
             case "IVectorChangedEventArgs": return makeIVectorChangedEventArgsFrom(abi: abi)
+            case "IBuffer": return makeIBufferFrom(abi: abi)
             case "IAsyncMethodsWithProgress": return makeIAsyncMethodsWithProgressFrom(abi: abi)
             case "IAsyncOperationInt": return makeIAsyncOperationIntFrom(abi: abi)
             case "IBasic": return makeIBasicFrom(abi: abi)

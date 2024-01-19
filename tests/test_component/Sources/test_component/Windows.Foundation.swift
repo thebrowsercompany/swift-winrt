@@ -274,6 +274,32 @@ extension IClosable {
 }
 public typealias AnyIClosable = any IClosable
 
+/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.imemorybufferreference)
+public protocol IMemoryBufferReference : IClosable, IMemoryBufferByteAccess {
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.imemorybufferreference.capacity)
+    var capacity: UInt32 { get }
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.imemorybufferreference.closed)
+    var closed: Event<TypedEventHandler<IMemoryBufferReference?, Any?>> { get }
+}
+
+extension IMemoryBufferReference {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        switch iid {
+            case __ABI_Windows_Foundation.IMemoryBufferReferenceWrapper.IID:
+                let wrapper = __ABI_Windows_Foundation.IMemoryBufferReferenceWrapper(self)
+                return wrapper!.queryInterface(iid)
+            case __ABI_Windows_Foundation.IClosableWrapper.IID:
+                let wrapper = __ABI_Windows_Foundation.IClosableWrapper(self)
+                return wrapper!.queryInterface(iid)
+            case __ABI_.IMemoryBufferByteAccessWrapper.IID:
+                let wrapper = __ABI_.IMemoryBufferByteAccessWrapper(self)
+                return wrapper!.queryInterface(iid)
+            default: return nil
+        }
+    }
+}
+public typealias AnyIMemoryBufferReference = any IMemoryBufferReference
+
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue)
 public protocol IPropertyValue : WinRTInterface {
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue.getuint8)

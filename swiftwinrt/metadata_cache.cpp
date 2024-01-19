@@ -285,6 +285,15 @@ metadata_cache::get_interfaces_t metadata_cache::get_interfaces(init_state& stat
         get_interfaces_impl(state,w, result, false, false, true, base.InterfaceImpl());
     }
 
+    if (type.TypeNamespace() == "Windows.Foundation" && type.TypeName() == "IMemoryBufferReference")
+    {
+        insert_or_assign(result, "IMemoryBufferByteAccess", { &system_type::from_name("IMemoryBufferByteAccess") });
+    }
+    else if (type.TypeNamespace() == "Windows.Storage.Streams" && type.TypeName() == "IBuffer")
+    {
+        insert_or_assign(result, "IBufferByteAccess", { &system_type::from_name("IBufferByteAccess") });
+    }
+
     if (!has_fastabi(type))
     {
         return result;

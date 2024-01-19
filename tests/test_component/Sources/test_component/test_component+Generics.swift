@@ -7284,6 +7284,59 @@ internal var __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedVTable: 
     }
 )
 typealias __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper = ReferenceWrapperBase<test_component.__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedBridge>
+private var IID___x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIMemoryBufferReference_IInspectable: test_component.IID {
+    .init(Data1: 0xf4637d4a, Data2: 0x0760, Data3: 0x5431, Data4: ( 0xbf,0xc0,0x24,0xeb,0x1d,0x4f,0x6c,0x4f ))// f4637d4a-0760-5431-bfc0-24eb1d4f6c4f
+}
+
+internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIMemoryBufferReference_IInspectable {
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIMemoryBufferReference_IInspectableVTable) { $0 }
+        return .init(lpVtbl:vtblPtr)
+    }
+}
+
+internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIMemoryBufferReference_IInspectableVTable: __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIMemoryBufferReference_IInspectableVtbl = .init(
+    QueryInterface: { __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIMemoryBufferReference_IInspectableWrapper.queryInterface($0, $1, $2) },
+    AddRef: { __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIMemoryBufferReference_IInspectableWrapper.addRef($0) },
+    Release: { __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIMemoryBufferReference_IInspectableWrapper.release($0) },
+    Invoke: {
+        guard let __unwrapped__instance = __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIMemoryBufferReference_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let sender: test_component.AnyIMemoryBufferReference? = __ABI_Windows_Foundation.IMemoryBufferReferenceWrapper.unwrapFrom(abi: ComPtr($1))
+        let args: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: ComPtr($2))
+        __unwrapped__instance(sender, args)
+        return S_OK
+    }
+)
+typealias __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIMemoryBufferReference_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIMemoryBufferReference_IInspectableBridge>
+internal class TypedEventHandlerIMemoryBufferReference_Any: test_component.IUnknown {
+    override public class var IID: test_component.IID { IID___x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIMemoryBufferReference_IInspectable }
+
+    internal func InvokeImpl(_ sender: test_component.AnyIMemoryBufferReference?, _ args: Any?) throws {
+        let senderWrapper = __ABI_Windows_Foundation.IMemoryBufferReferenceWrapper(sender)
+        let _sender = try! senderWrapper?.toABI { $0 }
+        let argsWrapper = __ABI_.AnyWrapper(args)
+        let _args = try! argsWrapper?.toABI { $0 }
+        _ = try perform(as: __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIMemoryBufferReference_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _sender, _args))
+        }
+    }
+
+}
+
+internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIMemoryBufferReference_IInspectableBridge : WinRTDelegateBridge {
+    internal typealias Handler = TypedEventHandler<test_component.AnyIMemoryBufferReference?, Any?>
+    internal typealias CABI = __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIMemoryBufferReference_IInspectable
+    internal typealias SwiftABI = test_component.TypedEventHandlerIMemoryBufferReference_Any
+
+    internal static func from(abi: ComPtr<CABI>?) -> Handler? {
+        guard let abi = abi else { return nil }
+        let _default = SwiftABI(abi)
+        let handler: Handler = { (sender, args) in
+            try! _default.InvokeImpl(sender, args)
+        }
+        return handler
+    }
+}
 private var IID___x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs: test_component.IID {
     .init(Data1: 0x60e30bb2, Data2: 0x55fe, Data3: 0x5e7e, Data4: ( 0xb1,0xe6,0xf9,0xba,0x28,0x90,0x0a,0x82 ))// 60e30bb2-55fe-5e7e-b1e6-f9ba28900a82
 }
@@ -7384,6 +7437,14 @@ internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimp
 }
 public extension EventSource where Handler == EventHandler<Any?> {
     func invoke(_ sender: Any!, _ args: Any!) {
+        for handler in getInvocationList() {
+            handler(sender, args)
+        }
+    }
+}
+
+public extension EventSource where Handler == TypedEventHandler<IMemoryBufferReference?, Any?> {
+    func invoke(_ sender: test_component.AnyIMemoryBufferReference!, _ args: Any!) {
         for handler in getInvocationList() {
             handler(sender, args)
         }

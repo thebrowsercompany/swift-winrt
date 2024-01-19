@@ -995,6 +995,20 @@ bind_bridge_fullname(type));
         w.write("// MARK: WinRT\n");
     }
 
+    static void write_bufferbyteaccess(writer& w, interface_info const& info, system_type const& type)
+    {
+        w.write(R"(var data: Data {
+    get throws {
+        let bufferByteAccess: %.__ABI_.% = try %.QueryInterface()
+        var data = Data(count: Int(capacity))
+        try data.withUnsafeMutableBytes { (bytes: UnsafeMutableRawBufferPointer) in
+            try bufferByteAccess.Buffer(bytes.baseAddress?.assumingMemoryBound(to: UInt8.self))
+        }
+        return data
+    }
+}
+)", w.support, type.swift_type_name(), get_swift_name(info));
+    }
     static void write_interface_impl_members(writer& w, interface_info const& info, typedef_base const& type_definition)
     {
         bool is_class = swiftwinrt::is_class(&type_definition);
@@ -1044,6 +1058,13 @@ bind_bridge_fullname(type));
             for (const auto& event : gti->events)
             {
                 write_class_impl_event(w, event, info, type_definition);
+            }
+        }
+        else if (auto systemType = dynamic_cast<const system_type*>(info.type))
+        {
+            if (systemType->swift_type_name() == "IBufferByteAccess" || systemType->swift_type_name() == "IMemoryBufferByteAccess")
+            {
+                write_bufferbyteaccess(w, info, *systemType);
             }
         }
         else

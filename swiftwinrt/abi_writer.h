@@ -298,8 +298,6 @@ namespace swiftwinrt
 #include <oleauto.h> // BSTR, Sys***String***
 #include <roapi.h> // Ro***
 #include "RestrictedErrorInfo.h" // IRestrictedErrorInfo (C definition)
-#include "MemoryBuffer.h" // IMemoryBufferByteAccess (C definition)
-#include "robuffer.h" // IBufferByteAccess (C definition)
 #include <roerrorapi.h> // GetRestrictedErrorInfo
 #include <winstring.h> // HSTRING, Windows***String***
 
@@ -315,7 +313,8 @@ namespace swiftwinrt
 #pragma clang diagnostic ignored "-Wmicrosoft-enum-forward-reference"
 
 #include "CppInteropWorkaround.h" // TODO(WIN-860): Remove workaround once C++ interop issues with WinSDK.GUID are fixed.
-
+#include "MemoryBuffer.h" // IMemoryBufferByteAccess (C definition)
+#include "robuffer.h" // IBufferByteAccess (C definition)
 )");
         for (auto& [ns, members] : namespaces)
         {

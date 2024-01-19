@@ -5,11 +5,10 @@
 
 #include <objidl.h>
 
-#ifndef _MEMORYBUFFER_H
-#define _MEMORYBUFFER_H
+#ifndef _IMEMORYBUFFERBYTEACCESS_DEFINED
+#define _IMEMORYBUFFERBYTEACCESS_DEFINED
 typedef interface IMemoryBufferByteAccess IMemoryBufferByteAccess;
-
-interface IMemoryBufferByteAccess;
+#endif
 
 typedef struct IMemoryBufferByteAccessVtbl
 {
@@ -30,4 +29,3 @@ interface IMemoryBufferByteAccess
 {
     CONST_VTBL struct IMemoryBufferByteAccessVtbl* lpVtbl;
 };
-#endif

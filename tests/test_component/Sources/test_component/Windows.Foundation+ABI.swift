@@ -31,6 +31,10 @@ private var IID___x_ABI_CWindows_CFoundation_CIDeferralFactory: test_component.I
     .init(Data1: 0x65A1ECC5, Data2: 0x3FB5, Data3: 0x4832, Data4: ( 0x8C,0xA9,0xF0,0x61,0xB2,0x81,0xD1,0x3A ))// 65A1ECC5-3FB5-4832-8CA9-F061B281D13A
 }
 
+private var IID___x_ABI_CWindows_CFoundation_CIMemoryBufferReference: test_component.IID {
+    .init(Data1: 0xFBC4DD29, Data2: 0x245B, Data3: 0x11E4, Data4: ( 0xAF,0x98,0x68,0x94,0x23,0x26,0x0C,0xF8 ))// FBC4DD29-245B-11E4-AF98-689423260CF8
+}
+
 private var IID___x_ABI_CWindows_CFoundation_CIPropertyValue: test_component.IID {
     .init(Data1: 0x4BD682DD, Data2: 0x7554, Data3: 0x40E9, Data4: ( 0x9A,0x9B,0x82,0x65,0x4E,0xDE,0x7E,0x62 ))// 4BD682DD-7554-40E9-9A9B-82654EDE7E62
 }
@@ -338,6 +342,89 @@ public enum __ABI_Windows_Foundation {
 
     }
 
+    public class IMemoryBufferReference: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIMemoryBufferReference }
+
+        open func get_CapacityImpl() throws -> UInt32 {
+            var value: UINT32 = 0
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIMemoryBufferReference.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Capacity(pThis, &value))
+            }
+            return value
+        }
+
+        open func add_ClosedImpl(_ handler: TypedEventHandler<test_component.AnyIMemoryBufferReference?, Any?>?) throws -> EventRegistrationToken {
+            var cookie: EventRegistrationToken = .init()
+            let handlerWrapper = test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIMemoryBufferReference_IInspectableWrapper(handler)
+            let _handler = try! handlerWrapper?.toABI { $0 }
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIMemoryBufferReference.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.add_Closed(pThis, _handler, &cookie))
+            }
+            return cookie
+        }
+
+        open func remove_ClosedImpl(_ cookie: EventRegistrationToken) throws {
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIMemoryBufferReference.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.remove_Closed(pThis, cookie))
+            }
+        }
+
+    }
+
+    internal static var IMemoryBufferReferenceVTable: __x_ABI_CWindows_CFoundation_CIMemoryBufferReferenceVtbl = .init(
+        QueryInterface: { IMemoryBufferReferenceWrapper.queryInterface($0, $1, $2) },
+        AddRef: { IMemoryBufferReferenceWrapper.addRef($0) },
+        Release: { IMemoryBufferReferenceWrapper.release($0) },
+        GetIids: {
+            let size = MemoryLayout<test_component.IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 5).assumingMemoryBound(to: test_component.IID.self)
+            iids[0] = IUnknown.IID
+            iids[1] = IInspectable.IID
+            iids[2] = __ABI_Windows_Foundation.IMemoryBufferReferenceWrapper.IID
+            iids[3] = __ABI_Windows_Foundation.IClosableWrapper.IID
+            iids[4] = __ABI_.IMemoryBufferByteAccessWrapper.IID
+            $1!.pointee = 5
+            $2!.pointee = iids
+            return S_OK
+        },
+
+        GetRuntimeClassName: {
+            _ = $0
+            let hstring = try! HString("Windows.Foundation.IMemoryBufferReference").detach()
+            $1!.pointee = hstring
+            return S_OK
+        },
+
+        GetTrustLevel: {
+            _ = $0
+            $1!.pointee = TrustLevel(rawValue: 0)
+            return S_OK
+        },
+
+        get_Capacity: {
+            guard let __unwrapped__instance = IMemoryBufferReferenceWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let value = __unwrapped__instance.capacity
+            $1?.initialize(to: value)
+            return S_OK
+        },
+
+        add_Closed: {
+            guard let __unwrapped__instance = IMemoryBufferReferenceWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            guard let handler = test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIMemoryBufferReference_IInspectableWrapper.unwrapFrom(abi: ComPtr($1)) else { return E_INVALIDARG }
+            let cookie = __unwrapped__instance.closed.addHandler(handler)
+            $2?.initialize(to: .from(swift: cookie))
+            return S_OK
+        },
+
+        remove_Closed: {
+            guard let __unwrapped__instance = IMemoryBufferReferenceWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let cookie: EventRegistrationToken = $1
+            __unwrapped__instance.closed.removeHandler(cookie)
+            return S_OK
+        }
+    )
+
+    public typealias IMemoryBufferReferenceWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.IMemoryBufferReferenceBridge>
     public class IPropertyValue: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIPropertyValue }
 

@@ -146,6 +146,66 @@ public enum __IMPL_Windows_Foundation {
 
     }
 
+    public enum IMemoryBufferReferenceBridge : AbiInterfaceBridge {
+        public typealias CABI = __x_ABI_CWindows_CFoundation_CIMemoryBufferReference
+        public typealias SwiftABI = __ABI_Windows_Foundation.IMemoryBufferReference
+        public typealias SwiftProjection = AnyIMemoryBufferReference
+        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+            guard let abi = abi else { return nil }
+            return IMemoryBufferReferenceImpl(abi)
+        }
+
+        public static func makeAbi() -> CABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Foundation.IMemoryBufferReferenceVTable) { $0 }
+            return .init(lpVtbl: vtblPtr)
+        }
+    }
+
+    fileprivate class IMemoryBufferReferenceImpl: IMemoryBufferReference, WinRTAbiImpl {
+        fileprivate typealias Bridge = IMemoryBufferReferenceBridge
+        fileprivate let _default: Bridge.SwiftABI
+        fileprivate var thisPtr: test_component.IInspectable { _default }
+        fileprivate init(_ fromAbi: ComPtr<Bridge.CABI>) {
+            _default = Bridge.SwiftABI(fromAbi)
+        }
+
+        /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.imemorybufferreference.capacity)
+        fileprivate var capacity : UInt32 {
+            get { try! _default.get_CapacityImpl() }
+        }
+
+        /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.imemorybufferreference.closed)
+        fileprivate lazy var closed : Event<TypedEventHandler<IMemoryBufferReference?, Any?>> = {
+          .init(
+            add: { [weak self] in
+              guard let this = self?._default else { return .init() }
+              return try! this.add_ClosedImpl($0)
+            },
+            remove: { [weak self] in
+             try? self?._default.remove_ClosedImpl($0)
+           }
+          )
+        }()
+
+        private lazy var _IClosable: __ABI_Windows_Foundation.IClosable! = getInterfaceForCaching()
+        /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.imemorybufferreference.close)
+        fileprivate func close() throws {
+            try _IClosable.CloseImpl()
+        }
+
+        private lazy var _IMemoryBufferByteAccess: __ABI_.IMemoryBufferByteAccess! = getInterfaceForCaching()
+        var data: Data {
+            get throws {
+                let bufferByteAccess: test_component.__ABI_.IMemoryBufferByteAccess = try _IMemoryBufferByteAccess.QueryInterface()
+                var data = Data(count: Int(capacity))
+                try data.withUnsafeMutableBytes { (bytes: UnsafeMutableRawBufferPointer) in
+                    try bufferByteAccess.Buffer(bytes.baseAddress?.assumingMemoryBound(to: UInt8.self))
+                }
+                return data
+            }
+        }
+    }
+
     public enum IPropertyValueBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIPropertyValue
         public typealias SwiftABI = __ABI_Windows_Foundation.IPropertyValue

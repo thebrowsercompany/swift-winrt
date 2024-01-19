@@ -3,19 +3,14 @@
 
 // No pragma once, we might include this twice (once for the regular definitions, once for the workaround)
 
-#ifndef _ROBUFFER_H
-#define _ROBUFFER_H
-
-#ifdef _CONTRACT_GEN
-#include <nt.h>
-#include <ntrtl.h>
-#include <nturtl.h>
-#endif
 #include <apiset.h>
 #include <apisetcconv.h>
 #include <objidl.h>
 
+#ifndef _IBufferByteAccess_DEFINED
+#define _IBufferByteAccess_DEFINED
 typedef interface IBufferByteAccess IBufferByteAccess;
+#endif /* _IBufferByteAccess_DEFINED */
 
 typedef struct IBufferByteAccessVtbl
 {
@@ -36,5 +31,3 @@ interface IBufferByteAccess
 {
     CONST_VTBL struct IBufferByteAccessVtbl* lpVtbl;
 };
-
-#endif /* _ROBUFFER_H */

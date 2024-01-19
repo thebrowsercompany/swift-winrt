@@ -8,6 +8,8 @@ set(SWIFT_WINRT_PARAMETERS
 "-ns-prefix"
 "-include test_component"
 "-include Windows.Foundation.Collections"
+"-include Windows.Foundation.IMemoryBufferReference"
+"-include Windows.Storage.Streams.IBuffer"
 "-input ${WINMD_FILE}"
 "-support test_component"
 "-test"
