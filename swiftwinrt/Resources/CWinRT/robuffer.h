@@ -15,10 +15,26 @@
 #include <apisetcconv.h>
 #include <objidl.h>
 
-struct __declspec(uuid("905a0fef-bc53-11df-8c49-001e4fc686da")) IBufferByteAccess : public IUnknown
+typedef interface IBufferByteAccess IBufferByteAccess;
+
+typedef struct IBufferByteAccessVtbl
 {
-    // an IBuffer object is created by a client, and the buffer is provided by IBufferByteAccess::Buffer.
-    STDMETHOD(Buffer)(_Outptr_result_buffer_(_Inexpressible_("size given by different API")) byte **value) = 0;
+    BEGIN_INTERFACE
+
+    HRESULT (STDMETHODCALLTYPE* QueryInterface)(__RPC__in IBufferByteAccess* This,
+        REFIID riid,
+        _COM_Outptr_ void** ppvObject);
+    ULONG (STDMETHODCALLTYPE* AddRef)(__RPC__in IBufferByteAccess* This);
+    ULONG (STDMETHODCALLTYPE* Release)(__RPC__in IBufferByteAccess* This);
+    HRESULT (STDMETHODCALLTYPE* Buffer)(__RPC__in IBufferByteAccess* This,
+    BYTE** value);
+
+    END_INTERFACE
+} IBufferByteAccessVtbl;
+
+interface IBufferByteAccess
+{
+    CONST_VTBL struct IBufferByteAccessVtbl* lpVtbl;
 };
 
 #endif /* _ROBUFFER_H */

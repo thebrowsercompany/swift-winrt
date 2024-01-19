@@ -5,11 +5,29 @@
 
 #include <objidl.h>
 
-struct IMemoryBufferByteAccess :
-    public IUnknown
+#ifndef _MEMORYBUFFER_H
+#define _MEMORYBUFFER_H
+typedef interface IMemoryBufferByteAccess IMemoryBufferByteAccess;
+
+interface IMemoryBufferByteAccess;
+
+typedef struct IMemoryBufferByteAccessVtbl
 {
-    // An IMemoryBuffer object is created by a client, and the buffer is provided by IBufferByteAccess::GetBuffer.
-    // When IMemoryBufferReference::Close() is called, the code that is using this buffer should set "value" to nullptr,
-    // effectively "forgetting" the pointer ot the buffer.
-    STDMETHOD(GetBuffer)(_Outptr_result_buffer_(*capacity) BYTE** value, _Out_ UINT32* capacity) = 0;
+    BEGIN_INTERFACE
+
+    HRESULT (STDMETHODCALLTYPE* QueryInterface)(__RPC__in IMemoryBufferByteAccess* This,
+        REFIID riid,
+        _COM_Outptr_ void** ppvObject);
+    ULONG (STDMETHODCALLTYPE* AddRef)(__RPC__in IMemoryBufferByteAccess* This);
+    ULONG (STDMETHODCALLTYPE* Release)(__RPC__in IMemoryBufferByteAccess* This);
+    HRESULT (STDMETHODCALLTYPE* Buffer)(__RPC__in IMemoryBufferByteAccess* This,
+    BYTE** value);
+
+    END_INTERFACE
+} IMemoryBufferByteAccessVtbl;
+
+interface IMemoryBufferByteAccess
+{
+    CONST_VTBL struct IMemoryBufferByteAccessVtbl* lpVtbl;
 };
+#endif

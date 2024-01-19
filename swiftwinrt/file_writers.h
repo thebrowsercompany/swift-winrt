@@ -132,6 +132,12 @@ namespace swiftwinrt
         auto restrictederrorinfo_h_template = find_resource(RESOURCE_TYPE_OTHER_FILE_STR, RESOURCE_NAME_CWINRT_RESTRICTEDERRORINFO_H_STR);
         fill_template_placeholders_to_file(restrictederrorinfo_h_template, dir_path / "include" / "RestrictedErrorInfo.h");
 
+        auto robuffer_h_template = find_resource(RESOURCE_TYPE_OTHER_FILE_STR, RESOURCE_NAME_CWINRT_ROBUFFER_H_STR);
+        fill_template_placeholders_to_file(robuffer_h_template, dir_path / "include" / "robuffer.h");
+
+        auto memorybuffer_h_template = find_resource(RESOURCE_TYPE_OTHER_FILE_STR, RESOURCE_NAME_CWINRT_MEMORYBUFFER_H_STR);
+        fill_template_placeholders_to_file(memorybuffer_h_template, dir_path / "include" / "MemoryBuffer.h");
+
         if (settings.has_project_type(project_type::spm))
         {
             auto package_template = find_resource(RESOURCE_TYPE_OTHER_FILE_STR, RESOURCE_NAME_CWINRT_PACKAGE_SWIFT_STR);
