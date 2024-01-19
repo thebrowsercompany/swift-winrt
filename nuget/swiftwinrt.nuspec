@@ -12,9 +12,9 @@
     <tags>swift WinRT</tags>
     <copyright>© The Browser Company of New York. All rights reserved.</copyright>
     <projectUrl>https://github.com/thebrowsercompany/swiftwinrt</projectUrl>
-    <repository type="git" url="https://github.com/thebrowsercompany/swiftwinrt"/>
+    <repository type="git" url="https://github.com/thebrowsercompany/swift-winrt"/>
     <license type="expression">BSD-3-Clause</license>
-    <readme>readme.md</readme>
+    <readme>README.md</readme>
   </metadata>
   <files>
     <file src="$swiftwinrt_exe$" target="bin"/>
