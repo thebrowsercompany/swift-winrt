@@ -690,7 +690,7 @@ namespace swiftwinrt
     {
         if (typeName == "Guid"sv)
         {
-            static system_type const guid_type{ "Foundation.UUID"sv, "GUID"sv, "g16"sv };
+            static system_type const guid_type{ "Foundation"sv, "UUID"sv, "Foundation.UUID"sv, "GUID"sv, "g16"sv, param_category::guid_type };
             return guid_type;
         }
 

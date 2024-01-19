@@ -18,4 +18,9 @@ namespace test_component
         Windows.Foundation.Collections.IVector<String> ReturnStoredStringVector();
         Windows.Foundation.Collections.IMap<String, String> ReturnMapFromStringToString();
     }
+
+    interface WithIterableGuids
+    {
+        Windows.Foundation.Collections.IVector<Guid> IDs();
+    }
 }

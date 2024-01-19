@@ -179,6 +179,10 @@ private var IID___x_ABI_Ctest__component_CInterfaceWithReturnDelegate: test_comp
     .init(Data1: 0xB0EBC406, Data2: 0x17C0, Data3: 0x5703, Data4: ( 0xB9,0xC7,0x50,0xBE,0x67,0x5B,0xBC,0x95 ))// B0EBC406-17C0-5703-B9C7-50BE675BBC95
 }
 
+private var IID___x_ABI_Ctest__component_CWithIterableGuids: test_component.IID {
+    .init(Data1: 0xF8BD03F6, Data2: 0xBD7E, Data3: 0x586D, Data4: ( 0x96,0xB8,0x63,0xB6,0x39,0xA8,0xD0,0x42 ))// F8BD03F6-BD7E-586D-96B8-63B639A8D042
+}
+
 private var IID___x_ABI_Ctest__component_CWithKeyword: test_component.IID {
     .init(Data1: 0x77E9FBAD, Data2: 0x3DCE, Data3: 0x5E50, Data4: ( 0xB4,0x39,0x91,0x91,0xF5,0x23,0x2A,0x84 ))// 77E9FBAD-3DCE-5E50-B439-9191F5232A84
 }
@@ -2215,6 +2219,60 @@ public enum __ABI_test_component {
     )
 
     public typealias InterfaceWithReturnDelegateWrapper = InterfaceWrapperBase<__IMPL_test_component.InterfaceWithReturnDelegateBridge>
+    public class WithIterableGuids: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CWithIterableGuids }
+
+        open func IDsImpl() throws -> test_component.AnyIVector<Foundation.UUID>? {
+            let (result) = try ComPtrs.initialize { resultAbi in
+                _ = try perform(as: __x_ABI_Ctest__component_CWithIterableGuids.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.IDs(pThis, &resultAbi))
+                }
+            }
+            return test_component.__x_ABI_C__FIVector_1_GUIDWrapper.unwrapFrom(abi: result)
+        }
+
+    }
+
+    internal static var WithIterableGuidsVTable: __x_ABI_Ctest__component_CWithIterableGuidsVtbl = .init(
+        QueryInterface: { WithIterableGuidsWrapper.queryInterface($0, $1, $2) },
+        AddRef: { WithIterableGuidsWrapper.addRef($0) },
+        Release: { WithIterableGuidsWrapper.release($0) },
+        GetIids: {
+            let size = MemoryLayout<test_component.IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
+            iids[0] = IUnknown.IID
+            iids[1] = IInspectable.IID
+            iids[2] = __ABI_test_component.WithIterableGuidsWrapper.IID
+            $1!.pointee = 3
+            $2!.pointee = iids
+            return S_OK
+        },
+
+        GetRuntimeClassName: {
+            _ = $0
+            let hstring = try! HString("test_component.WithIterableGuids").detach()
+            $1!.pointee = hstring
+            return S_OK
+        },
+
+        GetTrustLevel: {
+            _ = $0
+            $1!.pointee = TrustLevel(rawValue: 0)
+            return S_OK
+        },
+
+        IDs: {
+            do {
+                guard let __unwrapped__instance = WithIterableGuidsWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                let result = try __unwrapped__instance.ids()
+                let resultWrapper = test_component.__x_ABI_C__FIVector_1_GUIDWrapper(result)
+                resultWrapper?.copyTo($1)
+                return S_OK
+            } catch { return failWith(err: E_FAIL) } 
+        }
+    )
+
+    public typealias WithIterableGuidsWrapper = InterfaceWrapperBase<__IMPL_test_component.WithIterableGuidsBridge>
     public class WithKeyword: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CWithKeyword }
 

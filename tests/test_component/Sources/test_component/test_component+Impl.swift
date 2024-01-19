@@ -293,6 +293,35 @@ public enum __IMPL_test_component {
 
     }
 
+    public enum WithIterableGuidsBridge : AbiInterfaceBridge {
+        public typealias CABI = __x_ABI_Ctest__component_CWithIterableGuids
+        public typealias SwiftABI = __ABI_test_component.WithIterableGuids
+        public typealias SwiftProjection = AnyWithIterableGuids
+        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+            guard let abi = abi else { return nil }
+            return WithIterableGuidsImpl(abi)
+        }
+
+        public static func makeAbi() -> CABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.WithIterableGuidsVTable) { $0 }
+            return .init(lpVtbl: vtblPtr)
+        }
+    }
+
+    fileprivate class WithIterableGuidsImpl: WithIterableGuids, WinRTAbiImpl {
+        fileprivate typealias Bridge = WithIterableGuidsBridge
+        fileprivate let _default: Bridge.SwiftABI
+        fileprivate var thisPtr: test_component.IInspectable { _default }
+        fileprivate init(_ fromAbi: ComPtr<Bridge.CABI>) {
+            _default = Bridge.SwiftABI(fromAbi)
+        }
+
+        fileprivate func ids() throws -> AnyIVector<Foundation.UUID>! {
+            try _default.IDsImpl()
+        }
+
+    }
+
     public enum WithKeywordBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_Ctest__component_CWithKeyword
         public typealias SwiftABI = __ABI_test_component.WithKeyword
