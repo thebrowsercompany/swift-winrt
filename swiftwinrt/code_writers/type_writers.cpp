@@ -213,7 +213,7 @@ static void write_c_abi_type(writer& w, metadata_type const& type)
     }
     else if (auto systype = dynamic_cast<const system_type*>(&type))
     {
-        if (systype->cpp_abi_name() == "GUID")
+        if (systype->category() == param_category::guid_type)
         {
             w.write("%.GUID", w.support);
         }

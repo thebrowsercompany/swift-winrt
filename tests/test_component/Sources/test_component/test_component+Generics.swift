@@ -7121,7 +7121,7 @@ internal enum __x_ABI_C__FIReference_1_GUIDBridge: ReferenceBridge {
 
     static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let val = abi else { return nil }
-        var result: GUID = .init()
+        var result: test_component.GUID = .init()
         try! CHECKED(val.get().pointee.lpVtbl.pointee.get_Value(val.get(), &result))
         return .init(from: result)
     }
@@ -7237,7 +7237,7 @@ internal enum __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedBridge:
 
     static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let val = abi else { return nil }
-        var result: Signed = .init(0)
+        var result: __x_ABI_Ctest__component_CSigned = .init(0)
         try! CHECKED(val.get().pointee.lpVtbl.pointee.get_Value(val.get(), &result))
         return result
     }

@@ -501,10 +501,6 @@ bind<write_abi_args>(function));
 
         auto impl_names = w.push_impl_names(true);
 
-        auto c_name = is_struct(*generic_param) ?
-            generic_param->mangled_name() :
-            generic_param->cpp_abi_name();
-
         w.write(R"(internal enum %: ReferenceBridge {
     typealias CABI = %
     typealias SwiftProjection = %
@@ -527,7 +523,7 @@ bind<write_abi_args>(function));
     get_full_swift_type_name(w, generic_param),
     w.support,
     type.mangled_name(),
-    c_name,
+    bind<write_type>(*generic_param, write_type_params::c_abi),
     bind<write_default_init_assignment>(*generic_param, projection_layer::c_abi),
     bind<write_consume_type>(generic_param, "result", true),
     type.mangled_name());
