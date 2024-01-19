@@ -8,6 +8,8 @@
 #include <oleauto.h> // BSTR, Sys***String***
 #include <roapi.h> // Ro***
 #include "RestrictedErrorInfo.h" // IRestrictedErrorInfo (C definition)
+#include "MemoryBuffer.h" // IMemoryBufferByteAccess (C definition)
+#include "robuffer.h" // IBufferByteAccess (C definition)
 #include <roerrorapi.h> // GetRestrictedErrorInfo
 #include <winstring.h> // HSTRING, Windows***String***
 
