@@ -87,9 +87,10 @@ void write_swift_type_identifier_ex(writer& w, metadata_type const& type, bool e
     }
     else if (auto systype = dynamic_cast<const system_type*>(&type))
     {
-        if (systype->swift_type_name() == "GUID")
+        if (systype->category() == param_category::guid_type)
         {
-            w.write("%.GUID", w.support);
+            // GUID requires full type name due to collisions with WinSDK
+            w.write(systype->swift_full_name());
         }
         else
         {
@@ -101,7 +102,7 @@ void write_swift_type_identifier_ex(writer& w, metadata_type const& type, bool e
         // Make sure the module gets imported
         w.add_depends(type);
 
-        // Module 
+        // Module
         if (type_def->is_generic())
         {
             // Generic instances are always in the support module
@@ -123,7 +124,7 @@ void write_swift_type_identifier_ex(writer& w, metadata_type const& type, bool e
             // to avoid needing parens in (any IFoo)?
             w.write("Any");
         }
-        
+
         w.write(remove_backtick(type.swift_type_name()));
 
         if (omit_generic_args == false && !type_def->generic_params.empty())

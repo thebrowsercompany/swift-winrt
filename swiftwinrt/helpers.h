@@ -824,7 +824,7 @@ namespace swiftwinrt
         }
         if (auto sysType = dynamic_cast<const system_type*>(type))
         {
-            return param_category::guid_type;
+            return sysType->category();
         }
         if (auto mapped = dynamic_cast<const mapped_type*>(type))
         {

@@ -68,6 +68,11 @@ fileprivate func makeInterfaceWithReturnDelegateFrom(abi: test_component.IInspec
     return __IMPL_test_component.InterfaceWithReturnDelegateBridge.from(abi: RawPointer(swiftAbi))!
 }
 
+fileprivate func makeWithIterableGuidsFrom(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_test_component.WithIterableGuids = try! abi.QueryInterface()
+    return __IMPL_test_component.WithIterableGuidsBridge.from(abi: RawPointer(swiftAbi))!
+}
+
 fileprivate func makeWithKeywordFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_test_component.WithKeyword = try! abi.QueryInterface()
     return __IMPL_test_component.WithKeywordBridge.from(abi: RawPointer(swiftAbi))!
@@ -182,6 +187,7 @@ public class __MakeFromAbi: MakeFromAbi {
             case "IInterfaceWithObservableVector": return makeIInterfaceWithObservableVectorFrom(abi: abi)
             case "ISimpleDelegate": return makeISimpleDelegateFrom(abi: abi)
             case "InterfaceWithReturnDelegate": return makeInterfaceWithReturnDelegateFrom(abi: abi)
+            case "WithIterableGuids": return makeWithIterableGuidsFrom(abi: abi)
             case "WithKeyword": return makeWithKeywordFrom(abi: abi)
             case "Deferral": return makeDeferralFrom(abi: abi)
             case "PropertySet": return makePropertySetFrom(abi: abi)

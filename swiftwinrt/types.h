@@ -175,10 +175,19 @@ namespace swiftwinrt
 
     struct system_type final : metadata_type
     {
-        system_type(std::string_view swiftName, std::string_view cppName, std::string_view signature) :
-            m_swiftName(swiftName),
+        system_type(
+            std::string_view swiftModule,
+            std::string_view swiftTypeName,
+            std::string_view swiftFullName,
+            std::string_view cppName,
+            std::string_view signature,
+            param_category category) :
+            m_swiftModuleName(swiftModule),
+            m_swiftTypeName(swiftTypeName),
+            m_swiftFullName(swiftFullName),
             m_cppName(cppName),
-            m_signature(signature)
+            m_signature(signature),
+            m_category(category)
         {
         }
 
@@ -190,19 +199,20 @@ namespace swiftwinrt
             return {};
         }
 
+
         virtual std::string_view swift_logical_namespace() const override
         {
-            return "Foundation";
+            return m_swiftModuleName;
         }
 
         virtual std::string_view swift_full_name() const override
         {
-            return m_swiftName;
+            return m_swiftFullName;
         }
 
         virtual std::string_view swift_type_name() const override
         {
-            return m_swiftName;
+            return m_swiftTypeName;
         }
 
         virtual std::string_view cpp_abi_name() const override
@@ -249,9 +259,14 @@ namespace swiftwinrt
         {
             // no special declaration necessary
         }
+
+        param_category category() const { return m_category; }
     private:
 
-        std::string_view m_swiftName;
+        std::string_view m_swiftModuleName;
+        std::string_view m_swiftTypeName;
+        std::string_view m_swiftFullName;
+        param_category m_category;
         std::string_view m_cppName;
         std::string_view m_signature;
     };

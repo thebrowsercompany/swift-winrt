@@ -1848,6 +1848,22 @@ extension InterfaceWithReturnDelegate {
 }
 public typealias AnyInterfaceWithReturnDelegate = any InterfaceWithReturnDelegate
 
+public protocol WithIterableGuids : WinRTInterface {
+    func ids() throws -> test_component.AnyIVector<Foundation.UUID>!
+}
+
+extension WithIterableGuids {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        switch iid {
+            case __ABI_test_component.WithIterableGuidsWrapper.IID:
+                let wrapper = __ABI_test_component.WithIterableGuidsWrapper(self)
+                return wrapper!.queryInterface(iid)
+            default: return nil
+        }
+    }
+}
+public typealias AnyWithIterableGuids = any WithIterableGuids
+
 public protocol WithKeyword : WinRTInterface {
     func `enum`(_ `extension`: String) throws
     var `struct`: String { get set }

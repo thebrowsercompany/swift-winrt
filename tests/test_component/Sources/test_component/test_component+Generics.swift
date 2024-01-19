@@ -243,6 +243,93 @@ fileprivate class __x_ABI_C__FIIterable_1_IInspectableImpl : IIterable, AbiInter
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
+private var IID___x_ABI_C__FIIterable_1_GUID: test_component.IID {
+    .init(Data1: 0xf4ca3045, Data2: 0x5dd7, Data3: 0x54be, Data4: ( 0x98,0x2e,0xd8,0x8d,0x8c,0xa0,0x87,0x6e ))// f4ca3045-5dd7-54be-982e-d88d8ca0876e
+}
+
+internal var __x_ABI_C__FIIterable_1_GUIDVTable: __x_ABI_C__FIIterable_1_GUIDVtbl = .init(
+    QueryInterface: { __x_ABI_C__FIIterable_1_GUIDWrapper.queryInterface($0, $1, $2) },
+    AddRef: { __x_ABI_C__FIIterable_1_GUIDWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIIterable_1_GUIDWrapper.release($0) },
+    GetIids: {
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIIterable_1_GUIDWrapper.IID
+        $1!.pointee = 3
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.Collections.IIterable`1<Foundation.UUID>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    First: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterable_1_GUIDWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.first()
+        let resultWrapper = test_component.__x_ABI_C__FIIterator_1_GUIDWrapper(result)
+        resultWrapper?.copyTo($1)
+        return S_OK
+    }
+)
+typealias __x_ABI_C__FIIterable_1_GUIDWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1_GUIDBridge>
+internal class IIterableUUID: test_component.IInspectable {
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1_GUID }
+
+    internal func FirstImpl() throws -> test_component.AnyIIterator<Foundation.UUID>? {
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIIterable_1_GUID.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
+            }
+        }
+        return test_component.__x_ABI_C__FIIterator_1_GUIDWrapper.unwrapFrom(abi: result)
+    }
+
+}
+
+internal enum __x_ABI_C__FIIterable_1_GUIDBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIIterable_1_GUID
+    internal typealias SwiftABI = IIterableUUID
+    internal typealias SwiftProjection = AnyIIterable<Foundation.UUID>
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIIterable_1_GUIDImpl(abi)
+    }
+
+    internal static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1_GUIDVTable) { $0 }
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIIterable_1_GUIDImpl : IIterable, AbiInterfaceImpl {
+    typealias T = Foundation.UUID
+    typealias Bridge = __x_ABI_C__FIIterable_1_GUIDBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
+    }
+
+    // MARK: WinRT
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
+    fileprivate func first() -> AnyIIterator<Foundation.UUID>? {
+        try! _default.FirstImpl()
+    }
+
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
+}
+
 private var IID___x_ABI_C__FIIterable_1_HSTRING: test_component.IID {
     .init(Data1: 0xe2fcc7c1, Data2: 0x3bfc, Data3: 0x5a0b, Data4: ( 0xb2,0xb0,0x72,0xe7,0x69,0xd1,0xcb,0x7e ))// e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e
 }
@@ -883,6 +970,133 @@ fileprivate class __x_ABI_C__FIIterator_1_IInspectableImpl : IIterator, AbiInter
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : Any? {
+        get { try! _default.get_CurrentImpl() }
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
+    fileprivate var hasCurrent : Bool {
+        get { try! _default.get_HasCurrentImpl() }
+    }
+
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
+}
+
+private var IID___x_ABI_C__FIIterator_1_GUID: test_component.IID {
+    .init(Data1: 0xd3d64048, Data2: 0x82b3, Data3: 0x53c7, Data4: ( 0x92,0x85,0xb0,0xbe,0x18,0x36,0x84,0x82 ))// d3d64048-82b3-53c7-9285-b0be18368482
+}
+
+internal var __x_ABI_C__FIIterator_1_GUIDVTable: __x_ABI_C__FIIterator_1_GUIDVtbl = .init(
+    QueryInterface: { __x_ABI_C__FIIterator_1_GUIDWrapper.queryInterface($0, $1, $2) },
+    AddRef: { __x_ABI_C__FIIterator_1_GUIDWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIIterator_1_GUIDWrapper.release($0) },
+    GetIids: {
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIIterator_1_GUIDWrapper.IID
+        $1!.pointee = 3
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.Collections.IIterator`1<Foundation.UUID>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    get_Current: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterator_1_GUIDWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.current
+        $1?.initialize(to: .init(from: result))
+        return S_OK
+    },
+
+    get_HasCurrent: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterator_1_GUIDWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.hasCurrent
+        $1?.initialize(to: .init(from: result))
+        return S_OK
+    },
+
+    MoveNext: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterator_1_GUIDWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.moveNext()
+        $1?.initialize(to: .init(from: result))
+        return S_OK
+    },
+
+    GetMany: { _, _, _, _ in return failWith(err: E_NOTIMPL) }
+)
+typealias __x_ABI_C__FIIterator_1_GUIDWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1_GUIDBridge>
+internal class IIteratorUUID: test_component.IInspectable {
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1_GUID }
+
+    internal func get_CurrentImpl() throws -> Foundation.UUID {
+        var result: test_component.GUID = .init()
+        _ = try perform(as: __x_ABI_C__FIIterator_1_GUID.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
+        }
+        return .init(from: result)
+    }
+
+    internal func get_HasCurrentImpl() throws -> Bool {
+        var result: boolean = 0
+        _ = try perform(as: __x_ABI_C__FIIterator_1_GUID.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
+        }
+        return .init(from: result)
+    }
+
+    internal func MoveNextImpl() throws -> Bool {
+        var result: boolean = 0
+        _ = try perform(as: __x_ABI_C__FIIterator_1_GUID.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
+        }
+        return .init(from: result)
+    }
+
+}
+
+internal enum __x_ABI_C__FIIterator_1_GUIDBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIIterator_1_GUID
+    internal typealias SwiftABI = IIteratorUUID
+    internal typealias SwiftProjection = AnyIIterator<Foundation.UUID>
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIIterator_1_GUIDImpl(abi)
+    }
+
+    internal static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1_GUIDVTable) { $0 }
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIIterator_1_GUIDImpl : IIterator, AbiInterfaceImpl {
+    typealias T = Foundation.UUID
+    typealias Bridge = __x_ABI_C__FIIterator_1_GUIDBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
+    }
+
+    // MARK: WinRT
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
+    fileprivate func moveNext() -> Bool {
+        try! _default.MoveNextImpl()
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
+    fileprivate var current : Foundation.UUID {
         get { try! _default.get_CurrentImpl() }
     }
 
@@ -4121,6 +4335,165 @@ fileprivate class __x_ABI_C__FIVectorView_1_IInspectableImpl : IVectorView, AbiI
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
+private var IID___x_ABI_C__FIVectorView_1_GUID: test_component.IID {
+    .init(Data1: 0x9520e64b, Data2: 0x15b2, Data3: 0x52a6, Data4: ( 0x98,0xed,0x31,0x91,0xfa,0x6c,0xf6,0x8a ))// 9520e64b-15b2-52a6-98ed-3191fa6cf68a
+}
+
+internal var __x_ABI_C__FIVectorView_1_GUIDVTable: __x_ABI_C__FIVectorView_1_GUIDVtbl = .init(
+    QueryInterface: { __x_ABI_C__FIVectorView_1_GUIDWrapper.queryInterface($0, $1, $2) },
+    AddRef: { __x_ABI_C__FIVectorView_1_GUIDWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIVectorView_1_GUIDWrapper.release($0) },
+    GetIids: {
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIVectorView_1_GUIDWrapper.IID
+        iids[3] = test_component.__x_ABI_C__FIIterable_1_GUIDWrapper.IID
+        $1!.pointee = 4
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.Collections.IVectorView`1<Foundation.UUID>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    GetAt: {
+        guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1_GUIDWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let index: UInt32 = $1
+        let result = __unwrapped__instance.getAt(index)
+        $2?.initialize(to: .init(from: result))
+        return S_OK
+    },
+
+    get_Size: {
+        guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1_GUIDWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.size
+        $1?.initialize(to: result)
+        return S_OK
+    },
+
+    IndexOf: {
+        guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1_GUIDWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let value: Foundation.UUID = .init(from: $1)
+        var index: UInt32 = 0
+        let result = __unwrapped__instance.indexOf(value, &index)
+        $2?.initialize(to: index)
+        $3?.initialize(to: .init(from: result))
+        return S_OK
+    },
+
+    GetMany: { _, _, _, _, _ in return failWith(err: E_NOTIMPL) }
+)
+typealias __x_ABI_C__FIVectorView_1_GUIDWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1_GUIDBridge>
+internal class IVectorViewUUID: test_component.IInspectable {
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1_GUID }
+
+    internal func GetAtImpl(_ index: UInt32) throws -> Foundation.UUID {
+        var result: test_component.GUID = .init()
+        _ = try perform(as: __x_ABI_C__FIVectorView_1_GUID.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
+        }
+        return .init(from: result)
+    }
+
+    internal func get_SizeImpl() throws -> UInt32 {
+        var result: UINT32 = 0
+        _ = try perform(as: __x_ABI_C__FIVectorView_1_GUID.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
+        }
+        return result
+    }
+
+    internal func IndexOfImpl(_ value: Foundation.UUID, _ index: inout UInt32) throws -> Bool {
+        var result: boolean = 0
+        _ = try perform(as: __x_ABI_C__FIVectorView_1_GUID.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, .init(from: value), &index, &result))
+        }
+        return .init(from: result)
+    }
+
+}
+
+internal enum __x_ABI_C__FIVectorView_1_GUIDBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIVectorView_1_GUID
+    internal typealias SwiftABI = IVectorViewUUID
+    internal typealias SwiftProjection = AnyIVectorView<Foundation.UUID>
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIVectorView_1_GUIDImpl(abi)
+    }
+
+    internal static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIVectorView_1_GUIDVTable) { $0 }
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIVectorView_1_GUIDImpl : IVectorView, AbiInterfaceImpl {
+    typealias T = Foundation.UUID
+    typealias Bridge = __x_ABI_C__FIVectorView_1_GUIDBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
+    }
+
+    // MARK: Collection
+    typealias Element = T
+    var startIndex: Int { 0 }
+    var endIndex: Int { Int(size) }
+    func index(after i: Int) -> Int {
+        i+1
+    }
+
+    func index(of: Element) -> Int? {
+        var index: UInt32 = 0
+        let result = indexOf(of, &index)
+        guard result else { return nil }
+        return Int(index)
+    }
+    var count: Int { Int(size) }
+
+    subscript(position: Int) -> Element {
+        get {
+            getAt(UInt32(position))
+        }
+    }
+    // MARK: WinRT
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.getat)
+    fileprivate func getAt(_ index: UInt32) -> Foundation.UUID {
+        try! _default.GetAtImpl(index)
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.indexof)
+    fileprivate func indexOf(_ value: Foundation.UUID, _ index: inout UInt32) -> Bool {
+        try! _default.IndexOfImpl(value, &index)
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
+    fileprivate var size : UInt32 {
+        get { try! _default.get_SizeImpl() }
+    }
+
+    private lazy var _IIterable: IIterableUUID! = getInterfaceForCaching()
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
+    fileprivate func first() -> AnyIIterator<Foundation.UUID>? {
+        try! _IIterable.FirstImpl()
+    }
+
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
+}
+
 private var IID___x_ABI_C__FIVectorView_1_HSTRING: test_component.IID {
     .init(Data1: 0x2f13c006, Data2: 0xa03a, Data3: 0x5f69, Data4: ( 0xb0,0x90,0x75,0xa4,0x3e,0x33,0x42,0x3e ))// 2f13c006-a03a-5f69-b090-75a43e33423e
 }
@@ -4908,6 +5281,306 @@ fileprivate class __x_ABI_C__FIVector_1_IInspectableImpl : IVector, AbiInterface
     private lazy var _IIterable: IIterableAny! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.first)
     fileprivate func first() -> AnyIIterator<Any?>? {
+        try! _IIterable.FirstImpl()
+    }
+
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
+}
+
+private var IID___x_ABI_C__FIVector_1_GUID: test_component.IID {
+    .init(Data1: 0x482e676d, Data2: 0xb913, Data3: 0x5ec1, Data4: ( 0xaf,0xa8,0x5f,0x96,0x92,0x2e,0x94,0xae ))// 482e676d-b913-5ec1-afa8-5f96922e94ae
+}
+
+internal var __x_ABI_C__FIVector_1_GUIDVTable: __x_ABI_C__FIVector_1_GUIDVtbl = .init(
+    QueryInterface: { __x_ABI_C__FIVector_1_GUIDWrapper.queryInterface($0, $1, $2) },
+    AddRef: { __x_ABI_C__FIVector_1_GUIDWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIVector_1_GUIDWrapper.release($0) },
+    GetIids: {
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIVector_1_GUIDWrapper.IID
+        iids[3] = test_component.__x_ABI_C__FIIterable_1_GUIDWrapper.IID
+        $1!.pointee = 4
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.Collections.IVector`1<Foundation.UUID>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    GetAt: {
+        guard let __unwrapped__instance = __x_ABI_C__FIVector_1_GUIDWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let index: UInt32 = $1
+        let result = __unwrapped__instance.getAt(index)
+        $2?.initialize(to: .init(from: result))
+        return S_OK
+    },
+
+    get_Size: {
+        guard let __unwrapped__instance = __x_ABI_C__FIVector_1_GUIDWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.size
+        $1?.initialize(to: result)
+        return S_OK
+    },
+
+    GetView: {
+        guard let __unwrapped__instance = __x_ABI_C__FIVector_1_GUIDWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.getView()
+        let resultWrapper = test_component.__x_ABI_C__FIVectorView_1_GUIDWrapper(result)
+        resultWrapper?.copyTo($1)
+        return S_OK
+    },
+
+    IndexOf: {
+        guard let __unwrapped__instance = __x_ABI_C__FIVector_1_GUIDWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let value: Foundation.UUID = .init(from: $1)
+        var index: UInt32 = 0
+        let result = __unwrapped__instance.indexOf(value, &index)
+        $2?.initialize(to: index)
+        $3?.initialize(to: .init(from: result))
+        return S_OK
+    },
+
+    SetAt: {
+        guard let __unwrapped__instance = __x_ABI_C__FIVector_1_GUIDWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let index: UInt32 = $1
+        let value: Foundation.UUID = .init(from: $2)
+        __unwrapped__instance.setAt(index, value)
+        return S_OK
+    },
+
+    InsertAt: {
+        guard let __unwrapped__instance = __x_ABI_C__FIVector_1_GUIDWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let index: UInt32 = $1
+        let value: Foundation.UUID = .init(from: $2)
+        __unwrapped__instance.insertAt(index, value)
+        return S_OK
+    },
+
+    RemoveAt: {
+        guard let __unwrapped__instance = __x_ABI_C__FIVector_1_GUIDWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let index: UInt32 = $1
+        __unwrapped__instance.removeAt(index)
+        return S_OK
+    },
+
+    Append: {
+        guard let __unwrapped__instance = __x_ABI_C__FIVector_1_GUIDWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let value: Foundation.UUID = .init(from: $1)
+        __unwrapped__instance.append(value)
+        return S_OK
+    },
+
+    RemoveAtEnd: {
+        guard let __unwrapped__instance = __x_ABI_C__FIVector_1_GUIDWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        __unwrapped__instance.removeAtEnd()
+        return S_OK
+    },
+
+    Clear: {
+        guard let __unwrapped__instance = __x_ABI_C__FIVector_1_GUIDWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        __unwrapped__instance.clear()
+        return S_OK
+    },
+
+    GetMany: { _, _, _, _, _ in return failWith(err: E_NOTIMPL) },
+
+    ReplaceAll: { _, _, _ in return failWith(err: E_NOTIMPL) }
+)
+typealias __x_ABI_C__FIVector_1_GUIDWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVector_1_GUIDBridge>
+internal class IVectorUUID: test_component.IInspectable {
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIVector_1_GUID }
+
+    internal func GetAtImpl(_ index: UInt32) throws -> Foundation.UUID {
+        var result: test_component.GUID = .init()
+        _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
+        }
+        return .init(from: result)
+    }
+
+    internal func get_SizeImpl() throws -> UInt32 {
+        var result: UINT32 = 0
+        _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
+        }
+        return result
+    }
+
+    internal func GetViewImpl() throws -> test_component.AnyIVectorView<Foundation.UUID>? {
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &resultAbi))
+            }
+        }
+        return test_component.__x_ABI_C__FIVectorView_1_GUIDWrapper.unwrapFrom(abi: result)
+    }
+
+    internal func IndexOfImpl(_ value: Foundation.UUID, _ index: inout UInt32) throws -> Bool {
+        var result: boolean = 0
+        _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, .init(from: value), &index, &result))
+        }
+        return .init(from: result)
+    }
+
+    internal func SetAtImpl(_ index: UInt32, _ value: Foundation.UUID) throws {
+        _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.SetAt(pThis, index, .init(from: value)))
+        }
+    }
+
+    internal func InsertAtImpl(_ index: UInt32, _ value: Foundation.UUID) throws {
+        _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.InsertAt(pThis, index, .init(from: value)))
+        }
+    }
+
+    internal func RemoveAtImpl(_ index: UInt32) throws {
+        _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAt(pThis, index))
+        }
+    }
+
+    internal func AppendImpl(_ value: Foundation.UUID) throws {
+        _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Append(pThis, .init(from: value)))
+        }
+    }
+
+    internal func RemoveAtEndImpl() throws {
+        _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAtEnd(pThis))
+        }
+    }
+
+    internal func ClearImpl() throws {
+        _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Clear(pThis))
+        }
+    }
+
+}
+
+internal enum __x_ABI_C__FIVector_1_GUIDBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIVector_1_GUID
+    internal typealias SwiftABI = IVectorUUID
+    internal typealias SwiftProjection = AnyIVector<Foundation.UUID>
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIVector_1_GUIDImpl(abi)
+    }
+
+    internal static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIVector_1_GUIDVTable) { $0 }
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIVector_1_GUIDImpl : IVector, AbiInterfaceImpl {
+    typealias T = Foundation.UUID
+    typealias Bridge = __x_ABI_C__FIVector_1_GUIDBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
+    }
+
+    // MARK: Collection
+    typealias Element = T
+    var startIndex: Int { 0 }
+    var endIndex: Int { Int(size) }
+    func index(after i: Int) -> Int {
+        i+1
+    }
+
+    func index(of: Element) -> Int? {
+        var index: UInt32 = 0
+        let result = indexOf(of, &index)
+        guard result else { return nil }
+        return Int(index)
+    }
+    var count: Int { Int(size) }
+
+
+    subscript(position: Int) -> Element {
+        get {
+            getAt(UInt32(position))
+        }
+        set(newValue) {
+            setAt(UInt32(position), newValue)
+        }
+    }
+
+    func removeLast() {
+        removeAtEnd()
+    }
+
+    // MARK: WinRT
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getat)
+    fileprivate func getAt(_ index: UInt32) -> Foundation.UUID {
+        try! _default.GetAtImpl(index)
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getview)
+    fileprivate func getView() -> AnyIVectorView<Foundation.UUID>? {
+        try! _default.GetViewImpl()
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.indexof)
+    fileprivate func indexOf(_ value: Foundation.UUID, _ index: inout UInt32) -> Bool {
+        try! _default.IndexOfImpl(value, &index)
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.setat)
+    fileprivate func setAt(_ index: UInt32, _ value: Foundation.UUID) {
+        try! _default.SetAtImpl(index, value)
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.insertat)
+    fileprivate func insertAt(_ index: UInt32, _ value: Foundation.UUID) {
+        try! _default.InsertAtImpl(index, value)
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeat)
+    fileprivate func removeAt(_ index: UInt32) {
+        try! _default.RemoveAtImpl(index)
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.append)
+    fileprivate func append(_ value: Foundation.UUID) {
+        try! _default.AppendImpl(value)
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeatend)
+    fileprivate func removeAtEnd() {
+        try! _default.RemoveAtEndImpl()
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.clear)
+    fileprivate func clear() {
+        try! _default.ClearImpl()
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.size)
+    fileprivate var size : UInt32 {
+        get { try! _default.get_SizeImpl() }
+    }
+
+    private lazy var _IIterable: IIterableUUID! = getInterfaceForCaching()
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.first)
+    fileprivate func first() -> AnyIIterator<Foundation.UUID>? {
         try! _IIterable.FirstImpl()
     }
 
