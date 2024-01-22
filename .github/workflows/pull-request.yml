@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-2022
+    runs-on: ['self-hosted', 'win11']
     name: Swift/WinRT PR Build & Test
     steps:
       - uses: actions/checkout@v3
