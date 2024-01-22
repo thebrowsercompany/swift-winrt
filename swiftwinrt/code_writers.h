@@ -2318,6 +2318,7 @@ public init<Composable: ComposableImpl>(
             {
                 name_to_write = interface_name.substr(0, interface_name.find_first_of('<'));
             }
+            w.add_depends(*info.type);
             w.write(name_to_write);
         }
 
