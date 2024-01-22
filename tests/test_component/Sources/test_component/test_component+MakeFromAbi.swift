@@ -18,6 +18,11 @@ fileprivate func makeIClosableFrom(abi: test_component.IInspectable) -> Any {
     return __IMPL_Windows_Foundation.IClosableBridge.from(abi: RawPointer(swiftAbi))!
 }
 
+fileprivate func makeIMemoryBufferFrom(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_Windows_Foundation.IMemoryBuffer = try! abi.QueryInterface()
+    return __IMPL_Windows_Foundation.IMemoryBufferBridge.from(abi: RawPointer(swiftAbi))!
+}
+
 fileprivate func makeIMemoryBufferReferenceFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_Windows_Foundation.IMemoryBufferReference = try! abi.QueryInterface()
     return __IMPL_Windows_Foundation.IMemoryBufferReferenceBridge.from(abi: RawPointer(swiftAbi))!
@@ -92,6 +97,10 @@ fileprivate func makeDeferralFrom(abi: test_component.IInspectable) -> Any {
     return Deferral(fromAbi: abi)
 }
 
+fileprivate func makeMemoryBufferFrom(abi: test_component.IInspectable) -> Any {
+    return MemoryBuffer(fromAbi: abi)
+}
+
 fileprivate func makePropertySetFrom(abi: test_component.IInspectable) -> Any {
     return PropertySet(fromAbi: abi)
 }
@@ -102,6 +111,10 @@ fileprivate func makeStringMapFrom(abi: test_component.IInspectable) -> Any {
 
 fileprivate func makeValueSetFrom(abi: test_component.IInspectable) -> Any {
     return ValueSet(fromAbi: abi)
+}
+
+fileprivate func makeBufferFrom(abi: test_component.IInspectable) -> Any {
+    return Buffer(fromAbi: abi)
 }
 
 fileprivate func makeAsyncOperationIntFrom(abi: test_component.IInspectable) -> Any {
@@ -187,6 +200,7 @@ public class __MakeFromAbi: MakeFromAbi {
             case "IAsyncAction": return makeIAsyncActionFrom(abi: abi)
             case "IAsyncInfo": return makeIAsyncInfoFrom(abi: abi)
             case "IClosable": return makeIClosableFrom(abi: abi)
+            case "IMemoryBuffer": return makeIMemoryBufferFrom(abi: abi)
             case "IMemoryBufferReference": return makeIMemoryBufferReferenceFrom(abi: abi)
             case "IStringable": return makeIStringableFrom(abi: abi)
             case "IPropertySet": return makeIPropertySetFrom(abi: abi)
@@ -202,9 +216,11 @@ public class __MakeFromAbi: MakeFromAbi {
             case "WithIterableGuids": return makeWithIterableGuidsFrom(abi: abi)
             case "WithKeyword": return makeWithKeywordFrom(abi: abi)
             case "Deferral": return makeDeferralFrom(abi: abi)
+            case "MemoryBuffer": return makeMemoryBufferFrom(abi: abi)
             case "PropertySet": return makePropertySetFrom(abi: abi)
             case "StringMap": return makeStringMapFrom(abi: abi)
             case "ValueSet": return makeValueSetFrom(abi: abi)
+            case "Buffer": return makeBufferFrom(abi: abi)
             case "AsyncOperationInt": return makeAsyncOperationIntFrom(abi: abi)
             case "Base": return makeBaseFrom(abi: abi)
             case "BaseCollection": return makeBaseCollectionFrom(abi: abi)

@@ -31,6 +31,14 @@ private var IID___x_ABI_CWindows_CFoundation_CIDeferralFactory: test_component.I
     .init(Data1: 0x65A1ECC5, Data2: 0x3FB5, Data3: 0x4832, Data4: ( 0x8C,0xA9,0xF0,0x61,0xB2,0x81,0xD1,0x3A ))// 65A1ECC5-3FB5-4832-8CA9-F061B281D13A
 }
 
+private var IID___x_ABI_CWindows_CFoundation_CIMemoryBuffer: test_component.IID {
+    .init(Data1: 0xFBC4DD2A, Data2: 0x245B, Data3: 0x11E4, Data4: ( 0xAF,0x98,0x68,0x94,0x23,0x26,0x0C,0xF8 ))// FBC4DD2A-245B-11E4-AF98-689423260CF8
+}
+
+private var IID___x_ABI_CWindows_CFoundation_CIMemoryBufferFactory: test_component.IID {
+    .init(Data1: 0xFBC4DD2B, Data2: 0x245B, Data3: 0x11E4, Data4: ( 0xAF,0x98,0x68,0x94,0x23,0x26,0x0C,0xF8 ))// FBC4DD2B-245B-11E4-AF98-689423260CF8
+}
+
 private var IID___x_ABI_CWindows_CFoundation_CIMemoryBufferReference: test_component.IID {
     .init(Data1: 0xFBC4DD29, Data2: 0x245B, Data3: 0x11E4, Data4: ( 0xAF,0x98,0x68,0x94,0x23,0x26,0x0C,0xF8 ))// FBC4DD29-245B-11E4-AF98-689423260CF8
 }
@@ -338,6 +346,75 @@ public enum __ABI_Windows_Foundation {
                 }
             }
             return IDeferral(result!)
+        }
+
+    }
+
+    public class IMemoryBuffer: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIMemoryBuffer }
+
+        open func CreateReferenceImpl() throws -> test_component.AnyIMemoryBufferReference? {
+            let (reference) = try ComPtrs.initialize { referenceAbi in
+                _ = try perform(as: __x_ABI_CWindows_CFoundation_CIMemoryBuffer.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.CreateReference(pThis, &referenceAbi))
+                }
+            }
+            return __ABI_Windows_Foundation.IMemoryBufferReferenceWrapper.unwrapFrom(abi: reference)
+        }
+
+    }
+
+    internal static var IMemoryBufferVTable: __x_ABI_CWindows_CFoundation_CIMemoryBufferVtbl = .init(
+        QueryInterface: { IMemoryBufferWrapper.queryInterface($0, $1, $2) },
+        AddRef: { IMemoryBufferWrapper.addRef($0) },
+        Release: { IMemoryBufferWrapper.release($0) },
+        GetIids: {
+            let size = MemoryLayout<test_component.IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
+            iids[0] = IUnknown.IID
+            iids[1] = IInspectable.IID
+            iids[2] = __ABI_Windows_Foundation.IMemoryBufferWrapper.IID
+            iids[3] = __ABI_Windows_Foundation.IClosableWrapper.IID
+            $1!.pointee = 4
+            $2!.pointee = iids
+            return S_OK
+        },
+
+        GetRuntimeClassName: {
+            _ = $0
+            let hstring = try! HString("Windows.Foundation.IMemoryBuffer").detach()
+            $1!.pointee = hstring
+            return S_OK
+        },
+
+        GetTrustLevel: {
+            _ = $0
+            $1!.pointee = TrustLevel(rawValue: 0)
+            return S_OK
+        },
+
+        CreateReference: {
+            do {
+                guard let __unwrapped__instance = IMemoryBufferWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                let reference = try __unwrapped__instance.createReference()
+                let referenceWrapper = __ABI_Windows_Foundation.IMemoryBufferReferenceWrapper(reference)
+                referenceWrapper?.copyTo($1)
+                return S_OK
+            } catch { return failWith(err: E_FAIL) } 
+        }
+    )
+
+    public typealias IMemoryBufferWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.IMemoryBufferBridge>
+    public class IMemoryBufferFactory: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIMemoryBufferFactory }
+
+        internal func CreateImpl(_ capacity: UInt32) throws -> IMemoryBuffer {
+            let (value) = try ComPtrs.initialize { valueAbi in
+                _ = try perform(as: __x_ABI_CWindows_CFoundation_CIMemoryBufferFactory.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.Create(pThis, capacity, &valueAbi))
+                }
+            }
+            return IMemoryBuffer(value!)
         }
 
     }

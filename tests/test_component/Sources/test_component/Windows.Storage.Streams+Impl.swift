@@ -39,7 +39,7 @@ public enum __IMPL_Windows_Storage_Streams {
         }
 
         private lazy var _IBufferByteAccess: __ABI_.IBufferByteAccess! = getInterfaceForCaching()
-        var data: Data {
+        fileprivate  var data: Data {
             get throws {
                 let bufferByteAccess: test_component.__ABI_.IBufferByteAccess = try _IBufferByteAccess.QueryInterface()
                 var data = Data(count: Int(capacity))

@@ -7,6 +7,14 @@ private var IID___x_ABI_CWindows_CStorage_CStreams_CIBuffer: test_component.IID 
     .init(Data1: 0x905A0FE0, Data2: 0xBC53, Data3: 0x11DF, Data4: ( 0x8C,0x49,0x00,0x1E,0x4F,0xC6,0x86,0xDA ))// 905A0FE0-BC53-11DF-8C49-001E4FC686DA
 }
 
+private var IID___x_ABI_CWindows_CStorage_CStreams_CIBufferFactory: test_component.IID {
+    .init(Data1: 0x71AF914D, Data2: 0xC10F, Data3: 0x484B, Data4: ( 0xBC,0x50,0x14,0xBC,0x62,0x3B,0x3A,0x27 ))// 71AF914D-C10F-484B-BC50-14BC623B3A27
+}
+
+private var IID___x_ABI_CWindows_CStorage_CStreams_CIBufferStatics: test_component.IID {
+    .init(Data1: 0xE901E65B, Data2: 0xD716, Data3: 0x475A, Data4: ( 0xA9,0x0A,0xAF,0x72,0x29,0xB1,0xE7,0x41 ))// E901E65B-D716-475A-A90A-AF7229B1E741
+}
+
 public enum __ABI_Windows_Storage_Streams {
     public class IBuffer: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CStreams_CIBuffer }
@@ -87,4 +95,45 @@ public enum __ABI_Windows_Storage_Streams {
     )
 
     public typealias IBufferWrapper = InterfaceWrapperBase<__IMPL_Windows_Storage_Streams.IBufferBridge>
+    public class IBufferFactory: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CStreams_CIBufferFactory }
+
+        internal func CreateImpl(_ capacity: UInt32) throws -> IBuffer {
+            let (value) = try ComPtrs.initialize { valueAbi in
+                _ = try perform(as: __x_ABI_CWindows_CStorage_CStreams_CIBufferFactory.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.Create(pThis, capacity, &valueAbi))
+                }
+            }
+            return IBuffer(value!)
+        }
+
+    }
+
+    public class IBufferStatics: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CStreams_CIBufferStatics }
+
+        internal func CreateCopyFromMemoryBufferImpl(_ input: test_component.AnyIMemoryBuffer?) throws -> test_component.Buffer? {
+            let (value) = try ComPtrs.initialize { valueAbi in
+                let inputWrapper = __ABI_Windows_Foundation.IMemoryBufferWrapper(input)
+                let _input = try! inputWrapper?.toABI { $0 }
+                _ = try perform(as: __x_ABI_CWindows_CStorage_CStreams_CIBufferStatics.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.CreateCopyFromMemoryBuffer(pThis, _input, &valueAbi))
+                }
+            }
+            return .from(abi: value)
+        }
+
+        internal func CreateMemoryBufferOverIBufferImpl(_ input: test_component.AnyIBuffer?) throws -> test_component.MemoryBuffer? {
+            let (value) = try ComPtrs.initialize { valueAbi in
+                let inputWrapper = __ABI_Windows_Storage_Streams.IBufferWrapper(input)
+                let _input = try! inputWrapper?.toABI { $0 }
+                _ = try perform(as: __x_ABI_CWindows_CStorage_CStreams_CIBufferStatics.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.CreateMemoryBufferOverIBuffer(pThis, _input, &valueAbi))
+                }
+            }
+            return .from(abi: value)
+        }
+
+    }
+
 }

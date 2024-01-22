@@ -15,11 +15,11 @@ extension __ABI_ {
 
         public func Buffer(_ bytes: UnsafeMutablePointer<UInt8>?) throws {
             var buffer: UnsafeMutablePointer<UInt8>?
-            try perform(as: C_BINDINGS_MODULE.IBufferByteAccess.self) { pThis in
+            try perform(as: C_BINDINGS_MODULE.C_IBufferByteAccess.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Buffer(pThis, &buffer))
             }
         }
-        static fileprivate func Buffer(_ this: UnsafeMutablePointer<C_BINDINGS_MODULE.IBufferByteAccess>?, _ buffer: UnsafeMutablePointer<UnsafeMutablePointer<UInt8>?>?) -> HRESULT {
+        static fileprivate func Buffer(_ this: UnsafeMutablePointer<C_BINDINGS_MODULE.C_IBufferByteAccess>?, _ buffer: UnsafeMutablePointer<UnsafeMutablePointer<UInt8>?>?) -> HRESULT {
             return E_NOTIMPL
         }
     }
@@ -37,7 +37,7 @@ public enum IBufferByteAccessBridge: AbiInterfaceBridge {
         return IBufferByteAccessImpl(abi)
     }
 
-    public typealias CABI = C_BINDINGS_MODULE.IBufferByteAccess
+    public typealias CABI = C_BINDINGS_MODULE.C_IBufferByteAccess
     public typealias SwiftABI = __ABI_.IBufferByteAccess
     public typealias SwiftProjection = AnyIBufferByteAccess
 }
@@ -58,7 +58,7 @@ fileprivate class IBufferByteAccessImpl: AbiInterfaceImpl, IBufferByteAccess {
     }
 }
 
-private var IBufferByteAccessVTable: C_BINDINGS_MODULE.IBufferByteAccessVtbl = .init(
+private var IBufferByteAccessVTable: C_BINDINGS_MODULE.C_IBufferByteAccessVtbl = .init(
     QueryInterface: { __ABI_.IBufferByteAccessWrapper.queryInterface($0, $1, $2) },
     AddRef: {  __ABI_.IBufferByteAccessWrapper.addRef($0) },
     Release: {  __ABI_.IBufferByteAccessWrapper.release($0) },

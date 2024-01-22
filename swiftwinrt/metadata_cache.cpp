@@ -266,11 +266,24 @@ void metadata_cache::get_interfaces_impl(init_state& state, writer& w, get_inter
 
             process_contract_dependencies(*state.target, impl);
             get_interfaces_impl(state, w, result, info.defaulted, info.overridable, base, typeBase->type().InterfaceImpl());
+            try_insert_buffer_byte_access(typeBase->type(), result, info.defaulted);
         }
 
         insert_or_assign(result, name, std::move(info));
     }
 };
+
+void metadata_cache::try_insert_buffer_byte_access(winmd::reader::TypeDef const& type, get_interfaces_t& result, bool defaulted = false)
+{
+    if (type.TypeNamespace() == "Windows.Foundation" && type.TypeName() == "IMemoryBufferReference")
+    {
+        insert_or_assign(result, "IMemoryBufferByteAccess", { &system_type::from_name("IMemoryBufferByteAccess"), false, defaulted });
+    }
+    else if (type.TypeNamespace() == "Windows.Storage.Streams" && type.TypeName() == "IBuffer")
+    {
+        insert_or_assign(result, "IBufferByteAccess", { &system_type::from_name("IBufferByteAccess"), false, defaulted });
+    }
+}
 
 metadata_cache::get_interfaces_t metadata_cache::get_interfaces(init_state& state, TypeDef const& type)
 {
@@ -285,14 +298,7 @@ metadata_cache::get_interfaces_t metadata_cache::get_interfaces(init_state& stat
         get_interfaces_impl(state,w, result, false, false, true, base.InterfaceImpl());
     }
 
-    if (type.TypeNamespace() == "Windows.Foundation" && type.TypeName() == "IMemoryBufferReference")
-    {
-        insert_or_assign(result, "IMemoryBufferByteAccess", { &system_type::from_name("IMemoryBufferByteAccess") });
-    }
-    else if (type.TypeNamespace() == "Windows.Storage.Streams" && type.TypeName() == "IBuffer")
-    {
-        insert_or_assign(result, "IBufferByteAccess", { &system_type::from_name("IBufferByteAccess") });
-    }
+    try_insert_buffer_byte_access(type, result);
 
     if (!has_fastabi(type))
     {

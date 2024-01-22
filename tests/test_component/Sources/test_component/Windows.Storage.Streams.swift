@@ -3,6 +3,77 @@
 import Foundation
 import Ctest_component
 
+/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.buffer)
+public final class Buffer : WinRTClass, IBufferByteAccess, IBuffer {
+    private typealias SwiftABI = __ABI_Windows_Storage_Streams.IBuffer
+    private typealias CABI = __x_ABI_CWindows_CStorage_CStreams_CIBuffer
+    private lazy var _default: SwiftABI! = getInterfaceForCaching()
+    @_spi(WinRTInternal)
+    override public func _getABI<T>() -> UnsafeMutablePointer<T>? {
+        if T.self == CABI.self {
+            return RawPointer(_default)
+        }
+        return super._getABI()
+    }
+
+    @_spi(WinRTInternal)
+    public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CStreams_CIBuffer>?) -> Buffer? {
+        guard let abi = abi else { return nil }
+        return .init(fromAbi: test_component.IInspectable(abi))
+    }
+
+    @_spi(WinRTInternal)
+    public init(fromAbi: test_component.IInspectable) {
+        super.init(fromAbi)
+    }
+
+    override public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        return super.queryInterface(iid)
+    }
+    private static let _IBufferFactory: __ABI_Windows_Storage_Streams.IBufferFactory = try! RoGetActivationFactory(HString("Windows.Storage.Streams.Buffer"))
+    public init(_ capacity: UInt32) {
+        super.init(try! Self._IBufferFactory.CreateImpl(capacity))
+    }
+
+    private static let _IBufferStatics: __ABI_Windows_Storage_Streams.IBufferStatics = try! RoGetActivationFactory(HString("Windows.Storage.Streams.Buffer"))
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.buffer.createcopyfrommemorybuffer)
+    public static func createCopyFromMemoryBuffer(_ input: test_component.AnyIMemoryBuffer!) -> Buffer! {
+        return try! _IBufferStatics.CreateCopyFromMemoryBufferImpl(input)
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.buffer.creatememorybufferoveribuffer)
+    public static func createMemoryBufferOverIBuffer(_ input: AnyIBuffer!) -> test_component.MemoryBuffer! {
+        return try! _IBufferStatics.CreateMemoryBufferOverIBufferImpl(input)
+    }
+
+    private lazy var _IBufferByteAccess: __ABI_.IBufferByteAccess! = getInterfaceForCaching()
+    public  var data: Data {
+        get throws {
+            let bufferByteAccess: test_component.__ABI_.IBufferByteAccess = try _IBufferByteAccess.QueryInterface()
+            var data = Data(count: Int(capacity))
+            try data.withUnsafeMutableBytes { (bytes: UnsafeMutableRawBufferPointer) in
+                try bufferByteAccess.Buffer(bytes.baseAddress?.assumingMemoryBound(to: UInt8.self))
+            }
+            return data
+        }
+    }
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.buffer.capacity)
+    public var capacity : UInt32 {
+        get { try! _default.get_CapacityImpl() }
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.buffer.length)
+    public var length : UInt32 {
+        get { try! _default.get_LengthImpl() }
+        set { try! _default.put_LengthImpl(newValue) }
+    }
+
+    deinit {
+        _IBufferByteAccess = nil
+        _default = nil
+    }
+}
+
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.ibuffer)
 public protocol IBuffer : IBufferByteAccess {
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.ibuffer.capacity)

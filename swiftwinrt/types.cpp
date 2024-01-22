@@ -695,12 +695,12 @@ namespace swiftwinrt
         }
         else if (typeName == "IBufferByteAccess")
         {
-            static system_type const ibufferbyteaccess_type{ ""sv, typeName, typeName, typeName, "{905a0fef-bc53-11df-8c49-001e4fc686da}"sv, param_category::object_type };
+            static system_type const ibufferbyteaccess_type{ ""sv, typeName, typeName, "C_IBufferByteAccess"sv, "{905a0fef-bc53-11df-8c49-001e4fc686da}"sv, param_category::object_type };
             return ibufferbyteaccess_type;
         }
         else if (typeName == "IMemoryBufferByteAccess")
         {
-            static system_type const imemorybufferbyte_type{ ""sv, typeName, typeName, typeName, "{5b0d3235-4dba-4d44-865e-8f1d0e4fd04d}"sv, param_category::object_type };
+            static system_type const imemorybufferbyte_type{ ""sv, typeName, typeName, "IMemoryBufferByteAccess"sv, "{5b0d3235-4dba-4d44-865e-8f1d0e4fd04d}"sv, param_category::object_type };
             return imemorybufferbyte_type;
         }
 

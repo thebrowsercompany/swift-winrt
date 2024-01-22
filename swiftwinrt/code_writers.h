@@ -995,9 +995,10 @@ bind_bridge_fullname(type));
         w.write("// MARK: WinRT\n");
     }
 
-    static void write_bufferbyteaccess(writer& w, interface_info const& info, system_type const& type)
+    static std::string modifier_for(typedef_base const& type_definition, interface_info const& iface);
+    static void write_bufferbyteaccess(writer& w, interface_info const& info, system_type const& type, typedef_base const& type_definition)
     {
-        w.write(R"(var data: Data {
+        w.write(R"(% var data: Data {
     get throws {
         let bufferByteAccess: %.__ABI_.% = try %.QueryInterface()
         var data = Data(count: Int(capacity))
@@ -1007,7 +1008,7 @@ bind_bridge_fullname(type));
         return data
     }
 }
-)", w.support, type.swift_type_name(), get_swift_name(info));
+)", modifier_for(type_definition, info), w.support, type.swift_type_name(), get_swift_name(info));
     }
     static void write_interface_impl_members(writer& w, interface_info const& info, typedef_base const& type_definition)
     {
@@ -1064,7 +1065,7 @@ bind_bridge_fullname(type));
         {
             if (systemType->swift_type_name() == "IBufferByteAccess" || systemType->swift_type_name() == "IMemoryBufferByteAccess")
             {
-                write_bufferbyteaccess(w, info, *systemType);
+                write_bufferbyteaccess(w, info, *systemType, type_definition);
             }
         }
         else

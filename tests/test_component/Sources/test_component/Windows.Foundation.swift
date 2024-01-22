@@ -56,6 +56,55 @@ public final class Deferral : WinRTClass, IClosable {
     }
 }
 
+/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.memorybuffer)
+public final class MemoryBuffer : WinRTClass, IClosable, IMemoryBuffer {
+    private typealias SwiftABI = __ABI_Windows_Foundation.IMemoryBuffer
+    private typealias CABI = __x_ABI_CWindows_CFoundation_CIMemoryBuffer
+    private lazy var _default: SwiftABI! = getInterfaceForCaching()
+    @_spi(WinRTInternal)
+    override public func _getABI<T>() -> UnsafeMutablePointer<T>? {
+        if T.self == CABI.self {
+            return RawPointer(_default)
+        }
+        return super._getABI()
+    }
+
+    @_spi(WinRTInternal)
+    public static func from(abi: ComPtr<__x_ABI_CWindows_CFoundation_CIMemoryBuffer>?) -> MemoryBuffer? {
+        guard let abi = abi else { return nil }
+        return .init(fromAbi: test_component.IInspectable(abi))
+    }
+
+    @_spi(WinRTInternal)
+    public init(fromAbi: test_component.IInspectable) {
+        super.init(fromAbi)
+    }
+
+    override public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        return super.queryInterface(iid)
+    }
+    private static let _IMemoryBufferFactory: __ABI_Windows_Foundation.IMemoryBufferFactory = try! RoGetActivationFactory(HString("Windows.Foundation.MemoryBuffer"))
+    public init(_ capacity: UInt32) {
+        super.init(try! Self._IMemoryBufferFactory.CreateImpl(capacity))
+    }
+
+    private lazy var _IClosable: __ABI_Windows_Foundation.IClosable! = getInterfaceForCaching()
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.memorybuffer.close)
+    public func close() throws {
+        try _IClosable.CloseImpl()
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.memorybuffer.createreference)
+    public func createReference() throws -> AnyIMemoryBufferReference! {
+        try _default.CreateReferenceImpl()
+    }
+
+    deinit {
+        _IClosable = nil
+        _default = nil
+    }
+}
+
 public typealias AsyncActionCompletedHandler = (AnyIAsyncAction?, AsyncStatus) -> ()
 public typealias AsyncOperationCompletedHandler<TResult> = (AnyIAsyncOperation<TResult>?, AsyncStatus) -> ()
 public typealias AsyncOperationProgressHandler<TResult,TProgress> = (AnyIAsyncOperationWithProgress<TResult, TProgress>?, TProgress) -> ()
@@ -273,6 +322,27 @@ extension IClosable {
     }
 }
 public typealias AnyIClosable = any IClosable
+
+/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.imemorybuffer)
+public protocol IMemoryBuffer : IClosable {
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.imemorybuffer.createreference)
+    func createReference() throws -> test_component.AnyIMemoryBufferReference!
+}
+
+extension IMemoryBuffer {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        switch iid {
+            case __ABI_Windows_Foundation.IMemoryBufferWrapper.IID:
+                let wrapper = __ABI_Windows_Foundation.IMemoryBufferWrapper(self)
+                return wrapper!.queryInterface(iid)
+            case __ABI_Windows_Foundation.IClosableWrapper.IID:
+                let wrapper = __ABI_Windows_Foundation.IClosableWrapper(self)
+                return wrapper!.queryInterface(iid)
+            default: return nil
+        }
+    }
+}
+public typealias AnyIMemoryBuffer = any IMemoryBuffer
 
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.imemorybufferreference)
 public protocol IMemoryBufferReference : IClosable, IMemoryBufferByteAccess {

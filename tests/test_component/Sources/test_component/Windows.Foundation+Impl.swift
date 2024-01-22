@@ -146,6 +146,42 @@ public enum __IMPL_Windows_Foundation {
 
     }
 
+    public enum IMemoryBufferBridge : AbiInterfaceBridge {
+        public typealias CABI = __x_ABI_CWindows_CFoundation_CIMemoryBuffer
+        public typealias SwiftABI = __ABI_Windows_Foundation.IMemoryBuffer
+        public typealias SwiftProjection = AnyIMemoryBuffer
+        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+            guard let abi = abi else { return nil }
+            return IMemoryBufferImpl(abi)
+        }
+
+        public static func makeAbi() -> CABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Foundation.IMemoryBufferVTable) { $0 }
+            return .init(lpVtbl: vtblPtr)
+        }
+    }
+
+    fileprivate class IMemoryBufferImpl: IMemoryBuffer, WinRTAbiImpl {
+        fileprivate typealias Bridge = IMemoryBufferBridge
+        fileprivate let _default: Bridge.SwiftABI
+        fileprivate var thisPtr: test_component.IInspectable { _default }
+        fileprivate init(_ fromAbi: ComPtr<Bridge.CABI>) {
+            _default = Bridge.SwiftABI(fromAbi)
+        }
+
+        /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.imemorybuffer.createreference)
+        fileprivate func createReference() throws -> AnyIMemoryBufferReference! {
+            try _default.CreateReferenceImpl()
+        }
+
+        private lazy var _IClosable: __ABI_Windows_Foundation.IClosable! = getInterfaceForCaching()
+        /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.imemorybuffer.close)
+        fileprivate func close() throws {
+            try _IClosable.CloseImpl()
+        }
+
+    }
+
     public enum IMemoryBufferReferenceBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIMemoryBufferReference
         public typealias SwiftABI = __ABI_Windows_Foundation.IMemoryBufferReference
@@ -194,7 +230,7 @@ public enum __IMPL_Windows_Foundation {
         }
 
         private lazy var _IMemoryBufferByteAccess: __ABI_.IMemoryBufferByteAccess! = getInterfaceForCaching()
-        var data: Data {
+        fileprivate  var data: Data {
             get throws {
                 let bufferByteAccess: test_component.__ABI_.IMemoryBufferByteAccess = try _IMemoryBufferByteAccess.QueryInterface()
                 var data = Data(count: Int(capacity))

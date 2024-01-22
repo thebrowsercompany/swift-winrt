@@ -9,25 +9,25 @@
 
 #ifndef _IBufferByteAccess_DEFINED
 #define _IBufferByteAccess_DEFINED
-typedef interface IBufferByteAccess IBufferByteAccess;
+typedef interface C_IBufferByteAccess C_IBufferByteAccess;
 #endif /* _IBufferByteAccess_DEFINED */
 
-typedef struct IBufferByteAccessVtbl
+typedef struct C_IBufferByteAccessVtbl
 {
     BEGIN_INTERFACE
 
-    HRESULT (STDMETHODCALLTYPE* QueryInterface)(__RPC__in IBufferByteAccess* This,
+    HRESULT (STDMETHODCALLTYPE* QueryInterface)(__RPC__in C_IBufferByteAccess* This,
         REFIID riid,
         _COM_Outptr_ void** ppvObject);
-    ULONG (STDMETHODCALLTYPE* AddRef)(__RPC__in IBufferByteAccess* This);
-    ULONG (STDMETHODCALLTYPE* Release)(__RPC__in IBufferByteAccess* This);
-    HRESULT (STDMETHODCALLTYPE* Buffer)(__RPC__in IBufferByteAccess* This,
+    ULONG (STDMETHODCALLTYPE* AddRef)(__RPC__in C_IBufferByteAccess* This);
+    ULONG (STDMETHODCALLTYPE* Release)(__RPC__in C_IBufferByteAccess* This);
+    HRESULT (STDMETHODCALLTYPE* Buffer)(__RPC__in C_IBufferByteAccess* This,
     BYTE** value);
 
     END_INTERFACE
-} IBufferByteAccessVtbl;
+} C_IBufferByteAccessVtbl;
 
-interface IBufferByteAccess
+interface C_IBufferByteAccess
 {
-    CONST_VTBL struct IBufferByteAccessVtbl* lpVtbl;
+    CONST_VTBL struct C_IBufferByteAccessVtbl* lpVtbl;
 };
