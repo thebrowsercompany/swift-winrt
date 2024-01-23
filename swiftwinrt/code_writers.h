@@ -1000,6 +1000,7 @@ bind_bridge_fullname(type));
     static std::string modifier_for(typedef_base const& type_definition, interface_info const& iface, member_type member_type = member_type::property_or_method);
     static void write_interface_impl_members(writer& w, interface_info const& info, typedef_base const& type_definition)
     {
+        w.add_depends(type_definition);
         bool is_class = swiftwinrt::is_class(&type_definition);
 
         if (!info.is_default || (!is_class && info.base))
@@ -2056,7 +2057,8 @@ public init<Composable: ComposableImpl>(
     static std::string modifier_for(typedef_base const& type_definition, interface_info const& iface, member_type member)
     {
         std::string modifier;
-        const bool isClass = is_class(&type_definition);
+        auto classType = dynamic_cast<const class_type*>(&type_definition);
+        const bool isClass = classType != nullptr;
         if (isClass)
         {
             if (iface.overridable)
@@ -2073,7 +2075,7 @@ public init<Composable: ComposableImpl>(
             modifier = "fileprivate ";
         }
 
-        if (iface.attributed && isClass && member == member_type::property_or_method)
+        if (iface.attributed && isClass && classType->is_composable() && member == member_type::property_or_method)
         {
             modifier.append("class ");
         }
