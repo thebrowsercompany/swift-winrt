@@ -196,7 +196,7 @@ private var IID___x_ABI_Ctest__component_CWithIterableGuids: test_component.IID 
 }
 
 private var IID___x_ABI_Ctest__component_CWithKeyword: test_component.IID {
-    .init(Data1: 0x77E9FBAD, Data2: 0x3DCE, Data3: 0x5E50, Data4: ( 0xB4,0x39,0x91,0x91,0xF5,0x23,0x2A,0x84 ))// 77E9FBAD-3DCE-5E50-B439-9191F5232A84
+    .init(Data1: 0x18D4C535, Data2: 0x1785, Data3: 0x52CA, Data4: ( 0x88,0x51,0x8C,0xF3,0xD5,0x15,0x70,0x8A ))// 18D4C535-1785-52CA-8851-8CF3D515708A
 }
 
 private var IID___x_ABI_Ctest__component_CIObjectHandler: test_component.IID {
@@ -2371,6 +2371,12 @@ public enum __ABI_test_component {
             }
         }
 
+        open func SubscriptImpl() throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CWithKeyword.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Subscript(pThis))
+            }
+        }
+
     }
 
     internal static var WithKeywordVTable: __x_ABI_Ctest__component_CWithKeywordVtbl = .init(
@@ -2437,6 +2443,14 @@ public enum __ABI_test_component {
             let token: EventRegistrationToken = $1
             __unwrapped__instance.`repeat`.removeHandler(token)
             return S_OK
+        },
+
+        Subscript: {
+            do {
+                guard let __unwrapped__instance = WithKeywordWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                try __unwrapped__instance.`subscript`()
+                return S_OK
+            } catch { return failWith(err: E_FAIL) } 
         }
     )
 

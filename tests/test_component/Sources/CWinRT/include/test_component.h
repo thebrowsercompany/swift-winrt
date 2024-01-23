@@ -2448,15 +2448,16 @@ enum __x_ABI_Ctest__component_CKeywords
     __x_ABI_Ctest__component_CKeywords_Self = 29,
     __x_ABI_Ctest__component_CKeywords_Static = 30,
     __x_ABI_Ctest__component_CKeywords_Struct = 31,
-    __x_ABI_Ctest__component_CKeywords_Super = 32,
-    __x_ABI_Ctest__component_CKeywords_Switch = 33,
-    __x_ABI_Ctest__component_CKeywords_Throw = 34,
-    __x_ABI_Ctest__component_CKeywords_Throws = 35,
-    __x_ABI_Ctest__component_CKeywords_True = 36,
-    __x_ABI_Ctest__component_CKeywords_Try = 37,
-    __x_ABI_Ctest__component_CKeywords_Var = 38,
-    __x_ABI_Ctest__component_CKeywords_Where = 39,
-    __x_ABI_Ctest__component_CKeywords_While = 40,
+    __x_ABI_Ctest__component_CKeywords_Subscript = 32,
+    __x_ABI_Ctest__component_CKeywords_Super = 33,
+    __x_ABI_Ctest__component_CKeywords_Switch = 34,
+    __x_ABI_Ctest__component_CKeywords_Throw = 35,
+    __x_ABI_Ctest__component_CKeywords_Throws = 36,
+    __x_ABI_Ctest__component_CKeywords_True = 37,
+    __x_ABI_Ctest__component_CKeywords_Try = 38,
+    __x_ABI_Ctest__component_CKeywords_Var = 39,
+    __x_ABI_Ctest__component_CKeywords_Where = 40,
+    __x_ABI_Ctest__component_CKeywords_While = 41,
 };
 
 enum __x_ABI_Ctest__component_CSigned
@@ -4494,6 +4495,7 @@ struct __x_ABI_Ctest__component_CStructWithIReference
         EventRegistrationToken* token);
     HRESULT (STDMETHODCALLTYPE* remove_Repeat)(__x_ABI_Ctest__component_CWithKeyword* This,
         EventRegistrationToken token);
+    HRESULT (STDMETHODCALLTYPE* Subscript)(__x_ABI_Ctest__component_CWithKeyword* This);
 
         END_INTERFACE
     } __x_ABI_Ctest__component_CWithKeywordVtbl;

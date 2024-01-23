@@ -1881,6 +1881,7 @@ public typealias AnyWithIterableGuids = any WithIterableGuids
 
 public protocol WithKeyword : WinRTInterface {
     func `enum`(_ `extension`: String) throws
+    func `subscript`() throws
     var `struct`: String { get set }
     var `repeat`: Event<EventHandler<Any?>> { get }
 }
@@ -2009,6 +2010,9 @@ extension test_component.Keywords {
     }
     public static var `struct` : test_component.Keywords {
         __x_ABI_Ctest__component_CKeywords_Struct
+    }
+    public static var `subscript` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_Subscript
     }
     public static var `super` : test_component.Keywords {
         __x_ABI_Ctest__component_CKeywords_Super
