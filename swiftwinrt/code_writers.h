@@ -991,8 +991,16 @@ bind_bridge_fullname(type));
         w.write("// MARK: WinRT\n");
     }
 
+    enum class member_type
+    {
+        property_or_method,
+        event
+    };
+
+    static std::string modifier_for(typedef_base const& type_definition, interface_info const& iface, member_type member_type = member_type::property_or_method);
     static void write_interface_impl_members(writer& w, interface_info const& info, typedef_base const& type_definition)
     {
+        w.add_depends(*info.type);
         bool is_class = swiftwinrt::is_class(&type_definition);
 
         if (!info.is_default || (!is_class && info.base))
@@ -1742,6 +1750,90 @@ vtable);
         }
     }
 
+    static bool derives_from(class_type const& base, class_type const& derived)
+    {
+        class_type const* checking = &derived;
+        while (checking != nullptr)
+        {
+            if (checking->base_class == &base)
+            {
+                return true;
+            }
+            checking = checking->base_class;
+        }
+        return false;
+    }
+
+    static bool base_matches(function_def const& base, function_def const& derived)
+    {
+        // Simple cases of name/param count/has return not matching
+        if (base.def.Name() != derived.def.Name()) return false;
+        if (base.return_type.has_value() != derived.return_type.has_value()) return false;
+        if (base.params.size() != derived.params.size()) return false;
+
+        // If they both have a return value, we need to check if the return values
+        // are derived from each other. If you have two functions like this:
+        //   (A.swift) class func make() -> A
+        //   (B.swift) class func make() -> B
+        // Then these would "match" according to the swift compiler
+        if (base.return_type.has_value())
+        {
+            auto base_return = base.return_type.value().type;
+            auto derived_return = derived.return_type.value().type;
+            if (base_return != derived_return)
+            {
+                // Check if the types are derived
+                auto base_return_class = dynamic_cast<const class_type*>(base_return);
+                auto derived_return_class = dynamic_cast<const class_type*>(derived_return);
+                if (base_return_class != nullptr && derived_return_class != nullptr)
+                {
+                    if (!derives_from(*base_return_class, *derived_return_class))
+                    {
+                        // Return types aren't a possible match, return false
+                        return false;
+                    }
+                }
+            }
+        }
+
+        size_t i = 0;
+        while (i < base.params.size())
+        {
+            if (base.params[i].type != derived.params[i].type)
+            {
+                // param doesn't match
+                return false;
+            }
+            ++i;
+        }
+        return true;
+    }
+
+    static bool base_has_matching_static_function(class_type const& type, attributed_type const& factory, function_def const& func)
+    {
+        if (type.base_class == nullptr)
+        {
+            return false;
+        }
+
+        for (const auto& [_, baseFactory] : type.base_class->factories)
+        {
+            // only look at statics
+            if (!baseFactory.statics) continue;
+            if (auto factoryIface = dynamic_cast<const interface_type*>(baseFactory.type))
+            {
+                for (const auto& baseMethod : factoryIface->functions)
+                {
+                    if (base_matches(baseMethod, func))
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     static bool base_has_matching_constructor(class_type const& type, attributed_type const& factory, function_def const& func)
     {
         auto projectedParams = get_projected_params(factory, func);
@@ -1962,10 +2054,12 @@ public init<Composable: ComposableImpl>(
             bind<write_implementation_args>(function));
     }
 
-    static std::string modifier_for(typedef_base const& type_definition, interface_info const& iface)
+    static std::string modifier_for(typedef_base const& type_definition, interface_info const& iface, member_type member)
     {
         std::string modifier;
-        if (is_class(&type_definition))
+        auto classType = dynamic_cast<const class_type*>(&type_definition);
+        const bool isClass = classType != nullptr;
+        if (isClass)
         {
             if (iface.overridable)
             {
@@ -1981,13 +2075,33 @@ public init<Composable: ComposableImpl>(
             modifier = "fileprivate ";
         }
 
-        if (iface.attributed)
+        if (iface.attributed && isClass && classType->is_composable() && member == member_type::property_or_method)
+        {
+            modifier.append("class ");
+        }
+        else if (iface.attributed)
         {
             modifier.append("static ");
         }
 
         return modifier;
     }
+
+    static std::string modifier_for(typedef_base const& type_definition, attributed_type const& attributedType, function_def const& func)
+    {
+        interface_info info { attributedType.type };
+        info.attributed = true;
+        auto modifier = modifier_for(type_definition, info);
+        if (auto classType = dynamic_cast<const class_type*>(&type_definition))
+        {
+            if (base_has_matching_static_function(*classType, attributedType, func))
+            {
+                modifier.insert(0, "override ");
+            }
+        }
+        return modifier;
+    }
+
 
     static void write_class_impl_property(writer& w, property_def const& prop, interface_info const& iface, typedef_base const& type_definition)
     {
@@ -2084,7 +2198,7 @@ public init<Composable: ComposableImpl>(
             guard = w.push_generic_params(*genericInst);
         }
 
-        auto modifier = modifier_for(type_definition, iface);
+        auto modifier = modifier_for(type_definition, iface, member_type::event);
         if (!iface.attributed)
         {
             modifier.append("lazy ");
@@ -2138,7 +2252,7 @@ public init<Composable: ComposableImpl>(
 
                 write_documentation_comment(w, type, method.def.Name());
                 w.write("%func %(%)% {\n",
-                    modifier_for(type, static_info),
+                    modifier_for(type, statics, method),
                     get_swift_name(method),
                     bind<write_function_params>(method, write_type_params::swift_allow_implicit_unwrap),
                     bind<write_return_type_declaration>(method, write_type_params::swift_allow_implicit_unwrap));
@@ -2318,6 +2432,7 @@ public init<Composable: ComposableImpl>(
             {
                 name_to_write = interface_name.substr(0, interface_name.find_first_of('<'));
             }
+            w.add_depends(*info.type);
             w.write(name_to_write);
         }
 

@@ -31,12 +31,20 @@ private var IID___x_ABI_Ctest__component_CIBaseNoOverridesProtectedFactory: test
     .init(Data1: 0x92FC0572, Data2: 0x825F, Data3: 0x5B3F, Data4: ( 0x9B,0x0B,0xF0,0x80,0xA1,0x66,0xEF,0x06 ))// 92FC0572-825F-5B3F-9B0B-F080A166EF06
 }
 
+private var IID___x_ABI_Ctest__component_CIBaseNoOverridesStatics: test_component.IID {
+    .init(Data1: 0xCC810B5D, Data2: 0x97FC, Data3: 0x5B35, Data4: ( 0xAE,0xEA,0xA4,0x7F,0x5F,0x58,0x06,0xF7 ))// CC810B5D-97FC-5B35-AEEA-A47F5F5806F7
+}
+
 private var IID___x_ABI_Ctest__component_CIBaseOverrides: test_component.IID {
     .init(Data1: 0xEE3CBD78, Data2: 0x04B7, Data3: 0x534F, Data4: ( 0xA7,0x15,0x53,0xDA,0xF5,0x35,0x01,0x3C ))// EE3CBD78-04B7-534F-A715-53DAF535013C
 }
 
 private var IID___x_ABI_Ctest__component_CIBaseProtectedFactory: test_component.IID {
     .init(Data1: 0x05CAD233, Data2: 0x20A7, Data3: 0x581F, Data4: ( 0xBD,0x44,0x0D,0x13,0x6C,0x31,0x0E,0x0F ))// 05CAD233-20A7-581F-BD44-0D136C310E0F
+}
+
+private var IID___x_ABI_Ctest__component_CIBaseStatics: test_component.IID {
+    .init(Data1: 0x9E36C560, Data2: 0xE3AE, Data3: 0x55DF, Data4: ( 0xBA,0x41,0x6B,0xB5,0x47,0xA2,0x81,0x65 ))// 9E36C560-E3AE-55DF-BA41-6BB547A28165
 }
 
 private var IID___x_ABI_Ctest__component_CIBasic: test_component.IID {
@@ -81,6 +89,10 @@ private var IID___x_ABI_Ctest__component_CIDerived: test_component.IID {
 
 private var IID___x_ABI_Ctest__component_CIDerivedFromNoConstructor: test_component.IID {
     .init(Data1: 0x2A9D928D, Data2: 0xAD55, Data3: 0x59EC, Data4: ( 0x9B,0x73,0xE2,0xED,0x06,0x57,0xE6,0xC4 ))// 2A9D928D-AD55-59EC-9B73-E2ED0657E6C4
+}
+
+private var IID___x_ABI_Ctest__component_CIDerivedStatics: test_component.IID {
+    .init(Data1: 0x5DE6D589, Data2: 0x61EC, Data3: 0x5020, Data4: ( 0x80,0x3A,0x3E,0x62,0x6C,0x8B,0xBC,0x8E ))// 5DE6D589-61EC-5020-803A-3E626C8BBC8E
 }
 
 private var IID___x_ABI_Ctest__component_CIEventTester: test_component.IID {
@@ -184,7 +196,7 @@ private var IID___x_ABI_Ctest__component_CWithIterableGuids: test_component.IID 
 }
 
 private var IID___x_ABI_Ctest__component_CWithKeyword: test_component.IID {
-    .init(Data1: 0x77E9FBAD, Data2: 0x3DCE, Data3: 0x5E50, Data4: ( 0xB4,0x39,0x91,0x91,0xF5,0x23,0x2A,0x84 ))// 77E9FBAD-3DCE-5E50-B439-9191F5232A84
+    .init(Data1: 0x18D4C535, Data2: 0x1785, Data3: 0x52CA, Data4: ( 0x88,0x51,0x8C,0xF3,0xD5,0x15,0x70,0x8A ))// 18D4C535-1785-52CA-8851-8CF3D515708A
 }
 
 private var IID___x_ABI_Ctest__component_CIObjectHandler: test_component.IID {
@@ -400,6 +412,21 @@ public enum __ABI_test_component {
 
     }
 
+    public class IBaseNoOverridesStatics: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseNoOverridesStatics }
+
+        internal func CreateFromStringImpl(_ value: String) throws -> test_component.BaseNoOverrides? {
+            let (result) = try ComPtrs.initialize { resultAbi in
+                let _value = try! HString(value)
+                _ = try perform(as: __x_ABI_Ctest__component_CIBaseNoOverridesStatics.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.CreateFromString(pThis, _value.get(), &resultAbi))
+                }
+            }
+            return .from(abi: result)
+        }
+
+    }
+
     public class IBaseOverrides: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseOverrides }
 
@@ -425,6 +452,21 @@ public enum __ABI_test_component {
                 innerInterface = test_component.IInspectable(_innerInterface!)
             }
             return IBase(value!)
+        }
+
+    }
+
+    public class IBaseStatics: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseStatics }
+
+        internal func CreateFromStringImpl(_ value: String) throws -> test_component.Base? {
+            let (result) = try ComPtrs.initialize { resultAbi in
+                let _value = try! HString(value)
+                _ = try perform(as: __x_ABI_Ctest__component_CIBaseStatics.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.CreateFromString(pThis, _value.get(), &resultAbi))
+                }
+            }
+            return .from(abi: result)
         }
 
     }
@@ -1061,6 +1103,21 @@ public enum __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CIDerivedFromNoConstructor.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Method(pThis))
             }
+        }
+
+    }
+
+    public class IDerivedStatics: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIDerivedStatics }
+
+        internal func CreateFromStringImpl(_ value: String) throws -> test_component.Derived? {
+            let (result) = try ComPtrs.initialize { resultAbi in
+                let _value = try! HString(value)
+                _ = try perform(as: __x_ABI_Ctest__component_CIDerivedStatics.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.CreateFromString(pThis, _value.get(), &resultAbi))
+                }
+            }
+            return .from(abi: result)
         }
 
     }
@@ -2314,6 +2371,12 @@ public enum __ABI_test_component {
             }
         }
 
+        open func SubscriptImpl() throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CWithKeyword.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Subscript(pThis))
+            }
+        }
+
     }
 
     internal static var WithKeywordVTable: __x_ABI_Ctest__component_CWithKeywordVtbl = .init(
@@ -2380,6 +2443,14 @@ public enum __ABI_test_component {
             let token: EventRegistrationToken = $1
             __unwrapped__instance.`repeat`.removeHandler(token)
             return S_OK
+        },
+
+        Subscript: {
+            do {
+                guard let __unwrapped__instance = WithKeywordWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                try __unwrapped__instance.`subscript`()
+                return S_OK
+            } catch { return failWith(err: E_FAIL) } 
         }
     )
 

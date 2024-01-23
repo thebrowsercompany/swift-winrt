@@ -349,6 +349,10 @@ public enum __IMPL_test_component {
             try _default.EnumImpl(`extension`)
         }
 
+        fileprivate func `subscript`() throws {
+            try _default.SubscriptImpl()
+        }
+
         fileprivate var `struct` : String {
             get { try! _default.get_StructImpl() }
             set { try! _default.put_StructImpl(newValue) }

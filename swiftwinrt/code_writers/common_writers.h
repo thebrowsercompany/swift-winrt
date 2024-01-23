@@ -40,6 +40,7 @@ namespace swiftwinrt
     template<typename T>
     inline void write_generic_impl_name_base(writer& w, T const& type)
     {
+        w.add_depends(type);
         std::string implName = w.write_temp("%", bind_type_mangled(type));
         if (w.impl_names)
         {
@@ -79,6 +80,7 @@ namespace swiftwinrt
     template<typename T>
     inline void write_impl_name_base(writer& w, T const& type)
     {
+        w.add_depends(type);
         type_name type_name{ type };
         std::string implName = w.write_temp("%", type_name.name);
 

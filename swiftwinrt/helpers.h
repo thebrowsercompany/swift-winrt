@@ -565,6 +565,7 @@ namespace swiftwinrt
             "self",
             "static",
             "struct",
+            "subscript",
             "super",
             "switch",
             "throw",

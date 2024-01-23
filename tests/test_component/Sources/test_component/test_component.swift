@@ -145,6 +145,11 @@ open class Base : WinRTClass {
         }
     }
 
+    private static let _IBaseStatics: __ABI_test_component.IBaseStatics = try! RoGetActivationFactory(HString("test_component.Base"))
+    public class func createFromString(_ value: String) -> Base! {
+        return try! _IBaseStatics.CreateFromStringImpl(value)
+    }
+
     public func doTheThing() throws {
         try _default.DoTheThingImpl()
     }
@@ -417,6 +422,11 @@ open class BaseNoOverrides : WinRTClass {
         MakeComposed(composing: Self.Composable.self, self) { baseInterface, innerInterface in 
             try! Self._IBaseNoOverridesProtectedFactory.CreateInstanceImpl(baseInterface, &innerInterface)
         }
+    }
+
+    private static let _IBaseNoOverridesStatics: __ABI_test_component.IBaseNoOverridesStatics = try! RoGetActivationFactory(HString("test_component.BaseNoOverrides"))
+    public class func createFromString(_ value: String) -> BaseNoOverrides! {
+        return try! _IBaseNoOverridesStatics.CreateFromStringImpl(value)
     }
 
     internal enum IBaseNoOverrides : ComposableImpl {
@@ -916,6 +926,11 @@ public final class Derived : test_component.Base {
 
     override public init() {
         super.init(fromAbi: try! RoActivateInstance(HString("test_component.Derived")))
+    }
+
+    private static let _IDerivedStatics: __ABI_test_component.IDerivedStatics = try! RoGetActivationFactory(HString("test_component.Derived"))
+    override public static func createFromString(_ value: String) -> Derived! {
+        return try! _IDerivedStatics.CreateFromStringImpl(value)
     }
 
     public var prop : Int32 {
@@ -1866,6 +1881,7 @@ public typealias AnyWithIterableGuids = any WithIterableGuids
 
 public protocol WithKeyword : WinRTInterface {
     func `enum`(_ `extension`: String) throws
+    func `subscript`() throws
     var `struct`: String { get set }
     var `repeat`: Event<EventHandler<Any?>> { get }
 }
@@ -1994,6 +2010,9 @@ extension test_component.Keywords {
     }
     public static var `struct` : test_component.Keywords {
         __x_ABI_Ctest__component_CKeywords_Struct
+    }
+    public static var `subscript` : test_component.Keywords {
+        __x_ABI_Ctest__component_CKeywords_Subscript
     }
     public static var `super` : test_component.Keywords {
         __x_ABI_Ctest__component_CKeywords_Super

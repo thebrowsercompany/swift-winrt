@@ -39,6 +39,7 @@ namespace test_component
         Self,
         Static,
         Struct,
+        Subscript,
         Super,
         Switch,
         Throw,
@@ -54,5 +55,6 @@ namespace test_component
         void Enum(String extension);
         String Struct;
         event Windows.Foundation.EventHandler<Object> Repeat;
+        void Subscript();
     }
 }
