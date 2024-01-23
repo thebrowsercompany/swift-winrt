@@ -10,15 +10,15 @@ public typealias SwiftifiableNames = __x_ABI_Ctest__component_CSwiftifiableNames
 public typealias Unsigned = __x_ABI_Ctest__component_CUnsigned
 public final class AsyncMethods {
     private static let _IAsyncMethodsStatics: __ABI_test_component.IAsyncMethodsStatics = try! RoGetActivationFactory(HString("test_component.AsyncMethods"))
-    public static func getCompletedAsync(_ result: Int32) -> AnyIAsyncOperation<Int32>! {
+    public class func getCompletedAsync(_ result: Int32) -> AnyIAsyncOperation<Int32>! {
         return try! _IAsyncMethodsStatics.GetCompletedAsyncImpl(result)
     }
 
-    public static func getCompletedWithErrorAsync(_ errorCode: HRESULT) -> AnyIAsyncOperation<Int32>! {
+    public class func getCompletedWithErrorAsync(_ errorCode: HRESULT) -> AnyIAsyncOperation<Int32>! {
         return try! _IAsyncMethodsStatics.GetCompletedWithErrorAsyncImpl(errorCode)
     }
 
-    public static func getPendingAsync() -> AsyncOperationInt! {
+    public class func getPendingAsync() -> AsyncOperationInt! {
         return try! _IAsyncMethodsStatics.GetPendingAsyncImpl()
     }
 
@@ -143,6 +143,11 @@ open class Base : WinRTClass {
         MakeComposed(composing: Self.Composable.self, self) { baseInterface, innerInterface in 
             try! Self._IBaseProtectedFactory.CreateInstanceImpl(baseInterface, &innerInterface)
         }
+    }
+
+    private static let _IBaseStatics: __ABI_test_component.IBaseStatics = try! RoGetActivationFactory(HString("test_component.Base"))
+    public class func createFromString(_ value: String) -> Base! {
+        return try! _IBaseStatics.CreateFromStringImpl(value)
     }
 
     public func doTheThing() throws {
@@ -419,6 +424,11 @@ open class BaseNoOverrides : WinRTClass {
         }
     }
 
+    private static let _IBaseNoOverridesStatics: __ABI_test_component.IBaseNoOverridesStatics = try! RoGetActivationFactory(HString("test_component.BaseNoOverrides"))
+    public class func createFromString(_ value: String) -> BaseNoOverrides! {
+        return try! _IBaseNoOverridesStatics.CreateFromStringImpl(value)
+    }
+
     internal enum IBaseNoOverrides : ComposableImpl {
         internal typealias CABI = C_IInspectable
         internal typealias SwiftABI = test_component.IInspectable
@@ -619,28 +629,28 @@ public final class Class : WinRTClass, IBasic {
     }
 
     private static let _IClassStatics: __ABI_test_component.IClassStatics = try! RoGetActivationFactory(HString("test_component.Class"))
-    public static func staticTest() {
+    public class func staticTest() {
         try! _IClassStatics.StaticTestImpl()
     }
 
-    public static func staticTestReturn() -> Int32 {
+    public class func staticTestReturn() -> Int32 {
         return try! _IClassStatics.StaticTestReturnImpl()
     }
 
-    public static func takeBaseAndGiveToCallbackAsObject(_ base: Base!, _ callback: test_component.InObjectDelegate!) {
+    public class func takeBaseAndGiveToCallbackAsObject(_ base: Base!, _ callback: test_component.InObjectDelegate!) {
         try! _IClassStatics.TakeBaseAndGiveToCallbackAsObjectImpl(base, callback)
     }
 
-    public static var staticProperty : Int32 {
+    public class var staticProperty : Int32 {
         get { try! _IClassStatics.get_StaticPropertyImpl() }
     }
 
     private static let _IClassStatics2: __ABI_test_component.IClassStatics2 = try! RoGetActivationFactory(HString("test_component.Class"))
-    public static func staticTestReturnFloat() -> Float {
+    public class func staticTestReturnFloat() -> Float {
         return try! _IClassStatics2.StaticTestReturnFloatImpl()
     }
 
-    public static var staticPropertyFloat : Float {
+    public class var staticPropertyFloat : Float {
         get { try! _IClassStatics2.get_StaticPropertyFloatImpl() }
         set { try! _IClassStatics2.put_StaticPropertyFloatImpl(newValue) }
     }
@@ -822,23 +832,23 @@ public final class CollectionTester : WinRTClass {
     }
 
     private static let _ICollectionTesterStatics: __ABI_test_component.ICollectionTesterStatics = try! RoGetActivationFactory(HString("test_component.CollectionTester"))
-    public static func inMap(_ value: AnyIMap<String, String>!) -> String {
+    public class func inMap(_ value: AnyIMap<String, String>!) -> String {
         return try! _ICollectionTesterStatics.InMapImpl(value)
     }
 
-    public static func inMapView(_ value: AnyIMapView<String, String>!) -> String {
+    public class func inMapView(_ value: AnyIMapView<String, String>!) -> String {
         return try! _ICollectionTesterStatics.InMapViewImpl(value)
     }
 
-    public static func inVector(_ value: AnyIVector<String>!) -> String {
+    public class func inVector(_ value: AnyIVector<String>!) -> String {
         return try! _ICollectionTesterStatics.InVectorImpl(value)
     }
 
-    public static func inVectorView(_ value: AnyIVectorView<String>!) -> String {
+    public class func inVectorView(_ value: AnyIVectorView<String>!) -> String {
         return try! _ICollectionTesterStatics.InVectorViewImpl(value)
     }
 
-    public static func getObjectAt(_ value: AnyIVector<Any?>!, _ index: UInt32, _ callback: ObjectHandler!) {
+    public class func getObjectAt(_ value: AnyIVector<Any?>!, _ index: UInt32, _ callback: ObjectHandler!) {
         try! _ICollectionTesterStatics.GetObjectAtImpl(value, index, callback)
     }
 
@@ -916,6 +926,11 @@ public final class Derived : test_component.Base {
 
     override public init() {
         super.init(fromAbi: try! RoActivateInstance(HString("test_component.Derived")))
+    }
+
+    private static let _IDerivedStatics: __ABI_test_component.IDerivedStatics = try! RoGetActivationFactory(HString("test_component.Derived"))
+    override public class func createFromString(_ value: String) -> Derived! {
+        return try! _IDerivedStatics.CreateFromStringImpl(value)
     }
 
     public var prop : Int32 {
@@ -1072,43 +1087,43 @@ public final class NoopClosable : WinRTClass, test_component.IClosable {
 
 public final class NullValues {
     private static let _INullValuesStatics: __ABI_test_component.INullValuesStatics = try! RoGetActivationFactory(HString("test_component.NullValues"))
-    public static func isObjectNull(_ value: Any!) -> Bool {
+    public class func isObjectNull(_ value: Any!) -> Bool {
         return try! _INullValuesStatics.IsObjectNullImpl(value)
     }
 
-    public static func isInterfaceNull(_ value: test_component.AnyIClosable!) -> Bool {
+    public class func isInterfaceNull(_ value: test_component.AnyIClosable!) -> Bool {
         return try! _INullValuesStatics.IsInterfaceNullImpl(value)
     }
 
-    public static func isGenericInterfaceNull(_ value: AnyIVector<String>!) -> Bool {
+    public class func isGenericInterfaceNull(_ value: AnyIVector<String>!) -> Bool {
         return try! _INullValuesStatics.IsGenericInterfaceNullImpl(value)
     }
 
-    public static func isClassNull(_ value: NoopClosable!) -> Bool {
+    public class func isClassNull(_ value: NoopClosable!) -> Bool {
         return try! _INullValuesStatics.IsClassNullImpl(value)
     }
 
-    public static func isDelegateNull(_ value: VoidToVoidDelegate!) -> Bool {
+    public class func isDelegateNull(_ value: VoidToVoidDelegate!) -> Bool {
         return try! _INullValuesStatics.IsDelegateNullImpl(value)
     }
 
-    public static func getNullObject() -> Any! {
+    public class func getNullObject() -> Any! {
         return try! _INullValuesStatics.GetNullObjectImpl()
     }
 
-    public static func getNullInterface() -> test_component.AnyIClosable! {
+    public class func getNullInterface() -> test_component.AnyIClosable! {
         return try! _INullValuesStatics.GetNullInterfaceImpl()
     }
 
-    public static func getNullGenericInterface() -> AnyIVector<String>! {
+    public class func getNullGenericInterface() -> AnyIVector<String>! {
         return try! _INullValuesStatics.GetNullGenericInterfaceImpl()
     }
 
-    public static func getNullClass() -> NoopClosable! {
+    public class func getNullClass() -> NoopClosable! {
         return try! _INullValuesStatics.GetNullClassImpl()
     }
 
-    public static func getNullDelegate() -> VoidToVoidDelegate! {
+    public class func getNullDelegate() -> VoidToVoidDelegate! {
         return try! _INullValuesStatics.GetNullDelegateImpl()
     }
 
@@ -1142,7 +1157,7 @@ public final class Simple : WinRTClass {
     }
 
     private static let _ISimpleStatics: __ABI_test_component.ISimpleStatics = try! RoGetActivationFactory(HString("test_component.Simple"))
-    public static func fireStaticEvent() {
+    public class func fireStaticEvent() {
         try! _ISimpleStatics.FireStaticEventImpl()
     }
 
@@ -1260,19 +1275,19 @@ public final class Simple : WinRTClass {
 
 public final class StaticClass {
     private static let _IStaticClassStatics: __ABI_test_component.IStaticClassStatics = try! RoGetActivationFactory(HString("test_component.StaticClass"))
-    public static func inEnum(_ value: Signed) -> String {
+    public class func inEnum(_ value: Signed) -> String {
         return try! _IStaticClassStatics.InEnumImpl(value)
     }
 
-    public static func inNonBlittableStruct(_ value: NonBlittableStruct) -> String {
+    public class func inNonBlittableStruct(_ value: NonBlittableStruct) -> String {
         return try! _IStaticClassStatics.InNonBlittableStructImpl(value)
     }
 
-    public static func takeBase(_ base: Base!) {
+    public class func takeBase(_ base: Base!) {
         try! _IStaticClassStatics.TakeBaseImpl(base)
     }
 
-    public static var enumProperty : Fruit {
+    public class var enumProperty : Fruit {
         get { try! _IStaticClassStatics.get_EnumPropertyImpl() }
         set { try! _IStaticClassStatics.put_EnumPropertyImpl(newValue) }
     }

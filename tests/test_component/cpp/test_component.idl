@@ -400,10 +400,14 @@ namespace test_component
             overridable void OnDoTheThing();
 
             void DoTheThing();
+
+            static Base CreateFromString(String value);
         };
 
         unsealed runtimeclass BaseNoOverrides {
             protected BaseNoOverrides();
+
+            static BaseNoOverrides CreateFromString(String value);
         }
 
 
@@ -415,6 +419,8 @@ namespace test_component
             Derived();
 
             Int32 Prop;
+
+            static Derived CreateFromString(String value);
         };
 
         unsealed runtimeclass UnsealedDerivedNoConstructor: Base {
