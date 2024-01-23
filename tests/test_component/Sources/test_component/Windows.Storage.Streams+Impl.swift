@@ -42,11 +42,8 @@ public enum __IMPL_Windows_Storage_Streams {
         fileprivate  var data: Data {
             get throws {
                 let bufferByteAccess: test_component.__ABI_.IBufferByteAccess = try _IBufferByteAccess.QueryInterface()
-                var data = Data(count: Int(capacity))
-                try data.withUnsafeMutableBytes { (bytes: UnsafeMutableRawBufferPointer) in
-                    try bufferByteAccess.Buffer(bytes.baseAddress?.assumingMemoryBound(to: UInt8.self))
-                }
-                return data
+                guard let buffer = try bufferByteAccess.Buffer() else { return Data() }
+                return Data(bytesNoCopy: buffer, count: Int(capacity), deallocator: .none)
             }
         }
     }

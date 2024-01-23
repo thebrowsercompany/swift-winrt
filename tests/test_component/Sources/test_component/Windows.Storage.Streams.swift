@@ -50,11 +50,8 @@ public final class Buffer : WinRTClass, IBufferByteAccess, IBuffer {
     public  var data: Data {
         get throws {
             let bufferByteAccess: test_component.__ABI_.IBufferByteAccess = try _IBufferByteAccess.QueryInterface()
-            var data = Data(count: Int(capacity))
-            try data.withUnsafeMutableBytes { (bytes: UnsafeMutableRawBufferPointer) in
-                try bufferByteAccess.Buffer(bytes.baseAddress?.assumingMemoryBound(to: UInt8.self))
-            }
-            return data
+            guard let buffer = try bufferByteAccess.Buffer() else { return Data() }
+            return Data(bytesNoCopy: buffer, count: Int(capacity), deallocator: .none)
         }
     }
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.buffer.capacity)

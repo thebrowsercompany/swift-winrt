@@ -12,14 +12,16 @@ extension __ABI_ {
     public class IMemoryBufferByteAccess: IUnknown {
         override public class var IID: IID { IID_IMemoryBufferByteAccess}
 
-        public func Buffer(_ bytes: UnsafeMutablePointer<UInt8>?) throws {
+        public func Buffer() throws -> UnsafeMutablePointer<UInt8>? {
             var buffer: UnsafeMutablePointer<UInt8>?
+            var capacity: UInt32 = 0
             try perform(as: C_BINDINGS_MODULE.IMemoryBufferByteAccess.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.Buffer(pThis, &buffer))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetBuffer(pThis, &buffer, &capacity))
             }
+            return buffer
         }
 
-        fileprivate static func Buffer(_ this: UnsafeMutablePointer<C_BINDINGS_MODULE.IMemoryBufferByteAccess>?, _ buffer: UnsafeMutablePointer<UnsafeMutablePointer<UInt8>?>?) -> HRESULT {
+        fileprivate static func GetBuffer(_ this: UnsafeMutablePointer<C_BINDINGS_MODULE.IMemoryBufferByteAccess>?, _ buffer: UnsafeMutablePointer<UnsafeMutablePointer<UInt8>?>?, _ count: UnsafeMutablePointer<UInt32>?) -> HRESULT {
             return E_NOTIMPL
         }
     }
@@ -60,7 +62,7 @@ fileprivate var IMemoryBufferByteAccessVTable: C_BINDINGS_MODULE.IMemoryBufferBy
     QueryInterface: {  __ABI_.IMemoryBufferByteAccessWrapper.queryInterface($0, $1, $2) },
     AddRef: {  __ABI_.IMemoryBufferByteAccessWrapper.addRef($0) },
     Release: {  __ABI_.IMemoryBufferByteAccessWrapper.release($0) },
-    Buffer: { __ABI_.IMemoryBufferByteAccess.Buffer($0, $1) }
+    GetBuffer: { __ABI_.IMemoryBufferByteAccess.GetBuffer($0, $1, $2) }
 )
 
 extension IMemoryBufferByteAccess {

@@ -1001,11 +1001,8 @@ bind_bridge_fullname(type));
         w.write(R"(% var data: Data {
     get throws {
         let bufferByteAccess: %.__ABI_.% = try %.QueryInterface()
-        var data = Data(count: Int(capacity))
-        try data.withUnsafeMutableBytes { (bytes: UnsafeMutableRawBufferPointer) in
-            try bufferByteAccess.Buffer(bytes.baseAddress?.assumingMemoryBound(to: UInt8.self))
-        }
-        return data
+        guard let buffer = try bufferByteAccess.Buffer() else { return Data() }
+        return Data(bytesNoCopy: buffer, count: Int(capacity), deallocator: .none)
     }
 }
 )", modifier_for(type_definition, info), w.support, type.swift_type_name(), get_swift_name(info));

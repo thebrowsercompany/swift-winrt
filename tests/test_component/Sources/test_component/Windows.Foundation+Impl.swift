@@ -233,11 +233,8 @@ public enum __IMPL_Windows_Foundation {
         fileprivate  var data: Data {
             get throws {
                 let bufferByteAccess: test_component.__ABI_.IMemoryBufferByteAccess = try _IMemoryBufferByteAccess.QueryInterface()
-                var data = Data(count: Int(capacity))
-                try data.withUnsafeMutableBytes { (bytes: UnsafeMutableRawBufferPointer) in
-                    try bufferByteAccess.Buffer(bytes.baseAddress?.assumingMemoryBound(to: UInt8.self))
-                }
-                return data
+                guard let buffer = try bufferByteAccess.Buffer() else { return Data() }
+                return Data(bytesNoCopy: buffer, count: Int(capacity), deallocator: .none)
             }
         }
     }

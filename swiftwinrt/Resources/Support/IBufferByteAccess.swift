@@ -13,11 +13,12 @@ extension __ABI_ {
     public class IBufferByteAccess: IUnknown {
         override public class var IID: IID { IID_IBufferByteAccess}
 
-        public func Buffer(_ bytes: UnsafeMutablePointer<UInt8>?) throws {
+        public func Buffer() throws -> UnsafeMutablePointer<UInt8>? {
             var buffer: UnsafeMutablePointer<UInt8>?
             try perform(as: C_BINDINGS_MODULE.C_IBufferByteAccess.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Buffer(pThis, &buffer))
             }
+            return buffer
         }
         static fileprivate func Buffer(_ this: UnsafeMutablePointer<C_BINDINGS_MODULE.C_IBufferByteAccess>?, _ buffer: UnsafeMutablePointer<UnsafeMutablePointer<UInt8>?>?) -> HRESULT {
             return E_NOTIMPL

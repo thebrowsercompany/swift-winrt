@@ -19,8 +19,8 @@ typedef struct IMemoryBufferByteAccessVtbl
         _COM_Outptr_ void** ppvObject);
     ULONG (STDMETHODCALLTYPE* AddRef)(__RPC__in IMemoryBufferByteAccess* This);
     ULONG (STDMETHODCALLTYPE* Release)(__RPC__in IMemoryBufferByteAccess* This);
-    HRESULT (STDMETHODCALLTYPE* Buffer)(__RPC__in IMemoryBufferByteAccess* This,
-    BYTE** value);
+    HRESULT (STDMETHODCALLTYPE* GetBuffer)(__RPC__in IMemoryBufferByteAccess* This,
+    BYTE** value, _Out_ UINT32* capacity);
 
     END_INTERFACE
 } IMemoryBufferByteAccessVtbl;
