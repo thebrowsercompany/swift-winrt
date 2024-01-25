@@ -10,8 +10,9 @@ namespace winrt::test_component::implementation
 
         int32_t Prop();
         void Prop(int32_t value);
-       
+
         void OnDoTheThing() override;
+        static winrt::test_component::Derived CreateFromString(hstring const& value) { return winrt::make<Derived>(); }
         private:
         int32_t m_prop{};
     };

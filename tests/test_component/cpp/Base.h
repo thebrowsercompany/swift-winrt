@@ -9,6 +9,7 @@ namespace winrt::test_component::implementation
         ~Base();
         virtual void DoTheThing();
         virtual void OnDoTheThing();
+        static winrt::test_component::Base CreateFromString(hstring const& value) { return winrt::make<Base>(); }
     };
 }
 namespace winrt::test_component::factory_implementation
