@@ -463,4 +463,4 @@ var tests: [XCTestCaseEntry] = [
 ] + valueBoxingTests + eventTests + collectionTests + aggregationTests + asyncTests + memoryManagementTests + bufferTests
 
 RoInitialize(RO_INIT_MULTITHREADED)
-XCTMain(bufferTests)
+XCTMain(tests)
