@@ -39,7 +39,7 @@ class CustomBuffer: IBuffer {
 
 class BufferTests : XCTestCase {
     public func testWinRTBuffer() throws {
-        var buffer = Buffer(10)
+        let buffer = Buffer(10)
         XCTAssertEqual(buffer.data.count, 0)
         XCTAssertEqual(buffer.capacity, 10)
         buffer.length = 10
