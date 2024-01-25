@@ -18,9 +18,24 @@ fileprivate func makeIClosableFrom(abi: test_component.IInspectable) -> Any {
     return __IMPL_Windows_Foundation.IClosableBridge.from(abi: RawPointer(swiftAbi))!
 }
 
+fileprivate func makeIMemoryBufferFrom(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_Windows_Foundation.IMemoryBuffer = try! abi.QueryInterface()
+    return __IMPL_Windows_Foundation.IMemoryBufferBridge.from(abi: RawPointer(swiftAbi))!
+}
+
+fileprivate func makeIMemoryBufferReferenceFrom(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_Windows_Foundation.IMemoryBufferReference = try! abi.QueryInterface()
+    return __IMPL_Windows_Foundation.IMemoryBufferReferenceBridge.from(abi: RawPointer(swiftAbi))!
+}
+
 fileprivate func makeIStringableFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_Windows_Foundation.IStringable = try! abi.QueryInterface()
     return __IMPL_Windows_Foundation.IStringableBridge.from(abi: RawPointer(swiftAbi))!
+}
+
+fileprivate func makeIWwwFormUrlDecoderEntryFrom(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_Windows_Foundation.IWwwFormUrlDecoderEntry = try! abi.QueryInterface()
+    return __IMPL_Windows_Foundation.IWwwFormUrlDecoderEntryBridge.from(abi: RawPointer(swiftAbi))!
 }
 
 fileprivate func makeIPropertySetFrom(abi: test_component.IInspectable) -> Any {
@@ -31,6 +46,116 @@ fileprivate func makeIPropertySetFrom(abi: test_component.IInspectable) -> Any {
 fileprivate func makeIVectorChangedEventArgsFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_Windows_Foundation_Collections.IVectorChangedEventArgs = try! abi.QueryInterface()
     return __IMPL_Windows_Foundation_Collections.IVectorChangedEventArgsBridge.from(abi: RawPointer(swiftAbi))!
+}
+
+fileprivate func makeIStorageFileFrom(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_Windows_Storage.IStorageFile = try! abi.QueryInterface()
+    return __IMPL_Windows_Storage.IStorageFileBridge.from(abi: RawPointer(swiftAbi))!
+}
+
+fileprivate func makeIStorageFile2From(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_Windows_Storage.IStorageFile2 = try! abi.QueryInterface()
+    return __IMPL_Windows_Storage.IStorageFile2Bridge.from(abi: RawPointer(swiftAbi))!
+}
+
+fileprivate func makeIStorageFilePropertiesWithAvailabilityFrom(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_Windows_Storage.IStorageFilePropertiesWithAvailability = try! abi.QueryInterface()
+    return __IMPL_Windows_Storage.IStorageFilePropertiesWithAvailabilityBridge.from(abi: RawPointer(swiftAbi))!
+}
+
+fileprivate func makeIStorageFolderFrom(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_Windows_Storage.IStorageFolder = try! abi.QueryInterface()
+    return __IMPL_Windows_Storage.IStorageFolderBridge.from(abi: RawPointer(swiftAbi))!
+}
+
+fileprivate func makeIStorageFolder2From(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_Windows_Storage.IStorageFolder2 = try! abi.QueryInterface()
+    return __IMPL_Windows_Storage.IStorageFolder2Bridge.from(abi: RawPointer(swiftAbi))!
+}
+
+fileprivate func makeIStorageItemFrom(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_Windows_Storage.IStorageItem = try! abi.QueryInterface()
+    return __IMPL_Windows_Storage.IStorageItemBridge.from(abi: RawPointer(swiftAbi))!
+}
+
+fileprivate func makeIStorageItem2From(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_Windows_Storage.IStorageItem2 = try! abi.QueryInterface()
+    return __IMPL_Windows_Storage.IStorageItem2Bridge.from(abi: RawPointer(swiftAbi))!
+}
+
+fileprivate func makeIStorageItemPropertiesFrom(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_Windows_Storage.IStorageItemProperties = try! abi.QueryInterface()
+    return __IMPL_Windows_Storage.IStorageItemPropertiesBridge.from(abi: RawPointer(swiftAbi))!
+}
+
+fileprivate func makeIStorageItemProperties2From(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_Windows_Storage.IStorageItemProperties2 = try! abi.QueryInterface()
+    return __IMPL_Windows_Storage.IStorageItemProperties2Bridge.from(abi: RawPointer(swiftAbi))!
+}
+
+fileprivate func makeIStorageItemPropertiesWithProviderFrom(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_Windows_Storage.IStorageItemPropertiesWithProvider = try! abi.QueryInterface()
+    return __IMPL_Windows_Storage.IStorageItemPropertiesWithProviderBridge.from(abi: RawPointer(swiftAbi))!
+}
+
+fileprivate func makeIStreamedFileDataRequestFrom(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_Windows_Storage.IStreamedFileDataRequest = try! abi.QueryInterface()
+    return __IMPL_Windows_Storage.IStreamedFileDataRequestBridge.from(abi: RawPointer(swiftAbi))!
+}
+
+fileprivate func makeIStorageItemExtraPropertiesFrom(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_Windows_Storage_FileProperties.IStorageItemExtraProperties = try! abi.QueryInterface()
+    return __IMPL_Windows_Storage_FileProperties.IStorageItemExtraPropertiesBridge.from(abi: RawPointer(swiftAbi))!
+}
+
+fileprivate func makeIStorageFolderQueryOperationsFrom(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_Windows_Storage_Search.IStorageFolderQueryOperations = try! abi.QueryInterface()
+    return __IMPL_Windows_Storage_Search.IStorageFolderQueryOperationsBridge.from(abi: RawPointer(swiftAbi))!
+}
+
+fileprivate func makeIStorageQueryResultBaseFrom(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_Windows_Storage_Search.IStorageQueryResultBase = try! abi.QueryInterface()
+    return __IMPL_Windows_Storage_Search.IStorageQueryResultBaseBridge.from(abi: RawPointer(swiftAbi))!
+}
+
+fileprivate func makeIBufferFrom(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_Windows_Storage_Streams.IBuffer = try! abi.QueryInterface()
+    return __IMPL_Windows_Storage_Streams.IBufferBridge.from(abi: RawPointer(swiftAbi))!
+}
+
+fileprivate func makeIContentTypeProviderFrom(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_Windows_Storage_Streams.IContentTypeProvider = try! abi.QueryInterface()
+    return __IMPL_Windows_Storage_Streams.IContentTypeProviderBridge.from(abi: RawPointer(swiftAbi))!
+}
+
+fileprivate func makeIInputStreamFrom(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_Windows_Storage_Streams.IInputStream = try! abi.QueryInterface()
+    return __IMPL_Windows_Storage_Streams.IInputStreamBridge.from(abi: RawPointer(swiftAbi))!
+}
+
+fileprivate func makeIInputStreamReferenceFrom(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_Windows_Storage_Streams.IInputStreamReference = try! abi.QueryInterface()
+    return __IMPL_Windows_Storage_Streams.IInputStreamReferenceBridge.from(abi: RawPointer(swiftAbi))!
+}
+
+fileprivate func makeIOutputStreamFrom(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_Windows_Storage_Streams.IOutputStream = try! abi.QueryInterface()
+    return __IMPL_Windows_Storage_Streams.IOutputStreamBridge.from(abi: RawPointer(swiftAbi))!
+}
+
+fileprivate func makeIRandomAccessStreamFrom(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_Windows_Storage_Streams.IRandomAccessStream = try! abi.QueryInterface()
+    return __IMPL_Windows_Storage_Streams.IRandomAccessStreamBridge.from(abi: RawPointer(swiftAbi))!
+}
+
+fileprivate func makeIRandomAccessStreamReferenceFrom(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_Windows_Storage_Streams.IRandomAccessStreamReference = try! abi.QueryInterface()
+    return __IMPL_Windows_Storage_Streams.IRandomAccessStreamReferenceBridge.from(abi: RawPointer(swiftAbi))!
+}
+
+fileprivate func makeIRandomAccessStreamWithContentTypeFrom(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_Windows_Storage_Streams.IRandomAccessStreamWithContentType = try! abi.QueryInterface()
+    return __IMPL_Windows_Storage_Streams.IRandomAccessStreamWithContentTypeBridge.from(abi: RawPointer(swiftAbi))!
 }
 
 fileprivate func makeIAsyncMethodsWithProgressFrom(abi: test_component.IInspectable) -> Any {
@@ -82,6 +207,18 @@ fileprivate func makeDeferralFrom(abi: test_component.IInspectable) -> Any {
     return Deferral(fromAbi: abi)
 }
 
+fileprivate func makeMemoryBufferFrom(abi: test_component.IInspectable) -> Any {
+    return MemoryBuffer(fromAbi: abi)
+}
+
+fileprivate func makeUriFrom(abi: test_component.IInspectable) -> Any {
+    return Uri(fromAbi: abi)
+}
+
+fileprivate func makeWwwFormUrlDecoderFrom(abi: test_component.IInspectable) -> Any {
+    return WwwFormUrlDecoder(fromAbi: abi)
+}
+
 fileprivate func makePropertySetFrom(abi: test_component.IInspectable) -> Any {
     return PropertySet(fromAbi: abi)
 }
@@ -92,6 +229,86 @@ fileprivate func makeStringMapFrom(abi: test_component.IInspectable) -> Any {
 
 fileprivate func makeValueSetFrom(abi: test_component.IInspectable) -> Any {
     return ValueSet(fromAbi: abi)
+}
+
+fileprivate func makeStorageFileFrom(abi: test_component.IInspectable) -> Any {
+    return StorageFile(fromAbi: abi)
+}
+
+fileprivate func makeStorageFolderFrom(abi: test_component.IInspectable) -> Any {
+    return StorageFolder(fromAbi: abi)
+}
+
+fileprivate func makeStorageLibraryChangeFrom(abi: test_component.IInspectable) -> Any {
+    return StorageLibraryChange(fromAbi: abi)
+}
+
+fileprivate func makeStorageLibraryChangeReaderFrom(abi: test_component.IInspectable) -> Any {
+    return StorageLibraryChangeReader(fromAbi: abi)
+}
+
+fileprivate func makeStorageLibraryChangeTrackerFrom(abi: test_component.IInspectable) -> Any {
+    return StorageLibraryChangeTracker(fromAbi: abi)
+}
+
+fileprivate func makeStorageProviderFrom(abi: test_component.IInspectable) -> Any {
+    return StorageProvider(fromAbi: abi)
+}
+
+fileprivate func makeStorageStreamTransactionFrom(abi: test_component.IInspectable) -> Any {
+    return StorageStreamTransaction(fromAbi: abi)
+}
+
+fileprivate func makeStreamedFileDataRequestFrom(abi: test_component.IInspectable) -> Any {
+    return StreamedFileDataRequest(fromAbi: abi)
+}
+
+fileprivate func makeBasicPropertiesFrom(abi: test_component.IInspectable) -> Any {
+    return BasicProperties(fromAbi: abi)
+}
+
+fileprivate func makeDocumentPropertiesFrom(abi: test_component.IInspectable) -> Any {
+    return DocumentProperties(fromAbi: abi)
+}
+
+fileprivate func makeImagePropertiesFrom(abi: test_component.IInspectable) -> Any {
+    return ImageProperties(fromAbi: abi)
+}
+
+fileprivate func makeMusicPropertiesFrom(abi: test_component.IInspectable) -> Any {
+    return MusicProperties(fromAbi: abi)
+}
+
+fileprivate func makeStorageItemContentPropertiesFrom(abi: test_component.IInspectable) -> Any {
+    return StorageItemContentProperties(fromAbi: abi)
+}
+
+fileprivate func makeStorageItemThumbnailFrom(abi: test_component.IInspectable) -> Any {
+    return StorageItemThumbnail(fromAbi: abi)
+}
+
+fileprivate func makeVideoPropertiesFrom(abi: test_component.IInspectable) -> Any {
+    return VideoProperties(fromAbi: abi)
+}
+
+fileprivate func makeQueryOptionsFrom(abi: test_component.IInspectable) -> Any {
+    return QueryOptions(fromAbi: abi)
+}
+
+fileprivate func makeStorageFileQueryResultFrom(abi: test_component.IInspectable) -> Any {
+    return StorageFileQueryResult(fromAbi: abi)
+}
+
+fileprivate func makeStorageFolderQueryResultFrom(abi: test_component.IInspectable) -> Any {
+    return StorageFolderQueryResult(fromAbi: abi)
+}
+
+fileprivate func makeStorageItemQueryResultFrom(abi: test_component.IInspectable) -> Any {
+    return StorageItemQueryResult(fromAbi: abi)
+}
+
+fileprivate func makeBufferFrom(abi: test_component.IInspectable) -> Any {
+    return Buffer(fromAbi: abi)
 }
 
 fileprivate func makeAsyncOperationIntFrom(abi: test_component.IInspectable) -> Any {
@@ -177,9 +394,34 @@ public class __MakeFromAbi: MakeFromAbi {
             case "IAsyncAction": return makeIAsyncActionFrom(abi: abi)
             case "IAsyncInfo": return makeIAsyncInfoFrom(abi: abi)
             case "IClosable": return makeIClosableFrom(abi: abi)
+            case "IMemoryBuffer": return makeIMemoryBufferFrom(abi: abi)
+            case "IMemoryBufferReference": return makeIMemoryBufferReferenceFrom(abi: abi)
             case "IStringable": return makeIStringableFrom(abi: abi)
+            case "IWwwFormUrlDecoderEntry": return makeIWwwFormUrlDecoderEntryFrom(abi: abi)
             case "IPropertySet": return makeIPropertySetFrom(abi: abi)
             case "IVectorChangedEventArgs": return makeIVectorChangedEventArgsFrom(abi: abi)
+            case "IStorageFile": return makeIStorageFileFrom(abi: abi)
+            case "IStorageFile2": return makeIStorageFile2From(abi: abi)
+            case "IStorageFilePropertiesWithAvailability": return makeIStorageFilePropertiesWithAvailabilityFrom(abi: abi)
+            case "IStorageFolder": return makeIStorageFolderFrom(abi: abi)
+            case "IStorageFolder2": return makeIStorageFolder2From(abi: abi)
+            case "IStorageItem": return makeIStorageItemFrom(abi: abi)
+            case "IStorageItem2": return makeIStorageItem2From(abi: abi)
+            case "IStorageItemProperties": return makeIStorageItemPropertiesFrom(abi: abi)
+            case "IStorageItemProperties2": return makeIStorageItemProperties2From(abi: abi)
+            case "IStorageItemPropertiesWithProvider": return makeIStorageItemPropertiesWithProviderFrom(abi: abi)
+            case "IStreamedFileDataRequest": return makeIStreamedFileDataRequestFrom(abi: abi)
+            case "IStorageItemExtraProperties": return makeIStorageItemExtraPropertiesFrom(abi: abi)
+            case "IStorageFolderQueryOperations": return makeIStorageFolderQueryOperationsFrom(abi: abi)
+            case "IStorageQueryResultBase": return makeIStorageQueryResultBaseFrom(abi: abi)
+            case "IBuffer": return makeIBufferFrom(abi: abi)
+            case "IContentTypeProvider": return makeIContentTypeProviderFrom(abi: abi)
+            case "IInputStream": return makeIInputStreamFrom(abi: abi)
+            case "IInputStreamReference": return makeIInputStreamReferenceFrom(abi: abi)
+            case "IOutputStream": return makeIOutputStreamFrom(abi: abi)
+            case "IRandomAccessStream": return makeIRandomAccessStreamFrom(abi: abi)
+            case "IRandomAccessStreamReference": return makeIRandomAccessStreamReferenceFrom(abi: abi)
+            case "IRandomAccessStreamWithContentType": return makeIRandomAccessStreamWithContentTypeFrom(abi: abi)
             case "IAsyncMethodsWithProgress": return makeIAsyncMethodsWithProgressFrom(abi: abi)
             case "IAsyncOperationInt": return makeIAsyncOperationIntFrom(abi: abi)
             case "IBasic": return makeIBasicFrom(abi: abi)
@@ -190,9 +432,32 @@ public class __MakeFromAbi: MakeFromAbi {
             case "WithIterableGuids": return makeWithIterableGuidsFrom(abi: abi)
             case "WithKeyword": return makeWithKeywordFrom(abi: abi)
             case "Deferral": return makeDeferralFrom(abi: abi)
+            case "MemoryBuffer": return makeMemoryBufferFrom(abi: abi)
+            case "Uri": return makeUriFrom(abi: abi)
+            case "WwwFormUrlDecoder": return makeWwwFormUrlDecoderFrom(abi: abi)
             case "PropertySet": return makePropertySetFrom(abi: abi)
             case "StringMap": return makeStringMapFrom(abi: abi)
             case "ValueSet": return makeValueSetFrom(abi: abi)
+            case "StorageFile": return makeStorageFileFrom(abi: abi)
+            case "StorageFolder": return makeStorageFolderFrom(abi: abi)
+            case "StorageLibraryChange": return makeStorageLibraryChangeFrom(abi: abi)
+            case "StorageLibraryChangeReader": return makeStorageLibraryChangeReaderFrom(abi: abi)
+            case "StorageLibraryChangeTracker": return makeStorageLibraryChangeTrackerFrom(abi: abi)
+            case "StorageProvider": return makeStorageProviderFrom(abi: abi)
+            case "StorageStreamTransaction": return makeStorageStreamTransactionFrom(abi: abi)
+            case "StreamedFileDataRequest": return makeStreamedFileDataRequestFrom(abi: abi)
+            case "BasicProperties": return makeBasicPropertiesFrom(abi: abi)
+            case "DocumentProperties": return makeDocumentPropertiesFrom(abi: abi)
+            case "ImageProperties": return makeImagePropertiesFrom(abi: abi)
+            case "MusicProperties": return makeMusicPropertiesFrom(abi: abi)
+            case "StorageItemContentProperties": return makeStorageItemContentPropertiesFrom(abi: abi)
+            case "StorageItemThumbnail": return makeStorageItemThumbnailFrom(abi: abi)
+            case "VideoProperties": return makeVideoPropertiesFrom(abi: abi)
+            case "QueryOptions": return makeQueryOptionsFrom(abi: abi)
+            case "StorageFileQueryResult": return makeStorageFileQueryResultFrom(abi: abi)
+            case "StorageFolderQueryResult": return makeStorageFolderQueryResultFrom(abi: abi)
+            case "StorageItemQueryResult": return makeStorageItemQueryResultFrom(abi: abi)
+            case "Buffer": return makeBufferFrom(abi: abi)
             case "AsyncOperationInt": return makeAsyncOperationIntFrom(abi: abi)
             case "Base": return makeBaseFrom(abi: abi)
             case "BaseCollection": return makeBaseCollectionFrom(abi: abi)

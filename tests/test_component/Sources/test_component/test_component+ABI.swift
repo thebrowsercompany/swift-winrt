@@ -51,6 +51,10 @@ private var IID___x_ABI_Ctest__component_CIBasic: test_component.IID {
     .init(Data1: 0x636060A1, Data2: 0xE41D, Data3: 0x59DF, Data4: ( 0xA5,0xD3,0xFB,0x7C,0xE7,0xE1,0x79,0x2F ))// 636060A1-E41D-59DF-A5D3-FB7CE7E1792F
 }
 
+private var IID___x_ABI_Ctest__component_CIBufferTesterStatics: test_component.IID {
+    .init(Data1: 0x82190F30, Data2: 0x48DC, Data3: 0x5350, Data4: ( 0xAD,0x5B,0x00,0x36,0x63,0x5C,0xF5,0xB4 ))// 82190F30-48DC-5350-AD5B-0036635CF5B4
+}
+
 private var IID___x_ABI_Ctest__component_CIClass: test_component.IID {
     .init(Data1: 0xEBCBC0CD, Data2: 0x48DD, Data3: 0x56BA, Data4: ( 0xBB,0xE2,0xCD,0x0B,0xE5,0xA3,0x06,0x76 ))// EBCBC0CD-48DD-56BA-BBE2-CD0BE5A30676
 }
@@ -520,6 +524,21 @@ public enum __ABI_test_component {
     )
 
     public typealias IBasicWrapper = InterfaceWrapperBase<__IMPL_test_component.IBasicBridge>
+    public class IBufferTesterStatics: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBufferTesterStatics }
+
+        internal func GetDataFromImpl(_ buffer: test_component.AnyIBuffer?, _ index: UInt32) throws -> UInt8 {
+            var result: UINT8 = 0
+            let bufferWrapper = __ABI_Windows_Storage_Streams.IBufferWrapper(buffer)
+            let _buffer = try! bufferWrapper?.toABI { $0 }
+            _ = try perform(as: __x_ABI_Ctest__component_CIBufferTesterStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetDataFrom(pThis, _buffer, index, &result))
+            }
+            return result
+        }
+
+    }
+
     public class IClass: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIClass }
 

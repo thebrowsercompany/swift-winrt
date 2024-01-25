@@ -23,7 +23,8 @@
 #pragma clang diagnostic ignored "-Wmicrosoft-enum-forward-reference"
 
 #include "CppInteropWorkaround.h" // TODO(WIN-860): Remove workaround once C++ interop issues with WinSDK.GUID are fixed.
-
+#include "MemoryBuffer.h" // IMemoryBufferByteAccess (C definition)
+#include "robuffer.h" // IBufferByteAccess (C definition)
 #include "Windows.AI.MachineLearning.h"
 #include "Windows.AI.MachineLearning.Preview.h"
 #include "Windows.ApplicationModel.h"

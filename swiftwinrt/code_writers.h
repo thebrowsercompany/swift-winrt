@@ -998,6 +998,18 @@ bind_bridge_fullname(type));
     };
 
     static std::string modifier_for(typedef_base const& type_definition, interface_info const& iface, member_type member_type = member_type::property_or_method);
+    static void write_bufferbyteaccess(writer& w, interface_info const& info, system_type const& type, typedef_base const& type_definition)
+    {
+        auto bufferType = type.swift_type_name() == "IBufferByteAccess" ? "UnsafeMutablePointer" : "UnsafeMutableBufferPointer";
+        w.write(R"(%var buffer: %<UInt8>? {
+    get throws {
+        let bufferByteAccess: %.__ABI_.% = try %.QueryInterface()
+        return try bufferByteAccess.Buffer()
+    }
+}
+)", modifier_for(type_definition, info), bufferType,  w.support, type.swift_type_name(), get_swift_name(info));
+    }
+
     static void write_interface_impl_members(writer& w, interface_info const& info, typedef_base const& type_definition)
     {
         w.add_depends(*info.type);
@@ -1048,6 +1060,13 @@ bind_bridge_fullname(type));
             for (const auto& event : gti->events)
             {
                 write_class_impl_event(w, event, info, type_definition);
+            }
+        }
+        else if (auto systemType = dynamic_cast<const system_type*>(info.type))
+        {
+            if (systemType->swift_type_name() == "IBufferByteAccess" || systemType->swift_type_name() == "IMemoryBufferByteAccess")
+            {
+                write_bufferbyteaccess(w, info, *systemType, type_definition);
             }
         }
         else
@@ -1370,6 +1389,27 @@ vtable);
             w.write("        }\n");
             w.write("    }\n");
             w.write("}\n");
+
+            if (type.swift_full_name() == "Windows.Storage.Streams.IBuffer")
+            {
+                w.write(R"(extension IBuffer {
+    public var data: Data {
+        guard let buffer = try? buffer else { return Data() }
+        return Data(bytesNoCopy: buffer, count: Int(length), deallocator: .none)
+    }
+}
+)");
+            }
+            else if (type.swift_full_name() == "Windows.Foundation.IMemoryBufferReference")
+            {
+                w.write(R"(extension IMemoryBufferReference {
+    public var data: Data {
+        guard let buffer = try? buffer, let ptr = buffer.baseAddress else { return Data() }
+        return Data(bytesNoCopy: ptr, count: buffer.count, deallocator: .none)
+    }
+}
+)");
+            }
         }
         // Declare a short form for the existential version of the type, e.g. AnyClosable for "any IClosable"
         w.write("public typealias Any% = any %\n\n", type, type);

@@ -1,8 +1,9 @@
 #include "AsyncMethods.idl"
-#include "NullValues.idl"
-#include "Keywords.idl"
-#include "EventTester.idl"
+#include "BufferTests.idl"
 #include "CollectionTester.idl"
+#include "EventTester.idl"
+#include "Keywords.idl"
+#include "NullValues.idl"
 
 import "Windows.Foundation.idl";
 // import "Windows.Foundation.Numerics.idl";

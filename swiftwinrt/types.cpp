@@ -693,6 +693,16 @@ namespace swiftwinrt
             static system_type const guid_type{ "Foundation"sv, "UUID"sv, "Foundation.UUID"sv, "GUID"sv, "g16"sv, param_category::guid_type };
             return guid_type;
         }
+        else if (typeName == "IBufferByteAccess")
+        {
+            static system_type const ibufferbyteaccess_type{ ""sv, typeName, typeName, "C_IBufferByteAccess"sv, "{905a0fef-bc53-11df-8c49-001e4fc686da}"sv, param_category::object_type };
+            return ibufferbyteaccess_type;
+        }
+        else if (typeName == "IMemoryBufferByteAccess")
+        {
+            static system_type const imemorybufferbyte_type{ ""sv, typeName, typeName, "IMemoryBufferByteAccess"sv, "{5b0d3235-4dba-4d44-865e-8f1d0e4fd04d}"sv, param_category::object_type };
+            return imemorybufferbyte_type;
+        }
 
         XLANG_ASSERT(false);
         swiftwinrt::throw_invalid("Unknown type '", typeName, "' in System namespace");

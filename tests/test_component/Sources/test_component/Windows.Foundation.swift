@@ -56,6 +56,300 @@ public final class Deferral : WinRTClass, IClosable {
     }
 }
 
+/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.memorybuffer)
+public final class MemoryBuffer : WinRTClass, IClosable, IMemoryBuffer {
+    private typealias SwiftABI = __ABI_Windows_Foundation.IMemoryBuffer
+    private typealias CABI = __x_ABI_CWindows_CFoundation_CIMemoryBuffer
+    private lazy var _default: SwiftABI! = getInterfaceForCaching()
+    @_spi(WinRTInternal)
+    override public func _getABI<T>() -> UnsafeMutablePointer<T>? {
+        if T.self == CABI.self {
+            return RawPointer(_default)
+        }
+        return super._getABI()
+    }
+
+    @_spi(WinRTInternal)
+    public static func from(abi: ComPtr<__x_ABI_CWindows_CFoundation_CIMemoryBuffer>?) -> MemoryBuffer? {
+        guard let abi = abi else { return nil }
+        return .init(fromAbi: test_component.IInspectable(abi))
+    }
+
+    @_spi(WinRTInternal)
+    public init(fromAbi: test_component.IInspectable) {
+        super.init(fromAbi)
+    }
+
+    override public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        return super.queryInterface(iid)
+    }
+    private static let _IMemoryBufferFactory: __ABI_Windows_Foundation.IMemoryBufferFactory = try! RoGetActivationFactory(HString("Windows.Foundation.MemoryBuffer"))
+    public init(_ capacity: UInt32) {
+        super.init(try! Self._IMemoryBufferFactory.CreateImpl(capacity))
+    }
+
+    private lazy var _IClosable: __ABI_Windows_Foundation.IClosable! = getInterfaceForCaching()
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.memorybuffer.close)
+    public func close() throws {
+        try _IClosable.CloseImpl()
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.memorybuffer.createreference)
+    public func createReference() throws -> AnyIMemoryBufferReference! {
+        try _default.CreateReferenceImpl()
+    }
+
+    deinit {
+        _IClosable = nil
+        _default = nil
+    }
+}
+
+/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri)
+public final class Uri : WinRTClass, IStringable {
+    private typealias SwiftABI = __ABI_Windows_Foundation.IUriRuntimeClass
+    private typealias CABI = __x_ABI_CWindows_CFoundation_CIUriRuntimeClass
+    private lazy var _default: SwiftABI! = getInterfaceForCaching()
+    @_spi(WinRTInternal)
+    override public func _getABI<T>() -> UnsafeMutablePointer<T>? {
+        if T.self == CABI.self {
+            return RawPointer(_default)
+        }
+        return super._getABI()
+    }
+
+    @_spi(WinRTInternal)
+    public static func from(abi: ComPtr<__x_ABI_CWindows_CFoundation_CIUriRuntimeClass>?) -> Uri? {
+        guard let abi = abi else { return nil }
+        return .init(fromAbi: test_component.IInspectable(abi))
+    }
+
+    @_spi(WinRTInternal)
+    public init(fromAbi: test_component.IInspectable) {
+        super.init(fromAbi)
+    }
+
+    override public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        return super.queryInterface(iid)
+    }
+    private static let _IUriEscapeStatics: __ABI_Windows_Foundation.IUriEscapeStatics = try! RoGetActivationFactory(HString("Windows.Foundation.Uri"))
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.unescapecomponent)
+    public static func unescapeComponent(_ toUnescape: String) -> String {
+        return try! _IUriEscapeStatics.UnescapeComponentImpl(toUnescape)
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.escapecomponent)
+    public static func escapeComponent(_ toEscape: String) -> String {
+        return try! _IUriEscapeStatics.EscapeComponentImpl(toEscape)
+    }
+
+    private static let _IUriRuntimeClassFactory: __ABI_Windows_Foundation.IUriRuntimeClassFactory = try! RoGetActivationFactory(HString("Windows.Foundation.Uri"))
+    public init(_ uri: String) {
+        super.init(try! Self._IUriRuntimeClassFactory.CreateUriImpl(uri))
+    }
+
+    public init(_ baseUri: String, _ relativeUri: String) {
+        super.init(try! Self._IUriRuntimeClassFactory.CreateWithRelativeUriImpl(baseUri, relativeUri))
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.equals)
+    public func equals(_ pUri: Uri!) throws -> Bool {
+        try _default.EqualsImpl(pUri)
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.combineuri)
+    public func combineUri(_ relativeUri: String) throws -> Uri! {
+        try _default.CombineUriImpl(relativeUri)
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.absoluteuri)
+    public var absoluteUri : String {
+        get { try! _default.get_AbsoluteUriImpl() }
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.displayuri)
+    public var displayUri : String {
+        get { try! _default.get_DisplayUriImpl() }
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.domain)
+    public var domain : String {
+        get { try! _default.get_DomainImpl() }
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.extension)
+    public var `extension` : String {
+        get { try! _default.get_ExtensionImpl() }
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.fragment)
+    public var fragment : String {
+        get { try! _default.get_FragmentImpl() }
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.host)
+    public var host : String {
+        get { try! _default.get_HostImpl() }
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.password)
+    public var password : String {
+        get { try! _default.get_PasswordImpl() }
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.path)
+    public var path : String {
+        get { try! _default.get_PathImpl() }
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.port)
+    public var port : Int32 {
+        get { try! _default.get_PortImpl() }
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.query)
+    public var query : String {
+        get { try! _default.get_QueryImpl() }
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.queryparsed)
+    public var queryParsed : WwwFormUrlDecoder! {
+        get { try! _default.get_QueryParsedImpl() }
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.rawuri)
+    public var rawUri : String {
+        get { try! _default.get_RawUriImpl() }
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.schemename)
+    public var schemeName : String {
+        get { try! _default.get_SchemeNameImpl() }
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.suspicious)
+    public var suspicious : Bool {
+        get { try! _default.get_SuspiciousImpl() }
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.username)
+    public var userName : String {
+        get { try! _default.get_UserNameImpl() }
+    }
+
+    private lazy var _IUriRuntimeClassWithAbsoluteCanonicalUri: __ABI_Windows_Foundation.IUriRuntimeClassWithAbsoluteCanonicalUri! = getInterfaceForCaching()
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.absolutecanonicaluri)
+    public var absoluteCanonicalUri : String {
+        get { try! _IUriRuntimeClassWithAbsoluteCanonicalUri.get_AbsoluteCanonicalUriImpl() }
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.displayiri)
+    public var displayIri : String {
+        get { try! _IUriRuntimeClassWithAbsoluteCanonicalUri.get_DisplayIriImpl() }
+    }
+
+    private lazy var _IStringable: __ABI_Windows_Foundation.IStringable! = getInterfaceForCaching()
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.tostring)
+    public func toString() throws -> String {
+        try _IStringable.ToStringImpl()
+    }
+
+    deinit {
+        _default = nil
+        _IUriRuntimeClassWithAbsoluteCanonicalUri = nil
+        _IStringable = nil
+    }
+}
+
+/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.wwwformurldecoder)
+public final class WwwFormUrlDecoder : WinRTClass, IIterable, IVectorView {
+    public typealias T = AnyIWwwFormUrlDecoderEntry?
+    private typealias SwiftABI = __ABI_Windows_Foundation.IWwwFormUrlDecoderRuntimeClass
+    private typealias CABI = __x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderRuntimeClass
+    private lazy var _default: SwiftABI! = getInterfaceForCaching()
+    @_spi(WinRTInternal)
+    override public func _getABI<T>() -> UnsafeMutablePointer<T>? {
+        if T.self == CABI.self {
+            return RawPointer(_default)
+        }
+        return super._getABI()
+    }
+
+    @_spi(WinRTInternal)
+    public static func from(abi: ComPtr<__x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderRuntimeClass>?) -> WwwFormUrlDecoder? {
+        guard let abi = abi else { return nil }
+        return .init(fromAbi: test_component.IInspectable(abi))
+    }
+
+    @_spi(WinRTInternal)
+    public init(fromAbi: test_component.IInspectable) {
+        super.init(fromAbi)
+    }
+
+    override public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        return super.queryInterface(iid)
+    }
+    private static let _IWwwFormUrlDecoderRuntimeClassFactory: __ABI_Windows_Foundation.IWwwFormUrlDecoderRuntimeClassFactory = try! RoGetActivationFactory(HString("Windows.Foundation.WwwFormUrlDecoder"))
+    public init(_ query: String) {
+        super.init(try! Self._IWwwFormUrlDecoderRuntimeClassFactory.CreateWwwFormUrlDecoderImpl(query))
+    }
+
+    private lazy var _IIterable: IIterableIWwwFormUrlDecoderEntry! = getInterfaceForCaching()
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.wwwformurldecoder.first)
+    public func first() -> AnyIIterator<AnyIWwwFormUrlDecoderEntry?>? {
+        try! _IIterable.FirstImpl()
+    }
+
+    // MARK: Collection
+    public typealias Element = T
+    public var startIndex: Int { 0 }
+    public var endIndex: Int { Int(size) }
+    public func index(after i: Int) -> Int {
+        i+1
+    }
+
+    public func index(of: Element) -> Int? {
+        var index: UInt32 = 0
+        let result = indexOf(of, &index)
+        guard result else { return nil }
+        return Int(index)
+    }
+    public var count: Int { Int(size) }
+
+    public subscript(position: Int) -> Element {
+        get {
+            getAt(UInt32(position))
+        }
+    }
+    // MARK: WinRT
+    private lazy var _IVectorView: IVectorViewIWwwFormUrlDecoderEntry! = getInterfaceForCaching()
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.wwwformurldecoder.getat)
+    public func getAt(_ index: UInt32) -> AnyIWwwFormUrlDecoderEntry? {
+        try! _IVectorView.GetAtImpl(index)
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.wwwformurldecoder.indexof)
+    public func indexOf(_ value: AnyIWwwFormUrlDecoderEntry?, _ index: inout UInt32) -> Bool {
+        try! _IVectorView.IndexOfImpl(value, &index)
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.wwwformurldecoder.size)
+    public var size : UInt32 {
+        get { try! _IVectorView.get_SizeImpl() }
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.wwwformurldecoder.getfirstvaluebyname)
+    public func getFirstValueByName(_ name: String) throws -> String {
+        try _default.GetFirstValueByNameImpl(name)
+    }
+
+    deinit {
+        _IIterable = nil
+        _IVectorView = nil
+        _default = nil
+    }
+}
+
 public typealias AsyncActionCompletedHandler = (AnyIAsyncAction?, AsyncStatus) -> ()
 public typealias AsyncOperationCompletedHandler<TResult> = (AnyIAsyncOperation<TResult>?, AsyncStatus) -> ()
 public typealias AsyncOperationProgressHandler<TResult,TProgress> = (AnyIAsyncOperationWithProgress<TResult, TProgress>?, TProgress) -> ()
@@ -274,6 +568,59 @@ extension IClosable {
 }
 public typealias AnyIClosable = any IClosable
 
+/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.imemorybuffer)
+public protocol IMemoryBuffer : IClosable {
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.imemorybuffer.createreference)
+    func createReference() throws -> test_component.AnyIMemoryBufferReference!
+}
+
+extension IMemoryBuffer {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        switch iid {
+            case __ABI_Windows_Foundation.IMemoryBufferWrapper.IID:
+                let wrapper = __ABI_Windows_Foundation.IMemoryBufferWrapper(self)
+                return wrapper!.queryInterface(iid)
+            case __ABI_Windows_Foundation.IClosableWrapper.IID:
+                let wrapper = __ABI_Windows_Foundation.IClosableWrapper(self)
+                return wrapper!.queryInterface(iid)
+            default: return nil
+        }
+    }
+}
+public typealias AnyIMemoryBuffer = any IMemoryBuffer
+
+/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.imemorybufferreference)
+public protocol IMemoryBufferReference : IClosable, IMemoryBufferByteAccess {
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.imemorybufferreference.capacity)
+    var capacity: UInt32 { get }
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.imemorybufferreference.closed)
+    var closed: Event<TypedEventHandler<IMemoryBufferReference?, Any?>> { get }
+}
+
+extension IMemoryBufferReference {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        switch iid {
+            case __ABI_Windows_Foundation.IMemoryBufferReferenceWrapper.IID:
+                let wrapper = __ABI_Windows_Foundation.IMemoryBufferReferenceWrapper(self)
+                return wrapper!.queryInterface(iid)
+            case __ABI_Windows_Foundation.IClosableWrapper.IID:
+                let wrapper = __ABI_Windows_Foundation.IClosableWrapper(self)
+                return wrapper!.queryInterface(iid)
+            case __ABI_.IMemoryBufferByteAccessWrapper.IID:
+                let wrapper = __ABI_.IMemoryBufferByteAccessWrapper(self)
+                return wrapper!.queryInterface(iid)
+            default: return nil
+        }
+    }
+}
+extension IMemoryBufferReference {
+    public var data: Data {
+        guard let buffer = try? buffer, let ptr = buffer.baseAddress else { return Data() }
+        return Data(bytesNoCopy: ptr, count: buffer.count, deallocator: .none)
+    }
+}
+public typealias AnyIMemoryBufferReference = any IMemoryBufferReference
+
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue)
 public protocol IPropertyValue : WinRTInterface {
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue.getuint8)
@@ -346,6 +693,26 @@ extension IStringable {
     }
 }
 public typealias AnyIStringable = any IStringable
+
+/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iwwwformurldecoderentry)
+public protocol IWwwFormUrlDecoderEntry : WinRTInterface {
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iwwwformurldecoderentry.name)
+    var name: String { get }
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iwwwformurldecoderentry.value)
+    var value: String { get }
+}
+
+extension IWwwFormUrlDecoderEntry {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        switch iid {
+            case __ABI_Windows_Foundation.IWwwFormUrlDecoderEntryWrapper.IID:
+                let wrapper = __ABI_Windows_Foundation.IWwwFormUrlDecoderEntryWrapper(self)
+                return wrapper!.queryInterface(iid)
+            default: return nil
+        }
+    }
+}
+public typealias AnyIWwwFormUrlDecoderEntry = any IWwwFormUrlDecoderEntry
 
 extension test_component.AsyncStatus {
     public static var canceled : test_component.AsyncStatus {

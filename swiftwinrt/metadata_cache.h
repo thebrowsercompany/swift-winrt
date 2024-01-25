@@ -93,7 +93,7 @@ namespace swiftwinrt
         type_cache compile_namespaces(std::vector<std::string_view> const& targetNamespaces, metadata_filter const& f);
 
         std::set<std::string_view> get_dependent_namespaces(std::vector<std::string_view> const& targetNamespaces, metadata_filter const& f);
-        
+
         bool has_namespace(std::string_view typeNamespace) const
         {
             return m_typeTable.find(typeNamespace) != m_typeTable.end();
@@ -171,5 +171,7 @@ namespace swiftwinrt
         std::map<std::string, attributed_type> get_attributed_types(winmd::reader::TypeDef const& type) const;
 
         std::map<std::string_view, std::map<std::string_view, metadata_type const&>> m_typeTable;
+
+        void try_insert_buffer_byte_access(winmd::reader::TypeDef const& type, get_interfaces_t& result, bool defaulted);
     };
 }
