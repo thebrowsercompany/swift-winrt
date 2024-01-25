@@ -22,7 +22,7 @@ typedef struct C_IBufferByteAccessVtbl
     ULONG (STDMETHODCALLTYPE* AddRef)(__RPC__in C_IBufferByteAccess* This);
     ULONG (STDMETHODCALLTYPE* Release)(__RPC__in C_IBufferByteAccess* This);
     HRESULT (STDMETHODCALLTYPE* Buffer)(__RPC__in C_IBufferByteAccess* This,
-    BYTE** value);
+        BYTE** value);
 
     END_INTERFACE
 } C_IBufferByteAccessVtbl;
