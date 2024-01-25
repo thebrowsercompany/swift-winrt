@@ -998,14 +998,14 @@ bind_bridge_fullname(type));
     static std::string modifier_for(typedef_base const& type_definition, interface_info const& iface);
     static void write_bufferbyteaccess(writer& w, interface_info const& info, system_type const& type, typedef_base const& type_definition)
     {
-        w.write(R"(% var data: Data {
+        auto bufferType = type.swift_type_name() == "IBufferByteAccess" ? "UnsafeMutablePointer" : "UnsafeMutableBufferPointer";
+        w.write(R"(%var buffer: %<UInt8>? {
     get throws {
         let bufferByteAccess: %.__ABI_.% = try %.QueryInterface()
-        guard let buffer = try bufferByteAccess.Buffer() else { return Data() }
-        return Data(bytesNoCopy: buffer, count: Int(capacity), deallocator: .none)
+        return try bufferByteAccess.Buffer()
     }
 }
-)", modifier_for(type_definition, info), w.support, type.swift_type_name(), get_swift_name(info));
+)", modifier_for(type_definition, info), bufferType,  w.support, type.swift_type_name(), get_swift_name(info));
     }
     static void write_interface_impl_members(writer& w, interface_info const& info, typedef_base const& type_definition)
     {
@@ -1385,6 +1385,27 @@ vtable);
             w.write("        }\n");
             w.write("    }\n");
             w.write("}\n");
+
+            if (type.swift_full_name() == "Windows.Storage.Streams.IBuffer")
+            {
+                w.write(R"(extension IBuffer {
+    public var data: Data {
+        guard let buffer = try? buffer else { return Data() }
+        return Data(bytesNoCopy: buffer, count: Int(length), deallocator: .none)
+    }
+}
+)");
+            }
+            else if (type.swift_full_name() == "Windows.Foundation.IMemoryBufferReference")
+            {
+                w.write(R"(extension IMemoryBufferReference {
+    public var data: Data {
+        guard let buffer = try? buffer, let ptr = buffer.baseAddress else { return Data() }
+        return Data(bytesNoCopy: ptr, count: buffer.count, deallocator: .none)
+    }
+}
+)");
+            }
         }
         // Declare a short form for the existential version of the type, e.g. AnyClosable for "any IClosable"
         w.write("public typealias Any% = any %\n\n", type, type);

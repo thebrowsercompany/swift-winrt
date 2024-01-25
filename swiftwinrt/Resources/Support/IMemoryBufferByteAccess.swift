@@ -1,8 +1,12 @@
 import C_BINDINGS_MODULE
 import Foundation
 
+/// IMemoryBufferByteAccess provides direct access to the underlying bytes of an IMemoryBuffer.
+/// This buffer is only valid for the lifetime of the buffer. For a read-only representation
+/// of the buffer, access the bytes through the Data property of the IBuffer.
+/// [Open Microsoft Documentation](https://learn.microsoft.com/en-us/previous-versions/mt297505(v=vs.85))
 public protocol IMemoryBufferByteAccess: WinRTInterface {
-    var data: Data { get throws }
+    var buffer: UnsafeMutableBufferPointer<UInt8>? { get throws }
 }
 
 public typealias AnyIMemoryBufferByteAccess = any IMemoryBufferByteAccess
@@ -12,17 +16,18 @@ extension __ABI_ {
     public class IMemoryBufferByteAccess: IUnknown {
         override public class var IID: IID { IID_IMemoryBufferByteAccess}
 
-        public func Buffer() throws -> UnsafeMutablePointer<UInt8>? {
-            var buffer: UnsafeMutablePointer<UInt8>?
+        public func Buffer() throws -> UnsafeMutableBufferPointer<UInt8>? {
             var capacity: UInt32 = 0
+            let ptr = try GetBuffer(&capacity)
+            return UnsafeMutableBufferPointer(start: ptr, count: Int(capacity))
+        }
+
+        fileprivate func GetBuffer(_ capacity: inout UInt32) throws -> UnsafeMutablePointer<UInt8>? {
+            var buffer: UnsafeMutablePointer<UInt8>?
             try perform(as: C_BINDINGS_MODULE.IMemoryBufferByteAccess.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetBuffer(pThis, &buffer, &capacity))
             }
             return buffer
-        }
-
-        fileprivate static func GetBuffer(_ this: UnsafeMutablePointer<C_BINDINGS_MODULE.IMemoryBufferByteAccess>?, _ buffer: UnsafeMutablePointer<UnsafeMutablePointer<UInt8>?>?, _ count: UnsafeMutablePointer<UInt32>?) -> HRESULT {
-            return E_NOTIMPL
         }
     }
 
@@ -35,8 +40,11 @@ public enum IMemoryBufferByteAccessBridge: AbiInterfaceBridge {
     }
 
     public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
-        guard let abi = abi else { return nil }
-        return IMemoryBufferByteAccessImpl(abi)
+        // This code path is not actually reachable since IMemoryBufferByteAccess is not a WinRT interface.
+        // It is a COM interface which is implemented by any object which implements the IMemoryBufferReference interface.
+        // And the IMemoryBufferReferenceImpl object will correctly have the implementation of this interface, so this isn't needed
+        assertionFailure("IMemoryBufferByteAccessBridge.from not implemented")
+        return nil
     }
 
     public typealias CABI = C_BINDINGS_MODULE.IMemoryBufferByteAccess
@@ -44,34 +52,23 @@ public enum IMemoryBufferByteAccessBridge: AbiInterfaceBridge {
     public typealias SwiftProjection = AnyIMemoryBufferByteAccess
 }
 
-fileprivate class IMemoryBufferByteAccessImpl: AbiInterfaceImpl, IMemoryBufferByteAccess {
-    typealias Bridge = IMemoryBufferByteAccessBridge
-    let _default: Bridge.SwiftABI
-
-    fileprivate init(_ fromAbi: ComPtr<Bridge.CABI>) {
-        _default = Bridge.SwiftABI(fromAbi)
-    }
-
-    var data: Data {
-        // in order to implement these, we need to QI for IMemoryBufferReference
-        fatalError("not implemented")
-    }
-}
-
 fileprivate var IMemoryBufferByteAccessVTable: C_BINDINGS_MODULE.IMemoryBufferByteAccessVtbl = .init(
     QueryInterface: {  __ABI_.IMemoryBufferByteAccessWrapper.queryInterface($0, $1, $2) },
     AddRef: {  __ABI_.IMemoryBufferByteAccessWrapper.addRef($0) },
     Release: {  __ABI_.IMemoryBufferByteAccessWrapper.release($0) },
-    GetBuffer: { __ABI_.IMemoryBufferByteAccess.GetBuffer($0, $1, $2) }
+    GetBuffer: { __ABI_.IMemoryBufferByteAccessWrapper.getBuffer($0, $1, $2) }
 )
 
-extension IMemoryBufferByteAccess {
-    public func queryInterface(_ iid: SUPPORT_MODULE.IID) -> IUnknownRef? {
-        switch iid {
-            case __ABI_.IMemoryBufferByteAccessWrapper.IID:
-                let wrapper = __ABI_.IMemoryBufferByteAccessWrapper(self)
-                return wrapper!.queryInterface(iid)
-            default: return nil
-        }
+extension __ABI_.IMemoryBufferByteAccessWrapper {
+    fileprivate static func getBuffer(_ this: UnsafeMutablePointer<C_BINDINGS_MODULE.IMemoryBufferByteAccess>?, _ buffer: UnsafeMutablePointer<UnsafeMutablePointer<UInt8>?>?, _ count: UnsafeMutablePointer<UInt32>?) -> HRESULT {
+        guard let swiftObj = __ABI_.IMemoryBufferByteAccessWrapper.tryUnwrapFrom(raw: this) else { return E_INVALIDARG }
+        guard let buffer, let count else { return E_INVALIDARG }
+        count.pointee = 0
+        buffer.pointee = nil
+
+        guard let swiftBuffer = try? swiftObj.buffer else { return E_FAIL }
+        count.pointee = UInt32(swiftBuffer.count)
+        buffer.pointee = swiftBuffer.baseAddress
+        return S_OK
     }
 }

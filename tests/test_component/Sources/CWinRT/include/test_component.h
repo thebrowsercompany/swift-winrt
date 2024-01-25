@@ -6,6 +6,7 @@
 #include <EventToken.h>
 #include <windowscontracts.h>
 #include "Windows.Foundation.h"
+#include "Windows.Storage.Streams.h"
 #include "test_component.Delegates.h"
 // Importing Collections header
 #include "Windows.Foundation.Collections.h"
@@ -82,6 +83,12 @@ typedef interface __x_ABI_Ctest__component_CIVoidToVoidDelegate __x_ABI_Ctest__c
     typedef interface __x_ABI_Ctest__component_CIBasic __x_ABI_Ctest__component_CIBasic;
 
 #endif // ____x_ABI_Ctest__component_CIBasic_FWD_DEFINED__
+
+#ifndef ____x_ABI_Ctest__component_CIBufferTesterStatics_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CIBufferTesterStatics_FWD_DEFINED__
+    typedef interface __x_ABI_Ctest__component_CIBufferTesterStatics __x_ABI_Ctest__component_CIBufferTesterStatics;
+
+#endif // ____x_ABI_Ctest__component_CIBufferTesterStatics_FWD_DEFINED__
 
 #ifndef ____x_ABI_Ctest__component_CIClass_FWD_DEFINED__
 #define ____x_ABI_Ctest__component_CIClass_FWD_DEFINED__
@@ -2354,6 +2361,12 @@ typedef struct __x_ABI_CWindows_CFoundation_CDateTime __x_ABI_CWindows_CFoundati
 
 #endif // ____x_ABI_CWindows_CFoundation_CIStringable_FWD_DEFINED__
 
+#ifndef ____x_ABI_CWindows_CStorage_CStreams_CIBuffer_FWD_DEFINED__
+#define ____x_ABI_CWindows_CStorage_CStreams_CIBuffer_FWD_DEFINED__
+    typedef interface __x_ABI_CWindows_CStorage_CStreams_CIBuffer __x_ABI_CWindows_CStorage_CStreams_CIBuffer;
+
+#endif // ____x_ABI_CWindows_CStorage_CStreams_CIBuffer_FWD_DEFINED__
+
 #ifndef ____x_ABI_Ctest__component_CDelegates_CIInDelegate_FWD_DEFINED__
 #define ____x_ABI_Ctest__component_CDelegates_CIInDelegate_FWD_DEFINED__
 typedef interface __x_ABI_Ctest__component_CDelegates_CIInDelegate __x_ABI_Ctest__component_CDelegates_CIInDelegate;
@@ -2893,6 +2906,41 @@ struct __x_ABI_Ctest__component_CStructWithIReference
     
     EXTERN_C const IID IID___x_ABI_Ctest__component_CIBasic;
 #endif /* !defined(____x_ABI_Ctest__component_CIBasic_INTERFACE_DEFINED__) */
+    
+#if !defined(____x_ABI_Ctest__component_CIBufferTesterStatics_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CIBufferTesterStatics_INTERFACE_DEFINED__
+    typedef struct __x_ABI_Ctest__component_CIBufferTesterStaticsVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CIBufferTesterStatics* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CIBufferTesterStatics* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CIBufferTesterStatics* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_Ctest__component_CIBufferTesterStatics* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_Ctest__component_CIBufferTesterStatics* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CIBufferTesterStatics* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* GetDataFrom)(__x_ABI_Ctest__component_CIBufferTesterStatics* This,
+        __x_ABI_CWindows_CStorage_CStreams_CIBuffer* buffer,
+        UINT32 index,
+        BYTE* result);
+
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CIBufferTesterStaticsVtbl;
+
+    interface __x_ABI_Ctest__component_CIBufferTesterStatics
+    {
+        CONST_VTBL struct __x_ABI_Ctest__component_CIBufferTesterStaticsVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CIBufferTesterStatics;
+#endif /* !defined(____x_ABI_Ctest__component_CIBufferTesterStatics_INTERFACE_DEFINED__) */
     
 #if !defined(____x_ABI_Ctest__component_CIClass_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIClass_INTERFACE_DEFINED__

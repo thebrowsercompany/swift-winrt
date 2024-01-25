@@ -1,0 +1,9 @@
+import "Windows.Foundation.idl";
+import "Windows.Storage.Streams.idl";
+
+namespace test_component {
+
+    static runtimeclass BufferTester {
+        static UInt8 GetDataFrom(Windows.Storage.Streams.IBuffer buffer, UInt32 index);
+    }
+}

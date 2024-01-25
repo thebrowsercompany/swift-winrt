@@ -55,6 +55,34 @@ private var IID___x_ABI_CWindows_CFoundation_CIStringable: test_component.IID {
     .init(Data1: 0x96369F54, Data2: 0x8EB6, Data3: 0x48F0, Data4: ( 0xAB,0xCE,0xC1,0xB2,0x11,0xE6,0x27,0xC3 ))// 96369F54-8EB6-48F0-ABCE-C1B211E627C3
 }
 
+private var IID___x_ABI_CWindows_CFoundation_CIUriEscapeStatics: test_component.IID {
+    .init(Data1: 0xC1D432BA, Data2: 0xC824, Data3: 0x4452, Data4: ( 0xA7,0xFD,0x51,0x2B,0xC3,0xBB,0xE9,0xA1 ))// C1D432BA-C824-4452-A7FD-512BC3BBE9A1
+}
+
+private var IID___x_ABI_CWindows_CFoundation_CIUriRuntimeClass: test_component.IID {
+    .init(Data1: 0x9E365E57, Data2: 0x48B2, Data3: 0x4160, Data4: ( 0x95,0x6F,0xC7,0x38,0x51,0x20,0xBB,0xFC ))// 9E365E57-48B2-4160-956F-C7385120BBFC
+}
+
+private var IID___x_ABI_CWindows_CFoundation_CIUriRuntimeClassFactory: test_component.IID {
+    .init(Data1: 0x44A9796F, Data2: 0x723E, Data3: 0x4FDF, Data4: ( 0xA2,0x18,0x03,0x3E,0x75,0xB0,0xC0,0x84 ))// 44A9796F-723E-4FDF-A218-033E75B0C084
+}
+
+private var IID___x_ABI_CWindows_CFoundation_CIUriRuntimeClassWithAbsoluteCanonicalUri: test_component.IID {
+    .init(Data1: 0x758D9661, Data2: 0x221C, Data3: 0x480F, Data4: ( 0xA3,0x39,0x50,0x65,0x66,0x73,0xF4,0x6F ))// 758D9661-221C-480F-A339-50656673F46F
+}
+
+private var IID___x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderEntry: test_component.IID {
+    .init(Data1: 0x125E7431, Data2: 0xF678, Data3: 0x4E8E, Data4: ( 0xB6,0x70,0x20,0xA9,0xB0,0x6C,0x51,0x2D ))// 125E7431-F678-4E8E-B670-20A9B06C512D
+}
+
+private var IID___x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderRuntimeClass: test_component.IID {
+    .init(Data1: 0xD45A0451, Data2: 0xF225, Data3: 0x4542, Data4: ( 0x92,0x96,0x0E,0x1D,0xF5,0xD2,0x54,0xDF ))// D45A0451-F225-4542-9296-0E1DF5D254DF
+}
+
+private var IID___x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderRuntimeClassFactory: test_component.IID {
+    .init(Data1: 0x5B8C6B3D, Data2: 0x24AE, Data3: 0x41B5, Data4: ( 0xA1,0xBF,0xF0,0xC3,0xD5,0x44,0x84,0x5B ))// 5B8C6B3D-24AE-41B5-A1BF-F0C3D544845B
+}
+
 private var IID___x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler: test_component.IID {
     .init(Data1: 0xA4ED5C81, Data2: 0x76C9, Data3: 0x40BD, Data4: ( 0x8B,0xE6,0xB1,0xD9,0x0F,0xB2,0x0A,0xE7 ))// A4ED5C81-76C9-40BD-8BE6-B1D90FB20AE7
 }
@@ -963,6 +991,314 @@ public enum __ABI_Windows_Foundation {
     )
 
     public typealias IStringableWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.IStringableBridge>
+    public class IUriEscapeStatics: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIUriEscapeStatics }
+
+        internal func UnescapeComponentImpl(_ toUnescape: String) throws -> String {
+            var value: HSTRING?
+            let _toUnescape = try! HString(toUnescape)
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriEscapeStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.UnescapeComponent(pThis, _toUnescape.get(), &value))
+            }
+            return .init(from: value)
+        }
+
+        internal func EscapeComponentImpl(_ toEscape: String) throws -> String {
+            var value: HSTRING?
+            let _toEscape = try! HString(toEscape)
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriEscapeStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.EscapeComponent(pThis, _toEscape.get(), &value))
+            }
+            return .init(from: value)
+        }
+
+    }
+
+    public class IUriRuntimeClass: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIUriRuntimeClass }
+
+        internal func get_AbsoluteUriImpl() throws -> String {
+            var value: HSTRING?
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_AbsoluteUri(pThis, &value))
+            }
+            return .init(from: value)
+        }
+
+        internal func get_DisplayUriImpl() throws -> String {
+            var value: HSTRING?
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_DisplayUri(pThis, &value))
+            }
+            return .init(from: value)
+        }
+
+        internal func get_DomainImpl() throws -> String {
+            var value: HSTRING?
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Domain(pThis, &value))
+            }
+            return .init(from: value)
+        }
+
+        internal func get_ExtensionImpl() throws -> String {
+            var value: HSTRING?
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Extension(pThis, &value))
+            }
+            return .init(from: value)
+        }
+
+        internal func get_FragmentImpl() throws -> String {
+            var value: HSTRING?
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Fragment(pThis, &value))
+            }
+            return .init(from: value)
+        }
+
+        internal func get_HostImpl() throws -> String {
+            var value: HSTRING?
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Host(pThis, &value))
+            }
+            return .init(from: value)
+        }
+
+        internal func get_PasswordImpl() throws -> String {
+            var value: HSTRING?
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Password(pThis, &value))
+            }
+            return .init(from: value)
+        }
+
+        internal func get_PathImpl() throws -> String {
+            var value: HSTRING?
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Path(pThis, &value))
+            }
+            return .init(from: value)
+        }
+
+        internal func get_QueryImpl() throws -> String {
+            var value: HSTRING?
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Query(pThis, &value))
+            }
+            return .init(from: value)
+        }
+
+        internal func get_QueryParsedImpl() throws -> test_component.WwwFormUrlDecoder? {
+            let (ppWwwFormUrlDecoder) = try ComPtrs.initialize { ppWwwFormUrlDecoderAbi in
+                _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.get_QueryParsed(pThis, &ppWwwFormUrlDecoderAbi))
+                }
+            }
+            return .from(abi: ppWwwFormUrlDecoder)
+        }
+
+        internal func get_RawUriImpl() throws -> String {
+            var value: HSTRING?
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_RawUri(pThis, &value))
+            }
+            return .init(from: value)
+        }
+
+        internal func get_SchemeNameImpl() throws -> String {
+            var value: HSTRING?
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_SchemeName(pThis, &value))
+            }
+            return .init(from: value)
+        }
+
+        internal func get_UserNameImpl() throws -> String {
+            var value: HSTRING?
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_UserName(pThis, &value))
+            }
+            return .init(from: value)
+        }
+
+        internal func get_PortImpl() throws -> Int32 {
+            var value: INT32 = 0
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Port(pThis, &value))
+            }
+            return value
+        }
+
+        internal func get_SuspiciousImpl() throws -> Bool {
+            var value: boolean = 0
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Suspicious(pThis, &value))
+            }
+            return .init(from: value)
+        }
+
+        internal func EqualsImpl(_ pUri: test_component.Uri?) throws -> Bool {
+            var value: boolean = 0
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Equals(pThis, RawPointer(pUri), &value))
+            }
+            return .init(from: value)
+        }
+
+        internal func CombineUriImpl(_ relativeUri: String) throws -> test_component.Uri? {
+            let (instance) = try ComPtrs.initialize { instanceAbi in
+                let _relativeUri = try! HString(relativeUri)
+                _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.CombineUri(pThis, _relativeUri.get(), &instanceAbi))
+                }
+            }
+            return .from(abi: instance)
+        }
+
+    }
+
+    public class IUriRuntimeClassFactory: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIUriRuntimeClassFactory }
+
+        internal func CreateUriImpl(_ uri: String) throws -> IUriRuntimeClass {
+            let (instance) = try ComPtrs.initialize { instanceAbi in
+                let _uri = try! HString(uri)
+                _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClassFactory.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.CreateUri(pThis, _uri.get(), &instanceAbi))
+                }
+            }
+            return IUriRuntimeClass(instance!)
+        }
+
+        internal func CreateWithRelativeUriImpl(_ baseUri: String, _ relativeUri: String) throws -> IUriRuntimeClass {
+            let (instance) = try ComPtrs.initialize { instanceAbi in
+                let _baseUri = try! HString(baseUri)
+                let _relativeUri = try! HString(relativeUri)
+                _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClassFactory.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.CreateWithRelativeUri(pThis, _baseUri.get(), _relativeUri.get(), &instanceAbi))
+                }
+            }
+            return IUriRuntimeClass(instance!)
+        }
+
+    }
+
+    public class IUriRuntimeClassWithAbsoluteCanonicalUri: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIUriRuntimeClassWithAbsoluteCanonicalUri }
+
+        internal func get_AbsoluteCanonicalUriImpl() throws -> String {
+            var value: HSTRING?
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClassWithAbsoluteCanonicalUri.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_AbsoluteCanonicalUri(pThis, &value))
+            }
+            return .init(from: value)
+        }
+
+        internal func get_DisplayIriImpl() throws -> String {
+            var value: HSTRING?
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClassWithAbsoluteCanonicalUri.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_DisplayIri(pThis, &value))
+            }
+            return .init(from: value)
+        }
+
+    }
+
+    public class IWwwFormUrlDecoderEntry: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderEntry }
+
+        open func get_NameImpl() throws -> String {
+            var value: HSTRING?
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderEntry.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Name(pThis, &value))
+            }
+            return .init(from: value)
+        }
+
+        open func get_ValueImpl() throws -> String {
+            var value: HSTRING?
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderEntry.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Value(pThis, &value))
+            }
+            return .init(from: value)
+        }
+
+    }
+
+    internal static var IWwwFormUrlDecoderEntryVTable: __x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderEntryVtbl = .init(
+        QueryInterface: { IWwwFormUrlDecoderEntryWrapper.queryInterface($0, $1, $2) },
+        AddRef: { IWwwFormUrlDecoderEntryWrapper.addRef($0) },
+        Release: { IWwwFormUrlDecoderEntryWrapper.release($0) },
+        GetIids: {
+            let size = MemoryLayout<test_component.IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
+            iids[0] = IUnknown.IID
+            iids[1] = IInspectable.IID
+            iids[2] = __ABI_Windows_Foundation.IWwwFormUrlDecoderEntryWrapper.IID
+            $1!.pointee = 3
+            $2!.pointee = iids
+            return S_OK
+        },
+
+        GetRuntimeClassName: {
+            _ = $0
+            let hstring = try! HString("Windows.Foundation.IWwwFormUrlDecoderEntry").detach()
+            $1!.pointee = hstring
+            return S_OK
+        },
+
+        GetTrustLevel: {
+            _ = $0
+            $1!.pointee = TrustLevel(rawValue: 0)
+            return S_OK
+        },
+
+        get_Name: {
+            guard let __unwrapped__instance = IWwwFormUrlDecoderEntryWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let value = __unwrapped__instance.name
+            $1?.initialize(to: try! HString(value).detach())
+            return S_OK
+        },
+
+        get_Value: {
+            guard let __unwrapped__instance = IWwwFormUrlDecoderEntryWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let value = __unwrapped__instance.value
+            $1?.initialize(to: try! HString(value).detach())
+            return S_OK
+        }
+    )
+
+    public typealias IWwwFormUrlDecoderEntryWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.IWwwFormUrlDecoderEntryBridge>
+    public class IWwwFormUrlDecoderRuntimeClass: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderRuntimeClass }
+
+        internal func GetFirstValueByNameImpl(_ name: String) throws -> String {
+            var phstrValue: HSTRING?
+            let _name = try! HString(name)
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderRuntimeClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetFirstValueByName(pThis, _name.get(), &phstrValue))
+            }
+            return .init(from: phstrValue)
+        }
+
+    }
+
+    public class IWwwFormUrlDecoderRuntimeClassFactory: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderRuntimeClassFactory }
+
+        internal func CreateWwwFormUrlDecoderImpl(_ query: String) throws -> IWwwFormUrlDecoderRuntimeClass {
+            let (instance) = try ComPtrs.initialize { instanceAbi in
+                let _query = try! HString(query)
+                _ = try perform(as: __x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderRuntimeClassFactory.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.CreateWwwFormUrlDecoder(pThis, _query.get(), &instanceAbi))
+                }
+            }
+            return IWwwFormUrlDecoderRuntimeClass(instance!)
+        }
+
+    }
+
 }
 extension __x_ABI_CWindows_CFoundation_CDateTime {
         public static func from(swift: test_component.DateTime) -> __x_ABI_CWindows_CFoundation_CDateTime {

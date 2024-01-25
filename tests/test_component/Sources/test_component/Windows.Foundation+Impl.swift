@@ -230,11 +230,10 @@ public enum __IMPL_Windows_Foundation {
         }
 
         private lazy var _IMemoryBufferByteAccess: __ABI_.IMemoryBufferByteAccess! = getInterfaceForCaching()
-        fileprivate  var data: Data {
+        fileprivate var buffer: UnsafeMutableBufferPointer<UInt8>? {
             get throws {
                 let bufferByteAccess: test_component.__ABI_.IMemoryBufferByteAccess = try _IMemoryBufferByteAccess.QueryInterface()
-                guard let buffer = try bufferByteAccess.Buffer() else { return Data() }
-                return Data(bytesNoCopy: buffer, count: Int(capacity), deallocator: .none)
+                return try bufferByteAccess.Buffer()
             }
         }
     }
@@ -358,6 +357,41 @@ public enum __IMPL_Windows_Foundation {
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.istringable.tostring)
         fileprivate func toString() throws -> String {
             try _default.ToStringImpl()
+        }
+
+    }
+
+    public enum IWwwFormUrlDecoderEntryBridge : AbiInterfaceBridge {
+        public typealias CABI = __x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderEntry
+        public typealias SwiftABI = __ABI_Windows_Foundation.IWwwFormUrlDecoderEntry
+        public typealias SwiftProjection = AnyIWwwFormUrlDecoderEntry
+        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+            guard let abi = abi else { return nil }
+            return IWwwFormUrlDecoderEntryImpl(abi)
+        }
+
+        public static func makeAbi() -> CABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Foundation.IWwwFormUrlDecoderEntryVTable) { $0 }
+            return .init(lpVtbl: vtblPtr)
+        }
+    }
+
+    fileprivate class IWwwFormUrlDecoderEntryImpl: IWwwFormUrlDecoderEntry, WinRTAbiImpl {
+        fileprivate typealias Bridge = IWwwFormUrlDecoderEntryBridge
+        fileprivate let _default: Bridge.SwiftABI
+        fileprivate var thisPtr: test_component.IInspectable { _default }
+        fileprivate init(_ fromAbi: ComPtr<Bridge.CABI>) {
+            _default = Bridge.SwiftABI(fromAbi)
+        }
+
+        /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iwwwformurldecoderentry.name)
+        fileprivate var name : String {
+            get { try! _default.get_NameImpl() }
+        }
+
+        /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iwwwformurldecoderentry.value)
+        fileprivate var value : String {
+            get { try! _default.get_ValueImpl() }
         }
 
     }

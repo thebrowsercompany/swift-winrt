@@ -558,6 +558,14 @@ public final class BaseObservableCollection : WinRTClass, IObservableVector, IVe
     }
 }
 
+public final class BufferTester {
+    private static let _IBufferTesterStatics: __ABI_test_component.IBufferTesterStatics = try! RoGetActivationFactory(HString("test_component.BufferTester"))
+    public static func getDataFrom(_ buffer: test_component.AnyIBuffer!, _ index: UInt32) -> UInt8 {
+        return try! _IBufferTesterStatics.GetDataFromImpl(buffer, index)
+    }
+
+}
+
 public final class Class : WinRTClass, IBasic {
     private typealias SwiftABI = __ABI_test_component.IClass
     private typealias CABI = __x_ABI_Ctest__component_CIClass

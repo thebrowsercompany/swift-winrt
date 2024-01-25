@@ -3,6 +3,10 @@
 import Foundation
 import Ctest_component
 
+/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.inputstreamoptions)
+public typealias InputStreamOptions = __x_ABI_CWindows_CStorage_CStreams_CInputStreamOptions
+/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.unicodeencoding)
+public typealias UnicodeEncoding = __x_ABI_CWindows_CStorage_CStreams_CUnicodeEncoding
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.buffer)
 public final class Buffer : WinRTClass, IBufferByteAccess, IBuffer {
     private typealias SwiftABI = __ABI_Windows_Storage_Streams.IBuffer
@@ -47,11 +51,10 @@ public final class Buffer : WinRTClass, IBufferByteAccess, IBuffer {
     }
 
     private lazy var _IBufferByteAccess: __ABI_.IBufferByteAccess! = getInterfaceForCaching()
-    public  var data: Data {
+    public var buffer: UnsafeMutablePointer<UInt8>? {
         get throws {
             let bufferByteAccess: test_component.__ABI_.IBufferByteAccess = try _IBufferByteAccess.QueryInterface()
-            guard let buffer = try bufferByteAccess.Buffer() else { return Data() }
-            return Data(bytesNoCopy: buffer, count: Int(capacity), deallocator: .none)
+            return try bufferByteAccess.Buffer()
         }
     }
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.buffer.capacity)
@@ -92,5 +95,207 @@ extension IBuffer {
         }
     }
 }
+extension IBuffer {
+    public var data: Data {
+        guard let buffer = try? buffer else { return Data() }
+        return Data(bytesNoCopy: buffer, count: Int(length), deallocator: .none)
+    }
+}
 public typealias AnyIBuffer = any IBuffer
+
+/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.icontenttypeprovider)
+public protocol IContentTypeProvider : WinRTInterface {
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.icontenttypeprovider.contenttype)
+    var contentType: String { get }
+}
+
+extension IContentTypeProvider {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        switch iid {
+            case __ABI_Windows_Storage_Streams.IContentTypeProviderWrapper.IID:
+                let wrapper = __ABI_Windows_Storage_Streams.IContentTypeProviderWrapper(self)
+                return wrapper!.queryInterface(iid)
+            default: return nil
+        }
+    }
+}
+public typealias AnyIContentTypeProvider = any IContentTypeProvider
+
+/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.iinputstream)
+public protocol IInputStream : test_component.IClosable {
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.iinputstream.readasync)
+    func readAsync(_ buffer: test_component.AnyIBuffer!, _ count: UInt32, _ options: test_component.InputStreamOptions) throws -> test_component.AnyIAsyncOperationWithProgress<test_component.AnyIBuffer?, UInt32>!
+}
+
+extension IInputStream {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        switch iid {
+            case __ABI_Windows_Storage_Streams.IInputStreamWrapper.IID:
+                let wrapper = __ABI_Windows_Storage_Streams.IInputStreamWrapper(self)
+                return wrapper!.queryInterface(iid)
+            case __ABI_Windows_Foundation.IClosableWrapper.IID:
+                let wrapper = __ABI_Windows_Foundation.IClosableWrapper(self)
+                return wrapper!.queryInterface(iid)
+            default: return nil
+        }
+    }
+}
+public typealias AnyIInputStream = any IInputStream
+
+/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.iinputstreamreference)
+public protocol IInputStreamReference : WinRTInterface {
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.iinputstreamreference.opensequentialreadasync)
+    func openSequentialReadAsync() throws -> test_component.AnyIAsyncOperation<test_component.AnyIInputStream?>!
+}
+
+extension IInputStreamReference {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        switch iid {
+            case __ABI_Windows_Storage_Streams.IInputStreamReferenceWrapper.IID:
+                let wrapper = __ABI_Windows_Storage_Streams.IInputStreamReferenceWrapper(self)
+                return wrapper!.queryInterface(iid)
+            default: return nil
+        }
+    }
+}
+public typealias AnyIInputStreamReference = any IInputStreamReference
+
+/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.ioutputstream)
+public protocol IOutputStream : test_component.IClosable {
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.ioutputstream.writeasync)
+    func writeAsync(_ buffer: test_component.AnyIBuffer!) throws -> test_component.AnyIAsyncOperationWithProgress<UInt32, UInt32>!
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.ioutputstream.flushasync)
+    func flushAsync() throws -> test_component.AnyIAsyncOperation<Bool>!
+}
+
+extension IOutputStream {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        switch iid {
+            case __ABI_Windows_Storage_Streams.IOutputStreamWrapper.IID:
+                let wrapper = __ABI_Windows_Storage_Streams.IOutputStreamWrapper(self)
+                return wrapper!.queryInterface(iid)
+            case __ABI_Windows_Foundation.IClosableWrapper.IID:
+                let wrapper = __ABI_Windows_Foundation.IClosableWrapper(self)
+                return wrapper!.queryInterface(iid)
+            default: return nil
+        }
+    }
+}
+public typealias AnyIOutputStream = any IOutputStream
+
+/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstream)
+public protocol IRandomAccessStream : test_component.IClosable, IInputStream, IOutputStream {
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstream.getinputstreamat)
+    func getInputStreamAt(_ position: UInt64) throws -> test_component.AnyIInputStream!
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstream.getoutputstreamat)
+    func getOutputStreamAt(_ position: UInt64) throws -> test_component.AnyIOutputStream!
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstream.seek)
+    func seek(_ position: UInt64) throws
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstream.clonestream)
+    func cloneStream() throws -> test_component.AnyIRandomAccessStream!
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstream.canread)
+    var canRead: Bool { get }
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstream.canwrite)
+    var canWrite: Bool { get }
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstream.position)
+    var position: UInt64 { get }
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstream.size)
+    var size: UInt64 { get set }
+}
+
+extension IRandomAccessStream {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        switch iid {
+            case __ABI_Windows_Storage_Streams.IRandomAccessStreamWrapper.IID:
+                let wrapper = __ABI_Windows_Storage_Streams.IRandomAccessStreamWrapper(self)
+                return wrapper!.queryInterface(iid)
+            case __ABI_Windows_Foundation.IClosableWrapper.IID:
+                let wrapper = __ABI_Windows_Foundation.IClosableWrapper(self)
+                return wrapper!.queryInterface(iid)
+            case __ABI_Windows_Storage_Streams.IInputStreamWrapper.IID:
+                let wrapper = __ABI_Windows_Storage_Streams.IInputStreamWrapper(self)
+                return wrapper!.queryInterface(iid)
+            case __ABI_Windows_Storage_Streams.IOutputStreamWrapper.IID:
+                let wrapper = __ABI_Windows_Storage_Streams.IOutputStreamWrapper(self)
+                return wrapper!.queryInterface(iid)
+            default: return nil
+        }
+    }
+}
+public typealias AnyIRandomAccessStream = any IRandomAccessStream
+
+/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstreamreference)
+public protocol IRandomAccessStreamReference : WinRTInterface {
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstreamreference.openreadasync)
+    func openReadAsync() throws -> test_component.AnyIAsyncOperation<test_component.AnyIRandomAccessStreamWithContentType?>!
+}
+
+extension IRandomAccessStreamReference {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        switch iid {
+            case __ABI_Windows_Storage_Streams.IRandomAccessStreamReferenceWrapper.IID:
+                let wrapper = __ABI_Windows_Storage_Streams.IRandomAccessStreamReferenceWrapper(self)
+                return wrapper!.queryInterface(iid)
+            default: return nil
+        }
+    }
+}
+public typealias AnyIRandomAccessStreamReference = any IRandomAccessStreamReference
+
+/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstreamwithcontenttype)
+public protocol IRandomAccessStreamWithContentType : test_component.IClosable, IInputStream, IOutputStream, IRandomAccessStream, IContentTypeProvider {
+}
+
+extension IRandomAccessStreamWithContentType {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        switch iid {
+            case __ABI_Windows_Storage_Streams.IRandomAccessStreamWithContentTypeWrapper.IID:
+                let wrapper = __ABI_Windows_Storage_Streams.IRandomAccessStreamWithContentTypeWrapper(self)
+                return wrapper!.queryInterface(iid)
+            case __ABI_Windows_Foundation.IClosableWrapper.IID:
+                let wrapper = __ABI_Windows_Foundation.IClosableWrapper(self)
+                return wrapper!.queryInterface(iid)
+            case __ABI_Windows_Storage_Streams.IInputStreamWrapper.IID:
+                let wrapper = __ABI_Windows_Storage_Streams.IInputStreamWrapper(self)
+                return wrapper!.queryInterface(iid)
+            case __ABI_Windows_Storage_Streams.IOutputStreamWrapper.IID:
+                let wrapper = __ABI_Windows_Storage_Streams.IOutputStreamWrapper(self)
+                return wrapper!.queryInterface(iid)
+            case __ABI_Windows_Storage_Streams.IRandomAccessStreamWrapper.IID:
+                let wrapper = __ABI_Windows_Storage_Streams.IRandomAccessStreamWrapper(self)
+                return wrapper!.queryInterface(iid)
+            case __ABI_Windows_Storage_Streams.IContentTypeProviderWrapper.IID:
+                let wrapper = __ABI_Windows_Storage_Streams.IContentTypeProviderWrapper(self)
+                return wrapper!.queryInterface(iid)
+            default: return nil
+        }
+    }
+}
+public typealias AnyIRandomAccessStreamWithContentType = any IRandomAccessStreamWithContentType
+
+extension test_component.InputStreamOptions {
+    public static var none : test_component.InputStreamOptions {
+        __x_ABI_CWindows_CStorage_CStreams_CInputStreamOptions_None
+    }
+    public static var partial : test_component.InputStreamOptions {
+        __x_ABI_CWindows_CStorage_CStreams_CInputStreamOptions_Partial
+    }
+    public static var readAhead : test_component.InputStreamOptions {
+        __x_ABI_CWindows_CStorage_CStreams_CInputStreamOptions_ReadAhead
+    }
+}
+extension test_component.InputStreamOptions: @retroactive Hashable, @retroactive Codable {}
+
+extension test_component.UnicodeEncoding {
+    public static var utf8 : test_component.UnicodeEncoding {
+        __x_ABI_CWindows_CStorage_CStreams_CUnicodeEncoding_Utf8
+    }
+    public static var utf16LE : test_component.UnicodeEncoding {
+        __x_ABI_CWindows_CStorage_CStreams_CUnicodeEncoding_Utf16LE
+    }
+    public static var utf16BE : test_component.UnicodeEncoding {
+        __x_ABI_CWindows_CStorage_CStreams_CUnicodeEncoding_Utf16BE
+    }
+}
+extension test_component.UnicodeEncoding: @retroactive Hashable, @retroactive Codable {}
 
