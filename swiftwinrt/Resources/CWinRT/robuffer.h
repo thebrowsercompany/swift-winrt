@@ -1,5 +1,4 @@
-// The real robuffer.h will provide different definitions in C vs C++ compilation mode.
-// Override it with ours so we ensure we get the C definitions.
+// The real robuffer.h doesn't provide C definitions, so we need to provide those here
 
 // No pragma once, we might include this twice (once for the regular definitions, once for the workaround)
 
