@@ -16,6 +16,7 @@ typedef GUID_Workaround UUID_Workaround;
 typedef struct IUnknown_Workaround IUnknown_Workaround;
 typedef struct IInspectable_Workaround IInspectable_Workaround;
 typedef struct IMarshal_Workaround IMarshal_Workaround;
+typedef struct IActivationFactory_Workaround IActivationFactory_Workaround;
 
 #include <combaseapi.h>
 inline HRESULT CoCreateInstance_Workaround(
@@ -75,6 +76,7 @@ inline HRESULT RoGetActivationFactory_Workaround(
 // This no-op the #includes in generated code, so that it instead relies of our workaround types
 #include <EventToken.h>
 #include <inspectable.h>
+#include <activation.h>
 #include <windowscontracts.h>
 
 #define GUID GUID_Workaround
@@ -91,6 +93,8 @@ inline HRESULT RoGetActivationFactory_Workaround(
 #define IInspectableVtbl IInspectableVtbl_Workaround
 #define IMarshal IMarshal_Workaround
 #define IMarshalVtbl IMarshalVtbl_Workaround
+#define IActivationFactory IActivationFactory_Workaround
+#define IActivationFactoryVtbl IActivationFactoryVtbl_Workaround
 
 // iunknown.h
 typedef struct IUnknownVtbl
@@ -234,4 +238,46 @@ typedef struct IMarshalVtbl
 interface IMarshal
 {
     CONST_VTBL struct IMarshalVtbl *lpVtbl;
+};
+
+// activation.h
+typedef struct IActivationFactoryVtbl
+{
+    BEGIN_INTERFACE
+
+    HRESULT ( STDMETHODCALLTYPE *QueryInterface )(
+        __RPC__in IActivationFactory * This,
+        /* [in] */ __RPC__in REFIID riid,
+        /* [annotation][iid_is][out] */
+        _COM_Outptr_  void **ppvObject);
+
+    ULONG ( STDMETHODCALLTYPE *AddRef )(
+        __RPC__in IActivationFactory * This);
+
+    ULONG ( STDMETHODCALLTYPE *Release )(
+        __RPC__in IActivationFactory * This);
+
+    HRESULT ( STDMETHODCALLTYPE *GetIids )(
+        __RPC__in IActivationFactory * This,
+        /* [out] */ __RPC__out ULONG *iidCount,
+        /* [size_is][size_is][out] */ __RPC__deref_out_ecount_full_opt(*iidCount) IID **iids);
+
+    HRESULT ( STDMETHODCALLTYPE *GetRuntimeClassName )(
+        __RPC__in IActivationFactory * This,
+        /* [out] */ __RPC__deref_out_opt HSTRING *className);
+
+    HRESULT ( STDMETHODCALLTYPE *GetTrustLevel )(
+        __RPC__in IActivationFactory * This,
+        /* [out] */ __RPC__out TrustLevel *trustLevel);
+
+    HRESULT ( STDMETHODCALLTYPE *ActivateInstance )(
+        __RPC__in IActivationFactory * This,
+        /* [out] */ _COM_Outptr_ IInspectable **instance);
+
+    END_INTERFACE
+} IActivationFactoryVtbl;
+
+interface IActivationFactory
+{
+    CONST_VTBL struct IActivationFactoryVtbl *lpVtbl;
 };

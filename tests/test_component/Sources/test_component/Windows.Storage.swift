@@ -23,7 +23,7 @@ public typealias StorageOpenOptions = __x_ABI_CWindows_CStorage_CStorageOpenOpti
 public typealias StreamedFileFailureMode = __x_ABI_CWindows_CStorage_CStreamedFileFailureMode
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.pathio)
 public final class PathIO {
-    private static let _IPathIOStatics: __ABI_Windows_Storage.IPathIOStatics = try! RoGetActivationFactory(HString("Windows.Storage.PathIO"))
+    private static let _IPathIOStatics: __ABI_Windows_Storage.IPathIOStatics = try! RoGetActivationFactory("Windows.Storage.PathIO")
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.pathio.readtextasync)
     public static func readTextAsync(_ absolutePath: String) -> AnyIAsyncOperation<String>! {
         return try! _IPathIOStatics.ReadTextAsyncImpl(absolutePath)
@@ -123,7 +123,7 @@ public final class StorageFile : WinRTClass, IStorageItem, test_component.IRando
     override public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return super.queryInterface(iid)
     }
-    private static let _IStorageFileStatics: __ABI_Windows_Storage.IStorageFileStatics = try! RoGetActivationFactory(HString("Windows.Storage.StorageFile"))
+    private static let _IStorageFileStatics: __ABI_Windows_Storage.IStorageFileStatics = try! RoGetActivationFactory("Windows.Storage.StorageFile")
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefile.getfilefrompathasync)
     public static func getFileFromPathAsync(_ path: String) -> AnyIAsyncOperation<StorageFile?>! {
         return try! _IStorageFileStatics.GetFileFromPathAsyncImpl(path)
@@ -404,7 +404,7 @@ public final class StorageFolder : WinRTClass, IStorageItem, IStorageFolder, tes
     override public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return super.queryInterface(iid)
     }
-    private static let _IStorageFolderStatics: __ABI_Windows_Storage.IStorageFolderStatics = try! RoGetActivationFactory(HString("Windows.Storage.StorageFolder"))
+    private static let _IStorageFolderStatics: __ABI_Windows_Storage.IStorageFolderStatics = try! RoGetActivationFactory("Windows.Storage.StorageFolder")
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefolder.getfolderfrompathasync)
     public static func getFolderFromPathAsync(_ path: String) -> AnyIAsyncOperation<StorageFolder?>! {
         return try! _IStorageFolderStatics.GetFolderFromPathAsyncImpl(path)

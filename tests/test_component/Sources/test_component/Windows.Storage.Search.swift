@@ -40,10 +40,10 @@ public final class QueryOptions : WinRTClass {
     }
 
     override public init() {
-        super.init(try! RoActivateInstance(HString("Windows.Storage.Search.QueryOptions")))
+        super.init(try! RoActivateInstance("Windows.Storage.Search.QueryOptions"))
     }
 
-    private static let _IQueryOptionsFactory: __ABI_Windows_Storage_Search.IQueryOptionsFactory = try! RoGetActivationFactory(HString("Windows.Storage.Search.QueryOptions"))
+    private static let _IQueryOptionsFactory: __ABI_Windows_Storage_Search.IQueryOptionsFactory = try! RoGetActivationFactory("Windows.Storage.Search.QueryOptions")
     public init(_ query: CommonFileQuery, _ fileTypeFilter: AnyIIterable<String>!) {
         super.init(try! Self._IQueryOptionsFactory.CreateCommonFileQueryImpl(query, fileTypeFilter))
     }

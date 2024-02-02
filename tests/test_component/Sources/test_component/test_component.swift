@@ -9,7 +9,7 @@ public typealias Signed = __x_ABI_Ctest__component_CSigned
 public typealias SwiftifiableNames = __x_ABI_Ctest__component_CSwiftifiableNames
 public typealias Unsigned = __x_ABI_Ctest__component_CUnsigned
 public final class AsyncMethods {
-    private static let _IAsyncMethodsStatics: __ABI_test_component.IAsyncMethodsStatics = try! RoGetActivationFactory(HString("test_component.AsyncMethods"))
+    private static let _IAsyncMethodsStatics: __ABI_test_component.IAsyncMethodsStatics = try! RoGetActivationFactory("test_component.AsyncMethods")
     public static func getCompletedAsync(_ result: Int32) -> AnyIAsyncOperation<Int32>! {
         return try! _IAsyncMethodsStatics.GetCompletedAsyncImpl(result)
     }
@@ -136,7 +136,7 @@ open class Base : WinRTClass {
             default: return super.queryInterface(iid)
         }
     }
-    private static var _IBaseProtectedFactory : __ABI_test_component.IBaseProtectedFactory =  try! RoGetActivationFactory(HString("test_component.Base"))
+    private static var _IBaseProtectedFactory : __ABI_test_component.IBaseProtectedFactory =  try! RoGetActivationFactory("test_component.Base")
 
     override public init() {
         super.init()
@@ -145,7 +145,7 @@ open class Base : WinRTClass {
         }
     }
 
-    private static let _IBaseStatics: __ABI_test_component.IBaseStatics = try! RoGetActivationFactory(HString("test_component.Base"))
+    private static let _IBaseStatics: __ABI_test_component.IBaseStatics = try! RoGetActivationFactory("test_component.Base")
     public class func createFromString(_ value: String) -> Base! {
         return try! _IBaseStatics.CreateFromStringImpl(value)
     }
@@ -211,7 +211,7 @@ open class BaseCollection : WinRTClass, IVector, IIterable {
     override open func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return super.queryInterface(iid)
     }
-    private static var _IBaseCollectionProtectedFactory : __ABI_test_component.IBaseCollectionProtectedFactory =  try! RoGetActivationFactory(HString("test_component.BaseCollection"))
+    private static var _IBaseCollectionProtectedFactory : __ABI_test_component.IBaseCollectionProtectedFactory =  try! RoGetActivationFactory("test_component.BaseCollection")
 
     override public init() {
         super.init()
@@ -415,7 +415,7 @@ open class BaseNoOverrides : WinRTClass {
     override open func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return super.queryInterface(iid)
     }
-    private static var _IBaseNoOverridesProtectedFactory : __ABI_test_component.IBaseNoOverridesProtectedFactory =  try! RoGetActivationFactory(HString("test_component.BaseNoOverrides"))
+    private static var _IBaseNoOverridesProtectedFactory : __ABI_test_component.IBaseNoOverridesProtectedFactory =  try! RoGetActivationFactory("test_component.BaseNoOverrides")
 
     override public init() {
         super.init()
@@ -424,7 +424,7 @@ open class BaseNoOverrides : WinRTClass {
         }
     }
 
-    private static let _IBaseNoOverridesStatics: __ABI_test_component.IBaseNoOverridesStatics = try! RoGetActivationFactory(HString("test_component.BaseNoOverrides"))
+    private static let _IBaseNoOverridesStatics: __ABI_test_component.IBaseNoOverridesStatics = try! RoGetActivationFactory("test_component.BaseNoOverrides")
     public class func createFromString(_ value: String) -> BaseNoOverrides! {
         return try! _IBaseNoOverridesStatics.CreateFromStringImpl(value)
     }
@@ -569,7 +569,7 @@ public final class BaseObservableCollection : WinRTClass, IObservableVector, IVe
 }
 
 public final class BufferTester {
-    private static let _IBufferTesterStatics: __ABI_test_component.IBufferTesterStatics = try! RoGetActivationFactory(HString("test_component.BufferTester"))
+    private static let _IBufferTesterStatics: __ABI_test_component.IBufferTesterStatics = try! RoGetActivationFactory("test_component.BufferTester")
     public static func getDataFrom(_ buffer: test_component.AnyIBuffer!, _ index: UInt32) -> UInt8 {
         return try! _IBufferTesterStatics.GetDataFromImpl(buffer, index)
     }
@@ -603,10 +603,10 @@ public final class Class : WinRTClass, IBasic {
         return super.queryInterface(iid)
     }
     override public init() {
-        super.init(try! RoActivateInstance(HString("test_component.Class")))
+        super.init(try! RoActivateInstance("test_component.Class"))
     }
 
-    private static let _IClassFactory: __ABI_test_component.IClassFactory = try! RoGetActivationFactory(HString("test_component.Class"))
+    private static let _IClassFactory: __ABI_test_component.IClassFactory = try! RoGetActivationFactory("test_component.Class")
     public init(_ name: String) {
         super.init(try! Self._IClassFactory.CreateInstanceImpl(name))
     }
@@ -631,12 +631,12 @@ public final class Class : WinRTClass, IBasic {
         super.init(try! Self._IClassFactory.CreateInstance6Impl(arg, dummy1, dummy2, dummy3, dummy4, dummy5, dummy6))
     }
 
-    private static let _IClassFactory2: __ABI_test_component.IClassFactory2 = try! RoGetActivationFactory(HString("test_component.Class"))
+    private static let _IClassFactory2: __ABI_test_component.IClassFactory2 = try! RoGetActivationFactory("test_component.Class")
     public init(_ name: String, _ fruit: Fruit, _ implementation: AnyIIAmImplementable!) {
         super.init(try! Self._IClassFactory2.CreateInstanceImpl(name, fruit, implementation))
     }
 
-    private static let _IClassStatics: __ABI_test_component.IClassStatics = try! RoGetActivationFactory(HString("test_component.Class"))
+    private static let _IClassStatics: __ABI_test_component.IClassStatics = try! RoGetActivationFactory("test_component.Class")
     public static func staticTest() {
         try! _IClassStatics.StaticTestImpl()
     }
@@ -653,7 +653,7 @@ public final class Class : WinRTClass, IBasic {
         get { try! _IClassStatics.get_StaticPropertyImpl() }
     }
 
-    private static let _IClassStatics2: __ABI_test_component.IClassStatics2 = try! RoGetActivationFactory(HString("test_component.Class"))
+    private static let _IClassStatics2: __ABI_test_component.IClassStatics2 = try! RoGetActivationFactory("test_component.Class")
     public static func staticTestReturnFloat() -> Float {
         return try! _IClassStatics2.StaticTestReturnFloatImpl()
     }
@@ -836,10 +836,10 @@ public final class CollectionTester : WinRTClass {
     }
 
     override public init() {
-        super.init(try! RoActivateInstance(HString("test_component.CollectionTester")))
+        super.init(try! RoActivateInstance("test_component.CollectionTester"))
     }
 
-    private static let _ICollectionTesterStatics: __ABI_test_component.ICollectionTesterStatics = try! RoGetActivationFactory(HString("test_component.CollectionTester"))
+    private static let _ICollectionTesterStatics: __ABI_test_component.ICollectionTesterStatics = try! RoGetActivationFactory("test_component.CollectionTester")
     public static func inMap(_ value: AnyIMap<String, String>!) -> String {
         return try! _ICollectionTesterStatics.InMapImpl(value)
     }
@@ -933,10 +933,10 @@ public final class Derived : test_component.Base {
     }
 
     override public init() {
-        super.init(fromAbi: try! RoActivateInstance(HString("test_component.Derived")))
+        super.init(fromAbi: try! RoActivateInstance("test_component.Derived"))
     }
 
-    private static let _IDerivedStatics: __ABI_test_component.IDerivedStatics = try! RoGetActivationFactory(HString("test_component.Derived"))
+    private static let _IDerivedStatics: __ABI_test_component.IDerivedStatics = try! RoGetActivationFactory("test_component.Derived")
     override public static func createFromString(_ value: String) -> Derived! {
         return try! _IDerivedStatics.CreateFromStringImpl(value)
     }
@@ -1028,7 +1028,7 @@ public final class EventTester : WinRTClass {
         super.init(fromAbi)
     }
 
-    private static let _IEventTesterFactory: __ABI_test_component.IEventTesterFactory = try! RoGetActivationFactory(HString("test_component.EventTester"))
+    private static let _IEventTesterFactory: __ABI_test_component.IEventTesterFactory = try! RoGetActivationFactory("test_component.EventTester")
     public init(_ impl: AnyIIAmImplementable!) {
         super.init(try! Self._IEventTesterFactory.CreateInstanceImpl(impl))
     }
@@ -1081,7 +1081,7 @@ public final class NoopClosable : WinRTClass, test_component.IClosable {
         return super.queryInterface(iid)
     }
     override public init() {
-        super.init(try! RoActivateInstance(HString("test_component.NoopClosable")))
+        super.init(try! RoActivateInstance("test_component.NoopClosable"))
     }
 
     public func close() throws {
@@ -1094,7 +1094,7 @@ public final class NoopClosable : WinRTClass, test_component.IClosable {
 }
 
 public final class NullValues {
-    private static let _INullValuesStatics: __ABI_test_component.INullValuesStatics = try! RoGetActivationFactory(HString("test_component.NullValues"))
+    private static let _INullValuesStatics: __ABI_test_component.INullValuesStatics = try! RoGetActivationFactory("test_component.NullValues")
     public static func isObjectNull(_ value: Any!) -> Bool {
         return try! _INullValuesStatics.IsObjectNullImpl(value)
     }
@@ -1161,10 +1161,10 @@ public final class Simple : WinRTClass {
     }
 
     override public init() {
-        super.init(try! RoActivateInstance(HString("test_component.Simple")))
+        super.init(try! RoActivateInstance("test_component.Simple"))
     }
 
-    private static let _ISimpleStatics: __ABI_test_component.ISimpleStatics = try! RoGetActivationFactory(HString("test_component.Simple"))
+    private static let _ISimpleStatics: __ABI_test_component.ISimpleStatics = try! RoGetActivationFactory("test_component.Simple")
     public static func fireStaticEvent() {
         try! _ISimpleStatics.FireStaticEventImpl()
     }
@@ -1282,7 +1282,7 @@ public final class Simple : WinRTClass {
 }
 
 public final class StaticClass {
-    private static let _IStaticClassStatics: __ABI_test_component.IStaticClassStatics = try! RoGetActivationFactory(HString("test_component.StaticClass"))
+    private static let _IStaticClassStatics: __ABI_test_component.IStaticClassStatics = try! RoGetActivationFactory("test_component.StaticClass")
     public static func inEnum(_ value: Signed) -> String {
         return try! _IStaticClassStatics.InEnumImpl(value)
     }
@@ -1343,7 +1343,7 @@ open class UnsealedDerived : test_component.Base {
             default: return super.queryInterface(iid)
         }
     }
-    private static var _IUnsealedDerivedFactory : __ABI_test_component.IUnsealedDerivedFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerived"))
+    private static var _IUnsealedDerivedFactory : __ABI_test_component.IUnsealedDerivedFactory =  try! RoGetActivationFactory("test_component.UnsealedDerived")
 
     override public init() {
         super.init(composing: Self.Composable.self) { baseInterface, innerInterface in 
@@ -1439,7 +1439,7 @@ open class UnsealedDerived2 : test_component.UnsealedDerived {
     override open func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return super.queryInterface(iid)
     }
-    private static var _IUnsealedDerived2Factory : __ABI_test_component.IUnsealedDerived2Factory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerived2"))
+    private static var _IUnsealedDerived2Factory : __ABI_test_component.IUnsealedDerived2Factory =  try! RoGetActivationFactory("test_component.UnsealedDerived2")
 
     override public init(_ prop: Int32) {
         super.init(composing: Self.Composable.self) { baseInterface, innerInterface in 
@@ -1447,7 +1447,7 @@ open class UnsealedDerived2 : test_component.UnsealedDerived {
         }
     }
 
-    private static var _IUnsealedDerived2ProtectedFactory : __ABI_test_component.IUnsealedDerived2ProtectedFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerived2"))
+    private static var _IUnsealedDerived2ProtectedFactory : __ABI_test_component.IUnsealedDerived2ProtectedFactory =  try! RoGetActivationFactory("test_component.UnsealedDerived2")
 
     override public init() {
         super.init(composing: Self.Composable.self) { baseInterface, innerInterface in 
@@ -1508,7 +1508,7 @@ open class UnsealedDerivedFromNoConstructor : test_component.UnsealedDerivedNoCo
     override open func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return super.queryInterface(iid)
     }
-    private static var _IUnsealedDerivedFromNoConstructorFactory : __ABI_test_component.IUnsealedDerivedFromNoConstructorFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerivedFromNoConstructor"))
+    private static var _IUnsealedDerivedFromNoConstructorFactory : __ABI_test_component.IUnsealedDerivedFromNoConstructorFactory =  try! RoGetActivationFactory("test_component.UnsealedDerivedFromNoConstructor")
 
     public init() {
         super.init(composing: Self.Composable.self) { baseInterface, innerInterface in 
@@ -1565,7 +1565,7 @@ open class UnsealedDerivedNoConstructor : test_component.Base {
     override open func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return super.queryInterface(iid)
     }
-    private static var _IUnsealedDerivedNoConstructorFactory : __ABI_test_component.IUnsealedDerivedNoConstructorFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerivedNoConstructor"))
+    private static var _IUnsealedDerivedNoConstructorFactory : __ABI_test_component.IUnsealedDerivedNoConstructorFactory =  try! RoGetActivationFactory("test_component.UnsealedDerivedNoConstructor")
 
     internal enum IBaseOverrides : ComposableImpl {
         internal typealias CABI = __x_ABI_Ctest__component_CIBaseOverrides
@@ -1616,7 +1616,7 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
     override open func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return super.queryInterface(iid)
     }
-    private static var _IUnsealedDerivedNoOverridesProtectedFactory : __ABI_test_component.IUnsealedDerivedNoOverridesProtectedFactory =  try! RoGetActivationFactory(HString("test_component.UnsealedDerivedNoOverrides"))
+    private static var _IUnsealedDerivedNoOverridesProtectedFactory : __ABI_test_component.IUnsealedDerivedNoOverridesProtectedFactory =  try! RoGetActivationFactory("test_component.UnsealedDerivedNoOverrides")
 
     override public init() {
         super.init(composing: Self.Composable.self) { baseInterface, innerInterface in 

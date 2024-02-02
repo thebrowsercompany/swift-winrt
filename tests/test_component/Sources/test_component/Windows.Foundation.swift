@@ -34,7 +34,7 @@ public final class Deferral : WinRTClass, IClosable {
     override public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return super.queryInterface(iid)
     }
-    private static let _IDeferralFactory: __ABI_Windows_Foundation.IDeferralFactory = try! RoGetActivationFactory(HString("Windows.Foundation.Deferral"))
+    private static let _IDeferralFactory: __ABI_Windows_Foundation.IDeferralFactory = try! RoGetActivationFactory("Windows.Foundation.Deferral")
     public init(_ handler: DeferralCompletedHandler!) {
         super.init(try! Self._IDeferralFactory.CreateImpl(handler))
     }
@@ -83,7 +83,7 @@ public final class MemoryBuffer : WinRTClass, IClosable, IMemoryBuffer {
     override public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return super.queryInterface(iid)
     }
-    private static let _IMemoryBufferFactory: __ABI_Windows_Foundation.IMemoryBufferFactory = try! RoGetActivationFactory(HString("Windows.Foundation.MemoryBuffer"))
+    private static let _IMemoryBufferFactory: __ABI_Windows_Foundation.IMemoryBufferFactory = try! RoGetActivationFactory("Windows.Foundation.MemoryBuffer")
     public init(_ capacity: UInt32) {
         super.init(try! Self._IMemoryBufferFactory.CreateImpl(capacity))
     }
@@ -132,7 +132,7 @@ public final class Uri : WinRTClass, IStringable {
     override public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return super.queryInterface(iid)
     }
-    private static let _IUriEscapeStatics: __ABI_Windows_Foundation.IUriEscapeStatics = try! RoGetActivationFactory(HString("Windows.Foundation.Uri"))
+    private static let _IUriEscapeStatics: __ABI_Windows_Foundation.IUriEscapeStatics = try! RoGetActivationFactory("Windows.Foundation.Uri")
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.unescapecomponent)
     public static func unescapeComponent(_ toUnescape: String) -> String {
         return try! _IUriEscapeStatics.UnescapeComponentImpl(toUnescape)
@@ -143,7 +143,7 @@ public final class Uri : WinRTClass, IStringable {
         return try! _IUriEscapeStatics.EscapeComponentImpl(toEscape)
     }
 
-    private static let _IUriRuntimeClassFactory: __ABI_Windows_Foundation.IUriRuntimeClassFactory = try! RoGetActivationFactory(HString("Windows.Foundation.Uri"))
+    private static let _IUriRuntimeClassFactory: __ABI_Windows_Foundation.IUriRuntimeClassFactory = try! RoGetActivationFactory("Windows.Foundation.Uri")
     public init(_ uri: String) {
         super.init(try! Self._IUriRuntimeClassFactory.CreateUriImpl(uri))
     }
@@ -289,7 +289,7 @@ public final class WwwFormUrlDecoder : WinRTClass, IIterable, IVectorView {
     override public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return super.queryInterface(iid)
     }
-    private static let _IWwwFormUrlDecoderRuntimeClassFactory: __ABI_Windows_Foundation.IWwwFormUrlDecoderRuntimeClassFactory = try! RoGetActivationFactory(HString("Windows.Foundation.WwwFormUrlDecoder"))
+    private static let _IWwwFormUrlDecoderRuntimeClassFactory: __ABI_Windows_Foundation.IWwwFormUrlDecoderRuntimeClassFactory = try! RoGetActivationFactory("Windows.Foundation.WwwFormUrlDecoder")
     public init(_ query: String) {
         super.init(try! Self._IWwwFormUrlDecoderRuntimeClassFactory.CreateWwwFormUrlDecoderImpl(query))
     }

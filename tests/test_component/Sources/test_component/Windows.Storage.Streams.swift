@@ -34,12 +34,12 @@ public final class Buffer : WinRTClass, IBufferByteAccess, IBuffer {
     override public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return super.queryInterface(iid)
     }
-    private static let _IBufferFactory: __ABI_Windows_Storage_Streams.IBufferFactory = try! RoGetActivationFactory(HString("Windows.Storage.Streams.Buffer"))
+    private static let _IBufferFactory: __ABI_Windows_Storage_Streams.IBufferFactory = try! RoGetActivationFactory("Windows.Storage.Streams.Buffer")
     public init(_ capacity: UInt32) {
         super.init(try! Self._IBufferFactory.CreateImpl(capacity))
     }
 
-    private static let _IBufferStatics: __ABI_Windows_Storage_Streams.IBufferStatics = try! RoGetActivationFactory(HString("Windows.Storage.Streams.Buffer"))
+    private static let _IBufferStatics: __ABI_Windows_Storage_Streams.IBufferStatics = try! RoGetActivationFactory("Windows.Storage.Streams.Buffer")
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.buffer.createcopyfrommemorybuffer)
     public static func createCopyFromMemoryBuffer(_ input: test_component.AnyIMemoryBuffer!) -> Buffer! {
         return try! _IBufferStatics.CreateCopyFromMemoryBufferImpl(input)

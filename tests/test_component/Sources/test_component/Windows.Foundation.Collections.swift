@@ -36,7 +36,7 @@ public final class PropertySet : WinRTClass, IObservableMap, IMap, IIterable, IP
         return super.queryInterface(iid)
     }
     override public init() {
-        super.init(try! RoActivateInstance(HString("Windows.Foundation.Collections.PropertySet")))
+        super.init(try! RoActivateInstance("Windows.Foundation.Collections.PropertySet"))
     }
 
     private lazy var _IObservableMap: IObservableMapString_Any! = getInterfaceForCaching()
@@ -134,7 +134,7 @@ public final class StringMap : WinRTClass, IMap, IIterable, IObservableMap {
         return super.queryInterface(iid)
     }
     override public init() {
-        super.init(try! RoActivateInstance(HString("Windows.Foundation.Collections.StringMap")))
+        super.init(try! RoActivateInstance("Windows.Foundation.Collections.StringMap"))
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.stringmap.lookup)
@@ -230,7 +230,7 @@ public final class ValueSet : WinRTClass, IObservableMap, IMap, IIterable, IProp
         return super.queryInterface(iid)
     }
     override public init() {
-        super.init(try! RoActivateInstance(HString("Windows.Foundation.Collections.ValueSet")))
+        super.init(try! RoActivateInstance("Windows.Foundation.Collections.ValueSet"))
     }
 
     private lazy var _IObservableMap: IObservableMapString_Any! = getInterfaceForCaching()
