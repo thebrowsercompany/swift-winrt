@@ -62,6 +62,14 @@ public enum __ABI_ {
         if let swiftAbi = swiftObj as? IInspectable {
            let abi: UnsafeMutablePointer<C_IInspectable> = RawPointer(swiftAbi)
            return try body(abi)
+        } else if let winrtObj = swiftObj as? WinRTObject {
+          if let identity = winrtObj.identity {
+            return try body(identity)
+          }
+          return try super.toABI{
+            winrtObj.identity = $0
+            return try body($0)
+          }
         } else {
             return try super.toABI(body)
         }

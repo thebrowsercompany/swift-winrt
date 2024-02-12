@@ -13,6 +13,18 @@ public protocol IWinRTObject: AnyObject {
 public protocol WinRTInterface: AnyObject, CustomQueryInterface {
 }
 
+open class WinRTObject: Equatable {
+  public init() {}
+
+  public static func == (lhs: WinRTObject, rhs: WinRTObject) -> Bool {
+    return lhs.identity == rhs.identity
+  }
+
+  // Weakref to the underlying COM object since it holds a strong ref back
+  // to ourselves
+  internal var identity: UnsafeMutablePointer<C_IInspectable>?
+}
+
 open class WinRTClass : CustomQueryInterface, Equatable {
     public init() {}
 
