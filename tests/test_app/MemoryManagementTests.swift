@@ -51,6 +51,24 @@ class MemoryManagementTests : XCTestCase {
         }()
         XCTAssertNil(weakDerived)
     }
+
+    func testWinRTObject() throws {
+        weak var weakDerived: MyObj? = nil
+        try {
+            let obj = MyObj()
+            weakDerived = obj
+
+            // wrapping MyObj will create the identity pointer. make sure
+            // this doesn't cause a leak
+            let wrapper = try XCTUnwrap(__ABI_.AnyWrapper(obj))
+            var copy: UnsafeMutablePointer<C_IInspectable>?
+            defer {
+              _ = copy?.pointee.lpVtbl.pointee.Release(copy)
+            }
+            wrapper.copyTo(&copy)
+        }()
+        XCTAssertNil(weakDerived)
+    }
 }
 
 var memoryManagementTests: [XCTestCaseEntry] = [
@@ -59,5 +77,6 @@ var memoryManagementTests: [XCTestCaseEntry] = [
     ("testNonAggregatedObject", MemoryManagementTests.testNonAggregatedObject),
     ("testReturningAggregatedObject", MemoryManagementTests.testReturningAggregatedObject),
     ("testReturningNonAggregatedObject", MemoryManagementTests.testReturningNonAggregatedObject),
+    ("testWinRTObject", MemoryManagementTests.testWinRTObject)
   ])
 ]

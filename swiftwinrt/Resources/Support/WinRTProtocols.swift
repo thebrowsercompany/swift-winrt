@@ -17,16 +17,23 @@ open class WinRTObject: Equatable {
   public init() {}
 
   public static func == (lhs: WinRTObject, rhs: WinRTObject) -> Bool {
-    return lhs.identity == rhs.identity
+    return lhs.identity?.get() == rhs.identity?.get()
   }
 
-  // Weakref to the underlying COM object since it holds a strong ref back
-  // to ourselves
-  internal var identity: UnsafeMutablePointer<C_IInspectable>?
+  internal var identity: ComPtr<C_IInspectable>?
+
+  @_spi(WinRTImplements)
+  open func queryInterface(_ iid: SUPPORT_MODULE.IID) -> IUnknownRef? {
+    // the vtables for IInspectable will properly respond to all default QueryInterface
+    // calls for IInspectable and IUnknown. The queryInterface method exists for subclasses
+    // to provide custom handling of QueryInterface calls for other interfaces that the code
+    // gen is unaware of
+    return nil
+  }
 }
 
-open class WinRTClass : CustomQueryInterface, Equatable {
-    public init() {}
+open class WinRTClass : WinRTObject, CustomQueryInterface {
+    override public init() { super.init() }
 
     @_spi(WinRTInternal)
     public init(_ ptr: SUPPORT_MODULE.IInspectable) {
@@ -47,10 +54,8 @@ open class WinRTClass : CustomQueryInterface, Equatable {
     @_spi(WinRTInternal)
     public internal(set) var _inner: SUPPORT_MODULE.IInspectable!
 
-    var identity: ComPtr<C_IInspectable>?
-
     @_spi(WinRTImplements)
-    open func queryInterface(_ iid: SUPPORT_MODULE.IID) -> IUnknownRef? {
+    override open func queryInterface(_ iid: SUPPORT_MODULE.IID) -> IUnknownRef? {
         SUPPORT_MODULE.queryInterface(self, iid)
     }
 

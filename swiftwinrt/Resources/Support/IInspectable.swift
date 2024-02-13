@@ -40,7 +40,7 @@ open class IInspectable: IUnknown {
 // }
 // internal typealias Composable = IBaseNoOverrides
 protocol AnyObjectWrapper {
-    var obj: AnyObject? { get }
+    var obj: WinRTObject? { get }
 }
 
 public enum __ABI_ {
@@ -53,7 +53,13 @@ public enum __ABI_ {
         } else {
           let vtblPtr = withUnsafeMutablePointer(to: &IInspectableVTable) { $0 }
           let cAbi = C_IInspectable(lpVtbl: vtblPtr)
-          super.init(cAbi, swift as AnyObject)
+          // For WinRTObject types, hold a weak reference to the swift obj since
+          // it will hold a strong reference to ourselves
+          if let winrtObj = swift as? WinRTObject {
+            super.init(cAbi, WinRTClassWeakReference(winrtObj))
+          } else {
+            super.init(cAbi, swift as AnyObject)
+          }
         }
       }
 
@@ -62,12 +68,14 @@ public enum __ABI_ {
         if let swiftAbi = swiftObj as? IInspectable {
            let abi: UnsafeMutablePointer<C_IInspectable> = RawPointer(swiftAbi)
            return try body(abi)
-        } else if let winrtObj = swiftObj as? WinRTObject {
+        } else if let winrtObjWrapper = swiftObj as? AnyObjectWrapper,
+          let winrtObj = winrtObjWrapper.obj {
           if let identity = winrtObj.identity {
-            return try body(identity)
+            return try body(identity.get())
           }
           return try super.toABI{
-            winrtObj.identity = $0
+            winrtObj.identity = .init($0)
+            (winrtObjWrapper as? CustomAddRef)?.release()
             return try body($0)
           }
         } else {
@@ -124,8 +132,9 @@ public enum __ABI_ {
 
         GetRuntimeClassName: {
             guard let instance = AnyWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            guard let winrtClass = instance as? WinRTClass else {
-              let string = String(reflecting: type(of: instance))
+            let winrtObj = (instance as? AnyObjectWrapper)?.obj ?? instance
+            guard let winrtClass = winrtObj as? WinRTClass else {
+              let string = String(reflecting: type(of: winrtObj))
               $1!.pointee = try! HString(string).detach()
               return S_OK
             }
