@@ -1,0 +1,7 @@
+module CWinAppSDK {
+  header "CWinAppSDK-Bridging-Header.h"
+  // Don't actually link since we can't get delay loading to work. These DLLs are loaded manually via LoadLibrary/GetProcAddress
+  //link "Microsoft.WindowsAppRuntime.Bootstrap"
+  //link "delayimp"
+  export *
+}

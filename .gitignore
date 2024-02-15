@@ -20,3 +20,5 @@ tests/test_component/Sources/CWinRT/include
 
 swiftwinrt.log
 resources.aps
+.packages/
+swift-winrt.rsp
