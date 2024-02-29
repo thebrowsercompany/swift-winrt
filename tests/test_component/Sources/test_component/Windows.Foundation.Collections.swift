@@ -35,8 +35,9 @@ public final class PropertySet : WinRTClass, IObservableMap, IMap, IIterable, IP
     override public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return super.queryInterface(iid)
     }
+    private static let _defaultFactory: test_component.IActivationFactory = try! RoGetActivationFactory("Windows.Foundation.Collections.PropertySet")
     override public init() {
-        super.init(try! RoActivateInstance(HString("Windows.Foundation.Collections.PropertySet")))
+        super.init(try! Self._defaultFactory.ActivateInstance())
     }
 
     private lazy var _IObservableMap: IObservableMapString_Any! = getInterfaceForCaching()
@@ -133,8 +134,9 @@ public final class StringMap : WinRTClass, IMap, IIterable, IObservableMap {
     override public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return super.queryInterface(iid)
     }
+    private static let _defaultFactory: test_component.IActivationFactory = try! RoGetActivationFactory("Windows.Foundation.Collections.StringMap")
     override public init() {
-        super.init(try! RoActivateInstance(HString("Windows.Foundation.Collections.StringMap")))
+        super.init(try! Self._defaultFactory.ActivateInstance())
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.stringmap.lookup)
@@ -229,8 +231,9 @@ public final class ValueSet : WinRTClass, IObservableMap, IMap, IIterable, IProp
     override public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
         return super.queryInterface(iid)
     }
+    private static let _defaultFactory: test_component.IActivationFactory = try! RoGetActivationFactory("Windows.Foundation.Collections.ValueSet")
     override public init() {
-        super.init(try! RoActivateInstance(HString("Windows.Foundation.Collections.ValueSet")))
+        super.init(try! Self._defaultFactory.ActivateInstance())
     }
 
     private lazy var _IObservableMap: IObservableMapString_Any! = getInterfaceForCaching()
