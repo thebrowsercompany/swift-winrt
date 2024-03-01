@@ -1920,7 +1920,7 @@ vtable);
         {
             interface_info factory_info{ factoryIface };
             auto swift_name = get_swift_name(factory_info);
-            w.write("private static let %: %.% = try! RoGetActivationFactory(HString(\"%\"))\n",
+            w.write("private static let %: %.% = try! RoGetActivationFactory(\"%\")\n",
                 swift_name, abi_namespace(factoryIface), factory.type, get_full_type_name(type));
             for (const auto& method : factoryIface->functions)
             {
@@ -1941,10 +1941,12 @@ vtable);
         {
             auto base_class = type.base_class;
 
+            w.write("private static let _defaultFactory: %.IActivationFactory = try! RoGetActivationFactory(\"%\")\n",
+                w.support, get_full_type_name(type));
             w.write("%public init() {\n", has_default_constructor(base_class) ? "override " : "");
             {
                 auto indent = w.push_indent();
-                auto activateInstance = w.write_temp("try! RoActivateInstance(HString(\"%\"))", get_full_type_name(type));
+                auto activateInstance = "try! Self._defaultFactory.ActivateInstance()";
                 if (base_class)
                 {
                     w.write("super.init(fromAbi: %)\n", activateInstance);
@@ -1992,7 +1994,7 @@ public init<Composable: ComposableImpl>(
     {
         if (auto factoryIface = dynamic_cast<const interface_type*>(factory.type))
         {
-            w.write("private static var _% : %.% =  try! RoGetActivationFactory(HString(\"%\"))\n\n",
+            w.write("private static var _% : %.% =  try! RoGetActivationFactory(\"%\")\n\n",
                     factory.type,
                     abi_namespace(factoryIface),
                     factory.type,
@@ -2277,7 +2279,7 @@ public init<Composable: ComposableImpl>(
             static_info.attributed = true;
 
             auto impl_name = get_swift_name(static_info);
-            w.write("private static let %: %.% = try! RoGetActivationFactory(HString(\"%\"))\n",
+            w.write("private static let %: %.% = try! RoGetActivationFactory(\"%\")\n",
                 impl_name,
                 abi_namespace(statics.type),
                 statics.type->swift_type_name(),

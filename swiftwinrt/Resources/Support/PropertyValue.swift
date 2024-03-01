@@ -5,7 +5,7 @@ import WinSDK
 // Handwritten implementation for PropertyValue which *doesn't* try to do the IInspectable <-> Any mapping.
 // This class is used by the AnyWrapper to create IInspectable instances from this subset of known Any values.
 internal final class PropertyValue {
-    private static let _IPropertyValueStatics: IPropertyValueStatics = try! RoGetActivationFactory(HString("Windows.Foundation.PropertyValue"))
+    private static let _IPropertyValueStatics: IPropertyValueStatics = try! RoGetActivationFactory("Windows.Foundation.PropertyValue")
 
     public static func createUInt8(_ value: UInt8) -> SUPPORT_MODULE.IInspectable {
         let propertyValue = try! _IPropertyValueStatics.CreateUInt8Impl(value)

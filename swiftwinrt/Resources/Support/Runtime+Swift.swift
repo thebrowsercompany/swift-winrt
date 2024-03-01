@@ -4,20 +4,33 @@
 import WinSDK
 import C_BINDINGS_MODULE
 
-public func RoGetActivationFactory<Factory: IInspectable>(_ activatableClassId: HString) throws -> Factory {
+private var IID_IActivationFactory: SUPPORT_MODULE.IID {
+    .init(Data1: 0x00000035, Data2: 0x0000, Data3: 0x0000, Data4: ( 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x46 )) // 00000035-0000-0000-C000-000000000046
+}
+
+public class IActivationFactory: SUPPORT_MODULE.IInspectable {
+   override public class var IID: SUPPORT_MODULE.IID { IID_IActivationFactory }
+
+  public func ActivateInstance() throws -> SUPPORT_MODULE.IInspectable {
+    return try perform(as: C_IActivationFactory.self) { pThis in
+      let instance = try ComPtrs.initialize { instanceAbi in
+        try CHECKED(pThis.pointee.lpVtbl.pointee.ActivateInstance(pThis, &instanceAbi))
+      }
+      return .init(instance!)
+    }
+  }
+}
+
+public func RoGetActivationFactory<Factory: IInspectable>(_ activatableClassId: StaticString) throws -> Factory {
   var iid = Factory.IID
   let (factory) = try ComPtrs.initialize(to: C_IInspectable.self) { factoryAbi in
-    try CHECKED(RoGetActivationFactory(activatableClassId.get(), &iid, &factoryAbi))
+    try activatableClassId.withHStringRef { activatableClassIdHStr in
+      try CHECKED(RoGetActivationFactory(activatableClassIdHStr, &iid, &factoryAbi))
+    }
   }
   return try factory!.queryInterface()
 }
 
-public func RoActivateInstance<Instance: IInspectable>(_ activatableClassId: HString) throws -> Instance {
-  let (instance) = try ComPtrs.initialize { instanceAbi in
-    try CHECKED(RoActivateInstance(activatableClassId.get(), &instanceAbi))
-  }
-  return try instance!.queryInterface()
-}
 
 // ISwiftImplemented is a marker interface for code-gen types which are created by swift/winrt. It's used to QI
 // an IUnknown VTABLE to see whether we can unwrap this type as a known swift object. The class is marked final

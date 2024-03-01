@@ -15,6 +15,7 @@ typedef GUID_Workaround UUID_Workaround;
 // Functions depending on workaround types
 typedef struct IUnknown_Workaround IUnknown_Workaround;
 typedef struct IInspectable_Workaround IInspectable_Workaround;
+typedef struct IActivationFactory_Workaround IActivationFactory_Workaround;
 typedef struct IMarshal_Workaround IMarshal_Workaround;
 
 #include <combaseapi.h>
@@ -66,6 +67,12 @@ inline HRESULT RoGetActivationFactory_Workaround(
 #endif
 }
 
+// Since we can't define statically allocated arrays in swift, just use a large enough buffer to hold the data.
+// In reality this could probably be closer to 128
+struct StaticWCharArray_512 {
+    WCHAR Data[512];
+};
+
 //-------------------------------------------------------------------------------------------------
 // Begin the great lie
 // Everything below will unknowingly use Xxx_Workaround.
@@ -91,6 +98,8 @@ inline HRESULT RoGetActivationFactory_Workaround(
 #define IInspectableVtbl IInspectableVtbl_Workaround
 #define IMarshal IMarshal_Workaround
 #define IMarshalVtbl IMarshalVtbl_Workaround
+#define IActivationFactory IActivationFactory_Workaround
+#define IActivationFactoryVtbl IActivationFactoryVtbl_Workaround
 
 // iunknown.h
 typedef struct IUnknownVtbl
@@ -234,4 +243,52 @@ typedef struct IMarshalVtbl
 interface IMarshal
 {
     CONST_VTBL struct IMarshalVtbl *lpVtbl;
+};
+
+typedef struct IActivationFactoryVtbl
+{
+    BEGIN_INTERFACE
+
+    DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
+    HRESULT ( STDMETHODCALLTYPE *QueryInterface )(
+        __RPC__in IActivationFactory * This,
+        /* [in] */ __RPC__in REFIID riid,
+        /* [annotation][iid_is][out] */
+        _COM_Outptr_  void **ppvObject);
+
+    DECLSPEC_XFGVIRT(IUnknown, AddRef)
+    ULONG ( STDMETHODCALLTYPE *AddRef )(
+        __RPC__in IActivationFactory * This);
+
+    DECLSPEC_XFGVIRT(IUnknown, Release)
+    ULONG ( STDMETHODCALLTYPE *Release )(
+        __RPC__in IActivationFactory * This);
+
+    DECLSPEC_XFGVIRT(IInspectable, GetIids)
+    HRESULT ( STDMETHODCALLTYPE *GetIids )(
+        __RPC__in IActivationFactory * This,
+        /* [out] */ __RPC__out ULONG *iidCount,
+        /* [size_is][size_is][out] */ __RPC__deref_out_ecount_full_opt(*iidCount) IID **iids);
+
+    DECLSPEC_XFGVIRT(IInspectable, GetRuntimeClassName)
+    HRESULT ( STDMETHODCALLTYPE *GetRuntimeClassName )(
+        __RPC__in IActivationFactory * This,
+        /* [out] */ __RPC__deref_out_opt HSTRING *className);
+
+    DECLSPEC_XFGVIRT(IInspectable, GetTrustLevel)
+    HRESULT ( STDMETHODCALLTYPE *GetTrustLevel )(
+        __RPC__in IActivationFactory * This,
+        /* [out] */ __RPC__out TrustLevel *trustLevel);
+
+    DECLSPEC_XFGVIRT(IActivationFactory, ActivateInstance)
+    HRESULT ( STDMETHODCALLTYPE *ActivateInstance )(
+        __RPC__in IActivationFactory * This,
+        /* [out] */ __RPC__deref_out_opt IInspectable **instance);
+
+    END_INTERFACE
+} IActivationFactoryVtbl;
+
+interface IActivationFactory
+{
+    CONST_VTBL struct IActivationFactoryVtbl *lpVtbl;
 };
