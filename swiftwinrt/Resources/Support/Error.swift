@@ -189,6 +189,9 @@ public func failWith(err: HRESULT) -> HRESULT {
 /// Handle any failing WinRT API call that is not marked with `throws`. This call can be used to catch exceptions
 /// from non-throwing WinRT calls such as properties or event registrations in the abnormal case where handling these
 /// failures is required.
+///
+/// Example Usage:
+///    let curentPackage = try? withFailingCall(Package.current)
 public func withFailingCall<Result>(_ call: @autoclosure () -> Result) throws -> Result {
   let error = getLastError()
   defer { clearLastError() }
@@ -257,7 +260,10 @@ fileprivate func setLastError(_ error: Error){
   checkErrorLock.lock()
   defer { checkErrorLock.unlock() }
   guard let lastError else {
-    fatalError(error.description)
+    fatalError("""
+Unhandled WinRT Error @ \(error.description)
+  This error can be handled via `withFailingCall`
+""")
   }
   lastError.error = error
 }
