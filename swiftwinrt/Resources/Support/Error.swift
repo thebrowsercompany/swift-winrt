@@ -262,7 +262,7 @@ fileprivate func setLastError(_ error: Error){
   guard let lastError else {
     fatalError("""
 Unhandled WinRT Error @ \(error.description)
-  This error can be handled via `withFailingCall`
+  Note: If this error is expected and needs to be handled, use `withFailingCall`
 """)
   }
   lastError.error = error
