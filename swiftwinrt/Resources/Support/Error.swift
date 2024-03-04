@@ -3,6 +3,7 @@
 
 import WinSDK
 import C_BINDINGS_MODULE
+import Foundation
 
 // winerror.h
 
@@ -125,7 +126,7 @@ private func getErrorDescription(expecting hr: HRESULT) -> String? {
     &capabilitySid)
 
   guard resultLocal == hr else { return nil }
-  
+
   // Favor restrictedDescription as this is a more user friendly message, which
   // is intended to be displayed to the caller to help them understand why the
   // api call failed. If it's not set, then fallback to the generic error message
@@ -167,8 +168,103 @@ public struct Error : Swift.Error, CustomStringConvertible {
     self.description = getErrorDescription(expecting: hr) ?? hrToString(hr)
     self.hr = hr
   }
+
+  fileprivate init(hr: HRESULT, file: StaticString, line: UInt) {
+    self.description = "\(file): \(line) - \(getErrorDescription(expecting: hr) ?? hrToString(hr))"
+    self.hr = hr
+  }
 }
 
 public func failWith(err: HRESULT) -> HRESULT {
   return err
+}
+
+// # Mark - WinRT Error Handling
+// Because all WinRT methods return HRESULTs and every property get/set or event registration returns an HRESULT,
+// we'd have to mark all WinRT API calls with "throws" in order to properly handle errors. However, this makes
+// the API less ergonomic to use, and since most of these calls are due to improper usage, try! is often the
+// write outcome for the developer to use. So, instead of marking all of these methods with "throws", we provide
+// the ability to handle the error through the `withFailingCall` method below
+
+/// Handle any failing WinRT API call that is not marked with `throws`. This call can be used to catch exceptions
+/// from non-throwing WinRT calls such as properties or event registrations in the abnormal case where handling these
+/// failures is required.
+public func withFailingCall<Result>(_ call: @autoclosure () -> Result) throws -> Result {
+  let error = getLastError()
+  defer { clearLastError() }
+  let result = call()
+  if let error = error.error {
+    throw error
+  }
+  return result
+}
+
+// # MARK - WinRT Error Handling implementation
+// The code generator wraps all non-throwing WinRT API calls in `_tryWinRT` to handle the error and set the last error.
+// There can only be one last error at a time, so the last error is cleared after it is read and protected against
+// potential access from different threads.
+
+@_spi(WinRTInternal)
+public func _tryWinRT<Result>(
+  _ defaultValue: Result,
+  _ call: @autoclosure () throws -> Result,
+    file: StaticString = #fileID,
+    function: StaticString = #function,
+    line: UInt = #line) -> Result {
+    do {
+      return try call()
+    } catch {
+      let error = error as! Error
+      setLastError(Error(hr: error.hr, file: file, line:line))
+      // This "default" value is returned in the case of an error, but it is
+      // never returned to the caller because the method is going to throw
+      return defaultValue
+    }
+}
+
+@_spi(WinRTInternal)
+public func _tryWinRT(
+  _ call: @autoclosure () throws -> (),
+    file: StaticString = #fileID,
+    function: StaticString = #function,
+    line: UInt = #line) {
+    do {
+      try call()
+    } catch {
+      let error = error as! Error
+      setLastError(Error(hr: error.hr, file: file, line:line))
+    }
+}
+
+fileprivate var getErrorLock = NSLock()
+fileprivate var checkErrorLock = NSLock()
+fileprivate var lastError: LastErrorHolder?
+fileprivate class LastErrorHolder {
+    fileprivate init() { }
+    public var error: Error?
+}
+
+fileprivate func getLastError() -> LastErrorHolder {
+  getErrorLock.lock()
+  checkErrorLock.lock()
+  defer { checkErrorLock.unlock() }
+  let newLastError = LastErrorHolder()
+  lastError = newLastError
+  return newLastError
+}
+
+fileprivate func setLastError(_ error: Error){
+  checkErrorLock.lock()
+  defer { checkErrorLock.unlock() }
+  guard let lastError else {
+    fatalError(error.description)
+  }
+  lastError.error = error
+}
+
+fileprivate func clearLastError() {
+  checkErrorLock.lock()
+  defer { checkErrorLock.unlock() }
+  lastError = nil
+  getErrorLock.unlock()
 }

@@ -107,6 +107,14 @@ private var IID___x_ABI_Ctest__component_CIEventTesterFactory: test_component.II
     .init(Data1: 0x9E6F50EC, Data2: 0x0F53, Data3: 0x5507, Data4: ( 0xB7,0x37,0x14,0x3B,0x1B,0xB3,0x53,0x65 ))// 9E6F50EC-0F53-5507-B737-143B1BB35365
 }
 
+private var IID___x_ABI_Ctest__component_CIFailure: test_component.IID {
+    .init(Data1: 0x394892CA, Data2: 0x3319, Data3: 0x59B1, Data4: ( 0xBC,0xA0,0xFB,0x1C,0xD8,0x8E,0x78,0x86 ))// 394892CA-3319-59B1-BCA0-FB1CD88E7886
+}
+
+private var IID___x_ABI_Ctest__component_CIFailureStatics: test_component.IID {
+    .init(Data1: 0x5C17A9DF, Data2: 0xF43F, Data3: 0x5AE3, Data4: ( 0xBB,0x8A,0xE4,0x67,0x3E,0xF8,0xB6,0x1A ))// 5C17A9DF-F43F-5AE3-BB8A-E4673EF8B61A
+}
+
 private var IID___x_ABI_Ctest__component_CIIAmImplementable: test_component.IID {
     .init(Data1: 0x0B3C0120, Data2: 0xD138, Data3: 0x512B, Data4: ( 0x8D,0x38,0xF5,0x1E,0x35,0xF0,0x65,0xB2 ))// 0B3C0120-D138-512B-8D38-F51E35F065B2
 }
@@ -584,7 +592,7 @@ public enum __ABI_test_component {
         }
 
         internal func InInt32Impl(_ value: Int32) throws -> String {
-            var result: HSTRING?
+            var result: HSTRING? = nil
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InInt32(pThis, value, &result))
             }
@@ -592,7 +600,7 @@ public enum __ABI_test_component {
         }
 
         internal func InStringImpl(_ value: String) throws -> String {
-            var result: HSTRING?
+            var result: HSTRING? = nil
             let _value = try! HString(value)
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InString(pThis, _value.get(), &result))
@@ -601,7 +609,7 @@ public enum __ABI_test_component {
         }
 
         internal func InObjectImpl(_ value: Any?) throws -> String {
-            var result: HSTRING?
+            var result: HSTRING? = nil
             let valueWrapper = __ABI_.AnyWrapper(value)
             let _value = try! valueWrapper?.toABI { $0 }
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
@@ -611,7 +619,7 @@ public enum __ABI_test_component {
         }
 
         internal func InEnumImpl(_ value: test_component.Signed) throws -> String {
-            var result: HSTRING?
+            var result: HSTRING? = nil
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InEnum(pThis, value, &result))
             }
@@ -728,7 +736,7 @@ public enum __ABI_test_component {
         }
 
         internal func NoexceptStringImpl() throws -> String {
-            var result: HSTRING?
+            var result: HSTRING? = nil
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.NoexceptString(pThis, &result))
             }
@@ -769,7 +777,7 @@ public enum __ABI_test_component {
         }
 
         internal func InCharImpl(_ value: Character) throws -> String {
-            var result: HSTRING?
+            var result: HSTRING? = nil
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InChar(pThis, .init(from: value), &result))
             }
@@ -1025,7 +1033,7 @@ public enum __ABI_test_component {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CICollectionTesterStatics }
 
         internal func InMapImpl(_ value: test_component.AnyIMap<String, String>?) throws -> String {
-            var result: HSTRING?
+            var result: HSTRING? = nil
             let valueWrapper = test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper(value)
             let _value = try! valueWrapper?.toABI { $0 }
             _ = try perform(as: __x_ABI_Ctest__component_CICollectionTesterStatics.self) { pThis in
@@ -1035,7 +1043,7 @@ public enum __ABI_test_component {
         }
 
         internal func InMapViewImpl(_ value: test_component.AnyIMapView<String, String>?) throws -> String {
-            var result: HSTRING?
+            var result: HSTRING? = nil
             let valueWrapper = test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper(value)
             let _value = try! valueWrapper?.toABI { $0 }
             _ = try perform(as: __x_ABI_Ctest__component_CICollectionTesterStatics.self) { pThis in
@@ -1045,7 +1053,7 @@ public enum __ABI_test_component {
         }
 
         internal func InVectorImpl(_ value: test_component.AnyIVector<String>?) throws -> String {
-            var result: HSTRING?
+            var result: HSTRING? = nil
             let valueWrapper = test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper(value)
             let _value = try! valueWrapper?.toABI { $0 }
             _ = try perform(as: __x_ABI_Ctest__component_CICollectionTesterStatics.self) { pThis in
@@ -1055,7 +1063,7 @@ public enum __ABI_test_component {
         }
 
         internal func InVectorViewImpl(_ value: test_component.AnyIVectorView<String>?) throws -> String {
-            var result: HSTRING?
+            var result: HSTRING? = nil
             let valueWrapper = test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper(value)
             let _value = try! valueWrapper?.toABI { $0 }
             _ = try perform(as: __x_ABI_Ctest__component_CICollectionTesterStatics.self) { pThis in
@@ -1157,7 +1165,7 @@ public enum __ABI_test_component {
         }
 
         internal func GetResultImpl() throws -> String {
-            var result: HSTRING?
+            var result: HSTRING? = nil
             _ = try perform(as: __x_ABI_Ctest__component_CIEventTester.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResult(pThis, &result))
             }
@@ -1190,11 +1198,50 @@ public enum __ABI_test_component {
 
     }
 
+    public class IFailure: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIFailure }
+
+        internal func get_FailedPropertyImpl() throws -> String {
+            var value: HSTRING? = nil
+            _ = try perform(as: __x_ABI_Ctest__component_CIFailure.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_FailedProperty(pThis, &value))
+            }
+            return .init(from: value)
+        }
+
+        internal func put_FailedPropertyImpl(_ value: String) throws {
+            let _value = try! HString(value)
+            _ = try perform(as: __x_ABI_Ctest__component_CIFailure.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.put_FailedProperty(pThis, _value.get()))
+            }
+        }
+
+    }
+
+    public class IFailureStatics: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIFailureStatics }
+
+        internal func FailedStaticMethodImpl() throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIFailureStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.FailedStaticMethod(pThis))
+            }
+        }
+
+        internal func get_FailedStaticPropertyImpl() throws -> Bool {
+            var value: boolean = 0
+            _ = try perform(as: __x_ABI_Ctest__component_CIFailureStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_FailedStaticProperty(pThis, &value))
+            }
+            return .init(from: value)
+        }
+
+    }
+
     public class IIAmImplementable: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIIAmImplementable }
 
         open func InInt32Impl(_ value: Int32) throws -> String {
-            var result: HSTRING?
+            var result: HSTRING? = nil
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InInt32(pThis, value, &result))
             }
@@ -1202,7 +1249,7 @@ public enum __ABI_test_component {
         }
 
         open func InStringImpl(_ value: String) throws -> String {
-            var result: HSTRING?
+            var result: HSTRING? = nil
             let _value = try! HString(value)
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InString(pThis, _value.get(), &result))
@@ -1211,7 +1258,7 @@ public enum __ABI_test_component {
         }
 
         open func InObjectImpl(_ value: Any?) throws -> String {
-            var result: HSTRING?
+            var result: HSTRING? = nil
             let valueWrapper = __ABI_.AnyWrapper(value)
             let _value = try! valueWrapper?.toABI { $0 }
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
@@ -1221,7 +1268,7 @@ public enum __ABI_test_component {
         }
 
         open func InEnumImpl(_ value: test_component.Signed) throws -> String {
-            var result: HSTRING?
+            var result: HSTRING? = nil
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InEnum(pThis, value, &result))
             }
@@ -1438,7 +1485,7 @@ public enum __ABI_test_component {
         OutObject: {
             do {
                 guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-                var value: Any?
+                var value: Any? = nil
                 try __unwrapped__instance.outObject(&value)
                 let valueWrapper = __ABI_.AnyWrapper(value)
                 valueWrapper?.copyTo($1)
@@ -1826,7 +1873,7 @@ public enum __ABI_test_component {
         }
 
         internal func get_StringPropertyImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_StringProperty(pThis, &value))
             }
@@ -2016,7 +2063,7 @@ public enum __ABI_test_component {
         }
 
         internal func InEnumImpl(_ value: test_component.Signed) throws -> String {
-            var result: HSTRING?
+            var result: HSTRING? = nil
             _ = try perform(as: __x_ABI_Ctest__component_CIStaticClassStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InEnum(pThis, value, &result))
             }
@@ -2024,7 +2071,7 @@ public enum __ABI_test_component {
         }
 
         internal func InNonBlittableStructImpl(_ value: test_component.NonBlittableStruct) throws -> String {
-            var result: HSTRING?
+            var result: HSTRING? = nil
             let _value = __ABI_test_component._ABI_NonBlittableStruct(from: value)
             _ = try perform(as: __x_ABI_Ctest__component_CIStaticClassStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InNonBlittableStruct(pThis, _value.val, &result))
@@ -2360,7 +2407,7 @@ public enum __ABI_test_component {
         }
 
         open func get_StructImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_Ctest__component_CWithKeyword.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Struct(pThis, &value))
             }

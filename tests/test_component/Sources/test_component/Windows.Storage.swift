@@ -26,72 +26,72 @@ public final class PathIO {
     private static let _IPathIOStatics: __ABI_Windows_Storage.IPathIOStatics = try! RoGetActivationFactory("Windows.Storage.PathIO")
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.pathio.readtextasync)
     public static func readTextAsync(_ absolutePath: String) -> AnyIAsyncOperation<String>! {
-        return try! _IPathIOStatics.ReadTextAsyncImpl(absolutePath)
+        return _tryWinRT(nil, try _IPathIOStatics.ReadTextAsyncImpl(absolutePath))
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.pathio.readtextasync)
     public static func readTextAsync(_ absolutePath: String, _ encoding: test_component.UnicodeEncoding) -> AnyIAsyncOperation<String>! {
-        return try! _IPathIOStatics.ReadTextWithEncodingAsyncImpl(absolutePath, encoding)
+        return _tryWinRT(nil, try _IPathIOStatics.ReadTextWithEncodingAsyncImpl(absolutePath, encoding))
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.pathio.writetextasync)
     public static func writeTextAsync(_ absolutePath: String, _ contents: String) -> test_component.AnyIAsyncAction! {
-        return try! _IPathIOStatics.WriteTextAsyncImpl(absolutePath, contents)
+        return _tryWinRT(nil, try _IPathIOStatics.WriteTextAsyncImpl(absolutePath, contents))
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.pathio.writetextasync)
     public static func writeTextAsync(_ absolutePath: String, _ contents: String, _ encoding: test_component.UnicodeEncoding) -> test_component.AnyIAsyncAction! {
-        return try! _IPathIOStatics.WriteTextWithEncodingAsyncImpl(absolutePath, contents, encoding)
+        return _tryWinRT(nil, try _IPathIOStatics.WriteTextWithEncodingAsyncImpl(absolutePath, contents, encoding))
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.pathio.appendtextasync)
     public static func appendTextAsync(_ absolutePath: String, _ contents: String) -> test_component.AnyIAsyncAction! {
-        return try! _IPathIOStatics.AppendTextAsyncImpl(absolutePath, contents)
+        return _tryWinRT(nil, try _IPathIOStatics.AppendTextAsyncImpl(absolutePath, contents))
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.pathio.appendtextasync)
     public static func appendTextAsync(_ absolutePath: String, _ contents: String, _ encoding: test_component.UnicodeEncoding) -> test_component.AnyIAsyncAction! {
-        return try! _IPathIOStatics.AppendTextWithEncodingAsyncImpl(absolutePath, contents, encoding)
+        return _tryWinRT(nil, try _IPathIOStatics.AppendTextWithEncodingAsyncImpl(absolutePath, contents, encoding))
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.pathio.readlinesasync)
     public static func readLinesAsync(_ absolutePath: String) -> AnyIAsyncOperation<AnyIVector<String>?>! {
-        return try! _IPathIOStatics.ReadLinesAsyncImpl(absolutePath)
+        return _tryWinRT(nil, try _IPathIOStatics.ReadLinesAsyncImpl(absolutePath))
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.pathio.readlinesasync)
     public static func readLinesAsync(_ absolutePath: String, _ encoding: test_component.UnicodeEncoding) -> AnyIAsyncOperation<AnyIVector<String>?>! {
-        return try! _IPathIOStatics.ReadLinesWithEncodingAsyncImpl(absolutePath, encoding)
+        return _tryWinRT(nil, try _IPathIOStatics.ReadLinesWithEncodingAsyncImpl(absolutePath, encoding))
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.pathio.writelinesasync)
     public static func writeLinesAsync(_ absolutePath: String, _ lines: AnyIIterable<String>!) -> test_component.AnyIAsyncAction! {
-        return try! _IPathIOStatics.WriteLinesAsyncImpl(absolutePath, lines)
+        return _tryWinRT(nil, try _IPathIOStatics.WriteLinesAsyncImpl(absolutePath, lines))
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.pathio.writelinesasync)
     public static func writeLinesAsync(_ absolutePath: String, _ lines: AnyIIterable<String>!, _ encoding: test_component.UnicodeEncoding) -> test_component.AnyIAsyncAction! {
-        return try! _IPathIOStatics.WriteLinesWithEncodingAsyncImpl(absolutePath, lines, encoding)
+        return _tryWinRT(nil, try _IPathIOStatics.WriteLinesWithEncodingAsyncImpl(absolutePath, lines, encoding))
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.pathio.appendlinesasync)
     public static func appendLinesAsync(_ absolutePath: String, _ lines: AnyIIterable<String>!) -> test_component.AnyIAsyncAction! {
-        return try! _IPathIOStatics.AppendLinesAsyncImpl(absolutePath, lines)
+        return _tryWinRT(nil, try _IPathIOStatics.AppendLinesAsyncImpl(absolutePath, lines))
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.pathio.appendlinesasync)
     public static func appendLinesAsync(_ absolutePath: String, _ lines: AnyIIterable<String>!, _ encoding: test_component.UnicodeEncoding) -> test_component.AnyIAsyncAction! {
-        return try! _IPathIOStatics.AppendLinesWithEncodingAsyncImpl(absolutePath, lines, encoding)
+        return _tryWinRT(nil, try _IPathIOStatics.AppendLinesWithEncodingAsyncImpl(absolutePath, lines, encoding))
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.pathio.readbufferasync)
     public static func readBufferAsync(_ absolutePath: String) -> AnyIAsyncOperation<test_component.AnyIBuffer?>! {
-        return try! _IPathIOStatics.ReadBufferAsyncImpl(absolutePath)
+        return _tryWinRT(nil, try _IPathIOStatics.ReadBufferAsyncImpl(absolutePath))
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.pathio.writebufferasync)
     public static func writeBufferAsync(_ absolutePath: String, _ buffer: test_component.AnyIBuffer!) -> test_component.AnyIAsyncAction! {
-        return try! _IPathIOStatics.WriteBufferAsyncImpl(absolutePath, buffer)
+        return _tryWinRT(nil, try _IPathIOStatics.WriteBufferAsyncImpl(absolutePath, buffer))
     }
 
 }
@@ -126,32 +126,32 @@ public final class StorageFile : WinRTClass, IStorageItem, test_component.IRando
     private static let _IStorageFileStatics: __ABI_Windows_Storage.IStorageFileStatics = try! RoGetActivationFactory("Windows.Storage.StorageFile")
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefile.getfilefrompathasync)
     public static func getFileFromPathAsync(_ path: String) -> AnyIAsyncOperation<StorageFile?>! {
-        return try! _IStorageFileStatics.GetFileFromPathAsyncImpl(path)
+        return _tryWinRT(nil, try _IStorageFileStatics.GetFileFromPathAsyncImpl(path))
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefile.getfilefromapplicationuriasync)
     public static func getFileFromApplicationUriAsync(_ uri: test_component.Uri!) -> AnyIAsyncOperation<StorageFile?>! {
-        return try! _IStorageFileStatics.GetFileFromApplicationUriAsyncImpl(uri)
+        return _tryWinRT(nil, try _IStorageFileStatics.GetFileFromApplicationUriAsyncImpl(uri))
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefile.createstreamedfileasync)
     public static func createStreamedFileAsync(_ displayNameWithExtension: String, _ dataRequested: StreamedFileDataRequestedHandler!, _ thumbnail: test_component.AnyIRandomAccessStreamReference!) -> AnyIAsyncOperation<StorageFile?>! {
-        return try! _IStorageFileStatics.CreateStreamedFileAsyncImpl(displayNameWithExtension, dataRequested, thumbnail)
+        return _tryWinRT(nil, try _IStorageFileStatics.CreateStreamedFileAsyncImpl(displayNameWithExtension, dataRequested, thumbnail))
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefile.replacewithstreamedfileasync)
     public static func replaceWithStreamedFileAsync(_ fileToReplace: AnyIStorageFile!, _ dataRequested: StreamedFileDataRequestedHandler!, _ thumbnail: test_component.AnyIRandomAccessStreamReference!) -> AnyIAsyncOperation<StorageFile?>! {
-        return try! _IStorageFileStatics.ReplaceWithStreamedFileAsyncImpl(fileToReplace, dataRequested, thumbnail)
+        return _tryWinRT(nil, try _IStorageFileStatics.ReplaceWithStreamedFileAsyncImpl(fileToReplace, dataRequested, thumbnail))
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefile.createstreamedfilefromuriasync)
     public static func createStreamedFileFromUriAsync(_ displayNameWithExtension: String, _ uri: test_component.Uri!, _ thumbnail: test_component.AnyIRandomAccessStreamReference!) -> AnyIAsyncOperation<StorageFile?>! {
-        return try! _IStorageFileStatics.CreateStreamedFileFromUriAsyncImpl(displayNameWithExtension, uri, thumbnail)
+        return _tryWinRT(nil, try _IStorageFileStatics.CreateStreamedFileFromUriAsyncImpl(displayNameWithExtension, uri, thumbnail))
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefile.replacewithstreamedfilefromuriasync)
     public static func replaceWithStreamedFileFromUriAsync(_ fileToReplace: AnyIStorageFile!, _ uri: test_component.Uri!, _ thumbnail: test_component.AnyIRandomAccessStreamReference!) -> AnyIAsyncOperation<StorageFile?>! {
-        return try! _IStorageFileStatics.ReplaceWithStreamedFileFromUriAsyncImpl(fileToReplace, uri, thumbnail)
+        return _tryWinRT(nil, try _IStorageFileStatics.ReplaceWithStreamedFileFromUriAsyncImpl(fileToReplace, uri, thumbnail))
     }
 
     private lazy var _IStorageItem: __ABI_Windows_Storage.IStorageItem! = getInterfaceForCaching()
@@ -187,22 +187,22 @@ public final class StorageFile : WinRTClass, IStorageItem, test_component.IRando
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefile.attributes)
     public var attributes : FileAttributes {
-        get { try! _IStorageItem.get_AttributesImpl() }
+        get { _tryWinRT(.init(0), try _IStorageItem.get_AttributesImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefile.datecreated)
     public var dateCreated : test_component.DateTime {
-        get { try! _IStorageItem.get_DateCreatedImpl() }
+        get { _tryWinRT(.init(), try _IStorageItem.get_DateCreatedImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefile.name)
     public var name : String {
-        get { try! _IStorageItem.get_NameImpl() }
+        get { _tryWinRT("", try _IStorageItem.get_NameImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefile.path)
     public var path : String {
-        get { try! _IStorageItem.get_PathImpl() }
+        get { _tryWinRT("", try _IStorageItem.get_PathImpl()) }
     }
 
     private lazy var _IRandomAccessStreamReference: __ABI_Windows_Storage_Streams.IRandomAccessStreamReference! = getInterfaceForCaching()
@@ -269,12 +269,12 @@ public final class StorageFile : WinRTClass, IStorageItem, test_component.IRando
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefile.contenttype)
     public var contentType : String {
-        get { try! _default.get_ContentTypeImpl() }
+        get { _tryWinRT("", try _default.get_ContentTypeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefile.filetype)
     public var fileType : String {
-        get { try! _default.get_FileTypeImpl() }
+        get { _tryWinRT("", try _default.get_FileTypeImpl()) }
     }
 
     private lazy var _IStorageItemProperties: __ABI_Windows_Storage.IStorageItemProperties! = getInterfaceForCaching()
@@ -295,22 +295,22 @@ public final class StorageFile : WinRTClass, IStorageItem, test_component.IRando
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefile.displayname)
     public var displayName : String {
-        get { try! _IStorageItemProperties.get_DisplayNameImpl() }
+        get { _tryWinRT("", try _IStorageItemProperties.get_DisplayNameImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefile.displaytype)
     public var displayType : String {
-        get { try! _IStorageItemProperties.get_DisplayTypeImpl() }
+        get { _tryWinRT("", try _IStorageItemProperties.get_DisplayTypeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefile.folderrelativeid)
     public var folderRelativeId : String {
-        get { try! _IStorageItemProperties.get_FolderRelativeIdImpl() }
+        get { _tryWinRT("", try _IStorageItemProperties.get_FolderRelativeIdImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefile.properties)
     public var properties : test_component.StorageItemContentProperties! {
-        get { try! _IStorageItemProperties.get_PropertiesImpl() }
+        get { _tryWinRT(nil, try _IStorageItemProperties.get_PropertiesImpl()) }
     }
 
     private lazy var _IStorageItemProperties2: __ABI_Windows_Storage.IStorageItemProperties2! = getInterfaceForCaching()
@@ -343,13 +343,13 @@ public final class StorageFile : WinRTClass, IStorageItem, test_component.IRando
     private lazy var _IStorageItemPropertiesWithProvider: __ABI_Windows_Storage.IStorageItemPropertiesWithProvider! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefile.provider)
     public var provider : StorageProvider! {
-        get { try! _IStorageItemPropertiesWithProvider.get_ProviderImpl() }
+        get { _tryWinRT(nil, try _IStorageItemPropertiesWithProvider.get_ProviderImpl()) }
     }
 
     private lazy var _IStorageFilePropertiesWithAvailability: __ABI_Windows_Storage.IStorageFilePropertiesWithAvailability! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefile.isavailable)
     public var isAvailable : Bool {
-        get { try! _IStorageFilePropertiesWithAvailability.get_IsAvailableImpl() }
+        get { _tryWinRT(false, try _IStorageFilePropertiesWithAvailability.get_IsAvailableImpl()) }
     }
 
     private lazy var _IStorageFile2: __ABI_Windows_Storage.IStorageFile2! = getInterfaceForCaching()
@@ -407,7 +407,7 @@ public final class StorageFolder : WinRTClass, IStorageItem, IStorageFolder, tes
     private static let _IStorageFolderStatics: __ABI_Windows_Storage.IStorageFolderStatics = try! RoGetActivationFactory("Windows.Storage.StorageFolder")
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefolder.getfolderfrompathasync)
     public static func getFolderFromPathAsync(_ path: String) -> AnyIAsyncOperation<StorageFolder?>! {
-        return try! _IStorageFolderStatics.GetFolderFromPathAsyncImpl(path)
+        return _tryWinRT(nil, try _IStorageFolderStatics.GetFolderFromPathAsyncImpl(path))
     }
 
     private lazy var _IStorageItem: __ABI_Windows_Storage.IStorageItem! = getInterfaceForCaching()
@@ -443,22 +443,22 @@ public final class StorageFolder : WinRTClass, IStorageItem, IStorageFolder, tes
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefolder.attributes)
     public var attributes : FileAttributes {
-        get { try! _IStorageItem.get_AttributesImpl() }
+        get { _tryWinRT(.init(0), try _IStorageItem.get_AttributesImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefolder.datecreated)
     public var dateCreated : test_component.DateTime {
-        get { try! _IStorageItem.get_DateCreatedImpl() }
+        get { _tryWinRT(.init(), try _IStorageItem.get_DateCreatedImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefolder.name)
     public var name : String {
-        get { try! _IStorageItem.get_NameImpl() }
+        get { _tryWinRT("", try _IStorageItem.get_NameImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefolder.path)
     public var path : String {
-        get { try! _IStorageItem.get_PathImpl() }
+        get { _tryWinRT("", try _IStorageItem.get_PathImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefolder.createfileasync)
@@ -615,22 +615,22 @@ public final class StorageFolder : WinRTClass, IStorageItem, IStorageFolder, tes
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefolder.displayname)
     public var displayName : String {
-        get { try! _IStorageItemProperties.get_DisplayNameImpl() }
+        get { _tryWinRT("", try _IStorageItemProperties.get_DisplayNameImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefolder.displaytype)
     public var displayType : String {
-        get { try! _IStorageItemProperties.get_DisplayTypeImpl() }
+        get { _tryWinRT("", try _IStorageItemProperties.get_DisplayTypeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefolder.folderrelativeid)
     public var folderRelativeId : String {
-        get { try! _IStorageItemProperties.get_FolderRelativeIdImpl() }
+        get { _tryWinRT("", try _IStorageItemProperties.get_FolderRelativeIdImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefolder.properties)
     public var properties : test_component.StorageItemContentProperties! {
-        get { try! _IStorageItemProperties.get_PropertiesImpl() }
+        get { _tryWinRT(nil, try _IStorageItemProperties.get_PropertiesImpl()) }
     }
 
     private lazy var _IStorageItemProperties2: __ABI_Windows_Storage.IStorageItemProperties2! = getInterfaceForCaching()
@@ -669,7 +669,7 @@ public final class StorageFolder : WinRTClass, IStorageItem, IStorageFolder, tes
     private lazy var _IStorageItemPropertiesWithProvider: __ABI_Windows_Storage.IStorageItemPropertiesWithProvider! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefolder.provider)
     public var provider : StorageProvider! {
-        get { try! _IStorageItemPropertiesWithProvider.get_ProviderImpl() }
+        get { _tryWinRT(nil, try _IStorageItemPropertiesWithProvider.get_ProviderImpl()) }
     }
 
     private lazy var _IStorageFolder3: __ABI_Windows_Storage.IStorageFolder3! = getInterfaceForCaching()
@@ -727,17 +727,17 @@ public final class StorageLibraryChange : WinRTClass {
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagelibrarychange.changetype)
     public var changeType : StorageLibraryChangeType {
-        get { try! _default.get_ChangeTypeImpl() }
+        get { _tryWinRT(.init(0), try _default.get_ChangeTypeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagelibrarychange.path)
     public var path : String {
-        get { try! _default.get_PathImpl() }
+        get { _tryWinRT("", try _default.get_PathImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagelibrarychange.previouspath)
     public var previousPath : String {
-        get { try! _default.get_PreviousPathImpl() }
+        get { _tryWinRT("", try _default.get_PreviousPathImpl()) }
     }
 
     deinit {
@@ -854,12 +854,12 @@ public final class StorageProvider : WinRTClass {
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storageprovider.displayname)
     public var displayName : String {
-        get { try! _default.get_DisplayNameImpl() }
+        get { _tryWinRT("", try _default.get_DisplayNameImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storageprovider.id)
     public var id : String {
-        get { try! _default.get_IdImpl() }
+        get { _tryWinRT("", try _default.get_IdImpl()) }
     }
 
     private lazy var _IStorageProvider2: __ABI_Windows_Storage.IStorageProvider2! = getInterfaceForCaching()
@@ -914,7 +914,7 @@ public final class StorageStreamTransaction : WinRTClass, test_component.IClosab
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagestreamtransaction.stream)
     public var stream : test_component.AnyIRandomAccessStream! {
-        get { try! _default.get_StreamImpl() }
+        get { _tryWinRT(nil, try _default.get_StreamImpl()) }
     }
 
     deinit {

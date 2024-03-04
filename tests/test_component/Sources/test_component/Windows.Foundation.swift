@@ -135,12 +135,12 @@ public final class Uri : WinRTClass, IStringable {
     private static let _IUriEscapeStatics: __ABI_Windows_Foundation.IUriEscapeStatics = try! RoGetActivationFactory("Windows.Foundation.Uri")
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.unescapecomponent)
     public static func unescapeComponent(_ toUnescape: String) -> String {
-        return try! _IUriEscapeStatics.UnescapeComponentImpl(toUnescape)
+        return _tryWinRT("", try _IUriEscapeStatics.UnescapeComponentImpl(toUnescape))
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.escapecomponent)
     public static func escapeComponent(_ toEscape: String) -> String {
-        return try! _IUriEscapeStatics.EscapeComponentImpl(toEscape)
+        return _tryWinRT("", try _IUriEscapeStatics.EscapeComponentImpl(toEscape))
     }
 
     private static let _IUriRuntimeClassFactory: __ABI_Windows_Foundation.IUriRuntimeClassFactory = try! RoGetActivationFactory("Windows.Foundation.Uri")
@@ -164,88 +164,88 @@ public final class Uri : WinRTClass, IStringable {
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.absoluteuri)
     public var absoluteUri : String {
-        get { try! _default.get_AbsoluteUriImpl() }
+        get { _tryWinRT("", try _default.get_AbsoluteUriImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.displayuri)
     public var displayUri : String {
-        get { try! _default.get_DisplayUriImpl() }
+        get { _tryWinRT("", try _default.get_DisplayUriImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.domain)
     public var domain : String {
-        get { try! _default.get_DomainImpl() }
+        get { _tryWinRT("", try _default.get_DomainImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.extension)
     public var `extension` : String {
-        get { try! _default.get_ExtensionImpl() }
+        get { _tryWinRT("", try _default.get_ExtensionImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.fragment)
     public var fragment : String {
-        get { try! _default.get_FragmentImpl() }
+        get { _tryWinRT("", try _default.get_FragmentImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.host)
     public var host : String {
-        get { try! _default.get_HostImpl() }
+        get { _tryWinRT("", try _default.get_HostImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.password)
     public var password : String {
-        get { try! _default.get_PasswordImpl() }
+        get { _tryWinRT("", try _default.get_PasswordImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.path)
     public var path : String {
-        get { try! _default.get_PathImpl() }
+        get { _tryWinRT("", try _default.get_PathImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.port)
     public var port : Int32 {
-        get { try! _default.get_PortImpl() }
+        get { _tryWinRT(0, try _default.get_PortImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.query)
     public var query : String {
-        get { try! _default.get_QueryImpl() }
+        get { _tryWinRT("", try _default.get_QueryImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.queryparsed)
     public var queryParsed : WwwFormUrlDecoder! {
-        get { try! _default.get_QueryParsedImpl() }
+        get { _tryWinRT(nil, try _default.get_QueryParsedImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.rawuri)
     public var rawUri : String {
-        get { try! _default.get_RawUriImpl() }
+        get { _tryWinRT("", try _default.get_RawUriImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.schemename)
     public var schemeName : String {
-        get { try! _default.get_SchemeNameImpl() }
+        get { _tryWinRT("", try _default.get_SchemeNameImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.suspicious)
     public var suspicious : Bool {
-        get { try! _default.get_SuspiciousImpl() }
+        get { _tryWinRT(false, try _default.get_SuspiciousImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.username)
     public var userName : String {
-        get { try! _default.get_UserNameImpl() }
+        get { _tryWinRT("", try _default.get_UserNameImpl()) }
     }
 
     private lazy var _IUriRuntimeClassWithAbsoluteCanonicalUri: __ABI_Windows_Foundation.IUriRuntimeClassWithAbsoluteCanonicalUri! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.absolutecanonicaluri)
     public var absoluteCanonicalUri : String {
-        get { try! _IUriRuntimeClassWithAbsoluteCanonicalUri.get_AbsoluteCanonicalUriImpl() }
+        get { _tryWinRT("", try _IUriRuntimeClassWithAbsoluteCanonicalUri.get_AbsoluteCanonicalUriImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.displayiri)
     public var displayIri : String {
-        get { try! _IUriRuntimeClassWithAbsoluteCanonicalUri.get_DisplayIriImpl() }
+        get { _tryWinRT("", try _IUriRuntimeClassWithAbsoluteCanonicalUri.get_DisplayIriImpl()) }
     }
 
     private lazy var _IStringable: __ABI_Windows_Foundation.IStringable! = getInterfaceForCaching()
@@ -335,7 +335,7 @@ public final class WwwFormUrlDecoder : WinRTClass, IIterable, IVectorView {
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.wwwformurldecoder.size)
     public var size : UInt32 {
-        get { try! _IVectorView.get_SizeImpl() }
+        get { _tryWinRT(0, try _IVectorView.get_SizeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.wwwformurldecoder.getfirstvaluebyname)

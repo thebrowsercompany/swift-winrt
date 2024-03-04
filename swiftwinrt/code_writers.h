@@ -2160,7 +2160,8 @@ public init<Composable: ComposableImpl>(
                 get_swift_name(prop),
                 bind<write_type>(*prop.getter->return_type->type, swift_write_type_params_for(*iface.type)));
 
-            w.write("    get { try! %.%Impl() }\n",
+            w.write("    get { _tryWinRT(%, try %.%Impl()) }\n",
+                bind<write_default_value>(*prop.getter->return_type->type, projection_layer::swift),
                 impl,
                 get_swift_name(prop.getter.value()));
 
@@ -2168,8 +2169,7 @@ public init<Composable: ComposableImpl>(
             // right now require that both getter and setter are defined in the same version
             if (prop.setter)
             {
-                w.write("    set { try! %.%Impl(newValue) }\n", impl, get_swift_name(prop.setter.value()));
-
+                w.write("    set { _tryWinRT(try %.%Impl(newValue)) }\n", impl, get_swift_name(prop.setter.value()));
             }
             w.write("}\n\n");
         }
@@ -2261,14 +2261,18 @@ public init<Composable: ComposableImpl>(
     {
         std::string_view func_name = get_abi_name(method);
 
-        if (method.return_type)
-        {
-            w.write("return ");
-        }
-        w.write("try! _%.%Impl(%)\n",
+        auto implCall = w.write_temp("try _%.%Impl(%)",
             statics.swift_type_name(),
             func_name,
             bind<write_implementation_args>(method));
+        if (method.return_type)
+        {
+            w.write("return _tryWinRT(%, %)\n", bind<write_default_value>(*method.return_type->type, projection_layer::swift), implCall);
+        }
+        else
+        {
+            w.write("_tryWinRT(%)\n", implCall);
+        }
     }
 
     static void write_static_members(writer& w, attributed_type const& statics, class_type const& type)

@@ -79,12 +79,12 @@ public enum __IMPL_Windows_Storage {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istoragefile.contenttype)
         fileprivate var contentType : String {
-            get { try! _default.get_ContentTypeImpl() }
+            get { _tryWinRT("", try _default.get_ContentTypeImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istoragefile.filetype)
         fileprivate var fileType : String {
-            get { try! _default.get_FileTypeImpl() }
+            get { _tryWinRT("", try _default.get_FileTypeImpl()) }
         }
 
         private lazy var _IStorageItem: __ABI_Windows_Storage.IStorageItem! = getInterfaceForCaching()
@@ -120,22 +120,22 @@ public enum __IMPL_Windows_Storage {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istoragefile.attributes)
         fileprivate var attributes : FileAttributes {
-            get { try! _IStorageItem.get_AttributesImpl() }
+            get { _tryWinRT(.init(0), try _IStorageItem.get_AttributesImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istoragefile.datecreated)
         fileprivate var dateCreated : test_component.DateTime {
-            get { try! _IStorageItem.get_DateCreatedImpl() }
+            get { _tryWinRT(.init(), try _IStorageItem.get_DateCreatedImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istoragefile.name)
         fileprivate var name : String {
-            get { try! _IStorageItem.get_NameImpl() }
+            get { _tryWinRT("", try _IStorageItem.get_NameImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istoragefile.path)
         fileprivate var path : String {
-            get { try! _IStorageItem.get_PathImpl() }
+            get { _tryWinRT("", try _IStorageItem.get_PathImpl()) }
         }
 
         private lazy var _IRandomAccessStreamReference: __ABI_Windows_Storage_Streams.IRandomAccessStreamReference! = getInterfaceForCaching()
@@ -212,7 +212,7 @@ public enum __IMPL_Windows_Storage {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istoragefilepropertieswithavailability.isavailable)
         fileprivate var isAvailable : Bool {
-            get { try! _default.get_IsAvailableImpl() }
+            get { _tryWinRT(false, try _default.get_IsAvailableImpl()) }
         }
 
     }
@@ -323,22 +323,22 @@ public enum __IMPL_Windows_Storage {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istoragefolder.attributes)
         fileprivate var attributes : FileAttributes {
-            get { try! _IStorageItem.get_AttributesImpl() }
+            get { _tryWinRT(.init(0), try _IStorageItem.get_AttributesImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istoragefolder.datecreated)
         fileprivate var dateCreated : test_component.DateTime {
-            get { try! _IStorageItem.get_DateCreatedImpl() }
+            get { _tryWinRT(.init(), try _IStorageItem.get_DateCreatedImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istoragefolder.name)
         fileprivate var name : String {
-            get { try! _IStorageItem.get_NameImpl() }
+            get { _tryWinRT("", try _IStorageItem.get_NameImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istoragefolder.path)
         fileprivate var path : String {
-            get { try! _IStorageItem.get_PathImpl() }
+            get { _tryWinRT("", try _IStorageItem.get_PathImpl()) }
         }
 
     }
@@ -428,22 +428,22 @@ public enum __IMPL_Windows_Storage {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istorageitem.attributes)
         fileprivate var attributes : FileAttributes {
-            get { try! _default.get_AttributesImpl() }
+            get { _tryWinRT(.init(0), try _default.get_AttributesImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istorageitem.datecreated)
         fileprivate var dateCreated : test_component.DateTime {
-            get { try! _default.get_DateCreatedImpl() }
+            get { _tryWinRT(.init(), try _default.get_DateCreatedImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istorageitem.name)
         fileprivate var name : String {
-            get { try! _default.get_NameImpl() }
+            get { _tryWinRT("", try _default.get_NameImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istorageitem.path)
         fileprivate var path : String {
-            get { try! _default.get_PathImpl() }
+            get { _tryWinRT("", try _default.get_PathImpl()) }
         }
 
     }
@@ -514,22 +514,22 @@ public enum __IMPL_Windows_Storage {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istorageitem2.attributes)
         fileprivate var attributes : FileAttributes {
-            get { try! _IStorageItem.get_AttributesImpl() }
+            get { _tryWinRT(.init(0), try _IStorageItem.get_AttributesImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istorageitem2.datecreated)
         fileprivate var dateCreated : test_component.DateTime {
-            get { try! _IStorageItem.get_DateCreatedImpl() }
+            get { _tryWinRT(.init(), try _IStorageItem.get_DateCreatedImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istorageitem2.name)
         fileprivate var name : String {
-            get { try! _IStorageItem.get_NameImpl() }
+            get { _tryWinRT("", try _IStorageItem.get_NameImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istorageitem2.path)
         fileprivate var path : String {
-            get { try! _IStorageItem.get_PathImpl() }
+            get { _tryWinRT("", try _IStorageItem.get_PathImpl()) }
         }
 
     }
@@ -574,22 +574,22 @@ public enum __IMPL_Windows_Storage {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istorageitemproperties.displayname)
         fileprivate var displayName : String {
-            get { try! _default.get_DisplayNameImpl() }
+            get { _tryWinRT("", try _default.get_DisplayNameImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istorageitemproperties.displaytype)
         fileprivate var displayType : String {
-            get { try! _default.get_DisplayTypeImpl() }
+            get { _tryWinRT("", try _default.get_DisplayTypeImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istorageitemproperties.folderrelativeid)
         fileprivate var folderRelativeId : String {
-            get { try! _default.get_FolderRelativeIdImpl() }
+            get { _tryWinRT("", try _default.get_FolderRelativeIdImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istorageitemproperties.properties)
         fileprivate var properties : test_component.StorageItemContentProperties! {
-            get { try! _default.get_PropertiesImpl() }
+            get { _tryWinRT(nil, try _default.get_PropertiesImpl()) }
         }
 
     }
@@ -650,22 +650,22 @@ public enum __IMPL_Windows_Storage {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istorageitemproperties2.displayname)
         fileprivate var displayName : String {
-            get { try! _IStorageItemProperties.get_DisplayNameImpl() }
+            get { _tryWinRT("", try _IStorageItemProperties.get_DisplayNameImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istorageitemproperties2.displaytype)
         fileprivate var displayType : String {
-            get { try! _IStorageItemProperties.get_DisplayTypeImpl() }
+            get { _tryWinRT("", try _IStorageItemProperties.get_DisplayTypeImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istorageitemproperties2.folderrelativeid)
         fileprivate var folderRelativeId : String {
-            get { try! _IStorageItemProperties.get_FolderRelativeIdImpl() }
+            get { _tryWinRT("", try _IStorageItemProperties.get_FolderRelativeIdImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istorageitemproperties2.properties)
         fileprivate var properties : test_component.StorageItemContentProperties! {
-            get { try! _IStorageItemProperties.get_PropertiesImpl() }
+            get { _tryWinRT(nil, try _IStorageItemProperties.get_PropertiesImpl()) }
         }
 
     }
@@ -695,7 +695,7 @@ public enum __IMPL_Windows_Storage {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istorageitempropertieswithprovider.provider)
         fileprivate var provider : StorageProvider! {
-            get { try! _default.get_ProviderImpl() }
+            get { _tryWinRT(nil, try _default.get_ProviderImpl()) }
         }
 
         private lazy var _IStorageItemProperties: __ABI_Windows_Storage.IStorageItemProperties! = getInterfaceForCaching()
@@ -716,22 +716,22 @@ public enum __IMPL_Windows_Storage {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istorageitempropertieswithprovider.displayname)
         fileprivate var displayName : String {
-            get { try! _IStorageItemProperties.get_DisplayNameImpl() }
+            get { _tryWinRT("", try _IStorageItemProperties.get_DisplayNameImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istorageitempropertieswithprovider.displaytype)
         fileprivate var displayType : String {
-            get { try! _IStorageItemProperties.get_DisplayTypeImpl() }
+            get { _tryWinRT("", try _IStorageItemProperties.get_DisplayTypeImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istorageitempropertieswithprovider.folderrelativeid)
         fileprivate var folderRelativeId : String {
-            get { try! _IStorageItemProperties.get_FolderRelativeIdImpl() }
+            get { _tryWinRT("", try _IStorageItemProperties.get_FolderRelativeIdImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istorageitempropertieswithprovider.properties)
         fileprivate var properties : test_component.StorageItemContentProperties! {
-            get { try! _IStorageItemProperties.get_PropertiesImpl() }
+            get { _tryWinRT(nil, try _IStorageItemProperties.get_PropertiesImpl()) }
         }
 
     }

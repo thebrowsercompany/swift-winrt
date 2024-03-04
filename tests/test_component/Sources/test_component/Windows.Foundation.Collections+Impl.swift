@@ -77,7 +77,7 @@ public enum __IMPL_Windows_Foundation_Collections {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.size)
         fileprivate var size : UInt32 {
-            get { try! _IMap.get_SizeImpl() }
+            get { _tryWinRT(0, try _IMap.get_SizeImpl()) }
         }
 
         private lazy var _IIterable: IIterableIKeyValuePairString_Any! = getInterfaceForCaching()
@@ -113,12 +113,12 @@ public enum __IMPL_Windows_Foundation_Collections {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorchangedeventargs.collectionchange)
         fileprivate var collectionChange : CollectionChange {
-            get { try! _default.get_CollectionChangeImpl() }
+            get { _tryWinRT(.init(0), try _default.get_CollectionChangeImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorchangedeventargs.index)
         fileprivate var index : UInt32 {
-            get { try! _default.get_IndexImpl() }
+            get { _tryWinRT(0, try _default.get_IndexImpl()) }
         }
 
     }

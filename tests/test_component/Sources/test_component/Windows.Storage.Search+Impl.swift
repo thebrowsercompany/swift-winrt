@@ -159,7 +159,7 @@ public enum __IMPL_Windows_Storage_Search {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.search.istoragequeryresultbase.folder)
         fileprivate var folder : test_component.StorageFolder! {
-            get { try! _default.get_FolderImpl() }
+            get { _tryWinRT(nil, try _default.get_FolderImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.search.istoragequeryresultbase.contentschanged)

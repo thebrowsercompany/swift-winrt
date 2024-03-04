@@ -48,6 +48,8 @@ open class WinRTClass : CustomQueryInterface, Equatable {
       identity = nil
       _inner = nil
     }
+
+    internal var failureCallback: ((SUPPORT_MODULE.Error) throws -> ())?
 }
 
 public func ==<T: WinRTClass>(_ lhs: T, _ rhs: T) -> Bool {

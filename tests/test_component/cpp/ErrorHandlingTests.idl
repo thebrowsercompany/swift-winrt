@@ -1,0 +1,14 @@
+// Methods for testing passing in and returning null values.
+import "Windows.Foundation.idl";
+
+namespace test_component
+{
+    runtimeclass Failure
+    {
+        Failure();
+        static void FailedStaticMethod();
+        static Boolean FailedStaticProperty{ get; };
+
+        String FailedProperty { get; set;};
+    }
+}

@@ -171,13 +171,13 @@ public enum __IMPL_test_component {
         }
 
         fileprivate var enumProperty : Fruit {
-            get { try! _default.get_EnumPropertyImpl() }
-            set { try! _default.put_EnumPropertyImpl(newValue) }
+            get { _tryWinRT(.init(0), try _default.get_EnumPropertyImpl()) }
+            set { _tryWinRT(try _default.put_EnumPropertyImpl(newValue)) }
         }
 
         fileprivate var id : Foundation.UUID? {
-            get { try! _default.get_IdImpl() }
-            set { try! _default.put_IdImpl(newValue) }
+            get { _tryWinRT(nil, try _default.get_IdImpl()) }
+            set { _tryWinRT(try _default.put_IdImpl(newValue)) }
         }
 
         fileprivate lazy var implementableEvent : Event<test_component.InDelegate> = {
@@ -354,8 +354,8 @@ public enum __IMPL_test_component {
         }
 
         fileprivate var `struct` : String {
-            get { try! _default.get_StructImpl() }
-            set { try! _default.put_StructImpl(newValue) }
+            get { _tryWinRT("", try _default.get_StructImpl()) }
+            set { _tryWinRT(try _default.put_StructImpl(newValue)) }
         }
 
         fileprivate lazy var `repeat` : Event<EventHandler<Any?>> = {

@@ -180,6 +180,18 @@ typedef interface __x_ABI_Ctest__component_CIVoidToVoidDelegate __x_ABI_Ctest__c
 
 #endif // ____x_ABI_Ctest__component_CIEventTesterFactory_FWD_DEFINED__
 
+#ifndef ____x_ABI_Ctest__component_CIFailure_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CIFailure_FWD_DEFINED__
+    typedef interface __x_ABI_Ctest__component_CIFailure __x_ABI_Ctest__component_CIFailure;
+
+#endif // ____x_ABI_Ctest__component_CIFailure_FWD_DEFINED__
+
+#ifndef ____x_ABI_Ctest__component_CIFailureStatics_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CIFailureStatics_FWD_DEFINED__
+    typedef interface __x_ABI_Ctest__component_CIFailureStatics __x_ABI_Ctest__component_CIFailureStatics;
+
+#endif // ____x_ABI_Ctest__component_CIFailureStatics_FWD_DEFINED__
+
 #ifndef ____x_ABI_Ctest__component_CIIAmImplementable_FWD_DEFINED__
 #define ____x_ABI_Ctest__component_CIIAmImplementable_FWD_DEFINED__
     typedef interface __x_ABI_Ctest__component_CIIAmImplementable __x_ABI_Ctest__component_CIIAmImplementable;
@@ -3608,6 +3620,75 @@ struct __x_ABI_Ctest__component_CStructWithIReference
     
     EXTERN_C const IID IID___x_ABI_Ctest__component_CIEventTesterFactory;
 #endif /* !defined(____x_ABI_Ctest__component_CIEventTesterFactory_INTERFACE_DEFINED__) */
+    
+#if !defined(____x_ABI_Ctest__component_CIFailure_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CIFailure_INTERFACE_DEFINED__
+    typedef struct __x_ABI_Ctest__component_CIFailureVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CIFailure* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CIFailure* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CIFailure* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_Ctest__component_CIFailure* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_Ctest__component_CIFailure* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CIFailure* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* get_FailedProperty)(__x_ABI_Ctest__component_CIFailure* This,
+        HSTRING* value);
+    HRESULT (STDMETHODCALLTYPE* put_FailedProperty)(__x_ABI_Ctest__component_CIFailure* This,
+        HSTRING value);
+
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CIFailureVtbl;
+
+    interface __x_ABI_Ctest__component_CIFailure
+    {
+        CONST_VTBL struct __x_ABI_Ctest__component_CIFailureVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CIFailure;
+#endif /* !defined(____x_ABI_Ctest__component_CIFailure_INTERFACE_DEFINED__) */
+    
+#if !defined(____x_ABI_Ctest__component_CIFailureStatics_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CIFailureStatics_INTERFACE_DEFINED__
+    typedef struct __x_ABI_Ctest__component_CIFailureStaticsVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CIFailureStatics* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CIFailureStatics* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CIFailureStatics* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_Ctest__component_CIFailureStatics* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_Ctest__component_CIFailureStatics* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CIFailureStatics* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* FailedStaticMethod)(__x_ABI_Ctest__component_CIFailureStatics* This);
+    HRESULT (STDMETHODCALLTYPE* get_FailedStaticProperty)(__x_ABI_Ctest__component_CIFailureStatics* This,
+        boolean* value);
+
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CIFailureStaticsVtbl;
+
+    interface __x_ABI_Ctest__component_CIFailureStatics
+    {
+        CONST_VTBL struct __x_ABI_Ctest__component_CIFailureStaticsVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CIFailureStatics;
+#endif /* !defined(____x_ABI_Ctest__component_CIFailureStatics_INTERFACE_DEFINED__) */
     
 #if !defined(____x_ABI_Ctest__component_CIIAmImplementable_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIIAmImplementable_INTERFACE_DEFINED__

@@ -67,7 +67,7 @@ public enum __ABI_Windows_Storage_Search {
         }
 
         internal func get_ApplicationSearchFilterImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIQueryOptions.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_ApplicationSearchFilter(pThis, &value))
             }
@@ -82,7 +82,7 @@ public enum __ABI_Windows_Storage_Search {
         }
 
         internal func get_UserSearchFilterImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIQueryOptions.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_UserSearchFilter(pThis, &value))
             }
@@ -97,7 +97,7 @@ public enum __ABI_Windows_Storage_Search {
         }
 
         internal func get_LanguageImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIQueryOptions.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Language(pThis, &value))
             }
@@ -135,7 +135,7 @@ public enum __ABI_Windows_Storage_Search {
         }
 
         internal func get_GroupPropertyNameImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIQueryOptions.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_GroupPropertyName(pThis, &value))
             }
@@ -151,7 +151,7 @@ public enum __ABI_Windows_Storage_Search {
         }
 
         internal func SaveToStringImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIQueryOptions.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.SaveToString(pThis, &value))
             }

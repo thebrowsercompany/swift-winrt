@@ -638,7 +638,7 @@ public enum __ABI_Windows_Foundation {
         }
 
         open func GetStringImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetString(pThis, &value))
             }
@@ -943,7 +943,7 @@ public enum __ABI_Windows_Foundation {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIStringable }
 
         open func ToStringImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIStringable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ToString(pThis, &value))
             }
@@ -995,7 +995,7 @@ public enum __ABI_Windows_Foundation {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIUriEscapeStatics }
 
         internal func UnescapeComponentImpl(_ toUnescape: String) throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             let _toUnescape = try! HString(toUnescape)
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriEscapeStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.UnescapeComponent(pThis, _toUnescape.get(), &value))
@@ -1004,7 +1004,7 @@ public enum __ABI_Windows_Foundation {
         }
 
         internal func EscapeComponentImpl(_ toEscape: String) throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             let _toEscape = try! HString(toEscape)
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriEscapeStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.EscapeComponent(pThis, _toEscape.get(), &value))
@@ -1018,7 +1018,7 @@ public enum __ABI_Windows_Foundation {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIUriRuntimeClass }
 
         internal func get_AbsoluteUriImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_AbsoluteUri(pThis, &value))
             }
@@ -1026,7 +1026,7 @@ public enum __ABI_Windows_Foundation {
         }
 
         internal func get_DisplayUriImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_DisplayUri(pThis, &value))
             }
@@ -1034,7 +1034,7 @@ public enum __ABI_Windows_Foundation {
         }
 
         internal func get_DomainImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Domain(pThis, &value))
             }
@@ -1042,7 +1042,7 @@ public enum __ABI_Windows_Foundation {
         }
 
         internal func get_ExtensionImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Extension(pThis, &value))
             }
@@ -1050,7 +1050,7 @@ public enum __ABI_Windows_Foundation {
         }
 
         internal func get_FragmentImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Fragment(pThis, &value))
             }
@@ -1058,7 +1058,7 @@ public enum __ABI_Windows_Foundation {
         }
 
         internal func get_HostImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Host(pThis, &value))
             }
@@ -1066,7 +1066,7 @@ public enum __ABI_Windows_Foundation {
         }
 
         internal func get_PasswordImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Password(pThis, &value))
             }
@@ -1074,7 +1074,7 @@ public enum __ABI_Windows_Foundation {
         }
 
         internal func get_PathImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Path(pThis, &value))
             }
@@ -1082,7 +1082,7 @@ public enum __ABI_Windows_Foundation {
         }
 
         internal func get_QueryImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Query(pThis, &value))
             }
@@ -1099,7 +1099,7 @@ public enum __ABI_Windows_Foundation {
         }
 
         internal func get_RawUriImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_RawUri(pThis, &value))
             }
@@ -1107,7 +1107,7 @@ public enum __ABI_Windows_Foundation {
         }
 
         internal func get_SchemeNameImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_SchemeName(pThis, &value))
             }
@@ -1115,7 +1115,7 @@ public enum __ABI_Windows_Foundation {
         }
 
         internal func get_UserNameImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_UserName(pThis, &value))
             }
@@ -1188,7 +1188,7 @@ public enum __ABI_Windows_Foundation {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIUriRuntimeClassWithAbsoluteCanonicalUri }
 
         internal func get_AbsoluteCanonicalUriImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClassWithAbsoluteCanonicalUri.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_AbsoluteCanonicalUri(pThis, &value))
             }
@@ -1196,7 +1196,7 @@ public enum __ABI_Windows_Foundation {
         }
 
         internal func get_DisplayIriImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClassWithAbsoluteCanonicalUri.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_DisplayIri(pThis, &value))
             }
@@ -1209,7 +1209,7 @@ public enum __ABI_Windows_Foundation {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderEntry }
 
         open func get_NameImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderEntry.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Name(pThis, &value))
             }
@@ -1217,7 +1217,7 @@ public enum __ABI_Windows_Foundation {
         }
 
         open func get_ValueImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderEntry.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Value(pThis, &value))
             }
@@ -1274,7 +1274,7 @@ public enum __ABI_Windows_Foundation {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderRuntimeClass }
 
         internal func GetFirstValueByNameImpl(_ name: String) throws -> String {
-            var phstrValue: HSTRING?
+            var phstrValue: HSTRING? = nil
             let _name = try! HString(name)
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetFirstValueByName(pThis, _name.get(), &phstrValue))
