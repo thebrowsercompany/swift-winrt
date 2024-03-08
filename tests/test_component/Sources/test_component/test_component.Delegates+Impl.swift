@@ -41,7 +41,8 @@ public enum __IMPL_test_component_Delegates {
             guard let abi = abi else { return nil }
             let _default = SwiftABI(abi)
             let handler: Handler = { () in
-                try? _default.InvokeImpl()
+                let result = try? _default.InvokeImpl()
+                return result ?? 0
             }
             return handler
         }

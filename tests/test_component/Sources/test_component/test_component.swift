@@ -1717,8 +1717,8 @@ public struct StructWithEnum: Hashable, Codable {
 }
 
 public struct StructWithIReference: Hashable, Codable {
-    public var value1: Int32?
-    public var value2: Int32?
+    public var value1: Int32? = nil
+    public var value2: Int32? = nil
     public init() {}
     public init(value1: Int32?, value2: Int32?) {
         self.value1 = value1

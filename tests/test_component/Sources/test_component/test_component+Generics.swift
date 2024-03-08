@@ -3292,7 +3292,7 @@ internal class IIteratorString: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1_HSTRING }
 
     internal func get_CurrentImpl() throws -> String {
-        var result: HSTRING?
+        var result: HSTRING? = nil
         _ = try perform(as: __x_ABI_C__FIIterator_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
         }
@@ -5081,7 +5081,7 @@ internal class IKeyValuePairString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable }
 
     internal func get_KeyImpl() throws -> String {
-        var result: HSTRING?
+        var result: HSTRING? = nil
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
         }
@@ -5188,7 +5188,7 @@ internal class IKeyValuePairString_String: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING }
 
     internal func get_KeyImpl() throws -> String {
-        var result: HSTRING?
+        var result: HSTRING? = nil
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
         }
@@ -5196,7 +5196,7 @@ internal class IKeyValuePairString_String: test_component.IInspectable {
     }
 
     internal func get_ValueImpl() throws -> String {
-        var result: HSTRING?
+        var result: HSTRING? = nil
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Value(pThis, &result))
         }
@@ -5295,7 +5295,7 @@ internal class IKeyValuePairString_IVectorViewTextSegment: test_component.IInspe
     override public class var IID: test_component.IID { IID___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment }
 
     internal func get_KeyImpl() throws -> String {
-        var result: HSTRING?
+        var result: HSTRING? = nil
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
         }
@@ -5402,7 +5402,7 @@ internal class IKeyValuePairString_Base: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
 
     internal func get_KeyImpl() throws -> String {
-        var result: HSTRING?
+        var result: HSTRING? = nil
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
         }
@@ -5517,7 +5517,7 @@ internal class IMapChangedEventArgsString: test_component.IInspectable {
     }
 
     internal func get_KeyImpl() throws -> String {
-        var result: HSTRING?
+        var result: HSTRING? = nil
         _ = try perform(as: __x_ABI_C__FIMapChangedEventArgs_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
         }
@@ -5622,8 +5622,8 @@ internal var __x_ABI_C__FIMapView_2_HSTRING_IInspectableVTable: __x_ABI_C__FIMap
 
     Split: {
         guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        var first: test_component.AnyIMapView<String, Any?>?
-        var second: test_component.AnyIMapView<String, Any?>?
+        var first: test_component.AnyIMapView<String, Any?>? = nil
+        var second: test_component.AnyIMapView<String, Any?>? = nil
         __unwrapped__instance.split(&first, &second)
         let firstWrapper = test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper(first)
         firstWrapper?.copyTo($1)
@@ -5788,8 +5788,8 @@ internal var __x_ABI_C__FIMapView_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMapView_
 
     Split: {
         guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        var first: test_component.AnyIMapView<String, String>?
-        var second: test_component.AnyIMapView<String, String>?
+        var first: test_component.AnyIMapView<String, String>? = nil
+        var second: test_component.AnyIMapView<String, String>? = nil
         __unwrapped__instance.split(&first, &second)
         let firstWrapper = test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper(first)
         firstWrapper?.copyTo($1)
@@ -5803,7 +5803,7 @@ internal class IMapViewString_String: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMapView_2_HSTRING_HSTRING }
 
     internal func LookupImpl(_ key: String) throws -> String {
-        var result: HSTRING?
+        var result: HSTRING? = nil
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, _key.get(), &result))
@@ -5954,8 +5954,8 @@ internal var __x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CW
 
     Split: {
         guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        var first: test_component.AnyIMapView<String, test_component.AnyIVectorView<test_component.TextSegment>?>?
-        var second: test_component.AnyIMapView<String, test_component.AnyIVectorView<test_component.TextSegment>?>?
+        var first: test_component.AnyIMapView<String, test_component.AnyIVectorView<test_component.TextSegment>?>? = nil
+        var second: test_component.AnyIMapView<String, test_component.AnyIVectorView<test_component.TextSegment>?>? = nil
         __unwrapped__instance.split(&first, &second)
         let firstWrapper = test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentWrapper(first)
         firstWrapper?.copyTo($1)
@@ -6120,8 +6120,8 @@ internal var __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTab
 
     Split: {
         guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        var first: test_component.AnyIMapView<String, test_component.Base?>?
-        var second: test_component.AnyIMapView<String, test_component.Base?>?
+        var first: test_component.AnyIMapView<String, test_component.Base?>? = nil
+        var second: test_component.AnyIMapView<String, test_component.Base?>? = nil
         __unwrapped__instance.split(&first, &second)
         let firstWrapper = test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper(first)
         firstWrapper?.copyTo($1)
@@ -6542,7 +6542,7 @@ internal class IMapString_String: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMap_2_HSTRING_HSTRING }
 
     internal func LookupImpl(_ key: String) throws -> String {
-        var result: HSTRING?
+        var result: HSTRING? = nil
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, _key.get(), &result))
@@ -8207,7 +8207,7 @@ internal class IVectorViewString: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1_HSTRING }
 
     internal func GetAtImpl(_ index: UInt32) throws -> String {
-        var result: HSTRING?
+        var result: HSTRING? = nil
         _ = try perform(as: __x_ABI_C__FIVectorView_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
         }
@@ -10478,7 +10478,7 @@ internal class IVectorString: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVector_1_HSTRING }
 
     internal func GetAtImpl(_ index: UInt32) throws -> String {
-        var result: HSTRING?
+        var result: HSTRING? = nil
         _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
         }
@@ -12804,7 +12804,7 @@ internal class IAsyncOperationString: test_component.IInspectable {
     }
 
     internal func GetResultsImpl() throws -> String {
-        var result: HSTRING?
+        var result: HSTRING? = nil
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &result))
         }

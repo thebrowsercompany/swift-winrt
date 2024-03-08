@@ -529,14 +529,6 @@ bind<write_abi_args>(function));
     type.mangled_name());
     }
 
-    enum class try_flavor
-    {
-        ignore,
-        throwing,
-        fatal
-    };
-
-    static void write_class_func_body(writer& w, function_def const& function, interface_info const& iface, try_flavor try_flavor);
     static void write_class_func_body(writer& w, function_def const& function, interface_info const& iface, bool is_noexcept);
     static void write_comma_param_names(writer& w, std::vector<function_param> const& params);
     template <typename T>
@@ -1503,7 +1495,8 @@ vtable);
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (%) in
-%        }
+            %
+        }
         return handler
     }
 }
@@ -1528,11 +1521,17 @@ vtable);
             access_level,
             bind<write_comma_param_names>(invoke_method.params),
             bind([&](writer& w) {
-                interface_info delegate{ &type };
-                delegate.is_default = true; // so that the _default name is used
-                auto indent_guard{ w.push_indent({3}) };
-                write_class_func_body(w, invoke_method, delegate, try_flavor::ignore);
-                }));
+                if (invoke_method.return_type)
+                {
+                    w.write("let result = ");
+                }
+                w.write("try? _default.InvokeImpl(%)",
+                    bind<write_implementation_args>(invoke_method));
+                if (invoke_method.return_type)
+                {
+                    w.write("\n%return result ?? %", indent{3}, bind<write_default_value>(*invoke_method.return_type->type, projection_layer::swift));
+                }
+            }));
     }
 
     static void write_delegate_implementation(writer& w, delegate_type const& type)
@@ -2092,27 +2091,16 @@ public init<Composable: ComposableImpl>(
         }
     }
 
-    static void write_class_func_body(writer& w, function_def const& function, interface_info const& iface, try_flavor try_flavor)
+    static void write_class_func_body(writer& w, function_def const& function, interface_info const& iface, bool is_noexcept)
     {
         std::string_view func_name = get_abi_name(function);
         auto impl = get_swift_name(iface);
-        auto get_try_flavor = [try_flavor] { switch (try_flavor) {
-                case try_flavor::fatal: return "try!";
-                case try_flavor::throwing: return "try";
-                case try_flavor::ignore: return "try?";
-            };
-        };
-
+        auto try_flavor = is_noexcept ? "try!" : "try";
         w.write("% %.%Impl(%)\n",
-            get_try_flavor(),
+            try_flavor,
             impl,
             func_name,
             bind<write_implementation_args>(function));
-    }
-
-    static void write_class_func_body(writer& w, function_def const& function, interface_info const& iface, bool is_noexcept)
-    {
-        write_class_func_body(w, function, iface, is_noexcept ? try_flavor::fatal : try_flavor::throwing);
     }
 
     static std::string modifier_for(typedef_base const& type_definition, interface_info const& iface, member_type member)
