@@ -405,7 +405,7 @@ public enum __IMPL_Windows_Foundation {
             guard let abi = abi else { return nil }
             let _default = SwiftABI(abi)
             let handler: Handler = { (asyncInfo, asyncStatus) in
-                try! _default.InvokeImpl(asyncInfo, asyncStatus)
+                try? _default.InvokeImpl(asyncInfo, asyncStatus)
             }
             return handler
         }
@@ -419,7 +419,7 @@ public enum __IMPL_Windows_Foundation {
             guard let abi = abi else { return nil }
             let _default = SwiftABI(abi)
             let handler: Handler = { () in
-                try! _default.InvokeImpl()
+                try? _default.InvokeImpl()
             }
             return handler
         }

@@ -49,7 +49,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1_booleanBridge : Win
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try? _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -100,7 +100,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1_intBridge : WinRTDe
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try? _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -151,7 +151,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1_HSTRINGBridge : Win
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try? _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -202,7 +202,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1_UINT32Bridge : WinR
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try? _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -253,7 +253,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIMap_2_
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try? _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -304,7 +304,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try? _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -355,7 +355,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try? _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -406,7 +406,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try? _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -457,7 +457,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try? _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -508,7 +508,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try? _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -559,7 +559,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try? _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -610,7 +610,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try? _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -661,7 +661,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try? _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -712,7 +712,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try? _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -763,7 +763,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try? _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -814,7 +814,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try? _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -865,7 +865,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try? _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -916,7 +916,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try? _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -967,7 +967,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try? _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -1018,7 +1018,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try? _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -1069,7 +1069,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try? _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -1120,7 +1120,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try? _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -1171,7 +1171,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try? _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -1222,7 +1222,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try? _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -1273,7 +1273,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try? _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -1324,7 +1324,7 @@ internal class __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleBridge : W
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, progressInfo) in
-            try! _default.InvokeImpl(asyncInfo, progressInfo)
+            try? _default.InvokeImpl(asyncInfo, progressInfo)
         }
         return handler
     }
@@ -1375,7 +1375,7 @@ internal class __x_ABI_C__FIAsyncOperationProgressHandler_2_UINT32_UINT32Bridge 
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, progressInfo) in
-            try! _default.InvokeImpl(asyncInfo, progressInfo)
+            try? _default.InvokeImpl(asyncInfo, progressInfo)
         }
         return handler
     }
@@ -1426,7 +1426,7 @@ internal class __x_ABI_C__FIAsyncOperationProgressHandler_2___x_ABI_CWindows__CS
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, progressInfo) in
-            try! _default.InvokeImpl(asyncInfo, progressInfo)
+            try? _default.InvokeImpl(asyncInfo, progressInfo)
         }
         return handler
     }
@@ -1477,7 +1477,7 @@ internal class __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_dou
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try? _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -1528,7 +1528,7 @@ internal class __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_UINT32_
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try? _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -1579,7 +1579,7 @@ internal class __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2___x_ABI
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try? _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -11629,7 +11629,7 @@ internal class __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableBridge :
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, event) in
-            try! _default.InvokeImpl(sender, event)
+            try? _default.InvokeImpl(sender, event)
         }
         return handler
     }
@@ -11682,7 +11682,7 @@ internal class __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGBridge : WinR
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, event) in
-            try! _default.InvokeImpl(sender, event)
+            try? _default.InvokeImpl(sender, event)
         }
         return handler
     }
@@ -11735,7 +11735,7 @@ internal class __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, event) in
-            try! _default.InvokeImpl(sender, event)
+            try? _default.InvokeImpl(sender, event)
         }
         return handler
     }
@@ -11788,7 +11788,7 @@ internal class __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, event) in
-            try! _default.InvokeImpl(sender, event)
+            try? _default.InvokeImpl(sender, event)
         }
         return handler
     }
@@ -11841,7 +11841,7 @@ internal class __x_ABI_C__FIEventHandler_1_IInspectableBridge : WinRTDelegateBri
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, args) in
-            try! _default.InvokeImpl(sender, args)
+            try? _default.InvokeImpl(sender, args)
         }
         return handler
     }
@@ -16532,7 +16532,7 @@ internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, args) in
-            try! _default.InvokeImpl(sender, args)
+            try? _default.InvokeImpl(sender, args)
         }
         return handler
     }
@@ -16585,7 +16585,7 @@ internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CStorage__CSea
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, args) in
-            try! _default.InvokeImpl(sender, args)
+            try? _default.InvokeImpl(sender, args)
         }
         return handler
     }
@@ -16634,7 +16634,7 @@ internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClas
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, args) in
-            try! _default.InvokeImpl(sender, args)
+            try? _default.InvokeImpl(sender, args)
         }
         return handler
     }
@@ -16683,7 +16683,7 @@ internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimp
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, args) in
-            try! _default.InvokeImpl(sender, args)
+            try? _default.InvokeImpl(sender, args)
         }
         return handler
     }

@@ -529,6 +529,14 @@ bind<write_abi_args>(function));
     type.mangled_name());
     }
 
+    enum class try_flavor
+    {
+        ignore,
+        throwing,
+        fatal
+    };
+
+    static void write_class_func_body(writer& w, function_def const& function, interface_info const& iface, try_flavor try_flavor);
     static void write_class_func_body(writer& w, function_def const& function, interface_info const& iface, bool is_noexcept);
     static void write_comma_param_names(writer& w, std::vector<function_param> const& params);
     template <typename T>
@@ -1523,7 +1531,7 @@ vtable);
                 interface_info delegate{ &type };
                 delegate.is_default = true; // so that the _default name is used
                 auto indent_guard{ w.push_indent({3}) };
-                write_class_func_body(w, invoke_method, delegate, true);
+                write_class_func_body(w, invoke_method, delegate, try_flavor::ignore);
                 }));
     }
 
@@ -2084,16 +2092,27 @@ public init<Composable: ComposableImpl>(
         }
     }
 
-    static void write_class_func_body(writer& w, function_def const& function, interface_info const& iface, bool is_noexcept)
+    static void write_class_func_body(writer& w, function_def const& function, interface_info const& iface, try_flavor try_flavor)
     {
         std::string_view func_name = get_abi_name(function);
         auto impl = get_swift_name(iface);
-        auto try_flavor = is_noexcept ? "try!" : "try";
+        auto get_try_flavor = [try_flavor] { switch (try_flavor) {
+                case try_flavor::fatal: return "try!";
+                case try_flavor::throwing: return "try";
+                case try_flavor::ignore: return "try?";
+            };
+        };
+
         w.write("% %.%Impl(%)\n",
-            try_flavor,
+            get_try_flavor(),
             impl,
             func_name,
             bind<write_implementation_args>(function));
+    }
+
+    static void write_class_func_body(writer& w, function_def const& function, interface_info const& iface, bool is_noexcept)
+    {
+        write_class_func_body(w, function, iface, is_noexcept ? try_flavor::fatal : try_flavor::throwing);
     }
 
     static std::string modifier_for(typedef_base const& type_definition, interface_info const& iface, member_type member)
