@@ -350,13 +350,13 @@ public final class WwwFormUrlDecoder : WinRTClass, IIterable, IVectorView {
     }
 }
 
-public typealias AsyncActionCompletedHandler = (AnyIAsyncAction?, AsyncStatus) -> ()
-public typealias AsyncOperationCompletedHandler<TResult> = (AnyIAsyncOperation<TResult>?, AsyncStatus) -> ()
-public typealias AsyncOperationProgressHandler<TResult,TProgress> = (AnyIAsyncOperationWithProgress<TResult, TProgress>?, TProgress) -> ()
-public typealias AsyncOperationWithProgressCompletedHandler<TResult,TProgress> = (AnyIAsyncOperationWithProgress<TResult, TProgress>?, AsyncStatus) -> ()
-public typealias DeferralCompletedHandler = () -> ()
-public typealias EventHandler<T> = (Any?, T) -> ()
-public typealias TypedEventHandler<TSender,TResult> = (TSender, TResult) -> ()
+public typealias AsyncActionCompletedHandler = (AnyIAsyncAction?, AsyncStatus) throws -> ()
+public typealias AsyncOperationCompletedHandler<TResult> = (AnyIAsyncOperation<TResult>?, AsyncStatus) throws -> ()
+public typealias AsyncOperationProgressHandler<TResult,TProgress> = (AnyIAsyncOperationWithProgress<TResult, TProgress>?, TProgress) throws -> ()
+public typealias AsyncOperationWithProgressCompletedHandler<TResult,TProgress> = (AnyIAsyncOperationWithProgress<TResult, TProgress>?, AsyncStatus) throws -> ()
+public typealias DeferralCompletedHandler = () throws -> ()
+public typealias EventHandler<T> = (Any?, T) throws -> ()
+public typealias TypedEventHandler<TSender,TResult> = (TSender, TResult) throws -> ()
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.datetime)
 public struct DateTime: Hashable, Codable {
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.datetime.universaltime)

@@ -300,8 +300,8 @@ public final class ValueSet : WinRTClass, IObservableMap, IMap, IIterable, IProp
     }
 }
 
-public typealias MapChangedEventHandler<K,V> = (AnyIObservableMap<K, V>?, AnyIMapChangedEventArgs<K>?) -> ()
-public typealias VectorChangedEventHandler<T> = (AnyIObservableVector<T>?, AnyIVectorChangedEventArgs?) -> ()
+public typealias MapChangedEventHandler<K,V> = (AnyIObservableMap<K, V>?, AnyIMapChangedEventArgs<K>?) throws -> ()
+public typealias VectorChangedEventHandler<T> = (AnyIObservableVector<T>?, AnyIVectorChangedEventArgs?) throws -> ()
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1)
 public protocol IIterable<T> : WinRTInterface {
     associatedtype T

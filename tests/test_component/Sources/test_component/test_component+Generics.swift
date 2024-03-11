@@ -19,11 +19,13 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1_booleanVTable: __x_AB
     AddRef: { __x_ABI_C__FIAsyncOperationCompletedHandler_1_booleanWrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationCompletedHandler_1_booleanWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1_booleanWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperation<Bool>? = test_component.__x_ABI_C__FIAsyncOperation_1_booleanWrapper.unwrapFrom(abi: ComPtr($1))
-        let asyncStatus: test_component.AsyncStatus = $2
-        __unwrapped__instance(asyncInfo, asyncStatus)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1_booleanWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperation<Bool>? = test_component.__x_ABI_C__FIAsyncOperation_1_booleanWrapper.unwrapFrom(abi: ComPtr($1))
+            let asyncStatus: test_component.AsyncStatus = $2
+            try __unwrapped__instance(asyncInfo, asyncStatus)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1_booleanWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_booleanBridge>
@@ -49,7 +51,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1_booleanBridge : Win
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -70,11 +72,13 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1_intVTable: __x_ABI_C_
     AddRef: { __x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperation<Int32>? = test_component.__x_ABI_C__FIAsyncOperation_1_intWrapper.unwrapFrom(abi: ComPtr($1))
-        let asyncStatus: test_component.AsyncStatus = $2
-        __unwrapped__instance(asyncInfo, asyncStatus)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperation<Int32>? = test_component.__x_ABI_C__FIAsyncOperation_1_intWrapper.unwrapFrom(abi: ComPtr($1))
+            let asyncStatus: test_component.AsyncStatus = $2
+            try __unwrapped__instance(asyncInfo, asyncStatus)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_intBridge>
@@ -100,7 +104,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1_intBridge : WinRTDe
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -121,11 +125,13 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1_HSTRINGVTable: __x_AB
     AddRef: { __x_ABI_C__FIAsyncOperationCompletedHandler_1_HSTRINGWrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationCompletedHandler_1_HSTRINGWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperation<String>? = test_component.__x_ABI_C__FIAsyncOperation_1_HSTRINGWrapper.unwrapFrom(abi: ComPtr($1))
-        let asyncStatus: test_component.AsyncStatus = $2
-        __unwrapped__instance(asyncInfo, asyncStatus)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperation<String>? = test_component.__x_ABI_C__FIAsyncOperation_1_HSTRINGWrapper.unwrapFrom(abi: ComPtr($1))
+            let asyncStatus: test_component.AsyncStatus = $2
+            try __unwrapped__instance(asyncInfo, asyncStatus)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_HSTRINGBridge>
@@ -151,7 +157,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1_HSTRINGBridge : Win
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -172,11 +178,13 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1_UINT32VTable: __x_ABI
     AddRef: { __x_ABI_C__FIAsyncOperationCompletedHandler_1_UINT32Wrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationCompletedHandler_1_UINT32Wrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1_UINT32Wrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperation<UInt32>? = test_component.__x_ABI_C__FIAsyncOperation_1_UINT32Wrapper.unwrapFrom(abi: ComPtr($1))
-        let asyncStatus: test_component.AsyncStatus = $2
-        __unwrapped__instance(asyncInfo, asyncStatus)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1_UINT32Wrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperation<UInt32>? = test_component.__x_ABI_C__FIAsyncOperation_1_UINT32Wrapper.unwrapFrom(abi: ComPtr($1))
+            let asyncStatus: test_component.AsyncStatus = $2
+            try __unwrapped__instance(asyncInfo, asyncStatus)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1_UINT32Wrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_UINT32Bridge>
@@ -202,7 +210,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1_UINT32Bridge : WinR
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -223,11 +231,13 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIMap_2_HS
     AddRef: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIMap<String, Any?>?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: ComPtr($1))
-        let asyncStatus: test_component.AsyncStatus = $2
-        __unwrapped__instance(asyncInfo, asyncStatus)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIMap<String, Any?>?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: ComPtr($1))
+            let asyncStatus: test_component.AsyncStatus = $2
+            try __unwrapped__instance(asyncInfo, asyncStatus)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIMap_2_HSTRING_IInspectableBridge>
@@ -253,7 +263,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIMap_2_
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -274,11 +284,13 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorVi
     AddRef: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.AnyIStorageItem?>?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper.unwrapFrom(abi: ComPtr($1))
-        let asyncStatus: test_component.AsyncStatus = $2
-        __unwrapped__instance(asyncInfo, asyncStatus)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.AnyIStorageItem?>?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper.unwrapFrom(abi: ComPtr($1))
+            let asyncStatus: test_component.AsyncStatus = $2
+            try __unwrapped__instance(asyncInfo, asyncStatus)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemBridge>
@@ -304,7 +316,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -325,11 +337,13 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorVi
     AddRef: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.StorageFile?>?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.unwrapFrom(abi: ComPtr($1))
-        let asyncStatus: test_component.AsyncStatus = $2
-        __unwrapped__instance(asyncInfo, asyncStatus)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.StorageFile?>?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.unwrapFrom(abi: ComPtr($1))
+            let asyncStatus: test_component.AsyncStatus = $2
+            try __unwrapped__instance(asyncInfo, asyncStatus)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileBridge>
@@ -355,7 +369,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -376,11 +390,13 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorVi
     AddRef: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.StorageFolder?>?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.unwrapFrom(abi: ComPtr($1))
-        let asyncStatus: test_component.AsyncStatus = $2
-        __unwrapped__instance(asyncInfo, asyncStatus)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.StorageFolder?>?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.unwrapFrom(abi: ComPtr($1))
+            let asyncStatus: test_component.AsyncStatus = $2
+            try __unwrapped__instance(asyncInfo, asyncStatus)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderBridge>
@@ -406,7 +422,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -427,11 +443,13 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorVi
     AddRef: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeWrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.StorageLibraryChange?>?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeWrapper.unwrapFrom(abi: ComPtr($1))
-        let asyncStatus: test_component.AsyncStatus = $2
-        __unwrapped__instance(asyncInfo, asyncStatus)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.StorageLibraryChange?>?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeWrapper.unwrapFrom(abi: ComPtr($1))
+            let asyncStatus: test_component.AsyncStatus = $2
+            try __unwrapped__instance(asyncInfo, asyncStatus)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeBridge>
@@ -457,7 +475,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -478,11 +496,13 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector_1
     AddRef: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector_1_HSTRINGWrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector_1_HSTRINGWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector_1_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVector<String>?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVector_1_HSTRINGWrapper.unwrapFrom(abi: ComPtr($1))
-        let asyncStatus: test_component.AsyncStatus = $2
-        __unwrapped__instance(asyncInfo, asyncStatus)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector_1_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVector<String>?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVector_1_HSTRINGWrapper.unwrapFrom(abi: ComPtr($1))
+            let asyncStatus: test_component.AsyncStatus = $2
+            try __unwrapped__instance(asyncInfo, asyncStatus)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector_1_HSTRINGBridge>
@@ -508,7 +528,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -529,11 +549,13 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
     AddRef: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicPropertiesWrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicPropertiesWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicPropertiesWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperation<test_component.BasicProperties?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicPropertiesWrapper.unwrapFrom(abi: ComPtr($1))
-        let asyncStatus: test_component.AsyncStatus = $2
-        __unwrapped__instance(asyncInfo, asyncStatus)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicPropertiesWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperation<test_component.BasicProperties?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicPropertiesWrapper.unwrapFrom(abi: ComPtr($1))
+            let asyncStatus: test_component.AsyncStatus = $2
+            try __unwrapped__instance(asyncInfo, asyncStatus)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicPropertiesWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicPropertiesBridge>
@@ -559,7 +581,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -580,11 +602,13 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
     AddRef: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentPropertiesWrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentPropertiesWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentPropertiesWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperation<test_component.DocumentProperties?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentPropertiesWrapper.unwrapFrom(abi: ComPtr($1))
-        let asyncStatus: test_component.AsyncStatus = $2
-        __unwrapped__instance(asyncInfo, asyncStatus)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentPropertiesWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperation<test_component.DocumentProperties?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentPropertiesWrapper.unwrapFrom(abi: ComPtr($1))
+            let asyncStatus: test_component.AsyncStatus = $2
+            try __unwrapped__instance(asyncInfo, asyncStatus)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentPropertiesWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentPropertiesBridge>
@@ -610,7 +634,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -631,11 +655,13 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
     AddRef: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CImagePropertiesWrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CImagePropertiesWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CImagePropertiesWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperation<test_component.ImageProperties?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CImagePropertiesWrapper.unwrapFrom(abi: ComPtr($1))
-        let asyncStatus: test_component.AsyncStatus = $2
-        __unwrapped__instance(asyncInfo, asyncStatus)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CImagePropertiesWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperation<test_component.ImageProperties?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CImagePropertiesWrapper.unwrapFrom(abi: ComPtr($1))
+            let asyncStatus: test_component.AsyncStatus = $2
+            try __unwrapped__instance(asyncInfo, asyncStatus)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CImagePropertiesWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CImagePropertiesBridge>
@@ -661,7 +687,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -682,11 +708,13 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
     AddRef: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicPropertiesWrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicPropertiesWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicPropertiesWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperation<test_component.MusicProperties?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicPropertiesWrapper.unwrapFrom(abi: ComPtr($1))
-        let asyncStatus: test_component.AsyncStatus = $2
-        __unwrapped__instance(asyncInfo, asyncStatus)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicPropertiesWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperation<test_component.MusicProperties?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicPropertiesWrapper.unwrapFrom(abi: ComPtr($1))
+            let asyncStatus: test_component.AsyncStatus = $2
+            try __unwrapped__instance(asyncInfo, asyncStatus)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicPropertiesWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicPropertiesBridge>
@@ -712,7 +740,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -733,11 +761,13 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
     AddRef: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailWrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperation<test_component.StorageItemThumbnail?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailWrapper.unwrapFrom(abi: ComPtr($1))
-        let asyncStatus: test_component.AsyncStatus = $2
-        __unwrapped__instance(asyncInfo, asyncStatus)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperation<test_component.StorageItemThumbnail?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailWrapper.unwrapFrom(abi: ComPtr($1))
+            let asyncStatus: test_component.AsyncStatus = $2
+            try __unwrapped__instance(asyncInfo, asyncStatus)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailBridge>
@@ -763,7 +793,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -784,11 +814,13 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
     AddRef: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoPropertiesWrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoPropertiesWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoPropertiesWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperation<test_component.VideoProperties?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoPropertiesWrapper.unwrapFrom(abi: ComPtr($1))
-        let asyncStatus: test_component.AsyncStatus = $2
-        __unwrapped__instance(asyncInfo, asyncStatus)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoPropertiesWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperation<test_component.VideoProperties?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoPropertiesWrapper.unwrapFrom(abi: ComPtr($1))
+            let asyncStatus: test_component.AsyncStatus = $2
+            try __unwrapped__instance(asyncInfo, asyncStatus)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoPropertiesWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoPropertiesBridge>
@@ -814,7 +846,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -835,11 +867,13 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
     AddRef: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIStorageItem?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper.unwrapFrom(abi: ComPtr($1))
-        let asyncStatus: test_component.AsyncStatus = $2
-        __unwrapped__instance(asyncInfo, asyncStatus)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIStorageItem?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper.unwrapFrom(abi: ComPtr($1))
+            let asyncStatus: test_component.AsyncStatus = $2
+            try __unwrapped__instance(asyncInfo, asyncStatus)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CIStorageItemBridge>
@@ -865,7 +899,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -886,11 +920,13 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
     AddRef: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CSearch__CIndexedStateWrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CSearch__CIndexedStateWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CSearch__CIndexedStateWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperation<test_component.IndexedState>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSearch__CIndexedStateWrapper.unwrapFrom(abi: ComPtr($1))
-        let asyncStatus: test_component.AsyncStatus = $2
-        __unwrapped__instance(asyncInfo, asyncStatus)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CSearch__CIndexedStateWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperation<test_component.IndexedState>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSearch__CIndexedStateWrapper.unwrapFrom(abi: ComPtr($1))
+            let asyncStatus: test_component.AsyncStatus = $2
+            try __unwrapped__instance(asyncInfo, asyncStatus)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CSearch__CIndexedStateWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CSearch__CIndexedStateBridge>
@@ -916,7 +952,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -937,11 +973,13 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
     AddRef: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperation<test_component.StorageFile?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.unwrapFrom(abi: ComPtr($1))
-        let asyncStatus: test_component.AsyncStatus = $2
-        __unwrapped__instance(asyncInfo, asyncStatus)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperation<test_component.StorageFile?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.unwrapFrom(abi: ComPtr($1))
+            let asyncStatus: test_component.AsyncStatus = $2
+            try __unwrapped__instance(asyncInfo, asyncStatus)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFileWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFileBridge>
@@ -967,7 +1005,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -988,11 +1026,13 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
     AddRef: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperation<test_component.StorageFolder?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.unwrapFrom(abi: ComPtr($1))
-        let asyncStatus: test_component.AsyncStatus = $2
-        __unwrapped__instance(asyncInfo, asyncStatus)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperation<test_component.StorageFolder?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.unwrapFrom(abi: ComPtr($1))
+            let asyncStatus: test_component.AsyncStatus = $2
+            try __unwrapped__instance(asyncInfo, asyncStatus)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFolderBridge>
@@ -1018,7 +1058,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -1039,11 +1079,13 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
     AddRef: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageStreamTransactionWrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageStreamTransactionWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageStreamTransactionWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperation<test_component.StorageStreamTransaction?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageStreamTransactionWrapper.unwrapFrom(abi: ComPtr($1))
-        let asyncStatus: test_component.AsyncStatus = $2
-        __unwrapped__instance(asyncInfo, asyncStatus)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageStreamTransactionWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperation<test_component.StorageStreamTransaction?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageStreamTransactionWrapper.unwrapFrom(abi: ComPtr($1))
+            let asyncStatus: test_component.AsyncStatus = $2
+            try __unwrapped__instance(asyncInfo, asyncStatus)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageStreamTransactionWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageStreamTransactionBridge>
@@ -1069,7 +1111,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -1090,11 +1132,13 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
     AddRef: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIBufferWrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIBufferWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIBufferWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIBuffer?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIBufferWrapper.unwrapFrom(abi: ComPtr($1))
-        let asyncStatus: test_component.AsyncStatus = $2
-        __unwrapped__instance(asyncInfo, asyncStatus)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIBufferWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIBuffer?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIBufferWrapper.unwrapFrom(abi: ComPtr($1))
+            let asyncStatus: test_component.AsyncStatus = $2
+            try __unwrapped__instance(asyncInfo, asyncStatus)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIBufferWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIBufferBridge>
@@ -1120,7 +1164,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -1141,11 +1185,13 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
     AddRef: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIInputStreamWrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIInputStreamWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIInputStreamWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIInputStream?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIInputStreamWrapper.unwrapFrom(abi: ComPtr($1))
-        let asyncStatus: test_component.AsyncStatus = $2
-        __unwrapped__instance(asyncInfo, asyncStatus)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIInputStreamWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIInputStream?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIInputStreamWrapper.unwrapFrom(abi: ComPtr($1))
+            let asyncStatus: test_component.AsyncStatus = $2
+            try __unwrapped__instance(asyncInfo, asyncStatus)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIInputStreamWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIInputStreamBridge>
@@ -1171,7 +1217,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -1192,11 +1238,13 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
     AddRef: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIRandomAccessStream?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWrapper.unwrapFrom(abi: ComPtr($1))
-        let asyncStatus: test_component.AsyncStatus = $2
-        __unwrapped__instance(asyncInfo, asyncStatus)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIRandomAccessStream?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWrapper.unwrapFrom(abi: ComPtr($1))
+            let asyncStatus: test_component.AsyncStatus = $2
+            try __unwrapped__instance(asyncInfo, asyncStatus)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamBridge>
@@ -1222,7 +1270,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -1243,11 +1291,13 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
     AddRef: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentTypeWrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentTypeWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentTypeWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIRandomAccessStreamWithContentType?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentTypeWrapper.unwrapFrom(abi: ComPtr($1))
-        let asyncStatus: test_component.AsyncStatus = $2
-        __unwrapped__instance(asyncInfo, asyncStatus)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentTypeWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIRandomAccessStreamWithContentType?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentTypeWrapper.unwrapFrom(abi: ComPtr($1))
+            let asyncStatus: test_component.AsyncStatus = $2
+            try __unwrapped__instance(asyncInfo, asyncStatus)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentTypeWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentTypeBridge>
@@ -1273,7 +1323,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -1294,11 +1344,13 @@ internal var __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleVTable: __x_
     AddRef: { __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperationWithProgress<Int32, Double>? = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper.unwrapFrom(abi: ComPtr($1))
-        let progressInfo: Double = $2
-        __unwrapped__instance(asyncInfo, progressInfo)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperationWithProgress<Int32, Double>? = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper.unwrapFrom(abi: ComPtr($1))
+            let progressInfo: Double = $2
+            try __unwrapped__instance(asyncInfo, progressInfo)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleBridge>
@@ -1324,7 +1376,7 @@ internal class __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleBridge : W
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, progressInfo) in
-            try! _default.InvokeImpl(asyncInfo, progressInfo)
+            try _default.InvokeImpl(asyncInfo, progressInfo)
         }
         return handler
     }
@@ -1345,11 +1397,13 @@ internal var __x_ABI_C__FIAsyncOperationProgressHandler_2_UINT32_UINT32VTable: _
     AddRef: { __x_ABI_C__FIAsyncOperationProgressHandler_2_UINT32_UINT32Wrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationProgressHandler_2_UINT32_UINT32Wrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationProgressHandler_2_UINT32_UINT32Wrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperationWithProgress<UInt32, UInt32>? = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32Wrapper.unwrapFrom(abi: ComPtr($1))
-        let progressInfo: UInt32 = $2
-        __unwrapped__instance(asyncInfo, progressInfo)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationProgressHandler_2_UINT32_UINT32Wrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperationWithProgress<UInt32, UInt32>? = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32Wrapper.unwrapFrom(abi: ComPtr($1))
+            let progressInfo: UInt32 = $2
+            try __unwrapped__instance(asyncInfo, progressInfo)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationProgressHandler_2_UINT32_UINT32Wrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2_UINT32_UINT32Bridge>
@@ -1375,7 +1429,7 @@ internal class __x_ABI_C__FIAsyncOperationProgressHandler_2_UINT32_UINT32Bridge 
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, progressInfo) in
-            try! _default.InvokeImpl(asyncInfo, progressInfo)
+            try _default.InvokeImpl(asyncInfo, progressInfo)
         }
         return handler
     }
@@ -1396,11 +1450,13 @@ internal var __x_ABI_C__FIAsyncOperationProgressHandler_2___x_ABI_CWindows__CSto
     AddRef: { __x_ABI_C__FIAsyncOperationProgressHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationProgressHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationProgressHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperationWithProgress<test_component.AnyIBuffer?, UInt32>? = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper.unwrapFrom(abi: ComPtr($1))
-        let progressInfo: UInt32 = $2
-        __unwrapped__instance(asyncInfo, progressInfo)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationProgressHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperationWithProgress<test_component.AnyIBuffer?, UInt32>? = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper.unwrapFrom(abi: ComPtr($1))
+            let progressInfo: UInt32 = $2
+            try __unwrapped__instance(asyncInfo, progressInfo)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationProgressHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Bridge>
@@ -1426,7 +1482,7 @@ internal class __x_ABI_C__FIAsyncOperationProgressHandler_2___x_ABI_CWindows__CS
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, progressInfo) in
-            try! _default.InvokeImpl(asyncInfo, progressInfo)
+            try _default.InvokeImpl(asyncInfo, progressInfo)
         }
         return handler
     }
@@ -1447,11 +1503,13 @@ internal var __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubl
     AddRef: { __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperationWithProgress<Int32, Double>? = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper.unwrapFrom(abi: ComPtr($1))
-        let asyncStatus: test_component.AsyncStatus = $2
-        __unwrapped__instance(asyncInfo, asyncStatus)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperationWithProgress<Int32, Double>? = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper.unwrapFrom(abi: ComPtr($1))
+            let asyncStatus: test_component.AsyncStatus = $2
+            try __unwrapped__instance(asyncInfo, asyncStatus)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleBridge>
@@ -1477,7 +1535,7 @@ internal class __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_dou
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -1498,11 +1556,13 @@ internal var __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_UINT32_UI
     AddRef: { __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_UINT32_UINT32Wrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_UINT32_UINT32Wrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_UINT32_UINT32Wrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperationWithProgress<UInt32, UInt32>? = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32Wrapper.unwrapFrom(abi: ComPtr($1))
-        let asyncStatus: test_component.AsyncStatus = $2
-        __unwrapped__instance(asyncInfo, asyncStatus)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_UINT32_UINT32Wrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperationWithProgress<UInt32, UInt32>? = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32Wrapper.unwrapFrom(abi: ComPtr($1))
+            let asyncStatus: test_component.AsyncStatus = $2
+            try __unwrapped__instance(asyncInfo, asyncStatus)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_UINT32_UINT32Wrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_UINT32_UINT32Bridge>
@@ -1528,7 +1588,7 @@ internal class __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_UINT32_
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -1549,11 +1609,13 @@ internal var __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2___x_ABI_C
     AddRef: { __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper.addRef($0) },
     Release: { __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let asyncInfo: test_component.AnyIAsyncOperationWithProgress<test_component.AnyIBuffer?, UInt32>? = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper.unwrapFrom(abi: ComPtr($1))
-        let asyncStatus: test_component.AsyncStatus = $2
-        __unwrapped__instance(asyncInfo, asyncStatus)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperationWithProgress<test_component.AnyIBuffer?, UInt32>? = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper.unwrapFrom(abi: ComPtr($1))
+            let asyncStatus: test_component.AsyncStatus = $2
+            try __unwrapped__instance(asyncInfo, asyncStatus)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Bridge>
@@ -1579,7 +1641,7 @@ internal class __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2___x_ABI
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try! _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.InvokeImpl(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -11597,11 +11659,13 @@ internal var __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableVTable: __
     AddRef: { __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper.addRef($0) },
     Release: { __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let sender: test_component.AnyIObservableMap<String, Any?>? = test_component.__x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: ComPtr($1))
-        let event: test_component.AnyIMapChangedEventArgs<String>? = test_component.__x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper.unwrapFrom(abi: ComPtr($2))
-        __unwrapped__instance(sender, event)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let sender: test_component.AnyIObservableMap<String, Any?>? = test_component.__x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: ComPtr($1))
+            let event: test_component.AnyIMapChangedEventArgs<String>? = test_component.__x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper.unwrapFrom(abi: ComPtr($2))
+            try __unwrapped__instance(sender, event)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableBridge>
@@ -11629,7 +11693,7 @@ internal class __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableBridge :
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, event) in
-            try! _default.InvokeImpl(sender, event)
+            try _default.InvokeImpl(sender, event)
         }
         return handler
     }
@@ -11650,11 +11714,13 @@ internal var __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGVTable: __x_ABI
     AddRef: { __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper.addRef($0) },
     Release: { __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let sender: test_component.AnyIObservableMap<String, String>? = test_component.__x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: ComPtr($1))
-        let event: test_component.AnyIMapChangedEventArgs<String>? = test_component.__x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper.unwrapFrom(abi: ComPtr($2))
-        __unwrapped__instance(sender, event)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let sender: test_component.AnyIObservableMap<String, String>? = test_component.__x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: ComPtr($1))
+            let event: test_component.AnyIMapChangedEventArgs<String>? = test_component.__x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper.unwrapFrom(abi: ComPtr($2))
+            try __unwrapped__instance(sender, event)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGBridge>
@@ -11682,7 +11748,7 @@ internal class __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGBridge : WinR
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, event) in
-            try! _default.InvokeImpl(sender, event)
+            try _default.InvokeImpl(sender, event)
         }
         return handler
     }
@@ -11703,11 +11769,13 @@ internal var __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__
     AddRef: { __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseWrapper.addRef($0) },
     Release: { __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let sender: test_component.AnyIObservableVector<test_component.Base?>? = test_component.__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: ComPtr($1))
-        let event: test_component.AnyIVectorChangedEventArgs? = __ABI_Windows_Foundation_Collections.IVectorChangedEventArgsWrapper.unwrapFrom(abi: ComPtr($2))
-        __unwrapped__instance(sender, event)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let sender: test_component.AnyIObservableVector<test_component.Base?>? = test_component.__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: ComPtr($1))
+            let event: test_component.AnyIVectorChangedEventArgs? = __ABI_Windows_Foundation_Collections.IVectorChangedEventArgsWrapper.unwrapFrom(abi: ComPtr($2))
+            try __unwrapped__instance(sender, event)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseBridge>
@@ -11735,7 +11803,7 @@ internal class __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, event) in
-            try! _default.InvokeImpl(sender, event)
+            try _default.InvokeImpl(sender, event)
         }
         return handler
     }
@@ -11756,11 +11824,13 @@ internal var __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__
     AddRef: { __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.addRef($0) },
     Release: { __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let sender: test_component.AnyIObservableVector<test_component.AnyIBasic?>? = test_component.__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.unwrapFrom(abi: ComPtr($1))
-        let event: test_component.AnyIVectorChangedEventArgs? = __ABI_Windows_Foundation_Collections.IVectorChangedEventArgsWrapper.unwrapFrom(abi: ComPtr($2))
-        __unwrapped__instance(sender, event)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let sender: test_component.AnyIObservableVector<test_component.AnyIBasic?>? = test_component.__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.unwrapFrom(abi: ComPtr($1))
+            let event: test_component.AnyIVectorChangedEventArgs? = __ABI_Windows_Foundation_Collections.IVectorChangedEventArgsWrapper.unwrapFrom(abi: ComPtr($2))
+            try __unwrapped__instance(sender, event)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicBridge>
@@ -11788,7 +11858,7 @@ internal class __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, event) in
-            try! _default.InvokeImpl(sender, event)
+            try _default.InvokeImpl(sender, event)
         }
         return handler
     }
@@ -11809,11 +11879,13 @@ internal var __x_ABI_C__FIEventHandler_1_IInspectableVTable: __x_ABI_C__FIEventH
     AddRef: { __x_ABI_C__FIEventHandler_1_IInspectableWrapper.addRef($0) },
     Release: { __x_ABI_C__FIEventHandler_1_IInspectableWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FIEventHandler_1_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let sender: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: ComPtr($1))
-        let args: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: ComPtr($2))
-        __unwrapped__instance(sender, args)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIEventHandler_1_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let sender: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: ComPtr($1))
+            let args: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: ComPtr($2))
+            try __unwrapped__instance(sender, args)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FIEventHandler_1_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIEventHandler_1_IInspectableBridge>
@@ -11841,7 +11913,7 @@ internal class __x_ABI_C__FIEventHandler_1_IInspectableBridge : WinRTDelegateBri
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, args) in
-            try! _default.InvokeImpl(sender, args)
+            try _default.InvokeImpl(sender, args)
         }
         return handler
     }
@@ -16500,11 +16572,13 @@ internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIM
     AddRef: { __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIMemoryBufferReference_IInspectableWrapper.addRef($0) },
     Release: { __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIMemoryBufferReference_IInspectableWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIMemoryBufferReference_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let sender: test_component.AnyIMemoryBufferReference? = __ABI_Windows_Foundation.IMemoryBufferReferenceWrapper.unwrapFrom(abi: ComPtr($1))
-        let args: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: ComPtr($2))
-        __unwrapped__instance(sender, args)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIMemoryBufferReference_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let sender: test_component.AnyIMemoryBufferReference? = __ABI_Windows_Foundation.IMemoryBufferReferenceWrapper.unwrapFrom(abi: ComPtr($1))
+            let args: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: ComPtr($2))
+            try __unwrapped__instance(sender, args)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIMemoryBufferReference_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIMemoryBufferReference_IInspectableBridge>
@@ -16532,7 +16606,7 @@ internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, args) in
-            try! _default.InvokeImpl(sender, args)
+            try _default.InvokeImpl(sender, args)
         }
         return handler
     }
@@ -16553,11 +16627,13 @@ internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CStorage__CSearc
     AddRef: { __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CStorage__CSearch__CIStorageQueryResultBase_IInspectableWrapper.addRef($0) },
     Release: { __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CStorage__CSearch__CIStorageQueryResultBase_IInspectableWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CStorage__CSearch__CIStorageQueryResultBase_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let sender: test_component.AnyIStorageQueryResultBase? = __ABI_Windows_Storage_Search.IStorageQueryResultBaseWrapper.unwrapFrom(abi: ComPtr($1))
-        let args: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: ComPtr($2))
-        __unwrapped__instance(sender, args)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CStorage__CSearch__CIStorageQueryResultBase_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let sender: test_component.AnyIStorageQueryResultBase? = __ABI_Windows_Storage_Search.IStorageQueryResultBaseWrapper.unwrapFrom(abi: ComPtr($1))
+            let args: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: ComPtr($2))
+            try __unwrapped__instance(sender, args)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CStorage__CSearch__CIStorageQueryResultBase_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CStorage__CSearch__CIStorageQueryResultBase_IInspectableBridge>
@@ -16585,7 +16661,7 @@ internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CStorage__CSea
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, args) in
-            try! _default.InvokeImpl(sender, args)
+            try _default.InvokeImpl(sender, args)
         }
         return handler
     }
@@ -16606,11 +16682,13 @@ internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass_
     AddRef: { __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsWrapper.addRef($0) },
     Release: { __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let sender: test_component.Class? = .from(abi: ComPtr($1))
-        let args: test_component.DeferrableEventArgs? = .from(abi: ComPtr($2))
-        __unwrapped__instance(sender, args)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let sender: test_component.Class? = .from(abi: ComPtr($1))
+            let args: test_component.DeferrableEventArgs? = .from(abi: ComPtr($2))
+            try __unwrapped__instance(sender, args)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsBridge>
@@ -16634,7 +16712,7 @@ internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClas
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, args) in
-            try! _default.InvokeImpl(sender, args)
+            try _default.InvokeImpl(sender, args)
         }
         return handler
     }
@@ -16655,11 +16733,13 @@ internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple
     AddRef: { __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.addRef($0) },
     Release: { __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.release($0) },
     Invoke: {
-        guard let __unwrapped__instance = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let sender: test_component.Simple? = .from(abi: ComPtr($1))
-        let args: test_component.SimpleEventArgs = .from(abi: $2)
-        __unwrapped__instance(sender, args)
-        return S_OK
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let sender: test_component.Simple? = .from(abi: ComPtr($1))
+            let args: test_component.SimpleEventArgs = .from(abi: $2)
+            try __unwrapped__instance(sender, args)
+            return S_OK
+        } catch { return failWith(err: E_FAIL) } 
     }
 )
 typealias __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsBridge>
@@ -16683,31 +16763,31 @@ internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimp
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, args) in
-            try! _default.InvokeImpl(sender, args)
+            try _default.InvokeImpl(sender, args)
         }
         return handler
     }
 }
 public extension EventSource where Handler == EventHandler<Any?> {
-    func invoke(_ sender: Any!, _ args: Any!) {
+    func invoke(_ sender: Any!, _ args: Any!) throws {
         for handler in getInvocationList() {
-            handler(sender, args)
+            try handler(sender, args)
         }
     }
 }
 
 public extension EventSource where Handler == TypedEventHandler<IMemoryBufferReference?, Any?> {
-    func invoke(_ sender: test_component.AnyIMemoryBufferReference!, _ args: Any!) {
+    func invoke(_ sender: test_component.AnyIMemoryBufferReference!, _ args: Any!) throws {
         for handler in getInvocationList() {
-            handler(sender, args)
+            try handler(sender, args)
         }
     }
 }
 
 public extension EventSource where Handler == TypedEventHandler<IStorageQueryResultBase?, Any?> {
-    func invoke(_ sender: test_component.AnyIStorageQueryResultBase!, _ args: Any!) {
+    func invoke(_ sender: test_component.AnyIStorageQueryResultBase!, _ args: Any!) throws {
         for handler in getInvocationList() {
-            handler(sender, args)
+            try handler(sender, args)
         }
     }
 }

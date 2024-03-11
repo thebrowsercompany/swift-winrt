@@ -3,7 +3,7 @@
 import Foundation
 import Ctest_component
 
-public typealias InDelegate = (String) -> ()
-public typealias InObjectDelegate = (Any?) -> ()
-public typealias ReturnInt32Delegate = () -> Int32
-public typealias SignalDelegate = () -> ()
+public typealias InDelegate = (String) throws -> ()
+public typealias InObjectDelegate = (Any?) throws -> ()
+public typealias ReturnInt32Delegate = () throws -> Int32
+public typealias SignalDelegate = () throws -> ()

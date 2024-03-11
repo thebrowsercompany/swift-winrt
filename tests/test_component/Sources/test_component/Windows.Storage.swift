@@ -979,7 +979,7 @@ public final class StreamedFileDataRequest : WinRTClass, test_component.IClosabl
     }
 }
 
-public typealias StreamedFileDataRequestedHandler = (StreamedFileDataRequest?) -> ()
+public typealias StreamedFileDataRequestedHandler = (StreamedFileDataRequest?) throws -> ()
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istoragefile)
 public protocol IStorageFile : IStorageItem, test_component.IRandomAccessStreamReference, test_component.IInputStreamReference {
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.istoragefile.openasync)
