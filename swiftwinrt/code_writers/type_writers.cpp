@@ -276,36 +276,45 @@ void swiftwinrt::write_type(writer& w, metadata_type const& type, write_type_par
     }
 }
 
-void swiftwinrt::write_default_init_assignment(writer& w, metadata_type const& sig, projection_layer layer)
+void swiftwinrt::write_default_value(writer& w, metadata_type const& sig, projection_layer layer)
 {
     auto category = get_category(&sig);
 
     if (category == param_category::object_type || category == param_category::generic_type)
     {
-        // Projected to Optional and default-initialized to nil
+        w.write("nil");
     }
     else if (category == param_category::string_type)
     {
-        // abi representation is HRESULT? which defaults to nil
+        // abi representation is HSTRING? which defaults to nil
         // swift representation is String, which must be initialized to ""
-        if (layer == projection_layer::swift) w.write(" = \"\"");
+        if (layer == projection_layer::swift) {
+            w.write("\"\"");
+        } else {
+            w.write("nil");
+        }
     }
     else if (category == param_category::struct_type || is_guid(category))
     {
-        w.write(" = .init()");
+        w.write(".init()");
     }
     else if (category == param_category::enum_type)
     {
-        w.write(" = .init(0)");
+        w.write(".init(0)");
     }
     else if (is_boolean(&sig))
     {
-        w.write(" = %", layer == projection_layer::c_abi ? "0" : "false");
+        w.write("%", layer == projection_layer::c_abi ? "0" : "false");
     }
     else
     {
-        w.write(" = %", is_floating_point(&sig) ? "0.0" : "0");
+        w.write("%", is_floating_point(&sig) ? "0.0" : "0");
     }
+}
+
+void swiftwinrt::write_default_init_assignment(writer& w, metadata_type const& sig, projection_layer layer)
+{
+    w.write(" = %", bind<write_default_value>(sig, layer));
 }
 
 write_type_params swiftwinrt::swift_write_type_params_for(metadata_type const& type)

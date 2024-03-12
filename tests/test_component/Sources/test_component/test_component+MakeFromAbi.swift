@@ -359,6 +359,10 @@ fileprivate func makeEventTesterFrom(abi: test_component.IInspectable) -> Any {
     return EventTester(fromAbi: abi)
 }
 
+fileprivate func makeFailureFrom(abi: test_component.IInspectable) -> Any {
+    return Failure(fromAbi: abi)
+}
+
 fileprivate func makeNoopClosableFrom(abi: test_component.IInspectable) -> Any {
     return NoopClosable(fromAbi: abi)
 }
@@ -470,6 +474,7 @@ public class __MakeFromAbi: MakeFromAbi {
             case "Derived": return makeDerivedFrom(abi: abi)
             case "DerivedFromNoConstructor": return makeDerivedFromNoConstructorFrom(abi: abi)
             case "EventTester": return makeEventTesterFrom(abi: abi)
+            case "Failure": return makeFailureFrom(abi: abi)
             case "NoopClosable": return makeNoopClosableFrom(abi: abi)
             case "Simple": return makeSimpleFrom(abi: abi)
             case "UnsealedDerived": return makeUnsealedDerivedFrom(abi: abi)

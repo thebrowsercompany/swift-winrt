@@ -4,6 +4,7 @@
 #include "EventTester.idl"
 #include "Keywords.idl"
 #include "NullValues.idl"
+#include "ErrorHandlingTests.idl"
 
 import "Windows.Foundation.idl";
 // import "Windows.Foundation.Numerics.idl";

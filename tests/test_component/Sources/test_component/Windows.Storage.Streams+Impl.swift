@@ -29,13 +29,13 @@ public enum __IMPL_Windows_Storage_Streams {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.ibuffer.capacity)
         fileprivate var capacity : UInt32 {
-            get { try! _default.get_CapacityImpl() }
+            get { _tryWinRT(0, try _default.get_CapacityImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.ibuffer.length)
         fileprivate var length : UInt32 {
-            get { try! _default.get_LengthImpl() }
-            set { try! _default.put_LengthImpl(newValue) }
+            get { _tryWinRT(0, try _default.get_LengthImpl()) }
+            set { _tryWinRT(try _default.put_LengthImpl(newValue)) }
         }
 
         private lazy var _IBufferByteAccess: __ABI_.IBufferByteAccess! = getInterfaceForCaching()
@@ -72,7 +72,7 @@ public enum __IMPL_Windows_Storage_Streams {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.icontenttypeprovider.contenttype)
         fileprivate var contentType : String {
-            get { try! _default.get_ContentTypeImpl() }
+            get { _tryWinRT("", try _default.get_ContentTypeImpl()) }
         }
 
     }
@@ -229,23 +229,23 @@ public enum __IMPL_Windows_Storage_Streams {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstream.canread)
         fileprivate var canRead : Bool {
-            get { try! _default.get_CanReadImpl() }
+            get { _tryWinRT(false, try _default.get_CanReadImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstream.canwrite)
         fileprivate var canWrite : Bool {
-            get { try! _default.get_CanWriteImpl() }
+            get { _tryWinRT(false, try _default.get_CanWriteImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstream.position)
         fileprivate var position : UInt64 {
-            get { try! _default.get_PositionImpl() }
+            get { _tryWinRT(0, try _default.get_PositionImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstream.size)
         fileprivate var size : UInt64 {
-            get { try! _default.get_SizeImpl() }
-            set { try! _default.put_SizeImpl(newValue) }
+            get { _tryWinRT(0, try _default.get_SizeImpl()) }
+            set { _tryWinRT(try _default.put_SizeImpl(newValue)) }
         }
 
         private lazy var _IClosable: __ABI_Windows_Foundation.IClosable! = getInterfaceForCaching()
@@ -372,29 +372,29 @@ public enum __IMPL_Windows_Storage_Streams {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstreamwithcontenttype.canread)
         fileprivate var canRead : Bool {
-            get { try! _IRandomAccessStream.get_CanReadImpl() }
+            get { _tryWinRT(false, try _IRandomAccessStream.get_CanReadImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstreamwithcontenttype.canwrite)
         fileprivate var canWrite : Bool {
-            get { try! _IRandomAccessStream.get_CanWriteImpl() }
+            get { _tryWinRT(false, try _IRandomAccessStream.get_CanWriteImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstreamwithcontenttype.position)
         fileprivate var position : UInt64 {
-            get { try! _IRandomAccessStream.get_PositionImpl() }
+            get { _tryWinRT(0, try _IRandomAccessStream.get_PositionImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstreamwithcontenttype.size)
         fileprivate var size : UInt64 {
-            get { try! _IRandomAccessStream.get_SizeImpl() }
-            set { try! _IRandomAccessStream.put_SizeImpl(newValue) }
+            get { _tryWinRT(0, try _IRandomAccessStream.get_SizeImpl()) }
+            set { _tryWinRT(try _IRandomAccessStream.put_SizeImpl(newValue)) }
         }
 
         private lazy var _IContentTypeProvider: __ABI_Windows_Storage_Streams.IContentTypeProvider! = getInterfaceForCaching()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstreamwithcontenttype.contenttype)
         fileprivate var contentType : String {
-            get { try! _IContentTypeProvider.get_ContentTypeImpl() }
+            get { _tryWinRT("", try _IContentTypeProvider.get_ContentTypeImpl()) }
         }
 
     }

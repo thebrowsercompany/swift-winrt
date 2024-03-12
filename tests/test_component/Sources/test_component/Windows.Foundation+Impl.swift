@@ -34,8 +34,8 @@ public enum __IMPL_Windows_Foundation {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncaction.completed)
         fileprivate var completed : AsyncActionCompletedHandler! {
-            get { try! _default.get_CompletedImpl() }
-            set { try! _default.put_CompletedImpl(newValue) }
+            get { _tryWinRT(nil, try _default.get_CompletedImpl()) }
+            set { _tryWinRT(try _default.put_CompletedImpl(newValue)) }
         }
 
         private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
@@ -51,17 +51,17 @@ public enum __IMPL_Windows_Foundation {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncaction.errorcode)
         fileprivate var errorCode : HRESULT {
-            get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+            get { _tryWinRT(0, try _IAsyncInfo.get_ErrorCodeImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncaction.id)
         fileprivate var id : UInt32 {
-            get { try! _IAsyncInfo.get_IdImpl() }
+            get { _tryWinRT(0, try _IAsyncInfo.get_IdImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncaction.status)
         fileprivate var status : AsyncStatus {
-            get { try! _IAsyncInfo.get_StatusImpl() }
+            get { _tryWinRT(.init(0), try _IAsyncInfo.get_StatusImpl()) }
         }
 
     }
@@ -101,17 +101,17 @@ public enum __IMPL_Windows_Foundation {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncinfo.errorcode)
         fileprivate var errorCode : HRESULT {
-            get { try! _default.get_ErrorCodeImpl() }
+            get { _tryWinRT(0, try _default.get_ErrorCodeImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncinfo.id)
         fileprivate var id : UInt32 {
-            get { try! _default.get_IdImpl() }
+            get { _tryWinRT(0, try _default.get_IdImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncinfo.status)
         fileprivate var status : AsyncStatus {
-            get { try! _default.get_StatusImpl() }
+            get { _tryWinRT(.init(0), try _default.get_StatusImpl()) }
         }
 
     }
@@ -207,7 +207,7 @@ public enum __IMPL_Windows_Foundation {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.imemorybufferreference.capacity)
         fileprivate var capacity : UInt32 {
-            get { try! _default.get_CapacityImpl() }
+            get { _tryWinRT(0, try _default.get_CapacityImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.imemorybufferreference.closed)
@@ -386,12 +386,12 @@ public enum __IMPL_Windows_Foundation {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iwwwformurldecoderentry.name)
         fileprivate var name : String {
-            get { try! _default.get_NameImpl() }
+            get { _tryWinRT("", try _default.get_NameImpl()) }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iwwwformurldecoderentry.value)
         fileprivate var value : String {
-            get { try! _default.get_ValueImpl() }
+            get { _tryWinRT("", try _default.get_ValueImpl()) }
         }
 
     }

@@ -422,24 +422,6 @@ class SwiftWinRTTests : XCTestCase {
     print("\(SwiftifiableNames.r8g8b8a8Typeless)")
     print("\(SwiftifiableNames.uuid)")
   }
-
-  public func testErrorInfo() {
-    let message = "You are doing a bad thing"
-    do {
-      let classy = Class()
-      try classy.fail(message)
-    } catch {
-      XCTAssertEqual("\(error)", message)
-    }
-  }
-
-  public func testNoExcept() throws {
-    let classy = Class()
-    classy.noexceptVoid()
-    classy.method()
-    XCTAssertEqual(classy.noexceptInt32(), 123)
-    XCTAssertEqual(classy.noexceptString(), "123")
-  }
 }
 
 var tests: [XCTestCaseEntry] = [
@@ -457,10 +439,9 @@ var tests: [XCTestCaseEntry] = [
     ("testOutParams", SwiftWinRTTests.testOutParams),
     ("testStaticMethods", SwiftWinRTTests.testStaticMethods),
     ("testStructWithIReference", SwiftWinRTTests.testStructWithIReference),
-    ("testUnicode", SwiftWinRTTests.testUnicode),
-    ("testErrorInfo", SwiftWinRTTests.testErrorInfo),
+    ("testUnicode", SwiftWinRTTests.testUnicode)
   ])
-] + valueBoxingTests + eventTests + collectionTests + aggregationTests + asyncTests + memoryManagementTests + bufferTests
+] + valueBoxingTests + eventTests + collectionTests + aggregationTests + asyncTests + memoryManagementTests + bufferTests + errorHandlingTests
 
 RoInitialize(RO_INIT_MULTITHREADED)
 XCTMain(tests)

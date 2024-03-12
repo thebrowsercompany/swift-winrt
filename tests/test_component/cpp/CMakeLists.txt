@@ -106,7 +106,7 @@ add_custom_command(
   COMMAND midlrt.exe /metadata_dir $ENV{SystemRoot}/system32/winmetadata /winrt /winmd ${WINMD_FILE} /h ${H_FILE} /ns_prefix /nomidl ${MIDL_FILE}
   COMMAND ${CPPWINRT_EXE_PATH} -input ${WINMD_FILE} -comp ${CPP_WINRT_OUTPUT_DIR} -output ${CPP_WINRT_OUTPUT_DIR} -include test_component -include Microsoft.UI.Xaml.Interop -verbose -opt -lib test -overwrite -reference ${CMAKE_SYSTEM_VERSION} -name test_component
   COMMAND ${CPPWINRT_EXE_PATH} -output ${CPP_WINRT_OUTPUT_DIR} -include Windows.Foundation -opt -verbose -reference ${CMAKE_SYSTEM_VERSION}
-  DEPENDS ${MIDL_FILE} NullValues.idl Keywords.idl EventTester.idl CollectionTester.idl BufferTests.idl
+  DEPENDS ${MIDL_FILE} NullValues.idl Keywords.idl EventTester.idl CollectionTester.idl BufferTests.idl ErrorHandlingTests.idl
   MAIN_DEPENDENCY ${MIDL_FILE}
   VERBATIM
 )
@@ -136,6 +136,7 @@ target_sources(test_component_cpp PRIVATE
     Derived.cpp
     DerivedFromNoConstructor.cpp
     EventTester.cpp
+    Failure.cpp
     module.cpp
     ${CPPWINRT_OUTPUT}
     #Optional.cpp

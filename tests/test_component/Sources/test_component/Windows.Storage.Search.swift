@@ -75,58 +75,58 @@ public final class QueryOptions : WinRTClass {
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.search.queryoptions.applicationsearchfilter)
     public var applicationSearchFilter : String {
-        get { try! _default.get_ApplicationSearchFilterImpl() }
-        set { try! _default.put_ApplicationSearchFilterImpl(newValue) }
+        get { _tryWinRT("", try _default.get_ApplicationSearchFilterImpl()) }
+        set { _tryWinRT(try _default.put_ApplicationSearchFilterImpl(newValue)) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.search.queryoptions.datestackoption)
     public var dateStackOption : DateStackOption {
-        get { try! _default.get_DateStackOptionImpl() }
+        get { _tryWinRT(.init(0), try _default.get_DateStackOptionImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.search.queryoptions.filetypefilter)
     public var fileTypeFilter : AnyIVector<String>! {
-        get { try! _default.get_FileTypeFilterImpl() }
+        get { _tryWinRT(nil, try _default.get_FileTypeFilterImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.search.queryoptions.folderdepth)
     public var folderDepth : FolderDepth {
-        get { try! _default.get_FolderDepthImpl() }
-        set { try! _default.put_FolderDepthImpl(newValue) }
+        get { _tryWinRT(.init(0), try _default.get_FolderDepthImpl()) }
+        set { _tryWinRT(try _default.put_FolderDepthImpl(newValue)) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.search.queryoptions.grouppropertyname)
     public var groupPropertyName : String {
-        get { try! _default.get_GroupPropertyNameImpl() }
+        get { _tryWinRT("", try _default.get_GroupPropertyNameImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.search.queryoptions.indexeroption)
     public var indexerOption : IndexerOption {
-        get { try! _default.get_IndexerOptionImpl() }
-        set { try! _default.put_IndexerOptionImpl(newValue) }
+        get { _tryWinRT(.init(0), try _default.get_IndexerOptionImpl()) }
+        set { _tryWinRT(try _default.put_IndexerOptionImpl(newValue)) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.search.queryoptions.language)
     public var language : String {
-        get { try! _default.get_LanguageImpl() }
-        set { try! _default.put_LanguageImpl(newValue) }
+        get { _tryWinRT("", try _default.get_LanguageImpl()) }
+        set { _tryWinRT(try _default.put_LanguageImpl(newValue)) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.search.queryoptions.sortorder)
     public var sortOrder : AnyIVector<SortEntry>! {
-        get { try! _default.get_SortOrderImpl() }
+        get { _tryWinRT(nil, try _default.get_SortOrderImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.search.queryoptions.usersearchfilter)
     public var userSearchFilter : String {
-        get { try! _default.get_UserSearchFilterImpl() }
-        set { try! _default.put_UserSearchFilterImpl(newValue) }
+        get { _tryWinRT("", try _default.get_UserSearchFilterImpl()) }
+        set { _tryWinRT(try _default.put_UserSearchFilterImpl(newValue)) }
     }
 
     private lazy var _IQueryOptionsWithProviderFilter: __ABI_Windows_Storage_Search.IQueryOptionsWithProviderFilter! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.search.queryoptions.storageprovideridfilter)
     public var storageProviderIdFilter : AnyIVector<String>! {
-        get { try! _IQueryOptionsWithProviderFilter.get_StorageProviderIdFilterImpl() }
+        get { _tryWinRT(nil, try _IQueryOptionsWithProviderFilter.get_StorageProviderIdFilterImpl()) }
     }
 
     deinit {
@@ -185,7 +185,7 @@ public final class StorageFileQueryResult : WinRTClass, IStorageQueryResultBase 
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.search.storagefilequeryresult.folder)
     public var folder : test_component.StorageFolder! {
-        get { try! _IStorageQueryResultBase.get_FolderImpl() }
+        get { _tryWinRT(nil, try _IStorageQueryResultBase.get_FolderImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.search.storagefilequeryresult.contentschanged)
@@ -287,7 +287,7 @@ public final class StorageFolderQueryResult : WinRTClass, IStorageQueryResultBas
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.search.storagefolderqueryresult.folder)
     public var folder : test_component.StorageFolder! {
-        get { try! _IStorageQueryResultBase.get_FolderImpl() }
+        get { _tryWinRT(nil, try _IStorageQueryResultBase.get_FolderImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.search.storagefolderqueryresult.contentschanged)
@@ -382,7 +382,7 @@ public final class StorageItemQueryResult : WinRTClass, IStorageQueryResultBase 
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.search.storageitemqueryresult.folder)
     public var folder : test_component.StorageFolder! {
-        get { try! _IStorageQueryResultBase.get_FolderImpl() }
+        get { _tryWinRT(nil, try _IStorageQueryResultBase.get_FolderImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.search.storageitemqueryresult.contentschanged)

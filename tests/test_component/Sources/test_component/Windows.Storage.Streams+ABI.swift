@@ -168,7 +168,7 @@ public enum __ABI_Windows_Storage_Streams {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CStreams_CIContentTypeProvider }
 
         open func get_ContentTypeImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CStorage_CStreams_CIContentTypeProvider.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_ContentType(pThis, &value))
             }

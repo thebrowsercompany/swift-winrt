@@ -44,17 +44,17 @@ public final class BasicProperties : WinRTClass, IStorageItemExtraProperties {
     }
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.basicproperties.datemodified)
     public var dateModified : test_component.DateTime {
-        get { try! _default.get_DateModifiedImpl() }
+        get { _tryWinRT(.init(), try _default.get_DateModifiedImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.basicproperties.itemdate)
     public var itemDate : test_component.DateTime {
-        get { try! _default.get_ItemDateImpl() }
+        get { _tryWinRT(.init(), try _default.get_ItemDateImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.basicproperties.size)
     public var size : UInt64 {
-        get { try! _default.get_SizeImpl() }
+        get { _tryWinRT(0, try _default.get_SizeImpl()) }
     }
 
     private lazy var _IStorageItemExtraProperties: __ABI_Windows_Storage_FileProperties.IStorageItemExtraProperties! = getInterfaceForCaching()
@@ -124,24 +124,24 @@ public final class DocumentProperties : WinRTClass, IStorageItemExtraProperties 
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.documentproperties.author)
     public var author : AnyIVector<String>! {
-        get { try! _default.get_AuthorImpl() }
+        get { _tryWinRT(nil, try _default.get_AuthorImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.documentproperties.comment)
     public var comment : String {
-        get { try! _default.get_CommentImpl() }
-        set { try! _default.put_CommentImpl(newValue) }
+        get { _tryWinRT("", try _default.get_CommentImpl()) }
+        set { _tryWinRT(try _default.put_CommentImpl(newValue)) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.documentproperties.keywords)
     public var keywords : AnyIVector<String>! {
-        get { try! _default.get_KeywordsImpl() }
+        get { _tryWinRT(nil, try _default.get_KeywordsImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.documentproperties.title)
     public var title : String {
-        get { try! _default.get_TitleImpl() }
-        set { try! _default.put_TitleImpl(newValue) }
+        get { _tryWinRT("", try _default.get_TitleImpl()) }
+        set { _tryWinRT(try _default.put_TitleImpl(newValue)) }
     }
 
     deinit {
@@ -195,67 +195,67 @@ public final class ImageProperties : WinRTClass, IStorageItemExtraProperties {
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.imageproperties.cameramanufacturer)
     public var cameraManufacturer : String {
-        get { try! _default.get_CameraManufacturerImpl() }
-        set { try! _default.put_CameraManufacturerImpl(newValue) }
+        get { _tryWinRT("", try _default.get_CameraManufacturerImpl()) }
+        set { _tryWinRT(try _default.put_CameraManufacturerImpl(newValue)) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.imageproperties.cameramodel)
     public var cameraModel : String {
-        get { try! _default.get_CameraModelImpl() }
-        set { try! _default.put_CameraModelImpl(newValue) }
+        get { _tryWinRT("", try _default.get_CameraModelImpl()) }
+        set { _tryWinRT(try _default.put_CameraModelImpl(newValue)) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.imageproperties.datetaken)
     public var dateTaken : test_component.DateTime {
-        get { try! _default.get_DateTakenImpl() }
-        set { try! _default.put_DateTakenImpl(newValue) }
+        get { _tryWinRT(.init(), try _default.get_DateTakenImpl()) }
+        set { _tryWinRT(try _default.put_DateTakenImpl(newValue)) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.imageproperties.height)
     public var height : UInt32 {
-        get { try! _default.get_HeightImpl() }
+        get { _tryWinRT(0, try _default.get_HeightImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.imageproperties.keywords)
     public var keywords : AnyIVector<String>! {
-        get { try! _default.get_KeywordsImpl() }
+        get { _tryWinRT(nil, try _default.get_KeywordsImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.imageproperties.latitude)
     public var latitude : Double? {
-        get { try! _default.get_LatitudeImpl() }
+        get { _tryWinRT(nil, try _default.get_LatitudeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.imageproperties.longitude)
     public var longitude : Double? {
-        get { try! _default.get_LongitudeImpl() }
+        get { _tryWinRT(nil, try _default.get_LongitudeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.imageproperties.orientation)
     public var orientation : PhotoOrientation {
-        get { try! _default.get_OrientationImpl() }
+        get { _tryWinRT(.init(0), try _default.get_OrientationImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.imageproperties.peoplenames)
     public var peopleNames : AnyIVectorView<String>! {
-        get { try! _default.get_PeopleNamesImpl() }
+        get { _tryWinRT(nil, try _default.get_PeopleNamesImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.imageproperties.rating)
     public var rating : UInt32 {
-        get { try! _default.get_RatingImpl() }
-        set { try! _default.put_RatingImpl(newValue) }
+        get { _tryWinRT(0, try _default.get_RatingImpl()) }
+        set { _tryWinRT(try _default.put_RatingImpl(newValue)) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.imageproperties.title)
     public var title : String {
-        get { try! _default.get_TitleImpl() }
-        set { try! _default.put_TitleImpl(newValue) }
+        get { _tryWinRT("", try _default.get_TitleImpl()) }
+        set { _tryWinRT(try _default.put_TitleImpl(newValue)) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.imageproperties.width)
     public var width : UInt32 {
-        get { try! _default.get_WidthImpl() }
+        get { _tryWinRT(0, try _default.get_WidthImpl()) }
     }
 
     deinit {
@@ -309,91 +309,91 @@ public final class MusicProperties : WinRTClass, IStorageItemExtraProperties {
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.musicproperties.album)
     public var album : String {
-        get { try! _default.get_AlbumImpl() }
-        set { try! _default.put_AlbumImpl(newValue) }
+        get { _tryWinRT("", try _default.get_AlbumImpl()) }
+        set { _tryWinRT(try _default.put_AlbumImpl(newValue)) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.musicproperties.albumartist)
     public var albumArtist : String {
-        get { try! _default.get_AlbumArtistImpl() }
-        set { try! _default.put_AlbumArtistImpl(newValue) }
+        get { _tryWinRT("", try _default.get_AlbumArtistImpl()) }
+        set { _tryWinRT(try _default.put_AlbumArtistImpl(newValue)) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.musicproperties.artist)
     public var artist : String {
-        get { try! _default.get_ArtistImpl() }
-        set { try! _default.put_ArtistImpl(newValue) }
+        get { _tryWinRT("", try _default.get_ArtistImpl()) }
+        set { _tryWinRT(try _default.put_ArtistImpl(newValue)) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.musicproperties.bitrate)
     public var bitrate : UInt32 {
-        get { try! _default.get_BitrateImpl() }
+        get { _tryWinRT(0, try _default.get_BitrateImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.musicproperties.composers)
     public var composers : AnyIVector<String>! {
-        get { try! _default.get_ComposersImpl() }
+        get { _tryWinRT(nil, try _default.get_ComposersImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.musicproperties.conductors)
     public var conductors : AnyIVector<String>! {
-        get { try! _default.get_ConductorsImpl() }
+        get { _tryWinRT(nil, try _default.get_ConductorsImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.musicproperties.duration)
     public var duration : test_component.TimeSpan {
-        get { try! _default.get_DurationImpl() }
+        get { _tryWinRT(.init(), try _default.get_DurationImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.musicproperties.genre)
     public var genre : AnyIVector<String>! {
-        get { try! _default.get_GenreImpl() }
+        get { _tryWinRT(nil, try _default.get_GenreImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.musicproperties.producers)
     public var producers : AnyIVector<String>! {
-        get { try! _default.get_ProducersImpl() }
+        get { _tryWinRT(nil, try _default.get_ProducersImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.musicproperties.publisher)
     public var publisher : String {
-        get { try! _default.get_PublisherImpl() }
-        set { try! _default.put_PublisherImpl(newValue) }
+        get { _tryWinRT("", try _default.get_PublisherImpl()) }
+        set { _tryWinRT(try _default.put_PublisherImpl(newValue)) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.musicproperties.rating)
     public var rating : UInt32 {
-        get { try! _default.get_RatingImpl() }
-        set { try! _default.put_RatingImpl(newValue) }
+        get { _tryWinRT(0, try _default.get_RatingImpl()) }
+        set { _tryWinRT(try _default.put_RatingImpl(newValue)) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.musicproperties.subtitle)
     public var subtitle : String {
-        get { try! _default.get_SubtitleImpl() }
-        set { try! _default.put_SubtitleImpl(newValue) }
+        get { _tryWinRT("", try _default.get_SubtitleImpl()) }
+        set { _tryWinRT(try _default.put_SubtitleImpl(newValue)) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.musicproperties.title)
     public var title : String {
-        get { try! _default.get_TitleImpl() }
-        set { try! _default.put_TitleImpl(newValue) }
+        get { _tryWinRT("", try _default.get_TitleImpl()) }
+        set { _tryWinRT(try _default.put_TitleImpl(newValue)) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.musicproperties.tracknumber)
     public var trackNumber : UInt32 {
-        get { try! _default.get_TrackNumberImpl() }
-        set { try! _default.put_TrackNumberImpl(newValue) }
+        get { _tryWinRT(0, try _default.get_TrackNumberImpl()) }
+        set { _tryWinRT(try _default.put_TrackNumberImpl(newValue)) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.musicproperties.writers)
     public var writers : AnyIVector<String>! {
-        get { try! _default.get_WritersImpl() }
+        get { _tryWinRT(nil, try _default.get_WritersImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.musicproperties.year)
     public var year : UInt32 {
-        get { try! _default.get_YearImpl() }
-        set { try! _default.put_YearImpl(newValue) }
+        get { _tryWinRT(0, try _default.get_YearImpl()) }
+        set { _tryWinRT(try _default.put_YearImpl(newValue)) }
     }
 
     deinit {
@@ -544,50 +544,50 @@ public final class StorageItemThumbnail : WinRTClass, test_component.IClosable, 
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.storageitemthumbnail.canread)
     public var canRead : Bool {
-        get { try! _IRandomAccessStream.get_CanReadImpl() }
+        get { _tryWinRT(false, try _IRandomAccessStream.get_CanReadImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.storageitemthumbnail.canwrite)
     public var canWrite : Bool {
-        get { try! _IRandomAccessStream.get_CanWriteImpl() }
+        get { _tryWinRT(false, try _IRandomAccessStream.get_CanWriteImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.storageitemthumbnail.position)
     public var position : UInt64 {
-        get { try! _IRandomAccessStream.get_PositionImpl() }
+        get { _tryWinRT(0, try _IRandomAccessStream.get_PositionImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.storageitemthumbnail.size)
     public var size : UInt64 {
-        get { try! _IRandomAccessStream.get_SizeImpl() }
-        set { try! _IRandomAccessStream.put_SizeImpl(newValue) }
+        get { _tryWinRT(0, try _IRandomAccessStream.get_SizeImpl()) }
+        set { _tryWinRT(try _IRandomAccessStream.put_SizeImpl(newValue)) }
     }
 
     private lazy var _IContentTypeProvider: __ABI_Windows_Storage_Streams.IContentTypeProvider! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.storageitemthumbnail.contenttype)
     public var contentType : String {
-        get { try! _IContentTypeProvider.get_ContentTypeImpl() }
+        get { _tryWinRT("", try _IContentTypeProvider.get_ContentTypeImpl()) }
     }
 
     private lazy var _IThumbnailProperties: __ABI_Windows_Storage_FileProperties.IThumbnailProperties! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.storageitemthumbnail.originalheight)
     public var originalHeight : UInt32 {
-        get { try! _IThumbnailProperties.get_OriginalHeightImpl() }
+        get { _tryWinRT(0, try _IThumbnailProperties.get_OriginalHeightImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.storageitemthumbnail.originalwidth)
     public var originalWidth : UInt32 {
-        get { try! _IThumbnailProperties.get_OriginalWidthImpl() }
+        get { _tryWinRT(0, try _IThumbnailProperties.get_OriginalWidthImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.storageitemthumbnail.returnedsmallercachedsize)
     public var returnedSmallerCachedSize : Bool {
-        get { try! _IThumbnailProperties.get_ReturnedSmallerCachedSizeImpl() }
+        get { _tryWinRT(false, try _IThumbnailProperties.get_ReturnedSmallerCachedSizeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.storageitemthumbnail.type)
     public var type : ThumbnailType {
-        get { try! _IThumbnailProperties.get_TypeImpl() }
+        get { _tryWinRT(.init(0), try _IThumbnailProperties.get_TypeImpl()) }
     }
 
     deinit {
@@ -646,87 +646,87 @@ public final class VideoProperties : WinRTClass, IStorageItemExtraProperties {
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.videoproperties.bitrate)
     public var bitrate : UInt32 {
-        get { try! _default.get_BitrateImpl() }
+        get { _tryWinRT(0, try _default.get_BitrateImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.videoproperties.directors)
     public var directors : AnyIVector<String>! {
-        get { try! _default.get_DirectorsImpl() }
+        get { _tryWinRT(nil, try _default.get_DirectorsImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.videoproperties.duration)
     public var duration : test_component.TimeSpan {
-        get { try! _default.get_DurationImpl() }
+        get { _tryWinRT(.init(), try _default.get_DurationImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.videoproperties.height)
     public var height : UInt32 {
-        get { try! _default.get_HeightImpl() }
+        get { _tryWinRT(0, try _default.get_HeightImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.videoproperties.keywords)
     public var keywords : AnyIVector<String>! {
-        get { try! _default.get_KeywordsImpl() }
+        get { _tryWinRT(nil, try _default.get_KeywordsImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.videoproperties.latitude)
     public var latitude : Double? {
-        get { try! _default.get_LatitudeImpl() }
+        get { _tryWinRT(nil, try _default.get_LatitudeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.videoproperties.longitude)
     public var longitude : Double? {
-        get { try! _default.get_LongitudeImpl() }
+        get { _tryWinRT(nil, try _default.get_LongitudeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.videoproperties.orientation)
     public var orientation : VideoOrientation {
-        get { try! _default.get_OrientationImpl() }
+        get { _tryWinRT(.init(0), try _default.get_OrientationImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.videoproperties.producers)
     public var producers : AnyIVector<String>! {
-        get { try! _default.get_ProducersImpl() }
+        get { _tryWinRT(nil, try _default.get_ProducersImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.videoproperties.publisher)
     public var publisher : String {
-        get { try! _default.get_PublisherImpl() }
-        set { try! _default.put_PublisherImpl(newValue) }
+        get { _tryWinRT("", try _default.get_PublisherImpl()) }
+        set { _tryWinRT(try _default.put_PublisherImpl(newValue)) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.videoproperties.rating)
     public var rating : UInt32 {
-        get { try! _default.get_RatingImpl() }
-        set { try! _default.put_RatingImpl(newValue) }
+        get { _tryWinRT(0, try _default.get_RatingImpl()) }
+        set { _tryWinRT(try _default.put_RatingImpl(newValue)) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.videoproperties.subtitle)
     public var subtitle : String {
-        get { try! _default.get_SubtitleImpl() }
-        set { try! _default.put_SubtitleImpl(newValue) }
+        get { _tryWinRT("", try _default.get_SubtitleImpl()) }
+        set { _tryWinRT(try _default.put_SubtitleImpl(newValue)) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.videoproperties.title)
     public var title : String {
-        get { try! _default.get_TitleImpl() }
-        set { try! _default.put_TitleImpl(newValue) }
+        get { _tryWinRT("", try _default.get_TitleImpl()) }
+        set { _tryWinRT(try _default.put_TitleImpl(newValue)) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.videoproperties.width)
     public var width : UInt32 {
-        get { try! _default.get_WidthImpl() }
+        get { _tryWinRT(0, try _default.get_WidthImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.videoproperties.writers)
     public var writers : AnyIVector<String>! {
-        get { try! _default.get_WritersImpl() }
+        get { _tryWinRT(nil, try _default.get_WritersImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.videoproperties.year)
     public var year : UInt32 {
-        get { try! _default.get_YearImpl() }
-        set { try! _default.put_YearImpl(newValue) }
+        get { _tryWinRT(0, try _default.get_YearImpl()) }
+        set { _tryWinRT(try _default.put_YearImpl(newValue)) }
     }
 
     deinit {

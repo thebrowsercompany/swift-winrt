@@ -255,7 +255,7 @@ public enum __ABI_Windows_Storage {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageFile }
 
         open func get_FileTypeImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageFile.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_FileType(pThis, &value))
             }
@@ -263,7 +263,7 @@ public enum __ABI_Windows_Storage {
         }
 
         open func get_ContentTypeImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageFile.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_ContentType(pThis, &value))
             }
@@ -1126,7 +1126,7 @@ public enum __ABI_Windows_Storage {
         }
 
         open func get_NameImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageItem.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Name(pThis, &value))
             }
@@ -1134,7 +1134,7 @@ public enum __ABI_Windows_Storage {
         }
 
         open func get_PathImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageItem.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Path(pThis, &value))
             }
@@ -1395,7 +1395,7 @@ public enum __ABI_Windows_Storage {
         }
 
         open func get_DisplayNameImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageItemProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_DisplayName(pThis, &value))
             }
@@ -1403,7 +1403,7 @@ public enum __ABI_Windows_Storage {
         }
 
         open func get_DisplayTypeImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageItemProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_DisplayType(pThis, &value))
             }
@@ -1411,7 +1411,7 @@ public enum __ABI_Windows_Storage {
         }
 
         open func get_FolderRelativeIdImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageItemProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_FolderRelativeId(pThis, &value))
             }
@@ -1686,7 +1686,7 @@ public enum __ABI_Windows_Storage {
         }
 
         internal func get_PathImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageLibraryChange.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Path(pThis, &value))
             }
@@ -1694,7 +1694,7 @@ public enum __ABI_Windows_Storage {
         }
 
         internal func get_PreviousPathImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageLibraryChange.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_PreviousPath(pThis, &value))
             }
@@ -1773,7 +1773,7 @@ public enum __ABI_Windows_Storage {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageProvider }
 
         internal func get_IdImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageProvider.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Id(pThis, &value))
             }
@@ -1781,7 +1781,7 @@ public enum __ABI_Windows_Storage {
         }
 
         internal func get_DisplayNameImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageProvider.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_DisplayName(pThis, &value))
             }

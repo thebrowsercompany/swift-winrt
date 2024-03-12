@@ -42,12 +42,12 @@ public final class Buffer : WinRTClass, IBufferByteAccess, IBuffer {
     private static let _IBufferStatics: __ABI_Windows_Storage_Streams.IBufferStatics = try! RoGetActivationFactory("Windows.Storage.Streams.Buffer")
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.buffer.createcopyfrommemorybuffer)
     public static func createCopyFromMemoryBuffer(_ input: test_component.AnyIMemoryBuffer!) -> Buffer! {
-        return try! _IBufferStatics.CreateCopyFromMemoryBufferImpl(input)
+        return _tryWinRT(nil, try _IBufferStatics.CreateCopyFromMemoryBufferImpl(input))
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.buffer.creatememorybufferoveribuffer)
     public static func createMemoryBufferOverIBuffer(_ input: AnyIBuffer!) -> test_component.MemoryBuffer! {
-        return try! _IBufferStatics.CreateMemoryBufferOverIBufferImpl(input)
+        return _tryWinRT(nil, try _IBufferStatics.CreateMemoryBufferOverIBufferImpl(input))
     }
 
     private lazy var _IBufferByteAccess: __ABI_.IBufferByteAccess! = getInterfaceForCaching()
@@ -59,13 +59,13 @@ public final class Buffer : WinRTClass, IBufferByteAccess, IBuffer {
     }
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.buffer.capacity)
     public var capacity : UInt32 {
-        get { try! _default.get_CapacityImpl() }
+        get { _tryWinRT(0, try _default.get_CapacityImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.buffer.length)
     public var length : UInt32 {
-        get { try! _default.get_LengthImpl() }
-        set { try! _default.put_LengthImpl(newValue) }
+        get { _tryWinRT(0, try _default.get_LengthImpl()) }
+        set { _tryWinRT(try _default.put_LengthImpl(newValue)) }
     }
 
     deinit {

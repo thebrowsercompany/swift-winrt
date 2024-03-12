@@ -87,7 +87,7 @@ public final class PropertySet : WinRTClass, IObservableMap, IMap, IIterable, IP
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.propertyset.size)
     public var size : UInt32 {
-        get { try! _IMap.get_SizeImpl() }
+        get { _tryWinRT(0, try _IMap.get_SizeImpl()) }
     }
 
     private lazy var _IIterable: IIterableIKeyValuePairString_Any! = getInterfaceForCaching()
@@ -171,7 +171,7 @@ public final class StringMap : WinRTClass, IMap, IIterable, IObservableMap {
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.stringmap.size)
     public var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { _tryWinRT(0, try _default.get_SizeImpl()) }
     }
 
     private lazy var _IIterable: IIterableIKeyValuePairString_String! = getInterfaceForCaching()
@@ -283,7 +283,7 @@ public final class ValueSet : WinRTClass, IObservableMap, IMap, IIterable, IProp
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.valueset.size)
     public var size : UInt32 {
-        get { try! _IMap.get_SizeImpl() }
+        get { _tryWinRT(0, try _IMap.get_SizeImpl()) }
     }
 
     private lazy var _IIterable: IIterableIKeyValuePairString_Any! = getInterfaceForCaching()

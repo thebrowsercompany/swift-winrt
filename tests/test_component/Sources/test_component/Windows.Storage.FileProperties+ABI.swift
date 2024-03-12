@@ -78,7 +78,7 @@ public enum __ABI_Windows_Storage_FileProperties {
         }
 
         internal func get_TitleImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIDocumentProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Title(pThis, &value))
             }
@@ -102,7 +102,7 @@ public enum __ABI_Windows_Storage_FileProperties {
         }
 
         internal func get_CommentImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIDocumentProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Comment(pThis, &value))
             }
@@ -175,7 +175,7 @@ public enum __ABI_Windows_Storage_FileProperties {
         }
 
         internal func get_TitleImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Title(pThis, &value))
             }
@@ -208,7 +208,7 @@ public enum __ABI_Windows_Storage_FileProperties {
         }
 
         internal func get_CameraManufacturerImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_CameraManufacturer(pThis, &value))
             }
@@ -223,7 +223,7 @@ public enum __ABI_Windows_Storage_FileProperties {
         }
 
         internal func get_CameraModelImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_CameraModel(pThis, &value))
             }
@@ -260,7 +260,7 @@ public enum __ABI_Windows_Storage_FileProperties {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties }
 
         internal func get_AlbumImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Album(pThis, &value))
             }
@@ -275,7 +275,7 @@ public enum __ABI_Windows_Storage_FileProperties {
         }
 
         internal func get_ArtistImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Artist(pThis, &value))
             }
@@ -313,7 +313,7 @@ public enum __ABI_Windows_Storage_FileProperties {
         }
 
         internal func get_TitleImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Title(pThis, &value))
             }
@@ -358,7 +358,7 @@ public enum __ABI_Windows_Storage_FileProperties {
         }
 
         internal func get_AlbumArtistImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_AlbumArtist(pThis, &value))
             }
@@ -391,7 +391,7 @@ public enum __ABI_Windows_Storage_FileProperties {
         }
 
         internal func get_SubtitleImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Subtitle(pThis, &value))
             }
@@ -415,7 +415,7 @@ public enum __ABI_Windows_Storage_FileProperties {
         }
 
         internal func get_PublisherImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Publisher(pThis, &value))
             }
@@ -699,7 +699,7 @@ public enum __ABI_Windows_Storage_FileProperties {
         }
 
         internal func get_TitleImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Title(pThis, &value))
             }
@@ -714,7 +714,7 @@ public enum __ABI_Windows_Storage_FileProperties {
         }
 
         internal func get_SubtitleImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Subtitle(pThis, &value))
             }
@@ -738,7 +738,7 @@ public enum __ABI_Windows_Storage_FileProperties {
         }
 
         internal func get_PublisherImpl() throws -> String {
-            var value: HSTRING?
+            var value: HSTRING? = nil
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Publisher(pThis, &value))
             }

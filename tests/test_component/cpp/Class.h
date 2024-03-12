@@ -170,7 +170,6 @@ namespace winrt::test_component::implementation
             if (m_basicImpl){
                 m_basicImpl.Method();
             }
-            printf("Method called!\n");
         }
 
         test_component::IBasic Implementation()

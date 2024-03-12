@@ -3156,12 +3156,12 @@ fileprivate class __x_ABI_C__FIIterator_1_IInspectableImpl : IIterator, AbiInter
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : Any? {
-        get { try! _default.get_CurrentImpl() }
+        get { _tryWinRT(nil, try _default.get_CurrentImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     fileprivate var hasCurrent : Bool {
-        get { try! _default.get_HasCurrentImpl() }
+        get { _tryWinRT(false, try _default.get_HasCurrentImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -3283,12 +3283,12 @@ fileprivate class __x_ABI_C__FIIterator_1_GUIDImpl : IIterator, AbiInterfaceImpl
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : Foundation.UUID {
-        get { try! _default.get_CurrentImpl() }
+        get { _tryWinRT(.init(), try _default.get_CurrentImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     fileprivate var hasCurrent : Bool {
-        get { try! _default.get_HasCurrentImpl() }
+        get { _tryWinRT(false, try _default.get_HasCurrentImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -3354,7 +3354,7 @@ internal class IIteratorString: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1_HSTRING }
 
     internal func get_CurrentImpl() throws -> String {
-        var result: HSTRING?
+        var result: HSTRING? = nil
         _ = try perform(as: __x_ABI_C__FIIterator_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
         }
@@ -3410,12 +3410,12 @@ fileprivate class __x_ABI_C__FIIterator_1_HSTRINGImpl : IIterator, AbiInterfaceI
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : String {
-        get { try! _default.get_CurrentImpl() }
+        get { _tryWinRT("", try _default.get_CurrentImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     fileprivate var hasCurrent : Bool {
-        get { try! _default.get_HasCurrentImpl() }
+        get { _tryWinRT(false, try _default.get_HasCurrentImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -3537,12 +3537,12 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_CWindows__CData__CText__CTextS
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : test_component.TextSegment {
-        get { try! _default.get_CurrentImpl() }
+        get { _tryWinRT(.init(), try _default.get_CurrentImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     fileprivate var hasCurrent : Bool {
-        get { try! _default.get_HasCurrentImpl() }
+        get { _tryWinRT(false, try _default.get_HasCurrentImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -3666,12 +3666,12 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_II
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : AnyIKeyValuePair<String, Any?>? {
-        get { try! _default.get_CurrentImpl() }
+        get { _tryWinRT(nil, try _default.get_CurrentImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     fileprivate var hasCurrent : Bool {
-        get { try! _default.get_HasCurrentImpl() }
+        get { _tryWinRT(false, try _default.get_HasCurrentImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -3795,12 +3795,12 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HS
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : AnyIKeyValuePair<String, String>? {
-        get { try! _default.get_CurrentImpl() }
+        get { _tryWinRT(nil, try _default.get_CurrentImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     fileprivate var hasCurrent : Bool {
-        get { try! _default.get_HasCurrentImpl() }
+        get { _tryWinRT(false, try _default.get_HasCurrentImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -3924,12 +3924,12 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : AnyIKeyValuePair<String, AnyIVectorView<test_component.TextSegment>?>? {
-        get { try! _default.get_CurrentImpl() }
+        get { _tryWinRT(nil, try _default.get_CurrentImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     fileprivate var hasCurrent : Bool {
-        get { try! _default.get_HasCurrentImpl() }
+        get { _tryWinRT(false, try _default.get_HasCurrentImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -4053,12 +4053,12 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : AnyIKeyValuePair<String, Base?>? {
-        get { try! _default.get_CurrentImpl() }
+        get { _tryWinRT(nil, try _default.get_CurrentImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     fileprivate var hasCurrent : Bool {
-        get { try! _default.get_HasCurrentImpl() }
+        get { _tryWinRT(false, try _default.get_HasCurrentImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -4182,12 +4182,12 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_CWindows__CFoundation__CIWwwFo
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : test_component.AnyIWwwFormUrlDecoderEntry? {
-        get { try! _default.get_CurrentImpl() }
+        get { _tryWinRT(nil, try _default.get_CurrentImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     fileprivate var hasCurrent : Bool {
-        get { try! _default.get_HasCurrentImpl() }
+        get { _tryWinRT(false, try _default.get_HasCurrentImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -4311,12 +4311,12 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CIStorageI
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : test_component.AnyIStorageItem? {
-        get { try! _default.get_CurrentImpl() }
+        get { _tryWinRT(nil, try _default.get_CurrentImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     fileprivate var hasCurrent : Bool {
-        get { try! _default.get_HasCurrentImpl() }
+        get { _tryWinRT(false, try _default.get_HasCurrentImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -4439,12 +4439,12 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CSearch__C
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : test_component.SortEntry {
-        get { try! _default.get_CurrentImpl() }
+        get { _tryWinRT(.init(), try _default.get_CurrentImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     fileprivate var hasCurrent : Bool {
-        get { try! _default.get_HasCurrentImpl() }
+        get { _tryWinRT(false, try _default.get_HasCurrentImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -4567,12 +4567,12 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFi
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : test_component.StorageFile? {
-        get { try! _default.get_CurrentImpl() }
+        get { _tryWinRT(nil, try _default.get_CurrentImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     fileprivate var hasCurrent : Bool {
-        get { try! _default.get_HasCurrentImpl() }
+        get { _tryWinRT(false, try _default.get_HasCurrentImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -4695,12 +4695,12 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFo
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : test_component.StorageFolder? {
-        get { try! _default.get_CurrentImpl() }
+        get { _tryWinRT(nil, try _default.get_CurrentImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     fileprivate var hasCurrent : Bool {
-        get { try! _default.get_HasCurrentImpl() }
+        get { _tryWinRT(false, try _default.get_HasCurrentImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -4823,12 +4823,12 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageLi
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : test_component.StorageLibraryChange? {
-        get { try! _default.get_CurrentImpl() }
+        get { _tryWinRT(nil, try _default.get_CurrentImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     fileprivate var hasCurrent : Bool {
-        get { try! _default.get_HasCurrentImpl() }
+        get { _tryWinRT(false, try _default.get_HasCurrentImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -4951,12 +4951,12 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseImpl :
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : Base? {
-        get { try! _default.get_CurrentImpl() }
+        get { _tryWinRT(nil, try _default.get_CurrentImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     fileprivate var hasCurrent : Bool {
-        get { try! _default.get_HasCurrentImpl() }
+        get { _tryWinRT(false, try _default.get_HasCurrentImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -5080,12 +5080,12 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicImpl
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : AnyIBasic? {
-        get { try! _default.get_CurrentImpl() }
+        get { _tryWinRT(nil, try _default.get_CurrentImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     fileprivate var hasCurrent : Bool {
-        get { try! _default.get_HasCurrentImpl() }
+        get { _tryWinRT(false, try _default.get_HasCurrentImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -5143,7 +5143,7 @@ internal class IKeyValuePairString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable }
 
     internal func get_KeyImpl() throws -> String {
-        var result: HSTRING?
+        var result: HSTRING? = nil
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
         }
@@ -5188,12 +5188,12 @@ fileprivate class __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl : IKeyVal
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.key)
     fileprivate var key : String {
-        get { try! _default.get_KeyImpl() }
+        get { _tryWinRT("", try _default.get_KeyImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.value)
     fileprivate var value : Any? {
-        get { try! _default.get_ValueImpl() }
+        get { _tryWinRT(nil, try _default.get_ValueImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -5250,7 +5250,7 @@ internal class IKeyValuePairString_String: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING }
 
     internal func get_KeyImpl() throws -> String {
-        var result: HSTRING?
+        var result: HSTRING? = nil
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
         }
@@ -5258,7 +5258,7 @@ internal class IKeyValuePairString_String: test_component.IInspectable {
     }
 
     internal func get_ValueImpl() throws -> String {
-        var result: HSTRING?
+        var result: HSTRING? = nil
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Value(pThis, &result))
         }
@@ -5294,12 +5294,12 @@ fileprivate class __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl : IKeyValuePai
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.key)
     fileprivate var key : String {
-        get { try! _default.get_KeyImpl() }
+        get { _tryWinRT("", try _default.get_KeyImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.value)
     fileprivate var value : String {
-        get { try! _default.get_ValueImpl() }
+        get { _tryWinRT("", try _default.get_ValueImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -5357,7 +5357,7 @@ internal class IKeyValuePairString_IVectorViewTextSegment: test_component.IInspe
     override public class var IID: test_component.IID { IID___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment }
 
     internal func get_KeyImpl() throws -> String {
-        var result: HSTRING?
+        var result: HSTRING? = nil
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
         }
@@ -5402,12 +5402,12 @@ fileprivate class __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1_
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.key)
     fileprivate var key : String {
-        get { try! _default.get_KeyImpl() }
+        get { _tryWinRT("", try _default.get_KeyImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.value)
     fileprivate var value : AnyIVectorView<test_component.TextSegment>? {
-        get { try! _default.get_ValueImpl() }
+        get { _tryWinRT(nil, try _default.get_ValueImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -5464,7 +5464,7 @@ internal class IKeyValuePairString_Base: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
 
     internal func get_KeyImpl() throws -> String {
-        var result: HSTRING?
+        var result: HSTRING? = nil
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
         }
@@ -5509,12 +5509,12 @@ fileprivate class __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent_
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.key)
     fileprivate var key : String {
-        get { try! _default.get_KeyImpl() }
+        get { _tryWinRT("", try _default.get_KeyImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.value)
     fileprivate var value : Base? {
-        get { try! _default.get_ValueImpl() }
+        get { _tryWinRT(nil, try _default.get_ValueImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -5579,7 +5579,7 @@ internal class IMapChangedEventArgsString: test_component.IInspectable {
     }
 
     internal func get_KeyImpl() throws -> String {
-        var result: HSTRING?
+        var result: HSTRING? = nil
         _ = try perform(as: __x_ABI_C__FIMapChangedEventArgs_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
         }
@@ -5614,12 +5614,12 @@ fileprivate class __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGImpl : IMapChangedEv
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapchangedeventargs-1.collectionchange)
     fileprivate var collectionChange : test_component.CollectionChange {
-        get { try! _default.get_CollectionChangeImpl() }
+        get { _tryWinRT(.init(0), try _default.get_CollectionChangeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapchangedeventargs-1.key)
     fileprivate var key : String {
-        get { try! _default.get_KeyImpl() }
+        get { _tryWinRT("", try _default.get_KeyImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -5684,8 +5684,8 @@ internal var __x_ABI_C__FIMapView_2_HSTRING_IInspectableVTable: __x_ABI_C__FIMap
 
     Split: {
         guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        var first: test_component.AnyIMapView<String, Any?>?
-        var second: test_component.AnyIMapView<String, Any?>?
+        var first: test_component.AnyIMapView<String, Any?>? = nil
+        var second: test_component.AnyIMapView<String, Any?>? = nil
         __unwrapped__instance.split(&first, &second)
         let firstWrapper = test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper(first)
         firstWrapper?.copyTo($1)
@@ -5780,7 +5780,7 @@ fileprivate class __x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl : IMapView, Ab
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { _tryWinRT(0, try _default.get_SizeImpl()) }
     }
 
     private lazy var _IIterable: IIterableIKeyValuePairString_Any! = getInterfaceForCaching()
@@ -5850,8 +5850,8 @@ internal var __x_ABI_C__FIMapView_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMapView_
 
     Split: {
         guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        var first: test_component.AnyIMapView<String, String>?
-        var second: test_component.AnyIMapView<String, String>?
+        var first: test_component.AnyIMapView<String, String>? = nil
+        var second: test_component.AnyIMapView<String, String>? = nil
         __unwrapped__instance.split(&first, &second)
         let firstWrapper = test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper(first)
         firstWrapper?.copyTo($1)
@@ -5865,7 +5865,7 @@ internal class IMapViewString_String: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMapView_2_HSTRING_HSTRING }
 
     internal func LookupImpl(_ key: String) throws -> String {
-        var result: HSTRING?
+        var result: HSTRING? = nil
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, _key.get(), &result))
@@ -5945,7 +5945,7 @@ fileprivate class __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl : IMapView, AbiInte
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { _tryWinRT(0, try _default.get_SizeImpl()) }
     }
 
     private lazy var _IIterable: IIterableIKeyValuePairString_String! = getInterfaceForCaching()
@@ -6016,8 +6016,8 @@ internal var __x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CW
 
     Split: {
         guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        var first: test_component.AnyIMapView<String, test_component.AnyIVectorView<test_component.TextSegment>?>?
-        var second: test_component.AnyIMapView<String, test_component.AnyIVectorView<test_component.TextSegment>?>?
+        var first: test_component.AnyIMapView<String, test_component.AnyIVectorView<test_component.TextSegment>?>? = nil
+        var second: test_component.AnyIMapView<String, test_component.AnyIVectorView<test_component.TextSegment>?>? = nil
         __unwrapped__instance.split(&first, &second)
         let firstWrapper = test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentWrapper(first)
         firstWrapper?.copyTo($1)
@@ -6112,7 +6112,7 @@ fileprivate class __x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_A
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { _tryWinRT(0, try _default.get_SizeImpl()) }
     }
 
     private lazy var _IIterable: IIterableIKeyValuePairString_IVectorViewTextSegment! = getInterfaceForCaching()
@@ -6182,8 +6182,8 @@ internal var __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTab
 
     Split: {
         guard let __unwrapped__instance = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        var first: test_component.AnyIMapView<String, test_component.Base?>?
-        var second: test_component.AnyIMapView<String, test_component.Base?>?
+        var first: test_component.AnyIMapView<String, test_component.Base?>? = nil
+        var second: test_component.AnyIMapView<String, test_component.Base?>? = nil
         __unwrapped__instance.split(&first, &second)
         let firstWrapper = test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper(first)
         firstWrapper?.copyTo($1)
@@ -6278,7 +6278,7 @@ fileprivate class __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBas
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { _tryWinRT(0, try _default.get_SizeImpl()) }
     }
 
     private lazy var _IIterable: IIterableIKeyValuePairString_Base! = getInterfaceForCaching()
@@ -6501,7 +6501,7 @@ fileprivate class __x_ABI_C__FIMap_2_HSTRING_IInspectableImpl : IMap, AbiInterfa
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { _tryWinRT(0, try _default.get_SizeImpl()) }
     }
 
     private lazy var _IIterable: IIterableIKeyValuePairString_Any! = getInterfaceForCaching()
@@ -6604,7 +6604,7 @@ internal class IMapString_String: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMap_2_HSTRING_HSTRING }
 
     internal func LookupImpl(_ key: String) throws -> String {
-        var result: HSTRING?
+        var result: HSTRING? = nil
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, _key.get(), &result))
@@ -6721,7 +6721,7 @@ fileprivate class __x_ABI_C__FIMap_2_HSTRING_HSTRINGImpl : IMap, AbiInterfaceImp
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { _tryWinRT(0, try _default.get_SizeImpl()) }
     }
 
     private lazy var _IIterable: IIterableIKeyValuePairString_String! = getInterfaceForCaching()
@@ -6944,7 +6944,7 @@ fileprivate class __x_ABI_C__FIMap_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_C
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { _tryWinRT(0, try _default.get_SizeImpl()) }
     }
 
     private lazy var _IIterable: IIterableIKeyValuePairString_IVectorViewTextSegment! = getInterfaceForCaching()
@@ -7164,7 +7164,7 @@ fileprivate class __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImp
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { _tryWinRT(0, try _default.get_SizeImpl()) }
     }
 
     private lazy var _IIterable: IIterableIKeyValuePairString_Base! = getInterfaceForCaching()
@@ -7319,7 +7319,7 @@ fileprivate class __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableImpl : IObser
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.size)
     fileprivate var size : UInt32 {
-        get { try! _IMap.get_SizeImpl() }
+        get { _tryWinRT(0, try _IMap.get_SizeImpl()) }
     }
 
     private lazy var _IIterable: IIterableIKeyValuePairString_Any! = getInterfaceForCaching()
@@ -7474,7 +7474,7 @@ fileprivate class __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGImpl : IObservable
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.size)
     fileprivate var size : UInt32 {
-        get { try! _IMap.get_SizeImpl() }
+        get { _tryWinRT(0, try _IMap.get_SizeImpl()) }
     }
 
     private lazy var _IIterable: IIterableIKeyValuePairString_String! = getInterfaceForCaching()
@@ -7672,7 +7672,7 @@ fileprivate class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBa
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.size)
     fileprivate var size : UInt32 {
-        get { try! _IVector.get_SizeImpl() }
+        get { _tryWinRT(0, try _IVector.get_SizeImpl()) }
     }
 
     private lazy var _IIterable: IIterableBase! = getInterfaceForCaching()
@@ -7870,7 +7870,7 @@ fileprivate class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIB
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.size)
     fileprivate var size : UInt32 {
-        get { try! _IVector.get_SizeImpl() }
+        get { _tryWinRT(0, try _IVector.get_SizeImpl()) }
     }
 
     private lazy var _IIterable: IIterableIBasic! = getInterfaceForCaching()
@@ -8033,7 +8033,7 @@ fileprivate class __x_ABI_C__FIVectorView_1_IInspectableImpl : IVectorView, AbiI
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { _tryWinRT(0, try _default.get_SizeImpl()) }
     }
 
     private lazy var _IIterable: IIterableAny! = getInterfaceForCaching()
@@ -8192,7 +8192,7 @@ fileprivate class __x_ABI_C__FIVectorView_1_GUIDImpl : IVectorView, AbiInterface
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { _tryWinRT(0, try _default.get_SizeImpl()) }
     }
 
     private lazy var _IIterable: IIterableUUID! = getInterfaceForCaching()
@@ -8269,7 +8269,7 @@ internal class IVectorViewString: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1_HSTRING }
 
     internal func GetAtImpl(_ index: UInt32) throws -> String {
-        var result: HSTRING?
+        var result: HSTRING? = nil
         _ = try perform(as: __x_ABI_C__FIVectorView_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
         }
@@ -8352,7 +8352,7 @@ fileprivate class __x_ABI_C__FIVectorView_1_HSTRINGImpl : IVectorView, AbiInterf
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { _tryWinRT(0, try _default.get_SizeImpl()) }
     }
 
     private lazy var _IIterable: IIterableString! = getInterfaceForCaching()
@@ -8511,7 +8511,7 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTex
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { _tryWinRT(0, try _default.get_SizeImpl()) }
     }
 
     private lazy var _IIterable: IIterableTextSegment! = getInterfaceForCaching()
@@ -8674,7 +8674,7 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CFoundation__CIWww
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { _tryWinRT(0, try _default.get_SizeImpl()) }
     }
 
     private lazy var _IIterable: IIterableIWwwFormUrlDecoderEntry! = getInterfaceForCaching()
@@ -8837,7 +8837,7 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorag
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { _tryWinRT(0, try _default.get_SizeImpl()) }
     }
 
     private lazy var _IIterable: IIterableIStorageItem! = getInterfaceForCaching()
@@ -8998,7 +8998,7 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CSearch_
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { _tryWinRT(0, try _default.get_SizeImpl()) }
     }
 
     private lazy var _IIterable: IIterableSortEntry! = getInterfaceForCaching()
@@ -9158,7 +9158,7 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorage
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { _tryWinRT(0, try _default.get_SizeImpl()) }
     }
 
     private lazy var _IIterable: IIterableStorageFile! = getInterfaceForCaching()
@@ -9318,7 +9318,7 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorage
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { _tryWinRT(0, try _default.get_SizeImpl()) }
     }
 
     private lazy var _IIterable: IIterableStorageFolder! = getInterfaceForCaching()
@@ -9478,7 +9478,7 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorage
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { _tryWinRT(0, try _default.get_SizeImpl()) }
     }
 
     private lazy var _IIterable: IIterableStorageLibraryChange! = getInterfaceForCaching()
@@ -9638,7 +9638,7 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { _tryWinRT(0, try _default.get_SizeImpl()) }
     }
 
     private lazy var _IIterable: IIterableBase! = getInterfaceForCaching()
@@ -9801,7 +9801,7 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicIm
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { _tryWinRT(0, try _default.get_SizeImpl()) }
     }
 
     private lazy var _IIterable: IIterableIBasic! = getInterfaceForCaching()
@@ -10111,7 +10111,7 @@ fileprivate class __x_ABI_C__FIVector_1_IInspectableImpl : IVector, AbiInterface
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { _tryWinRT(0, try _default.get_SizeImpl()) }
     }
 
     private lazy var _IIterable: IIterableAny! = getInterfaceForCaching()
@@ -10411,7 +10411,7 @@ fileprivate class __x_ABI_C__FIVector_1_GUIDImpl : IVector, AbiInterfaceImpl {
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { _tryWinRT(0, try _default.get_SizeImpl()) }
     }
 
     private lazy var _IIterable: IIterableUUID! = getInterfaceForCaching()
@@ -10540,7 +10540,7 @@ internal class IVectorString: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVector_1_HSTRING }
 
     internal func GetAtImpl(_ index: UInt32) throws -> String {
-        var result: HSTRING?
+        var result: HSTRING? = nil
         _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
         }
@@ -10715,7 +10715,7 @@ fileprivate class __x_ABI_C__FIVector_1_HSTRINGImpl : IVector, AbiInterfaceImpl 
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { _tryWinRT(0, try _default.get_SizeImpl()) }
     }
 
     private lazy var _IIterable: IIterableString! = getInterfaceForCaching()
@@ -11020,7 +11020,7 @@ fileprivate class __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSo
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { _tryWinRT(0, try _default.get_SizeImpl()) }
     }
 
     private lazy var _IIterable: IIterableSortEntry! = getInterfaceForCaching()
@@ -11321,7 +11321,7 @@ fileprivate class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl : I
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { _tryWinRT(0, try _default.get_SizeImpl()) }
     }
 
     private lazy var _IIterable: IIterableBase! = getInterfaceForCaching()
@@ -11631,7 +11631,7 @@ fileprivate class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicImpl :
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { _tryWinRT(0, try _default.get_SizeImpl()) }
     }
 
     private lazy var _IIterable: IIterableIBasic! = getInterfaceForCaching()
@@ -12070,14 +12070,14 @@ fileprivate class __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleImpl : IAs
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.progress)
     fileprivate var progress : AsyncOperationProgressHandler<Int32, Double>? {
-        get { try! _default.get_ProgressImpl() }
-        set { try! _default.put_ProgressImpl(newValue) }
+        get { _tryWinRT(nil, try _default.get_ProgressImpl()) }
+        set { _tryWinRT(try _default.put_ProgressImpl(newValue)) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.completed)
     fileprivate var completed : AsyncOperationWithProgressCompletedHandler<Int32, Double>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { _tryWinRT(nil, try _default.get_CompletedImpl()) }
+        set { _tryWinRT(try _default.put_CompletedImpl(newValue)) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
@@ -12093,17 +12093,17 @@ fileprivate class __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleImpl : IAs
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_ErrorCodeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_IdImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { _tryWinRT(.init(0), try _IAsyncInfo.get_StatusImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -12261,14 +12261,14 @@ fileprivate class __x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32Impl : 
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.progress)
     fileprivate var progress : AsyncOperationProgressHandler<UInt32, UInt32>? {
-        get { try! _default.get_ProgressImpl() }
-        set { try! _default.put_ProgressImpl(newValue) }
+        get { _tryWinRT(nil, try _default.get_ProgressImpl()) }
+        set { _tryWinRT(try _default.put_ProgressImpl(newValue)) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.completed)
     fileprivate var completed : AsyncOperationWithProgressCompletedHandler<UInt32, UInt32>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { _tryWinRT(nil, try _default.get_CompletedImpl()) }
+        set { _tryWinRT(try _default.put_CompletedImpl(newValue)) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
@@ -12284,17 +12284,17 @@ fileprivate class __x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32Impl : 
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_ErrorCodeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_IdImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { _tryWinRT(.init(0), try _IAsyncInfo.get_StatusImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -12454,14 +12454,14 @@ fileprivate class __x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CS
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.progress)
     fileprivate var progress : AsyncOperationProgressHandler<test_component.AnyIBuffer?, UInt32>? {
-        get { try! _default.get_ProgressImpl() }
-        set { try! _default.put_ProgressImpl(newValue) }
+        get { _tryWinRT(nil, try _default.get_ProgressImpl()) }
+        set { _tryWinRT(try _default.put_ProgressImpl(newValue)) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.completed)
     fileprivate var completed : AsyncOperationWithProgressCompletedHandler<test_component.AnyIBuffer?, UInt32>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { _tryWinRT(nil, try _default.get_CompletedImpl()) }
+        set { _tryWinRT(try _default.put_CompletedImpl(newValue)) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
@@ -12477,17 +12477,17 @@ fileprivate class __x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CS
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_ErrorCodeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_IdImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { _tryWinRT(.init(0), try _IAsyncInfo.get_StatusImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -12612,8 +12612,8 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1_booleanImpl : IAsyncOperation, A
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<Bool>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { _tryWinRT(nil, try _default.get_CompletedImpl()) }
+        set { _tryWinRT(try _default.put_CompletedImpl(newValue)) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
@@ -12629,17 +12629,17 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1_booleanImpl : IAsyncOperation, A
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_ErrorCodeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_IdImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { _tryWinRT(.init(0), try _IAsyncInfo.get_StatusImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -12764,8 +12764,8 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1_intImpl : IAsyncOperation, AbiIn
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<Int32>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { _tryWinRT(nil, try _default.get_CompletedImpl()) }
+        set { _tryWinRT(try _default.put_CompletedImpl(newValue)) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
@@ -12781,17 +12781,17 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1_intImpl : IAsyncOperation, AbiIn
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_ErrorCodeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_IdImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { _tryWinRT(.init(0), try _IAsyncInfo.get_StatusImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -12876,7 +12876,7 @@ internal class IAsyncOperationString: test_component.IInspectable {
     }
 
     internal func GetResultsImpl() throws -> String {
-        var result: HSTRING?
+        var result: HSTRING? = nil
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &result))
         }
@@ -12916,8 +12916,8 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1_HSTRINGImpl : IAsyncOperation, A
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<String>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { _tryWinRT(nil, try _default.get_CompletedImpl()) }
+        set { _tryWinRT(try _default.put_CompletedImpl(newValue)) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
@@ -12933,17 +12933,17 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1_HSTRINGImpl : IAsyncOperation, A
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_ErrorCodeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_IdImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { _tryWinRT(.init(0), try _IAsyncInfo.get_StatusImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -13068,8 +13068,8 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1_UINT32Impl : IAsyncOperation, Ab
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<UInt32>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { _tryWinRT(nil, try _default.get_CompletedImpl()) }
+        set { _tryWinRT(try _default.put_CompletedImpl(newValue)) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
@@ -13085,17 +13085,17 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1_UINT32Impl : IAsyncOperation, Ab
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_ErrorCodeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_IdImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { _tryWinRT(.init(0), try _IAsyncInfo.get_StatusImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -13222,8 +13222,8 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIMap_2_HSTRING_IInsp
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<AnyIMap<String, Any?>?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { _tryWinRT(nil, try _default.get_CompletedImpl()) }
+        set { _tryWinRT(try _default.put_CompletedImpl(newValue)) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
@@ -13239,17 +13239,17 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIMap_2_HSTRING_IInsp
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_ErrorCodeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_IdImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { _tryWinRT(.init(0), try _IAsyncInfo.get_StatusImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -13376,8 +13376,8 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_AB
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<AnyIVectorView<test_component.AnyIStorageItem?>?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { _tryWinRT(nil, try _default.get_CompletedImpl()) }
+        set { _tryWinRT(try _default.put_CompletedImpl(newValue)) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
@@ -13393,17 +13393,17 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_AB
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_ErrorCodeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_IdImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { _tryWinRT(.init(0), try _IAsyncInfo.get_StatusImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -13530,8 +13530,8 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_AB
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<AnyIVectorView<test_component.StorageFile?>?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { _tryWinRT(nil, try _default.get_CompletedImpl()) }
+        set { _tryWinRT(try _default.put_CompletedImpl(newValue)) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
@@ -13547,17 +13547,17 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_AB
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_ErrorCodeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_IdImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { _tryWinRT(.init(0), try _IAsyncInfo.get_StatusImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -13684,8 +13684,8 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_AB
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<AnyIVectorView<test_component.StorageFolder?>?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { _tryWinRT(nil, try _default.get_CompletedImpl()) }
+        set { _tryWinRT(try _default.put_CompletedImpl(newValue)) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
@@ -13701,17 +13701,17 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_AB
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_ErrorCodeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_IdImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { _tryWinRT(.init(0), try _IAsyncInfo.get_StatusImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -13838,8 +13838,8 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_AB
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<AnyIVectorView<test_component.StorageLibraryChange?>?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { _tryWinRT(nil, try _default.get_CompletedImpl()) }
+        set { _tryWinRT(try _default.put_CompletedImpl(newValue)) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
@@ -13855,17 +13855,17 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_AB
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_ErrorCodeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_IdImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { _tryWinRT(.init(0), try _IAsyncInfo.get_StatusImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -13992,8 +13992,8 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVector_1_HSTRINGImp
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<AnyIVector<String>?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { _tryWinRT(nil, try _default.get_CompletedImpl()) }
+        set { _tryWinRT(try _default.put_CompletedImpl(newValue)) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
@@ -14009,17 +14009,17 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVector_1_HSTRINGImp
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_ErrorCodeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_IdImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { _tryWinRT(.init(0), try _IAsyncInfo.get_StatusImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -14145,8 +14145,8 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFil
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<test_component.BasicProperties?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { _tryWinRT(nil, try _default.get_CompletedImpl()) }
+        set { _tryWinRT(try _default.put_CompletedImpl(newValue)) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
@@ -14162,17 +14162,17 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFil
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_ErrorCodeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_IdImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { _tryWinRT(.init(0), try _IAsyncInfo.get_StatusImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -14298,8 +14298,8 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFil
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<test_component.DocumentProperties?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { _tryWinRT(nil, try _default.get_CompletedImpl()) }
+        set { _tryWinRT(try _default.put_CompletedImpl(newValue)) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
@@ -14315,17 +14315,17 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFil
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_ErrorCodeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_IdImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { _tryWinRT(.init(0), try _IAsyncInfo.get_StatusImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -14451,8 +14451,8 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFil
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<test_component.ImageProperties?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { _tryWinRT(nil, try _default.get_CompletedImpl()) }
+        set { _tryWinRT(try _default.put_CompletedImpl(newValue)) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
@@ -14468,17 +14468,17 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFil
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_ErrorCodeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_IdImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { _tryWinRT(.init(0), try _IAsyncInfo.get_StatusImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -14604,8 +14604,8 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFil
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<test_component.MusicProperties?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { _tryWinRT(nil, try _default.get_CompletedImpl()) }
+        set { _tryWinRT(try _default.put_CompletedImpl(newValue)) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
@@ -14621,17 +14621,17 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFil
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_ErrorCodeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_IdImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { _tryWinRT(.init(0), try _IAsyncInfo.get_StatusImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -14757,8 +14757,8 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFil
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<test_component.StorageItemThumbnail?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { _tryWinRT(nil, try _default.get_CompletedImpl()) }
+        set { _tryWinRT(try _default.put_CompletedImpl(newValue)) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
@@ -14774,17 +14774,17 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFil
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_ErrorCodeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_IdImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { _tryWinRT(.init(0), try _IAsyncInfo.get_StatusImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -14910,8 +14910,8 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFil
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<test_component.VideoProperties?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { _tryWinRT(nil, try _default.get_CompletedImpl()) }
+        set { _tryWinRT(try _default.put_CompletedImpl(newValue)) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
@@ -14927,17 +14927,17 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFil
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_ErrorCodeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_IdImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { _tryWinRT(.init(0), try _IAsyncInfo.get_StatusImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -15064,8 +15064,8 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CISt
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<test_component.AnyIStorageItem?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { _tryWinRT(nil, try _default.get_CompletedImpl()) }
+        set { _tryWinRT(try _default.put_CompletedImpl(newValue)) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
@@ -15081,17 +15081,17 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CISt
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_ErrorCodeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_IdImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { _tryWinRT(.init(0), try _IAsyncInfo.get_StatusImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -15216,8 +15216,8 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSea
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<test_component.IndexedState>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { _tryWinRT(nil, try _default.get_CompletedImpl()) }
+        set { _tryWinRT(try _default.put_CompletedImpl(newValue)) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
@@ -15233,17 +15233,17 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSea
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_ErrorCodeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_IdImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { _tryWinRT(.init(0), try _IAsyncInfo.get_StatusImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -15369,8 +15369,8 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSto
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<test_component.StorageFile?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { _tryWinRT(nil, try _default.get_CompletedImpl()) }
+        set { _tryWinRT(try _default.put_CompletedImpl(newValue)) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
@@ -15386,17 +15386,17 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSto
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_ErrorCodeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_IdImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { _tryWinRT(.init(0), try _IAsyncInfo.get_StatusImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -15522,8 +15522,8 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSto
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<test_component.StorageFolder?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { _tryWinRT(nil, try _default.get_CompletedImpl()) }
+        set { _tryWinRT(try _default.put_CompletedImpl(newValue)) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
@@ -15539,17 +15539,17 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSto
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_ErrorCodeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_IdImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { _tryWinRT(.init(0), try _IAsyncInfo.get_StatusImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -15675,8 +15675,8 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSto
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<test_component.StorageStreamTransaction?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { _tryWinRT(nil, try _default.get_CompletedImpl()) }
+        set { _tryWinRT(try _default.put_CompletedImpl(newValue)) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
@@ -15692,17 +15692,17 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSto
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_ErrorCodeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_IdImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { _tryWinRT(.init(0), try _IAsyncInfo.get_StatusImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -15829,8 +15829,8 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStr
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<test_component.AnyIBuffer?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { _tryWinRT(nil, try _default.get_CompletedImpl()) }
+        set { _tryWinRT(try _default.put_CompletedImpl(newValue)) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
@@ -15846,17 +15846,17 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStr
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_ErrorCodeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_IdImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { _tryWinRT(.init(0), try _IAsyncInfo.get_StatusImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -15983,8 +15983,8 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStr
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<test_component.AnyIInputStream?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { _tryWinRT(nil, try _default.get_CompletedImpl()) }
+        set { _tryWinRT(try _default.put_CompletedImpl(newValue)) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
@@ -16000,17 +16000,17 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStr
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_ErrorCodeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_IdImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { _tryWinRT(.init(0), try _IAsyncInfo.get_StatusImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -16137,8 +16137,8 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStr
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<test_component.AnyIRandomAccessStream?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { _tryWinRT(nil, try _default.get_CompletedImpl()) }
+        set { _tryWinRT(try _default.put_CompletedImpl(newValue)) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
@@ -16154,17 +16154,17 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStr
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_ErrorCodeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_IdImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { _tryWinRT(.init(0), try _IAsyncInfo.get_StatusImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -16291,8 +16291,8 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStr
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<test_component.AnyIRandomAccessStreamWithContentType?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { _tryWinRT(nil, try _default.get_CompletedImpl()) }
+        set { _tryWinRT(try _default.put_CompletedImpl(newValue)) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
@@ -16308,17 +16308,17 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStr
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_ErrorCodeImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { _tryWinRT(0, try _IAsyncInfo.get_IdImpl()) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { _tryWinRT(.init(0), try _IAsyncInfo.get_StatusImpl()) }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
