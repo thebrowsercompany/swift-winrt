@@ -1235,7 +1235,7 @@ vtable);
         {
             invoke_implementation = w.write_temp(R"(var result:%%
         for handler in getInvocationList() {
-            result = handler(%)
+            result = try handler(%)
         }
         return result)",
                 bind<write_type>(*delegate_method.return_type->type, write_type_params::swift),
@@ -1245,13 +1245,13 @@ vtable);
         else
         {
             invoke_implementation = w.write_temp(R"(for handler in getInvocationList() {
-            handler(%)
+            try handler(%)
         })", bind<write_comma_param_names>(delegate_method.params));
         }
 
         assert(delegate_method.def);
         w.write(R"(% extension EventSource where Handler == % {
-    %func invoke(%)% {
+    %func invoke(%) throws% {
         %
     }
 }
@@ -1477,7 +1477,7 @@ vtable);
         // parameters for the delegate signature to create the bridge. The swift compiler
         // complains if the typealias isn't placed in a tuple
         function_def delegate_method = type.functions[0];
-        w.write("public typealias % = (%) -> %\n",
+        w.write("public typealias % = (%) throws -> %\n",
             type,
             bind<write_comma_param_types>(delegate_method.params),
             bind<write_delegate_return_type>(delegate_method));
@@ -1523,7 +1523,7 @@ vtable);
                 interface_info delegate{ &type };
                 delegate.is_default = true; // so that the _default name is used
                 auto indent_guard{ w.push_indent({3}) };
-                write_class_func_body(w, invoke_method, delegate, true);
+                write_class_func_body(w, invoke_method, delegate, false);
                 }));
     }
 
@@ -2851,7 +2851,7 @@ override % func _getABI<T>() -> UnsafeMutablePointer<T>? {
             func_call += w.write_temp(format, get_swift_name(method), bind<write_consume_args>(function));
         }
 
-        bool needs_try_catch = !is_get_or_put && !is_winrt_generic_collection(type) && !is_delegate(type);
+        bool needs_try_catch = !is_get_or_put && !is_winrt_generic_collection(type);
         w.write("%: {\n", func_name);
         if (needs_try_catch) {
             w.m_indent += 1;

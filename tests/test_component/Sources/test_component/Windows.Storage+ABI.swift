@@ -1899,10 +1899,12 @@ extension __ABI_Windows_Storage {
         AddRef: { StreamedFileDataRequestedHandlerWrapper.addRef($0) },
         Release: { StreamedFileDataRequestedHandlerWrapper.release($0) },
         Invoke: {
-            guard let __unwrapped__instance = StreamedFileDataRequestedHandlerWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let stream: test_component.StreamedFileDataRequest? = .from(abi: ComPtr($1))
-            __unwrapped__instance(stream)
-            return S_OK
+            do {
+                guard let __unwrapped__instance = StreamedFileDataRequestedHandlerWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                let stream: test_component.StreamedFileDataRequest? = .from(abi: ComPtr($1))
+                try __unwrapped__instance(stream)
+                return S_OK
+            } catch { return failWith(err: E_FAIL) } 
         }
     )
 }

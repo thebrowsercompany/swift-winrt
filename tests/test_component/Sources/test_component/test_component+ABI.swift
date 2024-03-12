@@ -2708,10 +2708,12 @@ extension __ABI_test_component {
         AddRef: { ObjectHandlerWrapper.addRef($0) },
         Release: { ObjectHandlerWrapper.release($0) },
         Invoke: {
-            guard let __unwrapped__instance = ObjectHandlerWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let item: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: ComPtr($1))
-            __unwrapped__instance(item)
-            return S_OK
+            do {
+                guard let __unwrapped__instance = ObjectHandlerWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                let item: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: ComPtr($1))
+                try __unwrapped__instance(item)
+                return S_OK
+            } catch { return failWith(err: E_FAIL) } 
         }
     )
 }
@@ -2742,9 +2744,11 @@ extension __ABI_test_component {
         AddRef: { VoidToVoidDelegateWrapper.addRef($0) },
         Release: { VoidToVoidDelegateWrapper.release($0) },
         Invoke: {
-            guard let __unwrapped__instance = VoidToVoidDelegateWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            __unwrapped__instance()
-            return S_OK
+            do {
+                guard let __unwrapped__instance = VoidToVoidDelegateWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                try __unwrapped__instance()
+                return S_OK
+            } catch { return failWith(err: E_FAIL) } 
         }
     )
 }

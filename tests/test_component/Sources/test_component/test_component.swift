@@ -1645,8 +1645,8 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
     }
 }
 
-public typealias ObjectHandler = (Any?) -> ()
-public typealias VoidToVoidDelegate = () -> ()
+public typealias ObjectHandler = (Any?) throws -> ()
+public typealias VoidToVoidDelegate = () throws -> ()
 public struct BlittableStruct: Hashable, Codable {
     public var first: Int32 = 0
     public var second: Int32 = 0
@@ -1798,9 +1798,9 @@ public protocol IIAmImplementable : WinRTInterface {
 }
 
 public extension EventSource where Handler == test_component.InDelegate {
-    func invoke(_ value: String) {
+    func invoke(_ value: String) throws {
         for handler in getInvocationList() {
-            handler(value)
+            try handler(value)
         }
     }
 }
@@ -1855,10 +1855,10 @@ public protocol InterfaceWithReturnDelegate : WinRTInterface {
 }
 
 public extension EventSource where Handler == test_component.ReturnInt32Delegate {
-    @discardableResult func invoke() -> Int32 {
+    @discardableResult func invoke() throws -> Int32 {
         var result:Int32 = 0
         for handler in getInvocationList() {
-            result = handler()
+            result = try handler()
         }
         return result
     }

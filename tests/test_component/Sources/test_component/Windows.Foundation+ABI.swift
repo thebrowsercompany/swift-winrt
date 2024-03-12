@@ -1347,11 +1347,13 @@ extension __ABI_Windows_Foundation {
         AddRef: { AsyncActionCompletedHandlerWrapper.addRef($0) },
         Release: { AsyncActionCompletedHandlerWrapper.release($0) },
         Invoke: {
-            guard let __unwrapped__instance = AsyncActionCompletedHandlerWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let asyncInfo: test_component.AnyIAsyncAction? = __ABI_Windows_Foundation.IAsyncActionWrapper.unwrapFrom(abi: ComPtr($1))
-            let asyncStatus: test_component.AsyncStatus = $2
-            __unwrapped__instance(asyncInfo, asyncStatus)
-            return S_OK
+            do {
+                guard let __unwrapped__instance = AsyncActionCompletedHandlerWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                let asyncInfo: test_component.AnyIAsyncAction? = __ABI_Windows_Foundation.IAsyncActionWrapper.unwrapFrom(abi: ComPtr($1))
+                let asyncStatus: test_component.AsyncStatus = $2
+                try __unwrapped__instance(asyncInfo, asyncStatus)
+                return S_OK
+            } catch { return failWith(err: E_FAIL) } 
         }
     )
 }
@@ -1382,9 +1384,11 @@ extension __ABI_Windows_Foundation {
         AddRef: { DeferralCompletedHandlerWrapper.addRef($0) },
         Release: { DeferralCompletedHandlerWrapper.release($0) },
         Invoke: {
-            guard let __unwrapped__instance = DeferralCompletedHandlerWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            __unwrapped__instance()
-            return S_OK
+            do {
+                guard let __unwrapped__instance = DeferralCompletedHandlerWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                try __unwrapped__instance()
+                return S_OK
+            } catch { return failWith(err: E_FAIL) } 
         }
     )
 }

@@ -84,7 +84,7 @@ class MyImplementableDelegate: IIAmImplementable {
 
     var id: Foundation.UUID?
     func fireEvent(_ data: String) {
-      _implementableEvent.invoke(data)
+      try! _implementableEvent.invoke(data)
     }
 
     private var object: Any?

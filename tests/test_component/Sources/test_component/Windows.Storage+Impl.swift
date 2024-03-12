@@ -775,7 +775,7 @@ public enum __IMPL_Windows_Storage {
             guard let abi = abi else { return nil }
             let _default = SwiftABI(abi)
             let handler: Handler = { (stream) in
-                try! _default.InvokeImpl(stream)
+                try _default.InvokeImpl(stream)
             }
             return handler
         }

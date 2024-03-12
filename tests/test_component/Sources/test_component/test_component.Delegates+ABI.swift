@@ -42,10 +42,12 @@ extension __ABI_test_component_Delegates {
         AddRef: { InDelegateWrapper.addRef($0) },
         Release: { InDelegateWrapper.release($0) },
         Invoke: {
-            guard let __unwrapped__instance = InDelegateWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let value: String = .init(from: $1)
-            __unwrapped__instance(value)
-            return S_OK
+            do {
+                guard let __unwrapped__instance = InDelegateWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                let value: String = .init(from: $1)
+                try __unwrapped__instance(value)
+                return S_OK
+            } catch { return failWith(err: E_FAIL) } 
         }
     )
 }
@@ -78,10 +80,12 @@ extension __ABI_test_component_Delegates {
         AddRef: { InObjectDelegateWrapper.addRef($0) },
         Release: { InObjectDelegateWrapper.release($0) },
         Invoke: {
-            guard let __unwrapped__instance = InObjectDelegateWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let value: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: ComPtr($1))
-            __unwrapped__instance(value)
-            return S_OK
+            do {
+                guard let __unwrapped__instance = InObjectDelegateWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                let value: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: ComPtr($1))
+                try __unwrapped__instance(value)
+                return S_OK
+            } catch { return failWith(err: E_FAIL) } 
         }
     )
 }
@@ -114,10 +118,12 @@ extension __ABI_test_component_Delegates {
         AddRef: { ReturnInt32DelegateWrapper.addRef($0) },
         Release: { ReturnInt32DelegateWrapper.release($0) },
         Invoke: {
-            guard let __unwrapped__instance = ReturnInt32DelegateWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let result = __unwrapped__instance()
-            $1?.initialize(to: result)
-            return S_OK
+            do {
+                guard let __unwrapped__instance = ReturnInt32DelegateWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                let result = try __unwrapped__instance()
+                $1?.initialize(to: result)
+                return S_OK
+            } catch { return failWith(err: E_FAIL) } 
         }
     )
 }
@@ -148,9 +154,11 @@ extension __ABI_test_component_Delegates {
         AddRef: { SignalDelegateWrapper.addRef($0) },
         Release: { SignalDelegateWrapper.release($0) },
         Invoke: {
-            guard let __unwrapped__instance = SignalDelegateWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            __unwrapped__instance()
-            return S_OK
+            do {
+                guard let __unwrapped__instance = SignalDelegateWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                try __unwrapped__instance()
+                return S_OK
+            } catch { return failWith(err: E_FAIL) } 
         }
     )
 }
