@@ -46,7 +46,7 @@ class BufferTests : XCTestCase {
         XCTAssertEqual(buffer.capacity, 10)
         XCTAssertEqual(buffer.data.count, 10)
         for (i, byte) in buffer.data.enumerated() {
-            XCTAssertEqual(byte, BufferTester.getDataFrom(buffer, UInt32(i)))
+            XCTAssertEqual(byte, try BufferTester.getDataFrom(buffer, UInt32(i)))
         }
     }
 
@@ -67,7 +67,7 @@ class BufferTests : XCTestCase {
         XCTAssertEqual(swiftBuffer.data, winrtBuffer.data)
 
         for (i, byte) in swiftBuffer.data.enumerated() {
-            XCTAssertEqual(byte, BufferTester.getDataFrom(swiftBuffer, UInt32(i)))
+            XCTAssertEqual(byte, try BufferTester.getDataFrom(swiftBuffer, UInt32(i)))
         }
     }
 }

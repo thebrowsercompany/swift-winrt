@@ -41,13 +41,13 @@ public final class Buffer : WinRTClass, IBufferByteAccess, IBuffer {
 
     private static let _IBufferStatics: __ABI_Windows_Storage_Streams.IBufferStatics = try! RoGetActivationFactory("Windows.Storage.Streams.Buffer")
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.buffer.createcopyfrommemorybuffer)
-    public static func createCopyFromMemoryBuffer(_ input: test_component.AnyIMemoryBuffer!) -> Buffer! {
-        return try! _IBufferStatics.CreateCopyFromMemoryBufferImpl(input)
+    public static func createCopyFromMemoryBuffer(_ input: test_component.AnyIMemoryBuffer!) throws -> Buffer! {
+        return try _IBufferStatics.CreateCopyFromMemoryBufferImpl(input)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.buffer.creatememorybufferoveribuffer)
-    public static func createMemoryBufferOverIBuffer(_ input: AnyIBuffer!) -> test_component.MemoryBuffer! {
-        return try! _IBufferStatics.CreateMemoryBufferOverIBufferImpl(input)
+    public static func createMemoryBufferOverIBuffer(_ input: AnyIBuffer!) throws -> test_component.MemoryBuffer! {
+        return try _IBufferStatics.CreateMemoryBufferOverIBufferImpl(input)
     }
 
     private lazy var _IBufferByteAccess: __ABI_.IBufferByteAccess! = getInterfaceForCaching()

@@ -2265,7 +2265,7 @@ public init<Composable: ComposableImpl>(
         {
             w.write("return ");
         }
-        w.write("try! _%.%Impl(%)\n",
+        w.write("try _%.%Impl(%)\n",
             statics.swift_type_name(),
             func_name,
             bind<write_implementation_args>(method));
@@ -2293,7 +2293,7 @@ public init<Composable: ComposableImpl>(
                 }
 
                 write_documentation_comment(w, type, method.def.Name());
-                w.write("%func %(%)% {\n",
+                w.write("%func %(%) throws% {\n",
                     modifier_for(type, statics, method),
                     get_swift_name(method),
                     bind<write_function_params>(method, write_type_params::swift_allow_implicit_unwrap),
