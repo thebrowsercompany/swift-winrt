@@ -5,14 +5,14 @@ import Foundation
 
 class AsyncTests : XCTestCase {
   public func testAwaitAlreadyCompleted() throws {
-    let asyncOperation = AsyncMethods.getCompletedAsync(42)!
+    let asyncOperation = try AsyncMethods.getCompletedAsync(42)!
     XCTAssertEqual(asyncOperation.status, .completed)
     let result = try asyncBlock(timeout: 1) { try await asyncOperation.get() }
     XCTAssertEqual(result, 42)
   }
 
   public func testAwaitAlreadyFailed() throws {
-    let asyncOperation = AsyncMethods.getCompletedWithErrorAsync(E_LAYOUTCYCLE)!
+    let asyncOperation = try AsyncMethods.getCompletedWithErrorAsync(E_LAYOUTCYCLE)!
     XCTAssertEqual(asyncOperation.status, .error)
     do {
       _ = try asyncBlock(timeout: 1) { try await asyncOperation.get() }
@@ -23,7 +23,7 @@ class AsyncTests : XCTestCase {
   }
 
   public func testAwaitCompletionWithSuspension() throws {
-    let asyncOperation = AsyncMethods.getPendingAsync()!
+    let asyncOperation = try AsyncMethods.getPendingAsync()!
     runAfter(delay: 0.05) { try? asyncOperation.complete(42) }
     let result = try asyncBlock(timeout: 1) { try await asyncOperation.get() }
     XCTAssertEqual(asyncOperation.status, .completed)
@@ -31,7 +31,7 @@ class AsyncTests : XCTestCase {
   }
 
   public func testAwaitFailureWithSuspension() throws {
-    let asyncOperation = AsyncMethods.getPendingAsync()!
+    let asyncOperation = try AsyncMethods.getPendingAsync()!
     runAfter(delay: 0.05) { try? asyncOperation.completeWithError(E_LAYOUTCYCLE) }
     do {
       _ = try asyncBlock(timeout: 1) { try await asyncOperation.get() }

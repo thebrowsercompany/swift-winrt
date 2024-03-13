@@ -35,16 +35,16 @@ class AggregationTests : XCTestCase {
 
   public func testComposedTypesAsInput() throws {
     let appDerived = AppDerived()
-    StaticClass.takeBase(appDerived)
+    try StaticClass.takeBase(appDerived)
     XCTAssertEqual(appDerived.count, 1, "derive from base count not expected")
 
     let appDerived2 = AppDerived2()
 
-    StaticClass.takeBase(appDerived2)
+    try StaticClass.takeBase(appDerived2)
     XCTAssertEqual(appDerived2.count, 1, "derived from derived count not expected")
 
     let appDerived3 = AppDerived3()
-    StaticClass.takeBase(appDerived3)
+    try StaticClass.takeBase(appDerived3)
     XCTAssertEqual(appDerived3.count, 1, "derived from multiple interfaces count not expected")
     XCTAssertEqual(appDerived3.beforeCount, 1, "before count not expected")
   }
@@ -134,7 +134,7 @@ class AggregationTests : XCTestCase {
 
   public func testAggregatedObjectUnwrappedAsAny() throws {
     let derived = AppDerived()
-    Class.takeBaseAndGiveToCallbackAsObject(derived) { sender in
+    try Class.takeBaseAndGiveToCallbackAsObject(derived) { sender in
       let base = sender as? AppDerived
       XCTAssertNotNil(derived)
       XCTAssertIdentical(base, derived)

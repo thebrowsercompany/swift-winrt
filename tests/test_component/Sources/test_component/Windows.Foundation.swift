@@ -134,13 +134,13 @@ public final class Uri : WinRTClass, IStringable {
     }
     private static let _IUriEscapeStatics: __ABI_Windows_Foundation.IUriEscapeStatics = try! RoGetActivationFactory("Windows.Foundation.Uri")
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.unescapecomponent)
-    public static func unescapeComponent(_ toUnescape: String) -> String {
-        return try! _IUriEscapeStatics.UnescapeComponentImpl(toUnescape)
+    public static func unescapeComponent(_ toUnescape: String) throws -> String {
+        return try _IUriEscapeStatics.UnescapeComponentImpl(toUnescape)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.uri.escapecomponent)
-    public static func escapeComponent(_ toEscape: String) -> String {
-        return try! _IUriEscapeStatics.EscapeComponentImpl(toEscape)
+    public static func escapeComponent(_ toEscape: String) throws -> String {
+        return try _IUriEscapeStatics.EscapeComponentImpl(toEscape)
     }
 
     private static let _IUriRuntimeClassFactory: __ABI_Windows_Foundation.IUriRuntimeClassFactory = try! RoGetActivationFactory("Windows.Foundation.Uri")

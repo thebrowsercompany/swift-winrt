@@ -125,10 +125,10 @@ class SwiftWinRTTests : XCTestCase {
     XCTAssertEqual(classy.enumProperty, Fruit.pineapple, "fruit should be Pineapple")
   }
 
-  public func testStaticMethods() {
-    Class.staticTest()
+  public func testStaticMethods() throws {
+    try Class.staticTest()
 
-    var result = Class.staticTestReturn()
+    var result = try Class.staticTestReturn()
     print("result: ", result);
     XCTAssertEqual(result, 42);
 
@@ -137,11 +137,11 @@ class SwiftWinRTTests : XCTestCase {
     XCTAssertEqual(result, 18);
 
     print("calling static class methods")
-    let output = StaticClass.inEnum(Signed.first)
+    let output = try StaticClass.inEnum(Signed.first)
     print("result: ", output)
     XCTAssertEqual(output, "First")
 
-    let fruit = StaticClass.enumProperty
+    let fruit = try StaticClass.enumProperty
     print("result: ", fruit)
     XCTAssertEqual(fruit, Fruit.orange, "expected Orange!")
 
@@ -150,7 +150,7 @@ class SwiftWinRTTests : XCTestCase {
 
     let putNonBlittableStruct = NonBlittableStruct(first: "From", second: "Swift!", third: 1, fourth: "Yay!")
 
-    let putStructResult = StaticClass.inNonBlittableStruct(putNonBlittableStruct)
+    let putStructResult = try StaticClass.inNonBlittableStruct(putNonBlittableStruct)
     print("result: ", putStructResult)
     XCTAssertEqual(putStructResult, "FromSwift!Yay!")
   }
@@ -316,7 +316,7 @@ class SwiftWinRTTests : XCTestCase {
   public func testNonDefaultMethods() throws {
     Class.staticPropertyFloat = 4.0
     XCTAssertEqual(Class.staticPropertyFloat, 4.0)
-    XCTAssertEqual(Class.staticTestReturnFloat(), 42.24)
+    XCTAssertEqual(try Class.staticTestReturnFloat(), 42.24)
     let classy = Class()
     classy.method()
   }
@@ -392,24 +392,24 @@ class SwiftWinRTTests : XCTestCase {
     _ = try classy.inString("\u{E909}")
   }
 
-  public func testNullValues() {
-    XCTAssertTrue(NullValues.isObjectNull(nil))
-    XCTAssertTrue(NullValues.isInterfaceNull(nil))
-    XCTAssertTrue(NullValues.isGenericInterfaceNull(nil))
-    XCTAssertTrue(NullValues.isClassNull(nil))
-    XCTAssertTrue(NullValues.isDelegateNull(nil))
+  public func testNullValues() throws {
+    XCTAssertTrue(try NullValues.isObjectNull(nil))
+    XCTAssertTrue(try NullValues.isInterfaceNull(nil))
+    XCTAssertTrue(try NullValues.isGenericInterfaceNull(nil))
+    XCTAssertTrue(try NullValues.isClassNull(nil))
+    XCTAssertTrue(try NullValues.isDelegateNull(nil))
 
-    XCTAssertFalse(NullValues.isObjectNull(NoopClosable()))
-    XCTAssertFalse(NullValues.isInterfaceNull(NoopClosable()))
-    XCTAssertFalse(NullValues.isGenericInterfaceNull([""].toVector()))
-    XCTAssertFalse(NullValues.isClassNull(NoopClosable()))
-    XCTAssertFalse(NullValues.isDelegateNull({}))
+    XCTAssertFalse(try NullValues.isObjectNull(NoopClosable()))
+    XCTAssertFalse(try NullValues.isInterfaceNull(NoopClosable()))
+    XCTAssertFalse(try NullValues.isGenericInterfaceNull([""].toVector()))
+    XCTAssertFalse(try NullValues.isClassNull(NoopClosable()))
+    XCTAssertFalse(try NullValues.isDelegateNull({}))
 
-    XCTAssertNil(NullValues.getNullObject())
-    XCTAssertNil(NullValues.getNullInterface())
-    XCTAssertNil(NullValues.getNullGenericInterface())
-    XCTAssertNil(NullValues.getNullClass())
-    XCTAssertNil(NullValues.getNullDelegate())
+    XCTAssertNil(try NullValues.getNullObject())
+    XCTAssertNil(try NullValues.getNullInterface())
+    XCTAssertNil(try NullValues.getNullGenericInterface())
+    XCTAssertNil(try NullValues.getNullClass())
+    XCTAssertNil(try NullValues.getNullDelegate())
   }
 
   public func testCasing() {

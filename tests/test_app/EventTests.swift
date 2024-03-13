@@ -54,23 +54,23 @@ class EventTests : XCTestCase {
       static_count+=1
     })
 
-    Simple.fireStaticEvent()
+    try Simple.fireStaticEvent()
     XCTAssertEqual(static_count, 1)
-    Simple.fireStaticEvent()
+    try Simple.fireStaticEvent()
     XCTAssertEqual(static_count, 2)
 
     // dispose of the handlers and make sure we
     // aren't getting more events
     disposable.dispose()
 
-    Simple.fireStaticEvent()
+    try Simple.fireStaticEvent()
     XCTAssertEqual(static_count, 2)
 
     disposable.append(Simple.staticEvent.addHandler { (_,_) in
       static_count+=1
     })
 
-    Simple.fireStaticEvent()
+    try Simple.fireStaticEvent()
     XCTAssertEqual(static_count, 3)
   }
 
