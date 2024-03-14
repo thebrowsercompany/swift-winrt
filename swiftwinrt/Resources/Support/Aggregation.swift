@@ -11,7 +11,7 @@ import Foundation
 // to the swift object, to ensure it doesn't get cleaned up. The Swift object in turn holds a strong
 // reference to this object so that it stays alive.
 @_spi(WinRTInternal)
-public final class WinRTClassWeakReference<Class: WinRTClass> {
+public final class WinRTClassWeakReference<Class: WinRTObject> {
     fileprivate weak var instance: Class?
     public init(_ instance: Class){
         self.instance = instance
@@ -41,7 +41,7 @@ extension WinRTClassWeakReference: CustomAddRef {
 }
 
 extension WinRTClassWeakReference: AnyObjectWrapper {
-    var obj: AnyObject? { instance }
+    var obj: WinRTObject? { instance }
 }
 
 @_spi(WinRTInternal)
