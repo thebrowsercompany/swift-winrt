@@ -331,4 +331,16 @@ namespace swiftwinrt
         w.save_header();
 
     }
+
+    inline void write_modulemap()
+    {
+        writer w;
+        write_preamble(w, /* swift_code: */ false);
+        w.write(R"^_^(module % {
+    header "%.h"
+    export *
+}
+)^_^", settings.get_c_module_name(), settings.get_c_module_name());
+        w.save_modulemap();
+    }
 }

@@ -435,6 +435,7 @@ Where <spec> is one or more of:
             }
 
             write_include_all(c.namespaces());
+            write_modulemap();
             if (settings.verbose)
             {
                 w.write(" time:  %ms\n", get_elapsed_time(start));

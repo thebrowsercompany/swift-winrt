@@ -685,6 +685,11 @@ namespace swiftwinrt
             flush_to_file(root_directory() / "CWinRT" / "include" / (type_namespace + ".h"));
         }
 
+        void save_modulemap()
+        {
+            flush_to_file(root_directory() / "CWinRT" / "include" / "module.modulemap");
+        }
+
         void save_cmake()
         {
             flush_to_file(project_directory() / "CMakeLists.txt");
