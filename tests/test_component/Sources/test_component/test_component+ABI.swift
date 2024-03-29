@@ -119,6 +119,10 @@ private var IID___x_ABI_Ctest__component_CINullValuesStatics: test_component.IID
     .init(Data1: 0x4F2BB96B, Data2: 0xB91D, Data3: 0x51E5, Data4: ( 0xA5,0x89,0x26,0x52,0xC1,0x65,0xA8,0xB5 ))// 4F2BB96B-B91D-51E5-A589-2652C165A8B5
 }
 
+private var IID___x_ABI_Ctest__component_CIReferenceTarget: test_component.IID {
+    .init(Data1: 0x128E6AAA, Data2: 0xF772, Data3: 0x5A6F, Data4: ( 0x85,0x8B,0x3B,0x69,0x04,0x18,0xC8,0x73 ))// 128E6AAA-F772-5A6F-858B-3B690418C873
+}
+
 private var IID___x_ABI_Ctest__component_CISimple: test_component.IID {
     .init(Data1: 0xAE7B4545, Data2: 0xD9D0, Data3: 0x5655, Data4: ( 0xB1,0xDE,0xA0,0x7D,0xA1,0x3B,0xD8,0x9B ))// AE7B4545-D9D0-5655-B1DE-A07DA13BD89B
 }
@@ -189,6 +193,14 @@ private var IID___x_ABI_Ctest__component_CIUnsealedDerivedOverloads2: test_compo
 
 private var IID___x_ABI_Ctest__component_CIUnsealedDerivedOverrides: test_component.IID {
     .init(Data1: 0x828DCEE6, Data2: 0xF93A, Data3: 0x5A4D, Data4: ( 0xBC,0xEE,0xF7,0xC1,0xDE,0xE4,0xEB,0x4E ))// 828DCEE6-F93A-5A4D-BCEE-F7C1DEE4EB4E
+}
+
+private var IID___x_ABI_Ctest__component_CIWeakReferencer: test_component.IID {
+    .init(Data1: 0xF3CE877F, Data2: 0x5BD2, Data3: 0x53C7, Data4: ( 0xAA,0x6A,0x39,0xF0,0x64,0x78,0x1C,0x21 ))// F3CE877F-5BD2-53C7-AA6A-39F064781C21
+}
+
+private var IID___x_ABI_Ctest__component_CIWeakReferencerFactory: test_component.IID {
+    .init(Data1: 0x34CE8191, Data2: 0x4DC4, Data3: 0x50EF, Data4: ( 0xB6,0x9E,0x19,0x8F,0x3C,0x9F,0x65,0x52 ))// 34CE8191-4DC4-50EF-B69E-198F3C9F6552
 }
 
 private var IID___x_ABI_Ctest__component_CInterfaceWithReturnDelegate: test_component.IID {
@@ -1701,6 +1713,55 @@ public enum __ABI_test_component {
 
     }
 
+    public class IReferenceTarget: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIReferenceTarget }
+
+        open func MethodImpl() throws {
+            _ = try perform(as: __x_ABI_Ctest__component_CIReferenceTarget.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Method(pThis))
+            }
+        }
+
+    }
+
+    internal static var IReferenceTargetVTable: __x_ABI_Ctest__component_CIReferenceTargetVtbl = .init(
+        QueryInterface: { IReferenceTargetWrapper.queryInterface($0, $1, $2) },
+        AddRef: { IReferenceTargetWrapper.addRef($0) },
+        Release: { IReferenceTargetWrapper.release($0) },
+        GetIids: {
+            let size = MemoryLayout<test_component.IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
+            iids[0] = IUnknown.IID
+            iids[1] = IInspectable.IID
+            iids[2] = __ABI_test_component.IReferenceTargetWrapper.IID
+            $1!.pointee = 3
+            $2!.pointee = iids
+            return S_OK
+        },
+
+        GetRuntimeClassName: {
+            _ = $0
+            let hstring = try! HString("test_component.IReferenceTarget").detach()
+            $1!.pointee = hstring
+            return S_OK
+        },
+
+        GetTrustLevel: {
+            _ = $0
+            $1!.pointee = TrustLevel(rawValue: 0)
+            return S_OK
+        },
+
+        Method: {
+            do {
+                guard let __unwrapped__instance = IReferenceTargetWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                try __unwrapped__instance.method()
+                return S_OK
+            } catch { return failWith(err: E_FAIL) } 
+        }
+    )
+
+    public typealias IReferenceTargetWrapper = InterfaceWrapperBase<__IMPL_test_component.IReferenceTargetBridge>
     public class ISimple: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CISimple }
 
@@ -2225,6 +2286,36 @@ public enum __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CIUnsealedDerivedOverrides.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OnBeforeDoTheThing(pThis))
             }
+        }
+
+    }
+
+    public class IWeakReferencer: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIWeakReferencer }
+
+        internal func ResolveImpl() throws -> test_component.AnyIReferenceTarget? {
+            let (result) = try ComPtrs.initialize { resultAbi in
+                _ = try perform(as: __x_ABI_Ctest__component_CIWeakReferencer.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.Resolve(pThis, &resultAbi))
+                }
+            }
+            return __ABI_test_component.IReferenceTargetWrapper.unwrapFrom(abi: result)
+        }
+
+    }
+
+    public class IWeakReferencerFactory: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIWeakReferencerFactory }
+
+        internal func CreateInstanceImpl(_ object: test_component.AnyIReferenceTarget?) throws -> IWeakReferencer {
+            let (value) = try ComPtrs.initialize { valueAbi in
+                let objectWrapper = __ABI_test_component.IReferenceTargetWrapper(object)
+                let _object = try! objectWrapper?.toABI { $0 }
+                _ = try perform(as: __x_ABI_Ctest__component_CIWeakReferencerFactory.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, _object, &valueAbi))
+                }
+            }
+            return IWeakReferencer(value!)
         }
 
     }

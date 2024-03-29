@@ -223,6 +223,35 @@ public enum __IMPL_test_component {
 
     }
 
+    public enum IReferenceTargetBridge : AbiInterfaceBridge {
+        public typealias CABI = __x_ABI_Ctest__component_CIReferenceTarget
+        public typealias SwiftABI = __ABI_test_component.IReferenceTarget
+        public typealias SwiftProjection = AnyIReferenceTarget
+        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+            guard let abi = abi else { return nil }
+            return IReferenceTargetImpl(abi)
+        }
+
+        public static func makeAbi() -> CABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IReferenceTargetVTable) { $0 }
+            return .init(lpVtbl: vtblPtr)
+        }
+    }
+
+    fileprivate class IReferenceTargetImpl: IReferenceTarget, WinRTAbiImpl {
+        fileprivate typealias Bridge = IReferenceTargetBridge
+        fileprivate let _default: Bridge.SwiftABI
+        fileprivate var thisPtr: test_component.IInspectable { _default }
+        fileprivate init(_ fromAbi: ComPtr<Bridge.CABI>) {
+            _default = Bridge.SwiftABI(fromAbi)
+        }
+
+        fileprivate func method() throws {
+            try _default.MethodImpl()
+        }
+
+    }
+
     public enum ISimpleDelegateBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_Ctest__component_CISimpleDelegate
         public typealias SwiftABI = __ABI_test_component.ISimpleDelegate

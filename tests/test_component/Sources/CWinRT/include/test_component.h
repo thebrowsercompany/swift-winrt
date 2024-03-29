@@ -198,6 +198,12 @@ typedef interface __x_ABI_Ctest__component_CIVoidToVoidDelegate __x_ABI_Ctest__c
 
 #endif // ____x_ABI_Ctest__component_CINullValuesStatics_FWD_DEFINED__
 
+#ifndef ____x_ABI_Ctest__component_CIReferenceTarget_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CIReferenceTarget_FWD_DEFINED__
+    typedef interface __x_ABI_Ctest__component_CIReferenceTarget __x_ABI_Ctest__component_CIReferenceTarget;
+
+#endif // ____x_ABI_Ctest__component_CIReferenceTarget_FWD_DEFINED__
+
 #ifndef ____x_ABI_Ctest__component_CISimple_FWD_DEFINED__
 #define ____x_ABI_Ctest__component_CISimple_FWD_DEFINED__
     typedef interface __x_ABI_Ctest__component_CISimple __x_ABI_Ctest__component_CISimple;
@@ -305,6 +311,18 @@ typedef interface __x_ABI_Ctest__component_CIVoidToVoidDelegate __x_ABI_Ctest__c
     typedef interface __x_ABI_Ctest__component_CIUnsealedDerivedOverrides __x_ABI_Ctest__component_CIUnsealedDerivedOverrides;
 
 #endif // ____x_ABI_Ctest__component_CIUnsealedDerivedOverrides_FWD_DEFINED__
+
+#ifndef ____x_ABI_Ctest__component_CIWeakReferencer_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CIWeakReferencer_FWD_DEFINED__
+    typedef interface __x_ABI_Ctest__component_CIWeakReferencer __x_ABI_Ctest__component_CIWeakReferencer;
+
+#endif // ____x_ABI_Ctest__component_CIWeakReferencer_FWD_DEFINED__
+
+#ifndef ____x_ABI_Ctest__component_CIWeakReferencerFactory_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CIWeakReferencerFactory_FWD_DEFINED__
+    typedef interface __x_ABI_Ctest__component_CIWeakReferencerFactory __x_ABI_Ctest__component_CIWeakReferencerFactory;
+
+#endif // ____x_ABI_Ctest__component_CIWeakReferencerFactory_FWD_DEFINED__
 
 #ifndef ____x_ABI_Ctest__component_CInterfaceWithReturnDelegate_FWD_DEFINED__
 #define ____x_ABI_Ctest__component_CInterfaceWithReturnDelegate_FWD_DEFINED__
@@ -3772,6 +3790,38 @@ struct __x_ABI_Ctest__component_CStructWithIReference
     EXTERN_C const IID IID___x_ABI_Ctest__component_CINullValuesStatics;
 #endif /* !defined(____x_ABI_Ctest__component_CINullValuesStatics_INTERFACE_DEFINED__) */
     
+#if !defined(____x_ABI_Ctest__component_CIReferenceTarget_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CIReferenceTarget_INTERFACE_DEFINED__
+    typedef struct __x_ABI_Ctest__component_CIReferenceTargetVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CIReferenceTarget* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CIReferenceTarget* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CIReferenceTarget* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_Ctest__component_CIReferenceTarget* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_Ctest__component_CIReferenceTarget* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CIReferenceTarget* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* Method)(__x_ABI_Ctest__component_CIReferenceTarget* This);
+
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CIReferenceTargetVtbl;
+
+    interface __x_ABI_Ctest__component_CIReferenceTarget
+    {
+        CONST_VTBL struct __x_ABI_Ctest__component_CIReferenceTargetVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CIReferenceTarget;
+#endif /* !defined(____x_ABI_Ctest__component_CIReferenceTarget_INTERFACE_DEFINED__) */
+    
 #if !defined(____x_ABI_Ctest__component_CISimple_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CISimple_INTERFACE_DEFINED__
     typedef struct __x_ABI_Ctest__component_CISimpleVtbl
@@ -4444,6 +4494,73 @@ struct __x_ABI_Ctest__component_CStructWithIReference
     
     EXTERN_C const IID IID___x_ABI_Ctest__component_CIUnsealedDerivedOverrides;
 #endif /* !defined(____x_ABI_Ctest__component_CIUnsealedDerivedOverrides_INTERFACE_DEFINED__) */
+    
+#if !defined(____x_ABI_Ctest__component_CIWeakReferencer_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CIWeakReferencer_INTERFACE_DEFINED__
+    typedef struct __x_ABI_Ctest__component_CIWeakReferencerVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CIWeakReferencer* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CIWeakReferencer* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CIWeakReferencer* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_Ctest__component_CIWeakReferencer* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_Ctest__component_CIWeakReferencer* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CIWeakReferencer* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* Resolve)(__x_ABI_Ctest__component_CIWeakReferencer* This,
+        __x_ABI_Ctest__component_CIReferenceTarget** result);
+
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CIWeakReferencerVtbl;
+
+    interface __x_ABI_Ctest__component_CIWeakReferencer
+    {
+        CONST_VTBL struct __x_ABI_Ctest__component_CIWeakReferencerVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CIWeakReferencer;
+#endif /* !defined(____x_ABI_Ctest__component_CIWeakReferencer_INTERFACE_DEFINED__) */
+    
+#if !defined(____x_ABI_Ctest__component_CIWeakReferencerFactory_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CIWeakReferencerFactory_INTERFACE_DEFINED__
+    typedef struct __x_ABI_Ctest__component_CIWeakReferencerFactoryVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CIWeakReferencerFactory* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CIWeakReferencerFactory* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CIWeakReferencerFactory* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_Ctest__component_CIWeakReferencerFactory* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_Ctest__component_CIWeakReferencerFactory* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CIWeakReferencerFactory* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* CreateInstance)(__x_ABI_Ctest__component_CIWeakReferencerFactory* This,
+        __x_ABI_Ctest__component_CIReferenceTarget* object,
+        __x_ABI_Ctest__component_CIWeakReferencer** value);
+
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CIWeakReferencerFactoryVtbl;
+
+    interface __x_ABI_Ctest__component_CIWeakReferencerFactory
+    {
+        CONST_VTBL struct __x_ABI_Ctest__component_CIWeakReferencerFactoryVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CIWeakReferencerFactory;
+#endif /* !defined(____x_ABI_Ctest__component_CIWeakReferencerFactory_INTERFACE_DEFINED__) */
     
 #if !defined(____x_ABI_Ctest__component_CInterfaceWithReturnDelegate_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CInterfaceWithReturnDelegate_INTERFACE_DEFINED__

@@ -98,6 +98,10 @@ struct StaticWCharArray_512 {
 #define IInspectableVtbl IInspectableVtbl_Workaround
 #define IMarshal IMarshal_Workaround
 #define IMarshalVtbl IMarshalVtbl_Workaround
+#define IWeakReference IWeakReference_Workaround
+#define IWeakReferenceVtbl IWeakReferenceVtbl_Workaround
+#define IWeakReferenceSource IWeakReferenceSource_Workaround
+#define IWeakReferenceSourceVtbl IWeakReferenceSourceVtbl_Workaround
 #define IActivationFactory IActivationFactory_Workaround
 #define IActivationFactoryVtbl IActivationFactoryVtbl_Workaround
 

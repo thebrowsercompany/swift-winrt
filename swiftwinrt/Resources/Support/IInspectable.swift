@@ -79,28 +79,30 @@ public enum __ABI_ {
       public static func tryUnwrapFrom(raw pUnk: UnsafeMutableRawPointer?) -> AnyObject? {
         tryUnwrapFromBase(raw: pUnk)
       }
+
+      internal static func queryInterface(_ pUnk: UnsafeMutablePointer<C_IInspectable>?, _ riid: UnsafePointer<SUPPORT_MODULE.IID>?, _ ppvObject: UnsafeMutablePointer<UnsafeMutableRawPointer?>?) -> HRESULT {
+        guard let pUnk, let riid, let ppvObject else { return E_INVALIDARG }
+        ppvObject.pointee = nil
+        if riid.pointee == IUnknown.IID ||
+            riid.pointee == IInspectable.IID ||
+            riid.pointee == ISwiftImplemented.IID ||
+            riid.pointee == IAgileObject.IID {
+          _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+          ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
+          return S_OK
+        }
+        let swiftObj = AnyWrapper.tryUnwrapFrom(raw: pUnk)
+        if let customQueryInterface = swiftObj as? CustomQueryInterface,
+            let result = customQueryInterface.queryInterface(riid.pointee) {
+          ppvObject.pointee = result.detach()
+          return S_OK
+        }
+        return E_NOINTERFACE
+      }
     }
 
     internal static var IInspectableVTable: C_IInspectableVtbl = .init(
-        QueryInterface: {
-            guard let pUnk = $0, let riid = $1, let ppvObject = $2 else { return E_INVALIDARG }
-            ppvObject.pointee = nil
-            if riid.pointee == IUnknown.IID ||
-                  riid.pointee == IInspectable.IID ||
-                  riid.pointee == ISwiftImplemented.IID ||
-                  riid.pointee == IAgileObject.IID {
-              _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-              ppvObject.pointee = UnsafeMutableRawPointer(pUnk)
-              return S_OK
-            }
-            let swiftObj = AnyWrapper.tryUnwrapFrom(raw: pUnk)
-            if let customQueryInterface = swiftObj as? CustomQueryInterface,
-               let result = customQueryInterface.queryInterface(riid.pointee) {
-                ppvObject.pointee = result.detach()
-                return S_OK
-            }
-            return E_NOINTERFACE
-        },
+        QueryInterface: { AnyWrapper.queryInterface($0, $1, $2) },
         AddRef: { AnyWrapper.addRef($0) },
         Release: { AnyWrapper.release($0) },
         GetIids: {

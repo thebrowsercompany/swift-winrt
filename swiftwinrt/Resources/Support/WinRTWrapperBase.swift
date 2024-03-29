@@ -155,11 +155,12 @@ open class WinRTWrapperBase<CInterface, Prototype> {
 
     fileprivate static func queryInterfaceBase(_ pUnk: UnsafeMutablePointer<CInterface>, _ riid: UnsafePointer<SUPPORT_MODULE.IID>, _ result: UnsafeMutablePointer<UnsafeMutableRawPointer?>) -> HRESULT {
         guard let instance = tryUnwrapFromBase(raw: pUnk) else { return E_FAIL }
-        do
-        {
+        do {
             switch riid.pointee {
                 case IID_IMarshal:
                     try makeMarshaler(IUnknownRef(ComPtr(pUnk)), result)
+                case IID_IWeakReferenceSource:
+                    try makeWeakReferenceSource(instance as AnyObject, result)
                 default:
                     guard let customQI = instance as? CustomQueryInterface,
                           let iUnknownRef = customQI.queryInterface(riid.pointee) else { return E_NOINTERFACE }

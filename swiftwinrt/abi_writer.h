@@ -291,6 +291,8 @@ namespace swiftwinrt
         w.c_mod = settings.get_c_module_name();
         write_preamble(w, /* swift_code: */ false);
         w.write(R"(#pragma once
+#define CINTERFACE
+
 #include <wtypesbase.h>
 #include <minwindef.h>
 #include <winnt.h>
@@ -313,6 +315,7 @@ namespace swiftwinrt
 #pragma clang diagnostic ignored "-Wmicrosoft-enum-forward-reference"
 
 #include "CppInteropWorkaround.h" // TODO(WIN-860): Remove workaround once C++ interop issues with WinSDK.GUID are fixed.
+#include <weakreference.h>
 #include "MemoryBuffer.h" // IMemoryBufferByteAccess (C definition)
 #include "robuffer.h" // IBufferByteAccess (C definition)
 )");
