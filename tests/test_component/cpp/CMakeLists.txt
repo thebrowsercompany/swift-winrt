@@ -1,6 +1,4 @@
-project(test_component_cpp)
-include(nuget)
-
+# Set pre-project() cache variables
 # For debug builds, build with clang which enables us to use DWARF symbols
 # and debug both Swift and C++ code using lldb.
 if (${CMAKE_BUILD_TYPE} STREQUAL "DEBUG")
@@ -14,6 +12,11 @@ else()
     set(CMAKE_C_COMPILER cl)
     set(CMAKE_CXX_COMPILER cl)
 endif()
+
+project(test_component_cpp)
+include(nuget)
+
+
 set(H_FILE
     ${CMAKE_TEST_COMPONENT_OUTPUT}/test_component.h
 )
