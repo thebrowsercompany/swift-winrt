@@ -135,6 +135,7 @@ target_sources(test_component_cpp PRIVATE
     UnsealedDerivedNoOverrides.cpp
     UnsealedDerivedFromNoConstructor.cpp
     UnsealedDerivedNoConstructor.cpp
+    WeakReferencer.cpp
     exports.def
     #Windows.Class.cpp
     ${MIDL_FILE}

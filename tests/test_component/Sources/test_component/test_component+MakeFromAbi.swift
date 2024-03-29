@@ -183,6 +183,11 @@ fileprivate func makeIInterfaceWithObservableVectorFrom(abi: test_component.IIns
     return __IMPL_test_component.IInterfaceWithObservableVectorBridge.from(abi: RawPointer(swiftAbi))!
 }
 
+fileprivate func makeIReferenceTargetFrom(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_test_component.IReferenceTarget = try! abi.QueryInterface()
+    return __IMPL_test_component.IReferenceTargetBridge.from(abi: RawPointer(swiftAbi))!
+}
+
 fileprivate func makeISimpleDelegateFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_test_component.ISimpleDelegate = try! abi.QueryInterface()
     return __IMPL_test_component.ISimpleDelegateBridge.from(abi: RawPointer(swiftAbi))!
@@ -387,6 +392,10 @@ fileprivate func makeUnsealedDerivedNoOverridesFrom(abi: test_component.IInspect
     return UnsealedDerivedNoOverrides(fromAbi: abi)
 }
 
+fileprivate func makeWeakReferencerFrom(abi: test_component.IInspectable) -> Any {
+    return WeakReferencer(fromAbi: abi)
+}
+
 @_spi(__MakeFromAbi_DoNotImport)
 public class __MakeFromAbi: MakeFromAbi {
     public static func from(typeName: String, abi: test_component.IInspectable) -> Any? {
@@ -427,6 +436,7 @@ public class __MakeFromAbi: MakeFromAbi {
             case "IBasic": return makeIBasicFrom(abi: abi)
             case "IIAmImplementable": return makeIIAmImplementableFrom(abi: abi)
             case "IInterfaceWithObservableVector": return makeIInterfaceWithObservableVectorFrom(abi: abi)
+            case "IReferenceTarget": return makeIReferenceTargetFrom(abi: abi)
             case "ISimpleDelegate": return makeISimpleDelegateFrom(abi: abi)
             case "InterfaceWithReturnDelegate": return makeInterfaceWithReturnDelegateFrom(abi: abi)
             case "WithIterableGuids": return makeWithIterableGuidsFrom(abi: abi)
@@ -477,6 +487,7 @@ public class __MakeFromAbi: MakeFromAbi {
             case "UnsealedDerivedFromNoConstructor": return makeUnsealedDerivedFromNoConstructorFrom(abi: abi)
             case "UnsealedDerivedNoConstructor": return makeUnsealedDerivedNoConstructorFrom(abi: abi)
             case "UnsealedDerivedNoOverrides": return makeUnsealedDerivedNoOverridesFrom(abi: abi)
+            case "WeakReferencer": return makeWeakReferencerFrom(abi: abi)
             default: return nil
         }
     }

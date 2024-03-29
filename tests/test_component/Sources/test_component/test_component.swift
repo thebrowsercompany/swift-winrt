@@ -1645,6 +1645,43 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
     }
 }
 
+public final class WeakReferencer : WinRTClass {
+    private typealias SwiftABI = __ABI_test_component.IWeakReferencer
+    private typealias CABI = __x_ABI_Ctest__component_CIWeakReferencer
+    private lazy var _default: SwiftABI! = getInterfaceForCaching()
+    @_spi(WinRTInternal)
+    override public func _getABI<T>() -> UnsafeMutablePointer<T>? {
+        if T.self == CABI.self {
+            return RawPointer(_default)
+        }
+        return super._getABI()
+    }
+
+    @_spi(WinRTInternal)
+    public static func from(abi: ComPtr<__x_ABI_Ctest__component_CIWeakReferencer>?) -> WeakReferencer? {
+        guard let abi = abi else { return nil }
+        return .init(fromAbi: test_component.IInspectable(abi))
+    }
+
+    @_spi(WinRTInternal)
+    public init(fromAbi: test_component.IInspectable) {
+        super.init(fromAbi)
+    }
+
+    private static let _IWeakReferencerFactory: __ABI_test_component.IWeakReferencerFactory = try! RoGetActivationFactory("test_component.WeakReferencer")
+    public init(_ object: AnyIReferenceTarget!) {
+        super.init(try! Self._IWeakReferencerFactory.CreateInstanceImpl(object))
+    }
+
+    public func resolve() throws -> AnyIReferenceTarget! {
+        try _default.ResolveImpl()
+    }
+
+    deinit {
+        _default = nil
+    }
+}
+
 public typealias ObjectHandler = (Any?) throws -> ()
 public typealias VoidToVoidDelegate = () throws -> ()
 public struct BlittableStruct: Hashable, Codable {
@@ -1832,6 +1869,22 @@ extension IInterfaceWithObservableVector {
     }
 }
 public typealias AnyIInterfaceWithObservableVector = any IInterfaceWithObservableVector
+
+public protocol IReferenceTarget : WinRTInterface {
+    func method() throws
+}
+
+extension IReferenceTarget {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        switch iid {
+            case __ABI_test_component.IReferenceTargetWrapper.IID:
+                let wrapper = __ABI_test_component.IReferenceTargetWrapper(self)
+                return wrapper!.queryInterface(iid)
+            default: return nil
+        }
+    }
+}
+public typealias AnyIReferenceTarget = any IReferenceTarget
 
 public protocol ISimpleDelegate : WinRTInterface {
     func doThis() throws

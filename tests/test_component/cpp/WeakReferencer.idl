@@ -1,0 +1,13 @@
+namespace test_component
+{
+    interface IReferenceTarget
+    {
+        void Method();
+    }
+
+    runtimeclass WeakReferencer
+    {
+        WeakReferencer(IReferenceTarget object);
+        IReferenceTarget Resolve();
+    }
+}

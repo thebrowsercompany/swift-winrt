@@ -4,6 +4,7 @@
 #include "EventTester.idl"
 #include "Keywords.idl"
 #include "NullValues.idl"
+#include "WeakReferencer.idl"
 
 import "Windows.Foundation.idl";
 // import "Windows.Foundation.Numerics.idl";
