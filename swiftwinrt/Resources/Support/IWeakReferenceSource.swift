@@ -20,6 +20,19 @@ fileprivate class WeakReferenceSourceWrapper: WinRTAbiBridgeWrapper<IWeakReferen
     init(_ object: AnyObject){
         super.init(IWeakReferenceSourceBridge.makeAbi(), object)
     }
+
+    internal static func queryInterface(_ pUnk: UnsafeMutablePointer<C_IInspectable>?, _ riid: UnsafePointer<SUPPORT_MODULE.IID>?, _ ppvObject: UnsafeMutablePointer<UnsafeMutableRawPointer?>?) -> HRESULT {
+        guard let pUnk, let riid, let ppvObject else { return E_INVALIDARG }
+        switch riid.pointee {
+        case IID_IWeakReferenceSource:
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            return S_OK
+        default:
+            guard let obj = WeakReferenceSourceWrapper.tryUnwrapFromBase(raw: pUnk) else { return E_NOINTERFACE }
+            let anyWrapper = __ABI_.AnyWrapper(obj)!
+            return __ABI_.AnyWrapper.queryInterface(try! anyWrapper.toABI { $0 }, riid, ppvObject)
+        }
+    }
 }
 
 fileprivate enum IWeakReferenceSourceBridge: AbiBridge {
@@ -36,17 +49,7 @@ fileprivate enum IWeakReferenceSourceBridge: AbiBridge {
 }
 
 fileprivate var IWeakReferenceSourceVTable: C_IWeakReferenceSourceVtbl = .init(
-    QueryInterface: { pUnk, riid, ppvObject in
-        guard let pUnk, let riid, let ppvObject else { return E_INVALIDARG }
-        switch riid.pointee {
-        case IID_IWeakReferenceSource:
-            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-            return S_OK
-        default:
-            guard let obj = WeakReferenceSourceWrapper.tryUnwrapFromBase(raw: pUnk) else { return E_NOINTERFACE }
-            fatalError("\(#function): Not implemented: something like obj.QueryInterface")
-        }
-    },
+    QueryInterface: { WeakReferenceSourceWrapper.queryInterface($0, $1, $2) },
     AddRef: { WeakReferenceSourceWrapper.addRef($0) },
     Release: { WeakReferenceSourceWrapper.release($0) },
     GetWeakReference: { GetWeakReference($0, $1) }

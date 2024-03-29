@@ -27,6 +27,19 @@ fileprivate class WeakReferenceWrapper: WinRTAbiBridgeWrapper<IWeakReferenceBrid
     init(_ weakReference: WeakReference){
         super.init(IWeakReferenceBridge.makeAbi(), weakReference)
     }
+
+    internal static func queryInterface(_ pUnk: UnsafeMutablePointer<C_IInspectable>?, _ riid: UnsafePointer<SUPPORT_MODULE.IID>?, _ ppvObject: UnsafeMutablePointer<UnsafeMutableRawPointer?>?) -> HRESULT {
+        guard let pUnk, let riid, let ppvObject else { return E_INVALIDARG }
+        switch riid.pointee {
+        case IID_IWeakReference:
+            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
+            return S_OK
+        default:
+            guard let obj = WeakReferenceWrapper.tryUnwrapFromBase(raw: pUnk) else { return E_NOINTERFACE }
+            let anyWrapper = __ABI_.AnyWrapper(obj)!
+            return __ABI_.AnyWrapper.queryInterface(try! anyWrapper.toABI { $0 }, riid, ppvObject)
+        }
+    }
 }
 
 fileprivate enum IWeakReferenceBridge: AbiBridge {
@@ -43,17 +56,7 @@ fileprivate enum IWeakReferenceBridge: AbiBridge {
 }
 
 fileprivate var IWeakReferenceVTable: C_IWeakReferenceVtbl = .init(
-    QueryInterface: { pUnk, riid, ppvObject in
-        guard let pUnk, let riid, let ppvObject else { return E_INVALIDARG }
-        switch riid.pointee {
-        case IID_IWeakReference:
-            _ = pUnk.pointee.lpVtbl.pointee.AddRef(pUnk)
-            return S_OK
-        default:
-            guard let obj = WeakReferenceWrapper.tryUnwrapFromBase(raw: pUnk) else { return E_NOINTERFACE }
-            fatalError("\(#function): Not implemented: something like obj.QueryInterface")
-        }
-    },
+    QueryInterface: { WeakReferenceWrapper.queryInterface($0, $1, $2) },
     AddRef: { WeakReferenceWrapper.addRef($0) },
     Release: { WeakReferenceWrapper.release($0) },
     Resolve: { Resolve($0, $1, $2) }
@@ -61,17 +64,19 @@ fileprivate var IWeakReferenceVTable: C_IWeakReferenceVtbl = .init(
 
 fileprivate func Resolve(
         _ this: UnsafeMutablePointer<C_IWeakReference>?,
-        _ iid: UnsafePointer<GUID_Workaround>?,
-        _ inspectable: UnsafeMutablePointer<UnsafeMutablePointer<C_IInspectable>?>?) -> HRESULT {
+        _ riid: UnsafePointer<GUID_Workaround>?,
+        _ ppvObject: UnsafeMutablePointer<UnsafeMutablePointer<C_IInspectable>?>?) -> HRESULT {
+    guard let this, let riid, let ppvObject else { return E_INVALIDARG }
     guard let weakReference = WeakReferenceWrapper.tryUnwrapFrom(abi: ComPtr(this)) else { return E_FAIL }
-    guard let iid, let inspectable else { return E_INVALIDARG }
-    if let target = weakReference.target {
-        _ = target
-        _ = iid
-        fatalError("\(#function): Not implemented: something like target.QueryInterface")
-    }
-    else {
-        inspectable.pointee = nil
-        return S_OK
-    }
+    ppvObject.pointee = nil
+    // https://learn.microsoft.com/en-us/windows/win32/api/weakreference/nf-weakreference-iweakreference-resolve(refiid_iinspectable):
+    // "If you try to resolve a weak reference to a strong reference for an object that is no longer available,
+    // then IWeakReference::Resolve returns S_OK, but the objectReference parameter points to null.
+    guard let target = weakReference.target else { return S_OK }
+
+    let anyWrapper = __ABI_.AnyWrapper(target)!
+    var rawObject: UnsafeMutableRawPointer? = nil
+    let result = __ABI_.AnyWrapper.queryInterface(try! anyWrapper.toABI { $0 }, riid, &rawObject)
+    ppvObject.pointee = rawObject?.bindMemory(to: C_IInspectable.self, capacity: 1)
+    return result
 }
