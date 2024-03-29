@@ -14,5 +14,5 @@ jobs:
           submodules: recursive
       - uses: ./.github/actions/windows-build
         with:
-          config: debug
+          config: debug-msvc
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
