@@ -66,6 +66,10 @@
         "configurePreset": "debug"
       },
       {
+        "name": "debug-msvc",
+        "configurePreset": "debug-msvc"
+      },
+      {
         "name": "release",
         "configurePreset": "release"
       }
