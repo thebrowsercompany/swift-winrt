@@ -36,6 +36,18 @@
             }
         },
         {
+            "name": "debug-msvc",
+            "displayName": "Debug (MSVC)",
+            "binaryDir": "${sourceDir}/build/debug-msvc",
+            "installDir": "${sourceDir}/out/debug-msvc",
+            "inherits": [ "base" ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_C_COMPILER": "cl",
+                "CMAKE_CXX_COMPILER": "cl"
+            }
+        },
+        {
             "name": "release",
             "displayName": "Release",
             "binaryDir": "${sourceDir}/build/release",
