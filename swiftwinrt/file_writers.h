@@ -137,6 +137,8 @@ namespace swiftwinrt
 
         auto memorybuffer_h_template = find_resource(RESOURCE_TYPE_OTHER_FILE_STR, RESOURCE_NAME_CWINRT_MEMORYBUFFER_H_STR);
         fill_template_placeholders_to_file(memorybuffer_h_template, dir_path / "include" / "MemoryBuffer.h");
+        auto weakreference_h_template = find_resource(RESOURCE_TYPE_OTHER_FILE_STR, RESOURCE_NAME_CWINRT_WEAKREFERENCE_H_STR);
+        fill_template_placeholders_to_file(weakreference_h_template, dir_path / "include" / "WeakReference.h");
 
         if (settings.has_project_type(project_type::spm))
         {
