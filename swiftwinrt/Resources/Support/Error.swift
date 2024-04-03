@@ -101,20 +101,20 @@ public var E_XAMLPARSEFAILED : WinSDK.HRESULT {
   HRESULT(bitPattern: 0x802B000A)
 }
 
-private func getErrorDescription(expecting hr: HRESULT) -> String? {
+// Gets the restricted error info on the current thread for a given hresult, or creates a new one if it doesn't exist.
+private func getOrCreateRestrictedErrorInfo(expecting hr: HRESULT) -> UnsafeMutablePointer<IRestrictedErrorInfo>? {
+  // Ensure that the thread has a restricted error info object
   var errorInfo: UnsafeMutablePointer<IRestrictedErrorInfo>?
-  guard GetRestrictedErrorInfo(&errorInfo) == S_OK else { return nil }
-  guard let errorInfo else { return nil }
+  guard RoGetMatchingRestrictedErrorInfo(hr, &errorInfo) == S_OK, let errorInfo else { return nil }
 
   // From the docs: https://learn.microsoft.com/en-us/windows/win32/api/roerrorapi/nf-roerrorapi-getrestrictederrorinfo
   // > GetRestrictedErrorInfo transfers ownership of the error object to the caller and clears the error state for the thread.
   // For crash reporting purposes, it's useful to preserve the error info state.
   SetRestrictedErrorInfo(errorInfo)
+  return errorInfo
+}
 
-  defer {
-    _ = errorInfo.pointee.lpVtbl.pointee.Release(errorInfo)
-  }
-
+private func getErrorDescription(restrictedErrorInfo: UnsafeMutablePointer<IRestrictedErrorInfo>) -> String? {
   var errorDescription: BSTR?
   var restrictedDescription: BSTR?
   var capabilitySid: BSTR?
@@ -123,16 +123,14 @@ private func getErrorDescription(expecting hr: HRESULT) -> String? {
     SysFreeString(restrictedDescription)
     SysFreeString(capabilitySid)
   }
-  var resultLocal: HRESULT = S_OK
-  _ = errorInfo.pointee.lpVtbl.pointee.GetErrorDetails(
-    errorInfo,
+  var hr: HRESULT = S_OK
+  guard restrictedErrorInfo.pointee.lpVtbl.pointee.GetErrorDetails(
+    restrictedErrorInfo,
     &errorDescription,
-    &resultLocal,
+    &hr,
     &restrictedDescription,
-    &capabilitySid)
+    &capabilitySid) == S_OK else { return nil }
 
-  guard resultLocal == hr else { return nil }
-  
   // Favor restrictedDescription as this is a more user friendly message, which
   // is intended to be displayed to the caller to help them understand why the
   // api call failed. If it's not set, then fallback to the generic error message
@@ -142,7 +140,7 @@ private func getErrorDescription(expecting hr: HRESULT) -> String? {
   } else if SysStringLen(errorDescription) > 0 {
     return String(decodingCString: errorDescription!, as: UTF16.self)
   } else {
-    return nil
+    return hrToString(hr)
   }
 }
 
@@ -171,7 +169,21 @@ public struct Error : Swift.Error, CustomStringConvertible {
   public let hr: HRESULT
 
   public init(hr: HRESULT) {
-    self.description = getErrorDescription(expecting: hr) ?? hrToString(hr)
+    // RoGetMatchingRestrictedErrorInfo creates an IRestrictedErrorInfo with a generic message if it can't find one for the given HRESULT.
+    var restrictedErrorInfo: UnsafeMutablePointer<IRestrictedErrorInfo>?
+    if RoGetMatchingRestrictedErrorInfo(hr, &restrictedErrorInfo) == S_OK, let restrictedErrorInfo {
+      defer { _ = restrictedErrorInfo.pointee.lpVtbl.pointee.Release(restrictedErrorInfo) }
+
+      // From the docs: https://learn.microsoft.com/en-us/windows/win32/api/roerrorapi/nf-roerrorapi-getrestrictederrorinfo
+      // > GetRestrictedErrorInfo transfers ownership of the error object to the caller and clears the error state for the thread.
+      // Assume that RoGetMatchingRestrictedErrorInfo also clears the error state,
+      // but for crash reporting purposes, it's useful to preserve the it.
+      _ = SetRestrictedErrorInfo(restrictedErrorInfo)
+
+      self.description = getErrorDescription(restrictedErrorInfo: restrictedErrorInfo) ?? hrToString(hr)
+    } else {
+      self.description = hrToString(hr)
+    }
     self.hr = hr
   }
 }
