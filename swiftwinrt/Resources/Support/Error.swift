@@ -104,8 +104,14 @@ public var E_XAMLPARSEFAILED : WinSDK.HRESULT {
 private func getErrorDescription(expecting hr: HRESULT) -> String? {
   var errorInfo: UnsafeMutablePointer<IRestrictedErrorInfo>?
   guard GetRestrictedErrorInfo(&errorInfo) == S_OK else { return nil }
+  guard let errorInfo else { return nil }
+
+  // Getting the error info clears it, but it's valuable to keep it
+  // for crash diagnostics purposes.
+  SetRestrictedErrorInfo(errorInfo)
+
   defer {
-    _ = errorInfo?.pointee.lpVtbl.pointee.Release(errorInfo)
+    _ = errorInfo.pointee.lpVtbl.pointee.Release(errorInfo)
   }
 
   var errorDescription: BSTR?
@@ -117,7 +123,7 @@ private func getErrorDescription(expecting hr: HRESULT) -> String? {
     SysFreeString(capabilitySid)
   }
   var resultLocal: HRESULT = S_OK
-  _ = errorInfo?.pointee.lpVtbl.pointee.GetErrorDetails(
+  _ = errorInfo.pointee.lpVtbl.pointee.GetErrorDetails(
     errorInfo,
     &errorDescription,
     &resultLocal,
