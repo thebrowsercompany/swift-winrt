@@ -106,8 +106,9 @@ private func getErrorDescription(expecting hr: HRESULT) -> String? {
   guard GetRestrictedErrorInfo(&errorInfo) == S_OK else { return nil }
   guard let errorInfo else { return nil }
 
-  // Getting the error info clears it, but it's valuable to keep it
-  // for crash diagnostics purposes.
+  // From the docs: https://learn.microsoft.com/en-us/windows/win32/api/roerrorapi/nf-roerrorapi-getrestrictederrorinfo
+  // > GetRestrictedErrorInfo transfers ownership of the error object to the caller and clears the error state for the thread.
+  // For crash reporting purposes, it's useful to preserve the error info state.
   SetRestrictedErrorInfo(errorInfo)
 
   defer {
