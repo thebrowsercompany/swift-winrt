@@ -101,19 +101,6 @@ public var E_XAMLPARSEFAILED : WinSDK.HRESULT {
   HRESULT(bitPattern: 0x802B000A)
 }
 
-// Gets the restricted error info on the current thread for a given hresult, or creates a new one if it doesn't exist.
-private func getOrCreateRestrictedErrorInfo(expecting hr: HRESULT) -> UnsafeMutablePointer<IRestrictedErrorInfo>? {
-  // Ensure that the thread has a restricted error info object
-  var errorInfo: UnsafeMutablePointer<IRestrictedErrorInfo>?
-  guard RoGetMatchingRestrictedErrorInfo(hr, &errorInfo) == S_OK, let errorInfo else { return nil }
-
-  // From the docs: https://learn.microsoft.com/en-us/windows/win32/api/roerrorapi/nf-roerrorapi-getrestrictederrorinfo
-  // > GetRestrictedErrorInfo transfers ownership of the error object to the caller and clears the error state for the thread.
-  // For crash reporting purposes, it's useful to preserve the error info state.
-  SetRestrictedErrorInfo(errorInfo)
-  return errorInfo
-}
-
 private func getErrorDescription(restrictedErrorInfo: UnsafeMutablePointer<IRestrictedErrorInfo>) -> String? {
   var errorDescription: BSTR?
   var restrictedDescription: BSTR?

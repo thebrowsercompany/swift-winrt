@@ -433,6 +433,39 @@ class SwiftWinRTTests : XCTestCase {
     }
   }
 
+  public func testIRestrictedErrorInfo() {
+    let message = "You are doing a bad thing"
+    do {
+      let classy = Class()
+      try classy.fail(message)
+    } catch {
+      var restrictedErrorInfo: UnsafeMutablePointer<IRestrictedErrorInfo>?
+      guard GetRestrictedErrorInfo(&restrictedErrorInfo) == S_OK, let restrictedErrorInfo else {
+        XCTFail("Failed to get error info")
+        return
+      }
+      defer { _ = restrictedErrorInfo.pointee.lpVtbl.pointee.Release(restrictedErrorInfo) }
+
+      var errorDescription: BSTR?
+      var hr: HRESULT = S_OK
+      var restrictedDescription: BSTR?
+      var capabilitySid: BSTR?
+      defer {
+        SysFreeString(errorDescription)
+        SysFreeString(restrictedDescription)
+        SysFreeString(capabilitySid)
+      }
+      guard restrictedErrorInfo.pointee.lpVtbl.pointee.GetErrorDetails(
+          restrictedErrorInfo, &errorDescription, &hr, &restrictedDescription, &capabilitySid) == S_OK,
+          let restrictedDescription else {
+        XCTFail("Failed to get error description")
+        return
+      }
+
+      XCTAssertEqual(String(decodingCString: restrictedDescription, as: UTF16.self), message)
+    }
+  }
+
   public func testNoExcept() throws {
     let classy = Class()
     classy.noexceptVoid()
@@ -459,6 +492,7 @@ var tests: [XCTestCaseEntry] = [
     ("testStructWithIReference", SwiftWinRTTests.testStructWithIReference),
     ("testUnicode", SwiftWinRTTests.testUnicode),
     ("testErrorInfo", SwiftWinRTTests.testErrorInfo),
+    ("testIRestrictedErrorInfo", SwiftWinRTTests.testIRestrictedErrorInfo),
   ])
 ] + valueBoxingTests + eventTests + collectionTests + aggregationTests + asyncTests + memoryManagementTests + bufferTests + weakReferenceTests
 
