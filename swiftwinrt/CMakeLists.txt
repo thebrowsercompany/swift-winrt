@@ -1,5 +1,8 @@
 project(swiftwinrt)
 
+set(CMAKE_C_COMPILER cl)
+set(CMAKE_CXX_COMPILER cl)
+
 set(SWIFTWINRT_VERSION_STRING "0.0.1")
 set(MicrosoftWindowsWinMD_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/winmd/src)
 

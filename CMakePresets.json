@@ -30,21 +30,7 @@
             "installDir": "${sourceDir}/out/debug",
             "inherits": [ "base" ],
             "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug",
-                "CMAKE_C_COMPILER": "clang-cl",
-                "CMAKE_CXX_COMPILER": "clang-cl"
-            }
-        },
-        {
-            "name": "debug-msvc",
-            "displayName": "Debug (MSVC)",
-            "binaryDir": "${sourceDir}/build/debug-msvc",
-            "installDir": "${sourceDir}/out/debug-msvc",
-            "inherits": [ "base" ],
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug",
-                "CMAKE_C_COMPILER": "cl",
-                "CMAKE_CXX_COMPILER": "cl"
+                "CMAKE_BUILD_TYPE": "Debug"
             }
         },
         {
@@ -54,9 +40,7 @@
             "installDir": "${sourceDir}/out/release",
             "inherits": [ "base" ],
             "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Release",
-                "CMAKE_C_COMPILER": "cl",
-                "CMAKE_CXX_COMPILER": "cl"
+                "CMAKE_BUILD_TYPE": "Release"
             }
         }
     ],
@@ -64,10 +48,6 @@
       {
         "name": "debug",
         "configurePreset": "debug"
-      },
-      {
-        "name": "debug-msvc",
-        "configurePreset": "debug-msvc"
       },
       {
         "name": "release",
