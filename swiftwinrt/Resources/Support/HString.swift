@@ -10,11 +10,26 @@ final public class HString {
   internal private(set) var hString: HSTRING?
   
   public init(_ string: String) throws {
-    self.hString = try string.withCString(encodedAs: UTF16.self) {
-      var result: HSTRING?
-      try CHECKED(WindowsCreateString($0, UINT32(wcslen($0)), &result))
-      return result
-    }
+
+    let codeUnitCount = string.utf16.count
+    var pointer: UnsafeMutablePointer<UInt16>? = nil
+    var hStringBuffer: HSTRING_BUFFER? = nil
+
+    try CHECKED(WindowsPreallocateStringBuffer(UInt32(codeUnitCount), &pointer, &hStringBuffer));
+
+    guard let pointer else { throw Error(hr: E_FAIL) }
+        _ = UnsafeMutableBufferPointer(start: pointer, count: codeUnitCount).initialize(from: string.utf16)
+
+    var hString: HSTRING?
+        do { 
+            try CHECKED(WindowsPromoteStringBuffer(hStringBuffer, &hString));
+        }
+        catch {
+            WindowsDeleteStringBuffer(hStringBuffer)
+            throw error
+        }
+
+    self.hString = hString
   }
 
   public init(_ hString: HSTRING?) throws {
