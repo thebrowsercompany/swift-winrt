@@ -14,6 +14,7 @@ namespace test_component
         static String InVector(Windows.Foundation.Collections.IVector<String> value);
         static String InVectorView(Windows.Foundation.Collections.IVectorView<String> value);
         static void GetObjectAt(Windows.Foundation.Collections.IVector<Object> value, UInt32 index, ObjectHandler callback);
+        static Windows.Foundation.Collections.IIterable<String> VectorAsIterable(Windows.Foundation.Collections.IVector<String> value);
 
         Windows.Foundation.Collections.IVector<String> ReturnStoredStringVector();
         Windows.Foundation.Collections.IMap<String, String> ReturnMapFromStringToString();
