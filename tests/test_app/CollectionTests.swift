@@ -43,7 +43,7 @@ class CollectionTests : XCTestCase {
   }
 
   public func testArrayVectorIsIterable() throws {
-    XCTAssertNotNil(try CollectionTester.vectorToIterable(["a", "b", "c"].toVector()))
+    XCTAssertNotNil(try CollectionTester.vectorAsIterable(["a", "b", "c"].toVector()))
   }
 
   public func testVectorObject_toCallback() throws {
