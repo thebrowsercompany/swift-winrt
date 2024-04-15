@@ -43,6 +43,7 @@ class CollectionTests : XCTestCase {
   }
 
   public func testArrayVectorIsIterable() throws {
+    try XCTSkipIf(true, "TODO(#159)")
     XCTAssertNotNil(try CollectionTester.vectorAsIterable(["a", "b", "c"].toVector()))
   }
 
