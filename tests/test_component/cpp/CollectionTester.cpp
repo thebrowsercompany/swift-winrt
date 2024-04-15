@@ -40,6 +40,11 @@ namespace winrt::test_component::implementation
         callback(item);
     }
 
+    winrt::Windows::Foundation::Collections::IIterable<hstring> CollectionTester::VectorAsIterable(winrt::Windows::Foundation::Collections::IVector<hstring> const& value)
+    {
+        return value.as<Windows::Foundation::Collections::IIterable<hstring>>();
+    }
+
     Windows::Foundation::Collections::IVector<hstring> CollectionTester::ReturnStoredStringVector()
     {
         if (m_vector.Size() == 0)
