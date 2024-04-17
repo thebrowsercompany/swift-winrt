@@ -428,7 +428,7 @@ public final class StorageItemQueryResult : WinRTClass, IStorageQueryResultBase 
 }
 
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.search.sortentry)
-public struct SortEntry: Hashable, Codable {
+public struct SortEntry: Hashable, Codable, Sendable {
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.search.sortentry.propertyname)
     public var propertyName: String = ""
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.search.sortentry.ascendingorder)

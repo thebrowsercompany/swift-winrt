@@ -4,7 +4,7 @@ import Foundation
 import Ctest_component
 
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.data.text.textsegment)
-public struct TextSegment: Hashable, Codable {
+public struct TextSegment: Hashable, Codable, Sendable {
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.data.text.textsegment.startposition)
     public var startPosition: UInt32 = 0
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.data.text.textsegment.length)
