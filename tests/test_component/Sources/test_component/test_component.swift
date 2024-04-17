@@ -1684,7 +1684,7 @@ public final class WeakReferencer : WinRTClass {
 
 public typealias ObjectHandler = (Any?) throws -> ()
 public typealias VoidToVoidDelegate = () throws -> ()
-public struct BlittableStruct: Hashable, Codable {
+public struct BlittableStruct: Hashable, Codable, Sendable {
     public var first: Int32 = 0
     public var second: Int32 = 0
     public init() {}
@@ -1697,7 +1697,7 @@ public struct BlittableStruct: Hashable, Codable {
     }
 }
 
-public struct NonBlittableBoolStruct: Hashable, Codable {
+public struct NonBlittableBoolStruct: Hashable, Codable, Sendable {
     public var first: Bool = false
     public var second: Bool = false
     public var third: Bool = false
@@ -1714,7 +1714,7 @@ public struct NonBlittableBoolStruct: Hashable, Codable {
     }
 }
 
-public struct NonBlittableStruct: Hashable, Codable {
+public struct NonBlittableStruct: Hashable, Codable, Sendable {
     public var first: String = ""
     public var second: String = ""
     public var third: Int32 = 0
@@ -1731,7 +1731,7 @@ public struct NonBlittableStruct: Hashable, Codable {
     }
 }
 
-public struct SimpleEventArgs: Hashable, Codable {
+public struct SimpleEventArgs: Hashable, Codable, Sendable {
     public var value: Int32 = 0
     public init() {}
     public init(value: Int32) {
@@ -1742,7 +1742,7 @@ public struct SimpleEventArgs: Hashable, Codable {
     }
 }
 
-public struct StructWithEnum: Hashable, Codable {
+public struct StructWithEnum: Hashable, Codable, Sendable {
     public var names: SwiftifiableNames = .init(0)
     public init() {}
     public init(names: SwiftifiableNames) {
@@ -1753,7 +1753,7 @@ public struct StructWithEnum: Hashable, Codable {
     }
 }
 
-public struct StructWithIReference: Hashable, Codable {
+public struct StructWithIReference: Hashable, Codable, Sendable {
     public var value1: Int32?
     public var value2: Int32?
     public init() {}

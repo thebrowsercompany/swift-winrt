@@ -358,7 +358,7 @@ public typealias DeferralCompletedHandler = () throws -> ()
 public typealias EventHandler<T> = (Any?, T) throws -> ()
 public typealias TypedEventHandler<TSender,TResult> = (TSender, TResult) throws -> ()
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.datetime)
-public struct DateTime: Hashable, Codable {
+public struct DateTime: Hashable, Codable, Sendable {
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.datetime.universaltime)
     public var universalTime: Int64 = 0
     public init() {}
@@ -371,7 +371,7 @@ public struct DateTime: Hashable, Codable {
 }
 
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.point)
-public struct Point: Hashable, Codable {
+public struct Point: Hashable, Codable, Sendable {
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.point.x)
     public var x: Float = 0.0
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.point.y)
@@ -387,7 +387,7 @@ public struct Point: Hashable, Codable {
 }
 
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.rect)
-public struct Rect: Hashable, Codable {
+public struct Rect: Hashable, Codable, Sendable {
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.rect.x)
     public var x: Float = 0.0
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.rect.y)
@@ -409,7 +409,7 @@ public struct Rect: Hashable, Codable {
 }
 
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.size)
-public struct Size: Hashable, Codable {
+public struct Size: Hashable, Codable, Sendable {
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.size.width)
     public var width: Float = 0.0
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.size.height)
@@ -425,7 +425,7 @@ public struct Size: Hashable, Codable {
 }
 
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.timespan)
-public struct TimeSpan: Hashable, Codable {
+public struct TimeSpan: Hashable, Codable, Sendable {
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.timespan.duration)
     public var duration: Int64 = 0
     public init() {}
