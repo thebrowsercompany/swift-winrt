@@ -48,7 +48,7 @@ namespace swiftwinrt
         }
         w.write("}\n");
 
-        w.write("extension %: ^@retroactive Hashable, ^@retroactive Codable {}\n\n", get_full_swift_type_name(w, type));
+        w.write("extension %: ^@retroactive Hashable, ^@retroactive Codable, ^@retroactive Sendable {}\n\n", get_full_swift_type_name(w, type));
     }
 
     static void write_guid_value(writer& w, std::vector<FixedArgSig> const& args)
