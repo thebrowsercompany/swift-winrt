@@ -80,7 +80,7 @@ private var IID___x_ABI_Ctest__component_CICollectionTester: test_component.IID 
 }
 
 private var IID___x_ABI_Ctest__component_CICollectionTesterStatics: test_component.IID {
-    .init(Data1: 0xB357268D, Data2: 0x1A80, Data3: 0x5A61, Data4: ( 0xB3,0xEF,0x13,0x22,0x4B,0xE0,0x63,0x10 ))// B357268D-1A80-5A61-B3EF-13224BE06310
+    .init(Data1: 0xA4C0D4B5, Data2: 0xEDA2, Data3: 0x55E5, Data4: ( 0xAD,0x0F,0xCE,0x1F,0x13,0xA9,0x81,0xCC ))// A4C0D4B5-EDA2-55E5-AD0F-CE1F13A981CC
 }
 
 private var IID___x_ABI_Ctest__component_CIDeferrableEventArgs: test_component.IID {
@@ -1084,6 +1084,17 @@ public enum __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CICollectionTesterStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetObjectAt(pThis, _value, index, _callback))
             }
+        }
+
+        internal func VectorAsIterableImpl(_ value: test_component.AnyIVector<String>?) throws -> test_component.AnyIIterable<String>? {
+            let (result) = try ComPtrs.initialize { resultAbi in
+                let valueWrapper = test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper(value)
+                let _value = try! valueWrapper?.toABI { $0 }
+                _ = try perform(as: __x_ABI_Ctest__component_CICollectionTesterStatics.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.VectorAsIterable(pThis, _value, &resultAbi))
+                }
+            }
+            return test_component.__x_ABI_C__FIIterable_1_HSTRINGWrapper.unwrapFrom(abi: result)
         }
 
     }
