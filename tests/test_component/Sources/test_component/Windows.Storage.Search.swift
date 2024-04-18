@@ -543,7 +543,7 @@ extension test_component.CommonFileQuery {
         __x_ABI_CWindows_CStorage_CSearch_CCommonFileQuery_OrderByDate
     }
 }
-extension test_component.CommonFileQuery: @retroactive Hashable, @retroactive Codable {}
+extension test_component.CommonFileQuery: @retroactive Hashable, @retroactive Codable, @retroactive Sendable {}
 
 extension test_component.CommonFolderQuery {
     public static var defaultQuery : test_component.CommonFolderQuery {
@@ -586,7 +586,7 @@ extension test_component.CommonFolderQuery {
         __x_ABI_CWindows_CStorage_CSearch_CCommonFolderQuery_GroupByType
     }
 }
-extension test_component.CommonFolderQuery: @retroactive Hashable, @retroactive Codable {}
+extension test_component.CommonFolderQuery: @retroactive Hashable, @retroactive Codable, @retroactive Sendable {}
 
 extension test_component.DateStackOption {
     public static var none : test_component.DateStackOption {
@@ -599,7 +599,7 @@ extension test_component.DateStackOption {
         __x_ABI_CWindows_CStorage_CSearch_CDateStackOption_Month
     }
 }
-extension test_component.DateStackOption: @retroactive Hashable, @retroactive Codable {}
+extension test_component.DateStackOption: @retroactive Hashable, @retroactive Codable, @retroactive Sendable {}
 
 extension test_component.FolderDepth {
     public static var shallow : test_component.FolderDepth {
@@ -609,7 +609,7 @@ extension test_component.FolderDepth {
         __x_ABI_CWindows_CStorage_CSearch_CFolderDepth_Deep
     }
 }
-extension test_component.FolderDepth: @retroactive Hashable, @retroactive Codable {}
+extension test_component.FolderDepth: @retroactive Hashable, @retroactive Codable, @retroactive Sendable {}
 
 extension test_component.IndexedState {
     public static var unknown : test_component.IndexedState {
@@ -625,7 +625,7 @@ extension test_component.IndexedState {
         __x_ABI_CWindows_CStorage_CSearch_CIndexedState_FullyIndexed
     }
 }
-extension test_component.IndexedState: @retroactive Hashable, @retroactive Codable {}
+extension test_component.IndexedState: @retroactive Hashable, @retroactive Codable, @retroactive Sendable {}
 
 extension test_component.IndexerOption {
     public static var useIndexerWhenAvailable : test_component.IndexerOption {
@@ -641,5 +641,5 @@ extension test_component.IndexerOption {
         __x_ABI_CWindows_CStorage_CSearch_CIndexerOption_OnlyUseIndexerAndOptimizeForIndexedProperties
     }
 }
-extension test_component.IndexerOption: @retroactive Hashable, @retroactive Codable {}
+extension test_component.IndexerOption: @retroactive Hashable, @retroactive Codable, @retroactive Sendable {}
 
