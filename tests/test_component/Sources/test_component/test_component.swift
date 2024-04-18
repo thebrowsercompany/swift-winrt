@@ -1982,7 +1982,7 @@ extension test_component.Fruit {
         __x_ABI_Ctest__component_CFruit_Pineapple
     }
 }
-extension test_component.Fruit: @retroactive Hashable, @retroactive Codable {}
+extension test_component.Fruit: @retroactive Hashable, @retroactive Codable, @retroactive Sendable {}
 
 extension test_component.Keywords {
     public static var `as` : test_component.Keywords {
@@ -2112,7 +2112,7 @@ extension test_component.Keywords {
         __x_ABI_Ctest__component_CKeywords_While
     }
 }
-extension test_component.Keywords: @retroactive Hashable, @retroactive Codable {}
+extension test_component.Keywords: @retroactive Hashable, @retroactive Codable, @retroactive Sendable {}
 
 extension test_component.Signed {
     public static var first : test_component.Signed {
@@ -2125,7 +2125,7 @@ extension test_component.Signed {
         __x_ABI_Ctest__component_CSigned_Third
     }
 }
-extension test_component.Signed: @retroactive Hashable, @retroactive Codable {}
+extension test_component.Signed: @retroactive Hashable, @retroactive Codable, @retroactive Sendable {}
 
 extension test_component.SwiftifiableNames {
     public static var camelCase : test_component.SwiftifiableNames {
@@ -2147,7 +2147,7 @@ extension test_component.SwiftifiableNames {
         __x_ABI_Ctest__component_CSwiftifiableNames_UUID
     }
 }
-extension test_component.SwiftifiableNames: @retroactive Hashable, @retroactive Codable {}
+extension test_component.SwiftifiableNames: @retroactive Hashable, @retroactive Codable, @retroactive Sendable {}
 
 extension test_component.Unsigned {
     public static var first : test_component.Unsigned {
@@ -2160,5 +2160,5 @@ extension test_component.Unsigned {
         __x_ABI_Ctest__component_CUnsigned_Third
     }
 }
-extension test_component.Unsigned: @retroactive Hashable, @retroactive Codable {}
+extension test_component.Unsigned: @retroactive Hashable, @retroactive Codable, @retroactive Sendable {}
 
