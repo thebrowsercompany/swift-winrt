@@ -3408,6 +3408,9 @@ struct __x_ABI_Ctest__component_CStructWithIReference
         __x_ABI_C__FIVector_1_IInspectable* value,
         UINT32 index,
         __x_ABI_Ctest__component_CIObjectHandler* callback);
+    HRESULT (STDMETHODCALLTYPE* VectorAsIterable)(__x_ABI_Ctest__component_CICollectionTesterStatics* This,
+        __x_ABI_C__FIVector_1_HSTRING* value,
+        __x_ABI_C__FIIterable_1_HSTRING** result);
 
         END_INTERFACE
     } __x_ABI_Ctest__component_CICollectionTesterStaticsVtbl;

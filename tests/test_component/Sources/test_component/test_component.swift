@@ -862,6 +862,10 @@ public final class CollectionTester : WinRTClass {
         try _ICollectionTesterStatics.GetObjectAtImpl(value, index, callback)
     }
 
+    public static func vectorAsIterable(_ value: AnyIVector<String>!) throws -> AnyIIterable<String>! {
+        return try _ICollectionTesterStatics.VectorAsIterableImpl(value)
+    }
+
     public func returnStoredStringVector() throws -> AnyIVector<String>! {
         try _default.ReturnStoredStringVectorImpl()
     }
