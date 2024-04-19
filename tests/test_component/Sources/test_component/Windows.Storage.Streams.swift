@@ -284,7 +284,7 @@ extension test_component.InputStreamOptions {
         __x_ABI_CWindows_CStorage_CStreams_CInputStreamOptions_ReadAhead
     }
 }
-extension test_component.InputStreamOptions: @retroactive Hashable, @retroactive Codable, @retroactive Sendable {}
+extension test_component.InputStreamOptions: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
 
 extension test_component.UnicodeEncoding {
     public static var utf8 : test_component.UnicodeEncoding {
@@ -297,5 +297,5 @@ extension test_component.UnicodeEncoding {
         __x_ABI_CWindows_CStorage_CStreams_CUnicodeEncoding_Utf16BE
     }
 }
-extension test_component.UnicodeEncoding: @retroactive Hashable, @retroactive Codable, @retroactive Sendable {}
+extension test_component.UnicodeEncoding: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
 
