@@ -1291,7 +1291,7 @@ extension test_component.CreationCollisionOption {
         __x_ABI_CWindows_CStorage_CCreationCollisionOption_OpenIfExists
     }
 }
-extension test_component.CreationCollisionOption: @retroactive Hashable, @retroactive Codable, @retroactive Sendable {}
+extension test_component.CreationCollisionOption: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
 
 extension test_component.FileAccessMode {
     public static var read : test_component.FileAccessMode {
@@ -1301,7 +1301,7 @@ extension test_component.FileAccessMode {
         __x_ABI_CWindows_CStorage_CFileAccessMode_ReadWrite
     }
 }
-extension test_component.FileAccessMode: @retroactive Hashable, @retroactive Codable, @retroactive Sendable {}
+extension test_component.FileAccessMode: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
 
 extension test_component.FileAttributes {
     public static var normal : test_component.FileAttributes {
@@ -1323,7 +1323,7 @@ extension test_component.FileAttributes {
         __x_ABI_CWindows_CStorage_CFileAttributes_LocallyIncomplete
     }
 }
-extension test_component.FileAttributes: @retroactive Hashable, @retroactive Codable, @retroactive Sendable {}
+extension test_component.FileAttributes: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
 
 extension test_component.NameCollisionOption {
     public static var generateUniqueName : test_component.NameCollisionOption {
@@ -1336,7 +1336,7 @@ extension test_component.NameCollisionOption {
         __x_ABI_CWindows_CStorage_CNameCollisionOption_FailIfExists
     }
 }
-extension test_component.NameCollisionOption: @retroactive Hashable, @retroactive Codable, @retroactive Sendable {}
+extension test_component.NameCollisionOption: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
 
 extension test_component.StorageDeleteOption {
     public static var `default` : test_component.StorageDeleteOption {
@@ -1346,7 +1346,7 @@ extension test_component.StorageDeleteOption {
         __x_ABI_CWindows_CStorage_CStorageDeleteOption_PermanentDelete
     }
 }
-extension test_component.StorageDeleteOption: @retroactive Hashable, @retroactive Codable, @retroactive Sendable {}
+extension test_component.StorageDeleteOption: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
 
 extension test_component.StorageItemTypes {
     public static var none : test_component.StorageItemTypes {
@@ -1359,7 +1359,7 @@ extension test_component.StorageItemTypes {
         __x_ABI_CWindows_CStorage_CStorageItemTypes_Folder
     }
 }
-extension test_component.StorageItemTypes: @retroactive Hashable, @retroactive Codable, @retroactive Sendable {}
+extension test_component.StorageItemTypes: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
 
 extension test_component.StorageLibraryChangeType {
     public static var created : test_component.StorageLibraryChangeType {
@@ -1393,7 +1393,7 @@ extension test_component.StorageLibraryChangeType {
         __x_ABI_CWindows_CStorage_CStorageLibraryChangeType_ChangeTrackingLost
     }
 }
-extension test_component.StorageLibraryChangeType: @retroactive Hashable, @retroactive Codable, @retroactive Sendable {}
+extension test_component.StorageLibraryChangeType: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
 
 extension test_component.StorageOpenOptions {
     public static var none : test_component.StorageOpenOptions {
@@ -1406,7 +1406,7 @@ extension test_component.StorageOpenOptions {
         __x_ABI_CWindows_CStorage_CStorageOpenOptions_AllowReadersAndWriters
     }
 }
-extension test_component.StorageOpenOptions: @retroactive Hashable, @retroactive Codable, @retroactive Sendable {}
+extension test_component.StorageOpenOptions: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
 
 extension test_component.StreamedFileFailureMode {
     public static var failed : test_component.StreamedFileFailureMode {
@@ -1419,5 +1419,5 @@ extension test_component.StreamedFileFailureMode {
         __x_ABI_CWindows_CStorage_CStreamedFileFailureMode_Incomplete
     }
 }
-extension test_component.StreamedFileFailureMode: @retroactive Hashable, @retroactive Codable, @retroactive Sendable {}
+extension test_component.StreamedFileFailureMode: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
 

@@ -786,7 +786,7 @@ extension test_component.PhotoOrientation {
         __x_ABI_CWindows_CStorage_CFileProperties_CPhotoOrientation_Rotate90
     }
 }
-extension test_component.PhotoOrientation: @retroactive Hashable, @retroactive Codable, @retroactive Sendable {}
+extension test_component.PhotoOrientation: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
 
 extension test_component.PropertyPrefetchOptions {
     public static var none : test_component.PropertyPrefetchOptions {
@@ -808,7 +808,7 @@ extension test_component.PropertyPrefetchOptions {
         __x_ABI_CWindows_CStorage_CFileProperties_CPropertyPrefetchOptions_BasicProperties
     }
 }
-extension test_component.PropertyPrefetchOptions: @retroactive Hashable, @retroactive Codable, @retroactive Sendable {}
+extension test_component.PropertyPrefetchOptions: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
 
 extension test_component.ThumbnailMode {
     public static var picturesView : test_component.ThumbnailMode {
@@ -830,7 +830,7 @@ extension test_component.ThumbnailMode {
         __x_ABI_CWindows_CStorage_CFileProperties_CThumbnailMode_SingleItem
     }
 }
-extension test_component.ThumbnailMode: @retroactive Hashable, @retroactive Codable, @retroactive Sendable {}
+extension test_component.ThumbnailMode: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
 
 extension test_component.ThumbnailOptions {
     public static var none : test_component.ThumbnailOptions {
@@ -846,7 +846,7 @@ extension test_component.ThumbnailOptions {
         __x_ABI_CWindows_CStorage_CFileProperties_CThumbnailOptions_UseCurrentScale
     }
 }
-extension test_component.ThumbnailOptions: @retroactive Hashable, @retroactive Codable, @retroactive Sendable {}
+extension test_component.ThumbnailOptions: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
 
 extension test_component.ThumbnailType {
     public static var image : test_component.ThumbnailType {
@@ -856,7 +856,7 @@ extension test_component.ThumbnailType {
         __x_ABI_CWindows_CStorage_CFileProperties_CThumbnailType_Icon
     }
 }
-extension test_component.ThumbnailType: @retroactive Hashable, @retroactive Codable, @retroactive Sendable {}
+extension test_component.ThumbnailType: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
 
 extension test_component.VideoOrientation {
     public static var normal : test_component.VideoOrientation {
@@ -872,5 +872,5 @@ extension test_component.VideoOrientation {
         __x_ABI_CWindows_CStorage_CFileProperties_CVideoOrientation_Rotate270
     }
 }
-extension test_component.VideoOrientation: @retroactive Hashable, @retroactive Codable, @retroactive Sendable {}
+extension test_component.VideoOrientation: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
 
