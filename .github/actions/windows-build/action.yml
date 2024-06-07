@@ -15,7 +15,7 @@ runs:
       arch: amd64
 
   - name: Install private Swift toolchain
-    uses: compnerd/gha-setup-swift@main
+    uses: compnerd/gha-setup-swift@81f383b35a86e6e966de139be25b451d4f7dd953
     with:
       github-repo: thebrowsercompany/swift-build
       github-token: ${{ inputs.GITHUB_TOKEN }}
