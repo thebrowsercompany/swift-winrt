@@ -10,7 +10,7 @@ runs:
 
   steps:
   - name: Configure VC++ build for amd64
-    uses: compnerd/gha-setup-vsdevenv@main
+    uses: compnerd/gha-setup-vsdevenv@f1ba60d553a3216ce1b89abe0201213536bc7557
     with:
       arch: amd64
 
