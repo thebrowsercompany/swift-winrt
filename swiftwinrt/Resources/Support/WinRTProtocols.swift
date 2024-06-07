@@ -44,7 +44,8 @@ open class WinRTClass : CustomQueryInterface, Equatable {
 
     deinit {
       // ensure we release the _inner pointer before releasing identity. releasing the _inner
-      // cleans up the underlying COM object.
+      // cleans up the underlying COM object, which might be holding a reference to the identity pointer.
+
       _inner = nil
       identity = nil
     }
