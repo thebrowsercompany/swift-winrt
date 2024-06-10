@@ -16,6 +16,10 @@ runs:
       host_arch: amd64
       arch: amd64
 
+  - name: List installed VC versions
+    shell: pwsh
+    run: Get-ChildItem "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\"
+      
   - name: Install private Swift toolchain
     uses: compnerd/gha-setup-swift@main
     with:
