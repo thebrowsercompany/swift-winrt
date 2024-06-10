@@ -12,7 +12,7 @@ runs:
   - name: Configure VC++ build for amd64
     uses: kendalharland/gha-setup-vsdevenv@main
     with:
-      toolset_version: 14.38.33130
+      toolset_version: 14.39.33519
       host_arch: amd64
       arch: amd64
 
