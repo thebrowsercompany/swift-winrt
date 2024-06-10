@@ -16,6 +16,7 @@ set(SWIFT_WINRT_PARAMETERS
 "-support test_component"
 "-test"
 "-log"
+"-verbose"
 "-output ${CMAKE_CURRENT_SOURCE_DIR}"
 "-reference ${CMAKE_SYSTEM_VERSION}"
 )

@@ -10,8 +10,10 @@ runs:
 
   steps:
   - name: Configure VC++ build for amd64
-    uses: compnerd/gha-setup-vsdevenv@f1ba60d553a3216ce1b89abe0201213536bc7557
+    uses: kendalharland/gha-setup-vsdevenv@main
     with:
+      winsdk: 10.0.17763.0
+      host_arch: amd64
       arch: amd64
 
   - name: Install private Swift toolchain
@@ -22,15 +24,34 @@ runs:
       release-tag-name: 20231025.2
       release-asset-name: installer-amd64.exe
 
+  - name: Print tool versions
+    shell: pwsh
+    run: |
+      swift --version
+      cmake --version
+
   - name: Configure CMake
     shell: cmd
-    run: cmake --preset ${{ inputs.config }}
+    run: cmake --preset ${{ inputs.config }} -DCMAKE_VERBOSE_MAKEFILE=ON
 
   - name: Build
     shell: cmd
     run: |
-      cmake --build --preset ${{ inputs.config }}
-      cmake --build --preset ${{ inputs.config }} --target install
+      cmake --build --trace --preset ${{ inputs.config }}
+
+      echo "RUNNING SWIFTWINRT DIRECTLY"
+      cd /D D:\a\swift-winrt\swift-winrt\build\release\tests\test_component && D:\a\swift-winrt\swift-winrt\build\release\swiftwinrt\swiftwinrt.exe @D:/a/swift-winrt/swift-winrt/build/release/tests/test_component/SwiftWinRT.rsp
+
+      echo "BUILDING tests/ MANUALLY"
+      cd ${{ github.workspace }}\tests
+      swift build -j 4 -Xswiftc -disable-round-trip-debug-types -c release --scratch-path ${{ github.workspace }}/build/release/tests -Xbuild-tools-swiftc="-I${{ github.workspace }}/swiftwinrt/Resources/CWinRT" -Xcc="-I${{ github.workspace }}/swiftwinrt/Resources/CWinRT"
+
+      echo "BACK TO NORMAL BUILD STEPS"
+      cd ${{ github.workspace }}
+
+      cmake --build --trace --preset ${{ inputs.config }} --target install
+
+      ${{github.workspace}}\out\release\bin\test_app.exe
 
  # Right now this is failing due to line-ending differences, need to figure out how to fix that
  # - name: Validate Checked-In Files are Up-To-Date
@@ -41,6 +62,20 @@ runs:
  #       git diff
  #       throw "Checked in files are not up-to-date, re-run swiftwinrt before checking-in: \n$dirty"
  #     }
+
+  - name: Test swiftwinrt
+    if: always()
+    shell: pwsh
+    run: |
+      echo "TESTING SWIFTWINRT"
+      ${{ github.workspace }}\build\release\swiftwinrt\swiftwinrt.exe
+
+  - name: Locate SwiftWinRT log
+    if: always()
+    shell: pwsh
+    run: |
+      echo "Searching for log file"
+      Get-ChildItem -R ${{ github.workspace }}
 
   - name: Upload swiftwinrt logs on failure
     uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3

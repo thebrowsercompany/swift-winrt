@@ -111,7 +111,6 @@ function(nuget)
       ${CMAKE_BINARY_DIR}/${NUGET_PACKAGE}.${NUGET_PACKAGE_VERSION})
   set(NUGET_PACKAGE_INSTALL_ROOT ${NUGET_PACKAGE_INSTALL_ROOT} PARENT_SCOPE)
 
-  string(REPLACE "\n" ";" LINES ${NUGET_INSTALL_OUTPUT})
   foreach(LINE ${LINES})
     string(FIND "${LINE}" "Successfully installed" installed_index)
     string(FIND "${LINE}" "already installed" already_installed_index)
