@@ -13,6 +13,7 @@ runs:
     uses: compnerd/gha-setup-vsdevenv@main
     with:
       arch: amd64
+      toolset_version: 14.38.33130
 
   - name: Install private Swift toolchain
     uses: compnerd/gha-setup-swift@81f383b35a86e6e966de139be25b451d4f7dd953
