@@ -10,17 +10,25 @@ runs:
 
   steps:
   - name: Configure VC++ build for amd64
-    uses: compnerd/gha-setup-vsdevenv@f1ba60d553a3216ce1b89abe0201213536bc7557
+    uses: kendalharland/gha-setup-vsdevenv@main
     with:
+      toolset_version: 14.38.33130
+      host_arch: amd64
       arch: amd64
 
   - name: Install private Swift toolchain
-    uses: compnerd/gha-setup-swift@81f383b35a86e6e966de139be25b451d4f7dd953
+    uses: compnerd/gha-setup-swift@main
     with:
       github-repo: thebrowsercompany/swift-build
       github-token: ${{ inputs.GITHUB_TOKEN }}
       release-tag-name: 20231025.2
       release-asset-name: installer-amd64.exe
+
+  - name: Configure VC++ build for amd64
+    uses: kendalharland/gha-setup-vsdevenv@main
+    with:
+      host_arch: amd64
+      arch: amd64
 
   - name: Configure CMake
     shell: cmd

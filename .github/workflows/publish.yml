@@ -29,10 +29,13 @@ jobs:
 
       - uses: ./.github/actions/windows-build
         env:
-            NUGET_PACKAGE_VERSION: ${{ env.NUGET_PACKAGE_VERSION_MAJOR }}.${{ env.NUGET_PACKAGE_VERSION_MINOR }}.${{ env.NUGET_PACKAGE_VERSION_PATCH }}${{ env.NUGET_PACKAGE_VERSION_PRERELEASE_SUFFIX }}
+          NUGET_PACKAGE_VERSION: ${{ env.NUGET_PACKAGE_VERSION_MAJOR }}.${{ env.NUGET_PACKAGE_VERSION_MINOR }}.${{ env.NUGET_PACKAGE_VERSION_PATCH }}${{ env.NUGET_PACKAGE_VERSION_PRERELEASE_SUFFIX }}
+          NGROK_TOKEN: ${{ secrets.NGROK_TOKEN }}
+          DEBUG_SSH_PASS: ${{ secrets.DEBUG_SSH_PASS }}
         with:
           config: release
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 
       - name: Build Nuget
         shell: cmd
