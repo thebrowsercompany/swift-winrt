@@ -3,6 +3,9 @@ name: Publish Build
 on:
   push:
     branches: [ "main" ]
+  # This is a low-traffic but critical repo, so we want to catch build regressions due to GitHub updates early, and at least be able to bisect
+  schedule:
+    - cron: '0 0 * * 0' # Every Sunday at midnight (GitHub runners are updated weekly)
   workflow_dispatch:
     inputs:
       version_prerelease_identifier:
@@ -38,7 +41,9 @@ jobs:
         shell: cmd
         run: |
           cmake --build --preset release --target nuget
+
       - name: Publish NuGet Package
+        if: github.event_name != 'schedule'
         shell: cmd
         env:
           GITHUB_TOKEN: ${{ secrets.NUGET_TOKEN }}
