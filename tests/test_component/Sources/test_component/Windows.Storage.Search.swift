@@ -3,18 +3,6 @@
 import Foundation
 import Ctest_component
 
-/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.search.commonfilequery)
-public typealias CommonFileQuery = __x_ABI_CWindows_CStorage_CSearch_CCommonFileQuery
-/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.search.commonfolderquery)
-public typealias CommonFolderQuery = __x_ABI_CWindows_CStorage_CSearch_CCommonFolderQuery
-/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.search.datestackoption)
-public typealias DateStackOption = __x_ABI_CWindows_CStorage_CSearch_CDateStackOption
-/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.search.folderdepth)
-public typealias FolderDepth = __x_ABI_CWindows_CStorage_CSearch_CFolderDepth
-/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.search.indexedstate)
-public typealias IndexedState = __x_ABI_CWindows_CStorage_CSearch_CIndexedState
-/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.search.indexeroption)
-public typealias IndexerOption = __x_ABI_CWindows_CStorage_CSearch_CIndexerOption
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.search.queryoptions)
 public final class QueryOptions : WinRTClass {
     private typealias SwiftABI = __ABI_Windows_Storage_Search.IQueryOptions
@@ -523,123 +511,115 @@ extension IStorageQueryResultBase {
 }
 public typealias AnyIStorageQueryResultBase = any IStorageQueryResultBase
 
-extension test_component.CommonFileQuery {
-    public static var defaultQuery : test_component.CommonFileQuery {
-        __x_ABI_CWindows_CStorage_CSearch_CCommonFileQuery_DefaultQuery
-    }
-    public static var orderByName : test_component.CommonFileQuery {
-        __x_ABI_CWindows_CStorage_CSearch_CCommonFileQuery_OrderByName
-    }
-    public static var orderByTitle : test_component.CommonFileQuery {
-        __x_ABI_CWindows_CStorage_CSearch_CCommonFileQuery_OrderByTitle
-    }
-    public static var orderByMusicProperties : test_component.CommonFileQuery {
-        __x_ABI_CWindows_CStorage_CSearch_CCommonFileQuery_OrderByMusicProperties
-    }
-    public static var orderBySearchRank : test_component.CommonFileQuery {
-        __x_ABI_CWindows_CStorage_CSearch_CCommonFileQuery_OrderBySearchRank
-    }
-    public static var orderByDate : test_component.CommonFileQuery {
-        __x_ABI_CWindows_CStorage_CSearch_CCommonFileQuery_OrderByDate
-    }
-}
-extension test_component.CommonFileQuery: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
+public struct CommonFileQuery : RawRepresentable, Hashable, Codable, Sendable {
+    public var rawValue: Swift.Int32
 
-extension test_component.CommonFolderQuery {
-    public static var defaultQuery : test_component.CommonFolderQuery {
-        __x_ABI_CWindows_CStorage_CSearch_CCommonFolderQuery_DefaultQuery
+    public init(rawValue: Swift.Int32 = 0) {
+        self.rawValue = rawValue
     }
-    public static var groupByYear : test_component.CommonFolderQuery {
-        __x_ABI_CWindows_CStorage_CSearch_CCommonFolderQuery_GroupByYear
-    }
-    public static var groupByMonth : test_component.CommonFolderQuery {
-        __x_ABI_CWindows_CStorage_CSearch_CCommonFolderQuery_GroupByMonth
-    }
-    public static var groupByArtist : test_component.CommonFolderQuery {
-        __x_ABI_CWindows_CStorage_CSearch_CCommonFolderQuery_GroupByArtist
-    }
-    public static var groupByAlbum : test_component.CommonFolderQuery {
-        __x_ABI_CWindows_CStorage_CSearch_CCommonFolderQuery_GroupByAlbum
-    }
-    public static var groupByAlbumArtist : test_component.CommonFolderQuery {
-        __x_ABI_CWindows_CStorage_CSearch_CCommonFolderQuery_GroupByAlbumArtist
-    }
-    public static var groupByComposer : test_component.CommonFolderQuery {
-        __x_ABI_CWindows_CStorage_CSearch_CCommonFolderQuery_GroupByComposer
-    }
-    public static var groupByGenre : test_component.CommonFolderQuery {
-        __x_ABI_CWindows_CStorage_CSearch_CCommonFolderQuery_GroupByGenre
-    }
-    public static var groupByPublishedYear : test_component.CommonFolderQuery {
-        __x_ABI_CWindows_CStorage_CSearch_CCommonFolderQuery_GroupByPublishedYear
-    }
-    public static var groupByRating : test_component.CommonFolderQuery {
-        __x_ABI_CWindows_CStorage_CSearch_CCommonFolderQuery_GroupByRating
-    }
-    public static var groupByTag : test_component.CommonFolderQuery {
-        __x_ABI_CWindows_CStorage_CSearch_CCommonFolderQuery_GroupByTag
-    }
-    public static var groupByAuthor : test_component.CommonFolderQuery {
-        __x_ABI_CWindows_CStorage_CSearch_CCommonFolderQuery_GroupByAuthor
-    }
-    public static var groupByType : test_component.CommonFolderQuery {
-        __x_ABI_CWindows_CStorage_CSearch_CCommonFolderQuery_GroupByType
-    }
-}
-extension test_component.CommonFolderQuery: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
 
-extension test_component.DateStackOption {
-    public static var none : test_component.DateStackOption {
-        __x_ABI_CWindows_CStorage_CSearch_CDateStackOption_None
-    }
-    public static var year : test_component.DateStackOption {
-        __x_ABI_CWindows_CStorage_CSearch_CDateStackOption_Year
-    }
-    public static var month : test_component.DateStackOption {
-        __x_ABI_CWindows_CStorage_CSearch_CDateStackOption_Month
-    }
-}
-extension test_component.DateStackOption: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
+    public static let defaultQuery = Self(rawValue: 0)
 
-extension test_component.FolderDepth {
-    public static var shallow : test_component.FolderDepth {
-        __x_ABI_CWindows_CStorage_CSearch_CFolderDepth_Shallow
-    }
-    public static var deep : test_component.FolderDepth {
-        __x_ABI_CWindows_CStorage_CSearch_CFolderDepth_Deep
-    }
-}
-extension test_component.FolderDepth: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
+    public static let orderByName = Self(rawValue: 1)
 
-extension test_component.IndexedState {
-    public static var unknown : test_component.IndexedState {
-        __x_ABI_CWindows_CStorage_CSearch_CIndexedState_Unknown
-    }
-    public static var notIndexed : test_component.IndexedState {
-        __x_ABI_CWindows_CStorage_CSearch_CIndexedState_NotIndexed
-    }
-    public static var partiallyIndexed : test_component.IndexedState {
-        __x_ABI_CWindows_CStorage_CSearch_CIndexedState_PartiallyIndexed
-    }
-    public static var fullyIndexed : test_component.IndexedState {
-        __x_ABI_CWindows_CStorage_CSearch_CIndexedState_FullyIndexed
-    }
-}
-extension test_component.IndexedState: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
+    public static let orderByTitle = Self(rawValue: 2)
 
-extension test_component.IndexerOption {
-    public static var useIndexerWhenAvailable : test_component.IndexerOption {
-        __x_ABI_CWindows_CStorage_CSearch_CIndexerOption_UseIndexerWhenAvailable
-    }
-    public static var onlyUseIndexer : test_component.IndexerOption {
-        __x_ABI_CWindows_CStorage_CSearch_CIndexerOption_OnlyUseIndexer
-    }
-    public static var doNotUseIndexer : test_component.IndexerOption {
-        __x_ABI_CWindows_CStorage_CSearch_CIndexerOption_DoNotUseIndexer
-    }
-    public static var onlyUseIndexerAndOptimizeForIndexedProperties : test_component.IndexerOption {
-        __x_ABI_CWindows_CStorage_CSearch_CIndexerOption_OnlyUseIndexerAndOptimizeForIndexedProperties
-    }
-}
-extension test_component.IndexerOption: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
+    public static let orderByMusicProperties = Self(rawValue: 3)
 
+    public static let orderBySearchRank = Self(rawValue: 4)
+
+    public static let orderByDate = Self(rawValue: 5)
+
+}
+public struct CommonFolderQuery : RawRepresentable, Hashable, Codable, Sendable {
+    public var rawValue: Swift.Int32
+
+    public init(rawValue: Swift.Int32 = 0) {
+        self.rawValue = rawValue
+    }
+
+    public static let defaultQuery = Self(rawValue: 0)
+
+    public static let groupByYear = Self(rawValue: 100)
+
+    public static let groupByMonth = Self(rawValue: 101)
+
+    public static let groupByArtist = Self(rawValue: 102)
+
+    public static let groupByAlbum = Self(rawValue: 103)
+
+    public static let groupByAlbumArtist = Self(rawValue: 104)
+
+    public static let groupByComposer = Self(rawValue: 105)
+
+    public static let groupByGenre = Self(rawValue: 106)
+
+    public static let groupByPublishedYear = Self(rawValue: 107)
+
+    public static let groupByRating = Self(rawValue: 108)
+
+    public static let groupByTag = Self(rawValue: 109)
+
+    public static let groupByAuthor = Self(rawValue: 110)
+
+    public static let groupByType = Self(rawValue: 111)
+
+}
+public struct DateStackOption : RawRepresentable, Hashable, Codable, Sendable {
+    public var rawValue: Swift.Int32
+
+    public init(rawValue: Swift.Int32 = 0) {
+        self.rawValue = rawValue
+    }
+
+    public static let none = Self(rawValue: 0)
+
+    public static let year = Self(rawValue: 1)
+
+    public static let month = Self(rawValue: 2)
+
+}
+public struct FolderDepth : RawRepresentable, Hashable, Codable, Sendable {
+    public var rawValue: Swift.Int32
+
+    public init(rawValue: Swift.Int32 = 0) {
+        self.rawValue = rawValue
+    }
+
+    public static let shallow = Self(rawValue: 0)
+
+    public static let deep = Self(rawValue: 1)
+
+}
+public struct IndexedState : RawRepresentable, Hashable, Codable, Sendable {
+    public var rawValue: Swift.Int32
+
+    public init(rawValue: Swift.Int32 = 0) {
+        self.rawValue = rawValue
+    }
+
+    public static let unknown = Self(rawValue: 0)
+
+    public static let notIndexed = Self(rawValue: 1)
+
+    public static let partiallyIndexed = Self(rawValue: 2)
+
+    public static let fullyIndexed = Self(rawValue: 3)
+
+}
+public struct IndexerOption : RawRepresentable, Hashable, Codable, Sendable {
+    public var rawValue: Swift.Int32
+
+    public init(rawValue: Swift.Int32 = 0) {
+        self.rawValue = rawValue
+    }
+
+    public static let useIndexerWhenAvailable = Self(rawValue: 0)
+
+    public static let onlyUseIndexer = Self(rawValue: 1)
+
+    public static let doNotUseIndexer = Self(rawValue: 2)
+
+    public static let onlyUseIndexerAndOptimizeForIndexedProperties = Self(rawValue: 3)
+
+}

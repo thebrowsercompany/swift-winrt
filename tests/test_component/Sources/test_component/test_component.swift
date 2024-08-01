@@ -3,11 +3,6 @@
 import Foundation
 import Ctest_component
 
-public typealias Fruit = __x_ABI_Ctest__component_CFruit
-public typealias Keywords = __x_ABI_Ctest__component_CKeywords
-public typealias Signed = __x_ABI_Ctest__component_CSigned
-public typealias SwiftifiableNames = __x_ABI_Ctest__component_CSwiftifiableNames
-public typealias Unsigned = __x_ABI_Ctest__component_CUnsigned
 public final class AsyncMethods {
     private static let _IAsyncMethodsStatics: __ABI_test_component.IAsyncMethodsStatics = try! RoGetActivationFactory("test_component.AsyncMethods")
     public static func getCompletedAsync(_ result: Int32) throws -> AnyIAsyncOperation<Int32>! {
@@ -1747,13 +1742,13 @@ public struct SimpleEventArgs: Hashable, Codable, Sendable {
 }
 
 public struct StructWithEnum: Hashable, Codable, Sendable {
-    public var names: SwiftifiableNames = .init(0)
+    public var names: SwiftifiableNames = .init(rawValue: 0)
     public init() {}
     public init(names: SwiftifiableNames) {
         self.names = names
     }
     public static func from(abi: __x_ABI_Ctest__component_CStructWithEnum) -> StructWithEnum {
-        .init(names: abi.Names)
+        .init(names: .init(rawValue: abi.Names.rawValue))
     }
 }
 
@@ -1968,197 +1963,159 @@ extension WithKeyword {
 }
 public typealias AnyWithKeyword = any WithKeyword
 
-extension test_component.Fruit {
-    public static var banana : test_component.Fruit {
-        __x_ABI_Ctest__component_CFruit_Banana
-    }
-    public static var apple : test_component.Fruit {
-        __x_ABI_Ctest__component_CFruit_Apple
-    }
-    public static var orange : test_component.Fruit {
-        __x_ABI_Ctest__component_CFruit_Orange
-    }
-    public static var pineapple : test_component.Fruit {
-        __x_ABI_Ctest__component_CFruit_Pineapple
-    }
-}
-extension test_component.Fruit: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
+public struct Fruit : RawRepresentable, Hashable, Codable, Sendable {
+    public var rawValue: Swift.Int32
 
-extension test_component.Keywords {
-    public static var `as` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_As
+    public init(rawValue: Swift.Int32 = 0) {
+        self.rawValue = rawValue
     }
-    public static var `break` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Break
-    }
-    public static var `case` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Case
-    }
-    public static var `catch` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Catch
-    }
-    public static var `class` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Class
-    }
-    public static var `continue` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Continue
-    }
-    public static var `default` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Default
-    }
-    public static var `defer` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Defer
-    }
-    public static var `do` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Do
-    }
-    public static var `else` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Else
-    }
-    public static var `enum` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Enum
-    }
-    public static var `extension` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Extension
-    }
-    public static var `fallthrough` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Fallthrough
-    }
-    public static var `false` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_False
-    }
-    public static var `for` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_For
-    }
-    public static var `func` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Func
-    }
-    public static var `if` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_If
-    }
-    public static var `import` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Import
-    }
-    public static var `in` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_In
-    }
-    public static var `internal` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Internal
-    }
-    public static var `is` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Is
-    }
-    public static var `let` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Let
-    }
-    public static var `nil` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Nil
-    }
-    public static var `private` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Private
-    }
-    public static var `protocol` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Protocol
-    }
-    public static var `public` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Public
-    }
-    public static var `repeat` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Repeat
-    }
-    public static var `rethrows` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Rethrows
-    }
-    public static var `return` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Return
-    }
-    public static var `self` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Self
-    }
-    public static var `static` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Static
-    }
-    public static var `struct` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Struct
-    }
-    public static var `subscript` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Subscript
-    }
-    public static var `super` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Super
-    }
-    public static var `switch` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Switch
-    }
-    public static var `throw` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Throw
-    }
-    public static var `throws` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Throws
-    }
-    public static var `true` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_True
-    }
-    public static var `try` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Try
-    }
-    public static var `var` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Var
-    }
-    public static var `where` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_Where
-    }
-    public static var `while` : test_component.Keywords {
-        __x_ABI_Ctest__component_CKeywords_While
-    }
-}
-extension test_component.Keywords: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
 
-extension test_component.Signed {
-    public static var first : test_component.Signed {
-        __x_ABI_Ctest__component_CSigned_First
-    }
-    public static var second : test_component.Signed {
-        __x_ABI_Ctest__component_CSigned_Second
-    }
-    public static var third : test_component.Signed {
-        __x_ABI_Ctest__component_CSigned_Third
-    }
-}
-extension test_component.Signed: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
+    public static let banana = Self(rawValue: 0)
 
-extension test_component.SwiftifiableNames {
-    public static var camelCase : test_component.SwiftifiableNames {
-        __x_ABI_Ctest__component_CSwiftifiableNames_camelCase
-    }
-    public static var pascalCase : test_component.SwiftifiableNames {
-        __x_ABI_Ctest__component_CSwiftifiableNames_PascalCase
-    }
-    public static var esingleLetterPrefixed : test_component.SwiftifiableNames {
-        __x_ABI_Ctest__component_CSwiftifiableNames_ESingleLetterPrefixed
-    }
-    public static var leadingCaps : test_component.SwiftifiableNames {
-        __x_ABI_Ctest__component_CSwiftifiableNames_LEADINGCaps
-    }
-    public static var r8g8b8a8Typeless : test_component.SwiftifiableNames {
-        __x_ABI_Ctest__component_CSwiftifiableNames_R8G8B8A8Typeless
-    }
-    public static var uuid : test_component.SwiftifiableNames {
-        __x_ABI_Ctest__component_CSwiftifiableNames_UUID
-    }
-}
-extension test_component.SwiftifiableNames: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
+    public static let apple = Self(rawValue: 1)
 
-extension test_component.Unsigned {
-    public static var first : test_component.Unsigned {
-        __x_ABI_Ctest__component_CUnsigned_First
-    }
-    public static var second : test_component.Unsigned {
-        __x_ABI_Ctest__component_CUnsigned_Second
-    }
-    public static var third : test_component.Unsigned {
-        __x_ABI_Ctest__component_CUnsigned_Third
-    }
-}
-extension test_component.Unsigned: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
+    public static let orange = Self(rawValue: 2)
 
+    public static let pineapple = Self(rawValue: 3)
+
+}
+public struct Keywords : RawRepresentable, Hashable, Codable, Sendable {
+    public var rawValue: Swift.Int32
+
+    public init(rawValue: Swift.Int32 = 0) {
+        self.rawValue = rawValue
+    }
+
+    public static let `as` = Self(rawValue: 0)
+
+    public static let `break` = Self(rawValue: 1)
+
+    public static let `case` = Self(rawValue: 2)
+
+    public static let `catch` = Self(rawValue: 3)
+
+    public static let `class` = Self(rawValue: 4)
+
+    public static let `continue` = Self(rawValue: 5)
+
+    public static let `default` = Self(rawValue: 6)
+
+    public static let `defer` = Self(rawValue: 7)
+
+    public static let `do` = Self(rawValue: 8)
+
+    public static let `else` = Self(rawValue: 9)
+
+    public static let `enum` = Self(rawValue: 10)
+
+    public static let `extension` = Self(rawValue: 11)
+
+    public static let `fallthrough` = Self(rawValue: 12)
+
+    public static let `false` = Self(rawValue: 13)
+
+    public static let `for` = Self(rawValue: 14)
+
+    public static let `func` = Self(rawValue: 15)
+
+    public static let `if` = Self(rawValue: 16)
+
+    public static let `import` = Self(rawValue: 17)
+
+    public static let `in` = Self(rawValue: 18)
+
+    public static let `internal` = Self(rawValue: 19)
+
+    public static let `is` = Self(rawValue: 20)
+
+    public static let `let` = Self(rawValue: 21)
+
+    public static let `nil` = Self(rawValue: 22)
+
+    public static let `private` = Self(rawValue: 23)
+
+    public static let `protocol` = Self(rawValue: 24)
+
+    public static let `public` = Self(rawValue: 25)
+
+    public static let `repeat` = Self(rawValue: 26)
+
+    public static let `rethrows` = Self(rawValue: 27)
+
+    public static let `return` = Self(rawValue: 28)
+
+    public static let `self` = Self(rawValue: 29)
+
+    public static let `static` = Self(rawValue: 30)
+
+    public static let `struct` = Self(rawValue: 31)
+
+    public static let `subscript` = Self(rawValue: 32)
+
+    public static let `super` = Self(rawValue: 33)
+
+    public static let `switch` = Self(rawValue: 34)
+
+    public static let `throw` = Self(rawValue: 35)
+
+    public static let `throws` = Self(rawValue: 36)
+
+    public static let `true` = Self(rawValue: 37)
+
+    public static let `try` = Self(rawValue: 38)
+
+    public static let `var` = Self(rawValue: 39)
+
+    public static let `where` = Self(rawValue: 40)
+
+    public static let `while` = Self(rawValue: 41)
+
+}
+public struct Signed : RawRepresentable, Hashable, Codable, Sendable {
+    public var rawValue: Swift.Int32
+
+    public init(rawValue: Swift.Int32 = 0) {
+        self.rawValue = rawValue
+    }
+
+    public static let first = Self(rawValue: -1)
+
+    public static let second = Self(rawValue: 0)
+
+    public static let third = Self(rawValue: 1)
+
+}
+public struct SwiftifiableNames : RawRepresentable, Hashable, Codable, Sendable {
+    public var rawValue: Swift.Int32
+
+    public init(rawValue: Swift.Int32 = 0) {
+        self.rawValue = rawValue
+    }
+
+    public static let camelCase = Self(rawValue: 0)
+
+    public static let pascalCase = Self(rawValue: 1)
+
+    public static let esingleLetterPrefixed = Self(rawValue: 2)
+
+    public static let leadingCaps = Self(rawValue: 3)
+
+    public static let r8g8b8a8Typeless = Self(rawValue: 4)
+
+    public static let uuid = Self(rawValue: 5)
+
+}
+public struct Unsigned : RawRepresentable, Hashable, Codable, Sendable {
+    public var rawValue: Swift.Int32
+
+    public init(rawValue: Swift.Int32 = 0) {
+        self.rawValue = rawValue
+    }
+
+    public static let first = Self(rawValue: 0)
+
+    public static let second = Self(rawValue: 1)
+
+    public static let third = Self(rawValue: 2)
+
+}

@@ -3,24 +3,6 @@
 import Foundation
 import Ctest_component
 
-/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.creationcollisionoption)
-public typealias CreationCollisionOption = __x_ABI_CWindows_CStorage_CCreationCollisionOption
-/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileaccessmode)
-public typealias FileAccessMode = __x_ABI_CWindows_CStorage_CFileAccessMode
-/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileattributes)
-public typealias FileAttributes = __x_ABI_CWindows_CStorage_CFileAttributes
-/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.namecollisionoption)
-public typealias NameCollisionOption = __x_ABI_CWindows_CStorage_CNameCollisionOption
-/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagedeleteoption)
-public typealias StorageDeleteOption = __x_ABI_CWindows_CStorage_CStorageDeleteOption
-/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storageitemtypes)
-public typealias StorageItemTypes = __x_ABI_CWindows_CStorage_CStorageItemTypes
-/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagelibrarychangetype)
-public typealias StorageLibraryChangeType = __x_ABI_CWindows_CStorage_CStorageLibraryChangeType
-/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storageopenoptions)
-public typealias StorageOpenOptions = __x_ABI_CWindows_CStorage_CStorageOpenOptions
-/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streamedfilefailuremode)
-public typealias StreamedFileFailureMode = __x_ABI_CWindows_CStorage_CStreamedFileFailureMode
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.pathio)
 public final class PathIO {
     private static let _IPathIOStatics: __ABI_Windows_Storage.IPathIOStatics = try! RoGetActivationFactory("Windows.Storage.PathIO")
@@ -1277,147 +1259,147 @@ extension IStreamedFileDataRequest {
 }
 public typealias AnyIStreamedFileDataRequest = any IStreamedFileDataRequest
 
-extension test_component.CreationCollisionOption {
-    public static var generateUniqueName : test_component.CreationCollisionOption {
-        __x_ABI_CWindows_CStorage_CCreationCollisionOption_GenerateUniqueName
-    }
-    public static var replaceExisting : test_component.CreationCollisionOption {
-        __x_ABI_CWindows_CStorage_CCreationCollisionOption_ReplaceExisting
-    }
-    public static var failIfExists : test_component.CreationCollisionOption {
-        __x_ABI_CWindows_CStorage_CCreationCollisionOption_FailIfExists
-    }
-    public static var openIfExists : test_component.CreationCollisionOption {
-        __x_ABI_CWindows_CStorage_CCreationCollisionOption_OpenIfExists
-    }
-}
-extension test_component.CreationCollisionOption: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
+public struct CreationCollisionOption : RawRepresentable, Hashable, Codable, Sendable {
+    public var rawValue: Swift.Int32
 
-extension test_component.FileAccessMode {
-    public static var read : test_component.FileAccessMode {
-        __x_ABI_CWindows_CStorage_CFileAccessMode_Read
+    public init(rawValue: Swift.Int32 = 0) {
+        self.rawValue = rawValue
     }
-    public static var readWrite : test_component.FileAccessMode {
-        __x_ABI_CWindows_CStorage_CFileAccessMode_ReadWrite
-    }
-}
-extension test_component.FileAccessMode: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
 
-extension test_component.FileAttributes {
-    public static var normal : test_component.FileAttributes {
-        __x_ABI_CWindows_CStorage_CFileAttributes_Normal
-    }
-    public static var readOnly : test_component.FileAttributes {
-        __x_ABI_CWindows_CStorage_CFileAttributes_ReadOnly
-    }
-    public static var directory : test_component.FileAttributes {
-        __x_ABI_CWindows_CStorage_CFileAttributes_Directory
-    }
-    public static var archive : test_component.FileAttributes {
-        __x_ABI_CWindows_CStorage_CFileAttributes_Archive
-    }
-    public static var temporary : test_component.FileAttributes {
-        __x_ABI_CWindows_CStorage_CFileAttributes_Temporary
-    }
-    public static var locallyIncomplete : test_component.FileAttributes {
-        __x_ABI_CWindows_CStorage_CFileAttributes_LocallyIncomplete
-    }
-}
-extension test_component.FileAttributes: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
+    public static let generateUniqueName = Self(rawValue: 0)
 
-extension test_component.NameCollisionOption {
-    public static var generateUniqueName : test_component.NameCollisionOption {
-        __x_ABI_CWindows_CStorage_CNameCollisionOption_GenerateUniqueName
-    }
-    public static var replaceExisting : test_component.NameCollisionOption {
-        __x_ABI_CWindows_CStorage_CNameCollisionOption_ReplaceExisting
-    }
-    public static var failIfExists : test_component.NameCollisionOption {
-        __x_ABI_CWindows_CStorage_CNameCollisionOption_FailIfExists
-    }
-}
-extension test_component.NameCollisionOption: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
+    public static let replaceExisting = Self(rawValue: 1)
 
-extension test_component.StorageDeleteOption {
-    public static var `default` : test_component.StorageDeleteOption {
-        __x_ABI_CWindows_CStorage_CStorageDeleteOption_Default
-    }
-    public static var permanentDelete : test_component.StorageDeleteOption {
-        __x_ABI_CWindows_CStorage_CStorageDeleteOption_PermanentDelete
-    }
-}
-extension test_component.StorageDeleteOption: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
+    public static let failIfExists = Self(rawValue: 2)
 
-extension test_component.StorageItemTypes {
-    public static var none : test_component.StorageItemTypes {
-        __x_ABI_CWindows_CStorage_CStorageItemTypes_None
-    }
-    public static var file : test_component.StorageItemTypes {
-        __x_ABI_CWindows_CStorage_CStorageItemTypes_File
-    }
-    public static var folder : test_component.StorageItemTypes {
-        __x_ABI_CWindows_CStorage_CStorageItemTypes_Folder
-    }
-}
-extension test_component.StorageItemTypes: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
+    public static let openIfExists = Self(rawValue: 3)
 
-extension test_component.StorageLibraryChangeType {
-    public static var created : test_component.StorageLibraryChangeType {
-        __x_ABI_CWindows_CStorage_CStorageLibraryChangeType_Created
-    }
-    public static var deleted : test_component.StorageLibraryChangeType {
-        __x_ABI_CWindows_CStorage_CStorageLibraryChangeType_Deleted
-    }
-    public static var movedOrRenamed : test_component.StorageLibraryChangeType {
-        __x_ABI_CWindows_CStorage_CStorageLibraryChangeType_MovedOrRenamed
-    }
-    public static var contentsChanged : test_component.StorageLibraryChangeType {
-        __x_ABI_CWindows_CStorage_CStorageLibraryChangeType_ContentsChanged
-    }
-    public static var movedOutOfLibrary : test_component.StorageLibraryChangeType {
-        __x_ABI_CWindows_CStorage_CStorageLibraryChangeType_MovedOutOfLibrary
-    }
-    public static var movedIntoLibrary : test_component.StorageLibraryChangeType {
-        __x_ABI_CWindows_CStorage_CStorageLibraryChangeType_MovedIntoLibrary
-    }
-    public static var contentsReplaced : test_component.StorageLibraryChangeType {
-        __x_ABI_CWindows_CStorage_CStorageLibraryChangeType_ContentsReplaced
-    }
-    public static var indexingStatusChanged : test_component.StorageLibraryChangeType {
-        __x_ABI_CWindows_CStorage_CStorageLibraryChangeType_IndexingStatusChanged
-    }
-    public static var encryptionChanged : test_component.StorageLibraryChangeType {
-        __x_ABI_CWindows_CStorage_CStorageLibraryChangeType_EncryptionChanged
-    }
-    public static var changeTrackingLost : test_component.StorageLibraryChangeType {
-        __x_ABI_CWindows_CStorage_CStorageLibraryChangeType_ChangeTrackingLost
-    }
 }
-extension test_component.StorageLibraryChangeType: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
+public struct FileAccessMode : RawRepresentable, Hashable, Codable, Sendable {
+    public var rawValue: Swift.Int32
 
-extension test_component.StorageOpenOptions {
-    public static var none : test_component.StorageOpenOptions {
-        __x_ABI_CWindows_CStorage_CStorageOpenOptions_None
+    public init(rawValue: Swift.Int32 = 0) {
+        self.rawValue = rawValue
     }
-    public static var allowOnlyReaders : test_component.StorageOpenOptions {
-        __x_ABI_CWindows_CStorage_CStorageOpenOptions_AllowOnlyReaders
-    }
-    public static var allowReadersAndWriters : test_component.StorageOpenOptions {
-        __x_ABI_CWindows_CStorage_CStorageOpenOptions_AllowReadersAndWriters
-    }
+
+    public static let read = Self(rawValue: 0)
+
+    public static let readWrite = Self(rawValue: 1)
+
 }
-extension test_component.StorageOpenOptions: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
+public struct FileAttributes : RawRepresentable, Hashable, Codable, Sendable {
+    public var rawValue: Swift.Int32
 
-extension test_component.StreamedFileFailureMode {
-    public static var failed : test_component.StreamedFileFailureMode {
-        __x_ABI_CWindows_CStorage_CStreamedFileFailureMode_Failed
+    public init(rawValue: Swift.Int32 = 0) {
+        self.rawValue = rawValue
     }
-    public static var currentlyUnavailable : test_component.StreamedFileFailureMode {
-        __x_ABI_CWindows_CStorage_CStreamedFileFailureMode_CurrentlyUnavailable
-    }
-    public static var incomplete : test_component.StreamedFileFailureMode {
-        __x_ABI_CWindows_CStorage_CStreamedFileFailureMode_Incomplete
-    }
+
+    public static let normal = Self(rawValue: 0)
+
+    public static let readOnly = Self(rawValue: 1)
+
+    public static let directory = Self(rawValue: 16)
+
+    public static let archive = Self(rawValue: 32)
+
+    public static let temporary = Self(rawValue: 256)
+
+    public static let locallyIncomplete = Self(rawValue: 512)
+
 }
-extension test_component.StreamedFileFailureMode: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
+public struct NameCollisionOption : RawRepresentable, Hashable, Codable, Sendable {
+    public var rawValue: Swift.Int32
 
+    public init(rawValue: Swift.Int32 = 0) {
+        self.rawValue = rawValue
+    }
+
+    public static let generateUniqueName = Self(rawValue: 0)
+
+    public static let replaceExisting = Self(rawValue: 1)
+
+    public static let failIfExists = Self(rawValue: 2)
+
+}
+public struct StorageDeleteOption : RawRepresentable, Hashable, Codable, Sendable {
+    public var rawValue: Swift.Int32
+
+    public init(rawValue: Swift.Int32 = 0) {
+        self.rawValue = rawValue
+    }
+
+    public static let `default` = Self(rawValue: 0)
+
+    public static let permanentDelete = Self(rawValue: 1)
+
+}
+public struct StorageItemTypes : RawRepresentable, Hashable, Codable, Sendable {
+    public var rawValue: Swift.Int32
+
+    public init(rawValue: Swift.Int32 = 0) {
+        self.rawValue = rawValue
+    }
+
+    public static let none = Self(rawValue: 0)
+
+    public static let file = Self(rawValue: 1)
+
+    public static let folder = Self(rawValue: 2)
+
+}
+public struct StorageLibraryChangeType : RawRepresentable, Hashable, Codable, Sendable {
+    public var rawValue: Swift.Int32
+
+    public init(rawValue: Swift.Int32 = 0) {
+        self.rawValue = rawValue
+    }
+
+    public static let created = Self(rawValue: 0)
+
+    public static let deleted = Self(rawValue: 1)
+
+    public static let movedOrRenamed = Self(rawValue: 2)
+
+    public static let contentsChanged = Self(rawValue: 3)
+
+    public static let movedOutOfLibrary = Self(rawValue: 4)
+
+    public static let movedIntoLibrary = Self(rawValue: 5)
+
+    public static let contentsReplaced = Self(rawValue: 6)
+
+    public static let indexingStatusChanged = Self(rawValue: 7)
+
+    public static let encryptionChanged = Self(rawValue: 8)
+
+    public static let changeTrackingLost = Self(rawValue: 9)
+
+}
+public struct StorageOpenOptions : RawRepresentable, Hashable, Codable, Sendable {
+    public var rawValue: Swift.Int32
+
+    public init(rawValue: Swift.Int32 = 0) {
+        self.rawValue = rawValue
+    }
+
+    public static let none = Self(rawValue: 0)
+
+    public static let allowOnlyReaders = Self(rawValue: 1)
+
+    public static let allowReadersAndWriters = Self(rawValue: 2)
+
+}
+public struct StreamedFileFailureMode : RawRepresentable, Hashable, Codable, Sendable {
+    public var rawValue: Swift.Int32
+
+    public init(rawValue: Swift.Int32 = 0) {
+        self.rawValue = rawValue
+    }
+
+    public static let failed = Self(rawValue: 0)
+
+    public static let currentlyUnavailable = Self(rawValue: 1)
+
+    public static let incomplete = Self(rawValue: 2)
+
+}

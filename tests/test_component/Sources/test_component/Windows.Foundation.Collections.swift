@@ -3,8 +3,6 @@
 import Foundation
 import Ctest_component
 
-/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.collectionchange)
-public typealias CollectionChange = __x_ABI_CWindows_CFoundation_CCollections_CCollectionChange
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.propertyset)
 public final class PropertySet : WinRTClass, IObservableMap, IMap, IIterable, IPropertySet {
     public typealias K = String
@@ -489,19 +487,19 @@ public protocol IVector<T> : IIterable, Collection where Element == T, Index == 
 
 public typealias AnyIVector<T> = any IVector<T>
 
-extension test_component.CollectionChange {
-    public static var reset : test_component.CollectionChange {
-        CollectionChange_Reset
-    }
-    public static var itemInserted : test_component.CollectionChange {
-        CollectionChange_ItemInserted
-    }
-    public static var itemRemoved : test_component.CollectionChange {
-        CollectionChange_ItemRemoved
-    }
-    public static var itemChanged : test_component.CollectionChange {
-        CollectionChange_ItemChanged
-    }
-}
-extension test_component.CollectionChange: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
+public struct CollectionChange : RawRepresentable, Hashable, Codable, Sendable {
+    public var rawValue: Swift.Int32
 
+    public init(rawValue: Swift.Int32 = 0) {
+        self.rawValue = rawValue
+    }
+
+    public static let reset = Self(rawValue: 0)
+
+    public static let itemInserted = Self(rawValue: 1)
+
+    public static let itemRemoved = Self(rawValue: 2)
+
+    public static let itemChanged = Self(rawValue: 3)
+
+}

@@ -625,7 +625,7 @@ public enum __ABI_test_component {
         internal func InEnumImpl(_ value: test_component.Signed) throws -> String {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.InEnum(pThis, value, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.InEnum(pThis, .init(rawValue: value.rawValue), &result))
             }
             return .init(from: result)
         }
@@ -680,9 +680,11 @@ public enum __ABI_test_component {
         }
 
         internal func OutEnumImpl(_ value: inout test_component.Signed) throws {
+            var _value: __x_ABI_Ctest__component_CSigned = .init(rawValue: value.rawValue)
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.OutEnum(pThis, &value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.OutEnum(pThis, &_value))
             }
+            value = .init(rawValue: _value.rawValue)
         }
 
         internal func ReturnObjectImpl() throws -> Any? {
@@ -695,11 +697,11 @@ public enum __ABI_test_component {
         }
 
         internal func ReturnEnumImpl() throws -> test_component.Signed {
-            var result: __x_ABI_Ctest__component_CSigned = .init(0)
+            var result: __x_ABI_Ctest__component_CSigned = .init(rawValue: 0)
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnEnum(pThis, &result))
             }
-            return result
+            return .init(rawValue: result.rawValue)
         }
 
         internal func ReturnReferenceEnumImpl() throws -> test_component.Signed? {
@@ -712,16 +714,16 @@ public enum __ABI_test_component {
         }
 
         internal func get_EnumPropertyImpl() throws -> test_component.Fruit {
-            var value: __x_ABI_Ctest__component_CFruit = .init(0)
+            var value: __x_ABI_Ctest__component_CFruit = .init(rawValue: 0)
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_EnumProperty(pThis, &value))
             }
-            return value
+            return .init(rawValue: value.rawValue)
         }
 
         internal func put_EnumPropertyImpl(_ value: test_component.Fruit) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.put_EnumProperty(pThis, value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.put_EnumProperty(pThis, .init(rawValue: value.rawValue)))
             }
         }
 
@@ -879,7 +881,7 @@ public enum __ABI_test_component {
             let (value) = try ComPtrs.initialize { valueAbi in
                 let _name = try! HString(name)
                 _ = try perform(as: __x_ABI_Ctest__component_CIClassFactory.self) { pThis in
-                    try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance2(pThis, _name.get(), fruit, &valueAbi))
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance2(pThis, _name.get(), .init(rawValue: fruit.rawValue), &valueAbi))
                 }
             }
             return IClass(value!)
@@ -940,7 +942,7 @@ public enum __ABI_test_component {
                 let implementationWrapper = __ABI_test_component.IIAmImplementableWrapper(implementation)
                 let _implementation = try! implementationWrapper?.toABI { $0 }
                 _ = try perform(as: __x_ABI_Ctest__component_CIClassFactory2.self) { pThis in
-                    try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, _name.get(), fruit, _implementation, &valueAbi))
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.CreateInstance(pThis, _name.get(), .init(rawValue: fruit.rawValue), _implementation, &valueAbi))
                 }
             }
             return IClass(value!)
@@ -1246,7 +1248,7 @@ public enum __ABI_test_component {
         open func InEnumImpl(_ value: test_component.Signed) throws -> String {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.InEnum(pThis, value, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.InEnum(pThis, .init(rawValue: value.rawValue), &result))
             }
             return .init(from: result)
         }
@@ -1292,9 +1294,11 @@ public enum __ABI_test_component {
         }
 
         open func OutEnumImpl(_ value: inout test_component.Signed) throws {
+            var _value: __x_ABI_Ctest__component_CSigned = .init(rawValue: value.rawValue)
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.OutEnum(pThis, &value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.OutEnum(pThis, &_value))
             }
+            value = .init(rawValue: _value.rawValue)
         }
 
         open func ReturnObjectImpl() throws -> Any? {
@@ -1307,24 +1311,24 @@ public enum __ABI_test_component {
         }
 
         open func ReturnEnumImpl() throws -> test_component.Signed {
-            var result: __x_ABI_Ctest__component_CSigned = .init(0)
+            var result: __x_ABI_Ctest__component_CSigned = .init(rawValue: 0)
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnEnum(pThis, &result))
             }
-            return result
+            return .init(rawValue: result.rawValue)
         }
 
         open func get_EnumPropertyImpl() throws -> test_component.Fruit {
-            var value: __x_ABI_Ctest__component_CFruit = .init(0)
+            var value: __x_ABI_Ctest__component_CFruit = .init(rawValue: 0)
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_EnumProperty(pThis, &value))
             }
-            return value
+            return .init(rawValue: value.rawValue)
         }
 
         open func put_EnumPropertyImpl(_ value: test_component.Fruit) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.put_EnumProperty(pThis, value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.put_EnumProperty(pThis, .init(rawValue: value.rawValue)))
             }
         }
 
@@ -1431,7 +1435,7 @@ public enum __ABI_test_component {
         InEnum: {
             do {
                 guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-                let value: test_component.Signed = $1
+                let value: test_component.Signed = .init(rawValue: $1.rawValue)
                 let result = try __unwrapped__instance.inEnum(value)
                 $2?.initialize(to: try! HString(result).detach())
                 return S_OK
@@ -1493,9 +1497,9 @@ public enum __ABI_test_component {
         OutEnum: {
             do {
                 guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-                var value: test_component.Signed = .init(0)
+                var value: test_component.Signed = .init(rawValue: 0)
                 try __unwrapped__instance.outEnum(&value)
-                $1?.initialize(to: value)
+                $1?.initialize(to: .init(rawValue: value.rawValue))
                 return S_OK
             } catch { return failWith(err: E_FAIL) } 
         },
@@ -1514,7 +1518,7 @@ public enum __ABI_test_component {
             do {
                 guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 let result = try __unwrapped__instance.returnEnum()
-                $1?.initialize(to: result)
+                $1?.initialize(to: .init(rawValue: result.rawValue))
                 return S_OK
             } catch { return failWith(err: E_FAIL) } 
         },
@@ -1522,13 +1526,13 @@ public enum __ABI_test_component {
         get_EnumProperty: {
             guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let value = __unwrapped__instance.enumProperty
-            $1?.initialize(to: value)
+            $1?.initialize(to: .init(rawValue: value.rawValue))
             return S_OK
         },
 
         put_EnumProperty: {
             guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let value: test_component.Fruit = $1
+            let value: test_component.Fruit = .init(rawValue: $1.rawValue)
             __unwrapped__instance.enumProperty = value
             return S_OK
         },
@@ -2074,23 +2078,23 @@ public enum __ABI_test_component {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIStaticClassStatics }
 
         internal func get_EnumPropertyImpl() throws -> test_component.Fruit {
-            var value: __x_ABI_Ctest__component_CFruit = .init(0)
+            var value: __x_ABI_Ctest__component_CFruit = .init(rawValue: 0)
             _ = try perform(as: __x_ABI_Ctest__component_CIStaticClassStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_EnumProperty(pThis, &value))
             }
-            return value
+            return .init(rawValue: value.rawValue)
         }
 
         internal func put_EnumPropertyImpl(_ value: test_component.Fruit) throws {
             _ = try perform(as: __x_ABI_Ctest__component_CIStaticClassStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.put_EnumProperty(pThis, value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.put_EnumProperty(pThis, .init(rawValue: value.rawValue)))
             }
         }
 
         internal func InEnumImpl(_ value: test_component.Signed) throws -> String {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CIStaticClassStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.InEnum(pThis, value, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.InEnum(pThis, .init(rawValue: value.rawValue), &result))
             }
             return .init(from: result)
         }
@@ -2767,7 +2771,7 @@ extension __x_ABI_Ctest__component_CBlittableStruct {
     }
     extension __x_ABI_Ctest__component_CStructWithEnum {
         public static func from(swift: test_component.StructWithEnum) -> __x_ABI_Ctest__component_CStructWithEnum {
-            .init(Names: swift.names)
+            .init(Names: .init(rawValue: swift.names.rawValue))
         }
     }
     extension ComposableImpl where CABI == __x_ABI_Ctest__component_CIBaseOverrides {

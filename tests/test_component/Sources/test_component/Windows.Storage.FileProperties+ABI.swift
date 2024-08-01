@@ -238,11 +238,11 @@ public enum __ABI_Windows_Storage_FileProperties {
         }
 
         internal func get_OrientationImpl() throws -> test_component.PhotoOrientation {
-            var value: __x_ABI_CWindows_CStorage_CFileProperties_CPhotoOrientation = .init(0)
+            var value: __x_ABI_CWindows_CStorage_CFileProperties_CPhotoOrientation = .init(rawValue: 0)
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Orientation(pThis, &value))
             }
-            return value
+            return .init(rawValue: value.rawValue)
         }
 
         internal func get_PeopleNamesImpl() throws -> test_component.AnyIVectorView<String>? {
@@ -621,11 +621,11 @@ public enum __ABI_Windows_Storage_FileProperties {
         }
 
         internal func get_TypeImpl() throws -> test_component.ThumbnailType {
-            var value: __x_ABI_CWindows_CStorage_CFileProperties_CThumbnailType = .init(0)
+            var value: __x_ABI_CWindows_CStorage_CFileProperties_CThumbnailType = .init(rawValue: 0)
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIThumbnailProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Type(pThis, &value))
             }
-            return value
+            return .init(rawValue: value.rawValue)
         }
 
     }
@@ -793,11 +793,11 @@ public enum __ABI_Windows_Storage_FileProperties {
         }
 
         internal func get_OrientationImpl() throws -> test_component.VideoOrientation {
-            var value: __x_ABI_CWindows_CStorage_CFileProperties_CVideoOrientation = .init(0)
+            var value: __x_ABI_CWindows_CStorage_CFileProperties_CVideoOrientation = .init(rawValue: 0)
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Orientation(pThis, &value))
             }
-            return value
+            return .init(rawValue: value.rawValue)
         }
 
     }

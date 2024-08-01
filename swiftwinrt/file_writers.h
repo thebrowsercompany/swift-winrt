@@ -197,7 +197,6 @@ namespace swiftwinrt
         w.swift_module = get_swift_module(ns);
         w.cache = members.cache;
 
-        w.write("%", w.filter.bind_each<write_enum_def>(members.enums));
         w.write("%", w.filter.bind_each<write_class>(members.classes));
         w.write("%", w.filter.bind_each<write_delegate>(members.delegates));
         w.write("%", w.filter.bind_each<write_struct>(members.structs));

@@ -5,50 +5,28 @@
 #include "metadata_cache.h"
 namespace swiftwinrt
 {
-    static void write_enum_def(writer& w, enum_type const& type)
-    {
-        // Metadata attributes don't have backing code
-        if (type.swift_logical_namespace() == "Windows.Foundation.Metadata" || !can_write(w, type))
-        {
-            return;
-        }
-
-        write_documentation_comment(w, type);
-        w.write("public typealias % = %\n", type, bind_type_mangled(type));
-    }
-
     static void write_enum_extension(writer& w, enum_type const& type)
     {
         if (type.swift_logical_namespace() == "Windows.Foundation.Metadata" || !can_write(w, type))
         {
             return;
         }
-        w.write("extension % {\n", get_full_swift_type_name(w, type));
+        w.write("public struct % : RawRepresentable, Hashable, Codable, Sendable {\n", type.type().TypeName());
+        w.write("    public var rawValue: Swift.Int32\n\n");
+        w.write("    public init(rawValue: Swift.Int32 = 0) {\n");
+        w.write("        self.rawValue = rawValue\n");
+        w.write("    }\n\n");
         {
-            auto format = R"(    public static var % : % {
-        %_%
-    }
-)";
+            auto format = "    public static let % = Self(rawValue: %)\n\n";
             for (const auto& field : type.type().FieldList())
             {
                 if (field.Constant())
                 {
-                    // this enum is not written by our ABI tool, so it doesn't use a mangled name
-                    if (get_full_type_name(type) == "Windows.Foundation.Collections.CollectionChange")
-                    {
-                        w.write(format, get_swift_name(field), get_full_swift_type_name(w, type), type, field.Name());
-                    }
-                    else
-                    {
-                        // we use mangled names for enums because otherwise the WinAppSDK enums collide with the Windows ones
-                        w.write(format, get_swift_name(field), get_full_swift_type_name(w, type), bind_type_mangled(type), field.Name());
-                    }
+                    w.write(format, get_swift_name(field), field.Constant().ValueInt32());
                 }
             }
         }
         w.write("}\n");
-
-        w.write("extension %: ^@retroactive Hashable, ^@retroactive Codable, ^@retroactive ^@unchecked Sendable {}\n\n", get_full_swift_type_name(w, type));
     }
 
     static void write_guid_value(writer& w, std::vector<FixedArgSig> const& args)
@@ -244,6 +222,10 @@ namespace swiftwinrt
             // api call for easy passing to the ABI
             w.write("%", local_name);
         }
+        else if (category == param_category::enum_type)
+        {
+            w.write(".init(rawValue: %.rawValue)", param_name);
+        }
         else if (is_type_blittable(category))
         {
             // fundamentals and enums can be simply copied
@@ -306,6 +288,10 @@ namespace swiftwinrt
                     {
                         w.write("&%.val", local_param_name);
                     }
+                }
+                else if (category == param_category::enum_type)
+                {
+                    w.write("&%", local_param_name);
                 }
                 else if (is_blittable)
                 {
@@ -1666,6 +1652,16 @@ vtable);
                         param_name,
                         local_param_name);
                     guard.push("WindowsDeleteString(%)\n", local_param_name);
+                }
+                else if (category == param_category::enum_type)
+                {
+                    w.write("var %: % = .init(rawValue: %.rawValue)\n",
+                        local_param_name,
+                        bind_type_mangled(param.type),
+                        param_name);
+                    guard.push("% = .init(rawValue: %.rawValue)\n",
+                        param_name,
+                        local_param_name);
                 }
                 else if (category == param_category::struct_type &&
                     is_struct_blittable(signature_type) &&
