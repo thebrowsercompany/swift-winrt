@@ -41,9 +41,18 @@ namespace swiftwinrt
             {
                 s();
 
-                if (dynamic_cast<const struct_type*>(field.type))
+                auto category = get_category(field.type);
+
+                if (category == param_category::struct_type)
                 {
                     w.write("%: .from(swift: swift.%)",
+                        get_abi_name(field),
+                        get_swift_name(field)
+                    );
+                }
+                else if (category == param_category::enum_type)
+                {
+                    w.write("%: .init(rawValue: swift.%.rawValue)",
                         get_abi_name(field),
                         get_swift_name(field)
                     );

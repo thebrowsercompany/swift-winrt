@@ -206,11 +206,11 @@ public enum __ABI_Windows_Foundation {
         }
 
         open func get_StatusImpl() throws -> test_component.AsyncStatus {
-            var result: __x_ABI_CWindows_CFoundation_CAsyncStatus = .init(0)
+            var result: __x_ABI_CWindows_CFoundation_CAsyncStatus = .init(rawValue: 0)
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIAsyncInfo.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Status(pThis, &result))
             }
-            return result
+            return .init(rawValue: result.rawValue)
         }
 
         open func get_ErrorCodeImpl() throws -> HRESULT {
@@ -273,7 +273,7 @@ public enum __ABI_Windows_Foundation {
         get_Status: {
             guard let __unwrapped__instance = IAsyncInfoWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let result = __unwrapped__instance.status
-            $1?.initialize(to: result)
+            $1?.initialize(to: .init(rawValue: result.rawValue))
             return S_OK
         },
 
@@ -534,11 +534,11 @@ public enum __ABI_Windows_Foundation {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIPropertyValue }
 
         open func get_TypeImpl() throws -> test_component.PropertyType {
-            var value: __x_ABI_CWindows_CFoundation_CPropertyType = .init(0)
+            var value: __x_ABI_CWindows_CFoundation_CPropertyType = .init(rawValue: 0)
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Type(pThis, &value))
             }
-            return value
+            return .init(rawValue: value.rawValue)
         }
 
         open func get_IsNumericScalarImpl() throws -> Bool {
@@ -726,7 +726,7 @@ public enum __ABI_Windows_Foundation {
         get_Type: {
             guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let value = __unwrapped__instance.type
-            $1?.initialize(to: value)
+            $1?.initialize(to: .init(rawValue: value.rawValue))
             return S_OK
         },
 
@@ -1334,7 +1334,7 @@ extension __ABI_Windows_Foundation {
             let asyncInfoWrapper = __ABI_Windows_Foundation.IAsyncActionWrapper(asyncInfo)
             let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, .init(rawValue: asyncStatus.rawValue)))
             }
         }
 
@@ -1350,7 +1350,7 @@ extension __ABI_Windows_Foundation {
             do {
                 guard let __unwrapped__instance = AsyncActionCompletedHandlerWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 let asyncInfo: test_component.AnyIAsyncAction? = __ABI_Windows_Foundation.IAsyncActionWrapper.unwrapFrom(abi: ComPtr($1))
-                let asyncStatus: test_component.AsyncStatus = $2
+                let asyncStatus: test_component.AsyncStatus = .init(rawValue: $2.rawValue)
                 try __unwrapped__instance(asyncInfo, asyncStatus)
                 return S_OK
             } catch { return failWith(err: E_FAIL) } 

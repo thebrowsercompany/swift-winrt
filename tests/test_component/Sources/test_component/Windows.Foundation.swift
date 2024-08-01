@@ -3,10 +3,6 @@
 import Foundation
 import Ctest_component
 
-/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.asyncstatus)
-public typealias AsyncStatus = __x_ABI_CWindows_CFoundation_CAsyncStatus
-/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.propertytype)
-public typealias PropertyType = __x_ABI_CWindows_CFoundation_CPropertyType
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.deferral)
 public final class Deferral : WinRTClass, IClosable {
     private typealias SwiftABI = __ABI_Windows_Foundation.IDeferral
@@ -714,146 +710,109 @@ extension IWwwFormUrlDecoderEntry {
 }
 public typealias AnyIWwwFormUrlDecoderEntry = any IWwwFormUrlDecoderEntry
 
-extension test_component.AsyncStatus {
-    public static var canceled : test_component.AsyncStatus {
-        __x_ABI_CWindows_CFoundation_CAsyncStatus_Canceled
-    }
-    public static var completed : test_component.AsyncStatus {
-        __x_ABI_CWindows_CFoundation_CAsyncStatus_Completed
-    }
-    public static var error : test_component.AsyncStatus {
-        __x_ABI_CWindows_CFoundation_CAsyncStatus_Error
-    }
-    public static var started : test_component.AsyncStatus {
-        __x_ABI_CWindows_CFoundation_CAsyncStatus_Started
-    }
-}
-extension test_component.AsyncStatus: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
+public struct AsyncStatus : RawRepresentable, Hashable, Codable, Sendable {
+    public var rawValue: Swift.Int32
 
-extension test_component.PropertyType {
-    public static var empty : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_Empty
+    public init(rawValue: Swift.Int32 = 0) {
+        self.rawValue = rawValue
     }
-    public static var uint8 : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_UInt8
-    }
-    public static var int16 : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_Int16
-    }
-    public static var uint16 : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_UInt16
-    }
-    public static var int32 : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_Int32
-    }
-    public static var uint32 : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_UInt32
-    }
-    public static var int64 : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_Int64
-    }
-    public static var uint64 : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_UInt64
-    }
-    public static var single : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_Single
-    }
-    public static var double : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_Double
-    }
-    public static var char16 : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_Char16
-    }
-    public static var boolean : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_Boolean
-    }
-    public static var string : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_String
-    }
-    public static var inspectable : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_Inspectable
-    }
-    public static var dateTime : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_DateTime
-    }
-    public static var timeSpan : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_TimeSpan
-    }
-    public static var guid : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_Guid
-    }
-    public static var point : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_Point
-    }
-    public static var size : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_Size
-    }
-    public static var rect : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_Rect
-    }
-    public static var otherType : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_OtherType
-    }
-    public static var uint8Array : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_UInt8Array
-    }
-    public static var int16Array : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_Int16Array
-    }
-    public static var uint16Array : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_UInt16Array
-    }
-    public static var int32Array : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_Int32Array
-    }
-    public static var uint32Array : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_UInt32Array
-    }
-    public static var int64Array : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_Int64Array
-    }
-    public static var uint64Array : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_UInt64Array
-    }
-    public static var singleArray : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_SingleArray
-    }
-    public static var doubleArray : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_DoubleArray
-    }
-    public static var char16Array : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_Char16Array
-    }
-    public static var booleanArray : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_BooleanArray
-    }
-    public static var stringArray : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_StringArray
-    }
-    public static var inspectableArray : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_InspectableArray
-    }
-    public static var dateTimeArray : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_DateTimeArray
-    }
-    public static var timeSpanArray : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_TimeSpanArray
-    }
-    public static var guidArray : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_GuidArray
-    }
-    public static var pointArray : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_PointArray
-    }
-    public static var sizeArray : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_SizeArray
-    }
-    public static var rectArray : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_RectArray
-    }
-    public static var otherTypeArray : test_component.PropertyType {
-        __x_ABI_CWindows_CFoundation_CPropertyType_OtherTypeArray
-    }
-}
-extension test_component.PropertyType: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
 
+    public static let canceled = Self(rawValue: 2)
+
+    public static let completed = Self(rawValue: 1)
+
+    public static let error = Self(rawValue: 3)
+
+    public static let started = Self(rawValue: 0)
+
+}
+public struct PropertyType : RawRepresentable, Hashable, Codable, Sendable {
+    public var rawValue: Swift.Int32
+
+    public init(rawValue: Swift.Int32 = 0) {
+        self.rawValue = rawValue
+    }
+
+    public static let empty = Self(rawValue: 0)
+
+    public static let uint8 = Self(rawValue: 1)
+
+    public static let int16 = Self(rawValue: 2)
+
+    public static let uint16 = Self(rawValue: 3)
+
+    public static let int32 = Self(rawValue: 4)
+
+    public static let uint32 = Self(rawValue: 5)
+
+    public static let int64 = Self(rawValue: 6)
+
+    public static let uint64 = Self(rawValue: 7)
+
+    public static let single = Self(rawValue: 8)
+
+    public static let double = Self(rawValue: 9)
+
+    public static let char16 = Self(rawValue: 10)
+
+    public static let boolean = Self(rawValue: 11)
+
+    public static let string = Self(rawValue: 12)
+
+    public static let inspectable = Self(rawValue: 13)
+
+    public static let dateTime = Self(rawValue: 14)
+
+    public static let timeSpan = Self(rawValue: 15)
+
+    public static let guid = Self(rawValue: 16)
+
+    public static let point = Self(rawValue: 17)
+
+    public static let size = Self(rawValue: 18)
+
+    public static let rect = Self(rawValue: 19)
+
+    public static let otherType = Self(rawValue: 20)
+
+    public static let uint8Array = Self(rawValue: 1025)
+
+    public static let int16Array = Self(rawValue: 1026)
+
+    public static let uint16Array = Self(rawValue: 1027)
+
+    public static let int32Array = Self(rawValue: 1028)
+
+    public static let uint32Array = Self(rawValue: 1029)
+
+    public static let int64Array = Self(rawValue: 1030)
+
+    public static let uint64Array = Self(rawValue: 1031)
+
+    public static let singleArray = Self(rawValue: 1032)
+
+    public static let doubleArray = Self(rawValue: 1033)
+
+    public static let char16Array = Self(rawValue: 1034)
+
+    public static let booleanArray = Self(rawValue: 1035)
+
+    public static let stringArray = Self(rawValue: 1036)
+
+    public static let inspectableArray = Self(rawValue: 1037)
+
+    public static let dateTimeArray = Self(rawValue: 1038)
+
+    public static let timeSpanArray = Self(rawValue: 1039)
+
+    public static let guidArray = Self(rawValue: 1040)
+
+    public static let pointArray = Self(rawValue: 1041)
+
+    public static let sizeArray = Self(rawValue: 1042)
+
+    public static let rectArray = Self(rawValue: 1043)
+
+    public static let otherTypeArray = Self(rawValue: 1044)
+
+}

@@ -222,7 +222,7 @@ public enum __ABI_Windows_Storage_Streams {
                 let bufferWrapper = __ABI_Windows_Storage_Streams.IBufferWrapper(buffer)
                 let _buffer = try! bufferWrapper?.toABI { $0 }
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CStreams_CIInputStream.self) { pThis in
-                    try CHECKED(pThis.pointee.lpVtbl.pointee.ReadAsync(pThis, _buffer, count, options, &operationAbi))
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.ReadAsync(pThis, _buffer, count, .init(rawValue: options.rawValue), &operationAbi))
                 }
             }
             return test_component.__x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper.unwrapFrom(abi: operation)
@@ -264,7 +264,7 @@ public enum __ABI_Windows_Storage_Streams {
                 guard let __unwrapped__instance = IInputStreamWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 let buffer: test_component.AnyIBuffer? = __ABI_Windows_Storage_Streams.IBufferWrapper.unwrapFrom(abi: ComPtr($1))
                 let count: UInt32 = $2
-                let options: test_component.InputStreamOptions = $3
+                let options: test_component.InputStreamOptions = .init(rawValue: $3.rawValue)
                 let operation = try __unwrapped__instance.readAsync(buffer, count, options)
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper(operation)
                 operationWrapper?.copyTo($4)

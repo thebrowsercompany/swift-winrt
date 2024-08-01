@@ -3,18 +3,6 @@
 import Foundation
 import Ctest_component
 
-/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.photoorientation)
-public typealias PhotoOrientation = __x_ABI_CWindows_CStorage_CFileProperties_CPhotoOrientation
-/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.propertyprefetchoptions)
-public typealias PropertyPrefetchOptions = __x_ABI_CWindows_CStorage_CFileProperties_CPropertyPrefetchOptions
-/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.thumbnailmode)
-public typealias ThumbnailMode = __x_ABI_CWindows_CStorage_CFileProperties_CThumbnailMode
-/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.thumbnailoptions)
-public typealias ThumbnailOptions = __x_ABI_CWindows_CStorage_CFileProperties_CThumbnailOptions
-/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.thumbnailtype)
-public typealias ThumbnailType = __x_ABI_CWindows_CStorage_CFileProperties_CThumbnailType
-/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.videoorientation)
-public typealias VideoOrientation = __x_ABI_CWindows_CStorage_CFileProperties_CVideoOrientation
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.basicproperties)
 public final class BasicProperties : WinRTClass, IStorageItemExtraProperties {
     private typealias SwiftABI = __ABI_Windows_Storage_FileProperties.IBasicProperties
@@ -757,120 +745,113 @@ extension IStorageItemExtraProperties {
 }
 public typealias AnyIStorageItemExtraProperties = any IStorageItemExtraProperties
 
-extension test_component.PhotoOrientation {
-    public static var unspecified : test_component.PhotoOrientation {
-        __x_ABI_CWindows_CStorage_CFileProperties_CPhotoOrientation_Unspecified
-    }
-    public static var normal : test_component.PhotoOrientation {
-        __x_ABI_CWindows_CStorage_CFileProperties_CPhotoOrientation_Normal
-    }
-    public static var flipHorizontal : test_component.PhotoOrientation {
-        __x_ABI_CWindows_CStorage_CFileProperties_CPhotoOrientation_FlipHorizontal
-    }
-    public static var rotate180 : test_component.PhotoOrientation {
-        __x_ABI_CWindows_CStorage_CFileProperties_CPhotoOrientation_Rotate180
-    }
-    public static var flipVertical : test_component.PhotoOrientation {
-        __x_ABI_CWindows_CStorage_CFileProperties_CPhotoOrientation_FlipVertical
-    }
-    public static var transpose : test_component.PhotoOrientation {
-        __x_ABI_CWindows_CStorage_CFileProperties_CPhotoOrientation_Transpose
-    }
-    public static var rotate270 : test_component.PhotoOrientation {
-        __x_ABI_CWindows_CStorage_CFileProperties_CPhotoOrientation_Rotate270
-    }
-    public static var transverse : test_component.PhotoOrientation {
-        __x_ABI_CWindows_CStorage_CFileProperties_CPhotoOrientation_Transverse
-    }
-    public static var rotate90 : test_component.PhotoOrientation {
-        __x_ABI_CWindows_CStorage_CFileProperties_CPhotoOrientation_Rotate90
-    }
-}
-extension test_component.PhotoOrientation: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
+public struct PhotoOrientation : RawRepresentable, Hashable, Codable, Sendable {
+    public var rawValue: Swift.Int32
 
-extension test_component.PropertyPrefetchOptions {
-    public static var none : test_component.PropertyPrefetchOptions {
-        __x_ABI_CWindows_CStorage_CFileProperties_CPropertyPrefetchOptions_None
+    public init(rawValue: Swift.Int32 = 0) {
+        self.rawValue = rawValue
     }
-    public static var musicProperties : test_component.PropertyPrefetchOptions {
-        __x_ABI_CWindows_CStorage_CFileProperties_CPropertyPrefetchOptions_MusicProperties
-    }
-    public static var videoProperties : test_component.PropertyPrefetchOptions {
-        __x_ABI_CWindows_CStorage_CFileProperties_CPropertyPrefetchOptions_VideoProperties
-    }
-    public static var imageProperties : test_component.PropertyPrefetchOptions {
-        __x_ABI_CWindows_CStorage_CFileProperties_CPropertyPrefetchOptions_ImageProperties
-    }
-    public static var documentProperties : test_component.PropertyPrefetchOptions {
-        __x_ABI_CWindows_CStorage_CFileProperties_CPropertyPrefetchOptions_DocumentProperties
-    }
-    public static var basicProperties : test_component.PropertyPrefetchOptions {
-        __x_ABI_CWindows_CStorage_CFileProperties_CPropertyPrefetchOptions_BasicProperties
-    }
-}
-extension test_component.PropertyPrefetchOptions: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
 
-extension test_component.ThumbnailMode {
-    public static var picturesView : test_component.ThumbnailMode {
-        __x_ABI_CWindows_CStorage_CFileProperties_CThumbnailMode_PicturesView
-    }
-    public static var videosView : test_component.ThumbnailMode {
-        __x_ABI_CWindows_CStorage_CFileProperties_CThumbnailMode_VideosView
-    }
-    public static var musicView : test_component.ThumbnailMode {
-        __x_ABI_CWindows_CStorage_CFileProperties_CThumbnailMode_MusicView
-    }
-    public static var documentsView : test_component.ThumbnailMode {
-        __x_ABI_CWindows_CStorage_CFileProperties_CThumbnailMode_DocumentsView
-    }
-    public static var listView : test_component.ThumbnailMode {
-        __x_ABI_CWindows_CStorage_CFileProperties_CThumbnailMode_ListView
-    }
-    public static var singleItem : test_component.ThumbnailMode {
-        __x_ABI_CWindows_CStorage_CFileProperties_CThumbnailMode_SingleItem
-    }
-}
-extension test_component.ThumbnailMode: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
+    public static let unspecified = Self(rawValue: 0)
 
-extension test_component.ThumbnailOptions {
-    public static var none : test_component.ThumbnailOptions {
-        __x_ABI_CWindows_CStorage_CFileProperties_CThumbnailOptions_None
-    }
-    public static var returnOnlyIfCached : test_component.ThumbnailOptions {
-        __x_ABI_CWindows_CStorage_CFileProperties_CThumbnailOptions_ReturnOnlyIfCached
-    }
-    public static var resizeThumbnail : test_component.ThumbnailOptions {
-        __x_ABI_CWindows_CStorage_CFileProperties_CThumbnailOptions_ResizeThumbnail
-    }
-    public static var useCurrentScale : test_component.ThumbnailOptions {
-        __x_ABI_CWindows_CStorage_CFileProperties_CThumbnailOptions_UseCurrentScale
-    }
-}
-extension test_component.ThumbnailOptions: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
+    public static let normal = Self(rawValue: 1)
 
-extension test_component.ThumbnailType {
-    public static var image : test_component.ThumbnailType {
-        __x_ABI_CWindows_CStorage_CFileProperties_CThumbnailType_Image
-    }
-    public static var icon : test_component.ThumbnailType {
-        __x_ABI_CWindows_CStorage_CFileProperties_CThumbnailType_Icon
-    }
-}
-extension test_component.ThumbnailType: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
+    public static let flipHorizontal = Self(rawValue: 2)
 
-extension test_component.VideoOrientation {
-    public static var normal : test_component.VideoOrientation {
-        __x_ABI_CWindows_CStorage_CFileProperties_CVideoOrientation_Normal
-    }
-    public static var rotate90 : test_component.VideoOrientation {
-        __x_ABI_CWindows_CStorage_CFileProperties_CVideoOrientation_Rotate90
-    }
-    public static var rotate180 : test_component.VideoOrientation {
-        __x_ABI_CWindows_CStorage_CFileProperties_CVideoOrientation_Rotate180
-    }
-    public static var rotate270 : test_component.VideoOrientation {
-        __x_ABI_CWindows_CStorage_CFileProperties_CVideoOrientation_Rotate270
-    }
-}
-extension test_component.VideoOrientation: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
+    public static let rotate180 = Self(rawValue: 3)
 
+    public static let flipVertical = Self(rawValue: 4)
+
+    public static let transpose = Self(rawValue: 5)
+
+    public static let rotate270 = Self(rawValue: 6)
+
+    public static let transverse = Self(rawValue: 7)
+
+    public static let rotate90 = Self(rawValue: 8)
+
+}
+public struct PropertyPrefetchOptions : RawRepresentable, Hashable, Codable, Sendable {
+    public var rawValue: Swift.Int32
+
+    public init(rawValue: Swift.Int32 = 0) {
+        self.rawValue = rawValue
+    }
+
+    public static let none = Self(rawValue: 0)
+
+    public static let musicProperties = Self(rawValue: 1)
+
+    public static let videoProperties = Self(rawValue: 2)
+
+    public static let imageProperties = Self(rawValue: 4)
+
+    public static let documentProperties = Self(rawValue: 8)
+
+    public static let basicProperties = Self(rawValue: 16)
+
+}
+public struct ThumbnailMode : RawRepresentable, Hashable, Codable, Sendable {
+    public var rawValue: Swift.Int32
+
+    public init(rawValue: Swift.Int32 = 0) {
+        self.rawValue = rawValue
+    }
+
+    public static let picturesView = Self(rawValue: 0)
+
+    public static let videosView = Self(rawValue: 1)
+
+    public static let musicView = Self(rawValue: 2)
+
+    public static let documentsView = Self(rawValue: 3)
+
+    public static let listView = Self(rawValue: 4)
+
+    public static let singleItem = Self(rawValue: 5)
+
+}
+public struct ThumbnailOptions : RawRepresentable, Hashable, Codable, Sendable {
+    public var rawValue: Swift.Int32
+
+    public init(rawValue: Swift.Int32 = 0) {
+        self.rawValue = rawValue
+    }
+
+    public static let none = Self(rawValue: 0)
+
+    public static let returnOnlyIfCached = Self(rawValue: 1)
+
+    public static let resizeThumbnail = Self(rawValue: 2)
+
+    public static let useCurrentScale = Self(rawValue: 4)
+
+}
+public struct ThumbnailType : RawRepresentable, Hashable, Codable, Sendable {
+    public var rawValue: Swift.Int32
+
+    public init(rawValue: Swift.Int32 = 0) {
+        self.rawValue = rawValue
+    }
+
+    public static let image = Self(rawValue: 0)
+
+    public static let icon = Self(rawValue: 1)
+
+}
+public struct VideoOrientation : RawRepresentable, Hashable, Codable, Sendable {
+    public var rawValue: Swift.Int32
+
+    public init(rawValue: Swift.Int32 = 0) {
+        self.rawValue = rawValue
+    }
+
+    public static let normal = Self(rawValue: 0)
+
+    public static let rotate90 = Self(rawValue: 90)
+
+    public static let rotate180 = Self(rawValue: 180)
+
+    public static let rotate270 = Self(rawValue: 270)
+
+}

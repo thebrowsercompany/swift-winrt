@@ -302,6 +302,10 @@ namespace swiftwinrt
                 w.write(".from(abi: %)", name);
             }
         }
+        else if (category == param_category::enum_type)
+        {
+            w.write(".init(rawValue: %.rawValue)", name);
+        }
         else if (is_type_blittable(category))
         {
             // fundamental types can just be simply copied to since the types match

@@ -296,7 +296,7 @@ void swiftwinrt::write_default_init_assignment(writer& w, metadata_type const& s
     }
     else if (category == param_category::enum_type)
     {
-        w.write(" = .init(0)");
+        w.write(" = .init(rawValue: 0)");
     }
     else if (is_boolean(&sig))
     {

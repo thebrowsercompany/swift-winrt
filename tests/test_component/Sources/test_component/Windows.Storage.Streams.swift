@@ -3,10 +3,6 @@
 import Foundation
 import Ctest_component
 
-/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.inputstreamoptions)
-public typealias InputStreamOptions = __x_ABI_CWindows_CStorage_CStreams_CInputStreamOptions
-/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.unicodeencoding)
-public typealias UnicodeEncoding = __x_ABI_CWindows_CStorage_CStreams_CUnicodeEncoding
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.buffer)
 public final class Buffer : WinRTClass, IBufferByteAccess, IBuffer {
     private typealias SwiftABI = __ABI_Windows_Storage_Streams.IBuffer
@@ -273,29 +269,31 @@ extension IRandomAccessStreamWithContentType {
 }
 public typealias AnyIRandomAccessStreamWithContentType = any IRandomAccessStreamWithContentType
 
-extension test_component.InputStreamOptions {
-    public static var none : test_component.InputStreamOptions {
-        __x_ABI_CWindows_CStorage_CStreams_CInputStreamOptions_None
-    }
-    public static var partial : test_component.InputStreamOptions {
-        __x_ABI_CWindows_CStorage_CStreams_CInputStreamOptions_Partial
-    }
-    public static var readAhead : test_component.InputStreamOptions {
-        __x_ABI_CWindows_CStorage_CStreams_CInputStreamOptions_ReadAhead
-    }
-}
-extension test_component.InputStreamOptions: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
+public struct InputStreamOptions : RawRepresentable, Hashable, Codable, Sendable {
+    public var rawValue: Swift.Int32
 
-extension test_component.UnicodeEncoding {
-    public static var utf8 : test_component.UnicodeEncoding {
-        __x_ABI_CWindows_CStorage_CStreams_CUnicodeEncoding_Utf8
+    public init(rawValue: Swift.Int32 = 0) {
+        self.rawValue = rawValue
     }
-    public static var utf16LE : test_component.UnicodeEncoding {
-        __x_ABI_CWindows_CStorage_CStreams_CUnicodeEncoding_Utf16LE
-    }
-    public static var utf16BE : test_component.UnicodeEncoding {
-        __x_ABI_CWindows_CStorage_CStreams_CUnicodeEncoding_Utf16BE
-    }
-}
-extension test_component.UnicodeEncoding: @retroactive Hashable, @retroactive Codable, @retroactive @unchecked Sendable {}
 
+    public static let none = Self(rawValue: 0)
+
+    public static let partial = Self(rawValue: 1)
+
+    public static let readAhead = Self(rawValue: 2)
+
+}
+public struct UnicodeEncoding : RawRepresentable, Hashable, Codable, Sendable {
+    public var rawValue: Swift.Int32
+
+    public init(rawValue: Swift.Int32 = 0) {
+        self.rawValue = rawValue
+    }
+
+    public static let utf8 = Self(rawValue: 0)
+
+    public static let utf16LE = Self(rawValue: 1)
+
+    public static let utf16BE = Self(rawValue: 2)
+
+}
