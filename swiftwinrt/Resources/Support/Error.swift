@@ -169,6 +169,24 @@ public struct Error : Swift.Error, CustomStringConvertible {
   }
 }
 
-public func failWith(err: HRESULT) -> HRESULT {
-  return err
+public func failWith(hr: HRESULT) -> HRESULT {
+  return hr
+}
+
+public func failWith(error: Swift.Error) -> HRESULT {
+    var hresult: HRESULT = E_FAIL
+    let message = error.description
+    if let winrtError = error as? Error {
+        hresult = winrtError.hr
+    }
+
+    do {
+        try message.withHStringRef {
+            _ = RoOriginateLanguageException(hresult, $0, nil)
+        }
+    } catch {
+        _ = RoOriginateLanguageException(hresult, nil, nil)
+    }
+
+    return hresult
 }
