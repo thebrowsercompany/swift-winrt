@@ -53,16 +53,16 @@ public enum __ABI_Windows_Storage_Search {
         }
 
         internal func get_FolderDepthImpl() throws -> test_component.FolderDepth {
-            var value: __x_ABI_CWindows_CStorage_CSearch_CFolderDepth = .init(0)
+            var value: __x_ABI_CWindows_CStorage_CSearch_CFolderDepth = .init(rawValue: 0)
             _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIQueryOptions.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_FolderDepth(pThis, &value))
             }
-            return value
+            return .init(rawValue: value.rawValue)
         }
 
         internal func put_FolderDepthImpl(_ value: test_component.FolderDepth) throws {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIQueryOptions.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.put_FolderDepth(pThis, value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.put_FolderDepth(pThis, .init(rawValue: value.rawValue)))
             }
         }
 
@@ -112,16 +112,16 @@ public enum __ABI_Windows_Storage_Search {
         }
 
         internal func get_IndexerOptionImpl() throws -> test_component.IndexerOption {
-            var value: __x_ABI_CWindows_CStorage_CSearch_CIndexerOption = .init(0)
+            var value: __x_ABI_CWindows_CStorage_CSearch_CIndexerOption = .init(rawValue: 0)
             _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIQueryOptions.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_IndexerOption(pThis, &value))
             }
-            return value
+            return .init(rawValue: value.rawValue)
         }
 
         internal func put_IndexerOptionImpl(_ value: test_component.IndexerOption) throws {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIQueryOptions.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.put_IndexerOption(pThis, value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.put_IndexerOption(pThis, .init(rawValue: value.rawValue)))
             }
         }
 
@@ -143,11 +143,11 @@ public enum __ABI_Windows_Storage_Search {
         }
 
         internal func get_DateStackOptionImpl() throws -> test_component.DateStackOption {
-            var value: __x_ABI_CWindows_CStorage_CSearch_CDateStackOption = .init(0)
+            var value: __x_ABI_CWindows_CStorage_CSearch_CDateStackOption = .init(rawValue: 0)
             _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIQueryOptions.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_DateStackOption(pThis, &value))
             }
-            return value
+            return .init(rawValue: value.rawValue)
         }
 
         internal func SaveToStringImpl() throws -> String {
@@ -167,7 +167,7 @@ public enum __ABI_Windows_Storage_Search {
 
         internal func SetThumbnailPrefetchImpl(_ mode: test_component.ThumbnailMode, _ requestedSize: UInt32, _ options: test_component.ThumbnailOptions) throws {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIQueryOptions.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.SetThumbnailPrefetch(pThis, mode, requestedSize, options))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.SetThumbnailPrefetch(pThis, .init(rawValue: mode.rawValue), requestedSize, .init(rawValue: options.rawValue)))
             }
         }
 
@@ -175,7 +175,7 @@ public enum __ABI_Windows_Storage_Search {
             let propertiesToRetrieveWrapper = test_component.__x_ABI_C__FIIterable_1_HSTRINGWrapper(propertiesToRetrieve)
             let _propertiesToRetrieve = try! propertiesToRetrieveWrapper?.toABI { $0 }
             _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIQueryOptions.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.SetPropertyPrefetch(pThis, options, _propertiesToRetrieve))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.SetPropertyPrefetch(pThis, .init(rawValue: options.rawValue), _propertiesToRetrieve))
             }
         }
 
@@ -189,7 +189,7 @@ public enum __ABI_Windows_Storage_Search {
                 let fileTypeFilterWrapper = test_component.__x_ABI_C__FIIterable_1_HSTRINGWrapper(fileTypeFilter)
                 let _fileTypeFilter = try! fileTypeFilterWrapper?.toABI { $0 }
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIQueryOptionsFactory.self) { pThis in
-                    try CHECKED(pThis.pointee.lpVtbl.pointee.CreateCommonFileQuery(pThis, query, _fileTypeFilter, &queryOptionsAbi))
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.CreateCommonFileQuery(pThis, .init(rawValue: query.rawValue), _fileTypeFilter, &queryOptionsAbi))
                 }
             }
             return IQueryOptions(queryOptions!)
@@ -198,7 +198,7 @@ public enum __ABI_Windows_Storage_Search {
         internal func CreateCommonFolderQueryImpl(_ query: test_component.CommonFolderQuery) throws -> IQueryOptions {
             let (queryOptions) = try ComPtrs.initialize { queryOptionsAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIQueryOptionsFactory.self) { pThis in
-                    try CHECKED(pThis.pointee.lpVtbl.pointee.CreateCommonFolderQuery(pThis, query, &queryOptionsAbi))
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.CreateCommonFolderQuery(pThis, .init(rawValue: query.rawValue), &queryOptionsAbi))
                 }
             }
             return IQueryOptions(queryOptions!)
@@ -281,7 +281,7 @@ public enum __ABI_Windows_Storage_Search {
         open func CreateFileQueryImpl(_ query: test_component.CommonFileQuery) throws -> test_component.StorageFileQueryResult? {
             let (value) = try ComPtrs.initialize { valueAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIStorageFolderQueryOperations.self) { pThis in
-                    try CHECKED(pThis.pointee.lpVtbl.pointee.CreateFileQuery(pThis, query, &valueAbi))
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.CreateFileQuery(pThis, .init(rawValue: query.rawValue), &valueAbi))
                 }
             }
             return .from(abi: value)
@@ -308,7 +308,7 @@ public enum __ABI_Windows_Storage_Search {
         open func CreateFolderQueryImpl(_ query: test_component.CommonFolderQuery) throws -> test_component.StorageFolderQueryResult? {
             let (value) = try ComPtrs.initialize { valueAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIStorageFolderQueryOperations.self) { pThis in
-                    try CHECKED(pThis.pointee.lpVtbl.pointee.CreateFolderQuery(pThis, query, &valueAbi))
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.CreateFolderQuery(pThis, .init(rawValue: query.rawValue), &valueAbi))
                 }
             }
             return .from(abi: value)
@@ -344,7 +344,7 @@ public enum __ABI_Windows_Storage_Search {
         open func GetFilesAsyncImpl(_ query: test_component.CommonFileQuery, _ startIndex: UInt32, _ maxItemsToRetrieve: UInt32) throws -> test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.StorageFile?>?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIStorageFolderQueryOperations.self) { pThis in
-                    try CHECKED(pThis.pointee.lpVtbl.pointee.GetFilesAsync(pThis, query, startIndex, maxItemsToRetrieve, &operationAbi))
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.GetFilesAsync(pThis, .init(rawValue: query.rawValue), startIndex, maxItemsToRetrieve, &operationAbi))
                 }
             }
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.unwrapFrom(abi: operation)
@@ -353,7 +353,7 @@ public enum __ABI_Windows_Storage_Search {
         open func GetFilesAsyncOverloadDefaultStartAndCountImpl(_ query: test_component.CommonFileQuery) throws -> test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.StorageFile?>?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIStorageFolderQueryOperations.self) { pThis in
-                    try CHECKED(pThis.pointee.lpVtbl.pointee.GetFilesAsyncOverloadDefaultStartAndCount(pThis, query, &operationAbi))
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.GetFilesAsyncOverloadDefaultStartAndCount(pThis, .init(rawValue: query.rawValue), &operationAbi))
                 }
             }
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.unwrapFrom(abi: operation)
@@ -362,7 +362,7 @@ public enum __ABI_Windows_Storage_Search {
         open func GetFoldersAsyncImpl(_ query: test_component.CommonFolderQuery, _ startIndex: UInt32, _ maxItemsToRetrieve: UInt32) throws -> test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.StorageFolder?>?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIStorageFolderQueryOperations.self) { pThis in
-                    try CHECKED(pThis.pointee.lpVtbl.pointee.GetFoldersAsync(pThis, query, startIndex, maxItemsToRetrieve, &operationAbi))
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.GetFoldersAsync(pThis, .init(rawValue: query.rawValue), startIndex, maxItemsToRetrieve, &operationAbi))
                 }
             }
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.unwrapFrom(abi: operation)
@@ -371,7 +371,7 @@ public enum __ABI_Windows_Storage_Search {
         open func GetFoldersAsyncOverloadDefaultStartAndCountImpl(_ query: test_component.CommonFolderQuery) throws -> test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.StorageFolder?>?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIStorageFolderQueryOperations.self) { pThis in
-                    try CHECKED(pThis.pointee.lpVtbl.pointee.GetFoldersAsyncOverloadDefaultStartAndCount(pThis, query, &operationAbi))
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.GetFoldersAsyncOverloadDefaultStartAndCount(pThis, .init(rawValue: query.rawValue), &operationAbi))
                 }
             }
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.unwrapFrom(abi: operation)
@@ -397,7 +397,7 @@ public enum __ABI_Windows_Storage_Search {
         open func IsCommonFolderQuerySupportedImpl(_ query: test_component.CommonFolderQuery) throws -> Bool {
             var value: boolean = 0
             _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIStorageFolderQueryOperations.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.IsCommonFolderQuerySupported(pThis, query, &value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.IsCommonFolderQuerySupported(pThis, .init(rawValue: query.rawValue), &value))
             }
             return .init(from: value)
         }
@@ -405,7 +405,7 @@ public enum __ABI_Windows_Storage_Search {
         open func IsCommonFileQuerySupportedImpl(_ query: test_component.CommonFileQuery) throws -> Bool {
             var value: boolean = 0
             _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIStorageFolderQueryOperations.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.IsCommonFileQuerySupported(pThis, query, &value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.IsCommonFileQuerySupported(pThis, .init(rawValue: query.rawValue), &value))
             }
             return .init(from: value)
         }
@@ -462,7 +462,7 @@ public enum __ABI_Windows_Storage_Search {
         CreateFileQuery: {
             do {
                 guard let __unwrapped__instance = IStorageFolderQueryOperationsWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-                let query: test_component.CommonFileQuery = $1
+                let query: test_component.CommonFileQuery = .init(rawValue: $1.rawValue)
                 let value = try __unwrapped__instance.createFileQuery(query)
                 value?.copyTo($2)
                 return S_OK
@@ -491,7 +491,7 @@ public enum __ABI_Windows_Storage_Search {
         CreateFolderQuery: {
             do {
                 guard let __unwrapped__instance = IStorageFolderQueryOperationsWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-                let query: test_component.CommonFolderQuery = $1
+                let query: test_component.CommonFolderQuery = .init(rawValue: $1.rawValue)
                 let value = try __unwrapped__instance.createFolderQuery(query)
                 value?.copyTo($2)
                 return S_OK
@@ -530,7 +530,7 @@ public enum __ABI_Windows_Storage_Search {
         GetFilesAsync: {
             do {
                 guard let __unwrapped__instance = IStorageFolderQueryOperationsWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-                let query: test_component.CommonFileQuery = $1
+                let query: test_component.CommonFileQuery = .init(rawValue: $1.rawValue)
                 let startIndex: UInt32 = $2
                 let maxItemsToRetrieve: UInt32 = $3
                 let operation = try __unwrapped__instance.getFilesAsync(query, startIndex, maxItemsToRetrieve)
@@ -543,7 +543,7 @@ public enum __ABI_Windows_Storage_Search {
         GetFilesAsyncOverloadDefaultStartAndCount: {
             do {
                 guard let __unwrapped__instance = IStorageFolderQueryOperationsWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-                let query: test_component.CommonFileQuery = $1
+                let query: test_component.CommonFileQuery = .init(rawValue: $1.rawValue)
                 let operation = try __unwrapped__instance.getFilesAsync(query)
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileWrapper(operation)
                 operationWrapper?.copyTo($2)
@@ -554,7 +554,7 @@ public enum __ABI_Windows_Storage_Search {
         GetFoldersAsync: {
             do {
                 guard let __unwrapped__instance = IStorageFolderQueryOperationsWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-                let query: test_component.CommonFolderQuery = $1
+                let query: test_component.CommonFolderQuery = .init(rawValue: $1.rawValue)
                 let startIndex: UInt32 = $2
                 let maxItemsToRetrieve: UInt32 = $3
                 let operation = try __unwrapped__instance.getFoldersAsync(query, startIndex, maxItemsToRetrieve)
@@ -567,7 +567,7 @@ public enum __ABI_Windows_Storage_Search {
         GetFoldersAsyncOverloadDefaultStartAndCount: {
             do {
                 guard let __unwrapped__instance = IStorageFolderQueryOperationsWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-                let query: test_component.CommonFolderQuery = $1
+                let query: test_component.CommonFolderQuery = .init(rawValue: $1.rawValue)
                 let operation = try __unwrapped__instance.getFoldersAsync(query)
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper(operation)
                 operationWrapper?.copyTo($2)
@@ -600,7 +600,7 @@ public enum __ABI_Windows_Storage_Search {
         IsCommonFolderQuerySupported: {
             do {
                 guard let __unwrapped__instance = IStorageFolderQueryOperationsWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-                let query: test_component.CommonFolderQuery = $1
+                let query: test_component.CommonFolderQuery = .init(rawValue: $1.rawValue)
                 let value = try __unwrapped__instance.isCommonFolderQuerySupported(query)
                 $2?.initialize(to: .init(from: value))
                 return S_OK
@@ -610,7 +610,7 @@ public enum __ABI_Windows_Storage_Search {
         IsCommonFileQuerySupported: {
             do {
                 guard let __unwrapped__instance = IStorageFolderQueryOperationsWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-                let query: test_component.CommonFileQuery = $1
+                let query: test_component.CommonFileQuery = .init(rawValue: $1.rawValue)
                 let value = try __unwrapped__instance.isCommonFileQuerySupported(query)
                 $2?.initialize(to: .init(from: value))
                 return S_OK

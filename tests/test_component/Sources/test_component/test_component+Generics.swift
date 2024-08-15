@@ -22,7 +22,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1_booleanVTable: __x_AB
         do {
             guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1_booleanWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let asyncInfo: test_component.AnyIAsyncOperation<Bool>? = test_component.__x_ABI_C__FIAsyncOperation_1_booleanWrapper.unwrapFrom(abi: ComPtr($1))
-            let asyncStatus: test_component.AsyncStatus = $2
+            let asyncStatus: test_component.AsyncStatus = .init(rawValue: $2.rawValue)
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
         } catch { return failWith(error: error) } 
@@ -36,7 +36,7 @@ internal class AsyncOperationCompletedHandlerBool: test_component.IUnknown {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1_booleanWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1_boolean.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, .init(rawValue: asyncStatus.rawValue)))
         }
     }
 
@@ -75,7 +75,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1_intVTable: __x_ABI_C_
         do {
             guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let asyncInfo: test_component.AnyIAsyncOperation<Int32>? = test_component.__x_ABI_C__FIAsyncOperation_1_intWrapper.unwrapFrom(abi: ComPtr($1))
-            let asyncStatus: test_component.AsyncStatus = $2
+            let asyncStatus: test_component.AsyncStatus = .init(rawValue: $2.rawValue)
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
         } catch { return failWith(error: error) } 
@@ -89,7 +89,7 @@ internal class AsyncOperationCompletedHandlerInt32: test_component.IUnknown {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1_intWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1_int.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, .init(rawValue: asyncStatus.rawValue)))
         }
     }
 
@@ -128,7 +128,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1_HSTRINGVTable: __x_AB
         do {
             guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let asyncInfo: test_component.AnyIAsyncOperation<String>? = test_component.__x_ABI_C__FIAsyncOperation_1_HSTRINGWrapper.unwrapFrom(abi: ComPtr($1))
-            let asyncStatus: test_component.AsyncStatus = $2
+            let asyncStatus: test_component.AsyncStatus = .init(rawValue: $2.rawValue)
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
         } catch { return failWith(error: error) } 
@@ -142,7 +142,7 @@ internal class AsyncOperationCompletedHandlerString: test_component.IUnknown {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1_HSTRINGWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1_HSTRING.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, .init(rawValue: asyncStatus.rawValue)))
         }
     }
 
@@ -181,7 +181,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1_UINT32VTable: __x_ABI
         do {
             guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1_UINT32Wrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let asyncInfo: test_component.AnyIAsyncOperation<UInt32>? = test_component.__x_ABI_C__FIAsyncOperation_1_UINT32Wrapper.unwrapFrom(abi: ComPtr($1))
-            let asyncStatus: test_component.AsyncStatus = $2
+            let asyncStatus: test_component.AsyncStatus = .init(rawValue: $2.rawValue)
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
         } catch { return failWith(error: error) } 
@@ -195,7 +195,7 @@ internal class AsyncOperationCompletedHandlerUInt32: test_component.IUnknown {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1_UINT32Wrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1_UINT32.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, .init(rawValue: asyncStatus.rawValue)))
         }
     }
 
@@ -234,7 +234,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIMap_2_HS
         do {
             guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIMap<String, Any?>?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: ComPtr($1))
-            let asyncStatus: test_component.AsyncStatus = $2
+            let asyncStatus: test_component.AsyncStatus = .init(rawValue: $2.rawValue)
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
         } catch { return failWith(error: error) } 
@@ -248,7 +248,7 @@ internal class AsyncOperationCompletedHandlerIMapString_Any: test_component.IUnk
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, .init(rawValue: asyncStatus.rawValue)))
         }
     }
 
@@ -287,7 +287,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorVi
         do {
             guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.AnyIStorageItem?>?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper.unwrapFrom(abi: ComPtr($1))
-            let asyncStatus: test_component.AsyncStatus = $2
+            let asyncStatus: test_component.AsyncStatus = .init(rawValue: $2.rawValue)
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
         } catch { return failWith(error: error) } 
@@ -301,7 +301,7 @@ internal class AsyncOperationCompletedHandlerIVectorViewIStorageItem: test_compo
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, .init(rawValue: asyncStatus.rawValue)))
         }
     }
 
@@ -340,7 +340,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorVi
         do {
             guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.StorageFile?>?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.unwrapFrom(abi: ComPtr($1))
-            let asyncStatus: test_component.AsyncStatus = $2
+            let asyncStatus: test_component.AsyncStatus = .init(rawValue: $2.rawValue)
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
         } catch { return failWith(error: error) } 
@@ -354,7 +354,7 @@ internal class AsyncOperationCompletedHandlerIVectorViewStorageFile: test_compon
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, .init(rawValue: asyncStatus.rawValue)))
         }
     }
 
@@ -393,7 +393,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorVi
         do {
             guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.StorageFolder?>?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.unwrapFrom(abi: ComPtr($1))
-            let asyncStatus: test_component.AsyncStatus = $2
+            let asyncStatus: test_component.AsyncStatus = .init(rawValue: $2.rawValue)
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
         } catch { return failWith(error: error) } 
@@ -407,7 +407,7 @@ internal class AsyncOperationCompletedHandlerIVectorViewStorageFolder: test_comp
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, .init(rawValue: asyncStatus.rawValue)))
         }
     }
 
@@ -446,7 +446,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorVi
         do {
             guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.StorageLibraryChange?>?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeWrapper.unwrapFrom(abi: ComPtr($1))
-            let asyncStatus: test_component.AsyncStatus = $2
+            let asyncStatus: test_component.AsyncStatus = .init(rawValue: $2.rawValue)
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
         } catch { return failWith(error: error) } 
@@ -460,7 +460,7 @@ internal class AsyncOperationCompletedHandlerIVectorViewStorageLibraryChange: te
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChange.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, .init(rawValue: asyncStatus.rawValue)))
         }
     }
 
@@ -499,7 +499,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector_1
         do {
             guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector_1_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVector<String>?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVector_1_HSTRINGWrapper.unwrapFrom(abi: ComPtr($1))
-            let asyncStatus: test_component.AsyncStatus = $2
+            let asyncStatus: test_component.AsyncStatus = .init(rawValue: $2.rawValue)
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
         } catch { return failWith(error: error) } 
@@ -513,7 +513,7 @@ internal class AsyncOperationCompletedHandlerIVectorString: test_component.IUnkn
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVector_1_HSTRINGWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector_1_HSTRING.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, .init(rawValue: asyncStatus.rawValue)))
         }
     }
 
@@ -552,7 +552,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
         do {
             guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicPropertiesWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let asyncInfo: test_component.AnyIAsyncOperation<test_component.BasicProperties?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicPropertiesWrapper.unwrapFrom(abi: ComPtr($1))
-            let asyncStatus: test_component.AsyncStatus = $2
+            let asyncStatus: test_component.AsyncStatus = .init(rawValue: $2.rawValue)
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
         } catch { return failWith(error: error) } 
@@ -566,7 +566,7 @@ internal class AsyncOperationCompletedHandlerBasicProperties: test_component.IUn
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicPropertiesWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicProperties.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, .init(rawValue: asyncStatus.rawValue)))
         }
     }
 
@@ -605,7 +605,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
         do {
             guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentPropertiesWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let asyncInfo: test_component.AnyIAsyncOperation<test_component.DocumentProperties?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentPropertiesWrapper.unwrapFrom(abi: ComPtr($1))
-            let asyncStatus: test_component.AsyncStatus = $2
+            let asyncStatus: test_component.AsyncStatus = .init(rawValue: $2.rawValue)
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
         } catch { return failWith(error: error) } 
@@ -619,7 +619,7 @@ internal class AsyncOperationCompletedHandlerDocumentProperties: test_component.
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentPropertiesWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentProperties.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, .init(rawValue: asyncStatus.rawValue)))
         }
     }
 
@@ -658,7 +658,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
         do {
             guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CImagePropertiesWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let asyncInfo: test_component.AnyIAsyncOperation<test_component.ImageProperties?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CImagePropertiesWrapper.unwrapFrom(abi: ComPtr($1))
-            let asyncStatus: test_component.AsyncStatus = $2
+            let asyncStatus: test_component.AsyncStatus = .init(rawValue: $2.rawValue)
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
         } catch { return failWith(error: error) } 
@@ -672,7 +672,7 @@ internal class AsyncOperationCompletedHandlerImageProperties: test_component.IUn
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CImagePropertiesWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CImageProperties.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, .init(rawValue: asyncStatus.rawValue)))
         }
     }
 
@@ -711,7 +711,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
         do {
             guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicPropertiesWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let asyncInfo: test_component.AnyIAsyncOperation<test_component.MusicProperties?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicPropertiesWrapper.unwrapFrom(abi: ComPtr($1))
-            let asyncStatus: test_component.AsyncStatus = $2
+            let asyncStatus: test_component.AsyncStatus = .init(rawValue: $2.rawValue)
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
         } catch { return failWith(error: error) } 
@@ -725,7 +725,7 @@ internal class AsyncOperationCompletedHandlerMusicProperties: test_component.IUn
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicPropertiesWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicProperties.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, .init(rawValue: asyncStatus.rawValue)))
         }
     }
 
@@ -764,7 +764,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
         do {
             guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let asyncInfo: test_component.AnyIAsyncOperation<test_component.StorageItemThumbnail?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailWrapper.unwrapFrom(abi: ComPtr($1))
-            let asyncStatus: test_component.AsyncStatus = $2
+            let asyncStatus: test_component.AsyncStatus = .init(rawValue: $2.rawValue)
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
         } catch { return failWith(error: error) } 
@@ -778,7 +778,7 @@ internal class AsyncOperationCompletedHandlerStorageItemThumbnail: test_componen
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnail.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, .init(rawValue: asyncStatus.rawValue)))
         }
     }
 
@@ -817,7 +817,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
         do {
             guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoPropertiesWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let asyncInfo: test_component.AnyIAsyncOperation<test_component.VideoProperties?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoPropertiesWrapper.unwrapFrom(abi: ComPtr($1))
-            let asyncStatus: test_component.AsyncStatus = $2
+            let asyncStatus: test_component.AsyncStatus = .init(rawValue: $2.rawValue)
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
         } catch { return failWith(error: error) } 
@@ -831,7 +831,7 @@ internal class AsyncOperationCompletedHandlerVideoProperties: test_component.IUn
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoPropertiesWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoProperties.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, .init(rawValue: asyncStatus.rawValue)))
         }
     }
 
@@ -870,7 +870,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
         do {
             guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIStorageItem?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper.unwrapFrom(abi: ComPtr($1))
-            let asyncStatus: test_component.AsyncStatus = $2
+            let asyncStatus: test_component.AsyncStatus = .init(rawValue: $2.rawValue)
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
         } catch { return failWith(error: error) } 
@@ -884,7 +884,7 @@ internal class AsyncOperationCompletedHandlerIStorageItem: test_component.IUnkno
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, .init(rawValue: asyncStatus.rawValue)))
         }
     }
 
@@ -923,7 +923,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
         do {
             guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CSearch__CIndexedStateWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let asyncInfo: test_component.AnyIAsyncOperation<test_component.IndexedState>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSearch__CIndexedStateWrapper.unwrapFrom(abi: ComPtr($1))
-            let asyncStatus: test_component.AsyncStatus = $2
+            let asyncStatus: test_component.AsyncStatus = .init(rawValue: $2.rawValue)
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
         } catch { return failWith(error: error) } 
@@ -937,7 +937,7 @@ internal class AsyncOperationCompletedHandlerIndexedState: test_component.IUnkno
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSearch__CIndexedStateWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CSearch__CIndexedState.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, .init(rawValue: asyncStatus.rawValue)))
         }
     }
 
@@ -976,7 +976,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
         do {
             guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let asyncInfo: test_component.AnyIAsyncOperation<test_component.StorageFile?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.unwrapFrom(abi: ComPtr($1))
-            let asyncStatus: test_component.AsyncStatus = $2
+            let asyncStatus: test_component.AsyncStatus = .init(rawValue: $2.rawValue)
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
         } catch { return failWith(error: error) } 
@@ -990,7 +990,7 @@ internal class AsyncOperationCompletedHandlerStorageFile: test_component.IUnknow
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFileWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, .init(rawValue: asyncStatus.rawValue)))
         }
     }
 
@@ -1029,7 +1029,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
         do {
             guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let asyncInfo: test_component.AnyIAsyncOperation<test_component.StorageFolder?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.unwrapFrom(abi: ComPtr($1))
-            let asyncStatus: test_component.AsyncStatus = $2
+            let asyncStatus: test_component.AsyncStatus = .init(rawValue: $2.rawValue)
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
         } catch { return failWith(error: error) } 
@@ -1043,7 +1043,7 @@ internal class AsyncOperationCompletedHandlerStorageFolder: test_component.IUnkn
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, .init(rawValue: asyncStatus.rawValue)))
         }
     }
 
@@ -1082,7 +1082,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
         do {
             guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageStreamTransactionWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let asyncInfo: test_component.AnyIAsyncOperation<test_component.StorageStreamTransaction?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageStreamTransactionWrapper.unwrapFrom(abi: ComPtr($1))
-            let asyncStatus: test_component.AsyncStatus = $2
+            let asyncStatus: test_component.AsyncStatus = .init(rawValue: $2.rawValue)
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
         } catch { return failWith(error: error) } 
@@ -1096,7 +1096,7 @@ internal class AsyncOperationCompletedHandlerStorageStreamTransaction: test_comp
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageStreamTransactionWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageStreamTransaction.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, .init(rawValue: asyncStatus.rawValue)))
         }
     }
 
@@ -1135,7 +1135,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
         do {
             guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIBufferWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIBuffer?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIBufferWrapper.unwrapFrom(abi: ComPtr($1))
-            let asyncStatus: test_component.AsyncStatus = $2
+            let asyncStatus: test_component.AsyncStatus = .init(rawValue: $2.rawValue)
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
         } catch { return failWith(error: error) } 
@@ -1149,7 +1149,7 @@ internal class AsyncOperationCompletedHandlerIBuffer: test_component.IUnknown {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIBufferWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIBuffer.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, .init(rawValue: asyncStatus.rawValue)))
         }
     }
 
@@ -1188,7 +1188,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
         do {
             guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIInputStreamWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIInputStream?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIInputStreamWrapper.unwrapFrom(abi: ComPtr($1))
-            let asyncStatus: test_component.AsyncStatus = $2
+            let asyncStatus: test_component.AsyncStatus = .init(rawValue: $2.rawValue)
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
         } catch { return failWith(error: error) } 
@@ -1202,7 +1202,7 @@ internal class AsyncOperationCompletedHandlerIInputStream: test_component.IUnkno
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIInputStreamWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIInputStream.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, .init(rawValue: asyncStatus.rawValue)))
         }
     }
 
@@ -1241,7 +1241,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
         do {
             guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIRandomAccessStream?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWrapper.unwrapFrom(abi: ComPtr($1))
-            let asyncStatus: test_component.AsyncStatus = $2
+            let asyncStatus: test_component.AsyncStatus = .init(rawValue: $2.rawValue)
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
         } catch { return failWith(error: error) } 
@@ -1255,7 +1255,7 @@ internal class AsyncOperationCompletedHandlerIRandomAccessStream: test_component
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStream.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, .init(rawValue: asyncStatus.rawValue)))
         }
     }
 
@@ -1294,7 +1294,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
         do {
             guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentTypeWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIRandomAccessStreamWithContentType?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentTypeWrapper.unwrapFrom(abi: ComPtr($1))
-            let asyncStatus: test_component.AsyncStatus = $2
+            let asyncStatus: test_component.AsyncStatus = .init(rawValue: $2.rawValue)
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
         } catch { return failWith(error: error) } 
@@ -1308,7 +1308,7 @@ internal class AsyncOperationCompletedHandlerIRandomAccessStreamWithContentType:
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentTypeWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentType.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, .init(rawValue: asyncStatus.rawValue)))
         }
     }
 
@@ -1506,7 +1506,7 @@ internal var __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubl
         do {
             guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let asyncInfo: test_component.AnyIAsyncOperationWithProgress<Int32, Double>? = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper.unwrapFrom(abi: ComPtr($1))
-            let asyncStatus: test_component.AsyncStatus = $2
+            let asyncStatus: test_component.AsyncStatus = .init(rawValue: $2.rawValue)
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
         } catch { return failWith(error: error) } 
@@ -1520,7 +1520,7 @@ internal class AsyncOperationWithProgressCompletedHandlerInt32_Double: test_comp
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_double.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, .init(rawValue: asyncStatus.rawValue)))
         }
     }
 
@@ -1559,7 +1559,7 @@ internal var __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_UINT32_UI
         do {
             guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_UINT32_UINT32Wrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let asyncInfo: test_component.AnyIAsyncOperationWithProgress<UInt32, UInt32>? = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32Wrapper.unwrapFrom(abi: ComPtr($1))
-            let asyncStatus: test_component.AsyncStatus = $2
+            let asyncStatus: test_component.AsyncStatus = .init(rawValue: $2.rawValue)
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
         } catch { return failWith(error: error) } 
@@ -1573,7 +1573,7 @@ internal class AsyncOperationWithProgressCompletedHandlerUInt32_UInt32: test_com
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32Wrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_UINT32_UINT32.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, .init(rawValue: asyncStatus.rawValue)))
         }
     }
 
@@ -1612,7 +1612,7 @@ internal var __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2___x_ABI_C
         do {
             guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let asyncInfo: test_component.AnyIAsyncOperationWithProgress<test_component.AnyIBuffer?, UInt32>? = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper.unwrapFrom(abi: ComPtr($1))
-            let asyncStatus: test_component.AsyncStatus = $2
+            let asyncStatus: test_component.AsyncStatus = .init(rawValue: $2.rawValue)
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
         } catch { return failWith(error: error) } 
@@ -1626,7 +1626,7 @@ internal class AsyncOperationWithProgressCompletedHandlerIBuffer_UInt32: test_co
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32.self) { pThis in
-            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, .init(rawValue: asyncStatus.rawValue)))
         }
     }
 
@@ -5555,7 +5555,7 @@ internal var __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGVTable: __x_ABI_C__FIMapC
     get_CollectionChange: {
         guard let __unwrapped__instance = __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let result = __unwrapped__instance.collectionChange
-        $1?.initialize(to: result)
+        $1?.initialize(to: .init(rawValue: result.rawValue))
         return S_OK
     },
 
@@ -5571,11 +5571,11 @@ internal class IMapChangedEventArgsString: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMapChangedEventArgs_1_HSTRING }
 
     internal func get_CollectionChangeImpl() throws -> test_component.CollectionChange {
-        var result: __x_ABI_CWindows_CFoundation_CCollections_CCollectionChange = .init(0)
+        var result: __x_ABI_CWindows_CFoundation_CCollections_CCollectionChange = .init(rawValue: 0)
         _ = try perform(as: __x_ABI_C__FIMapChangedEventArgs_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_CollectionChange(pThis, &result))
         }
-        return result
+        return .init(rawValue: result.rawValue)
     }
 
     internal func get_KeyImpl() throws -> String {
@@ -15149,7 +15149,7 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSearch__
         do {
             guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSearch__CIndexedStateWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
             let result = try __unwrapped__instance.getResults()
-            $1?.initialize(to: result)
+            $1?.initialize(to: .init(rawValue: result.rawValue))
             return S_OK
         } catch { return failWith(error: error) } 
     }
@@ -15176,11 +15176,11 @@ internal class IAsyncOperationIndexedState: test_component.IInspectable {
     }
 
     internal func GetResultsImpl() throws -> test_component.IndexedState {
-        var result: __x_ABI_CWindows_CStorage_CSearch_CIndexedState = .init(0)
+        var result: __x_ABI_CWindows_CStorage_CSearch_CIndexedState = .init(rawValue: 0)
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSearch__CIndexedState.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &result))
         }
-        return result
+        return .init(rawValue: result.rawValue)
     }
 
 }
@@ -16509,9 +16509,9 @@ internal enum __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedBridge:
 
     static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
         guard let val = abi else { return nil }
-        var result: __x_ABI_Ctest__component_CSigned = .init(0)
+        var result: __x_ABI_Ctest__component_CSigned = .init(rawValue: 0)
         try! CHECKED(val.get().pointee.lpVtbl.pointee.get_Value(val.get(), &result))
-        return result
+        return .init(rawValue: result.rawValue)
     }
 
     static func makeAbi() -> CABI {
@@ -16551,7 +16551,7 @@ internal var __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedVTable: 
     get_Value: {
         guard let __unwrapped__instance = __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let result = __unwrapped__instance
-        $1?.initialize(to: result)
+        $1?.initialize(to: .init(rawValue: result.rawValue))
         return S_OK
     }
 )
