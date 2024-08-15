@@ -25,7 +25,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1_booleanVTable: __x_AB
             let asyncStatus: test_component.AsyncStatus = $2
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1_booleanWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_booleanBridge>
@@ -78,7 +78,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1_intVTable: __x_ABI_C_
             let asyncStatus: test_component.AsyncStatus = $2
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_intBridge>
@@ -131,7 +131,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1_HSTRINGVTable: __x_AB
             let asyncStatus: test_component.AsyncStatus = $2
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_HSTRINGBridge>
@@ -184,7 +184,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1_UINT32VTable: __x_ABI
             let asyncStatus: test_component.AsyncStatus = $2
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1_UINT32Wrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_UINT32Bridge>
@@ -237,7 +237,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIMap_2_HS
             let asyncStatus: test_component.AsyncStatus = $2
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIMap_2_HSTRING_IInspectableBridge>
@@ -290,7 +290,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorVi
             let asyncStatus: test_component.AsyncStatus = $2
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemBridge>
@@ -343,7 +343,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorVi
             let asyncStatus: test_component.AsyncStatus = $2
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileBridge>
@@ -396,7 +396,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorVi
             let asyncStatus: test_component.AsyncStatus = $2
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderBridge>
@@ -449,7 +449,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorVi
             let asyncStatus: test_component.AsyncStatus = $2
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeBridge>
@@ -502,7 +502,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector_1
             let asyncStatus: test_component.AsyncStatus = $2
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector_1_HSTRINGBridge>
@@ -555,7 +555,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
             let asyncStatus: test_component.AsyncStatus = $2
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicPropertiesWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicPropertiesBridge>
@@ -608,7 +608,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
             let asyncStatus: test_component.AsyncStatus = $2
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentPropertiesWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentPropertiesBridge>
@@ -661,7 +661,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
             let asyncStatus: test_component.AsyncStatus = $2
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CImagePropertiesWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CImagePropertiesBridge>
@@ -714,7 +714,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
             let asyncStatus: test_component.AsyncStatus = $2
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicPropertiesWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicPropertiesBridge>
@@ -767,7 +767,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
             let asyncStatus: test_component.AsyncStatus = $2
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailBridge>
@@ -820,7 +820,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
             let asyncStatus: test_component.AsyncStatus = $2
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoPropertiesWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoPropertiesBridge>
@@ -873,7 +873,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
             let asyncStatus: test_component.AsyncStatus = $2
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CIStorageItemBridge>
@@ -926,7 +926,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
             let asyncStatus: test_component.AsyncStatus = $2
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CSearch__CIndexedStateWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CSearch__CIndexedStateBridge>
@@ -979,7 +979,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
             let asyncStatus: test_component.AsyncStatus = $2
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFileWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFileBridge>
@@ -1032,7 +1032,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
             let asyncStatus: test_component.AsyncStatus = $2
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFolderBridge>
@@ -1085,7 +1085,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
             let asyncStatus: test_component.AsyncStatus = $2
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageStreamTransactionWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageStreamTransactionBridge>
@@ -1138,7 +1138,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
             let asyncStatus: test_component.AsyncStatus = $2
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIBufferWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIBufferBridge>
@@ -1191,7 +1191,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
             let asyncStatus: test_component.AsyncStatus = $2
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIInputStreamWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIInputStreamBridge>
@@ -1244,7 +1244,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
             let asyncStatus: test_component.AsyncStatus = $2
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamBridge>
@@ -1297,7 +1297,7 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
             let asyncStatus: test_component.AsyncStatus = $2
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentTypeWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentTypeBridge>
@@ -1350,7 +1350,7 @@ internal var __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleVTable: __x_
             let progressInfo: Double = $2
             try __unwrapped__instance(asyncInfo, progressInfo)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleBridge>
@@ -1403,7 +1403,7 @@ internal var __x_ABI_C__FIAsyncOperationProgressHandler_2_UINT32_UINT32VTable: _
             let progressInfo: UInt32 = $2
             try __unwrapped__instance(asyncInfo, progressInfo)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationProgressHandler_2_UINT32_UINT32Wrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2_UINT32_UINT32Bridge>
@@ -1456,7 +1456,7 @@ internal var __x_ABI_C__FIAsyncOperationProgressHandler_2___x_ABI_CWindows__CSto
             let progressInfo: UInt32 = $2
             try __unwrapped__instance(asyncInfo, progressInfo)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationProgressHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Bridge>
@@ -1509,7 +1509,7 @@ internal var __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubl
             let asyncStatus: test_component.AsyncStatus = $2
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleBridge>
@@ -1562,7 +1562,7 @@ internal var __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_UINT32_UI
             let asyncStatus: test_component.AsyncStatus = $2
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_UINT32_UINT32Wrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_UINT32_UINT32Bridge>
@@ -1615,7 +1615,7 @@ internal var __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2___x_ABI_C
             let asyncStatus: test_component.AsyncStatus = $2
             try __unwrapped__instance(asyncInfo, asyncStatus)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Bridge>
@@ -3092,7 +3092,7 @@ internal var __x_ABI_C__FIIterator_1_IInspectableVTable: __x_ABI_C__FIIterator_1
         return S_OK
     },
 
-    GetMany: { _, _, _, _ in return failWith(err: E_NOTIMPL) }
+    GetMany: { _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIIterator_1_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1_IInspectableBridge>
 internal class IIteratorAny: test_component.IInspectable {
@@ -3220,7 +3220,7 @@ internal var __x_ABI_C__FIIterator_1_GUIDVTable: __x_ABI_C__FIIterator_1_GUIDVtb
         return S_OK
     },
 
-    GetMany: { _, _, _, _ in return failWith(err: E_NOTIMPL) }
+    GetMany: { _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIIterator_1_GUIDWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1_GUIDBridge>
 internal class IIteratorUUID: test_component.IInspectable {
@@ -3347,7 +3347,7 @@ internal var __x_ABI_C__FIIterator_1_HSTRINGVTable: __x_ABI_C__FIIterator_1_HSTR
         return S_OK
     },
 
-    GetMany: { _, _, _, _ in return failWith(err: E_NOTIMPL) }
+    GetMany: { _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIIterator_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1_HSTRINGBridge>
 internal class IIteratorString: test_component.IInspectable {
@@ -3474,7 +3474,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_CWindows__CData__CText__CTextSegmen
         return S_OK
     },
 
-    GetMany: { _, _, _, _ in return failWith(err: E_NOTIMPL) }
+    GetMany: { _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIIterator_1___x_ABI_CWindows__CData__CText__CTextSegmentWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_CWindows__CData__CText__CTextSegmentBridge>
 internal class IIteratorTextSegment: test_component.IInspectable {
@@ -3602,7 +3602,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspec
         return S_OK
     },
 
-    GetMany: { _, _, _, _ in return failWith(err: E_NOTIMPL) }
+    GetMany: { _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge>
 internal class IIteratorIKeyValuePairString_Any: test_component.IInspectable {
@@ -3731,7 +3731,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING
         return S_OK
     },
 
-    GetMany: { _, _, _, _ in return failWith(err: E_NOTIMPL) }
+    GetMany: { _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge>
 internal class IIteratorIKeyValuePairString_String: test_component.IInspectable {
@@ -3860,7 +3860,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI
         return S_OK
     },
 
-    GetMany: { _, _, _, _ in return failWith(err: E_NOTIMPL) }
+    GetMany: { _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentBridge>
 internal class IIteratorIKeyValuePairString_IVectorViewTextSegment: test_component.IInspectable {
@@ -3989,7 +3989,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI
         return S_OK
     },
 
-    GetMany: { _, _, _, _ in return failWith(err: E_NOTIMPL) }
+    GetMany: { _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge>
 internal class IIteratorIKeyValuePairString_Base: test_component.IInspectable {
@@ -4118,7 +4118,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_CWindows__CFoundation__CIWwwFormUrl
         return S_OK
     },
 
-    GetMany: { _, _, _, _ in return failWith(err: E_NOTIMPL) }
+    GetMany: { _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIIterator_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntryWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntryBridge>
 internal class IIteratorIWwwFormUrlDecoderEntry: test_component.IInspectable {
@@ -4247,7 +4247,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CIStorageItemVT
         return S_OK
     },
 
-    GetMany: { _, _, _, _ in return failWith(err: E_NOTIMPL) }
+    GetMany: { _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CIStorageItemBridge>
 internal class IIteratorIStorageItem: test_component.IInspectable {
@@ -4376,7 +4376,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CSearch__CSortE
         return S_OK
     },
 
-    GetMany: { _, _, _, _ in return failWith(err: E_NOTIMPL) }
+    GetMany: { _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryBridge>
 internal class IIteratorSortEntry: test_component.IInspectable {
@@ -4503,7 +4503,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFileVTa
         return S_OK
     },
 
-    GetMany: { _, _, _, _ in return failWith(err: E_NOTIMPL) }
+    GetMany: { _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFileWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFileBridge>
 internal class IIteratorStorageFile: test_component.IInspectable {
@@ -4631,7 +4631,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFolderV
         return S_OK
     },
 
-    GetMany: { _, _, _, _ in return failWith(err: E_NOTIMPL) }
+    GetMany: { _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFolderBridge>
 internal class IIteratorStorageFolder: test_component.IInspectable {
@@ -4759,7 +4759,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageLibrary
         return S_OK
     },
 
-    GetMany: { _, _, _, _ in return failWith(err: E_NOTIMPL) }
+    GetMany: { _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeBridge>
 internal class IIteratorStorageLibraryChange: test_component.IInspectable {
@@ -4887,7 +4887,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x
         return S_OK
     },
 
-    GetMany: { _, _, _, _ in return failWith(err: E_NOTIMPL) }
+    GetMany: { _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseBridge>
 internal class IIteratorBase: test_component.IInspectable {
@@ -5016,7 +5016,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicVTable: _
         return S_OK
     },
 
-    GetMany: { _, _, _, _ in return failWith(err: E_NOTIMPL) }
+    GetMany: { _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicBridge>
 internal class IIteratorIBasic: test_component.IInspectable {
@@ -7941,7 +7941,7 @@ internal var __x_ABI_C__FIVectorView_1_IInspectableVTable: __x_ABI_C__FIVectorVi
         return S_OK
     },
 
-    GetMany: { _, _, _, _, _ in return failWith(err: E_NOTIMPL) }
+    GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVectorView_1_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1_IInspectableBridge>
 internal class IVectorViewAny: test_component.IInspectable {
@@ -8103,7 +8103,7 @@ internal var __x_ABI_C__FIVectorView_1_GUIDVTable: __x_ABI_C__FIVectorView_1_GUI
         return S_OK
     },
 
-    GetMany: { _, _, _, _, _ in return failWith(err: E_NOTIMPL) }
+    GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVectorView_1_GUIDWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1_GUIDBridge>
 internal class IVectorViewUUID: test_component.IInspectable {
@@ -8262,7 +8262,7 @@ internal var __x_ABI_C__FIVectorView_1_HSTRINGVTable: __x_ABI_C__FIVectorView_1_
         return S_OK
     },
 
-    GetMany: { _, _, _, _, _ in return failWith(err: E_NOTIMPL) }
+    GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVectorView_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1_HSTRINGBridge>
 internal class IVectorViewString: test_component.IInspectable {
@@ -8422,7 +8422,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegm
         return S_OK
     },
 
-    GetMany: { _, _, _, _, _ in return failWith(err: E_NOTIMPL) }
+    GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentBridge>
 internal class IVectorViewTextSegment: test_component.IInspectable {
@@ -8582,7 +8582,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CFoundation__CIWwwFormU
         return S_OK
     },
 
-    GetMany: { _, _, _, _, _ in return failWith(err: E_NOTIMPL) }
+    GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntryWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntryBridge>
 internal class IVectorViewIWwwFormUrlDecoderEntry: test_component.IInspectable {
@@ -8745,7 +8745,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItem
         return S_OK
     },
 
-    GetMany: { _, _, _, _, _ in return failWith(err: E_NOTIMPL) }
+    GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemBridge>
 internal class IVectorViewIStorageItem: test_component.IInspectable {
@@ -8908,7 +8908,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CSearch__CSor
         return S_OK
     },
 
-    GetMany: { _, _, _, _, _ in return failWith(err: E_NOTIMPL) }
+    GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryBridge>
 internal class IVectorViewSortEntry: test_component.IInspectable {
@@ -9068,7 +9068,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileV
         return S_OK
     },
 
-    GetMany: { _, _, _, _, _ in return failWith(err: E_NOTIMPL) }
+    GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileBridge>
 internal class IVectorViewStorageFile: test_component.IInspectable {
@@ -9228,7 +9228,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolde
         return S_OK
     },
 
-    GetMany: { _, _, _, _, _ in return failWith(err: E_NOTIMPL) }
+    GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderBridge>
 internal class IVectorViewStorageFolder: test_component.IInspectable {
@@ -9388,7 +9388,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibra
         return S_OK
     },
 
-    GetMany: { _, _, _, _, _ in return failWith(err: E_NOTIMPL) }
+    GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeBridge>
 internal class IVectorViewStorageLibraryChange: test_component.IInspectable {
@@ -9548,7 +9548,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVTable: _
         return S_OK
     },
 
-    GetMany: { _, _, _, _, _ in return failWith(err: E_NOTIMPL) }
+    GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseBridge>
 internal class IVectorViewBase: test_component.IInspectable {
@@ -9709,7 +9709,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicVTable:
         return S_OK
     },
 
-    GetMany: { _, _, _, _, _ in return failWith(err: E_NOTIMPL) }
+    GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicBridge>
 internal class IVectorViewIBasic: test_component.IInspectable {
@@ -9922,9 +9922,9 @@ internal var __x_ABI_C__FIVector_1_IInspectableVTable: __x_ABI_C__FIVector_1_IIn
         return S_OK
     },
 
-    GetMany: { _, _, _, _, _ in return failWith(err: E_NOTIMPL) },
+    GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) },
 
-    ReplaceAll: { _, _, _ in return failWith(err: E_NOTIMPL) }
+    ReplaceAll: { _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVector_1_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVector_1_IInspectableBridge>
 internal class IVectorAny: test_component.IInspectable {
@@ -10231,9 +10231,9 @@ internal var __x_ABI_C__FIVector_1_GUIDVTable: __x_ABI_C__FIVector_1_GUIDVtbl = 
         return S_OK
     },
 
-    GetMany: { _, _, _, _, _ in return failWith(err: E_NOTIMPL) },
+    GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) },
 
-    ReplaceAll: { _, _, _ in return failWith(err: E_NOTIMPL) }
+    ReplaceAll: { _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVector_1_GUIDWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVector_1_GUIDBridge>
 internal class IVectorUUID: test_component.IInspectable {
@@ -10531,9 +10531,9 @@ internal var __x_ABI_C__FIVector_1_HSTRINGVTable: __x_ABI_C__FIVector_1_HSTRINGV
         return S_OK
     },
 
-    GetMany: { _, _, _, _, _ in return failWith(err: E_NOTIMPL) },
+    GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) },
 
-    ReplaceAll: { _, _, _ in return failWith(err: E_NOTIMPL) }
+    ReplaceAll: { _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVector_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVector_1_HSTRINGBridge>
 internal class IVectorString: test_component.IInspectable {
@@ -10836,9 +10836,9 @@ internal var __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEnt
         return S_OK
     },
 
-    GetMany: { _, _, _, _, _ in return failWith(err: E_NOTIMPL) },
+    GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) },
 
-    ReplaceAll: { _, _, _ in return failWith(err: E_NOTIMPL) }
+    ReplaceAll: { _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryBridge>
 internal class IVectorSortEntry: test_component.IInspectable {
@@ -11140,9 +11140,9 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_A
         return S_OK
     },
 
-    GetMany: { _, _, _, _, _ in return failWith(err: E_NOTIMPL) },
+    GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) },
 
-    ReplaceAll: { _, _, _ in return failWith(err: E_NOTIMPL) }
+    ReplaceAll: { _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseBridge>
 internal class IVectorBase: test_component.IInspectable {
@@ -11442,9 +11442,9 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicVTable: __x
         return S_OK
     },
 
-    GetMany: { _, _, _, _, _ in return failWith(err: E_NOTIMPL) },
+    GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) },
 
-    ReplaceAll: { _, _, _ in return failWith(err: E_NOTIMPL) }
+    ReplaceAll: { _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicBridge>
 internal class IVectorIBasic: test_component.IInspectable {
@@ -11665,7 +11665,7 @@ internal var __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableVTable: __
             let event: test_component.AnyIMapChangedEventArgs<String>? = test_component.__x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper.unwrapFrom(abi: ComPtr($2))
             try __unwrapped__instance(sender, event)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableBridge>
@@ -11720,7 +11720,7 @@ internal var __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGVTable: __x_ABI
             let event: test_component.AnyIMapChangedEventArgs<String>? = test_component.__x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper.unwrapFrom(abi: ComPtr($2))
             try __unwrapped__instance(sender, event)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGBridge>
@@ -11775,7 +11775,7 @@ internal var __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__
             let event: test_component.AnyIVectorChangedEventArgs? = __ABI_Windows_Foundation_Collections.IVectorChangedEventArgsWrapper.unwrapFrom(abi: ComPtr($2))
             try __unwrapped__instance(sender, event)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseBridge>
@@ -11830,7 +11830,7 @@ internal var __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__
             let event: test_component.AnyIVectorChangedEventArgs? = __ABI_Windows_Foundation_Collections.IVectorChangedEventArgsWrapper.unwrapFrom(abi: ComPtr($2))
             try __unwrapped__instance(sender, event)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicBridge>
@@ -11885,7 +11885,7 @@ internal var __x_ABI_C__FIEventHandler_1_IInspectableVTable: __x_ABI_C__FIEventH
             let args: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: ComPtr($2))
             try __unwrapped__instance(sender, args)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIEventHandler_1_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIEventHandler_1_IInspectableBridge>
@@ -11987,7 +11987,7 @@ internal var __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleVTable: __x_ABI
             let result = try __unwrapped__instance.getResults()
             $1?.initialize(to: result)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleBridge>
@@ -12178,7 +12178,7 @@ internal var __x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32VTable: __x_
             let result = try __unwrapped__instance.getResults()
             $1?.initialize(to: result)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32Wrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32Bridge>
@@ -12370,7 +12370,7 @@ internal var __x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorag
             let resultWrapper = __ABI_Windows_Storage_Streams.IBufferWrapper(result)
             resultWrapper?.copyTo($1)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Bridge>
@@ -12547,7 +12547,7 @@ internal var __x_ABI_C__FIAsyncOperation_1_booleanVTable: __x_ABI_C__FIAsyncOper
             let result = try __unwrapped__instance.getResults()
             $1?.initialize(to: .init(from: result))
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1_booleanWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1_booleanBridge>
@@ -12699,7 +12699,7 @@ internal var __x_ABI_C__FIAsyncOperation_1_intVTable: __x_ABI_C__FIAsyncOperatio
             let result = try __unwrapped__instance.getResults()
             $1?.initialize(to: result)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1_intWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1_intBridge>
@@ -12851,7 +12851,7 @@ internal var __x_ABI_C__FIAsyncOperation_1_HSTRINGVTable: __x_ABI_C__FIAsyncOper
             let result = try __unwrapped__instance.getResults()
             $1?.initialize(to: try! HString(result).detach())
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1_HSTRINGBridge>
@@ -13003,7 +13003,7 @@ internal var __x_ABI_C__FIAsyncOperation_1_UINT32VTable: __x_ABI_C__FIAsyncOpera
             let result = try __unwrapped__instance.getResults()
             $1?.initialize(to: result)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1_UINT32Wrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1_UINT32Bridge>
@@ -13156,7 +13156,7 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIMap_2_HSTRING_IInspectab
             let resultWrapper = test_component.__x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper(result)
             resultWrapper?.copyTo($1)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIMap_2_HSTRING_IInspectableBridge>
@@ -13310,7 +13310,7 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWi
             let resultWrapper = test_component.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper(result)
             resultWrapper?.copyTo($1)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemBridge>
@@ -13464,7 +13464,7 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWi
             let resultWrapper = test_component.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileWrapper(result)
             resultWrapper?.copyTo($1)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileBridge>
@@ -13618,7 +13618,7 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWi
             let resultWrapper = test_component.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper(result)
             resultWrapper?.copyTo($1)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderBridge>
@@ -13772,7 +13772,7 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWi
             let resultWrapper = test_component.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeWrapper(result)
             resultWrapper?.copyTo($1)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeBridge>
@@ -13926,7 +13926,7 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVector_1_HSTRINGVTable: 
             let resultWrapper = test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper(result)
             resultWrapper?.copyTo($1)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVector_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVector_1_HSTRINGBridge>
@@ -14079,7 +14079,7 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProp
             let result = try __unwrapped__instance.getResults()
             result?.copyTo($1)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicPropertiesWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicPropertiesBridge>
@@ -14232,7 +14232,7 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProp
             let result = try __unwrapped__instance.getResults()
             result?.copyTo($1)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentPropertiesWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentPropertiesBridge>
@@ -14385,7 +14385,7 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProp
             let result = try __unwrapped__instance.getResults()
             result?.copyTo($1)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CImagePropertiesWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CImagePropertiesBridge>
@@ -14538,7 +14538,7 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProp
             let result = try __unwrapped__instance.getResults()
             result?.copyTo($1)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicPropertiesWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicPropertiesBridge>
@@ -14691,7 +14691,7 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProp
             let result = try __unwrapped__instance.getResults()
             result?.copyTo($1)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailBridge>
@@ -14844,7 +14844,7 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProp
             let result = try __unwrapped__instance.getResults()
             result?.copyTo($1)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoPropertiesWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoPropertiesBridge>
@@ -14998,7 +14998,7 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CIStorage
             let resultWrapper = __ABI_Windows_Storage.IStorageItemWrapper(result)
             resultWrapper?.copyTo($1)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CIStorageItemBridge>
@@ -15151,7 +15151,7 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSearch__
             let result = try __unwrapped__instance.getResults()
             $1?.initialize(to: result)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSearch__CIndexedStateWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSearch__CIndexedStateBridge>
@@ -15303,7 +15303,7 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageF
             let result = try __unwrapped__instance.getResults()
             result?.copyTo($1)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFileWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFileBridge>
@@ -15456,7 +15456,7 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageF
             let result = try __unwrapped__instance.getResults()
             result?.copyTo($1)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolderBridge>
@@ -15609,7 +15609,7 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageS
             let result = try __unwrapped__instance.getResults()
             result?.copyTo($1)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageStreamTransactionWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageStreamTransactionBridge>
@@ -15763,7 +15763,7 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams_
             let resultWrapper = __ABI_Windows_Storage_Streams.IBufferWrapper(result)
             resultWrapper?.copyTo($1)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIBufferWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIBufferBridge>
@@ -15917,7 +15917,7 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams_
             let resultWrapper = __ABI_Windows_Storage_Streams.IInputStreamWrapper(result)
             resultWrapper?.copyTo($1)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIInputStreamWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIInputStreamBridge>
@@ -16071,7 +16071,7 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams_
             let resultWrapper = __ABI_Windows_Storage_Streams.IRandomAccessStreamWrapper(result)
             resultWrapper?.copyTo($1)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamBridge>
@@ -16225,7 +16225,7 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams_
             let resultWrapper = __ABI_Windows_Storage_Streams.IRandomAccessStreamWithContentTypeWrapper(result)
             resultWrapper?.copyTo($1)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentTypeWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentTypeBridge>
@@ -16578,7 +16578,7 @@ internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIM
             let args: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: ComPtr($2))
             try __unwrapped__instance(sender, args)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIMemoryBufferReference_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIMemoryBufferReference_IInspectableBridge>
@@ -16633,7 +16633,7 @@ internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CStorage__CSearc
             let args: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: ComPtr($2))
             try __unwrapped__instance(sender, args)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CStorage__CSearch__CIStorageQueryResultBase_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CStorage__CSearch__CIStorageQueryResultBase_IInspectableBridge>
@@ -16688,7 +16688,7 @@ internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass_
             let args: test_component.DeferrableEventArgs? = .from(abi: ComPtr($2))
             try __unwrapped__instance(sender, args)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsBridge>
@@ -16739,7 +16739,7 @@ internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple
             let args: test_component.SimpleEventArgs = .from(abi: $2)
             try __unwrapped__instance(sender, args)
             return S_OK
-        } catch { return failWith(err: E_FAIL) } 
+        } catch { return failWith(error: error) } 
     }
 )
 typealias __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsBridge>

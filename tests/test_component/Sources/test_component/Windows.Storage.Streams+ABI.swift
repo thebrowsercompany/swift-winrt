@@ -269,7 +269,7 @@ public enum __ABI_Windows_Storage_Streams {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper(operation)
                 operationWrapper?.copyTo($4)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         }
     )
 
@@ -323,7 +323,7 @@ public enum __ABI_Windows_Storage_Streams {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIInputStreamWrapper(operation)
                 operationWrapper?.copyTo($1)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         }
     )
 
@@ -390,7 +390,7 @@ public enum __ABI_Windows_Storage_Streams {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32Wrapper(operation)
                 operationWrapper?.copyTo($2)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         FlushAsync: {
@@ -400,7 +400,7 @@ public enum __ABI_Windows_Storage_Streams {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1_booleanWrapper(operation)
                 operationWrapper?.copyTo($1)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         }
     )
 
@@ -534,7 +534,7 @@ public enum __ABI_Windows_Storage_Streams {
                 let streamWrapper = __ABI_Windows_Storage_Streams.IInputStreamWrapper(stream)
                 streamWrapper?.copyTo($2)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetOutputStreamAt: {
@@ -545,7 +545,7 @@ public enum __ABI_Windows_Storage_Streams {
                 let streamWrapper = __ABI_Windows_Storage_Streams.IOutputStreamWrapper(stream)
                 streamWrapper?.copyTo($2)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         get_Position: {
@@ -561,7 +561,7 @@ public enum __ABI_Windows_Storage_Streams {
                 let position: UInt64 = $1
                 try __unwrapped__instance.seek(position)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         CloneStream: {
@@ -571,7 +571,7 @@ public enum __ABI_Windows_Storage_Streams {
                 let streamWrapper = __ABI_Windows_Storage_Streams.IRandomAccessStreamWrapper(stream)
                 streamWrapper?.copyTo($1)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         get_CanRead: {
@@ -639,7 +639,7 @@ public enum __ABI_Windows_Storage_Streams {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentTypeWrapper(operation)
                 operationWrapper?.copyTo($1)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         }
     )
 

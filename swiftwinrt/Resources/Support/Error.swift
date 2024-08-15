@@ -167,7 +167,7 @@ public struct Error : Swift.Error, CustomStringConvertible {
     self.description = getErrorDescription(expecting: hr) ?? hrToString(hr)
     self.hr = hr
   }
-}
+}   
 
 public func failWith(hr: HRESULT) -> HRESULT {
   return hr
@@ -175,7 +175,7 @@ public func failWith(hr: HRESULT) -> HRESULT {
 
 public func failWith(error: Swift.Error) -> HRESULT {
     var hresult: HRESULT = E_FAIL
-    let message = error.description
+    let message = error.localizedDescription
     if let winrtError = error as? Error {
         hresult = winrtError.hr
     }
