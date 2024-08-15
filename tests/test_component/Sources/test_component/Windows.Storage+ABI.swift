@@ -435,7 +435,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWrapper(operation)
                 operationWrapper?.copyTo($2)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         OpenTransactedWriteAsync: {
@@ -445,7 +445,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageStreamTransactionWrapper(operation)
                 operationWrapper?.copyTo($1)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         CopyOverloadDefaultNameAndOptions: {
@@ -456,7 +456,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFileWrapper(operation)
                 operationWrapper?.copyTo($2)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         CopyOverloadDefaultOptions: {
@@ -468,7 +468,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFileWrapper(operation)
                 operationWrapper?.copyTo($3)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         CopyOverload: {
@@ -481,7 +481,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFileWrapper(operation)
                 operationWrapper?.copyTo($4)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         CopyAndReplaceAsync: {
@@ -492,7 +492,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = __ABI_Windows_Foundation.IAsyncActionWrapper(operation)
                 operationWrapper?.copyTo($2)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         MoveOverloadDefaultNameAndOptions: {
@@ -503,7 +503,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = __ABI_Windows_Foundation.IAsyncActionWrapper(operation)
                 operationWrapper?.copyTo($2)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         MoveOverloadDefaultOptions: {
@@ -515,7 +515,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = __ABI_Windows_Foundation.IAsyncActionWrapper(operation)
                 operationWrapper?.copyTo($3)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         MoveOverload: {
@@ -528,7 +528,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = __ABI_Windows_Foundation.IAsyncActionWrapper(operation)
                 operationWrapper?.copyTo($4)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         MoveAndReplaceAsync: {
@@ -539,7 +539,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = __ABI_Windows_Foundation.IAsyncActionWrapper(operation)
                 operationWrapper?.copyTo($2)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         }
     )
 
@@ -604,7 +604,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWrapper(operation)
                 operationWrapper?.copyTo($3)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         OpenTransactedWriteWithOptionsAsync: {
@@ -615,7 +615,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageStreamTransactionWrapper(operation)
                 operationWrapper?.copyTo($2)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         }
     )
 
@@ -887,7 +887,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFileWrapper(operation)
                 operationWrapper?.copyTo($2)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         CreateFileAsync: {
@@ -899,7 +899,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFileWrapper(operation)
                 operationWrapper?.copyTo($3)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         CreateFolderAsyncOverloadDefaultOptions: {
@@ -910,7 +910,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper(operation)
                 operationWrapper?.copyTo($2)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         CreateFolderAsync: {
@@ -922,7 +922,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper(operation)
                 operationWrapper?.copyTo($3)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetFileAsync: {
@@ -933,7 +933,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFileWrapper(operation)
                 operationWrapper?.copyTo($2)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetFolderAsync: {
@@ -944,7 +944,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper(operation)
                 operationWrapper?.copyTo($2)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetItemAsync: {
@@ -955,7 +955,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper(operation)
                 operationWrapper?.copyTo($2)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetFilesAsyncOverloadDefaultOptionsStartAndCount: {
@@ -965,7 +965,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileWrapper(operation)
                 operationWrapper?.copyTo($1)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetFoldersAsyncOverloadDefaultOptionsStartAndCount: {
@@ -975,7 +975,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper(operation)
                 operationWrapper?.copyTo($1)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetItemsAsyncOverloadDefaultStartAndCount: {
@@ -985,7 +985,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper(operation)
                 operationWrapper?.copyTo($1)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         }
     )
 
@@ -1041,7 +1041,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper(operation)
                 operationWrapper?.copyTo($2)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         }
     )
 
@@ -1203,7 +1203,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = __ABI_Windows_Foundation.IAsyncActionWrapper(operation)
                 operationWrapper?.copyTo($2)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         RenameAsync: {
@@ -1215,7 +1215,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = __ABI_Windows_Foundation.IAsyncActionWrapper(operation)
                 operationWrapper?.copyTo($3)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         DeleteAsyncOverloadDefaultOptions: {
@@ -1225,7 +1225,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = __ABI_Windows_Foundation.IAsyncActionWrapper(operation)
                 operationWrapper?.copyTo($1)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         DeleteAsync: {
@@ -1236,7 +1236,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = __ABI_Windows_Foundation.IAsyncActionWrapper(operation)
                 operationWrapper?.copyTo($2)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetBasicPropertiesAsync: {
@@ -1246,7 +1246,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicPropertiesWrapper(operation)
                 operationWrapper?.copyTo($1)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         get_Name: {
@@ -1284,7 +1284,7 @@ public enum __ABI_Windows_Storage {
                 let value = try __unwrapped__instance.isOfType(type)
                 $2?.initialize(to: .init(from: value))
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         }
     )
 
@@ -1349,7 +1349,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper(operation)
                 operationWrapper?.copyTo($1)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         IsEqual: {
@@ -1359,7 +1359,7 @@ public enum __ABI_Windows_Storage {
                 let value = try __unwrapped__instance.isEqual(item)
                 $2?.initialize(to: .init(from: value))
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         }
     )
 
@@ -1465,7 +1465,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailWrapper(operation)
                 operationWrapper?.copyTo($2)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetThumbnailAsyncOverloadDefaultOptions: {
@@ -1477,7 +1477,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailWrapper(operation)
                 operationWrapper?.copyTo($3)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetThumbnailAsync: {
@@ -1490,7 +1490,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailWrapper(operation)
                 operationWrapper?.copyTo($4)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         get_DisplayName: {
@@ -1592,7 +1592,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailWrapper(operation)
                 operationWrapper?.copyTo($2)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetScaledImageAsThumbnailAsyncOverloadDefaultOptions: {
@@ -1604,7 +1604,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailWrapper(operation)
                 operationWrapper?.copyTo($3)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetScaledImageAsThumbnailAsync: {
@@ -1617,7 +1617,7 @@ public enum __ABI_Windows_Storage {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailWrapper(operation)
                 operationWrapper?.copyTo($4)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         }
     )
 
@@ -1873,7 +1873,7 @@ public enum __ABI_Windows_Storage {
                 let failureMode: test_component.StreamedFileFailureMode = $1
                 try __unwrapped__instance.failAndClose(failureMode)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         }
     )
 
@@ -1904,7 +1904,7 @@ extension __ABI_Windows_Storage {
                 let stream: test_component.StreamedFileDataRequest? = .from(abi: ComPtr($1))
                 try __unwrapped__instance(stream)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         }
     )
 }

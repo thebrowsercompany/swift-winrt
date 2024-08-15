@@ -2780,7 +2780,7 @@ override % func _getABI<T>() -> UnsafeMutablePointer<T>? {
 
     static void write_not_implementable_vtable_method(writer& w, function_def const& sig)
     {
-        w.write("%: { _, % in return failWith(err: E_NOTIMPL) }", get_abi_name(sig), bind([&](writer& w) {
+        w.write("%: { _, % in return failWith(hr: E_NOTIMPL) }", get_abi_name(sig), bind([&](writer& w) {
             separator s{ w };
             for (auto& param : sig.params)
             {
@@ -2877,7 +2877,7 @@ override % func _getABI<T>() -> UnsafeMutablePointer<T>? {
             w.write("return S_OK\n");
         }
         if (needs_try_catch) {
-            w.write("} catch { return failWith(err: E_FAIL) } \n");
+            w.write("} catch { return failWith(error: error) } \n");
             w.m_indent -= 1;
         }
         w.write("}");

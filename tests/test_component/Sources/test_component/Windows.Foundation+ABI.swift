@@ -189,7 +189,7 @@ public enum __ABI_Windows_Foundation {
                 guard let __unwrapped__instance = IAsyncActionWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 try __unwrapped__instance.getResults()
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         }
     )
 
@@ -289,7 +289,7 @@ public enum __ABI_Windows_Foundation {
                 guard let __unwrapped__instance = IAsyncInfoWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 try __unwrapped__instance.cancel()
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         Close: {
@@ -297,7 +297,7 @@ public enum __ABI_Windows_Foundation {
                 guard let __unwrapped__instance = IAsyncInfoWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 try __unwrapped__instance.close()
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         }
     )
 
@@ -346,7 +346,7 @@ public enum __ABI_Windows_Foundation {
                 guard let __unwrapped__instance = IClosableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 try __unwrapped__instance.close()
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         }
     )
 
@@ -428,7 +428,7 @@ public enum __ABI_Windows_Foundation {
                 let referenceWrapper = __ABI_Windows_Foundation.IMemoryBufferReferenceWrapper(reference)
                 referenceWrapper?.copyTo($1)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         }
     )
 
@@ -743,7 +743,7 @@ public enum __ABI_Windows_Foundation {
                 let value = try __unwrapped__instance.getUInt8()
                 $1?.initialize(to: value)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetInt16: {
@@ -752,7 +752,7 @@ public enum __ABI_Windows_Foundation {
                 let value = try __unwrapped__instance.getInt16()
                 $1?.initialize(to: value)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetUInt16: {
@@ -761,7 +761,7 @@ public enum __ABI_Windows_Foundation {
                 let value = try __unwrapped__instance.getUInt16()
                 $1?.initialize(to: value)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetInt32: {
@@ -770,7 +770,7 @@ public enum __ABI_Windows_Foundation {
                 let value = try __unwrapped__instance.getInt32()
                 $1?.initialize(to: value)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetUInt32: {
@@ -779,7 +779,7 @@ public enum __ABI_Windows_Foundation {
                 let value = try __unwrapped__instance.getUInt32()
                 $1?.initialize(to: value)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetInt64: {
@@ -788,7 +788,7 @@ public enum __ABI_Windows_Foundation {
                 let value = try __unwrapped__instance.getInt64()
                 $1?.initialize(to: value)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetUInt64: {
@@ -797,7 +797,7 @@ public enum __ABI_Windows_Foundation {
                 let value = try __unwrapped__instance.getUInt64()
                 $1?.initialize(to: value)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetSingle: {
@@ -806,7 +806,7 @@ public enum __ABI_Windows_Foundation {
                 let value = try __unwrapped__instance.getSingle()
                 $1?.initialize(to: value)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetDouble: {
@@ -815,7 +815,7 @@ public enum __ABI_Windows_Foundation {
                 let value = try __unwrapped__instance.getDouble()
                 $1?.initialize(to: value)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetChar16: {
@@ -824,7 +824,7 @@ public enum __ABI_Windows_Foundation {
                 let value = try __unwrapped__instance.getChar16()
                 $1?.initialize(to: .init(from: value))
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetBoolean: {
@@ -833,7 +833,7 @@ public enum __ABI_Windows_Foundation {
                 let value = try __unwrapped__instance.getBoolean()
                 $1?.initialize(to: .init(from: value))
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetString: {
@@ -842,7 +842,7 @@ public enum __ABI_Windows_Foundation {
                 let value = try __unwrapped__instance.getString()
                 $1?.initialize(to: try! HString(value).detach())
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetGuid: {
@@ -851,7 +851,7 @@ public enum __ABI_Windows_Foundation {
                 let value = try __unwrapped__instance.getGuid()
                 $1?.initialize(to: .init(from: value))
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetDateTime: {
@@ -860,7 +860,7 @@ public enum __ABI_Windows_Foundation {
                 let value = try __unwrapped__instance.getDateTime()
                 $1?.initialize(to: .from(swift: value))
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetTimeSpan: {
@@ -869,7 +869,7 @@ public enum __ABI_Windows_Foundation {
                 let value = try __unwrapped__instance.getTimeSpan()
                 $1?.initialize(to: .from(swift: value))
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetPoint: {
@@ -878,7 +878,7 @@ public enum __ABI_Windows_Foundation {
                 let value = try __unwrapped__instance.getPoint()
                 $1?.initialize(to: .from(swift: value))
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetSize: {
@@ -887,7 +887,7 @@ public enum __ABI_Windows_Foundation {
                 let value = try __unwrapped__instance.getSize()
                 $1?.initialize(to: .from(swift: value))
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetRect: {
@@ -896,46 +896,46 @@ public enum __ABI_Windows_Foundation {
                 let value = try __unwrapped__instance.getRect()
                 $1?.initialize(to: .from(swift: value))
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
-        GetUInt8Array: { _, _, _ in return failWith(err: E_NOTIMPL) },
+        GetUInt8Array: { _, _, _ in return failWith(hr: E_NOTIMPL) },
 
-        GetInt16Array: { _, _, _ in return failWith(err: E_NOTIMPL) },
+        GetInt16Array: { _, _, _ in return failWith(hr: E_NOTIMPL) },
 
-        GetUInt16Array: { _, _, _ in return failWith(err: E_NOTIMPL) },
+        GetUInt16Array: { _, _, _ in return failWith(hr: E_NOTIMPL) },
 
-        GetInt32Array: { _, _, _ in return failWith(err: E_NOTIMPL) },
+        GetInt32Array: { _, _, _ in return failWith(hr: E_NOTIMPL) },
 
-        GetUInt32Array: { _, _, _ in return failWith(err: E_NOTIMPL) },
+        GetUInt32Array: { _, _, _ in return failWith(hr: E_NOTIMPL) },
 
-        GetInt64Array: { _, _, _ in return failWith(err: E_NOTIMPL) },
+        GetInt64Array: { _, _, _ in return failWith(hr: E_NOTIMPL) },
 
-        GetUInt64Array: { _, _, _ in return failWith(err: E_NOTIMPL) },
+        GetUInt64Array: { _, _, _ in return failWith(hr: E_NOTIMPL) },
 
-        GetSingleArray: { _, _, _ in return failWith(err: E_NOTIMPL) },
+        GetSingleArray: { _, _, _ in return failWith(hr: E_NOTIMPL) },
 
-        GetDoubleArray: { _, _, _ in return failWith(err: E_NOTIMPL) },
+        GetDoubleArray: { _, _, _ in return failWith(hr: E_NOTIMPL) },
 
-        GetChar16Array: { _, _, _ in return failWith(err: E_NOTIMPL) },
+        GetChar16Array: { _, _, _ in return failWith(hr: E_NOTIMPL) },
 
-        GetBooleanArray: { _, _, _ in return failWith(err: E_NOTIMPL) },
+        GetBooleanArray: { _, _, _ in return failWith(hr: E_NOTIMPL) },
 
-        GetStringArray: { _, _, _ in return failWith(err: E_NOTIMPL) },
+        GetStringArray: { _, _, _ in return failWith(hr: E_NOTIMPL) },
 
-        GetInspectableArray: { _, _, _ in return failWith(err: E_NOTIMPL) },
+        GetInspectableArray: { _, _, _ in return failWith(hr: E_NOTIMPL) },
 
-        GetGuidArray: { _, _, _ in return failWith(err: E_NOTIMPL) },
+        GetGuidArray: { _, _, _ in return failWith(hr: E_NOTIMPL) },
 
-        GetDateTimeArray: { _, _, _ in return failWith(err: E_NOTIMPL) },
+        GetDateTimeArray: { _, _, _ in return failWith(hr: E_NOTIMPL) },
 
-        GetTimeSpanArray: { _, _, _ in return failWith(err: E_NOTIMPL) },
+        GetTimeSpanArray: { _, _, _ in return failWith(hr: E_NOTIMPL) },
 
-        GetPointArray: { _, _, _ in return failWith(err: E_NOTIMPL) },
+        GetPointArray: { _, _, _ in return failWith(hr: E_NOTIMPL) },
 
-        GetSizeArray: { _, _, _ in return failWith(err: E_NOTIMPL) },
+        GetSizeArray: { _, _, _ in return failWith(hr: E_NOTIMPL) },
 
-        GetRectArray: { _, _, _ in return failWith(err: E_NOTIMPL) }
+        GetRectArray: { _, _, _ in return failWith(hr: E_NOTIMPL) }
     )
 
     public typealias IPropertyValueWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.IPropertyValueBridge>
@@ -986,7 +986,7 @@ public enum __ABI_Windows_Foundation {
                 let value = try __unwrapped__instance.toString()
                 $1?.initialize(to: try! HString(value).detach())
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         }
     )
 
@@ -1353,7 +1353,7 @@ extension __ABI_Windows_Foundation {
                 let asyncStatus: test_component.AsyncStatus = $2
                 try __unwrapped__instance(asyncInfo, asyncStatus)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         }
     )
 }
@@ -1388,7 +1388,7 @@ extension __ABI_Windows_Foundation {
                 guard let __unwrapped__instance = DeferralCompletedHandlerWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 try __unwrapped__instance()
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         }
     )
 }

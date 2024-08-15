@@ -447,7 +447,7 @@ public enum __ABI_Windows_Storage_Search {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSearch__CIndexedStateWrapper(operation)
                 operationWrapper?.copyTo($1)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         CreateFileQueryOverloadDefault: {
@@ -456,7 +456,7 @@ public enum __ABI_Windows_Storage_Search {
                 let value = try __unwrapped__instance.createFileQuery()
                 value?.copyTo($1)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         CreateFileQuery: {
@@ -466,7 +466,7 @@ public enum __ABI_Windows_Storage_Search {
                 let value = try __unwrapped__instance.createFileQuery(query)
                 value?.copyTo($2)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         CreateFileQueryWithOptions: {
@@ -476,7 +476,7 @@ public enum __ABI_Windows_Storage_Search {
                 let value = try __unwrapped__instance.createFileQueryWithOptions(queryOptions)
                 value?.copyTo($2)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         CreateFolderQueryOverloadDefault: {
@@ -485,7 +485,7 @@ public enum __ABI_Windows_Storage_Search {
                 let value = try __unwrapped__instance.createFolderQuery()
                 value?.copyTo($1)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         CreateFolderQuery: {
@@ -495,7 +495,7 @@ public enum __ABI_Windows_Storage_Search {
                 let value = try __unwrapped__instance.createFolderQuery(query)
                 value?.copyTo($2)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         CreateFolderQueryWithOptions: {
@@ -505,7 +505,7 @@ public enum __ABI_Windows_Storage_Search {
                 let value = try __unwrapped__instance.createFolderQueryWithOptions(queryOptions)
                 value?.copyTo($2)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         CreateItemQuery: {
@@ -514,7 +514,7 @@ public enum __ABI_Windows_Storage_Search {
                 let value = try __unwrapped__instance.createItemQuery()
                 value?.copyTo($1)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         CreateItemQueryWithOptions: {
@@ -524,7 +524,7 @@ public enum __ABI_Windows_Storage_Search {
                 let value = try __unwrapped__instance.createItemQueryWithOptions(queryOptions)
                 value?.copyTo($2)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetFilesAsync: {
@@ -537,7 +537,7 @@ public enum __ABI_Windows_Storage_Search {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileWrapper(operation)
                 operationWrapper?.copyTo($4)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetFilesAsyncOverloadDefaultStartAndCount: {
@@ -548,7 +548,7 @@ public enum __ABI_Windows_Storage_Search {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileWrapper(operation)
                 operationWrapper?.copyTo($2)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetFoldersAsync: {
@@ -561,7 +561,7 @@ public enum __ABI_Windows_Storage_Search {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper(operation)
                 operationWrapper?.copyTo($4)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetFoldersAsyncOverloadDefaultStartAndCount: {
@@ -572,7 +572,7 @@ public enum __ABI_Windows_Storage_Search {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper(operation)
                 operationWrapper?.copyTo($2)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetItemsAsync: {
@@ -584,7 +584,7 @@ public enum __ABI_Windows_Storage_Search {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper(operation)
                 operationWrapper?.copyTo($3)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         AreQueryOptionsSupported: {
@@ -594,7 +594,7 @@ public enum __ABI_Windows_Storage_Search {
                 let value = try __unwrapped__instance.areQueryOptionsSupported(queryOptions)
                 $2?.initialize(to: .init(from: value))
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         IsCommonFolderQuerySupported: {
@@ -604,7 +604,7 @@ public enum __ABI_Windows_Storage_Search {
                 let value = try __unwrapped__instance.isCommonFolderQuerySupported(query)
                 $2?.initialize(to: .init(from: value))
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         IsCommonFileQuerySupported: {
@@ -614,7 +614,7 @@ public enum __ABI_Windows_Storage_Search {
                 let value = try __unwrapped__instance.isCommonFileQuerySupported(query)
                 $2?.initialize(to: .init(from: value))
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         }
     )
 
@@ -781,7 +781,7 @@ public enum __ABI_Windows_Storage_Search {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1_UINT32Wrapper(operation)
                 operationWrapper?.copyTo($1)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         get_Folder: {
@@ -829,7 +829,7 @@ public enum __ABI_Windows_Storage_Search {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1_UINT32Wrapper(operation)
                 operationWrapper?.copyTo($2)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         GetCurrentQueryOptions: {
@@ -838,7 +838,7 @@ public enum __ABI_Windows_Storage_Search {
                 let value = try __unwrapped__instance.getCurrentQueryOptions()
                 value?.copyTo($1)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         },
 
         ApplyNewQueryOptions: {
@@ -847,7 +847,7 @@ public enum __ABI_Windows_Storage_Search {
                 let newQueryOptions: test_component.QueryOptions? = .from(abi: ComPtr($1))
                 try __unwrapped__instance.applyNewQueryOptions(newQueryOptions)
                 return S_OK
-            } catch { return failWith(err: E_FAIL) } 
+            } catch { return failWith(error: error) } 
         }
     )
 
