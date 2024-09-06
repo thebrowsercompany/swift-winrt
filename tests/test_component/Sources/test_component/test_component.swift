@@ -159,17 +159,19 @@ open class Base : WinRTClass {
         try _IBaseOverrides.OnDoTheThingImpl()
     }
 
-    internal enum IBaseOverrides : ComposableImpl {
-        internal typealias CABI = __x_ABI_Ctest__component_CIBaseOverrides
-        internal typealias SwiftABI = __ABI_test_component.IBaseOverrides
-        internal typealias Class = Base
-        internal typealias SwiftProjection = WinRTClassWeakReference<Class>
-        internal enum Default : AbiInterface {
-            internal typealias CABI = __x_ABI_Ctest__component_CIBase
-            internal typealias SwiftABI = __ABI_test_component.IBase
+    @_spi(WinRTInternal)
+        public enum IBaseOverrides : ComposableImpl {
+        public typealias CABI = __x_ABI_Ctest__component_CIBaseOverrides
+        public typealias SwiftABI = __ABI_test_component.IBaseOverrides
+        public typealias Class = Base
+        public typealias SwiftProjection = WinRTClassWeakReference<Class>
+        public enum Default : AbiInterface {
+            public typealias CABI = __x_ABI_Ctest__component_CIBase
+            public typealias SwiftABI = __ABI_test_component.IBase
         }
     }
-    internal typealias Composable = IBaseOverrides
+    @_spi(WinRTInternal)
+    public typealias Composable = IBaseOverrides
     deinit {
         _default = nil
         _IBaseOverrides = nil
@@ -296,17 +298,19 @@ open class BaseCollection : WinRTClass, IVector, IIterable {
         try! _IIterable.FirstImpl()
     }
 
-    internal enum IVectorBase : ComposableImpl {
-        internal typealias CABI = C_IInspectable
-        internal typealias SwiftABI = test_component.IInspectable
-        internal typealias Class = BaseCollection
-        internal typealias SwiftProjection = WinRTClassWeakReference<Class>
-        internal enum Default : AbiInterface {
-            internal typealias CABI = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase
-            internal typealias SwiftABI = test_component.IVectorBase
+    @_spi(WinRTInternal)
+        public enum IVectorBase : ComposableImpl {
+        public typealias CABI = C_IInspectable
+        public typealias SwiftABI = test_component.IInspectable
+        public typealias Class = BaseCollection
+        public typealias SwiftProjection = WinRTClassWeakReference<Class>
+        public enum Default : AbiInterface {
+            public typealias CABI = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase
+            public typealias SwiftABI = test_component.IVectorBase
         }
     }
-    internal typealias Composable = IVectorBase
+    @_spi(WinRTInternal)
+    public typealias Composable = IVectorBase
     deinit {
         _default = nil
         _IIterable = nil
@@ -429,17 +433,19 @@ open class BaseNoOverrides : WinRTClass {
         return try _IBaseNoOverridesStatics.CreateFromStringImpl(value)
     }
 
-    internal enum IBaseNoOverrides : ComposableImpl {
-        internal typealias CABI = C_IInspectable
-        internal typealias SwiftABI = test_component.IInspectable
-        internal typealias Class = BaseNoOverrides
-        internal typealias SwiftProjection = WinRTClassWeakReference<Class>
-        internal enum Default : AbiInterface {
-            internal typealias CABI = __x_ABI_Ctest__component_CIBaseNoOverrides
-            internal typealias SwiftABI = __ABI_test_component.IBaseNoOverrides
+    @_spi(WinRTInternal)
+        public enum IBaseNoOverrides : ComposableImpl {
+        public typealias CABI = C_IInspectable
+        public typealias SwiftABI = test_component.IInspectable
+        public typealias Class = BaseNoOverrides
+        public typealias SwiftProjection = WinRTClassWeakReference<Class>
+        public enum Default : AbiInterface {
+            public typealias CABI = __x_ABI_Ctest__component_CIBaseNoOverrides
+            public typealias SwiftABI = __ABI_test_component.IBaseNoOverrides
         }
     }
-    internal typealias Composable = IBaseNoOverrides
+    @_spi(WinRTInternal)
+    public typealias Composable = IBaseNoOverrides
     deinit {
         _default = nil
     }
@@ -953,17 +959,19 @@ public final class Derived : test_component.Base {
         set { try! _default.put_PropImpl(newValue) }
     }
 
-    internal enum IBaseOverrides : ComposableImpl {
-        internal typealias CABI = __x_ABI_Ctest__component_CIBaseOverrides
-        internal typealias SwiftABI = __ABI_test_component.IBaseOverrides
-        internal typealias Class = Derived
-        internal typealias SwiftProjection = WinRTClassWeakReference<Class>
-        internal enum Default : AbiInterface {
-            internal typealias CABI = __x_ABI_Ctest__component_CIDerived
-            internal typealias SwiftABI = __ABI_test_component.IDerived
+    @_spi(WinRTInternal)
+        public enum IBaseOverrides : ComposableImpl {
+        public typealias CABI = __x_ABI_Ctest__component_CIBaseOverrides
+        public typealias SwiftABI = __ABI_test_component.IBaseOverrides
+        public typealias Class = Derived
+        public typealias SwiftProjection = WinRTClassWeakReference<Class>
+        public enum Default : AbiInterface {
+            public typealias CABI = __x_ABI_Ctest__component_CIDerived
+            public typealias SwiftABI = __ABI_test_component.IDerived
         }
     }
-    internal typealias Composable = IBaseOverrides
+    @_spi(WinRTInternal)
+    public typealias Composable = IBaseOverrides
     deinit {
         _default = nil
     }
@@ -996,17 +1004,19 @@ public final class DerivedFromNoConstructor : test_component.UnsealedDerivedNoCo
         try _default.MethodImpl()
     }
 
-    internal enum IBaseOverrides : ComposableImpl {
-        internal typealias CABI = __x_ABI_Ctest__component_CIBaseOverrides
-        internal typealias SwiftABI = __ABI_test_component.IBaseOverrides
-        internal typealias Class = DerivedFromNoConstructor
-        internal typealias SwiftProjection = WinRTClassWeakReference<Class>
-        internal enum Default : AbiInterface {
-            internal typealias CABI = __x_ABI_Ctest__component_CIDerivedFromNoConstructor
-            internal typealias SwiftABI = __ABI_test_component.IDerivedFromNoConstructor
+    @_spi(WinRTInternal)
+        public enum IBaseOverrides : ComposableImpl {
+        public typealias CABI = __x_ABI_Ctest__component_CIBaseOverrides
+        public typealias SwiftABI = __ABI_test_component.IBaseOverrides
+        public typealias Class = DerivedFromNoConstructor
+        public typealias SwiftProjection = WinRTClassWeakReference<Class>
+        public enum Default : AbiInterface {
+            public typealias CABI = __x_ABI_Ctest__component_CIDerivedFromNoConstructor
+            public typealias SwiftABI = __ABI_test_component.IDerivedFromNoConstructor
         }
     }
-    internal typealias Composable = IBaseOverrides
+    @_spi(WinRTInternal)
+    public typealias Composable = IBaseOverrides
     deinit {
         _default = nil
     }
@@ -1382,30 +1392,33 @@ open class UnsealedDerived : test_component.Base {
         try _IUnsealedDerivedOverloads2.OnAfterDoTheThingImpl()
     }
 
-    internal enum IUnsealedDerivedOverloads2 : ComposableImpl {
-        internal typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedOverloads2
-        internal typealias SwiftABI = __ABI_test_component.IUnsealedDerivedOverloads2
-        internal typealias Class = UnsealedDerived
-        internal typealias SwiftProjection = WinRTClassWeakReference<Class>
-        internal enum Default : AbiInterface {
-            internal typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerived
-            internal typealias SwiftABI = __ABI_test_component.IUnsealedDerived
+    @_spi(WinRTInternal)
+        public enum IUnsealedDerivedOverloads2 : ComposableImpl {
+        public typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedOverloads2
+        public typealias SwiftABI = __ABI_test_component.IUnsealedDerivedOverloads2
+        public typealias Class = UnsealedDerived
+        public typealias SwiftProjection = WinRTClassWeakReference<Class>
+        public enum Default : AbiInterface {
+            public typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerived
+            public typealias SwiftABI = __ABI_test_component.IUnsealedDerived
         }
     }
-    internal typealias Composable = IUnsealedDerivedOverloads2
+    @_spi(WinRTInternal)
+    public typealias Composable = IUnsealedDerivedOverloads2
     private lazy var _IUnsealedDerivedOverrides: __ABI_test_component.IUnsealedDerivedOverrides! = getInterfaceForCaching()
     open func onBeforeDoTheThing() throws {
         try _IUnsealedDerivedOverrides.OnBeforeDoTheThingImpl()
     }
 
-    internal enum IUnsealedDerivedOverrides : ComposableImpl {
-        internal typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedOverrides
-        internal typealias SwiftABI = __ABI_test_component.IUnsealedDerivedOverrides
-        internal typealias Class = UnsealedDerived
-        internal typealias SwiftProjection = WinRTClassWeakReference<Class>
-        internal enum Default : AbiInterface {
-            internal typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerived
-            internal typealias SwiftABI = __ABI_test_component.IUnsealedDerived
+    @_spi(WinRTInternal)
+        public enum IUnsealedDerivedOverrides : ComposableImpl {
+        public typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedOverrides
+        public typealias SwiftABI = __ABI_test_component.IUnsealedDerivedOverrides
+        public typealias Class = UnsealedDerived
+        public typealias SwiftProjection = WinRTClassWeakReference<Class>
+        public enum Default : AbiInterface {
+            public typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerived
+            public typealias SwiftABI = __ABI_test_component.IUnsealedDerived
         }
     }
     deinit {
@@ -1468,17 +1481,19 @@ open class UnsealedDerived2 : test_component.UnsealedDerived {
         try _default.MethodImpl()
     }
 
-    internal enum IUnsealedDerivedOverloads2 : ComposableImpl {
-        internal typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedOverloads2
-        internal typealias SwiftABI = __ABI_test_component.IUnsealedDerivedOverloads2
-        internal typealias Class = UnsealedDerived2
-        internal typealias SwiftProjection = WinRTClassWeakReference<Class>
-        internal enum Default : AbiInterface {
-            internal typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerived2
-            internal typealias SwiftABI = __ABI_test_component.IUnsealedDerived2
+    @_spi(WinRTInternal)
+        public enum IUnsealedDerivedOverloads2 : ComposableImpl {
+        public typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedOverloads2
+        public typealias SwiftABI = __ABI_test_component.IUnsealedDerivedOverloads2
+        public typealias Class = UnsealedDerived2
+        public typealias SwiftProjection = WinRTClassWeakReference<Class>
+        public enum Default : AbiInterface {
+            public typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerived2
+            public typealias SwiftABI = __ABI_test_component.IUnsealedDerived2
         }
     }
-    internal typealias Composable = IUnsealedDerivedOverloads2
+    @_spi(WinRTInternal)
+    public typealias Composable = IUnsealedDerivedOverloads2
     deinit {
         _default = nil
     }
@@ -1525,17 +1540,19 @@ open class UnsealedDerivedFromNoConstructor : test_component.UnsealedDerivedNoCo
         }
     }
 
-    internal enum IBaseOverrides : ComposableImpl {
-        internal typealias CABI = __x_ABI_Ctest__component_CIBaseOverrides
-        internal typealias SwiftABI = __ABI_test_component.IBaseOverrides
-        internal typealias Class = UnsealedDerivedFromNoConstructor
-        internal typealias SwiftProjection = WinRTClassWeakReference<Class>
-        internal enum Default : AbiInterface {
-            internal typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedFromNoConstructor
-            internal typealias SwiftABI = __ABI_test_component.IUnsealedDerivedFromNoConstructor
+    @_spi(WinRTInternal)
+        public enum IBaseOverrides : ComposableImpl {
+        public typealias CABI = __x_ABI_Ctest__component_CIBaseOverrides
+        public typealias SwiftABI = __ABI_test_component.IBaseOverrides
+        public typealias Class = UnsealedDerivedFromNoConstructor
+        public typealias SwiftProjection = WinRTClassWeakReference<Class>
+        public enum Default : AbiInterface {
+            public typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedFromNoConstructor
+            public typealias SwiftABI = __ABI_test_component.IUnsealedDerivedFromNoConstructor
         }
     }
-    internal typealias Composable = IBaseOverrides
+    @_spi(WinRTInternal)
+    public typealias Composable = IBaseOverrides
     deinit {
         _default = nil
     }
@@ -1576,17 +1593,19 @@ open class UnsealedDerivedNoConstructor : test_component.Base {
     }
     private static var _IUnsealedDerivedNoConstructorFactory : __ABI_test_component.IUnsealedDerivedNoConstructorFactory =  try! RoGetActivationFactory("test_component.UnsealedDerivedNoConstructor")
 
-    internal enum IBaseOverrides : ComposableImpl {
-        internal typealias CABI = __x_ABI_Ctest__component_CIBaseOverrides
-        internal typealias SwiftABI = __ABI_test_component.IBaseOverrides
-        internal typealias Class = UnsealedDerivedNoConstructor
-        internal typealias SwiftProjection = WinRTClassWeakReference<Class>
-        internal enum Default : AbiInterface {
-            internal typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedNoConstructor
-            internal typealias SwiftABI = __ABI_test_component.IUnsealedDerivedNoConstructor
+    @_spi(WinRTInternal)
+        public enum IBaseOverrides : ComposableImpl {
+        public typealias CABI = __x_ABI_Ctest__component_CIBaseOverrides
+        public typealias SwiftABI = __ABI_test_component.IBaseOverrides
+        public typealias Class = UnsealedDerivedNoConstructor
+        public typealias SwiftProjection = WinRTClassWeakReference<Class>
+        public enum Default : AbiInterface {
+            public typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedNoConstructor
+            public typealias SwiftABI = __ABI_test_component.IUnsealedDerivedNoConstructor
         }
     }
-    internal typealias Composable = IBaseOverrides
+    @_spi(WinRTInternal)
+    public typealias Composable = IBaseOverrides
     deinit {
         _default = nil
     }
@@ -1633,17 +1652,19 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
         }
     }
 
-    internal enum IUnsealedDerivedNoOverrides : ComposableImpl {
-        internal typealias CABI = C_IInspectable
-        internal typealias SwiftABI = test_component.IInspectable
-        internal typealias Class = UnsealedDerivedNoOverrides
-        internal typealias SwiftProjection = WinRTClassWeakReference<Class>
-        internal enum Default : AbiInterface {
-            internal typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides
-            internal typealias SwiftABI = __ABI_test_component.IUnsealedDerivedNoOverrides
+    @_spi(WinRTInternal)
+        public enum IUnsealedDerivedNoOverrides : ComposableImpl {
+        public typealias CABI = C_IInspectable
+        public typealias SwiftABI = test_component.IInspectable
+        public typealias Class = UnsealedDerivedNoOverrides
+        public typealias SwiftProjection = WinRTClassWeakReference<Class>
+        public enum Default : AbiInterface {
+            public typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides
+            public typealias SwiftABI = __ABI_test_component.IUnsealedDerivedNoOverrides
         }
     }
-    internal typealias Composable = IUnsealedDerivedNoOverrides
+    @_spi(WinRTInternal)
+    public typealias Composable = IUnsealedDerivedNoOverrides
     deinit {
         _default = nil
     }

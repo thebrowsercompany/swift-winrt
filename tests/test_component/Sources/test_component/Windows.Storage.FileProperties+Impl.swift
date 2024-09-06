@@ -3,6 +3,7 @@
 import Foundation
 import Ctest_component
 
+@_spi(WinRTInternal)
 public enum __IMPL_Windows_Storage_FileProperties {
     public enum IStorageItemExtraPropertiesBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_CWindows_CStorage_CFileProperties_CIStorageItemExtraProperties

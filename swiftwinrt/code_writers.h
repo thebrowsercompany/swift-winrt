@@ -379,11 +379,9 @@ namespace swiftwinrt
         const bool isInitializer = factory_info.has_value() && (factory_info->activatable || factory_info->composable);
         const bool composableFactory = factory_info.has_value() && factory_info->composable;
 
-        const bool internal = can_mark_internal(type.type());
         auto name = w.write_temp("%", type);
         auto baseClass = (is_delegate(type) || !type.type().Flags().WindowsRuntime()) ? "IUnknown" : "IInspectable";
-        w.write("% class %: %.% {\n",
-            internal ? "internal" : "public",
+        w.write("public class %: %.% {\n",
             bind_type_abi(type),
             w.support,
             baseClass);
@@ -414,7 +412,7 @@ namespace swiftwinrt
                 }
 
                 w.write("% func %Impl(%) throws% {\n",
-                    internal || is_exclusive(type) ? "internal" : "open",
+                    is_exclusive(type) ? "public" : "open",
                     func_name,
                     written_params,
                     returnStatement);
@@ -1504,7 +1502,6 @@ vtable);
         auto return_type = w.write_temp("%", bind<write_delegate_return_type>(invoke_method));
         constexpr bool is_generic = std::is_same_v<T, generic_inst>;
         auto access_level = is_generic ? "internal" : "public";
-
         auto handlerType = w.write_temp("%", bind<write_swift_type_identifier>(type));
         auto abi_guard = w.push_abi_types(is_generic);
         w.write(format,
@@ -2327,14 +2324,15 @@ public init<Composable: ComposableImpl>(
 
         bool use_iinspectable_vtable = type_name(overrides) == type_name(*default_interface);
 
-        auto format = R"(internal enum % : ComposableImpl {
-    internal typealias CABI = %
-    internal typealias SwiftABI = %
-    internal typealias Class = %
-    internal typealias SwiftProjection = WinRTClassWeakReference<Class>
-    internal enum Default : AbiInterface {
-        internal typealias CABI = %
-        internal typealias SwiftABI = %
+        auto format = R"(^@_spi(WinRTInternal)
+    public enum % : ComposableImpl {
+    public typealias CABI = %
+    public typealias SwiftABI = %
+    public typealias Class = %
+    public typealias SwiftProjection = WinRTClassWeakReference<Class>
+    public enum Default : AbiInterface {
+        public typealias CABI = %
+        public typealias SwiftABI = %
     }
 }
 )";
@@ -2376,9 +2374,9 @@ public init<Composable: ComposableImpl>(
             }));
 
         if (compose)
-        {
-            auto modifier = parent.is_composable() ? "open" : "public";
-            w.write("internal typealias Composable = %\n", composableName);
+        {   
+            w.write("@_spi(WinRTInternal)\n");
+            w.write("public typealias Composable = %\n", composableName);
         }
     }
 

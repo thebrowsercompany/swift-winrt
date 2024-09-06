@@ -19,6 +19,7 @@ private var IID___x_ABI_Ctest__component_CDelegates_CISignalDelegate: test_compo
     .init(Data1: 0x9EA7161A, Data2: 0xFCAB, Data3: 0x5037, Data4: ( 0x87,0xF0,0xB5,0x73,0xA5,0xE9,0x7B,0xE9 ))// 9EA7161A-FCAB-5037-87F0-B573A5E97BE9
 }
 
+@_spi(WinRTInternal)
 public enum __ABI_test_component_Delegates {
 }
 // MARK - InDelegate

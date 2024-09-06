@@ -3,6 +3,7 @@
 import Foundation
 import Ctest_component
 
+@_spi(WinRTInternal)
 public enum __IMPL_test_component {
     public enum IAsyncMethodsWithProgressBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_Ctest__component_CIAsyncMethodsWithProgress

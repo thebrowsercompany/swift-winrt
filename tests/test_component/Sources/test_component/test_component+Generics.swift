@@ -29,10 +29,10 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1_booleanVTable: __x_AB
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1_booleanWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_booleanBridge>
-internal class AsyncOperationCompletedHandlerBool: test_component.IUnknown {
+public class AsyncOperationCompletedHandlerBool: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1_boolean }
 
-    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<Bool>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<Bool>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1_booleanWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1_boolean.self) { pThis in
@@ -82,10 +82,10 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1_intVTable: __x_ABI_C_
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_intBridge>
-internal class AsyncOperationCompletedHandlerInt32: test_component.IUnknown {
+public class AsyncOperationCompletedHandlerInt32: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1_int }
 
-    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<Int32>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<Int32>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1_intWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1_int.self) { pThis in
@@ -135,10 +135,10 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1_HSTRINGVTable: __x_AB
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_HSTRINGBridge>
-internal class AsyncOperationCompletedHandlerString: test_component.IUnknown {
+public class AsyncOperationCompletedHandlerString: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1_HSTRING }
 
-    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<String>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<String>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1_HSTRINGWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1_HSTRING.self) { pThis in
@@ -188,10 +188,10 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1_UINT32VTable: __x_ABI
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1_UINT32Wrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_UINT32Bridge>
-internal class AsyncOperationCompletedHandlerUInt32: test_component.IUnknown {
+public class AsyncOperationCompletedHandlerUInt32: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1_UINT32 }
 
-    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<UInt32>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<UInt32>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1_UINT32Wrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1_UINT32.self) { pThis in
@@ -241,10 +241,10 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIMap_2_HS
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIMap_2_HSTRING_IInspectableBridge>
-internal class AsyncOperationCompletedHandlerIMapString_Any: test_component.IUnknown {
+public class AsyncOperationCompletedHandlerIMapString_Any: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIMap_2_HSTRING_IInspectable }
 
-    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIMap<String, Any?>?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIMap<String, Any?>?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
@@ -294,10 +294,10 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorVi
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemBridge>
-internal class AsyncOperationCompletedHandlerIVectorViewIStorageItem: test_component.IUnknown {
+public class AsyncOperationCompletedHandlerIVectorViewIStorageItem: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItem }
 
-    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.AnyIStorageItem?>?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.AnyIStorageItem?>?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
@@ -347,10 +347,10 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorVi
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileBridge>
-internal class AsyncOperationCompletedHandlerIVectorViewStorageFile: test_component.IUnknown {
+public class AsyncOperationCompletedHandlerIVectorViewStorageFile: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFile }
 
-    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.StorageFile?>?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.StorageFile?>?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
@@ -400,10 +400,10 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorVi
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderBridge>
-internal class AsyncOperationCompletedHandlerIVectorViewStorageFolder: test_component.IUnknown {
+public class AsyncOperationCompletedHandlerIVectorViewStorageFolder: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolder }
 
-    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.StorageFolder?>?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.StorageFolder?>?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
@@ -453,10 +453,10 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorVi
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeBridge>
-internal class AsyncOperationCompletedHandlerIVectorViewStorageLibraryChange: test_component.IUnknown {
+public class AsyncOperationCompletedHandlerIVectorViewStorageLibraryChange: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChange }
 
-    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.StorageLibraryChange?>?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.StorageLibraryChange?>?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChange.self) { pThis in
@@ -506,10 +506,10 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector_1
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector_1_HSTRINGBridge>
-internal class AsyncOperationCompletedHandlerIVectorString: test_component.IUnknown {
+public class AsyncOperationCompletedHandlerIVectorString: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector_1_HSTRING }
 
-    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVector<String>?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVector<String>?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVector_1_HSTRINGWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector_1_HSTRING.self) { pThis in
@@ -559,10 +559,10 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicPropertiesWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicPropertiesBridge>
-internal class AsyncOperationCompletedHandlerBasicProperties: test_component.IUnknown {
+public class AsyncOperationCompletedHandlerBasicProperties: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicProperties }
 
-    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.BasicProperties?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.BasicProperties?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicPropertiesWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicProperties.self) { pThis in
@@ -612,10 +612,10 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentPropertiesWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentPropertiesBridge>
-internal class AsyncOperationCompletedHandlerDocumentProperties: test_component.IUnknown {
+public class AsyncOperationCompletedHandlerDocumentProperties: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentProperties }
 
-    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.DocumentProperties?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.DocumentProperties?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentPropertiesWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentProperties.self) { pThis in
@@ -665,10 +665,10 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CImagePropertiesWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CImagePropertiesBridge>
-internal class AsyncOperationCompletedHandlerImageProperties: test_component.IUnknown {
+public class AsyncOperationCompletedHandlerImageProperties: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CImageProperties }
 
-    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.ImageProperties?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.ImageProperties?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CImagePropertiesWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CImageProperties.self) { pThis in
@@ -718,10 +718,10 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicPropertiesWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicPropertiesBridge>
-internal class AsyncOperationCompletedHandlerMusicProperties: test_component.IUnknown {
+public class AsyncOperationCompletedHandlerMusicProperties: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicProperties }
 
-    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.MusicProperties?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.MusicProperties?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicPropertiesWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicProperties.self) { pThis in
@@ -771,10 +771,10 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailBridge>
-internal class AsyncOperationCompletedHandlerStorageItemThumbnail: test_component.IUnknown {
+public class AsyncOperationCompletedHandlerStorageItemThumbnail: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnail }
 
-    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.StorageItemThumbnail?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.StorageItemThumbnail?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnail.self) { pThis in
@@ -824,10 +824,10 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoPropertiesWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoPropertiesBridge>
-internal class AsyncOperationCompletedHandlerVideoProperties: test_component.IUnknown {
+public class AsyncOperationCompletedHandlerVideoProperties: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoProperties }
 
-    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.VideoProperties?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.VideoProperties?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoPropertiesWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoProperties.self) { pThis in
@@ -877,10 +877,10 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CIStorageItemBridge>
-internal class AsyncOperationCompletedHandlerIStorageItem: test_component.IUnknown {
+public class AsyncOperationCompletedHandlerIStorageItem: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CIStorageItem }
 
-    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIStorageItem?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIStorageItem?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
@@ -930,10 +930,10 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CSearch__CIndexedStateWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CSearch__CIndexedStateBridge>
-internal class AsyncOperationCompletedHandlerIndexedState: test_component.IUnknown {
+public class AsyncOperationCompletedHandlerIndexedState: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CSearch__CIndexedState }
 
-    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.IndexedState>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.IndexedState>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSearch__CIndexedStateWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CSearch__CIndexedState.self) { pThis in
@@ -983,10 +983,10 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFileWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFileBridge>
-internal class AsyncOperationCompletedHandlerStorageFile: test_component.IUnknown {
+public class AsyncOperationCompletedHandlerStorageFile: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFile }
 
-    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.StorageFile?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.StorageFile?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFileWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
@@ -1036,10 +1036,10 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFolderBridge>
-internal class AsyncOperationCompletedHandlerStorageFolder: test_component.IUnknown {
+public class AsyncOperationCompletedHandlerStorageFolder: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFolder }
 
-    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.StorageFolder?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.StorageFolder?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
@@ -1089,10 +1089,10 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageStreamTransactionWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageStreamTransactionBridge>
-internal class AsyncOperationCompletedHandlerStorageStreamTransaction: test_component.IUnknown {
+public class AsyncOperationCompletedHandlerStorageStreamTransaction: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageStreamTransaction }
 
-    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.StorageStreamTransaction?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.StorageStreamTransaction?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageStreamTransactionWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageStreamTransaction.self) { pThis in
@@ -1142,10 +1142,10 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIBufferWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIBufferBridge>
-internal class AsyncOperationCompletedHandlerIBuffer: test_component.IUnknown {
+public class AsyncOperationCompletedHandlerIBuffer: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIBuffer }
 
-    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIBuffer?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIBuffer?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIBufferWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIBuffer.self) { pThis in
@@ -1195,10 +1195,10 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIInputStreamWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIInputStreamBridge>
-internal class AsyncOperationCompletedHandlerIInputStream: test_component.IUnknown {
+public class AsyncOperationCompletedHandlerIInputStream: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIInputStream }
 
-    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIInputStream?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIInputStream?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIInputStreamWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIInputStream.self) { pThis in
@@ -1248,10 +1248,10 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamBridge>
-internal class AsyncOperationCompletedHandlerIRandomAccessStream: test_component.IUnknown {
+public class AsyncOperationCompletedHandlerIRandomAccessStream: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStream }
 
-    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIRandomAccessStream?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIRandomAccessStream?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStream.self) { pThis in
@@ -1301,10 +1301,10 @@ internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSt
     }
 )
 typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentTypeWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentTypeBridge>
-internal class AsyncOperationCompletedHandlerIRandomAccessStreamWithContentType: test_component.IUnknown {
+public class AsyncOperationCompletedHandlerIRandomAccessStreamWithContentType: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentType }
 
-    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIRandomAccessStreamWithContentType?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIRandomAccessStreamWithContentType?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentTypeWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentType.self) { pThis in
@@ -1354,10 +1354,10 @@ internal var __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleVTable: __x_
     }
 )
 typealias __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleBridge>
-internal class AsyncOperationProgressHandlerInt32_Double: test_component.IUnknown {
+public class AsyncOperationProgressHandlerInt32_Double: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationProgressHandler_2_int_double }
 
-    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperationWithProgress<Int32, Double>?, _ progressInfo: Double) throws {
+    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperationWithProgress<Int32, Double>?, _ progressInfo: Double) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationProgressHandler_2_int_double.self) { pThis in
@@ -1407,10 +1407,10 @@ internal var __x_ABI_C__FIAsyncOperationProgressHandler_2_UINT32_UINT32VTable: _
     }
 )
 typealias __x_ABI_C__FIAsyncOperationProgressHandler_2_UINT32_UINT32Wrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2_UINT32_UINT32Bridge>
-internal class AsyncOperationProgressHandlerUInt32_UInt32: test_component.IUnknown {
+public class AsyncOperationProgressHandlerUInt32_UInt32: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationProgressHandler_2_UINT32_UINT32 }
 
-    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperationWithProgress<UInt32, UInt32>?, _ progressInfo: UInt32) throws {
+    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperationWithProgress<UInt32, UInt32>?, _ progressInfo: UInt32) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32Wrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationProgressHandler_2_UINT32_UINT32.self) { pThis in
@@ -1460,10 +1460,10 @@ internal var __x_ABI_C__FIAsyncOperationProgressHandler_2___x_ABI_CWindows__CSto
     }
 )
 typealias __x_ABI_C__FIAsyncOperationProgressHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Bridge>
-internal class AsyncOperationProgressHandlerIBuffer_UInt32: test_component.IUnknown {
+public class AsyncOperationProgressHandlerIBuffer_UInt32: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationProgressHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32 }
 
-    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperationWithProgress<test_component.AnyIBuffer?, UInt32>?, _ progressInfo: UInt32) throws {
+    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperationWithProgress<test_component.AnyIBuffer?, UInt32>?, _ progressInfo: UInt32) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationProgressHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32.self) { pThis in
@@ -1513,10 +1513,10 @@ internal var __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubl
     }
 )
 typealias __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleBridge>
-internal class AsyncOperationWithProgressCompletedHandlerInt32_Double: test_component.IUnknown {
+public class AsyncOperationWithProgressCompletedHandlerInt32_Double: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_double }
 
-    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperationWithProgress<Int32, Double>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperationWithProgress<Int32, Double>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_double.self) { pThis in
@@ -1566,10 +1566,10 @@ internal var __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_UINT32_UI
     }
 )
 typealias __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_UINT32_UINT32Wrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_UINT32_UINT32Bridge>
-internal class AsyncOperationWithProgressCompletedHandlerUInt32_UInt32: test_component.IUnknown {
+public class AsyncOperationWithProgressCompletedHandlerUInt32_UInt32: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_UINT32_UINT32 }
 
-    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperationWithProgress<UInt32, UInt32>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperationWithProgress<UInt32, UInt32>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32Wrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_UINT32_UINT32.self) { pThis in
@@ -1619,10 +1619,10 @@ internal var __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2___x_ABI_C
     }
 )
 typealias __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Bridge>
-internal class AsyncOperationWithProgressCompletedHandlerIBuffer_UInt32: test_component.IUnknown {
+public class AsyncOperationWithProgressCompletedHandlerIBuffer_UInt32: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32 }
 
-    internal func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperationWithProgress<test_component.AnyIBuffer?, UInt32>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperationWithProgress<test_component.AnyIBuffer?, UInt32>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32.self) { pThis in
@@ -1687,10 +1687,10 @@ internal var __x_ABI_C__FIIterable_1_IInspectableVTable: __x_ABI_C__FIIterable_1
     }
 )
 typealias __x_ABI_C__FIIterable_1_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1_IInspectableBridge>
-internal class IIterableAny: test_component.IInspectable {
+public class IIterableAny: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1_IInspectable }
 
-    internal func FirstImpl() throws -> test_component.AnyIIterator<Any?>? {
+    open func FirstImpl() throws -> test_component.AnyIIterator<Any?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterable_1_IInspectable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
@@ -1774,10 +1774,10 @@ internal var __x_ABI_C__FIIterable_1_GUIDVTable: __x_ABI_C__FIIterable_1_GUIDVtb
     }
 )
 typealias __x_ABI_C__FIIterable_1_GUIDWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1_GUIDBridge>
-internal class IIterableUUID: test_component.IInspectable {
+public class IIterableUUID: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1_GUID }
 
-    internal func FirstImpl() throws -> test_component.AnyIIterator<Foundation.UUID>? {
+    open func FirstImpl() throws -> test_component.AnyIIterator<Foundation.UUID>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterable_1_GUID.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
@@ -1861,10 +1861,10 @@ internal var __x_ABI_C__FIIterable_1_HSTRINGVTable: __x_ABI_C__FIIterable_1_HSTR
     }
 )
 typealias __x_ABI_C__FIIterable_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1_HSTRINGBridge>
-internal class IIterableString: test_component.IInspectable {
+public class IIterableString: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1_HSTRING }
 
-    internal func FirstImpl() throws -> test_component.AnyIIterator<String>? {
+    open func FirstImpl() throws -> test_component.AnyIIterator<String>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterable_1_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
@@ -1948,10 +1948,10 @@ internal var __x_ABI_C__FIIterable_1___x_ABI_CWindows__CData__CText__CTextSegmen
     }
 )
 typealias __x_ABI_C__FIIterable_1___x_ABI_CWindows__CData__CText__CTextSegmentWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_CWindows__CData__CText__CTextSegmentBridge>
-internal class IIterableTextSegment: test_component.IInspectable {
+public class IIterableTextSegment: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CData__CText__CTextSegment }
 
-    internal func FirstImpl() throws -> test_component.AnyIIterator<test_component.TextSegment>? {
+    open func FirstImpl() throws -> test_component.AnyIIterator<test_component.TextSegment>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
@@ -2035,10 +2035,10 @@ internal var __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspec
     }
 )
 typealias __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge>
-internal class IIterableIKeyValuePairString_Any: test_component.IInspectable {
+public class IIterableIKeyValuePairString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable }
 
-    internal func FirstImpl() throws -> test_component.AnyIIterator<test_component.AnyIKeyValuePair<String, Any?>?>? {
+    open func FirstImpl() throws -> test_component.AnyIIterator<test_component.AnyIKeyValuePair<String, Any?>?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
@@ -2122,10 +2122,10 @@ internal var __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING
     }
 )
 typealias __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge>
-internal class IIterableIKeyValuePairString_String: test_component.IInspectable {
+public class IIterableIKeyValuePairString_String: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING }
 
-    internal func FirstImpl() throws -> test_component.AnyIIterator<test_component.AnyIKeyValuePair<String, String>?>? {
+    open func FirstImpl() throws -> test_component.AnyIIterator<test_component.AnyIKeyValuePair<String, String>?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
@@ -2209,10 +2209,10 @@ internal var __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI
     }
 )
 typealias __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentBridge>
-internal class IIterableIKeyValuePairString_IVectorViewTextSegment: test_component.IInspectable {
+public class IIterableIKeyValuePairString_IVectorViewTextSegment: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment }
 
-    internal func FirstImpl() throws -> test_component.AnyIIterator<test_component.AnyIKeyValuePair<String, test_component.AnyIVectorView<test_component.TextSegment>?>?>? {
+    open func FirstImpl() throws -> test_component.AnyIIterator<test_component.AnyIKeyValuePair<String, test_component.AnyIVectorView<test_component.TextSegment>?>?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
@@ -2296,10 +2296,10 @@ internal var __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI
     }
 )
 typealias __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge>
-internal class IIterableIKeyValuePairString_Base: test_component.IInspectable {
+public class IIterableIKeyValuePairString_Base: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
 
-    internal func FirstImpl() throws -> test_component.AnyIIterator<test_component.AnyIKeyValuePair<String, test_component.Base?>?>? {
+    open func FirstImpl() throws -> test_component.AnyIIterator<test_component.AnyIKeyValuePair<String, test_component.Base?>?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
@@ -2383,10 +2383,10 @@ internal var __x_ABI_C__FIIterable_1___x_ABI_CWindows__CFoundation__CIWwwFormUrl
     }
 )
 typealias __x_ABI_C__FIIterable_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntryWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntryBridge>
-internal class IIterableIWwwFormUrlDecoderEntry: test_component.IInspectable {
+public class IIterableIWwwFormUrlDecoderEntry: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntry }
 
-    internal func FirstImpl() throws -> test_component.AnyIIterator<test_component.AnyIWwwFormUrlDecoderEntry?>? {
+    open func FirstImpl() throws -> test_component.AnyIIterator<test_component.AnyIWwwFormUrlDecoderEntry?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntry.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
@@ -2470,10 +2470,10 @@ internal var __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CIStorageItemVT
     }
 )
 typealias __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CIStorageItemBridge>
-internal class IIterableIStorageItem: test_component.IInspectable {
+public class IIterableIStorageItem: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CIStorageItem }
 
-    internal func FirstImpl() throws -> test_component.AnyIIterator<test_component.AnyIStorageItem?>? {
+    open func FirstImpl() throws -> test_component.AnyIIterator<test_component.AnyIStorageItem?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
@@ -2557,10 +2557,10 @@ internal var __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CSearch__CSortE
     }
 )
 typealias __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryBridge>
-internal class IIterableSortEntry: test_component.IInspectable {
+public class IIterableSortEntry: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry }
 
-    internal func FirstImpl() throws -> test_component.AnyIIterator<test_component.SortEntry>? {
+    open func FirstImpl() throws -> test_component.AnyIIterator<test_component.SortEntry>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
@@ -2644,10 +2644,10 @@ internal var __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageFileVTa
     }
 )
 typealias __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageFileWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageFileBridge>
-internal class IIterableStorageFile: test_component.IInspectable {
+public class IIterableStorageFile: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageFile }
 
-    internal func FirstImpl() throws -> test_component.AnyIIterator<test_component.StorageFile?>? {
+    open func FirstImpl() throws -> test_component.AnyIIterator<test_component.StorageFile?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
@@ -2731,10 +2731,10 @@ internal var __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageFolderV
     }
 )
 typealias __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageFolderBridge>
-internal class IIterableStorageFolder: test_component.IInspectable {
+public class IIterableStorageFolder: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageFolder }
 
-    internal func FirstImpl() throws -> test_component.AnyIIterator<test_component.StorageFolder?>? {
+    open func FirstImpl() throws -> test_component.AnyIIterator<test_component.StorageFolder?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
@@ -2818,10 +2818,10 @@ internal var __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageLibrary
     }
 )
 typealias __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeBridge>
-internal class IIterableStorageLibraryChange: test_component.IInspectable {
+public class IIterableStorageLibraryChange: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageLibraryChange }
 
-    internal func FirstImpl() throws -> test_component.AnyIIterator<test_component.StorageLibraryChange?>? {
+    open func FirstImpl() throws -> test_component.AnyIIterator<test_component.StorageLibraryChange?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageLibraryChange.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
@@ -2905,10 +2905,10 @@ internal var __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x
     }
 )
 typealias __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseBridge>
-internal class IIterableBase: test_component.IInspectable {
+public class IIterableBase: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBase }
 
-    internal func FirstImpl() throws -> test_component.AnyIIterator<test_component.Base?>? {
+    open func FirstImpl() throws -> test_component.AnyIIterator<test_component.Base?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
@@ -2992,10 +2992,10 @@ internal var __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicVTable: _
     }
 )
 typealias __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicBridge>
-internal class IIterableIBasic: test_component.IInspectable {
+public class IIterableIBasic: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasic }
 
-    internal func FirstImpl() throws -> test_component.AnyIIterator<test_component.AnyIBasic?>? {
+    open func FirstImpl() throws -> test_component.AnyIIterator<test_component.AnyIBasic?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
@@ -3095,10 +3095,10 @@ internal var __x_ABI_C__FIIterator_1_IInspectableVTable: __x_ABI_C__FIIterator_1
     GetMany: { _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIIterator_1_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1_IInspectableBridge>
-internal class IIteratorAny: test_component.IInspectable {
+public class IIteratorAny: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1_IInspectable }
 
-    internal func get_CurrentImpl() throws -> Any? {
+    open func get_CurrentImpl() throws -> Any? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterator_1_IInspectable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
@@ -3107,7 +3107,7 @@ internal class IIteratorAny: test_component.IInspectable {
         return __ABI_.AnyWrapper.unwrapFrom(abi: result)
     }
 
-    internal func get_HasCurrentImpl() throws -> Bool {
+    open func get_HasCurrentImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
@@ -3115,7 +3115,7 @@ internal class IIteratorAny: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func MoveNextImpl() throws -> Bool {
+    open func MoveNextImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
@@ -3223,10 +3223,10 @@ internal var __x_ABI_C__FIIterator_1_GUIDVTable: __x_ABI_C__FIIterator_1_GUIDVtb
     GetMany: { _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIIterator_1_GUIDWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1_GUIDBridge>
-internal class IIteratorUUID: test_component.IInspectable {
+public class IIteratorUUID: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1_GUID }
 
-    internal func get_CurrentImpl() throws -> Foundation.UUID {
+    open func get_CurrentImpl() throws -> Foundation.UUID {
         var result: test_component.GUID = .init()
         _ = try perform(as: __x_ABI_C__FIIterator_1_GUID.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
@@ -3234,7 +3234,7 @@ internal class IIteratorUUID: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func get_HasCurrentImpl() throws -> Bool {
+    open func get_HasCurrentImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1_GUID.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
@@ -3242,7 +3242,7 @@ internal class IIteratorUUID: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func MoveNextImpl() throws -> Bool {
+    open func MoveNextImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1_GUID.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
@@ -3350,10 +3350,10 @@ internal var __x_ABI_C__FIIterator_1_HSTRINGVTable: __x_ABI_C__FIIterator_1_HSTR
     GetMany: { _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIIterator_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1_HSTRINGBridge>
-internal class IIteratorString: test_component.IInspectable {
+public class IIteratorString: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1_HSTRING }
 
-    internal func get_CurrentImpl() throws -> String {
+    open func get_CurrentImpl() throws -> String {
         var result: HSTRING?
         _ = try perform(as: __x_ABI_C__FIIterator_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
@@ -3361,7 +3361,7 @@ internal class IIteratorString: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func get_HasCurrentImpl() throws -> Bool {
+    open func get_HasCurrentImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
@@ -3369,7 +3369,7 @@ internal class IIteratorString: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func MoveNextImpl() throws -> Bool {
+    open func MoveNextImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
@@ -3477,10 +3477,10 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_CWindows__CData__CText__CTextSegmen
     GetMany: { _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIIterator_1___x_ABI_CWindows__CData__CText__CTextSegmentWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_CWindows__CData__CText__CTextSegmentBridge>
-internal class IIteratorTextSegment: test_component.IInspectable {
+public class IIteratorTextSegment: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CData__CText__CTextSegment }
 
-    internal func get_CurrentImpl() throws -> test_component.TextSegment {
+    open func get_CurrentImpl() throws -> test_component.TextSegment {
         var result: __x_ABI_CWindows_CData_CText_CTextSegment = .init()
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
@@ -3488,7 +3488,7 @@ internal class IIteratorTextSegment: test_component.IInspectable {
         return .from(abi: result)
     }
 
-    internal func get_HasCurrentImpl() throws -> Bool {
+    open func get_HasCurrentImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
@@ -3496,7 +3496,7 @@ internal class IIteratorTextSegment: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func MoveNextImpl() throws -> Bool {
+    open func MoveNextImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
@@ -3605,10 +3605,10 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspec
     GetMany: { _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge>
-internal class IIteratorIKeyValuePairString_Any: test_component.IInspectable {
+public class IIteratorIKeyValuePairString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable }
 
-    internal func get_CurrentImpl() throws -> test_component.AnyIKeyValuePair<String, Any?>? {
+    open func get_CurrentImpl() throws -> test_component.AnyIKeyValuePair<String, Any?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
@@ -3617,7 +3617,7 @@ internal class IIteratorIKeyValuePairString_Any: test_component.IInspectable {
         return test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
     }
 
-    internal func get_HasCurrentImpl() throws -> Bool {
+    open func get_HasCurrentImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
@@ -3625,7 +3625,7 @@ internal class IIteratorIKeyValuePairString_Any: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func MoveNextImpl() throws -> Bool {
+    open func MoveNextImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
@@ -3734,10 +3734,10 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING
     GetMany: { _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge>
-internal class IIteratorIKeyValuePairString_String: test_component.IInspectable {
+public class IIteratorIKeyValuePairString_String: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING }
 
-    internal func get_CurrentImpl() throws -> test_component.AnyIKeyValuePair<String, String>? {
+    open func get_CurrentImpl() throws -> test_component.AnyIKeyValuePair<String, String>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
@@ -3746,7 +3746,7 @@ internal class IIteratorIKeyValuePairString_String: test_component.IInspectable 
         return test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
-    internal func get_HasCurrentImpl() throws -> Bool {
+    open func get_HasCurrentImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
@@ -3754,7 +3754,7 @@ internal class IIteratorIKeyValuePairString_String: test_component.IInspectable 
         return .init(from: result)
     }
 
-    internal func MoveNextImpl() throws -> Bool {
+    open func MoveNextImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
@@ -3863,10 +3863,10 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI
     GetMany: { _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentBridge>
-internal class IIteratorIKeyValuePairString_IVectorViewTextSegment: test_component.IInspectable {
+public class IIteratorIKeyValuePairString_IVectorViewTextSegment: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment }
 
-    internal func get_CurrentImpl() throws -> test_component.AnyIKeyValuePair<String, test_component.AnyIVectorView<test_component.TextSegment>?>? {
+    open func get_CurrentImpl() throws -> test_component.AnyIKeyValuePair<String, test_component.AnyIVectorView<test_component.TextSegment>?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
@@ -3875,7 +3875,7 @@ internal class IIteratorIKeyValuePairString_IVectorViewTextSegment: test_compone
         return test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentWrapper.unwrapFrom(abi: result)
     }
 
-    internal func get_HasCurrentImpl() throws -> Bool {
+    open func get_HasCurrentImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
@@ -3883,7 +3883,7 @@ internal class IIteratorIKeyValuePairString_IVectorViewTextSegment: test_compone
         return .init(from: result)
     }
 
-    internal func MoveNextImpl() throws -> Bool {
+    open func MoveNextImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
@@ -3992,10 +3992,10 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI
     GetMany: { _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge>
-internal class IIteratorIKeyValuePairString_Base: test_component.IInspectable {
+public class IIteratorIKeyValuePairString_Base: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
 
-    internal func get_CurrentImpl() throws -> test_component.AnyIKeyValuePair<String, test_component.Base?>? {
+    open func get_CurrentImpl() throws -> test_component.AnyIKeyValuePair<String, test_component.Base?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
@@ -4004,7 +4004,7 @@ internal class IIteratorIKeyValuePairString_Base: test_component.IInspectable {
         return test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
 
-    internal func get_HasCurrentImpl() throws -> Bool {
+    open func get_HasCurrentImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
@@ -4012,7 +4012,7 @@ internal class IIteratorIKeyValuePairString_Base: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func MoveNextImpl() throws -> Bool {
+    open func MoveNextImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
@@ -4121,10 +4121,10 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_CWindows__CFoundation__CIWwwFormUrl
     GetMany: { _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIIterator_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntryWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntryBridge>
-internal class IIteratorIWwwFormUrlDecoderEntry: test_component.IInspectable {
+public class IIteratorIWwwFormUrlDecoderEntry: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntry }
 
-    internal func get_CurrentImpl() throws -> test_component.AnyIWwwFormUrlDecoderEntry? {
+    open func get_CurrentImpl() throws -> test_component.AnyIWwwFormUrlDecoderEntry? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntry.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
@@ -4133,7 +4133,7 @@ internal class IIteratorIWwwFormUrlDecoderEntry: test_component.IInspectable {
         return __ABI_Windows_Foundation.IWwwFormUrlDecoderEntryWrapper.unwrapFrom(abi: result)
     }
 
-    internal func get_HasCurrentImpl() throws -> Bool {
+    open func get_HasCurrentImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
@@ -4141,7 +4141,7 @@ internal class IIteratorIWwwFormUrlDecoderEntry: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func MoveNextImpl() throws -> Bool {
+    open func MoveNextImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
@@ -4250,10 +4250,10 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CIStorageItemVT
     GetMany: { _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CIStorageItemBridge>
-internal class IIteratorIStorageItem: test_component.IInspectable {
+public class IIteratorIStorageItem: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CIStorageItem }
 
-    internal func get_CurrentImpl() throws -> test_component.AnyIStorageItem? {
+    open func get_CurrentImpl() throws -> test_component.AnyIStorageItem? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
@@ -4262,7 +4262,7 @@ internal class IIteratorIStorageItem: test_component.IInspectable {
         return __ABI_Windows_Storage.IStorageItemWrapper.unwrapFrom(abi: result)
     }
 
-    internal func get_HasCurrentImpl() throws -> Bool {
+    open func get_HasCurrentImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
@@ -4270,7 +4270,7 @@ internal class IIteratorIStorageItem: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func MoveNextImpl() throws -> Bool {
+    open func MoveNextImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
@@ -4379,10 +4379,10 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CSearch__CSortE
     GetMany: { _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryBridge>
-internal class IIteratorSortEntry: test_component.IInspectable {
+public class IIteratorSortEntry: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry }
 
-    internal func get_CurrentImpl() throws -> test_component.SortEntry {
+    open func get_CurrentImpl() throws -> test_component.SortEntry {
         var result: __x_ABI_CWindows_CStorage_CSearch_CSortEntry = .init()
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
@@ -4390,7 +4390,7 @@ internal class IIteratorSortEntry: test_component.IInspectable {
         return .from(abi: result)
     }
 
-    internal func get_HasCurrentImpl() throws -> Bool {
+    open func get_HasCurrentImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
@@ -4398,7 +4398,7 @@ internal class IIteratorSortEntry: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func MoveNextImpl() throws -> Bool {
+    open func MoveNextImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
@@ -4506,10 +4506,10 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFileVTa
     GetMany: { _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFileWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFileBridge>
-internal class IIteratorStorageFile: test_component.IInspectable {
+public class IIteratorStorageFile: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFile }
 
-    internal func get_CurrentImpl() throws -> test_component.StorageFile? {
+    open func get_CurrentImpl() throws -> test_component.StorageFile? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
@@ -4518,7 +4518,7 @@ internal class IIteratorStorageFile: test_component.IInspectable {
         return .from(abi: result)
     }
 
-    internal func get_HasCurrentImpl() throws -> Bool {
+    open func get_HasCurrentImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
@@ -4526,7 +4526,7 @@ internal class IIteratorStorageFile: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func MoveNextImpl() throws -> Bool {
+    open func MoveNextImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
@@ -4634,10 +4634,10 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFolderV
     GetMany: { _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFolderBridge>
-internal class IIteratorStorageFolder: test_component.IInspectable {
+public class IIteratorStorageFolder: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFolder }
 
-    internal func get_CurrentImpl() throws -> test_component.StorageFolder? {
+    open func get_CurrentImpl() throws -> test_component.StorageFolder? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
@@ -4646,7 +4646,7 @@ internal class IIteratorStorageFolder: test_component.IInspectable {
         return .from(abi: result)
     }
 
-    internal func get_HasCurrentImpl() throws -> Bool {
+    open func get_HasCurrentImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
@@ -4654,7 +4654,7 @@ internal class IIteratorStorageFolder: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func MoveNextImpl() throws -> Bool {
+    open func MoveNextImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
@@ -4762,10 +4762,10 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageLibrary
     GetMany: { _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeBridge>
-internal class IIteratorStorageLibraryChange: test_component.IInspectable {
+public class IIteratorStorageLibraryChange: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageLibraryChange }
 
-    internal func get_CurrentImpl() throws -> test_component.StorageLibraryChange? {
+    open func get_CurrentImpl() throws -> test_component.StorageLibraryChange? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageLibraryChange.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
@@ -4774,7 +4774,7 @@ internal class IIteratorStorageLibraryChange: test_component.IInspectable {
         return .from(abi: result)
     }
 
-    internal func get_HasCurrentImpl() throws -> Bool {
+    open func get_HasCurrentImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageLibraryChange.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
@@ -4782,7 +4782,7 @@ internal class IIteratorStorageLibraryChange: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func MoveNextImpl() throws -> Bool {
+    open func MoveNextImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageLibraryChange.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
@@ -4890,10 +4890,10 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x
     GetMany: { _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseBridge>
-internal class IIteratorBase: test_component.IInspectable {
+public class IIteratorBase: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase }
 
-    internal func get_CurrentImpl() throws -> test_component.Base? {
+    open func get_CurrentImpl() throws -> test_component.Base? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
@@ -4902,7 +4902,7 @@ internal class IIteratorBase: test_component.IInspectable {
         return .from(abi: result)
     }
 
-    internal func get_HasCurrentImpl() throws -> Bool {
+    open func get_HasCurrentImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
@@ -4910,7 +4910,7 @@ internal class IIteratorBase: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func MoveNextImpl() throws -> Bool {
+    open func MoveNextImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
@@ -5019,10 +5019,10 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicVTable: _
     GetMany: { _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicBridge>
-internal class IIteratorIBasic: test_component.IInspectable {
+public class IIteratorIBasic: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic }
 
-    internal func get_CurrentImpl() throws -> test_component.AnyIBasic? {
+    open func get_CurrentImpl() throws -> test_component.AnyIBasic? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
@@ -5031,7 +5031,7 @@ internal class IIteratorIBasic: test_component.IInspectable {
         return __ABI_test_component.IBasicWrapper.unwrapFrom(abi: result)
     }
 
-    internal func get_HasCurrentImpl() throws -> Bool {
+    open func get_HasCurrentImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
@@ -5039,7 +5039,7 @@ internal class IIteratorIBasic: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func MoveNextImpl() throws -> Bool {
+    open func MoveNextImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
@@ -5139,10 +5139,10 @@ internal var __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableVTable: __x_ABI_C__
     }
 )
 typealias __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge>
-internal class IKeyValuePairString_Any: test_component.IInspectable {
+public class IKeyValuePairString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable }
 
-    internal func get_KeyImpl() throws -> String {
+    open func get_KeyImpl() throws -> String {
         var result: HSTRING?
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
@@ -5150,7 +5150,7 @@ internal class IKeyValuePairString_Any: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func get_ValueImpl() throws -> Any? {
+    open func get_ValueImpl() throws -> Any? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Value(pThis, &resultAbi))
@@ -5246,10 +5246,10 @@ internal var __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIKey
     }
 )
 typealias __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge>
-internal class IKeyValuePairString_String: test_component.IInspectable {
+public class IKeyValuePairString_String: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING }
 
-    internal func get_KeyImpl() throws -> String {
+    open func get_KeyImpl() throws -> String {
         var result: HSTRING?
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
@@ -5257,7 +5257,7 @@ internal class IKeyValuePairString_String: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func get_ValueImpl() throws -> String {
+    open func get_ValueImpl() throws -> String {
         var result: HSTRING?
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Value(pThis, &result))
@@ -5353,10 +5353,10 @@ internal var __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_A
     }
 )
 typealias __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentBridge>
-internal class IKeyValuePairString_IVectorViewTextSegment: test_component.IInspectable {
+public class IKeyValuePairString_IVectorViewTextSegment: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment }
 
-    internal func get_KeyImpl() throws -> String {
+    open func get_KeyImpl() throws -> String {
         var result: HSTRING?
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
@@ -5364,7 +5364,7 @@ internal class IKeyValuePairString_IVectorViewTextSegment: test_component.IInspe
         return .init(from: result)
     }
 
-    internal func get_ValueImpl() throws -> test_component.AnyIVectorView<test_component.TextSegment>? {
+    open func get_ValueImpl() throws -> test_component.AnyIVectorView<test_component.TextSegment>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Value(pThis, &resultAbi))
@@ -5460,10 +5460,10 @@ internal var __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBas
     }
 )
 typealias __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge>
-internal class IKeyValuePairString_Base: test_component.IInspectable {
+public class IKeyValuePairString_Base: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
 
-    internal func get_KeyImpl() throws -> String {
+    open func get_KeyImpl() throws -> String {
         var result: HSTRING?
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
@@ -5471,7 +5471,7 @@ internal class IKeyValuePairString_Base: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func get_ValueImpl() throws -> test_component.Base? {
+    open func get_ValueImpl() throws -> test_component.Base? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Value(pThis, &resultAbi))
@@ -5567,10 +5567,10 @@ internal var __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGVTable: __x_ABI_C__FIMapC
     }
 )
 typealias __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMapChangedEventArgs_1_HSTRINGBridge>
-internal class IMapChangedEventArgsString: test_component.IInspectable {
+public class IMapChangedEventArgsString: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMapChangedEventArgs_1_HSTRING }
 
-    internal func get_CollectionChangeImpl() throws -> test_component.CollectionChange {
+    open func get_CollectionChangeImpl() throws -> test_component.CollectionChange {
         var result: __x_ABI_CWindows_CFoundation_CCollections_CCollectionChange = .init(0)
         _ = try perform(as: __x_ABI_C__FIMapChangedEventArgs_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_CollectionChange(pThis, &result))
@@ -5578,7 +5578,7 @@ internal class IMapChangedEventArgsString: test_component.IInspectable {
         return result
     }
 
-    internal func get_KeyImpl() throws -> String {
+    open func get_KeyImpl() throws -> String {
         var result: HSTRING?
         _ = try perform(as: __x_ABI_C__FIMapChangedEventArgs_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
@@ -5695,10 +5695,10 @@ internal var __x_ABI_C__FIMapView_2_HSTRING_IInspectableVTable: __x_ABI_C__FIMap
     }
 )
 typealias __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableBridge>
-internal class IMapViewString_Any: test_component.IInspectable {
+public class IMapViewString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMapView_2_HSTRING_IInspectable }
 
-    internal func LookupImpl(_ key: String) throws -> Any? {
+    open func LookupImpl(_ key: String) throws -> Any? {
         let (result) = try ComPtrs.initialize { resultAbi in
             let _key = try! HString(key)
             _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_IInspectable.self) { pThis in
@@ -5708,7 +5708,7 @@ internal class IMapViewString_Any: test_component.IInspectable {
         return __ABI_.AnyWrapper.unwrapFrom(abi: result)
     }
 
-    internal func get_SizeImpl() throws -> UInt32 {
+    open func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -5716,7 +5716,7 @@ internal class IMapViewString_Any: test_component.IInspectable {
         return result
     }
 
-    internal func HasKeyImpl(_ key: String) throws -> Bool {
+    open func HasKeyImpl(_ key: String) throws -> Bool {
         var result: boolean = 0
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_IInspectable.self) { pThis in
@@ -5725,7 +5725,7 @@ internal class IMapViewString_Any: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func SplitImpl(_ first: inout test_component.AnyIMapView<String, Any?>?, _ second: inout test_component.AnyIMapView<String, Any?>?) throws {
+    open func SplitImpl(_ first: inout test_component.AnyIMapView<String, Any?>?, _ second: inout test_component.AnyIMapView<String, Any?>?) throws {
         let (_first, _second) = try ComPtrs.initialize { (_firstAbi, _secondAbi) in
             _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_IInspectable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &_firstAbi, &_secondAbi))
@@ -5861,10 +5861,10 @@ internal var __x_ABI_C__FIMapView_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMapView_
     }
 )
 typealias __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGBridge>
-internal class IMapViewString_String: test_component.IInspectable {
+public class IMapViewString_String: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMapView_2_HSTRING_HSTRING }
 
-    internal func LookupImpl(_ key: String) throws -> String {
+    open func LookupImpl(_ key: String) throws -> String {
         var result: HSTRING?
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_HSTRING.self) { pThis in
@@ -5873,7 +5873,7 @@ internal class IMapViewString_String: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func get_SizeImpl() throws -> UInt32 {
+    open func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -5881,7 +5881,7 @@ internal class IMapViewString_String: test_component.IInspectable {
         return result
     }
 
-    internal func HasKeyImpl(_ key: String) throws -> Bool {
+    open func HasKeyImpl(_ key: String) throws -> Bool {
         var result: boolean = 0
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_HSTRING.self) { pThis in
@@ -5890,7 +5890,7 @@ internal class IMapViewString_String: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func SplitImpl(_ first: inout test_component.AnyIMapView<String, String>?, _ second: inout test_component.AnyIMapView<String, String>?) throws {
+    open func SplitImpl(_ first: inout test_component.AnyIMapView<String, String>?, _ second: inout test_component.AnyIMapView<String, String>?) throws {
         let (_first, _second) = try ComPtrs.initialize { (_firstAbi, _secondAbi) in
             _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &_firstAbi, &_secondAbi))
@@ -6027,10 +6027,10 @@ internal var __x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CW
     }
 )
 typealias __x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentBridge>
-internal class IMapViewString_IVectorViewTextSegment: test_component.IInspectable {
+public class IMapViewString_IVectorViewTextSegment: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment }
 
-    internal func LookupImpl(_ key: String) throws -> test_component.AnyIVectorView<test_component.TextSegment>? {
+    open func LookupImpl(_ key: String) throws -> test_component.AnyIVectorView<test_component.TextSegment>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             let _key = try! HString(key)
             _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
@@ -6040,7 +6040,7 @@ internal class IMapViewString_IVectorViewTextSegment: test_component.IInspectabl
         return test_component.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentWrapper.unwrapFrom(abi: result)
     }
 
-    internal func get_SizeImpl() throws -> UInt32 {
+    open func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -6048,7 +6048,7 @@ internal class IMapViewString_IVectorViewTextSegment: test_component.IInspectabl
         return result
     }
 
-    internal func HasKeyImpl(_ key: String) throws -> Bool {
+    open func HasKeyImpl(_ key: String) throws -> Bool {
         var result: boolean = 0
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
@@ -6057,7 +6057,7 @@ internal class IMapViewString_IVectorViewTextSegment: test_component.IInspectabl
         return .init(from: result)
     }
 
-    internal func SplitImpl(_ first: inout test_component.AnyIMapView<String, test_component.AnyIVectorView<test_component.TextSegment>?>?, _ second: inout test_component.AnyIMapView<String, test_component.AnyIVectorView<test_component.TextSegment>?>?) throws {
+    open func SplitImpl(_ first: inout test_component.AnyIMapView<String, test_component.AnyIVectorView<test_component.TextSegment>?>?, _ second: inout test_component.AnyIMapView<String, test_component.AnyIVectorView<test_component.TextSegment>?>?) throws {
         let (_first, _second) = try ComPtrs.initialize { (_firstAbi, _secondAbi) in
             _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &_firstAbi, &_secondAbi))
@@ -6193,10 +6193,10 @@ internal var __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTab
     }
 )
 typealias __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge>
-internal class IMapViewString_Base: test_component.IInspectable {
+public class IMapViewString_Base: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
 
-    internal func LookupImpl(_ key: String) throws -> test_component.Base? {
+    open func LookupImpl(_ key: String) throws -> test_component.Base? {
         let (result) = try ComPtrs.initialize { resultAbi in
             let _key = try! HString(key)
             _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
@@ -6206,7 +6206,7 @@ internal class IMapViewString_Base: test_component.IInspectable {
         return .from(abi: result)
     }
 
-    internal func get_SizeImpl() throws -> UInt32 {
+    open func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -6214,7 +6214,7 @@ internal class IMapViewString_Base: test_component.IInspectable {
         return result
     }
 
-    internal func HasKeyImpl(_ key: String) throws -> Bool {
+    open func HasKeyImpl(_ key: String) throws -> Bool {
         var result: boolean = 0
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
@@ -6223,7 +6223,7 @@ internal class IMapViewString_Base: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func SplitImpl(_ first: inout test_component.AnyIMapView<String, test_component.Base?>?, _ second: inout test_component.AnyIMapView<String, test_component.Base?>?) throws {
+    open func SplitImpl(_ first: inout test_component.AnyIMapView<String, test_component.Base?>?, _ second: inout test_component.AnyIMapView<String, test_component.Base?>?) throws {
         let (_first, _second) = try ComPtrs.initialize { (_firstAbi, _secondAbi) in
             _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &_firstAbi, &_secondAbi))
@@ -6378,10 +6378,10 @@ internal var __x_ABI_C__FIMap_2_HSTRING_IInspectableVTable: __x_ABI_C__FIMap_2_H
     }
 )
 typealias __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMap_2_HSTRING_IInspectableBridge>
-internal class IMapString_Any: test_component.IInspectable {
+public class IMapString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMap_2_HSTRING_IInspectable }
 
-    internal func LookupImpl(_ key: String) throws -> Any? {
+    open func LookupImpl(_ key: String) throws -> Any? {
         let (result) = try ComPtrs.initialize { resultAbi in
             let _key = try! HString(key)
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
@@ -6391,7 +6391,7 @@ internal class IMapString_Any: test_component.IInspectable {
         return __ABI_.AnyWrapper.unwrapFrom(abi: result)
     }
 
-    internal func get_SizeImpl() throws -> UInt32 {
+    open func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -6399,7 +6399,7 @@ internal class IMapString_Any: test_component.IInspectable {
         return result
     }
 
-    internal func HasKeyImpl(_ key: String) throws -> Bool {
+    open func HasKeyImpl(_ key: String) throws -> Bool {
         var result: boolean = 0
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
@@ -6408,7 +6408,7 @@ internal class IMapString_Any: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func GetViewImpl() throws -> test_component.AnyIMapView<String, Any?>? {
+    open func GetViewImpl() throws -> test_component.AnyIMapView<String, Any?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &resultAbi))
@@ -6417,7 +6417,7 @@ internal class IMapString_Any: test_component.IInspectable {
         return test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
     }
 
-    internal func InsertImpl(_ key: String, _ value: Any?) throws -> Bool {
+    open func InsertImpl(_ key: String, _ value: Any?) throws -> Bool {
         var result: boolean = 0
         let _key = try! HString(key)
         let valueWrapper = __ABI_.AnyWrapper(value)
@@ -6428,14 +6428,14 @@ internal class IMapString_Any: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func RemoveImpl(_ key: String) throws {
+    open func RemoveImpl(_ key: String) throws {
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Remove(pThis, _key.get()))
         }
     }
 
-    internal func ClearImpl() throws {
+    open func ClearImpl() throws {
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Clear(pThis))
         }
@@ -6600,10 +6600,10 @@ internal var __x_ABI_C__FIMap_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIMap_2_HSTRIN
     }
 )
 typealias __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGBridge>
-internal class IMapString_String: test_component.IInspectable {
+public class IMapString_String: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMap_2_HSTRING_HSTRING }
 
-    internal func LookupImpl(_ key: String) throws -> String {
+    open func LookupImpl(_ key: String) throws -> String {
         var result: HSTRING?
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
@@ -6612,7 +6612,7 @@ internal class IMapString_String: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func get_SizeImpl() throws -> UInt32 {
+    open func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -6620,7 +6620,7 @@ internal class IMapString_String: test_component.IInspectable {
         return result
     }
 
-    internal func HasKeyImpl(_ key: String) throws -> Bool {
+    open func HasKeyImpl(_ key: String) throws -> Bool {
         var result: boolean = 0
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
@@ -6629,7 +6629,7 @@ internal class IMapString_String: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func GetViewImpl() throws -> test_component.AnyIMapView<String, String>? {
+    open func GetViewImpl() throws -> test_component.AnyIMapView<String, String>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &resultAbi))
@@ -6638,7 +6638,7 @@ internal class IMapString_String: test_component.IInspectable {
         return test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
-    internal func InsertImpl(_ key: String, _ value: String) throws -> Bool {
+    open func InsertImpl(_ key: String, _ value: String) throws -> Bool {
         var result: boolean = 0
         let _key = try! HString(key)
         let _value = try! HString(value)
@@ -6648,14 +6648,14 @@ internal class IMapString_String: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func RemoveImpl(_ key: String) throws {
+    open func RemoveImpl(_ key: String) throws {
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Remove(pThis, _key.get()))
         }
     }
 
-    internal func ClearImpl() throws {
+    open func ClearImpl() throws {
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Clear(pThis))
         }
@@ -6821,10 +6821,10 @@ internal var __x_ABI_C__FIMap_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindo
     }
 )
 typealias __x_ABI_C__FIMap_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMap_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentBridge>
-internal class IMapString_IVectorViewTextSegment: test_component.IInspectable {
+public class IMapString_IVectorViewTextSegment: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMap_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment }
 
-    internal func LookupImpl(_ key: String) throws -> test_component.AnyIVectorView<test_component.TextSegment>? {
+    open func LookupImpl(_ key: String) throws -> test_component.AnyIVectorView<test_component.TextSegment>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             let _key = try! HString(key)
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
@@ -6834,7 +6834,7 @@ internal class IMapString_IVectorViewTextSegment: test_component.IInspectable {
         return test_component.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentWrapper.unwrapFrom(abi: result)
     }
 
-    internal func get_SizeImpl() throws -> UInt32 {
+    open func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -6842,7 +6842,7 @@ internal class IMapString_IVectorViewTextSegment: test_component.IInspectable {
         return result
     }
 
-    internal func HasKeyImpl(_ key: String) throws -> Bool {
+    open func HasKeyImpl(_ key: String) throws -> Bool {
         var result: boolean = 0
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
@@ -6851,7 +6851,7 @@ internal class IMapString_IVectorViewTextSegment: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func GetViewImpl() throws -> test_component.AnyIMapView<String, test_component.AnyIVectorView<test_component.TextSegment>?>? {
+    open func GetViewImpl() throws -> test_component.AnyIMapView<String, test_component.AnyIVectorView<test_component.TextSegment>?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &resultAbi))
@@ -6860,7 +6860,7 @@ internal class IMapString_IVectorViewTextSegment: test_component.IInspectable {
         return test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentWrapper.unwrapFrom(abi: result)
     }
 
-    internal func InsertImpl(_ key: String, _ value: test_component.AnyIVectorView<test_component.TextSegment>?) throws -> Bool {
+    open func InsertImpl(_ key: String, _ value: test_component.AnyIVectorView<test_component.TextSegment>?) throws -> Bool {
         var result: boolean = 0
         let _key = try! HString(key)
         let valueWrapper = test_component.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentWrapper(value)
@@ -6871,14 +6871,14 @@ internal class IMapString_IVectorViewTextSegment: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func RemoveImpl(_ key: String) throws {
+    open func RemoveImpl(_ key: String) throws {
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Remove(pThis, _key.get()))
         }
     }
 
-    internal func ClearImpl() throws {
+    open func ClearImpl() throws {
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Clear(pThis))
         }
@@ -7043,10 +7043,10 @@ internal var __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: 
     }
 )
 typealias __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge>
-internal class IMapString_Base: test_component.IInspectable {
+public class IMapString_Base: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
 
-    internal func LookupImpl(_ key: String) throws -> test_component.Base? {
+    open func LookupImpl(_ key: String) throws -> test_component.Base? {
         let (result) = try ComPtrs.initialize { resultAbi in
             let _key = try! HString(key)
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
@@ -7056,7 +7056,7 @@ internal class IMapString_Base: test_component.IInspectable {
         return .from(abi: result)
     }
 
-    internal func get_SizeImpl() throws -> UInt32 {
+    open func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -7064,7 +7064,7 @@ internal class IMapString_Base: test_component.IInspectable {
         return result
     }
 
-    internal func HasKeyImpl(_ key: String) throws -> Bool {
+    open func HasKeyImpl(_ key: String) throws -> Bool {
         var result: boolean = 0
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
@@ -7073,7 +7073,7 @@ internal class IMapString_Base: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func GetViewImpl() throws -> test_component.AnyIMapView<String, test_component.Base?>? {
+    open func GetViewImpl() throws -> test_component.AnyIMapView<String, test_component.Base?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &resultAbi))
@@ -7082,7 +7082,7 @@ internal class IMapString_Base: test_component.IInspectable {
         return test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
 
-    internal func InsertImpl(_ key: String, _ value: test_component.Base?) throws -> Bool {
+    open func InsertImpl(_ key: String, _ value: test_component.Base?) throws -> Bool {
         var result: boolean = 0
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
@@ -7091,14 +7091,14 @@ internal class IMapString_Base: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func RemoveImpl(_ key: String) throws {
+    open func RemoveImpl(_ key: String) throws {
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Remove(pThis, _key.get()))
         }
     }
 
-    internal func ClearImpl() throws {
+    open func ClearImpl() throws {
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Clear(pThis))
         }
@@ -7226,10 +7226,10 @@ internal var __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableVTable: __x_ABI_C_
     }
 )
 typealias __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIObservableMap_2_HSTRING_IInspectableBridge>
-internal class IObservableMapString_Any: test_component.IInspectable {
+public class IObservableMapString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIObservableMap_2_HSTRING_IInspectable }
 
-    internal func add_MapChangedImpl(_ vhnd: MapChangedEventHandler<String, Any?>?) throws -> EventRegistrationToken {
+    open func add_MapChangedImpl(_ vhnd: MapChangedEventHandler<String, Any?>?) throws -> EventRegistrationToken {
         var result: EventRegistrationToken = .init()
         let vhndWrapper = test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper(vhnd)
         let _vhnd = try! vhndWrapper?.toABI { $0 }
@@ -7239,7 +7239,7 @@ internal class IObservableMapString_Any: test_component.IInspectable {
         return result
     }
 
-    internal func remove_MapChangedImpl(_ token: EventRegistrationToken) throws {
+    open func remove_MapChangedImpl(_ token: EventRegistrationToken) throws {
         _ = try perform(as: __x_ABI_C__FIObservableMap_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.remove_MapChanged(pThis, token))
         }
@@ -7381,10 +7381,10 @@ internal var __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGVTable: __x_ABI_C__FIOb
     }
 )
 typealias __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGBridge>
-internal class IObservableMapString_String: test_component.IInspectable {
+public class IObservableMapString_String: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIObservableMap_2_HSTRING_HSTRING }
 
-    internal func add_MapChangedImpl(_ vhnd: MapChangedEventHandler<String, String>?) throws -> EventRegistrationToken {
+    open func add_MapChangedImpl(_ vhnd: MapChangedEventHandler<String, String>?) throws -> EventRegistrationToken {
         var result: EventRegistrationToken = .init()
         let vhndWrapper = test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper(vhnd)
         let _vhnd = try! vhndWrapper?.toABI { $0 }
@@ -7394,7 +7394,7 @@ internal class IObservableMapString_String: test_component.IInspectable {
         return result
     }
 
-    internal func remove_MapChangedImpl(_ token: EventRegistrationToken) throws {
+    open func remove_MapChangedImpl(_ token: EventRegistrationToken) throws {
         _ = try perform(as: __x_ABI_C__FIObservableMap_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.remove_MapChanged(pThis, token))
         }
@@ -7536,10 +7536,10 @@ internal var __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseVTa
     }
 )
 typealias __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseBridge>
-internal class IObservableVectorBase: test_component.IInspectable {
+public class IObservableVectorBase: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase }
 
-    internal func add_VectorChangedImpl(_ vhnd: VectorChangedEventHandler<test_component.Base?>?) throws -> EventRegistrationToken {
+    open func add_VectorChangedImpl(_ vhnd: VectorChangedEventHandler<test_component.Base?>?) throws -> EventRegistrationToken {
         var result: EventRegistrationToken = .init()
         let vhndWrapper = test_component.__x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseWrapper(vhnd)
         let _vhnd = try! vhndWrapper?.toABI { $0 }
@@ -7549,7 +7549,7 @@ internal class IObservableVectorBase: test_component.IInspectable {
         return result
     }
 
-    internal func remove_VectorChangedImpl(_ token: EventRegistrationToken) throws {
+    open func remove_VectorChangedImpl(_ token: EventRegistrationToken) throws {
         _ = try perform(as: __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.remove_VectorChanged(pThis, token))
         }
@@ -7734,10 +7734,10 @@ internal var __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicV
     }
 )
 typealias __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicBridge>
-internal class IObservableVectorIBasic: test_component.IInspectable {
+public class IObservableVectorIBasic: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasic }
 
-    internal func add_VectorChangedImpl(_ vhnd: VectorChangedEventHandler<test_component.AnyIBasic?>?) throws -> EventRegistrationToken {
+    open func add_VectorChangedImpl(_ vhnd: VectorChangedEventHandler<test_component.AnyIBasic?>?) throws -> EventRegistrationToken {
         var result: EventRegistrationToken = .init()
         let vhndWrapper = test_component.__x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicWrapper(vhnd)
         let _vhnd = try! vhndWrapper?.toABI { $0 }
@@ -7747,7 +7747,7 @@ internal class IObservableVectorIBasic: test_component.IInspectable {
         return result
     }
 
-    internal func remove_VectorChangedImpl(_ token: EventRegistrationToken) throws {
+    open func remove_VectorChangedImpl(_ token: EventRegistrationToken) throws {
         _ = try perform(as: __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.remove_VectorChanged(pThis, token))
         }
@@ -7944,10 +7944,10 @@ internal var __x_ABI_C__FIVectorView_1_IInspectableVTable: __x_ABI_C__FIVectorVi
     GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVectorView_1_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1_IInspectableBridge>
-internal class IVectorViewAny: test_component.IInspectable {
+public class IVectorViewAny: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1_IInspectable }
 
-    internal func GetAtImpl(_ index: UInt32) throws -> Any? {
+    open func GetAtImpl(_ index: UInt32) throws -> Any? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVectorView_1_IInspectable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
@@ -7956,7 +7956,7 @@ internal class IVectorViewAny: test_component.IInspectable {
         return __ABI_.AnyWrapper.unwrapFrom(abi: result)
     }
 
-    internal func get_SizeImpl() throws -> UInt32 {
+    open func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -7964,7 +7964,7 @@ internal class IVectorViewAny: test_component.IInspectable {
         return result
     }
 
-    internal func IndexOfImpl(_ value: Any?, _ index: inout UInt32) throws -> Bool {
+    open func IndexOfImpl(_ value: Any?, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         let valueWrapper = __ABI_.AnyWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
@@ -8106,10 +8106,10 @@ internal var __x_ABI_C__FIVectorView_1_GUIDVTable: __x_ABI_C__FIVectorView_1_GUI
     GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVectorView_1_GUIDWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1_GUIDBridge>
-internal class IVectorViewUUID: test_component.IInspectable {
+public class IVectorViewUUID: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1_GUID }
 
-    internal func GetAtImpl(_ index: UInt32) throws -> Foundation.UUID {
+    open func GetAtImpl(_ index: UInt32) throws -> Foundation.UUID {
         var result: test_component.GUID = .init()
         _ = try perform(as: __x_ABI_C__FIVectorView_1_GUID.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
@@ -8117,7 +8117,7 @@ internal class IVectorViewUUID: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func get_SizeImpl() throws -> UInt32 {
+    open func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1_GUID.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -8125,7 +8125,7 @@ internal class IVectorViewUUID: test_component.IInspectable {
         return result
     }
 
-    internal func IndexOfImpl(_ value: Foundation.UUID, _ index: inout UInt32) throws -> Bool {
+    open func IndexOfImpl(_ value: Foundation.UUID, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1_GUID.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, .init(from: value), &index, &result))
@@ -8265,10 +8265,10 @@ internal var __x_ABI_C__FIVectorView_1_HSTRINGVTable: __x_ABI_C__FIVectorView_1_
     GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVectorView_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1_HSTRINGBridge>
-internal class IVectorViewString: test_component.IInspectable {
+public class IVectorViewString: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1_HSTRING }
 
-    internal func GetAtImpl(_ index: UInt32) throws -> String {
+    open func GetAtImpl(_ index: UInt32) throws -> String {
         var result: HSTRING?
         _ = try perform(as: __x_ABI_C__FIVectorView_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
@@ -8276,7 +8276,7 @@ internal class IVectorViewString: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func get_SizeImpl() throws -> UInt32 {
+    open func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -8284,7 +8284,7 @@ internal class IVectorViewString: test_component.IInspectable {
         return result
     }
 
-    internal func IndexOfImpl(_ value: String, _ index: inout UInt32) throws -> Bool {
+    open func IndexOfImpl(_ value: String, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         let _value = try! HString(value)
         _ = try perform(as: __x_ABI_C__FIVectorView_1_HSTRING.self) { pThis in
@@ -8425,10 +8425,10 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegm
     GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentBridge>
-internal class IVectorViewTextSegment: test_component.IInspectable {
+public class IVectorViewTextSegment: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment }
 
-    internal func GetAtImpl(_ index: UInt32) throws -> test_component.TextSegment {
+    open func GetAtImpl(_ index: UInt32) throws -> test_component.TextSegment {
         var result: __x_ABI_CWindows_CData_CText_CTextSegment = .init()
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
@@ -8436,7 +8436,7 @@ internal class IVectorViewTextSegment: test_component.IInspectable {
         return .from(abi: result)
     }
 
-    internal func get_SizeImpl() throws -> UInt32 {
+    open func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -8444,7 +8444,7 @@ internal class IVectorViewTextSegment: test_component.IInspectable {
         return result
     }
 
-    internal func IndexOfImpl(_ value: test_component.TextSegment, _ index: inout UInt32) throws -> Bool {
+    open func IndexOfImpl(_ value: test_component.TextSegment, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, .from(swift: value), &index, &result))
@@ -8585,10 +8585,10 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CFoundation__CIWwwFormU
     GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntryWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntryBridge>
-internal class IVectorViewIWwwFormUrlDecoderEntry: test_component.IInspectable {
+public class IVectorViewIWwwFormUrlDecoderEntry: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntry }
 
-    internal func GetAtImpl(_ index: UInt32) throws -> test_component.AnyIWwwFormUrlDecoderEntry? {
+    open func GetAtImpl(_ index: UInt32) throws -> test_component.AnyIWwwFormUrlDecoderEntry? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntry.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
@@ -8597,7 +8597,7 @@ internal class IVectorViewIWwwFormUrlDecoderEntry: test_component.IInspectable {
         return __ABI_Windows_Foundation.IWwwFormUrlDecoderEntryWrapper.unwrapFrom(abi: result)
     }
 
-    internal func get_SizeImpl() throws -> UInt32 {
+    open func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -8605,7 +8605,7 @@ internal class IVectorViewIWwwFormUrlDecoderEntry: test_component.IInspectable {
         return result
     }
 
-    internal func IndexOfImpl(_ value: test_component.AnyIWwwFormUrlDecoderEntry?, _ index: inout UInt32) throws -> Bool {
+    open func IndexOfImpl(_ value: test_component.AnyIWwwFormUrlDecoderEntry?, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         let valueWrapper = __ABI_Windows_Foundation.IWwwFormUrlDecoderEntryWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
@@ -8748,10 +8748,10 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItem
     GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemBridge>
-internal class IVectorViewIStorageItem: test_component.IInspectable {
+public class IVectorViewIStorageItem: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItem }
 
-    internal func GetAtImpl(_ index: UInt32) throws -> test_component.AnyIStorageItem? {
+    open func GetAtImpl(_ index: UInt32) throws -> test_component.AnyIStorageItem? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
@@ -8760,7 +8760,7 @@ internal class IVectorViewIStorageItem: test_component.IInspectable {
         return __ABI_Windows_Storage.IStorageItemWrapper.unwrapFrom(abi: result)
     }
 
-    internal func get_SizeImpl() throws -> UInt32 {
+    open func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -8768,7 +8768,7 @@ internal class IVectorViewIStorageItem: test_component.IInspectable {
         return result
     }
 
-    internal func IndexOfImpl(_ value: test_component.AnyIStorageItem?, _ index: inout UInt32) throws -> Bool {
+    open func IndexOfImpl(_ value: test_component.AnyIStorageItem?, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         let valueWrapper = __ABI_Windows_Storage.IStorageItemWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
@@ -8911,10 +8911,10 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CSearch__CSor
     GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryBridge>
-internal class IVectorViewSortEntry: test_component.IInspectable {
+public class IVectorViewSortEntry: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry }
 
-    internal func GetAtImpl(_ index: UInt32) throws -> test_component.SortEntry {
+    open func GetAtImpl(_ index: UInt32) throws -> test_component.SortEntry {
         var result: __x_ABI_CWindows_CStorage_CSearch_CSortEntry = .init()
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
@@ -8922,7 +8922,7 @@ internal class IVectorViewSortEntry: test_component.IInspectable {
         return .from(abi: result)
     }
 
-    internal func get_SizeImpl() throws -> UInt32 {
+    open func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -8930,7 +8930,7 @@ internal class IVectorViewSortEntry: test_component.IInspectable {
         return result
     }
 
-    internal func IndexOfImpl(_ value: test_component.SortEntry, _ index: inout UInt32) throws -> Bool {
+    open func IndexOfImpl(_ value: test_component.SortEntry, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         let _value = __ABI_Windows_Storage_Search._ABI_SortEntry(from: value)
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
@@ -9071,10 +9071,10 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileV
     GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileBridge>
-internal class IVectorViewStorageFile: test_component.IInspectable {
+public class IVectorViewStorageFile: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFile }
 
-    internal func GetAtImpl(_ index: UInt32) throws -> test_component.StorageFile? {
+    open func GetAtImpl(_ index: UInt32) throws -> test_component.StorageFile? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
@@ -9083,7 +9083,7 @@ internal class IVectorViewStorageFile: test_component.IInspectable {
         return .from(abi: result)
     }
 
-    internal func get_SizeImpl() throws -> UInt32 {
+    open func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -9091,7 +9091,7 @@ internal class IVectorViewStorageFile: test_component.IInspectable {
         return result
     }
 
-    internal func IndexOfImpl(_ value: test_component.StorageFile?, _ index: inout UInt32) throws -> Bool {
+    open func IndexOfImpl(_ value: test_component.StorageFile?, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, RawPointer(value), &index, &result))
@@ -9231,10 +9231,10 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolde
     GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderBridge>
-internal class IVectorViewStorageFolder: test_component.IInspectable {
+public class IVectorViewStorageFolder: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolder }
 
-    internal func GetAtImpl(_ index: UInt32) throws -> test_component.StorageFolder? {
+    open func GetAtImpl(_ index: UInt32) throws -> test_component.StorageFolder? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
@@ -9243,7 +9243,7 @@ internal class IVectorViewStorageFolder: test_component.IInspectable {
         return .from(abi: result)
     }
 
-    internal func get_SizeImpl() throws -> UInt32 {
+    open func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -9251,7 +9251,7 @@ internal class IVectorViewStorageFolder: test_component.IInspectable {
         return result
     }
 
-    internal func IndexOfImpl(_ value: test_component.StorageFolder?, _ index: inout UInt32) throws -> Bool {
+    open func IndexOfImpl(_ value: test_component.StorageFolder?, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, RawPointer(value), &index, &result))
@@ -9391,10 +9391,10 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibra
     GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeBridge>
-internal class IVectorViewStorageLibraryChange: test_component.IInspectable {
+public class IVectorViewStorageLibraryChange: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChange }
 
-    internal func GetAtImpl(_ index: UInt32) throws -> test_component.StorageLibraryChange? {
+    open func GetAtImpl(_ index: UInt32) throws -> test_component.StorageLibraryChange? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChange.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
@@ -9403,7 +9403,7 @@ internal class IVectorViewStorageLibraryChange: test_component.IInspectable {
         return .from(abi: result)
     }
 
-    internal func get_SizeImpl() throws -> UInt32 {
+    open func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChange.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -9411,7 +9411,7 @@ internal class IVectorViewStorageLibraryChange: test_component.IInspectable {
         return result
     }
 
-    internal func IndexOfImpl(_ value: test_component.StorageLibraryChange?, _ index: inout UInt32) throws -> Bool {
+    open func IndexOfImpl(_ value: test_component.StorageLibraryChange?, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChange.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, RawPointer(value), &index, &result))
@@ -9551,10 +9551,10 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVTable: _
     GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseBridge>
-internal class IVectorViewBase: test_component.IInspectable {
+public class IVectorViewBase: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase }
 
-    internal func GetAtImpl(_ index: UInt32) throws -> test_component.Base? {
+    open func GetAtImpl(_ index: UInt32) throws -> test_component.Base? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
@@ -9563,7 +9563,7 @@ internal class IVectorViewBase: test_component.IInspectable {
         return .from(abi: result)
     }
 
-    internal func get_SizeImpl() throws -> UInt32 {
+    open func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -9571,7 +9571,7 @@ internal class IVectorViewBase: test_component.IInspectable {
         return result
     }
 
-    internal func IndexOfImpl(_ value: test_component.Base?, _ index: inout UInt32) throws -> Bool {
+    open func IndexOfImpl(_ value: test_component.Base?, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, RawPointer(value), &index, &result))
@@ -9712,10 +9712,10 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicVTable:
     GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicBridge>
-internal class IVectorViewIBasic: test_component.IInspectable {
+public class IVectorViewIBasic: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasic }
 
-    internal func GetAtImpl(_ index: UInt32) throws -> test_component.AnyIBasic? {
+    open func GetAtImpl(_ index: UInt32) throws -> test_component.AnyIBasic? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
@@ -9724,7 +9724,7 @@ internal class IVectorViewIBasic: test_component.IInspectable {
         return __ABI_test_component.IBasicWrapper.unwrapFrom(abi: result)
     }
 
-    internal func get_SizeImpl() throws -> UInt32 {
+    open func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -9732,7 +9732,7 @@ internal class IVectorViewIBasic: test_component.IInspectable {
         return result
     }
 
-    internal func IndexOfImpl(_ value: test_component.AnyIBasic?, _ index: inout UInt32) throws -> Bool {
+    open func IndexOfImpl(_ value: test_component.AnyIBasic?, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         let valueWrapper = __ABI_test_component.IBasicWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
@@ -9927,10 +9927,10 @@ internal var __x_ABI_C__FIVector_1_IInspectableVTable: __x_ABI_C__FIVector_1_IIn
     ReplaceAll: { _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVector_1_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVector_1_IInspectableBridge>
-internal class IVectorAny: test_component.IInspectable {
+public class IVectorAny: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVector_1_IInspectable }
 
-    internal func GetAtImpl(_ index: UInt32) throws -> Any? {
+    open func GetAtImpl(_ index: UInt32) throws -> Any? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
@@ -9939,7 +9939,7 @@ internal class IVectorAny: test_component.IInspectable {
         return __ABI_.AnyWrapper.unwrapFrom(abi: result)
     }
 
-    internal func get_SizeImpl() throws -> UInt32 {
+    open func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -9947,7 +9947,7 @@ internal class IVectorAny: test_component.IInspectable {
         return result
     }
 
-    internal func GetViewImpl() throws -> test_component.AnyIVectorView<Any?>? {
+    open func GetViewImpl() throws -> test_component.AnyIVectorView<Any?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &resultAbi))
@@ -9956,7 +9956,7 @@ internal class IVectorAny: test_component.IInspectable {
         return test_component.__x_ABI_C__FIVectorView_1_IInspectableWrapper.unwrapFrom(abi: result)
     }
 
-    internal func IndexOfImpl(_ value: Any?, _ index: inout UInt32) throws -> Bool {
+    open func IndexOfImpl(_ value: Any?, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         let valueWrapper = __ABI_.AnyWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
@@ -9966,7 +9966,7 @@ internal class IVectorAny: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func SetAtImpl(_ index: UInt32, _ value: Any?) throws {
+    open func SetAtImpl(_ index: UInt32, _ value: Any?) throws {
         let valueWrapper = __ABI_.AnyWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
@@ -9974,7 +9974,7 @@ internal class IVectorAny: test_component.IInspectable {
         }
     }
 
-    internal func InsertAtImpl(_ index: UInt32, _ value: Any?) throws {
+    open func InsertAtImpl(_ index: UInt32, _ value: Any?) throws {
         let valueWrapper = __ABI_.AnyWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
@@ -9982,13 +9982,13 @@ internal class IVectorAny: test_component.IInspectable {
         }
     }
 
-    internal func RemoveAtImpl(_ index: UInt32) throws {
+    open func RemoveAtImpl(_ index: UInt32) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAt(pThis, index))
         }
     }
 
-    internal func AppendImpl(_ value: Any?) throws {
+    open func AppendImpl(_ value: Any?) throws {
         let valueWrapper = __ABI_.AnyWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
@@ -9996,13 +9996,13 @@ internal class IVectorAny: test_component.IInspectable {
         }
     }
 
-    internal func RemoveAtEndImpl() throws {
+    open func RemoveAtEndImpl() throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAtEnd(pThis))
         }
     }
 
-    internal func ClearImpl() throws {
+    open func ClearImpl() throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Clear(pThis))
         }
@@ -10236,10 +10236,10 @@ internal var __x_ABI_C__FIVector_1_GUIDVTable: __x_ABI_C__FIVector_1_GUIDVtbl = 
     ReplaceAll: { _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVector_1_GUIDWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVector_1_GUIDBridge>
-internal class IVectorUUID: test_component.IInspectable {
+public class IVectorUUID: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVector_1_GUID }
 
-    internal func GetAtImpl(_ index: UInt32) throws -> Foundation.UUID {
+    open func GetAtImpl(_ index: UInt32) throws -> Foundation.UUID {
         var result: test_component.GUID = .init()
         _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
@@ -10247,7 +10247,7 @@ internal class IVectorUUID: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func get_SizeImpl() throws -> UInt32 {
+    open func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -10255,7 +10255,7 @@ internal class IVectorUUID: test_component.IInspectable {
         return result
     }
 
-    internal func GetViewImpl() throws -> test_component.AnyIVectorView<Foundation.UUID>? {
+    open func GetViewImpl() throws -> test_component.AnyIVectorView<Foundation.UUID>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &resultAbi))
@@ -10264,7 +10264,7 @@ internal class IVectorUUID: test_component.IInspectable {
         return test_component.__x_ABI_C__FIVectorView_1_GUIDWrapper.unwrapFrom(abi: result)
     }
 
-    internal func IndexOfImpl(_ value: Foundation.UUID, _ index: inout UInt32) throws -> Bool {
+    open func IndexOfImpl(_ value: Foundation.UUID, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, .init(from: value), &index, &result))
@@ -10272,37 +10272,37 @@ internal class IVectorUUID: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func SetAtImpl(_ index: UInt32, _ value: Foundation.UUID) throws {
+    open func SetAtImpl(_ index: UInt32, _ value: Foundation.UUID) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.SetAt(pThis, index, .init(from: value)))
         }
     }
 
-    internal func InsertAtImpl(_ index: UInt32, _ value: Foundation.UUID) throws {
+    open func InsertAtImpl(_ index: UInt32, _ value: Foundation.UUID) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.InsertAt(pThis, index, .init(from: value)))
         }
     }
 
-    internal func RemoveAtImpl(_ index: UInt32) throws {
+    open func RemoveAtImpl(_ index: UInt32) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAt(pThis, index))
         }
     }
 
-    internal func AppendImpl(_ value: Foundation.UUID) throws {
+    open func AppendImpl(_ value: Foundation.UUID) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Append(pThis, .init(from: value)))
         }
     }
 
-    internal func RemoveAtEndImpl() throws {
+    open func RemoveAtEndImpl() throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAtEnd(pThis))
         }
     }
 
-    internal func ClearImpl() throws {
+    open func ClearImpl() throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Clear(pThis))
         }
@@ -10536,10 +10536,10 @@ internal var __x_ABI_C__FIVector_1_HSTRINGVTable: __x_ABI_C__FIVector_1_HSTRINGV
     ReplaceAll: { _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVector_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVector_1_HSTRINGBridge>
-internal class IVectorString: test_component.IInspectable {
+public class IVectorString: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVector_1_HSTRING }
 
-    internal func GetAtImpl(_ index: UInt32) throws -> String {
+    open func GetAtImpl(_ index: UInt32) throws -> String {
         var result: HSTRING?
         _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
@@ -10547,7 +10547,7 @@ internal class IVectorString: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func get_SizeImpl() throws -> UInt32 {
+    open func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -10555,7 +10555,7 @@ internal class IVectorString: test_component.IInspectable {
         return result
     }
 
-    internal func GetViewImpl() throws -> test_component.AnyIVectorView<String>? {
+    open func GetViewImpl() throws -> test_component.AnyIVectorView<String>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &resultAbi))
@@ -10564,7 +10564,7 @@ internal class IVectorString: test_component.IInspectable {
         return test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
-    internal func IndexOfImpl(_ value: String, _ index: inout UInt32) throws -> Bool {
+    open func IndexOfImpl(_ value: String, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         let _value = try! HString(value)
         _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
@@ -10573,40 +10573,40 @@ internal class IVectorString: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func SetAtImpl(_ index: UInt32, _ value: String) throws {
+    open func SetAtImpl(_ index: UInt32, _ value: String) throws {
         let _value = try! HString(value)
         _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.SetAt(pThis, index, _value.get()))
         }
     }
 
-    internal func InsertAtImpl(_ index: UInt32, _ value: String) throws {
+    open func InsertAtImpl(_ index: UInt32, _ value: String) throws {
         let _value = try! HString(value)
         _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.InsertAt(pThis, index, _value.get()))
         }
     }
 
-    internal func RemoveAtImpl(_ index: UInt32) throws {
+    open func RemoveAtImpl(_ index: UInt32) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAt(pThis, index))
         }
     }
 
-    internal func AppendImpl(_ value: String) throws {
+    open func AppendImpl(_ value: String) throws {
         let _value = try! HString(value)
         _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Append(pThis, _value.get()))
         }
     }
 
-    internal func RemoveAtEndImpl() throws {
+    open func RemoveAtEndImpl() throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAtEnd(pThis))
         }
     }
 
-    internal func ClearImpl() throws {
+    open func ClearImpl() throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Clear(pThis))
         }
@@ -10841,10 +10841,10 @@ internal var __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEnt
     ReplaceAll: { _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryBridge>
-internal class IVectorSortEntry: test_component.IInspectable {
+public class IVectorSortEntry: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry }
 
-    internal func GetAtImpl(_ index: UInt32) throws -> test_component.SortEntry {
+    open func GetAtImpl(_ index: UInt32) throws -> test_component.SortEntry {
         var result: __x_ABI_CWindows_CStorage_CSearch_CSortEntry = .init()
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
@@ -10852,7 +10852,7 @@ internal class IVectorSortEntry: test_component.IInspectable {
         return .from(abi: result)
     }
 
-    internal func get_SizeImpl() throws -> UInt32 {
+    open func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -10860,7 +10860,7 @@ internal class IVectorSortEntry: test_component.IInspectable {
         return result
     }
 
-    internal func GetViewImpl() throws -> test_component.AnyIVectorView<test_component.SortEntry>? {
+    open func GetViewImpl() throws -> test_component.AnyIVectorView<test_component.SortEntry>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &resultAbi))
@@ -10869,7 +10869,7 @@ internal class IVectorSortEntry: test_component.IInspectable {
         return test_component.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryWrapper.unwrapFrom(abi: result)
     }
 
-    internal func IndexOfImpl(_ value: test_component.SortEntry, _ index: inout UInt32) throws -> Bool {
+    open func IndexOfImpl(_ value: test_component.SortEntry, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         let _value = __ABI_Windows_Storage_Search._ABI_SortEntry(from: value)
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
@@ -10878,40 +10878,40 @@ internal class IVectorSortEntry: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func SetAtImpl(_ index: UInt32, _ value: test_component.SortEntry) throws {
+    open func SetAtImpl(_ index: UInt32, _ value: test_component.SortEntry) throws {
         let _value = __ABI_Windows_Storage_Search._ABI_SortEntry(from: value)
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.SetAt(pThis, index, _value.val))
         }
     }
 
-    internal func InsertAtImpl(_ index: UInt32, _ value: test_component.SortEntry) throws {
+    open func InsertAtImpl(_ index: UInt32, _ value: test_component.SortEntry) throws {
         let _value = __ABI_Windows_Storage_Search._ABI_SortEntry(from: value)
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.InsertAt(pThis, index, _value.val))
         }
     }
 
-    internal func RemoveAtImpl(_ index: UInt32) throws {
+    open func RemoveAtImpl(_ index: UInt32) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAt(pThis, index))
         }
     }
 
-    internal func AppendImpl(_ value: test_component.SortEntry) throws {
+    open func AppendImpl(_ value: test_component.SortEntry) throws {
         let _value = __ABI_Windows_Storage_Search._ABI_SortEntry(from: value)
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Append(pThis, _value.val))
         }
     }
 
-    internal func RemoveAtEndImpl() throws {
+    open func RemoveAtEndImpl() throws {
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAtEnd(pThis))
         }
     }
 
-    internal func ClearImpl() throws {
+    open func ClearImpl() throws {
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Clear(pThis))
         }
@@ -11145,10 +11145,10 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_A
     ReplaceAll: { _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseBridge>
-internal class IVectorBase: test_component.IInspectable {
+public class IVectorBase: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase }
 
-    internal func GetAtImpl(_ index: UInt32) throws -> test_component.Base? {
+    open func GetAtImpl(_ index: UInt32) throws -> test_component.Base? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
@@ -11157,7 +11157,7 @@ internal class IVectorBase: test_component.IInspectable {
         return .from(abi: result)
     }
 
-    internal func get_SizeImpl() throws -> UInt32 {
+    open func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -11165,7 +11165,7 @@ internal class IVectorBase: test_component.IInspectable {
         return result
     }
 
-    internal func GetViewImpl() throws -> test_component.AnyIVectorView<test_component.Base?>? {
+    open func GetViewImpl() throws -> test_component.AnyIVectorView<test_component.Base?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &resultAbi))
@@ -11174,7 +11174,7 @@ internal class IVectorBase: test_component.IInspectable {
         return test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
 
-    internal func IndexOfImpl(_ value: test_component.Base?, _ index: inout UInt32) throws -> Bool {
+    open func IndexOfImpl(_ value: test_component.Base?, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, RawPointer(value), &index, &result))
@@ -11182,37 +11182,37 @@ internal class IVectorBase: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func SetAtImpl(_ index: UInt32, _ value: test_component.Base?) throws {
+    open func SetAtImpl(_ index: UInt32, _ value: test_component.Base?) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.SetAt(pThis, index, RawPointer(value)))
         }
     }
 
-    internal func InsertAtImpl(_ index: UInt32, _ value: test_component.Base?) throws {
+    open func InsertAtImpl(_ index: UInt32, _ value: test_component.Base?) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.InsertAt(pThis, index, RawPointer(value)))
         }
     }
 
-    internal func RemoveAtImpl(_ index: UInt32) throws {
+    open func RemoveAtImpl(_ index: UInt32) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAt(pThis, index))
         }
     }
 
-    internal func AppendImpl(_ value: test_component.Base?) throws {
+    open func AppendImpl(_ value: test_component.Base?) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Append(pThis, RawPointer(value)))
         }
     }
 
-    internal func RemoveAtEndImpl() throws {
+    open func RemoveAtEndImpl() throws {
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAtEnd(pThis))
         }
     }
 
-    internal func ClearImpl() throws {
+    open func ClearImpl() throws {
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Clear(pThis))
         }
@@ -11447,10 +11447,10 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicVTable: __x
     ReplaceAll: { _, _, _ in return failWith(hr: E_NOTIMPL) }
 )
 typealias __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicBridge>
-internal class IVectorIBasic: test_component.IInspectable {
+public class IVectorIBasic: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic }
 
-    internal func GetAtImpl(_ index: UInt32) throws -> test_component.AnyIBasic? {
+    open func GetAtImpl(_ index: UInt32) throws -> test_component.AnyIBasic? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
@@ -11459,7 +11459,7 @@ internal class IVectorIBasic: test_component.IInspectable {
         return __ABI_test_component.IBasicWrapper.unwrapFrom(abi: result)
     }
 
-    internal func get_SizeImpl() throws -> UInt32 {
+    open func get_SizeImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -11467,7 +11467,7 @@ internal class IVectorIBasic: test_component.IInspectable {
         return result
     }
 
-    internal func GetViewImpl() throws -> test_component.AnyIVectorView<test_component.AnyIBasic?>? {
+    open func GetViewImpl() throws -> test_component.AnyIVectorView<test_component.AnyIBasic?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &resultAbi))
@@ -11476,7 +11476,7 @@ internal class IVectorIBasic: test_component.IInspectable {
         return test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.unwrapFrom(abi: result)
     }
 
-    internal func IndexOfImpl(_ value: test_component.AnyIBasic?, _ index: inout UInt32) throws -> Bool {
+    open func IndexOfImpl(_ value: test_component.AnyIBasic?, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         let valueWrapper = __ABI_test_component.IBasicWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
@@ -11486,7 +11486,7 @@ internal class IVectorIBasic: test_component.IInspectable {
         return .init(from: result)
     }
 
-    internal func SetAtImpl(_ index: UInt32, _ value: test_component.AnyIBasic?) throws {
+    open func SetAtImpl(_ index: UInt32, _ value: test_component.AnyIBasic?) throws {
         let valueWrapper = __ABI_test_component.IBasicWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
@@ -11494,7 +11494,7 @@ internal class IVectorIBasic: test_component.IInspectable {
         }
     }
 
-    internal func InsertAtImpl(_ index: UInt32, _ value: test_component.AnyIBasic?) throws {
+    open func InsertAtImpl(_ index: UInt32, _ value: test_component.AnyIBasic?) throws {
         let valueWrapper = __ABI_test_component.IBasicWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
@@ -11502,13 +11502,13 @@ internal class IVectorIBasic: test_component.IInspectable {
         }
     }
 
-    internal func RemoveAtImpl(_ index: UInt32) throws {
+    open func RemoveAtImpl(_ index: UInt32) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAt(pThis, index))
         }
     }
 
-    internal func AppendImpl(_ value: test_component.AnyIBasic?) throws {
+    open func AppendImpl(_ value: test_component.AnyIBasic?) throws {
         let valueWrapper = __ABI_test_component.IBasicWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
@@ -11516,13 +11516,13 @@ internal class IVectorIBasic: test_component.IInspectable {
         }
     }
 
-    internal func RemoveAtEndImpl() throws {
+    open func RemoveAtEndImpl() throws {
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAtEnd(pThis))
         }
     }
 
-    internal func ClearImpl() throws {
+    open func ClearImpl() throws {
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Clear(pThis))
         }
@@ -11669,10 +11669,10 @@ internal var __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableVTable: __
     }
 )
 typealias __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableBridge>
-internal class MapChangedEventHandlerString_Any: test_component.IUnknown {
+public class MapChangedEventHandlerString_Any: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectable }
 
-    internal func InvokeImpl(_ sender: test_component.AnyIObservableMap<String, Any?>?, _ event: test_component.AnyIMapChangedEventArgs<String>?) throws {
+    open func InvokeImpl(_ sender: test_component.AnyIObservableMap<String, Any?>?, _ event: test_component.AnyIMapChangedEventArgs<String>?) throws {
         let senderWrapper = test_component.__x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper(sender)
         let _sender = try! senderWrapper?.toABI { $0 }
         let eventWrapper = test_component.__x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper(event)
@@ -11724,10 +11724,10 @@ internal var __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGVTable: __x_ABI
     }
 )
 typealias __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGBridge>
-internal class MapChangedEventHandlerString_String: test_component.IUnknown {
+public class MapChangedEventHandlerString_String: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRING }
 
-    internal func InvokeImpl(_ sender: test_component.AnyIObservableMap<String, String>?, _ event: test_component.AnyIMapChangedEventArgs<String>?) throws {
+    open func InvokeImpl(_ sender: test_component.AnyIObservableMap<String, String>?, _ event: test_component.AnyIMapChangedEventArgs<String>?) throws {
         let senderWrapper = test_component.__x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper(sender)
         let _sender = try! senderWrapper?.toABI { $0 }
         let eventWrapper = test_component.__x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper(event)
@@ -11779,10 +11779,10 @@ internal var __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__
     }
 )
 typealias __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseBridge>
-internal class VectorChangedEventHandlerBase: test_component.IUnknown {
+public class VectorChangedEventHandlerBase: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBase }
 
-    internal func InvokeImpl(_ sender: test_component.AnyIObservableVector<test_component.Base?>?, _ event: test_component.AnyIVectorChangedEventArgs?) throws {
+    open func InvokeImpl(_ sender: test_component.AnyIObservableVector<test_component.Base?>?, _ event: test_component.AnyIVectorChangedEventArgs?) throws {
         let senderWrapper = test_component.__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper(sender)
         let _sender = try! senderWrapper?.toABI { $0 }
         let eventWrapper = __ABI_Windows_Foundation_Collections.IVectorChangedEventArgsWrapper(event)
@@ -11834,10 +11834,10 @@ internal var __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__
     }
 )
 typealias __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicBridge>
-internal class VectorChangedEventHandlerIBasic: test_component.IUnknown {
+public class VectorChangedEventHandlerIBasic: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasic }
 
-    internal func InvokeImpl(_ sender: test_component.AnyIObservableVector<test_component.AnyIBasic?>?, _ event: test_component.AnyIVectorChangedEventArgs?) throws {
+    open func InvokeImpl(_ sender: test_component.AnyIObservableVector<test_component.AnyIBasic?>?, _ event: test_component.AnyIVectorChangedEventArgs?) throws {
         let senderWrapper = test_component.__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper(sender)
         let _sender = try! senderWrapper?.toABI { $0 }
         let eventWrapper = __ABI_Windows_Foundation_Collections.IVectorChangedEventArgsWrapper(event)
@@ -11889,10 +11889,10 @@ internal var __x_ABI_C__FIEventHandler_1_IInspectableVTable: __x_ABI_C__FIEventH
     }
 )
 typealias __x_ABI_C__FIEventHandler_1_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIEventHandler_1_IInspectableBridge>
-internal class EventHandlerAny: test_component.IUnknown {
+public class EventHandlerAny: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIEventHandler_1_IInspectable }
 
-    internal func InvokeImpl(_ sender: Any?, _ args: Any?) throws {
+    open func InvokeImpl(_ sender: Any?, _ args: Any?) throws {
         let senderWrapper = __ABI_.AnyWrapper(sender)
         let _sender = try! senderWrapper?.toABI { $0 }
         let argsWrapper = __ABI_.AnyWrapper(args)
@@ -11991,10 +11991,10 @@ internal var __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleVTable: __x_ABI
     }
 )
 typealias __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleBridge>
-internal class IAsyncOperationWithProgressInt32_Double: test_component.IInspectable {
+public class IAsyncOperationWithProgressInt32_Double: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationWithProgress_2_int_double }
 
-    internal func put_ProgressImpl(_ handler: AsyncOperationProgressHandler<Int32, Double>?) throws {
+    open func put_ProgressImpl(_ handler: AsyncOperationProgressHandler<Int32, Double>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2_int_double.self) { pThis in
@@ -12002,7 +12002,7 @@ internal class IAsyncOperationWithProgressInt32_Double: test_component.IInspecta
         }
     }
 
-    internal func get_ProgressImpl() throws -> AsyncOperationProgressHandler<Int32, Double>? {
+    open func get_ProgressImpl() throws -> AsyncOperationProgressHandler<Int32, Double>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2_int_double.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Progress(pThis, &resultAbi))
@@ -12011,7 +12011,7 @@ internal class IAsyncOperationWithProgressInt32_Double: test_component.IInspecta
         return test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper.unwrapFrom(abi: result)
     }
 
-    internal func put_CompletedImpl(_ handler: AsyncOperationWithProgressCompletedHandler<Int32, Double>?) throws {
+    open func put_CompletedImpl(_ handler: AsyncOperationWithProgressCompletedHandler<Int32, Double>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2_int_double.self) { pThis in
@@ -12019,7 +12019,7 @@ internal class IAsyncOperationWithProgressInt32_Double: test_component.IInspecta
         }
     }
 
-    internal func get_CompletedImpl() throws -> AsyncOperationWithProgressCompletedHandler<Int32, Double>? {
+    open func get_CompletedImpl() throws -> AsyncOperationWithProgressCompletedHandler<Int32, Double>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2_int_double.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -12028,7 +12028,7 @@ internal class IAsyncOperationWithProgressInt32_Double: test_component.IInspecta
         return test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWrapper.unwrapFrom(abi: result)
     }
 
-    internal func GetResultsImpl() throws -> Int32 {
+    open func GetResultsImpl() throws -> Int32 {
         var result: INT32 = 0
         _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2_int_double.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &result))
@@ -12182,10 +12182,10 @@ internal var __x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32VTable: __x_
     }
 )
 typealias __x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32Wrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32Bridge>
-internal class IAsyncOperationWithProgressUInt32_UInt32: test_component.IInspectable {
+public class IAsyncOperationWithProgressUInt32_UInt32: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32 }
 
-    internal func put_ProgressImpl(_ handler: AsyncOperationProgressHandler<UInt32, UInt32>?) throws {
+    open func put_ProgressImpl(_ handler: AsyncOperationProgressHandler<UInt32, UInt32>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2_UINT32_UINT32Wrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32.self) { pThis in
@@ -12193,7 +12193,7 @@ internal class IAsyncOperationWithProgressUInt32_UInt32: test_component.IInspect
         }
     }
 
-    internal func get_ProgressImpl() throws -> AsyncOperationProgressHandler<UInt32, UInt32>? {
+    open func get_ProgressImpl() throws -> AsyncOperationProgressHandler<UInt32, UInt32>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Progress(pThis, &resultAbi))
@@ -12202,7 +12202,7 @@ internal class IAsyncOperationWithProgressUInt32_UInt32: test_component.IInspect
         return test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2_UINT32_UINT32Wrapper.unwrapFrom(abi: result)
     }
 
-    internal func put_CompletedImpl(_ handler: AsyncOperationWithProgressCompletedHandler<UInt32, UInt32>?) throws {
+    open func put_CompletedImpl(_ handler: AsyncOperationWithProgressCompletedHandler<UInt32, UInt32>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_UINT32_UINT32Wrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32.self) { pThis in
@@ -12210,7 +12210,7 @@ internal class IAsyncOperationWithProgressUInt32_UInt32: test_component.IInspect
         }
     }
 
-    internal func get_CompletedImpl() throws -> AsyncOperationWithProgressCompletedHandler<UInt32, UInt32>? {
+    open func get_CompletedImpl() throws -> AsyncOperationWithProgressCompletedHandler<UInt32, UInt32>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -12219,7 +12219,7 @@ internal class IAsyncOperationWithProgressUInt32_UInt32: test_component.IInspect
         return test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_UINT32_UINT32Wrapper.unwrapFrom(abi: result)
     }
 
-    internal func GetResultsImpl() throws -> UInt32 {
+    open func GetResultsImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &result))
@@ -12374,10 +12374,10 @@ internal var __x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorag
     }
 )
 typealias __x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Bridge>
-internal class IAsyncOperationWithProgressIBuffer_UInt32: test_component.IInspectable {
+public class IAsyncOperationWithProgressIBuffer_UInt32: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32 }
 
-    internal func put_ProgressImpl(_ handler: AsyncOperationProgressHandler<test_component.AnyIBuffer?, UInt32>?) throws {
+    open func put_ProgressImpl(_ handler: AsyncOperationProgressHandler<test_component.AnyIBuffer?, UInt32>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32.self) { pThis in
@@ -12385,7 +12385,7 @@ internal class IAsyncOperationWithProgressIBuffer_UInt32: test_component.IInspec
         }
     }
 
-    internal func get_ProgressImpl() throws -> AsyncOperationProgressHandler<test_component.AnyIBuffer?, UInt32>? {
+    open func get_ProgressImpl() throws -> AsyncOperationProgressHandler<test_component.AnyIBuffer?, UInt32>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Progress(pThis, &resultAbi))
@@ -12394,7 +12394,7 @@ internal class IAsyncOperationWithProgressIBuffer_UInt32: test_component.IInspec
         return test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper.unwrapFrom(abi: result)
     }
 
-    internal func put_CompletedImpl(_ handler: AsyncOperationWithProgressCompletedHandler<test_component.AnyIBuffer?, UInt32>?) throws {
+    open func put_CompletedImpl(_ handler: AsyncOperationWithProgressCompletedHandler<test_component.AnyIBuffer?, UInt32>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32.self) { pThis in
@@ -12402,7 +12402,7 @@ internal class IAsyncOperationWithProgressIBuffer_UInt32: test_component.IInspec
         }
     }
 
-    internal func get_CompletedImpl() throws -> AsyncOperationWithProgressCompletedHandler<test_component.AnyIBuffer?, UInt32>? {
+    open func get_CompletedImpl() throws -> AsyncOperationWithProgressCompletedHandler<test_component.AnyIBuffer?, UInt32>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -12411,7 +12411,7 @@ internal class IAsyncOperationWithProgressIBuffer_UInt32: test_component.IInspec
         return test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper.unwrapFrom(abi: result)
     }
 
-    internal func GetResultsImpl() throws -> test_component.AnyIBuffer? {
+    open func GetResultsImpl() throws -> test_component.AnyIBuffer? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -12551,10 +12551,10 @@ internal var __x_ABI_C__FIAsyncOperation_1_booleanVTable: __x_ABI_C__FIAsyncOper
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1_booleanWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1_booleanBridge>
-internal class IAsyncOperationBool: test_component.IInspectable {
+public class IAsyncOperationBool: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1_boolean }
 
-    internal func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<Bool>?) throws {
+    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<Bool>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_booleanWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_boolean.self) { pThis in
@@ -12562,7 +12562,7 @@ internal class IAsyncOperationBool: test_component.IInspectable {
         }
     }
 
-    internal func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<Bool>? {
+    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<Bool>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_boolean.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -12571,7 +12571,7 @@ internal class IAsyncOperationBool: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_booleanWrapper.unwrapFrom(abi: result)
     }
 
-    internal func GetResultsImpl() throws -> Bool {
+    open func GetResultsImpl() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_boolean.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &result))
@@ -12703,10 +12703,10 @@ internal var __x_ABI_C__FIAsyncOperation_1_intVTable: __x_ABI_C__FIAsyncOperatio
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1_intWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1_intBridge>
-internal class IAsyncOperationInt32: test_component.IInspectable {
+public class IAsyncOperationInt32: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1_int }
 
-    internal func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<Int32>?) throws {
+    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<Int32>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_int.self) { pThis in
@@ -12714,7 +12714,7 @@ internal class IAsyncOperationInt32: test_component.IInspectable {
         }
     }
 
-    internal func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<Int32>? {
+    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<Int32>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_int.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -12723,7 +12723,7 @@ internal class IAsyncOperationInt32: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper.unwrapFrom(abi: result)
     }
 
-    internal func GetResultsImpl() throws -> Int32 {
+    open func GetResultsImpl() throws -> Int32 {
         var result: INT32 = 0
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_int.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &result))
@@ -12855,10 +12855,10 @@ internal var __x_ABI_C__FIAsyncOperation_1_HSTRINGVTable: __x_ABI_C__FIAsyncOper
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1_HSTRINGBridge>
-internal class IAsyncOperationString: test_component.IInspectable {
+public class IAsyncOperationString: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1_HSTRING }
 
-    internal func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<String>?) throws {
+    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<String>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_HSTRINGWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_HSTRING.self) { pThis in
@@ -12866,7 +12866,7 @@ internal class IAsyncOperationString: test_component.IInspectable {
         }
     }
 
-    internal func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<String>? {
+    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<String>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -12875,7 +12875,7 @@ internal class IAsyncOperationString: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
-    internal func GetResultsImpl() throws -> String {
+    open func GetResultsImpl() throws -> String {
         var result: HSTRING?
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &result))
@@ -13007,10 +13007,10 @@ internal var __x_ABI_C__FIAsyncOperation_1_UINT32VTable: __x_ABI_C__FIAsyncOpera
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1_UINT32Wrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1_UINT32Bridge>
-internal class IAsyncOperationUInt32: test_component.IInspectable {
+public class IAsyncOperationUInt32: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1_UINT32 }
 
-    internal func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<UInt32>?) throws {
+    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<UInt32>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_UINT32Wrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_UINT32.self) { pThis in
@@ -13018,7 +13018,7 @@ internal class IAsyncOperationUInt32: test_component.IInspectable {
         }
     }
 
-    internal func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<UInt32>? {
+    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<UInt32>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_UINT32.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -13027,7 +13027,7 @@ internal class IAsyncOperationUInt32: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_UINT32Wrapper.unwrapFrom(abi: result)
     }
 
-    internal func GetResultsImpl() throws -> UInt32 {
+    open func GetResultsImpl() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_UINT32.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &result))
@@ -13160,10 +13160,10 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIMap_2_HSTRING_IInspectab
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIMap_2_HSTRING_IInspectableBridge>
-internal class IAsyncOperationIMapString_Any: test_component.IInspectable {
+public class IAsyncOperationIMapString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIMap_2_HSTRING_IInspectable }
 
-    internal func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.AnyIMap<String, Any?>?>?) throws {
+    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.AnyIMap<String, Any?>?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
@@ -13171,7 +13171,7 @@ internal class IAsyncOperationIMapString_Any: test_component.IInspectable {
         }
     }
 
-    internal func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.AnyIMap<String, Any?>?>? {
+    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.AnyIMap<String, Any?>?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -13180,7 +13180,7 @@ internal class IAsyncOperationIMapString_Any: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
     }
 
-    internal func GetResultsImpl() throws -> test_component.AnyIMap<String, Any?>? {
+    open func GetResultsImpl() throws -> test_component.AnyIMap<String, Any?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -13314,10 +13314,10 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWi
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemBridge>
-internal class IAsyncOperationIVectorViewIStorageItem: test_component.IInspectable {
+public class IAsyncOperationIVectorViewIStorageItem: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItem }
 
-    internal func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.AnyIStorageItem?>?>?) throws {
+    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.AnyIStorageItem?>?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
@@ -13325,7 +13325,7 @@ internal class IAsyncOperationIVectorViewIStorageItem: test_component.IInspectab
         }
     }
 
-    internal func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.AnyIStorageItem?>?>? {
+    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.AnyIStorageItem?>?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -13334,7 +13334,7 @@ internal class IAsyncOperationIVectorViewIStorageItem: test_component.IInspectab
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper.unwrapFrom(abi: result)
     }
 
-    internal func GetResultsImpl() throws -> test_component.AnyIVectorView<test_component.AnyIStorageItem?>? {
+    open func GetResultsImpl() throws -> test_component.AnyIVectorView<test_component.AnyIStorageItem?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -13468,10 +13468,10 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWi
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileBridge>
-internal class IAsyncOperationIVectorViewStorageFile: test_component.IInspectable {
+public class IAsyncOperationIVectorViewStorageFile: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFile }
 
-    internal func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.StorageFile?>?>?) throws {
+    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.StorageFile?>?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
@@ -13479,7 +13479,7 @@ internal class IAsyncOperationIVectorViewStorageFile: test_component.IInspectabl
         }
     }
 
-    internal func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.StorageFile?>?>? {
+    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.StorageFile?>?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -13488,7 +13488,7 @@ internal class IAsyncOperationIVectorViewStorageFile: test_component.IInspectabl
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.unwrapFrom(abi: result)
     }
 
-    internal func GetResultsImpl() throws -> test_component.AnyIVectorView<test_component.StorageFile?>? {
+    open func GetResultsImpl() throws -> test_component.AnyIVectorView<test_component.StorageFile?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -13622,10 +13622,10 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWi
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderBridge>
-internal class IAsyncOperationIVectorViewStorageFolder: test_component.IInspectable {
+public class IAsyncOperationIVectorViewStorageFolder: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolder }
 
-    internal func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.StorageFolder?>?>?) throws {
+    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.StorageFolder?>?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
@@ -13633,7 +13633,7 @@ internal class IAsyncOperationIVectorViewStorageFolder: test_component.IInspecta
         }
     }
 
-    internal func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.StorageFolder?>?>? {
+    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.StorageFolder?>?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -13642,7 +13642,7 @@ internal class IAsyncOperationIVectorViewStorageFolder: test_component.IInspecta
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.unwrapFrom(abi: result)
     }
 
-    internal func GetResultsImpl() throws -> test_component.AnyIVectorView<test_component.StorageFolder?>? {
+    open func GetResultsImpl() throws -> test_component.AnyIVectorView<test_component.StorageFolder?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -13776,10 +13776,10 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWi
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeBridge>
-internal class IAsyncOperationIVectorViewStorageLibraryChange: test_component.IInspectable {
+public class IAsyncOperationIVectorViewStorageLibraryChange: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChange }
 
-    internal func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.StorageLibraryChange?>?>?) throws {
+    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.StorageLibraryChange?>?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChange.self) { pThis in
@@ -13787,7 +13787,7 @@ internal class IAsyncOperationIVectorViewStorageLibraryChange: test_component.II
         }
     }
 
-    internal func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.StorageLibraryChange?>?>? {
+    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.StorageLibraryChange?>?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChange.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -13796,7 +13796,7 @@ internal class IAsyncOperationIVectorViewStorageLibraryChange: test_component.II
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeWrapper.unwrapFrom(abi: result)
     }
 
-    internal func GetResultsImpl() throws -> test_component.AnyIVectorView<test_component.StorageLibraryChange?>? {
+    open func GetResultsImpl() throws -> test_component.AnyIVectorView<test_component.StorageLibraryChange?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChange.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -13930,10 +13930,10 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVector_1_HSTRINGVTable: 
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVector_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVector_1_HSTRINGBridge>
-internal class IAsyncOperationIVectorString: test_component.IInspectable {
+public class IAsyncOperationIVectorString: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVector_1_HSTRING }
 
-    internal func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.AnyIVector<String>?>?) throws {
+    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.AnyIVector<String>?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector_1_HSTRINGWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVector_1_HSTRING.self) { pThis in
@@ -13941,7 +13941,7 @@ internal class IAsyncOperationIVectorString: test_component.IInspectable {
         }
     }
 
-    internal func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.AnyIVector<String>?>? {
+    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.AnyIVector<String>?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVector_1_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -13950,7 +13950,7 @@ internal class IAsyncOperationIVectorString: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector_1_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
-    internal func GetResultsImpl() throws -> test_component.AnyIVector<String>? {
+    open func GetResultsImpl() throws -> test_component.AnyIVector<String>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVector_1_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -14083,10 +14083,10 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProp
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicPropertiesWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicPropertiesBridge>
-internal class IAsyncOperationBasicProperties: test_component.IInspectable {
+public class IAsyncOperationBasicProperties: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicProperties }
 
-    internal func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.BasicProperties?>?) throws {
+    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.BasicProperties?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicPropertiesWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicProperties.self) { pThis in
@@ -14094,7 +14094,7 @@ internal class IAsyncOperationBasicProperties: test_component.IInspectable {
         }
     }
 
-    internal func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.BasicProperties?>? {
+    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.BasicProperties?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -14103,7 +14103,7 @@ internal class IAsyncOperationBasicProperties: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicPropertiesWrapper.unwrapFrom(abi: result)
     }
 
-    internal func GetResultsImpl() throws -> test_component.BasicProperties? {
+    open func GetResultsImpl() throws -> test_component.BasicProperties? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -14236,10 +14236,10 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProp
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentPropertiesWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentPropertiesBridge>
-internal class IAsyncOperationDocumentProperties: test_component.IInspectable {
+public class IAsyncOperationDocumentProperties: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentProperties }
 
-    internal func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.DocumentProperties?>?) throws {
+    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.DocumentProperties?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentPropertiesWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentProperties.self) { pThis in
@@ -14247,7 +14247,7 @@ internal class IAsyncOperationDocumentProperties: test_component.IInspectable {
         }
     }
 
-    internal func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.DocumentProperties?>? {
+    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.DocumentProperties?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -14256,7 +14256,7 @@ internal class IAsyncOperationDocumentProperties: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentPropertiesWrapper.unwrapFrom(abi: result)
     }
 
-    internal func GetResultsImpl() throws -> test_component.DocumentProperties? {
+    open func GetResultsImpl() throws -> test_component.DocumentProperties? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -14389,10 +14389,10 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProp
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CImagePropertiesWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CImagePropertiesBridge>
-internal class IAsyncOperationImageProperties: test_component.IInspectable {
+public class IAsyncOperationImageProperties: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CImageProperties }
 
-    internal func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.ImageProperties?>?) throws {
+    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.ImageProperties?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CImagePropertiesWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CImageProperties.self) { pThis in
@@ -14400,7 +14400,7 @@ internal class IAsyncOperationImageProperties: test_component.IInspectable {
         }
     }
 
-    internal func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.ImageProperties?>? {
+    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.ImageProperties?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CImageProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -14409,7 +14409,7 @@ internal class IAsyncOperationImageProperties: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CImagePropertiesWrapper.unwrapFrom(abi: result)
     }
 
-    internal func GetResultsImpl() throws -> test_component.ImageProperties? {
+    open func GetResultsImpl() throws -> test_component.ImageProperties? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CImageProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -14542,10 +14542,10 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProp
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicPropertiesWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicPropertiesBridge>
-internal class IAsyncOperationMusicProperties: test_component.IInspectable {
+public class IAsyncOperationMusicProperties: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicProperties }
 
-    internal func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.MusicProperties?>?) throws {
+    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.MusicProperties?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicPropertiesWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicProperties.self) { pThis in
@@ -14553,7 +14553,7 @@ internal class IAsyncOperationMusicProperties: test_component.IInspectable {
         }
     }
 
-    internal func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.MusicProperties?>? {
+    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.MusicProperties?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -14562,7 +14562,7 @@ internal class IAsyncOperationMusicProperties: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicPropertiesWrapper.unwrapFrom(abi: result)
     }
 
-    internal func GetResultsImpl() throws -> test_component.MusicProperties? {
+    open func GetResultsImpl() throws -> test_component.MusicProperties? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -14695,10 +14695,10 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProp
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailBridge>
-internal class IAsyncOperationStorageItemThumbnail: test_component.IInspectable {
+public class IAsyncOperationStorageItemThumbnail: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnail }
 
-    internal func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.StorageItemThumbnail?>?) throws {
+    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.StorageItemThumbnail?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnail.self) { pThis in
@@ -14706,7 +14706,7 @@ internal class IAsyncOperationStorageItemThumbnail: test_component.IInspectable 
         }
     }
 
-    internal func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.StorageItemThumbnail?>? {
+    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.StorageItemThumbnail?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnail.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -14715,7 +14715,7 @@ internal class IAsyncOperationStorageItemThumbnail: test_component.IInspectable 
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailWrapper.unwrapFrom(abi: result)
     }
 
-    internal func GetResultsImpl() throws -> test_component.StorageItemThumbnail? {
+    open func GetResultsImpl() throws -> test_component.StorageItemThumbnail? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnail.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -14848,10 +14848,10 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProp
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoPropertiesWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoPropertiesBridge>
-internal class IAsyncOperationVideoProperties: test_component.IInspectable {
+public class IAsyncOperationVideoProperties: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoProperties }
 
-    internal func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.VideoProperties?>?) throws {
+    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.VideoProperties?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoPropertiesWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoProperties.self) { pThis in
@@ -14859,7 +14859,7 @@ internal class IAsyncOperationVideoProperties: test_component.IInspectable {
         }
     }
 
-    internal func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.VideoProperties?>? {
+    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.VideoProperties?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -14868,7 +14868,7 @@ internal class IAsyncOperationVideoProperties: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoPropertiesWrapper.unwrapFrom(abi: result)
     }
 
-    internal func GetResultsImpl() throws -> test_component.VideoProperties? {
+    open func GetResultsImpl() throws -> test_component.VideoProperties? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -15002,10 +15002,10 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CIStorage
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CIStorageItemBridge>
-internal class IAsyncOperationIStorageItem: test_component.IInspectable {
+public class IAsyncOperationIStorageItem: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CIStorageItem }
 
-    internal func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.AnyIStorageItem?>?) throws {
+    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.AnyIStorageItem?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
@@ -15013,7 +15013,7 @@ internal class IAsyncOperationIStorageItem: test_component.IInspectable {
         }
     }
 
-    internal func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.AnyIStorageItem?>? {
+    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.AnyIStorageItem?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -15022,7 +15022,7 @@ internal class IAsyncOperationIStorageItem: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper.unwrapFrom(abi: result)
     }
 
-    internal func GetResultsImpl() throws -> test_component.AnyIStorageItem? {
+    open func GetResultsImpl() throws -> test_component.AnyIStorageItem? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -15155,10 +15155,10 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSearch__
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSearch__CIndexedStateWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSearch__CIndexedStateBridge>
-internal class IAsyncOperationIndexedState: test_component.IInspectable {
+public class IAsyncOperationIndexedState: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSearch__CIndexedState }
 
-    internal func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.IndexedState>?) throws {
+    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.IndexedState>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CSearch__CIndexedStateWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSearch__CIndexedState.self) { pThis in
@@ -15166,7 +15166,7 @@ internal class IAsyncOperationIndexedState: test_component.IInspectable {
         }
     }
 
-    internal func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.IndexedState>? {
+    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.IndexedState>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSearch__CIndexedState.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -15175,7 +15175,7 @@ internal class IAsyncOperationIndexedState: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CSearch__CIndexedStateWrapper.unwrapFrom(abi: result)
     }
 
-    internal func GetResultsImpl() throws -> test_component.IndexedState {
+    open func GetResultsImpl() throws -> test_component.IndexedState {
         var result: __x_ABI_CWindows_CStorage_CSearch_CIndexedState = .init(0)
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSearch__CIndexedState.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &result))
@@ -15307,10 +15307,10 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageF
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFileWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFileBridge>
-internal class IAsyncOperationStorageFile: test_component.IInspectable {
+public class IAsyncOperationStorageFile: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFile }
 
-    internal func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.StorageFile?>?) throws {
+    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.StorageFile?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFileWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
@@ -15318,7 +15318,7 @@ internal class IAsyncOperationStorageFile: test_component.IInspectable {
         }
     }
 
-    internal func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.StorageFile?>? {
+    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.StorageFile?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -15327,7 +15327,7 @@ internal class IAsyncOperationStorageFile: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.unwrapFrom(abi: result)
     }
 
-    internal func GetResultsImpl() throws -> test_component.StorageFile? {
+    open func GetResultsImpl() throws -> test_component.StorageFile? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -15460,10 +15460,10 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageF
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolderBridge>
-internal class IAsyncOperationStorageFolder: test_component.IInspectable {
+public class IAsyncOperationStorageFolder: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolder }
 
-    internal func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.StorageFolder?>?) throws {
+    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.StorageFolder?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
@@ -15471,7 +15471,7 @@ internal class IAsyncOperationStorageFolder: test_component.IInspectable {
         }
     }
 
-    internal func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.StorageFolder?>? {
+    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.StorageFolder?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -15480,7 +15480,7 @@ internal class IAsyncOperationStorageFolder: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.unwrapFrom(abi: result)
     }
 
-    internal func GetResultsImpl() throws -> test_component.StorageFolder? {
+    open func GetResultsImpl() throws -> test_component.StorageFolder? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -15613,10 +15613,10 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageS
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageStreamTransactionWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageStreamTransactionBridge>
-internal class IAsyncOperationStorageStreamTransaction: test_component.IInspectable {
+public class IAsyncOperationStorageStreamTransaction: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageStreamTransaction }
 
-    internal func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.StorageStreamTransaction?>?) throws {
+    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.StorageStreamTransaction?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageStreamTransactionWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageStreamTransaction.self) { pThis in
@@ -15624,7 +15624,7 @@ internal class IAsyncOperationStorageStreamTransaction: test_component.IInspecta
         }
     }
 
-    internal func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.StorageStreamTransaction?>? {
+    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.StorageStreamTransaction?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageStreamTransaction.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -15633,7 +15633,7 @@ internal class IAsyncOperationStorageStreamTransaction: test_component.IInspecta
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageStreamTransactionWrapper.unwrapFrom(abi: result)
     }
 
-    internal func GetResultsImpl() throws -> test_component.StorageStreamTransaction? {
+    open func GetResultsImpl() throws -> test_component.StorageStreamTransaction? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageStreamTransaction.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -15767,10 +15767,10 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams_
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIBufferWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIBufferBridge>
-internal class IAsyncOperationIBuffer: test_component.IInspectable {
+public class IAsyncOperationIBuffer: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIBuffer }
 
-    internal func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.AnyIBuffer?>?) throws {
+    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.AnyIBuffer?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIBufferWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIBuffer.self) { pThis in
@@ -15778,7 +15778,7 @@ internal class IAsyncOperationIBuffer: test_component.IInspectable {
         }
     }
 
-    internal func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.AnyIBuffer?>? {
+    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.AnyIBuffer?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIBuffer.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -15787,7 +15787,7 @@ internal class IAsyncOperationIBuffer: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIBufferWrapper.unwrapFrom(abi: result)
     }
 
-    internal func GetResultsImpl() throws -> test_component.AnyIBuffer? {
+    open func GetResultsImpl() throws -> test_component.AnyIBuffer? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIBuffer.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -15921,10 +15921,10 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams_
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIInputStreamWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIInputStreamBridge>
-internal class IAsyncOperationIInputStream: test_component.IInspectable {
+public class IAsyncOperationIInputStream: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIInputStream }
 
-    internal func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.AnyIInputStream?>?) throws {
+    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.AnyIInputStream?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIInputStreamWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIInputStream.self) { pThis in
@@ -15932,7 +15932,7 @@ internal class IAsyncOperationIInputStream: test_component.IInspectable {
         }
     }
 
-    internal func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.AnyIInputStream?>? {
+    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.AnyIInputStream?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIInputStream.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -15941,7 +15941,7 @@ internal class IAsyncOperationIInputStream: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIInputStreamWrapper.unwrapFrom(abi: result)
     }
 
-    internal func GetResultsImpl() throws -> test_component.AnyIInputStream? {
+    open func GetResultsImpl() throws -> test_component.AnyIInputStream? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIInputStream.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -16075,10 +16075,10 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams_
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamBridge>
-internal class IAsyncOperationIRandomAccessStream: test_component.IInspectable {
+public class IAsyncOperationIRandomAccessStream: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStream }
 
-    internal func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.AnyIRandomAccessStream?>?) throws {
+    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.AnyIRandomAccessStream?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStream.self) { pThis in
@@ -16086,7 +16086,7 @@ internal class IAsyncOperationIRandomAccessStream: test_component.IInspectable {
         }
     }
 
-    internal func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.AnyIRandomAccessStream?>? {
+    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.AnyIRandomAccessStream?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStream.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -16095,7 +16095,7 @@ internal class IAsyncOperationIRandomAccessStream: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWrapper.unwrapFrom(abi: result)
     }
 
-    internal func GetResultsImpl() throws -> test_component.AnyIRandomAccessStream? {
+    open func GetResultsImpl() throws -> test_component.AnyIRandomAccessStream? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStream.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -16229,10 +16229,10 @@ internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams_
     }
 )
 typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentTypeWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentTypeBridge>
-internal class IAsyncOperationIRandomAccessStreamWithContentType: test_component.IInspectable {
+public class IAsyncOperationIRandomAccessStreamWithContentType: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentType }
 
-    internal func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.AnyIRandomAccessStreamWithContentType?>?) throws {
+    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.AnyIRandomAccessStreamWithContentType?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentTypeWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentType.self) { pThis in
@@ -16240,7 +16240,7 @@ internal class IAsyncOperationIRandomAccessStreamWithContentType: test_component
         }
     }
 
-    internal func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.AnyIRandomAccessStreamWithContentType?>? {
+    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.AnyIRandomAccessStreamWithContentType?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentType.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -16249,7 +16249,7 @@ internal class IAsyncOperationIRandomAccessStreamWithContentType: test_component
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentTypeWrapper.unwrapFrom(abi: result)
     }
 
-    internal func GetResultsImpl() throws -> test_component.AnyIRandomAccessStreamWithContentType? {
+    open func GetResultsImpl() throws -> test_component.AnyIRandomAccessStreamWithContentType? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentType.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -16582,10 +16582,10 @@ internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIM
     }
 )
 typealias __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIMemoryBufferReference_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIMemoryBufferReference_IInspectableBridge>
-internal class TypedEventHandlerIMemoryBufferReference_Any: test_component.IUnknown {
+public class TypedEventHandlerIMemoryBufferReference_Any: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIMemoryBufferReference_IInspectable }
 
-    internal func InvokeImpl(_ sender: test_component.AnyIMemoryBufferReference?, _ args: Any?) throws {
+    open func InvokeImpl(_ sender: test_component.AnyIMemoryBufferReference?, _ args: Any?) throws {
         let senderWrapper = __ABI_Windows_Foundation.IMemoryBufferReferenceWrapper(sender)
         let _sender = try! senderWrapper?.toABI { $0 }
         let argsWrapper = __ABI_.AnyWrapper(args)
@@ -16637,10 +16637,10 @@ internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CStorage__CSearc
     }
 )
 typealias __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CStorage__CSearch__CIStorageQueryResultBase_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CStorage__CSearch__CIStorageQueryResultBase_IInspectableBridge>
-internal class TypedEventHandlerIStorageQueryResultBase_Any: test_component.IUnknown {
+public class TypedEventHandlerIStorageQueryResultBase_Any: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CStorage__CSearch__CIStorageQueryResultBase_IInspectable }
 
-    internal func InvokeImpl(_ sender: test_component.AnyIStorageQueryResultBase?, _ args: Any?) throws {
+    open func InvokeImpl(_ sender: test_component.AnyIStorageQueryResultBase?, _ args: Any?) throws {
         let senderWrapper = __ABI_Windows_Storage_Search.IStorageQueryResultBaseWrapper(sender)
         let _sender = try! senderWrapper?.toABI { $0 }
         let argsWrapper = __ABI_.AnyWrapper(args)
@@ -16692,10 +16692,10 @@ internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass_
     }
 )
 typealias __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsBridge>
-internal class TypedEventHandlerClass_DeferrableEventArgs: test_component.IUnknown {
+public class TypedEventHandlerClass_DeferrableEventArgs: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs }
 
-    internal func InvokeImpl(_ sender: test_component.Class?, _ args: test_component.DeferrableEventArgs?) throws {
+    open func InvokeImpl(_ sender: test_component.Class?, _ args: test_component.DeferrableEventArgs?) throws {
         _ = try perform(as: __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, RawPointer(sender), RawPointer(args)))
         }
@@ -16743,10 +16743,10 @@ internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple
     }
 )
 typealias __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsBridge>
-internal class TypedEventHandlerSimple_SimpleEventArgs: test_component.IUnknown {
+public class TypedEventHandlerSimple_SimpleEventArgs: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs }
 
-    internal func InvokeImpl(_ sender: test_component.Simple?, _ args: test_component.SimpleEventArgs) throws {
+    open func InvokeImpl(_ sender: test_component.Simple?, _ args: test_component.SimpleEventArgs) throws {
         _ = try perform(as: __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, RawPointer(sender), .from(swift: args)))
         }

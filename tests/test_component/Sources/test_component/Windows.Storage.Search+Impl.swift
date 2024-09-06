@@ -3,6 +3,7 @@
 import Foundation
 import Ctest_component
 
+@_spi(WinRTInternal)
 public enum __IMPL_Windows_Storage_Search {
     public enum IStorageFolderQueryOperationsBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_CWindows_CStorage_CSearch_CIStorageFolderQueryOperations
