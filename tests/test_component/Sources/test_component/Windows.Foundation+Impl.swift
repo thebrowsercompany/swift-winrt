@@ -3,6 +3,7 @@
 import Foundation
 import Ctest_component
 
+@_spi(WinRTInternal)
 public enum __IMPL_Windows_Foundation {
     public enum IAsyncActionBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIAsyncAction

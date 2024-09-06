@@ -3,5 +3,6 @@
 import Foundation
 import Ctest_component
 
+@_spi(WinRTInternal)
 public enum __IMPL_Windows_Data_Text {
 }

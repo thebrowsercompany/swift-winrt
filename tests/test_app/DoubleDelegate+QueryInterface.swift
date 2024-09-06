@@ -1,5 +1,5 @@
 import Ctest_component
-@_spi(WinRTImplements) import test_component
+@_spi(WinRTImplements) @_spi(WinRTInternal) import test_component
 import Foundation
 
 extension DoubleDelegate {

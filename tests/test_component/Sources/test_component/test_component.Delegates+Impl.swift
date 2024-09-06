@@ -3,6 +3,7 @@
 import Foundation
 import Ctest_component
 
+@_spi(WinRTInternal)
 public enum __IMPL_test_component_Delegates {
     public class InDelegateBridge : WinRTDelegateBridge {
         public typealias Handler = InDelegate

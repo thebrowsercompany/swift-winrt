@@ -59,6 +59,7 @@ private var IID___x_ABI_C__FVectorChangedEventHandler_1_T: test_component.IID {
     .init(Data1: 0x0C051752, Data2: 0x9FBF, Data3: 0x4C70, Data4: ( 0xAA,0x0C,0x0E,0x4C,0x82,0xD9,0xA7,0x61 ))// 0C051752-9FBF-4C70-AA0C-0E4C82D9A761
 }
 
+@_spi(WinRTInternal)
 public enum __ABI_Windows_Foundation_Collections {
     public class IPropertySet: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CCollections_CIPropertySet }

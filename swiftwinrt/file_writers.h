@@ -29,6 +29,10 @@ namespace swiftwinrt
         }
         else if (force)
         {
+            if (ns.starts_with("__"))
+            {
+                w.write("@_spi(WinRTInternal)\n");
+            }
             w.write("%public enum % {\n", i, ns);
             guard.push("}\n");
             i.additional_indentation++;

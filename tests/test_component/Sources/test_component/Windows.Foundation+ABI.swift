@@ -111,6 +111,7 @@ private var IID___x_ABI_C__FITypedEventHandler_2_TSender_TResult: test_component
     .init(Data1: 0x9DE1C534, Data2: 0x6AE1, Data3: 0x11E0, Data4: ( 0x84,0xE1,0x18,0xA9,0x05,0xBC,0xC5,0x3F ))// 9DE1C534-6AE1-11E0-84E1-18A905BCC53F
 }
 
+@_spi(WinRTInternal)
 public enum __ABI_Windows_Foundation {
     public class IAsyncAction: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIAsyncAction }
@@ -354,7 +355,7 @@ public enum __ABI_Windows_Foundation {
     public class IDeferral: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIDeferral }
 
-        internal func CompleteImpl() throws {
+        public func CompleteImpl() throws {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIDeferral.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Complete(pThis))
             }
@@ -365,7 +366,7 @@ public enum __ABI_Windows_Foundation {
     public class IDeferralFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIDeferralFactory }
 
-        internal func CreateImpl(_ handler: test_component.DeferralCompletedHandler?) throws -> IDeferral {
+        public func CreateImpl(_ handler: test_component.DeferralCompletedHandler?) throws -> IDeferral {
             let (result) = try ComPtrs.initialize { resultAbi in
                 let handlerWrapper = __ABI_Windows_Foundation.DeferralCompletedHandlerWrapper(handler)
                 let _handler = try! handlerWrapper?.toABI { $0 }
@@ -436,7 +437,7 @@ public enum __ABI_Windows_Foundation {
     public class IMemoryBufferFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIMemoryBufferFactory }
 
-        internal func CreateImpl(_ capacity: UInt32) throws -> IMemoryBuffer {
+        public func CreateImpl(_ capacity: UInt32) throws -> IMemoryBuffer {
             let (value) = try ComPtrs.initialize { valueAbi in
                 _ = try perform(as: __x_ABI_CWindows_CFoundation_CIMemoryBufferFactory.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.Create(pThis, capacity, &valueAbi))
@@ -994,7 +995,7 @@ public enum __ABI_Windows_Foundation {
     public class IUriEscapeStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIUriEscapeStatics }
 
-        internal func UnescapeComponentImpl(_ toUnescape: String) throws -> String {
+        public func UnescapeComponentImpl(_ toUnescape: String) throws -> String {
             var value: HSTRING?
             let _toUnescape = try! HString(toUnescape)
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriEscapeStatics.self) { pThis in
@@ -1003,7 +1004,7 @@ public enum __ABI_Windows_Foundation {
             return .init(from: value)
         }
 
-        internal func EscapeComponentImpl(_ toEscape: String) throws -> String {
+        public func EscapeComponentImpl(_ toEscape: String) throws -> String {
             var value: HSTRING?
             let _toEscape = try! HString(toEscape)
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriEscapeStatics.self) { pThis in
@@ -1017,7 +1018,7 @@ public enum __ABI_Windows_Foundation {
     public class IUriRuntimeClass: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIUriRuntimeClass }
 
-        internal func get_AbsoluteUriImpl() throws -> String {
+        public func get_AbsoluteUriImpl() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_AbsoluteUri(pThis, &value))
@@ -1025,7 +1026,7 @@ public enum __ABI_Windows_Foundation {
             return .init(from: value)
         }
 
-        internal func get_DisplayUriImpl() throws -> String {
+        public func get_DisplayUriImpl() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_DisplayUri(pThis, &value))
@@ -1033,7 +1034,7 @@ public enum __ABI_Windows_Foundation {
             return .init(from: value)
         }
 
-        internal func get_DomainImpl() throws -> String {
+        public func get_DomainImpl() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Domain(pThis, &value))
@@ -1041,7 +1042,7 @@ public enum __ABI_Windows_Foundation {
             return .init(from: value)
         }
 
-        internal func get_ExtensionImpl() throws -> String {
+        public func get_ExtensionImpl() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Extension(pThis, &value))
@@ -1049,7 +1050,7 @@ public enum __ABI_Windows_Foundation {
             return .init(from: value)
         }
 
-        internal func get_FragmentImpl() throws -> String {
+        public func get_FragmentImpl() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Fragment(pThis, &value))
@@ -1057,7 +1058,7 @@ public enum __ABI_Windows_Foundation {
             return .init(from: value)
         }
 
-        internal func get_HostImpl() throws -> String {
+        public func get_HostImpl() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Host(pThis, &value))
@@ -1065,7 +1066,7 @@ public enum __ABI_Windows_Foundation {
             return .init(from: value)
         }
 
-        internal func get_PasswordImpl() throws -> String {
+        public func get_PasswordImpl() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Password(pThis, &value))
@@ -1073,7 +1074,7 @@ public enum __ABI_Windows_Foundation {
             return .init(from: value)
         }
 
-        internal func get_PathImpl() throws -> String {
+        public func get_PathImpl() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Path(pThis, &value))
@@ -1081,7 +1082,7 @@ public enum __ABI_Windows_Foundation {
             return .init(from: value)
         }
 
-        internal func get_QueryImpl() throws -> String {
+        public func get_QueryImpl() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Query(pThis, &value))
@@ -1089,7 +1090,7 @@ public enum __ABI_Windows_Foundation {
             return .init(from: value)
         }
 
-        internal func get_QueryParsedImpl() throws -> test_component.WwwFormUrlDecoder? {
+        public func get_QueryParsedImpl() throws -> test_component.WwwFormUrlDecoder? {
             let (ppWwwFormUrlDecoder) = try ComPtrs.initialize { ppWwwFormUrlDecoderAbi in
                 _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.get_QueryParsed(pThis, &ppWwwFormUrlDecoderAbi))
@@ -1098,7 +1099,7 @@ public enum __ABI_Windows_Foundation {
             return .from(abi: ppWwwFormUrlDecoder)
         }
 
-        internal func get_RawUriImpl() throws -> String {
+        public func get_RawUriImpl() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_RawUri(pThis, &value))
@@ -1106,7 +1107,7 @@ public enum __ABI_Windows_Foundation {
             return .init(from: value)
         }
 
-        internal func get_SchemeNameImpl() throws -> String {
+        public func get_SchemeNameImpl() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_SchemeName(pThis, &value))
@@ -1114,7 +1115,7 @@ public enum __ABI_Windows_Foundation {
             return .init(from: value)
         }
 
-        internal func get_UserNameImpl() throws -> String {
+        public func get_UserNameImpl() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_UserName(pThis, &value))
@@ -1122,7 +1123,7 @@ public enum __ABI_Windows_Foundation {
             return .init(from: value)
         }
 
-        internal func get_PortImpl() throws -> Int32 {
+        public func get_PortImpl() throws -> Int32 {
             var value: INT32 = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Port(pThis, &value))
@@ -1130,7 +1131,7 @@ public enum __ABI_Windows_Foundation {
             return value
         }
 
-        internal func get_SuspiciousImpl() throws -> Bool {
+        public func get_SuspiciousImpl() throws -> Bool {
             var value: boolean = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Suspicious(pThis, &value))
@@ -1138,7 +1139,7 @@ public enum __ABI_Windows_Foundation {
             return .init(from: value)
         }
 
-        internal func EqualsImpl(_ pUri: test_component.Uri?) throws -> Bool {
+        public func EqualsImpl(_ pUri: test_component.Uri?) throws -> Bool {
             var value: boolean = 0
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Equals(pThis, RawPointer(pUri), &value))
@@ -1146,7 +1147,7 @@ public enum __ABI_Windows_Foundation {
             return .init(from: value)
         }
 
-        internal func CombineUriImpl(_ relativeUri: String) throws -> test_component.Uri? {
+        public func CombineUriImpl(_ relativeUri: String) throws -> test_component.Uri? {
             let (instance) = try ComPtrs.initialize { instanceAbi in
                 let _relativeUri = try! HString(relativeUri)
                 _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
@@ -1161,7 +1162,7 @@ public enum __ABI_Windows_Foundation {
     public class IUriRuntimeClassFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIUriRuntimeClassFactory }
 
-        internal func CreateUriImpl(_ uri: String) throws -> IUriRuntimeClass {
+        public func CreateUriImpl(_ uri: String) throws -> IUriRuntimeClass {
             let (instance) = try ComPtrs.initialize { instanceAbi in
                 let _uri = try! HString(uri)
                 _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClassFactory.self) { pThis in
@@ -1171,7 +1172,7 @@ public enum __ABI_Windows_Foundation {
             return IUriRuntimeClass(instance!)
         }
 
-        internal func CreateWithRelativeUriImpl(_ baseUri: String, _ relativeUri: String) throws -> IUriRuntimeClass {
+        public func CreateWithRelativeUriImpl(_ baseUri: String, _ relativeUri: String) throws -> IUriRuntimeClass {
             let (instance) = try ComPtrs.initialize { instanceAbi in
                 let _baseUri = try! HString(baseUri)
                 let _relativeUri = try! HString(relativeUri)
@@ -1187,7 +1188,7 @@ public enum __ABI_Windows_Foundation {
     public class IUriRuntimeClassWithAbsoluteCanonicalUri: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIUriRuntimeClassWithAbsoluteCanonicalUri }
 
-        internal func get_AbsoluteCanonicalUriImpl() throws -> String {
+        public func get_AbsoluteCanonicalUriImpl() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClassWithAbsoluteCanonicalUri.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_AbsoluteCanonicalUri(pThis, &value))
@@ -1195,7 +1196,7 @@ public enum __ABI_Windows_Foundation {
             return .init(from: value)
         }
 
-        internal func get_DisplayIriImpl() throws -> String {
+        public func get_DisplayIriImpl() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClassWithAbsoluteCanonicalUri.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_DisplayIri(pThis, &value))
@@ -1273,7 +1274,7 @@ public enum __ABI_Windows_Foundation {
     public class IWwwFormUrlDecoderRuntimeClass: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderRuntimeClass }
 
-        internal func GetFirstValueByNameImpl(_ name: String) throws -> String {
+        public func GetFirstValueByNameImpl(_ name: String) throws -> String {
             var phstrValue: HSTRING?
             let _name = try! HString(name)
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderRuntimeClass.self) { pThis in
@@ -1287,7 +1288,7 @@ public enum __ABI_Windows_Foundation {
     public class IWwwFormUrlDecoderRuntimeClassFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderRuntimeClassFactory }
 
-        internal func CreateWwwFormUrlDecoderImpl(_ query: String) throws -> IWwwFormUrlDecoderRuntimeClass {
+        public func CreateWwwFormUrlDecoderImpl(_ query: String) throws -> IWwwFormUrlDecoderRuntimeClass {
             let (instance) = try ComPtrs.initialize { instanceAbi in
                 let _query = try! HString(query)
                 _ = try perform(as: __x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderRuntimeClassFactory.self) { pThis in

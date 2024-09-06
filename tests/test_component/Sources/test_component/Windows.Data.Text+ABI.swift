@@ -3,6 +3,7 @@
 import Foundation
 import Ctest_component
 
+@_spi(WinRTInternal)
 public enum __ABI_Windows_Data_Text {
 }
 extension __x_ABI_CWindows_CData_CText_CTextSegment {
