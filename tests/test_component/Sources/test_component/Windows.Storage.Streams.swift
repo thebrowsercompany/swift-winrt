@@ -36,18 +36,18 @@ public final class Buffer : WinRTClass, IBufferByteAccess, IBuffer {
     }
     private static let _IBufferFactory: __ABI_Windows_Storage_Streams.IBufferFactory = try! RoGetActivationFactory("Windows.Storage.Streams.Buffer")
     public init(_ capacity: UInt32) {
-        super.init(try! Self._IBufferFactory.CreateImpl(capacity))
+        super.init(try! Self._IBufferFactory.Create(capacity))
     }
 
     private static let _IBufferStatics: __ABI_Windows_Storage_Streams.IBufferStatics = try! RoGetActivationFactory("Windows.Storage.Streams.Buffer")
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.buffer.createcopyfrommemorybuffer)
     public static func createCopyFromMemoryBuffer(_ input: test_component.AnyIMemoryBuffer!) throws -> Buffer! {
-        return try _IBufferStatics.CreateCopyFromMemoryBufferImpl(input)
+        return try _IBufferStatics.CreateCopyFromMemoryBuffer(input)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.buffer.creatememorybufferoveribuffer)
     public static func createMemoryBufferOverIBuffer(_ input: AnyIBuffer!) throws -> test_component.MemoryBuffer! {
-        return try _IBufferStatics.CreateMemoryBufferOverIBufferImpl(input)
+        return try _IBufferStatics.CreateMemoryBufferOverIBuffer(input)
     }
 
     private lazy var _IBufferByteAccess: __ABI_.IBufferByteAccess! = getInterfaceForCaching()
@@ -59,13 +59,13 @@ public final class Buffer : WinRTClass, IBufferByteAccess, IBuffer {
     }
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.buffer.capacity)
     public var capacity : UInt32 {
-        get { try! _default.get_CapacityImpl() }
+        get { try! _default.get_Capacity() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.buffer.length)
     public var length : UInt32 {
-        get { try! _default.get_LengthImpl() }
-        set { try! _default.put_LengthImpl(newValue) }
+        get { try! _default.get_Length() }
+        set { try! _default.put_Length(newValue) }
     }
 
     deinit {

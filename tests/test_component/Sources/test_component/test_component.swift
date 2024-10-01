@@ -11,15 +11,15 @@ public typealias Unsigned = __x_ABI_Ctest__component_CUnsigned
 public final class AsyncMethods {
     private static let _IAsyncMethodsStatics: __ABI_test_component.IAsyncMethodsStatics = try! RoGetActivationFactory("test_component.AsyncMethods")
     public static func getCompletedAsync(_ result: Int32) throws -> AnyIAsyncOperation<Int32>! {
-        return try _IAsyncMethodsStatics.GetCompletedAsyncImpl(result)
+        return try _IAsyncMethodsStatics.GetCompletedAsync(result)
     }
 
     public static func getCompletedWithErrorAsync(_ errorCode: HRESULT) throws -> AnyIAsyncOperation<Int32>! {
-        return try _IAsyncMethodsStatics.GetCompletedWithErrorAsyncImpl(errorCode)
+        return try _IAsyncMethodsStatics.GetCompletedWithErrorAsync(errorCode)
     }
 
     public static func getPendingAsync() throws -> AsyncOperationInt! {
-        return try _IAsyncMethodsStatics.GetPendingAsyncImpl()
+        return try _IAsyncMethodsStatics.GetPendingAsync()
     }
 
 }
@@ -52,42 +52,42 @@ public final class AsyncOperationInt : WinRTClass, IAsyncOperationInt, IAsyncOpe
         return super.queryInterface(iid)
     }
     public func complete(_ result: Int32) throws {
-        try _default.CompleteImpl(result)
+        try _default.Complete(result)
     }
 
     public func completeWithError(_ errorCode: HRESULT) throws {
-        try _default.CompleteWithErrorImpl(errorCode)
+        try _default.CompleteWithError(errorCode)
     }
 
     private lazy var _IAsyncOperation: IAsyncOperationInt32! = getInterfaceForCaching()
     public func getResults() throws -> Int32 {
-        try _IAsyncOperation.GetResultsImpl()
+        try _IAsyncOperation.GetResults()
     }
 
     public var completed : AsyncOperationCompletedHandler<Int32>? {
-        get { try! _IAsyncOperation.get_CompletedImpl() }
-        set { try! _IAsyncOperation.put_CompletedImpl(newValue) }
+        get { try! _IAsyncOperation.get_Completed() }
+        set { try! _IAsyncOperation.put_Completed(newValue) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
     public func cancel() throws {
-        try _IAsyncInfo.CancelImpl()
+        try _IAsyncInfo.Cancel()
     }
 
     public func close() throws {
-        try _IAsyncInfo.CloseImpl()
+        try _IAsyncInfo.Close()
     }
 
     public var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { try! _IAsyncInfo.get_ErrorCode() }
     }
 
     public var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { try! _IAsyncInfo.get_Id() }
     }
 
     public var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { try! _IAsyncInfo.get_Status() }
     }
 
     deinit {
@@ -141,22 +141,22 @@ open class Base : WinRTClass {
     override public init() {
         super.init()
         MakeComposed(composing: Self.Composable.self, self) { baseInterface, innerInterface in 
-            try! Self._IBaseProtectedFactory.CreateInstanceImpl(baseInterface, &innerInterface)
+            try! Self._IBaseProtectedFactory.CreateInstance(baseInterface, &innerInterface)
         }
     }
 
     private static let _IBaseStatics: __ABI_test_component.IBaseStatics = try! RoGetActivationFactory("test_component.Base")
     public class func createFromString(_ value: String) throws -> Base! {
-        return try _IBaseStatics.CreateFromStringImpl(value)
+        return try _IBaseStatics.CreateFromString(value)
     }
 
     public func doTheThing() throws {
-        try _default.DoTheThingImpl()
+        try _default.DoTheThing()
     }
 
     private lazy var _IBaseOverrides: __ABI_test_component.IBaseOverrides! = getInterfaceForCaching()
     open func onDoTheThing() throws {
-        try _IBaseOverrides.OnDoTheThingImpl()
+        try _IBaseOverrides.OnDoTheThing()
     }
 
     @_spi(WinRTInternal)
@@ -218,7 +218,7 @@ open class BaseCollection : WinRTClass, IVector, IIterable {
     override public init() {
         super.init()
         MakeComposed(composing: Self.Composable.self, self) { baseInterface, innerInterface in 
-            try! Self._IBaseCollectionProtectedFactory.CreateInstanceImpl(baseInterface, &innerInterface)
+            try! Self._IBaseCollectionProtectedFactory.CreateInstance(baseInterface, &innerInterface)
         }
     }
 
@@ -254,48 +254,48 @@ open class BaseCollection : WinRTClass, IVector, IIterable {
 
     // MARK: WinRT
     public func getAt(_ index: UInt32) -> Base? {
-        try! _default.GetAtImpl(index)
+        try! _default.GetAt(index)
     }
 
     public func getView() -> AnyIVectorView<Base?>? {
-        try! _default.GetViewImpl()
+        try! _default.GetView()
     }
 
     public func indexOf(_ value: Base?, _ index: inout UInt32) -> Bool {
-        try! _default.IndexOfImpl(value, &index)
+        try! _default.IndexOf(value, &index)
     }
 
     public func setAt(_ index: UInt32, _ value: Base?) {
-        try! _default.SetAtImpl(index, value)
+        try! _default.SetAt(index, value)
     }
 
     public func insertAt(_ index: UInt32, _ value: Base?) {
-        try! _default.InsertAtImpl(index, value)
+        try! _default.InsertAt(index, value)
     }
 
     public func removeAt(_ index: UInt32) {
-        try! _default.RemoveAtImpl(index)
+        try! _default.RemoveAt(index)
     }
 
     public func append(_ value: Base?) {
-        try! _default.AppendImpl(value)
+        try! _default.Append(value)
     }
 
     public func removeAtEnd() {
-        try! _default.RemoveAtEndImpl()
+        try! _default.RemoveAtEnd()
     }
 
     public func clear() {
-        try! _default.ClearImpl()
+        try! _default.Clear()
     }
 
     public var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { try! _default.get_Size() }
     }
 
     private lazy var _IIterable: IIterableBase! = getInterfaceForCaching()
     public func first() -> AnyIIterator<Base?>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     @_spi(WinRTInternal)
@@ -347,36 +347,36 @@ public final class BaseMapCollection : WinRTClass, IMap, IIterable {
         return super.queryInterface(iid)
     }
     public func lookup(_ key: String) -> Base? {
-        try! _default.LookupImpl(key)
+        try! _default.Lookup(key)
     }
 
     public func hasKey(_ key: String) -> Bool {
-        try! _default.HasKeyImpl(key)
+        try! _default.HasKey(key)
     }
 
     public func getView() -> AnyIMapView<String, Base?>? {
-        try! _default.GetViewImpl()
+        try! _default.GetView()
     }
 
     public func insert(_ key: String, _ value: Base?) -> Bool {
-        try! _default.InsertImpl(key, value)
+        try! _default.Insert(key, value)
     }
 
     public func remove(_ key: String) {
-        try! _default.RemoveImpl(key)
+        try! _default.Remove(key)
     }
 
     public func clear() {
-        try! _default.ClearImpl()
+        try! _default.Clear()
     }
 
     public var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { try! _default.get_Size() }
     }
 
     private lazy var _IIterable: IIterableIKeyValuePairString_Base! = getInterfaceForCaching()
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, Base?>?>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     deinit {
@@ -424,13 +424,13 @@ open class BaseNoOverrides : WinRTClass {
     override public init() {
         super.init()
         MakeComposed(composing: Self.Composable.self, self) { baseInterface, innerInterface in 
-            try! Self._IBaseNoOverridesProtectedFactory.CreateInstanceImpl(baseInterface, &innerInterface)
+            try! Self._IBaseNoOverridesProtectedFactory.CreateInstance(baseInterface, &innerInterface)
         }
     }
 
     private static let _IBaseNoOverridesStatics: __ABI_test_component.IBaseNoOverridesStatics = try! RoGetActivationFactory("test_component.BaseNoOverrides")
     public class func createFromString(_ value: String) throws -> BaseNoOverrides! {
-        return try _IBaseNoOverridesStatics.CreateFromStringImpl(value)
+        return try _IBaseNoOverridesStatics.CreateFromString(value)
     }
 
     @_spi(WinRTInternal)
@@ -513,58 +513,58 @@ public final class BaseObservableCollection : WinRTClass, IObservableVector, IVe
       .init(
         add: { [weak self] in
           guard let this = self?._default else { return .init() }
-          return try! this.add_VectorChangedImpl($0)
+          return try! this.add_VectorChanged($0)
         },
         remove: { [weak self] in
-         try? self?._default.remove_VectorChangedImpl($0)
+         try? self?._default.remove_VectorChanged($0)
        }
       )
     }()
 
     private lazy var _IVector: IVectorBase! = getInterfaceForCaching()
     public func getAt(_ index: UInt32) -> Base? {
-        try! _IVector.GetAtImpl(index)
+        try! _IVector.GetAt(index)
     }
 
     public func getView() -> AnyIVectorView<Base?>? {
-        try! _IVector.GetViewImpl()
+        try! _IVector.GetView()
     }
 
     public func indexOf(_ value: Base?, _ index: inout UInt32) -> Bool {
-        try! _IVector.IndexOfImpl(value, &index)
+        try! _IVector.IndexOf(value, &index)
     }
 
     public func setAt(_ index: UInt32, _ value: Base?) {
-        try! _IVector.SetAtImpl(index, value)
+        try! _IVector.SetAt(index, value)
     }
 
     public func insertAt(_ index: UInt32, _ value: Base?) {
-        try! _IVector.InsertAtImpl(index, value)
+        try! _IVector.InsertAt(index, value)
     }
 
     public func removeAt(_ index: UInt32) {
-        try! _IVector.RemoveAtImpl(index)
+        try! _IVector.RemoveAt(index)
     }
 
     public func append(_ value: Base?) {
-        try! _IVector.AppendImpl(value)
+        try! _IVector.Append(value)
     }
 
     public func removeAtEnd() {
-        try! _IVector.RemoveAtEndImpl()
+        try! _IVector.RemoveAtEnd()
     }
 
     public func clear() {
-        try! _IVector.ClearImpl()
+        try! _IVector.Clear()
     }
 
     public var size : UInt32 {
-        get { try! _IVector.get_SizeImpl() }
+        get { try! _IVector.get_Size() }
     }
 
     private lazy var _IIterable: IIterableBase! = getInterfaceForCaching()
     public func first() -> AnyIIterator<Base?>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     deinit {
@@ -577,7 +577,7 @@ public final class BaseObservableCollection : WinRTClass, IObservableVector, IVe
 public final class BufferTester {
     private static let _IBufferTesterStatics: __ABI_test_component.IBufferTesterStatics = try! RoGetActivationFactory("test_component.BufferTester")
     public static func getDataFrom(_ buffer: test_component.AnyIBuffer!, _ index: UInt32) throws -> UInt8 {
-        return try _IBufferTesterStatics.GetDataFromImpl(buffer, index)
+        return try _IBufferTesterStatics.GetDataFrom(buffer, index)
     }
 
 }
@@ -615,202 +615,202 @@ public final class Class : WinRTClass, IBasic {
 
     private static let _IClassFactory: __ABI_test_component.IClassFactory = try! RoGetActivationFactory("test_component.Class")
     public init(_ name: String) {
-        super.init(try! Self._IClassFactory.CreateInstanceImpl(name))
+        super.init(try! Self._IClassFactory.CreateInstance(name))
     }
 
     public init(_ name: String, _ fruit: Fruit) {
-        super.init(try! Self._IClassFactory.CreateInstance2Impl(name, fruit))
+        super.init(try! Self._IClassFactory.CreateInstance2(name, fruit))
     }
 
     public init(_ arg: AnyIMap<String, String>!, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32) {
-        super.init(try! Self._IClassFactory.CreateInstance3Impl(arg, dummy1, dummy2, dummy3))
+        super.init(try! Self._IClassFactory.CreateInstance3(arg, dummy1, dummy2, dummy3))
     }
 
     public init(_ arg: AnyIMapView<String, String>!, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32, _ dummy4: Int32) {
-        super.init(try! Self._IClassFactory.CreateInstance4Impl(arg, dummy1, dummy2, dummy3, dummy4))
+        super.init(try! Self._IClassFactory.CreateInstance4(arg, dummy1, dummy2, dummy3, dummy4))
     }
 
     public init(_ arg: AnyIVector<String>!, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32, _ dummy4: Int32, _ dummy5: Int32) {
-        super.init(try! Self._IClassFactory.CreateInstance5Impl(arg, dummy1, dummy2, dummy3, dummy4, dummy5))
+        super.init(try! Self._IClassFactory.CreateInstance5(arg, dummy1, dummy2, dummy3, dummy4, dummy5))
     }
 
     public init(_ arg: AnyIVectorView<String>!, _ dummy1: Int32, _ dummy2: Int32, _ dummy3: Int32, _ dummy4: Int32, _ dummy5: Int32, _ dummy6: Int32) {
-        super.init(try! Self._IClassFactory.CreateInstance6Impl(arg, dummy1, dummy2, dummy3, dummy4, dummy5, dummy6))
+        super.init(try! Self._IClassFactory.CreateInstance6(arg, dummy1, dummy2, dummy3, dummy4, dummy5, dummy6))
     }
 
     private static let _IClassFactory2: __ABI_test_component.IClassFactory2 = try! RoGetActivationFactory("test_component.Class")
     public init(_ name: String, _ fruit: Fruit, _ implementation: AnyIIAmImplementable!) {
-        super.init(try! Self._IClassFactory2.CreateInstanceImpl(name, fruit, implementation))
+        super.init(try! Self._IClassFactory2.CreateInstance(name, fruit, implementation))
     }
 
     private static let _IClassStatics: __ABI_test_component.IClassStatics = try! RoGetActivationFactory("test_component.Class")
     public static func staticTest() throws {
-        try _IClassStatics.StaticTestImpl()
+        try _IClassStatics.StaticTest()
     }
 
     public static func staticTestReturn() throws -> Int32 {
-        return try _IClassStatics.StaticTestReturnImpl()
+        return try _IClassStatics.StaticTestReturn()
     }
 
     public static func takeBaseAndGiveToCallbackAsObject(_ base: Base!, _ callback: test_component.InObjectDelegate!) throws {
-        try _IClassStatics.TakeBaseAndGiveToCallbackAsObjectImpl(base, callback)
+        try _IClassStatics.TakeBaseAndGiveToCallbackAsObject(base, callback)
     }
 
     public static var staticProperty : Int32 {
-        get { try! _IClassStatics.get_StaticPropertyImpl() }
+        get { try! _IClassStatics.get_StaticProperty() }
     }
 
     private static let _IClassStatics2: __ABI_test_component.IClassStatics2 = try! RoGetActivationFactory("test_component.Class")
     public static func staticTestReturnFloat() throws -> Float {
-        return try _IClassStatics2.StaticTestReturnFloatImpl()
+        return try _IClassStatics2.StaticTestReturnFloat()
     }
 
     public static var staticPropertyFloat : Float {
-        get { try! _IClassStatics2.get_StaticPropertyFloatImpl() }
-        set { try! _IClassStatics2.put_StaticPropertyFloatImpl(newValue) }
+        get { try! _IClassStatics2.get_StaticPropertyFloat() }
+        set { try! _IClassStatics2.put_StaticPropertyFloat(newValue) }
     }
 
     public func setDelegate(_ value: AnyISimpleDelegate!) throws {
-        try _default.SetDelegateImpl(value)
+        try _default.SetDelegate(value)
     }
 
     public func getDelegate() throws -> AnyISimpleDelegate! {
-        try _default.GetDelegateImpl()
+        try _default.GetDelegate()
     }
 
     public func fail(_ message: String) throws {
-        try _default.FailImpl(message)
+        try _default.Fail(message)
     }
 
     public func inInt32(_ value: Int32) throws -> String {
-        try _default.InInt32Impl(value)
+        try _default.InInt32(value)
     }
 
     public func inString(_ value: String) throws -> String {
-        try _default.InStringImpl(value)
+        try _default.InString(value)
     }
 
     public func inObject(_ value: Any!) throws -> String {
-        try _default.InObjectImpl(value)
+        try _default.InObject(value)
     }
 
     public func inEnum(_ value: Signed) throws -> String {
-        try _default.InEnumImpl(value)
+        try _default.InEnum(value)
     }
 
     public func outInt32(_ value: inout Int32) throws {
-        try _default.OutInt32Impl(&value)
+        try _default.OutInt32(&value)
     }
 
     public func outString(_ value: inout String) throws {
-        try _default.OutStringImpl(&value)
+        try _default.OutString(&value)
     }
 
     public func outObject(_ value: inout Any!) throws {
-        try _default.OutObjectImpl(&value)
+        try _default.OutObject(&value)
     }
 
     public func outStringable(_ value: inout test_component.AnyIStringable!) throws {
-        try _default.OutStringableImpl(&value)
+        try _default.OutStringable(&value)
     }
 
     public func outBlittableStruct(_ value: inout BlittableStruct) throws {
-        try _default.OutBlittableStructImpl(&value)
+        try _default.OutBlittableStruct(&value)
     }
 
     public func outNonBlittableStruct(_ value: inout NonBlittableStruct) throws {
-        try _default.OutNonBlittableStructImpl(&value)
+        try _default.OutNonBlittableStruct(&value)
     }
 
     public func outEnum(_ value: inout Signed) throws {
-        try _default.OutEnumImpl(&value)
+        try _default.OutEnum(&value)
     }
 
     public func returnObject() throws -> Any! {
-        try _default.ReturnObjectImpl()
+        try _default.ReturnObject()
     }
 
     public func returnEnum() throws -> Signed {
-        try _default.ReturnEnumImpl()
+        try _default.ReturnEnum()
     }
 
     public func returnReferenceEnum() throws -> Signed? {
-        try _default.ReturnReferenceEnumImpl()
+        try _default.ReturnReferenceEnum()
     }
 
     public func noexceptVoid() {
-        try! _default.NoexceptVoidImpl()
+        try! _default.NoexceptVoid()
     }
 
     public func noexceptInt32() -> Int32 {
-        try! _default.NoexceptInt32Impl()
+        try! _default.NoexceptInt32()
     }
 
     public func noexceptString() -> String {
-        try! _default.NoexceptStringImpl()
+        try! _default.NoexceptString()
     }
 
     public func raiseDeferrableEventAsync() throws -> AnyIAsyncOperation<Int32>! {
-        try _default.RaiseDeferrableEventAsyncImpl()
+        try _default.RaiseDeferrableEventAsync()
     }
 
     public func returnChar() throws -> Character {
-        try _default.ReturnCharImpl()
+        try _default.ReturnChar()
     }
 
     public func inChar(_ value: Character) throws -> String {
-        try _default.InCharImpl(value)
+        try _default.InChar(value)
     }
 
     public func outChar(_ value: inout Character) throws {
-        try _default.OutCharImpl(&value)
+        try _default.OutChar(&value)
     }
 
     public var baseNoOverridesProperty : BaseNoOverrides! {
-        get { try! _default.get_BaseNoOverridesPropertyImpl() }
-        set { try! _default.put_BaseNoOverridesPropertyImpl(newValue) }
+        get { try! _default.get_BaseNoOverridesProperty() }
+        set { try! _default.put_BaseNoOverridesProperty(newValue) }
     }
 
     public var baseProperty : Base! {
-        get { try! _default.get_BasePropertyImpl() }
-        set { try! _default.put_BasePropertyImpl(newValue) }
+        get { try! _default.get_BaseProperty() }
+        set { try! _default.put_BaseProperty(newValue) }
     }
 
     public var enumProperty : Fruit {
-        get { try! _default.get_EnumPropertyImpl() }
-        set { try! _default.put_EnumPropertyImpl(newValue) }
+        get { try! _default.get_EnumProperty() }
+        set { try! _default.put_EnumProperty(newValue) }
     }
 
     public var id : Foundation.UUID? {
-        get { try! _default.get_IdImpl() }
-        set { try! _default.put_IdImpl(newValue) }
+        get { try! _default.get_Id() }
+        set { try! _default.put_Id(newValue) }
     }
 
     public var implementation : AnyIBasic! {
-        get { try! _default.get_ImplementationImpl() }
-        set { try! _default.put_ImplementationImpl(newValue) }
+        get { try! _default.get_Implementation() }
+        set { try! _default.put_Implementation(newValue) }
     }
 
     public var startValue : Int32? {
-        get { try! _default.get_StartValueImpl() }
-        set { try! _default.put_StartValueImpl(newValue) }
+        get { try! _default.get_StartValue() }
+        set { try! _default.put_StartValue(newValue) }
     }
 
     public lazy var deferrableEvent : Event<TypedEventHandler<Class?, DeferrableEventArgs?>> = {
       .init(
         add: { [weak self] in
           guard let this = self?._default else { return .init() }
-          return try! this.add_DeferrableEventImpl($0)
+          return try! this.add_DeferrableEvent($0)
         },
         remove: { [weak self] in
-         try? self?._default.remove_DeferrableEventImpl($0)
+         try? self?._default.remove_DeferrableEvent($0)
        }
       )
     }()
 
     private lazy var _IBasic: __ABI_test_component.IBasic! = getInterfaceForCaching()
     public func method() {
-        try! _IBasic.MethodImpl()
+        try! _IBasic.Method()
     }
 
     deinit {
@@ -849,35 +849,35 @@ public final class CollectionTester : WinRTClass {
 
     private static let _ICollectionTesterStatics: __ABI_test_component.ICollectionTesterStatics = try! RoGetActivationFactory("test_component.CollectionTester")
     public static func inMap(_ value: AnyIMap<String, String>!) throws -> String {
-        return try _ICollectionTesterStatics.InMapImpl(value)
+        return try _ICollectionTesterStatics.InMap(value)
     }
 
     public static func inMapView(_ value: AnyIMapView<String, String>!) throws -> String {
-        return try _ICollectionTesterStatics.InMapViewImpl(value)
+        return try _ICollectionTesterStatics.InMapView(value)
     }
 
     public static func inVector(_ value: AnyIVector<String>!) throws -> String {
-        return try _ICollectionTesterStatics.InVectorImpl(value)
+        return try _ICollectionTesterStatics.InVector(value)
     }
 
     public static func inVectorView(_ value: AnyIVectorView<String>!) throws -> String {
-        return try _ICollectionTesterStatics.InVectorViewImpl(value)
+        return try _ICollectionTesterStatics.InVectorView(value)
     }
 
     public static func getObjectAt(_ value: AnyIVector<Any?>!, _ index: UInt32, _ callback: ObjectHandler!) throws {
-        try _ICollectionTesterStatics.GetObjectAtImpl(value, index, callback)
+        try _ICollectionTesterStatics.GetObjectAt(value, index, callback)
     }
 
     public static func vectorAsIterable(_ value: AnyIVector<String>!) throws -> AnyIIterable<String>! {
-        return try _ICollectionTesterStatics.VectorAsIterableImpl(value)
+        return try _ICollectionTesterStatics.VectorAsIterable(value)
     }
 
     public func returnStoredStringVector() throws -> AnyIVector<String>! {
-        try _default.ReturnStoredStringVectorImpl()
+        try _default.ReturnStoredStringVector()
     }
 
     public func returnMapFromStringToString() throws -> AnyIMap<String, String>! {
-        try _default.ReturnMapFromStringToStringImpl()
+        try _default.ReturnMapFromStringToString()
     }
 
     deinit {
@@ -909,11 +909,11 @@ public final class DeferrableEventArgs : WinRTClass {
     }
 
     public func getDeferral() throws -> test_component.Deferral! {
-        try _default.GetDeferralImpl()
+        try _default.GetDeferral()
     }
 
     public func incrementCounter() throws {
-        try _default.IncrementCounterImpl()
+        try _default.IncrementCounter()
     }
 
     deinit {
@@ -951,12 +951,12 @@ public final class Derived : test_component.Base {
 
     private static let _IDerivedStatics: __ABI_test_component.IDerivedStatics = try! RoGetActivationFactory("test_component.Derived")
     override public static func createFromString(_ value: String) throws -> Derived! {
-        return try _IDerivedStatics.CreateFromStringImpl(value)
+        return try _IDerivedStatics.CreateFromString(value)
     }
 
     public var prop : Int32 {
-        get { try! _default.get_PropImpl() }
-        set { try! _default.put_PropImpl(newValue) }
+        get { try! _default.get_Prop() }
+        set { try! _default.put_Prop(newValue) }
     }
 
     @_spi(WinRTInternal)
@@ -1001,7 +1001,7 @@ public final class DerivedFromNoConstructor : test_component.UnsealedDerivedNoCo
     }
 
     public func method() throws {
-        try _default.MethodImpl()
+        try _default.Method()
     }
 
     @_spi(WinRTInternal)
@@ -1047,23 +1047,23 @@ public final class EventTester : WinRTClass {
 
     private static let _IEventTesterFactory: __ABI_test_component.IEventTesterFactory = try! RoGetActivationFactory("test_component.EventTester")
     public init(_ impl: AnyIIAmImplementable!) {
-        super.init(try! Self._IEventTesterFactory.CreateInstanceImpl(impl))
+        super.init(try! Self._IEventTesterFactory.CreateInstance(impl))
     }
 
     public func subscribe() throws {
-        try _default.SubscribeImpl()
+        try _default.Subscribe()
     }
 
     public func unsubscribe() throws {
-        try _default.UnsubscribeImpl()
+        try _default.Unsubscribe()
     }
 
     public func getResult() throws -> String {
-        try _default.GetResultImpl()
+        try _default.GetResult()
     }
 
     public var count : Int32 {
-        get { try! _default.get_CountImpl() }
+        get { try! _default.get_Count() }
     }
 
     deinit {
@@ -1103,7 +1103,7 @@ public final class NoopClosable : WinRTClass, test_component.IClosable {
     }
 
     public func close() throws {
-        try _default.CloseImpl()
+        try _default.Close()
     }
 
     deinit {
@@ -1114,43 +1114,43 @@ public final class NoopClosable : WinRTClass, test_component.IClosable {
 public final class NullValues {
     private static let _INullValuesStatics: __ABI_test_component.INullValuesStatics = try! RoGetActivationFactory("test_component.NullValues")
     public static func isObjectNull(_ value: Any!) throws -> Bool {
-        return try _INullValuesStatics.IsObjectNullImpl(value)
+        return try _INullValuesStatics.IsObjectNull(value)
     }
 
     public static func isInterfaceNull(_ value: test_component.AnyIClosable!) throws -> Bool {
-        return try _INullValuesStatics.IsInterfaceNullImpl(value)
+        return try _INullValuesStatics.IsInterfaceNull(value)
     }
 
     public static func isGenericInterfaceNull(_ value: AnyIVector<String>!) throws -> Bool {
-        return try _INullValuesStatics.IsGenericInterfaceNullImpl(value)
+        return try _INullValuesStatics.IsGenericInterfaceNull(value)
     }
 
     public static func isClassNull(_ value: NoopClosable!) throws -> Bool {
-        return try _INullValuesStatics.IsClassNullImpl(value)
+        return try _INullValuesStatics.IsClassNull(value)
     }
 
     public static func isDelegateNull(_ value: VoidToVoidDelegate!) throws -> Bool {
-        return try _INullValuesStatics.IsDelegateNullImpl(value)
+        return try _INullValuesStatics.IsDelegateNull(value)
     }
 
     public static func getNullObject() throws -> Any! {
-        return try _INullValuesStatics.GetNullObjectImpl()
+        return try _INullValuesStatics.GetNullObject()
     }
 
     public static func getNullInterface() throws -> test_component.AnyIClosable! {
-        return try _INullValuesStatics.GetNullInterfaceImpl()
+        return try _INullValuesStatics.GetNullInterface()
     }
 
     public static func getNullGenericInterface() throws -> AnyIVector<String>! {
-        return try _INullValuesStatics.GetNullGenericInterfaceImpl()
+        return try _INullValuesStatics.GetNullGenericInterface()
     }
 
     public static func getNullClass() throws -> NoopClosable! {
-        return try _INullValuesStatics.GetNullClassImpl()
+        return try _INullValuesStatics.GetNullClass()
     }
 
     public static func getNullDelegate() throws -> VoidToVoidDelegate! {
-        return try _INullValuesStatics.GetNullDelegateImpl()
+        return try _INullValuesStatics.GetNullDelegate()
     }
 
 }
@@ -1185,88 +1185,88 @@ public final class Simple : WinRTClass {
 
     private static let _ISimpleStatics: __ABI_test_component.ISimpleStatics = try! RoGetActivationFactory("test_component.Simple")
     public static func fireStaticEvent() throws {
-        try _ISimpleStatics.FireStaticEventImpl()
+        try _ISimpleStatics.FireStaticEvent()
     }
 
     public static var staticEvent : Event<EventHandler<Any?>> = {
       .init(
-        add: { try! _ISimpleStatics.add_StaticEventImpl($0) },
-        remove: { try? _ISimpleStatics.remove_StaticEventImpl($0) }
+        add: { try! _ISimpleStatics.add_StaticEvent($0) },
+        remove: { try? _ISimpleStatics.remove_StaticEvent($0) }
       )
     }()
 
     public func method() throws {
-        try _default.MethodImpl()
+        try _default.Method()
     }
 
     public func operation(_ value: test_component.DateTime) throws -> AnyIAsyncOperation<Int32>! {
-        try _default.OperationImpl(value)
+        try _default.Operation(value)
     }
 
     public func action(_ value: test_component.DateTime) throws -> test_component.AnyIAsyncAction! {
-        try _default.ActionImpl(value)
+        try _default.Action(value)
     }
 
     public func object(_ value: test_component.DateTime) throws -> Any! {
-        try _default.ObjectImpl(value)
+        try _default.Object(value)
     }
 
     public func returnBlittableStruct() throws -> BlittableStruct {
-        try _default.ReturnBlittableStructImpl()
+        try _default.ReturnBlittableStruct()
     }
 
     public func takeBlittableStruct(_ value: BlittableStruct) throws {
-        try _default.TakeBlittableStructImpl(value)
+        try _default.TakeBlittableStruct(value)
     }
 
     public func returnStructWithReference() throws -> StructWithIReference {
-        try _default.ReturnStructWithReferenceImpl()
+        try _default.ReturnStructWithReference()
     }
 
     public func takeStructWithReference(_ value: StructWithIReference) throws {
-        try _default.TakeStructWithReferenceImpl(value)
+        try _default.TakeStructWithReference(value)
     }
 
     public func returnNonBlittableStruct() throws -> NonBlittableStruct {
-        try _default.ReturnNonBlittableStructImpl()
+        try _default.ReturnNonBlittableStruct()
     }
 
     public func takeNonBlittableStruct(_ value: NonBlittableStruct) throws {
-        try _default.TakeNonBlittableStructImpl(value)
+        try _default.TakeNonBlittableStruct(value)
     }
 
     public func fireEvent() throws {
-        try _default.FireEventImpl()
+        try _default.FireEvent()
     }
 
     public var blittableStructProperty : BlittableStruct {
-        get { try! _default.get_BlittableStructPropertyImpl() }
-        set { try! _default.put_BlittableStructPropertyImpl(newValue) }
+        get { try! _default.get_BlittableStructProperty() }
+        set { try! _default.put_BlittableStructProperty(newValue) }
     }
 
     public var nonBlittableStructProperty : NonBlittableStruct {
-        get { try! _default.get_NonBlittableStructPropertyImpl() }
-        set { try! _default.put_NonBlittableStructPropertyImpl(newValue) }
+        get { try! _default.get_NonBlittableStructProperty() }
+        set { try! _default.put_NonBlittableStructProperty(newValue) }
     }
 
     public var stringProperty : String {
-        get { try! _default.get_StringPropertyImpl() }
-        set { try! _default.put_StringPropertyImpl(newValue) }
+        get { try! _default.get_StringProperty() }
+        set { try! _default.put_StringProperty(newValue) }
     }
 
     public var structWithReferenceProperty : StructWithIReference {
-        get { try! _default.get_StructWithReferencePropertyImpl() }
-        set { try! _default.put_StructWithReferencePropertyImpl(newValue) }
+        get { try! _default.get_StructWithReferenceProperty() }
+        set { try! _default.put_StructWithReferenceProperty(newValue) }
     }
 
     public lazy var inEvent : Event<test_component.InDelegate> = {
       .init(
         add: { [weak self] in
           guard let this = self?._default else { return .init() }
-          return try! this.add_InEventImpl($0)
+          return try! this.add_InEvent($0)
         },
         remove: { [weak self] in
-         try? self?._default.remove_InEventImpl($0)
+         try? self?._default.remove_InEvent($0)
        }
       )
     }()
@@ -1275,10 +1275,10 @@ public final class Simple : WinRTClass {
       .init(
         add: { [weak self] in
           guard let this = self?._default else { return .init() }
-          return try! this.add_SignalEventImpl($0)
+          return try! this.add_SignalEvent($0)
         },
         remove: { [weak self] in
-         try? self?._default.remove_SignalEventImpl($0)
+         try? self?._default.remove_SignalEvent($0)
        }
       )
     }()
@@ -1287,10 +1287,10 @@ public final class Simple : WinRTClass {
       .init(
         add: { [weak self] in
           guard let this = self?._default else { return .init() }
-          return try! this.add_SimpleEventImpl($0)
+          return try! this.add_SimpleEvent($0)
         },
         remove: { [weak self] in
-         try? self?._default.remove_SimpleEventImpl($0)
+         try? self?._default.remove_SimpleEvent($0)
        }
       )
     }()
@@ -1303,20 +1303,20 @@ public final class Simple : WinRTClass {
 public final class StaticClass {
     private static let _IStaticClassStatics: __ABI_test_component.IStaticClassStatics = try! RoGetActivationFactory("test_component.StaticClass")
     public static func inEnum(_ value: Signed) throws -> String {
-        return try _IStaticClassStatics.InEnumImpl(value)
+        return try _IStaticClassStatics.InEnum(value)
     }
 
     public static func inNonBlittableStruct(_ value: NonBlittableStruct) throws -> String {
-        return try _IStaticClassStatics.InNonBlittableStructImpl(value)
+        return try _IStaticClassStatics.InNonBlittableStruct(value)
     }
 
     public static func takeBase(_ base: Base!) throws {
-        try _IStaticClassStatics.TakeBaseImpl(base)
+        try _IStaticClassStatics.TakeBase(base)
     }
 
     public static var enumProperty : Fruit {
-        get { try! _IStaticClassStatics.get_EnumPropertyImpl() }
-        set { try! _IStaticClassStatics.put_EnumPropertyImpl(newValue) }
+        get { try! _IStaticClassStatics.get_EnumProperty() }
+        set { try! _IStaticClassStatics.put_EnumProperty(newValue) }
     }
 
 }
@@ -1366,30 +1366,30 @@ open class UnsealedDerived : test_component.Base {
 
     override public init() {
         super.init(composing: Self.Composable.self) { baseInterface, innerInterface in 
-            try! Self._IUnsealedDerivedFactory.CreateInstanceImpl(baseInterface, &innerInterface)
+            try! Self._IUnsealedDerivedFactory.CreateInstance(baseInterface, &innerInterface)
         }
     }
 
     public init(_ prop: Int32) {
         super.init(composing: Self.Composable.self) { baseInterface, innerInterface in 
-            try! Self._IUnsealedDerivedFactory.CreateInstance2Impl(prop, baseInterface, &innerInterface)
+            try! Self._IUnsealedDerivedFactory.CreateInstance2(prop, baseInterface, &innerInterface)
         }
     }
 
     public init(_ prop1: String, _ prop2: Base!) {
         super.init(composing: Self.Composable.self) { baseInterface, innerInterface in 
-            try! Self._IUnsealedDerivedFactory.CreateInstance3Impl(prop1, prop2, baseInterface, &innerInterface)
+            try! Self._IUnsealedDerivedFactory.CreateInstance3(prop1, prop2, baseInterface, &innerInterface)
         }
     }
 
     public var prop : Int32 {
-        get { try! _default.get_PropImpl() }
-        set { try! _default.put_PropImpl(newValue) }
+        get { try! _default.get_Prop() }
+        set { try! _default.put_Prop(newValue) }
     }
 
     private lazy var _IUnsealedDerivedOverloads2: __ABI_test_component.IUnsealedDerivedOverloads2! = getInterfaceForCaching()
     open func onAfterDoTheThing() throws {
-        try _IUnsealedDerivedOverloads2.OnAfterDoTheThingImpl()
+        try _IUnsealedDerivedOverloads2.OnAfterDoTheThing()
     }
 
     @_spi(WinRTInternal)
@@ -1407,7 +1407,7 @@ open class UnsealedDerived : test_component.Base {
     public typealias Composable = IUnsealedDerivedOverloads2
     private lazy var _IUnsealedDerivedOverrides: __ABI_test_component.IUnsealedDerivedOverrides! = getInterfaceForCaching()
     open func onBeforeDoTheThing() throws {
-        try _IUnsealedDerivedOverrides.OnBeforeDoTheThingImpl()
+        try _IUnsealedDerivedOverrides.OnBeforeDoTheThing()
     }
 
     @_spi(WinRTInternal)
@@ -1465,7 +1465,7 @@ open class UnsealedDerived2 : test_component.UnsealedDerived {
 
     override public init(_ prop: Int32) {
         super.init(composing: Self.Composable.self) { baseInterface, innerInterface in 
-            try! Self._IUnsealedDerived2Factory.CreateInstanceImpl(prop, baseInterface, &innerInterface)
+            try! Self._IUnsealedDerived2Factory.CreateInstance(prop, baseInterface, &innerInterface)
         }
     }
 
@@ -1473,12 +1473,12 @@ open class UnsealedDerived2 : test_component.UnsealedDerived {
 
     override public init() {
         super.init(composing: Self.Composable.self) { baseInterface, innerInterface in 
-            try! Self._IUnsealedDerived2ProtectedFactory.CreateInstanceImpl(baseInterface, &innerInterface)
+            try! Self._IUnsealedDerived2ProtectedFactory.CreateInstance(baseInterface, &innerInterface)
         }
     }
 
     public func method() throws {
-        try _default.MethodImpl()
+        try _default.Method()
     }
 
     @_spi(WinRTInternal)
@@ -1536,7 +1536,7 @@ open class UnsealedDerivedFromNoConstructor : test_component.UnsealedDerivedNoCo
 
     public init() {
         super.init(composing: Self.Composable.self) { baseInterface, innerInterface in 
-            try! Self._IUnsealedDerivedFromNoConstructorFactory.CreateInstanceImpl(baseInterface, &innerInterface)
+            try! Self._IUnsealedDerivedFromNoConstructorFactory.CreateInstance(baseInterface, &innerInterface)
         }
     }
 
@@ -1648,7 +1648,7 @@ open class UnsealedDerivedNoOverrides : test_component.BaseNoOverrides {
 
     override public init() {
         super.init(composing: Self.Composable.self) { baseInterface, innerInterface in 
-            try! Self._IUnsealedDerivedNoOverridesProtectedFactory.CreateInstanceImpl(baseInterface, &innerInterface)
+            try! Self._IUnsealedDerivedNoOverridesProtectedFactory.CreateInstance(baseInterface, &innerInterface)
         }
     }
 
@@ -1695,11 +1695,11 @@ public final class WeakReferencer : WinRTClass {
 
     private static let _IWeakReferencerFactory: __ABI_test_component.IWeakReferencerFactory = try! RoGetActivationFactory("test_component.WeakReferencer")
     public init(_ object: AnyIReferenceTarget!) {
-        super.init(try! Self._IWeakReferencerFactory.CreateInstanceImpl(object))
+        super.init(try! Self._IWeakReferencerFactory.CreateInstance(object))
     }
 
     public func resolve() throws -> AnyIReferenceTarget! {
-        try _default.ResolveImpl()
+        try _default.Resolve()
     }
 
     deinit {

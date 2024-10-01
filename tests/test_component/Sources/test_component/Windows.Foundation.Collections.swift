@@ -46,10 +46,10 @@ public final class PropertySet : WinRTClass, IObservableMap, IMap, IIterable, IP
       .init(
         add: { [weak self] in
           guard let this = self?._IObservableMap else { return .init() }
-          return try! this.add_MapChangedImpl($0)
+          return try! this.add_MapChanged($0)
         },
         remove: { [weak self] in
-         try? self?._IObservableMap.remove_MapChangedImpl($0)
+         try? self?._IObservableMap.remove_MapChanged($0)
        }
       )
     }()
@@ -57,43 +57,43 @@ public final class PropertySet : WinRTClass, IObservableMap, IMap, IIterable, IP
     private lazy var _IMap: IMapString_Any! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.propertyset.lookup)
     public func lookup(_ key: String) -> Any? {
-        try! _IMap.LookupImpl(key)
+        try! _IMap.Lookup(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.propertyset.haskey)
     public func hasKey(_ key: String) -> Bool {
-        try! _IMap.HasKeyImpl(key)
+        try! _IMap.HasKey(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.propertyset.getview)
     public func getView() -> AnyIMapView<String, Any?>? {
-        try! _IMap.GetViewImpl()
+        try! _IMap.GetView()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.propertyset.insert)
     public func insert(_ key: String, _ value: Any?) -> Bool {
-        try! _IMap.InsertImpl(key, value)
+        try! _IMap.Insert(key, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.propertyset.remove)
     public func remove(_ key: String) {
-        try! _IMap.RemoveImpl(key)
+        try! _IMap.Remove(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.propertyset.clear)
     public func clear() {
-        try! _IMap.ClearImpl()
+        try! _IMap.Clear()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.propertyset.size)
     public var size : UInt32 {
-        get { try! _IMap.get_SizeImpl() }
+        get { try! _IMap.get_Size() }
     }
 
     private lazy var _IIterable: IIterableIKeyValuePairString_Any! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.propertyset.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     deinit {
@@ -141,43 +141,43 @@ public final class StringMap : WinRTClass, IMap, IIterable, IObservableMap {
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.stringmap.lookup)
     public func lookup(_ key: String) -> String {
-        try! _default.LookupImpl(key)
+        try! _default.Lookup(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.stringmap.haskey)
     public func hasKey(_ key: String) -> Bool {
-        try! _default.HasKeyImpl(key)
+        try! _default.HasKey(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.stringmap.getview)
     public func getView() -> AnyIMapView<String, String>? {
-        try! _default.GetViewImpl()
+        try! _default.GetView()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.stringmap.insert)
     public func insert(_ key: String, _ value: String) -> Bool {
-        try! _default.InsertImpl(key, value)
+        try! _default.Insert(key, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.stringmap.remove)
     public func remove(_ key: String) {
-        try! _default.RemoveImpl(key)
+        try! _default.Remove(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.stringmap.clear)
     public func clear() {
-        try! _default.ClearImpl()
+        try! _default.Clear()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.stringmap.size)
     public var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { try! _default.get_Size() }
     }
 
     private lazy var _IIterable: IIterableIKeyValuePairString_String! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.stringmap.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     private lazy var _IObservableMap: IObservableMapString_String! = getInterfaceForCaching()
@@ -186,10 +186,10 @@ public final class StringMap : WinRTClass, IMap, IIterable, IObservableMap {
       .init(
         add: { [weak self] in
           guard let this = self?._IObservableMap else { return .init() }
-          return try! this.add_MapChangedImpl($0)
+          return try! this.add_MapChanged($0)
         },
         remove: { [weak self] in
-         try? self?._IObservableMap.remove_MapChangedImpl($0)
+         try? self?._IObservableMap.remove_MapChanged($0)
        }
       )
     }()
@@ -242,10 +242,10 @@ public final class ValueSet : WinRTClass, IObservableMap, IMap, IIterable, IProp
       .init(
         add: { [weak self] in
           guard let this = self?._IObservableMap else { return .init() }
-          return try! this.add_MapChangedImpl($0)
+          return try! this.add_MapChanged($0)
         },
         remove: { [weak self] in
-         try? self?._IObservableMap.remove_MapChangedImpl($0)
+         try? self?._IObservableMap.remove_MapChanged($0)
        }
       )
     }()
@@ -253,43 +253,43 @@ public final class ValueSet : WinRTClass, IObservableMap, IMap, IIterable, IProp
     private lazy var _IMap: IMapString_Any! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.valueset.lookup)
     public func lookup(_ key: String) -> Any? {
-        try! _IMap.LookupImpl(key)
+        try! _IMap.Lookup(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.valueset.haskey)
     public func hasKey(_ key: String) -> Bool {
-        try! _IMap.HasKeyImpl(key)
+        try! _IMap.HasKey(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.valueset.getview)
     public func getView() -> AnyIMapView<String, Any?>? {
-        try! _IMap.GetViewImpl()
+        try! _IMap.GetView()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.valueset.insert)
     public func insert(_ key: String, _ value: Any?) -> Bool {
-        try! _IMap.InsertImpl(key, value)
+        try! _IMap.Insert(key, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.valueset.remove)
     public func remove(_ key: String) {
-        try! _IMap.RemoveImpl(key)
+        try! _IMap.Remove(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.valueset.clear)
     public func clear() {
-        try! _IMap.ClearImpl()
+        try! _IMap.Clear()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.valueset.size)
     public var size : UInt32 {
-        get { try! _IMap.get_SizeImpl() }
+        get { try! _IMap.get_Size() }
     }
 
     private lazy var _IIterable: IIterableIKeyValuePairString_Any! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.valueset.first)
     public func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     deinit {

@@ -96,7 +96,7 @@ public enum __ABI_Windows_Storage {
     public class IPathIOStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIPathIOStatics }
 
-        public func ReadTextAsyncImpl(_ absolutePath: String) throws -> test_component.AnyIAsyncOperation<String>? {
+        public func ReadTextAsync(_ absolutePath: String) throws -> test_component.AnyIAsyncOperation<String>? {
             let (textOperation) = try ComPtrs.initialize { textOperationAbi in
                 let _absolutePath = try! HString(absolutePath)
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIPathIOStatics.self) { pThis in
@@ -106,7 +106,7 @@ public enum __ABI_Windows_Storage {
             return test_component.__x_ABI_C__FIAsyncOperation_1_HSTRINGWrapper.unwrapFrom(abi: textOperation)
         }
 
-        public func ReadTextWithEncodingAsyncImpl(_ absolutePath: String, _ encoding: test_component.UnicodeEncoding) throws -> test_component.AnyIAsyncOperation<String>? {
+        public func ReadTextWithEncodingAsync(_ absolutePath: String, _ encoding: test_component.UnicodeEncoding) throws -> test_component.AnyIAsyncOperation<String>? {
             let (textOperation) = try ComPtrs.initialize { textOperationAbi in
                 let _absolutePath = try! HString(absolutePath)
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIPathIOStatics.self) { pThis in
@@ -116,7 +116,7 @@ public enum __ABI_Windows_Storage {
             return test_component.__x_ABI_C__FIAsyncOperation_1_HSTRINGWrapper.unwrapFrom(abi: textOperation)
         }
 
-        public func WriteTextAsyncImpl(_ absolutePath: String, _ contents: String) throws -> test_component.AnyIAsyncAction? {
+        public func WriteTextAsync(_ absolutePath: String, _ contents: String) throws -> test_component.AnyIAsyncAction? {
             let (textOperation) = try ComPtrs.initialize { textOperationAbi in
                 let _absolutePath = try! HString(absolutePath)
                 let _contents = try! HString(contents)
@@ -127,7 +127,7 @@ public enum __ABI_Windows_Storage {
             return __ABI_Windows_Foundation.IAsyncActionWrapper.unwrapFrom(abi: textOperation)
         }
 
-        public func WriteTextWithEncodingAsyncImpl(_ absolutePath: String, _ contents: String, _ encoding: test_component.UnicodeEncoding) throws -> test_component.AnyIAsyncAction? {
+        public func WriteTextWithEncodingAsync(_ absolutePath: String, _ contents: String, _ encoding: test_component.UnicodeEncoding) throws -> test_component.AnyIAsyncAction? {
             let (textOperation) = try ComPtrs.initialize { textOperationAbi in
                 let _absolutePath = try! HString(absolutePath)
                 let _contents = try! HString(contents)
@@ -138,7 +138,7 @@ public enum __ABI_Windows_Storage {
             return __ABI_Windows_Foundation.IAsyncActionWrapper.unwrapFrom(abi: textOperation)
         }
 
-        public func AppendTextAsyncImpl(_ absolutePath: String, _ contents: String) throws -> test_component.AnyIAsyncAction? {
+        public func AppendTextAsync(_ absolutePath: String, _ contents: String) throws -> test_component.AnyIAsyncAction? {
             let (textOperation) = try ComPtrs.initialize { textOperationAbi in
                 let _absolutePath = try! HString(absolutePath)
                 let _contents = try! HString(contents)
@@ -149,7 +149,7 @@ public enum __ABI_Windows_Storage {
             return __ABI_Windows_Foundation.IAsyncActionWrapper.unwrapFrom(abi: textOperation)
         }
 
-        public func AppendTextWithEncodingAsyncImpl(_ absolutePath: String, _ contents: String, _ encoding: test_component.UnicodeEncoding) throws -> test_component.AnyIAsyncAction? {
+        public func AppendTextWithEncodingAsync(_ absolutePath: String, _ contents: String, _ encoding: test_component.UnicodeEncoding) throws -> test_component.AnyIAsyncAction? {
             let (textOperation) = try ComPtrs.initialize { textOperationAbi in
                 let _absolutePath = try! HString(absolutePath)
                 let _contents = try! HString(contents)
@@ -160,7 +160,7 @@ public enum __ABI_Windows_Storage {
             return __ABI_Windows_Foundation.IAsyncActionWrapper.unwrapFrom(abi: textOperation)
         }
 
-        public func ReadLinesAsyncImpl(_ absolutePath: String) throws -> test_component.AnyIAsyncOperation<test_component.AnyIVector<String>?>? {
+        public func ReadLinesAsync(_ absolutePath: String) throws -> test_component.AnyIAsyncOperation<test_component.AnyIVector<String>?>? {
             let (linesOperation) = try ComPtrs.initialize { linesOperationAbi in
                 let _absolutePath = try! HString(absolutePath)
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIPathIOStatics.self) { pThis in
@@ -170,7 +170,7 @@ public enum __ABI_Windows_Storage {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVector_1_HSTRINGWrapper.unwrapFrom(abi: linesOperation)
         }
 
-        public func ReadLinesWithEncodingAsyncImpl(_ absolutePath: String, _ encoding: test_component.UnicodeEncoding) throws -> test_component.AnyIAsyncOperation<test_component.AnyIVector<String>?>? {
+        public func ReadLinesWithEncodingAsync(_ absolutePath: String, _ encoding: test_component.UnicodeEncoding) throws -> test_component.AnyIAsyncOperation<test_component.AnyIVector<String>?>? {
             let (linesOperation) = try ComPtrs.initialize { linesOperationAbi in
                 let _absolutePath = try! HString(absolutePath)
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIPathIOStatics.self) { pThis in
@@ -180,7 +180,7 @@ public enum __ABI_Windows_Storage {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVector_1_HSTRINGWrapper.unwrapFrom(abi: linesOperation)
         }
 
-        public func WriteLinesAsyncImpl(_ absolutePath: String, _ lines: test_component.AnyIIterable<String>?) throws -> test_component.AnyIAsyncAction? {
+        public func WriteLinesAsync(_ absolutePath: String, _ lines: test_component.AnyIIterable<String>?) throws -> test_component.AnyIAsyncAction? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let _absolutePath = try! HString(absolutePath)
                 let linesWrapper = test_component.__x_ABI_C__FIIterable_1_HSTRINGWrapper(lines)
@@ -192,7 +192,7 @@ public enum __ABI_Windows_Storage {
             return __ABI_Windows_Foundation.IAsyncActionWrapper.unwrapFrom(abi: operation)
         }
 
-        public func WriteLinesWithEncodingAsyncImpl(_ absolutePath: String, _ lines: test_component.AnyIIterable<String>?, _ encoding: test_component.UnicodeEncoding) throws -> test_component.AnyIAsyncAction? {
+        public func WriteLinesWithEncodingAsync(_ absolutePath: String, _ lines: test_component.AnyIIterable<String>?, _ encoding: test_component.UnicodeEncoding) throws -> test_component.AnyIAsyncAction? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let _absolutePath = try! HString(absolutePath)
                 let linesWrapper = test_component.__x_ABI_C__FIIterable_1_HSTRINGWrapper(lines)
@@ -204,7 +204,7 @@ public enum __ABI_Windows_Storage {
             return __ABI_Windows_Foundation.IAsyncActionWrapper.unwrapFrom(abi: operation)
         }
 
-        public func AppendLinesAsyncImpl(_ absolutePath: String, _ lines: test_component.AnyIIterable<String>?) throws -> test_component.AnyIAsyncAction? {
+        public func AppendLinesAsync(_ absolutePath: String, _ lines: test_component.AnyIIterable<String>?) throws -> test_component.AnyIAsyncAction? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let _absolutePath = try! HString(absolutePath)
                 let linesWrapper = test_component.__x_ABI_C__FIIterable_1_HSTRINGWrapper(lines)
@@ -216,7 +216,7 @@ public enum __ABI_Windows_Storage {
             return __ABI_Windows_Foundation.IAsyncActionWrapper.unwrapFrom(abi: operation)
         }
 
-        public func AppendLinesWithEncodingAsyncImpl(_ absolutePath: String, _ lines: test_component.AnyIIterable<String>?, _ encoding: test_component.UnicodeEncoding) throws -> test_component.AnyIAsyncAction? {
+        public func AppendLinesWithEncodingAsync(_ absolutePath: String, _ lines: test_component.AnyIIterable<String>?, _ encoding: test_component.UnicodeEncoding) throws -> test_component.AnyIAsyncAction? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let _absolutePath = try! HString(absolutePath)
                 let linesWrapper = test_component.__x_ABI_C__FIIterable_1_HSTRINGWrapper(lines)
@@ -228,7 +228,7 @@ public enum __ABI_Windows_Storage {
             return __ABI_Windows_Foundation.IAsyncActionWrapper.unwrapFrom(abi: operation)
         }
 
-        public func ReadBufferAsyncImpl(_ absolutePath: String) throws -> test_component.AnyIAsyncOperation<test_component.AnyIBuffer?>? {
+        public func ReadBufferAsync(_ absolutePath: String) throws -> test_component.AnyIAsyncOperation<test_component.AnyIBuffer?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let _absolutePath = try! HString(absolutePath)
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIPathIOStatics.self) { pThis in
@@ -238,7 +238,7 @@ public enum __ABI_Windows_Storage {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIBufferWrapper.unwrapFrom(abi: operation)
         }
 
-        public func WriteBufferAsyncImpl(_ absolutePath: String, _ buffer: test_component.AnyIBuffer?) throws -> test_component.AnyIAsyncAction? {
+        public func WriteBufferAsync(_ absolutePath: String, _ buffer: test_component.AnyIBuffer?) throws -> test_component.AnyIAsyncAction? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let _absolutePath = try! HString(absolutePath)
                 let bufferWrapper = __ABI_Windows_Storage_Streams.IBufferWrapper(buffer)
@@ -255,7 +255,7 @@ public enum __ABI_Windows_Storage {
     public class IStorageFile: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageFile }
 
-        open func get_FileTypeImpl() throws -> String {
+        open func get_FileType() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageFile.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_FileType(pThis, &value))
@@ -263,7 +263,7 @@ public enum __ABI_Windows_Storage {
             return .init(from: value)
         }
 
-        open func get_ContentTypeImpl() throws -> String {
+        open func get_ContentType() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageFile.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_ContentType(pThis, &value))
@@ -271,7 +271,7 @@ public enum __ABI_Windows_Storage {
             return .init(from: value)
         }
 
-        open func OpenAsyncImpl(_ accessMode: test_component.FileAccessMode) throws -> test_component.AnyIAsyncOperation<test_component.AnyIRandomAccessStream?>? {
+        open func OpenAsync(_ accessMode: test_component.FileAccessMode) throws -> test_component.AnyIAsyncOperation<test_component.AnyIRandomAccessStream?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageFile.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.OpenAsync(pThis, accessMode, &operationAbi))
@@ -280,7 +280,7 @@ public enum __ABI_Windows_Storage {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWrapper.unwrapFrom(abi: operation)
         }
 
-        open func OpenTransactedWriteAsyncImpl() throws -> test_component.AnyIAsyncOperation<test_component.StorageStreamTransaction?>? {
+        open func OpenTransactedWriteAsync() throws -> test_component.AnyIAsyncOperation<test_component.StorageStreamTransaction?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageFile.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.OpenTransactedWriteAsync(pThis, &operationAbi))
@@ -289,7 +289,7 @@ public enum __ABI_Windows_Storage {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageStreamTransactionWrapper.unwrapFrom(abi: operation)
         }
 
-        open func CopyOverloadDefaultNameAndOptionsImpl(_ destinationFolder: test_component.AnyIStorageFolder?) throws -> test_component.AnyIAsyncOperation<test_component.StorageFile?>? {
+        open func CopyOverloadDefaultNameAndOptions(_ destinationFolder: test_component.AnyIStorageFolder?) throws -> test_component.AnyIAsyncOperation<test_component.StorageFile?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let destinationFolderWrapper = __ABI_Windows_Storage.IStorageFolderWrapper(destinationFolder)
                 let _destinationFolder = try! destinationFolderWrapper?.toABI { $0 }
@@ -300,7 +300,7 @@ public enum __ABI_Windows_Storage {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.unwrapFrom(abi: operation)
         }
 
-        open func CopyOverloadDefaultOptionsImpl(_ destinationFolder: test_component.AnyIStorageFolder?, _ desiredNewName: String) throws -> test_component.AnyIAsyncOperation<test_component.StorageFile?>? {
+        open func CopyOverloadDefaultOptions(_ destinationFolder: test_component.AnyIStorageFolder?, _ desiredNewName: String) throws -> test_component.AnyIAsyncOperation<test_component.StorageFile?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let destinationFolderWrapper = __ABI_Windows_Storage.IStorageFolderWrapper(destinationFolder)
                 let _destinationFolder = try! destinationFolderWrapper?.toABI { $0 }
@@ -312,7 +312,7 @@ public enum __ABI_Windows_Storage {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.unwrapFrom(abi: operation)
         }
 
-        open func CopyOverloadImpl(_ destinationFolder: test_component.AnyIStorageFolder?, _ desiredNewName: String, _ option: test_component.NameCollisionOption) throws -> test_component.AnyIAsyncOperation<test_component.StorageFile?>? {
+        open func CopyOverload(_ destinationFolder: test_component.AnyIStorageFolder?, _ desiredNewName: String, _ option: test_component.NameCollisionOption) throws -> test_component.AnyIAsyncOperation<test_component.StorageFile?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let destinationFolderWrapper = __ABI_Windows_Storage.IStorageFolderWrapper(destinationFolder)
                 let _destinationFolder = try! destinationFolderWrapper?.toABI { $0 }
@@ -324,7 +324,7 @@ public enum __ABI_Windows_Storage {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.unwrapFrom(abi: operation)
         }
 
-        open func CopyAndReplaceAsyncImpl(_ fileToReplace: test_component.AnyIStorageFile?) throws -> test_component.AnyIAsyncAction? {
+        open func CopyAndReplaceAsync(_ fileToReplace: test_component.AnyIStorageFile?) throws -> test_component.AnyIAsyncAction? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let fileToReplaceWrapper = __ABI_Windows_Storage.IStorageFileWrapper(fileToReplace)
                 let _fileToReplace = try! fileToReplaceWrapper?.toABI { $0 }
@@ -335,7 +335,7 @@ public enum __ABI_Windows_Storage {
             return __ABI_Windows_Foundation.IAsyncActionWrapper.unwrapFrom(abi: operation)
         }
 
-        open func MoveOverloadDefaultNameAndOptionsImpl(_ destinationFolder: test_component.AnyIStorageFolder?) throws -> test_component.AnyIAsyncAction? {
+        open func MoveOverloadDefaultNameAndOptions(_ destinationFolder: test_component.AnyIStorageFolder?) throws -> test_component.AnyIAsyncAction? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let destinationFolderWrapper = __ABI_Windows_Storage.IStorageFolderWrapper(destinationFolder)
                 let _destinationFolder = try! destinationFolderWrapper?.toABI { $0 }
@@ -346,7 +346,7 @@ public enum __ABI_Windows_Storage {
             return __ABI_Windows_Foundation.IAsyncActionWrapper.unwrapFrom(abi: operation)
         }
 
-        open func MoveOverloadDefaultOptionsImpl(_ destinationFolder: test_component.AnyIStorageFolder?, _ desiredNewName: String) throws -> test_component.AnyIAsyncAction? {
+        open func MoveOverloadDefaultOptions(_ destinationFolder: test_component.AnyIStorageFolder?, _ desiredNewName: String) throws -> test_component.AnyIAsyncAction? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let destinationFolderWrapper = __ABI_Windows_Storage.IStorageFolderWrapper(destinationFolder)
                 let _destinationFolder = try! destinationFolderWrapper?.toABI { $0 }
@@ -358,7 +358,7 @@ public enum __ABI_Windows_Storage {
             return __ABI_Windows_Foundation.IAsyncActionWrapper.unwrapFrom(abi: operation)
         }
 
-        open func MoveOverloadImpl(_ destinationFolder: test_component.AnyIStorageFolder?, _ desiredNewName: String, _ option: test_component.NameCollisionOption) throws -> test_component.AnyIAsyncAction? {
+        open func MoveOverload(_ destinationFolder: test_component.AnyIStorageFolder?, _ desiredNewName: String, _ option: test_component.NameCollisionOption) throws -> test_component.AnyIAsyncAction? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let destinationFolderWrapper = __ABI_Windows_Storage.IStorageFolderWrapper(destinationFolder)
                 let _destinationFolder = try! destinationFolderWrapper?.toABI { $0 }
@@ -370,7 +370,7 @@ public enum __ABI_Windows_Storage {
             return __ABI_Windows_Foundation.IAsyncActionWrapper.unwrapFrom(abi: operation)
         }
 
-        open func MoveAndReplaceAsyncImpl(_ fileToReplace: test_component.AnyIStorageFile?) throws -> test_component.AnyIAsyncAction? {
+        open func MoveAndReplaceAsync(_ fileToReplace: test_component.AnyIStorageFile?) throws -> test_component.AnyIAsyncAction? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let fileToReplaceWrapper = __ABI_Windows_Storage.IStorageFileWrapper(fileToReplace)
                 let _fileToReplace = try! fileToReplaceWrapper?.toABI { $0 }
@@ -548,7 +548,7 @@ public enum __ABI_Windows_Storage {
     public class IStorageFile2: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageFile2 }
 
-        open func OpenWithOptionsAsyncImpl(_ accessMode: test_component.FileAccessMode, _ options: test_component.StorageOpenOptions) throws -> test_component.AnyIAsyncOperation<test_component.AnyIRandomAccessStream?>? {
+        open func OpenWithOptionsAsync(_ accessMode: test_component.FileAccessMode, _ options: test_component.StorageOpenOptions) throws -> test_component.AnyIAsyncOperation<test_component.AnyIRandomAccessStream?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageFile2.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.OpenWithOptionsAsync(pThis, accessMode, options, &operationAbi))
@@ -557,7 +557,7 @@ public enum __ABI_Windows_Storage {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWrapper.unwrapFrom(abi: operation)
         }
 
-        open func OpenTransactedWriteWithOptionsAsyncImpl(_ options: test_component.StorageOpenOptions) throws -> test_component.AnyIAsyncOperation<test_component.StorageStreamTransaction?>? {
+        open func OpenTransactedWriteWithOptionsAsync(_ options: test_component.StorageOpenOptions) throws -> test_component.AnyIAsyncOperation<test_component.StorageStreamTransaction?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageFile2.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.OpenTransactedWriteWithOptionsAsync(pThis, options, &operationAbi))
@@ -624,7 +624,7 @@ public enum __ABI_Windows_Storage {
     public class IStorageFilePropertiesWithAvailability: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageFilePropertiesWithAvailability }
 
-        open func get_IsAvailableImpl() throws -> Bool {
+        open func get_IsAvailable() throws -> Bool {
             var value: boolean = 0
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageFilePropertiesWithAvailability.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_IsAvailable(pThis, &value))
@@ -674,7 +674,7 @@ public enum __ABI_Windows_Storage {
     public class IStorageFileStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageFileStatics }
 
-        public func GetFileFromPathAsyncImpl(_ path: String) throws -> test_component.AnyIAsyncOperation<test_component.StorageFile?>? {
+        public func GetFileFromPathAsync(_ path: String) throws -> test_component.AnyIAsyncOperation<test_component.StorageFile?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let _path = try! HString(path)
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageFileStatics.self) { pThis in
@@ -684,7 +684,7 @@ public enum __ABI_Windows_Storage {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.unwrapFrom(abi: operation)
         }
 
-        public func GetFileFromApplicationUriAsyncImpl(_ uri: test_component.Uri?) throws -> test_component.AnyIAsyncOperation<test_component.StorageFile?>? {
+        public func GetFileFromApplicationUriAsync(_ uri: test_component.Uri?) throws -> test_component.AnyIAsyncOperation<test_component.StorageFile?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageFileStatics.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.GetFileFromApplicationUriAsync(pThis, RawPointer(uri), &operationAbi))
@@ -693,7 +693,7 @@ public enum __ABI_Windows_Storage {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.unwrapFrom(abi: operation)
         }
 
-        public func CreateStreamedFileAsyncImpl(_ displayNameWithExtension: String, _ dataRequested: test_component.StreamedFileDataRequestedHandler?, _ thumbnail: test_component.AnyIRandomAccessStreamReference?) throws -> test_component.AnyIAsyncOperation<test_component.StorageFile?>? {
+        public func CreateStreamedFileAsync(_ displayNameWithExtension: String, _ dataRequested: test_component.StreamedFileDataRequestedHandler?, _ thumbnail: test_component.AnyIRandomAccessStreamReference?) throws -> test_component.AnyIAsyncOperation<test_component.StorageFile?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let _displayNameWithExtension = try! HString(displayNameWithExtension)
                 let dataRequestedWrapper = __ABI_Windows_Storage.StreamedFileDataRequestedHandlerWrapper(dataRequested)
@@ -707,7 +707,7 @@ public enum __ABI_Windows_Storage {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.unwrapFrom(abi: operation)
         }
 
-        public func ReplaceWithStreamedFileAsyncImpl(_ fileToReplace: test_component.AnyIStorageFile?, _ dataRequested: test_component.StreamedFileDataRequestedHandler?, _ thumbnail: test_component.AnyIRandomAccessStreamReference?) throws -> test_component.AnyIAsyncOperation<test_component.StorageFile?>? {
+        public func ReplaceWithStreamedFileAsync(_ fileToReplace: test_component.AnyIStorageFile?, _ dataRequested: test_component.StreamedFileDataRequestedHandler?, _ thumbnail: test_component.AnyIRandomAccessStreamReference?) throws -> test_component.AnyIAsyncOperation<test_component.StorageFile?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let fileToReplaceWrapper = __ABI_Windows_Storage.IStorageFileWrapper(fileToReplace)
                 let _fileToReplace = try! fileToReplaceWrapper?.toABI { $0 }
@@ -722,7 +722,7 @@ public enum __ABI_Windows_Storage {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.unwrapFrom(abi: operation)
         }
 
-        public func CreateStreamedFileFromUriAsyncImpl(_ displayNameWithExtension: String, _ uri: test_component.Uri?, _ thumbnail: test_component.AnyIRandomAccessStreamReference?) throws -> test_component.AnyIAsyncOperation<test_component.StorageFile?>? {
+        public func CreateStreamedFileFromUriAsync(_ displayNameWithExtension: String, _ uri: test_component.Uri?, _ thumbnail: test_component.AnyIRandomAccessStreamReference?) throws -> test_component.AnyIAsyncOperation<test_component.StorageFile?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let _displayNameWithExtension = try! HString(displayNameWithExtension)
                 let thumbnailWrapper = __ABI_Windows_Storage_Streams.IRandomAccessStreamReferenceWrapper(thumbnail)
@@ -734,7 +734,7 @@ public enum __ABI_Windows_Storage {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.unwrapFrom(abi: operation)
         }
 
-        public func ReplaceWithStreamedFileFromUriAsyncImpl(_ fileToReplace: test_component.AnyIStorageFile?, _ uri: test_component.Uri?, _ thumbnail: test_component.AnyIRandomAccessStreamReference?) throws -> test_component.AnyIAsyncOperation<test_component.StorageFile?>? {
+        public func ReplaceWithStreamedFileFromUriAsync(_ fileToReplace: test_component.AnyIStorageFile?, _ uri: test_component.Uri?, _ thumbnail: test_component.AnyIRandomAccessStreamReference?) throws -> test_component.AnyIAsyncOperation<test_component.StorageFile?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let fileToReplaceWrapper = __ABI_Windows_Storage.IStorageFileWrapper(fileToReplace)
                 let _fileToReplace = try! fileToReplaceWrapper?.toABI { $0 }
@@ -752,7 +752,7 @@ public enum __ABI_Windows_Storage {
     public class IStorageFolder: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageFolder }
 
-        open func CreateFileAsyncOverloadDefaultOptionsImpl(_ desiredName: String) throws -> test_component.AnyIAsyncOperation<test_component.StorageFile?>? {
+        open func CreateFileAsyncOverloadDefaultOptions(_ desiredName: String) throws -> test_component.AnyIAsyncOperation<test_component.StorageFile?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let _desiredName = try! HString(desiredName)
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageFolder.self) { pThis in
@@ -762,7 +762,7 @@ public enum __ABI_Windows_Storage {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.unwrapFrom(abi: operation)
         }
 
-        open func CreateFileAsyncImpl(_ desiredName: String, _ options: test_component.CreationCollisionOption) throws -> test_component.AnyIAsyncOperation<test_component.StorageFile?>? {
+        open func CreateFileAsync(_ desiredName: String, _ options: test_component.CreationCollisionOption) throws -> test_component.AnyIAsyncOperation<test_component.StorageFile?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let _desiredName = try! HString(desiredName)
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageFolder.self) { pThis in
@@ -772,7 +772,7 @@ public enum __ABI_Windows_Storage {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.unwrapFrom(abi: operation)
         }
 
-        open func CreateFolderAsyncOverloadDefaultOptionsImpl(_ desiredName: String) throws -> test_component.AnyIAsyncOperation<test_component.StorageFolder?>? {
+        open func CreateFolderAsyncOverloadDefaultOptions(_ desiredName: String) throws -> test_component.AnyIAsyncOperation<test_component.StorageFolder?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let _desiredName = try! HString(desiredName)
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageFolder.self) { pThis in
@@ -782,7 +782,7 @@ public enum __ABI_Windows_Storage {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.unwrapFrom(abi: operation)
         }
 
-        open func CreateFolderAsyncImpl(_ desiredName: String, _ options: test_component.CreationCollisionOption) throws -> test_component.AnyIAsyncOperation<test_component.StorageFolder?>? {
+        open func CreateFolderAsync(_ desiredName: String, _ options: test_component.CreationCollisionOption) throws -> test_component.AnyIAsyncOperation<test_component.StorageFolder?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let _desiredName = try! HString(desiredName)
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageFolder.self) { pThis in
@@ -792,7 +792,7 @@ public enum __ABI_Windows_Storage {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.unwrapFrom(abi: operation)
         }
 
-        open func GetFileAsyncImpl(_ name: String) throws -> test_component.AnyIAsyncOperation<test_component.StorageFile?>? {
+        open func GetFileAsync(_ name: String) throws -> test_component.AnyIAsyncOperation<test_component.StorageFile?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let _name = try! HString(name)
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageFolder.self) { pThis in
@@ -802,7 +802,7 @@ public enum __ABI_Windows_Storage {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.unwrapFrom(abi: operation)
         }
 
-        open func GetFolderAsyncImpl(_ name: String) throws -> test_component.AnyIAsyncOperation<test_component.StorageFolder?>? {
+        open func GetFolderAsync(_ name: String) throws -> test_component.AnyIAsyncOperation<test_component.StorageFolder?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let _name = try! HString(name)
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageFolder.self) { pThis in
@@ -812,7 +812,7 @@ public enum __ABI_Windows_Storage {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.unwrapFrom(abi: operation)
         }
 
-        open func GetItemAsyncImpl(_ name: String) throws -> test_component.AnyIAsyncOperation<test_component.AnyIStorageItem?>? {
+        open func GetItemAsync(_ name: String) throws -> test_component.AnyIAsyncOperation<test_component.AnyIStorageItem?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let _name = try! HString(name)
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageFolder.self) { pThis in
@@ -822,7 +822,7 @@ public enum __ABI_Windows_Storage {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper.unwrapFrom(abi: operation)
         }
 
-        open func GetFilesAsyncOverloadDefaultOptionsStartAndCountImpl() throws -> test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.StorageFile?>?>? {
+        open func GetFilesAsyncOverloadDefaultOptionsStartAndCount() throws -> test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.StorageFile?>?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageFolder.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.GetFilesAsyncOverloadDefaultOptionsStartAndCount(pThis, &operationAbi))
@@ -831,7 +831,7 @@ public enum __ABI_Windows_Storage {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.unwrapFrom(abi: operation)
         }
 
-        open func GetFoldersAsyncOverloadDefaultOptionsStartAndCountImpl() throws -> test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.StorageFolder?>?>? {
+        open func GetFoldersAsyncOverloadDefaultOptionsStartAndCount() throws -> test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.StorageFolder?>?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageFolder.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.GetFoldersAsyncOverloadDefaultOptionsStartAndCount(pThis, &operationAbi))
@@ -840,7 +840,7 @@ public enum __ABI_Windows_Storage {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.unwrapFrom(abi: operation)
         }
 
-        open func GetItemsAsyncOverloadDefaultStartAndCountImpl() throws -> test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.AnyIStorageItem?>?>? {
+        open func GetItemsAsyncOverloadDefaultStartAndCount() throws -> test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.AnyIStorageItem?>?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageFolder.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.GetItemsAsyncOverloadDefaultStartAndCount(pThis, &operationAbi))
@@ -994,7 +994,7 @@ public enum __ABI_Windows_Storage {
     public class IStorageFolder2: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageFolder2 }
 
-        open func TryGetItemAsyncImpl(_ name: String) throws -> test_component.AnyIAsyncOperation<test_component.AnyIStorageItem?>? {
+        open func TryGetItemAsync(_ name: String) throws -> test_component.AnyIAsyncOperation<test_component.AnyIStorageItem?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let _name = try! HString(name)
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageFolder2.self) { pThis in
@@ -1050,7 +1050,7 @@ public enum __ABI_Windows_Storage {
     public class IStorageFolder3: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageFolder3 }
 
-        public func TryGetChangeTrackerImpl() throws -> test_component.StorageLibraryChangeTracker? {
+        public func TryGetChangeTracker() throws -> test_component.StorageLibraryChangeTracker? {
             let (result) = try ComPtrs.initialize { resultAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageFolder3.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.TryGetChangeTracker(pThis, &resultAbi))
@@ -1064,7 +1064,7 @@ public enum __ABI_Windows_Storage {
     public class IStorageFolderStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageFolderStatics }
 
-        public func GetFolderFromPathAsyncImpl(_ path: String) throws -> test_component.AnyIAsyncOperation<test_component.StorageFolder?>? {
+        public func GetFolderFromPathAsync(_ path: String) throws -> test_component.AnyIAsyncOperation<test_component.StorageFolder?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let _path = try! HString(path)
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageFolderStatics.self) { pThis in
@@ -1079,7 +1079,7 @@ public enum __ABI_Windows_Storage {
     public class IStorageItem: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageItem }
 
-        open func RenameAsyncOverloadDefaultOptionsImpl(_ desiredName: String) throws -> test_component.AnyIAsyncAction? {
+        open func RenameAsyncOverloadDefaultOptions(_ desiredName: String) throws -> test_component.AnyIAsyncAction? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let _desiredName = try! HString(desiredName)
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageItem.self) { pThis in
@@ -1089,7 +1089,7 @@ public enum __ABI_Windows_Storage {
             return __ABI_Windows_Foundation.IAsyncActionWrapper.unwrapFrom(abi: operation)
         }
 
-        open func RenameAsyncImpl(_ desiredName: String, _ option: test_component.NameCollisionOption) throws -> test_component.AnyIAsyncAction? {
+        open func RenameAsync(_ desiredName: String, _ option: test_component.NameCollisionOption) throws -> test_component.AnyIAsyncAction? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let _desiredName = try! HString(desiredName)
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageItem.self) { pThis in
@@ -1099,7 +1099,7 @@ public enum __ABI_Windows_Storage {
             return __ABI_Windows_Foundation.IAsyncActionWrapper.unwrapFrom(abi: operation)
         }
 
-        open func DeleteAsyncOverloadDefaultOptionsImpl() throws -> test_component.AnyIAsyncAction? {
+        open func DeleteAsyncOverloadDefaultOptions() throws -> test_component.AnyIAsyncAction? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageItem.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.DeleteAsyncOverloadDefaultOptions(pThis, &operationAbi))
@@ -1108,7 +1108,7 @@ public enum __ABI_Windows_Storage {
             return __ABI_Windows_Foundation.IAsyncActionWrapper.unwrapFrom(abi: operation)
         }
 
-        open func DeleteAsyncImpl(_ option: test_component.StorageDeleteOption) throws -> test_component.AnyIAsyncAction? {
+        open func DeleteAsync(_ option: test_component.StorageDeleteOption) throws -> test_component.AnyIAsyncAction? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageItem.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.DeleteAsync(pThis, option, &operationAbi))
@@ -1117,7 +1117,7 @@ public enum __ABI_Windows_Storage {
             return __ABI_Windows_Foundation.IAsyncActionWrapper.unwrapFrom(abi: operation)
         }
 
-        open func GetBasicPropertiesAsyncImpl() throws -> test_component.AnyIAsyncOperation<test_component.BasicProperties?>? {
+        open func GetBasicPropertiesAsync() throws -> test_component.AnyIAsyncOperation<test_component.BasicProperties?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageItem.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.GetBasicPropertiesAsync(pThis, &operationAbi))
@@ -1126,7 +1126,7 @@ public enum __ABI_Windows_Storage {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicPropertiesWrapper.unwrapFrom(abi: operation)
         }
 
-        open func get_NameImpl() throws -> String {
+        open func get_Name() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageItem.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Name(pThis, &value))
@@ -1134,7 +1134,7 @@ public enum __ABI_Windows_Storage {
             return .init(from: value)
         }
 
-        open func get_PathImpl() throws -> String {
+        open func get_Path() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageItem.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Path(pThis, &value))
@@ -1142,7 +1142,7 @@ public enum __ABI_Windows_Storage {
             return .init(from: value)
         }
 
-        open func get_AttributesImpl() throws -> test_component.FileAttributes {
+        open func get_Attributes() throws -> test_component.FileAttributes {
             var value: __x_ABI_CWindows_CStorage_CFileAttributes = .init(0)
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageItem.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Attributes(pThis, &value))
@@ -1150,7 +1150,7 @@ public enum __ABI_Windows_Storage {
             return value
         }
 
-        open func get_DateCreatedImpl() throws -> test_component.DateTime {
+        open func get_DateCreated() throws -> test_component.DateTime {
             var value: __x_ABI_CWindows_CFoundation_CDateTime = .init()
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageItem.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_DateCreated(pThis, &value))
@@ -1158,7 +1158,7 @@ public enum __ABI_Windows_Storage {
             return .from(abi: value)
         }
 
-        open func IsOfTypeImpl(_ type: test_component.StorageItemTypes) throws -> Bool {
+        open func IsOfType(_ type: test_component.StorageItemTypes) throws -> Bool {
             var value: boolean = 0
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageItem.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.IsOfType(pThis, type, &value))
@@ -1293,7 +1293,7 @@ public enum __ABI_Windows_Storage {
     public class IStorageItem2: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageItem2 }
 
-        open func GetParentAsyncImpl() throws -> test_component.AnyIAsyncOperation<test_component.StorageFolder?>? {
+        open func GetParentAsync() throws -> test_component.AnyIAsyncOperation<test_component.StorageFolder?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageItem2.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.GetParentAsync(pThis, &operationAbi))
@@ -1302,7 +1302,7 @@ public enum __ABI_Windows_Storage {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.unwrapFrom(abi: operation)
         }
 
-        open func IsEqualImpl(_ item: test_component.AnyIStorageItem?) throws -> Bool {
+        open func IsEqual(_ item: test_component.AnyIStorageItem?) throws -> Bool {
             var value: boolean = 0
             let itemWrapper = __ABI_Windows_Storage.IStorageItemWrapper(item)
             let _item = try! itemWrapper?.toABI { $0 }
@@ -1368,7 +1368,7 @@ public enum __ABI_Windows_Storage {
     public class IStorageItemProperties: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageItemProperties }
 
-        open func GetThumbnailAsyncOverloadDefaultSizeDefaultOptionsImpl(_ mode: test_component.ThumbnailMode) throws -> test_component.AnyIAsyncOperation<test_component.StorageItemThumbnail?>? {
+        open func GetThumbnailAsyncOverloadDefaultSizeDefaultOptions(_ mode: test_component.ThumbnailMode) throws -> test_component.AnyIAsyncOperation<test_component.StorageItemThumbnail?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageItemProperties.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.GetThumbnailAsyncOverloadDefaultSizeDefaultOptions(pThis, mode, &operationAbi))
@@ -1377,7 +1377,7 @@ public enum __ABI_Windows_Storage {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailWrapper.unwrapFrom(abi: operation)
         }
 
-        open func GetThumbnailAsyncOverloadDefaultOptionsImpl(_ mode: test_component.ThumbnailMode, _ requestedSize: UInt32) throws -> test_component.AnyIAsyncOperation<test_component.StorageItemThumbnail?>? {
+        open func GetThumbnailAsyncOverloadDefaultOptions(_ mode: test_component.ThumbnailMode, _ requestedSize: UInt32) throws -> test_component.AnyIAsyncOperation<test_component.StorageItemThumbnail?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageItemProperties.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.GetThumbnailAsyncOverloadDefaultOptions(pThis, mode, requestedSize, &operationAbi))
@@ -1386,7 +1386,7 @@ public enum __ABI_Windows_Storage {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailWrapper.unwrapFrom(abi: operation)
         }
 
-        open func GetThumbnailAsyncImpl(_ mode: test_component.ThumbnailMode, _ requestedSize: UInt32, _ options: test_component.ThumbnailOptions) throws -> test_component.AnyIAsyncOperation<test_component.StorageItemThumbnail?>? {
+        open func GetThumbnailAsync(_ mode: test_component.ThumbnailMode, _ requestedSize: UInt32, _ options: test_component.ThumbnailOptions) throws -> test_component.AnyIAsyncOperation<test_component.StorageItemThumbnail?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageItemProperties.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.GetThumbnailAsync(pThis, mode, requestedSize, options, &operationAbi))
@@ -1395,7 +1395,7 @@ public enum __ABI_Windows_Storage {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailWrapper.unwrapFrom(abi: operation)
         }
 
-        open func get_DisplayNameImpl() throws -> String {
+        open func get_DisplayName() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageItemProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_DisplayName(pThis, &value))
@@ -1403,7 +1403,7 @@ public enum __ABI_Windows_Storage {
             return .init(from: value)
         }
 
-        open func get_DisplayTypeImpl() throws -> String {
+        open func get_DisplayType() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageItemProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_DisplayType(pThis, &value))
@@ -1411,7 +1411,7 @@ public enum __ABI_Windows_Storage {
             return .init(from: value)
         }
 
-        open func get_FolderRelativeIdImpl() throws -> String {
+        open func get_FolderRelativeId() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageItemProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_FolderRelativeId(pThis, &value))
@@ -1419,7 +1419,7 @@ public enum __ABI_Windows_Storage {
             return .init(from: value)
         }
 
-        open func get_PropertiesImpl() throws -> test_component.StorageItemContentProperties? {
+        open func get_Properties() throws -> test_component.StorageItemContentProperties? {
             let (value) = try ComPtrs.initialize { valueAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageItemProperties.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.get_Properties(pThis, &valueAbi))
@@ -1527,7 +1527,7 @@ public enum __ABI_Windows_Storage {
     public class IStorageItemProperties2: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageItemProperties2 }
 
-        open func GetScaledImageAsThumbnailAsyncOverloadDefaultSizeDefaultOptionsImpl(_ mode: test_component.ThumbnailMode) throws -> test_component.AnyIAsyncOperation<test_component.StorageItemThumbnail?>? {
+        open func GetScaledImageAsThumbnailAsyncOverloadDefaultSizeDefaultOptions(_ mode: test_component.ThumbnailMode) throws -> test_component.AnyIAsyncOperation<test_component.StorageItemThumbnail?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageItemProperties2.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.GetScaledImageAsThumbnailAsyncOverloadDefaultSizeDefaultOptions(pThis, mode, &operationAbi))
@@ -1536,7 +1536,7 @@ public enum __ABI_Windows_Storage {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailWrapper.unwrapFrom(abi: operation)
         }
 
-        open func GetScaledImageAsThumbnailAsyncOverloadDefaultOptionsImpl(_ mode: test_component.ThumbnailMode, _ requestedSize: UInt32) throws -> test_component.AnyIAsyncOperation<test_component.StorageItemThumbnail?>? {
+        open func GetScaledImageAsThumbnailAsyncOverloadDefaultOptions(_ mode: test_component.ThumbnailMode, _ requestedSize: UInt32) throws -> test_component.AnyIAsyncOperation<test_component.StorageItemThumbnail?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageItemProperties2.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.GetScaledImageAsThumbnailAsyncOverloadDefaultOptions(pThis, mode, requestedSize, &operationAbi))
@@ -1545,7 +1545,7 @@ public enum __ABI_Windows_Storage {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailWrapper.unwrapFrom(abi: operation)
         }
 
-        open func GetScaledImageAsThumbnailAsyncImpl(_ mode: test_component.ThumbnailMode, _ requestedSize: UInt32, _ options: test_component.ThumbnailOptions) throws -> test_component.AnyIAsyncOperation<test_component.StorageItemThumbnail?>? {
+        open func GetScaledImageAsThumbnailAsync(_ mode: test_component.ThumbnailMode, _ requestedSize: UInt32, _ options: test_component.ThumbnailOptions) throws -> test_component.AnyIAsyncOperation<test_component.StorageItemThumbnail?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageItemProperties2.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.GetScaledImageAsThumbnailAsync(pThis, mode, requestedSize, options, &operationAbi))
@@ -1626,7 +1626,7 @@ public enum __ABI_Windows_Storage {
     public class IStorageItemPropertiesWithProvider: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageItemPropertiesWithProvider }
 
-        open func get_ProviderImpl() throws -> test_component.StorageProvider? {
+        open func get_Provider() throws -> test_component.StorageProvider? {
             let (value) = try ComPtrs.initialize { valueAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageItemPropertiesWithProvider.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.get_Provider(pThis, &valueAbi))
@@ -1678,7 +1678,7 @@ public enum __ABI_Windows_Storage {
     public class IStorageLibraryChange: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageLibraryChange }
 
-        public func get_ChangeTypeImpl() throws -> test_component.StorageLibraryChangeType {
+        public func get_ChangeType() throws -> test_component.StorageLibraryChangeType {
             var value: __x_ABI_CWindows_CStorage_CStorageLibraryChangeType = .init(0)
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageLibraryChange.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_ChangeType(pThis, &value))
@@ -1686,7 +1686,7 @@ public enum __ABI_Windows_Storage {
             return value
         }
 
-        public func get_PathImpl() throws -> String {
+        public func get_Path() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageLibraryChange.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Path(pThis, &value))
@@ -1694,7 +1694,7 @@ public enum __ABI_Windows_Storage {
             return .init(from: value)
         }
 
-        public func get_PreviousPathImpl() throws -> String {
+        public func get_PreviousPath() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageLibraryChange.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_PreviousPath(pThis, &value))
@@ -1702,7 +1702,7 @@ public enum __ABI_Windows_Storage {
             return .init(from: value)
         }
 
-        public func IsOfTypeImpl(_ type: test_component.StorageItemTypes) throws -> Bool {
+        public func IsOfType(_ type: test_component.StorageItemTypes) throws -> Bool {
             var value: boolean = 0
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageLibraryChange.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.IsOfType(pThis, type, &value))
@@ -1710,7 +1710,7 @@ public enum __ABI_Windows_Storage {
             return .init(from: value)
         }
 
-        public func GetStorageItemAsyncImpl() throws -> test_component.AnyIAsyncOperation<test_component.AnyIStorageItem?>? {
+        public func GetStorageItemAsync() throws -> test_component.AnyIAsyncOperation<test_component.AnyIStorageItem?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageLibraryChange.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.GetStorageItemAsync(pThis, &operationAbi))
@@ -1724,7 +1724,7 @@ public enum __ABI_Windows_Storage {
     public class IStorageLibraryChangeReader: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageLibraryChangeReader }
 
-        public func ReadBatchAsyncImpl() throws -> test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.StorageLibraryChange?>?>? {
+        public func ReadBatchAsync() throws -> test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.StorageLibraryChange?>?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageLibraryChangeReader.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.ReadBatchAsync(pThis, &operationAbi))
@@ -1733,7 +1733,7 @@ public enum __ABI_Windows_Storage {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeWrapper.unwrapFrom(abi: operation)
         }
 
-        public func AcceptChangesAsyncImpl() throws -> test_component.AnyIAsyncAction? {
+        public func AcceptChangesAsync() throws -> test_component.AnyIAsyncAction? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageLibraryChangeReader.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.AcceptChangesAsync(pThis, &operationAbi))
@@ -1747,7 +1747,7 @@ public enum __ABI_Windows_Storage {
     public class IStorageLibraryChangeTracker: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageLibraryChangeTracker }
 
-        public func GetChangeReaderImpl() throws -> test_component.StorageLibraryChangeReader? {
+        public func GetChangeReader() throws -> test_component.StorageLibraryChangeReader? {
             let (value) = try ComPtrs.initialize { valueAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageLibraryChangeTracker.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.GetChangeReader(pThis, &valueAbi))
@@ -1756,13 +1756,13 @@ public enum __ABI_Windows_Storage {
             return .from(abi: value)
         }
 
-        public func EnableImpl() throws {
+        public func Enable() throws {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageLibraryChangeTracker.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Enable(pThis))
             }
         }
 
-        public func ResetImpl() throws {
+        public func Reset() throws {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageLibraryChangeTracker.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Reset(pThis))
             }
@@ -1773,7 +1773,7 @@ public enum __ABI_Windows_Storage {
     public class IStorageProvider: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageProvider }
 
-        public func get_IdImpl() throws -> String {
+        public func get_Id() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageProvider.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Id(pThis, &value))
@@ -1781,7 +1781,7 @@ public enum __ABI_Windows_Storage {
             return .init(from: value)
         }
 
-        public func get_DisplayNameImpl() throws -> String {
+        public func get_DisplayName() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageProvider.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_DisplayName(pThis, &value))
@@ -1794,7 +1794,7 @@ public enum __ABI_Windows_Storage {
     public class IStorageProvider2: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageProvider2 }
 
-        public func IsPropertySupportedForPartialFileAsyncImpl(_ propertyCanonicalName: String) throws -> test_component.AnyIAsyncOperation<Bool>? {
+        public func IsPropertySupportedForPartialFileAsync(_ propertyCanonicalName: String) throws -> test_component.AnyIAsyncOperation<Bool>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let _propertyCanonicalName = try! HString(propertyCanonicalName)
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageProvider2.self) { pThis in
@@ -1809,7 +1809,7 @@ public enum __ABI_Windows_Storage {
     public class IStorageStreamTransaction: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageStreamTransaction }
 
-        public func get_StreamImpl() throws -> test_component.AnyIRandomAccessStream? {
+        public func get_Stream() throws -> test_component.AnyIRandomAccessStream? {
             let (value) = try ComPtrs.initialize { valueAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageStreamTransaction.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.get_Stream(pThis, &valueAbi))
@@ -1818,7 +1818,7 @@ public enum __ABI_Windows_Storage {
             return __ABI_Windows_Storage_Streams.IRandomAccessStreamWrapper.unwrapFrom(abi: value)
         }
 
-        public func CommitAsyncImpl() throws -> test_component.AnyIAsyncAction? {
+        public func CommitAsync() throws -> test_component.AnyIAsyncAction? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageStreamTransaction.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.CommitAsync(pThis, &operationAbi))
@@ -1832,7 +1832,7 @@ public enum __ABI_Windows_Storage {
     public class IStreamedFileDataRequest: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStreamedFileDataRequest }
 
-        open func FailAndCloseImpl(_ failureMode: test_component.StreamedFileFailureMode) throws {
+        open func FailAndClose(_ failureMode: test_component.StreamedFileFailureMode) throws {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStreamedFileDataRequest.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.FailAndClose(pThis, failureMode))
             }
@@ -1885,7 +1885,7 @@ extension __ABI_Windows_Storage {
     public class StreamedFileDataRequestedHandler: test_component.IUnknown {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStreamedFileDataRequestedHandler }
 
-        open func InvokeImpl(_ stream: test_component.StreamedFileDataRequest?) throws {
+        open func Invoke(_ stream: test_component.StreamedFileDataRequest?) throws {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStreamedFileDataRequestedHandler.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, RawPointer(stream)))
             }

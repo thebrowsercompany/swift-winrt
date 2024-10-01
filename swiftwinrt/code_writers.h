@@ -411,7 +411,7 @@ namespace swiftwinrt
                     written_params.append(w.write_temp("_ baseInterface: UnsealedWinRTClassWrapper<%.Composable>?, _ innerInterface: inout %.IInspectable?", classType, w.support));
                 }
 
-                w.write("% func %Impl(%) throws% {\n",
+                w.write("% func %(%) throws% {\n",
                     is_exclusive(type) ? "public" : "open",
                     func_name,
                     written_params,
@@ -1732,7 +1732,7 @@ vtable);
 
         auto swift_name = get_swift_name(factory);
         auto return_name = method.return_type.value().name;
-        auto func_call = w.write_temp("try! Self.%.%Impl(%)",
+        auto func_call = w.write_temp("try! Self.%.%(%)",
             swift_name,
             func_name,
             bind<write_implementation_args>(method));
@@ -2022,7 +2022,7 @@ public init<Composable: ComposableImpl>(
                             w.write("super.init()\n");
                             w.write("MakeComposed(composing: Self.Composable.self, self) { baseInterface, innerInterface in \n");
                         }
-                        w.write("    try! Self.%.%Impl(%)\n",
+                        w.write("    try! Self.%.%(%)\n",
                             get_swift_name(factory_info),
                             func_name,
                             bind<write_implementation_args>(method));
@@ -2086,7 +2086,7 @@ public init<Composable: ComposableImpl>(
         std::string_view func_name = get_abi_name(function);
         auto impl = get_swift_name(iface);
         auto try_flavor = is_noexcept ? "try!" : "try";
-        w.write("% %.%Impl(%)\n",
+        w.write("% %.%(%)\n",
             try_flavor,
             impl,
             func_name,
@@ -2157,7 +2157,7 @@ public init<Composable: ComposableImpl>(
                 get_swift_name(prop),
                 bind<write_type>(*prop.getter->return_type->type, swift_write_type_params_for(*iface.type)));
 
-            w.write("    get { try! %.%Impl() }\n",
+            w.write("    get { try! %.%() }\n",
                 impl,
                 get_swift_name(prop.getter.value()));
 
@@ -2165,7 +2165,7 @@ public init<Composable: ComposableImpl>(
             // right now require that both getter and setter are defined in the same version
             if (prop.setter)
             {
-                w.write("    set { try! %.%Impl(newValue) }\n", impl, get_swift_name(prop.setter.value()));
+                w.write("    set { try! %.%(newValue) }\n", impl, get_swift_name(prop.setter.value()));
 
             }
             w.write("}\n\n");
@@ -2206,10 +2206,10 @@ public init<Composable: ComposableImpl>(
   .init(
     add: { [weak self] in
       guard let this = self?.% else { return .init() }
-      return try! this.add_%Impl($0)
+      return try! this.add_%($0)
     },
     remove: { [weak self] in
-     try? self?.%.remove_%Impl($0)
+     try? self?.%.remove_%($0)
    }
   )
 }()
@@ -2218,8 +2218,8 @@ public init<Composable: ComposableImpl>(
 
         auto static_format = R"(%var % : Event<%> = {
   .init(
-    add: { try! %.add_%Impl($0) },
-    remove: { try? %.remove_%Impl($0) }
+    add: { try! %.add_%($0) },
+    remove: { try? %.remove_%($0) }
   )
 }()
 
@@ -2262,7 +2262,7 @@ public init<Composable: ComposableImpl>(
         {
             w.write("return ");
         }
-        w.write("try _%.%Impl(%)\n",
+        w.write("try _%.%(%)\n",
             statics.swift_type_name(),
             func_name,
             bind<write_implementation_args>(method));

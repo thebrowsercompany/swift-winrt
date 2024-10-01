@@ -48,7 +48,7 @@ public enum __ABI_Windows_Storage_Streams {
     public class IBuffer: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CStreams_CIBuffer }
 
-        open func get_CapacityImpl() throws -> UInt32 {
+        open func get_Capacity() throws -> UInt32 {
             var value: UINT32 = 0
             _ = try perform(as: __x_ABI_CWindows_CStorage_CStreams_CIBuffer.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Capacity(pThis, &value))
@@ -56,7 +56,7 @@ public enum __ABI_Windows_Storage_Streams {
             return value
         }
 
-        open func get_LengthImpl() throws -> UInt32 {
+        open func get_Length() throws -> UInt32 {
             var value: UINT32 = 0
             _ = try perform(as: __x_ABI_CWindows_CStorage_CStreams_CIBuffer.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Length(pThis, &value))
@@ -64,7 +64,7 @@ public enum __ABI_Windows_Storage_Streams {
             return value
         }
 
-        open func put_LengthImpl(_ value: UInt32) throws {
+        open func put_Length(_ value: UInt32) throws {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CStreams_CIBuffer.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_Length(pThis, value))
             }
@@ -127,7 +127,7 @@ public enum __ABI_Windows_Storage_Streams {
     public class IBufferFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CStreams_CIBufferFactory }
 
-        public func CreateImpl(_ capacity: UInt32) throws -> IBuffer {
+        public func Create(_ capacity: UInt32) throws -> IBuffer {
             let (value) = try ComPtrs.initialize { valueAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CStreams_CIBufferFactory.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.Create(pThis, capacity, &valueAbi))
@@ -141,7 +141,7 @@ public enum __ABI_Windows_Storage_Streams {
     public class IBufferStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CStreams_CIBufferStatics }
 
-        public func CreateCopyFromMemoryBufferImpl(_ input: test_component.AnyIMemoryBuffer?) throws -> test_component.Buffer? {
+        public func CreateCopyFromMemoryBuffer(_ input: test_component.AnyIMemoryBuffer?) throws -> test_component.Buffer? {
             let (value) = try ComPtrs.initialize { valueAbi in
                 let inputWrapper = __ABI_Windows_Foundation.IMemoryBufferWrapper(input)
                 let _input = try! inputWrapper?.toABI { $0 }
@@ -152,7 +152,7 @@ public enum __ABI_Windows_Storage_Streams {
             return .from(abi: value)
         }
 
-        public func CreateMemoryBufferOverIBufferImpl(_ input: test_component.AnyIBuffer?) throws -> test_component.MemoryBuffer? {
+        public func CreateMemoryBufferOverIBuffer(_ input: test_component.AnyIBuffer?) throws -> test_component.MemoryBuffer? {
             let (value) = try ComPtrs.initialize { valueAbi in
                 let inputWrapper = __ABI_Windows_Storage_Streams.IBufferWrapper(input)
                 let _input = try! inputWrapper?.toABI { $0 }
@@ -168,7 +168,7 @@ public enum __ABI_Windows_Storage_Streams {
     public class IContentTypeProvider: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CStreams_CIContentTypeProvider }
 
-        open func get_ContentTypeImpl() throws -> String {
+        open func get_ContentType() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CStorage_CStreams_CIContentTypeProvider.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_ContentType(pThis, &value))
@@ -218,7 +218,7 @@ public enum __ABI_Windows_Storage_Streams {
     public class IInputStream: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CStreams_CIInputStream }
 
-        open func ReadAsyncImpl(_ buffer: test_component.AnyIBuffer?, _ count: UInt32, _ options: test_component.InputStreamOptions) throws -> test_component.AnyIAsyncOperationWithProgress<test_component.AnyIBuffer?, UInt32>? {
+        open func ReadAsync(_ buffer: test_component.AnyIBuffer?, _ count: UInt32, _ options: test_component.InputStreamOptions) throws -> test_component.AnyIAsyncOperationWithProgress<test_component.AnyIBuffer?, UInt32>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let bufferWrapper = __ABI_Windows_Storage_Streams.IBufferWrapper(buffer)
                 let _buffer = try! bufferWrapper?.toABI { $0 }
@@ -278,7 +278,7 @@ public enum __ABI_Windows_Storage_Streams {
     public class IInputStreamReference: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CStreams_CIInputStreamReference }
 
-        open func OpenSequentialReadAsyncImpl() throws -> test_component.AnyIAsyncOperation<test_component.AnyIInputStream?>? {
+        open func OpenSequentialReadAsync() throws -> test_component.AnyIAsyncOperation<test_component.AnyIInputStream?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CStreams_CIInputStreamReference.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.OpenSequentialReadAsync(pThis, &operationAbi))
@@ -332,7 +332,7 @@ public enum __ABI_Windows_Storage_Streams {
     public class IOutputStream: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CStreams_CIOutputStream }
 
-        open func WriteAsyncImpl(_ buffer: test_component.AnyIBuffer?) throws -> test_component.AnyIAsyncOperationWithProgress<UInt32, UInt32>? {
+        open func WriteAsync(_ buffer: test_component.AnyIBuffer?) throws -> test_component.AnyIAsyncOperationWithProgress<UInt32, UInt32>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let bufferWrapper = __ABI_Windows_Storage_Streams.IBufferWrapper(buffer)
                 let _buffer = try! bufferWrapper?.toABI { $0 }
@@ -343,7 +343,7 @@ public enum __ABI_Windows_Storage_Streams {
             return test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32Wrapper.unwrapFrom(abi: operation)
         }
 
-        open func FlushAsyncImpl() throws -> test_component.AnyIAsyncOperation<Bool>? {
+        open func FlushAsync() throws -> test_component.AnyIAsyncOperation<Bool>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CStreams_CIOutputStream.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.FlushAsync(pThis, &operationAbi))
@@ -409,7 +409,7 @@ public enum __ABI_Windows_Storage_Streams {
     public class IRandomAccessStream: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CStreams_CIRandomAccessStream }
 
-        open func get_SizeImpl() throws -> UInt64 {
+        open func get_Size() throws -> UInt64 {
             var value: UINT64 = 0
             _ = try perform(as: __x_ABI_CWindows_CStorage_CStreams_CIRandomAccessStream.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &value))
@@ -417,13 +417,13 @@ public enum __ABI_Windows_Storage_Streams {
             return value
         }
 
-        open func put_SizeImpl(_ value: UInt64) throws {
+        open func put_Size(_ value: UInt64) throws {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CStreams_CIRandomAccessStream.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_Size(pThis, value))
             }
         }
 
-        open func GetInputStreamAtImpl(_ position: UInt64) throws -> test_component.AnyIInputStream? {
+        open func GetInputStreamAt(_ position: UInt64) throws -> test_component.AnyIInputStream? {
             let (stream) = try ComPtrs.initialize { streamAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CStreams_CIRandomAccessStream.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.GetInputStreamAt(pThis, position, &streamAbi))
@@ -432,7 +432,7 @@ public enum __ABI_Windows_Storage_Streams {
             return __ABI_Windows_Storage_Streams.IInputStreamWrapper.unwrapFrom(abi: stream)
         }
 
-        open func GetOutputStreamAtImpl(_ position: UInt64) throws -> test_component.AnyIOutputStream? {
+        open func GetOutputStreamAt(_ position: UInt64) throws -> test_component.AnyIOutputStream? {
             let (stream) = try ComPtrs.initialize { streamAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CStreams_CIRandomAccessStream.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.GetOutputStreamAt(pThis, position, &streamAbi))
@@ -441,7 +441,7 @@ public enum __ABI_Windows_Storage_Streams {
             return __ABI_Windows_Storage_Streams.IOutputStreamWrapper.unwrapFrom(abi: stream)
         }
 
-        open func get_PositionImpl() throws -> UInt64 {
+        open func get_Position() throws -> UInt64 {
             var value: UINT64 = 0
             _ = try perform(as: __x_ABI_CWindows_CStorage_CStreams_CIRandomAccessStream.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Position(pThis, &value))
@@ -449,13 +449,13 @@ public enum __ABI_Windows_Storage_Streams {
             return value
         }
 
-        open func SeekImpl(_ position: UInt64) throws {
+        open func Seek(_ position: UInt64) throws {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CStreams_CIRandomAccessStream.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Seek(pThis, position))
             }
         }
 
-        open func CloneStreamImpl() throws -> test_component.AnyIRandomAccessStream? {
+        open func CloneStream() throws -> test_component.AnyIRandomAccessStream? {
             let (stream) = try ComPtrs.initialize { streamAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CStreams_CIRandomAccessStream.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.CloneStream(pThis, &streamAbi))
@@ -464,7 +464,7 @@ public enum __ABI_Windows_Storage_Streams {
             return __ABI_Windows_Storage_Streams.IRandomAccessStreamWrapper.unwrapFrom(abi: stream)
         }
 
-        open func get_CanReadImpl() throws -> Bool {
+        open func get_CanRead() throws -> Bool {
             var value: boolean = 0
             _ = try perform(as: __x_ABI_CWindows_CStorage_CStreams_CIRandomAccessStream.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_CanRead(pThis, &value))
@@ -472,7 +472,7 @@ public enum __ABI_Windows_Storage_Streams {
             return .init(from: value)
         }
 
-        open func get_CanWriteImpl() throws -> Bool {
+        open func get_CanWrite() throws -> Bool {
             var value: boolean = 0
             _ = try perform(as: __x_ABI_CWindows_CStorage_CStreams_CIRandomAccessStream.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_CanWrite(pThis, &value))
@@ -594,7 +594,7 @@ public enum __ABI_Windows_Storage_Streams {
     public class IRandomAccessStreamReference: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CStreams_CIRandomAccessStreamReference }
 
-        open func OpenReadAsyncImpl() throws -> test_component.AnyIAsyncOperation<test_component.AnyIRandomAccessStreamWithContentType?>? {
+        open func OpenReadAsync() throws -> test_component.AnyIAsyncOperation<test_component.AnyIRandomAccessStreamWithContentType?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CStreams_CIRandomAccessStreamReference.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.OpenReadAsync(pThis, &operationAbi))

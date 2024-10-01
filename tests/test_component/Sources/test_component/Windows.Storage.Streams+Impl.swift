@@ -30,13 +30,13 @@ public enum __IMPL_Windows_Storage_Streams {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.ibuffer.capacity)
         fileprivate var capacity : UInt32 {
-            get { try! _default.get_CapacityImpl() }
+            get { try! _default.get_Capacity() }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.ibuffer.length)
         fileprivate var length : UInt32 {
-            get { try! _default.get_LengthImpl() }
-            set { try! _default.put_LengthImpl(newValue) }
+            get { try! _default.get_Length() }
+            set { try! _default.put_Length(newValue) }
         }
 
         private lazy var _IBufferByteAccess: __ABI_.IBufferByteAccess! = getInterfaceForCaching()
@@ -73,7 +73,7 @@ public enum __IMPL_Windows_Storage_Streams {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.icontenttypeprovider.contenttype)
         fileprivate var contentType : String {
-            get { try! _default.get_ContentTypeImpl() }
+            get { try! _default.get_ContentType() }
         }
 
     }
@@ -103,13 +103,13 @@ public enum __IMPL_Windows_Storage_Streams {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.iinputstream.readasync)
         fileprivate func readAsync(_ buffer: AnyIBuffer!, _ count: UInt32, _ options: InputStreamOptions) throws -> AnyIAsyncOperationWithProgress<AnyIBuffer?, UInt32>! {
-            try _default.ReadAsyncImpl(buffer, count, options)
+            try _default.ReadAsync(buffer, count, options)
         }
 
         private lazy var _IClosable: __ABI_Windows_Foundation.IClosable! = getInterfaceForCaching()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.iinputstream.close)
         fileprivate func close() throws {
-            try _IClosable.CloseImpl()
+            try _IClosable.Close()
         }
 
     }
@@ -139,7 +139,7 @@ public enum __IMPL_Windows_Storage_Streams {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.iinputstreamreference.opensequentialreadasync)
         fileprivate func openSequentialReadAsync() throws -> AnyIAsyncOperation<AnyIInputStream?>! {
-            try _default.OpenSequentialReadAsyncImpl()
+            try _default.OpenSequentialReadAsync()
         }
 
     }
@@ -169,18 +169,18 @@ public enum __IMPL_Windows_Storage_Streams {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.ioutputstream.writeasync)
         fileprivate func writeAsync(_ buffer: AnyIBuffer!) throws -> AnyIAsyncOperationWithProgress<UInt32, UInt32>! {
-            try _default.WriteAsyncImpl(buffer)
+            try _default.WriteAsync(buffer)
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.ioutputstream.flushasync)
         fileprivate func flushAsync() throws -> AnyIAsyncOperation<Bool>! {
-            try _default.FlushAsyncImpl()
+            try _default.FlushAsync()
         }
 
         private lazy var _IClosable: __ABI_Windows_Foundation.IClosable! = getInterfaceForCaching()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.ioutputstream.close)
         fileprivate func close() throws {
-            try _IClosable.CloseImpl()
+            try _IClosable.Close()
         }
 
     }
@@ -210,66 +210,66 @@ public enum __IMPL_Windows_Storage_Streams {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstream.getinputstreamat)
         fileprivate func getInputStreamAt(_ position: UInt64) throws -> AnyIInputStream! {
-            try _default.GetInputStreamAtImpl(position)
+            try _default.GetInputStreamAt(position)
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstream.getoutputstreamat)
         fileprivate func getOutputStreamAt(_ position: UInt64) throws -> AnyIOutputStream! {
-            try _default.GetOutputStreamAtImpl(position)
+            try _default.GetOutputStreamAt(position)
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstream.seek)
         fileprivate func seek(_ position: UInt64) throws {
-            try _default.SeekImpl(position)
+            try _default.Seek(position)
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstream.clonestream)
         fileprivate func cloneStream() throws -> AnyIRandomAccessStream! {
-            try _default.CloneStreamImpl()
+            try _default.CloneStream()
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstream.canread)
         fileprivate var canRead : Bool {
-            get { try! _default.get_CanReadImpl() }
+            get { try! _default.get_CanRead() }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstream.canwrite)
         fileprivate var canWrite : Bool {
-            get { try! _default.get_CanWriteImpl() }
+            get { try! _default.get_CanWrite() }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstream.position)
         fileprivate var position : UInt64 {
-            get { try! _default.get_PositionImpl() }
+            get { try! _default.get_Position() }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstream.size)
         fileprivate var size : UInt64 {
-            get { try! _default.get_SizeImpl() }
-            set { try! _default.put_SizeImpl(newValue) }
+            get { try! _default.get_Size() }
+            set { try! _default.put_Size(newValue) }
         }
 
         private lazy var _IClosable: __ABI_Windows_Foundation.IClosable! = getInterfaceForCaching()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstream.close)
         fileprivate func close() throws {
-            try _IClosable.CloseImpl()
+            try _IClosable.Close()
         }
 
         private lazy var _IInputStream: __ABI_Windows_Storage_Streams.IInputStream! = getInterfaceForCaching()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstream.readasync)
         fileprivate func readAsync(_ buffer: AnyIBuffer!, _ count: UInt32, _ options: InputStreamOptions) throws -> AnyIAsyncOperationWithProgress<AnyIBuffer?, UInt32>! {
-            try _IInputStream.ReadAsyncImpl(buffer, count, options)
+            try _IInputStream.ReadAsync(buffer, count, options)
         }
 
         private lazy var _IOutputStream: __ABI_Windows_Storage_Streams.IOutputStream! = getInterfaceForCaching()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstream.writeasync)
         fileprivate func writeAsync(_ buffer: AnyIBuffer!) throws -> AnyIAsyncOperationWithProgress<UInt32, UInt32>! {
-            try _IOutputStream.WriteAsyncImpl(buffer)
+            try _IOutputStream.WriteAsync(buffer)
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstream.flushasync)
         fileprivate func flushAsync() throws -> AnyIAsyncOperation<Bool>! {
-            try _IOutputStream.FlushAsyncImpl()
+            try _IOutputStream.FlushAsync()
         }
 
     }
@@ -299,7 +299,7 @@ public enum __IMPL_Windows_Storage_Streams {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstreamreference.openreadasync)
         fileprivate func openReadAsync() throws -> AnyIAsyncOperation<AnyIRandomAccessStreamWithContentType?>! {
-            try _default.OpenReadAsyncImpl()
+            try _default.OpenReadAsync()
         }
 
     }
@@ -330,72 +330,72 @@ public enum __IMPL_Windows_Storage_Streams {
         private lazy var _IClosable: __ABI_Windows_Foundation.IClosable! = getInterfaceForCaching()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstreamwithcontenttype.close)
         fileprivate func close() throws {
-            try _IClosable.CloseImpl()
+            try _IClosable.Close()
         }
 
         private lazy var _IInputStream: __ABI_Windows_Storage_Streams.IInputStream! = getInterfaceForCaching()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstreamwithcontenttype.readasync)
         fileprivate func readAsync(_ buffer: AnyIBuffer!, _ count: UInt32, _ options: InputStreamOptions) throws -> AnyIAsyncOperationWithProgress<AnyIBuffer?, UInt32>! {
-            try _IInputStream.ReadAsyncImpl(buffer, count, options)
+            try _IInputStream.ReadAsync(buffer, count, options)
         }
 
         private lazy var _IOutputStream: __ABI_Windows_Storage_Streams.IOutputStream! = getInterfaceForCaching()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstreamwithcontenttype.writeasync)
         fileprivate func writeAsync(_ buffer: AnyIBuffer!) throws -> AnyIAsyncOperationWithProgress<UInt32, UInt32>! {
-            try _IOutputStream.WriteAsyncImpl(buffer)
+            try _IOutputStream.WriteAsync(buffer)
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstreamwithcontenttype.flushasync)
         fileprivate func flushAsync() throws -> AnyIAsyncOperation<Bool>! {
-            try _IOutputStream.FlushAsyncImpl()
+            try _IOutputStream.FlushAsync()
         }
 
         private lazy var _IRandomAccessStream: __ABI_Windows_Storage_Streams.IRandomAccessStream! = getInterfaceForCaching()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstreamwithcontenttype.getinputstreamat)
         fileprivate func getInputStreamAt(_ position: UInt64) throws -> AnyIInputStream! {
-            try _IRandomAccessStream.GetInputStreamAtImpl(position)
+            try _IRandomAccessStream.GetInputStreamAt(position)
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstreamwithcontenttype.getoutputstreamat)
         fileprivate func getOutputStreamAt(_ position: UInt64) throws -> AnyIOutputStream! {
-            try _IRandomAccessStream.GetOutputStreamAtImpl(position)
+            try _IRandomAccessStream.GetOutputStreamAt(position)
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstreamwithcontenttype.seek)
         fileprivate func seek(_ position: UInt64) throws {
-            try _IRandomAccessStream.SeekImpl(position)
+            try _IRandomAccessStream.Seek(position)
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstreamwithcontenttype.clonestream)
         fileprivate func cloneStream() throws -> AnyIRandomAccessStream! {
-            try _IRandomAccessStream.CloneStreamImpl()
+            try _IRandomAccessStream.CloneStream()
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstreamwithcontenttype.canread)
         fileprivate var canRead : Bool {
-            get { try! _IRandomAccessStream.get_CanReadImpl() }
+            get { try! _IRandomAccessStream.get_CanRead() }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstreamwithcontenttype.canwrite)
         fileprivate var canWrite : Bool {
-            get { try! _IRandomAccessStream.get_CanWriteImpl() }
+            get { try! _IRandomAccessStream.get_CanWrite() }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstreamwithcontenttype.position)
         fileprivate var position : UInt64 {
-            get { try! _IRandomAccessStream.get_PositionImpl() }
+            get { try! _IRandomAccessStream.get_Position() }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstreamwithcontenttype.size)
         fileprivate var size : UInt64 {
-            get { try! _IRandomAccessStream.get_SizeImpl() }
-            set { try! _IRandomAccessStream.put_SizeImpl(newValue) }
+            get { try! _IRandomAccessStream.get_Size() }
+            set { try! _IRandomAccessStream.put_Size(newValue) }
         }
 
         private lazy var _IContentTypeProvider: __ABI_Windows_Storage_Streams.IContentTypeProvider! = getInterfaceForCaching()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.streams.irandomaccessstreamwithcontenttype.contenttype)
         fileprivate var contentType : String {
-            get { try! _IContentTypeProvider.get_ContentTypeImpl() }
+            get { try! _IContentTypeProvider.get_ContentType() }
         }
 
     }

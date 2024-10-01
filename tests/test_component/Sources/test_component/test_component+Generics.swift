@@ -32,7 +32,7 @@ typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1_booleanWrapper = Interfa
 public class AsyncOperationCompletedHandlerBool: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1_boolean }
 
-    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<Bool>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperation<Bool>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1_booleanWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1_boolean.self) { pThis in
@@ -51,7 +51,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1_booleanBridge : Win
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.Invoke(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -85,7 +85,7 @@ typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper = InterfaceWr
 public class AsyncOperationCompletedHandlerInt32: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1_int }
 
-    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<Int32>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperation<Int32>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1_intWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1_int.self) { pThis in
@@ -104,7 +104,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1_intBridge : WinRTDe
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.Invoke(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -138,7 +138,7 @@ typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1_HSTRINGWrapper = Interfa
 public class AsyncOperationCompletedHandlerString: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1_HSTRING }
 
-    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<String>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperation<String>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1_HSTRINGWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1_HSTRING.self) { pThis in
@@ -157,7 +157,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1_HSTRINGBridge : Win
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.Invoke(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -191,7 +191,7 @@ typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1_UINT32Wrapper = Interfac
 public class AsyncOperationCompletedHandlerUInt32: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1_UINT32 }
 
-    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<UInt32>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperation<UInt32>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1_UINT32Wrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1_UINT32.self) { pThis in
@@ -210,7 +210,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1_UINT32Bridge : WinR
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.Invoke(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -244,7 +244,7 @@ typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIMap_2_HSTRI
 public class AsyncOperationCompletedHandlerIMapString_Any: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIMap_2_HSTRING_IInspectable }
 
-    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIMap<String, Any?>?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIMap<String, Any?>?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
@@ -263,7 +263,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIMap_2_
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.Invoke(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -297,7 +297,7 @@ typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_
 public class AsyncOperationCompletedHandlerIVectorViewIStorageItem: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItem }
 
-    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.AnyIStorageItem?>?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.AnyIStorageItem?>?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
@@ -316,7 +316,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.Invoke(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -350,7 +350,7 @@ typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_
 public class AsyncOperationCompletedHandlerIVectorViewStorageFile: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFile }
 
-    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.StorageFile?>?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.StorageFile?>?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
@@ -369,7 +369,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.Invoke(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -403,7 +403,7 @@ typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_
 public class AsyncOperationCompletedHandlerIVectorViewStorageFolder: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolder }
 
-    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.StorageFolder?>?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.StorageFolder?>?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
@@ -422,7 +422,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.Invoke(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -456,7 +456,7 @@ typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_
 public class AsyncOperationCompletedHandlerIVectorViewStorageLibraryChange: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChange }
 
-    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.StorageLibraryChange?>?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.StorageLibraryChange?>?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChange.self) { pThis in
@@ -475,7 +475,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.Invoke(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -509,7 +509,7 @@ typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector_1_HS
 public class AsyncOperationCompletedHandlerIVectorString: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector_1_HSTRING }
 
-    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVector<String>?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVector<String>?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVector_1_HSTRINGWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector_1_HSTRING.self) { pThis in
@@ -528,7 +528,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.Invoke(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -562,7 +562,7 @@ typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStora
 public class AsyncOperationCompletedHandlerBasicProperties: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicProperties }
 
-    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.BasicProperties?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.BasicProperties?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicPropertiesWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicProperties.self) { pThis in
@@ -581,7 +581,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.Invoke(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -615,7 +615,7 @@ typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStora
 public class AsyncOperationCompletedHandlerDocumentProperties: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentProperties }
 
-    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.DocumentProperties?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.DocumentProperties?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentPropertiesWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentProperties.self) { pThis in
@@ -634,7 +634,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.Invoke(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -668,7 +668,7 @@ typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStora
 public class AsyncOperationCompletedHandlerImageProperties: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CImageProperties }
 
-    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.ImageProperties?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.ImageProperties?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CImagePropertiesWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CImageProperties.self) { pThis in
@@ -687,7 +687,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.Invoke(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -721,7 +721,7 @@ typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStora
 public class AsyncOperationCompletedHandlerMusicProperties: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicProperties }
 
-    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.MusicProperties?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.MusicProperties?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicPropertiesWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicProperties.self) { pThis in
@@ -740,7 +740,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.Invoke(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -774,7 +774,7 @@ typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStora
 public class AsyncOperationCompletedHandlerStorageItemThumbnail: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnail }
 
-    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.StorageItemThumbnail?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.StorageItemThumbnail?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnail.self) { pThis in
@@ -793,7 +793,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.Invoke(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -827,7 +827,7 @@ typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStora
 public class AsyncOperationCompletedHandlerVideoProperties: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoProperties }
 
-    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.VideoProperties?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.VideoProperties?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoPropertiesWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoProperties.self) { pThis in
@@ -846,7 +846,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.Invoke(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -880,7 +880,7 @@ typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStora
 public class AsyncOperationCompletedHandlerIStorageItem: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CIStorageItem }
 
-    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIStorageItem?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIStorageItem?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
@@ -899,7 +899,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.Invoke(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -933,7 +933,7 @@ typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStora
 public class AsyncOperationCompletedHandlerIndexedState: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CSearch__CIndexedState }
 
-    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.IndexedState>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.IndexedState>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSearch__CIndexedStateWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CSearch__CIndexedState.self) { pThis in
@@ -952,7 +952,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.Invoke(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -986,7 +986,7 @@ typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStora
 public class AsyncOperationCompletedHandlerStorageFile: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFile }
 
-    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.StorageFile?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.StorageFile?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFileWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
@@ -1005,7 +1005,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.Invoke(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -1039,7 +1039,7 @@ typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStora
 public class AsyncOperationCompletedHandlerStorageFolder: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFolder }
 
-    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.StorageFolder?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.StorageFolder?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
@@ -1058,7 +1058,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.Invoke(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -1092,7 +1092,7 @@ typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStora
 public class AsyncOperationCompletedHandlerStorageStreamTransaction: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageStreamTransaction }
 
-    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.StorageStreamTransaction?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.StorageStreamTransaction?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageStreamTransactionWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageStreamTransaction.self) { pThis in
@@ -1111,7 +1111,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.Invoke(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -1145,7 +1145,7 @@ typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStora
 public class AsyncOperationCompletedHandlerIBuffer: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIBuffer }
 
-    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIBuffer?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIBuffer?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIBufferWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIBuffer.self) { pThis in
@@ -1164,7 +1164,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.Invoke(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -1198,7 +1198,7 @@ typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStora
 public class AsyncOperationCompletedHandlerIInputStream: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIInputStream }
 
-    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIInputStream?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIInputStream?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIInputStreamWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIInputStream.self) { pThis in
@@ -1217,7 +1217,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.Invoke(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -1251,7 +1251,7 @@ typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStora
 public class AsyncOperationCompletedHandlerIRandomAccessStream: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStream }
 
-    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIRandomAccessStream?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIRandomAccessStream?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStream.self) { pThis in
@@ -1270,7 +1270,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.Invoke(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -1304,7 +1304,7 @@ typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStora
 public class AsyncOperationCompletedHandlerIRandomAccessStreamWithContentType: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentType }
 
-    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIRandomAccessStreamWithContentType?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIRandomAccessStreamWithContentType?>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentTypeWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentType.self) { pThis in
@@ -1323,7 +1323,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.Invoke(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -1357,7 +1357,7 @@ typealias __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper = Inter
 public class AsyncOperationProgressHandlerInt32_Double: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationProgressHandler_2_int_double }
 
-    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperationWithProgress<Int32, Double>?, _ progressInfo: Double) throws {
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperationWithProgress<Int32, Double>?, _ progressInfo: Double) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationProgressHandler_2_int_double.self) { pThis in
@@ -1376,7 +1376,7 @@ internal class __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleBridge : W
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, progressInfo) in
-            try _default.InvokeImpl(asyncInfo, progressInfo)
+            try _default.Invoke(asyncInfo, progressInfo)
         }
         return handler
     }
@@ -1410,7 +1410,7 @@ typealias __x_ABI_C__FIAsyncOperationProgressHandler_2_UINT32_UINT32Wrapper = In
 public class AsyncOperationProgressHandlerUInt32_UInt32: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationProgressHandler_2_UINT32_UINT32 }
 
-    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperationWithProgress<UInt32, UInt32>?, _ progressInfo: UInt32) throws {
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperationWithProgress<UInt32, UInt32>?, _ progressInfo: UInt32) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32Wrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationProgressHandler_2_UINT32_UINT32.self) { pThis in
@@ -1429,7 +1429,7 @@ internal class __x_ABI_C__FIAsyncOperationProgressHandler_2_UINT32_UINT32Bridge 
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, progressInfo) in
-            try _default.InvokeImpl(asyncInfo, progressInfo)
+            try _default.Invoke(asyncInfo, progressInfo)
         }
         return handler
     }
@@ -1463,7 +1463,7 @@ typealias __x_ABI_C__FIAsyncOperationProgressHandler_2___x_ABI_CWindows__CStorag
 public class AsyncOperationProgressHandlerIBuffer_UInt32: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationProgressHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32 }
 
-    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperationWithProgress<test_component.AnyIBuffer?, UInt32>?, _ progressInfo: UInt32) throws {
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperationWithProgress<test_component.AnyIBuffer?, UInt32>?, _ progressInfo: UInt32) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationProgressHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32.self) { pThis in
@@ -1482,7 +1482,7 @@ internal class __x_ABI_C__FIAsyncOperationProgressHandler_2___x_ABI_CWindows__CS
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, progressInfo) in
-            try _default.InvokeImpl(asyncInfo, progressInfo)
+            try _default.Invoke(asyncInfo, progressInfo)
         }
         return handler
     }
@@ -1516,7 +1516,7 @@ typealias __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWr
 public class AsyncOperationWithProgressCompletedHandlerInt32_Double: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_double }
 
-    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperationWithProgress<Int32, Double>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperationWithProgress<Int32, Double>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_double.self) { pThis in
@@ -1535,7 +1535,7 @@ internal class __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_dou
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.Invoke(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -1569,7 +1569,7 @@ typealias __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_UINT32_UINT3
 public class AsyncOperationWithProgressCompletedHandlerUInt32_UInt32: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_UINT32_UINT32 }
 
-    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperationWithProgress<UInt32, UInt32>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperationWithProgress<UInt32, UInt32>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32Wrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_UINT32_UINT32.self) { pThis in
@@ -1588,7 +1588,7 @@ internal class __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_UINT32_
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.Invoke(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -1622,7 +1622,7 @@ typealias __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2___x_ABI_CWin
 public class AsyncOperationWithProgressCompletedHandlerIBuffer_UInt32: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32 }
 
-    open func InvokeImpl(_ asyncInfo: test_component.AnyIAsyncOperationWithProgress<test_component.AnyIBuffer?, UInt32>?, _ asyncStatus: test_component.AsyncStatus) throws {
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperationWithProgress<test_component.AnyIBuffer?, UInt32>?, _ asyncStatus: test_component.AsyncStatus) throws {
         let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper(asyncInfo)
         let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32.self) { pThis in
@@ -1641,7 +1641,7 @@ internal class __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2___x_ABI
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
-            try _default.InvokeImpl(asyncInfo, asyncStatus)
+            try _default.Invoke(asyncInfo, asyncStatus)
         }
         return handler
     }
@@ -1690,7 +1690,7 @@ typealias __x_ABI_C__FIIterable_1_IInspectableWrapper = InterfaceWrapperBase<tes
 public class IIterableAny: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1_IInspectable }
 
-    open func FirstImpl() throws -> test_component.AnyIIterator<Any?>? {
+    open func First() throws -> test_component.AnyIIterator<Any?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterable_1_IInspectable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
@@ -1727,7 +1727,7 @@ fileprivate class __x_ABI_C__FIIterable_1_IInspectableImpl : IIterable, AbiInter
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
     fileprivate func first() -> AnyIIterator<Any?>? {
-        try! _default.FirstImpl()
+        try! _default.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -1777,7 +1777,7 @@ typealias __x_ABI_C__FIIterable_1_GUIDWrapper = InterfaceWrapperBase<test_compon
 public class IIterableUUID: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1_GUID }
 
-    open func FirstImpl() throws -> test_component.AnyIIterator<Foundation.UUID>? {
+    open func First() throws -> test_component.AnyIIterator<Foundation.UUID>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterable_1_GUID.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
@@ -1814,7 +1814,7 @@ fileprivate class __x_ABI_C__FIIterable_1_GUIDImpl : IIterable, AbiInterfaceImpl
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
     fileprivate func first() -> AnyIIterator<Foundation.UUID>? {
-        try! _default.FirstImpl()
+        try! _default.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -1864,7 +1864,7 @@ typealias __x_ABI_C__FIIterable_1_HSTRINGWrapper = InterfaceWrapperBase<test_com
 public class IIterableString: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1_HSTRING }
 
-    open func FirstImpl() throws -> test_component.AnyIIterator<String>? {
+    open func First() throws -> test_component.AnyIIterator<String>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterable_1_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
@@ -1901,7 +1901,7 @@ fileprivate class __x_ABI_C__FIIterable_1_HSTRINGImpl : IIterable, AbiInterfaceI
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
     fileprivate func first() -> AnyIIterator<String>? {
-        try! _default.FirstImpl()
+        try! _default.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -1951,7 +1951,7 @@ typealias __x_ABI_C__FIIterable_1___x_ABI_CWindows__CData__CText__CTextSegmentWr
 public class IIterableTextSegment: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CData__CText__CTextSegment }
 
-    open func FirstImpl() throws -> test_component.AnyIIterator<test_component.TextSegment>? {
+    open func First() throws -> test_component.AnyIIterator<test_component.TextSegment>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
@@ -1988,7 +1988,7 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_CWindows__CData__CText__CTextS
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
     fileprivate func first() -> AnyIIterator<test_component.TextSegment>? {
-        try! _default.FirstImpl()
+        try! _default.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -2038,7 +2038,7 @@ typealias __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectab
 public class IIterableIKeyValuePairString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable }
 
-    open func FirstImpl() throws -> test_component.AnyIIterator<test_component.AnyIKeyValuePair<String, Any?>?>? {
+    open func First() throws -> test_component.AnyIIterator<test_component.AnyIKeyValuePair<String, Any?>?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
@@ -2075,7 +2075,7 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_II
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
     fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
-        try! _default.FirstImpl()
+        try! _default.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -2125,7 +2125,7 @@ typealias __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWra
 public class IIterableIKeyValuePairString_String: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING }
 
-    open func FirstImpl() throws -> test_component.AnyIIterator<test_component.AnyIKeyValuePair<String, String>?>? {
+    open func First() throws -> test_component.AnyIIterator<test_component.AnyIKeyValuePair<String, String>?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
@@ -2162,7 +2162,7 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HS
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
     fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
-        try! _default.FirstImpl()
+        try! _default.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -2212,7 +2212,7 @@ typealias __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C_
 public class IIterableIKeyValuePairString_IVectorViewTextSegment: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment }
 
-    open func FirstImpl() throws -> test_component.AnyIIterator<test_component.AnyIKeyValuePair<String, test_component.AnyIVectorView<test_component.TextSegment>?>?>? {
+    open func First() throws -> test_component.AnyIIterator<test_component.AnyIKeyValuePair<String, test_component.AnyIVectorView<test_component.TextSegment>?>?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
@@ -2249,7 +2249,7 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
     fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, AnyIVectorView<test_component.TextSegment>?>?>? {
-        try! _default.FirstImpl()
+        try! _default.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -2299,7 +2299,7 @@ typealias __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ct
 public class IIterableIKeyValuePairString_Base: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
 
-    open func FirstImpl() throws -> test_component.AnyIIterator<test_component.AnyIKeyValuePair<String, test_component.Base?>?>? {
+    open func First() throws -> test_component.AnyIIterator<test_component.AnyIKeyValuePair<String, test_component.Base?>?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
@@ -2336,7 +2336,7 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
     fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, Base?>?>? {
-        try! _default.FirstImpl()
+        try! _default.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -2386,7 +2386,7 @@ typealias __x_ABI_C__FIIterable_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDec
 public class IIterableIWwwFormUrlDecoderEntry: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntry }
 
-    open func FirstImpl() throws -> test_component.AnyIIterator<test_component.AnyIWwwFormUrlDecoderEntry?>? {
+    open func First() throws -> test_component.AnyIIterator<test_component.AnyIWwwFormUrlDecoderEntry?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntry.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
@@ -2423,7 +2423,7 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_CWindows__CFoundation__CIWwwFo
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
     fileprivate func first() -> AnyIIterator<test_component.AnyIWwwFormUrlDecoderEntry?>? {
-        try! _default.FirstImpl()
+        try! _default.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -2473,7 +2473,7 @@ typealias __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CIStorageItemWrapp
 public class IIterableIStorageItem: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CIStorageItem }
 
-    open func FirstImpl() throws -> test_component.AnyIIterator<test_component.AnyIStorageItem?>? {
+    open func First() throws -> test_component.AnyIIterator<test_component.AnyIStorageItem?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
@@ -2510,7 +2510,7 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CIStorageI
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
     fileprivate func first() -> AnyIIterator<test_component.AnyIStorageItem?>? {
-        try! _default.FirstImpl()
+        try! _default.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -2560,7 +2560,7 @@ typealias __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CSearch__CSortEntr
 public class IIterableSortEntry: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry }
 
-    open func FirstImpl() throws -> test_component.AnyIIterator<test_component.SortEntry>? {
+    open func First() throws -> test_component.AnyIIterator<test_component.SortEntry>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
@@ -2597,7 +2597,7 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CSearch__C
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
     fileprivate func first() -> AnyIIterator<test_component.SortEntry>? {
-        try! _default.FirstImpl()
+        try! _default.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -2647,7 +2647,7 @@ typealias __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageFileWrappe
 public class IIterableStorageFile: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageFile }
 
-    open func FirstImpl() throws -> test_component.AnyIIterator<test_component.StorageFile?>? {
+    open func First() throws -> test_component.AnyIIterator<test_component.StorageFile?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
@@ -2684,7 +2684,7 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageFi
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
     fileprivate func first() -> AnyIIterator<test_component.StorageFile?>? {
-        try! _default.FirstImpl()
+        try! _default.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -2734,7 +2734,7 @@ typealias __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageFolderWrap
 public class IIterableStorageFolder: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageFolder }
 
-    open func FirstImpl() throws -> test_component.AnyIIterator<test_component.StorageFolder?>? {
+    open func First() throws -> test_component.AnyIIterator<test_component.StorageFolder?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
@@ -2771,7 +2771,7 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageFo
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
     fileprivate func first() -> AnyIIterator<test_component.StorageFolder?>? {
-        try! _default.FirstImpl()
+        try! _default.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -2821,7 +2821,7 @@ typealias __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageLibraryCha
 public class IIterableStorageLibraryChange: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageLibraryChange }
 
-    open func FirstImpl() throws -> test_component.AnyIIterator<test_component.StorageLibraryChange?>? {
+    open func First() throws -> test_component.AnyIIterator<test_component.StorageLibraryChange?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageLibraryChange.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
@@ -2858,7 +2858,7 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageLi
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
     fileprivate func first() -> AnyIIterator<test_component.StorageLibraryChange?>? {
-        try! _default.FirstImpl()
+        try! _default.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -2908,7 +2908,7 @@ typealias __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseWrapper = Inte
 public class IIterableBase: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBase }
 
-    open func FirstImpl() throws -> test_component.AnyIIterator<test_component.Base?>? {
+    open func First() throws -> test_component.AnyIIterator<test_component.Base?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
@@ -2945,7 +2945,7 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseImpl :
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
     fileprivate func first() -> AnyIIterator<Base?>? {
-        try! _default.FirstImpl()
+        try! _default.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -2995,7 +2995,7 @@ typealias __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = In
 public class IIterableIBasic: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasic }
 
-    open func FirstImpl() throws -> test_component.AnyIIterator<test_component.AnyIBasic?>? {
+    open func First() throws -> test_component.AnyIIterator<test_component.AnyIBasic?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
@@ -3032,7 +3032,7 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicImpl
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
     fileprivate func first() -> AnyIIterator<AnyIBasic?>? {
-        try! _default.FirstImpl()
+        try! _default.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -3098,7 +3098,7 @@ typealias __x_ABI_C__FIIterator_1_IInspectableWrapper = InterfaceWrapperBase<tes
 public class IIteratorAny: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1_IInspectable }
 
-    open func get_CurrentImpl() throws -> Any? {
+    open func get_Current() throws -> Any? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterator_1_IInspectable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
@@ -3107,7 +3107,7 @@ public class IIteratorAny: test_component.IInspectable {
         return __ABI_.AnyWrapper.unwrapFrom(abi: result)
     }
 
-    open func get_HasCurrentImpl() throws -> Bool {
+    open func get_HasCurrent() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
@@ -3115,7 +3115,7 @@ public class IIteratorAny: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func MoveNextImpl() throws -> Bool {
+    open func MoveNext() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
@@ -3151,17 +3151,17 @@ fileprivate class __x_ABI_C__FIIterator_1_IInspectableImpl : IIterator, AbiInter
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
     fileprivate func moveNext() -> Bool {
-        try! _default.MoveNextImpl()
+        try! _default.MoveNext()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : Any? {
-        get { try! _default.get_CurrentImpl() }
+        get { try! _default.get_Current() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     fileprivate var hasCurrent : Bool {
-        get { try! _default.get_HasCurrentImpl() }
+        get { try! _default.get_HasCurrent() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -3226,7 +3226,7 @@ typealias __x_ABI_C__FIIterator_1_GUIDWrapper = InterfaceWrapperBase<test_compon
 public class IIteratorUUID: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1_GUID }
 
-    open func get_CurrentImpl() throws -> Foundation.UUID {
+    open func get_Current() throws -> Foundation.UUID {
         var result: test_component.GUID = .init()
         _ = try perform(as: __x_ABI_C__FIIterator_1_GUID.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
@@ -3234,7 +3234,7 @@ public class IIteratorUUID: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func get_HasCurrentImpl() throws -> Bool {
+    open func get_HasCurrent() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1_GUID.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
@@ -3242,7 +3242,7 @@ public class IIteratorUUID: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func MoveNextImpl() throws -> Bool {
+    open func MoveNext() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1_GUID.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
@@ -3278,17 +3278,17 @@ fileprivate class __x_ABI_C__FIIterator_1_GUIDImpl : IIterator, AbiInterfaceImpl
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
     fileprivate func moveNext() -> Bool {
-        try! _default.MoveNextImpl()
+        try! _default.MoveNext()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : Foundation.UUID {
-        get { try! _default.get_CurrentImpl() }
+        get { try! _default.get_Current() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     fileprivate var hasCurrent : Bool {
-        get { try! _default.get_HasCurrentImpl() }
+        get { try! _default.get_HasCurrent() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -3353,7 +3353,7 @@ typealias __x_ABI_C__FIIterator_1_HSTRINGWrapper = InterfaceWrapperBase<test_com
 public class IIteratorString: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1_HSTRING }
 
-    open func get_CurrentImpl() throws -> String {
+    open func get_Current() throws -> String {
         var result: HSTRING?
         _ = try perform(as: __x_ABI_C__FIIterator_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
@@ -3361,7 +3361,7 @@ public class IIteratorString: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func get_HasCurrentImpl() throws -> Bool {
+    open func get_HasCurrent() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
@@ -3369,7 +3369,7 @@ public class IIteratorString: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func MoveNextImpl() throws -> Bool {
+    open func MoveNext() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
@@ -3405,17 +3405,17 @@ fileprivate class __x_ABI_C__FIIterator_1_HSTRINGImpl : IIterator, AbiInterfaceI
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
     fileprivate func moveNext() -> Bool {
-        try! _default.MoveNextImpl()
+        try! _default.MoveNext()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : String {
-        get { try! _default.get_CurrentImpl() }
+        get { try! _default.get_Current() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     fileprivate var hasCurrent : Bool {
-        get { try! _default.get_HasCurrentImpl() }
+        get { try! _default.get_HasCurrent() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -3480,7 +3480,7 @@ typealias __x_ABI_C__FIIterator_1___x_ABI_CWindows__CData__CText__CTextSegmentWr
 public class IIteratorTextSegment: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CData__CText__CTextSegment }
 
-    open func get_CurrentImpl() throws -> test_component.TextSegment {
+    open func get_Current() throws -> test_component.TextSegment {
         var result: __x_ABI_CWindows_CData_CText_CTextSegment = .init()
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
@@ -3488,7 +3488,7 @@ public class IIteratorTextSegment: test_component.IInspectable {
         return .from(abi: result)
     }
 
-    open func get_HasCurrentImpl() throws -> Bool {
+    open func get_HasCurrent() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
@@ -3496,7 +3496,7 @@ public class IIteratorTextSegment: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func MoveNextImpl() throws -> Bool {
+    open func MoveNext() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
@@ -3532,17 +3532,17 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_CWindows__CData__CText__CTextS
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
     fileprivate func moveNext() -> Bool {
-        try! _default.MoveNextImpl()
+        try! _default.MoveNext()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : test_component.TextSegment {
-        get { try! _default.get_CurrentImpl() }
+        get { try! _default.get_Current() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     fileprivate var hasCurrent : Bool {
-        get { try! _default.get_HasCurrentImpl() }
+        get { try! _default.get_HasCurrent() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -3608,7 +3608,7 @@ typealias __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectab
 public class IIteratorIKeyValuePairString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable }
 
-    open func get_CurrentImpl() throws -> test_component.AnyIKeyValuePair<String, Any?>? {
+    open func get_Current() throws -> test_component.AnyIKeyValuePair<String, Any?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
@@ -3617,7 +3617,7 @@ public class IIteratorIKeyValuePairString_Any: test_component.IInspectable {
         return test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
     }
 
-    open func get_HasCurrentImpl() throws -> Bool {
+    open func get_HasCurrent() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
@@ -3625,7 +3625,7 @@ public class IIteratorIKeyValuePairString_Any: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func MoveNextImpl() throws -> Bool {
+    open func MoveNext() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
@@ -3661,17 +3661,17 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_II
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
     fileprivate func moveNext() -> Bool {
-        try! _default.MoveNextImpl()
+        try! _default.MoveNext()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : AnyIKeyValuePair<String, Any?>? {
-        get { try! _default.get_CurrentImpl() }
+        get { try! _default.get_Current() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     fileprivate var hasCurrent : Bool {
-        get { try! _default.get_HasCurrentImpl() }
+        get { try! _default.get_HasCurrent() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -3737,7 +3737,7 @@ typealias __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWra
 public class IIteratorIKeyValuePairString_String: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING }
 
-    open func get_CurrentImpl() throws -> test_component.AnyIKeyValuePair<String, String>? {
+    open func get_Current() throws -> test_component.AnyIKeyValuePair<String, String>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
@@ -3746,7 +3746,7 @@ public class IIteratorIKeyValuePairString_String: test_component.IInspectable {
         return test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
-    open func get_HasCurrentImpl() throws -> Bool {
+    open func get_HasCurrent() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
@@ -3754,7 +3754,7 @@ public class IIteratorIKeyValuePairString_String: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func MoveNextImpl() throws -> Bool {
+    open func MoveNext() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
@@ -3790,17 +3790,17 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HS
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
     fileprivate func moveNext() -> Bool {
-        try! _default.MoveNextImpl()
+        try! _default.MoveNext()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : AnyIKeyValuePair<String, String>? {
-        get { try! _default.get_CurrentImpl() }
+        get { try! _default.get_Current() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     fileprivate var hasCurrent : Bool {
-        get { try! _default.get_HasCurrentImpl() }
+        get { try! _default.get_HasCurrent() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -3866,7 +3866,7 @@ typealias __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C_
 public class IIteratorIKeyValuePairString_IVectorViewTextSegment: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment }
 
-    open func get_CurrentImpl() throws -> test_component.AnyIKeyValuePair<String, test_component.AnyIVectorView<test_component.TextSegment>?>? {
+    open func get_Current() throws -> test_component.AnyIKeyValuePair<String, test_component.AnyIVectorView<test_component.TextSegment>?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
@@ -3875,7 +3875,7 @@ public class IIteratorIKeyValuePairString_IVectorViewTextSegment: test_component
         return test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentWrapper.unwrapFrom(abi: result)
     }
 
-    open func get_HasCurrentImpl() throws -> Bool {
+    open func get_HasCurrent() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
@@ -3883,7 +3883,7 @@ public class IIteratorIKeyValuePairString_IVectorViewTextSegment: test_component
         return .init(from: result)
     }
 
-    open func MoveNextImpl() throws -> Bool {
+    open func MoveNext() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
@@ -3919,17 +3919,17 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
     fileprivate func moveNext() -> Bool {
-        try! _default.MoveNextImpl()
+        try! _default.MoveNext()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : AnyIKeyValuePair<String, AnyIVectorView<test_component.TextSegment>?>? {
-        get { try! _default.get_CurrentImpl() }
+        get { try! _default.get_Current() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     fileprivate var hasCurrent : Bool {
-        get { try! _default.get_HasCurrentImpl() }
+        get { try! _default.get_HasCurrent() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -3995,7 +3995,7 @@ typealias __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ct
 public class IIteratorIKeyValuePairString_Base: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
 
-    open func get_CurrentImpl() throws -> test_component.AnyIKeyValuePair<String, test_component.Base?>? {
+    open func get_Current() throws -> test_component.AnyIKeyValuePair<String, test_component.Base?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
@@ -4004,7 +4004,7 @@ public class IIteratorIKeyValuePairString_Base: test_component.IInspectable {
         return test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
 
-    open func get_HasCurrentImpl() throws -> Bool {
+    open func get_HasCurrent() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
@@ -4012,7 +4012,7 @@ public class IIteratorIKeyValuePairString_Base: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func MoveNextImpl() throws -> Bool {
+    open func MoveNext() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
@@ -4048,17 +4048,17 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
     fileprivate func moveNext() -> Bool {
-        try! _default.MoveNextImpl()
+        try! _default.MoveNext()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : AnyIKeyValuePair<String, Base?>? {
-        get { try! _default.get_CurrentImpl() }
+        get { try! _default.get_Current() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     fileprivate var hasCurrent : Bool {
-        get { try! _default.get_HasCurrentImpl() }
+        get { try! _default.get_HasCurrent() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -4124,7 +4124,7 @@ typealias __x_ABI_C__FIIterator_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDec
 public class IIteratorIWwwFormUrlDecoderEntry: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntry }
 
-    open func get_CurrentImpl() throws -> test_component.AnyIWwwFormUrlDecoderEntry? {
+    open func get_Current() throws -> test_component.AnyIWwwFormUrlDecoderEntry? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntry.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
@@ -4133,7 +4133,7 @@ public class IIteratorIWwwFormUrlDecoderEntry: test_component.IInspectable {
         return __ABI_Windows_Foundation.IWwwFormUrlDecoderEntryWrapper.unwrapFrom(abi: result)
     }
 
-    open func get_HasCurrentImpl() throws -> Bool {
+    open func get_HasCurrent() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
@@ -4141,7 +4141,7 @@ public class IIteratorIWwwFormUrlDecoderEntry: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func MoveNextImpl() throws -> Bool {
+    open func MoveNext() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
@@ -4177,17 +4177,17 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_CWindows__CFoundation__CIWwwFo
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
     fileprivate func moveNext() -> Bool {
-        try! _default.MoveNextImpl()
+        try! _default.MoveNext()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : test_component.AnyIWwwFormUrlDecoderEntry? {
-        get { try! _default.get_CurrentImpl() }
+        get { try! _default.get_Current() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     fileprivate var hasCurrent : Bool {
-        get { try! _default.get_HasCurrentImpl() }
+        get { try! _default.get_HasCurrent() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -4253,7 +4253,7 @@ typealias __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CIStorageItemWrapp
 public class IIteratorIStorageItem: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CIStorageItem }
 
-    open func get_CurrentImpl() throws -> test_component.AnyIStorageItem? {
+    open func get_Current() throws -> test_component.AnyIStorageItem? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
@@ -4262,7 +4262,7 @@ public class IIteratorIStorageItem: test_component.IInspectable {
         return __ABI_Windows_Storage.IStorageItemWrapper.unwrapFrom(abi: result)
     }
 
-    open func get_HasCurrentImpl() throws -> Bool {
+    open func get_HasCurrent() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
@@ -4270,7 +4270,7 @@ public class IIteratorIStorageItem: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func MoveNextImpl() throws -> Bool {
+    open func MoveNext() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
@@ -4306,17 +4306,17 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CIStorageI
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
     fileprivate func moveNext() -> Bool {
-        try! _default.MoveNextImpl()
+        try! _default.MoveNext()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : test_component.AnyIStorageItem? {
-        get { try! _default.get_CurrentImpl() }
+        get { try! _default.get_Current() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     fileprivate var hasCurrent : Bool {
-        get { try! _default.get_HasCurrentImpl() }
+        get { try! _default.get_HasCurrent() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -4382,7 +4382,7 @@ typealias __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CSearch__CSortEntr
 public class IIteratorSortEntry: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry }
 
-    open func get_CurrentImpl() throws -> test_component.SortEntry {
+    open func get_Current() throws -> test_component.SortEntry {
         var result: __x_ABI_CWindows_CStorage_CSearch_CSortEntry = .init()
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
@@ -4390,7 +4390,7 @@ public class IIteratorSortEntry: test_component.IInspectable {
         return .from(abi: result)
     }
 
-    open func get_HasCurrentImpl() throws -> Bool {
+    open func get_HasCurrent() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
@@ -4398,7 +4398,7 @@ public class IIteratorSortEntry: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func MoveNextImpl() throws -> Bool {
+    open func MoveNext() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
@@ -4434,17 +4434,17 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CSearch__C
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
     fileprivate func moveNext() -> Bool {
-        try! _default.MoveNextImpl()
+        try! _default.MoveNext()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : test_component.SortEntry {
-        get { try! _default.get_CurrentImpl() }
+        get { try! _default.get_Current() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     fileprivate var hasCurrent : Bool {
-        get { try! _default.get_HasCurrentImpl() }
+        get { try! _default.get_HasCurrent() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -4509,7 +4509,7 @@ typealias __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFileWrappe
 public class IIteratorStorageFile: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFile }
 
-    open func get_CurrentImpl() throws -> test_component.StorageFile? {
+    open func get_Current() throws -> test_component.StorageFile? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
@@ -4518,7 +4518,7 @@ public class IIteratorStorageFile: test_component.IInspectable {
         return .from(abi: result)
     }
 
-    open func get_HasCurrentImpl() throws -> Bool {
+    open func get_HasCurrent() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
@@ -4526,7 +4526,7 @@ public class IIteratorStorageFile: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func MoveNextImpl() throws -> Bool {
+    open func MoveNext() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
@@ -4562,17 +4562,17 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFi
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
     fileprivate func moveNext() -> Bool {
-        try! _default.MoveNextImpl()
+        try! _default.MoveNext()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : test_component.StorageFile? {
-        get { try! _default.get_CurrentImpl() }
+        get { try! _default.get_Current() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     fileprivate var hasCurrent : Bool {
-        get { try! _default.get_HasCurrentImpl() }
+        get { try! _default.get_HasCurrent() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -4637,7 +4637,7 @@ typealias __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFolderWrap
 public class IIteratorStorageFolder: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFolder }
 
-    open func get_CurrentImpl() throws -> test_component.StorageFolder? {
+    open func get_Current() throws -> test_component.StorageFolder? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
@@ -4646,7 +4646,7 @@ public class IIteratorStorageFolder: test_component.IInspectable {
         return .from(abi: result)
     }
 
-    open func get_HasCurrentImpl() throws -> Bool {
+    open func get_HasCurrent() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
@@ -4654,7 +4654,7 @@ public class IIteratorStorageFolder: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func MoveNextImpl() throws -> Bool {
+    open func MoveNext() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
@@ -4690,17 +4690,17 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFo
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
     fileprivate func moveNext() -> Bool {
-        try! _default.MoveNextImpl()
+        try! _default.MoveNext()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : test_component.StorageFolder? {
-        get { try! _default.get_CurrentImpl() }
+        get { try! _default.get_Current() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     fileprivate var hasCurrent : Bool {
-        get { try! _default.get_HasCurrentImpl() }
+        get { try! _default.get_HasCurrent() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -4765,7 +4765,7 @@ typealias __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageLibraryCha
 public class IIteratorStorageLibraryChange: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageLibraryChange }
 
-    open func get_CurrentImpl() throws -> test_component.StorageLibraryChange? {
+    open func get_Current() throws -> test_component.StorageLibraryChange? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageLibraryChange.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
@@ -4774,7 +4774,7 @@ public class IIteratorStorageLibraryChange: test_component.IInspectable {
         return .from(abi: result)
     }
 
-    open func get_HasCurrentImpl() throws -> Bool {
+    open func get_HasCurrent() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageLibraryChange.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
@@ -4782,7 +4782,7 @@ public class IIteratorStorageLibraryChange: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func MoveNextImpl() throws -> Bool {
+    open func MoveNext() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageLibraryChange.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
@@ -4818,17 +4818,17 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageLi
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
     fileprivate func moveNext() -> Bool {
-        try! _default.MoveNextImpl()
+        try! _default.MoveNext()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : test_component.StorageLibraryChange? {
-        get { try! _default.get_CurrentImpl() }
+        get { try! _default.get_Current() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     fileprivate var hasCurrent : Bool {
-        get { try! _default.get_HasCurrentImpl() }
+        get { try! _default.get_HasCurrent() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -4893,7 +4893,7 @@ typealias __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper = Inte
 public class IIteratorBase: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase }
 
-    open func get_CurrentImpl() throws -> test_component.Base? {
+    open func get_Current() throws -> test_component.Base? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
@@ -4902,7 +4902,7 @@ public class IIteratorBase: test_component.IInspectable {
         return .from(abi: result)
     }
 
-    open func get_HasCurrentImpl() throws -> Bool {
+    open func get_HasCurrent() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
@@ -4910,7 +4910,7 @@ public class IIteratorBase: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func MoveNextImpl() throws -> Bool {
+    open func MoveNext() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
@@ -4946,17 +4946,17 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseImpl :
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
     fileprivate func moveNext() -> Bool {
-        try! _default.MoveNextImpl()
+        try! _default.MoveNext()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : Base? {
-        get { try! _default.get_CurrentImpl() }
+        get { try! _default.get_Current() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     fileprivate var hasCurrent : Bool {
-        get { try! _default.get_HasCurrentImpl() }
+        get { try! _default.get_HasCurrent() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -5022,7 +5022,7 @@ typealias __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = In
 public class IIteratorIBasic: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic }
 
-    open func get_CurrentImpl() throws -> test_component.AnyIBasic? {
+    open func get_Current() throws -> test_component.AnyIBasic? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
@@ -5031,7 +5031,7 @@ public class IIteratorIBasic: test_component.IInspectable {
         return __ABI_test_component.IBasicWrapper.unwrapFrom(abi: result)
     }
 
-    open func get_HasCurrentImpl() throws -> Bool {
+    open func get_HasCurrent() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
@@ -5039,7 +5039,7 @@ public class IIteratorIBasic: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func MoveNextImpl() throws -> Bool {
+    open func MoveNext() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
@@ -5075,17 +5075,17 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicImpl
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
     fileprivate func moveNext() -> Bool {
-        try! _default.MoveNextImpl()
+        try! _default.MoveNext()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : AnyIBasic? {
-        get { try! _default.get_CurrentImpl() }
+        get { try! _default.get_Current() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
     fileprivate var hasCurrent : Bool {
-        get { try! _default.get_HasCurrentImpl() }
+        get { try! _default.get_HasCurrent() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -5142,7 +5142,7 @@ typealias __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper = InterfaceWra
 public class IKeyValuePairString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable }
 
-    open func get_KeyImpl() throws -> String {
+    open func get_Key() throws -> String {
         var result: HSTRING?
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
@@ -5150,7 +5150,7 @@ public class IKeyValuePairString_Any: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func get_ValueImpl() throws -> Any? {
+    open func get_Value() throws -> Any? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Value(pThis, &resultAbi))
@@ -5188,12 +5188,12 @@ fileprivate class __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl : IKeyVal
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.key)
     fileprivate var key : String {
-        get { try! _default.get_KeyImpl() }
+        get { try! _default.get_Key() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.value)
     fileprivate var value : Any? {
-        get { try! _default.get_ValueImpl() }
+        get { try! _default.get_Value() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -5249,7 +5249,7 @@ typealias __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper = InterfaceWrapperB
 public class IKeyValuePairString_String: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING }
 
-    open func get_KeyImpl() throws -> String {
+    open func get_Key() throws -> String {
         var result: HSTRING?
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
@@ -5257,7 +5257,7 @@ public class IKeyValuePairString_String: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func get_ValueImpl() throws -> String {
+    open func get_Value() throws -> String {
         var result: HSTRING?
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Value(pThis, &result))
@@ -5294,12 +5294,12 @@ fileprivate class __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl : IKeyValuePai
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.key)
     fileprivate var key : String {
-        get { try! _default.get_KeyImpl() }
+        get { try! _default.get_Key() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.value)
     fileprivate var value : String {
-        get { try! _default.get_ValueImpl() }
+        get { try! _default.get_Value() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -5356,7 +5356,7 @@ typealias __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_
 public class IKeyValuePairString_IVectorViewTextSegment: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment }
 
-    open func get_KeyImpl() throws -> String {
+    open func get_Key() throws -> String {
         var result: HSTRING?
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
@@ -5364,7 +5364,7 @@ public class IKeyValuePairString_IVectorViewTextSegment: test_component.IInspect
         return .init(from: result)
     }
 
-    open func get_ValueImpl() throws -> test_component.AnyIVectorView<test_component.TextSegment>? {
+    open func get_Value() throws -> test_component.AnyIVectorView<test_component.TextSegment>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Value(pThis, &resultAbi))
@@ -5402,12 +5402,12 @@ fileprivate class __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1_
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.key)
     fileprivate var key : String {
-        get { try! _default.get_KeyImpl() }
+        get { try! _default.get_Key() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.value)
     fileprivate var value : AnyIVectorView<test_component.TextSegment>? {
-        get { try! _default.get_ValueImpl() }
+        get { try! _default.get_Value() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -5463,7 +5463,7 @@ typealias __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWr
 public class IKeyValuePairString_Base: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
 
-    open func get_KeyImpl() throws -> String {
+    open func get_Key() throws -> String {
         var result: HSTRING?
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
@@ -5471,7 +5471,7 @@ public class IKeyValuePairString_Base: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func get_ValueImpl() throws -> test_component.Base? {
+    open func get_Value() throws -> test_component.Base? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Value(pThis, &resultAbi))
@@ -5509,12 +5509,12 @@ fileprivate class __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent_
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.key)
     fileprivate var key : String {
-        get { try! _default.get_KeyImpl() }
+        get { try! _default.get_Key() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ikeyvaluepair-2.value)
     fileprivate var value : Base? {
-        get { try! _default.get_ValueImpl() }
+        get { try! _default.get_Value() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -5570,7 +5570,7 @@ typealias __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper = InterfaceWrapperBa
 public class IMapChangedEventArgsString: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMapChangedEventArgs_1_HSTRING }
 
-    open func get_CollectionChangeImpl() throws -> test_component.CollectionChange {
+    open func get_CollectionChange() throws -> test_component.CollectionChange {
         var result: __x_ABI_CWindows_CFoundation_CCollections_CCollectionChange = .init(0)
         _ = try perform(as: __x_ABI_C__FIMapChangedEventArgs_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_CollectionChange(pThis, &result))
@@ -5578,7 +5578,7 @@ public class IMapChangedEventArgsString: test_component.IInspectable {
         return result
     }
 
-    open func get_KeyImpl() throws -> String {
+    open func get_Key() throws -> String {
         var result: HSTRING?
         _ = try perform(as: __x_ABI_C__FIMapChangedEventArgs_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
@@ -5614,12 +5614,12 @@ fileprivate class __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGImpl : IMapChangedEv
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapchangedeventargs-1.collectionchange)
     fileprivate var collectionChange : test_component.CollectionChange {
-        get { try! _default.get_CollectionChangeImpl() }
+        get { try! _default.get_CollectionChange() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapchangedeventargs-1.key)
     fileprivate var key : String {
-        get { try! _default.get_KeyImpl() }
+        get { try! _default.get_Key() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -5698,7 +5698,7 @@ typealias __x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper = InterfaceWrapperB
 public class IMapViewString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMapView_2_HSTRING_IInspectable }
 
-    open func LookupImpl(_ key: String) throws -> Any? {
+    open func Lookup(_ key: String) throws -> Any? {
         let (result) = try ComPtrs.initialize { resultAbi in
             let _key = try! HString(key)
             _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_IInspectable.self) { pThis in
@@ -5708,7 +5708,7 @@ public class IMapViewString_Any: test_component.IInspectable {
         return __ABI_.AnyWrapper.unwrapFrom(abi: result)
     }
 
-    open func get_SizeImpl() throws -> UInt32 {
+    open func get_Size() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -5716,7 +5716,7 @@ public class IMapViewString_Any: test_component.IInspectable {
         return result
     }
 
-    open func HasKeyImpl(_ key: String) throws -> Bool {
+    open func HasKey(_ key: String) throws -> Bool {
         var result: boolean = 0
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_IInspectable.self) { pThis in
@@ -5725,7 +5725,7 @@ public class IMapViewString_Any: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func SplitImpl(_ first: inout test_component.AnyIMapView<String, Any?>?, _ second: inout test_component.AnyIMapView<String, Any?>?) throws {
+    open func Split(_ first: inout test_component.AnyIMapView<String, Any?>?, _ second: inout test_component.AnyIMapView<String, Any?>?) throws {
         let (_first, _second) = try ComPtrs.initialize { (_firstAbi, _secondAbi) in
             _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_IInspectable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &_firstAbi, &_secondAbi))
@@ -5765,28 +5765,28 @@ fileprivate class __x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl : IMapView, Ab
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.lookup)
     fileprivate func lookup(_ key: String) -> Any? {
-        try! _default.LookupImpl(key)
+        try! _default.Lookup(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.haskey)
     fileprivate func hasKey(_ key: String) -> Bool {
-        try! _default.HasKeyImpl(key)
+        try! _default.HasKey(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.split)
     fileprivate func split(_ first: inout AnyIMapView<String, Any?>?, _ second: inout AnyIMapView<String, Any?>?) {
-        try! _default.SplitImpl(&first, &second)
+        try! _default.Split(&first, &second)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { try! _default.get_Size() }
     }
 
     private lazy var _IIterable: IIterableIKeyValuePairString_Any! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.first)
     fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -5864,7 +5864,7 @@ typealias __x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<t
 public class IMapViewString_String: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMapView_2_HSTRING_HSTRING }
 
-    open func LookupImpl(_ key: String) throws -> String {
+    open func Lookup(_ key: String) throws -> String {
         var result: HSTRING?
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_HSTRING.self) { pThis in
@@ -5873,7 +5873,7 @@ public class IMapViewString_String: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func get_SizeImpl() throws -> UInt32 {
+    open func get_Size() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -5881,7 +5881,7 @@ public class IMapViewString_String: test_component.IInspectable {
         return result
     }
 
-    open func HasKeyImpl(_ key: String) throws -> Bool {
+    open func HasKey(_ key: String) throws -> Bool {
         var result: boolean = 0
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_HSTRING.self) { pThis in
@@ -5890,7 +5890,7 @@ public class IMapViewString_String: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func SplitImpl(_ first: inout test_component.AnyIMapView<String, String>?, _ second: inout test_component.AnyIMapView<String, String>?) throws {
+    open func Split(_ first: inout test_component.AnyIMapView<String, String>?, _ second: inout test_component.AnyIMapView<String, String>?) throws {
         let (_first, _second) = try ComPtrs.initialize { (_firstAbi, _secondAbi) in
             _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &_firstAbi, &_secondAbi))
@@ -5930,28 +5930,28 @@ fileprivate class __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl : IMapView, AbiInte
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.lookup)
     fileprivate func lookup(_ key: String) -> String {
-        try! _default.LookupImpl(key)
+        try! _default.Lookup(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.haskey)
     fileprivate func hasKey(_ key: String) -> Bool {
-        try! _default.HasKeyImpl(key)
+        try! _default.HasKey(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.split)
     fileprivate func split(_ first: inout AnyIMapView<String, String>?, _ second: inout AnyIMapView<String, String>?) {
-        try! _default.SplitImpl(&first, &second)
+        try! _default.Split(&first, &second)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { try! _default.get_Size() }
     }
 
     private lazy var _IIterable: IIterableIKeyValuePairString_String! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.first)
     fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -6030,7 +6030,7 @@ typealias __x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWind
 public class IMapViewString_IVectorViewTextSegment: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment }
 
-    open func LookupImpl(_ key: String) throws -> test_component.AnyIVectorView<test_component.TextSegment>? {
+    open func Lookup(_ key: String) throws -> test_component.AnyIVectorView<test_component.TextSegment>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             let _key = try! HString(key)
             _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
@@ -6040,7 +6040,7 @@ public class IMapViewString_IVectorViewTextSegment: test_component.IInspectable 
         return test_component.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentWrapper.unwrapFrom(abi: result)
     }
 
-    open func get_SizeImpl() throws -> UInt32 {
+    open func get_Size() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -6048,7 +6048,7 @@ public class IMapViewString_IVectorViewTextSegment: test_component.IInspectable 
         return result
     }
 
-    open func HasKeyImpl(_ key: String) throws -> Bool {
+    open func HasKey(_ key: String) throws -> Bool {
         var result: boolean = 0
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
@@ -6057,7 +6057,7 @@ public class IMapViewString_IVectorViewTextSegment: test_component.IInspectable 
         return .init(from: result)
     }
 
-    open func SplitImpl(_ first: inout test_component.AnyIMapView<String, test_component.AnyIVectorView<test_component.TextSegment>?>?, _ second: inout test_component.AnyIMapView<String, test_component.AnyIVectorView<test_component.TextSegment>?>?) throws {
+    open func Split(_ first: inout test_component.AnyIMapView<String, test_component.AnyIVectorView<test_component.TextSegment>?>?, _ second: inout test_component.AnyIMapView<String, test_component.AnyIVectorView<test_component.TextSegment>?>?) throws {
         let (_first, _second) = try ComPtrs.initialize { (_firstAbi, _secondAbi) in
             _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &_firstAbi, &_secondAbi))
@@ -6097,28 +6097,28 @@ fileprivate class __x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_A
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.lookup)
     fileprivate func lookup(_ key: String) -> AnyIVectorView<test_component.TextSegment>? {
-        try! _default.LookupImpl(key)
+        try! _default.Lookup(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.haskey)
     fileprivate func hasKey(_ key: String) -> Bool {
-        try! _default.HasKeyImpl(key)
+        try! _default.HasKey(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.split)
     fileprivate func split(_ first: inout AnyIMapView<String, AnyIVectorView<test_component.TextSegment>?>?, _ second: inout AnyIMapView<String, AnyIVectorView<test_component.TextSegment>?>?) {
-        try! _default.SplitImpl(&first, &second)
+        try! _default.Split(&first, &second)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { try! _default.get_Size() }
     }
 
     private lazy var _IIterable: IIterableIKeyValuePairString_IVectorViewTextSegment! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.first)
     fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, AnyIVectorView<test_component.TextSegment>?>?>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -6196,7 +6196,7 @@ typealias __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper
 public class IMapViewString_Base: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
 
-    open func LookupImpl(_ key: String) throws -> test_component.Base? {
+    open func Lookup(_ key: String) throws -> test_component.Base? {
         let (result) = try ComPtrs.initialize { resultAbi in
             let _key = try! HString(key)
             _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
@@ -6206,7 +6206,7 @@ public class IMapViewString_Base: test_component.IInspectable {
         return .from(abi: result)
     }
 
-    open func get_SizeImpl() throws -> UInt32 {
+    open func get_Size() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -6214,7 +6214,7 @@ public class IMapViewString_Base: test_component.IInspectable {
         return result
     }
 
-    open func HasKeyImpl(_ key: String) throws -> Bool {
+    open func HasKey(_ key: String) throws -> Bool {
         var result: boolean = 0
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
@@ -6223,7 +6223,7 @@ public class IMapViewString_Base: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func SplitImpl(_ first: inout test_component.AnyIMapView<String, test_component.Base?>?, _ second: inout test_component.AnyIMapView<String, test_component.Base?>?) throws {
+    open func Split(_ first: inout test_component.AnyIMapView<String, test_component.Base?>?, _ second: inout test_component.AnyIMapView<String, test_component.Base?>?) throws {
         let (_first, _second) = try ComPtrs.initialize { (_firstAbi, _secondAbi) in
             _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &_firstAbi, &_secondAbi))
@@ -6263,28 +6263,28 @@ fileprivate class __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBas
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.lookup)
     fileprivate func lookup(_ key: String) -> Base? {
-        try! _default.LookupImpl(key)
+        try! _default.Lookup(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.haskey)
     fileprivate func hasKey(_ key: String) -> Bool {
-        try! _default.HasKeyImpl(key)
+        try! _default.HasKey(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.split)
     fileprivate func split(_ first: inout AnyIMapView<String, Base?>?, _ second: inout AnyIMapView<String, Base?>?) {
-        try! _default.SplitImpl(&first, &second)
+        try! _default.Split(&first, &second)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { try! _default.get_Size() }
     }
 
     private lazy var _IIterable: IIterableIKeyValuePairString_Base! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imapview-2.first)
     fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, Base?>?>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -6381,7 +6381,7 @@ typealias __x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper = InterfaceWrapperBase<
 public class IMapString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMap_2_HSTRING_IInspectable }
 
-    open func LookupImpl(_ key: String) throws -> Any? {
+    open func Lookup(_ key: String) throws -> Any? {
         let (result) = try ComPtrs.initialize { resultAbi in
             let _key = try! HString(key)
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
@@ -6391,7 +6391,7 @@ public class IMapString_Any: test_component.IInspectable {
         return __ABI_.AnyWrapper.unwrapFrom(abi: result)
     }
 
-    open func get_SizeImpl() throws -> UInt32 {
+    open func get_Size() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -6399,7 +6399,7 @@ public class IMapString_Any: test_component.IInspectable {
         return result
     }
 
-    open func HasKeyImpl(_ key: String) throws -> Bool {
+    open func HasKey(_ key: String) throws -> Bool {
         var result: boolean = 0
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
@@ -6408,7 +6408,7 @@ public class IMapString_Any: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func GetViewImpl() throws -> test_component.AnyIMapView<String, Any?>? {
+    open func GetView() throws -> test_component.AnyIMapView<String, Any?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &resultAbi))
@@ -6417,7 +6417,7 @@ public class IMapString_Any: test_component.IInspectable {
         return test_component.__x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
     }
 
-    open func InsertImpl(_ key: String, _ value: Any?) throws -> Bool {
+    open func Insert(_ key: String, _ value: Any?) throws -> Bool {
         var result: boolean = 0
         let _key = try! HString(key)
         let valueWrapper = __ABI_.AnyWrapper(value)
@@ -6428,14 +6428,14 @@ public class IMapString_Any: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func RemoveImpl(_ key: String) throws {
+    open func Remove(_ key: String) throws {
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Remove(pThis, _key.get()))
         }
     }
 
-    open func ClearImpl() throws {
+    open func Clear() throws {
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Clear(pThis))
         }
@@ -6471,43 +6471,43 @@ fileprivate class __x_ABI_C__FIMap_2_HSTRING_IInspectableImpl : IMap, AbiInterfa
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.lookup)
     fileprivate func lookup(_ key: String) -> Any? {
-        try! _default.LookupImpl(key)
+        try! _default.Lookup(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.haskey)
     fileprivate func hasKey(_ key: String) -> Bool {
-        try! _default.HasKeyImpl(key)
+        try! _default.HasKey(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.getview)
     fileprivate func getView() -> AnyIMapView<String, Any?>? {
-        try! _default.GetViewImpl()
+        try! _default.GetView()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.insert)
     fileprivate func insert(_ key: String, _ value: Any?) -> Bool {
-        try! _default.InsertImpl(key, value)
+        try! _default.Insert(key, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.remove)
     fileprivate func remove(_ key: String) {
-        try! _default.RemoveImpl(key)
+        try! _default.Remove(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.clear)
     fileprivate func clear() {
-        try! _default.ClearImpl()
+        try! _default.Clear()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { try! _default.get_Size() }
     }
 
     private lazy var _IIterable: IIterableIKeyValuePairString_Any! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.first)
     fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -6603,7 +6603,7 @@ typealias __x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper = InterfaceWrapperBase<test_
 public class IMapString_String: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMap_2_HSTRING_HSTRING }
 
-    open func LookupImpl(_ key: String) throws -> String {
+    open func Lookup(_ key: String) throws -> String {
         var result: HSTRING?
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
@@ -6612,7 +6612,7 @@ public class IMapString_String: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func get_SizeImpl() throws -> UInt32 {
+    open func get_Size() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -6620,7 +6620,7 @@ public class IMapString_String: test_component.IInspectable {
         return result
     }
 
-    open func HasKeyImpl(_ key: String) throws -> Bool {
+    open func HasKey(_ key: String) throws -> Bool {
         var result: boolean = 0
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
@@ -6629,7 +6629,7 @@ public class IMapString_String: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func GetViewImpl() throws -> test_component.AnyIMapView<String, String>? {
+    open func GetView() throws -> test_component.AnyIMapView<String, String>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &resultAbi))
@@ -6638,7 +6638,7 @@ public class IMapString_String: test_component.IInspectable {
         return test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
-    open func InsertImpl(_ key: String, _ value: String) throws -> Bool {
+    open func Insert(_ key: String, _ value: String) throws -> Bool {
         var result: boolean = 0
         let _key = try! HString(key)
         let _value = try! HString(value)
@@ -6648,14 +6648,14 @@ public class IMapString_String: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func RemoveImpl(_ key: String) throws {
+    open func Remove(_ key: String) throws {
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Remove(pThis, _key.get()))
         }
     }
 
-    open func ClearImpl() throws {
+    open func Clear() throws {
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Clear(pThis))
         }
@@ -6691,43 +6691,43 @@ fileprivate class __x_ABI_C__FIMap_2_HSTRING_HSTRINGImpl : IMap, AbiInterfaceImp
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.lookup)
     fileprivate func lookup(_ key: String) -> String {
-        try! _default.LookupImpl(key)
+        try! _default.Lookup(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.haskey)
     fileprivate func hasKey(_ key: String) -> Bool {
-        try! _default.HasKeyImpl(key)
+        try! _default.HasKey(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.getview)
     fileprivate func getView() -> AnyIMapView<String, String>? {
-        try! _default.GetViewImpl()
+        try! _default.GetView()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.insert)
     fileprivate func insert(_ key: String, _ value: String) -> Bool {
-        try! _default.InsertImpl(key, value)
+        try! _default.Insert(key, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.remove)
     fileprivate func remove(_ key: String) {
-        try! _default.RemoveImpl(key)
+        try! _default.Remove(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.clear)
     fileprivate func clear() {
-        try! _default.ClearImpl()
+        try! _default.Clear()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { try! _default.get_Size() }
     }
 
     private lazy var _IIterable: IIterableIKeyValuePairString_String! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.first)
     fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -6824,7 +6824,7 @@ typealias __x_ABI_C__FIMap_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows_
 public class IMapString_IVectorViewTextSegment: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMap_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment }
 
-    open func LookupImpl(_ key: String) throws -> test_component.AnyIVectorView<test_component.TextSegment>? {
+    open func Lookup(_ key: String) throws -> test_component.AnyIVectorView<test_component.TextSegment>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             let _key = try! HString(key)
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
@@ -6834,7 +6834,7 @@ public class IMapString_IVectorViewTextSegment: test_component.IInspectable {
         return test_component.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentWrapper.unwrapFrom(abi: result)
     }
 
-    open func get_SizeImpl() throws -> UInt32 {
+    open func get_Size() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -6842,7 +6842,7 @@ public class IMapString_IVectorViewTextSegment: test_component.IInspectable {
         return result
     }
 
-    open func HasKeyImpl(_ key: String) throws -> Bool {
+    open func HasKey(_ key: String) throws -> Bool {
         var result: boolean = 0
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
@@ -6851,7 +6851,7 @@ public class IMapString_IVectorViewTextSegment: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func GetViewImpl() throws -> test_component.AnyIMapView<String, test_component.AnyIVectorView<test_component.TextSegment>?>? {
+    open func GetView() throws -> test_component.AnyIMapView<String, test_component.AnyIVectorView<test_component.TextSegment>?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &resultAbi))
@@ -6860,7 +6860,7 @@ public class IMapString_IVectorViewTextSegment: test_component.IInspectable {
         return test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentWrapper.unwrapFrom(abi: result)
     }
 
-    open func InsertImpl(_ key: String, _ value: test_component.AnyIVectorView<test_component.TextSegment>?) throws -> Bool {
+    open func Insert(_ key: String, _ value: test_component.AnyIVectorView<test_component.TextSegment>?) throws -> Bool {
         var result: boolean = 0
         let _key = try! HString(key)
         let valueWrapper = test_component.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentWrapper(value)
@@ -6871,14 +6871,14 @@ public class IMapString_IVectorViewTextSegment: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func RemoveImpl(_ key: String) throws {
+    open func Remove(_ key: String) throws {
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Remove(pThis, _key.get()))
         }
     }
 
-    open func ClearImpl() throws {
+    open func Clear() throws {
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Clear(pThis))
         }
@@ -6914,43 +6914,43 @@ fileprivate class __x_ABI_C__FIMap_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_C
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.lookup)
     fileprivate func lookup(_ key: String) -> AnyIVectorView<test_component.TextSegment>? {
-        try! _default.LookupImpl(key)
+        try! _default.Lookup(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.haskey)
     fileprivate func hasKey(_ key: String) -> Bool {
-        try! _default.HasKeyImpl(key)
+        try! _default.HasKey(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.getview)
     fileprivate func getView() -> AnyIMapView<String, AnyIVectorView<test_component.TextSegment>?>? {
-        try! _default.GetViewImpl()
+        try! _default.GetView()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.insert)
     fileprivate func insert(_ key: String, _ value: AnyIVectorView<test_component.TextSegment>?) -> Bool {
-        try! _default.InsertImpl(key, value)
+        try! _default.Insert(key, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.remove)
     fileprivate func remove(_ key: String) {
-        try! _default.RemoveImpl(key)
+        try! _default.Remove(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.clear)
     fileprivate func clear() {
-        try! _default.ClearImpl()
+        try! _default.Clear()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { try! _default.get_Size() }
     }
 
     private lazy var _IIterable: IIterableIKeyValuePairString_IVectorViewTextSegment! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.first)
     fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, AnyIVectorView<test_component.TextSegment>?>?>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -7046,7 +7046,7 @@ typealias __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper = I
 public class IMapString_Base: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase }
 
-    open func LookupImpl(_ key: String) throws -> test_component.Base? {
+    open func Lookup(_ key: String) throws -> test_component.Base? {
         let (result) = try ComPtrs.initialize { resultAbi in
             let _key = try! HString(key)
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
@@ -7056,7 +7056,7 @@ public class IMapString_Base: test_component.IInspectable {
         return .from(abi: result)
     }
 
-    open func get_SizeImpl() throws -> UInt32 {
+    open func get_Size() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -7064,7 +7064,7 @@ public class IMapString_Base: test_component.IInspectable {
         return result
     }
 
-    open func HasKeyImpl(_ key: String) throws -> Bool {
+    open func HasKey(_ key: String) throws -> Bool {
         var result: boolean = 0
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
@@ -7073,7 +7073,7 @@ public class IMapString_Base: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func GetViewImpl() throws -> test_component.AnyIMapView<String, test_component.Base?>? {
+    open func GetView() throws -> test_component.AnyIMapView<String, test_component.Base?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &resultAbi))
@@ -7082,7 +7082,7 @@ public class IMapString_Base: test_component.IInspectable {
         return test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
 
-    open func InsertImpl(_ key: String, _ value: test_component.Base?) throws -> Bool {
+    open func Insert(_ key: String, _ value: test_component.Base?) throws -> Bool {
         var result: boolean = 0
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
@@ -7091,14 +7091,14 @@ public class IMapString_Base: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func RemoveImpl(_ key: String) throws {
+    open func Remove(_ key: String) throws {
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Remove(pThis, _key.get()))
         }
     }
 
-    open func ClearImpl() throws {
+    open func Clear() throws {
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Clear(pThis))
         }
@@ -7134,43 +7134,43 @@ fileprivate class __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImp
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.lookup)
     fileprivate func lookup(_ key: String) -> Base? {
-        try! _default.LookupImpl(key)
+        try! _default.Lookup(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.haskey)
     fileprivate func hasKey(_ key: String) -> Bool {
-        try! _default.HasKeyImpl(key)
+        try! _default.HasKey(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.getview)
     fileprivate func getView() -> AnyIMapView<String, Base?>? {
-        try! _default.GetViewImpl()
+        try! _default.GetView()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.insert)
     fileprivate func insert(_ key: String, _ value: Base?) -> Bool {
-        try! _default.InsertImpl(key, value)
+        try! _default.Insert(key, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.remove)
     fileprivate func remove(_ key: String) {
-        try! _default.RemoveImpl(key)
+        try! _default.Remove(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.clear)
     fileprivate func clear() {
-        try! _default.ClearImpl()
+        try! _default.Clear()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { try! _default.get_Size() }
     }
 
     private lazy var _IIterable: IIterableIKeyValuePairString_Base! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.imap-2.first)
     fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, Base?>?>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -7229,7 +7229,7 @@ typealias __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper = InterfaceWr
 public class IObservableMapString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIObservableMap_2_HSTRING_IInspectable }
 
-    open func add_MapChangedImpl(_ vhnd: MapChangedEventHandler<String, Any?>?) throws -> EventRegistrationToken {
+    open func add_MapChanged(_ vhnd: MapChangedEventHandler<String, Any?>?) throws -> EventRegistrationToken {
         var result: EventRegistrationToken = .init()
         let vhndWrapper = test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper(vhnd)
         let _vhnd = try! vhndWrapper?.toABI { $0 }
@@ -7239,7 +7239,7 @@ public class IObservableMapString_Any: test_component.IInspectable {
         return result
     }
 
-    open func remove_MapChangedImpl(_ token: EventRegistrationToken) throws {
+    open func remove_MapChanged(_ token: EventRegistrationToken) throws {
         _ = try perform(as: __x_ABI_C__FIObservableMap_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.remove_MapChanged(pThis, token))
         }
@@ -7278,10 +7278,10 @@ fileprivate class __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableImpl : IObser
       .init(
         add: { [weak self] in
           guard let this = self?._default else { return .init() }
-          return try! this.add_MapChangedImpl($0)
+          return try! this.add_MapChanged($0)
         },
         remove: { [weak self] in
-         try? self?._default.remove_MapChangedImpl($0)
+         try? self?._default.remove_MapChanged($0)
        }
       )
     }()
@@ -7289,43 +7289,43 @@ fileprivate class __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableImpl : IObser
     private lazy var _IMap: IMapString_Any! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.lookup)
     fileprivate func lookup(_ key: String) -> Any? {
-        try! _IMap.LookupImpl(key)
+        try! _IMap.Lookup(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.haskey)
     fileprivate func hasKey(_ key: String) -> Bool {
-        try! _IMap.HasKeyImpl(key)
+        try! _IMap.HasKey(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.getview)
     fileprivate func getView() -> AnyIMapView<String, Any?>? {
-        try! _IMap.GetViewImpl()
+        try! _IMap.GetView()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.insert)
     fileprivate func insert(_ key: String, _ value: Any?) -> Bool {
-        try! _IMap.InsertImpl(key, value)
+        try! _IMap.Insert(key, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.remove)
     fileprivate func remove(_ key: String) {
-        try! _IMap.RemoveImpl(key)
+        try! _IMap.Remove(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.clear)
     fileprivate func clear() {
-        try! _IMap.ClearImpl()
+        try! _IMap.Clear()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.size)
     fileprivate var size : UInt32 {
-        get { try! _IMap.get_SizeImpl() }
+        get { try! _IMap.get_Size() }
     }
 
     private lazy var _IIterable: IIterableIKeyValuePairString_Any! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.first)
     fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -7384,7 +7384,7 @@ typealias __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper = InterfaceWrapper
 public class IObservableMapString_String: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIObservableMap_2_HSTRING_HSTRING }
 
-    open func add_MapChangedImpl(_ vhnd: MapChangedEventHandler<String, String>?) throws -> EventRegistrationToken {
+    open func add_MapChanged(_ vhnd: MapChangedEventHandler<String, String>?) throws -> EventRegistrationToken {
         var result: EventRegistrationToken = .init()
         let vhndWrapper = test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper(vhnd)
         let _vhnd = try! vhndWrapper?.toABI { $0 }
@@ -7394,7 +7394,7 @@ public class IObservableMapString_String: test_component.IInspectable {
         return result
     }
 
-    open func remove_MapChangedImpl(_ token: EventRegistrationToken) throws {
+    open func remove_MapChanged(_ token: EventRegistrationToken) throws {
         _ = try perform(as: __x_ABI_C__FIObservableMap_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.remove_MapChanged(pThis, token))
         }
@@ -7433,10 +7433,10 @@ fileprivate class __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGImpl : IObservable
       .init(
         add: { [weak self] in
           guard let this = self?._default else { return .init() }
-          return try! this.add_MapChangedImpl($0)
+          return try! this.add_MapChanged($0)
         },
         remove: { [weak self] in
-         try? self?._default.remove_MapChangedImpl($0)
+         try? self?._default.remove_MapChanged($0)
        }
       )
     }()
@@ -7444,43 +7444,43 @@ fileprivate class __x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGImpl : IObservable
     private lazy var _IMap: IMapString_String! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.lookup)
     fileprivate func lookup(_ key: String) -> String {
-        try! _IMap.LookupImpl(key)
+        try! _IMap.Lookup(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.haskey)
     fileprivate func hasKey(_ key: String) -> Bool {
-        try! _IMap.HasKeyImpl(key)
+        try! _IMap.HasKey(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.getview)
     fileprivate func getView() -> AnyIMapView<String, String>? {
-        try! _IMap.GetViewImpl()
+        try! _IMap.GetView()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.insert)
     fileprivate func insert(_ key: String, _ value: String) -> Bool {
-        try! _IMap.InsertImpl(key, value)
+        try! _IMap.Insert(key, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.remove)
     fileprivate func remove(_ key: String) {
-        try! _IMap.RemoveImpl(key)
+        try! _IMap.Remove(key)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.clear)
     fileprivate func clear() {
-        try! _IMap.ClearImpl()
+        try! _IMap.Clear()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.size)
     fileprivate var size : UInt32 {
-        get { try! _IMap.get_SizeImpl() }
+        get { try! _IMap.get_Size() }
     }
 
     private lazy var _IIterable: IIterableIKeyValuePairString_String! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablemap-2.first)
     fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, String>?>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -7539,7 +7539,7 @@ typealias __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseWrappe
 public class IObservableVectorBase: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase }
 
-    open func add_VectorChangedImpl(_ vhnd: VectorChangedEventHandler<test_component.Base?>?) throws -> EventRegistrationToken {
+    open func add_VectorChanged(_ vhnd: VectorChangedEventHandler<test_component.Base?>?) throws -> EventRegistrationToken {
         var result: EventRegistrationToken = .init()
         let vhndWrapper = test_component.__x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseWrapper(vhnd)
         let _vhnd = try! vhndWrapper?.toABI { $0 }
@@ -7549,7 +7549,7 @@ public class IObservableVectorBase: test_component.IInspectable {
         return result
     }
 
-    open func remove_VectorChangedImpl(_ token: EventRegistrationToken) throws {
+    open func remove_VectorChanged(_ token: EventRegistrationToken) throws {
         _ = try perform(as: __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.remove_VectorChanged(pThis, token))
         }
@@ -7616,10 +7616,10 @@ fileprivate class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBa
       .init(
         add: { [weak self] in
           guard let this = self?._default else { return .init() }
-          return try! this.add_VectorChangedImpl($0)
+          return try! this.add_VectorChanged($0)
         },
         remove: { [weak self] in
-         try? self?._default.remove_VectorChangedImpl($0)
+         try? self?._default.remove_VectorChanged($0)
        }
       )
     }()
@@ -7627,58 +7627,58 @@ fileprivate class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBa
     private lazy var _IVector: IVectorBase! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.getat)
     fileprivate func getAt(_ index: UInt32) -> Base? {
-        try! _IVector.GetAtImpl(index)
+        try! _IVector.GetAt(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.getview)
     fileprivate func getView() -> AnyIVectorView<Base?>? {
-        try! _IVector.GetViewImpl()
+        try! _IVector.GetView()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.indexof)
     fileprivate func indexOf(_ value: Base?, _ index: inout UInt32) -> Bool {
-        try! _IVector.IndexOfImpl(value, &index)
+        try! _IVector.IndexOf(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.setat)
     fileprivate func setAt(_ index: UInt32, _ value: Base?) {
-        try! _IVector.SetAtImpl(index, value)
+        try! _IVector.SetAt(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.insertat)
     fileprivate func insertAt(_ index: UInt32, _ value: Base?) {
-        try! _IVector.InsertAtImpl(index, value)
+        try! _IVector.InsertAt(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.removeat)
     fileprivate func removeAt(_ index: UInt32) {
-        try! _IVector.RemoveAtImpl(index)
+        try! _IVector.RemoveAt(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.append)
     fileprivate func append(_ value: Base?) {
-        try! _IVector.AppendImpl(value)
+        try! _IVector.Append(value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.removeatend)
     fileprivate func removeAtEnd() {
-        try! _IVector.RemoveAtEndImpl()
+        try! _IVector.RemoveAtEnd()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.clear)
     fileprivate func clear() {
-        try! _IVector.ClearImpl()
+        try! _IVector.Clear()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.size)
     fileprivate var size : UInt32 {
-        get { try! _IVector.get_SizeImpl() }
+        get { try! _IVector.get_Size() }
     }
 
     private lazy var _IIterable: IIterableBase! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.first)
     fileprivate func first() -> AnyIIterator<Base?>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -7737,7 +7737,7 @@ typealias __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicWrap
 public class IObservableVectorIBasic: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasic }
 
-    open func add_VectorChangedImpl(_ vhnd: VectorChangedEventHandler<test_component.AnyIBasic?>?) throws -> EventRegistrationToken {
+    open func add_VectorChanged(_ vhnd: VectorChangedEventHandler<test_component.AnyIBasic?>?) throws -> EventRegistrationToken {
         var result: EventRegistrationToken = .init()
         let vhndWrapper = test_component.__x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicWrapper(vhnd)
         let _vhnd = try! vhndWrapper?.toABI { $0 }
@@ -7747,7 +7747,7 @@ public class IObservableVectorIBasic: test_component.IInspectable {
         return result
     }
 
-    open func remove_VectorChangedImpl(_ token: EventRegistrationToken) throws {
+    open func remove_VectorChanged(_ token: EventRegistrationToken) throws {
         _ = try perform(as: __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.remove_VectorChanged(pThis, token))
         }
@@ -7814,10 +7814,10 @@ fileprivate class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIB
       .init(
         add: { [weak self] in
           guard let this = self?._default else { return .init() }
-          return try! this.add_VectorChangedImpl($0)
+          return try! this.add_VectorChanged($0)
         },
         remove: { [weak self] in
-         try? self?._default.remove_VectorChangedImpl($0)
+         try? self?._default.remove_VectorChanged($0)
        }
       )
     }()
@@ -7825,58 +7825,58 @@ fileprivate class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIB
     private lazy var _IVector: IVectorIBasic! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.getat)
     fileprivate func getAt(_ index: UInt32) -> AnyIBasic? {
-        try! _IVector.GetAtImpl(index)
+        try! _IVector.GetAt(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.getview)
     fileprivate func getView() -> AnyIVectorView<AnyIBasic?>? {
-        try! _IVector.GetViewImpl()
+        try! _IVector.GetView()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.indexof)
     fileprivate func indexOf(_ value: AnyIBasic?, _ index: inout UInt32) -> Bool {
-        try! _IVector.IndexOfImpl(value, &index)
+        try! _IVector.IndexOf(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.setat)
     fileprivate func setAt(_ index: UInt32, _ value: AnyIBasic?) {
-        try! _IVector.SetAtImpl(index, value)
+        try! _IVector.SetAt(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.insertat)
     fileprivate func insertAt(_ index: UInt32, _ value: AnyIBasic?) {
-        try! _IVector.InsertAtImpl(index, value)
+        try! _IVector.InsertAt(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.removeat)
     fileprivate func removeAt(_ index: UInt32) {
-        try! _IVector.RemoveAtImpl(index)
+        try! _IVector.RemoveAt(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.append)
     fileprivate func append(_ value: AnyIBasic?) {
-        try! _IVector.AppendImpl(value)
+        try! _IVector.Append(value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.removeatend)
     fileprivate func removeAtEnd() {
-        try! _IVector.RemoveAtEndImpl()
+        try! _IVector.RemoveAtEnd()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.clear)
     fileprivate func clear() {
-        try! _IVector.ClearImpl()
+        try! _IVector.Clear()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.size)
     fileprivate var size : UInt32 {
-        get { try! _IVector.get_SizeImpl() }
+        get { try! _IVector.get_Size() }
     }
 
     private lazy var _IIterable: IIterableIBasic! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.first)
     fileprivate func first() -> AnyIIterator<AnyIBasic?>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -7947,7 +7947,7 @@ typealias __x_ABI_C__FIVectorView_1_IInspectableWrapper = InterfaceWrapperBase<t
 public class IVectorViewAny: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1_IInspectable }
 
-    open func GetAtImpl(_ index: UInt32) throws -> Any? {
+    open func GetAt(_ index: UInt32) throws -> Any? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVectorView_1_IInspectable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
@@ -7956,7 +7956,7 @@ public class IVectorViewAny: test_component.IInspectable {
         return __ABI_.AnyWrapper.unwrapFrom(abi: result)
     }
 
-    open func get_SizeImpl() throws -> UInt32 {
+    open func get_Size() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -7964,7 +7964,7 @@ public class IVectorViewAny: test_component.IInspectable {
         return result
     }
 
-    open func IndexOfImpl(_ value: Any?, _ index: inout UInt32) throws -> Bool {
+    open func IndexOf(_ value: Any?, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         let valueWrapper = __ABI_.AnyWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
@@ -8023,23 +8023,23 @@ fileprivate class __x_ABI_C__FIVectorView_1_IInspectableImpl : IVectorView, AbiI
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.getat)
     fileprivate func getAt(_ index: UInt32) -> Any? {
-        try! _default.GetAtImpl(index)
+        try! _default.GetAt(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.indexof)
     fileprivate func indexOf(_ value: Any?, _ index: inout UInt32) -> Bool {
-        try! _default.IndexOfImpl(value, &index)
+        try! _default.IndexOf(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { try! _default.get_Size() }
     }
 
     private lazy var _IIterable: IIterableAny! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
     fileprivate func first() -> AnyIIterator<Any?>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -8109,7 +8109,7 @@ typealias __x_ABI_C__FIVectorView_1_GUIDWrapper = InterfaceWrapperBase<test_comp
 public class IVectorViewUUID: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1_GUID }
 
-    open func GetAtImpl(_ index: UInt32) throws -> Foundation.UUID {
+    open func GetAt(_ index: UInt32) throws -> Foundation.UUID {
         var result: test_component.GUID = .init()
         _ = try perform(as: __x_ABI_C__FIVectorView_1_GUID.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
@@ -8117,7 +8117,7 @@ public class IVectorViewUUID: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func get_SizeImpl() throws -> UInt32 {
+    open func get_Size() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1_GUID.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -8125,7 +8125,7 @@ public class IVectorViewUUID: test_component.IInspectable {
         return result
     }
 
-    open func IndexOfImpl(_ value: Foundation.UUID, _ index: inout UInt32) throws -> Bool {
+    open func IndexOf(_ value: Foundation.UUID, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1_GUID.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, .init(from: value), &index, &result))
@@ -8182,23 +8182,23 @@ fileprivate class __x_ABI_C__FIVectorView_1_GUIDImpl : IVectorView, AbiInterface
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.getat)
     fileprivate func getAt(_ index: UInt32) -> Foundation.UUID {
-        try! _default.GetAtImpl(index)
+        try! _default.GetAt(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.indexof)
     fileprivate func indexOf(_ value: Foundation.UUID, _ index: inout UInt32) -> Bool {
-        try! _default.IndexOfImpl(value, &index)
+        try! _default.IndexOf(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { try! _default.get_Size() }
     }
 
     private lazy var _IIterable: IIterableUUID! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
     fileprivate func first() -> AnyIIterator<Foundation.UUID>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -8268,7 +8268,7 @@ typealias __x_ABI_C__FIVectorView_1_HSTRINGWrapper = InterfaceWrapperBase<test_c
 public class IVectorViewString: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1_HSTRING }
 
-    open func GetAtImpl(_ index: UInt32) throws -> String {
+    open func GetAt(_ index: UInt32) throws -> String {
         var result: HSTRING?
         _ = try perform(as: __x_ABI_C__FIVectorView_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
@@ -8276,7 +8276,7 @@ public class IVectorViewString: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func get_SizeImpl() throws -> UInt32 {
+    open func get_Size() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -8284,7 +8284,7 @@ public class IVectorViewString: test_component.IInspectable {
         return result
     }
 
-    open func IndexOfImpl(_ value: String, _ index: inout UInt32) throws -> Bool {
+    open func IndexOf(_ value: String, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         let _value = try! HString(value)
         _ = try perform(as: __x_ABI_C__FIVectorView_1_HSTRING.self) { pThis in
@@ -8342,23 +8342,23 @@ fileprivate class __x_ABI_C__FIVectorView_1_HSTRINGImpl : IVectorView, AbiInterf
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.getat)
     fileprivate func getAt(_ index: UInt32) -> String {
-        try! _default.GetAtImpl(index)
+        try! _default.GetAt(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.indexof)
     fileprivate func indexOf(_ value: String, _ index: inout UInt32) -> Bool {
-        try! _default.IndexOfImpl(value, &index)
+        try! _default.IndexOf(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { try! _default.get_Size() }
     }
 
     private lazy var _IIterable: IIterableString! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
     fileprivate func first() -> AnyIIterator<String>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -8428,7 +8428,7 @@ typealias __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment
 public class IVectorViewTextSegment: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment }
 
-    open func GetAtImpl(_ index: UInt32) throws -> test_component.TextSegment {
+    open func GetAt(_ index: UInt32) throws -> test_component.TextSegment {
         var result: __x_ABI_CWindows_CData_CText_CTextSegment = .init()
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
@@ -8436,7 +8436,7 @@ public class IVectorViewTextSegment: test_component.IInspectable {
         return .from(abi: result)
     }
 
-    open func get_SizeImpl() throws -> UInt32 {
+    open func get_Size() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -8444,7 +8444,7 @@ public class IVectorViewTextSegment: test_component.IInspectable {
         return result
     }
 
-    open func IndexOfImpl(_ value: test_component.TextSegment, _ index: inout UInt32) throws -> Bool {
+    open func IndexOf(_ value: test_component.TextSegment, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, .from(swift: value), &index, &result))
@@ -8501,23 +8501,23 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTex
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.getat)
     fileprivate func getAt(_ index: UInt32) -> test_component.TextSegment {
-        try! _default.GetAtImpl(index)
+        try! _default.GetAt(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.indexof)
     fileprivate func indexOf(_ value: test_component.TextSegment, _ index: inout UInt32) -> Bool {
-        try! _default.IndexOfImpl(value, &index)
+        try! _default.IndexOf(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { try! _default.get_Size() }
     }
 
     private lazy var _IIterable: IIterableTextSegment! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
     fileprivate func first() -> AnyIIterator<test_component.TextSegment>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -8588,7 +8588,7 @@ typealias __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlD
 public class IVectorViewIWwwFormUrlDecoderEntry: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntry }
 
-    open func GetAtImpl(_ index: UInt32) throws -> test_component.AnyIWwwFormUrlDecoderEntry? {
+    open func GetAt(_ index: UInt32) throws -> test_component.AnyIWwwFormUrlDecoderEntry? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntry.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
@@ -8597,7 +8597,7 @@ public class IVectorViewIWwwFormUrlDecoderEntry: test_component.IInspectable {
         return __ABI_Windows_Foundation.IWwwFormUrlDecoderEntryWrapper.unwrapFrom(abi: result)
     }
 
-    open func get_SizeImpl() throws -> UInt32 {
+    open func get_Size() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -8605,7 +8605,7 @@ public class IVectorViewIWwwFormUrlDecoderEntry: test_component.IInspectable {
         return result
     }
 
-    open func IndexOfImpl(_ value: test_component.AnyIWwwFormUrlDecoderEntry?, _ index: inout UInt32) throws -> Bool {
+    open func IndexOf(_ value: test_component.AnyIWwwFormUrlDecoderEntry?, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         let valueWrapper = __ABI_Windows_Foundation.IWwwFormUrlDecoderEntryWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
@@ -8664,23 +8664,23 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CFoundation__CIWww
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.getat)
     fileprivate func getAt(_ index: UInt32) -> test_component.AnyIWwwFormUrlDecoderEntry? {
-        try! _default.GetAtImpl(index)
+        try! _default.GetAt(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.indexof)
     fileprivate func indexOf(_ value: test_component.AnyIWwwFormUrlDecoderEntry?, _ index: inout UInt32) -> Bool {
-        try! _default.IndexOfImpl(value, &index)
+        try! _default.IndexOf(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { try! _default.get_Size() }
     }
 
     private lazy var _IIterable: IIterableIWwwFormUrlDecoderEntry! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
     fileprivate func first() -> AnyIIterator<test_component.AnyIWwwFormUrlDecoderEntry?>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -8751,7 +8751,7 @@ typealias __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemWra
 public class IVectorViewIStorageItem: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItem }
 
-    open func GetAtImpl(_ index: UInt32) throws -> test_component.AnyIStorageItem? {
+    open func GetAt(_ index: UInt32) throws -> test_component.AnyIStorageItem? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
@@ -8760,7 +8760,7 @@ public class IVectorViewIStorageItem: test_component.IInspectable {
         return __ABI_Windows_Storage.IStorageItemWrapper.unwrapFrom(abi: result)
     }
 
-    open func get_SizeImpl() throws -> UInt32 {
+    open func get_Size() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -8768,7 +8768,7 @@ public class IVectorViewIStorageItem: test_component.IInspectable {
         return result
     }
 
-    open func IndexOfImpl(_ value: test_component.AnyIStorageItem?, _ index: inout UInt32) throws -> Bool {
+    open func IndexOf(_ value: test_component.AnyIStorageItem?, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         let valueWrapper = __ABI_Windows_Storage.IStorageItemWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
@@ -8827,23 +8827,23 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorag
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.getat)
     fileprivate func getAt(_ index: UInt32) -> test_component.AnyIStorageItem? {
-        try! _default.GetAtImpl(index)
+        try! _default.GetAt(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.indexof)
     fileprivate func indexOf(_ value: test_component.AnyIStorageItem?, _ index: inout UInt32) -> Bool {
-        try! _default.IndexOfImpl(value, &index)
+        try! _default.IndexOf(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { try! _default.get_Size() }
     }
 
     private lazy var _IIterable: IIterableIStorageItem! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
     fileprivate func first() -> AnyIIterator<test_component.AnyIStorageItem?>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -8914,7 +8914,7 @@ typealias __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CSearch__CSortEn
 public class IVectorViewSortEntry: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry }
 
-    open func GetAtImpl(_ index: UInt32) throws -> test_component.SortEntry {
+    open func GetAt(_ index: UInt32) throws -> test_component.SortEntry {
         var result: __x_ABI_CWindows_CStorage_CSearch_CSortEntry = .init()
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
@@ -8922,7 +8922,7 @@ public class IVectorViewSortEntry: test_component.IInspectable {
         return .from(abi: result)
     }
 
-    open func get_SizeImpl() throws -> UInt32 {
+    open func get_Size() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -8930,7 +8930,7 @@ public class IVectorViewSortEntry: test_component.IInspectable {
         return result
     }
 
-    open func IndexOfImpl(_ value: test_component.SortEntry, _ index: inout UInt32) throws -> Bool {
+    open func IndexOf(_ value: test_component.SortEntry, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         let _value = __ABI_Windows_Storage_Search._ABI_SortEntry(from: value)
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
@@ -8988,23 +8988,23 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CSearch_
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.getat)
     fileprivate func getAt(_ index: UInt32) -> test_component.SortEntry {
-        try! _default.GetAtImpl(index)
+        try! _default.GetAt(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.indexof)
     fileprivate func indexOf(_ value: test_component.SortEntry, _ index: inout UInt32) -> Bool {
-        try! _default.IndexOfImpl(value, &index)
+        try! _default.IndexOf(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { try! _default.get_Size() }
     }
 
     private lazy var _IIterable: IIterableSortEntry! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
     fileprivate func first() -> AnyIIterator<test_component.SortEntry>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -9074,7 +9074,7 @@ typealias __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileWrap
 public class IVectorViewStorageFile: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFile }
 
-    open func GetAtImpl(_ index: UInt32) throws -> test_component.StorageFile? {
+    open func GetAt(_ index: UInt32) throws -> test_component.StorageFile? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
@@ -9083,7 +9083,7 @@ public class IVectorViewStorageFile: test_component.IInspectable {
         return .from(abi: result)
     }
 
-    open func get_SizeImpl() throws -> UInt32 {
+    open func get_Size() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -9091,7 +9091,7 @@ public class IVectorViewStorageFile: test_component.IInspectable {
         return result
     }
 
-    open func IndexOfImpl(_ value: test_component.StorageFile?, _ index: inout UInt32) throws -> Bool {
+    open func IndexOf(_ value: test_component.StorageFile?, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, RawPointer(value), &index, &result))
@@ -9148,23 +9148,23 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorage
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.getat)
     fileprivate func getAt(_ index: UInt32) -> test_component.StorageFile? {
-        try! _default.GetAtImpl(index)
+        try! _default.GetAt(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.indexof)
     fileprivate func indexOf(_ value: test_component.StorageFile?, _ index: inout UInt32) -> Bool {
-        try! _default.IndexOfImpl(value, &index)
+        try! _default.IndexOf(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { try! _default.get_Size() }
     }
 
     private lazy var _IIterable: IIterableStorageFile! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
     fileprivate func first() -> AnyIIterator<test_component.StorageFile?>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -9234,7 +9234,7 @@ typealias __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderWr
 public class IVectorViewStorageFolder: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolder }
 
-    open func GetAtImpl(_ index: UInt32) throws -> test_component.StorageFolder? {
+    open func GetAt(_ index: UInt32) throws -> test_component.StorageFolder? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
@@ -9243,7 +9243,7 @@ public class IVectorViewStorageFolder: test_component.IInspectable {
         return .from(abi: result)
     }
 
-    open func get_SizeImpl() throws -> UInt32 {
+    open func get_Size() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -9251,7 +9251,7 @@ public class IVectorViewStorageFolder: test_component.IInspectable {
         return result
     }
 
-    open func IndexOfImpl(_ value: test_component.StorageFolder?, _ index: inout UInt32) throws -> Bool {
+    open func IndexOf(_ value: test_component.StorageFolder?, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, RawPointer(value), &index, &result))
@@ -9308,23 +9308,23 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorage
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.getat)
     fileprivate func getAt(_ index: UInt32) -> test_component.StorageFolder? {
-        try! _default.GetAtImpl(index)
+        try! _default.GetAt(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.indexof)
     fileprivate func indexOf(_ value: test_component.StorageFolder?, _ index: inout UInt32) -> Bool {
-        try! _default.IndexOfImpl(value, &index)
+        try! _default.IndexOf(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { try! _default.get_Size() }
     }
 
     private lazy var _IIterable: IIterableStorageFolder! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
     fileprivate func first() -> AnyIIterator<test_component.StorageFolder?>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -9394,7 +9394,7 @@ typealias __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryC
 public class IVectorViewStorageLibraryChange: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChange }
 
-    open func GetAtImpl(_ index: UInt32) throws -> test_component.StorageLibraryChange? {
+    open func GetAt(_ index: UInt32) throws -> test_component.StorageLibraryChange? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChange.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
@@ -9403,7 +9403,7 @@ public class IVectorViewStorageLibraryChange: test_component.IInspectable {
         return .from(abi: result)
     }
 
-    open func get_SizeImpl() throws -> UInt32 {
+    open func get_Size() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChange.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -9411,7 +9411,7 @@ public class IVectorViewStorageLibraryChange: test_component.IInspectable {
         return result
     }
 
-    open func IndexOfImpl(_ value: test_component.StorageLibraryChange?, _ index: inout UInt32) throws -> Bool {
+    open func IndexOf(_ value: test_component.StorageLibraryChange?, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChange.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, RawPointer(value), &index, &result))
@@ -9468,23 +9468,23 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorage
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.getat)
     fileprivate func getAt(_ index: UInt32) -> test_component.StorageLibraryChange? {
-        try! _default.GetAtImpl(index)
+        try! _default.GetAt(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.indexof)
     fileprivate func indexOf(_ value: test_component.StorageLibraryChange?, _ index: inout UInt32) -> Bool {
-        try! _default.IndexOfImpl(value, &index)
+        try! _default.IndexOf(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { try! _default.get_Size() }
     }
 
     private lazy var _IIterable: IIterableStorageLibraryChange! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
     fileprivate func first() -> AnyIIterator<test_component.StorageLibraryChange?>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -9554,7 +9554,7 @@ typealias __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper = In
 public class IVectorViewBase: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase }
 
-    open func GetAtImpl(_ index: UInt32) throws -> test_component.Base? {
+    open func GetAt(_ index: UInt32) throws -> test_component.Base? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
@@ -9563,7 +9563,7 @@ public class IVectorViewBase: test_component.IInspectable {
         return .from(abi: result)
     }
 
-    open func get_SizeImpl() throws -> UInt32 {
+    open func get_Size() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -9571,7 +9571,7 @@ public class IVectorViewBase: test_component.IInspectable {
         return result
     }
 
-    open func IndexOfImpl(_ value: test_component.Base?, _ index: inout UInt32) throws -> Bool {
+    open func IndexOf(_ value: test_component.Base?, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, RawPointer(value), &index, &result))
@@ -9628,23 +9628,23 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.getat)
     fileprivate func getAt(_ index: UInt32) -> Base? {
-        try! _default.GetAtImpl(index)
+        try! _default.GetAt(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.indexof)
     fileprivate func indexOf(_ value: Base?, _ index: inout UInt32) -> Bool {
-        try! _default.IndexOfImpl(value, &index)
+        try! _default.IndexOf(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { try! _default.get_Size() }
     }
 
     private lazy var _IIterable: IIterableBase! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
     fileprivate func first() -> AnyIIterator<Base?>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -9715,7 +9715,7 @@ typealias __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = 
 public class IVectorViewIBasic: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasic }
 
-    open func GetAtImpl(_ index: UInt32) throws -> test_component.AnyIBasic? {
+    open func GetAt(_ index: UInt32) throws -> test_component.AnyIBasic? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
@@ -9724,7 +9724,7 @@ public class IVectorViewIBasic: test_component.IInspectable {
         return __ABI_test_component.IBasicWrapper.unwrapFrom(abi: result)
     }
 
-    open func get_SizeImpl() throws -> UInt32 {
+    open func get_Size() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -9732,7 +9732,7 @@ public class IVectorViewIBasic: test_component.IInspectable {
         return result
     }
 
-    open func IndexOfImpl(_ value: test_component.AnyIBasic?, _ index: inout UInt32) throws -> Bool {
+    open func IndexOf(_ value: test_component.AnyIBasic?, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         let valueWrapper = __ABI_test_component.IBasicWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
@@ -9791,23 +9791,23 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicIm
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.getat)
     fileprivate func getAt(_ index: UInt32) -> AnyIBasic? {
-        try! _default.GetAtImpl(index)
+        try! _default.GetAt(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.indexof)
     fileprivate func indexOf(_ value: AnyIBasic?, _ index: inout UInt32) -> Bool {
-        try! _default.IndexOfImpl(value, &index)
+        try! _default.IndexOf(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { try! _default.get_Size() }
     }
 
     private lazy var _IIterable: IIterableIBasic! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
     fileprivate func first() -> AnyIIterator<AnyIBasic?>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -9930,7 +9930,7 @@ typealias __x_ABI_C__FIVector_1_IInspectableWrapper = InterfaceWrapperBase<test_
 public class IVectorAny: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVector_1_IInspectable }
 
-    open func GetAtImpl(_ index: UInt32) throws -> Any? {
+    open func GetAt(_ index: UInt32) throws -> Any? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
@@ -9939,7 +9939,7 @@ public class IVectorAny: test_component.IInspectable {
         return __ABI_.AnyWrapper.unwrapFrom(abi: result)
     }
 
-    open func get_SizeImpl() throws -> UInt32 {
+    open func get_Size() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -9947,7 +9947,7 @@ public class IVectorAny: test_component.IInspectable {
         return result
     }
 
-    open func GetViewImpl() throws -> test_component.AnyIVectorView<Any?>? {
+    open func GetView() throws -> test_component.AnyIVectorView<Any?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &resultAbi))
@@ -9956,7 +9956,7 @@ public class IVectorAny: test_component.IInspectable {
         return test_component.__x_ABI_C__FIVectorView_1_IInspectableWrapper.unwrapFrom(abi: result)
     }
 
-    open func IndexOfImpl(_ value: Any?, _ index: inout UInt32) throws -> Bool {
+    open func IndexOf(_ value: Any?, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         let valueWrapper = __ABI_.AnyWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
@@ -9966,7 +9966,7 @@ public class IVectorAny: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func SetAtImpl(_ index: UInt32, _ value: Any?) throws {
+    open func SetAt(_ index: UInt32, _ value: Any?) throws {
         let valueWrapper = __ABI_.AnyWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
@@ -9974,7 +9974,7 @@ public class IVectorAny: test_component.IInspectable {
         }
     }
 
-    open func InsertAtImpl(_ index: UInt32, _ value: Any?) throws {
+    open func InsertAt(_ index: UInt32, _ value: Any?) throws {
         let valueWrapper = __ABI_.AnyWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
@@ -9982,13 +9982,13 @@ public class IVectorAny: test_component.IInspectable {
         }
     }
 
-    open func RemoveAtImpl(_ index: UInt32) throws {
+    open func RemoveAt(_ index: UInt32) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAt(pThis, index))
         }
     }
 
-    open func AppendImpl(_ value: Any?) throws {
+    open func Append(_ value: Any?) throws {
         let valueWrapper = __ABI_.AnyWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
@@ -9996,13 +9996,13 @@ public class IVectorAny: test_component.IInspectable {
         }
     }
 
-    open func RemoveAtEndImpl() throws {
+    open func RemoveAtEnd() throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAtEnd(pThis))
         }
     }
 
-    open func ClearImpl() throws {
+    open func Clear() throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Clear(pThis))
         }
@@ -10066,58 +10066,58 @@ fileprivate class __x_ABI_C__FIVector_1_IInspectableImpl : IVector, AbiInterface
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getat)
     fileprivate func getAt(_ index: UInt32) -> Any? {
-        try! _default.GetAtImpl(index)
+        try! _default.GetAt(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getview)
     fileprivate func getView() -> AnyIVectorView<Any?>? {
-        try! _default.GetViewImpl()
+        try! _default.GetView()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.indexof)
     fileprivate func indexOf(_ value: Any?, _ index: inout UInt32) -> Bool {
-        try! _default.IndexOfImpl(value, &index)
+        try! _default.IndexOf(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.setat)
     fileprivate func setAt(_ index: UInt32, _ value: Any?) {
-        try! _default.SetAtImpl(index, value)
+        try! _default.SetAt(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.insertat)
     fileprivate func insertAt(_ index: UInt32, _ value: Any?) {
-        try! _default.InsertAtImpl(index, value)
+        try! _default.InsertAt(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeat)
     fileprivate func removeAt(_ index: UInt32) {
-        try! _default.RemoveAtImpl(index)
+        try! _default.RemoveAt(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.append)
     fileprivate func append(_ value: Any?) {
-        try! _default.AppendImpl(value)
+        try! _default.Append(value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeatend)
     fileprivate func removeAtEnd() {
-        try! _default.RemoveAtEndImpl()
+        try! _default.RemoveAtEnd()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.clear)
     fileprivate func clear() {
-        try! _default.ClearImpl()
+        try! _default.Clear()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { try! _default.get_Size() }
     }
 
     private lazy var _IIterable: IIterableAny! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.first)
     fileprivate func first() -> AnyIIterator<Any?>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -10239,7 +10239,7 @@ typealias __x_ABI_C__FIVector_1_GUIDWrapper = InterfaceWrapperBase<test_componen
 public class IVectorUUID: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVector_1_GUID }
 
-    open func GetAtImpl(_ index: UInt32) throws -> Foundation.UUID {
+    open func GetAt(_ index: UInt32) throws -> Foundation.UUID {
         var result: test_component.GUID = .init()
         _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
@@ -10247,7 +10247,7 @@ public class IVectorUUID: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func get_SizeImpl() throws -> UInt32 {
+    open func get_Size() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -10255,7 +10255,7 @@ public class IVectorUUID: test_component.IInspectable {
         return result
     }
 
-    open func GetViewImpl() throws -> test_component.AnyIVectorView<Foundation.UUID>? {
+    open func GetView() throws -> test_component.AnyIVectorView<Foundation.UUID>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &resultAbi))
@@ -10264,7 +10264,7 @@ public class IVectorUUID: test_component.IInspectable {
         return test_component.__x_ABI_C__FIVectorView_1_GUIDWrapper.unwrapFrom(abi: result)
     }
 
-    open func IndexOfImpl(_ value: Foundation.UUID, _ index: inout UInt32) throws -> Bool {
+    open func IndexOf(_ value: Foundation.UUID, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, .init(from: value), &index, &result))
@@ -10272,37 +10272,37 @@ public class IVectorUUID: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func SetAtImpl(_ index: UInt32, _ value: Foundation.UUID) throws {
+    open func SetAt(_ index: UInt32, _ value: Foundation.UUID) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.SetAt(pThis, index, .init(from: value)))
         }
     }
 
-    open func InsertAtImpl(_ index: UInt32, _ value: Foundation.UUID) throws {
+    open func InsertAt(_ index: UInt32, _ value: Foundation.UUID) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.InsertAt(pThis, index, .init(from: value)))
         }
     }
 
-    open func RemoveAtImpl(_ index: UInt32) throws {
+    open func RemoveAt(_ index: UInt32) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAt(pThis, index))
         }
     }
 
-    open func AppendImpl(_ value: Foundation.UUID) throws {
+    open func Append(_ value: Foundation.UUID) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Append(pThis, .init(from: value)))
         }
     }
 
-    open func RemoveAtEndImpl() throws {
+    open func RemoveAtEnd() throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAtEnd(pThis))
         }
     }
 
-    open func ClearImpl() throws {
+    open func Clear() throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Clear(pThis))
         }
@@ -10366,58 +10366,58 @@ fileprivate class __x_ABI_C__FIVector_1_GUIDImpl : IVector, AbiInterfaceImpl {
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getat)
     fileprivate func getAt(_ index: UInt32) -> Foundation.UUID {
-        try! _default.GetAtImpl(index)
+        try! _default.GetAt(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getview)
     fileprivate func getView() -> AnyIVectorView<Foundation.UUID>? {
-        try! _default.GetViewImpl()
+        try! _default.GetView()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.indexof)
     fileprivate func indexOf(_ value: Foundation.UUID, _ index: inout UInt32) -> Bool {
-        try! _default.IndexOfImpl(value, &index)
+        try! _default.IndexOf(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.setat)
     fileprivate func setAt(_ index: UInt32, _ value: Foundation.UUID) {
-        try! _default.SetAtImpl(index, value)
+        try! _default.SetAt(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.insertat)
     fileprivate func insertAt(_ index: UInt32, _ value: Foundation.UUID) {
-        try! _default.InsertAtImpl(index, value)
+        try! _default.InsertAt(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeat)
     fileprivate func removeAt(_ index: UInt32) {
-        try! _default.RemoveAtImpl(index)
+        try! _default.RemoveAt(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.append)
     fileprivate func append(_ value: Foundation.UUID) {
-        try! _default.AppendImpl(value)
+        try! _default.Append(value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeatend)
     fileprivate func removeAtEnd() {
-        try! _default.RemoveAtEndImpl()
+        try! _default.RemoveAtEnd()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.clear)
     fileprivate func clear() {
-        try! _default.ClearImpl()
+        try! _default.Clear()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { try! _default.get_Size() }
     }
 
     private lazy var _IIterable: IIterableUUID! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.first)
     fileprivate func first() -> AnyIIterator<Foundation.UUID>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -10539,7 +10539,7 @@ typealias __x_ABI_C__FIVector_1_HSTRINGWrapper = InterfaceWrapperBase<test_compo
 public class IVectorString: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVector_1_HSTRING }
 
-    open func GetAtImpl(_ index: UInt32) throws -> String {
+    open func GetAt(_ index: UInt32) throws -> String {
         var result: HSTRING?
         _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
@@ -10547,7 +10547,7 @@ public class IVectorString: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func get_SizeImpl() throws -> UInt32 {
+    open func get_Size() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -10555,7 +10555,7 @@ public class IVectorString: test_component.IInspectable {
         return result
     }
 
-    open func GetViewImpl() throws -> test_component.AnyIVectorView<String>? {
+    open func GetView() throws -> test_component.AnyIVectorView<String>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &resultAbi))
@@ -10564,7 +10564,7 @@ public class IVectorString: test_component.IInspectable {
         return test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
-    open func IndexOfImpl(_ value: String, _ index: inout UInt32) throws -> Bool {
+    open func IndexOf(_ value: String, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         let _value = try! HString(value)
         _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
@@ -10573,40 +10573,40 @@ public class IVectorString: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func SetAtImpl(_ index: UInt32, _ value: String) throws {
+    open func SetAt(_ index: UInt32, _ value: String) throws {
         let _value = try! HString(value)
         _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.SetAt(pThis, index, _value.get()))
         }
     }
 
-    open func InsertAtImpl(_ index: UInt32, _ value: String) throws {
+    open func InsertAt(_ index: UInt32, _ value: String) throws {
         let _value = try! HString(value)
         _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.InsertAt(pThis, index, _value.get()))
         }
     }
 
-    open func RemoveAtImpl(_ index: UInt32) throws {
+    open func RemoveAt(_ index: UInt32) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAt(pThis, index))
         }
     }
 
-    open func AppendImpl(_ value: String) throws {
+    open func Append(_ value: String) throws {
         let _value = try! HString(value)
         _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Append(pThis, _value.get()))
         }
     }
 
-    open func RemoveAtEndImpl() throws {
+    open func RemoveAtEnd() throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAtEnd(pThis))
         }
     }
 
-    open func ClearImpl() throws {
+    open func Clear() throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Clear(pThis))
         }
@@ -10670,58 +10670,58 @@ fileprivate class __x_ABI_C__FIVector_1_HSTRINGImpl : IVector, AbiInterfaceImpl 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getat)
     fileprivate func getAt(_ index: UInt32) -> String {
-        try! _default.GetAtImpl(index)
+        try! _default.GetAt(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getview)
     fileprivate func getView() -> AnyIVectorView<String>? {
-        try! _default.GetViewImpl()
+        try! _default.GetView()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.indexof)
     fileprivate func indexOf(_ value: String, _ index: inout UInt32) -> Bool {
-        try! _default.IndexOfImpl(value, &index)
+        try! _default.IndexOf(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.setat)
     fileprivate func setAt(_ index: UInt32, _ value: String) {
-        try! _default.SetAtImpl(index, value)
+        try! _default.SetAt(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.insertat)
     fileprivate func insertAt(_ index: UInt32, _ value: String) {
-        try! _default.InsertAtImpl(index, value)
+        try! _default.InsertAt(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeat)
     fileprivate func removeAt(_ index: UInt32) {
-        try! _default.RemoveAtImpl(index)
+        try! _default.RemoveAt(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.append)
     fileprivate func append(_ value: String) {
-        try! _default.AppendImpl(value)
+        try! _default.Append(value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeatend)
     fileprivate func removeAtEnd() {
-        try! _default.RemoveAtEndImpl()
+        try! _default.RemoveAtEnd()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.clear)
     fileprivate func clear() {
-        try! _default.ClearImpl()
+        try! _default.Clear()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { try! _default.get_Size() }
     }
 
     private lazy var _IIterable: IIterableString! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.first)
     fileprivate func first() -> AnyIIterator<String>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -10844,7 +10844,7 @@ typealias __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryW
 public class IVectorSortEntry: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry }
 
-    open func GetAtImpl(_ index: UInt32) throws -> test_component.SortEntry {
+    open func GetAt(_ index: UInt32) throws -> test_component.SortEntry {
         var result: __x_ABI_CWindows_CStorage_CSearch_CSortEntry = .init()
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
@@ -10852,7 +10852,7 @@ public class IVectorSortEntry: test_component.IInspectable {
         return .from(abi: result)
     }
 
-    open func get_SizeImpl() throws -> UInt32 {
+    open func get_Size() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -10860,7 +10860,7 @@ public class IVectorSortEntry: test_component.IInspectable {
         return result
     }
 
-    open func GetViewImpl() throws -> test_component.AnyIVectorView<test_component.SortEntry>? {
+    open func GetView() throws -> test_component.AnyIVectorView<test_component.SortEntry>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &resultAbi))
@@ -10869,7 +10869,7 @@ public class IVectorSortEntry: test_component.IInspectable {
         return test_component.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryWrapper.unwrapFrom(abi: result)
     }
 
-    open func IndexOfImpl(_ value: test_component.SortEntry, _ index: inout UInt32) throws -> Bool {
+    open func IndexOf(_ value: test_component.SortEntry, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         let _value = __ABI_Windows_Storage_Search._ABI_SortEntry(from: value)
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
@@ -10878,40 +10878,40 @@ public class IVectorSortEntry: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func SetAtImpl(_ index: UInt32, _ value: test_component.SortEntry) throws {
+    open func SetAt(_ index: UInt32, _ value: test_component.SortEntry) throws {
         let _value = __ABI_Windows_Storage_Search._ABI_SortEntry(from: value)
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.SetAt(pThis, index, _value.val))
         }
     }
 
-    open func InsertAtImpl(_ index: UInt32, _ value: test_component.SortEntry) throws {
+    open func InsertAt(_ index: UInt32, _ value: test_component.SortEntry) throws {
         let _value = __ABI_Windows_Storage_Search._ABI_SortEntry(from: value)
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.InsertAt(pThis, index, _value.val))
         }
     }
 
-    open func RemoveAtImpl(_ index: UInt32) throws {
+    open func RemoveAt(_ index: UInt32) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAt(pThis, index))
         }
     }
 
-    open func AppendImpl(_ value: test_component.SortEntry) throws {
+    open func Append(_ value: test_component.SortEntry) throws {
         let _value = __ABI_Windows_Storage_Search._ABI_SortEntry(from: value)
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Append(pThis, _value.val))
         }
     }
 
-    open func RemoveAtEndImpl() throws {
+    open func RemoveAtEnd() throws {
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAtEnd(pThis))
         }
     }
 
-    open func ClearImpl() throws {
+    open func Clear() throws {
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Clear(pThis))
         }
@@ -10975,58 +10975,58 @@ fileprivate class __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSo
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getat)
     fileprivate func getAt(_ index: UInt32) -> test_component.SortEntry {
-        try! _default.GetAtImpl(index)
+        try! _default.GetAt(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getview)
     fileprivate func getView() -> AnyIVectorView<test_component.SortEntry>? {
-        try! _default.GetViewImpl()
+        try! _default.GetView()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.indexof)
     fileprivate func indexOf(_ value: test_component.SortEntry, _ index: inout UInt32) -> Bool {
-        try! _default.IndexOfImpl(value, &index)
+        try! _default.IndexOf(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.setat)
     fileprivate func setAt(_ index: UInt32, _ value: test_component.SortEntry) {
-        try! _default.SetAtImpl(index, value)
+        try! _default.SetAt(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.insertat)
     fileprivate func insertAt(_ index: UInt32, _ value: test_component.SortEntry) {
-        try! _default.InsertAtImpl(index, value)
+        try! _default.InsertAt(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeat)
     fileprivate func removeAt(_ index: UInt32) {
-        try! _default.RemoveAtImpl(index)
+        try! _default.RemoveAt(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.append)
     fileprivate func append(_ value: test_component.SortEntry) {
-        try! _default.AppendImpl(value)
+        try! _default.Append(value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeatend)
     fileprivate func removeAtEnd() {
-        try! _default.RemoveAtEndImpl()
+        try! _default.RemoveAtEnd()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.clear)
     fileprivate func clear() {
-        try! _default.ClearImpl()
+        try! _default.Clear()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { try! _default.get_Size() }
     }
 
     private lazy var _IIterable: IIterableSortEntry! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.first)
     fileprivate func first() -> AnyIIterator<test_component.SortEntry>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -11148,7 +11148,7 @@ typealias __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper = Interf
 public class IVectorBase: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase }
 
-    open func GetAtImpl(_ index: UInt32) throws -> test_component.Base? {
+    open func GetAt(_ index: UInt32) throws -> test_component.Base? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
@@ -11157,7 +11157,7 @@ public class IVectorBase: test_component.IInspectable {
         return .from(abi: result)
     }
 
-    open func get_SizeImpl() throws -> UInt32 {
+    open func get_Size() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -11165,7 +11165,7 @@ public class IVectorBase: test_component.IInspectable {
         return result
     }
 
-    open func GetViewImpl() throws -> test_component.AnyIVectorView<test_component.Base?>? {
+    open func GetView() throws -> test_component.AnyIVectorView<test_component.Base?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &resultAbi))
@@ -11174,7 +11174,7 @@ public class IVectorBase: test_component.IInspectable {
         return test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.unwrapFrom(abi: result)
     }
 
-    open func IndexOfImpl(_ value: test_component.Base?, _ index: inout UInt32) throws -> Bool {
+    open func IndexOf(_ value: test_component.Base?, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, RawPointer(value), &index, &result))
@@ -11182,37 +11182,37 @@ public class IVectorBase: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func SetAtImpl(_ index: UInt32, _ value: test_component.Base?) throws {
+    open func SetAt(_ index: UInt32, _ value: test_component.Base?) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.SetAt(pThis, index, RawPointer(value)))
         }
     }
 
-    open func InsertAtImpl(_ index: UInt32, _ value: test_component.Base?) throws {
+    open func InsertAt(_ index: UInt32, _ value: test_component.Base?) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.InsertAt(pThis, index, RawPointer(value)))
         }
     }
 
-    open func RemoveAtImpl(_ index: UInt32) throws {
+    open func RemoveAt(_ index: UInt32) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAt(pThis, index))
         }
     }
 
-    open func AppendImpl(_ value: test_component.Base?) throws {
+    open func Append(_ value: test_component.Base?) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Append(pThis, RawPointer(value)))
         }
     }
 
-    open func RemoveAtEndImpl() throws {
+    open func RemoveAtEnd() throws {
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAtEnd(pThis))
         }
     }
 
-    open func ClearImpl() throws {
+    open func Clear() throws {
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Clear(pThis))
         }
@@ -11276,58 +11276,58 @@ fileprivate class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl : I
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getat)
     fileprivate func getAt(_ index: UInt32) -> Base? {
-        try! _default.GetAtImpl(index)
+        try! _default.GetAt(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getview)
     fileprivate func getView() -> AnyIVectorView<Base?>? {
-        try! _default.GetViewImpl()
+        try! _default.GetView()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.indexof)
     fileprivate func indexOf(_ value: Base?, _ index: inout UInt32) -> Bool {
-        try! _default.IndexOfImpl(value, &index)
+        try! _default.IndexOf(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.setat)
     fileprivate func setAt(_ index: UInt32, _ value: Base?) {
-        try! _default.SetAtImpl(index, value)
+        try! _default.SetAt(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.insertat)
     fileprivate func insertAt(_ index: UInt32, _ value: Base?) {
-        try! _default.InsertAtImpl(index, value)
+        try! _default.InsertAt(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeat)
     fileprivate func removeAt(_ index: UInt32) {
-        try! _default.RemoveAtImpl(index)
+        try! _default.RemoveAt(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.append)
     fileprivate func append(_ value: Base?) {
-        try! _default.AppendImpl(value)
+        try! _default.Append(value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeatend)
     fileprivate func removeAtEnd() {
-        try! _default.RemoveAtEndImpl()
+        try! _default.RemoveAtEnd()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.clear)
     fileprivate func clear() {
-        try! _default.ClearImpl()
+        try! _default.Clear()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { try! _default.get_Size() }
     }
 
     private lazy var _IIterable: IIterableBase! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.first)
     fileprivate func first() -> AnyIIterator<Base?>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -11450,7 +11450,7 @@ typealias __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = Inte
 public class IVectorIBasic: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic }
 
-    open func GetAtImpl(_ index: UInt32) throws -> test_component.AnyIBasic? {
+    open func GetAt(_ index: UInt32) throws -> test_component.AnyIBasic? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
@@ -11459,7 +11459,7 @@ public class IVectorIBasic: test_component.IInspectable {
         return __ABI_test_component.IBasicWrapper.unwrapFrom(abi: result)
     }
 
-    open func get_SizeImpl() throws -> UInt32 {
+    open func get_Size() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
@@ -11467,7 +11467,7 @@ public class IVectorIBasic: test_component.IInspectable {
         return result
     }
 
-    open func GetViewImpl() throws -> test_component.AnyIVectorView<test_component.AnyIBasic?>? {
+    open func GetView() throws -> test_component.AnyIVectorView<test_component.AnyIBasic?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetView(pThis, &resultAbi))
@@ -11476,7 +11476,7 @@ public class IVectorIBasic: test_component.IInspectable {
         return test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.unwrapFrom(abi: result)
     }
 
-    open func IndexOfImpl(_ value: test_component.AnyIBasic?, _ index: inout UInt32) throws -> Bool {
+    open func IndexOf(_ value: test_component.AnyIBasic?, _ index: inout UInt32) throws -> Bool {
         var result: boolean = 0
         let valueWrapper = __ABI_test_component.IBasicWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
@@ -11486,7 +11486,7 @@ public class IVectorIBasic: test_component.IInspectable {
         return .init(from: result)
     }
 
-    open func SetAtImpl(_ index: UInt32, _ value: test_component.AnyIBasic?) throws {
+    open func SetAt(_ index: UInt32, _ value: test_component.AnyIBasic?) throws {
         let valueWrapper = __ABI_test_component.IBasicWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
@@ -11494,7 +11494,7 @@ public class IVectorIBasic: test_component.IInspectable {
         }
     }
 
-    open func InsertAtImpl(_ index: UInt32, _ value: test_component.AnyIBasic?) throws {
+    open func InsertAt(_ index: UInt32, _ value: test_component.AnyIBasic?) throws {
         let valueWrapper = __ABI_test_component.IBasicWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
@@ -11502,13 +11502,13 @@ public class IVectorIBasic: test_component.IInspectable {
         }
     }
 
-    open func RemoveAtImpl(_ index: UInt32) throws {
+    open func RemoveAt(_ index: UInt32) throws {
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAt(pThis, index))
         }
     }
 
-    open func AppendImpl(_ value: test_component.AnyIBasic?) throws {
+    open func Append(_ value: test_component.AnyIBasic?) throws {
         let valueWrapper = __ABI_test_component.IBasicWrapper(value)
         let _value = try! valueWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
@@ -11516,13 +11516,13 @@ public class IVectorIBasic: test_component.IInspectable {
         }
     }
 
-    open func RemoveAtEndImpl() throws {
+    open func RemoveAtEnd() throws {
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.RemoveAtEnd(pThis))
         }
     }
 
-    open func ClearImpl() throws {
+    open func Clear() throws {
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Clear(pThis))
         }
@@ -11586,58 +11586,58 @@ fileprivate class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicImpl :
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getat)
     fileprivate func getAt(_ index: UInt32) -> AnyIBasic? {
-        try! _default.GetAtImpl(index)
+        try! _default.GetAt(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getview)
     fileprivate func getView() -> AnyIVectorView<AnyIBasic?>? {
-        try! _default.GetViewImpl()
+        try! _default.GetView()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.indexof)
     fileprivate func indexOf(_ value: AnyIBasic?, _ index: inout UInt32) -> Bool {
-        try! _default.IndexOfImpl(value, &index)
+        try! _default.IndexOf(value, &index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.setat)
     fileprivate func setAt(_ index: UInt32, _ value: AnyIBasic?) {
-        try! _default.SetAtImpl(index, value)
+        try! _default.SetAt(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.insertat)
     fileprivate func insertAt(_ index: UInt32, _ value: AnyIBasic?) {
-        try! _default.InsertAtImpl(index, value)
+        try! _default.InsertAt(index, value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeat)
     fileprivate func removeAt(_ index: UInt32) {
-        try! _default.RemoveAtImpl(index)
+        try! _default.RemoveAt(index)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.append)
     fileprivate func append(_ value: AnyIBasic?) {
-        try! _default.AppendImpl(value)
+        try! _default.Append(value)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.removeatend)
     fileprivate func removeAtEnd() {
-        try! _default.RemoveAtEndImpl()
+        try! _default.RemoveAtEnd()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.clear)
     fileprivate func clear() {
-        try! _default.ClearImpl()
+        try! _default.Clear()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.size)
     fileprivate var size : UInt32 {
-        get { try! _default.get_SizeImpl() }
+        get { try! _default.get_Size() }
     }
 
     private lazy var _IIterable: IIterableIBasic! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.first)
     fileprivate func first() -> AnyIIterator<AnyIBasic?>? {
-        try! _IIterable.FirstImpl()
+        try! _IIterable.First()
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -11672,7 +11672,7 @@ typealias __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableWrapper = Int
 public class MapChangedEventHandlerString_Any: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectable }
 
-    open func InvokeImpl(_ sender: test_component.AnyIObservableMap<String, Any?>?, _ event: test_component.AnyIMapChangedEventArgs<String>?) throws {
+    open func Invoke(_ sender: test_component.AnyIObservableMap<String, Any?>?, _ event: test_component.AnyIMapChangedEventArgs<String>?) throws {
         let senderWrapper = test_component.__x_ABI_C__FIObservableMap_2_HSTRING_IInspectableWrapper(sender)
         let _sender = try! senderWrapper?.toABI { $0 }
         let eventWrapper = test_component.__x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper(event)
@@ -11693,7 +11693,7 @@ internal class __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableBridge :
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, event) in
-            try _default.InvokeImpl(sender, event)
+            try _default.Invoke(sender, event)
         }
         return handler
     }
@@ -11727,7 +11727,7 @@ typealias __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGWrapper = Interfac
 public class MapChangedEventHandlerString_String: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRING }
 
-    open func InvokeImpl(_ sender: test_component.AnyIObservableMap<String, String>?, _ event: test_component.AnyIMapChangedEventArgs<String>?) throws {
+    open func Invoke(_ sender: test_component.AnyIObservableMap<String, String>?, _ event: test_component.AnyIMapChangedEventArgs<String>?) throws {
         let senderWrapper = test_component.__x_ABI_C__FIObservableMap_2_HSTRING_HSTRINGWrapper(sender)
         let _sender = try! senderWrapper?.toABI { $0 }
         let eventWrapper = test_component.__x_ABI_C__FIMapChangedEventArgs_1_HSTRINGWrapper(event)
@@ -11748,7 +11748,7 @@ internal class __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGBridge : WinR
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, event) in
-            try _default.InvokeImpl(sender, event)
+            try _default.Invoke(sender, event)
         }
         return handler
     }
@@ -11782,7 +11782,7 @@ typealias __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBa
 public class VectorChangedEventHandlerBase: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBase }
 
-    open func InvokeImpl(_ sender: test_component.AnyIObservableVector<test_component.Base?>?, _ event: test_component.AnyIVectorChangedEventArgs?) throws {
+    open func Invoke(_ sender: test_component.AnyIObservableVector<test_component.Base?>?, _ event: test_component.AnyIVectorChangedEventArgs?) throws {
         let senderWrapper = test_component.__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper(sender)
         let _sender = try! senderWrapper?.toABI { $0 }
         let eventWrapper = __ABI_Windows_Foundation_Collections.IVectorChangedEventArgsWrapper(event)
@@ -11803,7 +11803,7 @@ internal class __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, event) in
-            try _default.InvokeImpl(sender, event)
+            try _default.Invoke(sender, event)
         }
         return handler
     }
@@ -11837,7 +11837,7 @@ typealias __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIB
 public class VectorChangedEventHandlerIBasic: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasic }
 
-    open func InvokeImpl(_ sender: test_component.AnyIObservableVector<test_component.AnyIBasic?>?, _ event: test_component.AnyIVectorChangedEventArgs?) throws {
+    open func Invoke(_ sender: test_component.AnyIObservableVector<test_component.AnyIBasic?>?, _ event: test_component.AnyIVectorChangedEventArgs?) throws {
         let senderWrapper = test_component.__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper(sender)
         let _sender = try! senderWrapper?.toABI { $0 }
         let eventWrapper = __ABI_Windows_Foundation_Collections.IVectorChangedEventArgsWrapper(event)
@@ -11858,7 +11858,7 @@ internal class __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, event) in
-            try _default.InvokeImpl(sender, event)
+            try _default.Invoke(sender, event)
         }
         return handler
     }
@@ -11892,7 +11892,7 @@ typealias __x_ABI_C__FIEventHandler_1_IInspectableWrapper = InterfaceWrapperBase
 public class EventHandlerAny: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIEventHandler_1_IInspectable }
 
-    open func InvokeImpl(_ sender: Any?, _ args: Any?) throws {
+    open func Invoke(_ sender: Any?, _ args: Any?) throws {
         let senderWrapper = __ABI_.AnyWrapper(sender)
         let _sender = try! senderWrapper?.toABI { $0 }
         let argsWrapper = __ABI_.AnyWrapper(args)
@@ -11913,7 +11913,7 @@ internal class __x_ABI_C__FIEventHandler_1_IInspectableBridge : WinRTDelegateBri
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, args) in
-            try _default.InvokeImpl(sender, args)
+            try _default.Invoke(sender, args)
         }
         return handler
     }
@@ -11994,7 +11994,7 @@ typealias __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleWrapper = Interfac
 public class IAsyncOperationWithProgressInt32_Double: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationWithProgress_2_int_double }
 
-    open func put_ProgressImpl(_ handler: AsyncOperationProgressHandler<Int32, Double>?) throws {
+    open func put_Progress(_ handler: AsyncOperationProgressHandler<Int32, Double>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2_int_double.self) { pThis in
@@ -12002,7 +12002,7 @@ public class IAsyncOperationWithProgressInt32_Double: test_component.IInspectabl
         }
     }
 
-    open func get_ProgressImpl() throws -> AsyncOperationProgressHandler<Int32, Double>? {
+    open func get_Progress() throws -> AsyncOperationProgressHandler<Int32, Double>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2_int_double.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Progress(pThis, &resultAbi))
@@ -12011,7 +12011,7 @@ public class IAsyncOperationWithProgressInt32_Double: test_component.IInspectabl
         return test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleWrapper.unwrapFrom(abi: result)
     }
 
-    open func put_CompletedImpl(_ handler: AsyncOperationWithProgressCompletedHandler<Int32, Double>?) throws {
+    open func put_Completed(_ handler: AsyncOperationWithProgressCompletedHandler<Int32, Double>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2_int_double.self) { pThis in
@@ -12019,7 +12019,7 @@ public class IAsyncOperationWithProgressInt32_Double: test_component.IInspectabl
         }
     }
 
-    open func get_CompletedImpl() throws -> AsyncOperationWithProgressCompletedHandler<Int32, Double>? {
+    open func get_Completed() throws -> AsyncOperationWithProgressCompletedHandler<Int32, Double>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2_int_double.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -12028,7 +12028,7 @@ public class IAsyncOperationWithProgressInt32_Double: test_component.IInspectabl
         return test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleWrapper.unwrapFrom(abi: result)
     }
 
-    open func GetResultsImpl() throws -> Int32 {
+    open func GetResults() throws -> Int32 {
         var result: INT32 = 0
         _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2_int_double.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &result))
@@ -12065,45 +12065,45 @@ fileprivate class __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleImpl : IAs
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.getresults)
     fileprivate func getResults() throws -> Int32 {
-        try _default.GetResultsImpl()
+        try _default.GetResults()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.progress)
     fileprivate var progress : AsyncOperationProgressHandler<Int32, Double>? {
-        get { try! _default.get_ProgressImpl() }
-        set { try! _default.put_ProgressImpl(newValue) }
+        get { try! _default.get_Progress() }
+        set { try! _default.put_Progress(newValue) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.completed)
     fileprivate var completed : AsyncOperationWithProgressCompletedHandler<Int32, Double>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { try! _default.get_Completed() }
+        set { try! _default.put_Completed(newValue) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.cancel)
     fileprivate func cancel() throws {
-        try _IAsyncInfo.CancelImpl()
+        try _IAsyncInfo.Cancel()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.close)
     fileprivate func close() throws {
-        try _IAsyncInfo.CloseImpl()
+        try _IAsyncInfo.Close()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { try! _IAsyncInfo.get_ErrorCode() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { try! _IAsyncInfo.get_Id() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { try! _IAsyncInfo.get_Status() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -12185,7 +12185,7 @@ typealias __x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32Wrapper = Inter
 public class IAsyncOperationWithProgressUInt32_UInt32: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32 }
 
-    open func put_ProgressImpl(_ handler: AsyncOperationProgressHandler<UInt32, UInt32>?) throws {
+    open func put_Progress(_ handler: AsyncOperationProgressHandler<UInt32, UInt32>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2_UINT32_UINT32Wrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32.self) { pThis in
@@ -12193,7 +12193,7 @@ public class IAsyncOperationWithProgressUInt32_UInt32: test_component.IInspectab
         }
     }
 
-    open func get_ProgressImpl() throws -> AsyncOperationProgressHandler<UInt32, UInt32>? {
+    open func get_Progress() throws -> AsyncOperationProgressHandler<UInt32, UInt32>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Progress(pThis, &resultAbi))
@@ -12202,7 +12202,7 @@ public class IAsyncOperationWithProgressUInt32_UInt32: test_component.IInspectab
         return test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2_UINT32_UINT32Wrapper.unwrapFrom(abi: result)
     }
 
-    open func put_CompletedImpl(_ handler: AsyncOperationWithProgressCompletedHandler<UInt32, UInt32>?) throws {
+    open func put_Completed(_ handler: AsyncOperationWithProgressCompletedHandler<UInt32, UInt32>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_UINT32_UINT32Wrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32.self) { pThis in
@@ -12210,7 +12210,7 @@ public class IAsyncOperationWithProgressUInt32_UInt32: test_component.IInspectab
         }
     }
 
-    open func get_CompletedImpl() throws -> AsyncOperationWithProgressCompletedHandler<UInt32, UInt32>? {
+    open func get_Completed() throws -> AsyncOperationWithProgressCompletedHandler<UInt32, UInt32>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -12219,7 +12219,7 @@ public class IAsyncOperationWithProgressUInt32_UInt32: test_component.IInspectab
         return test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_UINT32_UINT32Wrapper.unwrapFrom(abi: result)
     }
 
-    open func GetResultsImpl() throws -> UInt32 {
+    open func GetResults() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &result))
@@ -12256,45 +12256,45 @@ fileprivate class __x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32Impl : 
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.getresults)
     fileprivate func getResults() throws -> UInt32 {
-        try _default.GetResultsImpl()
+        try _default.GetResults()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.progress)
     fileprivate var progress : AsyncOperationProgressHandler<UInt32, UInt32>? {
-        get { try! _default.get_ProgressImpl() }
-        set { try! _default.put_ProgressImpl(newValue) }
+        get { try! _default.get_Progress() }
+        set { try! _default.put_Progress(newValue) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.completed)
     fileprivate var completed : AsyncOperationWithProgressCompletedHandler<UInt32, UInt32>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { try! _default.get_Completed() }
+        set { try! _default.put_Completed(newValue) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.cancel)
     fileprivate func cancel() throws {
-        try _IAsyncInfo.CancelImpl()
+        try _IAsyncInfo.Cancel()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.close)
     fileprivate func close() throws {
-        try _IAsyncInfo.CloseImpl()
+        try _IAsyncInfo.Close()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { try! _IAsyncInfo.get_ErrorCode() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { try! _IAsyncInfo.get_Id() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { try! _IAsyncInfo.get_Status() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -12377,7 +12377,7 @@ typealias __x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__
 public class IAsyncOperationWithProgressIBuffer_UInt32: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32 }
 
-    open func put_ProgressImpl(_ handler: AsyncOperationProgressHandler<test_component.AnyIBuffer?, UInt32>?) throws {
+    open func put_Progress(_ handler: AsyncOperationProgressHandler<test_component.AnyIBuffer?, UInt32>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32.self) { pThis in
@@ -12385,7 +12385,7 @@ public class IAsyncOperationWithProgressIBuffer_UInt32: test_component.IInspecta
         }
     }
 
-    open func get_ProgressImpl() throws -> AsyncOperationProgressHandler<test_component.AnyIBuffer?, UInt32>? {
+    open func get_Progress() throws -> AsyncOperationProgressHandler<test_component.AnyIBuffer?, UInt32>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Progress(pThis, &resultAbi))
@@ -12394,7 +12394,7 @@ public class IAsyncOperationWithProgressIBuffer_UInt32: test_component.IInspecta
         return test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper.unwrapFrom(abi: result)
     }
 
-    open func put_CompletedImpl(_ handler: AsyncOperationWithProgressCompletedHandler<test_component.AnyIBuffer?, UInt32>?) throws {
+    open func put_Completed(_ handler: AsyncOperationWithProgressCompletedHandler<test_component.AnyIBuffer?, UInt32>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32.self) { pThis in
@@ -12402,7 +12402,7 @@ public class IAsyncOperationWithProgressIBuffer_UInt32: test_component.IInspecta
         }
     }
 
-    open func get_CompletedImpl() throws -> AsyncOperationWithProgressCompletedHandler<test_component.AnyIBuffer?, UInt32>? {
+    open func get_Completed() throws -> AsyncOperationWithProgressCompletedHandler<test_component.AnyIBuffer?, UInt32>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -12411,7 +12411,7 @@ public class IAsyncOperationWithProgressIBuffer_UInt32: test_component.IInspecta
         return test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Wrapper.unwrapFrom(abi: result)
     }
 
-    open func GetResultsImpl() throws -> test_component.AnyIBuffer? {
+    open func GetResults() throws -> test_component.AnyIBuffer? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -12449,45 +12449,45 @@ fileprivate class __x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CS
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.getresults)
     fileprivate func getResults() throws -> test_component.AnyIBuffer? {
-        try _default.GetResultsImpl()
+        try _default.GetResults()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.progress)
     fileprivate var progress : AsyncOperationProgressHandler<test_component.AnyIBuffer?, UInt32>? {
-        get { try! _default.get_ProgressImpl() }
-        set { try! _default.put_ProgressImpl(newValue) }
+        get { try! _default.get_Progress() }
+        set { try! _default.put_Progress(newValue) }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.completed)
     fileprivate var completed : AsyncOperationWithProgressCompletedHandler<test_component.AnyIBuffer?, UInt32>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { try! _default.get_Completed() }
+        set { try! _default.put_Completed(newValue) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.cancel)
     fileprivate func cancel() throws {
-        try _IAsyncInfo.CancelImpl()
+        try _IAsyncInfo.Cancel()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.close)
     fileprivate func close() throws {
-        try _IAsyncInfo.CloseImpl()
+        try _IAsyncInfo.Close()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { try! _IAsyncInfo.get_ErrorCode() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { try! _IAsyncInfo.get_Id() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperationwithprogress-2.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { try! _IAsyncInfo.get_Status() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -12554,7 +12554,7 @@ typealias __x_ABI_C__FIAsyncOperation_1_booleanWrapper = InterfaceWrapperBase<te
 public class IAsyncOperationBool: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1_boolean }
 
-    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<Bool>?) throws {
+    open func put_Completed(_ handler: AsyncOperationCompletedHandler<Bool>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_booleanWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_boolean.self) { pThis in
@@ -12562,7 +12562,7 @@ public class IAsyncOperationBool: test_component.IInspectable {
         }
     }
 
-    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<Bool>? {
+    open func get_Completed() throws -> AsyncOperationCompletedHandler<Bool>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_boolean.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -12571,7 +12571,7 @@ public class IAsyncOperationBool: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_booleanWrapper.unwrapFrom(abi: result)
     }
 
-    open func GetResultsImpl() throws -> Bool {
+    open func GetResults() throws -> Bool {
         var result: boolean = 0
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_boolean.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &result))
@@ -12607,39 +12607,39 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1_booleanImpl : IAsyncOperation, A
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.getresults)
     fileprivate func getResults() throws -> Bool {
-        try _default.GetResultsImpl()
+        try _default.GetResults()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<Bool>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { try! _default.get_Completed() }
+        set { try! _default.put_Completed(newValue) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
     fileprivate func cancel() throws {
-        try _IAsyncInfo.CancelImpl()
+        try _IAsyncInfo.Cancel()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.close)
     fileprivate func close() throws {
-        try _IAsyncInfo.CloseImpl()
+        try _IAsyncInfo.Close()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { try! _IAsyncInfo.get_ErrorCode() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { try! _IAsyncInfo.get_Id() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { try! _IAsyncInfo.get_Status() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -12706,7 +12706,7 @@ typealias __x_ABI_C__FIAsyncOperation_1_intWrapper = InterfaceWrapperBase<test_c
 public class IAsyncOperationInt32: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1_int }
 
-    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<Int32>?) throws {
+    open func put_Completed(_ handler: AsyncOperationCompletedHandler<Int32>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_int.self) { pThis in
@@ -12714,7 +12714,7 @@ public class IAsyncOperationInt32: test_component.IInspectable {
         }
     }
 
-    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<Int32>? {
+    open func get_Completed() throws -> AsyncOperationCompletedHandler<Int32>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_int.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -12723,7 +12723,7 @@ public class IAsyncOperationInt32: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_intWrapper.unwrapFrom(abi: result)
     }
 
-    open func GetResultsImpl() throws -> Int32 {
+    open func GetResults() throws -> Int32 {
         var result: INT32 = 0
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_int.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &result))
@@ -12759,39 +12759,39 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1_intImpl : IAsyncOperation, AbiIn
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.getresults)
     fileprivate func getResults() throws -> Int32 {
-        try _default.GetResultsImpl()
+        try _default.GetResults()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<Int32>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { try! _default.get_Completed() }
+        set { try! _default.put_Completed(newValue) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
     fileprivate func cancel() throws {
-        try _IAsyncInfo.CancelImpl()
+        try _IAsyncInfo.Cancel()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.close)
     fileprivate func close() throws {
-        try _IAsyncInfo.CloseImpl()
+        try _IAsyncInfo.Close()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { try! _IAsyncInfo.get_ErrorCode() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { try! _IAsyncInfo.get_Id() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { try! _IAsyncInfo.get_Status() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -12858,7 +12858,7 @@ typealias __x_ABI_C__FIAsyncOperation_1_HSTRINGWrapper = InterfaceWrapperBase<te
 public class IAsyncOperationString: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1_HSTRING }
 
-    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<String>?) throws {
+    open func put_Completed(_ handler: AsyncOperationCompletedHandler<String>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_HSTRINGWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_HSTRING.self) { pThis in
@@ -12866,7 +12866,7 @@ public class IAsyncOperationString: test_component.IInspectable {
         }
     }
 
-    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<String>? {
+    open func get_Completed() throws -> AsyncOperationCompletedHandler<String>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -12875,7 +12875,7 @@ public class IAsyncOperationString: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
-    open func GetResultsImpl() throws -> String {
+    open func GetResults() throws -> String {
         var result: HSTRING?
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &result))
@@ -12911,39 +12911,39 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1_HSTRINGImpl : IAsyncOperation, A
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.getresults)
     fileprivate func getResults() throws -> String {
-        try _default.GetResultsImpl()
+        try _default.GetResults()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<String>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { try! _default.get_Completed() }
+        set { try! _default.put_Completed(newValue) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
     fileprivate func cancel() throws {
-        try _IAsyncInfo.CancelImpl()
+        try _IAsyncInfo.Cancel()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.close)
     fileprivate func close() throws {
-        try _IAsyncInfo.CloseImpl()
+        try _IAsyncInfo.Close()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { try! _IAsyncInfo.get_ErrorCode() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { try! _IAsyncInfo.get_Id() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { try! _IAsyncInfo.get_Status() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -13010,7 +13010,7 @@ typealias __x_ABI_C__FIAsyncOperation_1_UINT32Wrapper = InterfaceWrapperBase<tes
 public class IAsyncOperationUInt32: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1_UINT32 }
 
-    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<UInt32>?) throws {
+    open func put_Completed(_ handler: AsyncOperationCompletedHandler<UInt32>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_UINT32Wrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_UINT32.self) { pThis in
@@ -13018,7 +13018,7 @@ public class IAsyncOperationUInt32: test_component.IInspectable {
         }
     }
 
-    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<UInt32>? {
+    open func get_Completed() throws -> AsyncOperationCompletedHandler<UInt32>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_UINT32.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -13027,7 +13027,7 @@ public class IAsyncOperationUInt32: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_UINT32Wrapper.unwrapFrom(abi: result)
     }
 
-    open func GetResultsImpl() throws -> UInt32 {
+    open func GetResults() throws -> UInt32 {
         var result: UINT32 = 0
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_UINT32.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &result))
@@ -13063,39 +13063,39 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1_UINT32Impl : IAsyncOperation, Ab
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.getresults)
     fileprivate func getResults() throws -> UInt32 {
-        try _default.GetResultsImpl()
+        try _default.GetResults()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<UInt32>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { try! _default.get_Completed() }
+        set { try! _default.put_Completed(newValue) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
     fileprivate func cancel() throws {
-        try _IAsyncInfo.CancelImpl()
+        try _IAsyncInfo.Cancel()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.close)
     fileprivate func close() throws {
-        try _IAsyncInfo.CloseImpl()
+        try _IAsyncInfo.Close()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { try! _IAsyncInfo.get_ErrorCode() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { try! _IAsyncInfo.get_Id() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { try! _IAsyncInfo.get_Status() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -13163,7 +13163,7 @@ typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIMap_2_HSTRING_IInspectableW
 public class IAsyncOperationIMapString_Any: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIMap_2_HSTRING_IInspectable }
 
-    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.AnyIMap<String, Any?>?>?) throws {
+    open func put_Completed(_ handler: AsyncOperationCompletedHandler<test_component.AnyIMap<String, Any?>?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
@@ -13171,7 +13171,7 @@ public class IAsyncOperationIMapString_Any: test_component.IInspectable {
         }
     }
 
-    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.AnyIMap<String, Any?>?>? {
+    open func get_Completed() throws -> AsyncOperationCompletedHandler<test_component.AnyIMap<String, Any?>?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -13180,7 +13180,7 @@ public class IAsyncOperationIMapString_Any: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: result)
     }
 
-    open func GetResultsImpl() throws -> test_component.AnyIMap<String, Any?>? {
+    open func GetResults() throws -> test_component.AnyIMap<String, Any?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIMap_2_HSTRING_IInspectable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -13217,39 +13217,39 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIMap_2_HSTRING_IInsp
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.getresults)
     fileprivate func getResults() throws -> AnyIMap<String, Any?>? {
-        try _default.GetResultsImpl()
+        try _default.GetResults()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<AnyIMap<String, Any?>?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { try! _default.get_Completed() }
+        set { try! _default.put_Completed(newValue) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
     fileprivate func cancel() throws {
-        try _IAsyncInfo.CancelImpl()
+        try _IAsyncInfo.Cancel()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.close)
     fileprivate func close() throws {
-        try _IAsyncInfo.CloseImpl()
+        try _IAsyncInfo.Close()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { try! _IAsyncInfo.get_ErrorCode() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { try! _IAsyncInfo.get_Id() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { try! _IAsyncInfo.get_Status() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -13317,7 +13317,7 @@ typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindo
 public class IAsyncOperationIVectorViewIStorageItem: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItem }
 
-    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.AnyIStorageItem?>?>?) throws {
+    open func put_Completed(_ handler: AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.AnyIStorageItem?>?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
@@ -13325,7 +13325,7 @@ public class IAsyncOperationIVectorViewIStorageItem: test_component.IInspectable
         }
     }
 
-    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.AnyIStorageItem?>?>? {
+    open func get_Completed() throws -> AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.AnyIStorageItem?>?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -13334,7 +13334,7 @@ public class IAsyncOperationIVectorViewIStorageItem: test_component.IInspectable
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper.unwrapFrom(abi: result)
     }
 
-    open func GetResultsImpl() throws -> test_component.AnyIVectorView<test_component.AnyIStorageItem?>? {
+    open func GetResults() throws -> test_component.AnyIVectorView<test_component.AnyIStorageItem?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -13371,39 +13371,39 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_AB
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.getresults)
     fileprivate func getResults() throws -> AnyIVectorView<test_component.AnyIStorageItem?>? {
-        try _default.GetResultsImpl()
+        try _default.GetResults()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<AnyIVectorView<test_component.AnyIStorageItem?>?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { try! _default.get_Completed() }
+        set { try! _default.put_Completed(newValue) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
     fileprivate func cancel() throws {
-        try _IAsyncInfo.CancelImpl()
+        try _IAsyncInfo.Cancel()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.close)
     fileprivate func close() throws {
-        try _IAsyncInfo.CloseImpl()
+        try _IAsyncInfo.Close()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { try! _IAsyncInfo.get_ErrorCode() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { try! _IAsyncInfo.get_Id() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { try! _IAsyncInfo.get_Status() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -13471,7 +13471,7 @@ typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindo
 public class IAsyncOperationIVectorViewStorageFile: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFile }
 
-    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.StorageFile?>?>?) throws {
+    open func put_Completed(_ handler: AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.StorageFile?>?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
@@ -13479,7 +13479,7 @@ public class IAsyncOperationIVectorViewStorageFile: test_component.IInspectable 
         }
     }
 
-    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.StorageFile?>?>? {
+    open func get_Completed() throws -> AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.StorageFile?>?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -13488,7 +13488,7 @@ public class IAsyncOperationIVectorViewStorageFile: test_component.IInspectable 
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.unwrapFrom(abi: result)
     }
 
-    open func GetResultsImpl() throws -> test_component.AnyIVectorView<test_component.StorageFile?>? {
+    open func GetResults() throws -> test_component.AnyIVectorView<test_component.StorageFile?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -13525,39 +13525,39 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_AB
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.getresults)
     fileprivate func getResults() throws -> AnyIVectorView<test_component.StorageFile?>? {
-        try _default.GetResultsImpl()
+        try _default.GetResults()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<AnyIVectorView<test_component.StorageFile?>?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { try! _default.get_Completed() }
+        set { try! _default.put_Completed(newValue) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
     fileprivate func cancel() throws {
-        try _IAsyncInfo.CancelImpl()
+        try _IAsyncInfo.Cancel()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.close)
     fileprivate func close() throws {
-        try _IAsyncInfo.CloseImpl()
+        try _IAsyncInfo.Close()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { try! _IAsyncInfo.get_ErrorCode() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { try! _IAsyncInfo.get_Id() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { try! _IAsyncInfo.get_Status() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -13625,7 +13625,7 @@ typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindo
 public class IAsyncOperationIVectorViewStorageFolder: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolder }
 
-    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.StorageFolder?>?>?) throws {
+    open func put_Completed(_ handler: AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.StorageFolder?>?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
@@ -13633,7 +13633,7 @@ public class IAsyncOperationIVectorViewStorageFolder: test_component.IInspectabl
         }
     }
 
-    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.StorageFolder?>?>? {
+    open func get_Completed() throws -> AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.StorageFolder?>?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -13642,7 +13642,7 @@ public class IAsyncOperationIVectorViewStorageFolder: test_component.IInspectabl
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.unwrapFrom(abi: result)
     }
 
-    open func GetResultsImpl() throws -> test_component.AnyIVectorView<test_component.StorageFolder?>? {
+    open func GetResults() throws -> test_component.AnyIVectorView<test_component.StorageFolder?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -13679,39 +13679,39 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_AB
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.getresults)
     fileprivate func getResults() throws -> AnyIVectorView<test_component.StorageFolder?>? {
-        try _default.GetResultsImpl()
+        try _default.GetResults()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<AnyIVectorView<test_component.StorageFolder?>?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { try! _default.get_Completed() }
+        set { try! _default.put_Completed(newValue) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
     fileprivate func cancel() throws {
-        try _IAsyncInfo.CancelImpl()
+        try _IAsyncInfo.Cancel()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.close)
     fileprivate func close() throws {
-        try _IAsyncInfo.CloseImpl()
+        try _IAsyncInfo.Close()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { try! _IAsyncInfo.get_ErrorCode() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { try! _IAsyncInfo.get_Id() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { try! _IAsyncInfo.get_Status() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -13779,7 +13779,7 @@ typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindo
 public class IAsyncOperationIVectorViewStorageLibraryChange: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChange }
 
-    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.StorageLibraryChange?>?>?) throws {
+    open func put_Completed(_ handler: AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.StorageLibraryChange?>?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChange.self) { pThis in
@@ -13787,7 +13787,7 @@ public class IAsyncOperationIVectorViewStorageLibraryChange: test_component.IIns
         }
     }
 
-    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.StorageLibraryChange?>?>? {
+    open func get_Completed() throws -> AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.StorageLibraryChange?>?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChange.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -13796,7 +13796,7 @@ public class IAsyncOperationIVectorViewStorageLibraryChange: test_component.IIns
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeWrapper.unwrapFrom(abi: result)
     }
 
-    open func GetResultsImpl() throws -> test_component.AnyIVectorView<test_component.StorageLibraryChange?>? {
+    open func GetResults() throws -> test_component.AnyIVectorView<test_component.StorageLibraryChange?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChange.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -13833,39 +13833,39 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_AB
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.getresults)
     fileprivate func getResults() throws -> AnyIVectorView<test_component.StorageLibraryChange?>? {
-        try _default.GetResultsImpl()
+        try _default.GetResults()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<AnyIVectorView<test_component.StorageLibraryChange?>?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { try! _default.get_Completed() }
+        set { try! _default.put_Completed(newValue) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
     fileprivate func cancel() throws {
-        try _IAsyncInfo.CancelImpl()
+        try _IAsyncInfo.Cancel()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.close)
     fileprivate func close() throws {
-        try _IAsyncInfo.CloseImpl()
+        try _IAsyncInfo.Close()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { try! _IAsyncInfo.get_ErrorCode() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { try! _IAsyncInfo.get_Id() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { try! _IAsyncInfo.get_Status() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -13933,7 +13933,7 @@ typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVector_1_HSTRINGWrapper = I
 public class IAsyncOperationIVectorString: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVector_1_HSTRING }
 
-    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.AnyIVector<String>?>?) throws {
+    open func put_Completed(_ handler: AsyncOperationCompletedHandler<test_component.AnyIVector<String>?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector_1_HSTRINGWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVector_1_HSTRING.self) { pThis in
@@ -13941,7 +13941,7 @@ public class IAsyncOperationIVectorString: test_component.IInspectable {
         }
     }
 
-    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.AnyIVector<String>?>? {
+    open func get_Completed() throws -> AsyncOperationCompletedHandler<test_component.AnyIVector<String>?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVector_1_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -13950,7 +13950,7 @@ public class IAsyncOperationIVectorString: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector_1_HSTRINGWrapper.unwrapFrom(abi: result)
     }
 
-    open func GetResultsImpl() throws -> test_component.AnyIVector<String>? {
+    open func GetResults() throws -> test_component.AnyIVector<String>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVector_1_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -13987,39 +13987,39 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVector_1_HSTRINGImp
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.getresults)
     fileprivate func getResults() throws -> AnyIVector<String>? {
-        try _default.GetResultsImpl()
+        try _default.GetResults()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<AnyIVector<String>?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { try! _default.get_Completed() }
+        set { try! _default.put_Completed(newValue) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
     fileprivate func cancel() throws {
-        try _IAsyncInfo.CancelImpl()
+        try _IAsyncInfo.Cancel()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.close)
     fileprivate func close() throws {
-        try _IAsyncInfo.CloseImpl()
+        try _IAsyncInfo.Close()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { try! _IAsyncInfo.get_ErrorCode() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { try! _IAsyncInfo.get_Id() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { try! _IAsyncInfo.get_Status() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -14086,7 +14086,7 @@ typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFilePropert
 public class IAsyncOperationBasicProperties: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicProperties }
 
-    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.BasicProperties?>?) throws {
+    open func put_Completed(_ handler: AsyncOperationCompletedHandler<test_component.BasicProperties?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicPropertiesWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicProperties.self) { pThis in
@@ -14094,7 +14094,7 @@ public class IAsyncOperationBasicProperties: test_component.IInspectable {
         }
     }
 
-    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.BasicProperties?>? {
+    open func get_Completed() throws -> AsyncOperationCompletedHandler<test_component.BasicProperties?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -14103,7 +14103,7 @@ public class IAsyncOperationBasicProperties: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicPropertiesWrapper.unwrapFrom(abi: result)
     }
 
-    open func GetResultsImpl() throws -> test_component.BasicProperties? {
+    open func GetResults() throws -> test_component.BasicProperties? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -14140,39 +14140,39 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFil
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.getresults)
     fileprivate func getResults() throws -> test_component.BasicProperties? {
-        try _default.GetResultsImpl()
+        try _default.GetResults()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<test_component.BasicProperties?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { try! _default.get_Completed() }
+        set { try! _default.put_Completed(newValue) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
     fileprivate func cancel() throws {
-        try _IAsyncInfo.CancelImpl()
+        try _IAsyncInfo.Cancel()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.close)
     fileprivate func close() throws {
-        try _IAsyncInfo.CloseImpl()
+        try _IAsyncInfo.Close()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { try! _IAsyncInfo.get_ErrorCode() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { try! _IAsyncInfo.get_Id() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { try! _IAsyncInfo.get_Status() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -14239,7 +14239,7 @@ typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFilePropert
 public class IAsyncOperationDocumentProperties: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentProperties }
 
-    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.DocumentProperties?>?) throws {
+    open func put_Completed(_ handler: AsyncOperationCompletedHandler<test_component.DocumentProperties?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentPropertiesWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentProperties.self) { pThis in
@@ -14247,7 +14247,7 @@ public class IAsyncOperationDocumentProperties: test_component.IInspectable {
         }
     }
 
-    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.DocumentProperties?>? {
+    open func get_Completed() throws -> AsyncOperationCompletedHandler<test_component.DocumentProperties?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -14256,7 +14256,7 @@ public class IAsyncOperationDocumentProperties: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentPropertiesWrapper.unwrapFrom(abi: result)
     }
 
-    open func GetResultsImpl() throws -> test_component.DocumentProperties? {
+    open func GetResults() throws -> test_component.DocumentProperties? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -14293,39 +14293,39 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFil
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.getresults)
     fileprivate func getResults() throws -> test_component.DocumentProperties? {
-        try _default.GetResultsImpl()
+        try _default.GetResults()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<test_component.DocumentProperties?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { try! _default.get_Completed() }
+        set { try! _default.put_Completed(newValue) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
     fileprivate func cancel() throws {
-        try _IAsyncInfo.CancelImpl()
+        try _IAsyncInfo.Cancel()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.close)
     fileprivate func close() throws {
-        try _IAsyncInfo.CloseImpl()
+        try _IAsyncInfo.Close()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { try! _IAsyncInfo.get_ErrorCode() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { try! _IAsyncInfo.get_Id() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { try! _IAsyncInfo.get_Status() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -14392,7 +14392,7 @@ typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFilePropert
 public class IAsyncOperationImageProperties: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CImageProperties }
 
-    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.ImageProperties?>?) throws {
+    open func put_Completed(_ handler: AsyncOperationCompletedHandler<test_component.ImageProperties?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CImagePropertiesWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CImageProperties.self) { pThis in
@@ -14400,7 +14400,7 @@ public class IAsyncOperationImageProperties: test_component.IInspectable {
         }
     }
 
-    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.ImageProperties?>? {
+    open func get_Completed() throws -> AsyncOperationCompletedHandler<test_component.ImageProperties?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CImageProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -14409,7 +14409,7 @@ public class IAsyncOperationImageProperties: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CImagePropertiesWrapper.unwrapFrom(abi: result)
     }
 
-    open func GetResultsImpl() throws -> test_component.ImageProperties? {
+    open func GetResults() throws -> test_component.ImageProperties? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CImageProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -14446,39 +14446,39 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFil
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.getresults)
     fileprivate func getResults() throws -> test_component.ImageProperties? {
-        try _default.GetResultsImpl()
+        try _default.GetResults()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<test_component.ImageProperties?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { try! _default.get_Completed() }
+        set { try! _default.put_Completed(newValue) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
     fileprivate func cancel() throws {
-        try _IAsyncInfo.CancelImpl()
+        try _IAsyncInfo.Cancel()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.close)
     fileprivate func close() throws {
-        try _IAsyncInfo.CloseImpl()
+        try _IAsyncInfo.Close()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { try! _IAsyncInfo.get_ErrorCode() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { try! _IAsyncInfo.get_Id() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { try! _IAsyncInfo.get_Status() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -14545,7 +14545,7 @@ typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFilePropert
 public class IAsyncOperationMusicProperties: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicProperties }
 
-    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.MusicProperties?>?) throws {
+    open func put_Completed(_ handler: AsyncOperationCompletedHandler<test_component.MusicProperties?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicPropertiesWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicProperties.self) { pThis in
@@ -14553,7 +14553,7 @@ public class IAsyncOperationMusicProperties: test_component.IInspectable {
         }
     }
 
-    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.MusicProperties?>? {
+    open func get_Completed() throws -> AsyncOperationCompletedHandler<test_component.MusicProperties?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -14562,7 +14562,7 @@ public class IAsyncOperationMusicProperties: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicPropertiesWrapper.unwrapFrom(abi: result)
     }
 
-    open func GetResultsImpl() throws -> test_component.MusicProperties? {
+    open func GetResults() throws -> test_component.MusicProperties? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -14599,39 +14599,39 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFil
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.getresults)
     fileprivate func getResults() throws -> test_component.MusicProperties? {
-        try _default.GetResultsImpl()
+        try _default.GetResults()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<test_component.MusicProperties?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { try! _default.get_Completed() }
+        set { try! _default.put_Completed(newValue) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
     fileprivate func cancel() throws {
-        try _IAsyncInfo.CancelImpl()
+        try _IAsyncInfo.Cancel()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.close)
     fileprivate func close() throws {
-        try _IAsyncInfo.CloseImpl()
+        try _IAsyncInfo.Close()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { try! _IAsyncInfo.get_ErrorCode() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { try! _IAsyncInfo.get_Id() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { try! _IAsyncInfo.get_Status() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -14698,7 +14698,7 @@ typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFilePropert
 public class IAsyncOperationStorageItemThumbnail: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnail }
 
-    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.StorageItemThumbnail?>?) throws {
+    open func put_Completed(_ handler: AsyncOperationCompletedHandler<test_component.StorageItemThumbnail?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnail.self) { pThis in
@@ -14706,7 +14706,7 @@ public class IAsyncOperationStorageItemThumbnail: test_component.IInspectable {
         }
     }
 
-    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.StorageItemThumbnail?>? {
+    open func get_Completed() throws -> AsyncOperationCompletedHandler<test_component.StorageItemThumbnail?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnail.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -14715,7 +14715,7 @@ public class IAsyncOperationStorageItemThumbnail: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailWrapper.unwrapFrom(abi: result)
     }
 
-    open func GetResultsImpl() throws -> test_component.StorageItemThumbnail? {
+    open func GetResults() throws -> test_component.StorageItemThumbnail? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnail.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -14752,39 +14752,39 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFil
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.getresults)
     fileprivate func getResults() throws -> test_component.StorageItemThumbnail? {
-        try _default.GetResultsImpl()
+        try _default.GetResults()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<test_component.StorageItemThumbnail?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { try! _default.get_Completed() }
+        set { try! _default.put_Completed(newValue) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
     fileprivate func cancel() throws {
-        try _IAsyncInfo.CancelImpl()
+        try _IAsyncInfo.Cancel()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.close)
     fileprivate func close() throws {
-        try _IAsyncInfo.CloseImpl()
+        try _IAsyncInfo.Close()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { try! _IAsyncInfo.get_ErrorCode() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { try! _IAsyncInfo.get_Id() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { try! _IAsyncInfo.get_Status() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -14851,7 +14851,7 @@ typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFilePropert
 public class IAsyncOperationVideoProperties: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoProperties }
 
-    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.VideoProperties?>?) throws {
+    open func put_Completed(_ handler: AsyncOperationCompletedHandler<test_component.VideoProperties?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoPropertiesWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoProperties.self) { pThis in
@@ -14859,7 +14859,7 @@ public class IAsyncOperationVideoProperties: test_component.IInspectable {
         }
     }
 
-    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.VideoProperties?>? {
+    open func get_Completed() throws -> AsyncOperationCompletedHandler<test_component.VideoProperties?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -14868,7 +14868,7 @@ public class IAsyncOperationVideoProperties: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoPropertiesWrapper.unwrapFrom(abi: result)
     }
 
-    open func GetResultsImpl() throws -> test_component.VideoProperties? {
+    open func GetResults() throws -> test_component.VideoProperties? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -14905,39 +14905,39 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFil
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.getresults)
     fileprivate func getResults() throws -> test_component.VideoProperties? {
-        try _default.GetResultsImpl()
+        try _default.GetResults()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<test_component.VideoProperties?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { try! _default.get_Completed() }
+        set { try! _default.put_Completed(newValue) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
     fileprivate func cancel() throws {
-        try _IAsyncInfo.CancelImpl()
+        try _IAsyncInfo.Cancel()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.close)
     fileprivate func close() throws {
-        try _IAsyncInfo.CloseImpl()
+        try _IAsyncInfo.Close()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { try! _IAsyncInfo.get_ErrorCode() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { try! _IAsyncInfo.get_Id() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { try! _IAsyncInfo.get_Status() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -15005,7 +15005,7 @@ typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CIStorageIte
 public class IAsyncOperationIStorageItem: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CIStorageItem }
 
-    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.AnyIStorageItem?>?) throws {
+    open func put_Completed(_ handler: AsyncOperationCompletedHandler<test_component.AnyIStorageItem?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
@@ -15013,7 +15013,7 @@ public class IAsyncOperationIStorageItem: test_component.IInspectable {
         }
     }
 
-    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.AnyIStorageItem?>? {
+    open func get_Completed() throws -> AsyncOperationCompletedHandler<test_component.AnyIStorageItem?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -15022,7 +15022,7 @@ public class IAsyncOperationIStorageItem: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper.unwrapFrom(abi: result)
     }
 
-    open func GetResultsImpl() throws -> test_component.AnyIStorageItem? {
+    open func GetResults() throws -> test_component.AnyIStorageItem? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -15059,39 +15059,39 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CISt
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.getresults)
     fileprivate func getResults() throws -> test_component.AnyIStorageItem? {
-        try _default.GetResultsImpl()
+        try _default.GetResults()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<test_component.AnyIStorageItem?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { try! _default.get_Completed() }
+        set { try! _default.put_Completed(newValue) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
     fileprivate func cancel() throws {
-        try _IAsyncInfo.CancelImpl()
+        try _IAsyncInfo.Cancel()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.close)
     fileprivate func close() throws {
-        try _IAsyncInfo.CloseImpl()
+        try _IAsyncInfo.Close()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { try! _IAsyncInfo.get_ErrorCode() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { try! _IAsyncInfo.get_Id() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { try! _IAsyncInfo.get_Status() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -15158,7 +15158,7 @@ typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSearch__CIn
 public class IAsyncOperationIndexedState: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSearch__CIndexedState }
 
-    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.IndexedState>?) throws {
+    open func put_Completed(_ handler: AsyncOperationCompletedHandler<test_component.IndexedState>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CSearch__CIndexedStateWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSearch__CIndexedState.self) { pThis in
@@ -15166,7 +15166,7 @@ public class IAsyncOperationIndexedState: test_component.IInspectable {
         }
     }
 
-    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.IndexedState>? {
+    open func get_Completed() throws -> AsyncOperationCompletedHandler<test_component.IndexedState>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSearch__CIndexedState.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -15175,7 +15175,7 @@ public class IAsyncOperationIndexedState: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CSearch__CIndexedStateWrapper.unwrapFrom(abi: result)
     }
 
-    open func GetResultsImpl() throws -> test_component.IndexedState {
+    open func GetResults() throws -> test_component.IndexedState {
         var result: __x_ABI_CWindows_CStorage_CSearch_CIndexedState = .init(0)
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSearch__CIndexedState.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &result))
@@ -15211,39 +15211,39 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSea
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.getresults)
     fileprivate func getResults() throws -> test_component.IndexedState {
-        try _default.GetResultsImpl()
+        try _default.GetResults()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<test_component.IndexedState>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { try! _default.get_Completed() }
+        set { try! _default.put_Completed(newValue) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
     fileprivate func cancel() throws {
-        try _IAsyncInfo.CancelImpl()
+        try _IAsyncInfo.Cancel()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.close)
     fileprivate func close() throws {
-        try _IAsyncInfo.CloseImpl()
+        try _IAsyncInfo.Close()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { try! _IAsyncInfo.get_ErrorCode() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { try! _IAsyncInfo.get_Id() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { try! _IAsyncInfo.get_Status() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -15310,7 +15310,7 @@ typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFile
 public class IAsyncOperationStorageFile: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFile }
 
-    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.StorageFile?>?) throws {
+    open func put_Completed(_ handler: AsyncOperationCompletedHandler<test_component.StorageFile?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFileWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
@@ -15318,7 +15318,7 @@ public class IAsyncOperationStorageFile: test_component.IInspectable {
         }
     }
 
-    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.StorageFile?>? {
+    open func get_Completed() throws -> AsyncOperationCompletedHandler<test_component.StorageFile?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -15327,7 +15327,7 @@ public class IAsyncOperationStorageFile: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.unwrapFrom(abi: result)
     }
 
-    open func GetResultsImpl() throws -> test_component.StorageFile? {
+    open func GetResults() throws -> test_component.StorageFile? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -15364,39 +15364,39 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSto
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.getresults)
     fileprivate func getResults() throws -> test_component.StorageFile? {
-        try _default.GetResultsImpl()
+        try _default.GetResults()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<test_component.StorageFile?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { try! _default.get_Completed() }
+        set { try! _default.put_Completed(newValue) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
     fileprivate func cancel() throws {
-        try _IAsyncInfo.CancelImpl()
+        try _IAsyncInfo.Cancel()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.close)
     fileprivate func close() throws {
-        try _IAsyncInfo.CloseImpl()
+        try _IAsyncInfo.Close()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { try! _IAsyncInfo.get_ErrorCode() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { try! _IAsyncInfo.get_Id() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { try! _IAsyncInfo.get_Status() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -15463,7 +15463,7 @@ typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFold
 public class IAsyncOperationStorageFolder: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolder }
 
-    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.StorageFolder?>?) throws {
+    open func put_Completed(_ handler: AsyncOperationCompletedHandler<test_component.StorageFolder?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
@@ -15471,7 +15471,7 @@ public class IAsyncOperationStorageFolder: test_component.IInspectable {
         }
     }
 
-    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.StorageFolder?>? {
+    open func get_Completed() throws -> AsyncOperationCompletedHandler<test_component.StorageFolder?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -15480,7 +15480,7 @@ public class IAsyncOperationStorageFolder: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.unwrapFrom(abi: result)
     }
 
-    open func GetResultsImpl() throws -> test_component.StorageFolder? {
+    open func GetResults() throws -> test_component.StorageFolder? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -15517,39 +15517,39 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSto
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.getresults)
     fileprivate func getResults() throws -> test_component.StorageFolder? {
-        try _default.GetResultsImpl()
+        try _default.GetResults()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<test_component.StorageFolder?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { try! _default.get_Completed() }
+        set { try! _default.put_Completed(newValue) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
     fileprivate func cancel() throws {
-        try _IAsyncInfo.CancelImpl()
+        try _IAsyncInfo.Cancel()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.close)
     fileprivate func close() throws {
-        try _IAsyncInfo.CloseImpl()
+        try _IAsyncInfo.Close()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { try! _IAsyncInfo.get_ErrorCode() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { try! _IAsyncInfo.get_Id() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { try! _IAsyncInfo.get_Status() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -15616,7 +15616,7 @@ typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageStre
 public class IAsyncOperationStorageStreamTransaction: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageStreamTransaction }
 
-    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.StorageStreamTransaction?>?) throws {
+    open func put_Completed(_ handler: AsyncOperationCompletedHandler<test_component.StorageStreamTransaction?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageStreamTransactionWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageStreamTransaction.self) { pThis in
@@ -15624,7 +15624,7 @@ public class IAsyncOperationStorageStreamTransaction: test_component.IInspectabl
         }
     }
 
-    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.StorageStreamTransaction?>? {
+    open func get_Completed() throws -> AsyncOperationCompletedHandler<test_component.StorageStreamTransaction?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageStreamTransaction.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -15633,7 +15633,7 @@ public class IAsyncOperationStorageStreamTransaction: test_component.IInspectabl
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageStreamTransactionWrapper.unwrapFrom(abi: result)
     }
 
-    open func GetResultsImpl() throws -> test_component.StorageStreamTransaction? {
+    open func GetResults() throws -> test_component.StorageStreamTransaction? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageStreamTransaction.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -15670,39 +15670,39 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSto
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.getresults)
     fileprivate func getResults() throws -> test_component.StorageStreamTransaction? {
-        try _default.GetResultsImpl()
+        try _default.GetResults()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<test_component.StorageStreamTransaction?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { try! _default.get_Completed() }
+        set { try! _default.put_Completed(newValue) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
     fileprivate func cancel() throws {
-        try _IAsyncInfo.CancelImpl()
+        try _IAsyncInfo.Cancel()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.close)
     fileprivate func close() throws {
-        try _IAsyncInfo.CloseImpl()
+        try _IAsyncInfo.Close()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { try! _IAsyncInfo.get_ErrorCode() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { try! _IAsyncInfo.get_Id() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { try! _IAsyncInfo.get_Status() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -15770,7 +15770,7 @@ typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CI
 public class IAsyncOperationIBuffer: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIBuffer }
 
-    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.AnyIBuffer?>?) throws {
+    open func put_Completed(_ handler: AsyncOperationCompletedHandler<test_component.AnyIBuffer?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIBufferWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIBuffer.self) { pThis in
@@ -15778,7 +15778,7 @@ public class IAsyncOperationIBuffer: test_component.IInspectable {
         }
     }
 
-    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.AnyIBuffer?>? {
+    open func get_Completed() throws -> AsyncOperationCompletedHandler<test_component.AnyIBuffer?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIBuffer.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -15787,7 +15787,7 @@ public class IAsyncOperationIBuffer: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIBufferWrapper.unwrapFrom(abi: result)
     }
 
-    open func GetResultsImpl() throws -> test_component.AnyIBuffer? {
+    open func GetResults() throws -> test_component.AnyIBuffer? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIBuffer.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -15824,39 +15824,39 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStr
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.getresults)
     fileprivate func getResults() throws -> test_component.AnyIBuffer? {
-        try _default.GetResultsImpl()
+        try _default.GetResults()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<test_component.AnyIBuffer?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { try! _default.get_Completed() }
+        set { try! _default.put_Completed(newValue) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
     fileprivate func cancel() throws {
-        try _IAsyncInfo.CancelImpl()
+        try _IAsyncInfo.Cancel()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.close)
     fileprivate func close() throws {
-        try _IAsyncInfo.CloseImpl()
+        try _IAsyncInfo.Close()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { try! _IAsyncInfo.get_ErrorCode() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { try! _IAsyncInfo.get_Id() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { try! _IAsyncInfo.get_Status() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -15924,7 +15924,7 @@ typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CI
 public class IAsyncOperationIInputStream: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIInputStream }
 
-    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.AnyIInputStream?>?) throws {
+    open func put_Completed(_ handler: AsyncOperationCompletedHandler<test_component.AnyIInputStream?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIInputStreamWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIInputStream.self) { pThis in
@@ -15932,7 +15932,7 @@ public class IAsyncOperationIInputStream: test_component.IInspectable {
         }
     }
 
-    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.AnyIInputStream?>? {
+    open func get_Completed() throws -> AsyncOperationCompletedHandler<test_component.AnyIInputStream?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIInputStream.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -15941,7 +15941,7 @@ public class IAsyncOperationIInputStream: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIInputStreamWrapper.unwrapFrom(abi: result)
     }
 
-    open func GetResultsImpl() throws -> test_component.AnyIInputStream? {
+    open func GetResults() throws -> test_component.AnyIInputStream? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIInputStream.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -15978,39 +15978,39 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStr
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.getresults)
     fileprivate func getResults() throws -> test_component.AnyIInputStream? {
-        try _default.GetResultsImpl()
+        try _default.GetResults()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<test_component.AnyIInputStream?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { try! _default.get_Completed() }
+        set { try! _default.put_Completed(newValue) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
     fileprivate func cancel() throws {
-        try _IAsyncInfo.CancelImpl()
+        try _IAsyncInfo.Cancel()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.close)
     fileprivate func close() throws {
-        try _IAsyncInfo.CloseImpl()
+        try _IAsyncInfo.Close()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { try! _IAsyncInfo.get_ErrorCode() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { try! _IAsyncInfo.get_Id() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { try! _IAsyncInfo.get_Status() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -16078,7 +16078,7 @@ typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CI
 public class IAsyncOperationIRandomAccessStream: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStream }
 
-    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.AnyIRandomAccessStream?>?) throws {
+    open func put_Completed(_ handler: AsyncOperationCompletedHandler<test_component.AnyIRandomAccessStream?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStream.self) { pThis in
@@ -16086,7 +16086,7 @@ public class IAsyncOperationIRandomAccessStream: test_component.IInspectable {
         }
     }
 
-    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.AnyIRandomAccessStream?>? {
+    open func get_Completed() throws -> AsyncOperationCompletedHandler<test_component.AnyIRandomAccessStream?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStream.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -16095,7 +16095,7 @@ public class IAsyncOperationIRandomAccessStream: test_component.IInspectable {
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWrapper.unwrapFrom(abi: result)
     }
 
-    open func GetResultsImpl() throws -> test_component.AnyIRandomAccessStream? {
+    open func GetResults() throws -> test_component.AnyIRandomAccessStream? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStream.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -16132,39 +16132,39 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStr
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.getresults)
     fileprivate func getResults() throws -> test_component.AnyIRandomAccessStream? {
-        try _default.GetResultsImpl()
+        try _default.GetResults()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<test_component.AnyIRandomAccessStream?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { try! _default.get_Completed() }
+        set { try! _default.put_Completed(newValue) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
     fileprivate func cancel() throws {
-        try _IAsyncInfo.CancelImpl()
+        try _IAsyncInfo.Cancel()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.close)
     fileprivate func close() throws {
-        try _IAsyncInfo.CloseImpl()
+        try _IAsyncInfo.Close()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { try! _IAsyncInfo.get_ErrorCode() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { try! _IAsyncInfo.get_Id() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { try! _IAsyncInfo.get_Status() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -16232,7 +16232,7 @@ typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CI
 public class IAsyncOperationIRandomAccessStreamWithContentType: test_component.IInspectable {
     override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentType }
 
-    open func put_CompletedImpl(_ handler: AsyncOperationCompletedHandler<test_component.AnyIRandomAccessStreamWithContentType?>?) throws {
+    open func put_Completed(_ handler: AsyncOperationCompletedHandler<test_component.AnyIRandomAccessStreamWithContentType?>?) throws {
         let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentTypeWrapper(handler)
         let _handler = try! handlerWrapper?.toABI { $0 }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentType.self) { pThis in
@@ -16240,7 +16240,7 @@ public class IAsyncOperationIRandomAccessStreamWithContentType: test_component.I
         }
     }
 
-    open func get_CompletedImpl() throws -> AsyncOperationCompletedHandler<test_component.AnyIRandomAccessStreamWithContentType?>? {
+    open func get_Completed() throws -> AsyncOperationCompletedHandler<test_component.AnyIRandomAccessStreamWithContentType?>? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentType.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
@@ -16249,7 +16249,7 @@ public class IAsyncOperationIRandomAccessStreamWithContentType: test_component.I
         return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentTypeWrapper.unwrapFrom(abi: result)
     }
 
-    open func GetResultsImpl() throws -> test_component.AnyIRandomAccessStreamWithContentType? {
+    open func GetResults() throws -> test_component.AnyIRandomAccessStreamWithContentType? {
         let (result) = try ComPtrs.initialize { resultAbi in
             _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentType.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
@@ -16286,39 +16286,39 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStr
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.getresults)
     fileprivate func getResults() throws -> test_component.AnyIRandomAccessStreamWithContentType? {
-        try _default.GetResultsImpl()
+        try _default.GetResults()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<test_component.AnyIRandomAccessStreamWithContentType?>? {
-        get { try! _default.get_CompletedImpl() }
-        set { try! _default.put_CompletedImpl(newValue) }
+        get { try! _default.get_Completed() }
+        set { try! _default.put_Completed(newValue) }
     }
 
     private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
     fileprivate func cancel() throws {
-        try _IAsyncInfo.CancelImpl()
+        try _IAsyncInfo.Cancel()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.close)
     fileprivate func close() throws {
-        try _IAsyncInfo.CloseImpl()
+        try _IAsyncInfo.Close()
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
     fileprivate var errorCode : HRESULT {
-        get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+        get { try! _IAsyncInfo.get_ErrorCode() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
     fileprivate var id : UInt32 {
-        get { try! _IAsyncInfo.get_IdImpl() }
+        get { try! _IAsyncInfo.get_Id() }
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
     fileprivate var status : test_component.AsyncStatus {
-        get { try! _IAsyncInfo.get_StatusImpl() }
+        get { try! _IAsyncInfo.get_Status() }
     }
 
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
@@ -16585,7 +16585,7 @@ typealias __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIMemo
 public class TypedEventHandlerIMemoryBufferReference_Any: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIMemoryBufferReference_IInspectable }
 
-    open func InvokeImpl(_ sender: test_component.AnyIMemoryBufferReference?, _ args: Any?) throws {
+    open func Invoke(_ sender: test_component.AnyIMemoryBufferReference?, _ args: Any?) throws {
         let senderWrapper = __ABI_Windows_Foundation.IMemoryBufferReferenceWrapper(sender)
         let _sender = try! senderWrapper?.toABI { $0 }
         let argsWrapper = __ABI_.AnyWrapper(args)
@@ -16606,7 +16606,7 @@ internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__C
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, args) in
-            try _default.InvokeImpl(sender, args)
+            try _default.Invoke(sender, args)
         }
         return handler
     }
@@ -16640,7 +16640,7 @@ typealias __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CStorage__CSearch__
 public class TypedEventHandlerIStorageQueryResultBase_Any: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CStorage__CSearch__CIStorageQueryResultBase_IInspectable }
 
-    open func InvokeImpl(_ sender: test_component.AnyIStorageQueryResultBase?, _ args: Any?) throws {
+    open func Invoke(_ sender: test_component.AnyIStorageQueryResultBase?, _ args: Any?) throws {
         let senderWrapper = __ABI_Windows_Storage_Search.IStorageQueryResultBaseWrapper(sender)
         let _sender = try! senderWrapper?.toABI { $0 }
         let argsWrapper = __ABI_.AnyWrapper(args)
@@ -16661,7 +16661,7 @@ internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CStorage__CSea
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, args) in
-            try _default.InvokeImpl(sender, args)
+            try _default.Invoke(sender, args)
         }
         return handler
     }
@@ -16695,7 +16695,7 @@ typealias __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x
 public class TypedEventHandlerClass_DeferrableEventArgs: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs }
 
-    open func InvokeImpl(_ sender: test_component.Class?, _ args: test_component.DeferrableEventArgs?) throws {
+    open func Invoke(_ sender: test_component.Class?, _ args: test_component.DeferrableEventArgs?) throws {
         _ = try perform(as: __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, RawPointer(sender), RawPointer(args)))
         }
@@ -16712,7 +16712,7 @@ internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClas
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, args) in
-            try _default.InvokeImpl(sender, args)
+            try _default.Invoke(sender, args)
         }
         return handler
     }
@@ -16746,7 +16746,7 @@ typealias __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___
 public class TypedEventHandlerSimple_SimpleEventArgs: test_component.IUnknown {
     override public class var IID: test_component.IID { IID___x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs }
 
-    open func InvokeImpl(_ sender: test_component.Simple?, _ args: test_component.SimpleEventArgs) throws {
+    open func Invoke(_ sender: test_component.Simple?, _ args: test_component.SimpleEventArgs) throws {
         _ = try perform(as: __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, RawPointer(sender), .from(swift: args)))
         }
@@ -16763,7 +16763,7 @@ internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimp
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, args) in
-            try _default.InvokeImpl(sender, args)
+            try _default.Invoke(sender, args)
         }
         return handler
     }
