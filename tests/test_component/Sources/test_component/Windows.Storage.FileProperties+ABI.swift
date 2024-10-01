@@ -40,7 +40,7 @@ public enum __ABI_Windows_Storage_FileProperties {
     public class IBasicProperties: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CFileProperties_CIBasicProperties }
 
-        public func get_SizeImpl() throws -> UInt64 {
+        public func get_Size() throws -> UInt64 {
             var value: UINT64 = 0
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIBasicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &value))
@@ -48,7 +48,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return value
         }
 
-        public func get_DateModifiedImpl() throws -> test_component.DateTime {
+        public func get_DateModified() throws -> test_component.DateTime {
             var value: __x_ABI_CWindows_CFoundation_CDateTime = .init()
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIBasicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_DateModified(pThis, &value))
@@ -56,7 +56,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return .from(abi: value)
         }
 
-        public func get_ItemDateImpl() throws -> test_component.DateTime {
+        public func get_ItemDate() throws -> test_component.DateTime {
             var value: __x_ABI_CWindows_CFoundation_CDateTime = .init()
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIBasicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_ItemDate(pThis, &value))
@@ -69,7 +69,7 @@ public enum __ABI_Windows_Storage_FileProperties {
     public class IDocumentProperties: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CFileProperties_CIDocumentProperties }
 
-        public func get_AuthorImpl() throws -> test_component.AnyIVector<String>? {
+        public func get_Author() throws -> test_component.AnyIVector<String>? {
             let (value) = try ComPtrs.initialize { valueAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIDocumentProperties.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.get_Author(pThis, &valueAbi))
@@ -78,7 +78,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper.unwrapFrom(abi: value)
         }
 
-        public func get_TitleImpl() throws -> String {
+        public func get_Title() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIDocumentProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Title(pThis, &value))
@@ -86,14 +86,14 @@ public enum __ABI_Windows_Storage_FileProperties {
             return .init(from: value)
         }
 
-        public func put_TitleImpl(_ value: String) throws {
+        public func put_Title(_ value: String) throws {
             let _value = try! HString(value)
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIDocumentProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_Title(pThis, _value.get()))
             }
         }
 
-        public func get_KeywordsImpl() throws -> test_component.AnyIVector<String>? {
+        public func get_Keywords() throws -> test_component.AnyIVector<String>? {
             let (value) = try ComPtrs.initialize { valueAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIDocumentProperties.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.get_Keywords(pThis, &valueAbi))
@@ -102,7 +102,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper.unwrapFrom(abi: value)
         }
 
-        public func get_CommentImpl() throws -> String {
+        public func get_Comment() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIDocumentProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Comment(pThis, &value))
@@ -110,7 +110,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return .init(from: value)
         }
 
-        public func put_CommentImpl(_ value: String) throws {
+        public func put_Comment(_ value: String) throws {
             let _value = try! HString(value)
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIDocumentProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_Comment(pThis, _value.get()))
@@ -122,7 +122,7 @@ public enum __ABI_Windows_Storage_FileProperties {
     public class IImageProperties: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties }
 
-        public func get_RatingImpl() throws -> UInt32 {
+        public func get_Rating() throws -> UInt32 {
             var value: UINT32 = 0
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Rating(pThis, &value))
@@ -130,13 +130,13 @@ public enum __ABI_Windows_Storage_FileProperties {
             return value
         }
 
-        public func put_RatingImpl(_ value: UInt32) throws {
+        public func put_Rating(_ value: UInt32) throws {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_Rating(pThis, value))
             }
         }
 
-        public func get_KeywordsImpl() throws -> test_component.AnyIVector<String>? {
+        public func get_Keywords() throws -> test_component.AnyIVector<String>? {
             let (value) = try ComPtrs.initialize { valueAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.get_Keywords(pThis, &valueAbi))
@@ -145,7 +145,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper.unwrapFrom(abi: value)
         }
 
-        public func get_DateTakenImpl() throws -> test_component.DateTime {
+        public func get_DateTaken() throws -> test_component.DateTime {
             var value: __x_ABI_CWindows_CFoundation_CDateTime = .init()
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_DateTaken(pThis, &value))
@@ -153,13 +153,13 @@ public enum __ABI_Windows_Storage_FileProperties {
             return .from(abi: value)
         }
 
-        public func put_DateTakenImpl(_ value: test_component.DateTime) throws {
+        public func put_DateTaken(_ value: test_component.DateTime) throws {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_DateTaken(pThis, .from(swift: value)))
             }
         }
 
-        public func get_WidthImpl() throws -> UInt32 {
+        public func get_Width() throws -> UInt32 {
             var value: UINT32 = 0
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Width(pThis, &value))
@@ -167,7 +167,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return value
         }
 
-        public func get_HeightImpl() throws -> UInt32 {
+        public func get_Height() throws -> UInt32 {
             var value: UINT32 = 0
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Height(pThis, &value))
@@ -175,7 +175,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return value
         }
 
-        public func get_TitleImpl() throws -> String {
+        public func get_Title() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Title(pThis, &value))
@@ -183,14 +183,14 @@ public enum __ABI_Windows_Storage_FileProperties {
             return .init(from: value)
         }
 
-        public func put_TitleImpl(_ value: String) throws {
+        public func put_Title(_ value: String) throws {
             let _value = try! HString(value)
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_Title(pThis, _value.get()))
             }
         }
 
-        public func get_LatitudeImpl() throws -> Double? {
+        public func get_Latitude() throws -> Double? {
             let (value) = try ComPtrs.initialize { valueAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.get_Latitude(pThis, &valueAbi))
@@ -199,7 +199,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return test_component.__x_ABI_C__FIReference_1_doubleWrapper.unwrapFrom(abi: value)
         }
 
-        public func get_LongitudeImpl() throws -> Double? {
+        public func get_Longitude() throws -> Double? {
             let (value) = try ComPtrs.initialize { valueAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.get_Longitude(pThis, &valueAbi))
@@ -208,7 +208,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return test_component.__x_ABI_C__FIReference_1_doubleWrapper.unwrapFrom(abi: value)
         }
 
-        public func get_CameraManufacturerImpl() throws -> String {
+        public func get_CameraManufacturer() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_CameraManufacturer(pThis, &value))
@@ -216,14 +216,14 @@ public enum __ABI_Windows_Storage_FileProperties {
             return .init(from: value)
         }
 
-        public func put_CameraManufacturerImpl(_ value: String) throws {
+        public func put_CameraManufacturer(_ value: String) throws {
             let _value = try! HString(value)
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_CameraManufacturer(pThis, _value.get()))
             }
         }
 
-        public func get_CameraModelImpl() throws -> String {
+        public func get_CameraModel() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_CameraModel(pThis, &value))
@@ -231,14 +231,14 @@ public enum __ABI_Windows_Storage_FileProperties {
             return .init(from: value)
         }
 
-        public func put_CameraModelImpl(_ value: String) throws {
+        public func put_CameraModel(_ value: String) throws {
             let _value = try! HString(value)
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_CameraModel(pThis, _value.get()))
             }
         }
 
-        public func get_OrientationImpl() throws -> test_component.PhotoOrientation {
+        public func get_Orientation() throws -> test_component.PhotoOrientation {
             var value: __x_ABI_CWindows_CStorage_CFileProperties_CPhotoOrientation = .init(0)
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Orientation(pThis, &value))
@@ -246,7 +246,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return value
         }
 
-        public func get_PeopleNamesImpl() throws -> test_component.AnyIVectorView<String>? {
+        public func get_PeopleNames() throws -> test_component.AnyIVectorView<String>? {
             let (value) = try ComPtrs.initialize { valueAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.get_PeopleNames(pThis, &valueAbi))
@@ -260,7 +260,7 @@ public enum __ABI_Windows_Storage_FileProperties {
     public class IMusicProperties: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties }
 
-        public func get_AlbumImpl() throws -> String {
+        public func get_Album() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Album(pThis, &value))
@@ -268,14 +268,14 @@ public enum __ABI_Windows_Storage_FileProperties {
             return .init(from: value)
         }
 
-        public func put_AlbumImpl(_ value: String) throws {
+        public func put_Album(_ value: String) throws {
             let _value = try! HString(value)
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_Album(pThis, _value.get()))
             }
         }
 
-        public func get_ArtistImpl() throws -> String {
+        public func get_Artist() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Artist(pThis, &value))
@@ -283,14 +283,14 @@ public enum __ABI_Windows_Storage_FileProperties {
             return .init(from: value)
         }
 
-        public func put_ArtistImpl(_ value: String) throws {
+        public func put_Artist(_ value: String) throws {
             let _value = try! HString(value)
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_Artist(pThis, _value.get()))
             }
         }
 
-        public func get_GenreImpl() throws -> test_component.AnyIVector<String>? {
+        public func get_Genre() throws -> test_component.AnyIVector<String>? {
             let (value) = try ComPtrs.initialize { valueAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.get_Genre(pThis, &valueAbi))
@@ -299,7 +299,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper.unwrapFrom(abi: value)
         }
 
-        public func get_TrackNumberImpl() throws -> UInt32 {
+        public func get_TrackNumber() throws -> UInt32 {
             var value: UINT32 = 0
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_TrackNumber(pThis, &value))
@@ -307,13 +307,13 @@ public enum __ABI_Windows_Storage_FileProperties {
             return value
         }
 
-        public func put_TrackNumberImpl(_ value: UInt32) throws {
+        public func put_TrackNumber(_ value: UInt32) throws {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_TrackNumber(pThis, value))
             }
         }
 
-        public func get_TitleImpl() throws -> String {
+        public func get_Title() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Title(pThis, &value))
@@ -321,14 +321,14 @@ public enum __ABI_Windows_Storage_FileProperties {
             return .init(from: value)
         }
 
-        public func put_TitleImpl(_ value: String) throws {
+        public func put_Title(_ value: String) throws {
             let _value = try! HString(value)
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_Title(pThis, _value.get()))
             }
         }
 
-        public func get_RatingImpl() throws -> UInt32 {
+        public func get_Rating() throws -> UInt32 {
             var value: UINT32 = 0
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Rating(pThis, &value))
@@ -336,13 +336,13 @@ public enum __ABI_Windows_Storage_FileProperties {
             return value
         }
 
-        public func put_RatingImpl(_ value: UInt32) throws {
+        public func put_Rating(_ value: UInt32) throws {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_Rating(pThis, value))
             }
         }
 
-        public func get_DurationImpl() throws -> test_component.TimeSpan {
+        public func get_Duration() throws -> test_component.TimeSpan {
             var value: __x_ABI_CWindows_CFoundation_CTimeSpan = .init()
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Duration(pThis, &value))
@@ -350,7 +350,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return .from(abi: value)
         }
 
-        public func get_BitrateImpl() throws -> UInt32 {
+        public func get_Bitrate() throws -> UInt32 {
             var value: UINT32 = 0
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Bitrate(pThis, &value))
@@ -358,7 +358,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return value
         }
 
-        public func get_AlbumArtistImpl() throws -> String {
+        public func get_AlbumArtist() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_AlbumArtist(pThis, &value))
@@ -366,14 +366,14 @@ public enum __ABI_Windows_Storage_FileProperties {
             return .init(from: value)
         }
 
-        public func put_AlbumArtistImpl(_ value: String) throws {
+        public func put_AlbumArtist(_ value: String) throws {
             let _value = try! HString(value)
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_AlbumArtist(pThis, _value.get()))
             }
         }
 
-        public func get_ComposersImpl() throws -> test_component.AnyIVector<String>? {
+        public func get_Composers() throws -> test_component.AnyIVector<String>? {
             let (value) = try ComPtrs.initialize { valueAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.get_Composers(pThis, &valueAbi))
@@ -382,7 +382,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper.unwrapFrom(abi: value)
         }
 
-        public func get_ConductorsImpl() throws -> test_component.AnyIVector<String>? {
+        public func get_Conductors() throws -> test_component.AnyIVector<String>? {
             let (value) = try ComPtrs.initialize { valueAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.get_Conductors(pThis, &valueAbi))
@@ -391,7 +391,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper.unwrapFrom(abi: value)
         }
 
-        public func get_SubtitleImpl() throws -> String {
+        public func get_Subtitle() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Subtitle(pThis, &value))
@@ -399,14 +399,14 @@ public enum __ABI_Windows_Storage_FileProperties {
             return .init(from: value)
         }
 
-        public func put_SubtitleImpl(_ value: String) throws {
+        public func put_Subtitle(_ value: String) throws {
             let _value = try! HString(value)
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_Subtitle(pThis, _value.get()))
             }
         }
 
-        public func get_ProducersImpl() throws -> test_component.AnyIVector<String>? {
+        public func get_Producers() throws -> test_component.AnyIVector<String>? {
             let (value) = try ComPtrs.initialize { valueAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.get_Producers(pThis, &valueAbi))
@@ -415,7 +415,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper.unwrapFrom(abi: value)
         }
 
-        public func get_PublisherImpl() throws -> String {
+        public func get_Publisher() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Publisher(pThis, &value))
@@ -423,14 +423,14 @@ public enum __ABI_Windows_Storage_FileProperties {
             return .init(from: value)
         }
 
-        public func put_PublisherImpl(_ value: String) throws {
+        public func put_Publisher(_ value: String) throws {
             let _value = try! HString(value)
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_Publisher(pThis, _value.get()))
             }
         }
 
-        public func get_WritersImpl() throws -> test_component.AnyIVector<String>? {
+        public func get_Writers() throws -> test_component.AnyIVector<String>? {
             let (value) = try ComPtrs.initialize { valueAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.get_Writers(pThis, &valueAbi))
@@ -439,7 +439,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper.unwrapFrom(abi: value)
         }
 
-        public func get_YearImpl() throws -> UInt32 {
+        public func get_Year() throws -> UInt32 {
             var value: UINT32 = 0
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Year(pThis, &value))
@@ -447,7 +447,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return value
         }
 
-        public func put_YearImpl(_ value: UInt32) throws {
+        public func put_Year(_ value: UInt32) throws {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_Year(pThis, value))
             }
@@ -458,7 +458,7 @@ public enum __ABI_Windows_Storage_FileProperties {
     public class IStorageItemContentProperties: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CFileProperties_CIStorageItemContentProperties }
 
-        public func GetMusicPropertiesAsyncImpl() throws -> test_component.AnyIAsyncOperation<test_component.MusicProperties?>? {
+        public func GetMusicPropertiesAsync() throws -> test_component.AnyIAsyncOperation<test_component.MusicProperties?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIStorageItemContentProperties.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.GetMusicPropertiesAsync(pThis, &operationAbi))
@@ -467,7 +467,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicPropertiesWrapper.unwrapFrom(abi: operation)
         }
 
-        public func GetVideoPropertiesAsyncImpl() throws -> test_component.AnyIAsyncOperation<test_component.VideoProperties?>? {
+        public func GetVideoPropertiesAsync() throws -> test_component.AnyIAsyncOperation<test_component.VideoProperties?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIStorageItemContentProperties.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.GetVideoPropertiesAsync(pThis, &operationAbi))
@@ -476,7 +476,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoPropertiesWrapper.unwrapFrom(abi: operation)
         }
 
-        public func GetImagePropertiesAsyncImpl() throws -> test_component.AnyIAsyncOperation<test_component.ImageProperties?>? {
+        public func GetImagePropertiesAsync() throws -> test_component.AnyIAsyncOperation<test_component.ImageProperties?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIStorageItemContentProperties.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.GetImagePropertiesAsync(pThis, &operationAbi))
@@ -485,7 +485,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CImagePropertiesWrapper.unwrapFrom(abi: operation)
         }
 
-        public func GetDocumentPropertiesAsyncImpl() throws -> test_component.AnyIAsyncOperation<test_component.DocumentProperties?>? {
+        public func GetDocumentPropertiesAsync() throws -> test_component.AnyIAsyncOperation<test_component.DocumentProperties?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIStorageItemContentProperties.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.GetDocumentPropertiesAsync(pThis, &operationAbi))
@@ -499,7 +499,7 @@ public enum __ABI_Windows_Storage_FileProperties {
     public class IStorageItemExtraProperties: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CFileProperties_CIStorageItemExtraProperties }
 
-        open func RetrievePropertiesAsyncImpl(_ propertiesToRetrieve: test_component.AnyIIterable<String>?) throws -> test_component.AnyIAsyncOperation<test_component.AnyIMap<String, Any?>?>? {
+        open func RetrievePropertiesAsync(_ propertiesToRetrieve: test_component.AnyIIterable<String>?) throws -> test_component.AnyIAsyncOperation<test_component.AnyIMap<String, Any?>?>? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let propertiesToRetrieveWrapper = test_component.__x_ABI_C__FIIterable_1_HSTRINGWrapper(propertiesToRetrieve)
                 let _propertiesToRetrieve = try! propertiesToRetrieveWrapper?.toABI { $0 }
@@ -510,7 +510,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: operation)
         }
 
-        open func SavePropertiesAsyncImpl(_ propertiesToSave: test_component.AnyIIterable<test_component.AnyIKeyValuePair<String, Any?>?>?) throws -> test_component.AnyIAsyncAction? {
+        open func SavePropertiesAsync(_ propertiesToSave: test_component.AnyIIterable<test_component.AnyIKeyValuePair<String, Any?>?>?) throws -> test_component.AnyIAsyncAction? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 let propertiesToSaveWrapper = test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper(propertiesToSave)
                 let _propertiesToSave = try! propertiesToSaveWrapper?.toABI { $0 }
@@ -521,7 +521,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return __ABI_Windows_Foundation.IAsyncActionWrapper.unwrapFrom(abi: operation)
         }
 
-        open func SavePropertiesAsyncOverloadDefaultImpl() throws -> test_component.AnyIAsyncAction? {
+        open func SavePropertiesAsyncOverloadDefault() throws -> test_component.AnyIAsyncAction? {
             let (operation) = try ComPtrs.initialize { operationAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIStorageItemExtraProperties.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.SavePropertiesAsyncOverloadDefault(pThis, &operationAbi))
@@ -597,7 +597,7 @@ public enum __ABI_Windows_Storage_FileProperties {
     public class IThumbnailProperties: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CFileProperties_CIThumbnailProperties }
 
-        public func get_OriginalWidthImpl() throws -> UInt32 {
+        public func get_OriginalWidth() throws -> UInt32 {
             var value: UINT32 = 0
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIThumbnailProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_OriginalWidth(pThis, &value))
@@ -605,7 +605,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return value
         }
 
-        public func get_OriginalHeightImpl() throws -> UInt32 {
+        public func get_OriginalHeight() throws -> UInt32 {
             var value: UINT32 = 0
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIThumbnailProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_OriginalHeight(pThis, &value))
@@ -613,7 +613,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return value
         }
 
-        public func get_ReturnedSmallerCachedSizeImpl() throws -> Bool {
+        public func get_ReturnedSmallerCachedSize() throws -> Bool {
             var value: boolean = 0
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIThumbnailProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_ReturnedSmallerCachedSize(pThis, &value))
@@ -621,7 +621,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return .init(from: value)
         }
 
-        public func get_TypeImpl() throws -> test_component.ThumbnailType {
+        public func get_Type() throws -> test_component.ThumbnailType {
             var value: __x_ABI_CWindows_CStorage_CFileProperties_CThumbnailType = .init(0)
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIThumbnailProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Type(pThis, &value))
@@ -634,7 +634,7 @@ public enum __ABI_Windows_Storage_FileProperties {
     public class IVideoProperties: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties }
 
-        public func get_RatingImpl() throws -> UInt32 {
+        public func get_Rating() throws -> UInt32 {
             var value: UINT32 = 0
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Rating(pThis, &value))
@@ -642,13 +642,13 @@ public enum __ABI_Windows_Storage_FileProperties {
             return value
         }
 
-        public func put_RatingImpl(_ value: UInt32) throws {
+        public func put_Rating(_ value: UInt32) throws {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_Rating(pThis, value))
             }
         }
 
-        public func get_KeywordsImpl() throws -> test_component.AnyIVector<String>? {
+        public func get_Keywords() throws -> test_component.AnyIVector<String>? {
             let (value) = try ComPtrs.initialize { valueAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.get_Keywords(pThis, &valueAbi))
@@ -657,7 +657,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper.unwrapFrom(abi: value)
         }
 
-        public func get_WidthImpl() throws -> UInt32 {
+        public func get_Width() throws -> UInt32 {
             var value: UINT32 = 0
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Width(pThis, &value))
@@ -665,7 +665,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return value
         }
 
-        public func get_HeightImpl() throws -> UInt32 {
+        public func get_Height() throws -> UInt32 {
             var value: UINT32 = 0
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Height(pThis, &value))
@@ -673,7 +673,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return value
         }
 
-        public func get_DurationImpl() throws -> test_component.TimeSpan {
+        public func get_Duration() throws -> test_component.TimeSpan {
             var value: __x_ABI_CWindows_CFoundation_CTimeSpan = .init()
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Duration(pThis, &value))
@@ -681,7 +681,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return .from(abi: value)
         }
 
-        public func get_LatitudeImpl() throws -> Double? {
+        public func get_Latitude() throws -> Double? {
             let (value) = try ComPtrs.initialize { valueAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.get_Latitude(pThis, &valueAbi))
@@ -690,7 +690,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return test_component.__x_ABI_C__FIReference_1_doubleWrapper.unwrapFrom(abi: value)
         }
 
-        public func get_LongitudeImpl() throws -> Double? {
+        public func get_Longitude() throws -> Double? {
             let (value) = try ComPtrs.initialize { valueAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.get_Longitude(pThis, &valueAbi))
@@ -699,7 +699,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return test_component.__x_ABI_C__FIReference_1_doubleWrapper.unwrapFrom(abi: value)
         }
 
-        public func get_TitleImpl() throws -> String {
+        public func get_Title() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Title(pThis, &value))
@@ -707,14 +707,14 @@ public enum __ABI_Windows_Storage_FileProperties {
             return .init(from: value)
         }
 
-        public func put_TitleImpl(_ value: String) throws {
+        public func put_Title(_ value: String) throws {
             let _value = try! HString(value)
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_Title(pThis, _value.get()))
             }
         }
 
-        public func get_SubtitleImpl() throws -> String {
+        public func get_Subtitle() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Subtitle(pThis, &value))
@@ -722,14 +722,14 @@ public enum __ABI_Windows_Storage_FileProperties {
             return .init(from: value)
         }
 
-        public func put_SubtitleImpl(_ value: String) throws {
+        public func put_Subtitle(_ value: String) throws {
             let _value = try! HString(value)
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_Subtitle(pThis, _value.get()))
             }
         }
 
-        public func get_ProducersImpl() throws -> test_component.AnyIVector<String>? {
+        public func get_Producers() throws -> test_component.AnyIVector<String>? {
             let (value) = try ComPtrs.initialize { valueAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.get_Producers(pThis, &valueAbi))
@@ -738,7 +738,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper.unwrapFrom(abi: value)
         }
 
-        public func get_PublisherImpl() throws -> String {
+        public func get_Publisher() throws -> String {
             var value: HSTRING?
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Publisher(pThis, &value))
@@ -746,14 +746,14 @@ public enum __ABI_Windows_Storage_FileProperties {
             return .init(from: value)
         }
 
-        public func put_PublisherImpl(_ value: String) throws {
+        public func put_Publisher(_ value: String) throws {
             let _value = try! HString(value)
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_Publisher(pThis, _value.get()))
             }
         }
 
-        public func get_WritersImpl() throws -> test_component.AnyIVector<String>? {
+        public func get_Writers() throws -> test_component.AnyIVector<String>? {
             let (value) = try ComPtrs.initialize { valueAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.get_Writers(pThis, &valueAbi))
@@ -762,7 +762,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper.unwrapFrom(abi: value)
         }
 
-        public func get_YearImpl() throws -> UInt32 {
+        public func get_Year() throws -> UInt32 {
             var value: UINT32 = 0
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Year(pThis, &value))
@@ -770,13 +770,13 @@ public enum __ABI_Windows_Storage_FileProperties {
             return value
         }
 
-        public func put_YearImpl(_ value: UInt32) throws {
+        public func put_Year(_ value: UInt32) throws {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_Year(pThis, value))
             }
         }
 
-        public func get_BitrateImpl() throws -> UInt32 {
+        public func get_Bitrate() throws -> UInt32 {
             var value: UINT32 = 0
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Bitrate(pThis, &value))
@@ -784,7 +784,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return value
         }
 
-        public func get_DirectorsImpl() throws -> test_component.AnyIVector<String>? {
+        public func get_Directors() throws -> test_component.AnyIVector<String>? {
             let (value) = try ComPtrs.initialize { valueAbi in
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.get_Directors(pThis, &valueAbi))
@@ -793,7 +793,7 @@ public enum __ABI_Windows_Storage_FileProperties {
             return test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper.unwrapFrom(abi: value)
         }
 
-        public func get_OrientationImpl() throws -> test_component.VideoOrientation {
+        public func get_Orientation() throws -> test_component.VideoOrientation {
             var value: __x_ABI_CWindows_CStorage_CFileProperties_CVideoOrientation = .init(0)
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Orientation(pThis, &value))

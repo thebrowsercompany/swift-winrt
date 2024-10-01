@@ -30,17 +30,17 @@ public enum __IMPL_Windows_Storage_FileProperties {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.istorageitemextraproperties.retrievepropertiesasync)
         fileprivate func retrievePropertiesAsync(_ propertiesToRetrieve: AnyIIterable<String>!) throws -> AnyIAsyncOperation<AnyIMap<String, Any?>?>! {
-            try _default.RetrievePropertiesAsyncImpl(propertiesToRetrieve)
+            try _default.RetrievePropertiesAsync(propertiesToRetrieve)
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.istorageitemextraproperties.savepropertiesasync)
         fileprivate func savePropertiesAsync(_ propertiesToSave: AnyIIterable<AnyIKeyValuePair<String, Any?>?>!) throws -> test_component.AnyIAsyncAction! {
-            try _default.SavePropertiesAsyncImpl(propertiesToSave)
+            try _default.SavePropertiesAsync(propertiesToSave)
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.fileproperties.istorageitemextraproperties.savepropertiesasync)
         fileprivate func savePropertiesAsync() throws -> test_component.AnyIAsyncAction! {
-            try _default.SavePropertiesAsyncOverloadDefaultImpl()
+            try _default.SavePropertiesAsyncOverloadDefault()
         }
 
     }

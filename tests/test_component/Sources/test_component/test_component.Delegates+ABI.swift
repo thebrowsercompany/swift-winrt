@@ -27,7 +27,7 @@ extension __ABI_test_component_Delegates {
     public class InDelegate: test_component.IUnknown {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CDelegates_CIInDelegate }
 
-        open func InvokeImpl(_ value: String) throws {
+        open func Invoke(_ value: String) throws {
             let _value = try! HString(value)
             _ = try perform(as: __x_ABI_Ctest__component_CDelegates_CIInDelegate.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _value.get()))
@@ -64,7 +64,7 @@ extension __ABI_test_component_Delegates {
     public class InObjectDelegate: test_component.IUnknown {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CDelegates_CIInObjectDelegate }
 
-        open func InvokeImpl(_ value: Any?) throws {
+        open func Invoke(_ value: Any?) throws {
             let valueWrapper = __ABI_.AnyWrapper(value)
             let _value = try! valueWrapper?.toABI { $0 }
             _ = try perform(as: __x_ABI_Ctest__component_CDelegates_CIInObjectDelegate.self) { pThis in
@@ -102,7 +102,7 @@ extension __ABI_test_component_Delegates {
     public class ReturnInt32Delegate: test_component.IUnknown {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate }
 
-        open func InvokeImpl() throws -> Int32 {
+        open func Invoke() throws -> Int32 {
             var result: INT32 = 0
             _ = try perform(as: __x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, &result))
@@ -140,7 +140,7 @@ extension __ABI_test_component_Delegates {
     public class SignalDelegate: test_component.IUnknown {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CDelegates_CISignalDelegate }
 
-        open func InvokeImpl() throws {
+        open func Invoke() throws {
             _ = try perform(as: __x_ABI_Ctest__component_CDelegates_CISignalDelegate.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis))
             }

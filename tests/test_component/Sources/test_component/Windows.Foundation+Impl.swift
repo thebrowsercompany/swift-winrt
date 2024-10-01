@@ -30,39 +30,39 @@ public enum __IMPL_Windows_Foundation {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncaction.getresults)
         fileprivate func getResults() throws {
-            try _default.GetResultsImpl()
+            try _default.GetResults()
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncaction.completed)
         fileprivate var completed : AsyncActionCompletedHandler! {
-            get { try! _default.get_CompletedImpl() }
-            set { try! _default.put_CompletedImpl(newValue) }
+            get { try! _default.get_Completed() }
+            set { try! _default.put_Completed(newValue) }
         }
 
         private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncaction.cancel)
         fileprivate func cancel() throws {
-            try _IAsyncInfo.CancelImpl()
+            try _IAsyncInfo.Cancel()
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncaction.close)
         fileprivate func close() throws {
-            try _IAsyncInfo.CloseImpl()
+            try _IAsyncInfo.Close()
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncaction.errorcode)
         fileprivate var errorCode : HRESULT {
-            get { try! _IAsyncInfo.get_ErrorCodeImpl() }
+            get { try! _IAsyncInfo.get_ErrorCode() }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncaction.id)
         fileprivate var id : UInt32 {
-            get { try! _IAsyncInfo.get_IdImpl() }
+            get { try! _IAsyncInfo.get_Id() }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncaction.status)
         fileprivate var status : AsyncStatus {
-            get { try! _IAsyncInfo.get_StatusImpl() }
+            get { try! _IAsyncInfo.get_Status() }
         }
 
     }
@@ -92,27 +92,27 @@ public enum __IMPL_Windows_Foundation {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncinfo.cancel)
         fileprivate func cancel() throws {
-            try _default.CancelImpl()
+            try _default.Cancel()
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncinfo.close)
         fileprivate func close() throws {
-            try _default.CloseImpl()
+            try _default.Close()
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncinfo.errorcode)
         fileprivate var errorCode : HRESULT {
-            get { try! _default.get_ErrorCodeImpl() }
+            get { try! _default.get_ErrorCode() }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncinfo.id)
         fileprivate var id : UInt32 {
-            get { try! _default.get_IdImpl() }
+            get { try! _default.get_Id() }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncinfo.status)
         fileprivate var status : AsyncStatus {
-            get { try! _default.get_StatusImpl() }
+            get { try! _default.get_Status() }
         }
 
     }
@@ -142,7 +142,7 @@ public enum __IMPL_Windows_Foundation {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iclosable.close)
         fileprivate func close() throws {
-            try _default.CloseImpl()
+            try _default.Close()
         }
 
     }
@@ -172,13 +172,13 @@ public enum __IMPL_Windows_Foundation {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.imemorybuffer.createreference)
         fileprivate func createReference() throws -> AnyIMemoryBufferReference! {
-            try _default.CreateReferenceImpl()
+            try _default.CreateReference()
         }
 
         private lazy var _IClosable: __ABI_Windows_Foundation.IClosable! = getInterfaceForCaching()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.imemorybuffer.close)
         fileprivate func close() throws {
-            try _IClosable.CloseImpl()
+            try _IClosable.Close()
         }
 
     }
@@ -208,7 +208,7 @@ public enum __IMPL_Windows_Foundation {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.imemorybufferreference.capacity)
         fileprivate var capacity : UInt32 {
-            get { try! _default.get_CapacityImpl() }
+            get { try! _default.get_Capacity() }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.imemorybufferreference.closed)
@@ -216,10 +216,10 @@ public enum __IMPL_Windows_Foundation {
           .init(
             add: { [weak self] in
               guard let this = self?._default else { return .init() }
-              return try! this.add_ClosedImpl($0)
+              return try! this.add_Closed($0)
             },
             remove: { [weak self] in
-             try? self?._default.remove_ClosedImpl($0)
+             try? self?._default.remove_Closed($0)
            }
           )
         }()
@@ -227,7 +227,7 @@ public enum __IMPL_Windows_Foundation {
         private lazy var _IClosable: __ABI_Windows_Foundation.IClosable! = getInterfaceForCaching()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.imemorybufferreference.close)
         fileprivate func close() throws {
-            try _IClosable.CloseImpl()
+            try _IClosable.Close()
         }
 
         private lazy var _IMemoryBufferByteAccess: __ABI_.IMemoryBufferByteAccess! = getInterfaceForCaching()
@@ -357,7 +357,7 @@ public enum __IMPL_Windows_Foundation {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.istringable.tostring)
         fileprivate func toString() throws -> String {
-            try _default.ToStringImpl()
+            try _default.ToString()
         }
 
     }
@@ -387,12 +387,12 @@ public enum __IMPL_Windows_Foundation {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iwwwformurldecoderentry.name)
         fileprivate var name : String {
-            get { try! _default.get_NameImpl() }
+            get { try! _default.get_Name() }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iwwwformurldecoderentry.value)
         fileprivate var value : String {
-            get { try! _default.get_ValueImpl() }
+            get { try! _default.get_Value() }
         }
 
     }
@@ -406,7 +406,7 @@ public enum __IMPL_Windows_Foundation {
             guard let abi = abi else { return nil }
             let _default = SwiftABI(abi)
             let handler: Handler = { (asyncInfo, asyncStatus) in
-                try _default.InvokeImpl(asyncInfo, asyncStatus)
+                try _default.Invoke(asyncInfo, asyncStatus)
             }
             return handler
         }
@@ -420,7 +420,7 @@ public enum __IMPL_Windows_Foundation {
             guard let abi = abi else { return nil }
             let _default = SwiftABI(abi)
             let handler: Handler = { () in
-                try _default.InvokeImpl()
+                try _default.Invoke()
             }
             return handler
         }

@@ -29,7 +29,7 @@ public enum __IMPL_test_component {
         }
 
         fileprivate func operationWithProgress(_ value: test_component.DateTime) throws -> AnyIAsyncOperationWithProgress<Int32, Double>! {
-            try _default.OperationWithProgressImpl(value)
+            try _default.OperationWithProgress(value)
         }
 
     }
@@ -58,11 +58,11 @@ public enum __IMPL_test_component {
         }
 
         fileprivate func complete(_ result: Int32) throws {
-            try _default.CompleteImpl(result)
+            try _default.Complete(result)
         }
 
         fileprivate func completeWithError(_ errorCode: HRESULT) throws {
-            try _default.CompleteWithErrorImpl(errorCode)
+            try _default.CompleteWithError(errorCode)
         }
 
     }
@@ -91,7 +91,7 @@ public enum __IMPL_test_component {
         }
 
         fileprivate func method() {
-            try! _default.MethodImpl()
+            try! _default.Method()
         }
 
     }
@@ -120,75 +120,75 @@ public enum __IMPL_test_component {
         }
 
         fileprivate func inInt32(_ value: Int32) throws -> String {
-            try _default.InInt32Impl(value)
+            try _default.InInt32(value)
         }
 
         fileprivate func inString(_ value: String) throws -> String {
-            try _default.InStringImpl(value)
+            try _default.InString(value)
         }
 
         fileprivate func inObject(_ value: Any!) throws -> String {
-            try _default.InObjectImpl(value)
+            try _default.InObject(value)
         }
 
         fileprivate func inEnum(_ value: Signed) throws -> String {
-            try _default.InEnumImpl(value)
+            try _default.InEnum(value)
         }
 
         fileprivate func outInt32(_ value: inout Int32) throws {
-            try _default.OutInt32Impl(&value)
+            try _default.OutInt32(&value)
         }
 
         fileprivate func outString(_ value: inout String) throws {
-            try _default.OutStringImpl(&value)
+            try _default.OutString(&value)
         }
 
         fileprivate func outObject(_ value: inout Any!) throws {
-            try _default.OutObjectImpl(&value)
+            try _default.OutObject(&value)
         }
 
         fileprivate func outBlittableStruct(_ value: inout BlittableStruct) throws {
-            try _default.OutBlittableStructImpl(&value)
+            try _default.OutBlittableStruct(&value)
         }
 
         fileprivate func outNonBlittableStruct(_ value: inout NonBlittableStruct) throws {
-            try _default.OutNonBlittableStructImpl(&value)
+            try _default.OutNonBlittableStruct(&value)
         }
 
         fileprivate func outEnum(_ value: inout Signed) throws {
-            try _default.OutEnumImpl(&value)
+            try _default.OutEnum(&value)
         }
 
         fileprivate func returnObject() throws -> Any! {
-            try _default.ReturnObjectImpl()
+            try _default.ReturnObject()
         }
 
         fileprivate func returnEnum() throws -> Signed {
-            try _default.ReturnEnumImpl()
+            try _default.ReturnEnum()
         }
 
         fileprivate func fireEvent(_ data: String) throws {
-            try _default.FireEventImpl(data)
+            try _default.FireEvent(data)
         }
 
         fileprivate var enumProperty : Fruit {
-            get { try! _default.get_EnumPropertyImpl() }
-            set { try! _default.put_EnumPropertyImpl(newValue) }
+            get { try! _default.get_EnumProperty() }
+            set { try! _default.put_EnumProperty(newValue) }
         }
 
         fileprivate var id : Foundation.UUID? {
-            get { try! _default.get_IdImpl() }
-            set { try! _default.put_IdImpl(newValue) }
+            get { try! _default.get_Id() }
+            set { try! _default.put_Id(newValue) }
         }
 
         fileprivate lazy var implementableEvent : Event<test_component.InDelegate> = {
           .init(
             add: { [weak self] in
               guard let this = self?._default else { return .init() }
-              return try! this.add_ImplementableEventImpl($0)
+              return try! this.add_ImplementableEvent($0)
             },
             remove: { [weak self] in
-             try? self?._default.remove_ImplementableEventImpl($0)
+             try? self?._default.remove_ImplementableEvent($0)
            }
           )
         }()
@@ -219,7 +219,7 @@ public enum __IMPL_test_component {
         }
 
         fileprivate func takeObservable(_ basics: AnyIObservableVector<AnyIBasic?>!) throws {
-            try _default.TakeObservableImpl(basics)
+            try _default.TakeObservable(basics)
         }
 
     }
@@ -248,7 +248,7 @@ public enum __IMPL_test_component {
         }
 
         fileprivate func method() throws {
-            try _default.MethodImpl()
+            try _default.Method()
         }
 
     }
@@ -277,11 +277,11 @@ public enum __IMPL_test_component {
         }
 
         fileprivate func doThis() throws {
-            try _default.DoThisImpl()
+            try _default.DoThis()
         }
 
         fileprivate func doThat(_ val: Int32) throws {
-            try _default.DoThatImpl(val)
+            try _default.DoThat(val)
         }
 
     }
@@ -313,10 +313,10 @@ public enum __IMPL_test_component {
           .init(
             add: { [weak self] in
               guard let this = self?._default else { return .init() }
-              return try! this.add_EventWithReturnImpl($0)
+              return try! this.add_EventWithReturn($0)
             },
             remove: { [weak self] in
-             try? self?._default.remove_EventWithReturnImpl($0)
+             try? self?._default.remove_EventWithReturn($0)
            }
           )
         }()
@@ -347,7 +347,7 @@ public enum __IMPL_test_component {
         }
 
         fileprivate func ids() throws -> AnyIVector<Foundation.UUID>! {
-            try _default.IDsImpl()
+            try _default.IDs()
         }
 
     }
@@ -376,26 +376,26 @@ public enum __IMPL_test_component {
         }
 
         fileprivate func `enum`(_ `extension`: String) throws {
-            try _default.EnumImpl(`extension`)
+            try _default.Enum(`extension`)
         }
 
         fileprivate func `subscript`() throws {
-            try _default.SubscriptImpl()
+            try _default.Subscript()
         }
 
         fileprivate var `struct` : String {
-            get { try! _default.get_StructImpl() }
-            set { try! _default.put_StructImpl(newValue) }
+            get { try! _default.get_Struct() }
+            set { try! _default.put_Struct(newValue) }
         }
 
         fileprivate lazy var `repeat` : Event<EventHandler<Any?>> = {
           .init(
             add: { [weak self] in
               guard let this = self?._default else { return .init() }
-              return try! this.add_RepeatImpl($0)
+              return try! this.add_Repeat($0)
             },
             remove: { [weak self] in
-             try? self?._default.remove_RepeatImpl($0)
+             try? self?._default.remove_Repeat($0)
            }
           )
         }()
@@ -411,7 +411,7 @@ public enum __IMPL_test_component {
             guard let abi = abi else { return nil }
             let _default = SwiftABI(abi)
             let handler: Handler = { (item) in
-                try _default.InvokeImpl(item)
+                try _default.Invoke(item)
             }
             return handler
         }
@@ -425,7 +425,7 @@ public enum __IMPL_test_component {
             guard let abi = abi else { return nil }
             let _default = SwiftABI(abi)
             let handler: Handler = { () in
-                try _default.InvokeImpl()
+                try _default.Invoke()
             }
             return handler
         }

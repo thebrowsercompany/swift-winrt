@@ -37,10 +37,10 @@ public enum __IMPL_Windows_Foundation_Collections {
           .init(
             add: { [weak self] in
               guard let this = self?._IObservableMap else { return .init() }
-              return try! this.add_MapChangedImpl($0)
+              return try! this.add_MapChanged($0)
             },
             remove: { [weak self] in
-             try? self?._IObservableMap.remove_MapChangedImpl($0)
+             try? self?._IObservableMap.remove_MapChanged($0)
            }
           )
         }()
@@ -48,43 +48,43 @@ public enum __IMPL_Windows_Foundation_Collections {
         private lazy var _IMap: IMapString_Any! = getInterfaceForCaching()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.lookup)
         fileprivate func lookup(_ key: String) -> Any? {
-            try! _IMap.LookupImpl(key)
+            try! _IMap.Lookup(key)
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.haskey)
         fileprivate func hasKey(_ key: String) -> Bool {
-            try! _IMap.HasKeyImpl(key)
+            try! _IMap.HasKey(key)
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.getview)
         fileprivate func getView() -> AnyIMapView<String, Any?>? {
-            try! _IMap.GetViewImpl()
+            try! _IMap.GetView()
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.insert)
         fileprivate func insert(_ key: String, _ value: Any?) -> Bool {
-            try! _IMap.InsertImpl(key, value)
+            try! _IMap.Insert(key, value)
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.remove)
         fileprivate func remove(_ key: String) {
-            try! _IMap.RemoveImpl(key)
+            try! _IMap.Remove(key)
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.clear)
         fileprivate func clear() {
-            try! _IMap.ClearImpl()
+            try! _IMap.Clear()
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.size)
         fileprivate var size : UInt32 {
-            get { try! _IMap.get_SizeImpl() }
+            get { try! _IMap.get_Size() }
         }
 
         private lazy var _IIterable: IIterableIKeyValuePairString_Any! = getInterfaceForCaching()
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ipropertyset.first)
         fileprivate func first() -> AnyIIterator<AnyIKeyValuePair<String, Any?>?>? {
-            try! _IIterable.FirstImpl()
+            try! _IIterable.First()
         }
 
     }
@@ -114,12 +114,12 @@ public enum __IMPL_Windows_Foundation_Collections {
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorchangedeventargs.collectionchange)
         fileprivate var collectionChange : CollectionChange {
-            get { try! _default.get_CollectionChangeImpl() }
+            get { try! _default.get_CollectionChange() }
         }
 
         /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorchangedeventargs.index)
         fileprivate var index : UInt32 {
-            get { try! _default.get_IndexImpl() }
+            get { try! _default.get_Index() }
         }
 
     }
