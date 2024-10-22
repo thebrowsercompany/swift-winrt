@@ -180,12 +180,11 @@ public func failWith(error: Swift.Error) -> HRESULT {
         hresult = winrtError.hr
     }
 
-    do {
-        try message.withHStringRef {
-            _ = RoOriginateLanguageException(hresult, $0, nil)
-        }
-    } catch {
-        _ = RoOriginateLanguageException(hresult, nil, nil)
+    message.withHStringRef {
+      // Returns false if the string is empty or hresult is success,
+      // in which case there isn't more info to associate with the
+      // returned hresult.
+      _ = RoOriginateLanguageException(hresult, $0, nil)
     }
 
     return hresult
