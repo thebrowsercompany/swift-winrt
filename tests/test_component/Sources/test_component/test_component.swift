@@ -258,6 +258,10 @@ open class BaseCollection : WinRTClass, IVector, IIterable {
         try! _default.Clear()
     }
 
+    public func replaceAll(_ items: [Base?]) {
+        try! _default.ReplaceAll(items)
+    }
+
     public var size : UInt32 {
         get { try! _default.get_Size() }
     }
@@ -483,6 +487,10 @@ public final class BaseObservableCollection : WinRTClass, IObservableVector, IVe
         try! _IVector.Clear()
     }
 
+    public func replaceAll(_ items: [Base?]) {
+        try! _IVector.ReplaceAll(items)
+    }
+
     public var size : UInt32 {
         get { try! _IVector.get_Size() }
     }
@@ -655,6 +663,10 @@ public final class Class : WinRTClass, IBasic {
 
     public func returnReferenceEnum() throws -> Signed? {
         try _default.ReturnReferenceEnum()
+    }
+
+    public func inInt32Array(_ value: [Int32]) throws -> String {
+        try _default.InInt32Array(value)
     }
 
     public func noexceptVoid() {

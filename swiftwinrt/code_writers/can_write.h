@@ -31,8 +31,8 @@ namespace swiftwinrt
             auto param_name = get_swift_name(param);
 
             // TODO: WIN-32 swiftwinrt: support array types
-            if (param.signature.Type().is_szarray() ||
-                param.signature.Type().is_array())
+            if (param.out() && (param.signature.Type().is_szarray() ||
+                param.signature.Type().is_array()) )
             {
                 return false;
             }

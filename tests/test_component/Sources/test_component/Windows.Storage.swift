@@ -94,6 +94,11 @@ public final class PathIO {
         return try _IPathIOStatics.WriteBufferAsync(absolutePath, buffer)
     }
 
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.pathio.writebytesasync)
+    public static func writeBytesAsync(_ absolutePath: String, _ buffer: [UInt8]) throws -> test_component.AnyIAsyncAction! {
+        return try _IPathIOStatics.WriteBytesAsync(absolutePath, buffer)
+    }
+
 }
 
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefile)

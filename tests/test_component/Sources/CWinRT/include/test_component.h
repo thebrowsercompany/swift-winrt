@@ -3111,6 +3111,10 @@ struct __x_ABI_Ctest__component_CStructWithIReference
         enum __x_ABI_Ctest__component_CFruit* value);
     HRESULT (STDMETHODCALLTYPE* put_EnumProperty)(__x_ABI_Ctest__component_CIClass* This,
         enum __x_ABI_Ctest__component_CFruit value);
+    HRESULT (STDMETHODCALLTYPE* InInt32Array)(__x_ABI_Ctest__component_CIClass* This,
+        UINT32 valueLength,
+        INT32* value,
+        HSTRING* result);
     HRESULT (STDMETHODCALLTYPE* NoexceptVoid)(__x_ABI_Ctest__component_CIClass* This);
     HRESULT (STDMETHODCALLTYPE* NoexceptInt32)(__x_ABI_Ctest__component_CIClass* This,
         INT32* result);

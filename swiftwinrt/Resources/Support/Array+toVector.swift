@@ -27,6 +27,10 @@ internal class ArrayVector<T> : IVector {
     func getView() -> AnyIVectorView<T>? { return ArrayVectorView(storage) }
 
     func first() -> AnyIIterator<T>? { ArrayIterator(storage) }
+
+    func replaceAll(_ items: [T]) {
+        storage = items
+    }
 }
 
 extension ArrayVector where T: Equatable {

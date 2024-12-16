@@ -56,7 +56,7 @@ private var IID___x_ABI_Ctest__component_CIBufferTesterStatics: test_component.I
 }
 
 private var IID___x_ABI_Ctest__component_CIClass: test_component.IID {
-    .init(Data1: 0xEBCBC0CD, Data2: 0x48DD, Data3: 0x56BA, Data4: ( 0xBB,0xE2,0xCD,0x0B,0xE5,0xA3,0x06,0x76 ))// EBCBC0CD-48DD-56BA-BBE2-CD0BE5A30676
+    .init(Data1: 0x5ADEA2BF, Data2: 0x88FC, Data3: 0x5F8B, Data4: ( 0xB5,0xD3,0x59,0xB1,0x64,0x5D,0x0F,0xDD ))// 5ADEA2BF-88FC-5F8B-B5D3-59B1645D0FDD
 }
 
 private var IID___x_ABI_Ctest__component_CIClassFactory: test_component.IID {
@@ -724,6 +724,16 @@ public enum __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_EnumProperty(pThis, value))
             }
+        }
+
+        public func InInt32Array(_ value: [Int32]) throws -> String {
+            var result: HSTRING?
+            try value.toABI { (count, _value) in
+                _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.InInt32Array(pThis, count, _value, &result))
+                }
+            }
+            return .init(from: result)
         }
 
         public func NoexceptVoid() throws {

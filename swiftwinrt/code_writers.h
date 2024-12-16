@@ -176,7 +176,16 @@ namespace swiftwinrt
             s();
             w.write("_ %: ", get_swift_name(param));
             if (param.out()) w.write("inout ");
-            write_type(w, *param.type, type_params);
+            const bool is_array = param.signature.Type().is_array() || param.signature.Type().is_szarray();
+            if (is_array && type_params.layer == projection_layer::swift)
+            {
+                // Can't allow for implicit unwrap in arrays
+                w.write("[%]", bind<write_type>(*param.type, write_type_params::swift));
+            }
+            else
+            {
+                write_type(w, *param.type, type_params);
+            }
         }
     }
     static void write_function_params(writer& w, function_def const& function, write_type_params const& type_params)
@@ -184,13 +193,24 @@ namespace swiftwinrt
         write_function_params2(w, function.params, type_params);
     }
 
-    static void write_convert_to_abi_arg(writer& w, std::string_view const& param_name, const metadata_type* type, bool is_out)
+    template <typename Param>
+    static void write_convert_to_abi_arg(writer& w, Param const& param)
     {
         TypeDef signature_type;
+        auto type = param.type;
+        auto param_name = get_swift_name(param);
+        auto is_out = param.out();
+
         auto category = get_category(type, &signature_type);
 
         auto local_name = local_swift_param_name(param_name);
-        if (category == param_category::object_type)
+        if (param.is_array())
+        {
+            // Arrays are all converted from the swift array to a c array, so they
+            // use the local_param_name 
+            w.write("count, %", local_name);
+        }
+        else if (category == param_category::object_type)
         {
             if (is_out) throw std::exception("out parameters of reference types should not be converted directly to abi types");
 
@@ -286,7 +306,7 @@ namespace swiftwinrt
             s();
             if (param.in())
             {
-                write_convert_to_abi_arg(w, param_name, param.type, false);
+                write_convert_to_abi_arg(w, param);
             }
             else
             {
@@ -702,43 +722,58 @@ typealias % = InterfaceWrapperBase<%>
 
         for (auto& param : signature.params)
         {
-            if (param.signature.Type().is_szarray())
-            {
-                // TODO: WIN-32 swiftwinrt: add support for arrays
-                w.write("**TODO: implement szarray in write_convert_vtable_params**");
-            }
-            else
-            {
-                std::string param_name = "$" + std::to_string(param_number);
+            std::string param_name = "$" + std::to_string(param_number);
 
-                if (param.in())
+       
+            if (param.in())
+            {
+                assert(!param.out());
+
+                if (is_delegate(param.type))
                 {
-                    assert(!param.out());
-
-                    if (is_delegate(param.type))
+                    w.write("guard let % = % else { return E_INVALIDARG }\n",
+                        get_swift_name(param),
+                        bind<write_consume_type>(param.type, param_name, false));
+                }
+                else if (param.is_array())
+                {
+                    auto count_param_name = "$" + std::to_string(param_number + 1);
+                    if (is_reference_type(param.type))
                     {
-                        w.write("guard let % = % else { return E_INVALIDARG }\n",
+                        w.write("let %: [%] = .from(abiBridge: %.self, abi: (%, %))\n", 
                             get_swift_name(param),
-                            bind<write_consume_type>(param.type, param_name, false));
+                            bind<write_type>(*param.type, write_type_params::swift),
+                            bind_bridge_fullname(*param.type),
+                            count_param_name,
+                            param_name);
                     }
                     else
                     {
-                        w.write("let %: % = %\n",
+                        w.write("let %: [%] = .from(abi: (%, %))\n",
                             get_swift_name(param),
                             bind<write_type>(*param.type, write_type_params::swift),
-                            bind<write_consume_type>(param.type, param_name, false));
+                            count_param_name,
+                            param_name);
                     }
+                    ++param_number;
                 }
                 else
                 {
-                    assert(!param.in());
-                    assert(param.out());
-                    w.write("var %: %%\n",
+                    w.write("let %: % = %\n",
                         get_swift_name(param),
                         bind<write_type>(*param.type, write_type_params::swift),
-                        bind<write_default_init_assignment>(*param.type, projection_layer::swift));
+                        bind<write_consume_type>(param.type, param_name, false));
                 }
             }
+            else
+            {
+                assert(!param.in());
+                assert(param.out());
+                w.write("var %: %%\n",
+                    get_swift_name(param),
+                    bind<write_type>(*param.type, write_type_params::swift),
+                    bind<write_default_init_assignment>(*param.type, projection_layer::swift));
+                }
             ++param_number;
         }
     }
@@ -1628,7 +1663,21 @@ vtable);
 
             if (param.in())
             {
-                if (category == param_category::string_type)
+                if (param.is_array())
+                {
+                    if (is_reference_type(param.type))
+                    {
+                        w.write("try %.toABI(abiBridge: %.self) { (count, %) in\n", param_name, bind_bridge_name(*param.type), local_param_name);
+                    }
+                    else
+                    {
+                        w.write("try %.toABI { (count, %) in\n", param_name, local_param_name);
+                    }
+                  
+                    guard.push_indent();
+                    guard.push("}\n");
+                }
+                else if (category == param_category::string_type)
                 {
                     w.write("let % = try! HString(%)\n",
                         local_param_name,
@@ -1643,7 +1692,7 @@ vtable);
                         param_name);
                 }
                 else if (is_reference_type(param.type) && !is_class(param.type))
-                {
+                {   
                     w.write("let %Wrapper = %(%)\n",
                         param_name,
                         bind_wrapper_fullname(param.type),
@@ -2736,8 +2785,11 @@ override % func _getABI<T>() -> UnsafeMutablePointer<T>? {
     }
 
     // assigns return or out parameters in vtable methods
-    static void do_write_abi_val_assignment(writer& w, const metadata_type* type, std::string_view const& param_name, std::string_view const& return_param_name)
+    template<typename T>
+    static void do_write_abi_val_assignment(writer& w, T const& return_type, std::string_view return_param_name)
     {
+        auto type = return_type.type;
+        auto param_name = get_swift_name(return_type.name);
         TypeDef signature_type{};
         auto category = get_category(type, &signature_type);
 
@@ -2768,7 +2820,9 @@ override % func _getABI<T>() -> UnsafeMutablePointer<T>? {
 
         w.write("%?.initialize(to: %)\n",
             return_param_name,
-            bind<write_convert_to_abi_arg>(param_name, type, true)
+            bind([&](writer& w) {
+                write_convert_to_abi_arg(w, return_type);
+            })
         );
     }
 
@@ -2781,7 +2835,7 @@ override % func _getABI<T>() -> UnsafeMutablePointer<T>? {
             {
                 auto return_param_name = "$" + std::to_string(param_number);
                 auto param_name = get_swift_name(param);
-                do_write_abi_val_assignment(w, param.type, std::string_view(param_name), return_param_name);
+                do_write_abi_val_assignment(w, param, return_param_name);
             }
             param_number++;
         }
@@ -2789,7 +2843,7 @@ override % func _getABI<T>() -> UnsafeMutablePointer<T>? {
         if (signature.return_type)
         {
             auto return_param_name = "$" + std::to_string(signature.params.size() + 1);
-            do_write_abi_val_assignment(w, signature.return_type.value().type, signature.return_type.value().name, return_param_name);
+            do_write_abi_val_assignment(w, signature.return_type.value(), return_param_name);
         }
     }
 
