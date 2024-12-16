@@ -313,6 +313,32 @@ namespace winrt::test_component::implementation
 
         return result;
     }
+    hstring Class::InStructArray(array_view<BlittableStruct const> value)
+    {
+        simulate_rpc_behavior(value);
+
+        hstring result;
+
+        for (auto&& v : value)
+        {
+            result = result + std::to_wstring(v.First) + std::to_wstring(v.Second) + L",";
+        }
+
+        return result;
+    }
+    hstring Class::InNonBlittableStructArray(array_view<NonBlittableStruct const> value)
+    {
+        simulate_rpc_behavior(value);
+
+        hstring result;
+
+        for (auto&& v : value)
+        {
+            result = result + v.First + v.Second + L",";
+        }
+
+        return result;
+    }
     hstring Class::InObjectArray(array_view<Windows::Foundation::IInspectable const> value)
     {
         simulate_rpc_behavior(value);

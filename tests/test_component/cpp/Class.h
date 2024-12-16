@@ -105,6 +105,8 @@ namespace winrt::test_component::implementation
 
         hstring InInt32Array(array_view<int32_t const> value);
         hstring InStringArray(array_view<hstring const> value);
+        hstring InStructArray(array_view<BlittableStruct const> value);
+        hstring InNonBlittableStructArray(array_view<NonBlittableStruct const> value);
         hstring InObjectArray(array_view<Windows::Foundation::IInspectable const> value);
         hstring InStringableArray(array_view<Windows::Foundation::IStringable const> value);
         hstring InEnumArray(array_view<Signed const> value);

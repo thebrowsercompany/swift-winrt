@@ -141,3 +141,25 @@ extension ComposableImpl where CABI == C_IInspectable {
     return .init(lpVtbl: vtblPtr)
   }
 }
+
+@_spi(WinRTInternal)
+public enum __IMPL_ {
+    public enum AnyBridge: AbiInterfaceBridge {
+        public static func makeAbi() -> CABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_.IInspectableVTable) { $0 }
+            return .init(lpVtbl: vtblPtr)
+        }
+
+        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+            // This code path is not actually reachable since IBufferByteAccess is not a WinRT interface.
+            // It is a COM interface which is implemented by any object which implements the IBuffer interface.
+            // And the IBufferImpl object will correctly have the implementation of this interface, so this isn't needed
+            assertionFailure("IBufferByteAccessBridge.from not implemented")
+            return nil
+        }
+
+        public typealias SwiftProjection = Any
+        public typealias CABI = C_IInspectable
+        public typealias SwiftABI = IInspectable
+    }
+}
