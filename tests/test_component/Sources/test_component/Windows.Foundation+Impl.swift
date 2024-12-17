@@ -462,3 +462,58 @@ public enum __IMPL_Windows_Foundation {
     }
 
 }
+@_spi(WinRTInternal)
+extension DateTime: WinRTBridgeable {
+    public typealias ABI = __x_ABI_CWindows_CFoundation_CDateTime
+    public static func from(abi: ABI) -> Self {
+        .init(universalTime: abi.UniversalTime)
+    }
+    public func toABI() -> ABI {
+        .from(swift: self)
+    }
+}
+
+@_spi(WinRTInternal)
+extension Point: WinRTBridgeable {
+    public typealias ABI = __x_ABI_CWindows_CFoundation_CPoint
+    public static func from(abi: ABI) -> Self {
+        .init(x: abi.X, y: abi.Y)
+    }
+    public func toABI() -> ABI {
+        .from(swift: self)
+    }
+}
+
+@_spi(WinRTInternal)
+extension Rect: WinRTBridgeable {
+    public typealias ABI = __x_ABI_CWindows_CFoundation_CRect
+    public static func from(abi: ABI) -> Self {
+        .init(x: abi.X, y: abi.Y, width: abi.Width, height: abi.Height)
+    }
+    public func toABI() -> ABI {
+        .from(swift: self)
+    }
+}
+
+@_spi(WinRTInternal)
+extension Size: WinRTBridgeable {
+    public typealias ABI = __x_ABI_CWindows_CFoundation_CSize
+    public static func from(abi: ABI) -> Self {
+        .init(width: abi.Width, height: abi.Height)
+    }
+    public func toABI() -> ABI {
+        .from(swift: self)
+    }
+}
+
+@_spi(WinRTInternal)
+extension TimeSpan: WinRTBridgeable {
+    public typealias ABI = __x_ABI_CWindows_CFoundation_CTimeSpan
+    public static func from(abi: ABI) -> Self {
+        .init(duration: abi.Duration)
+    }
+    public func toABI() -> ABI {
+        .from(swift: self)
+    }
+}
+

@@ -14,8 +14,5 @@ public struct TextSegment: Hashable, Codable, Sendable {
         self.startPosition = startPosition
         self.length = length
     }
-    public static func from(abi: __x_ABI_CWindows_CData_CText_CTextSegment) -> TextSegment {
-        .init(startPosition: abi.StartPosition, length: abi.Length)
-    }
 }
 

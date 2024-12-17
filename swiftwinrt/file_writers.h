@@ -234,6 +234,9 @@ namespace swiftwinrt
             w.write("%", w.filter.bind_each<write_delegate_implementation>(members.delegates));
             w.write("%", w.filter.bind_each<write_class_bridge>(members.classes));
         }
+
+        w.write("%", w.filter.bind_each<write_struct_bridgeable>(members.structs));
+
         w.swap();
         write_preamble(w, /* swift_code: */ true);
 

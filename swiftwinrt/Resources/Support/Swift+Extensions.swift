@@ -43,10 +43,10 @@ extension StaticString {
 }
 
 @_spi(WinRTInternal)
-public extension String: WinRTBridgeable {
+extension String: WinRTBridgeable {
     public typealias ABI = HSTRING?
     public func toABI() throws -> HSTRING? {
-        let codeUnitCount = string.utf16.count
+        let codeUnitCount = utf16.count
         var pointer: UnsafeMutablePointer<UInt16>? = nil
         var hStringBuffer: HSTRING_BUFFER? = nil
 
@@ -55,15 +55,12 @@ public extension String: WinRTBridgeable {
         // done by using WindowsPreallocateStringBuffer to allocate a buffer and directly copying the string into it.
         try CHECKED(WindowsPreallocateStringBuffer(UInt32(codeUnitCount), &pointer, &hStringBuffer));
         guard let pointer else { throw Error(hr: E_FAIL) }
-        _ = UnsafeMutableBufferPointer(start: pointer, count: codeUnitCount).initialize(from: string.utf16)
+        _ = UnsafeMutableBufferPointer(start: pointer, count: codeUnitCount).initialize(from: utf16)
         
         do {
             var hString: HSTRING? = nil
             try CHECKED(WindowsPromoteStringBuffer(hStringBuffer, &hString));
-            guard let hstring else {
-                throw Error(hr: E_OUTOFMEMORY)
-            }
-            return hstring
+            return hString
         } catch {
             WindowsDeleteStringBuffer(hStringBuffer)
             throw error

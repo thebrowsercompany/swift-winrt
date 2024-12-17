@@ -97,7 +97,12 @@ namespace swiftwinrt
                 }
             }
             w.write("}\n");
+        }
+        w.write("}\n\n");
+    }
 
+    void write_struct_bridgeable(writer& w, struct_type const& type)
+    {
         w.write("@_spi(WinRTInternal)\n");
         w.write("extension %: WinRTBridgeable {\n", type);
         {
