@@ -149,7 +149,7 @@ public enum __ABI_Windows_Storage_Streams {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.CreateCopyFromMemoryBuffer(pThis, _input, &valueAbi))
                 }
             }
-            return .from(abi: value)
+            return __IMPL_Windows_Storage_Streams.BufferBridge.from(abi: value)
         }
 
         public func CreateMemoryBufferOverIBuffer(_ input: test_component.AnyIBuffer?) throws -> test_component.MemoryBuffer? {
@@ -160,7 +160,7 @@ public enum __ABI_Windows_Storage_Streams {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.CreateMemoryBufferOverIBuffer(pThis, _input, &valueAbi))
                 }
             }
-            return .from(abi: value)
+            return __IMPL_Windows_Foundation.MemoryBufferBridge.from(abi: value)
         }
 
     }

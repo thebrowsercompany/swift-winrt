@@ -1096,7 +1096,7 @@ public enum __ABI_Windows_Foundation {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.get_QueryParsed(pThis, &ppWwwFormUrlDecoderAbi))
                 }
             }
-            return .from(abi: ppWwwFormUrlDecoder)
+            return __IMPL_Windows_Foundation.WwwFormUrlDecoderBridge.from(abi: ppWwwFormUrlDecoder)
         }
 
         public func get_RawUri() throws -> String {
@@ -1154,7 +1154,7 @@ public enum __ABI_Windows_Foundation {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.CombineUri(pThis, _relativeUri.get(), &instanceAbi))
                 }
             }
-            return .from(abi: instance)
+            return __IMPL_Windows_Foundation.UriBridge.from(abi: instance)
         }
 
     }

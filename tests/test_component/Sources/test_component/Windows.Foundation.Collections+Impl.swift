@@ -124,4 +124,34 @@ public enum __IMPL_Windows_Foundation_Collections {
 
     }
 
+    @_spi(WinRTInternal)
+    public enum PropertySetBridge: AbiBridge {
+        public typealias Swift = PropertySet
+        public typealias CABI = __x_ABI_CWindows_CFoundation_CCollections_CIPropertySet
+        public static func from(abi: ComPtr<__x_ABI_CWindows_CFoundation_CCollections_CIPropertySet>?) -> PropertySet? {
+            guard let abi = abi else { return nil }
+            return .init(fromAbi: test_component.IInspectable(abi))
+        }
+    }
+
+    @_spi(WinRTInternal)
+    public enum StringMapBridge: AbiBridge {
+        public typealias Swift = StringMap
+        public typealias CABI = __x_ABI_C__FIMap_2_HSTRING_HSTRING
+        public static func from(abi: ComPtr<__x_ABI_C__FIMap_2_HSTRING_HSTRING>?) -> StringMap? {
+            guard let abi = abi else { return nil }
+            return .init(fromAbi: test_component.IInspectable(abi))
+        }
+    }
+
+    @_spi(WinRTInternal)
+    public enum ValueSetBridge: AbiBridge {
+        public typealias Swift = ValueSet
+        public typealias CABI = __x_ABI_CWindows_CFoundation_CCollections_CIPropertySet
+        public static func from(abi: ComPtr<__x_ABI_CWindows_CFoundation_CCollections_CIPropertySet>?) -> ValueSet? {
+            guard let abi = abi else { return nil }
+            return .init(fromAbi: test_component.IInspectable(abi))
+        }
+    }
+
 }
