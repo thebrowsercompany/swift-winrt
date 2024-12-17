@@ -70,8 +70,8 @@ extension Foundation.UUID: WinRTBridgeable {
         .init(from: abi)
     }
 
-    public func toAbi() -> GUID {
-        .init(from: swift)
+    public func toABI() -> GUID {
+        .init(from: self)
     }
 }
 
