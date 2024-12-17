@@ -4515,7 +4515,7 @@ public class IIteratorStorageFile: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
             }
         }
-        return .from(abi: result)
+        return __IMPL_Windows_Storage.StorageFileBridge.from(abi: result)
     }
 
     open func get_HasCurrent() throws -> Bool {
@@ -4643,7 +4643,7 @@ public class IIteratorStorageFolder: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
             }
         }
-        return .from(abi: result)
+        return __IMPL_Windows_Storage.StorageFolderBridge.from(abi: result)
     }
 
     open func get_HasCurrent() throws -> Bool {
@@ -4771,7 +4771,7 @@ public class IIteratorStorageLibraryChange: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
             }
         }
-        return .from(abi: result)
+        return __IMPL_Windows_Storage.StorageLibraryChangeBridge.from(abi: result)
     }
 
     open func get_HasCurrent() throws -> Bool {
@@ -4899,7 +4899,7 @@ public class IIteratorBase: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
             }
         }
-        return .from(abi: result)
+        return __IMPL_test_component.BaseBridge.from(abi: result)
     }
 
     open func get_HasCurrent() throws -> Bool {
@@ -5477,7 +5477,7 @@ public class IKeyValuePairString_Base: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Value(pThis, &resultAbi))
             }
         }
-        return .from(abi: result)
+        return __IMPL_test_component.BaseBridge.from(abi: result)
     }
 
 }
@@ -6203,7 +6203,7 @@ public class IMapViewString_Base: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, _key.get(), &resultAbi))
             }
         }
-        return .from(abi: result)
+        return __IMPL_test_component.BaseBridge.from(abi: result)
     }
 
     open func get_Size() throws -> UInt32 {
@@ -7023,7 +7023,7 @@ internal var __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable: 
     Insert: {
         guard let __unwrapped__instance = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let key: String = .init(from: $1)
-        let value: test_component.Base? = .from(abi: ComPtr($2))
+        let value: test_component.Base? = __IMPL_test_component.BaseBridge.from(abi: ComPtr($2))
         let result = __unwrapped__instance.insert(key, value)
         $3?.initialize(to: .init(from: result))
         return S_OK
@@ -7053,7 +7053,7 @@ public class IMapString_Base: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, _key.get(), &resultAbi))
             }
         }
-        return .from(abi: result)
+        return __IMPL_test_component.BaseBridge.from(abi: result)
     }
 
     open func get_Size() throws -> UInt32 {
@@ -9060,7 +9060,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileV
 
     IndexOf: {
         guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let value: test_component.StorageFile? = .from(abi: ComPtr($1))
+        let value: test_component.StorageFile? = __IMPL_Windows_Storage.StorageFileBridge.from(abi: ComPtr($1))
         var index: UInt32 = 0
         let result = __unwrapped__instance.indexOf(value, &index)
         $2?.initialize(to: index)
@@ -9080,7 +9080,7 @@ public class IVectorViewStorageFile: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
             }
         }
-        return .from(abi: result)
+        return __IMPL_Windows_Storage.StorageFileBridge.from(abi: result)
     }
 
     open func get_Size() throws -> UInt32 {
@@ -9220,7 +9220,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolde
 
     IndexOf: {
         guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let value: test_component.StorageFolder? = .from(abi: ComPtr($1))
+        let value: test_component.StorageFolder? = __IMPL_Windows_Storage.StorageFolderBridge.from(abi: ComPtr($1))
         var index: UInt32 = 0
         let result = __unwrapped__instance.indexOf(value, &index)
         $2?.initialize(to: index)
@@ -9240,7 +9240,7 @@ public class IVectorViewStorageFolder: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
             }
         }
-        return .from(abi: result)
+        return __IMPL_Windows_Storage.StorageFolderBridge.from(abi: result)
     }
 
     open func get_Size() throws -> UInt32 {
@@ -9380,7 +9380,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibra
 
     IndexOf: {
         guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let value: test_component.StorageLibraryChange? = .from(abi: ComPtr($1))
+        let value: test_component.StorageLibraryChange? = __IMPL_Windows_Storage.StorageLibraryChangeBridge.from(abi: ComPtr($1))
         var index: UInt32 = 0
         let result = __unwrapped__instance.indexOf(value, &index)
         $2?.initialize(to: index)
@@ -9400,7 +9400,7 @@ public class IVectorViewStorageLibraryChange: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
             }
         }
-        return .from(abi: result)
+        return __IMPL_Windows_Storage.StorageLibraryChangeBridge.from(abi: result)
     }
 
     open func get_Size() throws -> UInt32 {
@@ -9540,7 +9540,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVTable: _
 
     IndexOf: {
         guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let value: test_component.Base? = .from(abi: ComPtr($1))
+        let value: test_component.Base? = __IMPL_test_component.BaseBridge.from(abi: ComPtr($1))
         var index: UInt32 = 0
         let result = __unwrapped__instance.indexOf(value, &index)
         $2?.initialize(to: index)
@@ -9560,7 +9560,7 @@ public class IVectorViewBase: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
             }
         }
-        return .from(abi: result)
+        return __IMPL_test_component.BaseBridge.from(abi: result)
     }
 
     open func get_Size() throws -> UInt32 {
@@ -11090,7 +11090,7 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_A
 
     IndexOf: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let value: test_component.Base? = .from(abi: ComPtr($1))
+        let value: test_component.Base? = __IMPL_test_component.BaseBridge.from(abi: ComPtr($1))
         var index: UInt32 = 0
         let result = __unwrapped__instance.indexOf(value, &index)
         $2?.initialize(to: index)
@@ -11101,7 +11101,7 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_A
     SetAt: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let index: UInt32 = $1
-        let value: test_component.Base? = .from(abi: ComPtr($2))
+        let value: test_component.Base? = __IMPL_test_component.BaseBridge.from(abi: ComPtr($2))
         __unwrapped__instance.setAt(index, value)
         return S_OK
     },
@@ -11109,7 +11109,7 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_A
     InsertAt: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let index: UInt32 = $1
-        let value: test_component.Base? = .from(abi: ComPtr($2))
+        let value: test_component.Base? = __IMPL_test_component.BaseBridge.from(abi: ComPtr($2))
         __unwrapped__instance.insertAt(index, value)
         return S_OK
     },
@@ -11123,7 +11123,7 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_A
 
     Append: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let value: test_component.Base? = .from(abi: ComPtr($1))
+        let value: test_component.Base? = __IMPL_test_component.BaseBridge.from(abi: ComPtr($1))
         __unwrapped__instance.append(value)
         return S_OK
     },
@@ -11154,7 +11154,7 @@ public class IVectorBase: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
             }
         }
-        return .from(abi: result)
+        return __IMPL_test_component.BaseBridge.from(abi: result)
     }
 
     open func get_Size() throws -> UInt32 {
@@ -14109,7 +14109,7 @@ public class IAsyncOperationBasicProperties: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
             }
         }
-        return .from(abi: result)
+        return __IMPL_Windows_Storage_FileProperties.BasicPropertiesBridge.from(abi: result)
     }
 
 }
@@ -14262,7 +14262,7 @@ public class IAsyncOperationDocumentProperties: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
             }
         }
-        return .from(abi: result)
+        return __IMPL_Windows_Storage_FileProperties.DocumentPropertiesBridge.from(abi: result)
     }
 
 }
@@ -14415,7 +14415,7 @@ public class IAsyncOperationImageProperties: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
             }
         }
-        return .from(abi: result)
+        return __IMPL_Windows_Storage_FileProperties.ImagePropertiesBridge.from(abi: result)
     }
 
 }
@@ -14568,7 +14568,7 @@ public class IAsyncOperationMusicProperties: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
             }
         }
-        return .from(abi: result)
+        return __IMPL_Windows_Storage_FileProperties.MusicPropertiesBridge.from(abi: result)
     }
 
 }
@@ -14721,7 +14721,7 @@ public class IAsyncOperationStorageItemThumbnail: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
             }
         }
-        return .from(abi: result)
+        return __IMPL_Windows_Storage_FileProperties.StorageItemThumbnailBridge.from(abi: result)
     }
 
 }
@@ -14874,7 +14874,7 @@ public class IAsyncOperationVideoProperties: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
             }
         }
-        return .from(abi: result)
+        return __IMPL_Windows_Storage_FileProperties.VideoPropertiesBridge.from(abi: result)
     }
 
 }
@@ -15333,7 +15333,7 @@ public class IAsyncOperationStorageFile: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
             }
         }
-        return .from(abi: result)
+        return __IMPL_Windows_Storage.StorageFileBridge.from(abi: result)
     }
 
 }
@@ -15486,7 +15486,7 @@ public class IAsyncOperationStorageFolder: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
             }
         }
-        return .from(abi: result)
+        return __IMPL_Windows_Storage.StorageFolderBridge.from(abi: result)
     }
 
 }
@@ -15639,7 +15639,7 @@ public class IAsyncOperationStorageStreamTransaction: test_component.IInspectabl
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
             }
         }
-        return .from(abi: result)
+        return __IMPL_Windows_Storage.StorageStreamTransactionBridge.from(abi: result)
     }
 
 }
@@ -16684,8 +16684,8 @@ internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass_
     Invoke: {
         do {
             guard let __unwrapped__instance = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let sender: test_component.Class? = .from(abi: ComPtr($1))
-            let args: test_component.DeferrableEventArgs? = .from(abi: ComPtr($2))
+            let sender: test_component.Class? = __IMPL_test_component.ClassBridge.from(abi: ComPtr($1))
+            let args: test_component.DeferrableEventArgs? = __IMPL_test_component.DeferrableEventArgsBridge.from(abi: ComPtr($2))
             try __unwrapped__instance(sender, args)
             return S_OK
         } catch { return failWith(error: error) } 
@@ -16735,7 +16735,7 @@ internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple
     Invoke: {
         do {
             guard let __unwrapped__instance = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-            let sender: test_component.Simple? = .from(abi: ComPtr($1))
+            let sender: test_component.Simple? = __IMPL_test_component.SimpleBridge.from(abi: ComPtr($1))
             let args: test_component.SimpleEventArgs = .from(abi: $2)
             try __unwrapped__instance(sender, args)
             return S_OK

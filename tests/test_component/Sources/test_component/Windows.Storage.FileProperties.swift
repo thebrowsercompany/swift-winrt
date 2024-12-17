@@ -29,12 +29,6 @@ public final class BasicProperties : WinRTClass, IStorageItemExtraProperties {
     }
 
     @_spi(WinRTInternal)
-    public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CFileProperties_CIBasicProperties>?) -> BasicProperties? {
-        guard let abi = abi else { return nil }
-        return .init(fromAbi: test_component.IInspectable(abi))
-    }
-
-    @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
         super.init(fromAbi)
     }
@@ -90,12 +84,6 @@ public final class DocumentProperties : WinRTClass, IStorageItemExtraProperties 
             return RawPointer(_default)
         }
         return super._getABI()
-    }
-
-    @_spi(WinRTInternal)
-    public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CFileProperties_CIDocumentProperties>?) -> DocumentProperties? {
-        guard let abi = abi else { return nil }
-        return .init(fromAbi: test_component.IInspectable(abi))
     }
 
     @_spi(WinRTInternal)
@@ -161,12 +149,6 @@ public final class ImageProperties : WinRTClass, IStorageItemExtraProperties {
             return RawPointer(_default)
         }
         return super._getABI()
-    }
-
-    @_spi(WinRTInternal)
-    public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties>?) -> ImageProperties? {
-        guard let abi = abi else { return nil }
-        return .init(fromAbi: test_component.IInspectable(abi))
     }
 
     @_spi(WinRTInternal)
@@ -275,12 +257,6 @@ public final class MusicProperties : WinRTClass, IStorageItemExtraProperties {
             return RawPointer(_default)
         }
         return super._getABI()
-    }
-
-    @_spi(WinRTInternal)
-    public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties>?) -> MusicProperties? {
-        guard let abi = abi else { return nil }
-        return .init(fromAbi: test_component.IInspectable(abi))
     }
 
     @_spi(WinRTInternal)
@@ -416,12 +392,6 @@ public final class StorageItemContentProperties : WinRTClass, IStorageItemExtraP
     }
 
     @_spi(WinRTInternal)
-    public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CFileProperties_CIStorageItemContentProperties>?) -> StorageItemContentProperties? {
-        guard let abi = abi else { return nil }
-        return .init(fromAbi: test_component.IInspectable(abi))
-    }
-
-    @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
         super.init(fromAbi)
     }
@@ -482,12 +452,6 @@ public final class StorageItemThumbnail : WinRTClass, test_component.IClosable, 
             return RawPointer(_default)
         }
         return super._getABI()
-    }
-
-    @_spi(WinRTInternal)
-    public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CStreams_CIRandomAccessStreamWithContentType>?) -> StorageItemThumbnail? {
-        guard let abi = abi else { return nil }
-        return .init(fromAbi: test_component.IInspectable(abi))
     }
 
     @_spi(WinRTInternal)
@@ -612,12 +576,6 @@ public final class VideoProperties : WinRTClass, IStorageItemExtraProperties {
             return RawPointer(_default)
         }
         return super._getABI()
-    }
-
-    @_spi(WinRTInternal)
-    public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties>?) -> VideoProperties? {
-        guard let abi = abi else { return nil }
-        return .init(fromAbi: test_component.IInspectable(abi))
     }
 
     @_spi(WinRTInternal)
