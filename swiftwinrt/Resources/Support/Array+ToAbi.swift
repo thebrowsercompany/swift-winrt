@@ -13,7 +13,17 @@ extension Array where Element: ToAbi {
 }
 
 @_spi(WinRTInternal)
-extension Array where Element: Numeric {
+extension Array where  Element: Numeric {
+    public func toABI(_ withAbi: (_ length: UInt32, _ bytes: UnsafeMutablePointer<Element>?) throws -> Void) throws {
+        try withUnsafeBytes { (bytes: UnsafeRawBufferPointer) in
+            let bytesPtr = bytes.baseAddress?.assumingMemoryBound(to: Element.self)
+            try withAbi(UInt32(count), .init(mutating: bytesPtr))
+        }
+    }
+}
+
+@_spi(WinRTInternal)
+extension Array where Element: RawRepresentable, Element.RawValue: Numeric {
     public func toABI(_ withAbi: (_ length: UInt32, _ bytes: UnsafeMutablePointer<Element>?) throws -> Void) throws {
         try withUnsafeBytes { (bytes: UnsafeRawBufferPointer) in
             let bytesPtr = bytes.baseAddress?.assumingMemoryBound(to: Element.self)

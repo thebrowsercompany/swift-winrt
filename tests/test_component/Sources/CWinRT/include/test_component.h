@@ -3115,6 +3115,30 @@ struct __x_ABI_Ctest__component_CStructWithIReference
         UINT32 valueLength,
         INT32* value,
         HSTRING* result);
+    HRESULT (STDMETHODCALLTYPE* InStringArray)(__x_ABI_Ctest__component_CIClass* This,
+        UINT32 valueLength,
+        HSTRING* value,
+        HSTRING* result);
+    HRESULT (STDMETHODCALLTYPE* InObjectArray)(__x_ABI_Ctest__component_CIClass* This,
+        UINT32 valueLength,
+        IInspectable** value,
+        HSTRING* result);
+    HRESULT (STDMETHODCALLTYPE* InStringableArray)(__x_ABI_Ctest__component_CIClass* This,
+        UINT32 valueLength,
+        __x_ABI_CWindows_CFoundation_CIStringable** value,
+        HSTRING* result);
+    HRESULT (STDMETHODCALLTYPE* InStructArray)(__x_ABI_Ctest__component_CIClass* This,
+        UINT32 valueLength,
+        struct __x_ABI_Ctest__component_CBlittableStruct* value,
+        HSTRING* result);
+    HRESULT (STDMETHODCALLTYPE* InNonBlittableStructArray)(__x_ABI_Ctest__component_CIClass* This,
+        UINT32 valueLength,
+        struct __x_ABI_Ctest__component_CNonBlittableStruct* value,
+        HSTRING* result);
+    HRESULT (STDMETHODCALLTYPE* InEnumArray)(__x_ABI_Ctest__component_CIClass* This,
+        UINT32 valueLength,
+        enum __x_ABI_Ctest__component_CSigned* value,
+        HSTRING* result);
     HRESULT (STDMETHODCALLTYPE* NoexceptVoid)(__x_ABI_Ctest__component_CIClass* This);
     HRESULT (STDMETHODCALLTYPE* NoexceptInt32)(__x_ABI_Ctest__component_CIClass* This,
         INT32* result);
