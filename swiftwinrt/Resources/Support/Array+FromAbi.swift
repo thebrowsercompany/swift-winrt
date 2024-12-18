@@ -7,7 +7,7 @@ public typealias WinRTArrayAbi<T> = (count: UInt32, start: UnsafeMutablePointer<
 @_spi(WinRTInternal)
 extension Array where Element: FromAbi {
     public static func from(abi: WinRTArrayAbi<Element.ABI>) -> [Element] {
-        try UnsafeBufferPointer(start: abi.start, count: Int(abi.count)).map { .from(abi: $0) }
+        UnsafeBufferPointer(start: abi.start, count: Int(abi.count)).map { .from(abi: $0) }
     }
 }
 
