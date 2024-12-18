@@ -95,7 +95,7 @@ namespace winrt::test_component::implementation
     }
 
     hstring Class::InEnum(Signed const& value)
-    { 
+    {
         if (m_implementation)
         {
             return m_implementation.InEnum(value);
@@ -185,7 +185,7 @@ namespace winrt::test_component::implementation
         {
             m_implementation.OutObject(value);
         }
-        else 
+        else
         {
             value = make<Value>(123);
         }
@@ -246,7 +246,7 @@ namespace winrt::test_component::implementation
         {
             return m_implementation.ReturnObject();
         }
-        else 
+        else
         {
             return make<Value>(123);
         }
@@ -266,7 +266,7 @@ namespace winrt::test_component::implementation
     }
 
     void Class::EnumProperty(Fruit const& value)
-    { 
+    {
         if (m_implementation)
         {
             m_implementation.EnumProperty(value);
@@ -321,7 +321,7 @@ namespace winrt::test_component::implementation
 
         for (auto&& v : value)
         {
-            result = result + std::to_wstring(v.First) + std::to_wstring(v.Second) + L",";
+            result = result + std::to_wstring(v.First) + std::to_wstring(v.Second);
         }
 
         return result;
@@ -334,7 +334,7 @@ namespace winrt::test_component::implementation
 
         for (auto&& v : value)
         {
-            result = result + v.First + v.Second + L",";
+            result = result + v.First + v.Second + std::to_wstring(v.Third) + v.Fourth;
         }
 
         return result;
@@ -539,7 +539,7 @@ namespace winrt::test_component::implementation
         {
             return m_implementation.Id();
         }
-        else 
+        else
         {
             return m_id;
         }
