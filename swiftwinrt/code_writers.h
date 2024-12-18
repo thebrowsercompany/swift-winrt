@@ -737,23 +737,24 @@ typealias % = InterfaceWrapperBase<%>
                 }
                 else if (param.is_array())
                 {
-                    auto count_param_name = "$" + std::to_string(param_number + 1);
+                    auto array_param_name = "$" + std::to_string(param_number + 1);
+                    auto count_param_name = param_name;
                     if (is_reference_type(param.type))
                     {
-                        w.write("let %: [%] = .from(abiBridge: %.self, abi: (%, %))\n", 
+                        w.write("let %: [%] = .from(abiBridge: %.self, abi: (count: %, start: %))\n", 
                             get_swift_name(param),
                             bind<write_type>(*param.type, write_type_params::swift),
                             bind_bridge_fullname(*param.type),
                             count_param_name,
-                            param_name);
+                            array_param_name);
                     }
                     else
                     {
-                        w.write("let %: [%] = .from(abi: (%, %))\n",
+                        w.write("let %: [%] = .from(abi: (count: %, start: %))\n",
                             get_swift_name(param),
                             bind<write_type>(*param.type, write_type_params::swift),
                             count_param_name,
-                            param_name);
+                            array_param_name);
                     }
                     ++param_number;
                 }

@@ -9936,7 +9936,10 @@ internal var __x_ABI_C__FIVector_1_IInspectableVTable: __x_ABI_C__FIVector_1_IIn
 
     ReplaceAll: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let items: [Any?] = .from(abiBridge: __IMPL_.AnyBridge.self, abi: ($2, $1))
+        let count: UInt32 = $1
+        let abi: UnsafeMutablePointer<UnsafeMutablePointer<C_IInspectable>?>? = $2
+        let items: [Any?] = .init() //.from(abiBridge: __IMPL_.AnyBridge.self, abi: (count:  count, start: abi))
+
         __unwrapped__instance.replaceAll(items)
         return S_OK
     }
@@ -10263,7 +10266,9 @@ internal var __x_ABI_C__FIVector_1_GUIDVTable: __x_ABI_C__FIVector_1_GUIDVtbl = 
 
     ReplaceAll: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1_GUIDWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let items: [Foundation.UUID] = .from(abi: ($2, $1))
+        let count: UInt32 = $1
+        let abi = $2
+        let items: [Foundation.UUID] = try! .from(abi: (count: $1, start: $2))
         __unwrapped__instance.replaceAll(items)
         return S_OK
     }
@@ -10581,7 +10586,9 @@ internal var __x_ABI_C__FIVector_1_HSTRINGVTable: __x_ABI_C__FIVector_1_HSTRINGV
 
     ReplaceAll: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let items: [String] = .from(abi: ($2, $1))
+        let count: UInt32 = $1
+        let abi = $2
+        let items: [String] = .init() //.from(abi: (count: $1, start: $2))
         __unwrapped__instance.replaceAll(items)
         return S_OK
     }
@@ -10904,7 +10911,9 @@ internal var __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEnt
 
     ReplaceAll: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let items: [test_component.SortEntry] = .from(abi: ($2, $1))
+        let count: UInt32 = $1
+        let abi = $2
+        let items: [test_component.SortEntry] = .init() //.from(abi: (count: $1, start: $2))
         __unwrapped__instance.replaceAll(items)
         return S_OK
     }
@@ -11226,7 +11235,9 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_A
 
     ReplaceAll: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let items: [test_component.Base?] = .from(abiBridge: __IMPL_test_component.BaseBridge.self, abi: ($2, $1))
+        let count: UInt32 = $1
+        let abi: UnsafeMutablePointer<UnsafeMutablePointer<__IMPL_test_component.BaseBridge.CABI>?>? = $2
+        let items: [__IMPL_test_component.BaseBridge.SwiftProjection?] = try! .from(abiBridge: __IMPL_test_component.BaseBridge.self, abi: (count: count, start: abi))
         __unwrapped__instance.replaceAll(items)
         return S_OK
     }
@@ -11546,7 +11557,9 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicVTable: __x
 
     ReplaceAll: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let items: [test_component.AnyIBasic?] = .from(abiBridge: __IMPL_test_component.IBasicBridge.self, abi: ($2, $1))
+        let count: UInt32 = $1
+        let abi = $2
+        let items: [test_component.AnyIBasic?] = .init() //.from(abiBridge: __IMPL_test_component.IBasicBridge.self, abi: (count: $1, start: $2))
         __unwrapped__instance.replaceAll(items)
         return S_OK
     }

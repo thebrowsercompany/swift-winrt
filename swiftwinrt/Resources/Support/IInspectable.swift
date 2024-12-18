@@ -160,6 +160,6 @@ public enum __IMPL_ {
 
         public typealias SwiftProjection = Any
         public typealias CABI = C_IInspectable
-        public typealias SwiftABI = IInspectable
+        public typealias SwiftABI = SUPPORT_MODULE.IInspectable
     }
 }
