@@ -19,6 +19,13 @@ extension Array where Element: Numeric {
 }
 
 @_spi(WinRTInternal)
+extension Array where Element: RawRepresentable, Element.RawValue: Numeric {
+    public static func from(abi: WinRTArrayAbi<Element>) throws -> [Element] {
+        Array(UnsafeBufferPointer(start: abi.start, count: Int(abi.count)))
+    }
+}
+
+@_spi(WinRTInternal)
 extension Array {
     public static func from<Bridge: AbiInterfaceBridge>(abiBridge: Bridge.Type, abi: WinRTArrayAbi<UnsafeMutablePointer<Bridge.CABI>?>) -> [Element] where Element == Bridge.SwiftProjection? {
         UnsafeBufferPointer(start: abi.start, count: Int(abi.count)).map { InterfaceWrapperBase<Bridge>.unwrapFrom(abi: ComPtr($0)) }

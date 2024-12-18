@@ -669,6 +669,30 @@ public final class Class : WinRTClass, IBasic {
         try _default.InInt32Array(value)
     }
 
+    public func inStringArray(_ value: [String]) throws -> String {
+        try _default.InStringArray(value)
+    }
+
+    public func inObjectArray(_ value: [Any?]) throws -> String {
+        try _default.InObjectArray(value)
+    }
+
+    public func inStringableArray(_ value: [test_component.AnyIStringable?]) throws -> String {
+        try _default.InStringableArray(value)
+    }
+
+    public func inStructArray(_ value: [BlittableStruct]) throws -> String {
+        try _default.InStructArray(value)
+    }
+
+    public func inNonBlittableStructArray(_ value: [NonBlittableStruct]) throws -> String {
+        try _default.InNonBlittableStructArray(value)
+    }
+
+    public func inEnumArray(_ value: [Signed]) throws -> String {
+        try _default.InEnumArray(value)
+    }
+
     public func noexceptVoid() {
         try! _default.NoexceptVoid()
     }

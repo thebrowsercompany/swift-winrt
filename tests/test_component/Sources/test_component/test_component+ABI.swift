@@ -56,7 +56,7 @@ private var IID___x_ABI_Ctest__component_CIBufferTesterStatics: test_component.I
 }
 
 private var IID___x_ABI_Ctest__component_CIClass: test_component.IID {
-    .init(Data1: 0x5ADEA2BF, Data2: 0x88FC, Data3: 0x5F8B, Data4: ( 0xB5,0xD3,0x59,0xB1,0x64,0x5D,0x0F,0xDD ))// 5ADEA2BF-88FC-5F8B-B5D3-59B1645D0FDD
+    .init(Data1: 0x0FD4DE6B, Data2: 0x257A, Data3: 0x5CA3, Data4: ( 0xB5,0x72,0xB6,0x6A,0x81,0xB0,0x8E,0x59 ))// 0FD4DE6B-257A-5CA3-B572-B66A81B08E59
 }
 
 private var IID___x_ABI_Ctest__component_CIClassFactory: test_component.IID {
@@ -731,6 +731,66 @@ public enum __ABI_test_component {
             try value.toABI { (count, _value) in
                 _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InInt32Array(pThis, count, _value, &result))
+                }
+            }
+            return .init(from: result)
+        }
+
+        public func InStringArray(_ value: [String]) throws -> String {
+            var result: HSTRING?
+            try value.toABI { (count, _value) in
+                _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.InStringArray(pThis, count, _value, &result))
+                }
+            }
+            return .init(from: result)
+        }
+
+        public func InObjectArray(_ value: [Any?]) throws -> String {
+            var result: HSTRING?
+            try value.toABI(abiBridge: __IMPL_.AnyBridge.self) { (count, _value) in
+                _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.InObjectArray(pThis, count, _value, &result))
+                }
+            }
+            return .init(from: result)
+        }
+
+        public func InStringableArray(_ value: [test_component.AnyIStringable?]) throws -> String {
+            var result: HSTRING?
+            try value.toABI(abiBridge: __IMPL_Windows_Foundation.IStringableBridge.self) { (count, _value) in
+                _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.InStringableArray(pThis, count, _value, &result))
+                }
+            }
+            return .init(from: result)
+        }
+
+        public func InStructArray(_ value: [test_component.BlittableStruct]) throws -> String {
+            var result: HSTRING?
+            try value.toABI { (count, _value) in
+                _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.InStructArray(pThis, count, _value, &result))
+                }
+            }
+            return .init(from: result)
+        }
+
+        public func InNonBlittableStructArray(_ value: [test_component.NonBlittableStruct]) throws -> String {
+            var result: HSTRING?
+            try value.toABI { (count, _value) in
+                _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.InNonBlittableStructArray(pThis, count, _value, &result))
+                }
+            }
+            return .init(from: result)
+        }
+
+        public func InEnumArray(_ value: [test_component.Signed]) throws -> String {
+            var result: HSTRING?
+            try value.toABI { (count, _value) in
+                _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.InEnumArray(pThis, count, _value, &result))
                 }
             }
             return .init(from: result)

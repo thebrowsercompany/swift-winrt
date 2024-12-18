@@ -9936,10 +9936,7 @@ internal var __x_ABI_C__FIVector_1_IInspectableVTable: __x_ABI_C__FIVector_1_IIn
 
     ReplaceAll: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let count: UInt32 = $1
-        let abi: UnsafeMutablePointer<UnsafeMutablePointer<C_IInspectable>?>? = $2
-        let items: [Any?] = .init() //.from(abiBridge: __IMPL_.AnyBridge.self, abi: (count:  count, start: abi))
-
+        let items: [Any?] = .from(abiBridge: __IMPL_.AnyBridge.self, abi: (count: $1, start: $2))
         __unwrapped__instance.replaceAll(items)
         return S_OK
     }
@@ -10266,9 +10263,7 @@ internal var __x_ABI_C__FIVector_1_GUIDVTable: __x_ABI_C__FIVector_1_GUIDVtbl = 
 
     ReplaceAll: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1_GUIDWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let count: UInt32 = $1
-        let abi = $2
-        let items: [Foundation.UUID] = try! .from(abi: (count: $1, start: $2))
+        let items: [Foundation.UUID] = .from(abi: (count: $1, start: $2))
         __unwrapped__instance.replaceAll(items)
         return S_OK
     }
@@ -10586,9 +10581,7 @@ internal var __x_ABI_C__FIVector_1_HSTRINGVTable: __x_ABI_C__FIVector_1_HSTRINGV
 
     ReplaceAll: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let count: UInt32 = $1
-        let abi = $2
-        let items: [String] = .init() //.from(abi: (count: $1, start: $2))
+        let items: [String] = .from(abi: (count: $1, start: $2))
         __unwrapped__instance.replaceAll(items)
         return S_OK
     }
@@ -10911,9 +10904,7 @@ internal var __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEnt
 
     ReplaceAll: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let count: UInt32 = $1
-        let abi = $2
-        let items: [test_component.SortEntry] = .init() //.from(abi: (count: $1, start: $2))
+        let items: [test_component.SortEntry] = .from(abi: (count: $1, start: $2))
         __unwrapped__instance.replaceAll(items)
         return S_OK
     }
@@ -11235,9 +11226,7 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_A
 
     ReplaceAll: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let count: UInt32 = $1
-        let abi: UnsafeMutablePointer<UnsafeMutablePointer<__IMPL_test_component.BaseBridge.CABI>?>? = $2
-        let items: [__IMPL_test_component.BaseBridge.SwiftProjection?] = try! .from(abiBridge: __IMPL_test_component.BaseBridge.self, abi: (count: count, start: abi))
+        let items: [test_component.Base?] = .from(abiBridge: __IMPL_test_component.BaseBridge.self, abi: (count: $1, start: $2))
         __unwrapped__instance.replaceAll(items)
         return S_OK
     }
@@ -11557,9 +11546,7 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicVTable: __x
 
     ReplaceAll: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        let count: UInt32 = $1
-        let abi = $2
-        let items: [test_component.AnyIBasic?] = .init() //.from(abiBridge: __IMPL_test_component.IBasicBridge.self, abi: (count: $1, start: $2))
+        let items: [test_component.AnyIBasic?] = .from(abiBridge: __IMPL_test_component.IBasicBridge.self, abi: (count: $1, start: $2))
         __unwrapped__instance.replaceAll(items)
         return S_OK
     }
@@ -16798,7 +16785,7 @@ internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CStorage__CSea
     }
 }
 private var IID___x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs: test_component.IID {
-    .init(Data1: 0x11bc190a, Data2: 0x59d8, Data3: 0x515a, Data4: ( 0xb1,0x46,0x8e,0x42,0x2f,0x57,0x68,0x5c ))// 11bc190a-59d8-515a-b146-8e422f57685c
+    .init(Data1: 0xe7c34e55, Data2: 0x1da3, Data3: 0x51d7, Data4: ( 0x83,0xc3,0x9c,0x56,0xe0,0x62,0x6f,0xe5 ))// e7c34e55-1da3-51d7-83c3-9c56e0626fe5
 }
 
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs {
