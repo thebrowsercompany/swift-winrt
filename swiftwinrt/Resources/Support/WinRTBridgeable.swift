@@ -7,7 +7,7 @@ public protocol ToAbi {
 @_spi(WinRTInternal)
 public protocol FromAbi {
     associatedtype ABI
-    static func from(abi: ABI) throws -> Self
+    static func from(abi: ABI) -> Self
 }
 
 @_spi(WinRTInternal)
