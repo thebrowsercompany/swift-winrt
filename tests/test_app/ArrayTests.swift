@@ -50,17 +50,17 @@ class ArrayTests : XCTestCase {
     }
 
     public func testInNonBlittableStructArray() throws {
-        let input: [NonBlittableStruct] = [NonBlittableStruct(first: "1", second: "2", third: 3, fourth: "3"), NonBlittableStruct(first: "4", second: "5", third: 3, fourth: "6")]
+        let input: [NonBlittableStruct] = [NonBlittableStruct(first: "1", second: "2", third: 3, fourth: "4"), NonBlittableStruct(first: "5", second: "6", third: 7, fourth: "8")]
         let classy = Class()
         let result = try classy.inNonBlittableStructArray(input)
-        XCTAssertEqual("123456", result)
+        XCTAssertEqual("12345678", result)
     }
 
     public func testInEnumArray() throws {
         let input: [Signed] = [.first, .second, .third]
         let classy = Class()
         let result = try classy.inEnumArray(input)
-        XCTAssertEqual("0", result)
+        XCTAssertEqual("FirstSecondThird", result)
     }
 }
 
