@@ -217,27 +217,6 @@ namespace test_component
             Windows.Foundation.IReference<Signed> ReturnReferenceEnum();
             Fruit EnumProperty;
 
-            // void OutInt32Array(out Int32[] value);
-            // void OutStringArray(out String[] value);
-            // void OutObjectArray(out Object[] value);
-            // void OutStringableArray(out Windows.Foundation.IStringable[] value);
-            // void OutStructArray(out Struct[] value);
-            // void OutEnumArray(out Signed[] value);
-
-            // void RefInt32Array(ref Int32[] value);
-            // void RefStringArray(ref String[] value);
-            // void RefObjectArray(ref Object[] value);
-            // void RefStringableArray(ref Windows.Foundation.IStringable[] value);
-            // void RefStructArray(ref Struct[] value);
-            // void RefEnumArray(ref Signed[] value);
-
-            // Int32[] ReturnInt32Array();
-            // String[] ReturnStringArray();
-            // Object[] ReturnObjectArray();
-            // Windows.Foundation.IStringable[] ReturnStringableArray();
-            // Struct[] ReturnStructArray();
-            // Signed[] ReturnEnumArray();
-
             [noexcept2] void NoexceptVoid();
             [noexcept2] Int32 NoexceptInt32();
             [noexcept2] String NoexceptString();

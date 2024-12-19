@@ -6,6 +6,23 @@ namespace winrt::test_component::implementation
 {
     using namespace Windows::Foundation;
 
+    struct Value : implements<Value, IStringable>
+    {
+        Value(int32_t value) :
+            m_value(value)
+        {
+        }
+
+        hstring ToString()
+        {
+            return hstring{ std::to_wstring(m_value) };
+        }
+
+    private:
+
+        int32_t m_value{};
+    };
+
     hstring ArrayMethods::InInt32Array(array_view<int32_t const> value)
     {
         simulate_rpc_behavior(value);
@@ -109,5 +126,151 @@ namespace winrt::test_component::implementation
         }
 
         throw hresult_invalid_argument();
+    }
+
+    void ArrayMethods::OutInt32Array(com_array<int32_t>& value)
+    {
+        value = { 1,2,3 };
+    }
+
+    void ArrayMethods::OutStringArray(com_array<hstring>& value)
+    {
+        value = { L"1", L"2", L"3" };
+    }
+
+    void ArrayMethods::OutObjectArray(com_array<Windows::Foundation::IInspectable>& value)
+    {
+        value = { make<Value>(1), make<Value>(2), make<Value>(3) };
+    }
+
+    void ArrayMethods::OutStringableArray(com_array<Windows::Foundation::IStringable>& value)
+    {
+        value = { make<Value>(1), make<Value>(2), make<Value>(3) };
+    }
+
+    void ArrayMethods::OutStructArray(com_array<BlittableStruct>& value)
+    {
+        value = { { 1, 2 }, { 3, 4 }, { 5, 6 } };
+    }
+
+    void ArrayMethods::OutNonBlittableStructArray(com_array<NonBlittableStruct>& value)
+    {
+        value = { { L"1", L"2", 3, L"4" }, { L"5", L"6", 7, L"8" }, { L"9", L"10", 11, L"12" } };
+    }
+
+    void ArrayMethods::OutEnumArray(com_array<Signed>& value)
+    {
+        value = { Signed::First, Signed::Second };
+    }
+
+    void ArrayMethods::RefInt32Array(array_view<int32_t> value)
+    {
+        simulate_rpc_behavior(value);
+
+        if (value.size())
+        {
+            int32_t counter{};
+
+            std::generate(value.begin(), value.end() - 1, [&]
+                {
+                    return ++counter;
+                });
+        }
+    }
+
+    void ArrayMethods::RefStringArray(array_view<hstring> value)
+    {
+        simulate_rpc_behavior(value);
+
+        if (value.size())
+        {
+            int32_t counter{};
+
+            std::generate(value.begin(), value.end() - 1, [&]
+                {
+                    return hstring{ std::to_wstring(++counter) };
+                });
+        }
+    }
+
+    void ArrayMethods::RefObjectArray(array_view<Windows::Foundation::IInspectable> value)
+    {
+        simulate_rpc_behavior(value);
+
+        if (value.size())
+        {
+            int32_t counter{};
+
+            std::generate(value.begin(), value.end() - 1, [&]
+                {
+                    return make<Value>(++counter);
+                });
+        }
+    }
+
+    void ArrayMethods::RefStringableArray(array_view<Windows::Foundation::IStringable> value)
+    {
+        simulate_rpc_behavior(value);
+
+        if (value.size())
+        {
+            int32_t counter{};
+
+            std::generate(value.begin(), value.end() - 1, [&]
+                {
+                    return make<Value>(++counter);
+                });
+        }
+    }
+
+    void ArrayMethods::RefEnumArray(array_view<Signed> value)
+    {
+        simulate_rpc_behavior(value);
+
+        if (value.size())
+        {
+            Signed counter{ Signed::First };
+
+            std::generate(value.begin(), value.end() - 1, [&]
+                {
+                    auto result = counter;
+                    counter = static_cast<Signed>(static_cast<int32_t>(counter) + 1);
+                    return result;
+                });
+        }
+    }
+
+    com_array<int32_t> ArrayMethods::ReturnInt32Array()
+    {
+        return { 1,2,3 };
+    }
+
+    com_array<hstring> ArrayMethods::ReturnStringArray()
+    {
+        return { L"1", L"2", L"3" };
+    }
+
+    com_array<Windows::Foundation::IInspectable> ArrayMethods::ReturnObjectArray()
+    {
+        return { make<Value>(1), make<Value>(2), make<Value>(3) };
+    }
+
+    com_array<Windows::Foundation::IStringable> ArrayMethods::ReturnStringableArray()
+    {
+        return { make<Value>(1), make<Value>(2), make<Value>(3) };
+    }
+
+    com_array<BlittableStruct> ArrayMethods::ReturnStructArray()
+    {
+        return { { 1, 2 }, { 3, 4 }, { 5, 6 } };
+    }
+    com_array<NonBlittableStruct> ArrayMethods::ReturnNonBlittableStructArray()
+    {
+        return { { L"1", L"2", 3, L"4" }, { L"5", L"6", 7, L"8" }, { L"9", L"10", 11, L"12" } };
+    }
+
+    com_array<Signed> ArrayMethods::ReturnEnumArray()
+    {
+        return { Signed::First, Signed::Second };
     }
 }

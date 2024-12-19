@@ -2656,6 +2656,48 @@ struct __x_ABI_Ctest__component_CStructWithIReference
         UINT32 valueLength,
         enum __x_ABI_Ctest__component_CSigned* value,
         HSTRING* result);
+    HRESULT (STDMETHODCALLTYPE* OutInt32Array)(__x_ABI_Ctest__component_CIArrayMethodsStatics* This,
+        UINT32* valueLength,
+        INT32** value);
+    HRESULT (STDMETHODCALLTYPE* OutStringArray)(__x_ABI_Ctest__component_CIArrayMethodsStatics* This,
+        UINT32* valueLength,
+        HSTRING** value);
+    HRESULT (STDMETHODCALLTYPE* OutObjectArray)(__x_ABI_Ctest__component_CIArrayMethodsStatics* This,
+        UINT32* valueLength,
+        IInspectable*** value);
+    HRESULT (STDMETHODCALLTYPE* OutStringableArray)(__x_ABI_Ctest__component_CIArrayMethodsStatics* This,
+        UINT32* valueLength,
+        __x_ABI_CWindows_CFoundation_CIStringable*** value);
+    HRESULT (STDMETHODCALLTYPE* OutStructArray)(__x_ABI_Ctest__component_CIArrayMethodsStatics* This,
+        UINT32* valueLength,
+        struct __x_ABI_Ctest__component_CBlittableStruct** value);
+    HRESULT (STDMETHODCALLTYPE* OutNonBlittableStructArray)(__x_ABI_Ctest__component_CIArrayMethodsStatics* This,
+        UINT32* valueLength,
+        struct __x_ABI_Ctest__component_CNonBlittableStruct** value);
+    HRESULT (STDMETHODCALLTYPE* OutEnumArray)(__x_ABI_Ctest__component_CIArrayMethodsStatics* This,
+        UINT32* valueLength,
+        enum __x_ABI_Ctest__component_CSigned** value);
+    HRESULT (STDMETHODCALLTYPE* ReturnInt32Array)(__x_ABI_Ctest__component_CIArrayMethodsStatics* This,
+        UINT32* resultLength,
+        INT32** result);
+    HRESULT (STDMETHODCALLTYPE* ReturnStringArray)(__x_ABI_Ctest__component_CIArrayMethodsStatics* This,
+        UINT32* resultLength,
+        HSTRING** result);
+    HRESULT (STDMETHODCALLTYPE* ReturnObjectArray)(__x_ABI_Ctest__component_CIArrayMethodsStatics* This,
+        UINT32* resultLength,
+        IInspectable*** result);
+    HRESULT (STDMETHODCALLTYPE* ReturnStringableArray)(__x_ABI_Ctest__component_CIArrayMethodsStatics* This,
+        UINT32* resultLength,
+        __x_ABI_CWindows_CFoundation_CIStringable*** result);
+    HRESULT (STDMETHODCALLTYPE* ReturnStructArray)(__x_ABI_Ctest__component_CIArrayMethodsStatics* This,
+        UINT32* resultLength,
+        struct __x_ABI_Ctest__component_CBlittableStruct** result);
+    HRESULT (STDMETHODCALLTYPE* ReturnNonBlittableStructArray)(__x_ABI_Ctest__component_CIArrayMethodsStatics* This,
+        UINT32* resultLength,
+        struct __x_ABI_Ctest__component_CNonBlittableStruct** result);
+    HRESULT (STDMETHODCALLTYPE* ReturnEnumArray)(__x_ABI_Ctest__component_CIArrayMethodsStatics* This,
+        UINT32* resultLength,
+        enum __x_ABI_Ctest__component_CSigned** result);
 
         END_INTERFACE
     } __x_ABI_Ctest__component_CIArrayMethodsStaticsVtbl;

@@ -4,7 +4,7 @@ import Foundation
 import Ctest_component
 
 private var IID___x_ABI_Ctest__component_CIArrayMethodsStatics: test_component.IID {
-    .init(Data1: 0xB1C5101B, Data2: 0x507A, Data3: 0x5A3E, Data4: ( 0x9D,0x71,0x11,0x4D,0x55,0xFF,0x29,0xB4 ))// B1C5101B-507A-5A3E-9D71-114D55FF29B4
+    .init(Data1: 0xC4AC353F, Data2: 0x2F7A, Data3: 0x540A, Data4: ( 0x82,0x43,0x73,0xAE,0xE3,0xB3,0xBD,0xD4 ))// C4AC353F-2F7A-540A-8243-73AEE3B3BDD4
 }
 
 private var IID___x_ABI_Ctest__component_CIAsyncMethodsStatics: test_component.IID {

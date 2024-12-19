@@ -15,6 +15,29 @@ namespace winrt::test_component::implementation
         static hstring InNonBlittableStructArray(array_view<winrt::test_component::NonBlittableStruct const> value);
         static hstring InEnumArray(array_view<winrt::test_component::Signed const> value);
 
+        static void OutInt32Array(com_array<int32_t>& value);
+        static void OutStringArray(com_array<hstring>& value);
+        static void OutObjectArray(com_array<Windows::Foundation::IInspectable>& value);
+        static void OutStringableArray(com_array<Windows::Foundation::IStringable>& value);
+        static void OutStructArray(com_array<winrt::test_component::BlittableStruct>& value);
+        static void OutNonBlittableStructArray(com_array<winrt::test_component::NonBlittableStruct>& value);
+        static void OutEnumArray(com_array<Signed>& value);
+
+        static void RefInt32Array(array_view<int32_t> value);
+        static void RefStringArray(array_view<hstring> value);
+        static void RefObjectArray(array_view<Windows::Foundation::IInspectable> value);
+        static void RefStringableArray(array_view<Windows::Foundation::IStringable> value);
+        static void RefEnumArray(array_view<Signed> value);
+
+        static com_array<int32_t> ReturnInt32Array();
+        static com_array<hstring> ReturnStringArray();
+        static com_array<Windows::Foundation::IInspectable> ReturnObjectArray();
+        static com_array<Windows::Foundation::IStringable> ReturnStringableArray();
+        static com_array<winrt::test_component::BlittableStruct> ReturnStructArray();
+        static com_array<winrt::test_component::NonBlittableStruct> ReturnNonBlittableStructArray();
+        static com_array<Signed> ReturnEnumArray();
+
+
     private:
 
         static hstring InEnum(winrt::test_component::Signed const& value);
