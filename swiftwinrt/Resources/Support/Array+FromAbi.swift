@@ -13,14 +13,14 @@ extension Array where Element: FromAbi {
 
 @_spi(WinRTInternal)
 extension Array where Element: Numeric {
-    public static func from(abi: WinRTArrayAbi<Element>) throws -> [Element] {
+    public static func from(abi: WinRTArrayAbi<Element>) -> [Element] {
         Array(UnsafeBufferPointer(start: abi.start, count: Int(abi.count)))
     }
 }
 
 @_spi(WinRTInternal)
 extension Array where Element: RawRepresentable, Element.RawValue: Numeric {
-    public static func from(abi: WinRTArrayAbi<Element>) throws -> [Element] {
+    public static func from(abi: WinRTArrayAbi<Element>) -> [Element] {
         Array(UnsafeBufferPointer(start: abi.start, count: Int(abi.count)))
     }
 }
