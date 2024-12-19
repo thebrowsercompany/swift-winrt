@@ -29,7 +29,8 @@ git submodule init
 git submodule update --recursive
 ```
 
-Install the required version of the Windows SDK if you don't already have it (currently 10.0.17763):
+Install the required version of the Windows SDK if you don't already have it, currently `10.0.17763`. Note that the WinGet package id for that version of the Windows SDK incorrectly uses `10.0.17736` as the version number.
+
 ```
 winget install --id Microsoft.WindowsSDK.10.0.17736
 ```
