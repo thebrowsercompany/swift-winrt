@@ -1,0 +1,50 @@
+import "Windows.Foundation.idl";
+
+// Simple struct/enum defintions used across multiple files
+namespace test_component
+{
+    struct BlittableStruct
+    {
+        Int32 First;
+        Int32 Second;
+    };
+
+    struct NonBlittableStruct
+    {
+        String First;
+        String Second;
+        Int32 Third;
+        String Fourth;
+    };
+
+    struct NonBlittableBoolStruct
+    {
+        Boolean First;
+        Boolean Second;
+        Boolean Third;
+        Boolean Fourth;
+    };
+
+    enum Signed
+    {
+        First = -1,
+        Second = 0,
+        Third = 1
+    };
+
+    [flags]
+    enum Unsigned
+    {
+        First = 0,
+        Second = 1,
+        Third = 2
+    };
+
+    enum Fruit
+    {
+        Banana,
+        Apple,
+        Orange,
+        Pineapple
+    };
+}
