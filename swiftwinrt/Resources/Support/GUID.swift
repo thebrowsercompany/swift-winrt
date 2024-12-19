@@ -63,6 +63,18 @@ public extension Foundation.UUID {
     }
 }
 
+@_spi(WinRTInternal)
+extension Foundation.UUID: WinRTBridgeable {
+    public typealias ABI = GUID
+    public static func from(abi: GUID) -> Foundation.UUID {
+        .init(from: abi)
+    }
+
+    public func toABI() -> GUID {
+        .init(from: self)
+    }
+}
+
 public extension GUID {
     init(from uuid: Foundation.UUID) {
         self.init(

@@ -42,10 +42,53 @@ extension StaticString {
      }
 }
 
+@_spi(WinRTInternal)
+extension String: WinRTBridgeable {
+    public typealias ABI = HSTRING?
+    public func toABI() throws -> HSTRING? {
+        let codeUnitCount = utf16.count
+        var pointer: UnsafeMutablePointer<UInt16>? = nil
+        var hStringBuffer: HSTRING_BUFFER? = nil
+
+        // Note: Methods like String.withCString are not used here because they do a copy to create a null
+        // terminated string, and requires an additional copy to create an HSTRING. Instead, a single copy is
+        // done by using WindowsPreallocateStringBuffer to allocate a buffer and directly copying the string into it.
+        try CHECKED(WindowsPreallocateStringBuffer(UInt32(codeUnitCount), &pointer, &hStringBuffer));
+        guard let pointer else { throw Error(hr: E_FAIL) }
+        _ = UnsafeMutableBufferPointer(start: pointer, count: codeUnitCount).initialize(from: utf16)
+        
+        do {
+            var hString: HSTRING? = nil
+            try CHECKED(WindowsPromoteStringBuffer(hStringBuffer, &hString));
+            return hString
+        } catch {
+            WindowsDeleteStringBuffer(hStringBuffer)
+            throw error
+        }
+    }
+
+    public static func from(abi: HSTRING?) -> String {
+        String(from: abi)
+    }
+}
+
 extension Bool {
   public init(from val: boolean) {
     self.init(booleanLiteral: val != 0)
   }
+}
+
+@_spi(WinRTInternal)
+extension Bool: WinRTBridgeable {
+    public typealias ABI = boolean
+    
+    public func toABI() -> boolean {
+        return .init(from: self)
+    }
+    
+    public static func from(abi: boolean) -> Bool {
+        return .init(from: abi)
+    }
 }
 
 extension Character {
@@ -56,6 +99,19 @@ extension Character {
       self.init("")
     }
   }
+}
+
+@_spi(WinRTInternal)
+extension Character: WinRTBridgeable {
+    public typealias ABI = WCHAR
+    
+    public func toABI() -> WCHAR {
+        return WCHAR(self.unicodeScalars.first?.value ?? 0)
+    }
+    
+    public static func from(abi: WCHAR) -> Character {
+        return Character(from: abi)
+    }
 }
 
 extension UnsafeMutableRawPointer {

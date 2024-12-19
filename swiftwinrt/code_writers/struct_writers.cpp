@@ -97,9 +97,18 @@ namespace swiftwinrt
                 }
             }
             w.write("}\n");
+        }
+        w.write("}\n\n");
+    }
 
-            w.write("public static func from(abi: %) -> % {\n",
-                bind_type_mangled(type), type);
+    void write_struct_bridgeable(writer& w, struct_type const& type)
+    {
+        w.write("@_spi(WinRTInternal)\n");
+        w.write("extension %: WinRTBridgeable {\n", type);
+        {
+            auto indent_guard1 = w.push_indent();
+            w.write("public typealias ABI = %\n", bind_type_mangled(type));
+            w.write("public static func from(abi: ABI) -> Self {\n");
             {
                 auto from_body_indent = w.push_indent();
 
@@ -118,6 +127,20 @@ namespace swiftwinrt
                     }
                 }
                 w.write(")\n");
+            }
+            w.write("}\n");
+
+            w.write("public func toABI() -> ABI {\n");
+            {
+                auto from_body_indent = w.push_indent();
+                if (is_struct_blittable(type))
+                {
+                    w.write(".from(swift: self)\n");
+                }
+                else
+                {
+                     w.write("%._ABI_%(from: self).detach()\n", abi_namespace(type), type.swift_type_name());
+                }
             }
             w.write("}\n");
         }
