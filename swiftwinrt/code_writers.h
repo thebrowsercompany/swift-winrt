@@ -198,7 +198,7 @@ namespace swiftwinrt
     {
         TypeDef signature_type;
         auto type = param.type;
-        auto param_name = get_swift_name(param);
+        auto param_name = param.name;
         auto is_out = param.out();
 
         auto category = get_category(type, &signature_type);
@@ -207,7 +207,7 @@ namespace swiftwinrt
         if (param.is_array())
         {
             // Arrays are all converted from the swift array to a c array, so they
-            // use the local_param_name 
+            // use the local_param_name
             w.write("count, %", local_name);
         }
         else if (category == param_category::object_type)
@@ -724,7 +724,7 @@ typealias % = InterfaceWrapperBase<%>
         {
             std::string param_name = "$" + std::to_string(param_number);
 
-       
+
             if (param.in())
             {
                 assert(!param.out());
@@ -741,7 +741,7 @@ typealias % = InterfaceWrapperBase<%>
                     auto count_param_name = param_name;
                     if (is_reference_type(param.type))
                     {
-                        w.write("let %: [%] = .from(abiBridge: %.self, abi: (count: %, start: %))\n", 
+                        w.write("let %: [%] = .from(abiBridge: %.self, abi: (count: %, start: %))\n",
                             get_swift_name(param),
                             bind<write_type>(*param.type, write_type_params::swift),
                             bind_bridge_fullname(*param.type),
@@ -1674,7 +1674,7 @@ vtable);
                     {
                         w.write("try %.toABI { (count, %) in\n", param_name, local_param_name);
                     }
-                  
+
                     guard.push_indent();
                     guard.push("}\n");
                 }
@@ -1693,7 +1693,7 @@ vtable);
                         param_name);
                 }
                 else if (is_reference_type(param.type) && !is_class(param.type))
-                {   
+                {
                     w.write("let %Wrapper = %(%)\n",
                         param_name,
                         bind_wrapper_fullname(param.type),
@@ -2468,7 +2468,7 @@ public init<Composable: ComposableImpl>(
             }));
 
         if (compose)
-        {   
+        {
             w.write("@_spi(WinRTInternal)\n");
             w.write("public typealias Composable = %\n", composableName);
         }
