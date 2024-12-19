@@ -3,6 +3,10 @@
 import Foundation
 import Ctest_component
 
+private var IID___x_ABI_Ctest__component_CIArrayMethodsStatics: test_component.IID {
+    .init(Data1: 0xB1C5101B, Data2: 0x507A, Data3: 0x5A3E, Data4: ( 0x9D,0x71,0x11,0x4D,0x55,0xFF,0x29,0xB4 ))// B1C5101B-507A-5A3E-9D71-114D55FF29B4
+}
+
 private var IID___x_ABI_Ctest__component_CIAsyncMethodsStatics: test_component.IID {
     .init(Data1: 0x5FAAD8F4, Data2: 0x29D7, Data3: 0x5C26, Data4: ( 0xA8,0x72,0x35,0x42,0xE3,0xE1,0x86,0x7A ))// 5FAAD8F4-29D7-5C26-A872-3542E3E1867A
 }
@@ -225,6 +229,81 @@ private var IID___x_ABI_Ctest__component_CIVoidToVoidDelegate: test_component.II
 
 @_spi(WinRTInternal)
 public enum __ABI_test_component {
+    public class IArrayMethodsStatics: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIArrayMethodsStatics }
+
+        public func InInt32Array(_ value: [Int32]) throws -> String {
+            var result: HSTRING?
+            try value.toABI { (count, _value) in
+                _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.InInt32Array(pThis, count, _value, &result))
+                }
+            }
+            return .init(from: result)
+        }
+
+        public func InStringArray(_ value: [String]) throws -> String {
+            var result: HSTRING?
+            try value.toABI { (count, _value) in
+                _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.InStringArray(pThis, count, _value, &result))
+                }
+            }
+            return .init(from: result)
+        }
+
+        public func InObjectArray(_ value: [Any?]) throws -> String {
+            var result: HSTRING?
+            try value.toABI(abiBridge: __IMPL_.AnyBridge.self) { (count, _value) in
+                _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.InObjectArray(pThis, count, _value, &result))
+                }
+            }
+            return .init(from: result)
+        }
+
+        public func InStringableArray(_ value: [test_component.AnyIStringable?]) throws -> String {
+            var result: HSTRING?
+            try value.toABI(abiBridge: __IMPL_Windows_Foundation.IStringableBridge.self) { (count, _value) in
+                _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.InStringableArray(pThis, count, _value, &result))
+                }
+            }
+            return .init(from: result)
+        }
+
+        public func InStructArray(_ value: [test_component.BlittableStruct]) throws -> String {
+            var result: HSTRING?
+            try value.toABI { (count, _value) in
+                _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.InStructArray(pThis, count, _value, &result))
+                }
+            }
+            return .init(from: result)
+        }
+
+        public func InNonBlittableStructArray(_ value: [test_component.NonBlittableStruct]) throws -> String {
+            var result: HSTRING?
+            try value.toABI { (count, _value) in
+                _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.InNonBlittableStructArray(pThis, count, _value, &result))
+                }
+            }
+            return .init(from: result)
+        }
+
+        public func InEnumArray(_ value: [test_component.Signed]) throws -> String {
+            var result: HSTRING?
+            try value.toABI { (count, _value) in
+                _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.InEnumArray(pThis, count, _value, &result))
+                }
+            }
+            return .init(from: result)
+        }
+
+    }
+
     public class IAsyncMethodsStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIAsyncMethodsStatics }
 

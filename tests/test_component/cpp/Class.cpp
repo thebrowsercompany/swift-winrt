@@ -95,7 +95,7 @@ namespace winrt::test_component::implementation
     }
 
     hstring Class::InEnum(Signed const& value)
-    { 
+    {
         if (m_implementation)
         {
             return m_implementation.InEnum(value);
@@ -185,7 +185,7 @@ namespace winrt::test_component::implementation
         {
             m_implementation.OutObject(value);
         }
-        else 
+        else
         {
             value = make<Value>(123);
         }
@@ -246,7 +246,7 @@ namespace winrt::test_component::implementation
         {
             return m_implementation.ReturnObject();
         }
-        else 
+        else
         {
             return make<Value>(123);
         }
@@ -266,7 +266,7 @@ namespace winrt::test_component::implementation
     }
 
     void Class::EnumProperty(Fruit const& value)
-    { 
+    {
         if (m_implementation)
         {
             m_implementation.EnumProperty(value);
@@ -285,73 +285,6 @@ namespace winrt::test_component::implementation
         }
 
         return Signed::First;
-    }
-
-    hstring Class::InInt32Array(array_view<int32_t const> value)
-    {
-        simulate_rpc_behavior(value);
-
-        hstring result;
-
-        for (auto&& v : value)
-        {
-            result = result + std::to_wstring(v);
-        }
-
-        return result;
-    }
-    hstring Class::InStringArray(array_view<hstring const> value)
-    {
-        simulate_rpc_behavior(value);
-
-        hstring result;
-
-        for (auto&& v : value)
-        {
-            result = result + v;
-        }
-
-        return result;
-    }
-    hstring Class::InObjectArray(array_view<Windows::Foundation::IInspectable const> value)
-    {
-        simulate_rpc_behavior(value);
-
-        hstring result;
-
-        for (auto&& v : value)
-        {
-            result = result + v.as<IStringable>().ToString();
-        }
-
-        return result;
-    }
-    hstring Class::InStringableArray(array_view<Windows::Foundation::IStringable const> value)
-    {
-        simulate_rpc_behavior(value);
-
-        hstring result;
-
-        for (auto&& v : value)
-        {
-            result = result + v.ToString();
-        }
-
-        return result;
-    }
-
-    hstring Class::InEnumArray(array_view<Signed const> value)
-    {
-        simulate_rpc_behavior(value);
-
-        hstring result;
-
-        for (auto&& v : value)
-        {
-            result = result + InEnum(v);
-        }
-
-        return result;
     }
 
     void Class::OutInt32Array(com_array<int32_t>& value)
@@ -513,7 +446,7 @@ namespace winrt::test_component::implementation
         {
             return m_implementation.Id();
         }
-        else 
+        else
         {
             return m_id;
         }

@@ -465,6 +465,8 @@ public protocol IVector<T> : IIterable, Collection where Element == T, Index == 
     func removeAtEnd()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.clear)
     func clear()
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.replaceall)
+    func replaceAll(_ items: [T])
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.size)
     var size: UInt32 { get }
 }

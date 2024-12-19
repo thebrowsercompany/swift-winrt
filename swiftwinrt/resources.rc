@@ -1,6 +1,8 @@
 #include "resources.h"
 
 Aggregation RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\Aggregation.swift"
+Array+FromAbi RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\Array+FromAbi.swift"
+Array+ToAbi RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\Array+ToAbi.swift"
 Array+toVector RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\Array+toVector.swift"
 COM+Extensions RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\COM+Extensions.swift"
 ComPtr RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\ComPtr.swift"

@@ -1,3 +1,4 @@
+#include "Types.idl"
 #include "AsyncMethods.idl"
 #include "BufferTests.idl"
 #include "CollectionTester.idl"
@@ -5,7 +6,7 @@
 #include "Keywords.idl"
 #include "NullValues.idl"
 #include "WeakReferencer.idl"
-
+#include "ArrayTester.idl"
 import "Windows.Foundation.idl";
 // import "Windows.Foundation.Numerics.idl";
 
@@ -17,7 +18,6 @@ namespace Windows.Foundation.Metadata
     {
     }
 }
-
 
 namespace test_component
 {
@@ -32,28 +32,6 @@ namespace test_component
             UUID, // Should become uuid
         };
 
-        struct BlittableStruct
-        {
-            Int32 First;
-            Int32 Second;
-        };
-
-        struct NonBlittableStruct
-        {
-            String First;
-            String Second;
-            Int32 Third;
-            String Fourth;
-        };
-
-        struct NonBlittableBoolStruct
-        {
-            Boolean First;
-            Boolean Second;
-            Boolean Third;
-            Boolean Fourth;
-        };
-
         struct StructWithEnum
         {
             SwiftifiableNames Names;
@@ -64,7 +42,6 @@ namespace test_component
             Windows.Foundation.IReference<Int32> Value1;
             Windows.Foundation.IReference<Int32> Value2;
         };
-
         namespace Delegates
         {
             delegate void SignalDelegate();
@@ -79,29 +56,6 @@ namespace test_component
             //  delegate void RefStringArrayDelegate(ref String[] value);
             //  delegate test_component.Struct[] StructDelegate();
         }
-
-        enum Signed
-        {
-            First = -1,
-            Second = 0,
-            Third = 1
-        };
-
-        [flags]
-        enum Unsigned
-        {
-            First = 0,
-            Second = 1,
-            Third = 2
-        };
-
-        enum Fruit
-        {
-            Banana,
-            Apple,
-            Orange,
-            Pineapple
-        };
 
         struct SimpleEventArgs
         {
@@ -262,13 +216,6 @@ namespace test_component
             Signed ReturnEnum();
             Windows.Foundation.IReference<Signed> ReturnReferenceEnum();
             Fruit EnumProperty;
-
-            // String InInt32Array(Int32[] value);
-            // String InStringArray(String[] value);
-            // String InObjectArray(Object[] value);
-            // String InStringableArray(Windows.Foundation.IStringable[] value);
-            // String InStructArray(Struct[] value);
-            // String InEnumArray(Signed[] value);
 
             // void OutInt32Array(out Int32[] value);
             // void OutStringArray(out String[] value);
