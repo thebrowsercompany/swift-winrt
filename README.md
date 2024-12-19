@@ -31,7 +31,7 @@ git submodule update --recursive
 
 Install the required version of the Windows SDK if you don't already have it (currently 10.0.17763):
 ```
-winget install --id Microsoft.WindowsSDK.10.0.17763
+winget install --id Microsoft.WindowsSDK.10.0.17736
 ```
 
 ### Integrated Build with CMake
