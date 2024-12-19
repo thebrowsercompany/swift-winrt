@@ -70,5 +70,9 @@
                   name="test_component.WeakReferencer"
                   threadingModel="both"
                   xmlns="urn:schemas-microsoft-com:winrt.v1" />
+            <activatableClass
+                  name="test_component.ArrayMethods"
+                  threadingModel="both"
+                  xmlns="urn:schemas-microsoft-com:winrt.v1" />
       </file>
 </assembly>
