@@ -22,12 +22,6 @@ public final class PropertySet : WinRTClass, IObservableMap, IMap, IIterable, IP
     }
 
     @_spi(WinRTInternal)
-    public static func from(abi: ComPtr<__x_ABI_CWindows_CFoundation_CCollections_CIPropertySet>?) -> PropertySet? {
-        guard let abi = abi else { return nil }
-        return .init(fromAbi: test_component.IInspectable(abi))
-    }
-
-    @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
         super.init(fromAbi)
     }
@@ -121,12 +115,6 @@ public final class StringMap : WinRTClass, IMap, IIterable, IObservableMap {
     }
 
     @_spi(WinRTInternal)
-    public static func from(abi: ComPtr<__x_ABI_C__FIMap_2_HSTRING_HSTRING>?) -> StringMap? {
-        guard let abi = abi else { return nil }
-        return .init(fromAbi: test_component.IInspectable(abi))
-    }
-
-    @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
         super.init(fromAbi)
     }
@@ -215,12 +203,6 @@ public final class ValueSet : WinRTClass, IObservableMap, IMap, IIterable, IProp
             return RawPointer(_default)
         }
         return super._getABI()
-    }
-
-    @_spi(WinRTInternal)
-    public static func from(abi: ComPtr<__x_ABI_CWindows_CFoundation_CCollections_CIPropertySet>?) -> ValueSet? {
-        guard let abi = abi else { return nil }
-        return .init(fromAbi: test_component.IInspectable(abi))
     }
 
     @_spi(WinRTInternal)

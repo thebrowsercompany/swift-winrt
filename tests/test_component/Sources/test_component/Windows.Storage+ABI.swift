@@ -1056,7 +1056,7 @@ public enum __ABI_Windows_Storage {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.TryGetChangeTracker(pThis, &resultAbi))
                 }
             }
-            return .from(abi: result)
+            return __IMPL_Windows_Storage.StorageLibraryChangeTrackerBridge.from(abi: result)
         }
 
     }
@@ -1425,7 +1425,7 @@ public enum __ABI_Windows_Storage {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.get_Properties(pThis, &valueAbi))
                 }
             }
-            return .from(abi: value)
+            return __IMPL_Windows_Storage_FileProperties.StorageItemContentPropertiesBridge.from(abi: value)
         }
 
     }
@@ -1632,7 +1632,7 @@ public enum __ABI_Windows_Storage {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.get_Provider(pThis, &valueAbi))
                 }
             }
-            return .from(abi: value)
+            return __IMPL_Windows_Storage.StorageProviderBridge.from(abi: value)
         }
 
     }
@@ -1753,7 +1753,7 @@ public enum __ABI_Windows_Storage {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.GetChangeReader(pThis, &valueAbi))
                 }
             }
-            return .from(abi: value)
+            return __IMPL_Windows_Storage.StorageLibraryChangeReaderBridge.from(abi: value)
         }
 
         public func Enable() throws {
@@ -1902,7 +1902,7 @@ extension __ABI_Windows_Storage {
         Invoke: {
             do {
                 guard let __unwrapped__instance = StreamedFileDataRequestedHandlerWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-                let stream: test_component.StreamedFileDataRequest? = .from(abi: ComPtr($1))
+                let stream: test_component.StreamedFileDataRequest? = __IMPL_Windows_Storage.StreamedFileDataRequestBridge.from(abi: ComPtr($1))
                 try __unwrapped__instance(stream)
                 return S_OK
             } catch { return failWith(error: error) } 

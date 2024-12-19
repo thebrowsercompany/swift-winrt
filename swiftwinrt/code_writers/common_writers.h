@@ -280,7 +280,7 @@ namespace swiftwinrt
             auto ptrVal = isOut ? std::string(name) : w.write_temp("ComPtr(%)", name);
             if (is_class(type))
             {
-                w.write(".from(abi: %)", ptrVal);
+                w.write("%.from(abi: %)", bind_bridge_fullname(*type), ptrVal);
             }
             else
             {
