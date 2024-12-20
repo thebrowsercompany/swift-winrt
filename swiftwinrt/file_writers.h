@@ -232,6 +232,7 @@ namespace swiftwinrt
             auto impl_names = w.push_impl_names(true);
             w.write("%", w.filter.bind_each<write_interface_impl>(members.interfaces));
             w.write("%", w.filter.bind_each<write_delegate_implementation>(members.delegates));
+            w.write("%", w.filter.bind_each<write_class_bridge>(members.classes));
         }
         w.swap();
         write_preamble(w, /* swift_code: */ true);

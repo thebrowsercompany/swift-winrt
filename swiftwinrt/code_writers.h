@@ -408,7 +408,7 @@ namespace swiftwinrt
                 if (composableFactory)
                 {
                     if (params.size() > 0) written_params.append(", ");
-                    written_params.append(w.write_temp("_ baseInterface: UnsealedWinRTClassWrapper<%.Composable>?, _ innerInterface: inout %.IInspectable?", classType, w.support));
+                    written_params.append(w.write_temp("_ baseInterface: UnsealedWinRTClassWrapper<%.Composable>?, _ innerInterface: inout %.IInspectable?", bind_bridge_name(*classType), w.support));
                 }
 
                 w.write("% func %(%) throws% {\n",
@@ -2015,12 +2015,12 @@ public init<Composable: ComposableImpl>(
                     {
                         if (type.base_class)
                         {
-                            w.write("super.init(composing: Self.Composable.self) { baseInterface, innerInterface in \n");
+                            w.write("super.init(composing: %.Composable.self) { baseInterface, innerInterface in \n", bind_bridge_name(type));
                         }
                         else
                         {
                             w.write("super.init()\n");
-                            w.write("MakeComposed(composing: Self.Composable.self, self) { baseInterface, innerInterface in \n");
+                            w.write("MakeComposed(composing: %.Composable.self, self) { baseInterface, innerInterface in \n", bind_bridge_name(type));
                         }
                         w.write("    try! Self.%.%(%)\n",
                             get_swift_name(factory_info),
@@ -2034,30 +2034,76 @@ public init<Composable: ComposableImpl>(
         }
     }
 
+    static void write_composable_impl(writer& w, class_type const& parent, metadata_type const& overrides, bool compose);
+    static void write_class_bridge(writer& w, class_type const& type)
+    {
+        if (auto default_interface = type.default_interface)
+        {
+            const bool composable = type.is_composable();
+            w.write("@_spi(WinRTInternal)\n");
+            w.write("public enum %: % {\n", bind_bridge_name(type), composable ? "ComposableBridge" : "AbiBridge");
+            {
+                auto indent = w.push_indent();
+                w.write("public typealias Swift = %\n", type.swift_type_name());
+                w.write("public typealias CABI = %\n", bind_type_mangled(default_interface));
+                // We unwrap composable types to try and get to any derived type.
+                // If not composable, then create a new instance
+                w.write("public static func from(abi: ComPtr<%>?) -> %? {\n",
+                    bind_type_mangled(default_interface), type);
+                {
+                    auto indent = w.push_indent();
+                    w.write("guard let abi = abi else { return nil }\n");
+                    if (type.is_composable())
+                    {
+                        w.write("return UnsealedWinRTClassWrapper<Composable>.unwrapFrom(base: abi)\n");
+                    }
+                    else
+                    {
+                        w.write("return .init(fromAbi: %.IInspectable(abi))\n", w.support);
+                    }
+                }
+                w.write("}\n");
+
+                if (composable)
+                {
+                    bool has_overrides = false;
+                    for (const auto& [interface_name, info] : type.required_interfaces)
+                    {
+                        if (!info.overridable || interface_name.empty() || !can_write(w, info.type)) { continue; }
+
+                        // Generate definitions for how to compose overloads and create wrappers of this type.
+                        if (!info.base)
+                        {
+                            // the very first override is the one we use for composing the class and can respond to QI
+                            // calls for all the other overloads
+                            write_composable_impl(w, type, *info.type, !has_overrides);
+                            has_overrides = true;
+                        }
+                        else if (info.base && !has_overrides)
+                        {
+                            // This unsealed class doesn't have an overridable interface of it's own, so use the first base
+                            // interface we come across for the composable implementation. This is used by the factory method
+                            // when we are creating an aggregated type and enables the app to override the base class methods
+                            // on this type
+                            const bool compose = true;
+                            write_composable_impl(w, type, *info.type, compose);
+                            has_overrides = true;
+                        }
+                    }
+
+                    if (!has_overrides)
+                    {
+                        write_composable_impl(w, type, *default_interface, true);
+                    }
+                }
+            }
+            w.write("}\n\n");
+        }
+    }
+
     static void write_default_constructor_declarations(writer& w, class_type const& type, metadata_type const& default_interface)
     {
-        auto [ns, name] = get_type_namespace_and_name(default_interface);
         auto base_class = type.base_class;
-
-        // We unwrap composable types to try and get to any derived type.
-        // If not composable, then create a new instance
-        w.write("@_spi(WinRTInternal)\n");
-        w.write("public static func from(abi: ComPtr<%>?) -> %? {\n",
-            bind_type_mangled(default_interface), type);
-        {
-            auto indent = w.push_indent();
-            w.write("guard let abi = abi else { return nil }\n");
-            if (type.is_composable())
-            {
-                w.write("return UnsealedWinRTClassWrapper<Composable>.unwrapFrom(base: abi)\n");
-            }
-            else
-            {
-                w.write("return .init(fromAbi: %.IInspectable(abi))\n", w.support);
-            }
-        }
-        w.write("}\n\n");
-
         w.write("@_spi(WinRTInternal)\n");
         w.write("%public init(fromAbi: %.IInspectable) {\n",
             base_class ? "override " : "",
@@ -2325,7 +2371,7 @@ public init<Composable: ComposableImpl>(
         bool use_iinspectable_vtable = type_name(overrides) == type_name(*default_interface);
 
         auto format = R"(^@_spi(WinRTInternal)
-    public enum % : ComposableImpl {
+public enum % : ComposableImpl {
     public typealias CABI = %
     public typealias SwiftABI = %
     public typealias Class = %
@@ -2561,7 +2607,6 @@ override % func _getABI<T>() -> UnsafeMutablePointer<T>? {
             }
         }
 
-        bool has_overrides = false;
         bool has_collection_conformance = false;
         std::vector<std::string> interfaces_to_release;
         for (const auto& [interface_name, info] : type.required_interfaces)
@@ -2587,32 +2632,6 @@ override % func _getABI<T>() -> UnsafeMutablePointer<T>? {
                 interfaces_to_release.push_back(get_swift_name(info));
                 write_interface_impl_members(w, info, /* type_definition: */ type);
             }
-
-            // Generate definitions for how to compose overloads and create wrappers of this type.
-            if (info.overridable && !info.base)
-            {
-                // the very first override is the one we use for composing the class and can respond to QI
-                // calls for all the other overloads
-                const bool compose = !has_overrides;
-                write_composable_impl(w, type, *info.type, compose);
-                has_overrides = true;
-            }
-            else if (info.overridable && info.base && !has_overrides)
-            {
-                // This unsealed class doesn't have an overridable interface of it's own, so use the first base
-                // interface we come across for the composable implementation. This is used by the factory method
-                // when we are creating an aggregated type and enables the app to override the base class methods
-                // on this type
-                const bool compose = true;
-                write_composable_impl(w, type, *info.type, compose);
-                has_overrides = true;
-            }
-
-        }
-
-        if (composable && !has_overrides && default_interface)
-        {
-            write_composable_impl(w, type, *default_interface, true);
         }
 
         if (default_interface)
@@ -2933,7 +2952,7 @@ override % func _getABI<T>() -> UnsafeMutablePointer<T>? {
     {
         w.write("internal typealias % = UnsealedWinRTClassWrapper<%.%>\n",
             bind_wrapper_name(overrides.type),
-            get_full_swift_type_name(w, type),
+            bind_bridge_fullname(type),
             overrides.type
         );
         w.write("internal static var %VTable: %Vtbl = .init(\n",
