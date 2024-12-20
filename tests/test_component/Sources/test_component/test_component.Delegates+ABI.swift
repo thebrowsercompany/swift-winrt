@@ -48,7 +48,7 @@ extension __ABI_test_component_Delegates {
                 let value: String = .init(from: $1)
                 try __unwrapped__instance(value)
                 return S_OK
-            } catch { return failWith(error: error) } 
+            } catch { return failWith(error: error) }
         }
     )
 }
@@ -86,7 +86,7 @@ extension __ABI_test_component_Delegates {
                 let value: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: ComPtr($1))
                 try __unwrapped__instance(value)
                 return S_OK
-            } catch { return failWith(error: error) } 
+            } catch { return failWith(error: error) }
         }
     )
 }
@@ -124,7 +124,7 @@ extension __ABI_test_component_Delegates {
                 let result = try __unwrapped__instance()
                 $1?.initialize(to: result)
                 return S_OK
-            } catch { return failWith(error: error) } 
+            } catch { return failWith(error: error) }
         }
     )
 }
@@ -159,7 +159,7 @@ extension __ABI_test_component_Delegates {
                 guard let __unwrapped__instance = SignalDelegateWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 try __unwrapped__instance()
                 return S_OK
-            } catch { return failWith(error: error) } 
+            } catch { return failWith(error: error) }
         }
     )
 }

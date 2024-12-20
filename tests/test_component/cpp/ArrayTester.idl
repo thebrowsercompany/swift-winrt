@@ -20,12 +20,13 @@ namespace test_component
         static void OutNonBlittableStructArray(out NonBlittableStruct[] value);
         static void OutEnumArray(out Signed[] value);
 
-        // void RefInt32Array(ref Int32[] value);
-        // void RefStringArray(ref String[] value);
-        // void RefObjectArray(ref Object[] value);
-        // void RefStringableArray(ref Windows.Foundation.IStringable[] value);
-        // void RefStructArray(ref Struct[] value);
-        // void RefEnumArray(ref Signed[] value);
+        static void RefInt32Array(ref Int32[] value);
+        static void RefStringArray(ref String[] value);
+        static void RefObjectArray(ref Object[] value);
+        static void RefStringableArray(ref Windows.Foundation.IStringable[] value);
+        static void RefStructArray(ref BlittableStruct[] value);
+        static void RefNonBlittableStructArray(ref NonBlittableStruct[] value);
+        static void RefEnumArray(ref Signed[] value);
 
         static Int32[] ReturnInt32Array();
         static String[] ReturnStringArray();

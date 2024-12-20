@@ -10,6 +10,17 @@ extension Array where Element: ToAbi {
             try withAbi(UInt32(count), .init(mutating: bytesPtr))
         }
     }
+
+    public func fill(abi: UnsafeMutablePointer<UnsafeMutablePointer<Element.ABI>?>?) throws {
+        try fill(abi: abi?.pointee)
+    }
+
+    public func fill(abi: UnsafeMutablePointer<Element.ABI>?) throws {
+        guard let abi else { return }
+        for (index, element) in enumerated() {
+            abi[index] = try element.toABI()
+        }
+    }
 }
 
 @_spi(WinRTInternal)
@@ -20,6 +31,15 @@ extension Array where  Element: Numeric {
             try withAbi(UInt32(count), .init(mutating: bytesPtr))
         }
     }
+
+    public func fill(abi: UnsafeMutablePointer<Element>?) {
+        guard let abi else { return }
+        _ = UnsafeMutableBufferPointer(start: abi, count: count).update(from: self)
+    }
+
+    public func fill(abi: UnsafeMutablePointer<UnsafeMutablePointer<Element>?>?) {
+        fill(abi: abi?.pointee)
+    }
 }
 
 @_spi(WinRTInternal)
@@ -29,6 +49,15 @@ extension Array where Element: RawRepresentable, Element.RawValue: Numeric {
             let bytesPtr = bytes.baseAddress?.assumingMemoryBound(to: Element.self)
             try withAbi(UInt32(count), .init(mutating: bytesPtr))
         }
+    }
+
+    public func fill(abi: UnsafeMutablePointer<Element>?) {
+        guard let abi else { return }
+        _ = UnsafeMutableBufferPointer(start: abi, count: count).update(from: self)
+    }
+
+    public func fill(abi: UnsafeMutablePointer<UnsafeMutablePointer<Element>?>?) {
+        fill(abi: abi?.pointee)
     }
 }
 
@@ -42,6 +71,18 @@ extension Array {
             try withAbi(UInt32(count), .init(mutating: bytesPtr))
         }
     }
+
+    public func fill<Bridge: AbiInterfaceBridge>(abi: UnsafeMutablePointer<UnsafeMutablePointer<Bridge.CABI>?>?, abiBridge: Bridge.Type) where Element == Bridge.SwiftProjection? {
+        guard let abi else { return }
+        for (index, element) in enumerated() {
+            let wrapper = InterfaceWrapperBase<Bridge>(element)
+            wrapper?.copyTo(&abi[index])
+        }
+    }
+
+    public func fill<Bridge: AbiInterfaceBridge>(abi: UnsafeMutablePointer<UnsafeMutablePointer<UnsafeMutablePointer<Bridge.CABI>?>?>?, abiBridge: Bridge.Type) where Element == Bridge.SwiftProjection? {
+        fill(abi: abi?.pointee, abiBridge: abiBridge)
+    }
 }
 
 @_spi(WinRTInternal)
@@ -53,5 +94,15 @@ extension Array {
             try withAbi(UInt32(count), .init(mutating: bytesPtr))
         }
     }
-}
 
+    public func fill<Bridge: AbiBridge>(abi: UnsafeMutablePointer<UnsafeMutablePointer<Bridge.CABI>?>?, abiBridge: Bridge.Type) where Element == Bridge.SwiftProjection?, Bridge.SwiftProjection: WinRTClass {
+        guard let abi else { return }
+        for (index, element) in enumerated() {
+            abi[index] = RawPointer(element)
+        }
+    }
+
+    public func fill<Bridge: AbiBridge>(abi: UnsafeMutablePointer<UnsafeMutablePointer<UnsafeMutablePointer<Bridge.CABI>?>?>?, abiBridge: Bridge.Type) where Element == Bridge.SwiftProjection?, Bridge.SwiftProjection: WinRTClass {
+        fill(abi: abi?.pointee, abiBridge: abiBridge)
+    }
+}

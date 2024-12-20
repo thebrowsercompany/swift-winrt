@@ -309,6 +309,11 @@ public final class WwwFormUrlDecoder : WinRTClass, IIterable, IVectorView {
         try! _IVectorView.IndexOf(value, &index)
     }
 
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.wwwformurldecoder.getmany)
+    public func getMany(_ startIndex: UInt32, _ items: inout [AnyIWwwFormUrlDecoderEntry?]) -> UInt32 {
+        try! _IVectorView.GetMany(startIndex, &items)
+    }
+
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.wwwformurldecoder.size)
     public var size : UInt32 {
         get { try! _IVectorView.get_Size() }
@@ -620,6 +625,44 @@ public protocol IPropertyValue : WinRTInterface {
     func getSize() throws -> test_component.Size
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue.getrect)
     func getRect() throws -> test_component.Rect
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue.getuint8array)
+    func getUInt8Array(_ value: inout [UInt8]) throws
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue.getint16array)
+    func getInt16Array(_ value: inout [Int16]) throws
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue.getuint16array)
+    func getUInt16Array(_ value: inout [UInt16]) throws
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue.getint32array)
+    func getInt32Array(_ value: inout [Int32]) throws
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue.getuint32array)
+    func getUInt32Array(_ value: inout [UInt32]) throws
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue.getint64array)
+    func getInt64Array(_ value: inout [Int64]) throws
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue.getuint64array)
+    func getUInt64Array(_ value: inout [UInt64]) throws
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue.getsinglearray)
+    func getSingleArray(_ value: inout [Float]) throws
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue.getdoublearray)
+    func getDoubleArray(_ value: inout [Double]) throws
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue.getchar16array)
+    func getChar16Array(_ value: inout [Character]) throws
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue.getbooleanarray)
+    func getBooleanArray(_ value: inout [Bool]) throws
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue.getstringarray)
+    func getStringArray(_ value: inout [String]) throws
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue.getinspectablearray)
+    func getInspectableArray(_ value: inout [Any?]) throws
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue.getguidarray)
+    func getGuidArray(_ value: inout [Foundation.UUID]) throws
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue.getdatetimearray)
+    func getDateTimeArray(_ value: inout [test_component.DateTime]) throws
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue.gettimespanarray)
+    func getTimeSpanArray(_ value: inout [test_component.TimeSpan]) throws
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue.getpointarray)
+    func getPointArray(_ value: inout [test_component.Point]) throws
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue.getsizearray)
+    func getSizeArray(_ value: inout [test_component.Size]) throws
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue.getrectarray)
+    func getRectArray(_ value: inout [test_component.Rect]) throws
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue.isnumericscalar)
     var isNumericScalar: Bool { get }
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.ipropertyvalue.type)

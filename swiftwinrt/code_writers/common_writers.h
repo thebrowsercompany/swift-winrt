@@ -265,17 +265,29 @@ namespace swiftwinrt
         w.write("/// [Open Microsoft documentation](%)\n", doc_url);
     }
 
+    static void write_convert_array_from_abi(writer& w, metadata_type const& type, std::string_view const& array_param_name, std::string_view count_param_name)
+    {
+        if (is_reference_type(&type))
+        {
+            w.write(".from(abiBridge: %.self, abi: (count: %, start: %))\n",
+                bind_bridge_fullname(type),
+                count_param_name,
+                array_param_name);
+        }
+        else
+        {
+            w.write(".from(abi: (count: %, start: %))\n",
+                count_param_name,
+                array_param_name);
+        }
+    }
+
     static void write_consume_type(writer& w, metadata_type const* type, std::string_view const& name, bool isOut)
     {
         TypeDef signature_type{};
         auto category = get_category(type, &signature_type);
 
-        if (category == param_category::array_type)
-        {
-            // TODO: WIN-32 swiftwinrt: add support for array types
-            XLANG_ASSERT("**TODO: implement array type in write_consume_return_type");
-        }
-        else if (needs_wrapper(category))
+        if (needs_wrapper(category))
         {
             auto ptrVal = isOut ? std::string(name) : w.write_temp("ComPtr(%)", name);
             if (is_class(type))

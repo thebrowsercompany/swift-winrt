@@ -298,6 +298,8 @@ public protocol IIterator<T> : WinRTInterface {
     associatedtype T
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
     func moveNext() -> Bool
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.getmany)
+    func getMany(_ items: inout [T]) -> UInt32
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     var current: T { get }
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
@@ -438,6 +440,8 @@ public protocol IVectorView<T> : IIterable, Collection where Element == T, Index
     func getAt(_ index: UInt32) -> T
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.indexof)
     func indexOf(_ value: T, _ index: inout UInt32) -> Bool
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.getmany)
+    func getMany(_ startIndex: UInt32, _ items: inout [T]) -> UInt32
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
     var size: UInt32 { get }
 }
@@ -465,6 +469,8 @@ public protocol IVector<T> : IIterable, Collection where Element == T, Index == 
     func removeAtEnd()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.clear)
     func clear()
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.getmany)
+    func getMany(_ startIndex: UInt32, _ items: inout [T]) -> UInt32
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.replaceall)
     func replaceAll(_ items: [T])
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.size)

@@ -223,6 +223,36 @@ namespace winrt::test_component::implementation
         }
     }
 
+    void ArrayMethods::RefStructArray(array_view<BlittableStruct> value)
+    {
+        simulate_rpc_behavior(value);
+
+        if (value.size())
+        {
+            int32_t counter{};
+
+            std::generate(value.begin(), value.end() - 1, [&]
+                {
+                    return BlittableStruct{ ++counter, ++counter };
+                });
+        }
+    }
+
+    void ArrayMethods::RefNonBlittableStructArray(array_view<NonBlittableStruct> value)
+    {
+        simulate_rpc_behavior(value);
+
+        if (value.size())
+        {
+            int32_t counter{};
+
+            std::generate(value.begin(), value.end() - 1, [&]
+                {
+                    return NonBlittableStruct{ hstring(std::to_wstring(++counter)), hstring(std::to_wstring(++counter)), ++counter, hstring(std::to_wstring(++counter)) };
+                });
+        }
+    }
+
     void ArrayMethods::RefEnumArray(array_view<Signed> value)
     {
         simulate_rpc_behavior(value);

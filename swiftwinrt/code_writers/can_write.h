@@ -30,19 +30,6 @@ namespace swiftwinrt
         {
             auto param_name = get_swift_name(param);
 
-            // TODO: WIN-32 swiftwinrt: support array types
-            if (param.out() && (param.signature.Type().is_szarray() ||
-                param.signature.Type().is_array()) )
-            {
-                return false;
-            }
-
-            // TODO: support reference parameters
-            if (param.signature.ByRef() && is_guid(get_category(param.type)))
-            {
-                return false;
-            }
-
             if (!can_write(w, param.type))
             {
                 return false;
@@ -52,11 +39,6 @@ namespace swiftwinrt
         if (function.return_type)
         {
             auto returnType = function.return_type.value();
-            if (returnType.signature.Type().is_array() ||
-                returnType.signature.Type().is_szarray())
-            {
-                return false;
-            }
             if (!can_write(w, function.return_type.value().type))
             {
                 return false;
