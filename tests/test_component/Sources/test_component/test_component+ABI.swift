@@ -252,7 +252,7 @@ public enum __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.GetPendingAsync(pThis, &resultAbi))
                 }
             }
-            return .from(abi: result)
+            return __IMPL_test_component.AsyncOperationIntBridge.from(abi: result)
         }
 
     }
@@ -391,7 +391,7 @@ public enum __ABI_test_component {
     public class IBaseCollectionProtectedFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseCollectionProtectedFactory }
 
-        public func CreateInstance(_ baseInterface: UnsealedWinRTClassWrapper<test_component.BaseCollection.Composable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IVectorBase {
+        public func CreateInstance(_ baseInterface: UnsealedWinRTClassWrapper<__IMPL_test_component.BaseCollectionBridge.Composable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IVectorBase {
             let (value) = try ComPtrs.initialize { valueAbi in
                 let _baseInterface = baseInterface?.toIInspectableABI { $0 }
                 let (_innerInterface) = try ComPtrs.initialize { _innerInterfaceAbi in
@@ -414,7 +414,7 @@ public enum __ABI_test_component {
     public class IBaseNoOverridesProtectedFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseNoOverridesProtectedFactory }
 
-        public func CreateInstance(_ baseInterface: UnsealedWinRTClassWrapper<test_component.BaseNoOverrides.Composable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IBaseNoOverrides {
+        public func CreateInstance(_ baseInterface: UnsealedWinRTClassWrapper<__IMPL_test_component.BaseNoOverridesBridge.Composable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IBaseNoOverrides {
             let (value) = try ComPtrs.initialize { valueAbi in
                 let _baseInterface = baseInterface?.toIInspectableABI { $0 }
                 let (_innerInterface) = try ComPtrs.initialize { _innerInterfaceAbi in
@@ -439,7 +439,7 @@ public enum __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.CreateFromString(pThis, _value.get(), &resultAbi))
                 }
             }
-            return .from(abi: result)
+            return __IMPL_test_component.BaseNoOverridesBridge.from(abi: result)
         }
 
     }
@@ -458,7 +458,7 @@ public enum __ABI_test_component {
     public class IBaseProtectedFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseProtectedFactory }
 
-        public func CreateInstance(_ baseInterface: UnsealedWinRTClassWrapper<test_component.Base.Composable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IBase {
+        public func CreateInstance(_ baseInterface: UnsealedWinRTClassWrapper<__IMPL_test_component.BaseBridge.Composable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IBase {
             let (value) = try ComPtrs.initialize { valueAbi in
                 let _baseInterface = baseInterface?.toIInspectableABI { $0 }
                 let (_innerInterface) = try ComPtrs.initialize { _innerInterfaceAbi in
@@ -483,7 +483,7 @@ public enum __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.CreateFromString(pThis, _value.get(), &resultAbi))
                 }
             }
-            return .from(abi: result)
+            return __IMPL_test_component.BaseBridge.from(abi: result)
         }
 
     }
@@ -837,7 +837,7 @@ public enum __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.get_BaseProperty(pThis, &valueAbi))
                 }
             }
-            return .from(abi: value)
+            return __IMPL_test_component.BaseBridge.from(abi: value)
         }
 
         public func put_BaseProperty(_ value: test_component.Base?) throws {
@@ -852,7 +852,7 @@ public enum __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.get_BaseNoOverridesProperty(pThis, &valueAbi))
                 }
             }
-            return .from(abi: value)
+            return __IMPL_test_component.BaseNoOverridesBridge.from(abi: value)
         }
 
         public func put_BaseNoOverridesProperty(_ value: test_component.BaseNoOverrides?) throws {
@@ -1109,7 +1109,7 @@ public enum __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.GetDeferral(pThis, &resultAbi))
                 }
             }
-            return .from(abi: result)
+            return __IMPL_Windows_Foundation.DeferralBridge.from(abi: result)
         }
 
         public func IncrementCounter() throws {
@@ -1160,7 +1160,7 @@ public enum __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.CreateFromString(pThis, _value.get(), &resultAbi))
                 }
             }
-            return .from(abi: result)
+            return __IMPL_test_component.DerivedBridge.from(abi: result)
         }
 
     }
@@ -1711,7 +1711,7 @@ public enum __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.GetNullClass(pThis, &resultAbi))
                 }
             }
-            return .from(abi: result)
+            return __IMPL_test_component.NoopClosableBridge.from(abi: result)
         }
 
         public func GetNullDelegate() throws -> test_component.VoidToVoidDelegate? {
@@ -2146,7 +2146,7 @@ public enum __ABI_test_component {
     public class IUnsealedDerived2Factory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerived2Factory }
 
-        public func CreateInstance(_ prop: Int32, _ baseInterface: UnsealedWinRTClassWrapper<test_component.UnsealedDerived2.Composable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IUnsealedDerived2 {
+        public func CreateInstance(_ prop: Int32, _ baseInterface: UnsealedWinRTClassWrapper<__IMPL_test_component.UnsealedDerived2Bridge.Composable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IUnsealedDerived2 {
             let (value) = try ComPtrs.initialize { valueAbi in
                 let _baseInterface = baseInterface?.toIInspectableABI { $0 }
                 let (_innerInterface) = try ComPtrs.initialize { _innerInterfaceAbi in
@@ -2164,7 +2164,7 @@ public enum __ABI_test_component {
     public class IUnsealedDerived2ProtectedFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerived2ProtectedFactory }
 
-        public func CreateInstance(_ baseInterface: UnsealedWinRTClassWrapper<test_component.UnsealedDerived2.Composable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IUnsealedDerived2 {
+        public func CreateInstance(_ baseInterface: UnsealedWinRTClassWrapper<__IMPL_test_component.UnsealedDerived2Bridge.Composable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IUnsealedDerived2 {
             let (value) = try ComPtrs.initialize { valueAbi in
                 let _baseInterface = baseInterface?.toIInspectableABI { $0 }
                 let (_innerInterface) = try ComPtrs.initialize { _innerInterfaceAbi in
@@ -2182,7 +2182,7 @@ public enum __ABI_test_component {
     public class IUnsealedDerivedFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedFactory }
 
-        public func CreateInstance(_ baseInterface: UnsealedWinRTClassWrapper<test_component.UnsealedDerived.Composable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IUnsealedDerived {
+        public func CreateInstance(_ baseInterface: UnsealedWinRTClassWrapper<__IMPL_test_component.UnsealedDerivedBridge.Composable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IUnsealedDerived {
             let (value) = try ComPtrs.initialize { valueAbi in
                 let _baseInterface = baseInterface?.toIInspectableABI { $0 }
                 let (_innerInterface) = try ComPtrs.initialize { _innerInterfaceAbi in
@@ -2195,7 +2195,7 @@ public enum __ABI_test_component {
             return IUnsealedDerived(value!)
         }
 
-        public func CreateInstance2(_ prop: Int32, _ baseInterface: UnsealedWinRTClassWrapper<test_component.UnsealedDerived.Composable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IUnsealedDerived {
+        public func CreateInstance2(_ prop: Int32, _ baseInterface: UnsealedWinRTClassWrapper<__IMPL_test_component.UnsealedDerivedBridge.Composable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IUnsealedDerived {
             let (value) = try ComPtrs.initialize { valueAbi in
                 let _baseInterface = baseInterface?.toIInspectableABI { $0 }
                 let (_innerInterface) = try ComPtrs.initialize { _innerInterfaceAbi in
@@ -2208,7 +2208,7 @@ public enum __ABI_test_component {
             return IUnsealedDerived(value!)
         }
 
-        public func CreateInstance3(_ prop1: String, _ prop2: test_component.Base?, _ baseInterface: UnsealedWinRTClassWrapper<test_component.UnsealedDerived.Composable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IUnsealedDerived {
+        public func CreateInstance3(_ prop1: String, _ prop2: test_component.Base?, _ baseInterface: UnsealedWinRTClassWrapper<__IMPL_test_component.UnsealedDerivedBridge.Composable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IUnsealedDerived {
             let (value) = try ComPtrs.initialize { valueAbi in
                 let _prop1 = try! HString(prop1)
                 let _baseInterface = baseInterface?.toIInspectableABI { $0 }
@@ -2232,7 +2232,7 @@ public enum __ABI_test_component {
     public class IUnsealedDerivedFromNoConstructorFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedFromNoConstructorFactory }
 
-        public func CreateInstance(_ baseInterface: UnsealedWinRTClassWrapper<test_component.UnsealedDerivedFromNoConstructor.Composable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IUnsealedDerivedFromNoConstructor {
+        public func CreateInstance(_ baseInterface: UnsealedWinRTClassWrapper<__IMPL_test_component.UnsealedDerivedFromNoConstructorBridge.Composable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IUnsealedDerivedFromNoConstructor {
             let (value) = try ComPtrs.initialize { valueAbi in
                 let _baseInterface = baseInterface?.toIInspectableABI { $0 }
                 let (_innerInterface) = try ComPtrs.initialize { _innerInterfaceAbi in
@@ -2265,7 +2265,7 @@ public enum __ABI_test_component {
     public class IUnsealedDerivedNoOverridesProtectedFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedNoOverridesProtectedFactory }
 
-        public func CreateInstance(_ baseInterface: UnsealedWinRTClassWrapper<test_component.UnsealedDerivedNoOverrides.Composable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IUnsealedDerivedNoOverrides {
+        public func CreateInstance(_ baseInterface: UnsealedWinRTClassWrapper<__IMPL_test_component.UnsealedDerivedNoOverridesBridge.Composable>?, _ innerInterface: inout test_component.IInspectable?) throws -> IUnsealedDerivedNoOverrides {
             let (value) = try ComPtrs.initialize { valueAbi in
                 let _baseInterface = baseInterface?.toIInspectableABI { $0 }
                 let (_innerInterface) = try ComPtrs.initialize { _innerInterfaceAbi in
@@ -2641,7 +2641,7 @@ public enum __ABI_test_component {
             _ = val.Value2?.pointee.lpVtbl.pointee.Release(val.Value2)
         }
     }
-    internal typealias IBaseOverridesWrapper = UnsealedWinRTClassWrapper<test_component.Base.IBaseOverrides>
+    internal typealias IBaseOverridesWrapper = UnsealedWinRTClassWrapper<__IMPL_test_component.BaseBridge.IBaseOverrides>
     internal static var IBaseOverridesVTable: __x_ABI_Ctest__component_CIBaseOverridesVtbl = .init(
         QueryInterface: { IBaseOverridesWrapper.queryInterface($0, $1, $2) },
         AddRef: { IBaseOverridesWrapper.addRef($0) },
@@ -2678,7 +2678,7 @@ public enum __ABI_test_component {
             } catch { return failWith(error: error) } 
         }
     )
-    internal typealias IUnsealedDerivedOverridesWrapper = UnsealedWinRTClassWrapper<test_component.UnsealedDerived.IUnsealedDerivedOverrides>
+    internal typealias IUnsealedDerivedOverridesWrapper = UnsealedWinRTClassWrapper<__IMPL_test_component.UnsealedDerivedBridge.IUnsealedDerivedOverrides>
     internal static var IUnsealedDerivedOverridesVTable: __x_ABI_Ctest__component_CIUnsealedDerivedOverridesVtbl = .init(
         QueryInterface: { IUnsealedDerivedOverridesWrapper.queryInterface($0, $1, $2) },
         AddRef: { IUnsealedDerivedOverridesWrapper.addRef($0) },
@@ -2716,7 +2716,7 @@ public enum __ABI_test_component {
             } catch { return failWith(error: error) } 
         }
     )
-    internal typealias IUnsealedDerivedOverloads2Wrapper = UnsealedWinRTClassWrapper<test_component.UnsealedDerived.IUnsealedDerivedOverloads2>
+    internal typealias IUnsealedDerivedOverloads2Wrapper = UnsealedWinRTClassWrapper<__IMPL_test_component.UnsealedDerivedBridge.IUnsealedDerivedOverloads2>
     internal static var IUnsealedDerivedOverloads2VTable: __x_ABI_Ctest__component_CIUnsealedDerivedOverloads2Vtbl = .init(
         QueryInterface: { IUnsealedDerivedOverloads2Wrapper.queryInterface($0, $1, $2) },
         AddRef: { IUnsealedDerivedOverloads2Wrapper.addRef($0) },

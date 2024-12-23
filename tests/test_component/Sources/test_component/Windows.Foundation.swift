@@ -21,12 +21,6 @@ public final class Deferral : WinRTClass, IClosable {
     }
 
     @_spi(WinRTInternal)
-    public static func from(abi: ComPtr<__x_ABI_CWindows_CFoundation_CIDeferral>?) -> Deferral? {
-        guard let abi = abi else { return nil }
-        return .init(fromAbi: test_component.IInspectable(abi))
-    }
-
-    @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
         super.init(fromAbi)
     }
@@ -70,12 +64,6 @@ public final class MemoryBuffer : WinRTClass, IClosable, IMemoryBuffer {
     }
 
     @_spi(WinRTInternal)
-    public static func from(abi: ComPtr<__x_ABI_CWindows_CFoundation_CIMemoryBuffer>?) -> MemoryBuffer? {
-        guard let abi = abi else { return nil }
-        return .init(fromAbi: test_component.IInspectable(abi))
-    }
-
-    @_spi(WinRTInternal)
     public init(fromAbi: test_component.IInspectable) {
         super.init(fromAbi)
     }
@@ -116,12 +104,6 @@ public final class Uri : WinRTClass, IStringable {
             return RawPointer(_default)
         }
         return super._getABI()
-    }
-
-    @_spi(WinRTInternal)
-    public static func from(abi: ComPtr<__x_ABI_CWindows_CFoundation_CIUriRuntimeClass>?) -> Uri? {
-        guard let abi = abi else { return nil }
-        return .init(fromAbi: test_component.IInspectable(abi))
     }
 
     @_spi(WinRTInternal)
@@ -273,12 +255,6 @@ public final class WwwFormUrlDecoder : WinRTClass, IIterable, IVectorView {
             return RawPointer(_default)
         }
         return super._getABI()
-    }
-
-    @_spi(WinRTInternal)
-    public static func from(abi: ComPtr<__x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderRuntimeClass>?) -> WwwFormUrlDecoder? {
-        guard let abi = abi else { return nil }
-        return .init(fromAbi: test_component.IInspectable(abi))
     }
 
     @_spi(WinRTInternal)

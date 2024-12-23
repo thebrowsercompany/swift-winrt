@@ -425,4 +425,40 @@ public enum __IMPL_Windows_Foundation {
             return handler
         }
     }
+    public enum DeferralBridge: AbiBridge {
+        public typealias SwiftProjection = Deferral
+        public typealias CABI = __x_ABI_CWindows_CFoundation_CIDeferral
+        public static func from(abi: ComPtr<__x_ABI_CWindows_CFoundation_CIDeferral>?) -> Deferral? {
+            guard let abi = abi else { return nil }
+            return .init(fromAbi: test_component.IInspectable(abi))
+        }
+    }
+
+    public enum MemoryBufferBridge: AbiBridge {
+        public typealias SwiftProjection = MemoryBuffer
+        public typealias CABI = __x_ABI_CWindows_CFoundation_CIMemoryBuffer
+        public static func from(abi: ComPtr<__x_ABI_CWindows_CFoundation_CIMemoryBuffer>?) -> MemoryBuffer? {
+            guard let abi = abi else { return nil }
+            return .init(fromAbi: test_component.IInspectable(abi))
+        }
+    }
+
+    public enum UriBridge: AbiBridge {
+        public typealias SwiftProjection = Uri
+        public typealias CABI = __x_ABI_CWindows_CFoundation_CIUriRuntimeClass
+        public static func from(abi: ComPtr<__x_ABI_CWindows_CFoundation_CIUriRuntimeClass>?) -> Uri? {
+            guard let abi = abi else { return nil }
+            return .init(fromAbi: test_component.IInspectable(abi))
+        }
+    }
+
+    public enum WwwFormUrlDecoderBridge: AbiBridge {
+        public typealias SwiftProjection = WwwFormUrlDecoder
+        public typealias CABI = __x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderRuntimeClass
+        public static func from(abi: ComPtr<__x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderRuntimeClass>?) -> WwwFormUrlDecoder? {
+            guard let abi = abi else { return nil }
+            return .init(fromAbi: test_component.IInspectable(abi))
+        }
+    }
+
 }

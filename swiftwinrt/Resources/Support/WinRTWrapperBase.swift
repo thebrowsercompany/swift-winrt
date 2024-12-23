@@ -21,14 +21,17 @@ public protocol AbiInterface {
 public protocol AbiBridge {
     associatedtype CABI
     associatedtype SwiftProjection
-    static func makeAbi() -> CABI
     static func from(abi: ComPtr<CABI>?) -> SwiftProjection?
 }
 
-public protocol ReferenceBridge : AbiBridge, HasIID {
+public protocol SwiftImplementableBridge : AbiBridge {
+    static func makeAbi() -> CABI
 }
 
-public protocol AbiInterfaceBridge : AbiBridge & AbiInterface {
+public protocol ReferenceBridge : SwiftImplementableBridge, HasIID {
+}
+
+public protocol AbiInterfaceBridge : SwiftImplementableBridge & AbiInterface {
 }
 
 public protocol AbiInterfaceImpl<Bridge> {

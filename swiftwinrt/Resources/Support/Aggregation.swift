@@ -51,6 +51,11 @@ public protocol ComposableImpl<Class> : AbiInterfaceBridge where SwiftABI: IInsp
     static func makeAbi() -> CABI
 }
 
+@_spi(WinRTInternal)
+public protocol ComposableBridge<SwiftProjection>: AbiBridge where SwiftProjection: WinRTClass  {
+    associatedtype Composable: ComposableImpl<SwiftProjection>
+}
+
 // At a high level, aggregation simply requires the WinRT object to have a pointer back to the Swift world, so that it can call
 // overridable methods on the class. This Swift pointer is given to the WinRT object during construction. The construction of the
 // WinRT object returns us two different pointers:

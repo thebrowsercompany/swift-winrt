@@ -191,4 +191,40 @@ public enum __IMPL_Windows_Storage_Search {
 
     }
 
+    public enum QueryOptionsBridge: AbiBridge {
+        public typealias SwiftProjection = QueryOptions
+        public typealias CABI = __x_ABI_CWindows_CStorage_CSearch_CIQueryOptions
+        public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CSearch_CIQueryOptions>?) -> QueryOptions? {
+            guard let abi = abi else { return nil }
+            return .init(fromAbi: test_component.IInspectable(abi))
+        }
+    }
+
+    public enum StorageFileQueryResultBridge: AbiBridge {
+        public typealias SwiftProjection = StorageFileQueryResult
+        public typealias CABI = __x_ABI_CWindows_CStorage_CSearch_CIStorageFileQueryResult
+        public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CSearch_CIStorageFileQueryResult>?) -> StorageFileQueryResult? {
+            guard let abi = abi else { return nil }
+            return .init(fromAbi: test_component.IInspectable(abi))
+        }
+    }
+
+    public enum StorageFolderQueryResultBridge: AbiBridge {
+        public typealias SwiftProjection = StorageFolderQueryResult
+        public typealias CABI = __x_ABI_CWindows_CStorage_CSearch_CIStorageFolderQueryResult
+        public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CSearch_CIStorageFolderQueryResult>?) -> StorageFolderQueryResult? {
+            guard let abi = abi else { return nil }
+            return .init(fromAbi: test_component.IInspectable(abi))
+        }
+    }
+
+    public enum StorageItemQueryResultBridge: AbiBridge {
+        public typealias SwiftProjection = StorageItemQueryResult
+        public typealias CABI = __x_ABI_CWindows_CStorage_CSearch_CIStorageItemQueryResult
+        public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CSearch_CIStorageItemQueryResult>?) -> StorageItemQueryResult? {
+            guard let abi = abi else { return nil }
+            return .init(fromAbi: test_component.IInspectable(abi))
+        }
+    }
+
 }

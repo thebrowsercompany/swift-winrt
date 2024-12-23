@@ -781,4 +781,76 @@ public enum __IMPL_Windows_Storage {
             return handler
         }
     }
+    public enum StorageFileBridge: AbiBridge {
+        public typealias SwiftProjection = StorageFile
+        public typealias CABI = __x_ABI_CWindows_CStorage_CIStorageFile
+        public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CIStorageFile>?) -> StorageFile? {
+            guard let abi = abi else { return nil }
+            return .init(fromAbi: test_component.IInspectable(abi))
+        }
+    }
+
+    public enum StorageFolderBridge: AbiBridge {
+        public typealias SwiftProjection = StorageFolder
+        public typealias CABI = __x_ABI_CWindows_CStorage_CIStorageFolder
+        public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CIStorageFolder>?) -> StorageFolder? {
+            guard let abi = abi else { return nil }
+            return .init(fromAbi: test_component.IInspectable(abi))
+        }
+    }
+
+    public enum StorageLibraryChangeBridge: AbiBridge {
+        public typealias SwiftProjection = StorageLibraryChange
+        public typealias CABI = __x_ABI_CWindows_CStorage_CIStorageLibraryChange
+        public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CIStorageLibraryChange>?) -> StorageLibraryChange? {
+            guard let abi = abi else { return nil }
+            return .init(fromAbi: test_component.IInspectable(abi))
+        }
+    }
+
+    public enum StorageLibraryChangeReaderBridge: AbiBridge {
+        public typealias SwiftProjection = StorageLibraryChangeReader
+        public typealias CABI = __x_ABI_CWindows_CStorage_CIStorageLibraryChangeReader
+        public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CIStorageLibraryChangeReader>?) -> StorageLibraryChangeReader? {
+            guard let abi = abi else { return nil }
+            return .init(fromAbi: test_component.IInspectable(abi))
+        }
+    }
+
+    public enum StorageLibraryChangeTrackerBridge: AbiBridge {
+        public typealias SwiftProjection = StorageLibraryChangeTracker
+        public typealias CABI = __x_ABI_CWindows_CStorage_CIStorageLibraryChangeTracker
+        public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CIStorageLibraryChangeTracker>?) -> StorageLibraryChangeTracker? {
+            guard let abi = abi else { return nil }
+            return .init(fromAbi: test_component.IInspectable(abi))
+        }
+    }
+
+    public enum StorageProviderBridge: AbiBridge {
+        public typealias SwiftProjection = StorageProvider
+        public typealias CABI = __x_ABI_CWindows_CStorage_CIStorageProvider
+        public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CIStorageProvider>?) -> StorageProvider? {
+            guard let abi = abi else { return nil }
+            return .init(fromAbi: test_component.IInspectable(abi))
+        }
+    }
+
+    public enum StorageStreamTransactionBridge: AbiBridge {
+        public typealias SwiftProjection = StorageStreamTransaction
+        public typealias CABI = __x_ABI_CWindows_CStorage_CIStorageStreamTransaction
+        public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CIStorageStreamTransaction>?) -> StorageStreamTransaction? {
+            guard let abi = abi else { return nil }
+            return .init(fromAbi: test_component.IInspectable(abi))
+        }
+    }
+
+    public enum StreamedFileDataRequestBridge: AbiBridge {
+        public typealias SwiftProjection = StreamedFileDataRequest
+        public typealias CABI = __x_ABI_CWindows_CStorage_CStreams_CIOutputStream
+        public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CStreams_CIOutputStream>?) -> StreamedFileDataRequest? {
+            guard let abi = abi else { return nil }
+            return .init(fromAbi: test_component.IInspectable(abi))
+        }
+    }
+
 }
