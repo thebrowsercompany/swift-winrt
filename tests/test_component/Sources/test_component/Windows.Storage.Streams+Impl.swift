@@ -400,9 +400,8 @@ public enum __IMPL_Windows_Storage_Streams {
 
     }
 
-    @_spi(WinRTInternal)
     public enum BufferBridge: AbiBridge {
-        public typealias Swift = Buffer
+        public typealias SwiftProjection = Buffer
         public typealias CABI = __x_ABI_CWindows_CStorage_CStreams_CIBuffer
         public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CStreams_CIBuffer>?) -> Buffer? {
             guard let abi = abi else { return nil }

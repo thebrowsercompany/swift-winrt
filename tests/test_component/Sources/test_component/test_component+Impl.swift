@@ -430,9 +430,8 @@ public enum __IMPL_test_component {
             return handler
         }
     }
-    @_spi(WinRTInternal)
     public enum AsyncOperationIntBridge: AbiBridge {
-        public typealias Swift = AsyncOperationInt
+        public typealias SwiftProjection = AsyncOperationInt
         public typealias CABI = __x_ABI_Ctest__component_CIAsyncOperationInt
         public static func from(abi: ComPtr<__x_ABI_Ctest__component_CIAsyncOperationInt>?) -> AsyncOperationInt? {
             guard let abi = abi else { return nil }
@@ -440,15 +439,13 @@ public enum __IMPL_test_component {
         }
     }
 
-    @_spi(WinRTInternal)
     public enum BaseBridge: ComposableBridge {
-        public typealias Swift = Base
+        public typealias SwiftProjection = Base
         public typealias CABI = __x_ABI_Ctest__component_CIBase
         public static func from(abi: ComPtr<__x_ABI_Ctest__component_CIBase>?) -> Base? {
             guard let abi = abi else { return nil }
             return UnsealedWinRTClassWrapper<Composable>.unwrapFrom(base: abi)
         }
-        @_spi(WinRTInternal)
         public enum IBaseOverrides : ComposableImpl {
             public typealias CABI = __x_ABI_Ctest__component_CIBaseOverrides
             public typealias SwiftABI = __ABI_test_component.IBaseOverrides
@@ -463,15 +460,13 @@ public enum __IMPL_test_component {
         public typealias Composable = IBaseOverrides
     }
 
-    @_spi(WinRTInternal)
     public enum BaseCollectionBridge: ComposableBridge {
-        public typealias Swift = BaseCollection
+        public typealias SwiftProjection = BaseCollection
         public typealias CABI = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase
         public static func from(abi: ComPtr<__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase>?) -> BaseCollection? {
             guard let abi = abi else { return nil }
             return UnsealedWinRTClassWrapper<Composable>.unwrapFrom(base: abi)
         }
-        @_spi(WinRTInternal)
         public enum IVectorBase : ComposableImpl {
             public typealias CABI = C_IInspectable
             public typealias SwiftABI = test_component.IInspectable
@@ -486,9 +481,8 @@ public enum __IMPL_test_component {
         public typealias Composable = IVectorBase
     }
 
-    @_spi(WinRTInternal)
     public enum BaseMapCollectionBridge: AbiBridge {
-        public typealias Swift = BaseMapCollection
+        public typealias SwiftProjection = BaseMapCollection
         public typealias CABI = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
         public static func from(abi: ComPtr<__x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?) -> BaseMapCollection? {
             guard let abi = abi else { return nil }
@@ -496,15 +490,13 @@ public enum __IMPL_test_component {
         }
     }
 
-    @_spi(WinRTInternal)
     public enum BaseNoOverridesBridge: ComposableBridge {
-        public typealias Swift = BaseNoOverrides
+        public typealias SwiftProjection = BaseNoOverrides
         public typealias CABI = __x_ABI_Ctest__component_CIBaseNoOverrides
         public static func from(abi: ComPtr<__x_ABI_Ctest__component_CIBaseNoOverrides>?) -> BaseNoOverrides? {
             guard let abi = abi else { return nil }
             return UnsealedWinRTClassWrapper<Composable>.unwrapFrom(base: abi)
         }
-        @_spi(WinRTInternal)
         public enum IBaseNoOverrides : ComposableImpl {
             public typealias CABI = C_IInspectable
             public typealias SwiftABI = test_component.IInspectable
@@ -519,9 +511,8 @@ public enum __IMPL_test_component {
         public typealias Composable = IBaseNoOverrides
     }
 
-    @_spi(WinRTInternal)
     public enum BaseObservableCollectionBridge: AbiBridge {
-        public typealias Swift = BaseObservableCollection
+        public typealias SwiftProjection = BaseObservableCollection
         public typealias CABI = __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase
         public static func from(abi: ComPtr<__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase>?) -> BaseObservableCollection? {
             guard let abi = abi else { return nil }
@@ -529,9 +520,8 @@ public enum __IMPL_test_component {
         }
     }
 
-    @_spi(WinRTInternal)
     public enum ClassBridge: AbiBridge {
-        public typealias Swift = Class
+        public typealias SwiftProjection = Class
         public typealias CABI = __x_ABI_Ctest__component_CIClass
         public static func from(abi: ComPtr<__x_ABI_Ctest__component_CIClass>?) -> Class? {
             guard let abi = abi else { return nil }
@@ -539,9 +529,8 @@ public enum __IMPL_test_component {
         }
     }
 
-    @_spi(WinRTInternal)
     public enum CollectionTesterBridge: AbiBridge {
-        public typealias Swift = CollectionTester
+        public typealias SwiftProjection = CollectionTester
         public typealias CABI = __x_ABI_Ctest__component_CICollectionTester
         public static func from(abi: ComPtr<__x_ABI_Ctest__component_CICollectionTester>?) -> CollectionTester? {
             guard let abi = abi else { return nil }
@@ -549,9 +538,8 @@ public enum __IMPL_test_component {
         }
     }
 
-    @_spi(WinRTInternal)
     public enum DeferrableEventArgsBridge: AbiBridge {
-        public typealias Swift = DeferrableEventArgs
+        public typealias SwiftProjection = DeferrableEventArgs
         public typealias CABI = __x_ABI_Ctest__component_CIDeferrableEventArgs
         public static func from(abi: ComPtr<__x_ABI_Ctest__component_CIDeferrableEventArgs>?) -> DeferrableEventArgs? {
             guard let abi = abi else { return nil }
@@ -559,9 +547,8 @@ public enum __IMPL_test_component {
         }
     }
 
-    @_spi(WinRTInternal)
     public enum DerivedBridge: AbiBridge {
-        public typealias Swift = Derived
+        public typealias SwiftProjection = Derived
         public typealias CABI = __x_ABI_Ctest__component_CIDerived
         public static func from(abi: ComPtr<__x_ABI_Ctest__component_CIDerived>?) -> Derived? {
             guard let abi = abi else { return nil }
@@ -569,9 +556,8 @@ public enum __IMPL_test_component {
         }
     }
 
-    @_spi(WinRTInternal)
     public enum DerivedFromNoConstructorBridge: AbiBridge {
-        public typealias Swift = DerivedFromNoConstructor
+        public typealias SwiftProjection = DerivedFromNoConstructor
         public typealias CABI = __x_ABI_Ctest__component_CIDerivedFromNoConstructor
         public static func from(abi: ComPtr<__x_ABI_Ctest__component_CIDerivedFromNoConstructor>?) -> DerivedFromNoConstructor? {
             guard let abi = abi else { return nil }
@@ -579,9 +565,8 @@ public enum __IMPL_test_component {
         }
     }
 
-    @_spi(WinRTInternal)
     public enum EventTesterBridge: AbiBridge {
-        public typealias Swift = EventTester
+        public typealias SwiftProjection = EventTester
         public typealias CABI = __x_ABI_Ctest__component_CIEventTester
         public static func from(abi: ComPtr<__x_ABI_Ctest__component_CIEventTester>?) -> EventTester? {
             guard let abi = abi else { return nil }
@@ -589,9 +574,8 @@ public enum __IMPL_test_component {
         }
     }
 
-    @_spi(WinRTInternal)
     public enum NoopClosableBridge: AbiBridge {
-        public typealias Swift = NoopClosable
+        public typealias SwiftProjection = NoopClosable
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIClosable
         public static func from(abi: ComPtr<__x_ABI_CWindows_CFoundation_CIClosable>?) -> NoopClosable? {
             guard let abi = abi else { return nil }
@@ -599,9 +583,8 @@ public enum __IMPL_test_component {
         }
     }
 
-    @_spi(WinRTInternal)
     public enum SimpleBridge: AbiBridge {
-        public typealias Swift = Simple
+        public typealias SwiftProjection = Simple
         public typealias CABI = __x_ABI_Ctest__component_CISimple
         public static func from(abi: ComPtr<__x_ABI_Ctest__component_CISimple>?) -> Simple? {
             guard let abi = abi else { return nil }
@@ -609,15 +592,13 @@ public enum __IMPL_test_component {
         }
     }
 
-    @_spi(WinRTInternal)
     public enum UnsealedDerivedBridge: ComposableBridge {
-        public typealias Swift = UnsealedDerived
+        public typealias SwiftProjection = UnsealedDerived
         public typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerived
         public static func from(abi: ComPtr<__x_ABI_Ctest__component_CIUnsealedDerived>?) -> UnsealedDerived? {
             guard let abi = abi else { return nil }
             return UnsealedWinRTClassWrapper<Composable>.unwrapFrom(base: abi)
         }
-        @_spi(WinRTInternal)
         public enum IUnsealedDerivedOverloads2 : ComposableImpl {
             public typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedOverloads2
             public typealias SwiftABI = __ABI_test_component.IUnsealedDerivedOverloads2
@@ -630,7 +611,6 @@ public enum __IMPL_test_component {
         }
         @_spi(WinRTInternal)
         public typealias Composable = IUnsealedDerivedOverloads2
-        @_spi(WinRTInternal)
         public enum IUnsealedDerivedOverrides : ComposableImpl {
             public typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedOverrides
             public typealias SwiftABI = __ABI_test_component.IUnsealedDerivedOverrides
@@ -643,15 +623,13 @@ public enum __IMPL_test_component {
         }
     }
 
-    @_spi(WinRTInternal)
     public enum UnsealedDerived2Bridge: ComposableBridge {
-        public typealias Swift = UnsealedDerived2
+        public typealias SwiftProjection = UnsealedDerived2
         public typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerived2
         public static func from(abi: ComPtr<__x_ABI_Ctest__component_CIUnsealedDerived2>?) -> UnsealedDerived2? {
             guard let abi = abi else { return nil }
             return UnsealedWinRTClassWrapper<Composable>.unwrapFrom(base: abi)
         }
-        @_spi(WinRTInternal)
         public enum IUnsealedDerivedOverloads2 : ComposableImpl {
             public typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedOverloads2
             public typealias SwiftABI = __ABI_test_component.IUnsealedDerivedOverloads2
@@ -666,15 +644,13 @@ public enum __IMPL_test_component {
         public typealias Composable = IUnsealedDerivedOverloads2
     }
 
-    @_spi(WinRTInternal)
     public enum UnsealedDerivedFromNoConstructorBridge: ComposableBridge {
-        public typealias Swift = UnsealedDerivedFromNoConstructor
+        public typealias SwiftProjection = UnsealedDerivedFromNoConstructor
         public typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedFromNoConstructor
         public static func from(abi: ComPtr<__x_ABI_Ctest__component_CIUnsealedDerivedFromNoConstructor>?) -> UnsealedDerivedFromNoConstructor? {
             guard let abi = abi else { return nil }
             return UnsealedWinRTClassWrapper<Composable>.unwrapFrom(base: abi)
         }
-        @_spi(WinRTInternal)
         public enum IBaseOverrides : ComposableImpl {
             public typealias CABI = __x_ABI_Ctest__component_CIBaseOverrides
             public typealias SwiftABI = __ABI_test_component.IBaseOverrides
@@ -689,15 +665,13 @@ public enum __IMPL_test_component {
         public typealias Composable = IBaseOverrides
     }
 
-    @_spi(WinRTInternal)
     public enum UnsealedDerivedNoConstructorBridge: ComposableBridge {
-        public typealias Swift = UnsealedDerivedNoConstructor
+        public typealias SwiftProjection = UnsealedDerivedNoConstructor
         public typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedNoConstructor
         public static func from(abi: ComPtr<__x_ABI_Ctest__component_CIUnsealedDerivedNoConstructor>?) -> UnsealedDerivedNoConstructor? {
             guard let abi = abi else { return nil }
             return UnsealedWinRTClassWrapper<Composable>.unwrapFrom(base: abi)
         }
-        @_spi(WinRTInternal)
         public enum IBaseOverrides : ComposableImpl {
             public typealias CABI = __x_ABI_Ctest__component_CIBaseOverrides
             public typealias SwiftABI = __ABI_test_component.IBaseOverrides
@@ -712,15 +686,13 @@ public enum __IMPL_test_component {
         public typealias Composable = IBaseOverrides
     }
 
-    @_spi(WinRTInternal)
     public enum UnsealedDerivedNoOverridesBridge: ComposableBridge {
-        public typealias Swift = UnsealedDerivedNoOverrides
+        public typealias SwiftProjection = UnsealedDerivedNoOverrides
         public typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides
         public static func from(abi: ComPtr<__x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides>?) -> UnsealedDerivedNoOverrides? {
             guard let abi = abi else { return nil }
             return UnsealedWinRTClassWrapper<Composable>.unwrapFrom(base: abi)
         }
-        @_spi(WinRTInternal)
         public enum IUnsealedDerivedNoOverrides : ComposableImpl {
             public typealias CABI = C_IInspectable
             public typealias SwiftABI = test_component.IInspectable
@@ -735,9 +707,8 @@ public enum __IMPL_test_component {
         public typealias Composable = IUnsealedDerivedNoOverrides
     }
 
-    @_spi(WinRTInternal)
     public enum WeakReferencerBridge: AbiBridge {
-        public typealias Swift = WeakReferencer
+        public typealias SwiftProjection = WeakReferencer
         public typealias CABI = __x_ABI_Ctest__component_CIWeakReferencer
         public static func from(abi: ComPtr<__x_ABI_Ctest__component_CIWeakReferencer>?) -> WeakReferencer? {
             guard let abi = abi else { return nil }

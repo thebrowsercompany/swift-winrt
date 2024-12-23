@@ -781,9 +781,8 @@ public enum __IMPL_Windows_Storage {
             return handler
         }
     }
-    @_spi(WinRTInternal)
     public enum StorageFileBridge: AbiBridge {
-        public typealias Swift = StorageFile
+        public typealias SwiftProjection = StorageFile
         public typealias CABI = __x_ABI_CWindows_CStorage_CIStorageFile
         public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CIStorageFile>?) -> StorageFile? {
             guard let abi = abi else { return nil }
@@ -791,9 +790,8 @@ public enum __IMPL_Windows_Storage {
         }
     }
 
-    @_spi(WinRTInternal)
     public enum StorageFolderBridge: AbiBridge {
-        public typealias Swift = StorageFolder
+        public typealias SwiftProjection = StorageFolder
         public typealias CABI = __x_ABI_CWindows_CStorage_CIStorageFolder
         public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CIStorageFolder>?) -> StorageFolder? {
             guard let abi = abi else { return nil }
@@ -801,9 +799,8 @@ public enum __IMPL_Windows_Storage {
         }
     }
 
-    @_spi(WinRTInternal)
     public enum StorageLibraryChangeBridge: AbiBridge {
-        public typealias Swift = StorageLibraryChange
+        public typealias SwiftProjection = StorageLibraryChange
         public typealias CABI = __x_ABI_CWindows_CStorage_CIStorageLibraryChange
         public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CIStorageLibraryChange>?) -> StorageLibraryChange? {
             guard let abi = abi else { return nil }
@@ -811,9 +808,8 @@ public enum __IMPL_Windows_Storage {
         }
     }
 
-    @_spi(WinRTInternal)
     public enum StorageLibraryChangeReaderBridge: AbiBridge {
-        public typealias Swift = StorageLibraryChangeReader
+        public typealias SwiftProjection = StorageLibraryChangeReader
         public typealias CABI = __x_ABI_CWindows_CStorage_CIStorageLibraryChangeReader
         public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CIStorageLibraryChangeReader>?) -> StorageLibraryChangeReader? {
             guard let abi = abi else { return nil }
@@ -821,9 +817,8 @@ public enum __IMPL_Windows_Storage {
         }
     }
 
-    @_spi(WinRTInternal)
     public enum StorageLibraryChangeTrackerBridge: AbiBridge {
-        public typealias Swift = StorageLibraryChangeTracker
+        public typealias SwiftProjection = StorageLibraryChangeTracker
         public typealias CABI = __x_ABI_CWindows_CStorage_CIStorageLibraryChangeTracker
         public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CIStorageLibraryChangeTracker>?) -> StorageLibraryChangeTracker? {
             guard let abi = abi else { return nil }
@@ -831,9 +826,8 @@ public enum __IMPL_Windows_Storage {
         }
     }
 
-    @_spi(WinRTInternal)
     public enum StorageProviderBridge: AbiBridge {
-        public typealias Swift = StorageProvider
+        public typealias SwiftProjection = StorageProvider
         public typealias CABI = __x_ABI_CWindows_CStorage_CIStorageProvider
         public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CIStorageProvider>?) -> StorageProvider? {
             guard let abi = abi else { return nil }
@@ -841,9 +835,8 @@ public enum __IMPL_Windows_Storage {
         }
     }
 
-    @_spi(WinRTInternal)
     public enum StorageStreamTransactionBridge: AbiBridge {
-        public typealias Swift = StorageStreamTransaction
+        public typealias SwiftProjection = StorageStreamTransaction
         public typealias CABI = __x_ABI_CWindows_CStorage_CIStorageStreamTransaction
         public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CIStorageStreamTransaction>?) -> StorageStreamTransaction? {
             guard let abi = abi else { return nil }
@@ -851,9 +844,8 @@ public enum __IMPL_Windows_Storage {
         }
     }
 
-    @_spi(WinRTInternal)
     public enum StreamedFileDataRequestBridge: AbiBridge {
-        public typealias Swift = StreamedFileDataRequest
+        public typealias SwiftProjection = StreamedFileDataRequest
         public typealias CABI = __x_ABI_CWindows_CStorage_CStreams_CIOutputStream
         public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CStreams_CIOutputStream>?) -> StreamedFileDataRequest? {
             guard let abi = abi else { return nil }

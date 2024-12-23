@@ -425,9 +425,8 @@ public enum __IMPL_Windows_Foundation {
             return handler
         }
     }
-    @_spi(WinRTInternal)
     public enum DeferralBridge: AbiBridge {
-        public typealias Swift = Deferral
+        public typealias SwiftProjection = Deferral
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIDeferral
         public static func from(abi: ComPtr<__x_ABI_CWindows_CFoundation_CIDeferral>?) -> Deferral? {
             guard let abi = abi else { return nil }
@@ -435,9 +434,8 @@ public enum __IMPL_Windows_Foundation {
         }
     }
 
-    @_spi(WinRTInternal)
     public enum MemoryBufferBridge: AbiBridge {
-        public typealias Swift = MemoryBuffer
+        public typealias SwiftProjection = MemoryBuffer
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIMemoryBuffer
         public static func from(abi: ComPtr<__x_ABI_CWindows_CFoundation_CIMemoryBuffer>?) -> MemoryBuffer? {
             guard let abi = abi else { return nil }
@@ -445,9 +443,8 @@ public enum __IMPL_Windows_Foundation {
         }
     }
 
-    @_spi(WinRTInternal)
     public enum UriBridge: AbiBridge {
-        public typealias Swift = Uri
+        public typealias SwiftProjection = Uri
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIUriRuntimeClass
         public static func from(abi: ComPtr<__x_ABI_CWindows_CFoundation_CIUriRuntimeClass>?) -> Uri? {
             guard let abi = abi else { return nil }
@@ -455,9 +452,8 @@ public enum __IMPL_Windows_Foundation {
         }
     }
 
-    @_spi(WinRTInternal)
     public enum WwwFormUrlDecoderBridge: AbiBridge {
-        public typealias Swift = WwwFormUrlDecoder
+        public typealias SwiftProjection = WwwFormUrlDecoder
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderRuntimeClass
         public static func from(abi: ComPtr<__x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderRuntimeClass>?) -> WwwFormUrlDecoder? {
             guard let abi = abi else { return nil }

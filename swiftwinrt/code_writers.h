@@ -2040,11 +2040,10 @@ public init<Composable: ComposableImpl>(
         if (auto default_interface = type.default_interface)
         {
             const bool composable = type.is_composable();
-            w.write("@_spi(WinRTInternal)\n");
             w.write("public enum %: % {\n", bind_bridge_name(type), composable ? "ComposableBridge" : "AbiBridge");
             {
                 auto indent = w.push_indent();
-                w.write("public typealias Swift = %\n", type.swift_type_name());
+                w.write("public typealias SwiftProjection = %\n", type.swift_type_name());
                 w.write("public typealias CABI = %\n", bind_type_mangled(default_interface));
                 // We unwrap composable types to try and get to any derived type.
                 // If not composable, then create a new instance
@@ -2370,8 +2369,7 @@ public init<Composable: ComposableImpl>(
 
         bool use_iinspectable_vtable = type_name(overrides) == type_name(*default_interface);
 
-        auto format = R"(^@_spi(WinRTInternal)
-public enum % : ComposableImpl {
+        auto format = R"(public enum % : ComposableImpl {
     public typealias CABI = %
     public typealias SwiftABI = %
     public typealias Class = %

@@ -45,9 +45,8 @@ public enum __IMPL_Windows_Storage_FileProperties {
 
     }
 
-    @_spi(WinRTInternal)
     public enum BasicPropertiesBridge: AbiBridge {
-        public typealias Swift = BasicProperties
+        public typealias SwiftProjection = BasicProperties
         public typealias CABI = __x_ABI_CWindows_CStorage_CFileProperties_CIBasicProperties
         public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CFileProperties_CIBasicProperties>?) -> BasicProperties? {
             guard let abi = abi else { return nil }
@@ -55,9 +54,8 @@ public enum __IMPL_Windows_Storage_FileProperties {
         }
     }
 
-    @_spi(WinRTInternal)
     public enum DocumentPropertiesBridge: AbiBridge {
-        public typealias Swift = DocumentProperties
+        public typealias SwiftProjection = DocumentProperties
         public typealias CABI = __x_ABI_CWindows_CStorage_CFileProperties_CIDocumentProperties
         public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CFileProperties_CIDocumentProperties>?) -> DocumentProperties? {
             guard let abi = abi else { return nil }
@@ -65,9 +63,8 @@ public enum __IMPL_Windows_Storage_FileProperties {
         }
     }
 
-    @_spi(WinRTInternal)
     public enum ImagePropertiesBridge: AbiBridge {
-        public typealias Swift = ImageProperties
+        public typealias SwiftProjection = ImageProperties
         public typealias CABI = __x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties
         public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties>?) -> ImageProperties? {
             guard let abi = abi else { return nil }
@@ -75,9 +72,8 @@ public enum __IMPL_Windows_Storage_FileProperties {
         }
     }
 
-    @_spi(WinRTInternal)
     public enum MusicPropertiesBridge: AbiBridge {
-        public typealias Swift = MusicProperties
+        public typealias SwiftProjection = MusicProperties
         public typealias CABI = __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties
         public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties>?) -> MusicProperties? {
             guard let abi = abi else { return nil }
@@ -85,9 +81,8 @@ public enum __IMPL_Windows_Storage_FileProperties {
         }
     }
 
-    @_spi(WinRTInternal)
     public enum StorageItemContentPropertiesBridge: AbiBridge {
-        public typealias Swift = StorageItemContentProperties
+        public typealias SwiftProjection = StorageItemContentProperties
         public typealias CABI = __x_ABI_CWindows_CStorage_CFileProperties_CIStorageItemContentProperties
         public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CFileProperties_CIStorageItemContentProperties>?) -> StorageItemContentProperties? {
             guard let abi = abi else { return nil }
@@ -95,9 +90,8 @@ public enum __IMPL_Windows_Storage_FileProperties {
         }
     }
 
-    @_spi(WinRTInternal)
     public enum StorageItemThumbnailBridge: AbiBridge {
-        public typealias Swift = StorageItemThumbnail
+        public typealias SwiftProjection = StorageItemThumbnail
         public typealias CABI = __x_ABI_CWindows_CStorage_CStreams_CIRandomAccessStreamWithContentType
         public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CStreams_CIRandomAccessStreamWithContentType>?) -> StorageItemThumbnail? {
             guard let abi = abi else { return nil }
@@ -105,9 +99,8 @@ public enum __IMPL_Windows_Storage_FileProperties {
         }
     }
 
-    @_spi(WinRTInternal)
     public enum VideoPropertiesBridge: AbiBridge {
-        public typealias Swift = VideoProperties
+        public typealias SwiftProjection = VideoProperties
         public typealias CABI = __x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties
         public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties>?) -> VideoProperties? {
             guard let abi = abi else { return nil }
