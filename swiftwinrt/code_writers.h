@@ -2790,7 +2790,7 @@ override % func _getABI<T>() -> UnsafeMutablePointer<T>? {
     static void do_write_abi_val_assignment(writer& w, T const& return_type, std::string_view return_param_name)
     {
         auto type = return_type.type;
-        auto param_name = get_swift_name(return_type.name);
+        auto param_name = get_swift_member_name(return_type.name);
         TypeDef signature_type{};
         auto category = get_category(type, &signature_type);
 
