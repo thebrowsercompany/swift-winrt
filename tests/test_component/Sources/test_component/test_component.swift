@@ -1456,9 +1456,6 @@ public struct BlittableStruct: Hashable, Codable, Sendable {
         self.first = first
         self.second = second
     }
-    public static func from(abi: __x_ABI_Ctest__component_CBlittableStruct) -> BlittableStruct {
-        .init(first: abi.First, second: abi.Second)
-    }
 }
 
 public struct NonBlittableBoolStruct: Hashable, Codable, Sendable {
@@ -1472,9 +1469,6 @@ public struct NonBlittableBoolStruct: Hashable, Codable, Sendable {
         self.second = second
         self.third = third
         self.fourth = fourth
-    }
-    public static func from(abi: __x_ABI_Ctest__component_CNonBlittableBoolStruct) -> NonBlittableBoolStruct {
-        .init(first: .init(from: abi.First), second: .init(from: abi.Second), third: .init(from: abi.Third), fourth: .init(from: abi.Fourth))
     }
 }
 
@@ -1490,9 +1484,6 @@ public struct NonBlittableStruct: Hashable, Codable, Sendable {
         self.third = third
         self.fourth = fourth
     }
-    public static func from(abi: __x_ABI_Ctest__component_CNonBlittableStruct) -> NonBlittableStruct {
-        .init(first: .init(from: abi.First), second: .init(from: abi.Second), third: abi.Third, fourth: .init(from: abi.Fourth))
-    }
 }
 
 public struct SimpleEventArgs: Hashable, Codable, Sendable {
@@ -1501,9 +1492,6 @@ public struct SimpleEventArgs: Hashable, Codable, Sendable {
     public init(value: Int32) {
         self.value = value
     }
-    public static func from(abi: __x_ABI_Ctest__component_CSimpleEventArgs) -> SimpleEventArgs {
-        .init(value: abi.Value)
-    }
 }
 
 public struct StructWithEnum: Hashable, Codable, Sendable {
@@ -1511,9 +1499,6 @@ public struct StructWithEnum: Hashable, Codable, Sendable {
     public init() {}
     public init(names: SwiftifiableNames) {
         self.names = names
-    }
-    public static func from(abi: __x_ABI_Ctest__component_CStructWithEnum) -> StructWithEnum {
-        .init(names: abi.Names)
     }
 }
 
@@ -1524,9 +1509,6 @@ public struct StructWithIReference: Hashable, Codable, Sendable {
     public init(value1: Int32?, value2: Int32?) {
         self.value1 = value1
         self.value2 = value2
-    }
-    public static func from(abi: __x_ABI_Ctest__component_CStructWithIReference) -> StructWithIReference {
-        .init(value1: test_component.__x_ABI_C__FIReference_1_intWrapper.unwrapFrom(abi: ComPtr(abi.Value1)), value2: test_component.__x_ABI_C__FIReference_1_intWrapper.unwrapFrom(abi: ComPtr(abi.Value2)))
     }
 }
 

@@ -341,9 +341,6 @@ public struct DateTime: Hashable, Codable, Sendable {
     public init(universalTime: Int64) {
         self.universalTime = universalTime
     }
-    public static func from(abi: __x_ABI_CWindows_CFoundation_CDateTime) -> DateTime {
-        .init(universalTime: abi.UniversalTime)
-    }
 }
 
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.point)
@@ -356,9 +353,6 @@ public struct Point: Hashable, Codable, Sendable {
     public init(x: Float, y: Float) {
         self.x = x
         self.y = y
-    }
-    public static func from(abi: __x_ABI_CWindows_CFoundation_CPoint) -> Point {
-        .init(x: abi.X, y: abi.Y)
     }
 }
 
@@ -379,9 +373,6 @@ public struct Rect: Hashable, Codable, Sendable {
         self.width = width
         self.height = height
     }
-    public static func from(abi: __x_ABI_CWindows_CFoundation_CRect) -> Rect {
-        .init(x: abi.X, y: abi.Y, width: abi.Width, height: abi.Height)
-    }
 }
 
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.size)
@@ -395,9 +386,6 @@ public struct Size: Hashable, Codable, Sendable {
         self.width = width
         self.height = height
     }
-    public static func from(abi: __x_ABI_CWindows_CFoundation_CSize) -> Size {
-        .init(width: abi.Width, height: abi.Height)
-    }
 }
 
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.timespan)
@@ -407,9 +395,6 @@ public struct TimeSpan: Hashable, Codable, Sendable {
     public init() {}
     public init(duration: Int64) {
         self.duration = duration
-    }
-    public static func from(abi: __x_ABI_CWindows_CFoundation_CTimeSpan) -> TimeSpan {
-        .init(duration: abi.Duration)
     }
 }
 

@@ -414,9 +414,6 @@ public struct SortEntry: Hashable, Codable, Sendable {
         self.propertyName = propertyName
         self.ascendingOrder = ascendingOrder
     }
-    public static func from(abi: __x_ABI_CWindows_CStorage_CSearch_CSortEntry) -> SortEntry {
-        .init(propertyName: .init(from: abi.PropertyName), ascendingOrder: .init(from: abi.AscendingOrder))
-    }
 }
 
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.search.istoragefolderqueryoperations)

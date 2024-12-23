@@ -228,3 +228,14 @@ public enum __IMPL_Windows_Storage_Search {
     }
 
 }
+@_spi(WinRTInternal)
+extension SortEntry: WinRTBridgeable {
+    public typealias ABI = __x_ABI_CWindows_CStorage_CSearch_CSortEntry
+    public static func from(abi: ABI) -> Self {
+        .init(propertyName: .init(from: abi.PropertyName), ascendingOrder: .init(from: abi.AscendingOrder))
+    }
+    public func toABI() -> ABI {
+        __ABI_Windows_Storage_Search._ABI_SortEntry(from: self).detach()
+    }
+}
+

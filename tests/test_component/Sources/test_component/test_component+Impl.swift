@@ -717,3 +717,69 @@ public enum __IMPL_test_component {
     }
 
 }
+@_spi(WinRTInternal)
+extension BlittableStruct: WinRTBridgeable {
+    public typealias ABI = __x_ABI_Ctest__component_CBlittableStruct
+    public static func from(abi: ABI) -> Self {
+        .init(first: abi.First, second: abi.Second)
+    }
+    public func toABI() -> ABI {
+        .from(swift: self)
+    }
+}
+
+@_spi(WinRTInternal)
+extension NonBlittableBoolStruct: WinRTBridgeable {
+    public typealias ABI = __x_ABI_Ctest__component_CNonBlittableBoolStruct
+    public static func from(abi: ABI) -> Self {
+        .init(first: .init(from: abi.First), second: .init(from: abi.Second), third: .init(from: abi.Third), fourth: .init(from: abi.Fourth))
+    }
+    public func toABI() -> ABI {
+        __ABI_test_component._ABI_NonBlittableBoolStruct(from: self).detach()
+    }
+}
+
+@_spi(WinRTInternal)
+extension NonBlittableStruct: WinRTBridgeable {
+    public typealias ABI = __x_ABI_Ctest__component_CNonBlittableStruct
+    public static func from(abi: ABI) -> Self {
+        .init(first: .init(from: abi.First), second: .init(from: abi.Second), third: abi.Third, fourth: .init(from: abi.Fourth))
+    }
+    public func toABI() -> ABI {
+        __ABI_test_component._ABI_NonBlittableStruct(from: self).detach()
+    }
+}
+
+@_spi(WinRTInternal)
+extension SimpleEventArgs: WinRTBridgeable {
+    public typealias ABI = __x_ABI_Ctest__component_CSimpleEventArgs
+    public static func from(abi: ABI) -> Self {
+        .init(value: abi.Value)
+    }
+    public func toABI() -> ABI {
+        .from(swift: self)
+    }
+}
+
+@_spi(WinRTInternal)
+extension StructWithEnum: WinRTBridgeable {
+    public typealias ABI = __x_ABI_Ctest__component_CStructWithEnum
+    public static func from(abi: ABI) -> Self {
+        .init(names: abi.Names)
+    }
+    public func toABI() -> ABI {
+        .from(swift: self)
+    }
+}
+
+@_spi(WinRTInternal)
+extension StructWithIReference: WinRTBridgeable {
+    public typealias ABI = __x_ABI_Ctest__component_CStructWithIReference
+    public static func from(abi: ABI) -> Self {
+        .init(value1: test_component.__x_ABI_C__FIReference_1_intWrapper.unwrapFrom(abi: ComPtr(abi.Value1)), value2: test_component.__x_ABI_C__FIReference_1_intWrapper.unwrapFrom(abi: ComPtr(abi.Value2)))
+    }
+    public func toABI() -> ABI {
+        __ABI_test_component._ABI_StructWithIReference(from: self).detach()
+    }
+}
+
