@@ -77,7 +77,8 @@ public enum __ABI_ {
         return makeFrom(abi: ref) ?? ref
       }
       public static func tryUnwrapFrom(raw pUnk: UnsafeMutableRawPointer?) -> AnyObject? {
-        tryUnwrapFromBase(raw: pUnk)
+        guard let pUnk else { return nil }
+        return tryUnwrapFromBase(raw: pUnk)
       }
 
       internal static func queryInterface(_ pUnk: UnsafeMutablePointer<C_IInspectable>?, _ riid: UnsafePointer<SUPPORT_MODULE.IID>?, _ ppvObject: UnsafeMutablePointer<UnsafeMutableRawPointer?>?) -> HRESULT {
@@ -151,11 +152,9 @@ public enum __IMPL_ {
         }
 
         public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
-            // This code path is not actually reachable since IBufferByteAccess is not a WinRT interface.
-            // It is a COM interface which is implemented by any object which implements the IBuffer interface.
-            // And the IBufferImpl object will correctly have the implementation of this interface, so this isn't needed
-            assertionFailure("IBufferByteAccessBridge.from not implemented")
-            return nil
+            guard let abi else { return nil }
+            let ref = IInspectable(abi)
+            return makeFrom(abi: ref) ?? ref
         }
 
         public typealias SwiftProjection = Any
