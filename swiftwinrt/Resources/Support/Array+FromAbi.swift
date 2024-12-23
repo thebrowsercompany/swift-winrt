@@ -18,6 +18,9 @@ extension Array where Element: Numeric {
     }
 }
 
+// RawRepresentable covers Enums, which are simply numberic types, but the where Element: Numeric doesn't
+// cover them. These particular cases are written to ensure no accidental conversion of types that can't
+// be simply cast to a C-style Array accidentally sneak in
 @_spi(WinRTInternal)
 extension Array where Element: RawRepresentable, Element.RawValue: Numeric {
     public static func from(abi: WinRTArrayAbi<Element>) -> [Element] {
