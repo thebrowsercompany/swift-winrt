@@ -121,21 +121,21 @@ public class ArrayByReferenceTests: XCTestCase {
     public func testInStringArrayByReference() throws {
         var input = [String](repeating: "SWIFTRULES", count: 5)
         try ArrayMethods.refStringArray(&input)
-        XCTAssertEqual(["1", "2", "3", "4", "SWIFTRULES"], input)
+        XCTAssertEqual(["1", "2", "3", "4", ""], input)
     }
 
     public func testInObjectArrayByReference() throws {
         var input = [Any?](repeating: StringableInt(value: 42), count: 5)
         try ArrayMethods.refObjectArray(&input)
-        let mapped = try input.compactMap { try XCTUnwrap($0 as? IStringable).toString() }
-        XCTAssertEqual(["1", "2", "3", "4", "42"], mapped)
+        let mapped = try input.map { try ($0 as? IStringable)?.toString() }
+        XCTAssertEqual(["1", "2", "3", "4", nil], mapped)
     }
 
     public func testInStringableArrayByReference() throws {
         var input = [AnyIStringable?](repeating: StringableInt(value: 42), count: 5)
         try ArrayMethods.refStringableArray(&input)
-        let mapped = try input.compactMap { try $0?.toString() }
-        XCTAssertEqual(["1", "2", "3", "4", "42"], mapped)
+        let mapped = try input.map { try $0?.toString() }
+        XCTAssertEqual(["1", "2", "3", "4", nil], mapped)
     }
 
     public func testInStructArrayByReference() throws {
@@ -154,7 +154,7 @@ public class ArrayByReferenceTests: XCTestCase {
         XCTAssertEqual([
             NonBlittableStruct(first: "1", second: "2", third: 3, fourth: "4"),
             NonBlittableStruct(first: "5", second: "6", third: 7, fourth: "8"),
-            NonBlittableStruct(first: "H", second: "E", third: 1, fourth: "P")], input)
+            NonBlittableStruct(first: "", second: "", third: 0, fourth: "")], input)
     }
 
     public func testInEnumArrayByReference() throws {
