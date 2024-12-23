@@ -677,7 +677,7 @@ namespace swiftwinrt
 
     inline std::string get_swift_name(function_param const& param)
     {
-        return get_swift_member_name(param.def);
+        return get_swift_name(param.def);
     }
 
     inline std::string get_swift_name(function_return_type const& return_type)
