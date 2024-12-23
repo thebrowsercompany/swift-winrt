@@ -631,24 +631,24 @@ namespace swiftwinrt
         }
     }
 
-    inline std::string get_swift_name(std::string_view const& name)
+    inline std::string get_swift_member_name(std::string_view const& name)
     {
         return to_camel_case(name);
     }
 
     inline std::string get_swift_name(Property const& property)
     {
-        return get_swift_name(property.Name());
+        return get_swift_member_name(property.Name());
     }
 
     inline std::string get_swift_name(Event const& event)
     {
-        return get_swift_name(event.Name());
+        return get_swift_member_name(event.Name());
     }
 
     inline std::string get_swift_name(Field const& field)
     {
-        return get_swift_name(field.Name());
+        return get_swift_member_name(field.Name());
     }
 
     inline std::string get_swift_name(Param const& param)
@@ -677,17 +677,17 @@ namespace swiftwinrt
 
     inline std::string get_swift_name(function_param const& param)
     {
-        return get_swift_name(param.def);
+        return get_swift_member_name(param.def);
     }
 
     inline std::string get_swift_name(function_return_type const& return_type)
     {
-        return get_swift_name(return_type.name);
+        return get_swift_member_name(return_type.name);
     }
 
     inline std::string get_swift_name(property_def const& property)
     {
-        return get_swift_name(property.def.Name());
+        return get_swift_member_name(property.def.Name());
     }
 
     inline std::string get_swift_name(function_def const& function)
@@ -697,12 +697,12 @@ namespace swiftwinrt
         {
             return "handler";
         }
-        return get_swift_name(function.def.Name());
+        return get_swift_member_name(function.def.Name());
     }
 
     inline std::string get_swift_name(struct_member const& member)
     {
-        return get_swift_name(member.field.Name());
+        return get_swift_member_name(member.field.Name());
     }
 
     inline std::string_view get_abi_name(struct_member const& member)
