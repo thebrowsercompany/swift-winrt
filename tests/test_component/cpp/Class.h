@@ -103,12 +103,6 @@ namespace winrt::test_component::implementation
         Signed ReturnEnum();
         Windows::Foundation::IReference<Signed> ReturnReferenceEnum() { return Windows::Foundation::IReference<Signed>(ReturnEnum()); }
 
-        hstring InInt32Array(array_view<int32_t const> value);
-        hstring InStringArray(array_view<hstring const> value);
-        hstring InObjectArray(array_view<Windows::Foundation::IInspectable const> value);
-        hstring InStringableArray(array_view<Windows::Foundation::IStringable const> value);
-        hstring InEnumArray(array_view<Signed const> value);
-
         void OutInt32Array(com_array<int32_t>& value);
         void OutStringArray(com_array<hstring>& value);
         void OutObjectArray(com_array<Windows::Foundation::IInspectable>& value);

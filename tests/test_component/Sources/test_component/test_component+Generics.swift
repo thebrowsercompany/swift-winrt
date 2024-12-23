@@ -7670,6 +7670,11 @@ fileprivate class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBa
         try! _IVector.Clear()
     }
 
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.replaceall)
+    fileprivate func replaceAll(_ items: [Base?]) {
+        try! _IVector.ReplaceAll(items)
+    }
+
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.size)
     fileprivate var size : UInt32 {
         get { try! _IVector.get_Size() }
@@ -7866,6 +7871,11 @@ fileprivate class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIB
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.clear)
     fileprivate func clear() {
         try! _IVector.Clear()
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.replaceall)
+    fileprivate func replaceAll(_ items: [AnyIBasic?]) {
+        try! _IVector.ReplaceAll(items)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iobservablevector-1.size)
@@ -9924,7 +9934,12 @@ internal var __x_ABI_C__FIVector_1_IInspectableVTable: __x_ABI_C__FIVector_1_IIn
 
     GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) },
 
-    ReplaceAll: { _, _, _ in return failWith(hr: E_NOTIMPL) }
+    ReplaceAll: {
+        guard let __unwrapped__instance = __x_ABI_C__FIVector_1_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let items: [Any?] = .from(abiBridge: __IMPL_.AnyBridge.self, abi: (count: $1, start: $2))
+        __unwrapped__instance.replaceAll(items)
+        return S_OK
+    }
 )
 typealias __x_ABI_C__FIVector_1_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVector_1_IInspectableBridge>
 public class IVectorAny: test_component.IInspectable {
@@ -10005,6 +10020,14 @@ public class IVectorAny: test_component.IInspectable {
     open func Clear() throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Clear(pThis))
+        }
+    }
+
+    open func ReplaceAll(_ items: [Any?]) throws {
+        try items.toABI(abiBridge: __IMPL_.AnyBridge.self) { (count, _items) in
+            _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.ReplaceAll(pThis, count, _items))
+            }
         }
     }
 
@@ -10107,6 +10130,11 @@ fileprivate class __x_ABI_C__FIVector_1_IInspectableImpl : IVector, AbiInterface
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.clear)
     fileprivate func clear() {
         try! _default.Clear()
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.replaceall)
+    fileprivate func replaceAll(_ items: [Any?]) {
+        try! _default.ReplaceAll(items)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.size)
@@ -10233,7 +10261,12 @@ internal var __x_ABI_C__FIVector_1_GUIDVTable: __x_ABI_C__FIVector_1_GUIDVtbl = 
 
     GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) },
 
-    ReplaceAll: { _, _, _ in return failWith(hr: E_NOTIMPL) }
+    ReplaceAll: {
+        guard let __unwrapped__instance = __x_ABI_C__FIVector_1_GUIDWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let items: [Foundation.UUID] = .from(abi: (count: $1, start: $2))
+        __unwrapped__instance.replaceAll(items)
+        return S_OK
+    }
 )
 typealias __x_ABI_C__FIVector_1_GUIDWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVector_1_GUIDBridge>
 public class IVectorUUID: test_component.IInspectable {
@@ -10305,6 +10338,14 @@ public class IVectorUUID: test_component.IInspectable {
     open func Clear() throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Clear(pThis))
+        }
+    }
+
+    open func ReplaceAll(_ items: [Foundation.UUID]) throws {
+        try items.toABI { (count, _items) in
+            _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.ReplaceAll(pThis, count, _items))
+            }
         }
     }
 
@@ -10407,6 +10448,11 @@ fileprivate class __x_ABI_C__FIVector_1_GUIDImpl : IVector, AbiInterfaceImpl {
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.clear)
     fileprivate func clear() {
         try! _default.Clear()
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.replaceall)
+    fileprivate func replaceAll(_ items: [Foundation.UUID]) {
+        try! _default.ReplaceAll(items)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.size)
@@ -10533,7 +10579,12 @@ internal var __x_ABI_C__FIVector_1_HSTRINGVTable: __x_ABI_C__FIVector_1_HSTRINGV
 
     GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) },
 
-    ReplaceAll: { _, _, _ in return failWith(hr: E_NOTIMPL) }
+    ReplaceAll: {
+        guard let __unwrapped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let items: [String] = .from(abi: (count: $1, start: $2))
+        __unwrapped__instance.replaceAll(items)
+        return S_OK
+    }
 )
 typealias __x_ABI_C__FIVector_1_HSTRINGWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVector_1_HSTRINGBridge>
 public class IVectorString: test_component.IInspectable {
@@ -10609,6 +10660,14 @@ public class IVectorString: test_component.IInspectable {
     open func Clear() throws {
         _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Clear(pThis))
+        }
+    }
+
+    open func ReplaceAll(_ items: [String]) throws {
+        try items.toABI { (count, _items) in
+            _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.ReplaceAll(pThis, count, _items))
+            }
         }
     }
 
@@ -10711,6 +10770,11 @@ fileprivate class __x_ABI_C__FIVector_1_HSTRINGImpl : IVector, AbiInterfaceImpl 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.clear)
     fileprivate func clear() {
         try! _default.Clear()
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.replaceall)
+    fileprivate func replaceAll(_ items: [String]) {
+        try! _default.ReplaceAll(items)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.size)
@@ -10838,7 +10902,12 @@ internal var __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEnt
 
     GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) },
 
-    ReplaceAll: { _, _, _ in return failWith(hr: E_NOTIMPL) }
+    ReplaceAll: {
+        guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let items: [test_component.SortEntry] = .from(abi: (count: $1, start: $2))
+        __unwrapped__instance.replaceAll(items)
+        return S_OK
+    }
 )
 typealias __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryBridge>
 public class IVectorSortEntry: test_component.IInspectable {
@@ -10914,6 +10983,14 @@ public class IVectorSortEntry: test_component.IInspectable {
     open func Clear() throws {
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Clear(pThis))
+        }
+    }
+
+    open func ReplaceAll(_ items: [test_component.SortEntry]) throws {
+        try items.toABI { (count, _items) in
+            _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.ReplaceAll(pThis, count, _items))
+            }
         }
     }
 
@@ -11016,6 +11093,11 @@ fileprivate class __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSo
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.clear)
     fileprivate func clear() {
         try! _default.Clear()
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.replaceall)
+    fileprivate func replaceAll(_ items: [test_component.SortEntry]) {
+        try! _default.ReplaceAll(items)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.size)
@@ -11142,7 +11224,12 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_A
 
     GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) },
 
-    ReplaceAll: { _, _, _ in return failWith(hr: E_NOTIMPL) }
+    ReplaceAll: {
+        guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let items: [test_component.Base?] = .from(abiBridge: __IMPL_test_component.BaseBridge.self, abi: (count: $1, start: $2))
+        __unwrapped__instance.replaceAll(items)
+        return S_OK
+    }
 )
 typealias __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseBridge>
 public class IVectorBase: test_component.IInspectable {
@@ -11215,6 +11302,14 @@ public class IVectorBase: test_component.IInspectable {
     open func Clear() throws {
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Clear(pThis))
+        }
+    }
+
+    open func ReplaceAll(_ items: [test_component.Base?]) throws {
+        try items.toABI(abiBridge: __IMPL_test_component.BaseBridge.self) { (count, _items) in
+            _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.ReplaceAll(pThis, count, _items))
+            }
         }
     }
 
@@ -11317,6 +11412,11 @@ fileprivate class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl : I
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.clear)
     fileprivate func clear() {
         try! _default.Clear()
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.replaceall)
+    fileprivate func replaceAll(_ items: [Base?]) {
+        try! _default.ReplaceAll(items)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.size)
@@ -11444,7 +11544,12 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicVTable: __x
 
     GetMany: { _, _, _, _, _ in return failWith(hr: E_NOTIMPL) },
 
-    ReplaceAll: { _, _, _ in return failWith(hr: E_NOTIMPL) }
+    ReplaceAll: {
+        guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let items: [test_component.AnyIBasic?] = .from(abiBridge: __IMPL_test_component.IBasicBridge.self, abi: (count: $1, start: $2))
+        __unwrapped__instance.replaceAll(items)
+        return S_OK
+    }
 )
 typealias __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicBridge>
 public class IVectorIBasic: test_component.IInspectable {
@@ -11525,6 +11630,14 @@ public class IVectorIBasic: test_component.IInspectable {
     open func Clear() throws {
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Clear(pThis))
+        }
+    }
+
+    open func ReplaceAll(_ items: [test_component.AnyIBasic?]) throws {
+        try items.toABI(abiBridge: __IMPL_test_component.IBasicBridge.self) { (count, _items) in
+            _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.ReplaceAll(pThis, count, _items))
+            }
         }
     }
 
@@ -11627,6 +11740,11 @@ fileprivate class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicImpl :
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.clear)
     fileprivate func clear() {
         try! _default.Clear()
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.replaceall)
+    fileprivate func replaceAll(_ items: [AnyIBasic?]) {
+        try! _default.ReplaceAll(items)
     }
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivector-1.size)

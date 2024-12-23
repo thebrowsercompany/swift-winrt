@@ -250,6 +250,18 @@ public enum __ABI_Windows_Storage {
             return __ABI_Windows_Foundation.IAsyncActionWrapper.unwrapFrom(abi: operation)
         }
 
+        public func WriteBytesAsync(_ absolutePath: String, _ buffer: [UInt8]) throws -> test_component.AnyIAsyncAction? {
+            let (operation) = try ComPtrs.initialize { operationAbi in
+                let _absolutePath = try! HString(absolutePath)
+                try buffer.toABI { (count, _buffer) in
+                    _ = try perform(as: __x_ABI_CWindows_CStorage_CIPathIOStatics.self) { pThis in
+                        try CHECKED(pThis.pointee.lpVtbl.pointee.WriteBytesAsync(pThis, _absolutePath.get(), count, _buffer, &operationAbi))
+                    }
+                }
+            }
+            return __ABI_Windows_Foundation.IAsyncActionWrapper.unwrapFrom(abi: operation)
+        }
+
     }
 
     public class IStorageFile: test_component.IInspectable {

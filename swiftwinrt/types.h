@@ -589,6 +589,10 @@ namespace swiftwinrt
         winmd::reader::RetTypeSig signature;
         std::string_view name;
         metadata_type const* type;
+
+        bool in() const { return false; }
+        bool out() const { return true; }
+        bool is_array() const { return signature.Type().is_szarray() || signature.Type().is_array(); }
     };
 
     struct function_param
@@ -600,6 +604,7 @@ namespace swiftwinrt
 
         bool in() const { return def.Flags().In(); }
         bool out() const { return def.Flags().Out(); }
+        bool is_array() const { return signature.Type().is_szarray() || signature.Type().is_array(); }
     };
 
     struct function_def
@@ -1047,17 +1052,25 @@ namespace swiftwinrt
             return true;
         }
 
-        auto elem = dynamic_cast<element_type const*>(type);
-        return elem != nullptr && elem->type() == ElementType::Object;
+        if (auto elem = dynamic_cast<element_type const*>(type))
+        {
+            return elem->type() == ElementType::Object;
+        }
+        return false; 
+    }
+
+    inline bool is_element_type(metadata_type const* type, ElementType elementType)
+    {
+        if (auto elem = dynamic_cast<element_type const*>(type))
+        {
+            return elem->type() == elementType;
+        }
+        return false;
     }
 
     inline bool is_boolean(metadata_type const* signature)
     {
-        if (auto elementType = dynamic_cast<element_type const*>(signature))
-        {
-            return elementType->type() == ElementType::Boolean;
-        }
-        return false;
+        return is_element_type(signature, ElementType::Boolean);
     }
 
     inline bool is_floating_point(metadata_type const* signature)
@@ -1068,6 +1081,11 @@ namespace swiftwinrt
                 elementType->type() == ElementType::R8;
         }
         return false;
+    }
+    
+    inline bool is_string(metadata_type const* signature)
+    {
+        return is_element_type(signature, ElementType::String);
     }
 
     // Helpers for WinRT types

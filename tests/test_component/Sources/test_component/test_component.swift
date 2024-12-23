@@ -8,6 +8,38 @@ public typealias Keywords = __x_ABI_Ctest__component_CKeywords
 public typealias Signed = __x_ABI_Ctest__component_CSigned
 public typealias SwiftifiableNames = __x_ABI_Ctest__component_CSwiftifiableNames
 public typealias Unsigned = __x_ABI_Ctest__component_CUnsigned
+public final class ArrayMethods {
+    private static let _IArrayMethodsStatics: __ABI_test_component.IArrayMethodsStatics = try! RoGetActivationFactory("test_component.ArrayMethods")
+    public static func inInt32Array(_ value: [Int32]) throws -> String {
+        return try _IArrayMethodsStatics.InInt32Array(value)
+    }
+
+    public static func inStringArray(_ value: [String]) throws -> String {
+        return try _IArrayMethodsStatics.InStringArray(value)
+    }
+
+    public static func inObjectArray(_ value: [Any?]) throws -> String {
+        return try _IArrayMethodsStatics.InObjectArray(value)
+    }
+
+    public static func inStringableArray(_ value: [test_component.AnyIStringable?]) throws -> String {
+        return try _IArrayMethodsStatics.InStringableArray(value)
+    }
+
+    public static func inStructArray(_ value: [BlittableStruct]) throws -> String {
+        return try _IArrayMethodsStatics.InStructArray(value)
+    }
+
+    public static func inNonBlittableStructArray(_ value: [NonBlittableStruct]) throws -> String {
+        return try _IArrayMethodsStatics.InNonBlittableStructArray(value)
+    }
+
+    public static func inEnumArray(_ value: [Signed]) throws -> String {
+        return try _IArrayMethodsStatics.InEnumArray(value)
+    }
+
+}
+
 public final class AsyncMethods {
     private static let _IAsyncMethodsStatics: __ABI_test_component.IAsyncMethodsStatics = try! RoGetActivationFactory("test_component.AsyncMethods")
     public static func getCompletedAsync(_ result: Int32) throws -> AnyIAsyncOperation<Int32>! {
@@ -258,6 +290,10 @@ open class BaseCollection : WinRTClass, IVector, IIterable {
         try! _default.Clear()
     }
 
+    public func replaceAll(_ items: [Base?]) {
+        try! _default.ReplaceAll(items)
+    }
+
     public var size : UInt32 {
         get { try! _default.get_Size() }
     }
@@ -481,6 +517,10 @@ public final class BaseObservableCollection : WinRTClass, IObservableVector, IVe
 
     public func clear() {
         try! _IVector.Clear()
+    }
+
+    public func replaceAll(_ items: [Base?]) {
+        try! _IVector.ReplaceAll(items)
     }
 
     public var size : UInt32 {

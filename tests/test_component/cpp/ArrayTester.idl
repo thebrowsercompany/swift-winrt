@@ -1,0 +1,15 @@
+import "Windows.Foundation.idl";
+
+namespace test_component
+{
+    runtimeclass ArrayMethods
+    {
+        static String InInt32Array(Int32[] value);
+        static String InStringArray(String[] value);
+        static String InObjectArray(Object[] value);
+        static String InStringableArray(Windows.Foundation.IStringable[] value);
+        static String InStructArray(BlittableStruct[] value);
+        static String InNonBlittableStructArray(NonBlittableStruct[] value);
+        static String InEnumArray(Signed[] value);
+    }
+}

@@ -77,7 +77,8 @@ public enum __ABI_ {
         return makeFrom(abi: ref) ?? ref
       }
       public static func tryUnwrapFrom(raw pUnk: UnsafeMutableRawPointer?) -> AnyObject? {
-        tryUnwrapFromBase(raw: pUnk)
+        guard let pUnk else { return nil }
+        return tryUnwrapFromBase(raw: pUnk)
       }
 
       internal static func queryInterface(_ pUnk: UnsafeMutablePointer<C_IInspectable>?, _ riid: UnsafePointer<SUPPORT_MODULE.IID>?, _ ppvObject: UnsafeMutablePointer<UnsafeMutableRawPointer?>?) -> HRESULT {
@@ -140,4 +141,24 @@ extension ComposableImpl where CABI == C_IInspectable {
     let vtblPtr = withUnsafeMutablePointer(to: &__ABI_.IInspectableVTable) { $0 }
     return .init(lpVtbl: vtblPtr)
   }
+}
+
+@_spi(WinRTInternal)
+public enum __IMPL_ {
+    public enum AnyBridge: AbiInterfaceBridge {
+        public static func makeAbi() -> CABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_.IInspectableVTable) { $0 }
+            return .init(lpVtbl: vtblPtr)
+        }
+
+        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+            guard let abi else { return nil }
+            let ref = IInspectable(abi)
+            return makeFrom(abi: ref) ?? ref
+        }
+
+        public typealias SwiftProjection = Any
+        public typealias CABI = C_IInspectable
+        public typealias SwiftABI = SUPPORT_MODULE.IInspectable
+    }
 }

@@ -24,7 +24,13 @@ typedef interface __x_ABI_Ctest__component_CIVoidToVoidDelegate __x_ABI_Ctest__c
 
 #endif // ____x_ABI_Ctest__component_CIVoidToVoidDelegate_FWD_DEFINED__
 
-    #ifndef ____x_ABI_Ctest__component_CIAsyncMethodsStatics_FWD_DEFINED__
+    #ifndef ____x_ABI_Ctest__component_CIArrayMethodsStatics_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CIArrayMethodsStatics_FWD_DEFINED__
+    typedef interface __x_ABI_Ctest__component_CIArrayMethodsStatics __x_ABI_Ctest__component_CIArrayMethodsStatics;
+
+#endif // ____x_ABI_Ctest__component_CIArrayMethodsStatics_FWD_DEFINED__
+
+#ifndef ____x_ABI_Ctest__component_CIAsyncMethodsStatics_FWD_DEFINED__
 #define ____x_ABI_Ctest__component_CIAsyncMethodsStatics_FWD_DEFINED__
     typedef interface __x_ABI_Ctest__component_CIAsyncMethodsStatics __x_ABI_Ctest__component_CIAsyncMethodsStatics;
 
@@ -2603,6 +2609,65 @@ struct __x_ABI_Ctest__component_CStructWithIReference
     
     EXTERN_C const IID IID___x_ABI_Ctest__component_CIVoidToVoidDelegate;
     #endif /* !defined(____x_ABI_Ctest__component_CIVoidToVoidDelegate_INTERFACE_DEFINED__) */
+    
+#if !defined(____x_ABI_Ctest__component_CIArrayMethodsStatics_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CIArrayMethodsStatics_INTERFACE_DEFINED__
+    typedef struct __x_ABI_Ctest__component_CIArrayMethodsStaticsVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CIArrayMethodsStatics* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CIArrayMethodsStatics* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CIArrayMethodsStatics* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_Ctest__component_CIArrayMethodsStatics* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_Ctest__component_CIArrayMethodsStatics* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CIArrayMethodsStatics* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* InInt32Array)(__x_ABI_Ctest__component_CIArrayMethodsStatics* This,
+        UINT32 valueLength,
+        INT32* value,
+        HSTRING* result);
+    HRESULT (STDMETHODCALLTYPE* InStringArray)(__x_ABI_Ctest__component_CIArrayMethodsStatics* This,
+        UINT32 valueLength,
+        HSTRING* value,
+        HSTRING* result);
+    HRESULT (STDMETHODCALLTYPE* InObjectArray)(__x_ABI_Ctest__component_CIArrayMethodsStatics* This,
+        UINT32 valueLength,
+        IInspectable** value,
+        HSTRING* result);
+    HRESULT (STDMETHODCALLTYPE* InStringableArray)(__x_ABI_Ctest__component_CIArrayMethodsStatics* This,
+        UINT32 valueLength,
+        __x_ABI_CWindows_CFoundation_CIStringable** value,
+        HSTRING* result);
+    HRESULT (STDMETHODCALLTYPE* InStructArray)(__x_ABI_Ctest__component_CIArrayMethodsStatics* This,
+        UINT32 valueLength,
+        struct __x_ABI_Ctest__component_CBlittableStruct* value,
+        HSTRING* result);
+    HRESULT (STDMETHODCALLTYPE* InNonBlittableStructArray)(__x_ABI_Ctest__component_CIArrayMethodsStatics* This,
+        UINT32 valueLength,
+        struct __x_ABI_Ctest__component_CNonBlittableStruct* value,
+        HSTRING* result);
+    HRESULT (STDMETHODCALLTYPE* InEnumArray)(__x_ABI_Ctest__component_CIArrayMethodsStatics* This,
+        UINT32 valueLength,
+        enum __x_ABI_Ctest__component_CSigned* value,
+        HSTRING* result);
+
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CIArrayMethodsStaticsVtbl;
+
+    interface __x_ABI_Ctest__component_CIArrayMethodsStatics
+    {
+        CONST_VTBL struct __x_ABI_Ctest__component_CIArrayMethodsStaticsVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CIArrayMethodsStatics;
+#endif /* !defined(____x_ABI_Ctest__component_CIArrayMethodsStatics_INTERFACE_DEFINED__) */
     
 #if !defined(____x_ABI_Ctest__component_CIAsyncMethodsStatics_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIAsyncMethodsStatics_INTERFACE_DEFINED__
