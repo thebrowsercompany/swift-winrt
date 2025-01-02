@@ -56,6 +56,10 @@ public enum __IMPL_test_component {
             try _default.InAndRef(value, &results)
         }
 
+        fileprivate func inAndRefNonBlittable(_ value: [Int32], _ results: inout [Bool]) throws {
+            try _default.InAndRefNonBlittable(value, &results)
+        }
+
         fileprivate func inAndReturn(_ value: [Int32]) throws -> [Int32] {
             try _default.InAndReturn(value)
         }

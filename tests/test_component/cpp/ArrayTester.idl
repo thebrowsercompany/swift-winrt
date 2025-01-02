@@ -54,6 +54,7 @@ namespace test_component
         void DoubleIn(Int32[] value1, Int32[] value2);
         void InAndOut(Int32[] value, out Int32[] results);
         void InAndRef(Int32[] value, ref Int32[] results);
+        void InAndRefNonBlittable(Int32[] value, ref Boolean[] results);
         Int32[] InAndReturn(Int32[] value);
     }
 }

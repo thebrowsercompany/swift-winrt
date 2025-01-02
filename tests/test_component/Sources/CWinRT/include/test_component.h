@@ -2831,6 +2831,11 @@ struct __x_ABI_Ctest__component_CStructWithIReference
         INT32* value,
         UINT32 resultsLength,
         INT32* results);
+    HRESULT (STDMETHODCALLTYPE* InAndRefNonBlittable)(__x_ABI_Ctest__component_CIArrayScenarios* This,
+        UINT32 valueLength,
+        INT32* value,
+        UINT32 resultsLength,
+        boolean* results);
     HRESULT (STDMETHODCALLTYPE* InAndReturn)(__x_ABI_Ctest__component_CIArrayScenarios* This,
         UINT32 valueLength,
         INT32* value,

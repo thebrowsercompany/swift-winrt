@@ -257,7 +257,7 @@ public enum __ABI_Windows_Storage {
                     _ = try perform(as: __x_ABI_CWindows_CStorage_CIPathIOStatics.self) { pThis in
                         try CHECKED(pThis.pointee.lpVtbl.pointee.WriteBytesAsync(pThis, _absolutePath.get(), _buffer.count, _buffer.start, &operationAbi))
                     }
-                }
+                1}
             }
             return __ABI_Windows_Foundation.IAsyncActionWrapper.unwrapFrom(abi: operation)
         }

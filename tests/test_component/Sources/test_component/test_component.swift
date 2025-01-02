@@ -1669,6 +1669,7 @@ public protocol IArrayScenarios : WinRTInterface {
     func doubleIn(_ value1: [Int32], _ value2: [Int32]) throws
     func inAndOut(_ value: [Int32], _ results: inout [Int32]) throws
     func inAndRef(_ value: [Int32], _ results: inout [Int32]) throws
+    func inAndRefNonBlittable(_ value: [Int32], _ results: inout [Bool]) throws
     func inAndReturn(_ value: [Int32]) throws -> [Int32]
 }
 

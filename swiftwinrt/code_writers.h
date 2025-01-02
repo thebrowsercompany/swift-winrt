@@ -1779,7 +1779,7 @@ vtable);
                     {
                         // While perhaps not the most effient to just create a new array from the elements (rather than filling an existing buffer), it is the simplest for now.
                         // These APIs are few and far between and rarely used. If needed, we can optimize later.
-                        guard.push("%% = %\n", indent{1}, param_name, bind<write_convert_array_from_abi>(*param.type, local_param_name));
+                        guard.insert_front("% = %\n", param_name, bind<write_convert_array_from_abi>(*param.type, local_param_name));
                     }
 
                     guard.push("}\n");
