@@ -178,6 +178,11 @@ fileprivate func makeIIAmImplementableFrom(abi: test_component.IInspectable) -> 
     return __IMPL_test_component.IIAmImplementableBridge.from(abi: RawPointer(swiftAbi))!
 }
 
+fileprivate func makeIInArrayWithOutFrom(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_test_component.IInArrayWithOut = try! abi.QueryInterface()
+    return __IMPL_test_component.IInArrayWithOutBridge.from(abi: RawPointer(swiftAbi))!
+}
+
 fileprivate func makeIInterfaceWithObservableVectorFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_test_component.IInterfaceWithObservableVector = try! abi.QueryInterface()
     return __IMPL_test_component.IInterfaceWithObservableVectorBridge.from(abi: RawPointer(swiftAbi))!
@@ -435,6 +440,7 @@ public class __MakeFromAbi: MakeFromAbi {
             case "IAsyncOperationInt": return makeIAsyncOperationIntFrom(abi: abi)
             case "IBasic": return makeIBasicFrom(abi: abi)
             case "IIAmImplementable": return makeIIAmImplementableFrom(abi: abi)
+            case "IInArrayWithOut": return makeIInArrayWithOutFrom(abi: abi)
             case "IInterfaceWithObservableVector": return makeIInterfaceWithObservableVectorFrom(abi: abi)
             case "IReferenceTarget": return makeIReferenceTargetFrom(abi: abi)
             case "ISimpleDelegate": return makeISimpleDelegateFrom(abi: abi)

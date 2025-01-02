@@ -33,7 +33,7 @@ add_custom_target(test_app ALL
   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
   COMMENT "Running Swift build..."
   BYPRODUCTS ${SPM_BIN_DIR}/test_app.exe
-  DEPENDS GenerateBindings
+  #DEPENDS GenerateBindings
   VERBATIM
 )
 

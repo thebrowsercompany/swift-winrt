@@ -1732,6 +1732,22 @@ extension IIAmImplementable {
 }
 public typealias AnyIIAmImplementable = any IIAmImplementable
 
+public protocol IInArrayWithOut : WinRTInterface {
+    func inAndOut(_ value: [Int32], _ results: inout [Int32]) throws
+}
+
+extension IInArrayWithOut {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        switch iid {
+            case __ABI_test_component.IInArrayWithOutWrapper.IID:
+                let wrapper = __ABI_test_component.IInArrayWithOutWrapper(self)
+                return wrapper!.queryInterface(iid)
+            default: return nil
+        }
+    }
+}
+public typealias AnyIInArrayWithOut = any IInArrayWithOut
+
 public protocol IInterfaceWithObservableVector : WinRTInterface {
     func takeObservable(_ basics: test_component.AnyIObservableVector<test_component.AnyIBasic?>!) throws
 }

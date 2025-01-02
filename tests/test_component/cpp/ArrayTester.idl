@@ -36,4 +36,10 @@ namespace test_component
         static NonBlittableStruct[] ReturnNonBlittableStructArray();
         static Signed[] ReturnEnumArray();
     }
+
+    // Just needs to build
+    interface IInArrayWithOut
+    {
+        void InAndOut(Int32[] value, out Int32[] results);
+    }
 }

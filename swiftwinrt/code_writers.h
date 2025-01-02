@@ -1768,9 +1768,8 @@ vtable);
                         bind<write_type>(*param.type, write_type_params::c_abi));
 
                     w.write("var length: UInt32 = 0\n");
-                    guard.push("defer { CoTaskMemFree(%) }\n", local_param_name);
-                    guard.push("% = %", param_name, bind<write_convert_array_from_abi>(*param.type, local_param_name, "length"));
-
+                    guard.insert_front("% = %", param_name, bind<write_convert_array_from_abi>(*param.type, local_param_name, "length"));
+                    guard.insert_front("defer { CoTaskMemFree(%) }\n", local_param_name);
                 }
                 else
                 {

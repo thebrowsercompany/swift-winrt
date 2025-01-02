@@ -115,6 +115,10 @@ private var IID___x_ABI_Ctest__component_CIIAmImplementable: test_component.IID 
     .init(Data1: 0x0B3C0120, Data2: 0xD138, Data3: 0x512B, Data4: ( 0x8D,0x38,0xF5,0x1E,0x35,0xF0,0x65,0xB2 ))// 0B3C0120-D138-512B-8D38-F51E35F065B2
 }
 
+private var IID___x_ABI_Ctest__component_CIInArrayWithOut: test_component.IID {
+    .init(Data1: 0x696EDC16, Data2: 0xD6A9, Data3: 0x5889, Data4: ( 0xA3,0x68,0x05,0x18,0x95,0x43,0xC9,0x05 ))// 696EDC16-D6A9-5889-A368-05189543C905
+}
+
 private var IID___x_ABI_Ctest__component_CIInterfaceWithObservableVector: test_component.IID {
     .init(Data1: 0x364C232A, Data2: 0xB3A9, Data3: 0x5FD7, Data4: ( 0x91,0x3E,0x53,0x82,0xF7,0x2B,0x64,0xD7 ))// 364C232A-B3A9-5FD7-913E-5382F72B64D7
 }
@@ -1862,6 +1866,65 @@ public enum __ABI_test_component {
     )
 
     public typealias IIAmImplementableWrapper = InterfaceWrapperBase<__IMPL_test_component.IIAmImplementableBridge>
+    public class IInArrayWithOut: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIInArrayWithOut }
+
+        open func InAndOut(_ value: [Int32], _ results: inout [Int32]) throws {
+            try value.toABI { (count, _value) in
+                var _results: UnsafeMutablePointer<INT32>?
+                var length: UInt32 = 0
+                _ = try perform(as: __x_ABI_Ctest__component_CIInArrayWithOut.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.InAndOut(pThis, count, _value, &length, &_results))
+                }
+                defer { CoTaskMemFree(_results) }
+                results = .from(abi: (count: length, start: _results))
+            }
+        }
+
+    }
+
+    internal static var IInArrayWithOutVTable: __x_ABI_Ctest__component_CIInArrayWithOutVtbl = .init(
+        QueryInterface: { IInArrayWithOutWrapper.queryInterface($0, $1, $2) },
+        AddRef: { IInArrayWithOutWrapper.addRef($0) },
+        Release: { IInArrayWithOutWrapper.release($0) },
+        GetIids: {
+            let size = MemoryLayout<test_component.IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
+            iids[0] = IUnknown.IID
+            iids[1] = IInspectable.IID
+            iids[2] = __ABI_test_component.IInArrayWithOutWrapper.IID
+            $1!.pointee = 3
+            $2!.pointee = iids
+            return S_OK
+        },
+
+        GetRuntimeClassName: {
+            _ = $0
+            let hstring = try! HString("test_component.IInArrayWithOut").detach()
+            $1!.pointee = hstring
+            return S_OK
+        },
+
+        GetTrustLevel: {
+            _ = $0
+            $1!.pointee = TrustLevel(rawValue: 0)
+            return S_OK
+        },
+
+        InAndOut: {
+            do {
+                guard let __unwrapped__instance = IInArrayWithOutWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                let value: [Int32] = .from(abi: (count: $1, start: $2))
+
+                var results = [Int32]()
+                try __unwrapped__instance.inAndOut(value, &results)
+                results.fill(abi: $4)
+                return S_OK
+            } catch { return failWith(error: error) }
+        }
+    )
+
+    public typealias IInArrayWithOutWrapper = InterfaceWrapperBase<__IMPL_test_component.IInArrayWithOutBridge>
     public class IInterfaceWithObservableVector: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIInterfaceWithObservableVector }
 

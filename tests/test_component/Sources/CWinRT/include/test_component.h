@@ -192,6 +192,12 @@ typedef interface __x_ABI_Ctest__component_CIVoidToVoidDelegate __x_ABI_Ctest__c
 
 #endif // ____x_ABI_Ctest__component_CIIAmImplementable_FWD_DEFINED__
 
+#ifndef ____x_ABI_Ctest__component_CIInArrayWithOut_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CIInArrayWithOut_FWD_DEFINED__
+    typedef interface __x_ABI_Ctest__component_CIInArrayWithOut __x_ABI_Ctest__component_CIInArrayWithOut;
+
+#endif // ____x_ABI_Ctest__component_CIInArrayWithOut_FWD_DEFINED__
+
 #ifndef ____x_ABI_Ctest__component_CIInterfaceWithObservableVector_FWD_DEFINED__
 #define ____x_ABI_Ctest__component_CIInterfaceWithObservableVector_FWD_DEFINED__
     typedef interface __x_ABI_Ctest__component_CIInterfaceWithObservableVector __x_ABI_Ctest__component_CIInterfaceWithObservableVector;
@@ -3831,6 +3837,42 @@ struct __x_ABI_Ctest__component_CStructWithIReference
     
     EXTERN_C const IID IID___x_ABI_Ctest__component_CIIAmImplementable;
 #endif /* !defined(____x_ABI_Ctest__component_CIIAmImplementable_INTERFACE_DEFINED__) */
+    
+#if !defined(____x_ABI_Ctest__component_CIInArrayWithOut_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CIInArrayWithOut_INTERFACE_DEFINED__
+    typedef struct __x_ABI_Ctest__component_CIInArrayWithOutVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CIInArrayWithOut* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CIInArrayWithOut* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CIInArrayWithOut* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_Ctest__component_CIInArrayWithOut* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_Ctest__component_CIInArrayWithOut* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CIInArrayWithOut* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* InAndOut)(__x_ABI_Ctest__component_CIInArrayWithOut* This,
+        UINT32 valueLength,
+        INT32* value,
+        UINT32* resultsLength,
+        INT32** results);
+
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CIInArrayWithOutVtbl;
+
+    interface __x_ABI_Ctest__component_CIInArrayWithOut
+    {
+        CONST_VTBL struct __x_ABI_Ctest__component_CIInArrayWithOutVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CIInArrayWithOut;
+#endif /* !defined(____x_ABI_Ctest__component_CIInArrayWithOut_INTERFACE_DEFINED__) */
     
 #if !defined(____x_ABI_Ctest__component_CIInterfaceWithObservableVector_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIInterfaceWithObservableVector_INTERFACE_DEFINED__

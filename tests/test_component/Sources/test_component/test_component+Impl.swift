@@ -195,6 +195,35 @@ public enum __IMPL_test_component {
 
     }
 
+    public enum IInArrayWithOutBridge : AbiInterfaceBridge {
+        public typealias CABI = __x_ABI_Ctest__component_CIInArrayWithOut
+        public typealias SwiftABI = __ABI_test_component.IInArrayWithOut
+        public typealias SwiftProjection = AnyIInArrayWithOut
+        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+            guard let abi = abi else { return nil }
+            return IInArrayWithOutImpl(abi)
+        }
+
+        public static func makeAbi() -> CABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IInArrayWithOutVTable) { $0 }
+            return .init(lpVtbl: vtblPtr)
+        }
+    }
+
+    fileprivate class IInArrayWithOutImpl: IInArrayWithOut, WinRTAbiImpl {
+        fileprivate typealias Bridge = IInArrayWithOutBridge
+        fileprivate let _default: Bridge.SwiftABI
+        fileprivate var thisPtr: test_component.IInspectable { _default }
+        fileprivate init(_ fromAbi: ComPtr<Bridge.CABI>) {
+            _default = Bridge.SwiftABI(fromAbi)
+        }
+
+        fileprivate func inAndOut(_ value: [Int32], _ results: inout [Int32]) throws {
+            try _default.InAndOut(value, &results)
+        }
+
+    }
+
     public enum IInterfaceWithObservableVectorBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_Ctest__component_CIInterfaceWithObservableVector
         public typealias SwiftABI = __ABI_test_component.IInterfaceWithObservableVector
