@@ -39,6 +39,10 @@ namespace winrt::test_component::implementation
         static com_array<winrt::test_component::NonBlittableStruct> ReturnNonBlittableStructArray();
         static com_array<Signed> ReturnEnumArray();
 
+        static void TestInArrayThroughSwiftImplementation(winrt::test_component::IArrayScenarios const& scenario, array_view<int32_t const> value);
+        static void TestOutArrayThroughSwiftImplementation(winrt::test_component::IArrayScenarios const& scenario, winrt::test_component::ArrayMethodCallback const& callback);
+        static void TestRefArrayThroughSwiftImplementation(winrt::test_component::IArrayScenarios const& scenario, array_view<int32_t> value, winrt::test_component::ArrayMethodCallback const& callback);
+        static void TestReturnArrayThroughSwiftImplementation(winrt::test_component::IArrayScenarios const& scenario, winrt::test_component::ArrayMethodCallback const& callback);
 
     private:
 

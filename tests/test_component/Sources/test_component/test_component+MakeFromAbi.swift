@@ -158,6 +158,11 @@ fileprivate func makeIRandomAccessStreamWithContentTypeFrom(abi: test_component.
     return __IMPL_Windows_Storage_Streams.IRandomAccessStreamWithContentTypeBridge.from(abi: RawPointer(swiftAbi))!
 }
 
+fileprivate func makeIArrayScenariosFrom(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_test_component.IArrayScenarios = try! abi.QueryInterface()
+    return __IMPL_test_component.IArrayScenariosBridge.from(abi: RawPointer(swiftAbi))!
+}
+
 fileprivate func makeIAsyncMethodsWithProgressFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_test_component.IAsyncMethodsWithProgress = try! abi.QueryInterface()
     return __IMPL_test_component.IAsyncMethodsWithProgressBridge.from(abi: RawPointer(swiftAbi))!
@@ -176,11 +181,6 @@ fileprivate func makeIBasicFrom(abi: test_component.IInspectable) -> Any {
 fileprivate func makeIIAmImplementableFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_test_component.IIAmImplementable = try! abi.QueryInterface()
     return __IMPL_test_component.IIAmImplementableBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIInArrayWithOutFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_test_component.IInArrayWithOut = try! abi.QueryInterface()
-    return __IMPL_test_component.IInArrayWithOutBridge.from(abi: RawPointer(swiftAbi))!
 }
 
 fileprivate func makeIInterfaceWithObservableVectorFrom(abi: test_component.IInspectable) -> Any {
@@ -436,11 +436,11 @@ public class __MakeFromAbi: MakeFromAbi {
             case "IRandomAccessStream": return makeIRandomAccessStreamFrom(abi: abi)
             case "IRandomAccessStreamReference": return makeIRandomAccessStreamReferenceFrom(abi: abi)
             case "IRandomAccessStreamWithContentType": return makeIRandomAccessStreamWithContentTypeFrom(abi: abi)
+            case "IArrayScenarios": return makeIArrayScenariosFrom(abi: abi)
             case "IAsyncMethodsWithProgress": return makeIAsyncMethodsWithProgressFrom(abi: abi)
             case "IAsyncOperationInt": return makeIAsyncOperationIntFrom(abi: abi)
             case "IBasic": return makeIBasicFrom(abi: abi)
             case "IIAmImplementable": return makeIIAmImplementableFrom(abi: abi)
-            case "IInArrayWithOut": return makeIInArrayWithOutFrom(abi: abi)
             case "IInterfaceWithObservableVector": return makeIInterfaceWithObservableVectorFrom(abi: abi)
             case "IReferenceTarget": return makeIReferenceTargetFrom(abi: abi)
             case "ISimpleDelegate": return makeISimpleDelegateFrom(abi: abi)

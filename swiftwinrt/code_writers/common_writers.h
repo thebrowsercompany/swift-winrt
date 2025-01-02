@@ -265,19 +265,17 @@ namespace swiftwinrt
         w.write("/// [Open Microsoft documentation](%)\n", doc_url);
     }
 
-    static void write_convert_array_from_abi(writer& w, metadata_type const& type, std::string_view const& array_param_name, std::string_view count_param_name)
+    static void write_convert_array_from_abi(writer& w, metadata_type const& type, std::string_view const& array_param_name)
     {
         if (is_reference_type(&type))
         {
-            w.write(".from(abiBridge: %.self, abi: (count: %, start: %))\n",
+            w.write(".from(abiBridge: %.self, abi: %)",
                 bind_bridge_fullname(type),
-                count_param_name,
                 array_param_name);
         }
         else
         {
-            w.write(".from(abi: (count: %, start: %))\n",
-                count_param_name,
+            w.write(".from(abi: %)",
                 array_param_name);
         }
     }

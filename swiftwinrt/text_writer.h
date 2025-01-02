@@ -461,8 +461,6 @@ namespace swiftwinrt
         {
             T temp_writer;
             temp_writer.swift_module = m_swift_module;
-            // When inserting at the front we need to include the current offset for indentation, as this guard text needs to be
-            // written inside the current scope
             auto format = std::string("%").append(value.data());
             m_lines.insert(m_lines.begin(), temp_writer.write_temp(format, indent { m_offset }, args...));
         }

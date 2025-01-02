@@ -315,15 +315,15 @@ namespace swiftwinrt
             {
                 if (param.in())
                 {
-                    w.write("count, %", local_param_name);
+                    w.write("%.count, %.start", local_param_name, local_param_name);
                 }
                 else if (param.signature.ByRef())
                 {
-                    w.write("&length, &%", local_param_name);
+                    w.write("&%.count, &%.start", local_param_name, local_param_name);
                 }
                 else
                 {
-                    w.write("length, %", local_param_name);
+                    w.write("%.count, %.start", local_param_name, local_param_name);
                 }
             }
             else if (param.in())
@@ -366,7 +366,7 @@ namespace swiftwinrt
             auto param_name = function.return_type.value().name;
             if (function.return_type.value().is_array())
             {
-                w.write("&length, &%", param_name);
+                w.write("&%.count, &%.start", param_name, param_name);
             }
             else if (needs_wrapper(get_category(function.return_type->type)))
             {
@@ -384,10 +384,9 @@ namespace swiftwinrt
         auto category = get_category(signature.type);
         if (signature.is_array())
         {
-            w.write("var %: UnsafeMutablePointer<%>?\n",
+            w.write("var %: WinRTArrayAbi<%> = (0, nil)\n",
                 signature.name,
                 bind<write_type>(*signature.type, write_type_params::c_abi));
-            w.write("var length: UInt32 = 0\n");
             return std::optional<writer::indent_guard>();
         }
         else if (needs_wrapper(category))
@@ -773,7 +772,7 @@ typealias % = InterfaceWrapperBase<%>
                     w.write("let %: [%] = %\n",
                         get_swift_name(param),
                         bind<write_type>(*param.type, write_type_params::swift),
-                        bind<write_convert_array_from_abi>(*param.type, array_param_name, count_param_name));
+                        bind<write_convert_array_from_abi>(*param.type, w.write_temp("(count: %, start: %)", count_param_name, array_param_name)));
                 }
                 else if (param.signature.ByRef())
                 {
@@ -783,11 +782,10 @@ typealias % = InterfaceWrapperBase<%>
                 }
                 else
                 {
-                    w.write("var % = [%](repeating: %, count: Int(%))\n",
+                    w.write("var %: [%] = %\n",
                         get_swift_name(param),
                         bind<write_type>(*param.type, write_type_params::swift),
-                        bind<write_default_value>(*param.type, projection_layer::swift),
-                        count_param_name);
+                        bind<write_convert_array_from_abi>(*param.type, w.write_temp("(count: %, start: %)", count_param_name, array_param_name)));
                 }
                 ++param_number;
             }
@@ -834,8 +832,8 @@ typealias % = InterfaceWrapperBase<%>
         auto return_param_name = put_in_backticks_if_needed(std::string(return_type.name));
         if (return_type.is_array())
         {
-            w.write("defer { CoTaskMemFree(%) }\n", return_param_name);
-            w.write("return %", bind<write_convert_array_from_abi>(*return_type.type, return_param_name, "length"));
+            w.write("defer { CoTaskMemFree(%.start) }\n", return_param_name);
+            w.write("return %\n", bind<write_convert_array_from_abi>(*return_type.type, return_param_name));
         }
         else
         {
@@ -1583,7 +1581,14 @@ vtable);
         for (auto& param : params)
         {
             s();
-            write_type(w, *param.type, write_type_params::swift);
+            if (param.is_array())
+            {
+                w.write("[%]", bind<write_type>(*param.type, write_type_params::swift));
+            }
+            else
+            {
+                write_type(w, *param.type, write_type_params::swift);
+            }
         }
     }
 
@@ -1747,54 +1752,38 @@ vtable);
 
             if (param.is_array())
             {
-                if (param.in())
+                if (param.signature.ByRef())
                 {
-                    if (is_reference_type(param.type))
-                    {
-                        w.write("try %.toABI(abiBridge: %.self) { (count, %) in\n", param_name, bind_bridge_name(*param.type), local_param_name);
-                    }
-                    else
-                    {
-                        w.write("try %.toABI { (count, %) in\n", param_name, local_param_name);
-                    }
-
-                    guard.push_indent();
-                    guard.push("}\n");
-                }
-                else if (param.signature.ByRef())
-                {
-                    w.write("var %: UnsafeMutablePointer<%>?\n",
+                    w.write("var %: WinRTArrayAbi<%> = (0, nil)\n",
                         local_param_name,
                         bind<write_type>(*param.type, write_type_params::c_abi));
 
-                    w.write("var length: UInt32 = 0\n");
-                    guard.insert_front("% = %", param_name, bind<write_convert_array_from_abi>(*param.type, local_param_name, "length"));
-                    guard.insert_front("defer { CoTaskMemFree(%) }\n", local_param_name);
+                    guard.insert_front("% = %\n", param_name, bind<write_convert_array_from_abi>(*param.type, local_param_name));
+                    guard.insert_front("defer { CoTaskMemFree(%.start) }\n", local_param_name);
                 }
                 else
                 {
                     // Array is passed by reference, so we need to convert the input to a buffer and then pass that buffer to C, then convert the buffer back to an array
                     if (is_reference_type(param.type))
                     {
-                        w.write("try %.toABI(abiBridge: %.self) { (length, %) in\n", param_name, bind_bridge_name(*param.type), local_param_name);
+                        w.write("try %.toABI(abiBridge: %.self) { % in\n", param_name, bind_bridge_name(*param.type), local_param_name);
                     }
                     else
                     {
-                        w.write("try %.toABI { (length, %) in\n", param_name, local_param_name);
+                        w.write("try %.toABI { % in\n", param_name, local_param_name);
                     }
 
                     // Enums and fundamental (integer) types can just be copied directly into the ABI. So we can
                     // avoid an extra copy by simply passing the array buffer to C directly
-                    if (category != param_category::enum_type && category != param_category::fundamental_type)
+                    if (!param.in() && category != param_category::enum_type && category != param_category::fundamental_type)
                     {
                         // While perhaps not the most effient to just create a new array from the elements (rather than filling an existing buffer), it is the simplest for now.
                         // These APIs are few and far between and rarely used. If needed, we can optimize later.
-                        guard.push("%% = %", indent{1}, param_name, bind<write_convert_array_from_abi>(*param.type, local_param_name, "length"));
+                        guard.push("%% = %\n", indent{1}, param_name, bind<write_convert_array_from_abi>(*param.type, local_param_name));
                     }
 
-                    guard.push_indent();
                     guard.push("}\n");
-
+                    guard.push_indent();
                 }
             }
             else if (param.in())
@@ -1882,8 +1871,8 @@ vtable);
             w.write("let (%) = try ComPtrs.initialize { (%) in\n",
                 bind<write_param_names>(com_ptr_initialize, "%"),
                 bind<write_param_names>(com_ptr_initialize, "%Abi"));
-            guard.push_indent();
             guard.push("}\n");
+            guard.push_indent();
 
             for (const auto& param : com_ptr_initialize)
             {
@@ -2974,21 +2963,31 @@ override % func _getABI<T>() -> UnsafeMutablePointer<T>? {
         int param_number = 1;
         for (auto& param : signature.params)
         {
+            auto param_name = get_swift_name(param);
             if (param.is_array())
             {
+                if (param.signature.ByRef())
+                {
+                    w.write("$%?.initialize(to: UInt32(%.count))\n", param_number, param_name);
+                }
                 param_number++;
             }
             if (param.out())
             {
                 auto return_param_name = "$" + std::to_string(param_number);
-                auto param_name = get_swift_name(param);
                 do_write_abi_val_assignment(w, param, return_param_name);
             }
+
             param_number++;
         }
 
         if (signature.return_type)
         {
+            if (signature.return_type.value().is_array())
+            {
+                w.write("$%?.initialize(to: UInt32(%.count))\n", param_number, signature.return_type.value().name);
+                param_number++;
+            }
             auto return_param_name = "$" + std::to_string(param_number);
             do_write_abi_val_assignment(w, signature.return_type.value(), return_param_name);
         }

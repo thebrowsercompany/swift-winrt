@@ -2,6 +2,8 @@ import "Windows.Foundation.idl";
 
 namespace test_component
 {
+    delegate void ArrayMethodCallback(Int32[] value);
+
     runtimeclass ArrayMethods
     {
         static String InInt32Array(Int32[] value);
@@ -35,11 +37,23 @@ namespace test_component
         static BlittableStruct[] ReturnStructArray();
         static NonBlittableStruct[] ReturnNonBlittableStructArray();
         static Signed[] ReturnEnumArray();
+
+        static void TestInArrayThroughSwiftImplementation(IArrayScenarios scenario, Int32[] value);
+        static void TestOutArrayThroughSwiftImplementation(IArrayScenarios scenario, ArrayMethodCallback callback);
+        static void TestRefArrayThroughSwiftImplementation(IArrayScenarios scenario, ref Int32[] value, ArrayMethodCallback callback);
+        static void TestReturnArrayThroughSwiftImplementation(IArrayScenarios scenario, ArrayMethodCallback callback);
     }
 
-    // Just needs to build
-    interface IInArrayWithOut
+    interface IArrayScenarios
     {
+        void InArray(Int32[] value);
+        void OutArray(out Int32[] value);
+        void RefArray(ref Int32[] value);
+        Int32[] ReturnArray();
+
+        void DoubleIn(Int32[] value1, Int32[] value2);
         void InAndOut(Int32[] value, out Int32[] results);
+        void InAndRef(Int32[] value, ref Int32[] results);
+        Int32[] InAndReturn(Int32[] value);
     }
 }

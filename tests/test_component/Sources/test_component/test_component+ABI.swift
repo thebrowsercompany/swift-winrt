@@ -4,7 +4,11 @@ import Foundation
 import Ctest_component
 
 private var IID___x_ABI_Ctest__component_CIArrayMethodsStatics: test_component.IID {
-    .init(Data1: 0xEE177BFC, Data2: 0x6FB8, Data3: 0x5303, Data4: ( 0x94,0x8A,0x71,0xEA,0xEF,0xCC,0x74,0xEA ))// EE177BFC-6FB8-5303-948A-71EAEFCC74EA
+    .init(Data1: 0x8999FD6A, Data2: 0xD1C5, Data3: 0x53CE, Data4: ( 0xB8,0x0F,0x7C,0x45,0x85,0xD0,0x75,0x6C ))// 8999FD6A-D1C5-53CE-B80F-7C4585D0756C
+}
+
+private var IID___x_ABI_Ctest__component_CIArrayScenarios: test_component.IID {
+    .init(Data1: 0x92322C2F, Data2: 0xB48E, Data3: 0x51F2, Data4: ( 0x94,0xD0,0x97,0x1D,0xB0,0x06,0xFF,0x7F ))// 92322C2F-B48E-51F2-94D0-971DB006FF7F
 }
 
 private var IID___x_ABI_Ctest__component_CIAsyncMethodsStatics: test_component.IID {
@@ -115,10 +119,6 @@ private var IID___x_ABI_Ctest__component_CIIAmImplementable: test_component.IID 
     .init(Data1: 0x0B3C0120, Data2: 0xD138, Data3: 0x512B, Data4: ( 0x8D,0x38,0xF5,0x1E,0x35,0xF0,0x65,0xB2 ))// 0B3C0120-D138-512B-8D38-F51E35F065B2
 }
 
-private var IID___x_ABI_Ctest__component_CIInArrayWithOut: test_component.IID {
-    .init(Data1: 0x696EDC16, Data2: 0xD6A9, Data3: 0x5889, Data4: ( 0xA3,0x68,0x05,0x18,0x95,0x43,0xC9,0x05 ))// 696EDC16-D6A9-5889-A368-05189543C905
-}
-
 private var IID___x_ABI_Ctest__component_CIInterfaceWithObservableVector: test_component.IID {
     .init(Data1: 0x364C232A, Data2: 0xB3A9, Data3: 0x5FD7, Data4: ( 0x91,0x3E,0x53,0x82,0xF7,0x2B,0x64,0xD7 ))// 364C232A-B3A9-5FD7-913E-5382F72B64D7
 }
@@ -223,6 +223,10 @@ private var IID___x_ABI_Ctest__component_CWithKeyword: test_component.IID {
     .init(Data1: 0x18D4C535, Data2: 0x1785, Data3: 0x52CA, Data4: ( 0x88,0x51,0x8C,0xF3,0xD5,0x15,0x70,0x8A ))// 18D4C535-1785-52CA-8851-8CF3D515708A
 }
 
+private var IID___x_ABI_Ctest__component_CIArrayMethodCallback: test_component.IID {
+    .init(Data1: 0x224AFD3B, Data2: 0x6459, Data3: 0x5621, Data4: ( 0xBF,0x69,0xF5,0x02,0x8C,0xF2,0xB3,0x17 ))// 224AFD3B-6459-5621-BF69-F5028CF2B317
+}
+
 private var IID___x_ABI_Ctest__component_CIObjectHandler: test_component.IID {
     .init(Data1: 0x5DD35752, Data2: 0x9800, Data3: 0x5961, Data4: ( 0x80,0xDE,0xFC,0x5E,0x20,0x9E,0x6E,0x2D ))// 5DD35752-9800-5961-80DE-FC5E209E6E2D
 }
@@ -238,9 +242,9 @@ public enum __ABI_test_component {
 
         public func InInt32Array(_ value: [Int32]) throws -> String {
             var result: HSTRING?
-            try value.toABI { (count, _value) in
+            try value.toABI { _value in
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
-                    try CHECKED(pThis.pointee.lpVtbl.pointee.InInt32Array(pThis, count, _value, &result))
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.InInt32Array(pThis, _value.count, _value.start, &result))
                 }
             }
             return .init(from: result)
@@ -248,9 +252,9 @@ public enum __ABI_test_component {
 
         public func InStringArray(_ value: [String]) throws -> String {
             var result: HSTRING?
-            try value.toABI { (count, _value) in
+            try value.toABI { _value in
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
-                    try CHECKED(pThis.pointee.lpVtbl.pointee.InStringArray(pThis, count, _value, &result))
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.InStringArray(pThis, _value.count, _value.start, &result))
                 }
             }
             return .init(from: result)
@@ -258,9 +262,9 @@ public enum __ABI_test_component {
 
         public func InObjectArray(_ value: [Any?]) throws -> String {
             var result: HSTRING?
-            try value.toABI(abiBridge: __IMPL_.AnyBridge.self) { (count, _value) in
+            try value.toABI(abiBridge: __IMPL_.AnyBridge.self) { _value in
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
-                    try CHECKED(pThis.pointee.lpVtbl.pointee.InObjectArray(pThis, count, _value, &result))
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.InObjectArray(pThis, _value.count, _value.start, &result))
                 }
             }
             return .init(from: result)
@@ -268,9 +272,9 @@ public enum __ABI_test_component {
 
         public func InStringableArray(_ value: [test_component.AnyIStringable?]) throws -> String {
             var result: HSTRING?
-            try value.toABI(abiBridge: __IMPL_Windows_Foundation.IStringableBridge.self) { (count, _value) in
+            try value.toABI(abiBridge: __IMPL_Windows_Foundation.IStringableBridge.self) { _value in
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
-                    try CHECKED(pThis.pointee.lpVtbl.pointee.InStringableArray(pThis, count, _value, &result))
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.InStringableArray(pThis, _value.count, _value.start, &result))
                 }
             }
             return .init(from: result)
@@ -278,9 +282,9 @@ public enum __ABI_test_component {
 
         public func InStructArray(_ value: [test_component.BlittableStruct]) throws -> String {
             var result: HSTRING?
-            try value.toABI { (count, _value) in
+            try value.toABI { _value in
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
-                    try CHECKED(pThis.pointee.lpVtbl.pointee.InStructArray(pThis, count, _value, &result))
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.InStructArray(pThis, _value.count, _value.start, &result))
                 }
             }
             return .init(from: result)
@@ -288,9 +292,9 @@ public enum __ABI_test_component {
 
         public func InNonBlittableStructArray(_ value: [test_component.NonBlittableStruct]) throws -> String {
             var result: HSTRING?
-            try value.toABI { (count, _value) in
+            try value.toABI { _value in
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
-                    try CHECKED(pThis.pointee.lpVtbl.pointee.InNonBlittableStructArray(pThis, count, _value, &result))
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.InNonBlittableStructArray(pThis, _value.count, _value.start, &result))
                 }
             }
             return .init(from: result)
@@ -298,224 +302,449 @@ public enum __ABI_test_component {
 
         public func InEnumArray(_ value: [test_component.Signed]) throws -> String {
             var result: HSTRING?
-            try value.toABI { (count, _value) in
+            try value.toABI { _value in
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
-                    try CHECKED(pThis.pointee.lpVtbl.pointee.InEnumArray(pThis, count, _value, &result))
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.InEnumArray(pThis, _value.count, _value.start, &result))
                 }
             }
             return .init(from: result)
         }
 
         public func OutInt32Array(_ value: inout [Int32]) throws {
-            var _value: UnsafeMutablePointer<INT32>?
-            var length: UInt32 = 0
+            var _value: WinRTArrayAbi<INT32> = (0, nil)
             _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.OutInt32Array(pThis, &length, &_value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.OutInt32Array(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value) }
-            value = .from(abi: (count: length, start: _value))
+            defer { CoTaskMemFree(_value.start) }
+            value = .from(abi: _value)
         }
 
         public func OutStringArray(_ value: inout [String]) throws {
-            var _value: UnsafeMutablePointer<HSTRING?>?
-            var length: UInt32 = 0
+            var _value: WinRTArrayAbi<HSTRING?> = (0, nil)
             _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.OutStringArray(pThis, &length, &_value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.OutStringArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value) }
-            value = .from(abi: (count: length, start: _value))
+            defer { CoTaskMemFree(_value.start) }
+            value = .from(abi: _value)
         }
 
         public func OutObjectArray(_ value: inout [Any?]) throws {
-            var _value: UnsafeMutablePointer<UnsafeMutablePointer<C_IInspectable>?>?
-            var length: UInt32 = 0
+            var _value: WinRTArrayAbi<UnsafeMutablePointer<C_IInspectable>?> = (0, nil)
             _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.OutObjectArray(pThis, &length, &_value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.OutObjectArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value) }
-            value = .from(abiBridge: __IMPL_.AnyBridge.self, abi: (count: length, start: _value))
+            defer { CoTaskMemFree(_value.start) }
+            value = .from(abiBridge: __IMPL_.AnyBridge.self, abi: _value)
         }
 
         public func OutStringableArray(_ value: inout [test_component.AnyIStringable?]) throws {
-            var _value: UnsafeMutablePointer<UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIStringable>?>?
-            var length: UInt32 = 0
+            var _value: WinRTArrayAbi<UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIStringable>?> = (0, nil)
             _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.OutStringableArray(pThis, &length, &_value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.OutStringableArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value) }
-            value = .from(abiBridge: __IMPL_Windows_Foundation.IStringableBridge.self, abi: (count: length, start: _value))
+            defer { CoTaskMemFree(_value.start) }
+            value = .from(abiBridge: __IMPL_Windows_Foundation.IStringableBridge.self, abi: _value)
         }
 
         public func OutStructArray(_ value: inout [test_component.BlittableStruct]) throws {
-            var _value: UnsafeMutablePointer<__x_ABI_Ctest__component_CBlittableStruct>?
-            var length: UInt32 = 0
+            var _value: WinRTArrayAbi<__x_ABI_Ctest__component_CBlittableStruct> = (0, nil)
             _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.OutStructArray(pThis, &length, &_value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.OutStructArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value) }
-            value = .from(abi: (count: length, start: _value))
+            defer { CoTaskMemFree(_value.start) }
+            value = .from(abi: _value)
         }
 
         public func OutNonBlittableStructArray(_ value: inout [test_component.NonBlittableStruct]) throws {
-            var _value: UnsafeMutablePointer<__x_ABI_Ctest__component_CNonBlittableStruct>?
-            var length: UInt32 = 0
+            var _value: WinRTArrayAbi<__x_ABI_Ctest__component_CNonBlittableStruct> = (0, nil)
             _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.OutNonBlittableStructArray(pThis, &length, &_value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.OutNonBlittableStructArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value) }
-            value = .from(abi: (count: length, start: _value))
+            defer { CoTaskMemFree(_value.start) }
+            value = .from(abi: _value)
         }
 
         public func OutEnumArray(_ value: inout [test_component.Signed]) throws {
-            var _value: UnsafeMutablePointer<__x_ABI_Ctest__component_CSigned>?
-            var length: UInt32 = 0
+            var _value: WinRTArrayAbi<__x_ABI_Ctest__component_CSigned> = (0, nil)
             _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.OutEnumArray(pThis, &length, &_value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.OutEnumArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value) }
-            value = .from(abi: (count: length, start: _value))
+            defer { CoTaskMemFree(_value.start) }
+            value = .from(abi: _value)
         }
 
         public func RefInt32Array(_ value: inout [Int32]) throws {
-            try value.toABI { (length, _value) in
+            try value.toABI { _value in
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
-                    try CHECKED(pThis.pointee.lpVtbl.pointee.RefInt32Array(pThis, length, _value))
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.RefInt32Array(pThis, _value.count, _value.start))
                 }
             }
         }
 
         public func RefStringArray(_ value: inout [String]) throws {
-            try value.toABI { (length, _value) in
+            try value.toABI { _value in
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
-                    try CHECKED(pThis.pointee.lpVtbl.pointee.RefStringArray(pThis, length, _value))
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.RefStringArray(pThis, _value.count, _value.start))
                 }
-                value = .from(abi: (count: length, start: _value))
+                value = .from(abi: _value)
             }
         }
 
         public func RefObjectArray(_ value: inout [Any?]) throws {
-            try value.toABI(abiBridge: __IMPL_.AnyBridge.self) { (length, _value) in
+            try value.toABI(abiBridge: __IMPL_.AnyBridge.self) { _value in
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
-                    try CHECKED(pThis.pointee.lpVtbl.pointee.RefObjectArray(pThis, length, _value))
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.RefObjectArray(pThis, _value.count, _value.start))
                 }
-                value = .from(abiBridge: __IMPL_.AnyBridge.self, abi: (count: length, start: _value))
+                value = .from(abiBridge: __IMPL_.AnyBridge.self, abi: _value)
             }
         }
 
         public func RefStringableArray(_ value: inout [test_component.AnyIStringable?]) throws {
-            try value.toABI(abiBridge: __IMPL_Windows_Foundation.IStringableBridge.self) { (length, _value) in
+            try value.toABI(abiBridge: __IMPL_Windows_Foundation.IStringableBridge.self) { _value in
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
-                    try CHECKED(pThis.pointee.lpVtbl.pointee.RefStringableArray(pThis, length, _value))
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.RefStringableArray(pThis, _value.count, _value.start))
                 }
-                value = .from(abiBridge: __IMPL_Windows_Foundation.IStringableBridge.self, abi: (count: length, start: _value))
+                value = .from(abiBridge: __IMPL_Windows_Foundation.IStringableBridge.self, abi: _value)
             }
         }
 
         public func RefStructArray(_ value: inout [test_component.BlittableStruct]) throws {
-            try value.toABI { (length, _value) in
+            try value.toABI { _value in
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
-                    try CHECKED(pThis.pointee.lpVtbl.pointee.RefStructArray(pThis, length, _value))
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.RefStructArray(pThis, _value.count, _value.start))
                 }
-                value = .from(abi: (count: length, start: _value))
+                value = .from(abi: _value)
             }
         }
 
         public func RefNonBlittableStructArray(_ value: inout [test_component.NonBlittableStruct]) throws {
-            try value.toABI { (length, _value) in
+            try value.toABI { _value in
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
-                    try CHECKED(pThis.pointee.lpVtbl.pointee.RefNonBlittableStructArray(pThis, length, _value))
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.RefNonBlittableStructArray(pThis, _value.count, _value.start))
                 }
-                value = .from(abi: (count: length, start: _value))
+                value = .from(abi: _value)
             }
         }
 
         public func RefEnumArray(_ value: inout [test_component.Signed]) throws {
-            try value.toABI { (length, _value) in
+            try value.toABI { _value in
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
-                    try CHECKED(pThis.pointee.lpVtbl.pointee.RefEnumArray(pThis, length, _value))
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.RefEnumArray(pThis, _value.count, _value.start))
                 }
             }
         }
 
         public func ReturnInt32Array() throws -> [Int32] {
-            var result: UnsafeMutablePointer<INT32>?
-            var length: UInt32 = 0
+            var result: WinRTArrayAbi<INT32> = (0, nil)
             _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnInt32Array(pThis, &length, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnInt32Array(pThis, &result.count, &result.start))
             }
-            defer { CoTaskMemFree(result) }
-            return .from(abi: (count: length, start: result))
+            defer { CoTaskMemFree(result.start) }
+            return .from(abi: result)
 
         }
 
         public func ReturnStringArray() throws -> [String] {
-            var result: UnsafeMutablePointer<HSTRING?>?
-            var length: UInt32 = 0
+            var result: WinRTArrayAbi<HSTRING?> = (0, nil)
             _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnStringArray(pThis, &length, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnStringArray(pThis, &result.count, &result.start))
             }
-            defer { CoTaskMemFree(result) }
-            return .from(abi: (count: length, start: result))
+            defer { CoTaskMemFree(result.start) }
+            return .from(abi: result)
 
         }
 
         public func ReturnObjectArray() throws -> [Any?] {
-            var result: UnsafeMutablePointer<UnsafeMutablePointer<C_IInspectable>?>?
-            var length: UInt32 = 0
+            var result: WinRTArrayAbi<UnsafeMutablePointer<C_IInspectable>?> = (0, nil)
             _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnObjectArray(pThis, &length, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnObjectArray(pThis, &result.count, &result.start))
             }
-            defer { CoTaskMemFree(result) }
-            return .from(abiBridge: __IMPL_.AnyBridge.self, abi: (count: length, start: result))
+            defer { CoTaskMemFree(result.start) }
+            return .from(abiBridge: __IMPL_.AnyBridge.self, abi: result)
 
         }
 
         public func ReturnStringableArray() throws -> [test_component.AnyIStringable?] {
-            var result: UnsafeMutablePointer<UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIStringable>?>?
-            var length: UInt32 = 0
+            var result: WinRTArrayAbi<UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIStringable>?> = (0, nil)
             _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnStringableArray(pThis, &length, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnStringableArray(pThis, &result.count, &result.start))
             }
-            defer { CoTaskMemFree(result) }
-            return .from(abiBridge: __IMPL_Windows_Foundation.IStringableBridge.self, abi: (count: length, start: result))
+            defer { CoTaskMemFree(result.start) }
+            return .from(abiBridge: __IMPL_Windows_Foundation.IStringableBridge.self, abi: result)
 
         }
 
         public func ReturnStructArray() throws -> [test_component.BlittableStruct] {
-            var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CBlittableStruct>?
-            var length: UInt32 = 0
+            var result: WinRTArrayAbi<__x_ABI_Ctest__component_CBlittableStruct> = (0, nil)
             _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnStructArray(pThis, &length, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnStructArray(pThis, &result.count, &result.start))
             }
-            defer { CoTaskMemFree(result) }
-            return .from(abi: (count: length, start: result))
+            defer { CoTaskMemFree(result.start) }
+            return .from(abi: result)
 
         }
 
         public func ReturnNonBlittableStructArray() throws -> [test_component.NonBlittableStruct] {
-            var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CNonBlittableStruct>?
-            var length: UInt32 = 0
+            var result: WinRTArrayAbi<__x_ABI_Ctest__component_CNonBlittableStruct> = (0, nil)
             _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnNonBlittableStructArray(pThis, &length, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnNonBlittableStructArray(pThis, &result.count, &result.start))
             }
-            defer { CoTaskMemFree(result) }
-            return .from(abi: (count: length, start: result))
+            defer { CoTaskMemFree(result.start) }
+            return .from(abi: result)
 
         }
 
         public func ReturnEnumArray() throws -> [test_component.Signed] {
-            var result: UnsafeMutablePointer<__x_ABI_Ctest__component_CSigned>?
-            var length: UInt32 = 0
+            var result: WinRTArrayAbi<__x_ABI_Ctest__component_CSigned> = (0, nil)
             _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnEnumArray(pThis, &length, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnEnumArray(pThis, &result.count, &result.start))
             }
-            defer { CoTaskMemFree(result) }
-            return .from(abi: (count: length, start: result))
+            defer { CoTaskMemFree(result.start) }
+            return .from(abi: result)
+
+        }
+
+        public func TestInArrayThroughSwiftImplementation(_ scenario: test_component.AnyIArrayScenarios?, _ value: [Int32]) throws {
+            let scenarioWrapper = __ABI_test_component.IArrayScenariosWrapper(scenario)
+            let _scenario = try! scenarioWrapper?.toABI { $0 }
+            try value.toABI { _value in
+                _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.TestInArrayThroughSwiftImplementation(pThis, _scenario, _value.count, _value.start))
+                }
+            }
+        }
+
+        public func TestOutArrayThroughSwiftImplementation(_ scenario: test_component.AnyIArrayScenarios?, _ callback: test_component.ArrayMethodCallback?) throws {
+            let scenarioWrapper = __ABI_test_component.IArrayScenariosWrapper(scenario)
+            let _scenario = try! scenarioWrapper?.toABI { $0 }
+            let callbackWrapper = __ABI_test_component.ArrayMethodCallbackWrapper(callback)
+            let _callback = try! callbackWrapper?.toABI { $0 }
+            _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.TestOutArrayThroughSwiftImplementation(pThis, _scenario, _callback))
+            }
+        }
+
+        public func TestRefArrayThroughSwiftImplementation(_ scenario: test_component.AnyIArrayScenarios?, _ value: inout [Int32], _ callback: test_component.ArrayMethodCallback?) throws {
+            let scenarioWrapper = __ABI_test_component.IArrayScenariosWrapper(scenario)
+            let _scenario = try! scenarioWrapper?.toABI { $0 }
+            try value.toABI { _value in
+                let callbackWrapper = __ABI_test_component.ArrayMethodCallbackWrapper(callback)
+                let _callback = try! callbackWrapper?.toABI { $0 }
+                _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.TestRefArrayThroughSwiftImplementation(pThis, _scenario, _value.count, _value.start, _callback))
+                }
+            }
+        }
+
+        public func TestReturnArrayThroughSwiftImplementation(_ scenario: test_component.AnyIArrayScenarios?, _ callback: test_component.ArrayMethodCallback?) throws {
+            let scenarioWrapper = __ABI_test_component.IArrayScenariosWrapper(scenario)
+            let _scenario = try! scenarioWrapper?.toABI { $0 }
+            let callbackWrapper = __ABI_test_component.ArrayMethodCallbackWrapper(callback)
+            let _callback = try! callbackWrapper?.toABI { $0 }
+            _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.TestReturnArrayThroughSwiftImplementation(pThis, _scenario, _callback))
+            }
+        }
+
+    }
+
+    public class IArrayScenarios: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIArrayScenarios }
+
+        open func InArray(_ value: [Int32]) throws {
+            try value.toABI { _value in
+                _ = try perform(as: __x_ABI_Ctest__component_CIArrayScenarios.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.InArray(pThis, _value.count, _value.start))
+                }
+            }
+        }
+
+        open func OutArray(_ value: inout [Int32]) throws {
+            var _value: WinRTArrayAbi<INT32> = (0, nil)
+            _ = try perform(as: __x_ABI_Ctest__component_CIArrayScenarios.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.OutArray(pThis, &_value.count, &_value.start))
+            }
+            defer { CoTaskMemFree(_value.start) }
+            value = .from(abi: _value)
+        }
+
+        open func RefArray(_ value: inout [Int32]) throws {
+            try value.toABI { _value in
+                _ = try perform(as: __x_ABI_Ctest__component_CIArrayScenarios.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.RefArray(pThis, _value.count, _value.start))
+                }
+            }
+        }
+
+        open func ReturnArray() throws -> [Int32] {
+            var result: WinRTArrayAbi<INT32> = (0, nil)
+            _ = try perform(as: __x_ABI_Ctest__component_CIArrayScenarios.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnArray(pThis, &result.count, &result.start))
+            }
+            defer { CoTaskMemFree(result.start) }
+            return .from(abi: result)
+
+        }
+
+        open func DoubleIn(_ value1: [Int32], _ value2: [Int32]) throws {
+            try value1.toABI { _value1 in
+                try value2.toABI { _value2 in
+                _ = try perform(as: __x_ABI_Ctest__component_CIArrayScenarios.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.DoubleIn(pThis, _value1.count, _value1.start, _value2.count, _value2.start))
+                }
+            }
+            }
+        }
+
+        open func InAndOut(_ value: [Int32], _ results: inout [Int32]) throws {
+            try value.toABI { _value in
+                var _results: WinRTArrayAbi<INT32> = (0, nil)
+                _ = try perform(as: __x_ABI_Ctest__component_CIArrayScenarios.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.InAndOut(pThis, _value.count, _value.start, &_results.count, &_results.start))
+                }
+                defer { CoTaskMemFree(_results.start) }
+                results = .from(abi: _results)
+            }
+        }
+
+        open func InAndRef(_ value: [Int32], _ results: inout [Int32]) throws {
+            try value.toABI { _value in
+                try results.toABI { _results in
+                _ = try perform(as: __x_ABI_Ctest__component_CIArrayScenarios.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.InAndRef(pThis, _value.count, _value.start, _results.count, _results.start))
+                }
+            }
+            }
+        }
+
+        open func InAndReturn(_ value: [Int32]) throws -> [Int32] {
+            var result: WinRTArrayAbi<INT32> = (0, nil)
+            try value.toABI { _value in
+                _ = try perform(as: __x_ABI_Ctest__component_CIArrayScenarios.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.InAndReturn(pThis, _value.count, _value.start, &result.count, &result.start))
+                }
+            }
+            defer { CoTaskMemFree(result.start) }
+            return .from(abi: result)
 
         }
 
     }
 
+    internal static var IArrayScenariosVTable: __x_ABI_Ctest__component_CIArrayScenariosVtbl = .init(
+        QueryInterface: { IArrayScenariosWrapper.queryInterface($0, $1, $2) },
+        AddRef: { IArrayScenariosWrapper.addRef($0) },
+        Release: { IArrayScenariosWrapper.release($0) },
+        GetIids: {
+            let size = MemoryLayout<test_component.IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
+            iids[0] = IUnknown.IID
+            iids[1] = IInspectable.IID
+            iids[2] = __ABI_test_component.IArrayScenariosWrapper.IID
+            $1!.pointee = 3
+            $2!.pointee = iids
+            return S_OK
+        },
+
+        GetRuntimeClassName: {
+            _ = $0
+            let hstring = try! HString("test_component.IArrayScenarios").detach()
+            $1!.pointee = hstring
+            return S_OK
+        },
+
+        GetTrustLevel: {
+            _ = $0
+            $1!.pointee = TrustLevel(rawValue: 0)
+            return S_OK
+        },
+
+        InArray: {
+            do {
+                guard let __unwrapped__instance = IArrayScenariosWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                let value: [Int32] = .from(abi: (count: $1, start: $2))
+                try __unwrapped__instance.inArray(value)
+                return S_OK
+            } catch { return failWith(error: error) }
+        },
+
+        OutArray: {
+            do {
+                guard let __unwrapped__instance = IArrayScenariosWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                var value = [Int32]()
+                try __unwrapped__instance.outArray(&value)
+                $1?.initialize(to: UInt32(value.count))
+                value.fill(abi: $2)
+                return S_OK
+            } catch { return failWith(error: error) }
+        },
+
+        RefArray: {
+            do {
+                guard let __unwrapped__instance = IArrayScenariosWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                var value: [Int32] = .from(abi: (count: $1, start: $2))
+                try __unwrapped__instance.refArray(&value)
+                value.fill(abi: $2)
+                return S_OK
+            } catch { return failWith(error: error) }
+        },
+
+        ReturnArray: {
+            do {
+                guard let __unwrapped__instance = IArrayScenariosWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                let result = try __unwrapped__instance.returnArray()
+                $1?.initialize(to: UInt32(result.count))
+                result.fill(abi: $2)
+                return S_OK
+            } catch { return failWith(error: error) }
+        },
+
+        DoubleIn: {
+            do {
+                guard let __unwrapped__instance = IArrayScenariosWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                let value1: [Int32] = .from(abi: (count: $1, start: $2))
+                let value2: [Int32] = .from(abi: (count: $3, start: $4))
+                try __unwrapped__instance.doubleIn(value1, value2)
+                return S_OK
+            } catch { return failWith(error: error) }
+        },
+
+        InAndOut: {
+            do {
+                guard let __unwrapped__instance = IArrayScenariosWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                let value: [Int32] = .from(abi: (count: $1, start: $2))
+                var results = [Int32]()
+                try __unwrapped__instance.inAndOut(value, &results)
+                $3?.initialize(to: UInt32(results.count))
+                results.fill(abi: $4)
+                return S_OK
+            } catch { return failWith(error: error) }
+        },
+
+        InAndRef: {
+            do {
+                guard let __unwrapped__instance = IArrayScenariosWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                let value: [Int32] = .from(abi: (count: $1, start: $2))
+                var results: [Int32] = .from(abi: (count: $3, start: $4))
+                try __unwrapped__instance.inAndRef(value, &results)
+                results.fill(abi: $4)
+                return S_OK
+            } catch { return failWith(error: error) }
+        },
+
+        InAndReturn: {
+            do {
+                guard let __unwrapped__instance = IArrayScenariosWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                let value: [Int32] = .from(abi: (count: $1, start: $2))
+                let result = try __unwrapped__instance.inAndReturn(value)
+                $3?.initialize(to: UInt32(result.count))
+                result.fill(abi: $4)
+                return S_OK
+            } catch { return failWith(error: error) }
+        }
+    )
+
+    public typealias IArrayScenariosWrapper = InterfaceWrapperBase<__IMPL_test_component.IArrayScenariosBridge>
     public class IAsyncMethodsStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIAsyncMethodsStatics }
 
@@ -1866,65 +2095,6 @@ public enum __ABI_test_component {
     )
 
     public typealias IIAmImplementableWrapper = InterfaceWrapperBase<__IMPL_test_component.IIAmImplementableBridge>
-    public class IInArrayWithOut: test_component.IInspectable {
-        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIInArrayWithOut }
-
-        open func InAndOut(_ value: [Int32], _ results: inout [Int32]) throws {
-            try value.toABI { (count, _value) in
-                var _results: UnsafeMutablePointer<INT32>?
-                var length: UInt32 = 0
-                _ = try perform(as: __x_ABI_Ctest__component_CIInArrayWithOut.self) { pThis in
-                    try CHECKED(pThis.pointee.lpVtbl.pointee.InAndOut(pThis, count, _value, &length, &_results))
-                }
-                defer { CoTaskMemFree(_results) }
-                results = .from(abi: (count: length, start: _results))
-            }
-        }
-
-    }
-
-    internal static var IInArrayWithOutVTable: __x_ABI_Ctest__component_CIInArrayWithOutVtbl = .init(
-        QueryInterface: { IInArrayWithOutWrapper.queryInterface($0, $1, $2) },
-        AddRef: { IInArrayWithOutWrapper.addRef($0) },
-        Release: { IInArrayWithOutWrapper.release($0) },
-        GetIids: {
-            let size = MemoryLayout<test_component.IID>.size
-            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
-            iids[0] = IUnknown.IID
-            iids[1] = IInspectable.IID
-            iids[2] = __ABI_test_component.IInArrayWithOutWrapper.IID
-            $1!.pointee = 3
-            $2!.pointee = iids
-            return S_OK
-        },
-
-        GetRuntimeClassName: {
-            _ = $0
-            let hstring = try! HString("test_component.IInArrayWithOut").detach()
-            $1!.pointee = hstring
-            return S_OK
-        },
-
-        GetTrustLevel: {
-            _ = $0
-            $1!.pointee = TrustLevel(rawValue: 0)
-            return S_OK
-        },
-
-        InAndOut: {
-            do {
-                guard let __unwrapped__instance = IInArrayWithOutWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-                let value: [Int32] = .from(abi: (count: $1, start: $2))
-
-                var results = [Int32]()
-                try __unwrapped__instance.inAndOut(value, &results)
-                results.fill(abi: $4)
-                return S_OK
-            } catch { return failWith(error: error) }
-        }
-    )
-
-    public typealias IInArrayWithOutWrapper = InterfaceWrapperBase<__IMPL_test_component.IInArrayWithOutBridge>
     public class IInterfaceWithObservableVector: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIInterfaceWithObservableVector }
 
@@ -3139,6 +3309,44 @@ extension ComposableImpl where CABI == __x_ABI_Ctest__component_CIUnsealedDerive
         return .init(lpVtbl: vtblPtr)
     }
 }
+// MARK - ArrayMethodCallback
+extension __ABI_test_component {
+    public class ArrayMethodCallback: test_component.IUnknown {
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIArrayMethodCallback }
+
+        open func Invoke(_ value: [Int32]) throws {
+            try value.toABI { _value in
+                _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodCallback.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _value.count, _value.start))
+                }
+            }
+        }
+
+    }
+
+
+    typealias ArrayMethodCallbackWrapper = InterfaceWrapperBase<__IMPL_test_component.ArrayMethodCallbackBridge>
+    internal static var ArrayMethodCallbackVTable: __x_ABI_Ctest__component_CIArrayMethodCallbackVtbl = .init(
+        QueryInterface: { ArrayMethodCallbackWrapper.queryInterface($0, $1, $2) },
+        AddRef: { ArrayMethodCallbackWrapper.addRef($0) },
+        Release: { ArrayMethodCallbackWrapper.release($0) },
+        Invoke: {
+            do {
+                guard let __unwrapped__instance = ArrayMethodCallbackWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                let value: [Int32] = .from(abi: (count: $1, start: $2))
+                try __unwrapped__instance(value)
+                return S_OK
+            } catch { return failWith(error: error) }
+        }
+    )
+}
+public extension WinRTDelegateBridge where CABI == __x_ABI_Ctest__component_CIArrayMethodCallback {
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.ArrayMethodCallbackVTable) { $0 }
+        return .init(lpVtbl:vtblPtr)
+    }
+}
+
 // MARK - ObjectHandler
 extension __ABI_test_component {
     public class ObjectHandler: test_component.IUnknown {

@@ -122,6 +122,22 @@ public final class ArrayMethods {
         return try _IArrayMethodsStatics.ReturnEnumArray()
     }
 
+    public static func testInArrayThroughSwiftImplementation(_ scenario: AnyIArrayScenarios!, _ value: [Int32]) throws {
+        try _IArrayMethodsStatics.TestInArrayThroughSwiftImplementation(scenario, value)
+    }
+
+    public static func testOutArrayThroughSwiftImplementation(_ scenario: AnyIArrayScenarios!, _ callback: ArrayMethodCallback!) throws {
+        try _IArrayMethodsStatics.TestOutArrayThroughSwiftImplementation(scenario, callback)
+    }
+
+    public static func testRefArrayThroughSwiftImplementation(_ scenario: AnyIArrayScenarios!, _ value: inout [Int32], _ callback: ArrayMethodCallback!) throws {
+        try _IArrayMethodsStatics.TestRefArrayThroughSwiftImplementation(scenario, &value, callback)
+    }
+
+    public static func testReturnArrayThroughSwiftImplementation(_ scenario: AnyIArrayScenarios!, _ callback: ArrayMethodCallback!) throws {
+        try _IArrayMethodsStatics.TestReturnArrayThroughSwiftImplementation(scenario, callback)
+    }
+
 }
 
 public final class AsyncMethods {
@@ -1578,6 +1594,7 @@ public final class WeakReferencer : WinRTClass {
     }
 }
 
+public typealias ArrayMethodCallback = ([Int32]) throws -> ()
 public typealias ObjectHandler = (Any?) throws -> ()
 public typealias VoidToVoidDelegate = () throws -> ()
 public struct BlittableStruct: Hashable, Codable, Sendable {
@@ -1643,6 +1660,29 @@ public struct StructWithIReference: Hashable, Codable, Sendable {
         self.value2 = value2
     }
 }
+
+public protocol IArrayScenarios : WinRTInterface {
+    func inArray(_ value: [Int32]) throws
+    func outArray(_ value: inout [Int32]) throws
+    func refArray(_ value: inout [Int32]) throws
+    func returnArray() throws -> [Int32]
+    func doubleIn(_ value1: [Int32], _ value2: [Int32]) throws
+    func inAndOut(_ value: [Int32], _ results: inout [Int32]) throws
+    func inAndRef(_ value: [Int32], _ results: inout [Int32]) throws
+    func inAndReturn(_ value: [Int32]) throws -> [Int32]
+}
+
+extension IArrayScenarios {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        switch iid {
+            case __ABI_test_component.IArrayScenariosWrapper.IID:
+                let wrapper = __ABI_test_component.IArrayScenariosWrapper(self)
+                return wrapper!.queryInterface(iid)
+            default: return nil
+        }
+    }
+}
+public typealias AnyIArrayScenarios = any IArrayScenarios
 
 public protocol IAsyncMethodsWithProgress : WinRTInterface {
     func operationWithProgress(_ value: test_component.DateTime) throws -> test_component.AnyIAsyncOperationWithProgress<Int32, Double>!
@@ -1731,22 +1771,6 @@ extension IIAmImplementable {
     }
 }
 public typealias AnyIIAmImplementable = any IIAmImplementable
-
-public protocol IInArrayWithOut : WinRTInterface {
-    func inAndOut(_ value: [Int32], _ results: inout [Int32]) throws
-}
-
-extension IInArrayWithOut {
-    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
-        switch iid {
-            case __ABI_test_component.IInArrayWithOutWrapper.IID:
-                let wrapper = __ABI_test_component.IInArrayWithOutWrapper(self)
-                return wrapper!.queryInterface(iid)
-            default: return nil
-        }
-    }
-}
-public typealias AnyIInArrayWithOut = any IInArrayWithOut
 
 public protocol IInterfaceWithObservableVector : WinRTInterface {
     func takeObservable(_ basics: test_component.AnyIObservableVector<test_component.AnyIBasic?>!) throws

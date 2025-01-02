@@ -695,193 +695,174 @@ public enum __ABI_Windows_Foundation {
         }
 
         open func GetUInt8Array(_ value: inout [UInt8]) throws {
-            var _value: UnsafeMutablePointer<UINT8>?
-            var length: UInt32 = 0
+            var _value: WinRTArrayAbi<UINT8> = (0, nil)
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetUInt8Array(pThis, &length, &_value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetUInt8Array(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value) }
-            value = .from(abi: (count: length, start: _value))
+            defer { CoTaskMemFree(_value.start) }
+            value = .from(abi: _value)
         }
 
         open func GetInt16Array(_ value: inout [Int16]) throws {
-            var _value: UnsafeMutablePointer<INT16>?
-            var length: UInt32 = 0
+            var _value: WinRTArrayAbi<INT16> = (0, nil)
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetInt16Array(pThis, &length, &_value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetInt16Array(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value) }
-            value = .from(abi: (count: length, start: _value))
+            defer { CoTaskMemFree(_value.start) }
+            value = .from(abi: _value)
         }
 
         open func GetUInt16Array(_ value: inout [UInt16]) throws {
-            var _value: UnsafeMutablePointer<UINT16>?
-            var length: UInt32 = 0
+            var _value: WinRTArrayAbi<UINT16> = (0, nil)
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetUInt16Array(pThis, &length, &_value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetUInt16Array(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value) }
-            value = .from(abi: (count: length, start: _value))
+            defer { CoTaskMemFree(_value.start) }
+            value = .from(abi: _value)
         }
 
         open func GetInt32Array(_ value: inout [Int32]) throws {
-            var _value: UnsafeMutablePointer<INT32>?
-            var length: UInt32 = 0
+            var _value: WinRTArrayAbi<INT32> = (0, nil)
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetInt32Array(pThis, &length, &_value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetInt32Array(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value) }
-            value = .from(abi: (count: length, start: _value))
+            defer { CoTaskMemFree(_value.start) }
+            value = .from(abi: _value)
         }
 
         open func GetUInt32Array(_ value: inout [UInt32]) throws {
-            var _value: UnsafeMutablePointer<UINT32>?
-            var length: UInt32 = 0
+            var _value: WinRTArrayAbi<UINT32> = (0, nil)
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetUInt32Array(pThis, &length, &_value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetUInt32Array(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value) }
-            value = .from(abi: (count: length, start: _value))
+            defer { CoTaskMemFree(_value.start) }
+            value = .from(abi: _value)
         }
 
         open func GetInt64Array(_ value: inout [Int64]) throws {
-            var _value: UnsafeMutablePointer<INT64>?
-            var length: UInt32 = 0
+            var _value: WinRTArrayAbi<INT64> = (0, nil)
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetInt64Array(pThis, &length, &_value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetInt64Array(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value) }
-            value = .from(abi: (count: length, start: _value))
+            defer { CoTaskMemFree(_value.start) }
+            value = .from(abi: _value)
         }
 
         open func GetUInt64Array(_ value: inout [UInt64]) throws {
-            var _value: UnsafeMutablePointer<UINT64>?
-            var length: UInt32 = 0
+            var _value: WinRTArrayAbi<UINT64> = (0, nil)
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetUInt64Array(pThis, &length, &_value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetUInt64Array(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value) }
-            value = .from(abi: (count: length, start: _value))
+            defer { CoTaskMemFree(_value.start) }
+            value = .from(abi: _value)
         }
 
         open func GetSingleArray(_ value: inout [Float]) throws {
-            var _value: UnsafeMutablePointer<FLOAT>?
-            var length: UInt32 = 0
+            var _value: WinRTArrayAbi<FLOAT> = (0, nil)
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetSingleArray(pThis, &length, &_value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetSingleArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value) }
-            value = .from(abi: (count: length, start: _value))
+            defer { CoTaskMemFree(_value.start) }
+            value = .from(abi: _value)
         }
 
         open func GetDoubleArray(_ value: inout [Double]) throws {
-            var _value: UnsafeMutablePointer<DOUBLE>?
-            var length: UInt32 = 0
+            var _value: WinRTArrayAbi<DOUBLE> = (0, nil)
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetDoubleArray(pThis, &length, &_value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetDoubleArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value) }
-            value = .from(abi: (count: length, start: _value))
+            defer { CoTaskMemFree(_value.start) }
+            value = .from(abi: _value)
         }
 
         open func GetChar16Array(_ value: inout [Character]) throws {
-            var _value: UnsafeMutablePointer<WCHAR>?
-            var length: UInt32 = 0
+            var _value: WinRTArrayAbi<WCHAR> = (0, nil)
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetChar16Array(pThis, &length, &_value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetChar16Array(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value) }
-            value = .from(abi: (count: length, start: _value))
+            defer { CoTaskMemFree(_value.start) }
+            value = .from(abi: _value)
         }
 
         open func GetBooleanArray(_ value: inout [Bool]) throws {
-            var _value: UnsafeMutablePointer<boolean>?
-            var length: UInt32 = 0
+            var _value: WinRTArrayAbi<boolean> = (0, nil)
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetBooleanArray(pThis, &length, &_value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetBooleanArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value) }
-            value = .from(abi: (count: length, start: _value))
+            defer { CoTaskMemFree(_value.start) }
+            value = .from(abi: _value)
         }
 
         open func GetStringArray(_ value: inout [String]) throws {
-            var _value: UnsafeMutablePointer<HSTRING?>?
-            var length: UInt32 = 0
+            var _value: WinRTArrayAbi<HSTRING?> = (0, nil)
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetStringArray(pThis, &length, &_value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetStringArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value) }
-            value = .from(abi: (count: length, start: _value))
+            defer { CoTaskMemFree(_value.start) }
+            value = .from(abi: _value)
         }
 
         open func GetInspectableArray(_ value: inout [Any?]) throws {
-            var _value: UnsafeMutablePointer<UnsafeMutablePointer<C_IInspectable>?>?
-            var length: UInt32 = 0
+            var _value: WinRTArrayAbi<UnsafeMutablePointer<C_IInspectable>?> = (0, nil)
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetInspectableArray(pThis, &length, &_value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetInspectableArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value) }
-            value = .from(abiBridge: __IMPL_.AnyBridge.self, abi: (count: length, start: _value))
+            defer { CoTaskMemFree(_value.start) }
+            value = .from(abiBridge: __IMPL_.AnyBridge.self, abi: _value)
         }
 
         open func GetGuidArray(_ value: inout [Foundation.UUID]) throws {
-            var _value: UnsafeMutablePointer<test_component.GUID>?
-            var length: UInt32 = 0
+            var _value: WinRTArrayAbi<test_component.GUID> = (0, nil)
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetGuidArray(pThis, &length, &_value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetGuidArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value) }
-            value = .from(abi: (count: length, start: _value))
+            defer { CoTaskMemFree(_value.start) }
+            value = .from(abi: _value)
         }
 
         open func GetDateTimeArray(_ value: inout [test_component.DateTime]) throws {
-            var _value: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CDateTime>?
-            var length: UInt32 = 0
+            var _value: WinRTArrayAbi<__x_ABI_CWindows_CFoundation_CDateTime> = (0, nil)
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetDateTimeArray(pThis, &length, &_value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetDateTimeArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value) }
-            value = .from(abi: (count: length, start: _value))
+            defer { CoTaskMemFree(_value.start) }
+            value = .from(abi: _value)
         }
 
         open func GetTimeSpanArray(_ value: inout [test_component.TimeSpan]) throws {
-            var _value: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CTimeSpan>?
-            var length: UInt32 = 0
+            var _value: WinRTArrayAbi<__x_ABI_CWindows_CFoundation_CTimeSpan> = (0, nil)
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetTimeSpanArray(pThis, &length, &_value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetTimeSpanArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value) }
-            value = .from(abi: (count: length, start: _value))
+            defer { CoTaskMemFree(_value.start) }
+            value = .from(abi: _value)
         }
 
         open func GetPointArray(_ value: inout [test_component.Point]) throws {
-            var _value: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CPoint>?
-            var length: UInt32 = 0
+            var _value: WinRTArrayAbi<__x_ABI_CWindows_CFoundation_CPoint> = (0, nil)
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetPointArray(pThis, &length, &_value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetPointArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value) }
-            value = .from(abi: (count: length, start: _value))
+            defer { CoTaskMemFree(_value.start) }
+            value = .from(abi: _value)
         }
 
         open func GetSizeArray(_ value: inout [test_component.Size]) throws {
-            var _value: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CSize>?
-            var length: UInt32 = 0
+            var _value: WinRTArrayAbi<__x_ABI_CWindows_CFoundation_CSize> = (0, nil)
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetSizeArray(pThis, &length, &_value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetSizeArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value) }
-            value = .from(abi: (count: length, start: _value))
+            defer { CoTaskMemFree(_value.start) }
+            value = .from(abi: _value)
         }
 
         open func GetRectArray(_ value: inout [test_component.Rect]) throws {
-            var _value: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CRect>?
-            var length: UInt32 = 0
+            var _value: WinRTArrayAbi<__x_ABI_CWindows_CFoundation_CRect> = (0, nil)
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetRectArray(pThis, &length, &_value))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetRectArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value) }
-            value = .from(abi: (count: length, start: _value))
+            defer { CoTaskMemFree(_value.start) }
+            value = .from(abi: _value)
         }
 
     }
@@ -1095,6 +1076,7 @@ public enum __ABI_Windows_Foundation {
                 guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 var value = [UInt8]()
                 try __unwrapped__instance.getUInt8Array(&value)
+                $1?.initialize(to: UInt32(value.count))
                 value.fill(abi: $2)
                 return S_OK
             } catch { return failWith(error: error) }
@@ -1105,6 +1087,7 @@ public enum __ABI_Windows_Foundation {
                 guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 var value = [Int16]()
                 try __unwrapped__instance.getInt16Array(&value)
+                $1?.initialize(to: UInt32(value.count))
                 value.fill(abi: $2)
                 return S_OK
             } catch { return failWith(error: error) }
@@ -1115,6 +1098,7 @@ public enum __ABI_Windows_Foundation {
                 guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 var value = [UInt16]()
                 try __unwrapped__instance.getUInt16Array(&value)
+                $1?.initialize(to: UInt32(value.count))
                 value.fill(abi: $2)
                 return S_OK
             } catch { return failWith(error: error) }
@@ -1125,6 +1109,7 @@ public enum __ABI_Windows_Foundation {
                 guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 var value = [Int32]()
                 try __unwrapped__instance.getInt32Array(&value)
+                $1?.initialize(to: UInt32(value.count))
                 value.fill(abi: $2)
                 return S_OK
             } catch { return failWith(error: error) }
@@ -1135,6 +1120,7 @@ public enum __ABI_Windows_Foundation {
                 guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 var value = [UInt32]()
                 try __unwrapped__instance.getUInt32Array(&value)
+                $1?.initialize(to: UInt32(value.count))
                 value.fill(abi: $2)
                 return S_OK
             } catch { return failWith(error: error) }
@@ -1145,6 +1131,7 @@ public enum __ABI_Windows_Foundation {
                 guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 var value = [Int64]()
                 try __unwrapped__instance.getInt64Array(&value)
+                $1?.initialize(to: UInt32(value.count))
                 value.fill(abi: $2)
                 return S_OK
             } catch { return failWith(error: error) }
@@ -1155,6 +1142,7 @@ public enum __ABI_Windows_Foundation {
                 guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 var value = [UInt64]()
                 try __unwrapped__instance.getUInt64Array(&value)
+                $1?.initialize(to: UInt32(value.count))
                 value.fill(abi: $2)
                 return S_OK
             } catch { return failWith(error: error) }
@@ -1165,6 +1153,7 @@ public enum __ABI_Windows_Foundation {
                 guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 var value = [Float]()
                 try __unwrapped__instance.getSingleArray(&value)
+                $1?.initialize(to: UInt32(value.count))
                 value.fill(abi: $2)
                 return S_OK
             } catch { return failWith(error: error) }
@@ -1175,6 +1164,7 @@ public enum __ABI_Windows_Foundation {
                 guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 var value = [Double]()
                 try __unwrapped__instance.getDoubleArray(&value)
+                $1?.initialize(to: UInt32(value.count))
                 value.fill(abi: $2)
                 return S_OK
             } catch { return failWith(error: error) }
@@ -1185,6 +1175,7 @@ public enum __ABI_Windows_Foundation {
                 guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 var value = [Character]()
                 try __unwrapped__instance.getChar16Array(&value)
+                $1?.initialize(to: UInt32(value.count))
                 do {
                     try value.fill(abi: $2)
                 } catch { return failWith(error: error) }
@@ -1197,6 +1188,7 @@ public enum __ABI_Windows_Foundation {
                 guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 var value = [Bool]()
                 try __unwrapped__instance.getBooleanArray(&value)
+                $1?.initialize(to: UInt32(value.count))
                 do {
                     try value.fill(abi: $2)
                 } catch { return failWith(error: error) }
@@ -1209,6 +1201,7 @@ public enum __ABI_Windows_Foundation {
                 guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 var value = [String]()
                 try __unwrapped__instance.getStringArray(&value)
+                $1?.initialize(to: UInt32(value.count))
                 do {
                     try value.fill(abi: $2)
                 } catch { return failWith(error: error) }
@@ -1221,6 +1214,7 @@ public enum __ABI_Windows_Foundation {
                 guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 var value = [Any?]()
                 try __unwrapped__instance.getInspectableArray(&value)
+                $1?.initialize(to: UInt32(value.count))
                 value.fill(abi: $2, abiBridge: __IMPL_.AnyBridge.self)
                 return S_OK
             } catch { return failWith(error: error) }
@@ -1231,6 +1225,7 @@ public enum __ABI_Windows_Foundation {
                 guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 var value = [Foundation.UUID]()
                 try __unwrapped__instance.getGuidArray(&value)
+                $1?.initialize(to: UInt32(value.count))
                 do {
                     try value.fill(abi: $2)
                 } catch { return failWith(error: error) }
@@ -1243,6 +1238,7 @@ public enum __ABI_Windows_Foundation {
                 guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 var value = [test_component.DateTime]()
                 try __unwrapped__instance.getDateTimeArray(&value)
+                $1?.initialize(to: UInt32(value.count))
                 do {
                     try value.fill(abi: $2)
                 } catch { return failWith(error: error) }
@@ -1255,6 +1251,7 @@ public enum __ABI_Windows_Foundation {
                 guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 var value = [test_component.TimeSpan]()
                 try __unwrapped__instance.getTimeSpanArray(&value)
+                $1?.initialize(to: UInt32(value.count))
                 do {
                     try value.fill(abi: $2)
                 } catch { return failWith(error: error) }
@@ -1267,6 +1264,7 @@ public enum __ABI_Windows_Foundation {
                 guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 var value = [test_component.Point]()
                 try __unwrapped__instance.getPointArray(&value)
+                $1?.initialize(to: UInt32(value.count))
                 do {
                     try value.fill(abi: $2)
                 } catch { return failWith(error: error) }
@@ -1279,6 +1277,7 @@ public enum __ABI_Windows_Foundation {
                 guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 var value = [test_component.Size]()
                 try __unwrapped__instance.getSizeArray(&value)
+                $1?.initialize(to: UInt32(value.count))
                 do {
                     try value.fill(abi: $2)
                 } catch { return failWith(error: error) }
@@ -1291,6 +1290,7 @@ public enum __ABI_Windows_Foundation {
                 guard let __unwrapped__instance = IPropertyValueWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 var value = [test_component.Rect]()
                 try __unwrapped__instance.getRectArray(&value)
+                $1?.initialize(to: UInt32(value.count))
                 do {
                     try value.fill(abi: $2)
                 } catch { return failWith(error: error) }

@@ -13,6 +13,31 @@ class StringableInt: IStringable {
     }
 }
 
+class ArrayScenarios: IArrayScenarios {
+    var array: [Int32] = []
+    func inArray(_ value: [Int32]) throws {
+        array = value
+    }
+
+    func outArray(_ value: inout [Int32]) throws {
+        value = array
+    }
+
+    func refArray(_ value: inout [Int32]) throws {
+        for i in 0..<value.count-1 {
+            value[i] = Int32(i)
+        }
+    }
+    func returnArray() throws -> [Int32] {
+        array
+    }
+
+    func doubleIn(_ value1: [Int32], _ value2: [Int32]) throws {}
+    func inAndOut(_ value: [Int32], _ results: inout [Int32]) throws {}
+    func inAndRef(_ value: [Int32], _ results: inout [Int32]) throws {}
+    func inAndReturn(_ value: [Int32]) throws -> [Int32] { value }
+}
+
 class ArrayInputTests : XCTestCase {
     public func testInputIntArray() throws {
         let input: [Int32] = [1, 2, 3, 4, 5]
@@ -54,6 +79,12 @@ class ArrayInputTests : XCTestCase {
         let input: [Signed] = [.first, .second, .third]
         let result = try ArrayMethods.inEnumArray(input)
         XCTAssertEqual("FirstSecondThird", result)
+    }
+
+    public func testThroughSwiftImplementation() throws {
+        let arrayScenario = ArrayScenarios()
+        try ArrayMethods.testInArrayThroughSwiftImplementation(arrayScenario, [1, 2, 3])
+        XCTAssertEqual([1, 2, 3], arrayScenario.array)
     }
 }
 
@@ -109,6 +140,14 @@ public class ArrayOutputTests: XCTestCase {
         try ArrayMethods.outEnumArray(&enumArray)
         XCTAssertEqual([.first, .second], enumArray)
     }
+
+    public func testThroughSwiftImplementation() throws {
+        let arrayScenario = ArrayScenarios()
+        arrayScenario.array = [1, 3, 1, 10]
+        try ArrayMethods.testOutArrayThroughSwiftImplementation(arrayScenario) { array in
+            XCTAssertEqual([1, 3, 1, 10], array)
+        }
+    }
 }
 
 public class ArrayByReferenceTests: XCTestCase {
@@ -162,6 +201,15 @@ public class ArrayByReferenceTests: XCTestCase {
         try ArrayMethods.refEnumArray(&input)
         XCTAssertEqual([Signed.first, Signed.second, Signed.third], input)
     }
+
+     public func testThroughSwiftImplementation() throws {
+        let arrayScenario = ArrayScenarios()
+        var testArray: [Int32] = [5, 4, 3, 2, 1]
+        try ArrayMethods.testRefArrayThroughSwiftImplementation(arrayScenario, &testArray) { array in
+            XCTAssertEqual([0, 1, 2, 3, 1], array)
+        }
+        XCTAssertEqual([0, 1, 2, 3, 1], testArray)
+    }
 }
 
 public class ReturnArrayInputTests: XCTestCase {
@@ -203,6 +251,15 @@ public class ReturnArrayInputTests: XCTestCase {
         let result = try ArrayMethods.returnEnumArray()
         XCTAssertEqual([Signed.first, Signed.second], result)
     }
+
+    public func testThroughSwiftImplementation() throws {
+        let arrayScenario = ArrayScenarios()
+        arrayScenario.array = [1, 3, 1, 10]
+
+        try ArrayMethods.testReturnArrayThroughSwiftImplementation(arrayScenario) { array in
+            XCTAssertEqual([1, 3, 1, 10], array)
+        }
+    }
 }
 
 private let inputArrayTests: [XCTestCaseEntry] = [
@@ -213,7 +270,8 @@ private let inputArrayTests: [XCTestCaseEntry] = [
     ("testInStringableArray", ArrayInputTests.testInStringableArray),
     ("testInStructArray", ArrayInputTests.testInStructArray),
     ("testInNonBlittableStructArray", ArrayInputTests.testInNonBlittableStructArray),
-    ("testInEnumArray", ArrayInputTests.testInEnumArray)
+    ("testInEnumArray", ArrayInputTests.testInEnumArray),
+    ("testThroughSwiftImplementation", ArrayInputTests.testThroughSwiftImplementation)
     ])
 ]
 private let outputArrayTests: [XCTestCaseEntry] = [
@@ -225,6 +283,7 @@ private let outputArrayTests: [XCTestCaseEntry] = [
     ("testOutStructArray", ArrayOutputTests.testOutStructArray),
     ("testOutNonBlittableStructArray", ArrayOutputTests.testOutNonBlittableStructArray),
     ("testOutEnumArry", ArrayOutputTests.testOutEnumArry),
+    ("testThroughSwiftImplementation", ArrayOutputTests.testThroughSwiftImplementation)
   ])
 ]
 
@@ -237,6 +296,7 @@ private let referenceArrayTests: [XCTestCaseEntry] = [
     ("testInStructArrayByReference", ArrayByReferenceTests.testInStructArrayByReference),
     ("testInNonBlittableStructArrayByReference", ArrayByReferenceTests.testInNonBlittableStructArrayByReference),
     ("testInEnumArrayByReference", ArrayByReferenceTests.testInEnumArrayByReference),
+    ("testThroughSwiftImplementation", ArrayByReferenceTests.testThroughSwiftImplementation)
   ])
 ]
 
@@ -248,7 +308,8 @@ private let returnArrayTests: [XCTestCaseEntry] = [
     ("testReturnStringableArray", ReturnArrayInputTests.testReturnStringableArray),
     ("testReturnStructArray", ReturnArrayInputTests.testReturnStructArray),
     ("testReturnNonBlittableStructArray", ReturnArrayInputTests.testReturnNonBlittableStructArray),
-    ("testReturnEnumArray", ReturnArrayInputTests.testReturnEnumArray)
+    ("testReturnEnumArray", ReturnArrayInputTests.testReturnEnumArray),
+    ("testThroughSwiftImplementation", ReturnArrayInputTests.testThroughSwiftImplementation)
   ])
 ]
 

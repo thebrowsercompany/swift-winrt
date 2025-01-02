@@ -3094,7 +3094,7 @@ internal var __x_ABI_C__FIIterator_1_IInspectableVTable: __x_ABI_C__FIIterator_1
 
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIIterator_1_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        var items = [Any?](repeating: nil, count: Int($1))
+        var items: [Any?] = .from(abiBridge: __IMPL_.AnyBridge.self, abi: (count: $1, start: $2))
         let result = __unwrapped__instance.getMany(&items)
         items.fill(abi: $2, abiBridge: __IMPL_.AnyBridge.self)
         $3?.initialize(to: result)
@@ -3132,11 +3132,11 @@ public class IIteratorAny: test_component.IInspectable {
 
     open func GetMany(_ items: inout [Any?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_.AnyBridge.self) { (length, _items) in
+        try items.toABI(abiBridge: __IMPL_.AnyBridge.self) { _items in
             _ = try perform(as: __x_ABI_C__FIIterator_1_IInspectable.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-            items = .from(abiBridge: __IMPL_.AnyBridge.self, abi: (count: length, start: _items))
+            items = .from(abiBridge: __IMPL_.AnyBridge.self, abi: _items)
         }
         return result
     }
@@ -3245,7 +3245,7 @@ internal var __x_ABI_C__FIIterator_1_GUIDVTable: __x_ABI_C__FIIterator_1_GUIDVtb
 
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIIterator_1_GUIDWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        var items = [Foundation.UUID](repeating: .init(), count: Int($1))
+        var items: [Foundation.UUID] = .from(abi: (count: $1, start: $2))
         let result = __unwrapped__instance.getMany(&items)
         do {
             try items.fill(abi: $2)
@@ -3284,11 +3284,11 @@ public class IIteratorUUID: test_component.IInspectable {
 
     open func GetMany(_ items: inout [Foundation.UUID]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI { (length, _items) in
+        try items.toABI { _items in
             _ = try perform(as: __x_ABI_C__FIIterator_1_GUID.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-            items = .from(abi: (count: length, start: _items))
+            items = .from(abi: _items)
         }
         return result
     }
@@ -3397,7 +3397,7 @@ internal var __x_ABI_C__FIIterator_1_HSTRINGVTable: __x_ABI_C__FIIterator_1_HSTR
 
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIIterator_1_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        var items = [String](repeating: "", count: Int($1))
+        var items: [String] = .from(abi: (count: $1, start: $2))
         let result = __unwrapped__instance.getMany(&items)
         do {
             try items.fill(abi: $2)
@@ -3436,11 +3436,11 @@ public class IIteratorString: test_component.IInspectable {
 
     open func GetMany(_ items: inout [String]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI { (length, _items) in
+        try items.toABI { _items in
             _ = try perform(as: __x_ABI_C__FIIterator_1_HSTRING.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-            items = .from(abi: (count: length, start: _items))
+            items = .from(abi: _items)
         }
         return result
     }
@@ -3549,7 +3549,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_CWindows__CData__CText__CTextSegmen
 
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIIterator_1___x_ABI_CWindows__CData__CText__CTextSegmentWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        var items = [test_component.TextSegment](repeating: .init(), count: Int($1))
+        var items: [test_component.TextSegment] = .from(abi: (count: $1, start: $2))
         let result = __unwrapped__instance.getMany(&items)
         do {
             try items.fill(abi: $2)
@@ -3588,11 +3588,11 @@ public class IIteratorTextSegment: test_component.IInspectable {
 
     open func GetMany(_ items: inout [test_component.TextSegment]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI { (length, _items) in
+        try items.toABI { _items in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-            items = .from(abi: (count: length, start: _items))
+            items = .from(abi: _items)
         }
         return result
     }
@@ -3702,7 +3702,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspec
 
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        var items = [test_component.AnyIKeyValuePair<String, Any?>?](repeating: nil, count: Int($1))
+        var items: [test_component.AnyIKeyValuePair<String, Any?>?] = .from(abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge.self, abi: (count: $1, start: $2))
         let result = __unwrapped__instance.getMany(&items)
         items.fill(abi: $2, abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge.self)
         $3?.initialize(to: result)
@@ -3740,11 +3740,11 @@ public class IIteratorIKeyValuePairString_Any: test_component.IInspectable {
 
     open func GetMany(_ items: inout [test_component.AnyIKeyValuePair<String, Any?>?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge.self) { (length, _items) in
+        try items.toABI(abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge.self) { _items in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-            items = .from(abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge.self, abi: (count: length, start: _items))
+            items = .from(abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge.self, abi: _items)
         }
         return result
     }
@@ -3854,7 +3854,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING
 
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        var items = [test_component.AnyIKeyValuePair<String, String>?](repeating: nil, count: Int($1))
+        var items: [test_component.AnyIKeyValuePair<String, String>?] = .from(abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge.self, abi: (count: $1, start: $2))
         let result = __unwrapped__instance.getMany(&items)
         items.fill(abi: $2, abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge.self)
         $3?.initialize(to: result)
@@ -3892,11 +3892,11 @@ public class IIteratorIKeyValuePairString_String: test_component.IInspectable {
 
     open func GetMany(_ items: inout [test_component.AnyIKeyValuePair<String, String>?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge.self) { (length, _items) in
+        try items.toABI(abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge.self) { _items in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-            items = .from(abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge.self, abi: (count: length, start: _items))
+            items = .from(abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge.self, abi: _items)
         }
         return result
     }
@@ -4006,7 +4006,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI
 
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        var items = [test_component.AnyIKeyValuePair<String, test_component.AnyIVectorView<test_component.TextSegment>?>?](repeating: nil, count: Int($1))
+        var items: [test_component.AnyIKeyValuePair<String, test_component.AnyIVectorView<test_component.TextSegment>?>?] = .from(abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentBridge.self, abi: (count: $1, start: $2))
         let result = __unwrapped__instance.getMany(&items)
         items.fill(abi: $2, abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentBridge.self)
         $3?.initialize(to: result)
@@ -4044,11 +4044,11 @@ public class IIteratorIKeyValuePairString_IVectorViewTextSegment: test_component
 
     open func GetMany(_ items: inout [test_component.AnyIKeyValuePair<String, test_component.AnyIVectorView<test_component.TextSegment>?>?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentBridge.self) { (length, _items) in
+        try items.toABI(abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentBridge.self) { _items in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-            items = .from(abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentBridge.self, abi: (count: length, start: _items))
+            items = .from(abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentBridge.self, abi: _items)
         }
         return result
     }
@@ -4158,7 +4158,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI
 
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        var items = [test_component.AnyIKeyValuePair<String, test_component.Base?>?](repeating: nil, count: Int($1))
+        var items: [test_component.AnyIKeyValuePair<String, test_component.Base?>?] = .from(abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge.self, abi: (count: $1, start: $2))
         let result = __unwrapped__instance.getMany(&items)
         items.fill(abi: $2, abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge.self)
         $3?.initialize(to: result)
@@ -4196,11 +4196,11 @@ public class IIteratorIKeyValuePairString_Base: test_component.IInspectable {
 
     open func GetMany(_ items: inout [test_component.AnyIKeyValuePair<String, test_component.Base?>?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge.self) { (length, _items) in
+        try items.toABI(abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge.self) { _items in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-            items = .from(abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge.self, abi: (count: length, start: _items))
+            items = .from(abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge.self, abi: _items)
         }
         return result
     }
@@ -4310,7 +4310,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_CWindows__CFoundation__CIWwwFormUrl
 
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIIterator_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntryWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        var items = [test_component.AnyIWwwFormUrlDecoderEntry?](repeating: nil, count: Int($1))
+        var items: [test_component.AnyIWwwFormUrlDecoderEntry?] = .from(abiBridge: __IMPL_Windows_Foundation.IWwwFormUrlDecoderEntryBridge.self, abi: (count: $1, start: $2))
         let result = __unwrapped__instance.getMany(&items)
         items.fill(abi: $2, abiBridge: __IMPL_Windows_Foundation.IWwwFormUrlDecoderEntryBridge.self)
         $3?.initialize(to: result)
@@ -4348,11 +4348,11 @@ public class IIteratorIWwwFormUrlDecoderEntry: test_component.IInspectable {
 
     open func GetMany(_ items: inout [test_component.AnyIWwwFormUrlDecoderEntry?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_Windows_Foundation.IWwwFormUrlDecoderEntryBridge.self) { (length, _items) in
+        try items.toABI(abiBridge: __IMPL_Windows_Foundation.IWwwFormUrlDecoderEntryBridge.self) { _items in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntry.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-            items = .from(abiBridge: __IMPL_Windows_Foundation.IWwwFormUrlDecoderEntryBridge.self, abi: (count: length, start: _items))
+            items = .from(abiBridge: __IMPL_Windows_Foundation.IWwwFormUrlDecoderEntryBridge.self, abi: _items)
         }
         return result
     }
@@ -4462,7 +4462,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CIStorageItemVT
 
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        var items = [test_component.AnyIStorageItem?](repeating: nil, count: Int($1))
+        var items: [test_component.AnyIStorageItem?] = .from(abiBridge: __IMPL_Windows_Storage.IStorageItemBridge.self, abi: (count: $1, start: $2))
         let result = __unwrapped__instance.getMany(&items)
         items.fill(abi: $2, abiBridge: __IMPL_Windows_Storage.IStorageItemBridge.self)
         $3?.initialize(to: result)
@@ -4500,11 +4500,11 @@ public class IIteratorIStorageItem: test_component.IInspectable {
 
     open func GetMany(_ items: inout [test_component.AnyIStorageItem?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_Windows_Storage.IStorageItemBridge.self) { (length, _items) in
+        try items.toABI(abiBridge: __IMPL_Windows_Storage.IStorageItemBridge.self) { _items in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-            items = .from(abiBridge: __IMPL_Windows_Storage.IStorageItemBridge.self, abi: (count: length, start: _items))
+            items = .from(abiBridge: __IMPL_Windows_Storage.IStorageItemBridge.self, abi: _items)
         }
         return result
     }
@@ -4614,7 +4614,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CSearch__CSortE
 
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        var items = [test_component.SortEntry](repeating: .init(), count: Int($1))
+        var items: [test_component.SortEntry] = .from(abi: (count: $1, start: $2))
         let result = __unwrapped__instance.getMany(&items)
         do {
             try items.fill(abi: $2)
@@ -4653,11 +4653,11 @@ public class IIteratorSortEntry: test_component.IInspectable {
 
     open func GetMany(_ items: inout [test_component.SortEntry]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI { (length, _items) in
+        try items.toABI { _items in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-            items = .from(abi: (count: length, start: _items))
+            items = .from(abi: _items)
         }
         return result
     }
@@ -4766,7 +4766,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFileVTa
 
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        var items = [test_component.StorageFile?](repeating: nil, count: Int($1))
+        var items: [test_component.StorageFile?] = .from(abiBridge: __IMPL_Windows_Storage.StorageFileBridge.self, abi: (count: $1, start: $2))
         let result = __unwrapped__instance.getMany(&items)
         items.fill(abi: $2, abiBridge: __IMPL_Windows_Storage.StorageFileBridge.self)
         $3?.initialize(to: result)
@@ -4804,11 +4804,11 @@ public class IIteratorStorageFile: test_component.IInspectable {
 
     open func GetMany(_ items: inout [test_component.StorageFile?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_Windows_Storage.StorageFileBridge.self) { (length, _items) in
+        try items.toABI(abiBridge: __IMPL_Windows_Storage.StorageFileBridge.self) { _items in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-            items = .from(abiBridge: __IMPL_Windows_Storage.StorageFileBridge.self, abi: (count: length, start: _items))
+            items = .from(abiBridge: __IMPL_Windows_Storage.StorageFileBridge.self, abi: _items)
         }
         return result
     }
@@ -4917,7 +4917,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFolderV
 
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        var items = [test_component.StorageFolder?](repeating: nil, count: Int($1))
+        var items: [test_component.StorageFolder?] = .from(abiBridge: __IMPL_Windows_Storage.StorageFolderBridge.self, abi: (count: $1, start: $2))
         let result = __unwrapped__instance.getMany(&items)
         items.fill(abi: $2, abiBridge: __IMPL_Windows_Storage.StorageFolderBridge.self)
         $3?.initialize(to: result)
@@ -4955,11 +4955,11 @@ public class IIteratorStorageFolder: test_component.IInspectable {
 
     open func GetMany(_ items: inout [test_component.StorageFolder?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_Windows_Storage.StorageFolderBridge.self) { (length, _items) in
+        try items.toABI(abiBridge: __IMPL_Windows_Storage.StorageFolderBridge.self) { _items in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-            items = .from(abiBridge: __IMPL_Windows_Storage.StorageFolderBridge.self, abi: (count: length, start: _items))
+            items = .from(abiBridge: __IMPL_Windows_Storage.StorageFolderBridge.self, abi: _items)
         }
         return result
     }
@@ -5068,7 +5068,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageLibrary
 
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        var items = [test_component.StorageLibraryChange?](repeating: nil, count: Int($1))
+        var items: [test_component.StorageLibraryChange?] = .from(abiBridge: __IMPL_Windows_Storage.StorageLibraryChangeBridge.self, abi: (count: $1, start: $2))
         let result = __unwrapped__instance.getMany(&items)
         items.fill(abi: $2, abiBridge: __IMPL_Windows_Storage.StorageLibraryChangeBridge.self)
         $3?.initialize(to: result)
@@ -5106,11 +5106,11 @@ public class IIteratorStorageLibraryChange: test_component.IInspectable {
 
     open func GetMany(_ items: inout [test_component.StorageLibraryChange?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_Windows_Storage.StorageLibraryChangeBridge.self) { (length, _items) in
+        try items.toABI(abiBridge: __IMPL_Windows_Storage.StorageLibraryChangeBridge.self) { _items in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageLibraryChange.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-            items = .from(abiBridge: __IMPL_Windows_Storage.StorageLibraryChangeBridge.self, abi: (count: length, start: _items))
+            items = .from(abiBridge: __IMPL_Windows_Storage.StorageLibraryChangeBridge.self, abi: _items)
         }
         return result
     }
@@ -5219,7 +5219,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x
 
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        var items = [test_component.Base?](repeating: nil, count: Int($1))
+        var items: [test_component.Base?] = .from(abiBridge: __IMPL_test_component.BaseBridge.self, abi: (count: $1, start: $2))
         let result = __unwrapped__instance.getMany(&items)
         items.fill(abi: $2, abiBridge: __IMPL_test_component.BaseBridge.self)
         $3?.initialize(to: result)
@@ -5257,11 +5257,11 @@ public class IIteratorBase: test_component.IInspectable {
 
     open func GetMany(_ items: inout [test_component.Base?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_test_component.BaseBridge.self) { (length, _items) in
+        try items.toABI(abiBridge: __IMPL_test_component.BaseBridge.self) { _items in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-            items = .from(abiBridge: __IMPL_test_component.BaseBridge.self, abi: (count: length, start: _items))
+            items = .from(abiBridge: __IMPL_test_component.BaseBridge.self, abi: _items)
         }
         return result
     }
@@ -5371,7 +5371,7 @@ internal var __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicVTable: _
 
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
-        var items = [test_component.AnyIBasic?](repeating: nil, count: Int($1))
+        var items: [test_component.AnyIBasic?] = .from(abiBridge: __IMPL_test_component.IBasicBridge.self, abi: (count: $1, start: $2))
         let result = __unwrapped__instance.getMany(&items)
         items.fill(abi: $2, abiBridge: __IMPL_test_component.IBasicBridge.self)
         $3?.initialize(to: result)
@@ -5409,11 +5409,11 @@ public class IIteratorIBasic: test_component.IInspectable {
 
     open func GetMany(_ items: inout [test_component.AnyIBasic?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_test_component.IBasicBridge.self) { (length, _items) in
+        try items.toABI(abiBridge: __IMPL_test_component.IBasicBridge.self) { _items in
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-            items = .from(abiBridge: __IMPL_test_component.IBasicBridge.self, abi: (count: length, start: _items))
+            items = .from(abiBridge: __IMPL_test_component.IBasicBridge.self, abi: _items)
         }
         return result
     }
@@ -8340,7 +8340,7 @@ internal var __x_ABI_C__FIVectorView_1_IInspectableVTable: __x_ABI_C__FIVectorVi
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let startIndex: UInt32 = $1
-        var items = [Any?](repeating: nil, count: Int($2))
+        var items: [Any?] = .from(abiBridge: __IMPL_.AnyBridge.self, abi: (count: $2, start: $3))
         let result = __unwrapped__instance.getMany(startIndex, &items)
         items.fill(abi: $3, abiBridge: __IMPL_.AnyBridge.self)
         $4?.initialize(to: result)
@@ -8380,11 +8380,11 @@ public class IVectorViewAny: test_component.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [Any?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_.AnyBridge.self) { (length, _items) in
+        try items.toABI(abiBridge: __IMPL_.AnyBridge.self) { _items in
             _ = try perform(as: __x_ABI_C__FIVectorView_1_IInspectable.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-            items = .from(abiBridge: __IMPL_.AnyBridge.self, abi: (count: length, start: _items))
+            items = .from(abiBridge: __IMPL_.AnyBridge.self, abi: _items)
         }
         return result
     }
@@ -8526,7 +8526,7 @@ internal var __x_ABI_C__FIVectorView_1_GUIDVTable: __x_ABI_C__FIVectorView_1_GUI
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1_GUIDWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let startIndex: UInt32 = $1
-        var items = [Foundation.UUID](repeating: .init(), count: Int($2))
+        var items: [Foundation.UUID] = .from(abi: (count: $2, start: $3))
         let result = __unwrapped__instance.getMany(startIndex, &items)
         do {
             try items.fill(abi: $3)
@@ -8565,11 +8565,11 @@ public class IVectorViewUUID: test_component.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [Foundation.UUID]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI { (length, _items) in
+        try items.toABI { _items in
             _ = try perform(as: __x_ABI_C__FIVectorView_1_GUID.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-            items = .from(abi: (count: length, start: _items))
+            items = .from(abi: _items)
         }
         return result
     }
@@ -8711,7 +8711,7 @@ internal var __x_ABI_C__FIVectorView_1_HSTRINGVTable: __x_ABI_C__FIVectorView_1_
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let startIndex: UInt32 = $1
-        var items = [String](repeating: "", count: Int($2))
+        var items: [String] = .from(abi: (count: $2, start: $3))
         let result = __unwrapped__instance.getMany(startIndex, &items)
         do {
             try items.fill(abi: $3)
@@ -8751,11 +8751,11 @@ public class IVectorViewString: test_component.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [String]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI { (length, _items) in
+        try items.toABI { _items in
             _ = try perform(as: __x_ABI_C__FIVectorView_1_HSTRING.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-            items = .from(abi: (count: length, start: _items))
+            items = .from(abi: _items)
         }
         return result
     }
@@ -8897,7 +8897,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegm
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let startIndex: UInt32 = $1
-        var items = [test_component.TextSegment](repeating: .init(), count: Int($2))
+        var items: [test_component.TextSegment] = .from(abi: (count: $2, start: $3))
         let result = __unwrapped__instance.getMany(startIndex, &items)
         do {
             try items.fill(abi: $3)
@@ -8936,11 +8936,11 @@ public class IVectorViewTextSegment: test_component.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [test_component.TextSegment]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI { (length, _items) in
+        try items.toABI { _items in
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-            items = .from(abi: (count: length, start: _items))
+            items = .from(abi: _items)
         }
         return result
     }
@@ -9083,7 +9083,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CFoundation__CIWwwFormU
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntryWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let startIndex: UInt32 = $1
-        var items = [test_component.AnyIWwwFormUrlDecoderEntry?](repeating: nil, count: Int($2))
+        var items: [test_component.AnyIWwwFormUrlDecoderEntry?] = .from(abiBridge: __IMPL_Windows_Foundation.IWwwFormUrlDecoderEntryBridge.self, abi: (count: $2, start: $3))
         let result = __unwrapped__instance.getMany(startIndex, &items)
         items.fill(abi: $3, abiBridge: __IMPL_Windows_Foundation.IWwwFormUrlDecoderEntryBridge.self)
         $4?.initialize(to: result)
@@ -9123,11 +9123,11 @@ public class IVectorViewIWwwFormUrlDecoderEntry: test_component.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [test_component.AnyIWwwFormUrlDecoderEntry?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_Windows_Foundation.IWwwFormUrlDecoderEntryBridge.self) { (length, _items) in
+        try items.toABI(abiBridge: __IMPL_Windows_Foundation.IWwwFormUrlDecoderEntryBridge.self) { _items in
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntry.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-            items = .from(abiBridge: __IMPL_Windows_Foundation.IWwwFormUrlDecoderEntryBridge.self, abi: (count: length, start: _items))
+            items = .from(abiBridge: __IMPL_Windows_Foundation.IWwwFormUrlDecoderEntryBridge.self, abi: _items)
         }
         return result
     }
@@ -9270,7 +9270,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItem
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let startIndex: UInt32 = $1
-        var items = [test_component.AnyIStorageItem?](repeating: nil, count: Int($2))
+        var items: [test_component.AnyIStorageItem?] = .from(abiBridge: __IMPL_Windows_Storage.IStorageItemBridge.self, abi: (count: $2, start: $3))
         let result = __unwrapped__instance.getMany(startIndex, &items)
         items.fill(abi: $3, abiBridge: __IMPL_Windows_Storage.IStorageItemBridge.self)
         $4?.initialize(to: result)
@@ -9310,11 +9310,11 @@ public class IVectorViewIStorageItem: test_component.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [test_component.AnyIStorageItem?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_Windows_Storage.IStorageItemBridge.self) { (length, _items) in
+        try items.toABI(abiBridge: __IMPL_Windows_Storage.IStorageItemBridge.self) { _items in
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-            items = .from(abiBridge: __IMPL_Windows_Storage.IStorageItemBridge.self, abi: (count: length, start: _items))
+            items = .from(abiBridge: __IMPL_Windows_Storage.IStorageItemBridge.self, abi: _items)
         }
         return result
     }
@@ -9457,7 +9457,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CSearch__CSor
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let startIndex: UInt32 = $1
-        var items = [test_component.SortEntry](repeating: .init(), count: Int($2))
+        var items: [test_component.SortEntry] = .from(abi: (count: $2, start: $3))
         let result = __unwrapped__instance.getMany(startIndex, &items)
         do {
             try items.fill(abi: $3)
@@ -9497,11 +9497,11 @@ public class IVectorViewSortEntry: test_component.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [test_component.SortEntry]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI { (length, _items) in
+        try items.toABI { _items in
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-            items = .from(abi: (count: length, start: _items))
+            items = .from(abi: _items)
         }
         return result
     }
@@ -9643,7 +9643,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileV
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let startIndex: UInt32 = $1
-        var items = [test_component.StorageFile?](repeating: nil, count: Int($2))
+        var items: [test_component.StorageFile?] = .from(abiBridge: __IMPL_Windows_Storage.StorageFileBridge.self, abi: (count: $2, start: $3))
         let result = __unwrapped__instance.getMany(startIndex, &items)
         items.fill(abi: $3, abiBridge: __IMPL_Windows_Storage.StorageFileBridge.self)
         $4?.initialize(to: result)
@@ -9681,11 +9681,11 @@ public class IVectorViewStorageFile: test_component.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [test_component.StorageFile?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_Windows_Storage.StorageFileBridge.self) { (length, _items) in
+        try items.toABI(abiBridge: __IMPL_Windows_Storage.StorageFileBridge.self) { _items in
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-            items = .from(abiBridge: __IMPL_Windows_Storage.StorageFileBridge.self, abi: (count: length, start: _items))
+            items = .from(abiBridge: __IMPL_Windows_Storage.StorageFileBridge.self, abi: _items)
         }
         return result
     }
@@ -9827,7 +9827,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolde
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let startIndex: UInt32 = $1
-        var items = [test_component.StorageFolder?](repeating: nil, count: Int($2))
+        var items: [test_component.StorageFolder?] = .from(abiBridge: __IMPL_Windows_Storage.StorageFolderBridge.self, abi: (count: $2, start: $3))
         let result = __unwrapped__instance.getMany(startIndex, &items)
         items.fill(abi: $3, abiBridge: __IMPL_Windows_Storage.StorageFolderBridge.self)
         $4?.initialize(to: result)
@@ -9865,11 +9865,11 @@ public class IVectorViewStorageFolder: test_component.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [test_component.StorageFolder?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_Windows_Storage.StorageFolderBridge.self) { (length, _items) in
+        try items.toABI(abiBridge: __IMPL_Windows_Storage.StorageFolderBridge.self) { _items in
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-            items = .from(abiBridge: __IMPL_Windows_Storage.StorageFolderBridge.self, abi: (count: length, start: _items))
+            items = .from(abiBridge: __IMPL_Windows_Storage.StorageFolderBridge.self, abi: _items)
         }
         return result
     }
@@ -10011,7 +10011,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibra
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let startIndex: UInt32 = $1
-        var items = [test_component.StorageLibraryChange?](repeating: nil, count: Int($2))
+        var items: [test_component.StorageLibraryChange?] = .from(abiBridge: __IMPL_Windows_Storage.StorageLibraryChangeBridge.self, abi: (count: $2, start: $3))
         let result = __unwrapped__instance.getMany(startIndex, &items)
         items.fill(abi: $3, abiBridge: __IMPL_Windows_Storage.StorageLibraryChangeBridge.self)
         $4?.initialize(to: result)
@@ -10049,11 +10049,11 @@ public class IVectorViewStorageLibraryChange: test_component.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [test_component.StorageLibraryChange?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_Windows_Storage.StorageLibraryChangeBridge.self) { (length, _items) in
+        try items.toABI(abiBridge: __IMPL_Windows_Storage.StorageLibraryChangeBridge.self) { _items in
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChange.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-            items = .from(abiBridge: __IMPL_Windows_Storage.StorageLibraryChangeBridge.self, abi: (count: length, start: _items))
+            items = .from(abiBridge: __IMPL_Windows_Storage.StorageLibraryChangeBridge.self, abi: _items)
         }
         return result
     }
@@ -10195,7 +10195,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVTable: _
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let startIndex: UInt32 = $1
-        var items = [test_component.Base?](repeating: nil, count: Int($2))
+        var items: [test_component.Base?] = .from(abiBridge: __IMPL_test_component.BaseBridge.self, abi: (count: $2, start: $3))
         let result = __unwrapped__instance.getMany(startIndex, &items)
         items.fill(abi: $3, abiBridge: __IMPL_test_component.BaseBridge.self)
         $4?.initialize(to: result)
@@ -10233,11 +10233,11 @@ public class IVectorViewBase: test_component.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [test_component.Base?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_test_component.BaseBridge.self) { (length, _items) in
+        try items.toABI(abiBridge: __IMPL_test_component.BaseBridge.self) { _items in
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-            items = .from(abiBridge: __IMPL_test_component.BaseBridge.self, abi: (count: length, start: _items))
+            items = .from(abiBridge: __IMPL_test_component.BaseBridge.self, abi: _items)
         }
         return result
     }
@@ -10380,7 +10380,7 @@ internal var __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicVTable:
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let startIndex: UInt32 = $1
-        var items = [test_component.AnyIBasic?](repeating: nil, count: Int($2))
+        var items: [test_component.AnyIBasic?] = .from(abiBridge: __IMPL_test_component.IBasicBridge.self, abi: (count: $2, start: $3))
         let result = __unwrapped__instance.getMany(startIndex, &items)
         items.fill(abi: $3, abiBridge: __IMPL_test_component.IBasicBridge.self)
         $4?.initialize(to: result)
@@ -10420,11 +10420,11 @@ public class IVectorViewIBasic: test_component.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [test_component.AnyIBasic?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_test_component.IBasicBridge.self) { (length, _items) in
+        try items.toABI(abiBridge: __IMPL_test_component.IBasicBridge.self) { _items in
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-            items = .from(abiBridge: __IMPL_test_component.IBasicBridge.self, abi: (count: length, start: _items))
+            items = .from(abiBridge: __IMPL_test_component.IBasicBridge.self, abi: _items)
         }
         return result
     }
@@ -10617,7 +10617,7 @@ internal var __x_ABI_C__FIVector_1_IInspectableVTable: __x_ABI_C__FIVector_1_IIn
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let startIndex: UInt32 = $1
-        var items = [Any?](repeating: nil, count: Int($2))
+        var items: [Any?] = .from(abiBridge: __IMPL_.AnyBridge.self, abi: (count: $2, start: $3))
         let result = __unwrapped__instance.getMany(startIndex, &items)
         items.fill(abi: $3, abiBridge: __IMPL_.AnyBridge.self)
         $4?.initialize(to: result)
@@ -10627,7 +10627,6 @@ internal var __x_ABI_C__FIVector_1_IInspectableVTable: __x_ABI_C__FIVector_1_IIn
     ReplaceAll: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let items: [Any?] = .from(abiBridge: __IMPL_.AnyBridge.self, abi: (count: $1, start: $2))
-
         __unwrapped__instance.replaceAll(items)
         return S_OK
     }
@@ -10716,19 +10715,19 @@ public class IVectorAny: test_component.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [Any?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_.AnyBridge.self) { (length, _items) in
+        try items.toABI(abiBridge: __IMPL_.AnyBridge.self) { _items in
             _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-            items = .from(abiBridge: __IMPL_.AnyBridge.self, abi: (count: length, start: _items))
+            items = .from(abiBridge: __IMPL_.AnyBridge.self, abi: _items)
         }
         return result
     }
 
     open func ReplaceAll(_ items: [Any?]) throws {
-        try items.toABI(abiBridge: __IMPL_.AnyBridge.self) { (count, _items) in
+        try items.toABI(abiBridge: __IMPL_.AnyBridge.self) { _items in
             _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.ReplaceAll(pThis, count, _items))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.ReplaceAll(pThis, _items.count, _items.start))
             }
         }
     }
@@ -10969,7 +10968,7 @@ internal var __x_ABI_C__FIVector_1_GUIDVTable: __x_ABI_C__FIVector_1_GUIDVtbl = 
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1_GUIDWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let startIndex: UInt32 = $1
-        var items = [Foundation.UUID](repeating: .init(), count: Int($2))
+        var items: [Foundation.UUID] = .from(abi: (count: $2, start: $3))
         let result = __unwrapped__instance.getMany(startIndex, &items)
         do {
             try items.fill(abi: $3)
@@ -10981,7 +10980,6 @@ internal var __x_ABI_C__FIVector_1_GUIDVTable: __x_ABI_C__FIVector_1_GUIDVtbl = 
     ReplaceAll: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1_GUIDWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let items: [Foundation.UUID] = .from(abi: (count: $1, start: $2))
-
         __unwrapped__instance.replaceAll(items)
         return S_OK
     }
@@ -11061,19 +11059,19 @@ public class IVectorUUID: test_component.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [Foundation.UUID]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI { (length, _items) in
+        try items.toABI { _items in
             _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-            items = .from(abi: (count: length, start: _items))
+            items = .from(abi: _items)
         }
         return result
     }
 
     open func ReplaceAll(_ items: [Foundation.UUID]) throws {
-        try items.toABI { (count, _items) in
+        try items.toABI { _items in
             _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.ReplaceAll(pThis, count, _items))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.ReplaceAll(pThis, _items.count, _items.start))
             }
         }
     }
@@ -11314,7 +11312,7 @@ internal var __x_ABI_C__FIVector_1_HSTRINGVTable: __x_ABI_C__FIVector_1_HSTRINGV
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let startIndex: UInt32 = $1
-        var items = [String](repeating: "", count: Int($2))
+        var items: [String] = .from(abi: (count: $2, start: $3))
         let result = __unwrapped__instance.getMany(startIndex, &items)
         do {
             try items.fill(abi: $3)
@@ -11326,7 +11324,6 @@ internal var __x_ABI_C__FIVector_1_HSTRINGVTable: __x_ABI_C__FIVector_1_HSTRINGV
     ReplaceAll: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1_HSTRINGWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let items: [String] = .from(abi: (count: $1, start: $2))
-
         __unwrapped__instance.replaceAll(items)
         return S_OK
     }
@@ -11410,19 +11407,19 @@ public class IVectorString: test_component.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [String]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI { (length, _items) in
+        try items.toABI { _items in
             _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-            items = .from(abi: (count: length, start: _items))
+            items = .from(abi: _items)
         }
         return result
     }
 
     open func ReplaceAll(_ items: [String]) throws {
-        try items.toABI { (count, _items) in
+        try items.toABI { _items in
             _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.ReplaceAll(pThis, count, _items))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.ReplaceAll(pThis, _items.count, _items.start))
             }
         }
     }
@@ -11664,7 +11661,7 @@ internal var __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEnt
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let startIndex: UInt32 = $1
-        var items = [test_component.SortEntry](repeating: .init(), count: Int($2))
+        var items: [test_component.SortEntry] = .from(abi: (count: $2, start: $3))
         let result = __unwrapped__instance.getMany(startIndex, &items)
         do {
             try items.fill(abi: $3)
@@ -11676,7 +11673,6 @@ internal var __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEnt
     ReplaceAll: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let items: [test_component.SortEntry] = .from(abi: (count: $1, start: $2))
-
         __unwrapped__instance.replaceAll(items)
         return S_OK
     }
@@ -11760,19 +11756,19 @@ public class IVectorSortEntry: test_component.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [test_component.SortEntry]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI { (length, _items) in
+        try items.toABI { _items in
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-            items = .from(abi: (count: length, start: _items))
+            items = .from(abi: _items)
         }
         return result
     }
 
     open func ReplaceAll(_ items: [test_component.SortEntry]) throws {
-        try items.toABI { (count, _items) in
+        try items.toABI { _items in
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.ReplaceAll(pThis, count, _items))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.ReplaceAll(pThis, _items.count, _items.start))
             }
         }
     }
@@ -12013,7 +12009,7 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_A
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let startIndex: UInt32 = $1
-        var items = [test_component.Base?](repeating: nil, count: Int($2))
+        var items: [test_component.Base?] = .from(abiBridge: __IMPL_test_component.BaseBridge.self, abi: (count: $2, start: $3))
         let result = __unwrapped__instance.getMany(startIndex, &items)
         items.fill(abi: $3, abiBridge: __IMPL_test_component.BaseBridge.self)
         $4?.initialize(to: result)
@@ -12023,7 +12019,6 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable: __x_A
     ReplaceAll: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let items: [test_component.Base?] = .from(abiBridge: __IMPL_test_component.BaseBridge.self, abi: (count: $1, start: $2))
-
         __unwrapped__instance.replaceAll(items)
         return S_OK
     }
@@ -12104,19 +12099,19 @@ public class IVectorBase: test_component.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [test_component.Base?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_test_component.BaseBridge.self) { (length, _items) in
+        try items.toABI(abiBridge: __IMPL_test_component.BaseBridge.self) { _items in
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-            items = .from(abiBridge: __IMPL_test_component.BaseBridge.self, abi: (count: length, start: _items))
+            items = .from(abiBridge: __IMPL_test_component.BaseBridge.self, abi: _items)
         }
         return result
     }
 
     open func ReplaceAll(_ items: [test_component.Base?]) throws {
-        try items.toABI(abiBridge: __IMPL_test_component.BaseBridge.self) { (count, _items) in
+        try items.toABI(abiBridge: __IMPL_test_component.BaseBridge.self) { _items in
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.ReplaceAll(pThis, count, _items))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.ReplaceAll(pThis, _items.count, _items.start))
             }
         }
     }
@@ -12358,7 +12353,7 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicVTable: __x
     GetMany: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let startIndex: UInt32 = $1
-        var items = [test_component.AnyIBasic?](repeating: nil, count: Int($2))
+        var items: [test_component.AnyIBasic?] = .from(abiBridge: __IMPL_test_component.IBasicBridge.self, abi: (count: $2, start: $3))
         let result = __unwrapped__instance.getMany(startIndex, &items)
         items.fill(abi: $3, abiBridge: __IMPL_test_component.IBasicBridge.self)
         $4?.initialize(to: result)
@@ -12368,7 +12363,6 @@ internal var __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicVTable: __x
     ReplaceAll: {
         guard let __unwrapped__instance = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
         let items: [test_component.AnyIBasic?] = .from(abiBridge: __IMPL_test_component.IBasicBridge.self, abi: (count: $1, start: $2))
-
         __unwrapped__instance.replaceAll(items)
         return S_OK
     }
@@ -12457,19 +12451,19 @@ public class IVectorIBasic: test_component.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [test_component.AnyIBasic?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_test_component.IBasicBridge.self) { (length, _items) in
+        try items.toABI(abiBridge: __IMPL_test_component.IBasicBridge.self) { _items in
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, length, _items, &result))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-            items = .from(abiBridge: __IMPL_test_component.IBasicBridge.self, abi: (count: length, start: _items))
+            items = .from(abiBridge: __IMPL_test_component.IBasicBridge.self, abi: _items)
         }
         return result
     }
 
     open func ReplaceAll(_ items: [test_component.AnyIBasic?]) throws {
-        try items.toABI(abiBridge: __IMPL_test_component.IBasicBridge.self) { (count, _items) in
+        try items.toABI(abiBridge: __IMPL_test_component.IBasicBridge.self) { _items in
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.ReplaceAll(pThis, count, _items))
+                try CHECKED(pThis.pointee.lpVtbl.pointee.ReplaceAll(pThis, _items.count, _items.start))
             }
         }
     }

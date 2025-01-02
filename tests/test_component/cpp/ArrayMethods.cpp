@@ -303,4 +303,24 @@ namespace winrt::test_component::implementation
     {
         return { Signed::First, Signed::Second };
     }
+
+    void ArrayMethods::TestInArrayThroughSwiftImplementation(winrt::test_component::IArrayScenarios const& scenario, array_view<int32_t const> value)
+    {
+        scenario.InArray(value);
+    }
+    void ArrayMethods::TestOutArrayThroughSwiftImplementation(winrt::test_component::IArrayScenarios const& scenario, winrt::test_component::ArrayMethodCallback const& callback)
+    {
+        com_array<int32_t> value;
+        scenario.OutArray(value);
+        callback(value);
+    }
+    void ArrayMethods::TestRefArrayThroughSwiftImplementation(winrt::test_component::IArrayScenarios const& scenario, array_view<int32_t> value, winrt::test_component::ArrayMethodCallback const& callback)
+    {
+        scenario.RefArray(value);
+        callback(value);
+    }
+    void ArrayMethods::TestReturnArrayThroughSwiftImplementation(winrt::test_component::IArrayScenarios const& scenario, winrt::test_component::ArrayMethodCallback const& callback)
+    {
+        callback(scenario.ReturnArray());
+    }
 }
