@@ -2,6 +2,9 @@
 #include "types.h"
 namespace swiftwinrt
 {
+    // can_write* functions are used to determine if a type/function can be written to the output file.
+    // The projection can be fully written, but we still respect type filters, so we may choose
+    // not to write certain APIs based on the filter.
     static bool can_write(writer& w, typedef_base const& type);
     static bool can_write(writer& w, const metadata_type* type)
     {
@@ -24,12 +27,8 @@ namespace swiftwinrt
         // Don't support writing specials (events/properties) unless told to do so (i.e. for vtable)
         if (method.SpecialName() && !allow_special) return false;
 
-        auto method_name = get_swift_name(method);
-
         for (auto& param : function.params)
         {
-            auto param_name = get_swift_name(param);
-
             if (!can_write(w, param.type))
             {
                 return false;
@@ -62,45 +61,8 @@ namespace swiftwinrt
         return true;
     }
 
-    static bool can_write_default(const std::vector<named_interface_info>& required_interfaces)
-    {
-        for (auto&& iface : required_interfaces)
-        {
-            // when getting the interfaces we populate them with the type name
-            // if we can't write the type name then we can't write the type and
-            // so we'll return false
-            if (iface.second.is_default)
-            {
-                if (iface.first.empty()) return false;
-            }
-        }
-
-        return true;
-    }
-
     static bool can_write(writer& w, typedef_base const& type)
     {
-        auto typeName = get_full_type_name(type);
-        if (!w.filter.includes(type.type())) return false;
-
-        auto category = get_category(type.type());
-        if (category == category::enum_type) return true;
-
-        if (auto iface = dynamic_cast<const interface_type*>(&type))
-        {
-            if (!can_write_default(iface->required_interfaces))
-            {
-                return false;
-            }
-        }
-        else if (auto classType = dynamic_cast<const class_type*>(&type))
-        {
-            if (!can_write_default(classType->required_interfaces))
-            {
-                return false;
-            }
-        }
-
-        return true;
+        return w.filter.includes(type.type());
     }
 }
