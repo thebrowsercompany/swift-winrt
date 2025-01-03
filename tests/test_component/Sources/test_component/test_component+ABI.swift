@@ -8,7 +8,7 @@ private var IID___x_ABI_Ctest__component_CIArrayMethodsStatics: test_component.I
 }
 
 private var IID___x_ABI_Ctest__component_CIArrayScenarios: test_component.IID {
-    .init(Data1: 0xD1E09F4F, Data2: 0x2D5B, Data3: 0x5DED, Data4: ( 0xA7,0xD8,0x0A,0x03,0x19,0xF3,0x2B,0xE3 ))// D1E09F4F-2D5B-5DED-A7D8-0A0319F32BE3
+    .init(Data1: 0x56558D36, Data2: 0xC35F, Data3: 0x5624, Data4: ( 0xB3,0xB1,0xF3,0xF3,0x65,0x26,0x57,0xA3 ))// 56558D36-C35F-5624-B3B1-F3F3652657A3
 }
 
 private var IID___x_ABI_Ctest__component_CIAsyncMethodsStatics: test_component.IID {
@@ -246,7 +246,7 @@ public enum __ABI_test_component {
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InInt32Array(pThis, _value.count, _value.start, &result))
                 }
-            0}
+            }
             return .init(from: result)
         }
 
@@ -256,7 +256,7 @@ public enum __ABI_test_component {
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InStringArray(pThis, _value.count, _value.start, &result))
                 }
-            0}
+            }
             return .init(from: result)
         }
 
@@ -266,7 +266,7 @@ public enum __ABI_test_component {
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InObjectArray(pThis, _value.count, _value.start, &result))
                 }
-            0}
+            }
             return .init(from: result)
         }
 
@@ -276,7 +276,7 @@ public enum __ABI_test_component {
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InStringableArray(pThis, _value.count, _value.start, &result))
                 }
-            0}
+            }
             return .init(from: result)
         }
 
@@ -286,7 +286,7 @@ public enum __ABI_test_component {
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InStructArray(pThis, _value.count, _value.start, &result))
                 }
-            0}
+            }
             return .init(from: result)
         }
 
@@ -296,7 +296,7 @@ public enum __ABI_test_component {
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InNonBlittableStructArray(pThis, _value.count, _value.start, &result))
                 }
-            0}
+            }
             return .init(from: result)
         }
 
@@ -306,7 +306,7 @@ public enum __ABI_test_component {
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InEnumArray(pThis, _value.count, _value.start, &result))
                 }
-            0}
+            }
             return .init(from: result)
         }
 
@@ -378,7 +378,7 @@ public enum __ABI_test_component {
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.RefInt32Array(pThis, _value.count, _value.start))
                 }
-            0}
+            }
         }
 
         public func RefStringArray(_ value: inout [String]) throws {
@@ -387,7 +387,7 @@ public enum __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.RefStringArray(pThis, _value.count, _value.start))
                 }
             value = .from(abi: _value)
-            0}
+            }
         }
 
         public func RefObjectArray(_ value: inout [Any?]) throws {
@@ -396,7 +396,7 @@ public enum __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.RefObjectArray(pThis, _value.count, _value.start))
                 }
             value = .from(abiBridge: __IMPL_.AnyBridge.self, abi: _value)
-            0}
+            }
         }
 
         public func RefStringableArray(_ value: inout [test_component.AnyIStringable?]) throws {
@@ -405,7 +405,7 @@ public enum __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.RefStringableArray(pThis, _value.count, _value.start))
                 }
             value = .from(abiBridge: __IMPL_Windows_Foundation.IStringableBridge.self, abi: _value)
-            0}
+            }
         }
 
         public func RefStructArray(_ value: inout [test_component.BlittableStruct]) throws {
@@ -414,7 +414,7 @@ public enum __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.RefStructArray(pThis, _value.count, _value.start))
                 }
             value = .from(abi: _value)
-            0}
+            }
         }
 
         public func RefNonBlittableStructArray(_ value: inout [test_component.NonBlittableStruct]) throws {
@@ -423,7 +423,7 @@ public enum __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.RefNonBlittableStructArray(pThis, _value.count, _value.start))
                 }
             value = .from(abi: _value)
-            0}
+            }
         }
 
         public func RefEnumArray(_ value: inout [test_component.Signed]) throws {
@@ -431,7 +431,7 @@ public enum __ABI_test_component {
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.RefEnumArray(pThis, _value.count, _value.start))
                 }
-            0}
+            }
         }
 
         public func ReturnInt32Array() throws -> [Int32] {
@@ -511,7 +511,7 @@ public enum __ABI_test_component {
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.TestInArrayThroughSwiftImplementation(pThis, _scenario, _value.count, _value.start))
                 }
-            1}
+            }
         }
 
         public func TestOutArrayThroughSwiftImplementation(_ scenario: test_component.AnyIArrayScenarios?, _ callback: test_component.ArrayMethodCallback?) throws {
@@ -533,7 +533,7 @@ public enum __ABI_test_component {
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.TestRefArrayThroughSwiftImplementation(pThis, _scenario, _value.count, _value.start, _callback))
                 }
-            1}
+            }
         }
 
         public func TestReturnArrayThroughSwiftImplementation(_ scenario: test_component.AnyIArrayScenarios?, _ callback: test_component.ArrayMethodCallback?) throws {
@@ -556,7 +556,7 @@ public enum __ABI_test_component {
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayScenarios.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InArray(pThis, _value.count, _value.start))
                 }
-            0}
+            }
         }
 
         open func OutArray(_ value: inout [Int32]) throws {
@@ -573,7 +573,7 @@ public enum __ABI_test_component {
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayScenarios.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.RefArray(pThis, _value.count, _value.start))
                 }
-            0}
+            }
         }
 
         open func ReturnArray() throws -> [Int32] {
@@ -586,14 +586,32 @@ public enum __ABI_test_component {
 
         }
 
+        open func get_ArrayProperty() throws -> [Int32] {
+            var value: WinRTArrayAbi<INT32> = (0, nil)
+            _ = try perform(as: __x_ABI_Ctest__component_CIArrayScenarios.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_ArrayProperty(pThis, &value.count, &value.start))
+            }
+            defer { CoTaskMemFree(value.start) }
+            return .from(abi: value)
+
+        }
+
+        open func put_ArrayProperty(_ value: [Int32]) throws {
+            try value.toABI { _value in
+                _ = try perform(as: __x_ABI_Ctest__component_CIArrayScenarios.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.put_ArrayProperty(pThis, _value.count, _value.start))
+                }
+            }
+        }
+
         open func DoubleIn(_ value1: [Int32], _ value2: [Int32]) throws {
             try value1.toABI { _value1 in
                 try value2.toABI { _value2 in
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayScenarios.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.DoubleIn(pThis, _value1.count, _value1.start, _value2.count, _value2.start))
                 }
-            0}
-            1}
+            }
+            }
         }
 
         open func InAndOut(_ value: [Int32], _ results: inout [Int32]) throws {
@@ -604,7 +622,7 @@ public enum __ABI_test_component {
                 }
                 defer { CoTaskMemFree(_results.start) }
                 results = .from(abi: _results)
-            0}
+            }
         }
 
         open func InAndRef(_ value: [Int32], _ results: inout [Int32]) throws {
@@ -613,8 +631,8 @@ public enum __ABI_test_component {
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayScenarios.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InAndRef(pThis, _value.count, _value.start, _results.count, _results.start))
                 }
-            0}
-            1}
+            }
+            }
         }
 
         open func InAndRefNonBlittable(_ value: [Int32], _ results: inout [Bool]) throws {
@@ -624,8 +642,8 @@ public enum __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InAndRefNonBlittable(pThis, _value.count, _value.start, _results.count, _results.start))
                 }
                 results = .from(abi: _results)
-            0}
-            1}
+            }
+            }
         }
 
         open func InAndReturn(_ value: [Int32]) throws -> [Int32] {
@@ -634,7 +652,7 @@ public enum __ABI_test_component {
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayScenarios.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InAndReturn(pThis, _value.count, _value.start, &result.count, &result.start))
                 }
-            0}
+            }
             defer { CoTaskMemFree(result.start) }
             return .from(abi: result)
 
@@ -708,6 +726,21 @@ public enum __ABI_test_component {
                 result.fill(abi: $2)
                 return S_OK
             } catch { return failWith(error: error) }
+        },
+
+        get_ArrayProperty: {
+            guard let __unwrapped__instance = IArrayScenariosWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let value = __unwrapped__instance.arrayProperty
+            $1?.initialize(to: UInt32(value.count))
+            value.fill(abi: $2)
+            return S_OK
+        },
+
+        put_ArrayProperty: {
+            guard let __unwrapped__instance = IArrayScenariosWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let value: [Int32] = .from(abi: (count: $1, start: $2))
+            __unwrapped__instance.arrayProperty = value
+            return S_OK
         },
 
         DoubleIn: {
@@ -3343,7 +3376,7 @@ extension __ABI_test_component {
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodCallback.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _value.count, _value.start))
                 }
-            0}
+            }
         }
 
     }

@@ -36,6 +36,8 @@ class ArrayScenarios: IArrayScenarios {
     func inAndOut(_ value: [Int32], _ results: inout [Int32]) throws {}
     func inAndRef(_ value: [Int32], _ results: inout [Int32]) throws {}
     func inAndReturn(_ value: [Int32]) throws -> [Int32] { value }
+    func inAndRefNonBlittable(_ value: [Int32], _ results: inout [Bool]) throws {}
+    var arrayProperty: [Int32] = []
 }
 
 class ArrayInputTests : XCTestCase {

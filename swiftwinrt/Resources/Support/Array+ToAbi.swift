@@ -88,7 +88,7 @@ extension Array {
 
     public func fill<Bridge: AbiInterfaceBridge>(abi: UnsafeMutablePointer<UnsafeMutablePointer<UnsafeMutablePointer<Bridge.CABI>?>?>?, abiBridge: Bridge.Type) where Element == Bridge.SwiftProjection? {
         guard let abi else { return }
-        abi.pointee = CoTaskMemAlloc(UInt64(MemoryLayout<Bridge.CABI>.size * count)).assumingMemoryBound(to: Bridge.CABI.self)
+        abi.pointee = CoTaskMemAlloc(UInt64(MemoryLayout<UnsafeMutablePointer<Bridge.CABI>>.size * count)).assumingMemoryBound(to: UnsafeMutablePointer<Bridge.CABI>?.self)
         fill(abi: abi.pointee, abiBridge: abiBridge)
     }
 }
@@ -112,7 +112,7 @@ extension Array {
 
     public func fill<Bridge: AbiBridge>(abi: UnsafeMutablePointer<UnsafeMutablePointer<UnsafeMutablePointer<Bridge.CABI>?>?>?, abiBridge: Bridge.Type) where Element == Bridge.SwiftProjection?, Bridge.SwiftProjection: WinRTClass {
         guard let abi else { return }
-        abi.pointee = CoTaskMemAlloc(UInt64(MemoryLayout<Bridge.CABI>.size * count)).assumingMemoryBound(to: Bridge.CABI.self)
+        abi.pointee = CoTaskMemAlloc(UInt64(MemoryLayout<UnsafeMutablePointer<Bridge.CABI>>.size * count)).assumingMemoryBound(to: UnsafeMutablePointer<Bridge.CABI>?.self)
         fill(abi: abi.pointee, abiBridge: abiBridge)
     }
 }

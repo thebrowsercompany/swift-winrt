@@ -3137,7 +3137,7 @@ public class IIteratorAny: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
         items = .from(abiBridge: __IMPL_.AnyBridge.self, abi: _items)
-        0}
+        }
         return result
     }
 
@@ -3289,7 +3289,7 @@ public class IIteratorUUID: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
         items = .from(abi: _items)
-        0}
+        }
         return result
     }
 
@@ -3441,7 +3441,7 @@ public class IIteratorString: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
         items = .from(abi: _items)
-        0}
+        }
         return result
     }
 
@@ -3593,7 +3593,7 @@ public class IIteratorTextSegment: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
         items = .from(abi: _items)
-        0}
+        }
         return result
     }
 
@@ -3745,7 +3745,7 @@ public class IIteratorIKeyValuePairString_Any: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
         items = .from(abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge.self, abi: _items)
-        0}
+        }
         return result
     }
 
@@ -3897,7 +3897,7 @@ public class IIteratorIKeyValuePairString_String: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
         items = .from(abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge.self, abi: _items)
-        0}
+        }
         return result
     }
 
@@ -4049,7 +4049,7 @@ public class IIteratorIKeyValuePairString_IVectorViewTextSegment: test_component
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
         items = .from(abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentBridge.self, abi: _items)
-        0}
+        }
         return result
     }
 
@@ -4201,7 +4201,7 @@ public class IIteratorIKeyValuePairString_Base: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
         items = .from(abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge.self, abi: _items)
-        0}
+        }
         return result
     }
 
@@ -4353,7 +4353,7 @@ public class IIteratorIWwwFormUrlDecoderEntry: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
         items = .from(abiBridge: __IMPL_Windows_Foundation.IWwwFormUrlDecoderEntryBridge.self, abi: _items)
-        0}
+        }
         return result
     }
 
@@ -4505,7 +4505,7 @@ public class IIteratorIStorageItem: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
         items = .from(abiBridge: __IMPL_Windows_Storage.IStorageItemBridge.self, abi: _items)
-        0}
+        }
         return result
     }
 
@@ -4658,7 +4658,7 @@ public class IIteratorSortEntry: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
         items = .from(abi: _items)
-        0}
+        }
         return result
     }
 
@@ -4809,7 +4809,7 @@ public class IIteratorStorageFile: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
         items = .from(abiBridge: __IMPL_Windows_Storage.StorageFileBridge.self, abi: _items)
-        0}
+        }
         return result
     }
 
@@ -4960,7 +4960,7 @@ public class IIteratorStorageFolder: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
         items = .from(abiBridge: __IMPL_Windows_Storage.StorageFolderBridge.self, abi: _items)
-        0}
+        }
         return result
     }
 
@@ -5111,7 +5111,7 @@ public class IIteratorStorageLibraryChange: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
         items = .from(abiBridge: __IMPL_Windows_Storage.StorageLibraryChangeBridge.self, abi: _items)
-        0}
+        }
         return result
     }
 
@@ -5262,7 +5262,7 @@ public class IIteratorBase: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
         items = .from(abiBridge: __IMPL_test_component.BaseBridge.self, abi: _items)
-        0}
+        }
         return result
     }
 
@@ -5414,7 +5414,7 @@ public class IIteratorIBasic: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
         items = .from(abiBridge: __IMPL_test_component.IBasicBridge.self, abi: _items)
-        0}
+        }
         return result
     }
 
@@ -8385,7 +8385,7 @@ public class IVectorViewAny: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
         items = .from(abiBridge: __IMPL_.AnyBridge.self, abi: _items)
-        1}
+        }
         return result
     }
 
@@ -8570,7 +8570,7 @@ public class IVectorViewUUID: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
         items = .from(abi: _items)
-        1}
+        }
         return result
     }
 
@@ -8756,7 +8756,7 @@ public class IVectorViewString: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
         items = .from(abi: _items)
-        1}
+        }
         return result
     }
 
@@ -8941,7 +8941,7 @@ public class IVectorViewTextSegment: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
         items = .from(abi: _items)
-        1}
+        }
         return result
     }
 
@@ -9128,7 +9128,7 @@ public class IVectorViewIWwwFormUrlDecoderEntry: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
         items = .from(abiBridge: __IMPL_Windows_Foundation.IWwwFormUrlDecoderEntryBridge.self, abi: _items)
-        1}
+        }
         return result
     }
 
@@ -9315,7 +9315,7 @@ public class IVectorViewIStorageItem: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
         items = .from(abiBridge: __IMPL_Windows_Storage.IStorageItemBridge.self, abi: _items)
-        1}
+        }
         return result
     }
 
@@ -9502,7 +9502,7 @@ public class IVectorViewSortEntry: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
         items = .from(abi: _items)
-        1}
+        }
         return result
     }
 
@@ -9686,7 +9686,7 @@ public class IVectorViewStorageFile: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
         items = .from(abiBridge: __IMPL_Windows_Storage.StorageFileBridge.self, abi: _items)
-        1}
+        }
         return result
     }
 
@@ -9870,7 +9870,7 @@ public class IVectorViewStorageFolder: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
         items = .from(abiBridge: __IMPL_Windows_Storage.StorageFolderBridge.self, abi: _items)
-        1}
+        }
         return result
     }
 
@@ -10054,7 +10054,7 @@ public class IVectorViewStorageLibraryChange: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
         items = .from(abiBridge: __IMPL_Windows_Storage.StorageLibraryChangeBridge.self, abi: _items)
-        1}
+        }
         return result
     }
 
@@ -10238,7 +10238,7 @@ public class IVectorViewBase: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
         items = .from(abiBridge: __IMPL_test_component.BaseBridge.self, abi: _items)
-        1}
+        }
         return result
     }
 
@@ -10425,7 +10425,7 @@ public class IVectorViewIBasic: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
         items = .from(abiBridge: __IMPL_test_component.IBasicBridge.self, abi: _items)
-        1}
+        }
         return result
     }
 
@@ -10720,7 +10720,7 @@ public class IVectorAny: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
         items = .from(abiBridge: __IMPL_.AnyBridge.self, abi: _items)
-        1}
+        }
         return result
     }
 
@@ -10729,7 +10729,7 @@ public class IVectorAny: test_component.IInspectable {
             _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ReplaceAll(pThis, _items.count, _items.start))
             }
-        0}
+        }
     }
 
 }
@@ -11064,7 +11064,7 @@ public class IVectorUUID: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
         items = .from(abi: _items)
-        1}
+        }
         return result
     }
 
@@ -11073,7 +11073,7 @@ public class IVectorUUID: test_component.IInspectable {
             _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ReplaceAll(pThis, _items.count, _items.start))
             }
-        0}
+        }
     }
 
 }
@@ -11412,7 +11412,7 @@ public class IVectorString: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
         items = .from(abi: _items)
-        1}
+        }
         return result
     }
 
@@ -11421,7 +11421,7 @@ public class IVectorString: test_component.IInspectable {
             _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ReplaceAll(pThis, _items.count, _items.start))
             }
-        0}
+        }
     }
 
 }
@@ -11761,7 +11761,7 @@ public class IVectorSortEntry: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
         items = .from(abi: _items)
-        1}
+        }
         return result
     }
 
@@ -11770,7 +11770,7 @@ public class IVectorSortEntry: test_component.IInspectable {
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ReplaceAll(pThis, _items.count, _items.start))
             }
-        0}
+        }
     }
 
 }
@@ -12104,7 +12104,7 @@ public class IVectorBase: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
         items = .from(abiBridge: __IMPL_test_component.BaseBridge.self, abi: _items)
-        1}
+        }
         return result
     }
 
@@ -12113,7 +12113,7 @@ public class IVectorBase: test_component.IInspectable {
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ReplaceAll(pThis, _items.count, _items.start))
             }
-        0}
+        }
     }
 
 }
@@ -12456,7 +12456,7 @@ public class IVectorIBasic: test_component.IInspectable {
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
         items = .from(abiBridge: __IMPL_test_component.IBasicBridge.self, abi: _items)
-        1}
+        }
         return result
     }
 
@@ -12465,7 +12465,7 @@ public class IVectorIBasic: test_component.IInspectable {
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ReplaceAll(pThis, _items.count, _items.start))
             }
-        0}
+        }
     }
 
 }

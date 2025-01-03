@@ -64,6 +64,11 @@ public enum __IMPL_test_component {
             try _default.InAndReturn(value)
         }
 
+        fileprivate var arrayProperty : [Int32] {
+            get { try! _default.get_ArrayProperty() }
+            set { try! _default.put_ArrayProperty(newValue) }
+        }
+
     }
 
     public enum IAsyncMethodsWithProgressBridge : AbiInterfaceBridge {

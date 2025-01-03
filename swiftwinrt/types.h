@@ -621,6 +621,7 @@ namespace swiftwinrt
         metadata_type const* type;
         std::optional<function_def> getter;
         std::optional<function_def> setter;
+        bool is_array() const { return def.Type().Type().is_szarray() || def.Type().Type().is_array(); }
     };
 
     struct event_def
@@ -1056,7 +1057,7 @@ namespace swiftwinrt
         {
             return elem->type() == ElementType::Object;
         }
-        return false; 
+        return false;
     }
 
     inline bool is_element_type(metadata_type const* type, ElementType elementType)
@@ -1082,7 +1083,7 @@ namespace swiftwinrt
         }
         return false;
     }
-    
+
     inline bool is_string(metadata_type const* signature)
     {
         return is_element_type(signature, ElementType::String);

@@ -2816,6 +2816,12 @@ struct __x_ABI_Ctest__component_CStructWithIReference
     HRESULT (STDMETHODCALLTYPE* ReturnArray)(__x_ABI_Ctest__component_CIArrayScenarios* This,
         UINT32* resultLength,
         INT32** result);
+    HRESULT (STDMETHODCALLTYPE* get_ArrayProperty)(__x_ABI_Ctest__component_CIArrayScenarios* This,
+        UINT32* valueLength,
+        INT32** value);
+    HRESULT (STDMETHODCALLTYPE* put_ArrayProperty)(__x_ABI_Ctest__component_CIArrayScenarios* This,
+        UINT32 valueLength,
+        INT32* value);
     HRESULT (STDMETHODCALLTYPE* DoubleIn)(__x_ABI_Ctest__component_CIArrayScenarios* This,
         UINT32 value1Length,
         INT32* value1,
