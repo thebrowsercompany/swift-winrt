@@ -9,7 +9,6 @@ extension Array where Element: FromAbi {
     public static func from(abi: WinRTArrayAbi<Element.ABI>) -> [Element] {
         UnsafeBufferPointer(start: abi.start, count: Int(abi.count)).map { .from(abi: $0) }
     }
-
 }
 
 @_spi(WinRTInternal)
@@ -17,7 +16,6 @@ extension Array where Element: Numeric {
     public static func from(abi: WinRTArrayAbi<Element>) -> [Element] {
         Array(UnsafeBufferPointer(start: abi.start, count: Int(abi.count)))
     }
-
 }
 
 // RawRepresentable covers Enums, which are simply numberic types, but the where Element: Numeric doesn't
@@ -28,7 +26,6 @@ extension Array where Element: RawRepresentable, Element.RawValue: Numeric {
     public static func from(abi: WinRTArrayAbi<Element>) -> [Element] {
         Array(UnsafeBufferPointer(start: abi.start, count: Int(abi.count)))
     }
-
 }
 
 @_spi(WinRTInternal)
@@ -43,5 +40,4 @@ extension Array {
     public static func from<Bridge: AbiBridge>(abiBridge: Bridge.Type, abi: WinRTArrayAbi<UnsafeMutablePointer<Bridge.CABI>?>) -> [Element] where Element == Bridge.SwiftProjection?, Bridge.SwiftProjection: WinRTClass {
         UnsafeBufferPointer(start: abi.1, count: Int(abi.0)).map { Bridge.from(abi: ComPtr($0)) }
     }
-
 }
