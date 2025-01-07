@@ -460,7 +460,11 @@ var tests: [XCTestCaseEntry] = [
     ("testUnicode", SwiftWinRTTests.testUnicode),
     ("testErrorInfo", SwiftWinRTTests.testErrorInfo),
   ])
-] + valueBoxingTests + eventTests + collectionTests + aggregationTests + asyncTests + memoryManagementTests + bufferTests + weakReferenceTests + arrayTests
+] + valueBoxingTests + eventTests + collectionTests + aggregationTests + asyncTests + memoryManagementTests + bufferTests + weakReferenceTests
+
+// Have to start adding tests in different lines, otherwise we get the following error:
+//  error: the compiler is unable to type-check this expression in reasonable time; try breaking up the expression into distinct sub-expressions
+tests += arrayTests
 
 RoInitialize(RO_INIT_MULTITHREADED)
 XCTMain(tests)

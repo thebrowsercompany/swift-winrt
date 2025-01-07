@@ -568,7 +568,7 @@ public enum __ABI_Windows_Storage_FileProperties {
                 let operationWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIMap_2_HSTRING_IInspectableWrapper(operation)
                 operationWrapper?.copyTo($2)
                 return S_OK
-            } catch { return failWith(error: error) } 
+            } catch { return failWith(error: error) }
         },
 
         SavePropertiesAsync: {
@@ -579,7 +579,7 @@ public enum __ABI_Windows_Storage_FileProperties {
                 let operationWrapper = __ABI_Windows_Foundation.IAsyncActionWrapper(operation)
                 operationWrapper?.copyTo($2)
                 return S_OK
-            } catch { return failWith(error: error) } 
+            } catch { return failWith(error: error) }
         },
 
         SavePropertiesAsyncOverloadDefault: {
@@ -589,7 +589,7 @@ public enum __ABI_Windows_Storage_FileProperties {
                 let operationWrapper = __ABI_Windows_Foundation.IAsyncActionWrapper(operation)
                 operationWrapper?.copyTo($1)
                 return S_OK
-            } catch { return failWith(error: error) } 
+            } catch { return failWith(error: error) }
         }
     )
 

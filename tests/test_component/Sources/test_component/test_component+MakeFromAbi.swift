@@ -158,6 +158,11 @@ fileprivate func makeIRandomAccessStreamWithContentTypeFrom(abi: test_component.
     return __IMPL_Windows_Storage_Streams.IRandomAccessStreamWithContentTypeBridge.from(abi: RawPointer(swiftAbi))!
 }
 
+fileprivate func makeIArrayScenariosFrom(abi: test_component.IInspectable) -> Any {
+    let swiftAbi: __ABI_test_component.IArrayScenarios = try! abi.QueryInterface()
+    return __IMPL_test_component.IArrayScenariosBridge.from(abi: RawPointer(swiftAbi))!
+}
+
 fileprivate func makeIAsyncMethodsWithProgressFrom(abi: test_component.IInspectable) -> Any {
     let swiftAbi: __ABI_test_component.IAsyncMethodsWithProgress = try! abi.QueryInterface()
     return __IMPL_test_component.IAsyncMethodsWithProgressBridge.from(abi: RawPointer(swiftAbi))!
@@ -431,6 +436,7 @@ public class __MakeFromAbi: MakeFromAbi {
             case "IRandomAccessStream": return makeIRandomAccessStreamFrom(abi: abi)
             case "IRandomAccessStreamReference": return makeIRandomAccessStreamReferenceFrom(abi: abi)
             case "IRandomAccessStreamWithContentType": return makeIRandomAccessStreamWithContentTypeFrom(abi: abi)
+            case "IArrayScenarios": return makeIArrayScenariosFrom(abi: abi)
             case "IAsyncMethodsWithProgress": return makeIAsyncMethodsWithProgressFrom(abi: abi)
             case "IAsyncOperationInt": return makeIAsyncOperationIntFrom(abi: abi)
             case "IBasic": return makeIBasicFrom(abi: abi)

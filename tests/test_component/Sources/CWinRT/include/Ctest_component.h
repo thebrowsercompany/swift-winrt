@@ -17,6 +17,7 @@
 #undef FindText
 #undef GetClassName
 #undef GetObject
+#undef GetGlyphIndices
 
 #define ENABLE_WINRT_EXPERIMENTAL_TYPES
 

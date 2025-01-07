@@ -103,24 +103,6 @@ namespace winrt::test_component::implementation
         Signed ReturnEnum();
         Windows::Foundation::IReference<Signed> ReturnReferenceEnum() { return Windows::Foundation::IReference<Signed>(ReturnEnum()); }
 
-        void OutInt32Array(com_array<int32_t>& value);
-        void OutStringArray(com_array<hstring>& value);
-        void OutObjectArray(com_array<Windows::Foundation::IInspectable>& value);
-        void OutStringableArray(com_array<Windows::Foundation::IStringable>& value);
-        void OutEnumArray(com_array<Signed>& value);
-
-        void RefInt32Array(array_view<int32_t> value);
-        void RefStringArray(array_view<hstring> value);
-        void RefObjectArray(array_view<Windows::Foundation::IInspectable> value);
-        void RefStringableArray(array_view<Windows::Foundation::IStringable> value);
-        void RefEnumArray(array_view<Signed> value);
-
-        com_array<int32_t> ReturnInt32Array();
-        com_array<hstring> ReturnStringArray();
-        com_array<Windows::Foundation::IInspectable> ReturnObjectArray();
-        com_array<Windows::Foundation::IStringable> ReturnStringableArray();
-        com_array<Signed> ReturnEnumArray();
-
         Fruit EnumProperty() const;
         void EnumProperty(Fruit const& value);
 

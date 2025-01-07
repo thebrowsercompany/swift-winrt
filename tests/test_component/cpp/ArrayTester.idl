@@ -2,6 +2,8 @@ import "Windows.Foundation.idl";
 
 namespace test_component
 {
+    delegate void ArrayMethodCallback(Int32[] value);
+
     runtimeclass ArrayMethods
     {
         static String InInt32Array(Int32[] value);
@@ -11,5 +13,49 @@ namespace test_component
         static String InStructArray(BlittableStruct[] value);
         static String InNonBlittableStructArray(NonBlittableStruct[] value);
         static String InEnumArray(Signed[] value);
+
+        static void OutInt32Array(out Int32[] value);
+        static void OutStringArray(out String[] value);
+        static void OutObjectArray(out Object[] value);
+        static void OutStringableArray(out Windows.Foundation.IStringable[] value);
+        static void OutStructArray(out BlittableStruct[] value);
+        static void OutNonBlittableStructArray(out NonBlittableStruct[] value);
+        static void OutEnumArray(out Signed[] value);
+
+        static void RefInt32Array(ref Int32[] value);
+        static void RefStringArray(ref String[] value);
+        static void RefObjectArray(ref Object[] value);
+        static void RefStringableArray(ref Windows.Foundation.IStringable[] value);
+        static void RefStructArray(ref BlittableStruct[] value);
+        static void RefNonBlittableStructArray(ref NonBlittableStruct[] value);
+        static void RefEnumArray(ref Signed[] value);
+
+        static Int32[] ReturnInt32Array();
+        static String[] ReturnStringArray();
+        static Object[] ReturnObjectArray();
+        static Windows.Foundation.IStringable[] ReturnStringableArray();
+        static BlittableStruct[] ReturnStructArray();
+        static NonBlittableStruct[] ReturnNonBlittableStructArray();
+        static Signed[] ReturnEnumArray();
+
+        static void TestInArrayThroughSwiftImplementation(IArrayScenarios scenario, Int32[] value);
+        static void TestOutArrayThroughSwiftImplementation(IArrayScenarios scenario, ArrayMethodCallback callback);
+        static void TestRefArrayThroughSwiftImplementation(IArrayScenarios scenario, ref Int32[] value, ArrayMethodCallback callback);
+        static void TestReturnArrayThroughSwiftImplementation(IArrayScenarios scenario, ArrayMethodCallback callback);
+    }
+
+    interface IArrayScenarios
+    {
+        void InArray(Int32[] value);
+        void OutArray(out Int32[] value);
+        void RefArray(ref Int32[] value);
+        Int32[] ReturnArray();
+
+        Int32[] ArrayProperty { get; set; };
+        void DoubleIn(Int32[] value1, Int32[] value2);
+        void InAndOut(Int32[] value, out Int32[] results);
+        void InAndRef(Int32[] value, ref Int32[] results);
+        void InAndRefNonBlittable(Int32[] value, ref Boolean[] results);
+        Int32[] InAndReturn(Int32[] value);
     }
 }

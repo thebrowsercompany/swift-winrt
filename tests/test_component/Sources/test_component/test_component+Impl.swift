@@ -5,6 +5,72 @@ import Ctest_component
 
 @_spi(WinRTInternal)
 public enum __IMPL_test_component {
+    public enum IArrayScenariosBridge : AbiInterfaceBridge {
+        public typealias CABI = __x_ABI_Ctest__component_CIArrayScenarios
+        public typealias SwiftABI = __ABI_test_component.IArrayScenarios
+        public typealias SwiftProjection = AnyIArrayScenarios
+        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+            guard let abi = abi else { return nil }
+            return IArrayScenariosImpl(abi)
+        }
+
+        public static func makeAbi() -> CABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IArrayScenariosVTable) { $0 }
+            return .init(lpVtbl: vtblPtr)
+        }
+    }
+
+    fileprivate class IArrayScenariosImpl: IArrayScenarios, WinRTAbiImpl {
+        fileprivate typealias Bridge = IArrayScenariosBridge
+        fileprivate let _default: Bridge.SwiftABI
+        fileprivate var thisPtr: test_component.IInspectable { _default }
+        fileprivate init(_ fromAbi: ComPtr<Bridge.CABI>) {
+            _default = Bridge.SwiftABI(fromAbi)
+        }
+
+        fileprivate func inArray(_ value: [Int32]) throws {
+            try _default.InArray(value)
+        }
+
+        fileprivate func outArray(_ value: inout [Int32]) throws {
+            try _default.OutArray(&value)
+        }
+
+        fileprivate func refArray(_ value: inout [Int32]) throws {
+            try _default.RefArray(&value)
+        }
+
+        fileprivate func returnArray() throws -> [Int32] {
+            try _default.ReturnArray()
+        }
+
+        fileprivate func doubleIn(_ value1: [Int32], _ value2: [Int32]) throws {
+            try _default.DoubleIn(value1, value2)
+        }
+
+        fileprivate func inAndOut(_ value: [Int32], _ results: inout [Int32]) throws {
+            try _default.InAndOut(value, &results)
+        }
+
+        fileprivate func inAndRef(_ value: [Int32], _ results: inout [Int32]) throws {
+            try _default.InAndRef(value, &results)
+        }
+
+        fileprivate func inAndRefNonBlittable(_ value: [Int32], _ results: inout [Bool]) throws {
+            try _default.InAndRefNonBlittable(value, &results)
+        }
+
+        fileprivate func inAndReturn(_ value: [Int32]) throws -> [Int32] {
+            try _default.InAndReturn(value)
+        }
+
+        fileprivate var arrayProperty : [Int32] {
+            get { try! _default.get_ArrayProperty() }
+            set { try! _default.put_ArrayProperty(newValue) }
+        }
+
+    }
+
     public enum IAsyncMethodsWithProgressBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_Ctest__component_CIAsyncMethodsWithProgress
         public typealias SwiftABI = __ABI_test_component.IAsyncMethodsWithProgress
@@ -402,6 +468,20 @@ public enum __IMPL_test_component {
 
     }
 
+    public class ArrayMethodCallbackBridge : WinRTDelegateBridge {
+        public typealias Handler = ArrayMethodCallback
+        public typealias CABI = __x_ABI_Ctest__component_CIArrayMethodCallback
+        public typealias SwiftABI = __ABI_test_component.ArrayMethodCallback
+
+        public static func from(abi: ComPtr<CABI>?) -> Handler? {
+            guard let abi = abi else { return nil }
+            let _default = SwiftABI(abi)
+            let handler: Handler = { (value) in
+                try _default.Invoke(value)
+            }
+            return handler
+        }
+    }
     public class ObjectHandlerBridge : WinRTDelegateBridge {
         public typealias Handler = ObjectHandler
         public typealias CABI = __x_ABI_Ctest__component_CIObjectHandler

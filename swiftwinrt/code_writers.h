@@ -176,7 +176,7 @@ namespace swiftwinrt
             s();
             w.write("_ %: ", get_swift_name(param));
             if (param.out()) w.write("inout ");
-            const bool is_array = param.signature.Type().is_array() || param.signature.Type().is_szarray();
+            const bool is_array = param.is_array();
             if (is_array && type_params.layer == projection_layer::swift)
             {
                 // Can't allow for implicit unwrap in arrays
@@ -206,9 +206,16 @@ namespace swiftwinrt
         auto local_name = local_swift_param_name(param_name);
         if (param.is_array())
         {
-            // Arrays are all converted from the swift array to a c array, so they
-            // use the local_param_name
-            w.write("count, %", local_name);
+            if (is_out)
+            {
+                w.write("%");
+            }
+            else
+            {
+                // Arrays are all converted from the swift array to a c array, so they
+                // use the local_param_name
+                w.write("count, %", local_name);
+            }
         }
         else if (category == param_category::object_type)
         {
@@ -304,7 +311,22 @@ namespace swiftwinrt
             auto param_name = get_swift_name(param);
             auto local_param_name = local_swift_param_name(param_name);
             s();
-            if (param.in())
+            if (param.is_array())
+            {
+                if (param.in())
+                {
+                    w.write("%.count, %.start", local_param_name, local_param_name);
+                }
+                else if (param.signature.ByRef())
+                {
+                    w.write("&%.count, &%.start", local_param_name, local_param_name);
+                }
+                else
+                {
+                    w.write("%.count, %.start", local_param_name, local_param_name);
+                }
+            }
+            else if (param.in())
             {
                 write_convert_to_abi_arg(w, param);
             }
@@ -342,7 +364,11 @@ namespace swiftwinrt
         {
             s();
             auto param_name = function.return_type.value().name;
-            if (needs_wrapper(get_category(function.return_type->type)))
+            if (function.return_type.value().is_array())
+            {
+                w.write("&%.count, &%.start", param_name, param_name);
+            }
+            else if (needs_wrapper(get_category(function.return_type->type)))
             {
                 w.write("&%Abi", param_name);
             }
@@ -356,7 +382,14 @@ namespace swiftwinrt
     static std::optional<writer::indent_guard> write_init_return_val_abi(writer& w, function_return_type const& signature)
     {
         auto category = get_category(signature.type);
-        if (needs_wrapper(category))
+        if (signature.is_array())
+        {
+            w.write("var %: WinRTArrayAbi<%> = (0, nil)\n",
+                signature.name,
+                bind<write_type>(*signature.type, write_type_params::c_abi));
+            return std::optional<writer::indent_guard>();
+        }
+        else if (needs_wrapper(category))
         {
             w.write("let (%) = try ComPtrs.initialize { %Abi in\n", signature.name, signature.name);
             return writer::indent_guard(w, 1);
@@ -381,7 +414,14 @@ namespace swiftwinrt
         }
 
         w.write(" -> ");
-        write_type(w, *function.return_type->type, type_params);
+        if (function.return_type->is_array() && type_params.layer == projection_layer::swift)
+        {
+            w.write("[%]", bind<write_type>(*function.return_type->type, write_type_params::swift));
+        }
+        else
+        {
+            write_type(w, *function.return_type->type, type_params);
+        }
     }
 
     static std::vector<function_param> get_projected_params(attributed_type const& factory, function_def const& func);
@@ -723,9 +763,33 @@ typealias % = InterfaceWrapperBase<%>
         for (auto& param : signature.params)
         {
             std::string param_name = "$" + std::to_string(param_number);
-
-
-            if (param.in())
+            if (param.is_array())
+            {
+                auto array_param_name = "$" + std::to_string(param_number + 1);
+                auto count_param_name = param_name;
+                if (param.in())
+                {
+                    w.write("let %: [%] = %\n",
+                        get_swift_name(param),
+                        bind<write_type>(*param.type, write_type_params::swift),
+                        bind<write_convert_array_from_abi>(*param.type, w.write_temp("(count: %, start: %)", count_param_name, array_param_name)));
+                }
+                else if (param.signature.ByRef())
+                {
+                    w.write("var % = [%]()\n",
+                        get_swift_name(param),
+                        bind<write_type>(*param.type, write_type_params::swift));
+                }
+                else
+                {
+                    w.write("var %: [%] = %\n",
+                        get_swift_name(param),
+                        bind<write_type>(*param.type, write_type_params::swift),
+                        bind<write_convert_array_from_abi>(*param.type, w.write_temp("(count: %, start: %)", count_param_name, array_param_name)));
+                }
+                ++param_number;
+            }
+            else if (param.in())
             {
                 assert(!param.out());
 
@@ -734,29 +798,6 @@ typealias % = InterfaceWrapperBase<%>
                     w.write("guard let % = % else { return E_INVALIDARG }\n",
                         get_swift_name(param),
                         bind<write_consume_type>(param.type, param_name, false));
-                }
-                else if (param.is_array())
-                {
-                    auto array_param_name = "$" + std::to_string(param_number + 1);
-                    auto count_param_name = param_name;
-                    if (is_reference_type(param.type))
-                    {
-                        w.write("let %: [%] = .from(abiBridge: %.self, abi: (count: %, start: %))\n",
-                            get_swift_name(param),
-                            bind<write_type>(*param.type, write_type_params::swift),
-                            bind_bridge_fullname(*param.type),
-                            count_param_name,
-                            array_param_name);
-                    }
-                    else
-                    {
-                        w.write("let %: [%] = .from(abi: (count: %, start: %))\n",
-                            get_swift_name(param),
-                            bind<write_type>(*param.type, write_type_params::swift),
-                            count_param_name,
-                            array_param_name);
-                    }
-                    ++param_number;
                 }
                 else
                 {
@@ -775,6 +816,7 @@ typealias % = InterfaceWrapperBase<%>
                     bind<write_type>(*param.type, write_type_params::swift),
                     bind<write_default_init_assignment>(*param.type, projection_layer::swift));
                 }
+
             ++param_number;
         }
     }
@@ -786,9 +828,18 @@ typealias % = InterfaceWrapperBase<%>
             return;
         }
 
-        auto return_type = signature.return_type.value().type;
-        auto return_param_name = put_in_backticks_if_needed(std::string(signature.return_type.value().name));
-        w.write("return %", bind<write_consume_type>(return_type, return_param_name, true));
+        auto return_type = signature.return_type.value();
+        auto return_param_name = put_in_backticks_if_needed(std::string(return_type.name));
+        if (return_type.is_array())
+        {
+            w.write("defer { CoTaskMemFree(%.start) }\n", return_param_name);
+            w.write("return %\n", bind<write_convert_array_from_abi>(*return_type.type, return_param_name));
+        }
+        else
+        {
+            w.write("return %", bind<write_consume_type>(return_type.type, return_param_name, true));
+        }
+
     }
 
     static void write_consume_args(writer& w, function_def const& function)
@@ -898,37 +949,48 @@ bind_bridge_fullname(type));
     fileprivate init(_ abi: ComPtr<__x_ABI_CWindows_CFoundation_CIPropertyValue>) { fatalError("not implemented") }
     public init(value: Any) {
         _value = value
-        if _value is Int32 {
-            propertyType = .int32
-        } else if _value is UInt8 {
-            propertyType = .uint8
-        } else if _value is Int16 {
-            propertyType = .int16
-        } else if _value is UInt32 {
-            propertyType = .uint32
-        } else if _value is Int64 {
-            propertyType = .int64
-        } else if _value is UInt64 {
-            propertyType = .uint64
-        } else if _value is Float {
-            propertyType = .single
-        } else if _value is Double {
-            propertyType = .double
-        } else if _value is Character {
-            propertyType = .char16
-        } else if _value is Bool {
-            propertyType = .boolean
-        } else if _value is DateTime {
-            propertyType = .dateTime
-        } else if _value is TimeSpan {
-            propertyType = .timeSpan
-        } else if _value is IWinRTObject {
-            propertyType = .inspectable
-        } else if _value is IInspectable {
-            propertyType = .inspectable
-        } else {
-            propertyType = .otherType
-        }
+        propertyType = switch value {
+            case is UInt8: .uint8
+            case is Int16: .int16
+            case is UInt16: .uint16
+            case is Int32: .int32
+            case is UInt32: .uint32
+            case is Int64: .int64
+            case is UInt64: .uint64
+            case is Float: .single
+            case is Double: .double
+            case is Character: .char16
+            case is Bool: .boolean
+            case is String: .string
+            case is DateTime: .dateTime
+            case is TimeSpan: .timeSpan
+            case is Foundation.UUID: .guid
+            case is Point: .point
+            case is Size: .size
+            case is Rect: .rect
+            case is IWinRTObject: .inspectable
+            case is IInspectable: .inspectable
+            case is [UInt8]: .uint8Array
+            case is [Int16]: .int16Array
+            case is [UInt16]: .uint16Array
+            case is [Int32]: .int32Array
+            case is [UInt32]: .uint32Array
+            case is [Int64]: .int64Array
+            case is [UInt64]: .uint64Array
+            case is [Float]: .singleArray
+            case is [Double]: .doubleArray
+            case is [Character]: .char16Array
+            case is [Bool]: .booleanArray
+            case is [String]: .stringArray
+            case is [DateTime]: .dateTimeArray
+            case is [TimeSpan]: .timeSpanArray
+            case is [Foundation.UUID]: .guidArray
+            case is [Point]: .pointArray
+            case is [Size]: .sizeArray
+            case is [Rect]: .rectArray
+            case is [Any?]: .inspectableArray
+            default: .otherType
+            }
     }
 
     public var type: PropertyType { propertyType }
@@ -959,6 +1021,25 @@ bind_bridge_fullname(type));
     public func getPoint() -> Point { _value as! Point }
     public func getSize() -> Size { _value as! Size }
     public func getRect() -> Rect { _value as! Rect }
+    public func getUInt8Array(_ value: inout [UInt8]) { value = _value as! [UInt8] }
+    public func getInt16Array(_ value: inout [Int16]) { value = _value as! [Int16] }
+    public func getUInt16Array(_ value: inout [UInt16]) { value = _value as! [UInt16] }
+    public func getInt32Array(_ value: inout [Int32]) { value = _value as! [Int32] }
+    public func getUInt32Array(_ value: inout [UInt32])  { value = _value as! [UInt32] }
+    public func getInt64Array(_ value: inout [Int64]) { value = _value as! [Int64] }
+    public func getUInt64Array(_ value: inout [UInt64]) { value = _value as! [UInt64] }
+    public func getSingleArray(_ value: inout [Float]) { value = _value as! [Float] }
+    public func getDoubleArray(_ value: inout [Double]) { value = _value as! [Double] }
+    public func getChar16Array(_ value: inout [Character]) { value = _value as! [Character] }
+    public func getBooleanArray(_ value: inout [Bool]) { value = _value as! [Bool] }
+    public func getStringArray(_ value: inout [String]) { value = _value as! [String] }
+    public func getGuidArray(_ value: inout [Foundation.UUID]) { value = _value as! [Foundation.UUID] }
+    public func getDateTimeArray(_ value: inout [DateTime]) { value = _value as! [DateTime] }
+    public func getTimeSpanArray(_ value: inout [TimeSpan]) { value = _value as! [TimeSpan] }
+    public func getPointArray(_ value: inout [Point]) { value = _value as! [Point] }
+    public func getSizeArray(_ value: inout [Size]) { value = _value as! [Size] }
+    public func getRectArray(_ value: inout [Rect]) { value = _value as! [Rect] }
+    public func getInspectableArray(_ value: inout [Any?]) { value = _value as! [Any?] }
     %
 }
 
@@ -1358,11 +1439,15 @@ vtable);
             {
                 if (!can_write(w, prop)) continue;
                 auto full_type_name = w.push_full_type_names(true);
-                const auto& return_type = *prop.getter->return_type->type;
+                auto propertyType = w.write_temp("%", bind<write_type>(*prop.getter->return_type->type, swift_write_type_params_for(type)));
+                if (prop.is_array())
+                {
+                    propertyType = w.write_temp("[%]", propertyType);
+                }
                 write_documentation_comment(w, type, prop.def.Name());
                 w.write("var %: % { get% }\n",
                     get_swift_name(prop),
-                    bind<write_type>(return_type, swift_write_type_params_for(type)),
+                    propertyType,
                     prop.setter ? " set" : "");
             }
 
@@ -1500,7 +1585,14 @@ vtable);
         for (auto& param : params)
         {
             s();
-            write_type(w, *param.type, write_type_params::swift);
+            if (param.is_array())
+            {
+                w.write("[%]", bind<write_type>(*param.type, write_type_params::swift));
+            }
+            else
+            {
+                write_type(w, *param.type, write_type_params::swift);
+            }
         }
     }
 
@@ -1662,23 +1754,45 @@ vtable);
             auto param_name = get_swift_name(param);
             auto local_param_name = local_swift_param_name(param_name);
 
-            if (param.in())
+            if (param.is_array())
             {
-                if (param.is_array())
+                if (param.signature.ByRef())
                 {
+                    w.write("var %: WinRTArrayAbi<%> = (0, nil)\n",
+                        local_param_name,
+                        bind<write_type>(*param.type, write_type_params::c_abi));
+
+                    guard.insert_front("% = %\n", param_name, bind<write_convert_array_from_abi>(*param.type, local_param_name));
+                    guard.insert_front("defer { CoTaskMemFree(%.start) }\n", local_param_name);
+                }
+                else
+                {
+                    // Array is passed by reference, so we need to convert the input to a buffer and then pass that buffer to C, then convert the buffer back to an array
                     if (is_reference_type(param.type))
                     {
-                        w.write("try %.toABI(abiBridge: %.self) { (count, %) in\n", param_name, bind_bridge_name(*param.type), local_param_name);
+                        w.write("try %.toABI(abiBridge: %.self) { % in\n", param_name, bind_bridge_name(*param.type), local_param_name);
                     }
                     else
                     {
-                        w.write("try %.toABI { (count, %) in\n", param_name, local_param_name);
+                        w.write("try %.toABI { % in\n", param_name, local_param_name);
                     }
 
-                    guard.push_indent();
+                    // Enums and fundamental (integer) types can just be copied directly into the ABI. So we can
+                    // avoid an extra copy by simply passing the array buffer to C directly
+                    if (!param.in() && category != param_category::enum_type && category != param_category::fundamental_type)
+                    {
+                        // While perhaps not the most effient to just create a new array from the elements (rather than filling an existing buffer), it is the simplest for now.
+                        // These APIs are few and far between and rarely used. If needed, we can optimize later.
+                        guard.insert_front("% = %\n", param_name, bind<write_convert_array_from_abi>(*param.type, local_param_name));
+                    }
+
                     guard.push("}\n");
+                    guard.push_indent();
                 }
-                else if (category == param_category::string_type)
+            }
+            else if (param.in())
+            {
+                if (category == param_category::string_type)
                 {
                     w.write("let % = try! HString(%)\n",
                         local_param_name,
@@ -1761,8 +1875,8 @@ vtable);
             w.write("let (%) = try ComPtrs.initialize { (%) in\n",
                 bind<write_param_names>(com_ptr_initialize, "%"),
                 bind<write_param_names>(com_ptr_initialize, "%Abi"));
-            guard.push_indent();
             guard.push("}\n");
+            guard.push_indent();
 
             for (const auto& param : com_ptr_initialize)
             {
@@ -2247,10 +2361,15 @@ public init<Composable: ComposableImpl>(
 
         if (prop.getter)
         {
+            auto propertyType = w.write_temp("%", bind<write_type>(*prop.getter->return_type->type, swift_write_type_params_for(*iface.type)));
+            if (prop.is_array())
+            {
+                propertyType = w.write_temp("[%]", propertyType);
+            }
             w.write("%var % : % {\n",
                 modifier_for(type_definition, iface),
                 get_swift_name(prop),
-                bind<write_type>(*prop.getter->return_type->type, swift_write_type_params_for(*iface.type)));
+                propertyType);
 
             w.write("    get { try! %.%() }\n",
                 impl,
@@ -2794,7 +2913,28 @@ override % func _getABI<T>() -> UnsafeMutablePointer<T>? {
         TypeDef signature_type{};
         auto category = get_category(type, &signature_type);
 
-        if (category == param_category::struct_type && !is_struct_blittable(signature_type))
+        if (return_type.is_array())
+        {
+            if (is_reference_type(type))
+            {
+                w.write("%.fill(abi: %, abiBridge: %.self)\n",
+                    param_name, return_param_name, bind_bridge_fullname(*type));
+            }
+            else if (category == param_category::enum_type || category == param_category::fundamental_type)
+            {
+                w.write("%.fill(abi: %)\n",
+                    param_name, return_param_name);
+            }
+            else
+            {
+                w.write(R"(do {
+    try %.fill(abi: %)
+} catch { return failWith(error: error) }
+)", param_name, return_param_name);
+            }
+            return;
+        }
+        else if (category == param_category::struct_type && !is_struct_blittable(signature_type))
         {
             w.write("let _% = %._ABI_%(from: %)\n\t",
                 param_name,
@@ -2832,18 +2972,32 @@ override % func _getABI<T>() -> UnsafeMutablePointer<T>? {
         int param_number = 1;
         for (auto& param : signature.params)
         {
+            auto param_name = get_swift_name(param);
+            if (param.is_array())
+            {
+                if (param.signature.ByRef())
+                {
+                    w.write("$%?.initialize(to: UInt32(%.count))\n", param_number, param_name);
+                }
+                param_number++;
+            }
             if (param.out())
             {
                 auto return_param_name = "$" + std::to_string(param_number);
-                auto param_name = get_swift_name(param);
                 do_write_abi_val_assignment(w, param, return_param_name);
             }
+
             param_number++;
         }
 
         if (signature.return_type)
         {
-            auto return_param_name = "$" + std::to_string(signature.params.size() + 1);
+            if (signature.return_type.value().is_array())
+            {
+                w.write("$%?.initialize(to: UInt32(%.count))\n", param_number, signature.return_type.value().name);
+                param_number++;
+            }
+            auto return_param_name = "$" + std::to_string(param_number);
             do_write_abi_val_assignment(w, signature.return_type.value(), return_param_name);
         }
     }
@@ -2947,7 +3101,7 @@ override % func _getABI<T>() -> UnsafeMutablePointer<T>? {
             w.write("return S_OK\n");
         }
         if (needs_try_catch) {
-            w.write("} catch { return failWith(error: error) } \n");
+            w.write("} catch { return failWith(error: error) }\n");
             w.m_indent -= 1;
         }
         w.write("}");

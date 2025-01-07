@@ -31,6 +31,14 @@ internal class ArrayVector<T> : IVector {
     func replaceAll(_ items: [T]) {
         storage = items
     }
+
+    func getMany(_ startIndex: UInt32, _ items: inout [T]) -> UInt32 {
+        let count = Swift.min(UInt32(storage.count) - startIndex, UInt32(items.count))
+        for i in 0..<count {
+            items[Int(i)] = storage[Int(startIndex + i)]
+        }
+        return count
+    }
 }
 
 extension ArrayVector where T: Equatable {
@@ -56,6 +64,14 @@ internal class ArrayVectorView<T> : IVectorView {
     func indexOf(_ item: T, _ index: inout UInt32) -> Bool  { return false }
 
     func first() -> AnyIIterator<T>? { ArrayIterator(storage) }
+
+    func getMany(_ startIndex: UInt32, _ items: inout [T]) -> UInt32 {
+        let count = Swift.min(UInt32(storage.count) - startIndex, UInt32(items.count))
+        for i in 0..<count {
+            items[Int(i)] = storage[Int(startIndex + i)]
+        }
+        return count
+    }
 }
 
 extension ArrayVectorView where T: Equatable {
@@ -82,4 +98,12 @@ class ArrayIterator<T>: IIterator {
     var hasCurrent: Bool { index < storage.count }
 
     func queryInterface(_ iid: IID) -> IUnknownRef? { nil }
+
+    func getMany(_ items: inout [T]) -> UInt32 {
+        let count = Swift.min(storage.count - index, items.count)
+        for i in 0..<count {
+            items[i] = storage[index + i]
+        }
+        return UInt32(count)
+    }
 }

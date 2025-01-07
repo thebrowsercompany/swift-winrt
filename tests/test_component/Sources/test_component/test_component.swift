@@ -38,6 +38,106 @@ public final class ArrayMethods {
         return try _IArrayMethodsStatics.InEnumArray(value)
     }
 
+    public static func outInt32Array(_ value: inout [Int32]) throws {
+        try _IArrayMethodsStatics.OutInt32Array(&value)
+    }
+
+    public static func outStringArray(_ value: inout [String]) throws {
+        try _IArrayMethodsStatics.OutStringArray(&value)
+    }
+
+    public static func outObjectArray(_ value: inout [Any?]) throws {
+        try _IArrayMethodsStatics.OutObjectArray(&value)
+    }
+
+    public static func outStringableArray(_ value: inout [test_component.AnyIStringable?]) throws {
+        try _IArrayMethodsStatics.OutStringableArray(&value)
+    }
+
+    public static func outStructArray(_ value: inout [BlittableStruct]) throws {
+        try _IArrayMethodsStatics.OutStructArray(&value)
+    }
+
+    public static func outNonBlittableStructArray(_ value: inout [NonBlittableStruct]) throws {
+        try _IArrayMethodsStatics.OutNonBlittableStructArray(&value)
+    }
+
+    public static func outEnumArray(_ value: inout [Signed]) throws {
+        try _IArrayMethodsStatics.OutEnumArray(&value)
+    }
+
+    public static func refInt32Array(_ value: inout [Int32]) throws {
+        try _IArrayMethodsStatics.RefInt32Array(&value)
+    }
+
+    public static func refStringArray(_ value: inout [String]) throws {
+        try _IArrayMethodsStatics.RefStringArray(&value)
+    }
+
+    public static func refObjectArray(_ value: inout [Any?]) throws {
+        try _IArrayMethodsStatics.RefObjectArray(&value)
+    }
+
+    public static func refStringableArray(_ value: inout [test_component.AnyIStringable?]) throws {
+        try _IArrayMethodsStatics.RefStringableArray(&value)
+    }
+
+    public static func refStructArray(_ value: inout [BlittableStruct]) throws {
+        try _IArrayMethodsStatics.RefStructArray(&value)
+    }
+
+    public static func refNonBlittableStructArray(_ value: inout [NonBlittableStruct]) throws {
+        try _IArrayMethodsStatics.RefNonBlittableStructArray(&value)
+    }
+
+    public static func refEnumArray(_ value: inout [Signed]) throws {
+        try _IArrayMethodsStatics.RefEnumArray(&value)
+    }
+
+    public static func returnInt32Array() throws -> [Int32] {
+        return try _IArrayMethodsStatics.ReturnInt32Array()
+    }
+
+    public static func returnStringArray() throws -> [String] {
+        return try _IArrayMethodsStatics.ReturnStringArray()
+    }
+
+    public static func returnObjectArray() throws -> [Any?] {
+        return try _IArrayMethodsStatics.ReturnObjectArray()
+    }
+
+    public static func returnStringableArray() throws -> [test_component.AnyIStringable?] {
+        return try _IArrayMethodsStatics.ReturnStringableArray()
+    }
+
+    public static func returnStructArray() throws -> [BlittableStruct] {
+        return try _IArrayMethodsStatics.ReturnStructArray()
+    }
+
+    public static func returnNonBlittableStructArray() throws -> [NonBlittableStruct] {
+        return try _IArrayMethodsStatics.ReturnNonBlittableStructArray()
+    }
+
+    public static func returnEnumArray() throws -> [Signed] {
+        return try _IArrayMethodsStatics.ReturnEnumArray()
+    }
+
+    public static func testInArrayThroughSwiftImplementation(_ scenario: AnyIArrayScenarios!, _ value: [Int32]) throws {
+        try _IArrayMethodsStatics.TestInArrayThroughSwiftImplementation(scenario, value)
+    }
+
+    public static func testOutArrayThroughSwiftImplementation(_ scenario: AnyIArrayScenarios!, _ callback: ArrayMethodCallback!) throws {
+        try _IArrayMethodsStatics.TestOutArrayThroughSwiftImplementation(scenario, callback)
+    }
+
+    public static func testRefArrayThroughSwiftImplementation(_ scenario: AnyIArrayScenarios!, _ value: inout [Int32], _ callback: ArrayMethodCallback!) throws {
+        try _IArrayMethodsStatics.TestRefArrayThroughSwiftImplementation(scenario, &value, callback)
+    }
+
+    public static func testReturnArrayThroughSwiftImplementation(_ scenario: AnyIArrayScenarios!, _ callback: ArrayMethodCallback!) throws {
+        try _IArrayMethodsStatics.TestReturnArrayThroughSwiftImplementation(scenario, callback)
+    }
+
 }
 
 public final class AsyncMethods {
@@ -290,6 +390,10 @@ open class BaseCollection : WinRTClass, IVector, IIterable {
         try! _default.Clear()
     }
 
+    public func getMany(_ startIndex: UInt32, _ items: inout [Base?]) -> UInt32 {
+        try! _default.GetMany(startIndex, &items)
+    }
+
     public func replaceAll(_ items: [Base?]) {
         try! _default.ReplaceAll(items)
     }
@@ -517,6 +621,10 @@ public final class BaseObservableCollection : WinRTClass, IObservableVector, IVe
 
     public func clear() {
         try! _IVector.Clear()
+    }
+
+    public func getMany(_ startIndex: UInt32, _ items: inout [Base?]) -> UInt32 {
+        try! _IVector.GetMany(startIndex, &items)
     }
 
     public func replaceAll(_ items: [Base?]) {
@@ -1486,6 +1594,7 @@ public final class WeakReferencer : WinRTClass {
     }
 }
 
+public typealias ArrayMethodCallback = ([Int32]) throws -> ()
 public typealias ObjectHandler = (Any?) throws -> ()
 public typealias VoidToVoidDelegate = () throws -> ()
 public struct BlittableStruct: Hashable, Codable, Sendable {
@@ -1551,6 +1660,31 @@ public struct StructWithIReference: Hashable, Codable, Sendable {
         self.value2 = value2
     }
 }
+
+public protocol IArrayScenarios : WinRTInterface {
+    func inArray(_ value: [Int32]) throws
+    func outArray(_ value: inout [Int32]) throws
+    func refArray(_ value: inout [Int32]) throws
+    func returnArray() throws -> [Int32]
+    func doubleIn(_ value1: [Int32], _ value2: [Int32]) throws
+    func inAndOut(_ value: [Int32], _ results: inout [Int32]) throws
+    func inAndRef(_ value: [Int32], _ results: inout [Int32]) throws
+    func inAndRefNonBlittable(_ value: [Int32], _ results: inout [Bool]) throws
+    func inAndReturn(_ value: [Int32]) throws -> [Int32]
+    var arrayProperty: [Int32] { get set }
+}
+
+extension IArrayScenarios {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        switch iid {
+            case __ABI_test_component.IArrayScenariosWrapper.IID:
+                let wrapper = __ABI_test_component.IArrayScenariosWrapper(self)
+                return wrapper!.queryInterface(iid)
+            default: return nil
+        }
+    }
+}
+public typealias AnyIArrayScenarios = any IArrayScenarios
 
 public protocol IAsyncMethodsWithProgress : WinRTInterface {
     func operationWithProgress(_ value: test_component.DateTime) throws -> test_component.AnyIAsyncOperationWithProgress<Int32, Double>!

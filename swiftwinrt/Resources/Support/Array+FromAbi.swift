@@ -37,13 +37,6 @@ extension Array {
 
 @_spi(WinRTInternal)
 extension Array {
-    public static func from<Bridge: AbiInterfaceBridge>(abiBridge: Bridge.Type, start: UnsafeMutablePointer<UnsafeMutablePointer<Bridge.CABI>?>?, count: UInt32) -> [Element] where Element == Bridge.SwiftProjection? {
-      UnsafeBufferPointer(start: start, count: Int(count)).map { InterfaceWrapperBase<Bridge>.unwrapFrom(abi: ComPtr($0)) }
-    }
-}
-
-@_spi(WinRTInternal)
-extension Array {
     public static func from<Bridge: AbiBridge>(abiBridge: Bridge.Type, abi: WinRTArrayAbi<UnsafeMutablePointer<Bridge.CABI>?>) -> [Element] where Element == Bridge.SwiftProjection?, Bridge.SwiftProjection: WinRTClass {
         UnsafeBufferPointer(start: abi.1, count: Int(abi.0)).map { Bridge.from(abi: ComPtr($0)) }
     }

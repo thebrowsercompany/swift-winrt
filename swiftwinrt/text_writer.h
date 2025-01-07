@@ -456,8 +456,18 @@ namespace swiftwinrt
             m_lines.push_back(temp_writer.write_temp(value, args...));
         }
 
+        template <typename... Args>
+        void insert_front(std::string_view const& value, Args const&... args)
+        {
+            T temp_writer;
+            temp_writer.swift_module = m_swift_module;
+            auto format = std::string("%").append(value.data());
+            m_lines.insert(m_lines.begin(), temp_writer.write_temp(format, indent { m_offset }, args...));
+        }
+
         void push_indent(indent indent = { 1 })
         {
+            m_offset += indent.additional_indentation;
             m_guard.emplace(m_writer.push_indent(indent));
         }
 
