@@ -14,7 +14,12 @@ extension Array where Element: ToAbi {
     public func fill(abi: UnsafeMutablePointer<UnsafeMutablePointer<Element.ABI>?>?) throws {
         guard let abi else { return }
         abi.pointee = CoTaskMemAlloc(UInt64(MemoryLayout<Element.ABI>.size * count)).assumingMemoryBound(to: Element.ABI.self)
-        try fill(abi: abi.pointee)
+        do {
+            try fill(abi: abi.pointee)
+        } catch {
+            CoTaskMemFree(abi.pointee)
+            throw error
+        }
     }
 
     public func fill(abi: UnsafeMutablePointer<Element.ABI>?) throws {
