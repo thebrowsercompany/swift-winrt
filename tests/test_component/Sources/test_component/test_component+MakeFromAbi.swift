@@ -3,498 +3,668 @@
 import Foundation
 import Ctest_component
 
-fileprivate func makeIAsyncActionFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_Windows_Foundation.IAsyncAction = try! abi.QueryInterface()
-    return __IMPL_Windows_Foundation.IAsyncActionBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIAsyncInfoFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_Windows_Foundation.IAsyncInfo = try! abi.QueryInterface()
-    return __IMPL_Windows_Foundation.IAsyncInfoBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIClosableFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_Windows_Foundation.IClosable = try! abi.QueryInterface()
-    return __IMPL_Windows_Foundation.IClosableBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIMemoryBufferFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_Windows_Foundation.IMemoryBuffer = try! abi.QueryInterface()
-    return __IMPL_Windows_Foundation.IMemoryBufferBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIMemoryBufferReferenceFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_Windows_Foundation.IMemoryBufferReference = try! abi.QueryInterface()
-    return __IMPL_Windows_Foundation.IMemoryBufferReferenceBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIStringableFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_Windows_Foundation.IStringable = try! abi.QueryInterface()
-    return __IMPL_Windows_Foundation.IStringableBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIWwwFormUrlDecoderEntryFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_Windows_Foundation.IWwwFormUrlDecoderEntry = try! abi.QueryInterface()
-    return __IMPL_Windows_Foundation.IWwwFormUrlDecoderEntryBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIPropertySetFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_Windows_Foundation_Collections.IPropertySet = try! abi.QueryInterface()
-    return __IMPL_Windows_Foundation_Collections.IPropertySetBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIVectorChangedEventArgsFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_Windows_Foundation_Collections.IVectorChangedEventArgs = try! abi.QueryInterface()
-    return __IMPL_Windows_Foundation_Collections.IVectorChangedEventArgsBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIStorageFileFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_Windows_Storage.IStorageFile = try! abi.QueryInterface()
-    return __IMPL_Windows_Storage.IStorageFileBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIStorageFile2From(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_Windows_Storage.IStorageFile2 = try! abi.QueryInterface()
-    return __IMPL_Windows_Storage.IStorageFile2Bridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIStorageFilePropertiesWithAvailabilityFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_Windows_Storage.IStorageFilePropertiesWithAvailability = try! abi.QueryInterface()
-    return __IMPL_Windows_Storage.IStorageFilePropertiesWithAvailabilityBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIStorageFolderFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_Windows_Storage.IStorageFolder = try! abi.QueryInterface()
-    return __IMPL_Windows_Storage.IStorageFolderBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIStorageFolder2From(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_Windows_Storage.IStorageFolder2 = try! abi.QueryInterface()
-    return __IMPL_Windows_Storage.IStorageFolder2Bridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIStorageItemFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_Windows_Storage.IStorageItem = try! abi.QueryInterface()
-    return __IMPL_Windows_Storage.IStorageItemBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIStorageItem2From(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_Windows_Storage.IStorageItem2 = try! abi.QueryInterface()
-    return __IMPL_Windows_Storage.IStorageItem2Bridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIStorageItemPropertiesFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_Windows_Storage.IStorageItemProperties = try! abi.QueryInterface()
-    return __IMPL_Windows_Storage.IStorageItemPropertiesBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIStorageItemProperties2From(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_Windows_Storage.IStorageItemProperties2 = try! abi.QueryInterface()
-    return __IMPL_Windows_Storage.IStorageItemProperties2Bridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIStorageItemPropertiesWithProviderFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_Windows_Storage.IStorageItemPropertiesWithProvider = try! abi.QueryInterface()
-    return __IMPL_Windows_Storage.IStorageItemPropertiesWithProviderBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIStreamedFileDataRequestFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_Windows_Storage.IStreamedFileDataRequest = try! abi.QueryInterface()
-    return __IMPL_Windows_Storage.IStreamedFileDataRequestBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIStorageItemExtraPropertiesFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_Windows_Storage_FileProperties.IStorageItemExtraProperties = try! abi.QueryInterface()
-    return __IMPL_Windows_Storage_FileProperties.IStorageItemExtraPropertiesBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIStorageFolderQueryOperationsFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_Windows_Storage_Search.IStorageFolderQueryOperations = try! abi.QueryInterface()
-    return __IMPL_Windows_Storage_Search.IStorageFolderQueryOperationsBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIStorageQueryResultBaseFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_Windows_Storage_Search.IStorageQueryResultBase = try! abi.QueryInterface()
-    return __IMPL_Windows_Storage_Search.IStorageQueryResultBaseBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIBufferFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_Windows_Storage_Streams.IBuffer = try! abi.QueryInterface()
-    return __IMPL_Windows_Storage_Streams.IBufferBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIContentTypeProviderFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_Windows_Storage_Streams.IContentTypeProvider = try! abi.QueryInterface()
-    return __IMPL_Windows_Storage_Streams.IContentTypeProviderBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIInputStreamFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_Windows_Storage_Streams.IInputStream = try! abi.QueryInterface()
-    return __IMPL_Windows_Storage_Streams.IInputStreamBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIInputStreamReferenceFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_Windows_Storage_Streams.IInputStreamReference = try! abi.QueryInterface()
-    return __IMPL_Windows_Storage_Streams.IInputStreamReferenceBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIOutputStreamFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_Windows_Storage_Streams.IOutputStream = try! abi.QueryInterface()
-    return __IMPL_Windows_Storage_Streams.IOutputStreamBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIRandomAccessStreamFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_Windows_Storage_Streams.IRandomAccessStream = try! abi.QueryInterface()
-    return __IMPL_Windows_Storage_Streams.IRandomAccessStreamBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIRandomAccessStreamReferenceFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_Windows_Storage_Streams.IRandomAccessStreamReference = try! abi.QueryInterface()
-    return __IMPL_Windows_Storage_Streams.IRandomAccessStreamReferenceBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIRandomAccessStreamWithContentTypeFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_Windows_Storage_Streams.IRandomAccessStreamWithContentType = try! abi.QueryInterface()
-    return __IMPL_Windows_Storage_Streams.IRandomAccessStreamWithContentTypeBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIArrayScenariosFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_test_component.IArrayScenarios = try! abi.QueryInterface()
-    return __IMPL_test_component.IArrayScenariosBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIAsyncMethodsWithProgressFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_test_component.IAsyncMethodsWithProgress = try! abi.QueryInterface()
-    return __IMPL_test_component.IAsyncMethodsWithProgressBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIAsyncOperationIntFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_test_component.IAsyncOperationInt = try! abi.QueryInterface()
-    return __IMPL_test_component.IAsyncOperationIntBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIBasicFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_test_component.IBasic = try! abi.QueryInterface()
-    return __IMPL_test_component.IBasicBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIIAmImplementableFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_test_component.IIAmImplementable = try! abi.QueryInterface()
-    return __IMPL_test_component.IIAmImplementableBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIInterfaceWithObservableVectorFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_test_component.IInterfaceWithObservableVector = try! abi.QueryInterface()
-    return __IMPL_test_component.IInterfaceWithObservableVectorBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeIReferenceTargetFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_test_component.IReferenceTarget = try! abi.QueryInterface()
-    return __IMPL_test_component.IReferenceTargetBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeISimpleDelegateFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_test_component.ISimpleDelegate = try! abi.QueryInterface()
-    return __IMPL_test_component.ISimpleDelegateBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeInterfaceWithReturnDelegateFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_test_component.InterfaceWithReturnDelegate = try! abi.QueryInterface()
-    return __IMPL_test_component.InterfaceWithReturnDelegateBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeWithIterableGuidsFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_test_component.WithIterableGuids = try! abi.QueryInterface()
-    return __IMPL_test_component.WithIterableGuidsBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeWithKeywordFrom(abi: test_component.IInspectable) -> Any {
-    let swiftAbi: __ABI_test_component.WithKeyword = try! abi.QueryInterface()
-    return __IMPL_test_component.WithKeywordBridge.from(abi: RawPointer(swiftAbi))!
-}
-
-fileprivate func makeDeferralFrom(abi: test_component.IInspectable) -> Any {
-    return Deferral(fromAbi: abi)
-}
-
-fileprivate func makeMemoryBufferFrom(abi: test_component.IInspectable) -> Any {
-    return MemoryBuffer(fromAbi: abi)
-}
-
-fileprivate func makeUriFrom(abi: test_component.IInspectable) -> Any {
-    return Uri(fromAbi: abi)
-}
-
-fileprivate func makeWwwFormUrlDecoderFrom(abi: test_component.IInspectable) -> Any {
-    return WwwFormUrlDecoder(fromAbi: abi)
-}
-
-fileprivate func makePropertySetFrom(abi: test_component.IInspectable) -> Any {
-    return PropertySet(fromAbi: abi)
-}
-
-fileprivate func makeStringMapFrom(abi: test_component.IInspectable) -> Any {
-    return StringMap(fromAbi: abi)
-}
-
-fileprivate func makeValueSetFrom(abi: test_component.IInspectable) -> Any {
-    return ValueSet(fromAbi: abi)
-}
-
-fileprivate func makeStorageFileFrom(abi: test_component.IInspectable) -> Any {
-    return StorageFile(fromAbi: abi)
-}
-
-fileprivate func makeStorageFolderFrom(abi: test_component.IInspectable) -> Any {
-    return StorageFolder(fromAbi: abi)
-}
-
-fileprivate func makeStorageLibraryChangeFrom(abi: test_component.IInspectable) -> Any {
-    return StorageLibraryChange(fromAbi: abi)
-}
-
-fileprivate func makeStorageLibraryChangeReaderFrom(abi: test_component.IInspectable) -> Any {
-    return StorageLibraryChangeReader(fromAbi: abi)
-}
-
-fileprivate func makeStorageLibraryChangeTrackerFrom(abi: test_component.IInspectable) -> Any {
-    return StorageLibraryChangeTracker(fromAbi: abi)
-}
-
-fileprivate func makeStorageProviderFrom(abi: test_component.IInspectable) -> Any {
-    return StorageProvider(fromAbi: abi)
-}
-
-fileprivate func makeStorageStreamTransactionFrom(abi: test_component.IInspectable) -> Any {
-    return StorageStreamTransaction(fromAbi: abi)
-}
-
-fileprivate func makeStreamedFileDataRequestFrom(abi: test_component.IInspectable) -> Any {
-    return StreamedFileDataRequest(fromAbi: abi)
-}
-
-fileprivate func makeBasicPropertiesFrom(abi: test_component.IInspectable) -> Any {
-    return BasicProperties(fromAbi: abi)
-}
-
-fileprivate func makeDocumentPropertiesFrom(abi: test_component.IInspectable) -> Any {
-    return DocumentProperties(fromAbi: abi)
-}
-
-fileprivate func makeImagePropertiesFrom(abi: test_component.IInspectable) -> Any {
-    return ImageProperties(fromAbi: abi)
-}
-
-fileprivate func makeMusicPropertiesFrom(abi: test_component.IInspectable) -> Any {
-    return MusicProperties(fromAbi: abi)
-}
-
-fileprivate func makeStorageItemContentPropertiesFrom(abi: test_component.IInspectable) -> Any {
-    return StorageItemContentProperties(fromAbi: abi)
-}
-
-fileprivate func makeStorageItemThumbnailFrom(abi: test_component.IInspectable) -> Any {
-    return StorageItemThumbnail(fromAbi: abi)
-}
-
-fileprivate func makeVideoPropertiesFrom(abi: test_component.IInspectable) -> Any {
-    return VideoProperties(fromAbi: abi)
-}
-
-fileprivate func makeQueryOptionsFrom(abi: test_component.IInspectable) -> Any {
-    return QueryOptions(fromAbi: abi)
-}
-
-fileprivate func makeStorageFileQueryResultFrom(abi: test_component.IInspectable) -> Any {
-    return StorageFileQueryResult(fromAbi: abi)
-}
-
-fileprivate func makeStorageFolderQueryResultFrom(abi: test_component.IInspectable) -> Any {
-    return StorageFolderQueryResult(fromAbi: abi)
-}
-
-fileprivate func makeStorageItemQueryResultFrom(abi: test_component.IInspectable) -> Any {
-    return StorageItemQueryResult(fromAbi: abi)
-}
-
-fileprivate func makeBufferFrom(abi: test_component.IInspectable) -> Any {
-    return Buffer(fromAbi: abi)
-}
-
-fileprivate func makeAsyncOperationIntFrom(abi: test_component.IInspectable) -> Any {
-    return AsyncOperationInt(fromAbi: abi)
-}
-
-fileprivate func makeBaseFrom(abi: test_component.IInspectable) -> Any {
-    return Base(fromAbi: abi)
-}
-
-fileprivate func makeBaseCollectionFrom(abi: test_component.IInspectable) -> Any {
-    return BaseCollection(fromAbi: abi)
-}
-
-fileprivate func makeBaseMapCollectionFrom(abi: test_component.IInspectable) -> Any {
-    return BaseMapCollection(fromAbi: abi)
-}
-
-fileprivate func makeBaseNoOverridesFrom(abi: test_component.IInspectable) -> Any {
-    return BaseNoOverrides(fromAbi: abi)
-}
-
-fileprivate func makeBaseObservableCollectionFrom(abi: test_component.IInspectable) -> Any {
-    return BaseObservableCollection(fromAbi: abi)
-}
-
-fileprivate func makeClassFrom(abi: test_component.IInspectable) -> Any {
-    return Class(fromAbi: abi)
-}
-
-fileprivate func makeCollectionTesterFrom(abi: test_component.IInspectable) -> Any {
-    return CollectionTester(fromAbi: abi)
-}
-
-fileprivate func makeDeferrableEventArgsFrom(abi: test_component.IInspectable) -> Any {
-    return DeferrableEventArgs(fromAbi: abi)
-}
-
-fileprivate func makeDerivedFrom(abi: test_component.IInspectable) -> Any {
-    return Derived(fromAbi: abi)
-}
-
-fileprivate func makeDerivedFromNoConstructorFrom(abi: test_component.IInspectable) -> Any {
-    return DerivedFromNoConstructor(fromAbi: abi)
-}
-
-fileprivate func makeEventTesterFrom(abi: test_component.IInspectable) -> Any {
-    return EventTester(fromAbi: abi)
-}
-
-fileprivate func makeNoopClosableFrom(abi: test_component.IInspectable) -> Any {
-    return NoopClosable(fromAbi: abi)
-}
-
-fileprivate func makeSimpleFrom(abi: test_component.IInspectable) -> Any {
-    return Simple(fromAbi: abi)
-}
-
-fileprivate func makeUnsealedDerivedFrom(abi: test_component.IInspectable) -> Any {
-    return UnsealedDerived(fromAbi: abi)
-}
-
-fileprivate func makeUnsealedDerived2From(abi: test_component.IInspectable) -> Any {
-    return UnsealedDerived2(fromAbi: abi)
-}
-
-fileprivate func makeUnsealedDerivedFromNoConstructorFrom(abi: test_component.IInspectable) -> Any {
-    return UnsealedDerivedFromNoConstructor(fromAbi: abi)
-}
-
-fileprivate func makeUnsealedDerivedNoConstructorFrom(abi: test_component.IInspectable) -> Any {
-    return UnsealedDerivedNoConstructor(fromAbi: abi)
-}
-
-fileprivate func makeUnsealedDerivedNoOverridesFrom(abi: test_component.IInspectable) -> Any {
-    return UnsealedDerivedNoOverrides(fromAbi: abi)
-}
-
-fileprivate func makeWeakReferencerFrom(abi: test_component.IInspectable) -> Any {
-    return WeakReferencer(fromAbi: abi)
-}
-
-@_spi(__MakeFromAbi_DoNotImport)
-public class __MakeFromAbi: MakeFromAbi {
-    public static func from(typeName: String, abi: test_component.IInspectable) -> Any? {
-        switch typeName {
-            case "IAsyncAction": return makeIAsyncActionFrom(abi: abi)
-            case "IAsyncInfo": return makeIAsyncInfoFrom(abi: abi)
-            case "IClosable": return makeIClosableFrom(abi: abi)
-            case "IMemoryBuffer": return makeIMemoryBufferFrom(abi: abi)
-            case "IMemoryBufferReference": return makeIMemoryBufferReferenceFrom(abi: abi)
-            case "IStringable": return makeIStringableFrom(abi: abi)
-            case "IWwwFormUrlDecoderEntry": return makeIWwwFormUrlDecoderEntryFrom(abi: abi)
-            case "IPropertySet": return makeIPropertySetFrom(abi: abi)
-            case "IVectorChangedEventArgs": return makeIVectorChangedEventArgsFrom(abi: abi)
-            case "IStorageFile": return makeIStorageFileFrom(abi: abi)
-            case "IStorageFile2": return makeIStorageFile2From(abi: abi)
-            case "IStorageFilePropertiesWithAvailability": return makeIStorageFilePropertiesWithAvailabilityFrom(abi: abi)
-            case "IStorageFolder": return makeIStorageFolderFrom(abi: abi)
-            case "IStorageFolder2": return makeIStorageFolder2From(abi: abi)
-            case "IStorageItem": return makeIStorageItemFrom(abi: abi)
-            case "IStorageItem2": return makeIStorageItem2From(abi: abi)
-            case "IStorageItemProperties": return makeIStorageItemPropertiesFrom(abi: abi)
-            case "IStorageItemProperties2": return makeIStorageItemProperties2From(abi: abi)
-            case "IStorageItemPropertiesWithProvider": return makeIStorageItemPropertiesWithProviderFrom(abi: abi)
-            case "IStreamedFileDataRequest": return makeIStreamedFileDataRequestFrom(abi: abi)
-            case "IStorageItemExtraProperties": return makeIStorageItemExtraPropertiesFrom(abi: abi)
-            case "IStorageFolderQueryOperations": return makeIStorageFolderQueryOperationsFrom(abi: abi)
-            case "IStorageQueryResultBase": return makeIStorageQueryResultBaseFrom(abi: abi)
-            case "IBuffer": return makeIBufferFrom(abi: abi)
-            case "IContentTypeProvider": return makeIContentTypeProviderFrom(abi: abi)
-            case "IInputStream": return makeIInputStreamFrom(abi: abi)
-            case "IInputStreamReference": return makeIInputStreamReferenceFrom(abi: abi)
-            case "IOutputStream": return makeIOutputStreamFrom(abi: abi)
-            case "IRandomAccessStream": return makeIRandomAccessStreamFrom(abi: abi)
-            case "IRandomAccessStreamReference": return makeIRandomAccessStreamReferenceFrom(abi: abi)
-            case "IRandomAccessStreamWithContentType": return makeIRandomAccessStreamWithContentTypeFrom(abi: abi)
-            case "IArrayScenarios": return makeIArrayScenariosFrom(abi: abi)
-            case "IAsyncMethodsWithProgress": return makeIAsyncMethodsWithProgressFrom(abi: abi)
-            case "IAsyncOperationInt": return makeIAsyncOperationIntFrom(abi: abi)
-            case "IBasic": return makeIBasicFrom(abi: abi)
-            case "IIAmImplementable": return makeIIAmImplementableFrom(abi: abi)
-            case "IInterfaceWithObservableVector": return makeIInterfaceWithObservableVectorFrom(abi: abi)
-            case "IReferenceTarget": return makeIReferenceTargetFrom(abi: abi)
-            case "ISimpleDelegate": return makeISimpleDelegateFrom(abi: abi)
-            case "InterfaceWithReturnDelegate": return makeInterfaceWithReturnDelegateFrom(abi: abi)
-            case "WithIterableGuids": return makeWithIterableGuidsFrom(abi: abi)
-            case "WithKeyword": return makeWithKeywordFrom(abi: abi)
-            case "Deferral": return makeDeferralFrom(abi: abi)
-            case "MemoryBuffer": return makeMemoryBufferFrom(abi: abi)
-            case "Uri": return makeUriFrom(abi: abi)
-            case "WwwFormUrlDecoder": return makeWwwFormUrlDecoderFrom(abi: abi)
-            case "PropertySet": return makePropertySetFrom(abi: abi)
-            case "StringMap": return makeStringMapFrom(abi: abi)
-            case "ValueSet": return makeValueSetFrom(abi: abi)
-            case "StorageFile": return makeStorageFileFrom(abi: abi)
-            case "StorageFolder": return makeStorageFolderFrom(abi: abi)
-            case "StorageLibraryChange": return makeStorageLibraryChangeFrom(abi: abi)
-            case "StorageLibraryChangeReader": return makeStorageLibraryChangeReaderFrom(abi: abi)
-            case "StorageLibraryChangeTracker": return makeStorageLibraryChangeTrackerFrom(abi: abi)
-            case "StorageProvider": return makeStorageProviderFrom(abi: abi)
-            case "StorageStreamTransaction": return makeStorageStreamTransactionFrom(abi: abi)
-            case "StreamedFileDataRequest": return makeStreamedFileDataRequestFrom(abi: abi)
-            case "BasicProperties": return makeBasicPropertiesFrom(abi: abi)
-            case "DocumentProperties": return makeDocumentPropertiesFrom(abi: abi)
-            case "ImageProperties": return makeImagePropertiesFrom(abi: abi)
-            case "MusicProperties": return makeMusicPropertiesFrom(abi: abi)
-            case "StorageItemContentProperties": return makeStorageItemContentPropertiesFrom(abi: abi)
-            case "StorageItemThumbnail": return makeStorageItemThumbnailFrom(abi: abi)
-            case "VideoProperties": return makeVideoPropertiesFrom(abi: abi)
-            case "QueryOptions": return makeQueryOptionsFrom(abi: abi)
-            case "StorageFileQueryResult": return makeStorageFileQueryResultFrom(abi: abi)
-            case "StorageFolderQueryResult": return makeStorageFolderQueryResultFrom(abi: abi)
-            case "StorageItemQueryResult": return makeStorageItemQueryResultFrom(abi: abi)
-            case "Buffer": return makeBufferFrom(abi: abi)
-            case "AsyncOperationInt": return makeAsyncOperationIntFrom(abi: abi)
-            case "Base": return makeBaseFrom(abi: abi)
-            case "BaseCollection": return makeBaseCollectionFrom(abi: abi)
-            case "BaseMapCollection": return makeBaseMapCollectionFrom(abi: abi)
-            case "BaseNoOverrides": return makeBaseNoOverridesFrom(abi: abi)
-            case "BaseObservableCollection": return makeBaseObservableCollectionFrom(abi: abi)
-            case "Class": return makeClassFrom(abi: abi)
-            case "CollectionTester": return makeCollectionTesterFrom(abi: abi)
-            case "DeferrableEventArgs": return makeDeferrableEventArgsFrom(abi: abi)
-            case "Derived": return makeDerivedFrom(abi: abi)
-            case "DerivedFromNoConstructor": return makeDerivedFromNoConstructorFrom(abi: abi)
-            case "EventTester": return makeEventTesterFrom(abi: abi)
-            case "NoopClosable": return makeNoopClosableFrom(abi: abi)
-            case "Simple": return makeSimpleFrom(abi: abi)
-            case "UnsealedDerived": return makeUnsealedDerivedFrom(abi: abi)
-            case "UnsealedDerived2": return makeUnsealedDerived2From(abi: abi)
-            case "UnsealedDerivedFromNoConstructor": return makeUnsealedDerivedFromNoConstructorFrom(abi: abi)
-            case "UnsealedDerivedNoConstructor": return makeUnsealedDerivedNoConstructorFrom(abi: abi)
-            case "UnsealedDerivedNoOverrides": return makeUnsealedDerivedNoOverridesFrom(abi: abi)
-            case "WeakReferencer": return makeWeakReferencerFrom(abi: abi)
-            default: return nil
-        }
+@_spi(WinRTInternal)
+public class IAsyncActionMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.AnyIAsyncAction
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_Windows_Foundation.IAsyncAction = try! abi.QueryInterface()
+        return __IMPL_Windows_Foundation.IAsyncActionBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IAsyncInfoMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.AnyIAsyncInfo
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_Windows_Foundation.IAsyncInfo = try! abi.QueryInterface()
+        return __IMPL_Windows_Foundation.IAsyncInfoBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IClosableMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.AnyIClosable
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_Windows_Foundation.IClosable = try! abi.QueryInterface()
+        return __IMPL_Windows_Foundation.IClosableBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IMemoryBufferMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.AnyIMemoryBuffer
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_Windows_Foundation.IMemoryBuffer = try! abi.QueryInterface()
+        return __IMPL_Windows_Foundation.IMemoryBufferBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IMemoryBufferReferenceMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.AnyIMemoryBufferReference
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_Windows_Foundation.IMemoryBufferReference = try! abi.QueryInterface()
+        return __IMPL_Windows_Foundation.IMemoryBufferReferenceBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IStringableMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.AnyIStringable
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_Windows_Foundation.IStringable = try! abi.QueryInterface()
+        return __IMPL_Windows_Foundation.IStringableBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IWwwFormUrlDecoderEntryMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.AnyIWwwFormUrlDecoderEntry
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_Windows_Foundation.IWwwFormUrlDecoderEntry = try! abi.QueryInterface()
+        return __IMPL_Windows_Foundation.IWwwFormUrlDecoderEntryBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IPropertySetMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.AnyIPropertySet
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_Windows_Foundation_Collections.IPropertySet = try! abi.QueryInterface()
+        return __IMPL_Windows_Foundation_Collections.IPropertySetBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IVectorChangedEventArgsMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.AnyIVectorChangedEventArgs
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_Windows_Foundation_Collections.IVectorChangedEventArgs = try! abi.QueryInterface()
+        return __IMPL_Windows_Foundation_Collections.IVectorChangedEventArgsBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IStorageFileMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.AnyIStorageFile
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_Windows_Storage.IStorageFile = try! abi.QueryInterface()
+        return __IMPL_Windows_Storage.IStorageFileBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IStorageFile2Maker: MakeFromAbi {
+    public typealias SwiftType = test_component.AnyIStorageFile2
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_Windows_Storage.IStorageFile2 = try! abi.QueryInterface()
+        return __IMPL_Windows_Storage.IStorageFile2Bridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IStorageFilePropertiesWithAvailabilityMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.AnyIStorageFilePropertiesWithAvailability
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_Windows_Storage.IStorageFilePropertiesWithAvailability = try! abi.QueryInterface()
+        return __IMPL_Windows_Storage.IStorageFilePropertiesWithAvailabilityBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IStorageFolderMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.AnyIStorageFolder
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_Windows_Storage.IStorageFolder = try! abi.QueryInterface()
+        return __IMPL_Windows_Storage.IStorageFolderBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IStorageFolder2Maker: MakeFromAbi {
+    public typealias SwiftType = test_component.AnyIStorageFolder2
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_Windows_Storage.IStorageFolder2 = try! abi.QueryInterface()
+        return __IMPL_Windows_Storage.IStorageFolder2Bridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IStorageItemMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.AnyIStorageItem
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_Windows_Storage.IStorageItem = try! abi.QueryInterface()
+        return __IMPL_Windows_Storage.IStorageItemBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IStorageItem2Maker: MakeFromAbi {
+    public typealias SwiftType = test_component.AnyIStorageItem2
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_Windows_Storage.IStorageItem2 = try! abi.QueryInterface()
+        return __IMPL_Windows_Storage.IStorageItem2Bridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IStorageItemPropertiesMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.AnyIStorageItemProperties
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_Windows_Storage.IStorageItemProperties = try! abi.QueryInterface()
+        return __IMPL_Windows_Storage.IStorageItemPropertiesBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IStorageItemProperties2Maker: MakeFromAbi {
+    public typealias SwiftType = test_component.AnyIStorageItemProperties2
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_Windows_Storage.IStorageItemProperties2 = try! abi.QueryInterface()
+        return __IMPL_Windows_Storage.IStorageItemProperties2Bridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IStorageItemPropertiesWithProviderMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.AnyIStorageItemPropertiesWithProvider
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_Windows_Storage.IStorageItemPropertiesWithProvider = try! abi.QueryInterface()
+        return __IMPL_Windows_Storage.IStorageItemPropertiesWithProviderBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IStreamedFileDataRequestMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.AnyIStreamedFileDataRequest
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_Windows_Storage.IStreamedFileDataRequest = try! abi.QueryInterface()
+        return __IMPL_Windows_Storage.IStreamedFileDataRequestBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IStorageItemExtraPropertiesMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.AnyIStorageItemExtraProperties
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_Windows_Storage_FileProperties.IStorageItemExtraProperties = try! abi.QueryInterface()
+        return __IMPL_Windows_Storage_FileProperties.IStorageItemExtraPropertiesBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IStorageFolderQueryOperationsMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.AnyIStorageFolderQueryOperations
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_Windows_Storage_Search.IStorageFolderQueryOperations = try! abi.QueryInterface()
+        return __IMPL_Windows_Storage_Search.IStorageFolderQueryOperationsBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IStorageQueryResultBaseMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.AnyIStorageQueryResultBase
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_Windows_Storage_Search.IStorageQueryResultBase = try! abi.QueryInterface()
+        return __IMPL_Windows_Storage_Search.IStorageQueryResultBaseBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IBufferMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.AnyIBuffer
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_Windows_Storage_Streams.IBuffer = try! abi.QueryInterface()
+        return __IMPL_Windows_Storage_Streams.IBufferBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IContentTypeProviderMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.AnyIContentTypeProvider
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_Windows_Storage_Streams.IContentTypeProvider = try! abi.QueryInterface()
+        return __IMPL_Windows_Storage_Streams.IContentTypeProviderBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IInputStreamMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.AnyIInputStream
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_Windows_Storage_Streams.IInputStream = try! abi.QueryInterface()
+        return __IMPL_Windows_Storage_Streams.IInputStreamBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IInputStreamReferenceMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.AnyIInputStreamReference
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_Windows_Storage_Streams.IInputStreamReference = try! abi.QueryInterface()
+        return __IMPL_Windows_Storage_Streams.IInputStreamReferenceBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IOutputStreamMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.AnyIOutputStream
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_Windows_Storage_Streams.IOutputStream = try! abi.QueryInterface()
+        return __IMPL_Windows_Storage_Streams.IOutputStreamBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IRandomAccessStreamMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.AnyIRandomAccessStream
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_Windows_Storage_Streams.IRandomAccessStream = try! abi.QueryInterface()
+        return __IMPL_Windows_Storage_Streams.IRandomAccessStreamBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IRandomAccessStreamReferenceMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.AnyIRandomAccessStreamReference
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_Windows_Storage_Streams.IRandomAccessStreamReference = try! abi.QueryInterface()
+        return __IMPL_Windows_Storage_Streams.IRandomAccessStreamReferenceBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IRandomAccessStreamWithContentTypeMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.AnyIRandomAccessStreamWithContentType
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_Windows_Storage_Streams.IRandomAccessStreamWithContentType = try! abi.QueryInterface()
+        return __IMPL_Windows_Storage_Streams.IRandomAccessStreamWithContentTypeBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IArrayScenariosMaker: MakeFromAbi {
+    public typealias SwiftType = AnyIArrayScenarios
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_test_component.IArrayScenarios = try! abi.QueryInterface()
+        return __IMPL_test_component.IArrayScenariosBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IAsyncMethodsWithProgressMaker: MakeFromAbi {
+    public typealias SwiftType = AnyIAsyncMethodsWithProgress
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_test_component.IAsyncMethodsWithProgress = try! abi.QueryInterface()
+        return __IMPL_test_component.IAsyncMethodsWithProgressBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IAsyncOperationIntMaker: MakeFromAbi {
+    public typealias SwiftType = AnyIAsyncOperationInt
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_test_component.IAsyncOperationInt = try! abi.QueryInterface()
+        return __IMPL_test_component.IAsyncOperationIntBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IBasicMaker: MakeFromAbi {
+    public typealias SwiftType = AnyIBasic
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_test_component.IBasic = try! abi.QueryInterface()
+        return __IMPL_test_component.IBasicBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IIAmImplementableMaker: MakeFromAbi {
+    public typealias SwiftType = AnyIIAmImplementable
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_test_component.IIAmImplementable = try! abi.QueryInterface()
+        return __IMPL_test_component.IIAmImplementableBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IInterfaceWithObservableVectorMaker: MakeFromAbi {
+    public typealias SwiftType = AnyIInterfaceWithObservableVector
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_test_component.IInterfaceWithObservableVector = try! abi.QueryInterface()
+        return __IMPL_test_component.IInterfaceWithObservableVectorBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class IReferenceTargetMaker: MakeFromAbi {
+    public typealias SwiftType = AnyIReferenceTarget
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_test_component.IReferenceTarget = try! abi.QueryInterface()
+        return __IMPL_test_component.IReferenceTargetBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class ISimpleDelegateMaker: MakeFromAbi {
+    public typealias SwiftType = AnyISimpleDelegate
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_test_component.ISimpleDelegate = try! abi.QueryInterface()
+        return __IMPL_test_component.ISimpleDelegateBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class InterfaceWithReturnDelegateMaker: MakeFromAbi {
+    public typealias SwiftType = AnyInterfaceWithReturnDelegate
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_test_component.InterfaceWithReturnDelegate = try! abi.QueryInterface()
+        return __IMPL_test_component.InterfaceWithReturnDelegateBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class WithIterableGuidsMaker: MakeFromAbi {
+    public typealias SwiftType = AnyWithIterableGuids
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_test_component.WithIterableGuids = try! abi.QueryInterface()
+        return __IMPL_test_component.WithIterableGuidsBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class WithKeywordMaker: MakeFromAbi {
+    public typealias SwiftType = AnyWithKeyword
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        let swiftAbi: __ABI_test_component.WithKeyword = try! abi.QueryInterface()
+        return __IMPL_test_component.WithKeywordBridge.from(abi: RawPointer(swiftAbi))
+    }
+}
+@_spi(WinRTInternal)
+public class DeferralMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.Deferral
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return Deferral(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class MemoryBufferMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.MemoryBuffer
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return MemoryBuffer(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class UriMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.Uri
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return Uri(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class WwwFormUrlDecoderMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.WwwFormUrlDecoder
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return WwwFormUrlDecoder(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class PropertySetMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.PropertySet
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return PropertySet(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class StringMapMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.StringMap
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return StringMap(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class ValueSetMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.ValueSet
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return ValueSet(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class StorageFileMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.StorageFile
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return StorageFile(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class StorageFolderMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.StorageFolder
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return StorageFolder(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class StorageLibraryChangeMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.StorageLibraryChange
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return StorageLibraryChange(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class StorageLibraryChangeReaderMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.StorageLibraryChangeReader
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return StorageLibraryChangeReader(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class StorageLibraryChangeTrackerMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.StorageLibraryChangeTracker
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return StorageLibraryChangeTracker(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class StorageProviderMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.StorageProvider
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return StorageProvider(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class StorageStreamTransactionMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.StorageStreamTransaction
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return StorageStreamTransaction(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class StreamedFileDataRequestMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.StreamedFileDataRequest
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return StreamedFileDataRequest(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class BasicPropertiesMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.BasicProperties
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return BasicProperties(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class DocumentPropertiesMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.DocumentProperties
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return DocumentProperties(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class ImagePropertiesMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.ImageProperties
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return ImageProperties(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class MusicPropertiesMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.MusicProperties
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return MusicProperties(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class StorageItemContentPropertiesMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.StorageItemContentProperties
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return StorageItemContentProperties(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class StorageItemThumbnailMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.StorageItemThumbnail
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return StorageItemThumbnail(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class VideoPropertiesMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.VideoProperties
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return VideoProperties(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class QueryOptionsMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.QueryOptions
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return QueryOptions(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class StorageFileQueryResultMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.StorageFileQueryResult
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return StorageFileQueryResult(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class StorageFolderQueryResultMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.StorageFolderQueryResult
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return StorageFolderQueryResult(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class StorageItemQueryResultMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.StorageItemQueryResult
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return StorageItemQueryResult(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class BufferMaker: MakeFromAbi {
+    public typealias SwiftType = test_component.Buffer
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return Buffer(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class AsyncOperationIntMaker: MakeFromAbi {
+    public typealias SwiftType = AsyncOperationInt
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return AsyncOperationInt(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class BaseMaker: MakeFromAbi {
+    public typealias SwiftType = Base
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return Base(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class BaseCollectionMaker: MakeFromAbi {
+    public typealias SwiftType = BaseCollection
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return BaseCollection(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class BaseMapCollectionMaker: MakeFromAbi {
+    public typealias SwiftType = BaseMapCollection
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return BaseMapCollection(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class BaseNoOverridesMaker: MakeFromAbi {
+    public typealias SwiftType = BaseNoOverrides
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return BaseNoOverrides(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class BaseObservableCollectionMaker: MakeFromAbi {
+    public typealias SwiftType = BaseObservableCollection
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return BaseObservableCollection(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class ClassMaker: MakeFromAbi {
+    public typealias SwiftType = Class
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return Class(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class CollectionTesterMaker: MakeFromAbi {
+    public typealias SwiftType = CollectionTester
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return CollectionTester(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class DeferrableEventArgsMaker: MakeFromAbi {
+    public typealias SwiftType = DeferrableEventArgs
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return DeferrableEventArgs(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class DerivedMaker: MakeFromAbi {
+    public typealias SwiftType = Derived
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return Derived(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class DerivedFromNoConstructorMaker: MakeFromAbi {
+    public typealias SwiftType = DerivedFromNoConstructor
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return DerivedFromNoConstructor(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class EventTesterMaker: MakeFromAbi {
+    public typealias SwiftType = EventTester
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return EventTester(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class NoopClosableMaker: MakeFromAbi {
+    public typealias SwiftType = NoopClosable
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return NoopClosable(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class SimpleMaker: MakeFromAbi {
+    public typealias SwiftType = Simple
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return Simple(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class UnsealedDerivedMaker: MakeFromAbi {
+    public typealias SwiftType = UnsealedDerived
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return UnsealedDerived(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class UnsealedDerived2Maker: MakeFromAbi {
+    public typealias SwiftType = UnsealedDerived2
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return UnsealedDerived2(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class UnsealedDerivedFromNoConstructorMaker: MakeFromAbi {
+    public typealias SwiftType = UnsealedDerivedFromNoConstructor
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return UnsealedDerivedFromNoConstructor(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class UnsealedDerivedNoConstructorMaker: MakeFromAbi {
+    public typealias SwiftType = UnsealedDerivedNoConstructor
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return UnsealedDerivedNoConstructor(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class UnsealedDerivedNoOverridesMaker: MakeFromAbi {
+    public typealias SwiftType = UnsealedDerivedNoOverrides
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return UnsealedDerivedNoOverrides(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class WeakReferencerMaker: MakeFromAbi {
+    public typealias SwiftType = WeakReferencer
+    public static func from(abi: test_component.IInspectable) -> SwiftType? {
+        return WeakReferencer(fromAbi: abi)
     }
 }
