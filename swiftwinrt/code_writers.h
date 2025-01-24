@@ -1213,7 +1213,7 @@ bind_bridge_fullname(type));
         {
             fromAbi = w.write_temp("let swiftAbi: %.% = try! abi.QueryInterface()\n", abi_namespace(type),
                 type.swift_type_name());
-            fromAbi += w.write_temp("        return %.from(abi: RawPointer(swiftAbi))", bind_bridge_fullname(type));
+            fromAbi += w.write_temp("        return %.from(abi: RawPointer(swiftAbi))!", bind_bridge_fullname(type));
             swiftType = w.write_temp("%", bind<write_swift_interface_existential_identifier>(type));
         }
         else if (is_class(&type))
@@ -1229,7 +1229,7 @@ bind_bridge_fullname(type));
         w.write(R"(^@_spi(WinRTInternal)
 public class %Maker: MakeFromAbi {
     public typealias SwiftType = %
-    public static func from(abi: %.IInspectable) -> SwiftType? {
+    public static func from(abi: %.IInspectable) -> SwiftType {
         %
     }
 }

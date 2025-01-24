@@ -5,7 +5,7 @@ import Foundation
 // simples than we want
 public protocol MakeFromAbi {
     associatedtype SwiftType
-    static func from(abi: SUPPORT_MODULE.IInspectable) -> SwiftType?
+    static func from(abi: SUPPORT_MODULE.IInspectable) -> SwiftType
 }
 
 func make(typeName: SwiftTypeName, from abi: SUPPORT_MODULE.IInspectable) -> Any? {
