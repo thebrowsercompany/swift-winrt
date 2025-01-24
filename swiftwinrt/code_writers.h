@@ -1203,31 +1203,37 @@ bind_bridge_fullname(type));
         return true;
     }
 
-    static void write_make_from_abi_case(writer& w, metadata_type const& type)
-    {
-        if (skip_write_from_abi(w, type)) return;
-        w.write("case \"%\": return make%From(abi: abi)\n", type.swift_type_name(), type.swift_type_name());
-    }
-
     static void write_make_from_abi(writer& w, metadata_type const& type)
     {
         if (skip_write_from_abi(w, type)) return;
 
-        w.write("fileprivate func make%From(abi: %.IInspectable) -> Any {\n", type.swift_type_name(), w.support);
-
+        std::string fromAbi;
+        std::string swiftType;
         if (is_interface(type))
         {
-            auto indent = w.push_indent();
-            w.write("let swiftAbi: %.% = try! abi.QueryInterface()\n", abi_namespace(type),
+            fromAbi = w.write_temp("let swiftAbi: %.% = try! abi.QueryInterface()\n", abi_namespace(type),
                 type.swift_type_name());
-            w.write("return %.from(abi: RawPointer(swiftAbi))!\n", bind_bridge_fullname(type));
+            fromAbi += w.write_temp("        return %.from(abi: RawPointer(swiftAbi))!", bind_bridge_fullname(type));
+            swiftType = w.write_temp("%", bind<write_swift_interface_existential_identifier>(type));
         }
         else if (is_class(&type))
         {
-            auto indent = w.push_indent();
-            w.write("return %(fromAbi: abi)\n", type.swift_type_name());
+            fromAbi = w.write_temp("return %(fromAbi: abi)", type.swift_type_name());
+            swiftType = w.write_temp("%", bind<write_swift_type_identifier>(type));
         }
-        w.write("}\n\n");
+        else
+        {
+            throw std::exception("Invalid type for MakeFromAbi");
+        }
+
+        w.write(R"(^@_spi(WinRTInternal)
+public class %Maker: MakeFromAbi {
+    public typealias SwiftType = %
+    public static func from(abi: %.IInspectable) -> SwiftType {
+        %
+    }
+}
+)", type.swift_type_name(), swiftType, w.support, fromAbi);
     }
 
     static void write_interface_bridge(writer& w, metadata_type const& type)

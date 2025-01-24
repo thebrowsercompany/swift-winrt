@@ -410,3 +410,74 @@ public enum __IMPL_Windows_Storage_Streams {
     }
 
 }
+@_spi(WinRTInternal)
+public class IBufferMaker: MakeFromAbi {
+    public typealias SwiftType = AnyIBuffer
+    public static func from(abi: test_component.IInspectable) -> SwiftType {
+        let swiftAbi: __ABI_Windows_Storage_Streams.IBuffer = try! abi.QueryInterface()
+        return __IMPL_Windows_Storage_Streams.IBufferBridge.from(abi: RawPointer(swiftAbi))!
+    }
+}
+@_spi(WinRTInternal)
+public class IContentTypeProviderMaker: MakeFromAbi {
+    public typealias SwiftType = AnyIContentTypeProvider
+    public static func from(abi: test_component.IInspectable) -> SwiftType {
+        let swiftAbi: __ABI_Windows_Storage_Streams.IContentTypeProvider = try! abi.QueryInterface()
+        return __IMPL_Windows_Storage_Streams.IContentTypeProviderBridge.from(abi: RawPointer(swiftAbi))!
+    }
+}
+@_spi(WinRTInternal)
+public class IInputStreamMaker: MakeFromAbi {
+    public typealias SwiftType = AnyIInputStream
+    public static func from(abi: test_component.IInspectable) -> SwiftType {
+        let swiftAbi: __ABI_Windows_Storage_Streams.IInputStream = try! abi.QueryInterface()
+        return __IMPL_Windows_Storage_Streams.IInputStreamBridge.from(abi: RawPointer(swiftAbi))!
+    }
+}
+@_spi(WinRTInternal)
+public class IInputStreamReferenceMaker: MakeFromAbi {
+    public typealias SwiftType = AnyIInputStreamReference
+    public static func from(abi: test_component.IInspectable) -> SwiftType {
+        let swiftAbi: __ABI_Windows_Storage_Streams.IInputStreamReference = try! abi.QueryInterface()
+        return __IMPL_Windows_Storage_Streams.IInputStreamReferenceBridge.from(abi: RawPointer(swiftAbi))!
+    }
+}
+@_spi(WinRTInternal)
+public class IOutputStreamMaker: MakeFromAbi {
+    public typealias SwiftType = AnyIOutputStream
+    public static func from(abi: test_component.IInspectable) -> SwiftType {
+        let swiftAbi: __ABI_Windows_Storage_Streams.IOutputStream = try! abi.QueryInterface()
+        return __IMPL_Windows_Storage_Streams.IOutputStreamBridge.from(abi: RawPointer(swiftAbi))!
+    }
+}
+@_spi(WinRTInternal)
+public class IRandomAccessStreamMaker: MakeFromAbi {
+    public typealias SwiftType = AnyIRandomAccessStream
+    public static func from(abi: test_component.IInspectable) -> SwiftType {
+        let swiftAbi: __ABI_Windows_Storage_Streams.IRandomAccessStream = try! abi.QueryInterface()
+        return __IMPL_Windows_Storage_Streams.IRandomAccessStreamBridge.from(abi: RawPointer(swiftAbi))!
+    }
+}
+@_spi(WinRTInternal)
+public class IRandomAccessStreamReferenceMaker: MakeFromAbi {
+    public typealias SwiftType = AnyIRandomAccessStreamReference
+    public static func from(abi: test_component.IInspectable) -> SwiftType {
+        let swiftAbi: __ABI_Windows_Storage_Streams.IRandomAccessStreamReference = try! abi.QueryInterface()
+        return __IMPL_Windows_Storage_Streams.IRandomAccessStreamReferenceBridge.from(abi: RawPointer(swiftAbi))!
+    }
+}
+@_spi(WinRTInternal)
+public class IRandomAccessStreamWithContentTypeMaker: MakeFromAbi {
+    public typealias SwiftType = AnyIRandomAccessStreamWithContentType
+    public static func from(abi: test_component.IInspectable) -> SwiftType {
+        let swiftAbi: __ABI_Windows_Storage_Streams.IRandomAccessStreamWithContentType = try! abi.QueryInterface()
+        return __IMPL_Windows_Storage_Streams.IRandomAccessStreamWithContentTypeBridge.from(abi: RawPointer(swiftAbi))!
+    }
+}
+@_spi(WinRTInternal)
+public class BufferMaker: MakeFromAbi {
+    public typealias SwiftType = Buffer
+    public static func from(abi: test_component.IInspectable) -> SwiftType {
+        return Buffer(fromAbi: abi)
+    }
+}

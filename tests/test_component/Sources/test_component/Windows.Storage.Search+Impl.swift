@@ -239,3 +239,47 @@ extension SortEntry: WinRTBridgeable {
     }
 }
 
+@_spi(WinRTInternal)
+public class IStorageFolderQueryOperationsMaker: MakeFromAbi {
+    public typealias SwiftType = AnyIStorageFolderQueryOperations
+    public static func from(abi: test_component.IInspectable) -> SwiftType {
+        let swiftAbi: __ABI_Windows_Storage_Search.IStorageFolderQueryOperations = try! abi.QueryInterface()
+        return __IMPL_Windows_Storage_Search.IStorageFolderQueryOperationsBridge.from(abi: RawPointer(swiftAbi))!
+    }
+}
+@_spi(WinRTInternal)
+public class IStorageQueryResultBaseMaker: MakeFromAbi {
+    public typealias SwiftType = AnyIStorageQueryResultBase
+    public static func from(abi: test_component.IInspectable) -> SwiftType {
+        let swiftAbi: __ABI_Windows_Storage_Search.IStorageQueryResultBase = try! abi.QueryInterface()
+        return __IMPL_Windows_Storage_Search.IStorageQueryResultBaseBridge.from(abi: RawPointer(swiftAbi))!
+    }
+}
+@_spi(WinRTInternal)
+public class QueryOptionsMaker: MakeFromAbi {
+    public typealias SwiftType = QueryOptions
+    public static func from(abi: test_component.IInspectable) -> SwiftType {
+        return QueryOptions(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class StorageFileQueryResultMaker: MakeFromAbi {
+    public typealias SwiftType = StorageFileQueryResult
+    public static func from(abi: test_component.IInspectable) -> SwiftType {
+        return StorageFileQueryResult(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class StorageFolderQueryResultMaker: MakeFromAbi {
+    public typealias SwiftType = StorageFolderQueryResult
+    public static func from(abi: test_component.IInspectable) -> SwiftType {
+        return StorageFolderQueryResult(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class StorageItemQueryResultMaker: MakeFromAbi {
+    public typealias SwiftType = StorageItemQueryResult
+    public static func from(abi: test_component.IInspectable) -> SwiftType {
+        return StorageItemQueryResult(fromAbi: abi)
+    }
+}

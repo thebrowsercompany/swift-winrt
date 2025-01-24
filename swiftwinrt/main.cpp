@@ -363,7 +363,6 @@ Where <spec> is one or more of:
                             // amount of code that is generated.
                             auto types = mdCache.compile_namespaces(namespaces, mf);
                             write_module_generics(module, types, mf);
-                            write_module_make_from_abi(module, types, mf);
                         });
 
                         if (module == settings.support)

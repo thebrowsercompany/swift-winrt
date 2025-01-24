@@ -4,14 +4,15 @@ import Foundation
 // when we cast to `any MakeFromAbi`, plus that requires a lot more exported
 // simples than we want
 public protocol MakeFromAbi {
-    static func from(typeName: String, abi: SUPPORT_MODULE.IInspectable) -> Any?
+    associatedtype SwiftType
+    static func from(abi: SUPPORT_MODULE.IInspectable) -> SwiftType
 }
 
 func make(typeName: SwiftTypeName, from abi: SUPPORT_MODULE.IInspectable) -> Any? {
-    guard let makerType = NSClassFromString("\(typeName.module).__MakeFromAbi") as? any MakeFromAbi.Type else {
+    guard let makerType = NSClassFromString("\(typeName.module).\(typeName.typeName)Maker") as? any MakeFromAbi.Type else {
         return nil
     }
-    return makerType.from(typeName: typeName.typeName, abi: abi)
+    return makerType.from(abi: abi)
 }
 
 func makeFrom(abi: SUPPORT_MODULE.IInspectable) -> Any? {

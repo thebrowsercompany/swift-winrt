@@ -547,3 +547,87 @@ extension TimeSpan: WinRTBridgeable {
     }
 }
 
+@_spi(WinRTInternal)
+public class IAsyncActionMaker: MakeFromAbi {
+    public typealias SwiftType = AnyIAsyncAction
+    public static func from(abi: test_component.IInspectable) -> SwiftType {
+        let swiftAbi: __ABI_Windows_Foundation.IAsyncAction = try! abi.QueryInterface()
+        return __IMPL_Windows_Foundation.IAsyncActionBridge.from(abi: RawPointer(swiftAbi))!
+    }
+}
+@_spi(WinRTInternal)
+public class IAsyncInfoMaker: MakeFromAbi {
+    public typealias SwiftType = AnyIAsyncInfo
+    public static func from(abi: test_component.IInspectable) -> SwiftType {
+        let swiftAbi: __ABI_Windows_Foundation.IAsyncInfo = try! abi.QueryInterface()
+        return __IMPL_Windows_Foundation.IAsyncInfoBridge.from(abi: RawPointer(swiftAbi))!
+    }
+}
+@_spi(WinRTInternal)
+public class IClosableMaker: MakeFromAbi {
+    public typealias SwiftType = AnyIClosable
+    public static func from(abi: test_component.IInspectable) -> SwiftType {
+        let swiftAbi: __ABI_Windows_Foundation.IClosable = try! abi.QueryInterface()
+        return __IMPL_Windows_Foundation.IClosableBridge.from(abi: RawPointer(swiftAbi))!
+    }
+}
+@_spi(WinRTInternal)
+public class IMemoryBufferMaker: MakeFromAbi {
+    public typealias SwiftType = AnyIMemoryBuffer
+    public static func from(abi: test_component.IInspectable) -> SwiftType {
+        let swiftAbi: __ABI_Windows_Foundation.IMemoryBuffer = try! abi.QueryInterface()
+        return __IMPL_Windows_Foundation.IMemoryBufferBridge.from(abi: RawPointer(swiftAbi))!
+    }
+}
+@_spi(WinRTInternal)
+public class IMemoryBufferReferenceMaker: MakeFromAbi {
+    public typealias SwiftType = AnyIMemoryBufferReference
+    public static func from(abi: test_component.IInspectable) -> SwiftType {
+        let swiftAbi: __ABI_Windows_Foundation.IMemoryBufferReference = try! abi.QueryInterface()
+        return __IMPL_Windows_Foundation.IMemoryBufferReferenceBridge.from(abi: RawPointer(swiftAbi))!
+    }
+}
+@_spi(WinRTInternal)
+public class IStringableMaker: MakeFromAbi {
+    public typealias SwiftType = AnyIStringable
+    public static func from(abi: test_component.IInspectable) -> SwiftType {
+        let swiftAbi: __ABI_Windows_Foundation.IStringable = try! abi.QueryInterface()
+        return __IMPL_Windows_Foundation.IStringableBridge.from(abi: RawPointer(swiftAbi))!
+    }
+}
+@_spi(WinRTInternal)
+public class IWwwFormUrlDecoderEntryMaker: MakeFromAbi {
+    public typealias SwiftType = AnyIWwwFormUrlDecoderEntry
+    public static func from(abi: test_component.IInspectable) -> SwiftType {
+        let swiftAbi: __ABI_Windows_Foundation.IWwwFormUrlDecoderEntry = try! abi.QueryInterface()
+        return __IMPL_Windows_Foundation.IWwwFormUrlDecoderEntryBridge.from(abi: RawPointer(swiftAbi))!
+    }
+}
+@_spi(WinRTInternal)
+public class DeferralMaker: MakeFromAbi {
+    public typealias SwiftType = Deferral
+    public static func from(abi: test_component.IInspectable) -> SwiftType {
+        return Deferral(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class MemoryBufferMaker: MakeFromAbi {
+    public typealias SwiftType = MemoryBuffer
+    public static func from(abi: test_component.IInspectable) -> SwiftType {
+        return MemoryBuffer(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class UriMaker: MakeFromAbi {
+    public typealias SwiftType = Uri
+    public static func from(abi: test_component.IInspectable) -> SwiftType {
+        return Uri(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class WwwFormUrlDecoderMaker: MakeFromAbi {
+    public typealias SwiftType = WwwFormUrlDecoder
+    public static func from(abi: test_component.IInspectable) -> SwiftType {
+        return WwwFormUrlDecoder(fromAbi: abi)
+    }
+}
