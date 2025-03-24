@@ -15,11 +15,19 @@ runs:
       arch: amd64
       winsdk: "10.0.22621.0" # GitHub runners have 10.0.26100.0 which regresses Swift's ucrt module
 
-  - name: Install Swift
-    uses: compnerd/gha-setup-swift@b6c5fc1ed5b5439ada8e7661985acb09ad8c3ba2 # main as of 2024-11-12
+  - name: Install private Swift toolchain
+    uses: compnerd/gha-setup-swift@81f383b35a86e6e966de139be25b451d4f7dd953
     with:
-      branch: swift-6.0-release
-      tag: 6.0-RELEASE
+      github-repo: thebrowsercompany/swift-build
+      github-token: ${{ inputs.GITHUB_TOKEN }}
+      release-tag-name: 20231025.2
+      release-asset-name: installer-amd64.exe
+
+#  - name: Install Swift
+#    uses: compnerd/gha-setup-swift@b6c5fc1ed5b5439ada8e7661985acb09ad8c3ba2 # main as of 2024-11-12
+#    with:
+#      branch: swift-6.0-release
+#      tag: 6.0-RELEASE
 
   - name: Configure CMake
     shell: cmd
