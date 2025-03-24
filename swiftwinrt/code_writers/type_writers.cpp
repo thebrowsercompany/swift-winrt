@@ -324,12 +324,12 @@ void swiftwinrt::write_default_init_assignment(writer& w, metadata_type const& s
     }
 }
 
-write_type_params swiftwinrt::swift_write_type_params_for(metadata_type const& type)
+write_type_params swiftwinrt::swift_write_type_params_for(metadata_type const& type, bool is_array)
 {
     // When implementing a generic interface,
     // we cannot use implicit unwrapping, because of Swift limitations:
     // typename Element must be Base? and not Base!,
     // and declaring GetAt(_: UInt32) -> Base! would not bind to GetAt(_: UInt32) -> Element.
-    auto is_generic = is_generic_def(type) || is_generic_inst(type);
+    auto is_generic = is_generic_def(type) || is_generic_inst(type) ||  is_array;
     return is_generic ? write_type_params::swift : write_type_params::swift_allow_implicit_unwrap;
 }

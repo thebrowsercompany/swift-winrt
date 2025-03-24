@@ -58,4 +58,9 @@ namespace test_component
         void InAndRefNonBlittable(Int32[] value, ref Boolean[] results);
         Int32[] InAndReturn(Int32[] value);
     }
+
+    interface IArrayShouldBuild
+    {
+        IArrayScenarios[] Scenarios { get; };
+    }
 }

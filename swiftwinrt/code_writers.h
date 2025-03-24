@@ -1445,11 +1445,8 @@ vtable);
             {
                 if (!can_write(w, prop)) continue;
                 auto full_type_name = w.push_full_type_names(true);
-                auto propertyType = w.write_temp("%", bind<write_type>(*prop.getter->return_type->type, swift_write_type_params_for(type)));
-                if (prop.is_array())
-                {
-                    propertyType = w.write_temp("[%]", propertyType);
-                }
+                auto format = prop.is_array() ? "[%]" : "%";
+                auto propertyType = w.write_temp(format, bind<write_type>(*prop.getter->return_type->type, swift_write_type_params_for(type, prop.is_array())));
                 write_documentation_comment(w, type, prop.def.Name());
                 w.write("var %: % { get% }\n",
                     get_swift_name(prop),
@@ -2367,11 +2364,8 @@ public init<Composable: ComposableImpl>(
 
         if (prop.getter)
         {
-            auto propertyType = w.write_temp("%", bind<write_type>(*prop.getter->return_type->type, swift_write_type_params_for(*iface.type)));
-            if (prop.is_array())
-            {
-                propertyType = w.write_temp("[%]", propertyType);
-            }
+            auto format = prop.is_array() ? "[%]" : "%";
+            auto propertyType = w.write_temp(format, bind<write_type>(*prop.getter->return_type->type, swift_write_type_params_for(*iface.type, prop.is_array())));
             w.write("%var % : % {\n",
                 modifier_for(type_definition, iface),
                 get_swift_name(prop),
