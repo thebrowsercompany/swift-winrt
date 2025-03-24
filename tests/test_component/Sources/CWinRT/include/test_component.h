@@ -42,6 +42,12 @@ typedef interface __x_ABI_Ctest__component_CIVoidToVoidDelegate __x_ABI_Ctest__c
 
 #endif // ____x_ABI_Ctest__component_CIArrayScenarios_FWD_DEFINED__
 
+#ifndef ____x_ABI_Ctest__component_CIArrayShouldBuild_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CIArrayShouldBuild_FWD_DEFINED__
+    typedef interface __x_ABI_Ctest__component_CIArrayShouldBuild __x_ABI_Ctest__component_CIArrayShouldBuild;
+
+#endif // ____x_ABI_Ctest__component_CIArrayShouldBuild_FWD_DEFINED__
+
 #ifndef ____x_ABI_Ctest__component_CIAsyncMethodsStatics_FWD_DEFINED__
 #define ____x_ABI_Ctest__component_CIAsyncMethodsStatics_FWD_DEFINED__
     typedef interface __x_ABI_Ctest__component_CIAsyncMethodsStatics __x_ABI_Ctest__component_CIAsyncMethodsStatics;
@@ -2859,6 +2865,40 @@ struct __x_ABI_Ctest__component_CStructWithIReference
     
     EXTERN_C const IID IID___x_ABI_Ctest__component_CIArrayScenarios;
 #endif /* !defined(____x_ABI_Ctest__component_CIArrayScenarios_INTERFACE_DEFINED__) */
+    
+#if !defined(____x_ABI_Ctest__component_CIArrayShouldBuild_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CIArrayShouldBuild_INTERFACE_DEFINED__
+    typedef struct __x_ABI_Ctest__component_CIArrayShouldBuildVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CIArrayShouldBuild* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CIArrayShouldBuild* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CIArrayShouldBuild* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_Ctest__component_CIArrayShouldBuild* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_Ctest__component_CIArrayShouldBuild* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CIArrayShouldBuild* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* get_Scenarios)(__x_ABI_Ctest__component_CIArrayShouldBuild* This,
+        UINT32* valueLength,
+        __x_ABI_Ctest__component_CIArrayScenarios*** value);
+
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CIArrayShouldBuildVtbl;
+
+    interface __x_ABI_Ctest__component_CIArrayShouldBuild
+    {
+        CONST_VTBL struct __x_ABI_Ctest__component_CIArrayShouldBuildVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CIArrayShouldBuild;
+#endif /* !defined(____x_ABI_Ctest__component_CIArrayShouldBuild_INTERFACE_DEFINED__) */
     
 #if !defined(____x_ABI_Ctest__component_CIAsyncMethodsStatics_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIAsyncMethodsStatics_INTERFACE_DEFINED__

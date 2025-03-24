@@ -11,6 +11,10 @@ private var IID___x_ABI_Ctest__component_CIArrayScenarios: test_component.IID {
     .init(Data1: 0x56558D36, Data2: 0xC35F, Data3: 0x5624, Data4: ( 0xB3,0xB1,0xF3,0xF3,0x65,0x26,0x57,0xA3 ))// 56558D36-C35F-5624-B3B1-F3F3652657A3
 }
 
+private var IID___x_ABI_Ctest__component_CIArrayShouldBuild: test_component.IID {
+    .init(Data1: 0xA0DB5CFD, Data2: 0xD277, Data3: 0x585A, Data4: ( 0xA0,0xAC,0xC2,0x18,0x5C,0x18,0xE9,0x72 ))// A0DB5CFD-D277-585A-A0AC-C2185C18E972
+}
+
 private var IID___x_ABI_Ctest__component_CIAsyncMethodsStatics: test_component.IID {
     .init(Data1: 0x5FAAD8F4, Data2: 0x29D7, Data3: 0x5C26, Data4: ( 0xA8,0x72,0x35,0x42,0xE3,0xE1,0x86,0x7A ))// 5FAAD8F4-29D7-5C26-A872-3542E3E1867A
 }
@@ -802,6 +806,59 @@ public enum __ABI_test_component {
     )
 
     public typealias IArrayScenariosWrapper = InterfaceWrapperBase<__IMPL_test_component.IArrayScenariosBridge>
+    public class IArrayShouldBuild: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIArrayShouldBuild }
+
+        open func get_Scenarios() throws -> [test_component.AnyIArrayScenarios?] {
+            var value: WinRTArrayAbi<UnsafeMutablePointer<__x_ABI_Ctest__component_CIArrayScenarios>?> = (0, nil)
+            _ = try perform(as: __x_ABI_Ctest__component_CIArrayShouldBuild.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Scenarios(pThis, &value.count, &value.start))
+            }
+            defer { CoTaskMemFree(value.start) }
+            return .from(abiBridge: __IMPL_test_component.IArrayScenariosBridge.self, abi: value)
+
+        }
+
+    }
+
+    internal static var IArrayShouldBuildVTable: __x_ABI_Ctest__component_CIArrayShouldBuildVtbl = .init(
+        QueryInterface: { IArrayShouldBuildWrapper.queryInterface($0, $1, $2) },
+        AddRef: { IArrayShouldBuildWrapper.addRef($0) },
+        Release: { IArrayShouldBuildWrapper.release($0) },
+        GetIids: {
+            let size = MemoryLayout<test_component.IID>.size
+            let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
+            iids[0] = IUnknown.IID
+            iids[1] = IInspectable.IID
+            iids[2] = __ABI_test_component.IArrayShouldBuildWrapper.IID
+            $1!.pointee = 3
+            $2!.pointee = iids
+            return S_OK
+        },
+
+        GetRuntimeClassName: {
+            _ = $0
+            let hstring = try! HString("test_component.IArrayShouldBuild").detach()
+            $1!.pointee = hstring
+            return S_OK
+        },
+
+        GetTrustLevel: {
+            _ = $0
+            $1!.pointee = TrustLevel(rawValue: 0)
+            return S_OK
+        },
+
+        get_Scenarios: {
+            guard let __unwrapped__instance = IArrayShouldBuildWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let value = __unwrapped__instance.scenarios
+            $1?.initialize(to: UInt32(value.count))
+            value.fill(abi: $2, abiBridge: __IMPL_test_component.IArrayScenariosBridge.self)
+            return S_OK
+        }
+    )
+
+    public typealias IArrayShouldBuildWrapper = InterfaceWrapperBase<__IMPL_test_component.IArrayShouldBuildBridge>
     public class IAsyncMethodsStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIAsyncMethodsStatics }
 

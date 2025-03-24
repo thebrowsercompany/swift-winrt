@@ -1686,6 +1686,22 @@ extension IArrayScenarios {
 }
 public typealias AnyIArrayScenarios = any IArrayScenarios
 
+public protocol IArrayShouldBuild : WinRTInterface {
+    var scenarios: [test_component.AnyIArrayScenarios!] { get }
+}
+
+extension IArrayShouldBuild {
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+        switch iid {
+            case __ABI_test_component.IArrayShouldBuildWrapper.IID:
+                let wrapper = __ABI_test_component.IArrayShouldBuildWrapper(self)
+                return wrapper!.queryInterface(iid)
+            default: return nil
+        }
+    }
+}
+public typealias AnyIArrayShouldBuild = any IArrayShouldBuild
+
 public protocol IAsyncMethodsWithProgress : WinRTInterface {
     func operationWithProgress(_ value: test_component.DateTime) throws -> test_component.AnyIAsyncOperationWithProgress<Int32, Double>!
 }

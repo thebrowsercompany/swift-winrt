@@ -71,6 +71,35 @@ public enum __IMPL_test_component {
 
     }
 
+    public enum IArrayShouldBuildBridge : AbiInterfaceBridge {
+        public typealias CABI = __x_ABI_Ctest__component_CIArrayShouldBuild
+        public typealias SwiftABI = __ABI_test_component.IArrayShouldBuild
+        public typealias SwiftProjection = AnyIArrayShouldBuild
+        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+            guard let abi = abi else { return nil }
+            return IArrayShouldBuildImpl(abi)
+        }
+
+        public static func makeAbi() -> CABI {
+            let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IArrayShouldBuildVTable) { $0 }
+            return .init(lpVtbl: vtblPtr)
+        }
+    }
+
+    fileprivate class IArrayShouldBuildImpl: IArrayShouldBuild, WinRTAbiImpl {
+        fileprivate typealias Bridge = IArrayShouldBuildBridge
+        fileprivate let _default: Bridge.SwiftABI
+        fileprivate var thisPtr: test_component.IInspectable { _default }
+        fileprivate init(_ fromAbi: ComPtr<Bridge.CABI>) {
+            _default = Bridge.SwiftABI(fromAbi)
+        }
+
+        fileprivate var scenarios : [AnyIArrayScenarios?] {
+            get { try! _default.get_Scenarios() }
+        }
+
+    }
+
     public enum IAsyncMethodsWithProgressBridge : AbiInterfaceBridge {
         public typealias CABI = __x_ABI_Ctest__component_CIAsyncMethodsWithProgress
         public typealias SwiftABI = __ABI_test_component.IAsyncMethodsWithProgress
@@ -869,6 +898,14 @@ public class IArrayScenariosMaker: MakeFromAbi {
     public static func from(abi: test_component.IInspectable) -> SwiftType {
         let swiftAbi: __ABI_test_component.IArrayScenarios = try! abi.QueryInterface()
         return __IMPL_test_component.IArrayScenariosBridge.from(abi: RawPointer(swiftAbi))!
+    }
+}
+@_spi(WinRTInternal)
+public class IArrayShouldBuildMaker: MakeFromAbi {
+    public typealias SwiftType = AnyIArrayShouldBuild
+    public static func from(abi: test_component.IInspectable) -> SwiftType {
+        let swiftAbi: __ABI_test_component.IArrayShouldBuild = try! abi.QueryInterface()
+        return __IMPL_test_component.IArrayShouldBuildBridge.from(abi: RawPointer(swiftAbi))!
     }
 }
 @_spi(WinRTInternal)
