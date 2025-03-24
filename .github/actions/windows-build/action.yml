@@ -23,12 +23,6 @@ runs:
       release-tag-name: 20231025.2
       release-asset-name: installer-amd64.exe
 
-#  - name: Install Swift
-#    uses: compnerd/gha-setup-swift@b6c5fc1ed5b5439ada8e7661985acb09ad8c3ba2 # main as of 2024-11-12
-#    with:
-#      branch: swift-6.0-release
-#      tag: 6.0-RELEASE
-
   - name: Configure CMake
     shell: cmd
     run: cmake --preset ${{ inputs.config }}
