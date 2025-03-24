@@ -1687,7 +1687,7 @@ extension IArrayScenarios {
 public typealias AnyIArrayScenarios = any IArrayScenarios
 
 public protocol IArrayShouldBuild : WinRTInterface {
-    var scenarios: [test_component.AnyIArrayScenarios!] { get }
+    var scenarios: [test_component.AnyIArrayScenarios?] { get }
 }
 
 extension IArrayShouldBuild {
