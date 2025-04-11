@@ -16,9 +16,9 @@ namespace swiftwinrt
         auto abi_guard = w.push_mangled_names(true);
         auto mangled = w.push_abi_types(true);
         auto guid = attribute.Value().FixedArgs();
-        auto format = R"(private var IID_%: %.IID {
-    .init(%)// %
-}
+          auto format = R"(private static let IID_%: %.IID = .init(
+    % // %
+) 
 
 )";
 

@@ -500,7 +500,7 @@ bind<write_abi_args>(function));
         auto delegate_abi_name = w.write_temp("%", bind_type_mangled(inst));
 
         constexpr bool is_generic = std::is_same_v<T, generic_inst>;
-
+        w.write("@_spi(WinRTInternal)\n");
         w.write(R"(% extension WinRTDelegateBridge where CABI == % {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &%.%VTable) { $0 }
@@ -513,8 +513,6 @@ bind<write_abi_args>(function));
     is_generic ? w.swift_module : abi_namespace(w.type_namespace),
     is_generic ? delegate_abi_name : w.write_temp("%", inst));
     }
-
-
 
     static void write_vtable(writer& w, interface_type const& type);
     static void write_vtable(writer& w, delegate_type const& type);
