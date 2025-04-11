@@ -274,7 +274,7 @@ namespace swiftwinrt
             w.swap();
             write_preamble(w, /* swift_code: */ true);
 
-            w.save_file(member.get().swift_type_name());
+            w.save_file(remove_backtick(member.get().swift_type_name())); // remove backtick for generic interfaces
         }   
     }
 
@@ -337,7 +337,7 @@ namespace swiftwinrt
             w.swap();
             write_preamble(w, /* swift_code: */ true);
 
-            w.save_file(member.get().swift_type_name());
+            w.save_file(remove_backtick(member.get().swift_type_name())); // remove backtick for generic delegates
         }   
     }
 
