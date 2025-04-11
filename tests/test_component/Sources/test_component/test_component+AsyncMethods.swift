@@ -28,8 +28,8 @@ extension __IMPL_test_component {
 @_spi(WinRTInternal)
 extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIAsyncMethodsStatics: test_component.IID = .init(
-        Data1: 0x5FAAD8F4, Data2: 0x29D7, Data3: 0x5C26, Data4: ( 0xA8,0x72,0x35,0x42,0xE3,0xE1,0x86,0x7A )
-    ) // 5FAAD8F4-29D7-5C26-A872-3542E3E1867A
+        Data1: 0x5FAAD8F4, Data2: 0x29D7, Data3: 0x5C26, Data4: ( 0xA8,0x72,0x35,0x42,0xE3,0xE1,0x86,0x7A ) // 5FAAD8F4-29D7-5C26-A872-3542E3E1867A
+    ) 
     public class IAsyncMethodsStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIAsyncMethodsStatics }
 

@@ -92,8 +92,8 @@ public class UnsealedDerived2Maker: MakeFromAbi {
 @_spi(WinRTInternal)
 extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIUnsealedDerived2: test_component.IID = .init(
-        Data1: 0xA58C23CF, Data2: 0x4DC4, Data3: 0x59C5, Data4: ( 0x8D,0xE3,0x9F,0x06,0x3B,0x21,0x8D,0xDE )
-    ) // A58C23CF-4DC4-59C5-8DE3-9F063B218DDE
+        Data1: 0xA58C23CF, Data2: 0x4DC4, Data3: 0x59C5, Data4: ( 0x8D,0xE3,0x9F,0x06,0x3B,0x21,0x8D,0xDE ) // A58C23CF-4DC4-59C5-8DE3-9F063B218DDE
+    ) 
     public class IUnsealedDerived2: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerived2 }
 
@@ -106,8 +106,8 @@ extension __ABI_test_component {
     }
 
     private static let IID___x_ABI_Ctest__component_CIUnsealedDerived2Factory: test_component.IID = .init(
-        Data1: 0x136F2143, Data2: 0x1044, Data3: 0x5A97, Data4: ( 0x8C,0x91,0x1E,0xF2,0x81,0x67,0xD9,0xFC )
-    ) // 136F2143-1044-5A97-8C91-1EF28167D9FC
+        Data1: 0x136F2143, Data2: 0x1044, Data3: 0x5A97, Data4: ( 0x8C,0x91,0x1E,0xF2,0x81,0x67,0xD9,0xFC ) // 136F2143-1044-5A97-8C91-1EF28167D9FC
+    ) 
     public class IUnsealedDerived2Factory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerived2Factory }
 
@@ -127,8 +127,8 @@ extension __ABI_test_component {
     }
 
     private static let IID___x_ABI_Ctest__component_CIUnsealedDerived2ProtectedFactory: test_component.IID = .init(
-        Data1: 0x0978D147, Data2: 0x77BF, Data3: 0x5E0A, Data4: ( 0xA1,0x64,0xCA,0x95,0x1B,0xCA,0xB8,0xB4 )
-    ) // 0978D147-77BF-5E0A-A164-CA951BCAB8B4
+        Data1: 0x0978D147, Data2: 0x77BF, Data3: 0x5E0A, Data4: ( 0xA1,0x64,0xCA,0x95,0x1B,0xCA,0xB8,0xB4 ) // 0978D147-77BF-5E0A-A164-CA951BCAB8B4
+    ) 
     public class IUnsealedDerived2ProtectedFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerived2ProtectedFactory }
 

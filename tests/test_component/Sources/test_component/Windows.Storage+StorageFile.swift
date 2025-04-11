@@ -303,8 +303,8 @@ public class StorageFileMaker: MakeFromAbi {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Storage {
     private static let IID___x_ABI_CWindows_CStorage_CIStorageFileStatics: test_component.IID = .init(
-        Data1: 0x5984C710, Data2: 0xDAF2, Data3: 0x43C8, Data4: ( 0x8B,0xB4,0xA4,0xD3,0xEA,0xCF,0xD0,0x3F )
-    ) // 5984C710-DAF2-43C8-8BB4-A4D3EACFD03F
+        Data1: 0x5984C710, Data2: 0xDAF2, Data3: 0x43C8, Data4: ( 0x8B,0xB4,0xA4,0xD3,0xEA,0xCF,0xD0,0x3F ) // 5984C710-DAF2-43C8-8BB4-A4D3EACFD03F
+    ) 
     public class IStorageFileStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageFileStatics }
 

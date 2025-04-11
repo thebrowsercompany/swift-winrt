@@ -57,8 +57,8 @@ extension __IMPL_test_component {
 @_spi(WinRTInternal)
 extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIArrayShouldBuild: test_component.IID = .init(
-        Data1: 0xA0DB5CFD, Data2: 0xD277, Data3: 0x585A, Data4: ( 0xA0,0xAC,0xC2,0x18,0x5C,0x18,0xE9,0x72 )
-    ) // A0DB5CFD-D277-585A-A0AC-C2185C18E972
+        Data1: 0xA0DB5CFD, Data2: 0xD277, Data3: 0x585A, Data4: ( 0xA0,0xAC,0xC2,0x18,0x5C,0x18,0xE9,0x72 ) // A0DB5CFD-D277-585A-A0AC-C2185C18E972
+    ) 
     public class IArrayShouldBuild: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIArrayShouldBuild }
 

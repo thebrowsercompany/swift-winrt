@@ -66,8 +66,8 @@ public class StorageLibraryChangeTrackerMaker: MakeFromAbi {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Storage {
     private static let IID___x_ABI_CWindows_CStorage_CIStorageLibraryChangeTracker: test_component.IID = .init(
-        Data1: 0x9E157316, Data2: 0x6073, Data3: 0x44F6, Data4: ( 0x96,0x81,0x74,0x92,0xD1,0x28,0x6C,0x90 )
-    ) // 9E157316-6073-44F6-9681-7492D1286C90
+        Data1: 0x9E157316, Data2: 0x6073, Data3: 0x44F6, Data4: ( 0x96,0x81,0x74,0x92,0xD1,0x28,0x6C,0x90 ) // 9E157316-6073-44F6-9681-7492D1286C90
+    ) 
     public class IStorageLibraryChangeTracker: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageLibraryChangeTracker }
 

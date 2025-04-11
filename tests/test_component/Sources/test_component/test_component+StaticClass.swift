@@ -33,8 +33,8 @@ extension __IMPL_test_component {
 @_spi(WinRTInternal)
 extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIStaticClassStatics: test_component.IID = .init(
-        Data1: 0x92E618EF, Data2: 0xFF6E, Data3: 0x5975, Data4: ( 0x86,0x8C,0x99,0xAD,0xC1,0x1D,0x36,0xDE )
-    ) // 92E618EF-FF6E-5975-868C-99ADC11D36DE
+        Data1: 0x92E618EF, Data2: 0xFF6E, Data3: 0x5975, Data4: ( 0x86,0x8C,0x99,0xAD,0xC1,0x1D,0x36,0xDE ) // 92E618EF-FF6E-5975-868C-99ADC11D36DE
+    ) 
     public class IStaticClassStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIStaticClassStatics }
 

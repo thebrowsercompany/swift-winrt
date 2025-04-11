@@ -59,8 +59,8 @@ public class WeakReferencerMaker: MakeFromAbi {
 @_spi(WinRTInternal)
 extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIWeakReferencer: test_component.IID = .init(
-        Data1: 0xF3CE877F, Data2: 0x5BD2, Data3: 0x53C7, Data4: ( 0xAA,0x6A,0x39,0xF0,0x64,0x78,0x1C,0x21 )
-    ) // F3CE877F-5BD2-53C7-AA6A-39F064781C21
+        Data1: 0xF3CE877F, Data2: 0x5BD2, Data3: 0x53C7, Data4: ( 0xAA,0x6A,0x39,0xF0,0x64,0x78,0x1C,0x21 ) // F3CE877F-5BD2-53C7-AA6A-39F064781C21
+    ) 
     public class IWeakReferencer: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIWeakReferencer }
 
@@ -76,8 +76,8 @@ extension __ABI_test_component {
     }
 
     private static let IID___x_ABI_Ctest__component_CIWeakReferencerFactory: test_component.IID = .init(
-        Data1: 0x34CE8191, Data2: 0x4DC4, Data3: 0x50EF, Data4: ( 0xB6,0x9E,0x19,0x8F,0x3C,0x9F,0x65,0x52 )
-    ) // 34CE8191-4DC4-50EF-B69E-198F3C9F6552
+        Data1: 0x34CE8191, Data2: 0x4DC4, Data3: 0x50EF, Data4: ( 0xB6,0x9E,0x19,0x8F,0x3C,0x9F,0x65,0x52 ) // 34CE8191-4DC4-50EF-B69E-198F3C9F6552
+    ) 
     public class IWeakReferencerFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIWeakReferencerFactory }
 

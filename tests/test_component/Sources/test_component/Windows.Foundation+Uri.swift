@@ -178,8 +178,8 @@ public class UriMaker: MakeFromAbi {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Foundation {
     private static let IID___x_ABI_CWindows_CFoundation_CIUriRuntimeClass: test_component.IID = .init(
-        Data1: 0x9E365E57, Data2: 0x48B2, Data3: 0x4160, Data4: ( 0x95,0x6F,0xC7,0x38,0x51,0x20,0xBB,0xFC )
-    ) // 9E365E57-48B2-4160-956F-C7385120BBFC
+        Data1: 0x9E365E57, Data2: 0x48B2, Data3: 0x4160, Data4: ( 0x95,0x6F,0xC7,0x38,0x51,0x20,0xBB,0xFC ) // 9E365E57-48B2-4160-956F-C7385120BBFC
+    ) 
     public class IUriRuntimeClass: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIUriRuntimeClass }
 
@@ -325,8 +325,8 @@ extension __ABI_Windows_Foundation {
     }
 
     private static let IID___x_ABI_CWindows_CFoundation_CIUriRuntimeClassWithAbsoluteCanonicalUri: test_component.IID = .init(
-        Data1: 0x758D9661, Data2: 0x221C, Data3: 0x480F, Data4: ( 0xA3,0x39,0x50,0x65,0x66,0x73,0xF4,0x6F )
-    ) // 758D9661-221C-480F-A339-50656673F46F
+        Data1: 0x758D9661, Data2: 0x221C, Data3: 0x480F, Data4: ( 0xA3,0x39,0x50,0x65,0x66,0x73,0xF4,0x6F ) // 758D9661-221C-480F-A339-50656673F46F
+    ) 
     public class IUriRuntimeClassWithAbsoluteCanonicalUri: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIUriRuntimeClassWithAbsoluteCanonicalUri }
 
@@ -349,8 +349,8 @@ extension __ABI_Windows_Foundation {
     }
 
     private static let IID___x_ABI_CWindows_CFoundation_CIUriEscapeStatics: test_component.IID = .init(
-        Data1: 0xC1D432BA, Data2: 0xC824, Data3: 0x4452, Data4: ( 0xA7,0xFD,0x51,0x2B,0xC3,0xBB,0xE9,0xA1 )
-    ) // C1D432BA-C824-4452-A7FD-512BC3BBE9A1
+        Data1: 0xC1D432BA, Data2: 0xC824, Data3: 0x4452, Data4: ( 0xA7,0xFD,0x51,0x2B,0xC3,0xBB,0xE9,0xA1 ) // C1D432BA-C824-4452-A7FD-512BC3BBE9A1
+    ) 
     public class IUriEscapeStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIUriEscapeStatics }
 
@@ -375,8 +375,8 @@ extension __ABI_Windows_Foundation {
     }
 
     private static let IID___x_ABI_CWindows_CFoundation_CIUriRuntimeClassFactory: test_component.IID = .init(
-        Data1: 0x44A9796F, Data2: 0x723E, Data3: 0x4FDF, Data4: ( 0xA2,0x18,0x03,0x3E,0x75,0xB0,0xC0,0x84 )
-    ) // 44A9796F-723E-4FDF-A218-033E75B0C084
+        Data1: 0x44A9796F, Data2: 0x723E, Data3: 0x4FDF, Data4: ( 0xA2,0x18,0x03,0x3E,0x75,0xB0,0xC0,0x84 ) // 44A9796F-723E-4FDF-A218-033E75B0C084
+    ) 
     public class IUriRuntimeClassFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIUriRuntimeClassFactory }
 

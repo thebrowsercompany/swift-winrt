@@ -142,8 +142,8 @@ public class QueryOptionsMaker: MakeFromAbi {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Storage_Search {
     private static let IID___x_ABI_CWindows_CStorage_CSearch_CIQueryOptions: test_component.IID = .init(
-        Data1: 0x1E5E46EE, Data2: 0x0F45, Data3: 0x4838, Data4: ( 0xA8,0xE9,0xD0,0x47,0x9D,0x44,0x6C,0x30 )
-    ) // 1E5E46EE-0F45-4838-A8E9-D0479D446C30
+        Data1: 0x1E5E46EE, Data2: 0x0F45, Data3: 0x4838, Data4: ( 0xA8,0xE9,0xD0,0x47,0x9D,0x44,0x6C,0x30 ) // 1E5E46EE-0F45-4838-A8E9-D0479D446C30
+    ) 
     public class IQueryOptions: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CSearch_CIQueryOptions }
 
@@ -286,8 +286,8 @@ extension __ABI_Windows_Storage_Search {
     }
 
     private static let IID___x_ABI_CWindows_CStorage_CSearch_CIQueryOptionsWithProviderFilter: test_component.IID = .init(
-        Data1: 0x5B9D1026, Data2: 0x15C4, Data3: 0x44DD, Data4: ( 0xB8,0x9A,0x47,0xA5,0x9B,0x7D,0x7C,0x4F )
-    ) // 5B9D1026-15C4-44DD-B89A-47A59B7D7C4F
+        Data1: 0x5B9D1026, Data2: 0x15C4, Data3: 0x44DD, Data4: ( 0xB8,0x9A,0x47,0xA5,0x9B,0x7D,0x7C,0x4F ) // 5B9D1026-15C4-44DD-B89A-47A59B7D7C4F
+    ) 
     public class IQueryOptionsWithProviderFilter: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CSearch_CIQueryOptionsWithProviderFilter }
 
@@ -303,8 +303,8 @@ extension __ABI_Windows_Storage_Search {
     }
 
     private static let IID___x_ABI_CWindows_CStorage_CSearch_CIQueryOptionsFactory: test_component.IID = .init(
-        Data1: 0x032E1F8C, Data2: 0xA9C1, Data3: 0x4E71, Data4: ( 0x80,0x11,0x0D,0xEE,0x9D,0x48,0x11,0xA3 )
-    ) // 032E1F8C-A9C1-4E71-8011-0DEE9D4811A3
+        Data1: 0x032E1F8C, Data2: 0xA9C1, Data3: 0x4E71, Data4: ( 0x80,0x11,0x0D,0xEE,0x9D,0x48,0x11,0xA3 ) // 032E1F8C-A9C1-4E71-8011-0DEE9D4811A3
+    ) 
     public class IQueryOptionsFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CSearch_CIQueryOptionsFactory }
 

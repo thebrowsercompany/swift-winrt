@@ -144,8 +144,8 @@ extension __IMPL_test_component {
 @_spi(WinRTInternal)
 extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIArrayMethodsStatics: test_component.IID = .init(
-        Data1: 0x8999FD6A, Data2: 0xD1C5, Data3: 0x53CE, Data4: ( 0xB8,0x0F,0x7C,0x45,0x85,0xD0,0x75,0x6C )
-    ) // 8999FD6A-D1C5-53CE-B80F-7C4585D0756C
+        Data1: 0x8999FD6A, Data2: 0xD1C5, Data3: 0x53CE, Data4: ( 0xB8,0x0F,0x7C,0x45,0x85,0xD0,0x75,0x6C ) // 8999FD6A-D1C5-53CE-B80F-7C4585D0756C
+    ) 
     public class IArrayMethodsStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIArrayMethodsStatics }
 

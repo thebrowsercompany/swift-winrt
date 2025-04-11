@@ -23,6 +23,6 @@ extension __IMPL_Windows_Foundation_Collections {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Foundation_Collections {
     private static let IID___x_ABI_C__FIMapChangedEventArgs_1_K: test_component.IID = .init(
-        Data1: 0x9939F4DF, Data2: 0x050A, Data3: 0x4C0F, Data4: ( 0xAA,0x60,0x77,0x07,0x5F,0x9C,0x47,0x77 )
-    ) // 9939F4DF-050A-4C0F-AA60-77075F9C4777
+        Data1: 0x9939F4DF, Data2: 0x050A, Data3: 0x4C0F, Data4: ( 0xAA,0x60,0x77,0x07,0x5F,0x9C,0x47,0x77 ) // 9939F4DF-050A-4C0F-AA60-77075F9C4777
+    ) 
 }

@@ -168,8 +168,8 @@ public class BaseCollectionMaker: MakeFromAbi {
 @_spi(WinRTInternal)
 extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIBaseCollectionProtectedFactory: test_component.IID = .init(
-        Data1: 0xB5581456, Data2: 0xA980, Data3: 0x5851, Data4: ( 0xAD,0xA4,0x0A,0x7B,0x27,0x0F,0x6C,0xD9 )
-    ) // B5581456-A980-5851-ADA4-0A7B270F6CD9
+        Data1: 0xB5581456, Data2: 0xA980, Data3: 0x5851, Data4: ( 0xAD,0xA4,0x0A,0x7B,0x27,0x0F,0x6C,0xD9 ) // B5581456-A980-5851-ADA4-0A7B270F6CD9
+    ) 
     public class IBaseCollectionProtectedFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseCollectionProtectedFactory }
 

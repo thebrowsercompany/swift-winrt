@@ -172,8 +172,8 @@ extension __IMPL_Windows_Storage_Search {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Storage_Search {
     private static let IID___x_ABI_CWindows_CStorage_CSearch_CIStorageFolderQueryOperations: test_component.IID = .init(
-        Data1: 0xCB43CCC9, Data2: 0x446B, Data3: 0x4A4F, Data4: ( 0xBE,0x97,0x75,0x77,0x71,0xBE,0x52,0x03 )
-    ) // CB43CCC9-446B-4A4F-BE97-757771BE5203
+        Data1: 0xCB43CCC9, Data2: 0x446B, Data3: 0x4A4F, Data4: ( 0xBE,0x97,0x75,0x77,0x71,0xBE,0x52,0x03 ) // CB43CCC9-446B-4A4F-BE97-757771BE5203
+    ) 
     public class IStorageFolderQueryOperations: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CSearch_CIStorageFolderQueryOperations }
 

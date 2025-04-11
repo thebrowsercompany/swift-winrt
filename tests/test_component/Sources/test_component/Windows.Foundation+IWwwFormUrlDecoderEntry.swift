@@ -67,8 +67,8 @@ extension __IMPL_Windows_Foundation {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Foundation {
     private static let IID___x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderEntry: test_component.IID = .init(
-        Data1: 0x125E7431, Data2: 0xF678, Data3: 0x4E8E, Data4: ( 0xB6,0x70,0x20,0xA9,0xB0,0x6C,0x51,0x2D )
-    ) // 125E7431-F678-4E8E-B670-20A9B06C512D
+        Data1: 0x125E7431, Data2: 0xF678, Data3: 0x4E8E, Data4: ( 0xB6,0x70,0x20,0xA9,0xB0,0x6C,0x51,0x2D ) // 125E7431-F678-4E8E-B670-20A9B06C512D
+    ) 
     public class IWwwFormUrlDecoderEntry: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderEntry }
 

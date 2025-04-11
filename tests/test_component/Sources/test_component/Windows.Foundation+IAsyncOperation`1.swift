@@ -36,6 +36,6 @@ extension __IMPL_Windows_Foundation {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Foundation {
     private static let IID___x_ABI_C__FIAsyncOperation_1_TResult: test_component.IID = .init(
-        Data1: 0x9FC2B0BB, Data2: 0xE446, Data3: 0x44E2, Data4: ( 0xAA,0x61,0x9C,0xAB,0x8F,0x63,0x6A,0xF2 )
-    ) // 9FC2B0BB-E446-44E2-AA61-9CAB8F636AF2
+        Data1: 0x9FC2B0BB, Data2: 0xE446, Data3: 0x44E2, Data4: ( 0xAA,0x61,0x9C,0xAB,0x8F,0x63,0x6A,0xF2 ) // 9FC2B0BB-E446-44E2-AA61-9CAB8F636AF2
+    ) 
 }

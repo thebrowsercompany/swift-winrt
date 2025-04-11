@@ -54,8 +54,8 @@ public class DerivedFromNoConstructorMaker: MakeFromAbi {
 @_spi(WinRTInternal)
 extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIDerivedFromNoConstructor: test_component.IID = .init(
-        Data1: 0x2A9D928D, Data2: 0xAD55, Data3: 0x59EC, Data4: ( 0x9B,0x73,0xE2,0xED,0x06,0x57,0xE6,0xC4 )
-    ) // 2A9D928D-AD55-59EC-9B73-E2ED0657E6C4
+        Data1: 0x2A9D928D, Data2: 0xAD55, Data3: 0x59EC, Data4: ( 0x9B,0x73,0xE2,0xED,0x06,0x57,0xE6,0xC4 ) // 2A9D928D-AD55-59EC-9B73-E2ED0657E6C4
+    ) 
     public class IDerivedFromNoConstructor: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIDerivedFromNoConstructor }
 

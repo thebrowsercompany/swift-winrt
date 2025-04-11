@@ -116,8 +116,8 @@ public class WwwFormUrlDecoderMaker: MakeFromAbi {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Foundation {
     private static let IID___x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderRuntimeClass: test_component.IID = .init(
-        Data1: 0xD45A0451, Data2: 0xF225, Data3: 0x4542, Data4: ( 0x92,0x96,0x0E,0x1D,0xF5,0xD2,0x54,0xDF )
-    ) // D45A0451-F225-4542-9296-0E1DF5D254DF
+        Data1: 0xD45A0451, Data2: 0xF225, Data3: 0x4542, Data4: ( 0x92,0x96,0x0E,0x1D,0xF5,0xD2,0x54,0xDF ) // D45A0451-F225-4542-9296-0E1DF5D254DF
+    ) 
     public class IWwwFormUrlDecoderRuntimeClass: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderRuntimeClass }
 
@@ -133,8 +133,8 @@ extension __ABI_Windows_Foundation {
     }
 
     private static let IID___x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderRuntimeClassFactory: test_component.IID = .init(
-        Data1: 0x5B8C6B3D, Data2: 0x24AE, Data3: 0x41B5, Data4: ( 0xA1,0xBF,0xF0,0xC3,0xD5,0x44,0x84,0x5B )
-    ) // 5B8C6B3D-24AE-41B5-A1BF-F0C3D544845B
+        Data1: 0x5B8C6B3D, Data2: 0x24AE, Data3: 0x41B5, Data4: ( 0xA1,0xBF,0xF0,0xC3,0xD5,0x44,0x84,0x5B ) // 5B8C6B3D-24AE-41B5-A1BF-F0C3D544845B
+    ) 
     public class IWwwFormUrlDecoderRuntimeClassFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderRuntimeClassFactory }
 

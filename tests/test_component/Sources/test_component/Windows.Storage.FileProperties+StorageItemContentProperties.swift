@@ -91,8 +91,8 @@ public class StorageItemContentPropertiesMaker: MakeFromAbi {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Storage_FileProperties {
     private static let IID___x_ABI_CWindows_CStorage_CFileProperties_CIStorageItemContentProperties: test_component.IID = .init(
-        Data1: 0x05294BAD, Data2: 0xBC38, Data3: 0x48BF, Data4: ( 0x85,0xD7,0x77,0x0E,0x0E,0x2A,0xE0,0xBA )
-    ) // 05294BAD-BC38-48BF-85D7-770E0E2AE0BA
+        Data1: 0x05294BAD, Data2: 0xBC38, Data3: 0x48BF, Data4: ( 0x85,0xD7,0x77,0x0E,0x0E,0x2A,0xE0,0xBA ) // 05294BAD-BC38-48BF-85D7-770E0E2AE0BA
+    ) 
     public class IStorageItemContentProperties: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CFileProperties_CIStorageItemContentProperties }
 

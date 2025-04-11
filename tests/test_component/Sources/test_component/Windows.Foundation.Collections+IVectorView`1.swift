@@ -27,6 +27,6 @@ extension __IMPL_Windows_Foundation_Collections {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Foundation_Collections {
     private static let IID___x_ABI_C__FIVectorView_1_T: test_component.IID = .init(
-        Data1: 0xBBE1FA4C, Data2: 0xB0E3, Data3: 0x4583, Data4: ( 0xBA,0xEF,0x1F,0x1B,0x2E,0x48,0x3E,0x56 )
-    ) // BBE1FA4C-B0E3-4583-BAEF-1F1B2E483E56
+        Data1: 0xBBE1FA4C, Data2: 0xB0E3, Data3: 0x4583, Data4: ( 0xBA,0xEF,0x1F,0x1B,0x2E,0x48,0x3E,0x56 ) // BBE1FA4C-B0E3-4583-BAEF-1F1B2E483E56
+    ) 
 }

@@ -156,8 +156,8 @@ public class VideoPropertiesMaker: MakeFromAbi {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Storage_FileProperties {
     private static let IID___x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties: test_component.IID = .init(
-        Data1: 0x719AE507, Data2: 0x68DE, Data3: 0x4DB8, Data4: ( 0x97,0xDE,0x49,0x99,0x8C,0x05,0x9F,0x2F )
-    ) // 719AE507-68DE-4DB8-97DE-49998C059F2F
+        Data1: 0x719AE507, Data2: 0x68DE, Data3: 0x4DB8, Data4: ( 0x97,0xDE,0x49,0x99,0x8C,0x05,0x9F,0x2F ) // 719AE507-68DE-4DB8-97DE-49998C059F2F
+    ) 
     public class IVideoProperties: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties }
 

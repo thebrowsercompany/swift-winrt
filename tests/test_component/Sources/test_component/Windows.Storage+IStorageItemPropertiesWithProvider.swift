@@ -99,8 +99,8 @@ extension __IMPL_Windows_Storage {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Storage {
     private static let IID___x_ABI_CWindows_CStorage_CIStorageItemPropertiesWithProvider: test_component.IID = .init(
-        Data1: 0x861BF39B, Data2: 0x6368, Data3: 0x4DEE, Data4: ( 0xB4,0x0E,0x74,0x68,0x4A,0x5C,0xE7,0x14 )
-    ) // 861BF39B-6368-4DEE-B40E-74684A5CE714
+        Data1: 0x861BF39B, Data2: 0x6368, Data3: 0x4DEE, Data4: ( 0xB4,0x0E,0x74,0x68,0x4A,0x5C,0xE7,0x14 ) // 861BF39B-6368-4DEE-B40E-74684A5CE714
+    ) 
     public class IStorageItemPropertiesWithProvider: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageItemPropertiesWithProvider }
 

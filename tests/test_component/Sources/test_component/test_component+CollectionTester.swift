@@ -88,8 +88,8 @@ public class CollectionTesterMaker: MakeFromAbi {
 @_spi(WinRTInternal)
 extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CICollectionTester: test_component.IID = .init(
-        Data1: 0xF8B13FDD, Data2: 0xB785, Data3: 0x53D4, Data4: ( 0xBC,0x69,0xFA,0x7D,0x02,0xBD,0x88,0xE6 )
-    ) // F8B13FDD-B785-53D4-BC69-FA7D02BD88E6
+        Data1: 0xF8B13FDD, Data2: 0xB785, Data3: 0x53D4, Data4: ( 0xBC,0x69,0xFA,0x7D,0x02,0xBD,0x88,0xE6 ) // F8B13FDD-B785-53D4-BC69-FA7D02BD88E6
+    ) 
     public class ICollectionTester: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CICollectionTester }
 
@@ -114,8 +114,8 @@ extension __ABI_test_component {
     }
 
     private static let IID___x_ABI_Ctest__component_CICollectionTesterStatics: test_component.IID = .init(
-        Data1: 0xA4C0D4B5, Data2: 0xEDA2, Data3: 0x55E5, Data4: ( 0xAD,0x0F,0xCE,0x1F,0x13,0xA9,0x81,0xCC )
-    ) // A4C0D4B5-EDA2-55E5-AD0F-CE1F13A981CC
+        Data1: 0xA4C0D4B5, Data2: 0xEDA2, Data3: 0x55E5, Data4: ( 0xAD,0x0F,0xCE,0x1F,0x13,0xA9,0x81,0xCC ) // A4C0D4B5-EDA2-55E5-AD0F-CE1F13A981CC
+    ) 
     public class ICollectionTesterStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CICollectionTesterStatics }
 

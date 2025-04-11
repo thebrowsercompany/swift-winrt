@@ -65,8 +65,8 @@ public class DerivedMaker: MakeFromAbi {
 @_spi(WinRTInternal)
 extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIDerived: test_component.IID = .init(
-        Data1: 0x864F4DCB, Data2: 0xC4FF, Data3: 0x5FBB, Data4: ( 0xB4,0x5D,0xA7,0x3E,0x25,0x7B,0x48,0xA2 )
-    ) // 864F4DCB-C4FF-5FBB-B45D-A73E257B48A2
+        Data1: 0x864F4DCB, Data2: 0xC4FF, Data3: 0x5FBB, Data4: ( 0xB4,0x5D,0xA7,0x3E,0x25,0x7B,0x48,0xA2 ) // 864F4DCB-C4FF-5FBB-B45D-A73E257B48A2
+    ) 
     public class IDerived: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIDerived }
 
@@ -87,8 +87,8 @@ extension __ABI_test_component {
     }
 
     private static let IID___x_ABI_Ctest__component_CIDerivedStatics: test_component.IID = .init(
-        Data1: 0x5DE6D589, Data2: 0x61EC, Data3: 0x5020, Data4: ( 0x80,0x3A,0x3E,0x62,0x6C,0x8B,0xBC,0x8E )
-    ) // 5DE6D589-61EC-5020-803A-3E626C8BBC8E
+        Data1: 0x5DE6D589, Data2: 0x61EC, Data3: 0x5020, Data4: ( 0x80,0x3A,0x3E,0x62,0x6C,0x8B,0xBC,0x8E ) // 5DE6D589-61EC-5020-803A-3E626C8BBC8E
+    ) 
     public class IDerivedStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIDerivedStatics }
 

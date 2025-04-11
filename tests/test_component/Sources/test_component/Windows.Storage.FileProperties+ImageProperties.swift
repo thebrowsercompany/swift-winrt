@@ -136,8 +136,8 @@ public class ImagePropertiesMaker: MakeFromAbi {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Storage_FileProperties {
     private static let IID___x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties: test_component.IID = .init(
-        Data1: 0x523C9424, Data2: 0xFCFF, Data3: 0x4275, Data4: ( 0xAF,0xEE,0xEC,0xDB,0x9A,0xB4,0x79,0x73 )
-    ) // 523C9424-FCFF-4275-AFEE-ECDB9AB47973
+        Data1: 0x523C9424, Data2: 0xFCFF, Data3: 0x4275, Data4: ( 0xAF,0xEE,0xEC,0xDB,0x9A,0xB4,0x79,0x73 ) // 523C9424-FCFF-4275-AFEE-ECDB9AB47973
+    ) 
     public class IImageProperties: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties }
 
