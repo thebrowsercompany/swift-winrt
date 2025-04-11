@@ -657,7 +657,7 @@ typealias % = InterfaceWrapperBase<%>
     static void write_delegate_abi(writer& w, delegate_type const& type)
     {
         if (type.is_generic()) return;
-        w.write("// MARK - %\n", type);
+        w.write("^@_spi(WinRTInternal)\n");
         w.write("extension % {\n", abi_namespace(w.type_namespace));
         {
             auto guard(w.push_indent());
@@ -2606,6 +2606,7 @@ public init<Composable: ComposableImpl>(
         {
             if (!info.overridable || info.base) continue;
 
+            w.write("^@_spi(WinRTInternal)\n");
             w.write(R"(extension ComposableImpl where CABI == % {
     public static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &%.%VTable) { $0 }
