@@ -335,8 +335,12 @@ Where <spec> is one or more of:
                             {
                                 auto types = mdCache.compile_namespaces({ ns }, mf);
                                 write_namespace_abi (ns, types, mf);
-                                write_namespace_wrapper(ns, types, mf);
                                 write_namespace_impl(ns, types, mf);
+                                write_namespace_enums(ns, types, mf);
+                                write_namespace_classes(ns, types, mf);
+                                write_namespace_structs(ns, types, mf);
+                                write_namespace_interfaces(ns, types, mf);
+                                write_namespace_delegates(ns, types, mf);
                              });
                         }
 
