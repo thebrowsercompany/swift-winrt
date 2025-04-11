@@ -20,8 +20,8 @@ extension __IMPL_test_component {
 @_spi(WinRTInternal)
 extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIBufferTesterStatics: test_component.IID = .init(
-        Data1: 0x82190F30, Data2: 0x48DC, Data3: 0x5350, Data4: ( 0xAD,0x5B,0x00,0x36,0x63,0x5C,0xF5,0xB4 )
-    ) // 82190F30-48DC-5350-AD5B-0036635CF5B4
+        Data1: 0x82190F30, Data2: 0x48DC, Data3: 0x5350, Data4: ( 0xAD,0x5B,0x00,0x36,0x63,0x5C,0xF5,0xB4 ) // 82190F30-48DC-5350-AD5B-0036635CF5B4
+    ) 
     public class IBufferTesterStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBufferTesterStatics }
 

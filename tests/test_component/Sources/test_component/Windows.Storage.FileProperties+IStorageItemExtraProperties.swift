@@ -74,8 +74,8 @@ extension __IMPL_Windows_Storage_FileProperties {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Storage_FileProperties {
     private static let IID___x_ABI_CWindows_CStorage_CFileProperties_CIStorageItemExtraProperties: test_component.IID = .init(
-        Data1: 0xC54361B2, Data2: 0x54CD, Data3: 0x432B, Data4: ( 0xBD,0xBC,0x4B,0x19,0xC4,0xB4,0x70,0xD7 )
-    ) // C54361B2-54CD-432B-BDBC-4B19C4B470D7
+        Data1: 0xC54361B2, Data2: 0x54CD, Data3: 0x432B, Data4: ( 0xBD,0xBC,0x4B,0x19,0xC4,0xB4,0x70,0xD7 ) // C54361B2-54CD-432B-BDBC-4B19C4B470D7
+    ) 
     public class IStorageItemExtraProperties: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CFileProperties_CIStorageItemExtraProperties }
 

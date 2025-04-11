@@ -124,8 +124,8 @@ public class StorageFileQueryResultMaker: MakeFromAbi {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Storage_Search {
     private static let IID___x_ABI_CWindows_CStorage_CSearch_CIStorageFileQueryResult: test_component.IID = .init(
-        Data1: 0x52FDA447, Data2: 0x2BAA, Data3: 0x412C, Data4: ( 0xB2,0x9F,0xD4,0xB1,0x77,0x8E,0xFA,0x1E )
-    ) // 52FDA447-2BAA-412C-B29F-D4B1778EFA1E
+        Data1: 0x52FDA447, Data2: 0x2BAA, Data3: 0x412C, Data4: ( 0xB2,0x9F,0xD4,0xB1,0x77,0x8E,0xFA,0x1E ) // 52FDA447-2BAA-412C-B29F-D4B1778EFA1E
+    ) 
     public class IStorageFileQueryResult: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CSearch_CIStorageFileQueryResult }
 
@@ -150,8 +150,8 @@ extension __ABI_Windows_Storage_Search {
     }
 
     private static let IID___x_ABI_CWindows_CStorage_CSearch_CIStorageFileQueryResult2: test_component.IID = .init(
-        Data1: 0x4E5DB9DD, Data2: 0x7141, Data3: 0x46C4, Data4: ( 0x8B,0xE3,0xE9,0xDC,0x9E,0x27,0x27,0x5C )
-    ) // 4E5DB9DD-7141-46C4-8BE3-E9DC9E27275C
+        Data1: 0x4E5DB9DD, Data2: 0x7141, Data3: 0x46C4, Data4: ( 0x8B,0xE3,0xE9,0xDC,0x9E,0x27,0x27,0x5C ) // 4E5DB9DD-7141-46C4-8BE3-E9DC9E27275C
+    ) 
     public class IStorageFileQueryResult2: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CSearch_CIStorageFileQueryResult2 }
 

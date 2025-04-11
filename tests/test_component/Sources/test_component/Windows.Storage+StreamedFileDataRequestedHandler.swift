@@ -27,8 +27,8 @@ extension __IMPL_Windows_Storage {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Storage {
     private static let IID___x_ABI_CWindows_CStorage_CIStreamedFileDataRequestedHandler: test_component.IID = .init(
-        Data1: 0xFEF6A824, Data2: 0x2FE1, Data3: 0x4D07, Data4: ( 0xA3,0x5B,0xB7,0x7C,0x50,0xB5,0xF4,0xCC )
-    ) // FEF6A824-2FE1-4D07-A35B-B77C50B5F4CC
+        Data1: 0xFEF6A824, Data2: 0x2FE1, Data3: 0x4D07, Data4: ( 0xA3,0x5B,0xB7,0x7C,0x50,0xB5,0xF4,0xCC ) // FEF6A824-2FE1-4D07-A35B-B77C50B5F4CC
+    ) 
     public class StreamedFileDataRequestedHandler: test_component.IUnknown {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStreamedFileDataRequestedHandler }
 
@@ -56,6 +56,7 @@ extension __ABI_Windows_Storage {
         }
     )
 }
+@_spi(WinRTInternal)
 public extension WinRTDelegateBridge where CABI == __x_ABI_CWindows_CStorage_CIStreamedFileDataRequestedHandler {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Storage.StreamedFileDataRequestedHandlerVTable) { $0 }

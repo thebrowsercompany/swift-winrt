@@ -60,6 +60,7 @@ private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1_boolean: test_comp
     .init(Data1: 0xc1d3d1a2, Data2: 0xae17, Data3: 0x5a5f, Data4: ( 0xb5,0xa2,0xbd,0xcc,0x88,0x44,0x88,0x9a ))// c1d3d1a2-ae17-5a5f-b5a2-bdcc8844889a
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationCompletedHandler_1_boolean {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_booleanVTable) { $0 }
@@ -113,6 +114,7 @@ private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1_int: test_componen
     .init(Data1: 0xd60cae9d, Data2: 0x88cb, Data3: 0x59f1, Data4: ( 0x85,0x76,0x3f,0xba,0x44,0x79,0x6b,0xe8 ))// d60cae9d-88cb-59f1-8576-3fba44796be8
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationCompletedHandler_1_int {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_intVTable) { $0 }
@@ -166,6 +168,7 @@ private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1_HSTRING: test_comp
     .init(Data1: 0xb79a741f, Data2: 0x7fb5, Data3: 0x50ae, Data4: ( 0x9e,0x99,0x91,0x12,0x01,0xec,0x3d,0x41 ))// b79a741f-7fb5-50ae-9e99-911201ec3d41
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationCompletedHandler_1_HSTRING {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_HSTRINGVTable) { $0 }
@@ -219,6 +222,7 @@ private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1_UINT32: test_compo
     .init(Data1: 0x9343b6e7, Data2: 0xe3d2, Data3: 0x5e4a, Data4: ( 0xab,0x2d,0x2b,0xce,0x49,0x19,0xa6,0xa4 ))// 9343b6e7-e3d2-5e4a-ab2d-2bce4919a6a4
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationCompletedHandler_1_UINT32 {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_UINT32VTable) { $0 }
@@ -272,6 +276,7 @@ private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIMap_2
     .init(Data1: 0x7344f356, Data2: 0x8399, Data3: 0x5756, Data4: ( 0xa2,0xf8,0xab,0xd5,0x0c,0x41,0x46,0xff ))// 7344f356-8399-5756-a2f8-abd50c4146ff
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIMap_2_HSTRING_IInspectable {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIMap_2_HSTRING_IInspectableVTable) { $0 }
@@ -378,6 +383,7 @@ private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVecto
     .init(Data1: 0x51436e75, Data2: 0xace1, Data3: 0x5a68, Data4: ( 0xb2,0x60,0xf8,0x43,0xb8,0x46,0xf0,0xdb ))// 51436e75-ace1-5a68-b260-f843b846f0db
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItem {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemVTable) { $0 }
@@ -431,6 +437,7 @@ private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVecto
     .init(Data1: 0xcb4206c5, Data2: 0x0988, Data3: 0x5104, Data4: ( 0xaf,0xa9,0x25,0x3c,0x29,0x8f,0x86,0xfd ))// cb4206c5-0988-5104-afa9-253c298f86fd
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFile {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileVTable) { $0 }
@@ -484,6 +491,7 @@ private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVecto
     .init(Data1: 0xed2d1d9b, Data2: 0x26ec, Data3: 0x5be7, Data4: ( 0xa8,0xa3,0x56,0x45,0x89,0x33,0xd2,0x5f ))// ed2d1d9b-26ec-5be7-a8a3-56458933d25f
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolder {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderVTable) { $0 }
@@ -537,6 +545,7 @@ private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVecto
     .init(Data1: 0xab9cea41, Data2: 0x6df8, Data3: 0x535d, Data4: ( 0x81,0x71,0x46,0xaf,0xf1,0x87,0x15,0x8f ))// ab9cea41-6df8-535d-8171-46aff187158f
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChange {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeVTable) { $0 }
@@ -643,6 +652,7 @@ private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVecto
     .init(Data1: 0xfae4b396, Data2: 0x97c8, Data3: 0x5cc3, Data4: ( 0xbf,0x88,0xea,0x30,0x98,0xed,0xf6,0xb2 ))// fae4b396-97c8-5cc3-bf88-ea3098edf6b2
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector_1_HSTRING {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector_1_HSTRINGVTable) { $0 }
@@ -696,6 +706,7 @@ private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__
     .init(Data1: 0xc8659aae, Data2: 0x4926, Data3: 0x52ad, Data4: ( 0x8f,0x60,0xd8,0x9f,0xe5,0xa8,0xdf,0x5f ))// c8659aae-4926-52ad-8f60-d89fe5a8df5f
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicProperties {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicPropertiesVTable) { $0 }
@@ -749,6 +760,7 @@ private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__
     .init(Data1: 0x4452ed4c, Data2: 0x642b, Data3: 0x501b, Data4: ( 0x96,0x17,0x7d,0x68,0xb4,0xac,0x3c,0x66 ))// 4452ed4c-642b-501b-9617-7d68b4ac3c66
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentProperties {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentPropertiesVTable) { $0 }
@@ -802,6 +814,7 @@ private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__
     .init(Data1: 0xc63729bc, Data2: 0xe4c3, Data3: 0x564c, Data4: ( 0xb1,0x37,0x2c,0xb4,0xf5,0x96,0x6a,0x83 ))// c63729bc-e4c3-564c-b137-2cb4f5966a83
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CImageProperties {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CImagePropertiesVTable) { $0 }
@@ -855,6 +868,7 @@ private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__
     .init(Data1: 0xd84e1312, Data2: 0xd661, Data3: 0x5b7f, Data4: ( 0x95,0x66,0x74,0x21,0xbd,0xed,0xc1,0xea ))// d84e1312-d661-5b7f-9566-7421bdedc1ea
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicProperties {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicPropertiesVTable) { $0 }
@@ -908,6 +922,7 @@ private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__
     .init(Data1: 0x6d0036f2, Data2: 0xa8a8, Data3: 0x505d, Data4: ( 0xb0,0x42,0xd0,0x87,0xdc,0x1f,0xc1,0xb7 ))// 6d0036f2-a8a8-505d-b042-d087dc1fc1b7
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnail {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailVTable) { $0 }
@@ -961,6 +976,7 @@ private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__
     .init(Data1: 0x43401d34, Data2: 0x61ab, Data3: 0x5cf2, Data4: ( 0x92,0x1f,0x55,0xb6,0x16,0x63,0x1d,0x1d ))// 43401d34-61ab-5cf2-921f-55b616631d1d
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoProperties {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoPropertiesVTable) { $0 }
@@ -1014,6 +1030,7 @@ private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__
     .init(Data1: 0x92c3102f, Data2: 0xa327, Data3: 0x5318, Data4: ( 0xa6,0xc1,0x76,0xf6,0xb2,0xa0,0xab,0xfb ))// 92c3102f-a327-5318-a6c1-76f6b2a0abfb
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CIStorageItem {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CIStorageItemVTable) { $0 }
@@ -1067,6 +1084,7 @@ private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__
     .init(Data1: 0xb67a3cba, Data2: 0xf5f7, Data3: 0x5e51, Data4: ( 0x96,0x8a,0x38,0x51,0x26,0xd1,0xf9,0x18 ))// b67a3cba-f5f7-5e51-968a-385126d1f918
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CSearch__CIndexedState {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CSearch__CIndexedStateVTable) { $0 }
@@ -1120,6 +1138,7 @@ private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__
     .init(Data1: 0xe521c894, Data2: 0x2c26, Data3: 0x5946, Data4: ( 0x9e,0x61,0x2b,0x5e,0x18,0x8d,0x01,0xed ))// e521c894-2c26-5946-9e61-2b5e188d01ed
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFile {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFileVTable) { $0 }
@@ -1173,6 +1192,7 @@ private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__
     .init(Data1: 0xc211026e, Data2: 0x9e63, Data3: 0x5452, Data4: ( 0xba,0x54,0x3a,0x07,0xd6,0xa9,0x68,0x74 ))// c211026e-9e63-5452-ba54-3a07d6a96874
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFolder {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageFolderVTable) { $0 }
@@ -1226,6 +1246,7 @@ private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__
     .init(Data1: 0xd11739e6, Data2: 0x2995, Data3: 0x5d33, Data4: ( 0xbf,0xff,0x51,0xb6,0x04,0x1f,0x68,0xc1 ))// d11739e6-2995-5d33-bfff-51b6041f68c1
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageStreamTransaction {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStorageStreamTransactionVTable) { $0 }
@@ -1279,6 +1300,7 @@ private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__
     .init(Data1: 0x51c3d2fd, Data2: 0xb8a1, Data3: 0x5620, Data4: ( 0xb7,0x46,0x7e,0xe6,0xd5,0x33,0xac,0xa3 ))// 51c3d2fd-b8a1-5620-b746-7ee6d533aca3
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIBuffer {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIBufferVTable) { $0 }
@@ -1332,6 +1354,7 @@ private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__
     .init(Data1: 0xd0bd0125, Data2: 0x9049, Data3: 0x57a3, Data4: ( 0xbd,0x66,0xe2,0x52,0x5d,0x98,0xc8,0x14 ))// d0bd0125-9049-57a3-bd66-e2525d98c814
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIInputStream {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIInputStreamVTable) { $0 }
@@ -1385,6 +1408,7 @@ private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__
     .init(Data1: 0x398c4183, Data2: 0x793d, Data3: 0x5b00, Data4: ( 0x81,0x9b,0x4a,0xef,0x92,0x48,0x5e,0x94 ))// 398c4183-793d-5b00-819b-4aef92485e94
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStream {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamVTable) { $0 }
@@ -1491,6 +1515,7 @@ private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__
     .init(Data1: 0x3dddecf4, Data2: 0x1d39, Data3: 0x58e8, Data4: ( 0x83,0xb1,0xdb,0xed,0x54,0x1c,0x7f,0x35 ))// 3dddecf4-1d39-58e8-83b1-dbed541c7f35
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentType {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentTypeVTable) { $0 }
@@ -1597,6 +1622,7 @@ private var IID___x_ABI_C__FIAsyncOperationProgressHandler_2_int_double: test_co
     .init(Data1: 0xc13682fc, Data2: 0x6466, Data3: 0x5af2, Data4: ( 0x8a,0x68,0x0d,0xa9,0x4b,0x50,0x64,0xf3 ))// c13682fc-6466-5af2-8a68-0da94b5064f3
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationProgressHandler_2_int_double {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleVTable) { $0 }
@@ -1650,6 +1676,7 @@ private var IID___x_ABI_C__FIAsyncOperationProgressHandler_2_UINT32_UINT32: test
     .init(Data1: 0xea0fe405, Data2: 0xd432, Data3: 0x5ac7, Data4: ( 0x9e,0xf8,0x5a,0x65,0xe1,0xf9,0x7d,0x7e ))// ea0fe405-d432-5ac7-9ef8-5a65e1f97d7e
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationProgressHandler_2_UINT32_UINT32 {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2_UINT32_UINT32VTable) { $0 }
@@ -1703,6 +1730,7 @@ private var IID___x_ABI_C__FIAsyncOperationProgressHandler_2___x_ABI_CWindows__C
     .init(Data1: 0xbf666554, Data2: 0x7605, Data3: 0x5d9a, Data4: ( 0xb1,0x4e,0x18,0xd8,0xc8,0x47,0x2a,0xfe ))// bf666554-7605-5d9a-b14e-18d8c8472afe
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationProgressHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32 {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationProgressHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32VTable) { $0 }
@@ -1756,6 +1784,7 @@ private var IID___x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_do
     .init(Data1: 0x42d14b3d, Data2: 0xcf9b, Data3: 0x5c48, Data4: ( 0x85,0x42,0x74,0xd9,0xf4,0x8f,0x4d,0x27 ))// 42d14b3d-cf9b-5c48-8542-74d9f48f4d27
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_double {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_doubleVTable) { $0 }
@@ -1809,6 +1838,7 @@ private var IID___x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_UINT32
     .init(Data1: 0x1e466dc5, Data2: 0x840f, Data3: 0x54f9, Data4: ( 0xb8,0x77,0x5e,0x3a,0x9f,0x4b,0x6c,0x74 ))// 1e466dc5-840f-54f9-b877-5e3a9f4b6c74
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_UINT32_UINT32 {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_UINT32_UINT32VTable) { $0 }
@@ -1862,6 +1892,7 @@ private var IID___x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2___x_AB
     .init(Data1: 0x06386a7a, Data2: 0xe009, Data3: 0x5b0b, Data4: ( 0xab,0x68,0xa8,0xe4,0x8b,0x51,0x66,0x47 ))// 06386a7a-e009-5b0b-ab68-a8e48b516647
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32 {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32VTable) { $0 }
@@ -13702,6 +13733,7 @@ private var IID___x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectable: test_
     .init(Data1: 0x24f981e5, Data2: 0xddca, Data3: 0x538d, Data4: ( 0xaa,0xda,0xa5,0x99,0x06,0x08,0x4c,0xf1 ))// 24f981e5-ddca-538d-aada-a59906084cf1
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectable {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectableVTable) { $0 }
@@ -13757,6 +13789,7 @@ private var IID___x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRING: test_compo
     .init(Data1: 0xe2663f37, Data2: 0x2e1b, Data3: 0x500c, Data4: ( 0xad,0x68,0xc3,0xed,0x7a,0x8f,0x74,0xc8 ))// e2663f37-2e1b-500c-ad68-c3ed7a8f74c8
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRING {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FMapChangedEventHandler_2_HSTRING_HSTRINGVTable) { $0 }
@@ -13812,6 +13845,7 @@ private var IID___x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponen
     .init(Data1: 0x4175f8a0, Data2: 0x51bf, Data3: 0x561d, Data4: ( 0xbe,0xaf,0x41,0x55,0x41,0xdb,0xbf,0x69 ))// 4175f8a0-51bf-561d-beaf-415541dbbf69
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBase {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
@@ -13867,6 +13901,7 @@ private var IID___x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponen
     .init(Data1: 0xea4e2c41, Data2: 0x3051, Data3: 0x539a, Data4: ( 0xa0,0xde,0x7e,0x2e,0x2c,0xb0,0xdb,0xf8 ))// ea4e2c41-3051-539a-a0de-7e2e2cb0dbf8
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasic {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasicVTable) { $0 }
@@ -13922,6 +13957,7 @@ private var IID___x_ABI_C__FIEventHandler_1_IInspectable: test_component.IID {
     .init(Data1: 0xc50898f6, Data2: 0xc536, Data3: 0x5f47, Data4: ( 0x85,0x83,0x8b,0x2c,0x24,0x38,0xa1,0x3b ))// c50898f6-c536-5f47-8583-8b2c2438a13b
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIEventHandler_1_IInspectable {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIEventHandler_1_IInspectableVTable) { $0 }
@@ -19383,6 +19419,7 @@ private var IID___x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__
     .init(Data1: 0xf4637d4a, Data2: 0x0760, Data3: 0x5431, Data4: ( 0xbf,0xc0,0x24,0xeb,0x1d,0x4f,0x6c,0x4f ))// f4637d4a-0760-5431-bfc0-24eb1d4f6c4f
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIMemoryBufferReference_IInspectable {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__CIMemoryBufferReference_IInspectableVTable) { $0 }
@@ -19438,6 +19475,7 @@ private var IID___x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CStorage__CSe
     .init(Data1: 0x4ba22861, Data2: 0x00c4, Data3: 0x597f, Data4: ( 0xb6,0xbf,0x3a,0xf5,0x16,0xf3,0xb8,0x70 ))// 4ba22861-00c4-597f-b6bf-3af516f3b870
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CStorage__CSearch__CIStorageQueryResultBase_IInspectable {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CStorage__CSearch__CIStorageQueryResultBase_IInspectableVTable) { $0 }
@@ -19648,6 +19686,7 @@ private var IID___x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CCla
     .init(Data1: 0xbb79a048, Data2: 0xa61a, Data3: 0x57c1, Data4: ( 0x92,0x00,0x08,0x83,0xcd,0x88,0xc6,0x94 ))// bb79a048-a61a-57c1-9200-0883cd88c694
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgsVTable) { $0 }
@@ -19699,6 +19738,7 @@ private var IID___x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSim
     .init(Data1: 0x17d0b9f7, Data2: 0xa3c3, Data3: 0x5961, Data4: ( 0x9a,0x78,0xfb,0x92,0xed,0xa1,0x58,0xc6 ))// 17d0b9f7-a3c3-5961-9a78-fb92eda158c6
 }
 
+@_spi(WinRTInternal)
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgsVTable) { $0 }

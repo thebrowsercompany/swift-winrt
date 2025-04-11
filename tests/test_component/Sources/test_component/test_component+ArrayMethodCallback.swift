@@ -27,8 +27,8 @@ extension __IMPL_test_component {
 @_spi(WinRTInternal)
 extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIArrayMethodCallback: test_component.IID = .init(
-        Data1: 0x224AFD3B, Data2: 0x6459, Data3: 0x5621, Data4: ( 0xBF,0x69,0xF5,0x02,0x8C,0xF2,0xB3,0x17 )
-    ) // 224AFD3B-6459-5621-BF69-F5028CF2B317
+        Data1: 0x224AFD3B, Data2: 0x6459, Data3: 0x5621, Data4: ( 0xBF,0x69,0xF5,0x02,0x8C,0xF2,0xB3,0x17 ) // 224AFD3B-6459-5621-BF69-F5028CF2B317
+    ) 
     public class ArrayMethodCallback: test_component.IUnknown {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIArrayMethodCallback }
 
@@ -58,6 +58,7 @@ extension __ABI_test_component {
         }
     )
 }
+@_spi(WinRTInternal)
 public extension WinRTDelegateBridge where CABI == __x_ABI_Ctest__component_CIArrayMethodCallback {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.ArrayMethodCallbackVTable) { $0 }

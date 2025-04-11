@@ -28,6 +28,6 @@ extension __IMPL_Windows_Foundation_Collections {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Foundation_Collections {
     private static let IID___x_ABI_C__FIMapView_2_K_V: test_component.IID = .init(
-        Data1: 0xE480CE40, Data2: 0xA338, Data3: 0x4ADA, Data4: ( 0xAD,0xCF,0x27,0x22,0x72,0xE4,0x8C,0xB9 )
-    ) // E480CE40-A338-4ADA-ADCF-272272E48CB9
+        Data1: 0xE480CE40, Data2: 0xA338, Data3: 0x4ADA, Data4: ( 0xAD,0xCF,0x27,0x22,0x72,0xE4,0x8C,0xB9 ) // E480CE40-A338-4ADA-ADCF-272272E48CB9
+    ) 
 }

@@ -75,8 +75,8 @@ extension __IMPL_test_component {
 @_spi(WinRTInternal)
 extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CInterfaceWithReturnDelegate: test_component.IID = .init(
-        Data1: 0xB0EBC406, Data2: 0x17C0, Data3: 0x5703, Data4: ( 0xB9,0xC7,0x50,0xBE,0x67,0x5B,0xBC,0x95 )
-    ) // B0EBC406-17C0-5703-B9C7-50BE675BBC95
+        Data1: 0xB0EBC406, Data2: 0x17C0, Data3: 0x5703, Data4: ( 0xB9,0xC7,0x50,0xBE,0x67,0x5B,0xBC,0x95 ) // B0EBC406-17C0-5703-B9C7-50BE675BBC95
+    ) 
     public class InterfaceWithReturnDelegate: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CInterfaceWithReturnDelegate }
 

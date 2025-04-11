@@ -27,8 +27,8 @@ extension __IMPL_test_component_Delegates {
 @_spi(WinRTInternal)
 extension __ABI_test_component_Delegates {
     private static let IID___x_ABI_Ctest__component_CDelegates_CIInObjectDelegate: test_component.IID = .init(
-        Data1: 0x68F889F8, Data2: 0x1A16, Data3: 0x5F6D, Data4: ( 0x8A,0x04,0x24,0x58,0x38,0xEA,0xF3,0xD4 )
-    ) // 68F889F8-1A16-5F6D-8A04-245838EAF3D4
+        Data1: 0x68F889F8, Data2: 0x1A16, Data3: 0x5F6D, Data4: ( 0x8A,0x04,0x24,0x58,0x38,0xEA,0xF3,0xD4 ) // 68F889F8-1A16-5F6D-8A04-245838EAF3D4
+    ) 
     public class InObjectDelegate: test_component.IUnknown {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CDelegates_CIInObjectDelegate }
 
@@ -58,6 +58,7 @@ extension __ABI_test_component_Delegates {
         }
     )
 }
+@_spi(WinRTInternal)
 public extension WinRTDelegateBridge where CABI == __x_ABI_Ctest__component_CDelegates_CIInObjectDelegate {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component_Delegates.InObjectDelegateVTable) { $0 }

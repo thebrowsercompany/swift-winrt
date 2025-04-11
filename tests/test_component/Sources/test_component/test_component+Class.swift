@@ -259,8 +259,8 @@ public class ClassMaker: MakeFromAbi {
 @_spi(WinRTInternal)
 extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIClass: test_component.IID = .init(
-        Data1: 0xEBCBC0CD, Data2: 0x48DD, Data3: 0x56BA, Data4: ( 0xBB,0xE2,0xCD,0x0B,0xE5,0xA3,0x06,0x76 )
-    ) // EBCBC0CD-48DD-56BA-BBE2-CD0BE5A30676
+        Data1: 0xEBCBC0CD, Data2: 0x48DD, Data3: 0x56BA, Data4: ( 0xBB,0xE2,0xCD,0x0B,0xE5,0xA3,0x06,0x76 ) // EBCBC0CD-48DD-56BA-BBE2-CD0BE5A30676
+    ) 
     public class IClass: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIClass }
 
@@ -573,8 +573,8 @@ extension __ABI_test_component {
     }
 
     private static let IID___x_ABI_Ctest__component_CIClassFactory: test_component.IID = .init(
-        Data1: 0x78914881, Data2: 0xB900, Data3: 0x582A, Data4: ( 0x94,0xB8,0x58,0x19,0x84,0xC0,0xF7,0x8A )
-    ) // 78914881-B900-582A-94B8-581984C0F78A
+        Data1: 0x78914881, Data2: 0xB900, Data3: 0x582A, Data4: ( 0x94,0xB8,0x58,0x19,0x84,0xC0,0xF7,0x8A ) // 78914881-B900-582A-94B8-581984C0F78A
+    ) 
     public class IClassFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIClassFactory }
 
@@ -645,8 +645,8 @@ extension __ABI_test_component {
     }
 
     private static let IID___x_ABI_Ctest__component_CIClassFactory2: test_component.IID = .init(
-        Data1: 0xF5F62EBE, Data2: 0x931B, Data3: 0x519B, Data4: ( 0x95,0x1A,0xF1,0x4A,0x4B,0xC7,0x83,0xB1 )
-    ) // F5F62EBE-931B-519B-951A-F14A4BC783B1
+        Data1: 0xF5F62EBE, Data2: 0x931B, Data3: 0x519B, Data4: ( 0x95,0x1A,0xF1,0x4A,0x4B,0xC7,0x83,0xB1 ) // F5F62EBE-931B-519B-951A-F14A4BC783B1
+    ) 
     public class IClassFactory2: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIClassFactory2 }
 
@@ -665,8 +665,8 @@ extension __ABI_test_component {
     }
 
     private static let IID___x_ABI_Ctest__component_CIClassStatics: test_component.IID = .init(
-        Data1: 0x3E30803C, Data2: 0x35D4, Data3: 0x52A7, Data4: ( 0xB2,0x11,0xFD,0xC5,0xD6,0xAC,0x48,0x7B )
-    ) // 3E30803C-35D4-52A7-B211-FDC5D6AC487B
+        Data1: 0x3E30803C, Data2: 0x35D4, Data3: 0x52A7, Data4: ( 0xB2,0x11,0xFD,0xC5,0xD6,0xAC,0x48,0x7B ) // 3E30803C-35D4-52A7-B211-FDC5D6AC487B
+    ) 
     public class IClassStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIClassStatics }
 
@@ -703,8 +703,8 @@ extension __ABI_test_component {
     }
 
     private static let IID___x_ABI_Ctest__component_CIClassStatics2: test_component.IID = .init(
-        Data1: 0xB341C098, Data2: 0x033D, Data3: 0x5445, Data4: ( 0x86,0x80,0x70,0x3A,0x93,0xBC,0xDF,0x81 )
-    ) // B341C098-033D-5445-8680-703A93BCDF81
+        Data1: 0xB341C098, Data2: 0x033D, Data3: 0x5445, Data4: ( 0x86,0x80,0x70,0x3A,0x93,0xBC,0xDF,0x81 ) // B341C098-033D-5445-8680-703A93BCDF81
+    ) 
     public class IClassStatics2: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIClassStatics2 }
 

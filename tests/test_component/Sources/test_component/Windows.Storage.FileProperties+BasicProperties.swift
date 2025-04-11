@@ -86,8 +86,8 @@ public class BasicPropertiesMaker: MakeFromAbi {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Storage_FileProperties {
     private static let IID___x_ABI_CWindows_CStorage_CFileProperties_CIBasicProperties: test_component.IID = .init(
-        Data1: 0xD05D55DB, Data2: 0x785E, Data3: 0x4A66, Data4: ( 0xBE,0x02,0x9B,0xEE,0xC5,0x8A,0xEA,0x81 )
-    ) // D05D55DB-785E-4A66-BE02-9BEEC58AEA81
+        Data1: 0xD05D55DB, Data2: 0x785E, Data3: 0x4A66, Data4: ( 0xBE,0x02,0x9B,0xEE,0xC5,0x8A,0xEA,0x81 ) // D05D55DB-785E-4A66-BE02-9BEEC58AEA81
+    ) 
     public class IBasicProperties: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CFileProperties_CIBasicProperties }
 

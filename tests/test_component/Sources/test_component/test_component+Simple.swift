@@ -167,8 +167,8 @@ public class SimpleMaker: MakeFromAbi {
 @_spi(WinRTInternal)
 extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CISimple: test_component.IID = .init(
-        Data1: 0xAE7B4545, Data2: 0xD9D0, Data3: 0x5655, Data4: ( 0xB1,0xDE,0xA0,0x7D,0xA1,0x3B,0xD8,0x9B )
-    ) // AE7B4545-D9D0-5655-B1DE-A07DA13BD89B
+        Data1: 0xAE7B4545, Data2: 0xD9D0, Data3: 0x5655, Data4: ( 0xB1,0xDE,0xA0,0x7D,0xA1,0x3B,0xD8,0x9B ) // AE7B4545-D9D0-5655-B1DE-A07DA13BD89B
+    ) 
     public class ISimple: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CISimple }
 
@@ -365,8 +365,8 @@ extension __ABI_test_component {
     }
 
     private static let IID___x_ABI_Ctest__component_CISimpleOverrides: test_component.IID = .init(
-        Data1: 0x2F772B66, Data2: 0xE6BE, Data3: 0x51E4, Data4: ( 0xB9,0x22,0x01,0x9D,0x56,0xF7,0xEF,0xD1 )
-    ) // 2F772B66-E6BE-51E4-B922-019D56F7EFD1
+        Data1: 0x2F772B66, Data2: 0xE6BE, Data3: 0x51E4, Data4: ( 0xB9,0x22,0x01,0x9D,0x56,0xF7,0xEF,0xD1 ) // 2F772B66-E6BE-51E4-B922-019D56F7EFD1
+    ) 
     public class ISimpleOverrides: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CISimpleOverrides }
 
@@ -379,8 +379,8 @@ extension __ABI_test_component {
     }
 
     private static let IID___x_ABI_Ctest__component_CISimpleStatics: test_component.IID = .init(
-        Data1: 0xC8DCADA0, Data2: 0xFD8E, Data3: 0x5E27, Data4: ( 0x95,0x51,0xA3,0x68,0xFE,0x1D,0x11,0xB2 )
-    ) // C8DCADA0-FD8E-5E27-9551-A368FE1D11B2
+        Data1: 0xC8DCADA0, Data2: 0xFD8E, Data3: 0x5E27, Data4: ( 0x95,0x51,0xA3,0x68,0xFE,0x1D,0x11,0xB2 ) // C8DCADA0-FD8E-5E27-9551-A368FE1D11B2
+    ) 
     public class ISimpleStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CISimpleStatics }
 

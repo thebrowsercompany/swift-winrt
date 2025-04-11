@@ -60,8 +60,8 @@ extension __IMPL_Windows_Storage_Streams {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Storage_Streams {
     private static let IID___x_ABI_CWindows_CStorage_CStreams_CIContentTypeProvider: test_component.IID = .init(
-        Data1: 0x97D098A5, Data2: 0x3B99, Data3: 0x4DE9, Data4: ( 0x88,0xA5,0xE1,0x1D,0x2F,0x50,0xC7,0x95 )
-    ) // 97D098A5-3B99-4DE9-88A5-E11D2F50C795
+        Data1: 0x97D098A5, Data2: 0x3B99, Data3: 0x4DE9, Data4: ( 0x88,0xA5,0xE1,0x1D,0x2F,0x50,0xC7,0x95 ) // 97D098A5-3B99-4DE9-88A5-E11D2F50C795
+    ) 
     public class IContentTypeProvider: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CStreams_CIContentTypeProvider }
 

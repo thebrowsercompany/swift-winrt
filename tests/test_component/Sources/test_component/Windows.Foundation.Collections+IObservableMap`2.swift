@@ -22,6 +22,6 @@ extension __IMPL_Windows_Foundation_Collections {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Foundation_Collections {
     private static let IID___x_ABI_C__FIObservableMap_2_K_V: test_component.IID = .init(
-        Data1: 0x65DF2BF5, Data2: 0xBF39, Data3: 0x41B5, Data4: ( 0xAE,0xBC,0x5A,0x9D,0x86,0x5E,0x47,0x2B )
-    ) // 65DF2BF5-BF39-41B5-AEBC-5A9D865E472B
+        Data1: 0x65DF2BF5, Data2: 0xBF39, Data3: 0x41B5, Data4: ( 0xAE,0xBC,0x5A,0x9D,0x86,0x5E,0x47,0x2B ) // 65DF2BF5-BF39-41B5-AEBC-5A9D865E472B
+    ) 
 }

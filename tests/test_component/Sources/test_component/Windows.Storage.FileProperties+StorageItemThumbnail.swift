@@ -152,8 +152,8 @@ public class StorageItemThumbnailMaker: MakeFromAbi {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Storage_FileProperties {
     private static let IID___x_ABI_CWindows_CStorage_CFileProperties_CIThumbnailProperties: test_component.IID = .init(
-        Data1: 0x693DD42F, Data2: 0xDBE7, Data3: 0x49B5, Data4: ( 0xB3,0xB3,0x28,0x93,0xAC,0x5D,0x34,0x23 )
-    ) // 693DD42F-DBE7-49B5-B3B3-2893AC5D3423
+        Data1: 0x693DD42F, Data2: 0xDBE7, Data3: 0x49B5, Data4: ( 0xB3,0xB3,0x28,0x93,0xAC,0x5D,0x34,0x23 ) // 693DD42F-DBE7-49B5-B3B3-2893AC5D3423
+    ) 
     public class IThumbnailProperties: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CFileProperties_CIThumbnailProperties }
 

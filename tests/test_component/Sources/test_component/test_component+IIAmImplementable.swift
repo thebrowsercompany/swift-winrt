@@ -150,8 +150,8 @@ extension __IMPL_test_component {
 @_spi(WinRTInternal)
 extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIIAmImplementable: test_component.IID = .init(
-        Data1: 0x0B3C0120, Data2: 0xD138, Data3: 0x512B, Data4: ( 0x8D,0x38,0xF5,0x1E,0x35,0xF0,0x65,0xB2 )
-    ) // 0B3C0120-D138-512B-8D38-F51E35F065B2
+        Data1: 0x0B3C0120, Data2: 0xD138, Data3: 0x512B, Data4: ( 0x8D,0x38,0xF5,0x1E,0x35,0xF0,0x65,0xB2 ) // 0B3C0120-D138-512B-8D38-F51E35F065B2
+    ) 
     public class IIAmImplementable: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIIAmImplementable }
 

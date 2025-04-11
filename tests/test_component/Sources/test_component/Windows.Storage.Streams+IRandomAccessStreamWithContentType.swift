@@ -139,8 +139,8 @@ extension __IMPL_Windows_Storage_Streams {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Storage_Streams {
     private static let IID___x_ABI_CWindows_CStorage_CStreams_CIRandomAccessStreamWithContentType: test_component.IID = .init(
-        Data1: 0xCC254827, Data2: 0x4B3D, Data3: 0x438F, Data4: ( 0x92,0x32,0x10,0xC7,0x6B,0xC7,0xE0,0x38 )
-    ) // CC254827-4B3D-438F-9232-10C76BC7E038
+        Data1: 0xCC254827, Data2: 0x4B3D, Data3: 0x438F, Data4: ( 0x92,0x32,0x10,0xC7,0x6B,0xC7,0xE0,0x38 ) // CC254827-4B3D-438F-9232-10C76BC7E038
+    ) 
     public class IRandomAccessStreamWithContentType: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CStreams_CIRandomAccessStreamWithContentType }
 

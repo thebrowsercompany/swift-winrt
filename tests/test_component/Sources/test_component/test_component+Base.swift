@@ -139,8 +139,8 @@ extension __ABI_test_component {
         }
     )
     private static let IID___x_ABI_Ctest__component_CIBase: test_component.IID = .init(
-        Data1: 0xE9FE0BB2, Data2: 0xE1F6, Data3: 0x5E39, Data4: ( 0x92,0xBB,0x2F,0x19,0xFF,0xDE,0x3F,0xDC )
-    ) // E9FE0BB2-E1F6-5E39-92BB-2F19FFDE3FDC
+        Data1: 0xE9FE0BB2, Data2: 0xE1F6, Data3: 0x5E39, Data4: ( 0x92,0xBB,0x2F,0x19,0xFF,0xDE,0x3F,0xDC ) // E9FE0BB2-E1F6-5E39-92BB-2F19FFDE3FDC
+    ) 
     public class IBase: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBase }
 
@@ -153,8 +153,8 @@ extension __ABI_test_component {
     }
 
     private static let IID___x_ABI_Ctest__component_CIBaseOverrides: test_component.IID = .init(
-        Data1: 0xEE3CBD78, Data2: 0x04B7, Data3: 0x534F, Data4: ( 0xA7,0x15,0x53,0xDA,0xF5,0x35,0x01,0x3C )
-    ) // EE3CBD78-04B7-534F-A715-53DAF535013C
+        Data1: 0xEE3CBD78, Data2: 0x04B7, Data3: 0x534F, Data4: ( 0xA7,0x15,0x53,0xDA,0xF5,0x35,0x01,0x3C ) // EE3CBD78-04B7-534F-A715-53DAF535013C
+    ) 
     public class IBaseOverrides: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseOverrides }
 
@@ -167,8 +167,8 @@ extension __ABI_test_component {
     }
 
     private static let IID___x_ABI_Ctest__component_CIBaseProtectedFactory: test_component.IID = .init(
-        Data1: 0x05CAD233, Data2: 0x20A7, Data3: 0x581F, Data4: ( 0xBD,0x44,0x0D,0x13,0x6C,0x31,0x0E,0x0F )
-    ) // 05CAD233-20A7-581F-BD44-0D136C310E0F
+        Data1: 0x05CAD233, Data2: 0x20A7, Data3: 0x581F, Data4: ( 0xBD,0x44,0x0D,0x13,0x6C,0x31,0x0E,0x0F ) // 05CAD233-20A7-581F-BD44-0D136C310E0F
+    ) 
     public class IBaseProtectedFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseProtectedFactory }
 
@@ -188,8 +188,8 @@ extension __ABI_test_component {
     }
 
     private static let IID___x_ABI_Ctest__component_CIBaseStatics: test_component.IID = .init(
-        Data1: 0x9E36C560, Data2: 0xE3AE, Data3: 0x55DF, Data4: ( 0xBA,0x41,0x6B,0xB5,0x47,0xA2,0x81,0x65 )
-    ) // 9E36C560-E3AE-55DF-BA41-6BB547A28165
+        Data1: 0x9E36C560, Data2: 0xE3AE, Data3: 0x55DF, Data4: ( 0xBA,0x41,0x6B,0xB5,0x47,0xA2,0x81,0x65 ) // 9E36C560-E3AE-55DF-BA41-6BB547A28165
+    ) 
     public class IBaseStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseStatics }
 

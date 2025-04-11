@@ -76,8 +76,8 @@ public class StorageLibraryChangeMaker: MakeFromAbi {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Storage {
     private static let IID___x_ABI_CWindows_CStorage_CIStorageLibraryChange: test_component.IID = .init(
-        Data1: 0x00980B23, Data2: 0x2BE2, Data3: 0x4909, Data4: ( 0xAA,0x48,0x15,0x9F,0x52,0x03,0xA5,0x1E )
-    ) // 00980B23-2BE2-4909-AA48-159F5203A51E
+        Data1: 0x00980B23, Data2: 0x2BE2, Data3: 0x4909, Data4: ( 0xAA,0x48,0x15,0x9F,0x52,0x03,0xA5,0x1E ) // 00980B23-2BE2-4909-AA48-159F5203A51E
+    ) 
     public class IStorageLibraryChange: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageLibraryChange }
 

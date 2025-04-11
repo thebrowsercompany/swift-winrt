@@ -89,8 +89,8 @@ public class BufferMaker: MakeFromAbi {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Storage_Streams {
     private static let IID___x_ABI_CWindows_CStorage_CStreams_CIBufferFactory: test_component.IID = .init(
-        Data1: 0x71AF914D, Data2: 0xC10F, Data3: 0x484B, Data4: ( 0xBC,0x50,0x14,0xBC,0x62,0x3B,0x3A,0x27 )
-    ) // 71AF914D-C10F-484B-BC50-14BC623B3A27
+        Data1: 0x71AF914D, Data2: 0xC10F, Data3: 0x484B, Data4: ( 0xBC,0x50,0x14,0xBC,0x62,0x3B,0x3A,0x27 ) // 71AF914D-C10F-484B-BC50-14BC623B3A27
+    ) 
     public class IBufferFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CStreams_CIBufferFactory }
 
@@ -106,8 +106,8 @@ extension __ABI_Windows_Storage_Streams {
     }
 
     private static let IID___x_ABI_CWindows_CStorage_CStreams_CIBufferStatics: test_component.IID = .init(
-        Data1: 0xE901E65B, Data2: 0xD716, Data3: 0x475A, Data4: ( 0xA9,0x0A,0xAF,0x72,0x29,0xB1,0xE7,0x41 )
-    ) // E901E65B-D716-475A-A90A-AF7229B1E741
+        Data1: 0xE901E65B, Data2: 0xD716, Data3: 0x475A, Data4: ( 0xA9,0x0A,0xAF,0x72,0x29,0xB1,0xE7,0x41 ) // E901E65B-D716-475A-A90A-AF7229B1E741
+    ) 
     public class IBufferStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CStreams_CIBufferStatics }
 

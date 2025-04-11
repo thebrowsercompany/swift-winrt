@@ -87,16 +87,16 @@ public class BaseNoOverridesMaker: MakeFromAbi {
 @_spi(WinRTInternal)
 extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIBaseNoOverrides: test_component.IID = .init(
-        Data1: 0xCAC21C05, Data2: 0xB599, Data3: 0x5D37, Data4: ( 0xA9,0x3A,0xD6,0x0C,0xBD,0xD1,0xD0,0xE8 )
-    ) // CAC21C05-B599-5D37-A93A-D60CBDD1D0E8
+        Data1: 0xCAC21C05, Data2: 0xB599, Data3: 0x5D37, Data4: ( 0xA9,0x3A,0xD6,0x0C,0xBD,0xD1,0xD0,0xE8 ) // CAC21C05-B599-5D37-A93A-D60CBDD1D0E8
+    ) 
     public class IBaseNoOverrides: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseNoOverrides }
 
     }
 
     private static let IID___x_ABI_Ctest__component_CIBaseNoOverridesProtectedFactory: test_component.IID = .init(
-        Data1: 0x92FC0572, Data2: 0x825F, Data3: 0x5B3F, Data4: ( 0x9B,0x0B,0xF0,0x80,0xA1,0x66,0xEF,0x06 )
-    ) // 92FC0572-825F-5B3F-9B0B-F080A166EF06
+        Data1: 0x92FC0572, Data2: 0x825F, Data3: 0x5B3F, Data4: ( 0x9B,0x0B,0xF0,0x80,0xA1,0x66,0xEF,0x06 ) // 92FC0572-825F-5B3F-9B0B-F080A166EF06
+    ) 
     public class IBaseNoOverridesProtectedFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseNoOverridesProtectedFactory }
 
@@ -116,8 +116,8 @@ extension __ABI_test_component {
     }
 
     private static let IID___x_ABI_Ctest__component_CIBaseNoOverridesStatics: test_component.IID = .init(
-        Data1: 0xCC810B5D, Data2: 0x97FC, Data3: 0x5B35, Data4: ( 0xAE,0xEA,0xA4,0x7F,0x5F,0x58,0x06,0xF7 )
-    ) // CC810B5D-97FC-5B35-AEEA-A47F5F5806F7
+        Data1: 0xCC810B5D, Data2: 0x97FC, Data3: 0x5B35, Data4: ( 0xAE,0xEA,0xA4,0x7F,0x5F,0x58,0x06,0xF7 ) // CC810B5D-97FC-5B35-AEEA-A47F5F5806F7
+    ) 
     public class IBaseNoOverridesStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseNoOverridesStatics }
 

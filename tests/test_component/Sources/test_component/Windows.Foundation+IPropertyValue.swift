@@ -219,8 +219,8 @@ extension __IMPL_Windows_Foundation {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Foundation {
     private static let IID___x_ABI_CWindows_CFoundation_CIPropertyValue: test_component.IID = .init(
-        Data1: 0x4BD682DD, Data2: 0x7554, Data3: 0x40E9, Data4: ( 0x9A,0x9B,0x82,0x65,0x4E,0xDE,0x7E,0x62 )
-    ) // 4BD682DD-7554-40E9-9A9B-82654EDE7E62
+        Data1: 0x4BD682DD, Data2: 0x7554, Data3: 0x40E9, Data4: ( 0x9A,0x9B,0x82,0x65,0x4E,0xDE,0x7E,0x62 ) // 4BD682DD-7554-40E9-9A9B-82654EDE7E62
+    ) 
     public class IPropertyValue: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIPropertyValue }
 

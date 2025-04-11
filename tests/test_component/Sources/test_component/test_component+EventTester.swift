@@ -71,8 +71,8 @@ public class EventTesterMaker: MakeFromAbi {
 @_spi(WinRTInternal)
 extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIEventTester: test_component.IID = .init(
-        Data1: 0xDD19BE65, Data2: 0x638D, Data3: 0x519A, Data4: ( 0x81,0xA9,0x73,0x3F,0xDB,0xD8,0x7A,0x17 )
-    ) // DD19BE65-638D-519A-81A9-733FDBD87A17
+        Data1: 0xDD19BE65, Data2: 0x638D, Data3: 0x519A, Data4: ( 0x81,0xA9,0x73,0x3F,0xDB,0xD8,0x7A,0x17 ) // DD19BE65-638D-519A-81A9-733FDBD87A17
+    ) 
     public class IEventTester: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIEventTester }
 
@@ -107,8 +107,8 @@ extension __ABI_test_component {
     }
 
     private static let IID___x_ABI_Ctest__component_CIEventTesterFactory: test_component.IID = .init(
-        Data1: 0x9E6F50EC, Data2: 0x0F53, Data3: 0x5507, Data4: ( 0xB7,0x37,0x14,0x3B,0x1B,0xB3,0x53,0x65 )
-    ) // 9E6F50EC-0F53-5507-B737-143B1BB35365
+        Data1: 0x9E6F50EC, Data2: 0x0F53, Data3: 0x5507, Data4: ( 0xB7,0x37,0x14,0x3B,0x1B,0xB3,0x53,0x65 ) // 9E6F50EC-0F53-5507-B737-143B1BB35365
+    ) 
     public class IEventTesterFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIEventTesterFactory }
 

@@ -68,8 +68,8 @@ public class StorageProviderMaker: MakeFromAbi {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Storage {
     private static let IID___x_ABI_CWindows_CStorage_CIStorageProvider: test_component.IID = .init(
-        Data1: 0xE705EED4, Data2: 0xD478, Data3: 0x47D6, Data4: ( 0xBA,0x46,0x1A,0x8E,0xBE,0x11,0x4A,0x20 )
-    ) // E705EED4-D478-47D6-BA46-1A8EBE114A20
+        Data1: 0xE705EED4, Data2: 0xD478, Data3: 0x47D6, Data4: ( 0xBA,0x46,0x1A,0x8E,0xBE,0x11,0x4A,0x20 ) // E705EED4-D478-47D6-BA46-1A8EBE114A20
+    ) 
     public class IStorageProvider: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageProvider }
 
@@ -92,8 +92,8 @@ extension __ABI_Windows_Storage {
     }
 
     private static let IID___x_ABI_CWindows_CStorage_CIStorageProvider2: test_component.IID = .init(
-        Data1: 0x010D1917, Data2: 0x3404, Data3: 0x414B, Data4: ( 0x9F,0xD7,0xCD,0x44,0x47,0x2E,0xAA,0x39 )
-    ) // 010D1917-3404-414B-9FD7-CD44472EAA39
+        Data1: 0x010D1917, Data2: 0x3404, Data3: 0x414B, Data4: ( 0x9F,0xD7,0xCD,0x44,0x47,0x2E,0xAA,0x39 ) // 010D1917-3404-414B-9FD7-CD44472EAA39
+    ) 
     public class IStorageProvider2: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageProvider2 }
 

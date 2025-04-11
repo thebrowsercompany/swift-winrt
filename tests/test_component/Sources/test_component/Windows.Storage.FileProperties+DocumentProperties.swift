@@ -93,8 +93,8 @@ public class DocumentPropertiesMaker: MakeFromAbi {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Storage_FileProperties {
     private static let IID___x_ABI_CWindows_CStorage_CFileProperties_CIDocumentProperties: test_component.IID = .init(
-        Data1: 0x7EAB19BC, Data2: 0x1821, Data3: 0x4923, Data4: ( 0xB4,0xA9,0x0A,0xEA,0x40,0x4D,0x00,0x70 )
-    ) // 7EAB19BC-1821-4923-B4A9-0AEA404D0070
+        Data1: 0x7EAB19BC, Data2: 0x1821, Data3: 0x4923, Data4: ( 0xB4,0xA9,0x0A,0xEA,0x40,0x4D,0x00,0x70 ) // 7EAB19BC-1821-4923-B4A9-0AEA404D0070
+    ) 
     public class IDocumentProperties: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CFileProperties_CIDocumentProperties }
 

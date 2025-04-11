@@ -69,8 +69,8 @@ extension __IMPL_Windows_Foundation {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Foundation {
     private static let IID___x_ABI_CWindows_CFoundation_CIMemoryBuffer: test_component.IID = .init(
-        Data1: 0xFBC4DD2A, Data2: 0x245B, Data3: 0x11E4, Data4: ( 0xAF,0x98,0x68,0x94,0x23,0x26,0x0C,0xF8 )
-    ) // FBC4DD2A-245B-11E4-AF98-689423260CF8
+        Data1: 0xFBC4DD2A, Data2: 0x245B, Data3: 0x11E4, Data4: ( 0xAF,0x98,0x68,0x94,0x23,0x26,0x0C,0xF8 ) // FBC4DD2A-245B-11E4-AF98-689423260CF8
+    ) 
     public class IMemoryBuffer: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIMemoryBuffer }
 

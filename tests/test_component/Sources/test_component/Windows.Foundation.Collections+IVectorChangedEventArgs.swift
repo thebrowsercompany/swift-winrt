@@ -67,8 +67,8 @@ extension __IMPL_Windows_Foundation_Collections {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Foundation_Collections {
     private static let IID___x_ABI_CWindows_CFoundation_CCollections_CIVectorChangedEventArgs: test_component.IID = .init(
-        Data1: 0x575933DF, Data2: 0x34FE, Data3: 0x4480, Data4: ( 0xAF,0x15,0x07,0x69,0x1F,0x3D,0x5D,0x9B )
-    ) // 575933DF-34FE-4480-AF15-07691F3D5D9B
+        Data1: 0x575933DF, Data2: 0x34FE, Data3: 0x4480, Data4: ( 0xAF,0x15,0x07,0x69,0x1F,0x3D,0x5D,0x9B ) // 575933DF-34FE-4480-AF15-07691F3D5D9B
+    ) 
     public class IVectorChangedEventArgs: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CCollections_CIVectorChangedEventArgs }
 

@@ -60,8 +60,8 @@ extension __IMPL_Windows_Foundation {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Foundation {
     private static let IID___x_ABI_CWindows_CFoundation_CIClosable: test_component.IID = .init(
-        Data1: 0x30D5A829, Data2: 0x7FA4, Data3: 0x4026, Data4: ( 0x83,0xBB,0xD7,0x5B,0xAE,0x4E,0xA9,0x9E )
-    ) // 30D5A829-7FA4-4026-83BB-D75BAE4EA99E
+        Data1: 0x30D5A829, Data2: 0x7FA4, Data3: 0x4026, Data4: ( 0x83,0xBB,0xD7,0x5B,0xAE,0x4E,0xA9,0x9E ) // 30D5A829-7FA4-4026-83BB-D75BAE4EA99E
+    ) 
     public class IClosable: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIClosable }
 

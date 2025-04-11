@@ -60,8 +60,8 @@ extension __IMPL_Windows_Foundation {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Foundation {
     private static let IID___x_ABI_CWindows_CFoundation_CIStringable: test_component.IID = .init(
-        Data1: 0x96369F54, Data2: 0x8EB6, Data3: 0x48F0, Data4: ( 0xAB,0xCE,0xC1,0xB2,0x11,0xE6,0x27,0xC3 )
-    ) // 96369F54-8EB6-48F0-ABCE-C1B211E627C3
+        Data1: 0x96369F54, Data2: 0x8EB6, Data3: 0x48F0, Data4: ( 0xAB,0xCE,0xC1,0xB2,0x11,0xE6,0x27,0xC3 ) // 96369F54-8EB6-48F0-ABCE-C1B211E627C3
+    ) 
     public class IStringable: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIStringable }
 

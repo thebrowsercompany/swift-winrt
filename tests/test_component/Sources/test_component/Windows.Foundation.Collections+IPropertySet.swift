@@ -121,8 +121,8 @@ extension __IMPL_Windows_Foundation_Collections {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Foundation_Collections {
     private static let IID___x_ABI_CWindows_CFoundation_CCollections_CIPropertySet: test_component.IID = .init(
-        Data1: 0x8A43ED9F, Data2: 0xF4E6, Data3: 0x4421, Data4: ( 0xAC,0xF9,0x1D,0xAB,0x29,0x86,0x82,0x0C )
-    ) // 8A43ED9F-F4E6-4421-ACF9-1DAB2986820C
+        Data1: 0x8A43ED9F, Data2: 0xF4E6, Data3: 0x4421, Data4: ( 0xAC,0xF9,0x1D,0xAB,0x29,0x86,0x82,0x0C ) // 8A43ED9F-F4E6-4421-ACF9-1DAB2986820C
+    ) 
     public class IPropertySet: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CCollections_CIPropertySet }
 

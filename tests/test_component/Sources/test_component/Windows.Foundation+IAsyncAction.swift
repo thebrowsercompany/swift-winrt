@@ -110,8 +110,8 @@ extension __IMPL_Windows_Foundation {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Foundation {
     private static let IID___x_ABI_CWindows_CFoundation_CIAsyncAction: test_component.IID = .init(
-        Data1: 0x5A648006, Data2: 0x843A, Data3: 0x4DA9, Data4: ( 0x86,0x5B,0x9D,0x26,0xE5,0xDF,0xAD,0x7B )
-    ) // 5A648006-843A-4DA9-865B-9D26E5DFAD7B
+        Data1: 0x5A648006, Data2: 0x843A, Data3: 0x4DA9, Data4: ( 0x86,0x5B,0x9D,0x26,0xE5,0xDF,0xAD,0x7B ) // 5A648006-843A-4DA9-865B-9D26E5DFAD7B
+    ) 
     public class IAsyncAction: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIAsyncAction }
 

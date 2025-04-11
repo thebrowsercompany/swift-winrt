@@ -71,8 +71,8 @@ public class DeferralMaker: MakeFromAbi {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Foundation {
     private static let IID___x_ABI_CWindows_CFoundation_CIDeferral: test_component.IID = .init(
-        Data1: 0xD6269732, Data2: 0x3B7F, Data3: 0x46A7, Data4: ( 0xB4,0x0B,0x4F,0xDC,0xA2,0xA2,0xC6,0x93 )
-    ) // D6269732-3B7F-46A7-B40B-4FDCA2A2C693
+        Data1: 0xD6269732, Data2: 0x3B7F, Data3: 0x46A7, Data4: ( 0xB4,0x0B,0x4F,0xDC,0xA2,0xA2,0xC6,0x93 ) // D6269732-3B7F-46A7-B40B-4FDCA2A2C693
+    ) 
     public class IDeferral: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIDeferral }
 
@@ -85,8 +85,8 @@ extension __ABI_Windows_Foundation {
     }
 
     private static let IID___x_ABI_CWindows_CFoundation_CIDeferralFactory: test_component.IID = .init(
-        Data1: 0x65A1ECC5, Data2: 0x3FB5, Data3: 0x4832, Data4: ( 0x8C,0xA9,0xF0,0x61,0xB2,0x81,0xD1,0x3A )
-    ) // 65A1ECC5-3FB5-4832-8CA9-F061B281D13A
+        Data1: 0x65A1ECC5, Data2: 0x3FB5, Data3: 0x4832, Data4: ( 0x8C,0xA9,0xF0,0x61,0xB2,0x81,0xD1,0x3A ) // 65A1ECC5-3FB5-4832-8CA9-F061B281D13A
+    ) 
     public class IDeferralFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIDeferralFactory }
 

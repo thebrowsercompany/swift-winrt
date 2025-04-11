@@ -27,8 +27,8 @@ extension __IMPL_Windows_Foundation {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Foundation {
     private static let IID___x_ABI_CWindows_CFoundation_CIDeferralCompletedHandler: test_component.IID = .init(
-        Data1: 0xED32A372, Data2: 0xF3C8, Data3: 0x4FAA, Data4: ( 0x9C,0xFB,0x47,0x01,0x48,0xDA,0x38,0x88 )
-    ) // ED32A372-F3C8-4FAA-9CFB-470148DA3888
+        Data1: 0xED32A372, Data2: 0xF3C8, Data3: 0x4FAA, Data4: ( 0x9C,0xFB,0x47,0x01,0x48,0xDA,0x38,0x88 ) // ED32A372-F3C8-4FAA-9CFB-470148DA3888
+    ) 
     public class DeferralCompletedHandler: test_component.IUnknown {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIDeferralCompletedHandler }
 
@@ -55,6 +55,7 @@ extension __ABI_Windows_Foundation {
         }
     )
 }
+@_spi(WinRTInternal)
 public extension WinRTDelegateBridge where CABI == __x_ABI_CWindows_CFoundation_CIDeferralCompletedHandler {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Foundation.DeferralCompletedHandlerVTable) { $0 }

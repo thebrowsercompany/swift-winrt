@@ -204,8 +204,8 @@ extension __ABI_test_component {
         }
     )
     private static let IID___x_ABI_Ctest__component_CIUnsealedDerived: test_component.IID = .init(
-        Data1: 0xB4FA333D, Data2: 0x9BCA, Data3: 0x592D, Data4: ( 0x9D,0xCB,0x18,0xAF,0x96,0xD7,0x6A,0x03 )
-    ) // B4FA333D-9BCA-592D-9DCB-18AF96D76A03
+        Data1: 0xB4FA333D, Data2: 0x9BCA, Data3: 0x592D, Data4: ( 0x9D,0xCB,0x18,0xAF,0x96,0xD7,0x6A,0x03 ) // B4FA333D-9BCA-592D-9DCB-18AF96D76A03
+    ) 
     public class IUnsealedDerived: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerived }
 
@@ -226,8 +226,8 @@ extension __ABI_test_component {
     }
 
     private static let IID___x_ABI_Ctest__component_CIUnsealedDerivedOverloads2: test_component.IID = .init(
-        Data1: 0xF4CE1AD9, Data2: 0x36B9, Data3: 0x5DC7, Data4: ( 0xA0,0x07,0x3A,0xCD,0xF4,0x22,0xE7,0x05 )
-    ) // F4CE1AD9-36B9-5DC7-A007-3ACDF422E705
+        Data1: 0xF4CE1AD9, Data2: 0x36B9, Data3: 0x5DC7, Data4: ( 0xA0,0x07,0x3A,0xCD,0xF4,0x22,0xE7,0x05 ) // F4CE1AD9-36B9-5DC7-A007-3ACDF422E705
+    ) 
     public class IUnsealedDerivedOverloads2: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedOverloads2 }
 
@@ -240,8 +240,8 @@ extension __ABI_test_component {
     }
 
     private static let IID___x_ABI_Ctest__component_CIUnsealedDerivedOverrides: test_component.IID = .init(
-        Data1: 0x828DCEE6, Data2: 0xF93A, Data3: 0x5A4D, Data4: ( 0xBC,0xEE,0xF7,0xC1,0xDE,0xE4,0xEB,0x4E )
-    ) // 828DCEE6-F93A-5A4D-BCEE-F7C1DEE4EB4E
+        Data1: 0x828DCEE6, Data2: 0xF93A, Data3: 0x5A4D, Data4: ( 0xBC,0xEE,0xF7,0xC1,0xDE,0xE4,0xEB,0x4E ) // 828DCEE6-F93A-5A4D-BCEE-F7C1DEE4EB4E
+    ) 
     public class IUnsealedDerivedOverrides: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedOverrides }
 
@@ -254,8 +254,8 @@ extension __ABI_test_component {
     }
 
     private static let IID___x_ABI_Ctest__component_CIUnsealedDerivedFactory: test_component.IID = .init(
-        Data1: 0xDAF846D2, Data2: 0x8988, Data3: 0x5EE1, Data4: ( 0xA8,0xAA,0x7E,0x81,0xC0,0xF8,0xA9,0xE9 )
-    ) // DAF846D2-8988-5EE1-A8AA-7E81C0F8A9E9
+        Data1: 0xDAF846D2, Data2: 0x8988, Data3: 0x5EE1, Data4: ( 0xA8,0xAA,0x7E,0x81,0xC0,0xF8,0xA9,0xE9 ) // DAF846D2-8988-5EE1-A8AA-7E81C0F8A9E9
+    ) 
     public class IUnsealedDerivedFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedFactory }
 

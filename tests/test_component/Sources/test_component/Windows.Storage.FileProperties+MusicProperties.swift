@@ -160,8 +160,8 @@ public class MusicPropertiesMaker: MakeFromAbi {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Storage_FileProperties {
     private static let IID___x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties: test_component.IID = .init(
-        Data1: 0xBC8AAB62, Data2: 0x66EC, Data3: 0x419A, Data4: ( 0xBC,0x5D,0xCA,0x65,0xA4,0xCB,0x46,0xDA )
-    ) // BC8AAB62-66EC-419A-BC5D-CA65A4CB46DA
+        Data1: 0xBC8AAB62, Data2: 0x66EC, Data3: 0x419A, Data4: ( 0xBC,0x5D,0xCA,0x65,0xA4,0xCB,0x46,0xDA ) // BC8AAB62-66EC-419A-BC5D-CA65A4CB46DA
+    ) 
     public class IMusicProperties: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties }
 

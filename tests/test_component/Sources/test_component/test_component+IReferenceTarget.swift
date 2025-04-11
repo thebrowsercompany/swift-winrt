@@ -57,8 +57,8 @@ extension __IMPL_test_component {
 @_spi(WinRTInternal)
 extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIReferenceTarget: test_component.IID = .init(
-        Data1: 0x128E6AAA, Data2: 0xF772, Data3: 0x5A6F, Data4: ( 0x85,0x8B,0x3B,0x69,0x04,0x18,0xC8,0x73 )
-    ) // 128E6AAA-F772-5A6F-858B-3B690418C873
+        Data1: 0x128E6AAA, Data2: 0xF772, Data3: 0x5A6F, Data4: ( 0x85,0x8B,0x3B,0x69,0x04,0x18,0xC8,0x73 ) // 128E6AAA-F772-5A6F-858B-3B690418C873
+    ) 
     public class IReferenceTarget: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIReferenceTarget }
 

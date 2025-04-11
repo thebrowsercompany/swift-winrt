@@ -80,16 +80,16 @@ public class UnsealedDerivedNoOverridesMaker: MakeFromAbi {
 @_spi(WinRTInternal)
 extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides: test_component.IID = .init(
-        Data1: 0x3CD27E28, Data2: 0x2DFF, Data3: 0x5A17, Data4: ( 0x82,0x63,0x1B,0xFA,0x75,0x04,0x34,0xAA )
-    ) // 3CD27E28-2DFF-5A17-8263-1BFA750434AA
+        Data1: 0x3CD27E28, Data2: 0x2DFF, Data3: 0x5A17, Data4: ( 0x82,0x63,0x1B,0xFA,0x75,0x04,0x34,0xAA ) // 3CD27E28-2DFF-5A17-8263-1BFA750434AA
+    ) 
     public class IUnsealedDerivedNoOverrides: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides }
 
     }
 
     private static let IID___x_ABI_Ctest__component_CIUnsealedDerivedNoOverridesProtectedFactory: test_component.IID = .init(
-        Data1: 0x8D27A3F3, Data2: 0xD785, Data3: 0x53E3, Data4: ( 0x83,0x19,0x6A,0x50,0x97,0xB1,0x04,0xAB )
-    ) // 8D27A3F3-D785-53E3-8319-6A5097B104AB
+        Data1: 0x8D27A3F3, Data2: 0xD785, Data3: 0x53E3, Data4: ( 0x83,0x19,0x6A,0x50,0x97,0xB1,0x04,0xAB ) // 8D27A3F3-D785-53E3-8319-6A5097B104AB
+    ) 
     public class IUnsealedDerivedNoOverridesProtectedFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedNoOverridesProtectedFactory }
 

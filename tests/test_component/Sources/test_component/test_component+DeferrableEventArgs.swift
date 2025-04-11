@@ -58,8 +58,8 @@ public class DeferrableEventArgsMaker: MakeFromAbi {
 @_spi(WinRTInternal)
 extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIDeferrableEventArgs: test_component.IID = .init(
-        Data1: 0xDA7B0340, Data2: 0x93E0, Data3: 0x5D49, Data4: ( 0xA7,0xF3,0x0F,0xCA,0x6E,0x90,0x02,0x3C )
-    ) // DA7B0340-93E0-5D49-A7F3-0FCA6E90023C
+        Data1: 0xDA7B0340, Data2: 0x93E0, Data3: 0x5D49, Data4: ( 0xA7,0xF3,0x0F,0xCA,0x6E,0x90,0x02,0x3C ) // DA7B0340-93E0-5D49-A7F3-0FCA6E90023C
+    ) 
     public class IDeferrableEventArgs: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIDeferrableEventArgs }
 

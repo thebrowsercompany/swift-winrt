@@ -117,8 +117,8 @@ public class StorageFolderQueryResultMaker: MakeFromAbi {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Storage_Search {
     private static let IID___x_ABI_CWindows_CStorage_CSearch_CIStorageFolderQueryResult: test_component.IID = .init(
-        Data1: 0x6654C911, Data2: 0x7D66, Data3: 0x46FA, Data4: ( 0xAE,0xCF,0xE4,0xA4,0xBA,0xA9,0x3A,0xB8 )
-    ) // 6654C911-7D66-46FA-AECF-E4A4BAA93AB8
+        Data1: 0x6654C911, Data2: 0x7D66, Data3: 0x46FA, Data4: ( 0xAE,0xCF,0xE4,0xA4,0xBA,0xA9,0x3A,0xB8 ) // 6654C911-7D66-46FA-AECF-E4A4BAA93AB8
+    ) 
     public class IStorageFolderQueryResult: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CSearch_CIStorageFolderQueryResult }
 

@@ -71,8 +71,8 @@ public class StorageStreamTransactionMaker: MakeFromAbi {
 @_spi(WinRTInternal)
 extension __ABI_Windows_Storage {
     private static let IID___x_ABI_CWindows_CStorage_CIStorageStreamTransaction: test_component.IID = .init(
-        Data1: 0xF67CF363, Data2: 0xA53D, Data3: 0x4D94, Data4: ( 0xAE,0x2C,0x67,0x23,0x2D,0x93,0xAC,0xDD )
-    ) // F67CF363-A53D-4D94-AE2C-67232D93ACDD
+        Data1: 0xF67CF363, Data2: 0xA53D, Data3: 0x4D94, Data4: ( 0xAE,0x2C,0x67,0x23,0x2D,0x93,0xAC,0xDD ) // F67CF363-A53D-4D94-AE2C-67232D93ACDD
+    ) 
     public class IStorageStreamTransaction: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageStreamTransaction }
 
