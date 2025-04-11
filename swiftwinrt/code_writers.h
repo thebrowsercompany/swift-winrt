@@ -119,10 +119,9 @@ namespace swiftwinrt
         auto abi_guard = w.push_mangled_names(true);
         auto mangled = w.push_abi_types(true);
         auto guid = attribute.Value().FixedArgs();
-        auto format = R"(private var IID_%: %.IID {
-    .init(%)// %
-}
-
+        auto format = R"(private static let IID_%: %.IID = .init(
+    % // %
+) 
 )";
 
         w.write(format,
@@ -596,6 +595,7 @@ bind<write_abi_args>(function));
 
         constexpr bool is_generic = std::is_same_v<T, generic_inst>;
 
+        w.write("@_spi(WinRTInternal)\n");
         w.write(R"(% extension WinRTDelegateBridge where CABI == % {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &%.%VTable) { $0 }
@@ -657,10 +657,11 @@ typealias % = InterfaceWrapperBase<%>
     static void write_delegate_abi(writer& w, delegate_type const& type)
     {
         if (type.is_generic()) return;
-        w.write("^@_spi(WinRTInternal)\n");
+        w.write("@_spi(WinRTInternal)\n");
         w.write("extension % {\n", abi_namespace(w.type_namespace));
         {
             auto guard(w.push_indent());
+            write_guid(w, type);
             do_write_interface_abi(w, type, type.functions);
 
             write_delegate_wrapper(w, type);
@@ -2606,7 +2607,7 @@ public init<Composable: ComposableImpl>(
         {
             if (!info.overridable || info.base) continue;
 
-            w.write("^@_spi(WinRTInternal)\n");
+            w.write("@_spi(WinRTInternal)\n");
             w.write(R"(extension ComposableImpl where CABI == % {
     public static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &%.%VTable) { $0 }

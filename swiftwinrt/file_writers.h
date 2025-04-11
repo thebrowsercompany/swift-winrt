@@ -210,8 +210,9 @@ namespace swiftwinrt
                 for (const auto& [interface_name, info] : member.get().required_interfaces)
                 {
                     auto iface = dynamic_cast<interface_type const*>(info.type);
-                    if (iface && is_exclusive(*iface))
+                    if (iface && is_exclusive(*iface) && !info.base)
                     {
+                        write_guid(w, *iface);
                         write_interface_abi(w, *iface);
                     }
                 }
@@ -221,6 +222,7 @@ namespace swiftwinrt
                     auto iface = dynamic_cast<interface_type const*>(info.type);
                     if (iface && is_exclusive(*iface))
                     {
+                        write_guid(w, *iface);
                         write_interface_abi(w, *iface);
                     }
                 }
@@ -253,7 +255,6 @@ namespace swiftwinrt
 
             w.write("\n// MARK: - Internals\n\n");
 
-            write_guid(w, member);
             {
                 auto impl_ns = impl_namespace(ns);
                 auto impl_guard = push_namespace(impl_ns, w, true);
@@ -264,6 +265,7 @@ namespace swiftwinrt
             {
                 auto abi_ns = abi_namespace(ns);
                 auto [namespace_guard, indent_guard] = push_namespace(abi_ns, w, true);
+                write_guid(w, member);
                 write_interface_abi(w, member);
             }
 
@@ -323,7 +325,6 @@ namespace swiftwinrt
             write_delegate(w, member);
             w.write("\n// MARK: - Internals\n\n");
 
-            write_guid(w, member);
             {
                 auto impl_ns = impl_namespace(ns);
                 auto impl_guard = push_namespace(impl_ns, w, true);

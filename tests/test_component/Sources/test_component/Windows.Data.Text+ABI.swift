@@ -4,11 +4,4 @@ import Foundation
 import Ctest_component
 
 @_spi(WinRTInternal)
-public enum __ABI_Windows_Data_Text {
-}
-extension __x_ABI_CWindows_CData_CText_CTextSegment {
-        public static func from(swift: test_component.TextSegment) -> __x_ABI_CWindows_CData_CText_CTextSegment {
-            .init(StartPosition: swift.startPosition, Length: swift.length)
-        }
-    }
-    
+public enum __ABI_Windows_Data_Text {}
