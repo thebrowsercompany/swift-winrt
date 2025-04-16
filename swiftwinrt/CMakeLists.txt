@@ -71,7 +71,7 @@ target_sources(swiftwinrt PUBLIC
     code_writers/type_writers.cpp
     code_writers/struct_writers.cpp
     resources.rc
-)
+ )
 
 # Make resources.rc depend on the files it embeds
 file(GLOB_RECURSE SUPPORT_FILES CONFIGURE_DEPENDS Resources/*)
