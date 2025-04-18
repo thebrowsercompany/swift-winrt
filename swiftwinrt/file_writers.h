@@ -114,8 +114,7 @@ namespace swiftwinrt
 
     static void write_preamble_and_save(writer& w, typedef_base const& type)
     {
-        // Empty writer may mean no types in the namespace or they were filtered out. Either way,
-        // don't write an empty file
+        // Empty writer may mean no types in the namespace or they were filtered out. 
         if (w.empty()) return;
 
         w.swap();
@@ -319,7 +318,7 @@ namespace swiftwinrt
     static void write_namespace_delegate(writer& w, std::string_view const& ns, delegate_type const& type)
     {
         write_delegate(w, type);
-        w.write("// MARK: - % Internals\n\n", type.swift_type_name());
+        w.write("\n// MARK: - % Internals\n\n", type.swift_type_name());
 
         if (!type.is_generic())
         {

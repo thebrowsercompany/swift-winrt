@@ -32,11 +32,11 @@ namespace swiftwinrt
         if (is_blittable)
         {
             w.write(R"(extension % {
-        public static func from(swift: %) -> % {
-            .init(%)
-        }
+    public static func from(swift: %) -> % {
+        .init(%)
     }
-    )", bind_type_mangled(type), get_full_swift_type_name(w, type), bind_type_mangled(type), bind([&](writer& w) {
+}
+)", bind_type_mangled(type), get_full_swift_type_name(w, type), bind_type_mangled(type), bind([&](writer& w) {
                     separator s{ w };
             for (auto&& field : type.members)
             {
