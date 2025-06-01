@@ -4,7 +4,7 @@ project(swiftwinrt LANGUAGES C CXX)
 option(BUILD_SHARED_LIBS "Build shared libraries by default" YES)
 
 if(NOT EXISTS "$ENV{WindowsSdkBinPath}${CMAKE_SYSTEM_VERSION}")
-    message(FATAL_ERROR "Windows SDK Version ${CMAKE_SYSTEM_VERSION} appears not to be installed")
+    message(FATAL_ERROR "Windows SDK Version appears not to be installed:\n  Missing folder: $ENV{WindowsSdkBinPath}${CMAKE_SYSTEM_VERSION}")
 endif()
 
 add_subdirectory(swiftwinrt)
