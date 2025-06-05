@@ -17617,7 +17617,7 @@ internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CStorage__CSea
     }
 }
 private var IID___x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs: test_component.IID {
-    .init(Data1: 0x60e30bb2, Data2: 0x55fe, Data3: 0x5e7e, Data4: ( 0xb1,0xe6,0xf9,0xba,0x28,0x90,0x0a,0x82 ))// 60e30bb2-55fe-5e7e-b1e6-f9ba28900a82
+    .init(Data1: 0xbb79a048, Data2: 0xa61a, Data3: 0x57c1, Data4: ( 0x92,0x00,0x08,0x83,0xcd,0x88,0xc6,0x94 ))// bb79a048-a61a-57c1-9200-0883cd88c694
 }
 
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs {

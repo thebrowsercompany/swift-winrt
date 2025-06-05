@@ -56,6 +56,14 @@ class MyImplementableDelegate: IIAmImplementable {
       }
     }
 
+    func inBlittableStructRef(_ value: BlittableStruct) -> String {
+        "\(value)"
+    }
+
+    func inNonBlittableStructRef(_ value: NonBlittableStruct) -> String {
+        "\(value)"
+    }
+
     func outInt32(_ value: inout Int32) {
       value = 987
     }
