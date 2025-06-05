@@ -111,6 +111,25 @@ namespace winrt::test_component::implementation
         throw hresult_invalid_argument();
     }
 
+    hstring Class::InBlittableStructRef(winrt::test_component::BlittableStruct const& value)
+    {
+        if (m_implementation)
+        {
+            return m_implementation.InBlittableStructRef(value);
+        }
+
+        return to_hstring(value.First) + to_hstring(value.Second);
+    }
+
+    hstring Class::InNonBlittableStructRef(winrt::test_component::NonBlittableStruct const& value)
+    {
+        if (m_implementation)
+        {
+            return m_implementation.InNonBlittableStructRef(value);
+        }
+        return value.First + value.Second + to_hstring(value.Third) + value.Fourth;
+    }
+
     Class::Class(Windows::Foundation::Collections::IIterable<hstring> const& arg, int32_t)
     {
         if (arg.First().Current() != L"test")

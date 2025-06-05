@@ -93,4 +93,8 @@ public extension GUID {
             )
         )
     }
+
+    static func from(swift: Foundation.UUID) -> Self {
+        .init(from: swift)
+    }
 }

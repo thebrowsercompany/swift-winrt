@@ -593,6 +593,7 @@ namespace swiftwinrt
         bool in() const { return false; }
         bool out() const { return true; }
         bool is_array() const { return signature.Type().is_szarray() || signature.Type().is_array(); }
+        bool by_ref() const { return false;  }
     };
 
     struct function_param
@@ -605,6 +606,7 @@ namespace swiftwinrt
         bool in() const { return def.Flags().In(); }
         bool out() const { return def.Flags().Out(); }
         bool is_array() const { return signature.Type().is_szarray() || signature.Type().is_array(); }
+        bool by_ref() const { return signature.ByRef(); }
     };
 
     struct function_def

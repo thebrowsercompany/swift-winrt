@@ -226,6 +226,14 @@ public enum __IMPL_test_component {
             try _default.InObject(value)
         }
 
+        fileprivate func inBlittableStructRef(_ value: BlittableStruct) throws -> String {
+            try _default.InBlittableStructRef(value)
+        }
+
+        fileprivate func inNonBlittableStructRef(_ value: NonBlittableStruct) throws -> String {
+            try _default.InNonBlittableStructRef(value)
+        }
+
         fileprivate func inEnum(_ value: Signed) throws -> String {
             try _default.InEnum(value)
         }

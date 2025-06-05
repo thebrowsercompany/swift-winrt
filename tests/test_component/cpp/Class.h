@@ -87,6 +87,8 @@ namespace winrt::test_component::implementation
         hstring InObject(Windows::Foundation::IInspectable const& value);
         hstring InStringable(Windows::Foundation::IStringable const& value);
         hstring InEnum(Signed const& value);
+        hstring InBlittableStructRef(winrt::test_component::BlittableStruct const& value);
+        hstring InNonBlittableStructRef(winrt::test_component::NonBlittableStruct const& value);
 
         void OutInt32(int32_t& value);
         void OutString(hstring& value);

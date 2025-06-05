@@ -3380,6 +3380,12 @@ struct __x_ABI_Ctest__component_CStructWithIReference
     HRESULT (STDMETHODCALLTYPE* InObject)(__x_ABI_Ctest__component_CIClass* This,
         IInspectable* value,
         HSTRING* result);
+    HRESULT (STDMETHODCALLTYPE* InBlittableStructRef)(__x_ABI_Ctest__component_CIClass* This,
+        const struct __x_ABI_Ctest__component_CBlittableStruct* value,
+        HSTRING* result);
+    HRESULT (STDMETHODCALLTYPE* InNonBlittableStructRef)(__x_ABI_Ctest__component_CIClass* This,
+        const struct __x_ABI_Ctest__component_CNonBlittableStruct* value,
+        HSTRING* result);
     HRESULT (STDMETHODCALLTYPE* InEnum)(__x_ABI_Ctest__component_CIClass* This,
         enum __x_ABI_Ctest__component_CSigned value,
         HSTRING* result);
@@ -3952,6 +3958,12 @@ struct __x_ABI_Ctest__component_CStructWithIReference
         HSTRING* result);
     HRESULT (STDMETHODCALLTYPE* InObject)(__x_ABI_Ctest__component_CIIAmImplementable* This,
         IInspectable* value,
+        HSTRING* result);
+    HRESULT (STDMETHODCALLTYPE* InBlittableStructRef)(__x_ABI_Ctest__component_CIIAmImplementable* This,
+        const struct __x_ABI_Ctest__component_CBlittableStruct* value,
+        HSTRING* result);
+    HRESULT (STDMETHODCALLTYPE* InNonBlittableStructRef)(__x_ABI_Ctest__component_CIIAmImplementable* This,
+        const struct __x_ABI_Ctest__component_CNonBlittableStruct* value,
         HSTRING* result);
     HRESULT (STDMETHODCALLTYPE* InEnum)(__x_ABI_Ctest__component_CIIAmImplementable* This,
         enum __x_ABI_Ctest__component_CSigned value,

@@ -248,6 +248,17 @@ namespace swiftwinrt
             {
                 w.write(param_name);
             }
+            else if (!is_out && param.by_ref())
+            {
+                if (is_struct_blittable(signature_type))
+                {
+                    w.write("&%", local_name);
+                }
+                else
+                {
+                    w.write("&%.val", local_name);
+                }
+            } 
             else if (is_struct_blittable(signature_type))
             {
                 w.write(".from(swift: %)", param_name);
@@ -264,7 +275,7 @@ namespace swiftwinrt
                 }
             }
         }
-        else if(category == param_category::generic_type)
+        else if (category == param_category::generic_type)
         {
             if (is_out) throw std::exception("out parameters of generic types should not be converted directly to abi types");
             // When passing generics to the ABI we wrap them before making the
@@ -276,6 +287,10 @@ namespace swiftwinrt
             // fundamentals and enums can be simply copied
             w.write(param_name);
         }
+        else if (param.by_ref())
+        {
+            w.write("&%", local_name);
+        } 
         else
         {
             w.write(".init(from: %)", param_name);
@@ -801,6 +816,10 @@ typealias % = InterfaceWrapperBase<%>
                 }
                 else
                 {
+                    if (param.signature.ByRef())
+                    {
+                        param_name += "!.pointee";
+                    }
                     w.write("let %: % = %\n",
                         get_swift_name(param),
                         bind<write_type>(*param.type, write_type_params::swift),
@@ -1817,6 +1836,13 @@ vtable);
                         param_name);
                     w.write("let % = try! %Wrapper?.toABI { $0 }\n",
                         local_param_name,
+                        param_name);
+                }
+                else if (param.signature.ByRef())
+                {
+                    w.write("var %: % = .from(swift: %)\n",
+                        local_param_name,
+                        bind<write_type>(*param.type, write_type_params::c_abi),
                         param_name);
                 }
             }
