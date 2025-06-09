@@ -122,7 +122,8 @@ namespace test_component
             String InObject(Object value);
             //  String InStringable(Windows.Foundation.IStringable value);
             //  String InStruct(Struct value);
-            //  String InStructRef(ref const Struct value);
+            String InBlittableStructRef(ref const BlittableStruct value);
+            String InNonBlittableStructRef(ref const NonBlittableStruct value);
             String InEnum(Signed value);
 
             void OutInt32(out Int32 value);
@@ -197,7 +198,8 @@ namespace test_component
             String InObject(Object value);
             //  String InStringable(Windows.Foundation.IStringable value);
             //  String InStruct(Struct value);
-            //  String InStructRef(ref const Struct value);
+            String InBlittableStructRef(ref const BlittableStruct value);
+            String InNonBlittableStructRef(ref const NonBlittableStruct value);
             String InEnum(Signed value);
 
             void OutInt32(out Int32 value);

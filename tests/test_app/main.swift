@@ -440,6 +440,21 @@ class SwiftWinRTTests : XCTestCase {
     XCTAssertEqual(classy.noexceptInt32(), 123)
     XCTAssertEqual(classy.noexceptString(), "123")
   }
+
+  public func testByReferenceStructs() throws {
+    var classy = Class()
+    let blittableStruct = BlittableStruct(first: 1, second: 2)
+    let nonBlittableStruct = NonBlittableStruct(first: "1", second: "2", third: 3, fourth: "4")
+
+    XCTAssertEqual(try classy.inBlittableStructRef(blittableStruct), "12")
+    XCTAssertEqual(try classy.inNonBlittableStructRef(nonBlittableStruct), "1234")
+
+    let impl = MyImplementableDelegate()
+    classy = Class("with delegate", .orange, impl)
+
+    XCTAssertEqual(try classy.inBlittableStructRef(blittableStruct), "\(blittableStruct)")
+    XCTAssertEqual(try classy.inNonBlittableStructRef(nonBlittableStruct), "\(nonBlittableStruct)")
+  }
 }
 
 var tests: [XCTestCaseEntry] = [
@@ -459,6 +474,7 @@ var tests: [XCTestCaseEntry] = [
     ("testStructWithIReference", SwiftWinRTTests.testStructWithIReference),
     ("testUnicode", SwiftWinRTTests.testUnicode),
     ("testErrorInfo", SwiftWinRTTests.testErrorInfo),
+    ("testByReferenceStructs", SwiftWinRTTests.testByReferenceStructs)
   ])
 ] + valueBoxingTests + eventTests + collectionTests + aggregationTests + asyncTests + memoryManagementTests + bufferTests + weakReferenceTests
 

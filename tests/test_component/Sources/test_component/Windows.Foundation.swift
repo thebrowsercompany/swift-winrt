@@ -50,6 +50,26 @@ public final class Deferral : WinRTClass, IClosable {
     }
 }
 
+/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.guidhelper)
+public final class GuidHelper {
+    private static let _IGuidHelperStatics: __ABI_Windows_Foundation.IGuidHelperStatics = try! RoGetActivationFactory("Windows.Foundation.GuidHelper")
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.guidhelper.createnewguid)
+    public static func createNewGuid() throws -> Foundation.UUID {
+        return try _IGuidHelperStatics.CreateNewGuid()
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.guidhelper.equals)
+    public static func equals(_ target: Foundation.UUID, _ value: Foundation.UUID) throws -> Bool {
+        return try _IGuidHelperStatics.Equals(target, value)
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.guidhelper.empty)
+    public static var empty : Foundation.UUID {
+        get { try! _IGuidHelperStatics.get_Empty() }
+    }
+
+}
+
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.memorybuffer)
 public final class MemoryBuffer : WinRTClass, IClosable, IMemoryBuffer {
     private typealias SwiftABI = __ABI_Windows_Foundation.IMemoryBuffer

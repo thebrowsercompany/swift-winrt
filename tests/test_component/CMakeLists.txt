@@ -12,6 +12,7 @@ set(SWIFT_WINRT_PARAMETERS
 "-include Windows.Storage.Streams.Buffer"
 "-include Windows.Storage.StorageFile"
 "-include Windows.Storage.PathIO"
+"-include Windows.Foundation.GuidHelper"
 "-input ${WINMD_FILE}"
 "-support test_component"
 "-test"

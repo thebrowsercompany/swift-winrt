@@ -68,7 +68,7 @@ private var IID___x_ABI_Ctest__component_CIBufferTesterStatics: test_component.I
 }
 
 private var IID___x_ABI_Ctest__component_CIClass: test_component.IID {
-    .init(Data1: 0xEBCBC0CD, Data2: 0x48DD, Data3: 0x56BA, Data4: ( 0xBB,0xE2,0xCD,0x0B,0xE5,0xA3,0x06,0x76 ))// EBCBC0CD-48DD-56BA-BBE2-CD0BE5A30676
+    .init(Data1: 0x586690C4, Data2: 0x6AE2, Data3: 0x5C62, Data4: ( 0xB5,0x25,0x44,0x4D,0xCC,0x2D,0xEE,0x39 ))// 586690C4-6AE2-5C62-B525-444DCC2DEE39
 }
 
 private var IID___x_ABI_Ctest__component_CIClassFactory: test_component.IID {
@@ -120,7 +120,7 @@ private var IID___x_ABI_Ctest__component_CIEventTesterFactory: test_component.II
 }
 
 private var IID___x_ABI_Ctest__component_CIIAmImplementable: test_component.IID {
-    .init(Data1: 0x0B3C0120, Data2: 0xD138, Data3: 0x512B, Data4: ( 0x8D,0x38,0xF5,0x1E,0x35,0xF0,0x65,0xB2 ))// 0B3C0120-D138-512B-8D38-F51E35F065B2
+    .init(Data1: 0x8FC8D4FE, Data2: 0x967E, Data3: 0x5135, Data4: ( 0x9B,0xD2,0x31,0x50,0x3A,0xB9,0xD1,0x45 ))// 8FC8D4FE-967E-5135-9BD2-31503AB9D145
 }
 
 private var IID___x_ABI_Ctest__component_CIInterfaceWithObservableVector: test_component.IID {
@@ -1257,6 +1257,24 @@ public enum __ABI_test_component {
             return .init(from: result)
         }
 
+        public func InBlittableStructRef(_ value: test_component.BlittableStruct) throws -> String {
+            var result: HSTRING?
+            var _value: __x_ABI_Ctest__component_CBlittableStruct = .from(swift: value)
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.InBlittableStructRef(pThis, &_value, &result))
+            }
+            return .init(from: result)
+        }
+
+        public func InNonBlittableStructRef(_ value: test_component.NonBlittableStruct) throws -> String {
+            var result: HSTRING?
+            let _value = __ABI_test_component._ABI_NonBlittableStruct(from: value)
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.InNonBlittableStructRef(pThis, &_value.val, &result))
+            }
+            return .init(from: result)
+        }
+
         public func InEnum(_ value: test_component.Signed) throws -> String {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
@@ -1878,6 +1896,24 @@ public enum __ABI_test_component {
             return .init(from: result)
         }
 
+        open func InBlittableStructRef(_ value: test_component.BlittableStruct) throws -> String {
+            var result: HSTRING?
+            var _value: __x_ABI_Ctest__component_CBlittableStruct = .from(swift: value)
+            _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.InBlittableStructRef(pThis, &_value, &result))
+            }
+            return .init(from: result)
+        }
+
+        open func InNonBlittableStructRef(_ value: test_component.NonBlittableStruct) throws -> String {
+            var result: HSTRING?
+            let _value = __ABI_test_component._ABI_NonBlittableStruct(from: value)
+            _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.InNonBlittableStructRef(pThis, &_value.val, &result))
+            }
+            return .init(from: result)
+        }
+
         open func InEnum(_ value: test_component.Signed) throws -> String {
             var result: HSTRING?
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
@@ -2058,6 +2094,26 @@ public enum __ABI_test_component {
                 guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
                 let value: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: ComPtr($1))
                 let result = try __unwrapped__instance.inObject(value)
+                $2?.initialize(to: try! HString(result).detach())
+                return S_OK
+            } catch { return failWith(error: error) }
+        },
+
+        InBlittableStructRef: {
+            do {
+                guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                let value: test_component.BlittableStruct = .from(abi: $1!.pointee)
+                let result = try __unwrapped__instance.inBlittableStructRef(value)
+                $2?.initialize(to: try! HString(result).detach())
+                return S_OK
+            } catch { return failWith(error: error) }
+        },
+
+        InNonBlittableStructRef: {
+            do {
+                guard let __unwrapped__instance = IIAmImplementableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+                let value: test_component.NonBlittableStruct = .from(abi: $1!.pointee)
+                let result = try __unwrapped__instance.inNonBlittableStructRef(value)
                 $2?.initialize(to: try! HString(result).detach())
                 return S_OK
             } catch { return failWith(error: error) }

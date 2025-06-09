@@ -31,6 +31,10 @@ private var IID___x_ABI_CWindows_CFoundation_CIDeferralFactory: test_component.I
     .init(Data1: 0x65A1ECC5, Data2: 0x3FB5, Data3: 0x4832, Data4: ( 0x8C,0xA9,0xF0,0x61,0xB2,0x81,0xD1,0x3A ))// 65A1ECC5-3FB5-4832-8CA9-F061B281D13A
 }
 
+private var IID___x_ABI_CWindows_CFoundation_CIGuidHelperStatics: test_component.IID {
+    .init(Data1: 0x59C7966B, Data2: 0xAE52, Data3: 0x5283, Data4: ( 0xAD,0x7F,0xA1,0xB9,0xE9,0x67,0x8A,0xDD ))// 59C7966B-AE52-5283-AD7F-A1B9E9678ADD
+}
+
 private var IID___x_ABI_CWindows_CFoundation_CIMemoryBuffer: test_component.IID {
     .init(Data1: 0xFBC4DD2A, Data2: 0x245B, Data3: 0x11E4, Data4: ( 0xAF,0x98,0x68,0x94,0x23,0x26,0x0C,0xF8 ))// FBC4DD2A-245B-11E4-AF98-689423260CF8
 }
@@ -375,6 +379,37 @@ public enum __ABI_Windows_Foundation {
                 }
             }
             return IDeferral(result!)
+        }
+
+    }
+
+    public class IGuidHelperStatics: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIGuidHelperStatics }
+
+        public func CreateNewGuid() throws -> Foundation.UUID {
+            var result: test_component.GUID = .init()
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIGuidHelperStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateNewGuid(pThis, &result))
+            }
+            return .init(from: result)
+        }
+
+        public func get_Empty() throws -> Foundation.UUID {
+            var value: test_component.GUID = .init()
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIGuidHelperStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Empty(pThis, &value))
+            }
+            return .init(from: value)
+        }
+
+        public func Equals(_ target: Foundation.UUID, _ value: Foundation.UUID) throws -> Bool {
+            var result: boolean = 0
+            var _target: test_component.GUID = .from(swift: target)
+            var _value: test_component.GUID = .from(swift: value)
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIGuidHelperStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Equals(pThis, &_target, &_value, &result))
+            }
+            return .init(from: result)
         }
 
     }

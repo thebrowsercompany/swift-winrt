@@ -761,6 +761,14 @@ public final class Class : WinRTClass, IBasic {
         try _default.InObject(value)
     }
 
+    public func inBlittableStructRef(_ value: BlittableStruct) throws -> String {
+        try _default.InBlittableStructRef(value)
+    }
+
+    public func inNonBlittableStructRef(_ value: NonBlittableStruct) throws -> String {
+        try _default.InNonBlittableStructRef(value)
+    }
+
     public func inEnum(_ value: Signed) throws -> String {
         try _default.InEnum(value)
     }
@@ -1755,6 +1763,8 @@ public protocol IIAmImplementable : WinRTInterface {
     func inInt32(_ value: Int32) throws -> String
     func inString(_ value: String) throws -> String
     func inObject(_ value: Any!) throws -> String
+    func inBlittableStructRef(_ value: test_component.BlittableStruct) throws -> String
+    func inNonBlittableStructRef(_ value: test_component.NonBlittableStruct) throws -> String
     func inEnum(_ value: test_component.Signed) throws -> String
     func outInt32(_ value: inout Int32) throws
     func outString(_ value: inout String) throws
