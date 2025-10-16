@@ -113,6 +113,7 @@ extension __ABI_Windows_Foundation {
     private static let IID___x_ABI_CWindows_CFoundation_CIAsyncAction: test_component.IID = .init(
         Data1: 0x5A648006, Data2: 0x843A, Data3: 0x4DA9, Data4: ( 0x86,0x5B,0x9D,0x26,0xE5,0xDF,0xAD,0x7B ) // 5A648006-843A-4DA9-865B-9D26E5DFAD7B
     ) 
+
     public class IAsyncAction: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIAsyncAction }
 
@@ -292,6 +293,7 @@ extension __ABI_Windows_Foundation {
     private static let IID___x_ABI_CWindows_CFoundation_CIAsyncInfo: test_component.IID = .init(
         Data1: 0x00000036, Data2: 0x0000, Data3: 0x0000, Data4: ( 0xC0,0x00,0x00,0x00,0x00,0x00,0x00,0x46 ) // 00000036-0000-0000-C000-000000000046
     ) 
+
     public class IAsyncInfo: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIAsyncInfo }
 
@@ -448,6 +450,7 @@ extension __ABI_Windows_Foundation {
     private static let IID___x_ABI_C__FIAsyncOperationWithProgress_2_TResult_TProgress: test_component.IID = .init(
         Data1: 0xB5D036D7, Data2: 0xE297, Data3: 0x498F, Data4: ( 0xBA,0x60,0x02,0x89,0xE7,0x6E,0x23,0xDD ) // B5D036D7-E297-498F-BA60-0289E76E23DD
     ) 
+
 }
 // MARK: - IAsyncOperation`1
 
@@ -485,6 +488,7 @@ extension __ABI_Windows_Foundation {
     private static let IID___x_ABI_C__FIAsyncOperation_1_TResult: test_component.IID = .init(
         Data1: 0x9FC2B0BB, Data2: 0xE446, Data3: 0x44E2, Data4: ( 0xAA,0x61,0x9C,0xAB,0x8F,0x63,0x6A,0xF2 ) // 9FC2B0BB-E446-44E2-AA61-9CAB8F636AF2
     ) 
+
 }
 // MARK: - IClosable
 
@@ -546,6 +550,7 @@ extension __ABI_Windows_Foundation {
     private static let IID___x_ABI_CWindows_CFoundation_CIClosable: test_component.IID = .init(
         Data1: 0x30D5A829, Data2: 0x7FA4, Data3: 0x4026, Data4: ( 0x83,0xBB,0xD7,0x5B,0xAE,0x4E,0xA9,0x9E ) // 30D5A829-7FA4-4026-83BB-D75BAE4EA99E
     ) 
+
     public class IClosable: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIClosable }
 
@@ -673,6 +678,7 @@ extension __ABI_Windows_Foundation {
     private static let IID___x_ABI_CWindows_CFoundation_CIMemoryBuffer: test_component.IID = .init(
         Data1: 0xFBC4DD2A, Data2: 0x245B, Data3: 0x11E4, Data4: ( 0xAF,0x98,0x68,0x94,0x23,0x26,0x0C,0xF8 ) // FBC4DD2A-245B-11E4-AF98-689423260CF8
     ) 
+
     public class IMemoryBuffer: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIMemoryBuffer }
 
@@ -837,6 +843,7 @@ extension __ABI_Windows_Foundation {
     private static let IID___x_ABI_CWindows_CFoundation_CIMemoryBufferReference: test_component.IID = .init(
         Data1: 0xFBC4DD29, Data2: 0x245B, Data3: 0x11E4, Data4: ( 0xAF,0x98,0x68,0x94,0x23,0x26,0x0C,0xF8 ) // FBC4DD29-245B-11E4-AF98-689423260CF8
     ) 
+
     public class IMemoryBufferReference: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIMemoryBufferReference }
 
@@ -1148,6 +1155,7 @@ extension __ABI_Windows_Foundation {
     private static let IID___x_ABI_CWindows_CFoundation_CIPropertyValue: test_component.IID = .init(
         Data1: 0x4BD682DD, Data2: 0x7554, Data3: 0x40E9, Data4: ( 0x9A,0x9B,0x82,0x65,0x4E,0xDE,0x7E,0x62 ) // 4BD682DD-7554-40E9-9A9B-82654EDE7E62
     ) 
+
     public class IPropertyValue: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIPropertyValue }
 
@@ -1939,6 +1947,7 @@ extension __ABI_Windows_Foundation {
     private static let IID___x_ABI_C__FIReference_1_T: test_component.IID = .init(
         Data1: 0x61C17706, Data2: 0x2D65, Data3: 0x11E0, Data4: ( 0x9A,0xE8,0xD4,0x85,0x64,0x01,0x54,0x72 ) // 61C17706-2D65-11E0-9AE8-D48564015472
     ) 
+
 }
 // MARK: - IStringable
 
@@ -2000,6 +2009,7 @@ extension __ABI_Windows_Foundation {
     private static let IID___x_ABI_CWindows_CFoundation_CIStringable: test_component.IID = .init(
         Data1: 0x96369F54, Data2: 0x8EB6, Data3: 0x48F0, Data4: ( 0xAB,0xCE,0xC1,0xB2,0x11,0xE6,0x27,0xC3 ) // 96369F54-8EB6-48F0-ABCE-C1B211E627C3
     ) 
+
     public class IStringable: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIStringable }
 
@@ -2128,6 +2138,7 @@ extension __ABI_Windows_Foundation {
     private static let IID___x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderEntry: test_component.IID = .init(
         Data1: 0x125E7431, Data2: 0xF678, Data3: 0x4E8E, Data4: ( 0xB6,0x70,0x20,0xA9,0xB0,0x6C,0x51,0x2D ) // 125E7431-F678-4E8E-B670-20A9B06C512D
     ) 
+
     public class IWwwFormUrlDecoderEntry: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderEntry }
 

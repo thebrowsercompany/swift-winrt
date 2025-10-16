@@ -6,10 +6,12 @@ import Ctest_component
 // MARK: - MapChangedEventHandler`2
 
 public typealias MapChangedEventHandler<K,V> = (AnyIObservableMap<K, V>?, AnyIMapChangedEventArgs<K>?) throws -> ()
+
 // MARK: - MapChangedEventHandler`2 Internals
 
 // MARK: - VectorChangedEventHandler`1
 
 public typealias VectorChangedEventHandler<T> = (AnyIObservableVector<T>?, AnyIVectorChangedEventArgs?) throws -> ()
+
 // MARK: - VectorChangedEventHandler`1 Internals
 

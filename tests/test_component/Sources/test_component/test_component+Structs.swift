@@ -29,11 +29,11 @@ extension BlittableStruct: WinRTBridgeable {
 }
 
 extension __x_ABI_Ctest__component_CBlittableStruct {
-        public static func from(swift: test_component.BlittableStruct) -> __x_ABI_Ctest__component_CBlittableStruct {
-            .init(First: swift.first, Second: swift.second)
-        }
+    public static func from(swift: test_component.BlittableStruct) -> __x_ABI_Ctest__component_CBlittableStruct {
+        .init(First: swift.first, Second: swift.second)
     }
-    // MARK: - NonBlittableBoolStruct
+}
+// MARK: - NonBlittableBoolStruct
 
 public struct NonBlittableBoolStruct: Hashable, Codable, Sendable {
     public var first: Bool = false
@@ -163,11 +163,11 @@ extension SimpleEventArgs: WinRTBridgeable {
 }
 
 extension __x_ABI_Ctest__component_CSimpleEventArgs {
-        public static func from(swift: test_component.SimpleEventArgs) -> __x_ABI_Ctest__component_CSimpleEventArgs {
-            .init(Value: swift.value)
-        }
+    public static func from(swift: test_component.SimpleEventArgs) -> __x_ABI_Ctest__component_CSimpleEventArgs {
+        .init(Value: swift.value)
     }
-    // MARK: - StructWithEnum
+}
+// MARK: - StructWithEnum
 
 public struct StructWithEnum: Hashable, Codable, Sendable {
     public var names: SwiftifiableNames = .init(0)
@@ -191,11 +191,11 @@ extension StructWithEnum: WinRTBridgeable {
 }
 
 extension __x_ABI_Ctest__component_CStructWithEnum {
-        public static func from(swift: test_component.StructWithEnum) -> __x_ABI_Ctest__component_CStructWithEnum {
-            .init(Names: swift.names)
-        }
+    public static func from(swift: test_component.StructWithEnum) -> __x_ABI_Ctest__component_CStructWithEnum {
+        .init(Names: swift.names)
     }
-    // MARK: - StructWithIReference
+}
+// MARK: - StructWithIReference
 
 public struct StructWithIReference: Hashable, Codable, Sendable {
     public var value1: Int32?

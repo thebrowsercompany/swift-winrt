@@ -6,6 +6,7 @@ import Ctest_component
 // MARK: - AsyncActionCompletedHandler
 
 public typealias AsyncActionCompletedHandler = (AnyIAsyncAction?, AsyncStatus) throws -> ()
+
 // MARK: - AsyncActionCompletedHandler Internals
 
 @_spi(WinRTInternal)
@@ -30,6 +31,7 @@ extension __ABI_Windows_Foundation {
     private static let IID___x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler: test_component.IID = .init(
         Data1: 0xA4ED5C81, Data2: 0x76C9, Data3: 0x40BD, Data4: ( 0x8B,0xE6,0xB1,0xD9,0x0F,0xB2,0x0A,0xE7 ) // A4ED5C81-76C9-40BD-8BE6-B1D90FB20AE7
     ) 
+
     public class AsyncActionCompletedHandler: test_component.IUnknown {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler }
 
@@ -71,21 +73,25 @@ public extension WinRTDelegateBridge where CABI == __x_ABI_CWindows_CFoundation_
 // MARK: - AsyncOperationCompletedHandler`1
 
 public typealias AsyncOperationCompletedHandler<TResult> = (AnyIAsyncOperation<TResult>?, AsyncStatus) throws -> ()
+
 // MARK: - AsyncOperationCompletedHandler`1 Internals
 
 // MARK: - AsyncOperationProgressHandler`2
 
 public typealias AsyncOperationProgressHandler<TResult,TProgress> = (AnyIAsyncOperationWithProgress<TResult, TProgress>?, TProgress) throws -> ()
+
 // MARK: - AsyncOperationProgressHandler`2 Internals
 
 // MARK: - AsyncOperationWithProgressCompletedHandler`2
 
 public typealias AsyncOperationWithProgressCompletedHandler<TResult,TProgress> = (AnyIAsyncOperationWithProgress<TResult, TProgress>?, AsyncStatus) throws -> ()
+
 // MARK: - AsyncOperationWithProgressCompletedHandler`2 Internals
 
 // MARK: - DeferralCompletedHandler
 
 public typealias DeferralCompletedHandler = () throws -> ()
+
 // MARK: - DeferralCompletedHandler Internals
 
 @_spi(WinRTInternal)
@@ -110,6 +116,7 @@ extension __ABI_Windows_Foundation {
     private static let IID___x_ABI_CWindows_CFoundation_CIDeferralCompletedHandler: test_component.IID = .init(
         Data1: 0xED32A372, Data2: 0xF3C8, Data3: 0x4FAA, Data4: ( 0x9C,0xFB,0x47,0x01,0x48,0xDA,0x38,0x88 ) // ED32A372-F3C8-4FAA-9CFB-470148DA3888
     ) 
+
     public class DeferralCompletedHandler: test_component.IUnknown {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIDeferralCompletedHandler }
 
@@ -147,10 +154,12 @@ public extension WinRTDelegateBridge where CABI == __x_ABI_CWindows_CFoundation_
 // MARK: - EventHandler`1
 
 public typealias EventHandler<T> = (Any?, T) throws -> ()
+
 // MARK: - EventHandler`1 Internals
 
 // MARK: - TypedEventHandler`2
 
 public typealias TypedEventHandler<TSender,TResult> = (TSender, TResult) throws -> ()
+
 // MARK: - TypedEventHandler`2 Internals
 

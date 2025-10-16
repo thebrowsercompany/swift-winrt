@@ -175,6 +175,7 @@ extension __ABI_Windows_Storage_Search {
     private static let IID___x_ABI_CWindows_CStorage_CSearch_CIStorageFolderQueryOperations: test_component.IID = .init(
         Data1: 0xCB43CCC9, Data2: 0x446B, Data3: 0x4A4F, Data4: ( 0xBE,0x97,0x75,0x77,0x71,0xBE,0x52,0x03 ) // CB43CCC9-446B-4A4F-BE97-757771BE5203
     ) 
+
     public class IStorageFolderQueryOperations: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CSearch_CIStorageFolderQueryOperations }
 
@@ -664,6 +665,7 @@ extension __ABI_Windows_Storage_Search {
     private static let IID___x_ABI_CWindows_CStorage_CSearch_CIStorageQueryResultBase: test_component.IID = .init(
         Data1: 0xC297D70D, Data2: 0x7353, Data3: 0x47AB, Data4: ( 0xBA,0x58,0x8C,0x61,0x42,0x5D,0xC5,0x4B ) // C297D70D-7353-47AB-BA58-8C61425DC54B
     ) 
+
     public class IStorageQueryResultBase: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CSearch_CIStorageQueryResultBase }
 

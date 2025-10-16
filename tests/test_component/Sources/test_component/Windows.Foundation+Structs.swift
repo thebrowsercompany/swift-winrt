@@ -29,11 +29,11 @@ extension DateTime: WinRTBridgeable {
 }
 
 extension __x_ABI_CWindows_CFoundation_CDateTime {
-        public static func from(swift: test_component.DateTime) -> __x_ABI_CWindows_CFoundation_CDateTime {
-            .init(UniversalTime: swift.universalTime)
-        }
+    public static func from(swift: test_component.DateTime) -> __x_ABI_CWindows_CFoundation_CDateTime {
+        .init(UniversalTime: swift.universalTime)
     }
-    // MARK: - Point
+}
+// MARK: - Point
 
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.point)
 public struct Point: Hashable, Codable, Sendable {
@@ -62,11 +62,11 @@ extension Point: WinRTBridgeable {
 }
 
 extension __x_ABI_CWindows_CFoundation_CPoint {
-        public static func from(swift: test_component.Point) -> __x_ABI_CWindows_CFoundation_CPoint {
-            .init(X: swift.x, Y: swift.y)
-        }
+    public static func from(swift: test_component.Point) -> __x_ABI_CWindows_CFoundation_CPoint {
+        .init(X: swift.x, Y: swift.y)
     }
-    // MARK: - Rect
+}
+// MARK: - Rect
 
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.rect)
 public struct Rect: Hashable, Codable, Sendable {
@@ -101,11 +101,11 @@ extension Rect: WinRTBridgeable {
 }
 
 extension __x_ABI_CWindows_CFoundation_CRect {
-        public static func from(swift: test_component.Rect) -> __x_ABI_CWindows_CFoundation_CRect {
-            .init(X: swift.x, Y: swift.y, Width: swift.width, Height: swift.height)
-        }
+    public static func from(swift: test_component.Rect) -> __x_ABI_CWindows_CFoundation_CRect {
+        .init(X: swift.x, Y: swift.y, Width: swift.width, Height: swift.height)
     }
-    // MARK: - Size
+}
+// MARK: - Size
 
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.size)
 public struct Size: Hashable, Codable, Sendable {
@@ -134,11 +134,11 @@ extension Size: WinRTBridgeable {
 }
 
 extension __x_ABI_CWindows_CFoundation_CSize {
-        public static func from(swift: test_component.Size) -> __x_ABI_CWindows_CFoundation_CSize {
-            .init(Width: swift.width, Height: swift.height)
-        }
+    public static func from(swift: test_component.Size) -> __x_ABI_CWindows_CFoundation_CSize {
+        .init(Width: swift.width, Height: swift.height)
     }
-    // MARK: - TimeSpan
+}
+// MARK: - TimeSpan
 
 /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.timespan)
 public struct TimeSpan: Hashable, Codable, Sendable {
@@ -164,8 +164,7 @@ extension TimeSpan: WinRTBridgeable {
 }
 
 extension __x_ABI_CWindows_CFoundation_CTimeSpan {
-        public static func from(swift: test_component.TimeSpan) -> __x_ABI_CWindows_CFoundation_CTimeSpan {
-            .init(Duration: swift.duration)
-        }
+    public static func from(swift: test_component.TimeSpan) -> __x_ABI_CWindows_CFoundation_CTimeSpan {
+        .init(Duration: swift.duration)
     }
-    
+}

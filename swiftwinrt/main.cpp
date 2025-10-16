@@ -42,6 +42,7 @@ namespace swiftwinrt
         { "help", 0, option::no_max, {}, "Show detailed help with examples" },
         { "spm", 0, 0, "generate SPM project files"}, // generate SPM project files
         { "cmake", 0, 0, "generate CMake project files"}, // generate CMake project files
+        { "file-per-type", 0, 1, "generate files per type"},
         { "?", 0, option::no_max, {}, {} },
         { "library", 0, 1, "<prefix>", "Specify library prefix (defaults to winrt)" },
         { "test", 0, 0 }, // the projections are for tests and place all code into a single module
@@ -102,6 +103,7 @@ Where <spec> is one or more of:
         settings.brackets = args.exists("brackets");
         settings.test = args.exists("test");
         settings.output_folder = args.value("output", ".");
+        settings.file_per_type = args.exists("file-per-type");
 
         settings.support = args.value("support", "WindowsFoundation");
 

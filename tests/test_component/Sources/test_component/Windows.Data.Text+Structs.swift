@@ -32,8 +32,7 @@ extension TextSegment: WinRTBridgeable {
 }
 
 extension __x_ABI_CWindows_CData_CText_CTextSegment {
-        public static func from(swift: test_component.TextSegment) -> __x_ABI_CWindows_CData_CText_CTextSegment {
-            .init(StartPosition: swift.startPosition, Length: swift.length)
-        }
+    public static func from(swift: test_component.TextSegment) -> __x_ABI_CWindows_CData_CText_CTextSegment {
+        .init(StartPosition: swift.startPosition, Length: swift.length)
     }
-    
+}

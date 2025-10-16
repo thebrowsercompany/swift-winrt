@@ -212,6 +212,7 @@ extension __ABI_Windows_Storage {
     private static let IID___x_ABI_CWindows_CStorage_CIStorageFile: test_component.IID = .init(
         Data1: 0xFA3F6186, Data2: 0x4214, Data3: 0x428C, Data4: ( 0xA6,0x4C,0x14,0xC9,0xAC,0x73,0x15,0xEA ) // FA3F6186-4214-428C-A64C-14C9AC7315EA
     ) 
+
     public class IStorageFile: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageFile }
 
@@ -581,6 +582,7 @@ extension __ABI_Windows_Storage {
     private static let IID___x_ABI_CWindows_CStorage_CIStorageFile2: test_component.IID = .init(
         Data1: 0x954E4BCF, Data2: 0x0A77, Data3: 0x42FB, Data4: ( 0xB7,0x77,0xC2,0xED,0x58,0xA5,0x2E,0x44 ) // 954E4BCF-0A77-42FB-B777-C2ED58A52E44
     ) 
+
     public class IStorageFile2: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageFile2 }
 
@@ -726,6 +728,7 @@ extension __ABI_Windows_Storage {
     private static let IID___x_ABI_CWindows_CStorage_CIStorageFilePropertiesWithAvailability: test_component.IID = .init(
         Data1: 0xAFCBBE9B, Data2: 0x582B, Data3: 0x4133, Data4: ( 0x96,0x48,0xE4,0x4C,0xA4,0x6E,0xE4,0x91 ) // AFCBBE9B-582B-4133-9648-E44CA46EE491
     ) 
+
     public class IStorageFilePropertiesWithAvailability: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageFilePropertiesWithAvailability }
 
@@ -962,6 +965,7 @@ extension __ABI_Windows_Storage {
     private static let IID___x_ABI_CWindows_CStorage_CIStorageFolder: test_component.IID = .init(
         Data1: 0x72D1CB78, Data2: 0xB3EF, Data3: 0x4F75, Data4: ( 0xA8,0x0B,0x6F,0xD9,0xDA,0xE2,0x94,0x4B ) // 72D1CB78-B3EF-4F75-A80B-6FD9DAE2944B
     ) 
+
     public class IStorageFolder: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageFolder }
 
@@ -1273,6 +1277,7 @@ extension __ABI_Windows_Storage {
     private static let IID___x_ABI_CWindows_CStorage_CIStorageFolder2: test_component.IID = .init(
         Data1: 0xE827E8B9, Data2: 0x08D9, Data3: 0x4A8E, Data4: ( 0xA0,0xAC,0xFE,0x5E,0xD3,0xCB,0xBB,0xD3 ) // E827E8B9-08D9-4A8E-A0AC-FE5ED3CBBBD3
     ) 
+
     public class IStorageFolder2: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageFolder2 }
 
@@ -1461,6 +1466,7 @@ extension __ABI_Windows_Storage {
     private static let IID___x_ABI_CWindows_CStorage_CIStorageItem: test_component.IID = .init(
         Data1: 0x4207A996, Data2: 0xCA2F, Data3: 0x42F7, Data4: ( 0xBD,0xE8,0x8B,0x10,0x45,0x7A,0x7F,0x30 ) // 4207A996-CA2F-42F7-BDE8-8B10457A7F30
     ) 
+
     public class IStorageItem: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageItem }
 
@@ -1805,6 +1811,7 @@ extension __ABI_Windows_Storage {
     private static let IID___x_ABI_CWindows_CStorage_CIStorageItem2: test_component.IID = .init(
         Data1: 0x53F926D2, Data2: 0x083C, Data3: 0x4283, Data4: ( 0xB4,0x5B,0x81,0xC0,0x07,0x23,0x7E,0x44 ) // 53F926D2-083C-4283-B45B-81C007237E44
     ) 
+
     public class IStorageItem2: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageItem2 }
 
@@ -1991,6 +1998,7 @@ extension __ABI_Windows_Storage {
     private static let IID___x_ABI_CWindows_CStorage_CIStorageItemProperties: test_component.IID = .init(
         Data1: 0x86664478, Data2: 0x8029, Data3: 0x46FE, Data4: ( 0xA7,0x89,0x1C,0x2F,0x3E,0x2F,0xFB,0x5C ) // 86664478-8029-46FE-A789-1C2F3E2FFB5C
     ) 
+
     public class IStorageItemProperties: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageItemProperties }
 
@@ -2272,6 +2280,7 @@ extension __ABI_Windows_Storage {
     private static let IID___x_ABI_CWindows_CStorage_CIStorageItemProperties2: test_component.IID = .init(
         Data1: 0x8E86A951, Data2: 0x04B9, Data3: 0x4BD2, Data4: ( 0x92,0x9D,0xFE,0xF3,0xF7,0x16,0x21,0xD0 ) // 8E86A951-04B9-4BD2-929D-FEF3F71621D0
     ) 
+
     public class IStorageItemProperties2: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageItemProperties2 }
 
@@ -2479,6 +2488,7 @@ extension __ABI_Windows_Storage {
     private static let IID___x_ABI_CWindows_CStorage_CIStorageItemPropertiesWithProvider: test_component.IID = .init(
         Data1: 0x861BF39B, Data2: 0x6368, Data3: 0x4DEE, Data4: ( 0xB4,0x0E,0x74,0x68,0x4A,0x5C,0xE7,0x14 ) // 861BF39B-6368-4DEE-B40E-74684A5CE714
     ) 
+
     public class IStorageItemPropertiesWithProvider: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageItemPropertiesWithProvider }
 
@@ -2600,6 +2610,7 @@ extension __ABI_Windows_Storage {
     private static let IID___x_ABI_CWindows_CStorage_CIStreamedFileDataRequest: test_component.IID = .init(
         Data1: 0x1673FCCE, Data2: 0xDABD, Data3: 0x4D50, Data4: ( 0xBE,0xEE,0x18,0x0B,0x8A,0x81,0x91,0xB6 ) // 1673FCCE-DABD-4D50-BEEE-180B8A8191B6
     ) 
+
     public class IStreamedFileDataRequest: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStreamedFileDataRequest }
 

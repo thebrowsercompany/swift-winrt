@@ -24,6 +24,7 @@ extension __ABI_Windows_Foundation_Collections {
     private static let IID___x_ABI_C__FIIterable_1_T: test_component.IID = .init(
         Data1: 0xFAA585EA, Data2: 0x6214, Data3: 0x4217, Data4: ( 0xAF,0xDA,0x7F,0x46,0xDE,0x58,0x69,0xB3 ) // FAA585EA-6214-4217-AFDA-7F46DE5869B3
     ) 
+
 }
 // MARK: - IIterator`1
 
@@ -52,6 +53,7 @@ extension __ABI_Windows_Foundation_Collections {
     private static let IID___x_ABI_C__FIIterator_1_T: test_component.IID = .init(
         Data1: 0x6A79E863, Data2: 0x4300, Data3: 0x459A, Data4: ( 0x99,0x66,0xCB,0xB6,0x60,0x96,0x3E,0xE1 ) // 6A79E863-4300-459A-9966-CBB660963EE1
     ) 
+
 }
 // MARK: - IKeyValuePair`2
 
@@ -77,6 +79,7 @@ extension __ABI_Windows_Foundation_Collections {
     private static let IID___x_ABI_C__FIKeyValuePair_2_K_V: test_component.IID = .init(
         Data1: 0x02B51929, Data2: 0xC1C4, Data3: 0x4A7E, Data4: ( 0x89,0x40,0x03,0x12,0xB5,0xC1,0x85,0x00 ) // 02B51929-C1C4-4A7E-8940-0312B5C18500
     ) 
+
 }
 // MARK: - IMapChangedEventArgs`1
 
@@ -101,6 +104,7 @@ extension __ABI_Windows_Foundation_Collections {
     private static let IID___x_ABI_C__FIMapChangedEventArgs_1_K: test_component.IID = .init(
         Data1: 0x9939F4DF, Data2: 0x050A, Data3: 0x4C0F, Data4: ( 0xAA,0x60,0x77,0x07,0x5F,0x9C,0x47,0x77 ) // 9939F4DF-050A-4C0F-AA60-77075F9C4777
     ) 
+
 }
 // MARK: - IMapView`2
 
@@ -130,6 +134,7 @@ extension __ABI_Windows_Foundation_Collections {
     private static let IID___x_ABI_C__FIMapView_2_K_V: test_component.IID = .init(
         Data1: 0xE480CE40, Data2: 0xA338, Data3: 0x4ADA, Data4: ( 0xAD,0xCF,0x27,0x22,0x72,0xE4,0x8C,0xB9 ) // E480CE40-A338-4ADA-ADCF-272272E48CB9
     ) 
+
 }
 // MARK: - IMap`2
 
@@ -165,6 +170,7 @@ extension __ABI_Windows_Foundation_Collections {
     private static let IID___x_ABI_C__FIMap_2_K_V: test_component.IID = .init(
         Data1: 0x3C2925FE, Data2: 0x8519, Data3: 0x45C1, Data4: ( 0xAA,0x79,0x19,0x7B,0x67,0x18,0xC1,0xC1 ) // 3C2925FE-8519-45C1-AA79-197B6718C1C1
     ) 
+
 }
 // MARK: - IObservableMap`2
 
@@ -188,6 +194,7 @@ extension __ABI_Windows_Foundation_Collections {
     private static let IID___x_ABI_C__FIObservableMap_2_K_V: test_component.IID = .init(
         Data1: 0x65DF2BF5, Data2: 0xBF39, Data3: 0x41B5, Data4: ( 0xAE,0xBC,0x5A,0x9D,0x86,0x5E,0x47,0x2B ) // 65DF2BF5-BF39-41B5-AEBC-5A9D865E472B
     ) 
+
 }
 // MARK: - IObservableVector`1
 
@@ -210,6 +217,7 @@ extension __ABI_Windows_Foundation_Collections {
     private static let IID___x_ABI_C__FIObservableVector_1_T: test_component.IID = .init(
         Data1: 0x5917EB53, Data2: 0x50B4, Data3: 0x4A0D, Data4: ( 0xB3,0x09,0x65,0x86,0x2B,0x3F,0x1D,0xBC ) // 5917EB53-50B4-4A0D-B309-65862B3F1DBC
     ) 
+
 }
 // MARK: - IPropertySet
 
@@ -332,6 +340,7 @@ extension __ABI_Windows_Foundation_Collections {
     private static let IID___x_ABI_CWindows_CFoundation_CCollections_CIPropertySet: test_component.IID = .init(
         Data1: 0x8A43ED9F, Data2: 0xF4E6, Data3: 0x4421, Data4: ( 0xAC,0xF9,0x1D,0xAB,0x29,0x86,0x82,0x0C ) // 8A43ED9F-F4E6-4421-ACF9-1DAB2986820C
     ) 
+
     public class IPropertySet: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CCollections_CIPropertySet }
 
@@ -446,6 +455,7 @@ extension __ABI_Windows_Foundation_Collections {
     private static let IID___x_ABI_CWindows_CFoundation_CCollections_CIVectorChangedEventArgs: test_component.IID = .init(
         Data1: 0x575933DF, Data2: 0x34FE, Data3: 0x4480, Data4: ( 0xAF,0x15,0x07,0x69,0x1F,0x3D,0x5D,0x9B ) // 575933DF-34FE-4480-AF15-07691F3D5D9B
     ) 
+
     public class IVectorChangedEventArgs: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CCollections_CIVectorChangedEventArgs }
 
@@ -547,6 +557,7 @@ extension __ABI_Windows_Foundation_Collections {
     private static let IID___x_ABI_C__FIVectorView_1_T: test_component.IID = .init(
         Data1: 0xBBE1FA4C, Data2: 0xB0E3, Data3: 0x4583, Data4: ( 0xBA,0xEF,0x1F,0x1B,0x2E,0x48,0x3E,0x56 ) // BBE1FA4C-B0E3-4583-BAEF-1F1B2E483E56
     ) 
+
 }
 // MARK: - IVector`1
 
@@ -591,4 +602,5 @@ extension __ABI_Windows_Foundation_Collections {
     private static let IID___x_ABI_C__FIVector_1_T: test_component.IID = .init(
         Data1: 0x913337E9, Data2: 0x11A1, Data3: 0x4345, Data4: ( 0xA3,0xA2,0x4E,0x7F,0x95,0x6E,0x22,0x2D ) // 913337E9-11A1-4345-A3A2-4E7F956E222D
     ) 
+
 }

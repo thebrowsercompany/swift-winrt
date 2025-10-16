@@ -144,6 +144,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIArrayMethodsStatics: test_component.IID = .init(
         Data1: 0x8999FD6A, Data2: 0xD1C5, Data3: 0x53CE, Data4: ( 0xB8,0x0F,0x7C,0x45,0x85,0xD0,0x75,0x6C ) // 8999FD6A-D1C5-53CE-B80F-7C4585D0756C
     ) 
+
     public class IArrayMethodsStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIArrayMethodsStatics }
 
@@ -481,6 +482,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIAsyncMethodsStatics: test_component.IID = .init(
         Data1: 0x5FAAD8F4, Data2: 0x29D7, Data3: 0x5C26, Data4: ( 0xA8,0x72,0x35,0x42,0xE3,0xE1,0x86,0x7A ) // 5FAAD8F4-29D7-5C26-A872-3542E3E1867A
     ) 
+
     public class IAsyncMethodsStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIAsyncMethodsStatics }
 
@@ -746,6 +748,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIBase: test_component.IID = .init(
         Data1: 0xE9FE0BB2, Data2: 0xE1F6, Data3: 0x5E39, Data4: ( 0x92,0xBB,0x2F,0x19,0xFF,0xDE,0x3F,0xDC ) // E9FE0BB2-E1F6-5E39-92BB-2F19FFDE3FDC
     ) 
+
     public class IBase: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBase }
 
@@ -760,6 +763,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIBaseOverrides: test_component.IID = .init(
         Data1: 0xEE3CBD78, Data2: 0x04B7, Data3: 0x534F, Data4: ( 0xA7,0x15,0x53,0xDA,0xF5,0x35,0x01,0x3C ) // EE3CBD78-04B7-534F-A715-53DAF535013C
     ) 
+
     public class IBaseOverrides: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseOverrides }
 
@@ -774,6 +778,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIBaseProtectedFactory: test_component.IID = .init(
         Data1: 0x05CAD233, Data2: 0x20A7, Data3: 0x581F, Data4: ( 0xBD,0x44,0x0D,0x13,0x6C,0x31,0x0E,0x0F ) // 05CAD233-20A7-581F-BD44-0D136C310E0F
     ) 
+
     public class IBaseProtectedFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseProtectedFactory }
 
@@ -795,6 +800,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIBaseStatics: test_component.IID = .init(
         Data1: 0x9E36C560, Data2: 0xE3AE, Data3: 0x55DF, Data4: ( 0xBA,0x41,0x6B,0xB5,0x47,0xA2,0x81,0x65 ) // 9E36C560-E3AE-55DF-BA41-6BB547A28165
     ) 
+
     public class IBaseStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseStatics }
 
@@ -811,7 +817,6 @@ extension __ABI_test_component {
     }
 
 }
-@_spi(WinRTInternal)
 extension ComposableImpl where CABI == __x_ABI_Ctest__component_CIBaseOverrides {
     public static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IBaseOverridesVTable) { $0 }
@@ -986,6 +991,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIBaseCollectionProtectedFactory: test_component.IID = .init(
         Data1: 0xB5581456, Data2: 0xA980, Data3: 0x5851, Data4: ( 0xAD,0xA4,0x0A,0x7B,0x27,0x0F,0x6C,0xD9 ) // B5581456-A980-5851-ADA4-0A7B270F6CD9
     ) 
+
     public class IBaseCollectionProtectedFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseCollectionProtectedFactory }
 
@@ -1180,6 +1186,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIBaseNoOverrides: test_component.IID = .init(
         Data1: 0xCAC21C05, Data2: 0xB599, Data3: 0x5D37, Data4: ( 0xA9,0x3A,0xD6,0x0C,0xBD,0xD1,0xD0,0xE8 ) // CAC21C05-B599-5D37-A93A-D60CBDD1D0E8
     ) 
+
     public class IBaseNoOverrides: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseNoOverrides }
 
@@ -1188,6 +1195,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIBaseNoOverridesProtectedFactory: test_component.IID = .init(
         Data1: 0x92FC0572, Data2: 0x825F, Data3: 0x5B3F, Data4: ( 0x9B,0x0B,0xF0,0x80,0xA1,0x66,0xEF,0x06 ) // 92FC0572-825F-5B3F-9B0B-F080A166EF06
     ) 
+
     public class IBaseNoOverridesProtectedFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseNoOverridesProtectedFactory }
 
@@ -1209,6 +1217,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIBaseNoOverridesStatics: test_component.IID = .init(
         Data1: 0xCC810B5D, Data2: 0x97FC, Data3: 0x5B35, Data4: ( 0xAE,0xEA,0xA4,0x7F,0x5F,0x58,0x06,0xF7 ) // CC810B5D-97FC-5B35-AEEA-A47F5F5806F7
     ) 
+
     public class IBaseNoOverridesStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBaseNoOverridesStatics }
 
@@ -1393,6 +1402,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIBufferTesterStatics: test_component.IID = .init(
         Data1: 0x82190F30, Data2: 0x48DC, Data3: 0x5350, Data4: ( 0xAD,0x5B,0x00,0x36,0x63,0x5C,0xF5,0xB4 ) // 82190F30-48DC-5350-AD5B-0036635CF5B4
     ) 
+
     public class IBufferTesterStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIBufferTesterStatics }
 
@@ -1515,6 +1525,14 @@ public final class Class : WinRTClass, IBasic {
 
     public func inObject(_ value: Any!) throws -> String {
         try _default.InObject(value)
+    }
+
+    public func inBlittableStructRef(_ value: BlittableStruct) throws -> String {
+        try _default.InBlittableStructRef(value)
+    }
+
+    public func inNonBlittableStructRef(_ value: NonBlittableStruct) throws -> String {
+        try _default.InNonBlittableStructRef(value)
     }
 
     public func inEnum(_ value: Signed) throws -> String {
@@ -1666,8 +1684,9 @@ public class ClassMaker: MakeFromAbi {
 @_spi(WinRTInternal)
 extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIClass: test_component.IID = .init(
-        Data1: 0xEBCBC0CD, Data2: 0x48DD, Data3: 0x56BA, Data4: ( 0xBB,0xE2,0xCD,0x0B,0xE5,0xA3,0x06,0x76 ) // EBCBC0CD-48DD-56BA-BBE2-CD0BE5A30676
+        Data1: 0x586690C4, Data2: 0x6AE2, Data3: 0x5C62, Data4: ( 0xB5,0x25,0x44,0x4D,0xCC,0x2D,0xEE,0x39 ) // 586690C4-6AE2-5C62-B525-444DCC2DEE39
     ) 
+
     public class IClass: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIClass }
 
@@ -1735,6 +1754,24 @@ extension __ABI_test_component {
             let _value = try! valueWrapper?.toABI { $0 }
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InObject(pThis, _value, &result))
+            }
+            return .init(from: result)
+        }
+
+        public func InBlittableStructRef(_ value: test_component.BlittableStruct) throws -> String {
+            var result: HSTRING?
+            var _value: __x_ABI_Ctest__component_CBlittableStruct = .from(swift: value)
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.InBlittableStructRef(pThis, &_value, &result))
+            }
+            return .init(from: result)
+        }
+
+        public func InNonBlittableStructRef(_ value: test_component.NonBlittableStruct) throws -> String {
+            var result: HSTRING?
+            let _value = __ABI_test_component._ABI_NonBlittableStruct(from: value)
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.InNonBlittableStructRef(pThis, &_value.val, &result))
             }
             return .init(from: result)
         }
@@ -1982,6 +2019,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIClassFactory: test_component.IID = .init(
         Data1: 0x78914881, Data2: 0xB900, Data3: 0x582A, Data4: ( 0x94,0xB8,0x58,0x19,0x84,0xC0,0xF7,0x8A ) // 78914881-B900-582A-94B8-581984C0F78A
     ) 
+
     public class IClassFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIClassFactory }
 
@@ -2054,6 +2092,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIClassFactory2: test_component.IID = .init(
         Data1: 0xF5F62EBE, Data2: 0x931B, Data3: 0x519B, Data4: ( 0x95,0x1A,0xF1,0x4A,0x4B,0xC7,0x83,0xB1 ) // F5F62EBE-931B-519B-951A-F14A4BC783B1
     ) 
+
     public class IClassFactory2: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIClassFactory2 }
 
@@ -2074,6 +2113,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIClassStatics: test_component.IID = .init(
         Data1: 0x3E30803C, Data2: 0x35D4, Data3: 0x52A7, Data4: ( 0xB2,0x11,0xFD,0xC5,0xD6,0xAC,0x48,0x7B ) // 3E30803C-35D4-52A7-B211-FDC5D6AC487B
     ) 
+
     public class IClassStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIClassStatics }
 
@@ -2112,6 +2152,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIClassStatics2: test_component.IID = .init(
         Data1: 0xB341C098, Data2: 0x033D, Data3: 0x5445, Data4: ( 0x86,0x80,0x70,0x3A,0x93,0xBC,0xDF,0x81 ) // B341C098-033D-5445-8680-703A93BCDF81
     ) 
+
     public class IClassStatics2: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIClassStatics2 }
 
@@ -2228,6 +2269,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CICollectionTester: test_component.IID = .init(
         Data1: 0xF8B13FDD, Data2: 0xB785, Data3: 0x53D4, Data4: ( 0xBC,0x69,0xFA,0x7D,0x02,0xBD,0x88,0xE6 ) // F8B13FDD-B785-53D4-BC69-FA7D02BD88E6
     ) 
+
     public class ICollectionTester: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CICollectionTester }
 
@@ -2254,6 +2296,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CICollectionTesterStatics: test_component.IID = .init(
         Data1: 0xA4C0D4B5, Data2: 0xEDA2, Data3: 0x55E5, Data4: ( 0xAD,0x0F,0xCE,0x1F,0x13,0xA9,0x81,0xCC ) // A4C0D4B5-EDA2-55E5-AD0F-CE1F13A981CC
     ) 
+
     public class ICollectionTesterStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CICollectionTesterStatics }
 
@@ -2379,6 +2422,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIDeferrableEventArgs: test_component.IID = .init(
         Data1: 0xDA7B0340, Data2: 0x93E0, Data3: 0x5D49, Data4: ( 0xA7,0xF3,0x0F,0xCA,0x6E,0x90,0x02,0x3C ) // DA7B0340-93E0-5D49-A7F3-0FCA6E90023C
     ) 
+
     public class IDeferrableEventArgs: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIDeferrableEventArgs }
 
@@ -2465,6 +2509,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIDerived: test_component.IID = .init(
         Data1: 0x864F4DCB, Data2: 0xC4FF, Data3: 0x5FBB, Data4: ( 0xB4,0x5D,0xA7,0x3E,0x25,0x7B,0x48,0xA2 ) // 864F4DCB-C4FF-5FBB-B45D-A73E257B48A2
     ) 
+
     public class IDerived: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIDerived }
 
@@ -2487,6 +2532,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIDerivedStatics: test_component.IID = .init(
         Data1: 0x5DE6D589, Data2: 0x61EC, Data3: 0x5020, Data4: ( 0x80,0x3A,0x3E,0x62,0x6C,0x8B,0xBC,0x8E ) // 5DE6D589-61EC-5020-803A-3E626C8BBC8E
     ) 
+
     public class IDerivedStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIDerivedStatics }
 
@@ -2557,6 +2603,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIDerivedFromNoConstructor: test_component.IID = .init(
         Data1: 0x2A9D928D, Data2: 0xAD55, Data3: 0x59EC, Data4: ( 0x9B,0x73,0xE2,0xED,0x06,0x57,0xE6,0xC4 ) // 2A9D928D-AD55-59EC-9B73-E2ED0657E6C4
     ) 
+
     public class IDerivedFromNoConstructor: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIDerivedFromNoConstructor }
 
@@ -2640,6 +2687,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIEventTester: test_component.IID = .init(
         Data1: 0xDD19BE65, Data2: 0x638D, Data3: 0x519A, Data4: ( 0x81,0xA9,0x73,0x3F,0xDB,0xD8,0x7A,0x17 ) // DD19BE65-638D-519A-81A9-733FDBD87A17
     ) 
+
     public class IEventTester: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIEventTester }
 
@@ -2676,6 +2724,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIEventTesterFactory: test_component.IID = .init(
         Data1: 0x9E6F50EC, Data2: 0x0F53, Data3: 0x5507, Data4: ( 0xB7,0x37,0x14,0x3B,0x1B,0xB3,0x53,0x65 ) // 9E6F50EC-0F53-5507-B737-143B1BB35365
     ) 
+
     public class IEventTesterFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIEventTesterFactory }
 
@@ -2806,6 +2855,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CINullValuesStatics: test_component.IID = .init(
         Data1: 0x4F2BB96B, Data2: 0xB91D, Data3: 0x51E5, Data4: ( 0xA5,0x89,0x26,0x52,0xC1,0x65,0xA8,0xB5 ) // 4F2BB96B-B91D-51E5-A589-2652C165A8B5
     ) 
+
     public class INullValuesStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CINullValuesStatics }
 
@@ -3072,6 +3122,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CISimple: test_component.IID = .init(
         Data1: 0xAE7B4545, Data2: 0xD9D0, Data3: 0x5655, Data4: ( 0xB1,0xDE,0xA0,0x7D,0xA1,0x3B,0xD8,0x9B ) // AE7B4545-D9D0-5655-B1DE-A07DA13BD89B
     ) 
+
     public class ISimple: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CISimple }
 
@@ -3270,6 +3321,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CISimpleOverrides: test_component.IID = .init(
         Data1: 0x2F772B66, Data2: 0xE6BE, Data3: 0x51E4, Data4: ( 0xB9,0x22,0x01,0x9D,0x56,0xF7,0xEF,0xD1 ) // 2F772B66-E6BE-51E4-B922-019D56F7EFD1
     ) 
+
     public class ISimpleOverrides: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CISimpleOverrides }
 
@@ -3284,6 +3336,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CISimpleStatics: test_component.IID = .init(
         Data1: 0xC8DCADA0, Data2: 0xFD8E, Data3: 0x5E27, Data4: ( 0x95,0x51,0xA3,0x68,0xFE,0x1D,0x11,0xB2 ) // C8DCADA0-FD8E-5E27-9551-A368FE1D11B2
     ) 
+
     public class ISimpleStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CISimpleStatics }
 
@@ -3342,6 +3395,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIStaticClassStatics: test_component.IID = .init(
         Data1: 0x92E618EF, Data2: 0xFF6E, Data3: 0x5975, Data4: ( 0x86,0x8C,0x99,0xAD,0xC1,0x1D,0x36,0xDE ) // 92E618EF-FF6E-5975-868C-99ADC11D36DE
     ) 
+
     public class IStaticClassStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIStaticClassStatics }
 
@@ -3589,6 +3643,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIUnsealedDerived: test_component.IID = .init(
         Data1: 0xB4FA333D, Data2: 0x9BCA, Data3: 0x592D, Data4: ( 0x9D,0xCB,0x18,0xAF,0x96,0xD7,0x6A,0x03 ) // B4FA333D-9BCA-592D-9DCB-18AF96D76A03
     ) 
+
     public class IUnsealedDerived: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerived }
 
@@ -3611,6 +3666,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIUnsealedDerivedOverloads2: test_component.IID = .init(
         Data1: 0xF4CE1AD9, Data2: 0x36B9, Data3: 0x5DC7, Data4: ( 0xA0,0x07,0x3A,0xCD,0xF4,0x22,0xE7,0x05 ) // F4CE1AD9-36B9-5DC7-A007-3ACDF422E705
     ) 
+
     public class IUnsealedDerivedOverloads2: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedOverloads2 }
 
@@ -3625,6 +3681,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIUnsealedDerivedOverrides: test_component.IID = .init(
         Data1: 0x828DCEE6, Data2: 0xF93A, Data3: 0x5A4D, Data4: ( 0xBC,0xEE,0xF7,0xC1,0xDE,0xE4,0xEB,0x4E ) // 828DCEE6-F93A-5A4D-BCEE-F7C1DEE4EB4E
     ) 
+
     public class IUnsealedDerivedOverrides: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedOverrides }
 
@@ -3639,6 +3696,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIUnsealedDerivedFactory: test_component.IID = .init(
         Data1: 0xDAF846D2, Data2: 0x8988, Data3: 0x5EE1, Data4: ( 0xA8,0xAA,0x7E,0x81,0xC0,0xF8,0xA9,0xE9 ) // DAF846D2-8988-5EE1-A8AA-7E81C0F8A9E9
     ) 
+
     public class IUnsealedDerivedFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedFactory }
 
@@ -3685,14 +3743,12 @@ extension __ABI_test_component {
     }
 
 }
-@_spi(WinRTInternal)
 extension ComposableImpl where CABI == __x_ABI_Ctest__component_CIUnsealedDerivedOverloads2 {
     public static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IUnsealedDerivedOverloads2VTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
 }
-@_spi(WinRTInternal)
 extension ComposableImpl where CABI == __x_ABI_Ctest__component_CIUnsealedDerivedOverrides {
     public static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.IUnsealedDerivedOverridesVTable) { $0 }
@@ -3791,6 +3847,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIUnsealedDerived2: test_component.IID = .init(
         Data1: 0xA58C23CF, Data2: 0x4DC4, Data3: 0x59C5, Data4: ( 0x8D,0xE3,0x9F,0x06,0x3B,0x21,0x8D,0xDE ) // A58C23CF-4DC4-59C5-8DE3-9F063B218DDE
     ) 
+
     public class IUnsealedDerived2: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerived2 }
 
@@ -3805,6 +3862,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIUnsealedDerived2Factory: test_component.IID = .init(
         Data1: 0x136F2143, Data2: 0x1044, Data3: 0x5A97, Data4: ( 0x8C,0x91,0x1E,0xF2,0x81,0x67,0xD9,0xFC ) // 136F2143-1044-5A97-8C91-1EF28167D9FC
     ) 
+
     public class IUnsealedDerived2Factory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerived2Factory }
 
@@ -3826,6 +3884,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIUnsealedDerived2ProtectedFactory: test_component.IID = .init(
         Data1: 0x0978D147, Data2: 0x77BF, Data3: 0x5E0A, Data4: ( 0xA1,0x64,0xCA,0x95,0x1B,0xCA,0xB8,0xB4 ) // 0978D147-77BF-5E0A-A164-CA951BCAB8B4
     ) 
+
     public class IUnsealedDerived2ProtectedFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerived2ProtectedFactory }
 
@@ -3925,6 +3984,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIUnsealedDerivedFromNoConstructor: test_component.IID = .init(
         Data1: 0xD0FB287A, Data2: 0xCBA2, Data3: 0x5756, Data4: ( 0xB7,0xA5,0x5F,0x3B,0x04,0x03,0x9F,0x67 ) // D0FB287A-CBA2-5756-B7A5-5F3B04039F67
     ) 
+
     public class IUnsealedDerivedFromNoConstructor: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedFromNoConstructor }
 
@@ -3933,6 +3993,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIUnsealedDerivedFromNoConstructorFactory: test_component.IID = .init(
         Data1: 0x51E65EEC, Data2: 0x650B, Data3: 0x549E, Data4: ( 0x94,0x0C,0x61,0xB6,0xA1,0x4E,0xEA,0x4B ) // 51E65EEC-650B-549E-940C-61B6A14EEA4B
     ) 
+
     public class IUnsealedDerivedFromNoConstructorFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedFromNoConstructorFactory }
 
@@ -4026,6 +4087,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIUnsealedDerivedNoConstructor: test_component.IID = .init(
         Data1: 0x78393D7D, Data2: 0x930B, Data3: 0x57F9, Data4: ( 0x9B,0x04,0x2D,0xCC,0x34,0x80,0xD7,0x46 ) // 78393D7D-930B-57F9-9B04-2DCC3480D746
     ) 
+
     public class IUnsealedDerivedNoConstructor: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedNoConstructor }
 
@@ -4034,6 +4096,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIUnsealedDerivedNoConstructorFactory: test_component.IID = .init(
         Data1: 0xD8B1C0D1, Data2: 0xB48A, Data3: 0x5AA3, Data4: ( 0x98,0xF1,0xFF,0x86,0x8C,0xC4,0xD5,0x71 ) // D8B1C0D1-B48A-5AA3-98F1-FF868CC4D571
     ) 
+
     public class IUnsealedDerivedNoConstructorFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedNoConstructorFactory }
 
@@ -4120,6 +4183,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides: test_component.IID = .init(
         Data1: 0x3CD27E28, Data2: 0x2DFF, Data3: 0x5A17, Data4: ( 0x82,0x63,0x1B,0xFA,0x75,0x04,0x34,0xAA ) // 3CD27E28-2DFF-5A17-8263-1BFA750434AA
     ) 
+
     public class IUnsealedDerivedNoOverrides: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedNoOverrides }
 
@@ -4128,6 +4192,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIUnsealedDerivedNoOverridesProtectedFactory: test_component.IID = .init(
         Data1: 0x8D27A3F3, Data2: 0xD785, Data3: 0x53E3, Data4: ( 0x83,0x19,0x6A,0x50,0x97,0xB1,0x04,0xAB ) // 8D27A3F3-D785-53E3-8319-6A5097B104AB
     ) 
+
     public class IUnsealedDerivedNoOverridesProtectedFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIUnsealedDerivedNoOverridesProtectedFactory }
 
@@ -4206,6 +4271,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIWeakReferencer: test_component.IID = .init(
         Data1: 0xF3CE877F, Data2: 0x5BD2, Data3: 0x53C7, Data4: ( 0xAA,0x6A,0x39,0xF0,0x64,0x78,0x1C,0x21 ) // F3CE877F-5BD2-53C7-AA6A-39F064781C21
     ) 
+
     public class IWeakReferencer: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIWeakReferencer }
 
@@ -4223,6 +4289,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIWeakReferencerFactory: test_component.IID = .init(
         Data1: 0x34CE8191, Data2: 0x4DC4, Data3: 0x50EF, Data4: ( 0xB6,0x9E,0x19,0x8F,0x3C,0x9F,0x65,0x52 ) // 34CE8191-4DC4-50EF-B69E-198F3C9F6552
     ) 
+
     public class IWeakReferencerFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIWeakReferencerFactory }
 

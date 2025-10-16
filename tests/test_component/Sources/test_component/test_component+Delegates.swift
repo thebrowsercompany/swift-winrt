@@ -6,6 +6,7 @@ import Ctest_component
 // MARK: - ArrayMethodCallback
 
 public typealias ArrayMethodCallback = ([Int32]) throws -> ()
+
 // MARK: - ArrayMethodCallback Internals
 
 @_spi(WinRTInternal)
@@ -30,6 +31,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIArrayMethodCallback: test_component.IID = .init(
         Data1: 0x224AFD3B, Data2: 0x6459, Data3: 0x5621, Data4: ( 0xBF,0x69,0xF5,0x02,0x8C,0xF2,0xB3,0x17 ) // 224AFD3B-6459-5621-BF69-F5028CF2B317
     ) 
+
     public class ArrayMethodCallback: test_component.IUnknown {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIArrayMethodCallback }
 
@@ -70,6 +72,7 @@ public extension WinRTDelegateBridge where CABI == __x_ABI_Ctest__component_CIAr
 // MARK: - ObjectHandler
 
 public typealias ObjectHandler = (Any?) throws -> ()
+
 // MARK: - ObjectHandler Internals
 
 @_spi(WinRTInternal)
@@ -94,6 +97,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIObjectHandler: test_component.IID = .init(
         Data1: 0x5DD35752, Data2: 0x9800, Data3: 0x5961, Data4: ( 0x80,0xDE,0xFC,0x5E,0x20,0x9E,0x6E,0x2D ) // 5DD35752-9800-5961-80DE-FC5E209E6E2D
     ) 
+
     public class ObjectHandler: test_component.IUnknown {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIObjectHandler }
 
@@ -134,6 +138,7 @@ public extension WinRTDelegateBridge where CABI == __x_ABI_Ctest__component_CIOb
 // MARK: - VoidToVoidDelegate
 
 public typealias VoidToVoidDelegate = () throws -> ()
+
 // MARK: - VoidToVoidDelegate Internals
 
 @_spi(WinRTInternal)
@@ -158,6 +163,7 @@ extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIVoidToVoidDelegate: test_component.IID = .init(
         Data1: 0x5ED7E415, Data2: 0x84E7, Data3: 0x5E4C, Data4: ( 0x8F,0x68,0xD4,0x65,0x3C,0x39,0xEE,0x46 ) // 5ED7E415-84E7-5E4C-8F68-D4653C39EE46
     ) 
+
     public class VoidToVoidDelegate: test_component.IUnknown {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CIVoidToVoidDelegate }
 

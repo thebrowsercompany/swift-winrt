@@ -92,6 +92,7 @@ extension __ABI_Windows_Storage {
     private static let IID___x_ABI_CWindows_CStorage_CIPathIOStatics: test_component.IID = .init(
         Data1: 0x0F2F3758, Data2: 0x8EC7, Data3: 0x4381, Data4: ( 0x92,0x2B,0x8F,0x6C,0x07,0xD2,0x88,0xF3 ) // 0F2F3758-8EC7-4381-922B-8F6C07D288F3
     ) 
+
     public class IPathIOStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIPathIOStatics }
 
@@ -316,6 +317,12 @@ public final class StorageFile : WinRTClass, IStorageItem, test_component.IRando
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefile.replacewithstreamedfilefromuriasync)
     public static func replaceWithStreamedFileFromUriAsync(_ fileToReplace: AnyIStorageFile!, _ uri: test_component.Uri!, _ thumbnail: test_component.AnyIRandomAccessStreamReference!) throws -> AnyIAsyncOperation<StorageFile?>! {
         return try _IStorageFileStatics.ReplaceWithStreamedFileFromUriAsync(fileToReplace, uri, thumbnail)
+    }
+
+    private static let _IStorageFileStatics2: __ABI_Windows_Storage.IStorageFileStatics2 = try! RoGetActivationFactory("Windows.Storage.StorageFile")
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefile.getfilefrompathforuserasync)
+    public static func getFileFromPathForUserAsync(_ user: test_component.User!, _ path: String) throws -> AnyIAsyncOperation<StorageFile?>! {
+        return try _IStorageFileStatics2.GetFileFromPathForUserAsync(user, path)
     }
 
     private lazy var _IStorageItem: __ABI_Windows_Storage.IStorageItem! = getInterfaceForCaching()
@@ -567,6 +574,7 @@ extension __ABI_Windows_Storage {
     private static let IID___x_ABI_CWindows_CStorage_CIStorageFileStatics: test_component.IID = .init(
         Data1: 0x5984C710, Data2: 0xDAF2, Data3: 0x43C8, Data4: ( 0x8B,0xB4,0xA4,0xD3,0xEA,0xCF,0xD0,0x3F ) // 5984C710-DAF2-43C8-8BB4-A4D3EACFD03F
     ) 
+
     public class IStorageFileStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageFileStatics }
 
@@ -645,6 +653,25 @@ extension __ABI_Windows_Storage {
 
     }
 
+    private static let IID___x_ABI_CWindows_CStorage_CIStorageFileStatics2: test_component.IID = .init(
+        Data1: 0x5C76A781, Data2: 0x212E, Data3: 0x4AF9, Data4: ( 0x8F,0x04,0x74,0x0C,0xAE,0x10,0x89,0x74 ) // 5C76A781-212E-4AF9-8F04-740CAE108974
+    ) 
+
+    public class IStorageFileStatics2: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageFileStatics2 }
+
+        public func GetFileFromPathForUserAsync(_ user: test_component.User?, _ path: String) throws -> test_component.AnyIAsyncOperation<test_component.StorageFile?>? {
+            let (operation) = try ComPtrs.initialize { operationAbi in
+                let _path = try! HString(path)
+                _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageFileStatics2.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.GetFileFromPathForUserAsync(pThis, RawPointer(user), _path.get(), &operationAbi))
+                }
+            }
+            return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.unwrapFrom(abi: operation)
+        }
+
+    }
+
 }
 // MARK: - StorageFolder
 
@@ -673,6 +700,12 @@ public final class StorageFolder : WinRTClass, IStorageItem, IStorageFolder, tes
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefolder.getfolderfrompathasync)
     public static func getFolderFromPathAsync(_ path: String) throws -> AnyIAsyncOperation<StorageFolder?>! {
         return try _IStorageFolderStatics.GetFolderFromPathAsync(path)
+    }
+
+    private static let _IStorageFolderStatics2: __ABI_Windows_Storage.IStorageFolderStatics2 = try! RoGetActivationFactory("Windows.Storage.StorageFolder")
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefolder.getfolderfrompathforuserasync)
+    public static func getFolderFromPathForUserAsync(_ user: test_component.User!, _ path: String) throws -> AnyIAsyncOperation<StorageFolder?>! {
+        return try _IStorageFolderStatics2.GetFolderFromPathForUserAsync(user, path)
     }
 
     private lazy var _IStorageItem: __ABI_Windows_Storage.IStorageItem! = getInterfaceForCaching()
@@ -982,6 +1015,7 @@ extension __ABI_Windows_Storage {
     private static let IID___x_ABI_CWindows_CStorage_CIStorageFolder3: test_component.IID = .init(
         Data1: 0x9F617899, Data2: 0xBDE1, Data3: 0x4124, Data4: ( 0xAE,0xB3,0xB0,0x6A,0xD9,0x6F,0x98,0xD4 ) // 9F617899-BDE1-4124-AEB3-B06AD96F98D4
     ) 
+
     public class IStorageFolder3: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageFolder3 }
 
@@ -999,6 +1033,7 @@ extension __ABI_Windows_Storage {
     private static let IID___x_ABI_CWindows_CStorage_CIStorageFolderStatics: test_component.IID = .init(
         Data1: 0x08F327FF, Data2: 0x85D5, Data3: 0x48B9, Data4: ( 0xAE,0xE9,0x28,0x51,0x1E,0x33,0x9F,0x9F ) // 08F327FF-85D5-48B9-AEE9-28511E339F9F
     ) 
+
     public class IStorageFolderStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageFolderStatics }
 
@@ -1007,6 +1042,25 @@ extension __ABI_Windows_Storage {
                 let _path = try! HString(path)
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageFolderStatics.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.GetFolderFromPathAsync(pThis, _path.get(), &operationAbi))
+                }
+            }
+            return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.unwrapFrom(abi: operation)
+        }
+
+    }
+
+    private static let IID___x_ABI_CWindows_CStorage_CIStorageFolderStatics2: test_component.IID = .init(
+        Data1: 0xB4656DC3, Data2: 0x71D2, Data3: 0x467D, Data4: ( 0x8B,0x29,0x37,0x1F,0x0F,0x62,0xBF,0x6F ) // B4656DC3-71D2-467D-8B29-371F0F62BF6F
+    ) 
+
+    public class IStorageFolderStatics2: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageFolderStatics2 }
+
+        public func GetFolderFromPathForUserAsync(_ user: test_component.User?, _ path: String) throws -> test_component.AnyIAsyncOperation<test_component.StorageFolder?>? {
+            let (operation) = try ComPtrs.initialize { operationAbi in
+                let _path = try! HString(path)
+                _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageFolderStatics2.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.GetFolderFromPathForUserAsync(pThis, RawPointer(user), _path.get(), &operationAbi))
                 }
             }
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.unwrapFrom(abi: operation)
@@ -1091,6 +1145,7 @@ extension __ABI_Windows_Storage {
     private static let IID___x_ABI_CWindows_CStorage_CIStorageLibraryChange: test_component.IID = .init(
         Data1: 0x00980B23, Data2: 0x2BE2, Data3: 0x4909, Data4: ( 0xAA,0x48,0x15,0x9F,0x52,0x03,0xA5,0x1E ) // 00980B23-2BE2-4909-AA48-159F5203A51E
     ) 
+
     public class IStorageLibraryChange: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageLibraryChange }
 
@@ -1168,8 +1223,15 @@ public final class StorageLibraryChangeReader : WinRTClass {
         try _default.AcceptChangesAsync()
     }
 
+    private lazy var _IStorageLibraryChangeReader2: __ABI_Windows_Storage.IStorageLibraryChangeReader2! = getInterfaceForCaching()
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagelibrarychangereader.getlastchangeid)
+    public func getLastChangeId() throws -> UInt64 {
+        try _IStorageLibraryChangeReader2.GetLastChangeId()
+    }
+
     deinit {
         _default = nil
+        _IStorageLibraryChangeReader2 = nil
     }
 }
 
@@ -1199,6 +1261,7 @@ extension __ABI_Windows_Storage {
     private static let IID___x_ABI_CWindows_CStorage_CIStorageLibraryChangeReader: test_component.IID = .init(
         Data1: 0xF205BC83, Data2: 0xFCA2, Data3: 0x41F9, Data4: ( 0x89,0x54,0xEE,0x2E,0x99,0x1E,0xB9,0x6F ) // F205BC83-FCA2-41F9-8954-EE2E991EB96F
     ) 
+
     public class IStorageLibraryChangeReader: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageLibraryChangeReader }
 
@@ -1218,6 +1281,23 @@ extension __ABI_Windows_Storage {
                 }
             }
             return __ABI_Windows_Foundation.IAsyncActionWrapper.unwrapFrom(abi: operation)
+        }
+
+    }
+
+    private static let IID___x_ABI_CWindows_CStorage_CIStorageLibraryChangeReader2: test_component.IID = .init(
+        Data1: 0xABF4868B, Data2: 0xFBCC, Data3: 0x4A4F, Data4: ( 0x99,0x9E,0xE7,0xAB,0x7C,0x64,0x6D,0xBE ) // ABF4868B-FBCC-4A4F-999E-E7AB7C646DBE
+    ) 
+
+    public class IStorageLibraryChangeReader2: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageLibraryChangeReader2 }
+
+        public func GetLastChangeId() throws -> UInt64 {
+            var result: UINT64 = 0
+            _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageLibraryChangeReader2.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetLastChangeId(pThis, &result))
+            }
+            return result
         }
 
     }
@@ -1258,8 +1338,20 @@ public final class StorageLibraryChangeTracker : WinRTClass {
         try _default.Reset()
     }
 
+    private lazy var _IStorageLibraryChangeTracker2: __ABI_Windows_Storage.IStorageLibraryChangeTracker2! = getInterfaceForCaching()
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagelibrarychangetracker.enable)
+    public func enable(_ options: StorageLibraryChangeTrackerOptions!) throws {
+        try _IStorageLibraryChangeTracker2.EnableWithOptions(options)
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagelibrarychangetracker.disable)
+    public func disable() throws {
+        try _IStorageLibraryChangeTracker2.Disable()
+    }
+
     deinit {
         _default = nil
+        _IStorageLibraryChangeTracker2 = nil
     }
 }
 
@@ -1289,6 +1381,7 @@ extension __ABI_Windows_Storage {
     private static let IID___x_ABI_CWindows_CStorage_CIStorageLibraryChangeTracker: test_component.IID = .init(
         Data1: 0x9E157316, Data2: 0x6073, Data3: 0x44F6, Data4: ( 0x96,0x81,0x74,0x92,0xD1,0x28,0x6C,0x90 ) // 9E157316-6073-44F6-9681-7492D1286C90
     ) 
+
     public class IStorageLibraryChangeTracker: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageLibraryChangeTracker }
 
@@ -1310,6 +1403,110 @@ extension __ABI_Windows_Storage {
         public func Reset() throws {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageLibraryChangeTracker.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Reset(pThis))
+            }
+        }
+
+    }
+
+    private static let IID___x_ABI_CWindows_CStorage_CIStorageLibraryChangeTracker2: test_component.IID = .init(
+        Data1: 0xCD051C3B, Data2: 0x0F9F, Data3: 0x42F9, Data4: ( 0x8F,0xB3,0x15,0x8D,0x82,0xE1,0x38,0x21 ) // CD051C3B-0F9F-42F9-8FB3-158D82E13821
+    ) 
+
+    public class IStorageLibraryChangeTracker2: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageLibraryChangeTracker2 }
+
+        public func EnableWithOptions(_ options: test_component.StorageLibraryChangeTrackerOptions?) throws {
+            _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageLibraryChangeTracker2.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.EnableWithOptions(pThis, RawPointer(options)))
+            }
+        }
+
+        public func Disable() throws {
+            _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageLibraryChangeTracker2.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Disable(pThis))
+            }
+        }
+
+    }
+
+}
+// MARK: - StorageLibraryChangeTrackerOptions
+
+/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagelibrarychangetrackeroptions)
+public final class StorageLibraryChangeTrackerOptions : WinRTClass {
+    private typealias SwiftABI = __ABI_Windows_Storage.IStorageLibraryChangeTrackerOptions
+    private typealias CABI = __x_ABI_CWindows_CStorage_CIStorageLibraryChangeTrackerOptions
+    private lazy var _default: SwiftABI! = getInterfaceForCaching()
+    @_spi(WinRTInternal)
+    override public func _getABI<T>() -> UnsafeMutablePointer<T>? {
+        if T.self == CABI.self {
+            return RawPointer(_default)
+        }
+        return super._getABI()
+    }
+
+    @_spi(WinRTInternal)
+    public init(fromAbi: test_component.IInspectable) {
+        super.init(fromAbi)
+    }
+
+    private static let _defaultFactory: test_component.IActivationFactory = try! RoGetActivationFactory("Windows.Storage.StorageLibraryChangeTrackerOptions")
+    override public init() {
+        super.init(try! Self._defaultFactory.ActivateInstance())
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagelibrarychangetrackeroptions.trackchangedetails)
+    public var trackChangeDetails : Bool {
+        get { try! _default.get_TrackChangeDetails() }
+        set { try! _default.put_TrackChangeDetails(newValue) }
+    }
+
+    deinit {
+        _default = nil
+    }
+}
+
+// MARK: - StorageLibraryChangeTrackerOptions Internals
+
+@_spi(WinRTInternal)
+extension __IMPL_Windows_Storage {
+    public enum StorageLibraryChangeTrackerOptionsBridge: AbiBridge {
+        public typealias SwiftProjection = StorageLibraryChangeTrackerOptions
+        public typealias CABI = __x_ABI_CWindows_CStorage_CIStorageLibraryChangeTrackerOptions
+        public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CIStorageLibraryChangeTrackerOptions>?) -> StorageLibraryChangeTrackerOptions? {
+            guard let abi = abi else { return nil }
+            return .init(fromAbi: test_component.IInspectable(abi))
+        }
+    }
+
+}
+@_spi(WinRTInternal)
+public class StorageLibraryChangeTrackerOptionsMaker: MakeFromAbi {
+    public typealias SwiftType = StorageLibraryChangeTrackerOptions
+    public static func from(abi: test_component.IInspectable) -> SwiftType {
+        return StorageLibraryChangeTrackerOptions(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+extension __ABI_Windows_Storage {
+    private static let IID___x_ABI_CWindows_CStorage_CIStorageLibraryChangeTrackerOptions: test_component.IID = .init(
+        Data1: 0xBB52BCD4, Data2: 0x1A6D, Data3: 0x59C0, Data4: ( 0xAD,0x2A,0x82,0x3A,0x20,0x53,0x24,0x83 ) // BB52BCD4-1A6D-59C0-AD2A-823A20532483
+    ) 
+
+    public class IStorageLibraryChangeTrackerOptions: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageLibraryChangeTrackerOptions }
+
+        public func get_TrackChangeDetails() throws -> Bool {
+            var value: boolean = 0
+            _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageLibraryChangeTrackerOptions.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_TrackChangeDetails(pThis, &value))
+            }
+            return .init(from: value)
+        }
+
+        public func put_TrackChangeDetails(_ value: Bool) throws {
+            _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageLibraryChangeTrackerOptions.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.put_TrackChangeDetails(pThis, .init(from: value)))
             }
         }
 
@@ -1384,6 +1581,7 @@ extension __ABI_Windows_Storage {
     private static let IID___x_ABI_CWindows_CStorage_CIStorageProvider: test_component.IID = .init(
         Data1: 0xE705EED4, Data2: 0xD478, Data3: 0x47D6, Data4: ( 0xBA,0x46,0x1A,0x8E,0xBE,0x11,0x4A,0x20 ) // E705EED4-D478-47D6-BA46-1A8EBE114A20
     ) 
+
     public class IStorageProvider: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageProvider }
 
@@ -1408,6 +1606,7 @@ extension __ABI_Windows_Storage {
     private static let IID___x_ABI_CWindows_CStorage_CIStorageProvider2: test_component.IID = .init(
         Data1: 0x010D1917, Data2: 0x3404, Data3: 0x414B, Data4: ( 0x9F,0xD7,0xCD,0x44,0x47,0x2E,0xAA,0x39 ) // 010D1917-3404-414B-9FD7-CD44472EAA39
     ) 
+
     public class IStorageProvider2: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageProvider2 }
 
@@ -1495,6 +1694,7 @@ extension __ABI_Windows_Storage {
     private static let IID___x_ABI_CWindows_CStorage_CIStorageStreamTransaction: test_component.IID = .init(
         Data1: 0xF67CF363, Data2: 0xA53D, Data3: 0x4D94, Data4: ( 0xAE,0x2C,0x67,0x23,0x2D,0x93,0xAC,0xDD ) // F67CF363-A53D-4D94-AE2C-67232D93ACDD
     ) 
+
     public class IStorageStreamTransaction: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageStreamTransaction }
 

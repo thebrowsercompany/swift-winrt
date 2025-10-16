@@ -87,6 +87,7 @@ extension __ABI_Windows_Storage_Streams {
     private static let IID___x_ABI_CWindows_CStorage_CStreams_CIBuffer: test_component.IID = .init(
         Data1: 0x905A0FE0, Data2: 0xBC53, Data3: 0x11DF, Data4: ( 0x8C,0x49,0x00,0x1E,0x4F,0xC6,0x86,0xDA ) // 905A0FE0-BC53-11DF-8C49-001E4FC686DA
     ) 
+
     public class IBuffer: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CStreams_CIBuffer }
 
@@ -235,6 +236,7 @@ extension __ABI_Windows_Storage_Streams {
     private static let IID___x_ABI_CWindows_CStorage_CStreams_CIContentTypeProvider: test_component.IID = .init(
         Data1: 0x97D098A5, Data2: 0x3B99, Data3: 0x4DE9, Data4: ( 0x88,0xA5,0xE1,0x1D,0x2F,0x50,0xC7,0x95 ) // 97D098A5-3B99-4DE9-88A5-E11D2F50C795
     ) 
+
     public class IContentTypeProvider: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CStreams_CIContentTypeProvider }
 
@@ -363,6 +365,7 @@ extension __ABI_Windows_Storage_Streams {
     private static let IID___x_ABI_CWindows_CStorage_CStreams_CIInputStream: test_component.IID = .init(
         Data1: 0x905A0FE2, Data2: 0xBC53, Data3: 0x11DF, Data4: ( 0x8C,0x49,0x00,0x1E,0x4F,0xC6,0x86,0xDA ) // 905A0FE2-BC53-11DF-8C49-001E4FC686DA
     ) 
+
     public class IInputStream: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CStreams_CIInputStream }
 
@@ -492,6 +495,7 @@ extension __ABI_Windows_Storage_Streams {
     private static let IID___x_ABI_CWindows_CStorage_CStreams_CIInputStreamReference: test_component.IID = .init(
         Data1: 0x43929D18, Data2: 0x5EC9, Data3: 0x4B5A, Data4: ( 0x91,0x9C,0x42,0x05,0xB0,0xC8,0x04,0xB6 ) // 43929D18-5EC9-4B5A-919C-4205B0C804B6
     ) 
+
     public class IInputStreamReference: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CStreams_CIInputStreamReference }
 
@@ -631,6 +635,7 @@ extension __ABI_Windows_Storage_Streams {
     private static let IID___x_ABI_CWindows_CStorage_CStreams_CIOutputStream: test_component.IID = .init(
         Data1: 0x905A0FE6, Data2: 0xBC53, Data3: 0x11DF, Data4: ( 0x8C,0x49,0x00,0x1E,0x4F,0xC6,0x86,0xDA ) // 905A0FE6-BC53-11DF-8C49-001E4FC686DA
     ) 
+
     public class IOutputStream: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CStreams_CIOutputStream }
 
@@ -859,6 +864,7 @@ extension __ABI_Windows_Storage_Streams {
     private static let IID___x_ABI_CWindows_CStorage_CStreams_CIRandomAccessStream: test_component.IID = .init(
         Data1: 0x905A0FE1, Data2: 0xBC53, Data3: 0x11DF, Data4: ( 0x8C,0x49,0x00,0x1E,0x4F,0xC6,0x86,0xDA ) // 905A0FE1-BC53-11DF-8C49-001E4FC686DA
     ) 
+
     public class IRandomAccessStream: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CStreams_CIRandomAccessStream }
 
@@ -1113,6 +1119,7 @@ extension __ABI_Windows_Storage_Streams {
     private static let IID___x_ABI_CWindows_CStorage_CStreams_CIRandomAccessStreamReference: test_component.IID = .init(
         Data1: 0x33EE3134, Data2: 0x1DD6, Data3: 0x4E3A, Data4: ( 0x80,0x67,0xD1,0xC1,0x62,0xE8,0x64,0x2B ) // 33EE3134-1DD6-4E3A-8067-D1C162E8642B
     ) 
+
     public class IRandomAccessStreamReference: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CStreams_CIRandomAccessStreamReference }
 
@@ -1315,6 +1322,7 @@ extension __ABI_Windows_Storage_Streams {
     private static let IID___x_ABI_CWindows_CStorage_CStreams_CIRandomAccessStreamWithContentType: test_component.IID = .init(
         Data1: 0xCC254827, Data2: 0x4B3D, Data3: 0x438F, Data4: ( 0x92,0x32,0x10,0xC7,0x6B,0xC7,0xE0,0x38 ) // CC254827-4B3D-438F-9232-10C76BC7E038
     ) 
+
     public class IRandomAccessStreamWithContentType: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CStreams_CIRandomAccessStreamWithContentType }
 

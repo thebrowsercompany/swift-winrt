@@ -74,6 +74,7 @@ extension __ABI_Windows_Foundation {
     private static let IID___x_ABI_CWindows_CFoundation_CIDeferral: test_component.IID = .init(
         Data1: 0xD6269732, Data2: 0x3B7F, Data3: 0x46A7, Data4: ( 0xB4,0x0B,0x4F,0xDC,0xA2,0xA2,0xC6,0x93 ) // D6269732-3B7F-46A7-B40B-4FDCA2A2C693
     ) 
+
     public class IDeferral: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIDeferral }
 
@@ -88,6 +89,7 @@ extension __ABI_Windows_Foundation {
     private static let IID___x_ABI_CWindows_CFoundation_CIDeferralFactory: test_component.IID = .init(
         Data1: 0x65A1ECC5, Data2: 0x3FB5, Data3: 0x4832, Data4: ( 0x8C,0xA9,0xF0,0x61,0xB2,0x81,0xD1,0x3A ) // 65A1ECC5-3FB5-4832-8CA9-F061B281D13A
     ) 
+
     public class IDeferralFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIDeferralFactory }
 
@@ -100,6 +102,68 @@ extension __ABI_Windows_Foundation {
                 }
             }
             return IDeferral(result!)
+        }
+
+    }
+
+}
+// MARK: - GuidHelper
+
+/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.guidhelper)
+public final class GuidHelper {
+    private static let _IGuidHelperStatics: __ABI_Windows_Foundation.IGuidHelperStatics = try! RoGetActivationFactory("Windows.Foundation.GuidHelper")
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.guidhelper.createnewguid)
+    public static func createNewGuid() throws -> Foundation.UUID {
+        return try _IGuidHelperStatics.CreateNewGuid()
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.guidhelper.equals)
+    public static func equals(_ target: Foundation.UUID, _ value: Foundation.UUID) throws -> Bool {
+        return try _IGuidHelperStatics.Equals(target, value)
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.guidhelper.empty)
+    public static var empty : Foundation.UUID {
+        get { try! _IGuidHelperStatics.get_Empty() }
+    }
+
+}
+
+// MARK: - GuidHelper Internals
+
+@_spi(WinRTInternal)
+extension __ABI_Windows_Foundation {
+    private static let IID___x_ABI_CWindows_CFoundation_CIGuidHelperStatics: test_component.IID = .init(
+        Data1: 0x59C7966B, Data2: 0xAE52, Data3: 0x5283, Data4: ( 0xAD,0x7F,0xA1,0xB9,0xE9,0x67,0x8A,0xDD ) // 59C7966B-AE52-5283-AD7F-A1B9E9678ADD
+    ) 
+
+    public class IGuidHelperStatics: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIGuidHelperStatics }
+
+        public func CreateNewGuid() throws -> Foundation.UUID {
+            var result: test_component.GUID = .init()
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIGuidHelperStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.CreateNewGuid(pThis, &result))
+            }
+            return .init(from: result)
+        }
+
+        public func get_Empty() throws -> Foundation.UUID {
+            var value: test_component.GUID = .init()
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIGuidHelperStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Empty(pThis, &value))
+            }
+            return .init(from: value)
+        }
+
+        public func Equals(_ target: Foundation.UUID, _ value: Foundation.UUID) throws -> Bool {
+            var result: boolean = 0
+            var _target: test_component.GUID = .from(swift: target)
+            var _value: test_component.GUID = .from(swift: value)
+            _ = try perform(as: __x_ABI_CWindows_CFoundation_CIGuidHelperStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Equals(pThis, &_target, &_value, &result))
+            }
+            return .init(from: result)
         }
 
     }
@@ -176,6 +240,7 @@ extension __ABI_Windows_Foundation {
     private static let IID___x_ABI_CWindows_CFoundation_CIMemoryBufferFactory: test_component.IID = .init(
         Data1: 0xFBC4DD2B, Data2: 0x245B, Data3: 0x11E4, Data4: ( 0xAF,0x98,0x68,0x94,0x23,0x26,0x0C,0xF8 ) // FBC4DD2B-245B-11E4-AF98-689423260CF8
     ) 
+
     public class IMemoryBufferFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIMemoryBufferFactory }
 
@@ -369,6 +434,7 @@ extension __ABI_Windows_Foundation {
     private static let IID___x_ABI_CWindows_CFoundation_CIUriRuntimeClass: test_component.IID = .init(
         Data1: 0x9E365E57, Data2: 0x48B2, Data3: 0x4160, Data4: ( 0x95,0x6F,0xC7,0x38,0x51,0x20,0xBB,0xFC ) // 9E365E57-48B2-4160-956F-C7385120BBFC
     ) 
+
     public class IUriRuntimeClass: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIUriRuntimeClass }
 
@@ -516,6 +582,7 @@ extension __ABI_Windows_Foundation {
     private static let IID___x_ABI_CWindows_CFoundation_CIUriRuntimeClassWithAbsoluteCanonicalUri: test_component.IID = .init(
         Data1: 0x758D9661, Data2: 0x221C, Data3: 0x480F, Data4: ( 0xA3,0x39,0x50,0x65,0x66,0x73,0xF4,0x6F ) // 758D9661-221C-480F-A339-50656673F46F
     ) 
+
     public class IUriRuntimeClassWithAbsoluteCanonicalUri: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIUriRuntimeClassWithAbsoluteCanonicalUri }
 
@@ -540,6 +607,7 @@ extension __ABI_Windows_Foundation {
     private static let IID___x_ABI_CWindows_CFoundation_CIUriEscapeStatics: test_component.IID = .init(
         Data1: 0xC1D432BA, Data2: 0xC824, Data3: 0x4452, Data4: ( 0xA7,0xFD,0x51,0x2B,0xC3,0xBB,0xE9,0xA1 ) // C1D432BA-C824-4452-A7FD-512BC3BBE9A1
     ) 
+
     public class IUriEscapeStatics: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIUriEscapeStatics }
 
@@ -566,6 +634,7 @@ extension __ABI_Windows_Foundation {
     private static let IID___x_ABI_CWindows_CFoundation_CIUriRuntimeClassFactory: test_component.IID = .init(
         Data1: 0x44A9796F, Data2: 0x723E, Data3: 0x4FDF, Data4: ( 0xA2,0x18,0x03,0x3E,0x75,0xB0,0xC0,0x84 ) // 44A9796F-723E-4FDF-A218-033E75B0C084
     ) 
+
     public class IUriRuntimeClassFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIUriRuntimeClassFactory }
 
@@ -709,6 +778,7 @@ extension __ABI_Windows_Foundation {
     private static let IID___x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderRuntimeClass: test_component.IID = .init(
         Data1: 0xD45A0451, Data2: 0xF225, Data3: 0x4542, Data4: ( 0x92,0x96,0x0E,0x1D,0xF5,0xD2,0x54,0xDF ) // D45A0451-F225-4542-9296-0E1DF5D254DF
     ) 
+
     public class IWwwFormUrlDecoderRuntimeClass: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderRuntimeClass }
 
@@ -726,6 +796,7 @@ extension __ABI_Windows_Foundation {
     private static let IID___x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderRuntimeClassFactory: test_component.IID = .init(
         Data1: 0x5B8C6B3D, Data2: 0x24AE, Data3: 0x41B5, Data4: ( 0xA1,0xBF,0xF0,0xC3,0xD5,0x44,0x84,0x5B ) // 5B8C6B3D-24AE-41B5-A1BF-F0C3D544845B
     ) 
+
     public class IWwwFormUrlDecoderRuntimeClassFactory: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderRuntimeClassFactory }
 

@@ -89,6 +89,7 @@ extension __ABI_Windows_Storage_FileProperties {
     private static let IID___x_ABI_CWindows_CStorage_CFileProperties_CIBasicProperties: test_component.IID = .init(
         Data1: 0xD05D55DB, Data2: 0x785E, Data3: 0x4A66, Data4: ( 0xBE,0x02,0x9B,0xEE,0xC5,0x8A,0xEA,0x81 ) // D05D55DB-785E-4A66-BE02-9BEEC58AEA81
     ) 
+
     public class IBasicProperties: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CFileProperties_CIBasicProperties }
 
@@ -212,6 +213,7 @@ extension __ABI_Windows_Storage_FileProperties {
     private static let IID___x_ABI_CWindows_CStorage_CFileProperties_CIDocumentProperties: test_component.IID = .init(
         Data1: 0x7EAB19BC, Data2: 0x1821, Data3: 0x4923, Data4: ( 0xB4,0xA9,0x0A,0xEA,0x40,0x4D,0x00,0x70 ) // 7EAB19BC-1821-4923-B4A9-0AEA404D0070
     ) 
+
     public class IDocumentProperties: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CFileProperties_CIDocumentProperties }
 
@@ -402,6 +404,7 @@ extension __ABI_Windows_Storage_FileProperties {
     private static let IID___x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties: test_component.IID = .init(
         Data1: 0x523C9424, Data2: 0xFCFF, Data3: 0x4275, Data4: ( 0xAF,0xEE,0xEC,0xDB,0x9A,0xB4,0x79,0x73 ) // 523C9424-FCFF-4275-AFEE-ECDB9AB47973
     ) 
+
     public class IImageProperties: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties }
 
@@ -701,6 +704,7 @@ extension __ABI_Windows_Storage_FileProperties {
     private static let IID___x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties: test_component.IID = .init(
         Data1: 0xBC8AAB62, Data2: 0x66EC, Data3: 0x419A, Data4: ( 0xBC,0x5D,0xCA,0x65,0xA4,0xCB,0x46,0xDA ) // BC8AAB62-66EC-419A-BC5D-CA65A4CB46DA
     ) 
+
     public class IMusicProperties: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties }
 
@@ -991,6 +995,7 @@ extension __ABI_Windows_Storage_FileProperties {
     private static let IID___x_ABI_CWindows_CStorage_CFileProperties_CIStorageItemContentProperties: test_component.IID = .init(
         Data1: 0x05294BAD, Data2: 0xBC38, Data3: 0x48BF, Data4: ( 0x85,0xD7,0x77,0x0E,0x0E,0x2A,0xE0,0xBA ) // 05294BAD-BC38-48BF-85D7-770E0E2AE0BA
     ) 
+
     public class IStorageItemContentProperties: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CFileProperties_CIStorageItemContentProperties }
 
@@ -1185,6 +1190,7 @@ extension __ABI_Windows_Storage_FileProperties {
     private static let IID___x_ABI_CWindows_CStorage_CFileProperties_CIThumbnailProperties: test_component.IID = .init(
         Data1: 0x693DD42F, Data2: 0xDBE7, Data3: 0x49B5, Data4: ( 0xB3,0xB3,0x28,0x93,0xAC,0x5D,0x34,0x23 ) // 693DD42F-DBE7-49B5-B3B3-2893AC5D3423
     ) 
+
     public class IThumbnailProperties: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CFileProperties_CIThumbnailProperties }
 
@@ -1379,6 +1385,7 @@ extension __ABI_Windows_Storage_FileProperties {
     private static let IID___x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties: test_component.IID = .init(
         Data1: 0x719AE507, Data2: 0x68DE, Data3: 0x4DB8, Data4: ( 0x97,0xDE,0x49,0x99,0x8C,0x05,0x9F,0x2F ) // 719AE507-68DE-4DB8-97DE-49998C059F2F
     ) 
+
     public class IVideoProperties: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties }
 

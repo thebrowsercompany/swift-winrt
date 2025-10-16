@@ -17,7 +17,7 @@ namespace swiftwinrt
         write_scope_guard guard{ w };
 
         w.write("@_spi(WinRTInternal)\n");
-        w.write("public enum % {\n", ns);
+        w.write("extension % {\n", ns);
         guard.push("}\n");
 
         auto indent_guard = w.push_indent({1});
@@ -145,7 +145,7 @@ namespace swiftwinrt
         if (type.default_interface)
         {
             auto impl_ns = impl_namespace(ns);
-            auto impl_guard = push_namespace(impl_ns, w, true);
+            auto impl_guard = push_internal_namespace(impl_ns, w);
             auto impl_names = w.push_impl_names(true);
             write_class_bridge(w, type);
         }
@@ -153,7 +153,7 @@ namespace swiftwinrt
 
         {
             auto abi_ns = abi_namespace(ns);
-            auto [namespace_guard, indent_guard] = push_namespace(abi_ns, w, true);
+            auto [namespace_guard, indent_guard] = push_internal_namespace(abi_ns, w);
             write_class_abi(w, type);
 
             for (const auto& [interface_name, info] : type.required_interfaces)
@@ -220,14 +220,14 @@ namespace swiftwinrt
 
         {
             auto impl_ns = impl_namespace(ns);
-            auto impl_guard = push_namespace(impl_ns, w, true);
+            auto impl_guard = push_internal_namespace(impl_ns, w);
             auto impl_names = w.push_impl_names(true);
             write_interface_impl(w, type);
         }
 
         {
             auto abi_ns = abi_namespace(ns);
-            auto [namespace_guard, indent_guard] = push_namespace(abi_ns, w, true);
+            auto [namespace_guard, indent_guard] = push_internal_namespace(abi_ns, w);
             write_guid(w, type);
             write_interface_abi(w, type);
         }
@@ -279,7 +279,7 @@ namespace swiftwinrt
         if (!is_struct_blittable(type))
         {
             auto abi_ns = abi_namespace(ns);
-            auto [namespace_guard, indent_guard] = push_namespace(abi_ns, w, true);
+            auto [namespace_guard, indent_guard] = push_internal_namespace(abi_ns, w);
             write_struct_abi(w, type);
         }
 
@@ -323,7 +323,7 @@ namespace swiftwinrt
         if (!type.is_generic())
         {
             auto impl_ns = impl_namespace(ns);
-            auto impl_guard = push_namespace(impl_ns, w, true);
+            auto impl_guard = push_internal_namespace(impl_ns, w);
             auto impl_names = w.push_impl_names(true);
             write_delegate_implementation(w, type);
         }

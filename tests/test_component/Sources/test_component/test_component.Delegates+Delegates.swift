@@ -6,6 +6,7 @@ import Ctest_component
 // MARK: - InDelegate
 
 public typealias InDelegate = (String) throws -> ()
+
 // MARK: - InDelegate Internals
 
 @_spi(WinRTInternal)
@@ -30,6 +31,7 @@ extension __ABI_test_component_Delegates {
     private static let IID___x_ABI_Ctest__component_CDelegates_CIInDelegate: test_component.IID = .init(
         Data1: 0x419EF389, Data2: 0xAF4B, Data3: 0x5676, Data4: ( 0xBC,0xEE,0xE0,0xD7,0x9A,0x5C,0xCA,0xDE ) // 419EF389-AF4B-5676-BCEE-E0D79A5CCADE
     ) 
+
     public class InDelegate: test_component.IUnknown {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CDelegates_CIInDelegate }
 
@@ -94,6 +96,7 @@ extension __ABI_test_component_Delegates {
     private static let IID___x_ABI_Ctest__component_CDelegates_CIInObjectDelegate: test_component.IID = .init(
         Data1: 0x68F889F8, Data2: 0x1A16, Data3: 0x5F6D, Data4: ( 0x8A,0x04,0x24,0x58,0x38,0xEA,0xF3,0xD4 ) // 68F889F8-1A16-5F6D-8A04-245838EAF3D4
     ) 
+
     public class InObjectDelegate: test_component.IUnknown {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CDelegates_CIInObjectDelegate }
 
@@ -134,6 +137,7 @@ public extension WinRTDelegateBridge where CABI == __x_ABI_Ctest__component_CDel
 // MARK: - ReturnInt32Delegate
 
 public typealias ReturnInt32Delegate = () throws -> Int32
+
 // MARK: - ReturnInt32Delegate Internals
 
 @_spi(WinRTInternal)
@@ -158,6 +162,7 @@ extension __ABI_test_component_Delegates {
     private static let IID___x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate: test_component.IID = .init(
         Data1: 0xBCB57CF7, Data2: 0x97F9, Data3: 0x5B38, Data4: ( 0x99,0x47,0x39,0xC5,0x14,0x92,0x20,0xF0 ) // BCB57CF7-97F9-5B38-9947-39C5149220F0
     ) 
+
     public class ReturnInt32Delegate: test_component.IUnknown {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate }
 
@@ -198,6 +203,7 @@ public extension WinRTDelegateBridge where CABI == __x_ABI_Ctest__component_CDel
 // MARK: - SignalDelegate
 
 public typealias SignalDelegate = () throws -> ()
+
 // MARK: - SignalDelegate Internals
 
 @_spi(WinRTInternal)
@@ -222,6 +228,7 @@ extension __ABI_test_component_Delegates {
     private static let IID___x_ABI_Ctest__component_CDelegates_CISignalDelegate: test_component.IID = .init(
         Data1: 0x9EA7161A, Data2: 0xFCAB, Data3: 0x5037, Data4: ( 0x87,0xF0,0xB5,0x73,0xA5,0xE9,0x7B,0xE9 ) // 9EA7161A-FCAB-5037-87F0-B573A5E97BE9
     ) 
+
     public class SignalDelegate: test_component.IUnknown {
         override public class var IID: test_component.IID { IID___x_ABI_Ctest__component_CDelegates_CISignalDelegate }
 
