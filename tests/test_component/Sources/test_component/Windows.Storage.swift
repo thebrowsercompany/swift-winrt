@@ -153,6 +153,12 @@ public final class StorageFile : WinRTClass, IStorageItem, test_component.IRando
         return try _IStorageFileStatics.ReplaceWithStreamedFileFromUriAsync(fileToReplace, uri, thumbnail)
     }
 
+    private static let _IStorageFileStatics2: __ABI_Windows_Storage.IStorageFileStatics2 = try! RoGetActivationFactory("Windows.Storage.StorageFile")
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefile.getfilefrompathforuserasync)
+    public static func getFileFromPathForUserAsync(_ user: test_component.User!, _ path: String) throws -> AnyIAsyncOperation<StorageFile?>! {
+        return try _IStorageFileStatics2.GetFileFromPathForUserAsync(user, path)
+    }
+
     private lazy var _IStorageItem: __ABI_Windows_Storage.IStorageItem! = getInterfaceForCaching()
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefile.renameasync)
     public func renameAsync(_ desiredName: String) throws -> test_component.AnyIAsyncAction! {
@@ -401,6 +407,12 @@ public final class StorageFolder : WinRTClass, IStorageItem, IStorageFolder, tes
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefolder.getfolderfrompathasync)
     public static func getFolderFromPathAsync(_ path: String) throws -> AnyIAsyncOperation<StorageFolder?>! {
         return try _IStorageFolderStatics.GetFolderFromPathAsync(path)
+    }
+
+    private static let _IStorageFolderStatics2: __ABI_Windows_Storage.IStorageFolderStatics2 = try! RoGetActivationFactory("Windows.Storage.StorageFolder")
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagefolder.getfolderfrompathforuserasync)
+    public static func getFolderFromPathForUserAsync(_ user: test_component.User!, _ path: String) throws -> AnyIAsyncOperation<StorageFolder?>! {
+        return try _IStorageFolderStatics2.GetFolderFromPathForUserAsync(user, path)
     }
 
     private lazy var _IStorageItem: __ABI_Windows_Storage.IStorageItem! = getInterfaceForCaching()
@@ -760,8 +772,15 @@ public final class StorageLibraryChangeReader : WinRTClass {
         try _default.AcceptChangesAsync()
     }
 
+    private lazy var _IStorageLibraryChangeReader2: __ABI_Windows_Storage.IStorageLibraryChangeReader2! = getInterfaceForCaching()
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagelibrarychangereader.getlastchangeid)
+    public func getLastChangeId() throws -> UInt64 {
+        try _IStorageLibraryChangeReader2.GetLastChangeId()
+    }
+
     deinit {
         _default = nil
+        _IStorageLibraryChangeReader2 = nil
     }
 }
 
@@ -796,6 +815,52 @@ public final class StorageLibraryChangeTracker : WinRTClass {
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagelibrarychangetracker.reset)
     public func reset() throws {
         try _default.Reset()
+    }
+
+    private lazy var _IStorageLibraryChangeTracker2: __ABI_Windows_Storage.IStorageLibraryChangeTracker2! = getInterfaceForCaching()
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagelibrarychangetracker.enable)
+    public func enable(_ options: StorageLibraryChangeTrackerOptions!) throws {
+        try _IStorageLibraryChangeTracker2.EnableWithOptions(options)
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagelibrarychangetracker.disable)
+    public func disable() throws {
+        try _IStorageLibraryChangeTracker2.Disable()
+    }
+
+    deinit {
+        _default = nil
+        _IStorageLibraryChangeTracker2 = nil
+    }
+}
+
+/// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagelibrarychangetrackeroptions)
+public final class StorageLibraryChangeTrackerOptions : WinRTClass {
+    private typealias SwiftABI = __ABI_Windows_Storage.IStorageLibraryChangeTrackerOptions
+    private typealias CABI = __x_ABI_CWindows_CStorage_CIStorageLibraryChangeTrackerOptions
+    private lazy var _default: SwiftABI! = getInterfaceForCaching()
+    @_spi(WinRTInternal)
+    override public func _getABI<T>() -> UnsafeMutablePointer<T>? {
+        if T.self == CABI.self {
+            return RawPointer(_default)
+        }
+        return super._getABI()
+    }
+
+    @_spi(WinRTInternal)
+    public init(fromAbi: test_component.IInspectable) {
+        super.init(fromAbi)
+    }
+
+    private static let _defaultFactory: test_component.IActivationFactory = try! RoGetActivationFactory("Windows.Storage.StorageLibraryChangeTrackerOptions")
+    override public init() {
+        super.init(try! Self._defaultFactory.ActivateInstance())
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.storage.storagelibrarychangetrackeroptions.trackchangedetails)
+    public var trackChangeDetails : Bool {
+        get { try! _default.get_TrackChangeDetails() }
+        set { try! _default.put_TrackChangeDetails(newValue) }
     }
 
     deinit {

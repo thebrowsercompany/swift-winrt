@@ -23,6 +23,10 @@ private var IID___x_ABI_CWindows_CStorage_CIStorageFileStatics: test_component.I
     .init(Data1: 0x5984C710, Data2: 0xDAF2, Data3: 0x43C8, Data4: ( 0x8B,0xB4,0xA4,0xD3,0xEA,0xCF,0xD0,0x3F ))// 5984C710-DAF2-43C8-8BB4-A4D3EACFD03F
 }
 
+private var IID___x_ABI_CWindows_CStorage_CIStorageFileStatics2: test_component.IID {
+    .init(Data1: 0x5C76A781, Data2: 0x212E, Data3: 0x4AF9, Data4: ( 0x8F,0x04,0x74,0x0C,0xAE,0x10,0x89,0x74 ))// 5C76A781-212E-4AF9-8F04-740CAE108974
+}
+
 private var IID___x_ABI_CWindows_CStorage_CIStorageFolder: test_component.IID {
     .init(Data1: 0x72D1CB78, Data2: 0xB3EF, Data3: 0x4F75, Data4: ( 0xA8,0x0B,0x6F,0xD9,0xDA,0xE2,0x94,0x4B ))// 72D1CB78-B3EF-4F75-A80B-6FD9DAE2944B
 }
@@ -37,6 +41,10 @@ private var IID___x_ABI_CWindows_CStorage_CIStorageFolder3: test_component.IID {
 
 private var IID___x_ABI_CWindows_CStorage_CIStorageFolderStatics: test_component.IID {
     .init(Data1: 0x08F327FF, Data2: 0x85D5, Data3: 0x48B9, Data4: ( 0xAE,0xE9,0x28,0x51,0x1E,0x33,0x9F,0x9F ))// 08F327FF-85D5-48B9-AEE9-28511E339F9F
+}
+
+private var IID___x_ABI_CWindows_CStorage_CIStorageFolderStatics2: test_component.IID {
+    .init(Data1: 0xB4656DC3, Data2: 0x71D2, Data3: 0x467D, Data4: ( 0x8B,0x29,0x37,0x1F,0x0F,0x62,0xBF,0x6F ))// B4656DC3-71D2-467D-8B29-371F0F62BF6F
 }
 
 private var IID___x_ABI_CWindows_CStorage_CIStorageItem: test_component.IID {
@@ -67,8 +75,20 @@ private var IID___x_ABI_CWindows_CStorage_CIStorageLibraryChangeReader: test_com
     .init(Data1: 0xF205BC83, Data2: 0xFCA2, Data3: 0x41F9, Data4: ( 0x89,0x54,0xEE,0x2E,0x99,0x1E,0xB9,0x6F ))// F205BC83-FCA2-41F9-8954-EE2E991EB96F
 }
 
+private var IID___x_ABI_CWindows_CStorage_CIStorageLibraryChangeReader2: test_component.IID {
+    .init(Data1: 0xABF4868B, Data2: 0xFBCC, Data3: 0x4A4F, Data4: ( 0x99,0x9E,0xE7,0xAB,0x7C,0x64,0x6D,0xBE ))// ABF4868B-FBCC-4A4F-999E-E7AB7C646DBE
+}
+
 private var IID___x_ABI_CWindows_CStorage_CIStorageLibraryChangeTracker: test_component.IID {
     .init(Data1: 0x9E157316, Data2: 0x6073, Data3: 0x44F6, Data4: ( 0x96,0x81,0x74,0x92,0xD1,0x28,0x6C,0x90 ))// 9E157316-6073-44F6-9681-7492D1286C90
+}
+
+private var IID___x_ABI_CWindows_CStorage_CIStorageLibraryChangeTracker2: test_component.IID {
+    .init(Data1: 0xCD051C3B, Data2: 0x0F9F, Data3: 0x42F9, Data4: ( 0x8F,0xB3,0x15,0x8D,0x82,0xE1,0x38,0x21 ))// CD051C3B-0F9F-42F9-8FB3-158D82E13821
+}
+
+private var IID___x_ABI_CWindows_CStorage_CIStorageLibraryChangeTrackerOptions: test_component.IID {
+    .init(Data1: 0xBB52BCD4, Data2: 0x1A6D, Data3: 0x59C0, Data4: ( 0xAD,0x2A,0x82,0x3A,0x20,0x53,0x24,0x83 ))// BB52BCD4-1A6D-59C0-AD2A-823A20532483
 }
 
 private var IID___x_ABI_CWindows_CStorage_CIStorageProvider: test_component.IID {
@@ -761,6 +781,21 @@ public enum __ABI_Windows_Storage {
 
     }
 
+    public class IStorageFileStatics2: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageFileStatics2 }
+
+        public func GetFileFromPathForUserAsync(_ user: test_component.User?, _ path: String) throws -> test_component.AnyIAsyncOperation<test_component.StorageFile?>? {
+            let (operation) = try ComPtrs.initialize { operationAbi in
+                let _path = try! HString(path)
+                _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageFileStatics2.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.GetFileFromPathForUserAsync(pThis, RawPointer(user), _path.get(), &operationAbi))
+                }
+            }
+            return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFileWrapper.unwrapFrom(abi: operation)
+        }
+
+    }
+
     public class IStorageFolder: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageFolder }
 
@@ -1081,6 +1116,21 @@ public enum __ABI_Windows_Storage {
                 let _path = try! HString(path)
                 _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageFolderStatics.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.GetFolderFromPathAsync(pThis, _path.get(), &operationAbi))
+                }
+            }
+            return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.unwrapFrom(abi: operation)
+        }
+
+    }
+
+    public class IStorageFolderStatics2: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageFolderStatics2 }
+
+        public func GetFolderFromPathForUserAsync(_ user: test_component.User?, _ path: String) throws -> test_component.AnyIAsyncOperation<test_component.StorageFolder?>? {
+            let (operation) = try ComPtrs.initialize { operationAbi in
+                let _path = try! HString(path)
+                _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageFolderStatics2.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.GetFolderFromPathForUserAsync(pThis, RawPointer(user), _path.get(), &operationAbi))
                 }
             }
             return test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolderWrapper.unwrapFrom(abi: operation)
@@ -1756,6 +1806,19 @@ public enum __ABI_Windows_Storage {
 
     }
 
+    public class IStorageLibraryChangeReader2: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageLibraryChangeReader2 }
+
+        public func GetLastChangeId() throws -> UInt64 {
+            var result: UINT64 = 0
+            _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageLibraryChangeReader2.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetLastChangeId(pThis, &result))
+            }
+            return result
+        }
+
+    }
+
     public class IStorageLibraryChangeTracker: test_component.IInspectable {
         override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageLibraryChangeTracker }
 
@@ -1777,6 +1840,42 @@ public enum __ABI_Windows_Storage {
         public func Reset() throws {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageLibraryChangeTracker.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.Reset(pThis))
+            }
+        }
+
+    }
+
+    public class IStorageLibraryChangeTracker2: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageLibraryChangeTracker2 }
+
+        public func EnableWithOptions(_ options: test_component.StorageLibraryChangeTrackerOptions?) throws {
+            _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageLibraryChangeTracker2.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.EnableWithOptions(pThis, RawPointer(options)))
+            }
+        }
+
+        public func Disable() throws {
+            _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageLibraryChangeTracker2.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.Disable(pThis))
+            }
+        }
+
+    }
+
+    public class IStorageLibraryChangeTrackerOptions: test_component.IInspectable {
+        override public class var IID: test_component.IID { IID___x_ABI_CWindows_CStorage_CIStorageLibraryChangeTrackerOptions }
+
+        public func get_TrackChangeDetails() throws -> Bool {
+            var value: boolean = 0
+            _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageLibraryChangeTrackerOptions.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_TrackChangeDetails(pThis, &value))
+            }
+            return .init(from: value)
+        }
+
+        public func put_TrackChangeDetails(_ value: Bool) throws {
+            _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageLibraryChangeTrackerOptions.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.put_TrackChangeDetails(pThis, .init(from: value)))
             }
         }
 

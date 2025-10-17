@@ -3,6 +3,59 @@
 import Foundation
 import Ctest_component
 
+private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1_IInspectable: test_component.IID {
+    .init(Data1: 0x3f08262e, Data2: 0xa2e1, Data3: 0x5134, Data4: ( 0x92,0x97,0xe9,0x21,0x1f,0x48,0x1a,0x2d ))// 3f08262e-a2e1-5134-9297-e9211f481a2d
+}
+
+internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationCompletedHandler_1_IInspectable {
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_IInspectableVTable) { $0 }
+        return .init(lpVtbl:vtblPtr)
+    }
+}
+
+internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1_IInspectableVTable: __x_ABI_C__FIAsyncOperationCompletedHandler_1_IInspectableVtbl = .init(
+    QueryInterface: { __x_ABI_C__FIAsyncOperationCompletedHandler_1_IInspectableWrapper.queryInterface($0, $1, $2) },
+    AddRef: { __x_ABI_C__FIAsyncOperationCompletedHandler_1_IInspectableWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIAsyncOperationCompletedHandler_1_IInspectableWrapper.release($0) },
+    Invoke: {
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperation<Any?>? = test_component.__x_ABI_C__FIAsyncOperation_1_IInspectableWrapper.unwrapFrom(abi: ComPtr($1))
+            let asyncStatus: test_component.AsyncStatus = $2
+            try __unwrapped__instance(asyncInfo, asyncStatus)
+            return S_OK
+        } catch { return failWith(error: error) }
+    }
+)
+typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_IInspectableBridge>
+public class AsyncOperationCompletedHandlerAny: test_component.IUnknown {
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1_IInspectable }
+
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperation<Any?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+        let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1_IInspectableWrapper(asyncInfo)
+        let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
+        _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+        }
+    }
+
+}
+
+internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1_IInspectableBridge : WinRTDelegateBridge {
+    internal typealias Handler = AsyncOperationCompletedHandler<Any?>
+    internal typealias CABI = __x_ABI_C__FIAsyncOperationCompletedHandler_1_IInspectable
+    internal typealias SwiftABI = test_component.AsyncOperationCompletedHandlerAny
+
+    internal static func from(abi: ComPtr<CABI>?) -> Handler? {
+        guard let abi = abi else { return nil }
+        let _default = SwiftABI(abi)
+        let handler: Handler = { (asyncInfo, asyncStatus) in
+            try _default.Invoke(asyncInfo, asyncStatus)
+        }
+        return handler
+    }
+}
 private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1_boolean: test_component.IID {
     .init(Data1: 0xc1d3d1a2, Data2: 0xae17, Data3: 0x5a5f, Data4: ( 0xb5,0xa2,0xbd,0xcc,0x88,0x44,0x88,0x9a ))// c1d3d1a2-ae17-5a5f-b5a2-bdcc8844889a
 }
@@ -268,6 +321,59 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIMap_2_
         return handler
     }
 }
+private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__F__CIPropertySet: test_component.IID {
+    .init(Data1: 0x5075a55f, Data2: 0x68ba, Data3: 0x56f2, Data4: ( 0x97,0xe6,0x9b,0x1c,0xbf,0xa2,0xc5,0xf2 ))// 5075a55f-68ba-56f2-97e6-9b1cbfa2c5f2
+}
+
+internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__F__CIPropertySet {
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__F__CIPropertySetVTable) { $0 }
+        return .init(lpVtbl:vtblPtr)
+    }
+}
+
+internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__F__CIPropertySetVTable: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__F__CIPropertySetVtbl = .init(
+    QueryInterface: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__F__CIPropertySetWrapper.queryInterface($0, $1, $2) },
+    AddRef: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__F__CIPropertySetWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__F__CIPropertySetWrapper.release($0) },
+    Invoke: {
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__F__CIPropertySetWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIPropertySet?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__F__CIPropertySetWrapper.unwrapFrom(abi: ComPtr($1))
+            let asyncStatus: test_component.AsyncStatus = $2
+            try __unwrapped__instance(asyncInfo, asyncStatus)
+            return S_OK
+        } catch { return failWith(error: error) }
+    }
+)
+typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__F__CIPropertySetWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__F__CIPropertySetBridge>
+public class AsyncOperationCompletedHandlerIPropertySet: test_component.IUnknown {
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__F__CIPropertySet }
+
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIPropertySet?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+        let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__F__CIPropertySetWrapper(asyncInfo)
+        let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
+        _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__F__CIPropertySet.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+        }
+    }
+
+}
+
+internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__F__CIPropertySetBridge : WinRTDelegateBridge {
+    internal typealias Handler = AsyncOperationCompletedHandler<test_component.AnyIPropertySet?>
+    internal typealias CABI = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__F__CIPropertySet
+    internal typealias SwiftABI = test_component.AsyncOperationCompletedHandlerIPropertySet
+
+    internal static func from(abi: ComPtr<CABI>?) -> Handler? {
+        guard let abi = abi else { return nil }
+        let _default = SwiftABI(abi)
+        let handler: Handler = { (asyncInfo, asyncStatus) in
+            try _default.Invoke(asyncInfo, asyncStatus)
+        }
+        return handler
+    }
+}
 private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItem: test_component.IID {
     .init(Data1: 0x51436e75, Data2: 0xace1, Data3: 0x5a68, Data4: ( 0xb2,0x60,0xf8,0x43,0xb8,0x46,0xf0,0xdb ))// 51436e75-ace1-5a68-b260-f843b846f0db
 }
@@ -470,6 +576,59 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVector
     internal typealias Handler = AsyncOperationCompletedHandler<AnyIVectorView<test_component.StorageLibraryChange?>?>
     internal typealias CABI = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChange
     internal typealias SwiftABI = test_component.AsyncOperationCompletedHandlerIVectorViewStorageLibraryChange
+
+    internal static func from(abi: ComPtr<CABI>?) -> Handler? {
+        guard let abi = abi else { return nil }
+        let _default = SwiftABI(abi)
+        let handler: Handler = { (asyncInfo, asyncStatus) in
+            try _default.Invoke(asyncInfo, asyncStatus)
+        }
+        return handler
+    }
+}
+private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUser: test_component.IID {
+    .init(Data1: 0x09870533, Data2: 0xf7cb, Data3: 0x569c, Data4: ( 0xb7,0x97,0xdc,0xb4,0x8d,0xeb,0xd7,0x09 ))// 09870533-f7cb-569c-b797-dcb48debd709
+}
+
+internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUser {
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserVTable) { $0 }
+        return .init(lpVtbl:vtblPtr)
+    }
+}
+
+internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserVTable: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserVtbl = .init(
+    QueryInterface: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWrapper.queryInterface($0, $1, $2) },
+    AddRef: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWrapper.release($0) },
+    Invoke: {
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.User?>?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWrapper.unwrapFrom(abi: ComPtr($1))
+            let asyncStatus: test_component.AsyncStatus = $2
+            try __unwrapped__instance(asyncInfo, asyncStatus)
+            return S_OK
+        } catch { return failWith(error: error) }
+    }
+)
+typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserBridge>
+public class AsyncOperationCompletedHandlerIVectorViewUser: test_component.IUnknown {
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUser }
+
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIVectorView<test_component.User?>?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+        let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWrapper(asyncInfo)
+        let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
+        _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUser.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+        }
+    }
+
+}
+
+internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserBridge : WinRTDelegateBridge {
+    internal typealias Handler = AsyncOperationCompletedHandler<AnyIVectorView<test_component.User?>?>
+    internal typealias CABI = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUser
+    internal typealias SwiftABI = test_component.AsyncOperationCompletedHandlerIVectorViewUser
 
     internal static func from(abi: ComPtr<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
@@ -1275,6 +1434,59 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
         return handler
     }
 }
+private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReference: test_component.IID {
+    .init(Data1: 0x60847289, Data2: 0xea0b, Data3: 0x5df6, Data4: ( 0x89,0xdf,0xf2,0xc6,0x2c,0xba,0x96,0x93 ))// 60847289-ea0b-5df6-89df-f2c62cba9693
+}
+
+internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReference {
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceVTable) { $0 }
+        return .init(lpVtbl:vtblPtr)
+    }
+}
+
+internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceVTable: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceVtbl = .init(
+    QueryInterface: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceWrapper.queryInterface($0, $1, $2) },
+    AddRef: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceWrapper.release($0) },
+    Invoke: {
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIRandomAccessStreamReference?>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceWrapper.unwrapFrom(abi: ComPtr($1))
+            let asyncStatus: test_component.AsyncStatus = $2
+            try __unwrapped__instance(asyncInfo, asyncStatus)
+            return S_OK
+        } catch { return failWith(error: error) }
+    }
+)
+typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceBridge>
+public class AsyncOperationCompletedHandlerIRandomAccessStreamReference: test_component.IUnknown {
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReference }
+
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.AnyIRandomAccessStreamReference?>?, _ asyncStatus: test_component.AsyncStatus) throws {
+        let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceWrapper(asyncInfo)
+        let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
+        _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReference.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+        }
+    }
+
+}
+
+internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceBridge : WinRTDelegateBridge {
+    internal typealias Handler = AsyncOperationCompletedHandler<test_component.AnyIRandomAccessStreamReference?>
+    internal typealias CABI = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReference
+    internal typealias SwiftABI = test_component.AsyncOperationCompletedHandlerIRandomAccessStreamReference
+
+    internal static func from(abi: ComPtr<CABI>?) -> Handler? {
+        guard let abi = abi else { return nil }
+        let _default = SwiftABI(abi)
+        let handler: Handler = { (asyncInfo, asyncStatus) in
+            try _default.Invoke(asyncInfo, asyncStatus)
+        }
+        return handler
+    }
+}
 private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentType: test_component.IID {
     .init(Data1: 0x3dddecf4, Data2: 0x1d39, Data3: 0x58e8, Data4: ( 0x83,0xb1,0xdb,0xed,0x54,0x1c,0x7f,0x35 ))// 3dddecf4-1d39-58e8-83b1-dbed541c7f35
 }
@@ -1318,6 +1530,59 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__C
     internal typealias Handler = AsyncOperationCompletedHandler<test_component.AnyIRandomAccessStreamWithContentType?>
     internal typealias CABI = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentType
     internal typealias SwiftABI = test_component.AsyncOperationCompletedHandlerIRandomAccessStreamWithContentType
+
+    internal static func from(abi: ComPtr<CABI>?) -> Handler? {
+        guard let abi = abi else { return nil }
+        let _default = SwiftABI(abi)
+        let handler: Handler = { (asyncInfo, asyncStatus) in
+            try _default.Invoke(asyncInfo, asyncStatus)
+        }
+        return handler
+    }
+}
+private var IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSystem__CUserAgeConsentResult: test_component.IID {
+    .init(Data1: 0x5ff26075, Data2: 0x034f, Data3: 0x5186, Data4: ( 0x8f,0xd3,0x9e,0xda,0x8d,0xa3,0xe7,0x39 ))// 5ff26075-034f-5186-8fd3-9eda8da3e739
+}
+
+internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSystem__CUserAgeConsentResult {
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultVTable) { $0 }
+        return .init(lpVtbl:vtblPtr)
+    }
+}
+
+internal var __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultVTable: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultVtbl = .init(
+    QueryInterface: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultWrapper.queryInterface($0, $1, $2) },
+    AddRef: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultWrapper.release($0) },
+    Invoke: {
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let asyncInfo: test_component.AnyIAsyncOperation<test_component.UserAgeConsentResult>? = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultWrapper.unwrapFrom(abi: ComPtr($1))
+            let asyncStatus: test_component.AsyncStatus = $2
+            try __unwrapped__instance(asyncInfo, asyncStatus)
+            return S_OK
+        } catch { return failWith(error: error) }
+    }
+)
+typealias __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultBridge>
+public class AsyncOperationCompletedHandlerUserAgeConsentResult: test_component.IUnknown {
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSystem__CUserAgeConsentResult }
+
+    open func Invoke(_ asyncInfo: test_component.AnyIAsyncOperation<test_component.UserAgeConsentResult>?, _ asyncStatus: test_component.AsyncStatus) throws {
+        let asyncInfoWrapper = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultWrapper(asyncInfo)
+        let _asyncInfo = try! asyncInfoWrapper?.toABI { $0 }
+        _ = try perform(as: __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSystem__CUserAgeConsentResult.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, _asyncInfo, asyncStatus))
+        }
+    }
+
+}
+
+internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultBridge : WinRTDelegateBridge {
+    internal typealias Handler = AsyncOperationCompletedHandler<test_component.UserAgeConsentResult>
+    internal typealias CABI = __x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSystem__CUserAgeConsentResult
+    internal typealias SwiftABI = test_component.AsyncOperationCompletedHandlerUserAgeConsentResult
 
     internal static func from(abi: ComPtr<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
@@ -2858,6 +3123,180 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageLi
     // MARK: WinRT
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
     fileprivate func first() -> AnyIIterator<test_component.StorageLibraryChange?>? {
+        try! _default.First()
+    }
+
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
+}
+
+private var IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUser: test_component.IID {
+    .init(Data1: 0xd1bacd1f, Data2: 0x0376, Data3: 0x5823, Data4: ( 0x8c,0x29,0x1d,0x45,0xb9,0xf4,0xc1,0x91 ))// d1bacd1f-0376-5823-8c29-1d45b9f4c191
+}
+
+internal var __x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserVTable: __x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserVtbl = .init(
+    QueryInterface: { __x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserWrapper.queryInterface($0, $1, $2) },
+    AddRef: { __x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserWrapper.release($0) },
+    GetIids: {
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserWrapper.IID
+        $1!.pointee = 3
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.Collections.IIterable`1<Windows.System.User>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    First: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.first()
+        let resultWrapper = test_component.__x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWrapper(result)
+        resultWrapper?.copyTo($1)
+        return S_OK
+    }
+)
+typealias __x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserBridge>
+public class IIterableUser: test_component.IInspectable {
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUser }
+
+    open func First() throws -> test_component.AnyIIterator<test_component.User?>? {
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUser.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
+            }
+        }
+        return test_component.__x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWrapper.unwrapFrom(abi: result)
+    }
+
+}
+
+internal enum __x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUser
+    internal typealias SwiftABI = IIterableUser
+    internal typealias SwiftProjection = AnyIIterable<test_component.User?>
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserImpl(abi)
+    }
+
+    internal static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserVTable) { $0 }
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserImpl : IIterable, AbiInterfaceImpl {
+    typealias T = test_component.User?
+    typealias Bridge = __x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
+    }
+
+    // MARK: WinRT
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
+    fileprivate func first() -> AnyIIterator<test_component.User?>? {
+        try! _default.First()
+    }
+
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
+}
+
+private var IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKind: test_component.IID {
+    .init(Data1: 0x89342b56, Data2: 0xeb84, Data3: 0x54e7, Data4: ( 0x98,0xc1,0xba,0xee,0x44,0x8b,0xdc,0xed ))// 89342b56-eb84-54e7-98c1-baee448bdced
+}
+
+internal var __x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindVTable: __x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindVtbl = .init(
+    QueryInterface: { __x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindWrapper.queryInterface($0, $1, $2) },
+    AddRef: { __x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindWrapper.release($0) },
+    GetIids: {
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindWrapper.IID
+        $1!.pointee = 3
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.Collections.IIterable`1<Windows.System.UserWatcherUpdateKind>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    First: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.first()
+        let resultWrapper = test_component.__x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindWrapper(result)
+        resultWrapper?.copyTo($1)
+        return S_OK
+    }
+)
+typealias __x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindBridge>
+public class IIterableUserWatcherUpdateKind: test_component.IInspectable {
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKind }
+
+    open func First() throws -> test_component.AnyIIterator<test_component.UserWatcherUpdateKind>? {
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKind.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.First(pThis, &resultAbi))
+            }
+        }
+        return test_component.__x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindWrapper.unwrapFrom(abi: result)
+    }
+
+}
+
+internal enum __x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKind
+    internal typealias SwiftABI = IIterableUserWatcherUpdateKind
+    internal typealias SwiftProjection = AnyIIterable<test_component.UserWatcherUpdateKind>
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindImpl(abi)
+    }
+
+    internal static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindVTable) { $0 }
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindImpl : IIterable, AbiInterfaceImpl {
+    typealias T = test_component.UserWatcherUpdateKind
+    typealias Bridge = __x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
+    }
+
+    // MARK: WinRT
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterable-1.first)
+    fileprivate func first() -> AnyIIterator<test_component.UserWatcherUpdateKind>? {
         try! _default.First()
     }
 
@@ -5153,6 +5592,306 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageLi
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
     fileprivate var current : test_component.StorageLibraryChange? {
+        get { try! _default.get_Current() }
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
+    fileprivate var hasCurrent : Bool {
+        get { try! _default.get_HasCurrent() }
+    }
+
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
+}
+
+private var IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUser: test_component.IID {
+    .init(Data1: 0x326fe162, Data2: 0x582b, Data3: 0x5659, Data4: ( 0xb8,0xa4,0x68,0xff,0x0f,0x52,0x57,0x45 ))// 326fe162-582b-5659-b8a4-68ff0f525745
+}
+
+internal var __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserVTable: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserVtbl = .init(
+    QueryInterface: { __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWrapper.queryInterface($0, $1, $2) },
+    AddRef: { __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWrapper.release($0) },
+    GetIids: {
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWrapper.IID
+        $1!.pointee = 3
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.Collections.IIterator`1<Windows.System.User>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    get_Current: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.current
+        result?.copyTo($1)
+        return S_OK
+    },
+
+    get_HasCurrent: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.hasCurrent
+        $1?.initialize(to: .init(from: result))
+        return S_OK
+    },
+
+    MoveNext: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.moveNext()
+        $1?.initialize(to: .init(from: result))
+        return S_OK
+    },
+
+    GetMany: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        var items: [test_component.User?] = .from(abiBridge: __IMPL_Windows_System.UserBridge.self, abi: (count: $1, start: $2))
+        let result = __unwrapped__instance.getMany(&items)
+        items.fill(abi: $2, abiBridge: __IMPL_Windows_System.UserBridge.self)
+        $3?.initialize(to: result)
+        return S_OK
+    }
+)
+typealias __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserBridge>
+public class IIteratorUser: test_component.IInspectable {
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUser }
+
+    open func get_Current() throws -> test_component.User? {
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUser.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &resultAbi))
+            }
+        }
+        return __IMPL_Windows_System.UserBridge.from(abi: result)
+    }
+
+    open func get_HasCurrent() throws -> Bool {
+        var result: boolean = 0
+        _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUser.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
+        }
+        return .init(from: result)
+    }
+
+    open func MoveNext() throws -> Bool {
+        var result: boolean = 0
+        _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUser.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
+        }
+        return .init(from: result)
+    }
+
+    open func GetMany(_ items: inout [test_component.User?]) throws -> UInt32 {
+        var result: UINT32 = 0
+        try items.toABI(abiBridge: __IMPL_Windows_System.UserBridge.self) { _items in
+            _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUser.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
+            }
+        items = .from(abiBridge: __IMPL_Windows_System.UserBridge.self, abi: _items)
+        }
+        return result
+    }
+
+}
+
+internal enum __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUser
+    internal typealias SwiftABI = IIteratorUser
+    internal typealias SwiftProjection = AnyIIterator<test_component.User?>
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserImpl(abi)
+    }
+
+    internal static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserVTable) { $0 }
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserImpl : IIterator, AbiInterfaceImpl {
+    typealias T = test_component.User?
+    typealias Bridge = __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
+    }
+
+    // MARK: WinRT
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
+    fileprivate func moveNext() -> Bool {
+        try! _default.MoveNext()
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.getmany)
+    fileprivate func getMany(_ items: inout [test_component.User?]) -> UInt32 {
+        try! _default.GetMany(&items)
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
+    fileprivate var current : test_component.User? {
+        get { try! _default.get_Current() }
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.hascurrent)
+    fileprivate var hasCurrent : Bool {
+        get { try! _default.get_HasCurrent() }
+    }
+
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
+}
+
+private var IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKind: test_component.IID {
+    .init(Data1: 0x99011e6c, Data2: 0x3047, Data3: 0x5bca, Data4: ( 0xb9,0x32,0xe1,0xd1,0xeb,0x8a,0x93,0x7f ))// 99011e6c-3047-5bca-b932-e1d1eb8a937f
+}
+
+internal var __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindVTable: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindVtbl = .init(
+    QueryInterface: { __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindWrapper.queryInterface($0, $1, $2) },
+    AddRef: { __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindWrapper.release($0) },
+    GetIids: {
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 3).assumingMemoryBound(to: test_component.IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindWrapper.IID
+        $1!.pointee = 3
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.Collections.IIterator`1<Windows.System.UserWatcherUpdateKind>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    get_Current: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.current
+        $1?.initialize(to: result)
+        return S_OK
+    },
+
+    get_HasCurrent: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.hasCurrent
+        $1?.initialize(to: .init(from: result))
+        return S_OK
+    },
+
+    MoveNext: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.moveNext()
+        $1?.initialize(to: .init(from: result))
+        return S_OK
+    },
+
+    GetMany: {
+        guard let __unwrapped__instance = __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        var items: [test_component.UserWatcherUpdateKind] = .from(abi: (count: $1, start: $2))
+        let result = __unwrapped__instance.getMany(&items)
+        items.fill(abi: $2)
+        $3?.initialize(to: result)
+        return S_OK
+    }
+)
+typealias __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindBridge>
+public class IIteratorUserWatcherUpdateKind: test_component.IInspectable {
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKind }
+
+    open func get_Current() throws -> test_component.UserWatcherUpdateKind {
+        var result: __x_ABI_CWindows_CSystem_CUserWatcherUpdateKind = .init(0)
+        _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKind.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
+        }
+        return result
+    }
+
+    open func get_HasCurrent() throws -> Bool {
+        var result: boolean = 0
+        _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKind.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_HasCurrent(pThis, &result))
+        }
+        return .init(from: result)
+    }
+
+    open func MoveNext() throws -> Bool {
+        var result: boolean = 0
+        _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKind.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.MoveNext(pThis, &result))
+        }
+        return .init(from: result)
+    }
+
+    open func GetMany(_ items: inout [test_component.UserWatcherUpdateKind]) throws -> UInt32 {
+        var result: UINT32 = 0
+        try items.toABI { _items in
+            _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKind.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
+            }
+        }
+        return result
+    }
+
+}
+
+internal enum __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKind
+    internal typealias SwiftABI = IIteratorUserWatcherUpdateKind
+    internal typealias SwiftProjection = AnyIIterator<test_component.UserWatcherUpdateKind>
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindImpl(abi)
+    }
+
+    internal static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindVTable) { $0 }
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindImpl : IIterator, AbiInterfaceImpl {
+    typealias T = test_component.UserWatcherUpdateKind
+    typealias Bridge = __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
+    }
+
+    // MARK: WinRT
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.movenext)
+    fileprivate func moveNext() -> Bool {
+        try! _default.MoveNext()
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.getmany)
+    fileprivate func getMany(_ items: inout [test_component.UserWatcherUpdateKind]) -> UInt32 {
+        try! _default.GetMany(&items)
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.iiterator-1.current)
+    fileprivate var current : test_component.UserWatcherUpdateKind {
         get { try! _default.get_Current() }
     }
 
@@ -10134,6 +10873,372 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorage
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
+private var IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUser: test_component.IID {
+    .init(Data1: 0x8cbd762a, Data2: 0x1222, Data3: 0x5ee5, Data4: ( 0xb7,0x45,0x48,0x9e,0x7a,0x42,0xc6,0xec ))// 8cbd762a-1222-5ee5-b745-489e7a42c6ec
+}
+
+internal var __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserVTable: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserVtbl = .init(
+    QueryInterface: { __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWrapper.queryInterface($0, $1, $2) },
+    AddRef: { __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWrapper.release($0) },
+    GetIids: {
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWrapper.IID
+        iids[3] = test_component.__x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserWrapper.IID
+        $1!.pointee = 4
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.Collections.IVectorView`1<Windows.System.User>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    GetAt: {
+        guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let index: UInt32 = $1
+        let result = __unwrapped__instance.getAt(index)
+        result?.copyTo($2)
+        return S_OK
+    },
+
+    get_Size: {
+        guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.size
+        $1?.initialize(to: result)
+        return S_OK
+    },
+
+    IndexOf: {
+        guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let value: test_component.User? = __IMPL_Windows_System.UserBridge.from(abi: ComPtr($1))
+        var index: UInt32 = 0
+        let result = __unwrapped__instance.indexOf(value, &index)
+        $2?.initialize(to: index)
+        $3?.initialize(to: .init(from: result))
+        return S_OK
+    },
+
+    GetMany: {
+        guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let startIndex: UInt32 = $1
+        var items: [test_component.User?] = .from(abiBridge: __IMPL_Windows_System.UserBridge.self, abi: (count: $2, start: $3))
+        let result = __unwrapped__instance.getMany(startIndex, &items)
+        items.fill(abi: $3, abiBridge: __IMPL_Windows_System.UserBridge.self)
+        $4?.initialize(to: result)
+        return S_OK
+    }
+)
+typealias __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserBridge>
+public class IVectorViewUser: test_component.IInspectable {
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUser }
+
+    open func GetAt(_ index: UInt32) throws -> test_component.User? {
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUser.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &resultAbi))
+            }
+        }
+        return __IMPL_Windows_System.UserBridge.from(abi: result)
+    }
+
+    open func get_Size() throws -> UInt32 {
+        var result: UINT32 = 0
+        _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUser.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
+        }
+        return result
+    }
+
+    open func IndexOf(_ value: test_component.User?, _ index: inout UInt32) throws -> Bool {
+        var result: boolean = 0
+        _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUser.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, RawPointer(value), &index, &result))
+        }
+        return .init(from: result)
+    }
+
+    open func GetMany(_ startIndex: UInt32, _ items: inout [test_component.User?]) throws -> UInt32 {
+        var result: UINT32 = 0
+        try items.toABI(abiBridge: __IMPL_Windows_System.UserBridge.self) { _items in
+            _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUser.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
+            }
+        items = .from(abiBridge: __IMPL_Windows_System.UserBridge.self, abi: _items)
+        }
+        return result
+    }
+
+}
+
+internal enum __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUser
+    internal typealias SwiftABI = IVectorViewUser
+    internal typealias SwiftProjection = AnyIVectorView<test_component.User?>
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserImpl(abi)
+    }
+
+    internal static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserVTable) { $0 }
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserImpl : IVectorView, AbiInterfaceImpl {
+    typealias T = test_component.User?
+    typealias Bridge = __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
+    }
+
+    // MARK: Collection
+    typealias Element = T
+    var startIndex: Int { 0 }
+    var endIndex: Int { Int(size) }
+    func index(after i: Int) -> Int {
+        i+1
+    }
+
+    func index(of: Element) -> Int? {
+        var index: UInt32 = 0
+        let result = indexOf(of, &index)
+        guard result else { return nil }
+        return Int(index)
+    }
+    var count: Int { Int(size) }
+
+    subscript(position: Int) -> Element {
+        get {
+            getAt(UInt32(position))
+        }
+    }
+    // MARK: WinRT
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.getat)
+    fileprivate func getAt(_ index: UInt32) -> test_component.User? {
+        try! _default.GetAt(index)
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.indexof)
+    fileprivate func indexOf(_ value: test_component.User?, _ index: inout UInt32) -> Bool {
+        try! _default.IndexOf(value, &index)
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.getmany)
+    fileprivate func getMany(_ startIndex: UInt32, _ items: inout [test_component.User?]) -> UInt32 {
+        try! _default.GetMany(startIndex, &items)
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
+    fileprivate var size : UInt32 {
+        get { try! _default.get_Size() }
+    }
+
+    private lazy var _IIterable: IIterableUser! = getInterfaceForCaching()
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
+    fileprivate func first() -> AnyIIterator<test_component.User?>? {
+        try! _IIterable.First()
+    }
+
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
+}
+
+private var IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKind: test_component.IID {
+    .init(Data1: 0x92b358cd, Data2: 0xc1ca, Data3: 0x5552, Data4: ( 0x9e,0x2e,0x67,0xe2,0xd6,0xea,0xd4,0xd1 ))// 92b358cd-c1ca-5552-9e2e-67e2d6ead4d1
+}
+
+internal var __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindVTable: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindVtbl = .init(
+    QueryInterface: { __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindWrapper.queryInterface($0, $1, $2) },
+    AddRef: { __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindWrapper.release($0) },
+    GetIids: {
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindWrapper.IID
+        iids[3] = test_component.__x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindWrapper.IID
+        $1!.pointee = 4
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.Collections.IVectorView`1<Windows.System.UserWatcherUpdateKind>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    GetAt: {
+        guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let index: UInt32 = $1
+        let result = __unwrapped__instance.getAt(index)
+        $2?.initialize(to: result)
+        return S_OK
+    },
+
+    get_Size: {
+        guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.size
+        $1?.initialize(to: result)
+        return S_OK
+    },
+
+    IndexOf: {
+        guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let value: test_component.UserWatcherUpdateKind = $1
+        var index: UInt32 = 0
+        let result = __unwrapped__instance.indexOf(value, &index)
+        $2?.initialize(to: index)
+        $3?.initialize(to: .init(from: result))
+        return S_OK
+    },
+
+    GetMany: {
+        guard let __unwrapped__instance = __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let startIndex: UInt32 = $1
+        var items: [test_component.UserWatcherUpdateKind] = .from(abi: (count: $2, start: $3))
+        let result = __unwrapped__instance.getMany(startIndex, &items)
+        items.fill(abi: $3)
+        $4?.initialize(to: result)
+        return S_OK
+    }
+)
+typealias __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindBridge>
+public class IVectorViewUserWatcherUpdateKind: test_component.IInspectable {
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKind }
+
+    open func GetAt(_ index: UInt32) throws -> test_component.UserWatcherUpdateKind {
+        var result: __x_ABI_CWindows_CSystem_CUserWatcherUpdateKind = .init(0)
+        _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKind.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
+        }
+        return result
+    }
+
+    open func get_Size() throws -> UInt32 {
+        var result: UINT32 = 0
+        _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKind.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.get_Size(pThis, &result))
+        }
+        return result
+    }
+
+    open func IndexOf(_ value: test_component.UserWatcherUpdateKind, _ index: inout UInt32) throws -> Bool {
+        var result: boolean = 0
+        _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKind.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.IndexOf(pThis, value, &index, &result))
+        }
+        return .init(from: result)
+    }
+
+    open func GetMany(_ startIndex: UInt32, _ items: inout [test_component.UserWatcherUpdateKind]) throws -> UInt32 {
+        var result: UINT32 = 0
+        try items.toABI { _items in
+            _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKind.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
+            }
+        }
+        return result
+    }
+
+}
+
+internal enum __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKind
+    internal typealias SwiftABI = IVectorViewUserWatcherUpdateKind
+    internal typealias SwiftProjection = AnyIVectorView<test_component.UserWatcherUpdateKind>
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindImpl(abi)
+    }
+
+    internal static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindVTable) { $0 }
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindImpl : IVectorView, AbiInterfaceImpl {
+    typealias T = test_component.UserWatcherUpdateKind
+    typealias Bridge = __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
+    }
+
+    // MARK: Collection
+    typealias Element = T
+    var startIndex: Int { 0 }
+    var endIndex: Int { Int(size) }
+    func index(after i: Int) -> Int {
+        i+1
+    }
+
+    func index(of: Element) -> Int? {
+        var index: UInt32 = 0
+        let result = indexOf(of, &index)
+        guard result else { return nil }
+        return Int(index)
+    }
+    var count: Int { Int(size) }
+
+    subscript(position: Int) -> Element {
+        get {
+            getAt(UInt32(position))
+        }
+    }
+    // MARK: WinRT
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.getat)
+    fileprivate func getAt(_ index: UInt32) -> test_component.UserWatcherUpdateKind {
+        try! _default.GetAt(index)
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.indexof)
+    fileprivate func indexOf(_ value: test_component.UserWatcherUpdateKind, _ index: inout UInt32) -> Bool {
+        try! _default.IndexOf(value, &index)
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.getmany)
+    fileprivate func getMany(_ startIndex: UInt32, _ items: inout [test_component.UserWatcherUpdateKind]) -> UInt32 {
+        try! _default.GetMany(startIndex, &items)
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.size)
+    fileprivate var size : UInt32 {
+        get { try! _default.get_Size() }
+    }
+
+    private lazy var _IIterable: IIterableUserWatcherUpdateKind! = getInterfaceForCaching()
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.collections.ivectorview-1.first)
+    fileprivate func first() -> AnyIIterator<test_component.UserWatcherUpdateKind>? {
+        try! _IIterable.First()
+    }
+
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
+}
+
 private var IID___x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase: test_component.IID {
     .init(Data1: 0x92c07225, Data2: 0x1151, Data3: 0x51be, Data4: ( 0x83,0x03,0xf0,0x11,0x9f,0x4a,0xac,0xe6 ))// 92c07225-1151-51be-8303-f0119f4aace6
 }
@@ -13443,6 +14548,160 @@ fileprivate class __x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CS
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
+private var IID___x_ABI_C__FIAsyncOperation_1_IInspectable: test_component.IID {
+    .init(Data1: 0xabf53c57, Data2: 0xee50, Data3: 0x5342, Data4: ( 0xb5,0x2a,0x26,0xe3,0xb8,0xcc,0x02,0x4f ))// abf53c57-ee50-5342-b52a-26e3b8cc024f
+}
+
+internal var __x_ABI_C__FIAsyncOperation_1_IInspectableVTable: __x_ABI_C__FIAsyncOperation_1_IInspectableVtbl = .init(
+    QueryInterface: { __x_ABI_C__FIAsyncOperation_1_IInspectableWrapper.queryInterface($0, $1, $2) },
+    AddRef: { __x_ABI_C__FIAsyncOperation_1_IInspectableWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIAsyncOperation_1_IInspectableWrapper.release($0) },
+    GetIids: {
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIAsyncOperation_1_IInspectableWrapper.IID
+        iids[3] = __ABI_Windows_Foundation.IAsyncInfoWrapper.IID
+        $1!.pointee = 4
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.IAsyncOperation`1<Any>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    put_Completed: {
+        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperation_1_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        guard let handler = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_IInspectableWrapper.unwrapFrom(abi: ComPtr($1)) else { return E_INVALIDARG }
+        __unwrapped__instance.completed = handler
+        return S_OK
+    },
+
+    get_Completed: {
+        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperation_1_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.completed
+        let resultWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_IInspectableWrapper(result)
+        resultWrapper?.copyTo($1)
+        return S_OK
+    },
+
+    GetResults: {
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperation_1_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let result = try __unwrapped__instance.getResults()
+            let resultWrapper = __ABI_.AnyWrapper(result)
+            resultWrapper?.copyTo($1)
+            return S_OK
+        } catch { return failWith(error: error) }
+    }
+)
+typealias __x_ABI_C__FIAsyncOperation_1_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1_IInspectableBridge>
+public class IAsyncOperationAny: test_component.IInspectable {
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1_IInspectable }
+
+    open func put_Completed(_ handler: AsyncOperationCompletedHandler<Any?>?) throws {
+        let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_IInspectableWrapper(handler)
+        let _handler = try! handlerWrapper?.toABI { $0 }
+        _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.put_Completed(pThis, _handler))
+        }
+    }
+
+    open func get_Completed() throws -> AsyncOperationCompletedHandler<Any?>? {
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_IInspectable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
+            }
+        }
+        return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1_IInspectableWrapper.unwrapFrom(abi: result)
+    }
+
+    open func GetResults() throws -> Any? {
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_IInspectable.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
+            }
+        }
+        return __ABI_.AnyWrapper.unwrapFrom(abi: result)
+    }
+
+}
+
+internal enum __x_ABI_C__FIAsyncOperation_1_IInspectableBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIAsyncOperation_1_IInspectable
+    internal typealias SwiftABI = IAsyncOperationAny
+    internal typealias SwiftProjection = AnyIAsyncOperation<Any?>
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIAsyncOperation_1_IInspectableImpl(abi)
+    }
+
+    internal static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1_IInspectableVTable) { $0 }
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIAsyncOperation_1_IInspectableImpl : IAsyncOperation, AbiInterfaceImpl {
+    typealias TResult = Any?
+    typealias Bridge = __x_ABI_C__FIAsyncOperation_1_IInspectableBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
+    }
+
+    // MARK: WinRT
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.getresults)
+    fileprivate func getResults() throws -> Any? {
+        try _default.GetResults()
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
+    fileprivate var completed : AsyncOperationCompletedHandler<Any?>? {
+        get { try! _default.get_Completed() }
+        set { try! _default.put_Completed(newValue) }
+    }
+
+    private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
+    fileprivate func cancel() throws {
+        try _IAsyncInfo.Cancel()
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.close)
+    fileprivate func close() throws {
+        try _IAsyncInfo.Close()
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
+    fileprivate var errorCode : HRESULT {
+        get { try! _IAsyncInfo.get_ErrorCode() }
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
+    fileprivate var id : UInt32 {
+        get { try! _IAsyncInfo.get_Id() }
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
+    fileprivate var status : test_component.AsyncStatus {
+        get { try! _IAsyncInfo.get_Status() }
+    }
+
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
+}
+
 private var IID___x_ABI_C__FIAsyncOperation_1_boolean: test_component.IID {
     .init(Data1: 0xcdb5efb3, Data2: 0x5788, Data3: 0x509d, Data4: ( 0x9b,0xe1,0x71,0xcc,0xb8,0xa3,0x36,0x2a ))// cdb5efb3-5788-509d-9be1-71ccb8a3362a
 }
@@ -14205,6 +15464,160 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIMap_2_HSTRING_IInsp
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
+private var IID___x_ABI_C__FIAsyncOperation_1___x_ABI_C__F__CIPropertySet: test_component.IID {
+    .init(Data1: 0x490b0686, Data2: 0xafd7, Data3: 0x5037, Data4: ( 0x96,0x47,0xd8,0xfe,0x24,0x8f,0x18,0x2c ))// 490b0686-afd7-5037-9647-d8fe248f182c
+}
+
+internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_C__F__CIPropertySetVTable: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__F__CIPropertySetVtbl = .init(
+    QueryInterface: { __x_ABI_C__FIAsyncOperation_1___x_ABI_C__F__CIPropertySetWrapper.queryInterface($0, $1, $2) },
+    AddRef: { __x_ABI_C__FIAsyncOperation_1___x_ABI_C__F__CIPropertySetWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIAsyncOperation_1___x_ABI_C__F__CIPropertySetWrapper.release($0) },
+    GetIids: {
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__F__CIPropertySetWrapper.IID
+        iids[3] = __ABI_Windows_Foundation.IAsyncInfoWrapper.IID
+        $1!.pointee = 4
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.IAsyncOperation`1<Windows.Foundation.Collections.IPropertySet>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    put_Completed: {
+        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperation_1___x_ABI_C__F__CIPropertySetWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        guard let handler = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__F__CIPropertySetWrapper.unwrapFrom(abi: ComPtr($1)) else { return E_INVALIDARG }
+        __unwrapped__instance.completed = handler
+        return S_OK
+    },
+
+    get_Completed: {
+        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperation_1___x_ABI_C__F__CIPropertySetWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.completed
+        let resultWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__F__CIPropertySetWrapper(result)
+        resultWrapper?.copyTo($1)
+        return S_OK
+    },
+
+    GetResults: {
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperation_1___x_ABI_C__F__CIPropertySetWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let result = try __unwrapped__instance.getResults()
+            let resultWrapper = __ABI_Windows_Foundation_Collections.IPropertySetWrapper(result)
+            resultWrapper?.copyTo($1)
+            return S_OK
+        } catch { return failWith(error: error) }
+    }
+)
+typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_C__F__CIPropertySetWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__F__CIPropertySetBridge>
+public class IAsyncOperationIPropertySet: test_component.IInspectable {
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_C__F__CIPropertySet }
+
+    open func put_Completed(_ handler: AsyncOperationCompletedHandler<test_component.AnyIPropertySet?>?) throws {
+        let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__F__CIPropertySetWrapper(handler)
+        let _handler = try! handlerWrapper?.toABI { $0 }
+        _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__F__CIPropertySet.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.put_Completed(pThis, _handler))
+        }
+    }
+
+    open func get_Completed() throws -> AsyncOperationCompletedHandler<test_component.AnyIPropertySet?>? {
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__F__CIPropertySet.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
+            }
+        }
+        return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__F__CIPropertySetWrapper.unwrapFrom(abi: result)
+    }
+
+    open func GetResults() throws -> test_component.AnyIPropertySet? {
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__F__CIPropertySet.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
+            }
+        }
+        return __ABI_Windows_Foundation_Collections.IPropertySetWrapper.unwrapFrom(abi: result)
+    }
+
+}
+
+internal enum __x_ABI_C__FIAsyncOperation_1___x_ABI_C__F__CIPropertySetBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIAsyncOperation_1___x_ABI_C__F__CIPropertySet
+    internal typealias SwiftABI = IAsyncOperationIPropertySet
+    internal typealias SwiftProjection = AnyIAsyncOperation<test_component.AnyIPropertySet?>
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIAsyncOperation_1___x_ABI_C__F__CIPropertySetImpl(abi)
+    }
+
+    internal static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1___x_ABI_C__F__CIPropertySetVTable) { $0 }
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_C__F__CIPropertySetImpl : IAsyncOperation, AbiInterfaceImpl {
+    typealias TResult = test_component.AnyIPropertySet?
+    typealias Bridge = __x_ABI_C__FIAsyncOperation_1___x_ABI_C__F__CIPropertySetBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
+    }
+
+    // MARK: WinRT
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.getresults)
+    fileprivate func getResults() throws -> test_component.AnyIPropertySet? {
+        try _default.GetResults()
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
+    fileprivate var completed : AsyncOperationCompletedHandler<test_component.AnyIPropertySet?>? {
+        get { try! _default.get_Completed() }
+        set { try! _default.put_Completed(newValue) }
+    }
+
+    private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
+    fileprivate func cancel() throws {
+        try _IAsyncInfo.Cancel()
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.close)
+    fileprivate func close() throws {
+        try _IAsyncInfo.Close()
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
+    fileprivate var errorCode : HRESULT {
+        get { try! _IAsyncInfo.get_ErrorCode() }
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
+    fileprivate var id : UInt32 {
+        get { try! _IAsyncInfo.get_Id() }
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
+    fileprivate var status : test_component.AsyncStatus {
+        get { try! _IAsyncInfo.get_Status() }
+    }
+
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
+}
+
 private var IID___x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItem: test_component.IID {
     .init(Data1: 0x4b1c0fd7, Data2: 0x7a01, Data3: 0x5e7a, Data4: ( 0xa6,0xfe,0xbe,0x45,0x00,0x28,0x3f,0x23 ))// 4b1c0fd7-7a01-5e7a-a6fe-be4500283f23
 }
@@ -14788,6 +16201,160 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_AB
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<AnyIVectorView<test_component.StorageLibraryChange?>?>? {
+        get { try! _default.get_Completed() }
+        set { try! _default.put_Completed(newValue) }
+    }
+
+    private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
+    fileprivate func cancel() throws {
+        try _IAsyncInfo.Cancel()
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.close)
+    fileprivate func close() throws {
+        try _IAsyncInfo.Close()
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
+    fileprivate var errorCode : HRESULT {
+        get { try! _IAsyncInfo.get_ErrorCode() }
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
+    fileprivate var id : UInt32 {
+        get { try! _IAsyncInfo.get_Id() }
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
+    fileprivate var status : test_component.AsyncStatus {
+        get { try! _IAsyncInfo.get_Status() }
+    }
+
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
+}
+
+private var IID___x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUser: test_component.IID {
+    .init(Data1: 0xe44ea1df, Data2: 0xbb85, Data3: 0x5a8c, Data4: ( 0xbd,0xdc,0xc8,0xe9,0x60,0xc3,0x55,0xc9 ))// e44ea1df-bb85-5a8c-bddc-c8e960c355c9
+}
+
+internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserVTable: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserVtbl = .init(
+    QueryInterface: { __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWrapper.queryInterface($0, $1, $2) },
+    AddRef: { __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWrapper.release($0) },
+    GetIids: {
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWrapper.IID
+        iids[3] = __ABI_Windows_Foundation.IAsyncInfoWrapper.IID
+        $1!.pointee = 4
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.IAsyncOperation`1<Windows.Foundation.Collections.IVectorView`1<Windows.System.User>>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    put_Completed: {
+        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        guard let handler = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWrapper.unwrapFrom(abi: ComPtr($1)) else { return E_INVALIDARG }
+        __unwrapped__instance.completed = handler
+        return S_OK
+    },
+
+    get_Completed: {
+        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.completed
+        let resultWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWrapper(result)
+        resultWrapper?.copyTo($1)
+        return S_OK
+    },
+
+    GetResults: {
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let result = try __unwrapped__instance.getResults()
+            let resultWrapper = test_component.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWrapper(result)
+            resultWrapper?.copyTo($1)
+            return S_OK
+        } catch { return failWith(error: error) }
+    }
+)
+typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserBridge>
+public class IAsyncOperationIVectorViewUser: test_component.IInspectable {
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUser }
+
+    open func put_Completed(_ handler: AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.User?>?>?) throws {
+        let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWrapper(handler)
+        let _handler = try! handlerWrapper?.toABI { $0 }
+        _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUser.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.put_Completed(pThis, _handler))
+        }
+    }
+
+    open func get_Completed() throws -> AsyncOperationCompletedHandler<test_component.AnyIVectorView<test_component.User?>?>? {
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUser.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
+            }
+        }
+        return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWrapper.unwrapFrom(abi: result)
+    }
+
+    open func GetResults() throws -> test_component.AnyIVectorView<test_component.User?>? {
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUser.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
+            }
+        }
+        return test_component.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWrapper.unwrapFrom(abi: result)
+    }
+
+}
+
+internal enum __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUser
+    internal typealias SwiftABI = IAsyncOperationIVectorViewUser
+    internal typealias SwiftProjection = AnyIAsyncOperation<AnyIVectorView<test_component.User?>?>
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserImpl(abi)
+    }
+
+    internal static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserVTable) { $0 }
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserImpl : IAsyncOperation, AbiInterfaceImpl {
+    typealias TResult = AnyIVectorView<test_component.User?>?
+    typealias Bridge = __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
+    }
+
+    // MARK: WinRT
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.getresults)
+    fileprivate func getResults() throws -> AnyIVectorView<test_component.User?>? {
+        try _default.GetResults()
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
+    fileprivate var completed : AsyncOperationCompletedHandler<AnyIVectorView<test_component.User?>?>? {
         get { try! _default.get_Completed() }
         set { try! _default.put_Completed(newValue) }
     }
@@ -17120,6 +18687,160 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStr
     public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
 }
 
+private var IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReference: test_component.IID {
+    .init(Data1: 0x65178d50, Data2: 0xe6a2, Data3: 0x5d16, Data4: ( 0xb2,0x44,0x65,0xe9,0x72,0x5e,0x5a,0x0c ))// 65178d50-e6a2-5d16-b244-65e9725e5a0c
+}
+
+internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceVTable: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceVtbl = .init(
+    QueryInterface: { __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceWrapper.queryInterface($0, $1, $2) },
+    AddRef: { __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceWrapper.release($0) },
+    GetIids: {
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceWrapper.IID
+        iids[3] = __ABI_Windows_Foundation.IAsyncInfoWrapper.IID
+        $1!.pointee = 4
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.IAsyncOperation`1<Windows.Storage.Streams.IRandomAccessStreamReference>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    put_Completed: {
+        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        guard let handler = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceWrapper.unwrapFrom(abi: ComPtr($1)) else { return E_INVALIDARG }
+        __unwrapped__instance.completed = handler
+        return S_OK
+    },
+
+    get_Completed: {
+        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.completed
+        let resultWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceWrapper(result)
+        resultWrapper?.copyTo($1)
+        return S_OK
+    },
+
+    GetResults: {
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let result = try __unwrapped__instance.getResults()
+            let resultWrapper = __ABI_Windows_Storage_Streams.IRandomAccessStreamReferenceWrapper(result)
+            resultWrapper?.copyTo($1)
+            return S_OK
+        } catch { return failWith(error: error) }
+    }
+)
+typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceBridge>
+public class IAsyncOperationIRandomAccessStreamReference: test_component.IInspectable {
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReference }
+
+    open func put_Completed(_ handler: AsyncOperationCompletedHandler<test_component.AnyIRandomAccessStreamReference?>?) throws {
+        let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceWrapper(handler)
+        let _handler = try! handlerWrapper?.toABI { $0 }
+        _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReference.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.put_Completed(pThis, _handler))
+        }
+    }
+
+    open func get_Completed() throws -> AsyncOperationCompletedHandler<test_component.AnyIRandomAccessStreamReference?>? {
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReference.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
+            }
+        }
+        return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceWrapper.unwrapFrom(abi: result)
+    }
+
+    open func GetResults() throws -> test_component.AnyIRandomAccessStreamReference? {
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReference.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &resultAbi))
+            }
+        }
+        return __ABI_Windows_Storage_Streams.IRandomAccessStreamReferenceWrapper.unwrapFrom(abi: result)
+    }
+
+}
+
+internal enum __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReference
+    internal typealias SwiftABI = IAsyncOperationIRandomAccessStreamReference
+    internal typealias SwiftProjection = AnyIAsyncOperation<test_component.AnyIRandomAccessStreamReference?>
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceImpl(abi)
+    }
+
+    internal static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceVTable) { $0 }
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceImpl : IAsyncOperation, AbiInterfaceImpl {
+    typealias TResult = test_component.AnyIRandomAccessStreamReference?
+    typealias Bridge = __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
+    }
+
+    // MARK: WinRT
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.getresults)
+    fileprivate func getResults() throws -> test_component.AnyIRandomAccessStreamReference? {
+        try _default.GetResults()
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
+    fileprivate var completed : AsyncOperationCompletedHandler<test_component.AnyIRandomAccessStreamReference?>? {
+        get { try! _default.get_Completed() }
+        set { try! _default.put_Completed(newValue) }
+    }
+
+    private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
+    fileprivate func cancel() throws {
+        try _IAsyncInfo.Cancel()
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.close)
+    fileprivate func close() throws {
+        try _IAsyncInfo.Close()
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
+    fileprivate var errorCode : HRESULT {
+        get { try! _IAsyncInfo.get_ErrorCode() }
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
+    fileprivate var id : UInt32 {
+        get { try! _IAsyncInfo.get_Id() }
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
+    fileprivate var status : test_component.AsyncStatus {
+        get { try! _IAsyncInfo.get_Status() }
+    }
+
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
+}
+
 private var IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentType: test_component.IID {
     .init(Data1: 0xc4a57c5e, Data2: 0x32b0, Data3: 0x55b3, Data4: ( 0xad,0x13,0xce,0x1c,0x23,0x04,0x1e,0xd6 ))// c4a57c5e-32b0-55b3-ad13-ce1c23041ed6
 }
@@ -17241,6 +18962,158 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStr
 
     /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
     fileprivate var completed : AsyncOperationCompletedHandler<test_component.AnyIRandomAccessStreamWithContentType?>? {
+        get { try! _default.get_Completed() }
+        set { try! _default.put_Completed(newValue) }
+    }
+
+    private lazy var _IAsyncInfo: __ABI_Windows_Foundation.IAsyncInfo! = getInterfaceForCaching()
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.cancel)
+    fileprivate func cancel() throws {
+        try _IAsyncInfo.Cancel()
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.close)
+    fileprivate func close() throws {
+        try _IAsyncInfo.Close()
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.errorcode)
+    fileprivate var errorCode : HRESULT {
+        get { try! _IAsyncInfo.get_ErrorCode() }
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.id)
+    fileprivate var id : UInt32 {
+        get { try! _IAsyncInfo.get_Id() }
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.status)
+    fileprivate var status : test_component.AsyncStatus {
+        get { try! _IAsyncInfo.get_Status() }
+    }
+
+    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? { nil }
+}
+
+private var IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CSystem__CUserAgeConsentResult: test_component.IID {
+    .init(Data1: 0xd4df0010, Data2: 0x0172, Data3: 0x5efa, Data4: ( 0xbd,0x5c,0x64,0x44,0xde,0x94,0xaf,0x74 ))// d4df0010-0172-5efa-bd5c-6444de94af74
+}
+
+internal var __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultVTable: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultVtbl = .init(
+    QueryInterface: { __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultWrapper.queryInterface($0, $1, $2) },
+    AddRef: { __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultWrapper.release($0) },
+    GetIids: {
+        let size = MemoryLayout<test_component.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: test_component.IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultWrapper.IID
+        iids[3] = __ABI_Windows_Foundation.IAsyncInfoWrapper.IID
+        $1!.pointee = 4
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.IAsyncOperation`1<Windows.System.UserAgeConsentResult>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    put_Completed: {
+        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        guard let handler = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultWrapper.unwrapFrom(abi: ComPtr($1)) else { return E_INVALIDARG }
+        __unwrapped__instance.completed = handler
+        return S_OK
+    },
+
+    get_Completed: {
+        guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance.completed
+        let resultWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultWrapper(result)
+        resultWrapper?.copyTo($1)
+        return S_OK
+    },
+
+    GetResults: {
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let result = try __unwrapped__instance.getResults()
+            $1?.initialize(to: result)
+            return S_OK
+        } catch { return failWith(error: error) }
+    }
+)
+typealias __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultBridge>
+public class IAsyncOperationUserAgeConsentResult: test_component.IInspectable {
+    override public class var IID: test_component.IID { IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CSystem__CUserAgeConsentResult }
+
+    open func put_Completed(_ handler: AsyncOperationCompletedHandler<test_component.UserAgeConsentResult>?) throws {
+        let handlerWrapper = test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultWrapper(handler)
+        let _handler = try! handlerWrapper?.toABI { $0 }
+        _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CSystem__CUserAgeConsentResult.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.put_Completed(pThis, _handler))
+        }
+    }
+
+    open func get_Completed() throws -> AsyncOperationCompletedHandler<test_component.UserAgeConsentResult>? {
+        let (result) = try ComPtrs.initialize { resultAbi in
+            _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CSystem__CUserAgeConsentResult.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_Completed(pThis, &resultAbi))
+            }
+        }
+        return test_component.__x_ABI_C__FIAsyncOperationCompletedHandler_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultWrapper.unwrapFrom(abi: result)
+    }
+
+    open func GetResults() throws -> test_component.UserAgeConsentResult {
+        var result: __x_ABI_CWindows_CSystem_CUserAgeConsentResult = .init(0)
+        _ = try perform(as: __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CSystem__CUserAgeConsentResult.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &result))
+        }
+        return result
+    }
+
+}
+
+internal enum __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultBridge : AbiInterfaceBridge {
+    internal typealias CABI = __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CSystem__CUserAgeConsentResult
+    internal typealias SwiftABI = IAsyncOperationUserAgeConsentResult
+    internal typealias SwiftProjection = AnyIAsyncOperation<test_component.UserAgeConsentResult>
+    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+        guard let abi = abi else { return nil }
+        return __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultImpl(abi)
+    }
+
+    internal static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultVTable) { $0 }
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+
+fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultImpl : IAsyncOperation, AbiInterfaceImpl {
+    typealias TResult = test_component.UserAgeConsentResult
+    typealias Bridge = __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultBridge
+    let _default: Bridge.SwiftABI
+    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+        _default = Bridge.SwiftABI(fromAbi)
+    }
+
+    // MARK: WinRT
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.getresults)
+    fileprivate func getResults() throws -> test_component.UserAgeConsentResult {
+        try _default.GetResults()
+    }
+
+    /// [Open Microsoft documentation](https://learn.microsoft.com/uwp/api/windows.foundation.iasyncoperation-1.completed)
+    fileprivate var completed : AsyncOperationCompletedHandler<test_component.UserAgeConsentResult>? {
         get { try! _default.get_Completed() }
         set { try! _default.put_Completed(newValue) }
     }
@@ -17606,6 +19479,161 @@ internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CStorage__CSea
     internal typealias Handler = TypedEventHandler<test_component.AnyIStorageQueryResultBase?, Any?>
     internal typealias CABI = __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CStorage__CSearch__CIStorageQueryResultBase_IInspectable
     internal typealias SwiftABI = test_component.TypedEventHandlerIStorageQueryResultBase_Any
+
+    internal static func from(abi: ComPtr<CABI>?) -> Handler? {
+        guard let abi = abi else { return nil }
+        let _default = SwiftABI(abi)
+        let handler: Handler = { (sender, args) in
+            try _default.Invoke(sender, args)
+        }
+        return handler
+    }
+}
+private var IID___x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher_IInspectable: test_component.IID {
+    .init(Data1: 0xf155e0ff, Data2: 0xdbb5, Data3: 0x5c34, Data4: ( 0xac,0x0c,0x7e,0x29,0x1e,0x33,0x00,0xab ))// f155e0ff-dbb5-5c34-ac0c-7e291e3300ab
+}
+
+internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher_IInspectable {
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher_IInspectableVTable) { $0 }
+        return .init(lpVtbl:vtblPtr)
+    }
+}
+
+internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher_IInspectableVTable: __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher_IInspectableVtbl = .init(
+    QueryInterface: { __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher_IInspectableWrapper.queryInterface($0, $1, $2) },
+    AddRef: { __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher_IInspectableWrapper.addRef($0) },
+    Release: { __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher_IInspectableWrapper.release($0) },
+    Invoke: {
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher_IInspectableWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let sender: test_component.UserWatcher? = __IMPL_Windows_System.UserWatcherBridge.from(abi: ComPtr($1))
+            let args: Any? = __ABI_.AnyWrapper.unwrapFrom(abi: ComPtr($2))
+            try __unwrapped__instance(sender, args)
+            return S_OK
+        } catch { return failWith(error: error) }
+    }
+)
+typealias __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher_IInspectableWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher_IInspectableBridge>
+public class TypedEventHandlerUserWatcher_Any: test_component.IUnknown {
+    override public class var IID: test_component.IID { IID___x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher_IInspectable }
+
+    open func Invoke(_ sender: test_component.UserWatcher?, _ args: Any?) throws {
+        let argsWrapper = __ABI_.AnyWrapper(args)
+        let _args = try! argsWrapper?.toABI { $0 }
+        _ = try perform(as: __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, RawPointer(sender), _args))
+        }
+    }
+
+}
+
+internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher_IInspectableBridge : WinRTDelegateBridge {
+    internal typealias Handler = TypedEventHandler<test_component.UserWatcher?, Any?>
+    internal typealias CABI = __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher_IInspectable
+    internal typealias SwiftABI = test_component.TypedEventHandlerUserWatcher_Any
+
+    internal static func from(abi: ComPtr<CABI>?) -> Handler? {
+        guard let abi = abi else { return nil }
+        let _default = SwiftABI(abi)
+        let handler: Handler = { (sender, args) in
+            try _default.Invoke(sender, args)
+        }
+        return handler
+    }
+}
+private var IID___x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher___x_ABI_CWindows__CSystem__CUserAuthenticationStatusChangingEventArgs: test_component.IID {
+    .init(Data1: 0x9ec3d9d5, Data2: 0xb413, Data3: 0x51df, Data4: ( 0x8c,0x64,0x64,0x0e,0x33,0x56,0xe3,0x51 ))// 9ec3d9d5-b413-51df-8c64-640e3356e351
+}
+
+internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher___x_ABI_CWindows__CSystem__CUserAuthenticationStatusChangingEventArgs {
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher___x_ABI_CWindows__CSystem__CUserAuthenticationStatusChangingEventArgsVTable) { $0 }
+        return .init(lpVtbl:vtblPtr)
+    }
+}
+
+internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher___x_ABI_CWindows__CSystem__CUserAuthenticationStatusChangingEventArgsVTable: __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher___x_ABI_CWindows__CSystem__CUserAuthenticationStatusChangingEventArgsVtbl = .init(
+    QueryInterface: { __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher___x_ABI_CWindows__CSystem__CUserAuthenticationStatusChangingEventArgsWrapper.queryInterface($0, $1, $2) },
+    AddRef: { __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher___x_ABI_CWindows__CSystem__CUserAuthenticationStatusChangingEventArgsWrapper.addRef($0) },
+    Release: { __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher___x_ABI_CWindows__CSystem__CUserAuthenticationStatusChangingEventArgsWrapper.release($0) },
+    Invoke: {
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher___x_ABI_CWindows__CSystem__CUserAuthenticationStatusChangingEventArgsWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let sender: test_component.UserWatcher? = __IMPL_Windows_System.UserWatcherBridge.from(abi: ComPtr($1))
+            let args: test_component.UserAuthenticationStatusChangingEventArgs? = __IMPL_Windows_System.UserAuthenticationStatusChangingEventArgsBridge.from(abi: ComPtr($2))
+            try __unwrapped__instance(sender, args)
+            return S_OK
+        } catch { return failWith(error: error) }
+    }
+)
+typealias __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher___x_ABI_CWindows__CSystem__CUserAuthenticationStatusChangingEventArgsWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher___x_ABI_CWindows__CSystem__CUserAuthenticationStatusChangingEventArgsBridge>
+public class TypedEventHandlerUserWatcher_UserAuthenticationStatusChangingEventArgs: test_component.IUnknown {
+    override public class var IID: test_component.IID { IID___x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher___x_ABI_CWindows__CSystem__CUserAuthenticationStatusChangingEventArgs }
+
+    open func Invoke(_ sender: test_component.UserWatcher?, _ args: test_component.UserAuthenticationStatusChangingEventArgs?) throws {
+        _ = try perform(as: __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher___x_ABI_CWindows__CSystem__CUserAuthenticationStatusChangingEventArgs.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, RawPointer(sender), RawPointer(args)))
+        }
+    }
+
+}
+
+internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher___x_ABI_CWindows__CSystem__CUserAuthenticationStatusChangingEventArgsBridge : WinRTDelegateBridge {
+    internal typealias Handler = TypedEventHandler<test_component.UserWatcher?, test_component.UserAuthenticationStatusChangingEventArgs?>
+    internal typealias CABI = __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher___x_ABI_CWindows__CSystem__CUserAuthenticationStatusChangingEventArgs
+    internal typealias SwiftABI = test_component.TypedEventHandlerUserWatcher_UserAuthenticationStatusChangingEventArgs
+
+    internal static func from(abi: ComPtr<CABI>?) -> Handler? {
+        guard let abi = abi else { return nil }
+        let _default = SwiftABI(abi)
+        let handler: Handler = { (sender, args) in
+            try _default.Invoke(sender, args)
+        }
+        return handler
+    }
+}
+private var IID___x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher___x_ABI_CWindows__CSystem__CUserChangedEventArgs: test_component.IID {
+    .init(Data1: 0xeb9d0454, Data2: 0x25db, Data3: 0x5620, Data4: ( 0x98,0xb8,0xbe,0x4c,0x5d,0x0d,0xbc,0x67 ))// eb9d0454-25db-5620-98b8-be4c5d0dbc67
+}
+
+internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher___x_ABI_CWindows__CSystem__CUserChangedEventArgs {
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher___x_ABI_CWindows__CSystem__CUserChangedEventArgsVTable) { $0 }
+        return .init(lpVtbl:vtblPtr)
+    }
+}
+
+internal var __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher___x_ABI_CWindows__CSystem__CUserChangedEventArgsVTable: __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher___x_ABI_CWindows__CSystem__CUserChangedEventArgsVtbl = .init(
+    QueryInterface: { __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher___x_ABI_CWindows__CSystem__CUserChangedEventArgsWrapper.queryInterface($0, $1, $2) },
+    AddRef: { __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher___x_ABI_CWindows__CSystem__CUserChangedEventArgsWrapper.addRef($0) },
+    Release: { __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher___x_ABI_CWindows__CSystem__CUserChangedEventArgsWrapper.release($0) },
+    Invoke: {
+        do {
+            guard let __unwrapped__instance = __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher___x_ABI_CWindows__CSystem__CUserChangedEventArgsWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            let sender: test_component.UserWatcher? = __IMPL_Windows_System.UserWatcherBridge.from(abi: ComPtr($1))
+            let args: test_component.UserChangedEventArgs? = __IMPL_Windows_System.UserChangedEventArgsBridge.from(abi: ComPtr($2))
+            try __unwrapped__instance(sender, args)
+            return S_OK
+        } catch { return failWith(error: error) }
+    }
+)
+typealias __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher___x_ABI_CWindows__CSystem__CUserChangedEventArgsWrapper = InterfaceWrapperBase<test_component.__x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher___x_ABI_CWindows__CSystem__CUserChangedEventArgsBridge>
+public class TypedEventHandlerUserWatcher_UserChangedEventArgs: test_component.IUnknown {
+    override public class var IID: test_component.IID { IID___x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher___x_ABI_CWindows__CSystem__CUserChangedEventArgs }
+
+    open func Invoke(_ sender: test_component.UserWatcher?, _ args: test_component.UserChangedEventArgs?) throws {
+        _ = try perform(as: __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher___x_ABI_CWindows__CSystem__CUserChangedEventArgs.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Invoke(pThis, RawPointer(sender), RawPointer(args)))
+        }
+    }
+
+}
+
+internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher___x_ABI_CWindows__CSystem__CUserChangedEventArgsBridge : WinRTDelegateBridge {
+    internal typealias Handler = TypedEventHandler<test_component.UserWatcher?, test_component.UserChangedEventArgs?>
+    internal typealias CABI = __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUserWatcher___x_ABI_CWindows__CSystem__CUserChangedEventArgs
+    internal typealias SwiftABI = test_component.TypedEventHandlerUserWatcher_UserChangedEventArgs
 
     internal static func from(abi: ComPtr<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
