@@ -1,5 +1,6 @@
 #pragma once
 
+#include "types/metadata_type.h"
 #include "types/class_type.h"
 #include "types/delegate_type.h"
 #include "types/element_type.h"
