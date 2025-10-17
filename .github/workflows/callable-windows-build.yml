@@ -6,8 +6,8 @@ on:
         description: "One of: [debug, release] (case-sensitive)"
         type: string
         required: true
-      build-nuget:
-        description: "Whether or not to build nuget pkg"
+      publish-nuget:
+        description: "Whether or not to publish the nuget pkg"
         type: boolean
         required: true
       nuget-version:
@@ -49,6 +49,7 @@ jobs:
         run: |
           cmake --build --preset ${{ inputs.config }}
           cmake --build --preset ${{ inputs.config }} --target install
+          cmake --build --preset ${{ inputs.config }} --target nuget
 
       - name: Upload swiftwinrt logs on failure
         uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3
@@ -61,15 +62,9 @@ jobs:
         shell: cmd
         run: .\out\${{ inputs.config }}\bin\test_app.exe
 
-      - name: Build Nuget
-        if: inputs.build-nuget
-        shell: cmd
-        run: |
-          cmake --build --preset ${{ inputs.config }} --target nuget
-
       - name: Publish NuGet Package
         uses: actions/upload-artifact@v4
-        if: inputs.build-nuget
+        if: inputs.publish-nuget
         with:
           name: Nuget
           path: ${{ github.workspace }}\build\${{ inputs.config }}\*.nupkg

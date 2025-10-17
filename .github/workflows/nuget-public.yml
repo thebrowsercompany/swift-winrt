@@ -10,5 +10,5 @@ jobs:
     uses: ./.github/workflows/callable-windows-build.yml
     with:
       config: release
-      build-nuget: true
+      publish-nuget: true
       nuget-version: 0.${{ github.run_number }}.0
