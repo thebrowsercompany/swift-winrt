@@ -11,6 +11,6 @@ namespace swiftwinrt
         bool statics{};
         bool composable{};
         bool visible{};
-        bool default_composable{};
+        bool defaultComposable{};
     };
 }

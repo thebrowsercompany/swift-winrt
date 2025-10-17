@@ -2,6 +2,7 @@
 #include "type_helpers.h"
 #include "settings.h"
 #include "metadata_filter.h"
+#include "types.h"
 namespace swiftwinrt
 {
     using namespace std::filesystem;
