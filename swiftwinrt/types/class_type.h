@@ -23,7 +23,7 @@ namespace swiftwinrt
         void append_signature(sha1& hash) const override;
         void write_c_forward_declaration(writer& w) const override;
         void write_c_abi_param(writer& w) const override;
-        void write_c_definition(writer& w) const;
+        void write_c_definition(writer&) const {}
 
         std::vector<named_interface_info> required_interfaces;
         std::vector<std::pair<interface_type const*, version>> supplemental_fast_interfaces;

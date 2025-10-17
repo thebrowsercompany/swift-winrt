@@ -78,10 +78,6 @@ namespace swiftwinrt
         default_interface->write_c_abi_param(w);
     }
 
-    void class_type::write_c_definition(writer&) const
-    {
-    }
-
     bool class_type::is_composable() const
     {
         return swiftwinrt::is_composable(type());
