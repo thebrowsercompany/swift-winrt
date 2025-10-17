@@ -18,7 +18,13 @@ set(SWIFT_BUILD_ARGS ${SWIFT_BUILD_ARGS} -c $<LOWER_CASE:${CMAKE_BUILD_TYPE}>)
 # Output to the cmake binary dir so build outputs are consolidated
 set(SWIFT_BUILD_ARGS ${SWIFT_BUILD_ARGS} --scratch-path ${CMAKE_CURRENT_BINARY_DIR})
 
-set(SWIFT_COMMAND swift build ${SWIFT_BUILD_ARGS})
+# CI machines have path issues so we pass the path to swift as part of configure
+if (DEFINED SWIFT_EXE)
+  set(SWIFT_COMMAND ${SWIFT_EXE} build ${SWIFT_BUILD_ARGS})
+else()
+  set(SWIFT_COMMAND swift build ${SWIFT_BUILD_ARGS})
+endif()
+
 if(CMAKE_HOST_SYSTEM_PROCESSOR STREQUAL "ARM64")
   set(SPM_BIN_DIR ${CMAKE_CURRENT_BINARY_DIR}/aarch64-unknown-windows-msvc/${CMAKE_BUILD_TYPE})
 else()

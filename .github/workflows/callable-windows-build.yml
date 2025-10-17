@@ -40,11 +40,12 @@ jobs:
           swift-build: 6.2-RELEASE
       
       - name: Configure CMake
-        run: cmake --preset ${{ inputs.config }}
+        shell: pwsh
+        run: |
+        # get the path to swift.exe as there are path issues on CI machines causing swift.exe to not be found
+        $swift = (Get-Command swift).Source
+        cmake --preset ${{ inputs.config }} -DSWIFT_VERSION=6.2.0 -DSWIFT_EXE=$swift
 
-      - name: Swift ver
-        run: swift --version
-        
       - name: Build
         run: |
           cmake --build --preset ${{ inputs.config }}

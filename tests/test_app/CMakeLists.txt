@@ -1,5 +1,5 @@
 # XCTest dependency
-set(XCTest_RootDir "$ENV{SDKROOT}/../../Library/XCTest-0.0.0/usr")
+set(XCTest_RootDir "$ENV{SDKROOT}/../../Library/XCTest-${SWIFT_VERSION}/usr")
 string(REPLACE "\\" "/" XCTest_RootDir "${XCTest_RootDir}")
 set(XCTest_BinaryDir "${XCTest_RootDir}/bin64")
 
