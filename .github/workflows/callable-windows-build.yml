@@ -39,13 +39,6 @@ jobs:
           swift-version: swift-6.2-release
           swift-build: 6.2-RELEASE
       
-      - name: Install Windows SDK
-        shell: pwsh
-        run: |
-          $sdkVersion = (Get-Content -Raw -Path CMakePresets.json | ConvertFrom-Json).configurePresets | Where-Object { $_.name -eq 'base' } | Select-Object -ExpandProperty cacheVariables | Select-Object -ExpandProperty CMAKE_SYSTEM_VERSION
-          $sdkVersion = $sdkVersion -replace '\.0$'
-          winget install Microsoft.WindowsSDK.$sdkVersion
-          
       - name: Configure CMake
         run: cmake --preset ${{ inputs.config }}
 
