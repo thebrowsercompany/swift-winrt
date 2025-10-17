@@ -87,11 +87,11 @@ namespace swiftwinrt
         return false;
     }
 
-    inline bool is_element_type(metadata_type const* type, winmd::reader::ElementType element_type)
+    inline bool is_element_type(metadata_type const* type, winmd::reader::ElementType target)
     {
         if (auto elem = dynamic_cast<element_type const*>(type))
         {
-            return elem->type() == element_type;
+            return elem->type() == target;
         }
 
         return false;
