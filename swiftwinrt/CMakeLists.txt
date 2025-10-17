@@ -49,7 +49,17 @@ target_sources(swiftwinrt PUBLIC
     main.cpp
     pch.cpp
     metadata_cache.cpp
-    types.cpp
+    types/class_type.cpp
+    types/delegate_type.cpp
+    types/element_type.cpp
+    types/enum_type.cpp
+    types/function_def.cpp
+    types/generic_inst.cpp
+    types/interface_type.cpp
+    types/mapped_type.cpp
+    types/struct_type.cpp
+    types/system_type.cpp
+    types/typedef_base.cpp
     metadata_filter.cpp
     code_writers/enum_writers.cpp
     code_writers/interface_writers.cpp
