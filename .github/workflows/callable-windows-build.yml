@@ -44,7 +44,7 @@ jobs:
         run: |
           # get the path to swift.exe as there are path issues on CI machines causing swift.exe to not be found
           $swift = (Get-Command swift).Source
-          cmake --preset ${{ inputs.config }} -DSWIFT_VERSION=6.2.0 -DSWIFT_EXE=$swift
+          cmake --preset ${{ inputs.config }} -DSWIFT_VERSION="6.2.0" -DSWIFT_EXE="$swift"
 
       - name: Build
         run: |
