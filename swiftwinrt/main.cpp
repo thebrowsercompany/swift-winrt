@@ -11,7 +11,6 @@
 #include "type_writers.h"
 #include "helpers.h"
 #include "versioning.h"
-#include "namespace_iterator.h"
 #include "common.h"
 #include "code_writers.h"
 #include "component_writers.h"

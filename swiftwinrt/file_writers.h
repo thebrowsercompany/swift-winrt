@@ -10,79 +10,17 @@ namespace swiftwinrt
     using indent_writer = swiftwinrt::indented_writer_base<swiftwinrt::writer>;
     using push_namespace_guard = std::pair<write_scope_guard<swiftwinrt::writer>, indent_writer::indent_guard>;
 
-    [[nodiscard]] static push_namespace_guard push_namespace(std::string_view const& ns, writer& w, bool force = false)
+    [[nodiscard]] static push_namespace_guard push_internal_namespace(std::string_view const& ns, writer& w))
     {
         write_scope_guard guard{ w };
 
-        std::string swift_ns;
-        indent i{ 0 };
-        auto first_ns_index = ns.find_first_of('.');
-
-        // When writing the swift namespace, we want to omit the first one (which is the same as the module name).
-        // This is only not true if forcing the namespace (i.e. ABI or IMPL namespaces)
-        if (first_ns_index != std::string_view::npos)
-        {
-            auto extension = ns.substr(first_ns_index + 1);
-            w.write("extension % {\n", extension);
-            i.additional_indentation++;
-            guard.push("%}\n", i);
-        }
-        else if (force)
-        {
-            if (ns.starts_with("__"))
-            {
-                w.write("@_spi(WinRTInternal)\n");
-            }
-            w.write("%public enum % {\n", i, ns);
-            guard.push("}\n");
-            i.additional_indentation++;
-        }
+        w.write("@_spi(WinRTInternal)\n");
+        w.write("%public enum % {\n", i, ns);
+        guard.push("}\n");
+        i.additional_indentation++;
 
         auto indent_guard = w.push_indent(i);
-
         return std::make_pair(std::move(guard), std::move(indent_guard));
-    }
-
-
-    static bool push_namespace_recursive(std::string_view const& ns, writer& w, std::set<std::string_view>& namespaces)
-    {
-        std::string last_ns;
-        auto last_ns_index = ns.find_last_of('.');
-        // When writing the swift namespace, we want to omit the first one (which is the same as the module name).
-        // This is only not true if forcing the namespace (i.e. ABI or IMPL namespaces)
-        std::string extension;
-        bool wrote = false;
-        if (last_ns_index != std::string_view::npos)
-        {
-            auto first_ns_index = ns.find_first_of('.');
-            last_ns = ns.substr(last_ns_index + 1);
-            if (first_ns_index != last_ns_index)
-            {
-                extension = ns.substr(first_ns_index + 1, last_ns_index - first_ns_index - 1);
-
-                // this extension namespace doesn't have any types. write the namespace
-                auto parent_ns = ns.substr(0, last_ns_index);
-                if (!parent_ns.empty() && namespaces.find(parent_ns) == namespaces.end())
-                {
-                    namespaces.emplace(parent_ns);
-                    wrote = push_namespace_recursive(parent_ns, w, namespaces);
-                }
-            }
-        }
-        if (!last_ns.empty())
-        {
-            wrote = true;
-            if (!extension.empty())
-            {
-                w.write("extension % { public enum % { } }\n", extension, last_ns);
-            }
-            else
-            {
-                w.write("public enum % { }\n", last_ns);
-            }
-        }
-
-        return wrote;
     }
 
     static void write_file(const std::filesystem::path& path, std::span<const std::byte> data)
@@ -174,7 +112,7 @@ namespace swiftwinrt
 
         {
             auto abi_ns = abi_namespace(ns);
-            auto [namespace_guard, indent_guard] = push_namespace(abi_ns, w, true);
+            auto [namespace_guard, indent_guard] = push_internal_namespace(abi_ns, w);
             w.write("%", w.filter.bind_each<write_interface_abi>(members.interfaces));
             w.write("%", w.filter.bind_each<write_struct_abi>(members.structs));
             w.write("%", w.filter.bind_each<write_class_abi>(members.classes));
@@ -228,7 +166,7 @@ namespace swiftwinrt
 
         {
             auto impl_ns = impl_namespace(ns);
-            auto impl_guard = push_namespace(impl_ns, w, true);
+            auto impl_guard = push_internal_namespace(impl_ns, w);
             auto impl_names = w.push_impl_names(true);
             w.write("%", w.filter.bind_each<write_interface_impl>(members.interfaces));
             w.write("%", w.filter.bind_each<write_delegate_implementation>(members.delegates));
