@@ -3,7 +3,7 @@
 
 namespace swiftwinrt
 {
-void write_delegate(writer& w, delegate_type const& type)
+    void write_delegate(writer& w, delegate_type const& type)
     {
         // Delegates require tuples because of the way that the bridges are implemented.
         // The bridge classes have a typealias for the parameters, and we use those
@@ -16,7 +16,7 @@ void write_delegate(writer& w, delegate_type const& type)
             bind<write_delegate_return_type>(delegate_method));
     }
 
-void write_delegate_implementation(writer& w, delegate_type const& type)
+    void write_delegate_implementation(writer& w, delegate_type const& type)
     {
         if (can_write(w, type) && !type.is_generic())
         {
@@ -25,7 +25,7 @@ void write_delegate_implementation(writer& w, delegate_type const& type)
         }
     }
 
-void write_delegate_abi(writer& w, delegate_type const& type)
+    void write_delegate_abi(writer& w, delegate_type const& type)
     {
         if (type.is_generic()) return;
         w.write("// MARK - %\n", type);

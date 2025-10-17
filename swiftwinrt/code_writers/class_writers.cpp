@@ -3,12 +3,12 @@
 
 namespace swiftwinrt
 {
-void write_class(writer& w, class_type const& type)
+    void write_class(writer& w, class_type const& type)
     {
         write_class_impl(w, type);
     }
 
-void write_class_impl(writer& w, class_type const& type)
+    void write_class_impl(writer& w, class_type const& type)
     {
         if (!can_write(w, type)) return;
 
@@ -205,7 +205,7 @@ override % func _getABI<T>() -> UnsafeMutablePointer<T>? {
         w.write("}\n\n");
     }
 
-void write_class_bridge(writer& w, class_type const& type)
+    void write_class_bridge(writer& w, class_type const& type)
     {
         if (auto default_interface = type.default_interface)
         {
@@ -270,7 +270,7 @@ void write_class_bridge(writer& w, class_type const& type)
         }
     }
 
-void write_class_abi(writer& w, class_type const& type)
+    void write_class_abi(writer& w, class_type const& type)
     {
         if (!type.is_composable())
         {
@@ -293,7 +293,7 @@ void write_class_abi(writer& w, class_type const& type)
         }
     }
 
-void write_composable_impl_extension(writer& w, class_type const& overridable)
+    void write_composable_impl_extension(writer& w, class_type const& overridable)
     {
         if (!overridable.is_composable())
         {

@@ -993,9 +993,6 @@ bind_bridge_fullname(type));
         return true;
     }
 
-
-
-
     static void write_comma_param_types(writer& w, std::vector<function_param> const& params);
     static void write_delegate_return_type(writer& w, function_def const& sig);
     static void write_query_interface_case(writer& w, interface_info const& iface);
@@ -1946,8 +1943,6 @@ public init<Composable: ComposableImpl>(
     // write the default implementation for makeAbi. this way we don't need to expose the internal implementation
     // details of the vtable to external modules.
 
-
-
     static void write_query_interface_case(writer& w, interface_info const& iface)
     {
         w.write("case %.IID:\n", bind_wrapper_fullname(iface.type));
@@ -2320,5 +2315,4 @@ public init<Composable: ComposableImpl>(
 )
 )");
     }
-
 }

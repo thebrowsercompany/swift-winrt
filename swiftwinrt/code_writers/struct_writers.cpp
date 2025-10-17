@@ -21,7 +21,6 @@ namespace swiftwinrt
 
                 w.write("%: %", get_swift_name(field), bind<write_type>(*field.type, write_type_params::swift));
             }
-
         }
     }
 
@@ -55,7 +54,6 @@ namespace swiftwinrt
                         get_swift_name(field)
                     );
                 }
-
             }
         }));
         }

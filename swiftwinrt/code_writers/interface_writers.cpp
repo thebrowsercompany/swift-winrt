@@ -3,7 +3,7 @@
 
 namespace swiftwinrt
 {
-void write_guid(writer& w, typedef_base const& type)
+    void write_guid(writer& w, typedef_base const& type)
     {
         auto attribute = get_attribute(type.type(), "Windows.Foundation.Metadata", "GuidAttribute");
 
@@ -28,7 +28,7 @@ void write_guid(writer& w, typedef_base const& type)
             bind<write_guid_comment>(guid));
     }
 
-void write_guid_generic(writer& w, generic_inst const& type)
+    void write_guid_generic(writer& w, generic_inst const& type)
     {
         auto abi_guard = w.push_mangled_names(true);
 
@@ -436,7 +436,7 @@ public class %Maker: MakeFromAbi {
         }
     }
 
-void write_generic_extension(writer& w, generic_inst const& inst)
+    void write_generic_extension(writer& w, generic_inst const& inst)
     {
         if (is_winrt_ireference(inst))
         {
@@ -449,7 +449,7 @@ void write_generic_extension(writer& w, generic_inst const& inst)
         }
     }
 
-void write_generic_implementation(writer& w, generic_inst const& type)
+    void write_generic_implementation(writer& w, generic_inst const& type)
     {
         auto generics_guard = w.push_generic_params(type);
         if (is_delegate(type))
