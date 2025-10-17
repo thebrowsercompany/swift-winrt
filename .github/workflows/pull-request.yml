@@ -6,13 +6,9 @@ on:
 
 jobs:
   build:
-    runs-on: windows-2022
     name: Swift/WinRT PR Build & Test
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          submodules: recursive
-      - uses: ./.github/actions/windows-build
-        with:
-          config: debug
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    uses: ./.github/workflows/callable-windows-build.yml
+    secrets: inherit
+    with:
+      config: debug
+      publish-nuget: false

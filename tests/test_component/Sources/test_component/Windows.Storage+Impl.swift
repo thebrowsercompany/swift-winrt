@@ -826,6 +826,15 @@ public enum __IMPL_Windows_Storage {
         }
     }
 
+    public enum StorageLibraryChangeTrackerOptionsBridge: AbiBridge {
+        public typealias SwiftProjection = StorageLibraryChangeTrackerOptions
+        public typealias CABI = __x_ABI_CWindows_CStorage_CIStorageLibraryChangeTrackerOptions
+        public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CIStorageLibraryChangeTrackerOptions>?) -> StorageLibraryChangeTrackerOptions? {
+            guard let abi = abi else { return nil }
+            return .init(fromAbi: test_component.IInspectable(abi))
+        }
+    }
+
     public enum StorageProviderBridge: AbiBridge {
         public typealias SwiftProjection = StorageProvider
         public typealias CABI = __x_ABI_CWindows_CStorage_CIStorageProvider
@@ -975,6 +984,13 @@ public class StorageLibraryChangeTrackerMaker: MakeFromAbi {
     public typealias SwiftType = StorageLibraryChangeTracker
     public static func from(abi: test_component.IInspectable) -> SwiftType {
         return StorageLibraryChangeTracker(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+public class StorageLibraryChangeTrackerOptionsMaker: MakeFromAbi {
+    public typealias SwiftType = StorageLibraryChangeTrackerOptions
+    public static func from(abi: test_component.IInspectable) -> SwiftType {
+        return StorageLibraryChangeTrackerOptions(fromAbi: abi)
     }
 }
 @_spi(WinRTInternal)
