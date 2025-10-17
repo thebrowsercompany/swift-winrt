@@ -33,12 +33,19 @@ jobs:
       - name: Configure VC++ build for amd64
         uses: compnerd/gha-setup-vsdevenv@5eb3eae1490d4f7875d574c4973539f69109700d # main as of 2025-03-09
 
-      - name: Install private Swift toolchain
+      - name: Install Swift toolchain
         uses: compnerd/gha-setup-swift@db4ffac97c2db518c2ff4f37f988af89e4411240
         with:
           swift-version: swift-6.2-release
           swift-build: 6.2-RELEASE
-
+      
+      - name: Install Windows SDK
+        shell: pwsh
+        run: |
+          $sdkVersion = (Get-Content -Raw -Path CMakePresets.json | ConvertFrom-Json).configurePresets | Where-Object { $_.name -eq 'base' } | Select-Object -ExpandProperty cacheVariables | Select-Object -ExpandProperty CMAKE_SYSTEM_VERSION
+          $sdkVersion = $sdkVersion -replace '\.0$'
+          winget install Microsoft.WindowsSDK.$sdkVersion
+          
       - name: Configure CMake
         run: cmake --preset ${{ inputs.config }}
 
