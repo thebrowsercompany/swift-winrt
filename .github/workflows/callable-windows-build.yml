@@ -42,6 +42,9 @@ jobs:
       - name: Configure CMake
         run: cmake --preset ${{ inputs.config }}
 
+      - name: Swift ver
+        run: swift --version
+        
       - name: Build
         run: |
           cmake --build --preset ${{ inputs.config }}
