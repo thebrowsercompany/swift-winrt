@@ -16,7 +16,7 @@ runs:
       winsdk: "10.0.22621.0" # GitHub runners have 10.0.26100.0 which regresses Swift's ucrt module
 
   - name: Install private Swift toolchain
-    uses: compnerd/gha-setup-swift@81f383b35a86e6e966de139be25b451d4f7dd953
+    uses: compnerd/gha-setup-swift@8e4876ab336e58b5a5a269cdc7c2bcd86bd997d4
     with:
       github-repo: thebrowsercompany/swift-build
       github-token: ${{ inputs.GITHUB_TOKEN }}
