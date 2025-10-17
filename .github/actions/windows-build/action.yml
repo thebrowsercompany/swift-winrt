@@ -10,10 +10,14 @@ runs:
 
   steps:
   - name: Configure VC++ build for amd64
-    uses: compnerd/gha-setup-vsdevenv@f1ba60d553a3216ce1b89abe0201213536bc7557 # main as of 2024-11-12
+    uses: compnerd/gha-setup-vsdevenv@5eb3eae1490d4f7875d574c4973539f69109700d # main as of 2025-03-09
     with:
       arch: amd64
       winsdk: "10.0.22621.0" # GitHub runners have 10.0.26100.0 which regresses Swift's ucrt module
+
+  - name: CMake ver
+    shell: cmd
+    run: cmake --version
 
   - name: Install private Swift toolchain
     uses: compnerd/gha-setup-swift@db4ffac97c2db518c2ff4f37f988af89e4411240
