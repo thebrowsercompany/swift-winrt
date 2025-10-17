@@ -1084,7 +1084,7 @@ bind_bridge_fullname(type));
     }
 
 
-    static void write_interface_bridge(writer& w, metadata_type const& type);
+    void write_interface_bridge(writer& w, metadata_type const& type);
 
     static void write_generic_interface_implementation(writer& w, generic_inst const& type)
     {

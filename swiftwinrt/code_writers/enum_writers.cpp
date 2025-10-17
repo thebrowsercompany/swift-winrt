@@ -3,6 +3,7 @@
 #include "type_writers.h"
 #include "can_write.h"
 #include "enum_writers.h"
+#include "common.h"
 
 namespace swiftwinrt
 {
@@ -25,7 +26,10 @@ namespace swiftwinrt
         }
         w.write("extension % {\n", get_full_swift_type_name(w, type));
         {
-            auto format = R"(    public static var % : % {\n        %_%\n    }\n)";
+            auto format = R"(    public static var % : % {
+        %_%
+    }
+)";
             for (const auto& field : type.type().FieldList())
             {
                 if (field.Constant())

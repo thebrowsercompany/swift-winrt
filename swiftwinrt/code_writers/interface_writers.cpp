@@ -58,7 +58,7 @@ void write_guid_generic(writer& w, generic_inst const& type)
             bind<write_guid_comment_hash>(iidHash));
     }
 
-void write_interface_abi(writer& w, interface_type const& type)
+    void write_interface_abi(writer& w, interface_type const& type)
     {
         // Don't write generic interfaces defintions at the ABI layer, we need an actual
         // instantiation of the type in order to create vtables and actual implementations
@@ -71,7 +71,7 @@ void write_interface_abi(writer& w, interface_type const& type)
         }
     }
 
-void write_make_from_abi(writer& w, metadata_type const& type)
+    void write_make_from_abi(writer& w, metadata_type const& type)
     {
         if (skip_write_from_abi(w, type)) return;
 
@@ -104,8 +104,7 @@ public class %Maker: MakeFromAbi {
 )", type.swift_type_name(), swiftType, w.support, fromAbi);
     }
 
-void write_interface_bridge(writer& w, metadata_type const& type)
-    {
+    void write_interface_bridge(writer& w, metadata_type const& type) {
         std::string swiftABI;
         std::string vtable;
         bool is_generic = is_generic_inst(type);
@@ -137,17 +136,17 @@ void write_interface_bridge(writer& w, metadata_type const& type)
 }
 
 )",
-modifier, bind_bridge_name(type),
-modifier, bind_type_mangled(type),
-modifier, swiftABI,
-modifier, bind<write_swift_interface_existential_identifier>(type), // Do not include outer Optional<>
-modifier,
-bind_impl_name(type),
-modifier,
-vtable);
+        modifier, bind_bridge_name(type),
+        modifier, bind_type_mangled(type),
+        modifier, swiftABI,
+        modifier, bind<write_swift_interface_existential_identifier>(type), // Do not include outer Optional<>
+        modifier,
+        bind_impl_name(type),
+        modifier,
+        vtable);
     }
 
-void write_interface_impl(writer& w, interface_type const& type)
+    void write_interface_impl(writer& w, interface_type const& type)
     {
         if (is_exclusive(type) || !can_write(w, type) || type.is_generic()) return;
 
@@ -202,7 +201,7 @@ void write_interface_impl(writer& w, interface_type const& type)
         w.write("}\n\n");
     }
 
-void write_eventsource_invoke_extension(writer& w, metadata_type const* event_type)
+    void write_eventsource_invoke_extension(writer& w, metadata_type const* event_type)
     {
         writer::generic_param_guard guard{};
         function_def delegate_method{};
@@ -249,7 +248,7 @@ void write_eventsource_invoke_extension(writer& w, metadata_type const* event_ty
     invoke_implementation);
     }
 
-void write_interface_proto(writer& w, interface_type const& type)
+    void write_interface_proto(writer& w, interface_type const& type)
     {
         if (is_exclusive(type) || !can_write(w, type))
         {
@@ -426,7 +425,7 @@ void write_interface_proto(writer& w, interface_type const& type)
         }
     }
 
-void write_interface_generic(writer& w, generic_inst const& type)
+    void write_interface_generic(writer& w, generic_inst const& type)
     {
         type.write_swift_declaration(w);
 
