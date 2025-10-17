@@ -11,4 +11,4 @@ jobs:
     secrets: inherit
     with:
       config: debug
-      build-nuget: false
+      publish-nuget: false
