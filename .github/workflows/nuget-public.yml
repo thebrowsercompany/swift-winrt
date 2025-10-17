@@ -5,16 +5,10 @@ on:
 
 jobs:
   release-and-publish:
-    env:
-      NUGET_PACKAGE_VERSION_MAJOR: 0
-      NUGET_PACKAGE_VERSION_MINOR: ${{ github.run_number }}
-      NUGET_PACKAGE_VERSION_PATCH: 0
     name: Swift/WinRT Release Build & Publish
     secrets: inherit
-    uses: ./.github/workflows/callable-windows-build
-    env:
-      NUGET_PACKAGE_VERSION: ${{ env.NUGET_PACKAGE_VERSION_MAJOR}}.${{env.NUGET_PACKAGE_VERSION_MINOR }}.${{env.NUGET_PACKAGE_VERSION_PATCH }}
+    uses: ./.github/workflows/callable-windows-build.yml
     with:
       config: release
       build-nuget: true
-      
+      nuget-version: 0.${{ github.run_number }}.0

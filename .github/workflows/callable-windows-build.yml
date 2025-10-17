@@ -8,14 +8,23 @@ on:
         required: true
       build-nuget:
         description: "Whether or not to build nuget pkg"
-        required: true
         type: boolean
+        required: true
+      nuget-version:
+        description: "3 part version of the nuget package (Major.Minor.Patch)"
+        default: ''
+        type: string
+      version_prerelease_identifier:
+        description: 'Semantic versioning prerelease identifier (including hyphen)'
+        default: ''
+        type: string
 
 jobs:
   build:
     runs-on: windows-latest
-
     name: Build and Test
+    env:
+      NUGET_PACKAGE_VERSION: ${{ inputs.nuget-version }}${{inputs.version_prerelease_identifier}}
     steps:
       - uses: actions/checkout@v3
         with:
