@@ -12,9 +12,6 @@ else()
   set(SWIFT_BUILD_ARGS ${SWIFT_BUILD_ARGS} -j $ENV{NUMBER_OF_PROCESSORS})
 endif()
 
-# workaround for https://linear.app/the-browser-company/issue/WIN-648/swift-compiler-crashes-with-imapstring-any
-set(SWIFT_BUILD_ARGS ${SWIFT_BUILD_ARGS} -Xswiftc -disable-round-trip-debug-types)
-
 # SPM requires build config to be in lower case
 set(SWIFT_BUILD_ARGS ${SWIFT_BUILD_ARGS} -c $<LOWER_CASE:${CMAKE_BUILD_TYPE}>)
 
