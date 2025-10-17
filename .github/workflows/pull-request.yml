@@ -12,7 +12,24 @@ jobs:
       - uses: actions/checkout@v3
         with:
           submodules: recursive
-      - uses: ./.github/actions/windows-build
+
+      - name: Configure VC++ build for amd64
+        uses: compnerd/gha-setup-vsdevenv@5eb3eae1490d4f7875d574c4973539f69109700d # main as of 2025-03-09
+
+      - name: CMake ver
+        shell: cmd
+        run: cmake --version
+
+      - name: Install private Swift toolchain
+        uses: compnerd/gha-setup-swift@db4ffac97c2db518c2ff4f37f988af89e4411240
         with:
-          config: debug
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          swift-version: swift-6.2-release
+          swift-build: 6.2-RELEASE
+
+      - name: Configure CMake
+        run: cmake --preset ${{ inputs.config }}
+
+      - name: Build
+        run: |
+          cmake --build --preset ${{ inputs.config }}
+          cmake --build --preset ${{ inputs.config }} --target install
