@@ -549,7 +549,7 @@ namespace swiftwinrt
             }
         }
 
-        // duplicated with the names defined in types.cpp
+        // duplicated with the names defined in types/element_type.cpp
         void write_mangled(ElementType type)
         {
             assert(writing_generic);
