@@ -23,11 +23,9 @@ runs:
       swift-build: 6.2-RELEASE
 
   - name: Configure CMake
-    shell: cmd
     run: cmake --preset ${{ inputs.config }}
 
   - name: Build
-    shell: cmd
     run: |
       cmake --build --preset ${{ inputs.config }}
       cmake --build --preset ${{ inputs.config }} --target install
