@@ -5,7 +5,7 @@ on:
 
 jobs:
   release-and-publish:
-    name: Swift/WinRT Release Build & Publish
+    name: Swift/WinRT Release Build
     secrets: inherit
     uses: ./.github/workflows/callable-windows-build.yml
     with:

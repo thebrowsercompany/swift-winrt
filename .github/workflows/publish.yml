@@ -15,7 +15,7 @@ on:
 
 jobs:
   release-and-publish:
-    name: Swift/WinRT Release Build & Publish
+    name: Swift/WinRT Release Build
     uses: ./.github/workflows/callable-windows-build.yml
     secrets: inherit
     with:
@@ -25,7 +25,7 @@ jobs:
       version_prerelease_identifier: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.version_prerelease_identifier != '' && format('-{0}', github.event.inputs.version_prerelease_identifier) || '' }}
 
   publish-nkpg:
-    name: Swift/WinRT Release Build & Publish
+    name: Swift/WinRT Publish
     runs-on: windows-latest
     needs: [release-and-publish]
     if: github.event_name != 'schedule'
