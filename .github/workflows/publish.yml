@@ -15,35 +15,34 @@ on:
 
 jobs:
   release-and-publish:
+    name: Swift/WinRT Release Build & Publish
+    uses: ./.github/workflows/callable-windows-build
+    secrets: inherit
     env:
       NUGET_PACKAGE_VERSION_MAJOR: 0
       NUGET_PACKAGE_VERSION_MINOR: 1
       NUGET_PACKAGE_VERSION_PATCH: ${{ github.run_number }}
       NUGET_PACKAGE_VERSION_PRERELEASE_SUFFIX: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.version_prerelease_identifier != '' && format('-{0}', github.event.inputs.version_prerelease_identifier) || '' }}
-    runs-on: windows-2022
+    with:
+      config: release
+      build-nuget: github.event_name != 'schedule'
+
+  publish-nkpg:
     name: Swift/WinRT Release Build & Publish
+    runs-on: windows-latest
+    needs: [release-and-publish]
+    if: github.event_name != 'schedule'
     permissions:
       contents: read
       packages: write
     steps:
-      - uses: actions/checkout@v3
+      - name: Download Nuget from GHA Artifacts
+        uses: actions/download-artifact@v5
         with:
-          submodules: recursive
+          name: Nuget
+          path: swift-winrt-nupkg
 
-      - uses: ./.github/actions/windows-build
-        env:
-            NUGET_PACKAGE_VERSION: ${{ env.NUGET_PACKAGE_VERSION_MAJOR }}.${{ env.NUGET_PACKAGE_VERSION_MINOR }}.${{ env.NUGET_PACKAGE_VERSION_PATCH }}${{ env.NUGET_PACKAGE_VERSION_PRERELEASE_SUFFIX }}
-        with:
-          config: release
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build Nuget
-        shell: cmd
-        run: |
-          cmake --build --preset release --target nuget
-
-      - name: Publish NuGet Package
-        if: github.event_name != 'schedule'
+      - name: Publish NuGet Package to GHA Packages
         shell: cmd
         env:
           GITHUB_TOKEN: ${{ secrets.NUGET_TOKEN }}
@@ -51,7 +50,7 @@ jobs:
           NUGET_PUBLISH_URL: https://nuget.pkg.github.com/thebrowsercompany/index.json
           NUGET_SOURCE_NAME: TheBrowserCompany
         run: |
-          set PATH=%PATH%;%GITHUB_WORKSPACE%\build\release
+          set PATH=%PATH%;%GITHUB_WORKSPACE%\swift-winrt-nupkg
           nuget sources list | find "%NUGET_SOURCE_NAME%"
           if errorlevel 0 (
             nuget sources remove -name %NUGET_SOURCE_NAME%
@@ -59,4 +58,4 @@ jobs:
           nuget sources Add -Name %NUGET_SOURCE_NAME% -Source %NUGET_PUBLISH_URL% -username %GITHUB_USERNAME% -password %GITHUB_TOKEN% -StorePasswordInClearText
           nuget setApiKey %GITHUB_TOKEN% -Source %NUGET_PUBLISH_URL%
 
-          nuget push %GITHUB_WORKSPACE%\build\release\*.nupkg -Source %NUGET_SOURCE_NAME%
+          nuget push %GITHUB_WORKSPACE%\swift-winrt-nupkg\*.nupkg -Source %NUGET_SOURCE_NAME%

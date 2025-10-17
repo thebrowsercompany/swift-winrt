@@ -1,0 +1,63 @@
+name: Build and Test
+on:
+  workflow_call:
+    inputs:
+      config:
+        description: "One of: [debug, release] (case-sensitive)"
+        type: string
+        required: true
+      build-nuget:
+        description: "Whether or not to build nuget pkg"
+        required: true
+        type: boolean
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    name: Build and Test
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Configure VC++ build for amd64
+        uses: compnerd/gha-setup-vsdevenv@5eb3eae1490d4f7875d574c4973539f69109700d # main as of 2025-03-09
+
+      - name: Install private Swift toolchain
+        uses: compnerd/gha-setup-swift@db4ffac97c2db518c2ff4f37f988af89e4411240
+        with:
+          swift-version: swift-6.2-release
+          swift-build: 6.2-RELEASE
+
+      - name: Configure CMake
+        run: cmake --preset ${{ inputs.config }}
+
+      - name: Build
+        run: |
+          cmake --build --preset ${{ inputs.config }}
+          cmake --build --preset ${{ inputs.config }} --target install
+
+      - name: Upload swiftwinrt logs on failure
+        uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3
+        if: failure()
+        with:
+          name: swiftwinrt-log
+          path: ${{ github.workspace }}\tests\test_component\swiftwinrt.log
+
+      - name: Run test app
+        shell: cmd
+        run: .\out\${{ inputs.config }}\bin\test_app.exe
+
+      - name: Build Nuget
+        if: inputs.build-nuget
+        shell: cmd
+        run: |
+          cmake --build --preset ${{ inputs.config }} --target nuget
+
+      - name: Publish NuGet Package
+        uses: actions/upload-artifact@v3
+        if: inputs.build-nuget
+        with:
+          name: Nuget
+          path: ${{ github.workspace }}\build\${{ inputs.config }}\*.nupkg

@@ -6,30 +6,9 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
     name: Swift/WinRT PR Build & Test
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          submodules: recursive
-
-      - name: Configure VC++ build for amd64
-        uses: compnerd/gha-setup-vsdevenv@5eb3eae1490d4f7875d574c4973539f69109700d # main as of 2025-03-09
-
-      - name: CMake ver
-        shell: cmd
-        run: cmake --version
-
-      - name: Install private Swift toolchain
-        uses: compnerd/gha-setup-swift@db4ffac97c2db518c2ff4f37f988af89e4411240
-        with:
-          swift-version: swift-6.2-release
-          swift-build: 6.2-RELEASE
-
-      - name: Configure CMake
-        run: cmake --preset ${{ inputs.config }}
-
-      - name: Build
-        run: |
-          cmake --build --preset ${{ inputs.config }}
-          cmake --build --preset ${{ inputs.config }} --target install
+    uses: ./.github/workflows/callable-windows-build
+    secrets: inherit
+    with:
+      config: debug
+      build-nuget: false
