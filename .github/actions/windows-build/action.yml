@@ -18,6 +18,7 @@ runs:
   - name: Install private Swift toolchain
     uses: compnerd/gha-setup-swift@8e4876ab336e58b5a5a269cdc7c2bcd86bd997d4
     with:
+      source: custom
       github-repo: thebrowsercompany/swift-build
       github-token: ${{ inputs.GITHUB_TOKEN }}
       release-tag-name: 20250930.2
