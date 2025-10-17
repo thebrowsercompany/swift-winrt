@@ -65,7 +65,7 @@ jobs:
           cmake --build --preset ${{ inputs.config }} --target nuget
 
       - name: Publish NuGet Package
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: inputs.build-nuget
         with:
           name: Nuget

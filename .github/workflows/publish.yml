@@ -20,7 +20,7 @@ jobs:
     secrets: inherit
     with:
       config: release
-      build-nuget: github.event_name != 'schedule'
+      build-nuget: ${{ github.event_name != 'schedule' }}
       nuget-version: 0.1.${{ github.run_number }}
       version_prerelease_identifier: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.version_prerelease_identifier != '' && format('-{0}', github.event.inputs.version_prerelease_identifier) || '' }}
 
