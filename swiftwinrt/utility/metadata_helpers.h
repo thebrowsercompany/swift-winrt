@@ -23,6 +23,8 @@
 #include "settings.h"
 namespace swiftwinrt
 {
+    struct writer;
+
     template <typename T>
     bool has_attribute(T const& row, std::string_view const& type_namespace, std::string_view const& type_name);
 
@@ -119,6 +121,8 @@ namespace swiftwinrt
 
     bool operator==(type_name const& left, type_name const& right);
     bool operator==(type_name const& left, std::string_view right);
+    std::string get_full_type_name(metadata_type const& type);
+    std::string get_full_type_name(metadata_type const* type);
 
     bool is_exclusive(interface_type const& type);
     TypeDef find_type(coded_index<winmd::reader::TypeDefOrRef> type);
