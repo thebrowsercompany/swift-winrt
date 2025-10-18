@@ -3,6 +3,7 @@
 #include "types.h"
 #include "abi_writer.h"
 #include "metadata_cache.h"
+#include "utility/type_helpers.h"
 #include "metadata_filter.h"
 #include "task_group.h"
 #include "utility/metadata_helpers.h"

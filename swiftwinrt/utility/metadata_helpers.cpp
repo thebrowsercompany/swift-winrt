@@ -2,6 +2,7 @@
 
 #include "utility/metadata_helpers.h"
 #include "utility/type_helpers.h"
+#include "type_writers.h"
 
 #include <algorithm>
 #include <chrono>
