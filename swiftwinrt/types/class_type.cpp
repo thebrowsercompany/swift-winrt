@@ -3,7 +3,7 @@
 #include "types/class_type.h"
 
 #include "abi_writer.h"
-#include "helpers.h"
+#include "utility/metadata_helpers.h"
 #include "types/interface_type.h"
 
 namespace swiftwinrt

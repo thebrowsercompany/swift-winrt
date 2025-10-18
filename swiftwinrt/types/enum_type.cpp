@@ -3,7 +3,7 @@
 #include "types/enum_type.h"
 
 #include "abi_writer.h"
-#include "helpers.h"
+#include "utility/metadata_helpers.h"
 #include "types/type_definition_helpers.h"
 
 using namespace winmd::reader;

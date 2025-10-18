@@ -3,7 +3,7 @@
 #include <string_view>
 
 #include "types/metadata_type.h"
-#include "type_helpers.h"
+#include "utility/type_helpers.h"
 
 namespace swiftwinrt
 {
