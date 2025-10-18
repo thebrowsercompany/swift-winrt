@@ -131,6 +131,7 @@ namespace swiftwinrt
     bool is_exclusive(typedef_base const& type);
     const class_type* try_get_exclusive_to(writer& w, typedef_base const& type);
     std::optional<attributed_type> try_get_factory_info(writer& w, typedef_base const& type);
+    std::tuple<MethodDef, MethodDef> get_property_methods(Property const& prop);
     std::string get_swift_name(interface_info const& iface);
     std::string put_in_backticks_if_needed(std::string name);
     std::string to_camel_case(std::string_view name);

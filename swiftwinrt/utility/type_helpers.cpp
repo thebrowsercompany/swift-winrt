@@ -2,7 +2,9 @@
 
 #include "utility/type_helpers.h"
 
+#include <algorithm>
 #include <cassert>
+#include <iterator>
 
 #include "utility/metadata_helpers.h"
 

@@ -52,7 +52,7 @@ namespace swiftwinrt
         w.write("\n");
     }
 
-    std::string get_swift_module(std::string_view const& ns)
+    std::string get_swift_module(std::string_view ns)
     {
         if (settings.test)
         {
@@ -94,7 +94,7 @@ namespace swiftwinrt
         return get_swift_module(type.TypeNamespace());
     }
 
-    std::string get_swift_namespace(writer const& w, std::string_view const& ns)
+    std::string get_swift_namespace(writer const& w, std::string_view ns)
     {
         return get_swift_module(ns);
     }
