@@ -7,7 +7,7 @@
 #include <set>
 #include <cctype>
 
-#include "settings.h"
+#include "utility/settings.h"
 #include "types/typedef_base.h"
 #include "type_writers.h"
 #include "attributes.h"

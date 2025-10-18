@@ -16,11 +16,11 @@
 
 #include "winmd_reader.h"
 #include "attributes.h"
-#include "versioning.h"
+#include "utility/versioning.h"
 #include "types.h"
-#include "metadata_cache.h"
+#include "utility/metadata_cache.h"
 #include "type_writers.h"
-#include "settings.h"
+#include "utility/settings.h"
 namespace swiftwinrt
 {
     struct writer;

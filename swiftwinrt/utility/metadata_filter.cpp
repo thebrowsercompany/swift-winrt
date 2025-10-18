@@ -5,7 +5,7 @@
 #include "utility/swift_codegen_utils.h"
 #include "utility/type_helpers.h"
 #include "types.h"
-#include "metadata_cache.h"
+#include "utility/metadata_cache.h"
 #include "metadata_filter.h"
 #include "attributes.h"
 #include "utility/metadata_helpers.h"

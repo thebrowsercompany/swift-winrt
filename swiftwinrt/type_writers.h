@@ -1,8 +1,8 @@
 #pragma once
 #include "utility/type_helpers.h"
 #include "utility/swift_codegen_utils.h"
-#include "settings.h"
-#include "metadata_filter.h"
+#include "utility/settings.h"
+#include "utility/metadata_filter.h"
 #include "types/function_param.h"
 #include "types/function_def.h"
 #include "types/type_traits.h"
