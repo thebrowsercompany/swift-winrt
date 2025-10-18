@@ -1,4 +1,4 @@
-name: Pull Request Build
+name: Swift/WinRT PR Build & Test
 
 on:
   pull_request:
@@ -6,7 +6,6 @@ on:
 
 jobs:
   build:
-    name: Swift/WinRT PR Build & Test
     uses: ./.github/workflows/callable-windows-build.yml
     secrets: inherit
     with:
