@@ -4,6 +4,7 @@
 
 #include "abi_writer.h"
 #include "utility/metadata_helpers.h"
+#include "utility/swift_codegen_utils.h"
 #include "types/interface_type.h"
 
 namespace swiftwinrt
