@@ -4,7 +4,7 @@
 #include "code_writers/can_write.h"
 #include "utility/separator.h"
 #include "utility/swift_codegen_utils.h"
-#include "metadata_cache.h"
+#include "utility/metadata_cache.h"
 namespace swiftwinrt
 {
     static void write_guid_value(writer& w, std::vector<FixedArgSig> const& args)

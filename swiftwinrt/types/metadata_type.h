@@ -6,8 +6,8 @@
 #include <string_view>
 #include <vector>
 
-#include "sha1.h"
-#include "versioning.h"
+#include "utility/sha1.h"
+#include "utility/versioning.h"
 #include "winmd_reader.h"
 
 namespace swiftwinrt
