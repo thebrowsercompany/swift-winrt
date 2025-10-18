@@ -4,6 +4,7 @@
 #include "utility/type_helpers.h"
 
 #include <algorithm>
+#include <chrono>
 #include <cctype>
 #include <cstdio>
 #include <set>

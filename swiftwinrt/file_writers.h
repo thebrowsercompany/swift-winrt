@@ -5,6 +5,8 @@
 #include <regex>
 #include <span>
 
+#include "utility/swift_codegen_utils.h"
+
 namespace swiftwinrt
 {
     using indent_writer = swiftwinrt::indented_writer_base<swiftwinrt::writer>;
