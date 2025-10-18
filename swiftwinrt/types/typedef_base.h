@@ -5,11 +5,11 @@
 #include <string_view>
 #include <vector>
 
-#include "attributes.h"
+#include "utility/attributes.h"
 #include "types/generic_type_parameter.h"
 #include "types/metadata_type.h"
 #include "utility/type_helpers.h"
-#include "versioning.h"
+#include "utility/versioning.h"
 
 namespace swiftwinrt
 {
