@@ -5,7 +5,6 @@
 #include "winmd_reader.h"
 #include "helpers.h"
 #include "attributes.h"
-#include "namespace_iterator.h"
 #include "code_writers.h"
 #include "code_writers/common_writers.h"
 #include "code_writers/writer_helpers.h"
