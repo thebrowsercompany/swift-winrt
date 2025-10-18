@@ -3,7 +3,7 @@
 #include "type_writers.h"
 #include "can_write.h"
 #include "enum_writers.h"
-#include "common.h"
+#include "utility/swift_codegen_utils.h"
 
 namespace swiftwinrt
 {

@@ -8,7 +8,7 @@
 #include "attributes.h"
 #include "types/generic_type_parameter.h"
 #include "types/metadata_type.h"
-#include "type_helpers.h"
+#include "utility/type_helpers.h"
 #include "versioning.h"
 
 namespace swiftwinrt

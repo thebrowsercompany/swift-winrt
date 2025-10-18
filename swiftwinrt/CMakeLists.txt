@@ -49,6 +49,9 @@ target_sources(swiftwinrt PUBLIC
     main.cpp
     pch.cpp
     metadata_cache.cpp
+    utility/metadata_helpers.cpp
+    utility/type_helpers.cpp
+    utility/swift_codegen_utils.cpp
     types/class_type.cpp
     types/delegate_type.cpp
     types/element_type.cpp

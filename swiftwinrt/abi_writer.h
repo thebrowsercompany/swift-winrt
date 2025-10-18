@@ -9,8 +9,8 @@
 #include "type_writers.h"
 #include "metadata_cache.h"
 #include "settings.h"
-#include "common.h"
-#include "helpers.h"
+#include "utility/swift_codegen_utils.h"
+#include "utility/metadata_helpers.h"
 
 using namespace std::literals;
 using namespace winmd::reader;

@@ -1,5 +1,5 @@
 #pragma once
-#include "type_helpers.h"
+#include "utility/type_helpers.h"
 #include "settings.h"
 #include "metadata_filter.h"
 #include "types/function_param.h"

@@ -5,7 +5,7 @@
 
 #include "abi_writer.h"
 #include "attributes.h"
-#include "type_helpers.h"
+#include "utility/type_helpers.h"
 #include "types/class_type.h"
 #include "types/delegate_type.h"
 #include "types/function_def.h"

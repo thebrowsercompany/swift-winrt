@@ -2,7 +2,7 @@
 #include "common_writers.h"
 #include "type_writers.h"
 #include "types.h"
-#include "common.h"
+#include "utility/swift_codegen_utils.h"
 #include "can_write.h"
 #include "struct_writers.h"
 namespace swiftwinrt
