@@ -13,14 +13,11 @@
 #include "versioning.h"
 #include "common.h"
 #include "code_writers.h"
-#include "component_writers.h"
 #include "abi_writer.h"
 #include "metadata_cache.h"
 #include "metadata_filter.h"
 #include "file_writers.h"
-#include "project_file_writers.h"
 #pragma warning(pop)
-
 
 namespace swiftwinrt
 {
@@ -101,8 +98,6 @@ Where <spec> is one or more of:
         settings.input = args.files("input", database::is_database);
         settings.reference = args.files("reference", database::is_database);
 
-        settings.component = args.exists("component");
-
         settings.license = args.exists("license");
         settings.brackets = args.exists("brackets");
         settings.test = args.exists("test");
@@ -128,45 +123,6 @@ Where <spec> is one or more of:
         for (auto && exclude : args.values("exclude"))
         {
             settings.exclude.insert(exclude);
-        }
-
-        if (args.exists("spm"))
-        {
-            settings.project |= project_type::spm;
-        }
-        if (args.exists("cmake"))
-        {
-            settings.project |= project_type::cmake;
-        }
-        if (settings.component)
-        {
-            settings.component_overwrite = args.exists("overwrite");
-            settings.component_name = args.value("name");
-
-            if (settings.component_name.empty())
-            {
-                // For compatibility with C++/WinRT 1.0, the component_name defaults to the *first*
-                // input, hence the use of values() here that will return the args in input order.
-
-                auto& values = args.values("input");
-
-                if (!values.empty())
-                {
-                    settings.component_name = path(values[0]).filename().replace_extension().string();
-                }
-            }
-
-            settings.component_prefix = args.exists("prefix");
-            settings.component_lib = args.value("library", "winrt");
-            settings.component_opt = args.exists("optimize");
-            settings.component_ignore_velocity = args.exists("ignore_velocity");
-
-            settings.component_folder = args.value("component");
-
-            if (!settings.component_folder.empty())
-            {
-                create_directories(settings.component_folder);
-            }
         }
     }
 
@@ -403,9 +359,6 @@ Where <spec> is one or more of:
                                     moduleDependencies.emplace(dependent_module);
                                 }
                             }
-
-                            write_cmake_lists(module, moduleDependencies, namespaces);
-                            write_singlemodule_package_swift(module, moduleDependencies);
                         }
                     });
             }
@@ -413,24 +366,6 @@ Where <spec> is one or more of:
             group.add([] { write_cwinrt_build_files(); });
 
             group.get();
-
-            if (settings.component)
-            {
-                throw std::exception("component generation not yet supported");
-            }
-
-            if (!settings.test)
-            {
-                write_root_cmake(module_map);
-            }
-            else
-            {
-                // don't write the root cmake for the test project, instead just write the
-                // cmake file for the single module everything is built into, which doesn't
-                // have any dependencies
-                write_cmake_lists(settings.support, {}, module_map[settings.support]);
-                write_multimodule_package_swift(module_dependencies);
-            }
 
             write_include_all(c.namespaces());
             write_modulemap();

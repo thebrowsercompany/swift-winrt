@@ -10,16 +10,15 @@ namespace swiftwinrt
     using indent_writer = swiftwinrt::indented_writer_base<swiftwinrt::writer>;
     using push_namespace_guard = std::pair<write_scope_guard<swiftwinrt::writer>, indent_writer::indent_guard>;
 
-    [[nodiscard]] static push_namespace_guard push_internal_namespace(std::string_view const& ns, writer& w))
+    [[nodiscard]] static push_namespace_guard push_internal_namespace(std::string_view const& ns, writer& w)
     {
         write_scope_guard guard{ w };
 
         w.write("@_spi(WinRTInternal)\n");
-        w.write("%public enum % {\n", i, ns);
+        w.write("public enum % {\n", ns);
         guard.push("}\n");
-        i.additional_indentation++;
 
-        auto indent_guard = w.push_indent(i);
+        auto indent_guard = w.push_indent({1});
         return std::make_pair(std::move(guard), std::move(indent_guard));
     }
 
@@ -81,12 +80,6 @@ namespace swiftwinrt
         fill_template_placeholders_to_file(memorybuffer_h_template, dir_path / "include" / "MemoryBuffer.h");
         auto weakreference_h_template = find_resource(RESOURCE_TYPE_OTHER_FILE_STR, RESOURCE_NAME_CWINRT_WEAKREFERENCE_H_STR);
         fill_template_placeholders_to_file(weakreference_h_template, dir_path / "include" / "WeakReference.h");
-
-        if (settings.has_project_type(project_type::spm))
-        {
-            auto package_template = find_resource(RESOURCE_TYPE_OTHER_FILE_STR, RESOURCE_NAME_CWINRT_PACKAGE_SWIFT_STR);
-            fill_template_placeholders_to_file(package_template, dir_path / "Package.swift");
-        }
 
         auto support_files = get_named_resources_of_type(
             GetModuleHandle(nullptr), RESOURCE_TYPE_C_INCLUDE_FILE_STR, /* make_lowercase: */ true);
