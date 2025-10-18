@@ -1,7 +1,7 @@
 #pragma once
 
 #include "resources.h"
-#include "code_writers/struct_writers.h"
+#include "code_writers.h"
 #include <regex>
 #include <span>
 

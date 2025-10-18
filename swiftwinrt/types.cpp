@@ -7,6 +7,8 @@
 #include "attributes.h"
 #include "namespace_iterator.h"
 #include "code_writers.h"
+#include "code_writers/common_writers.h"
+#include "code_writers/writer_helpers.h"
 
 using namespace std::literals;
 using namespace winmd::reader;
@@ -579,9 +581,6 @@ namespace swiftwinrt
         w.write('\n');
         w.end_declaration(m_mangledName);
     }
-
-    template<typename T>
-    static void write_vtable_method(writer& w, function_def const& func, T const& type);
 
     void generic_inst::write_swift_declaration(writer& w) const
     {

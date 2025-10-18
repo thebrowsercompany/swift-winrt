@@ -51,6 +51,10 @@ target_sources(swiftwinrt PUBLIC
     metadata_cache.cpp
     types.cpp
     metadata_filter.cpp
+    code_writers/enum_writers.cpp
+    code_writers/interface_writers.cpp
+    code_writers/delegate_writers.cpp
+    code_writers/class_writers.cpp
     code_writers/type_writers.cpp
     code_writers/struct_writers.cpp
     resources.rc
