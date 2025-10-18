@@ -3,7 +3,7 @@
 #include "types/element_type.h"
 
 #include "abi_writer.h"
-#include "helpers.h"
+#include "utility/metadata_helpers.h"
 
 using namespace std::literals;
 using namespace winmd::reader;

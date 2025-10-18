@@ -2,13 +2,13 @@
 #include <queue>
 
 #include "types.h"
-#include "common.h"
-#include "type_helpers.h"
+#include "utility/swift_codegen_utils.h"
+#include "utility/type_helpers.h"
 #include "types.h"
 #include "metadata_cache.h"
 #include "metadata_filter.h"
 #include "attributes.h"
-#include "helpers.h"
+#include "utility/metadata_helpers.h"
 namespace swiftwinrt
 {
     using processing_queue = std::queue<metadata_type const*>;

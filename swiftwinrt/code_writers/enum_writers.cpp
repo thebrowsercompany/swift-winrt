@@ -3,7 +3,8 @@
 #include "type_writers.h"
 #include "can_write.h"
 #include "enum_writers.h"
-#include "common.h"
+#include "utility/metadata_helpers.h"
+#include "utility/swift_codegen_utils.h"
 
 namespace swiftwinrt
 {
@@ -34,7 +35,7 @@ namespace swiftwinrt
             {
                 if (field.Constant())
                 {
-                    if (get_full_type_name(type) == "Windows.Foundation.Collections.CollectionChange")
+                    if (type.swift_full_name() == "Windows.Foundation.Collections.CollectionChange")
                     {
                         w.write(format, get_swift_name(field), get_full_swift_type_name(w, type), type, field.Name());
                     }

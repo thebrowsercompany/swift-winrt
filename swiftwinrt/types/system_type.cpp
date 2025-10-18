@@ -3,7 +3,8 @@
 #include "types/system_type.h"
 
 #include "abi_writer.h"
-#include "helpers.h"
+#include "utility/metadata_helpers.h"
+#include "utility/type_helpers.h"
 
 using namespace std::literals;
 

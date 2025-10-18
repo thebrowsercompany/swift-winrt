@@ -1,5 +1,6 @@
 #pragma once
-#include "type_helpers.h"
+#include "utility/type_helpers.h"
+#include "utility/swift_codegen_utils.h"
 #include "settings.h"
 #include "metadata_filter.h"
 #include "types/function_param.h"
@@ -22,12 +23,8 @@ namespace swiftwinrt
     }
 
     struct writer;
-    std::string get_full_swift_type_name(writer const&, TypeDef const& type);
-    std::string get_full_swift_type_name(writer const&, const metadata_type* type);
-    std::string get_swift_module(std::string_view const& ns);
-    std::string get_swift_name(function_param const&);
 
-    param_category get_category(const metadata_type*, TypeDef*);
+    std::string get_swift_name(function_param const&);
 
     template <typename First, typename...Rest>
     auto get_impl_name(First const& first, Rest const&... rest)

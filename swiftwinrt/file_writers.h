@@ -5,6 +5,8 @@
 #include <regex>
 #include <span>
 
+#include "utility/swift_codegen_utils.h"
+
 namespace swiftwinrt
 {
     using indent_writer = swiftwinrt::indented_writer_base<swiftwinrt::writer>;
@@ -14,6 +16,7 @@ namespace swiftwinrt
     {
         write_scope_guard guard{ w };
 
+        indent i{};
         w.write("@_spi(WinRTInternal)\n");
         w.write("public enum % {\n", ns);
         guard.push("}\n");

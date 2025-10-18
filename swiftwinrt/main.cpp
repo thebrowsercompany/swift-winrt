@@ -6,12 +6,12 @@
 #pragma warning (disable: 4505)
 #include <ctime>
 #include "settings.h"
-#include "type_helpers.h"
+#include "utility/type_helpers.h"
 #include "types.h"
 #include "type_writers.h"
-#include "helpers.h"
+#include "utility/metadata_helpers.h"
 #include "versioning.h"
-#include "common.h"
+#include "utility/swift_codegen_utils.h"
 #include "code_writers.h"
 #include "abi_writer.h"
 #include "metadata_cache.h"
@@ -371,7 +371,7 @@ Where <spec> is one or more of:
             write_modulemap();
             if (settings.verbose)
             {
-                w.write(" time:  %ms\n", get_elapsed_time(start));
+                //w.write(" time:  %ms\n", get_elapsed_time(start));
             }
         }
         catch (usage_exception const&)
