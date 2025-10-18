@@ -1,4 +1,4 @@
-name: Publish Build
+name: Publish
 
 on:
   push:
@@ -14,8 +14,8 @@ on:
         type: string
 
 jobs:
-  release-and-publish:
-    name: Swift/WinRT Release Build
+  release-build:
+    name: Swift/WinRT Release
     uses: ./.github/workflows/callable-windows-build.yml
     secrets: inherit
     with:

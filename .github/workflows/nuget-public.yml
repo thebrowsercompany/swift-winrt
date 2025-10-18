@@ -1,11 +1,11 @@
-name: Build for Nuget.org
+name: NuGet
 
 on:
   workflow_dispatch:
 
 jobs:
   release-and-publish:
-    name: Swift/WinRT Release Build
+    name: Swift/WinRT Release
     secrets: inherit
     uses: ./.github/workflows/callable-windows-build.yml
     with:

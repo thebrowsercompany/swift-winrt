@@ -21,6 +21,7 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    name: Build and Test
     env:
       NUGET_PACKAGE_VERSION: ${{ inputs.nuget-version }}${{inputs.version_prerelease_identifier}}
     steps:
