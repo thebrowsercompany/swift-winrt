@@ -1,6 +1,8 @@
 #pragma once
-#include <chrono>
+#include <algorithm>
 #include <array>
+#include <chrono>
+#include <cctype>
 #include <cstddef>
 #include <cstdint>
 #include <cstdio>
@@ -9,9 +11,8 @@
 #include <string>
 #include <string_view>
 #include <tuple>
+#include <utility>
 #include <vector>
-#include <algorithm>
-#include <cctype>
 
 #include "winmd_reader.h"
 #include "attributes.h"
@@ -212,8 +213,6 @@ namespace swiftwinrt
         return has_attribute(type, "Windows.Foundation.Metadata", "ComposableAttribute");
     }
 
-    TypeDef find_type(coded_index<winmd::reader::TypeDefOrRef> type);
-
     template <typename T>
     inline bool is_experimental(T const& value)
     {
@@ -255,3 +254,10 @@ namespace swiftwinrt
             std::get<std::string_view>(std::get<ElemSig>(fixedArgs[0].value).value)
         };
     }
+
+    template <typename... Args>
+    [[noreturn]] inline void throw_invalid(Args&&... args)
+    {
+        winmd::impl::throw_invalid(std::forward<Args>(args)...);
+    }
+}

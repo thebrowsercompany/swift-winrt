@@ -4,6 +4,7 @@
 
 #include "abi_writer.h"
 #include "utility/metadata_helpers.h"
+#include "utility/type_helpers.h"
 
 using namespace std::literals;
 

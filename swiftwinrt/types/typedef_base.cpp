@@ -3,6 +3,7 @@
 #include "types/typedef_base.h"
 
 #include "utility/metadata_helpers.h"
+#include "utility/type_helpers.h"
 #include "type_writers.h"
 #include "versioning.h"
 
