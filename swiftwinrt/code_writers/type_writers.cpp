@@ -4,6 +4,7 @@
 
 #include "type_writers.h"
 #include "utility/separator.h"
+#include "utility/swift_codegen_utils.h"
 
 using namespace swiftwinrt;
 

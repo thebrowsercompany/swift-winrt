@@ -1,5 +1,6 @@
 #pragma once
-#include "../utility/metadata_helpers.h"
+#include "utility/metadata_helpers.h"
+#include "utility/swift_codegen_utils.h"
 #include "../type_writers.h"
 #include "type_writers.h"
 

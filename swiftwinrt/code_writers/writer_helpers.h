@@ -3,6 +3,7 @@
 #include "code_writers/type_writers.h"
 #include "code_writers/can_write.h"
 #include "utility/separator.h"
+#include "utility/swift_codegen_utils.h"
 #include "metadata_cache.h"
 namespace swiftwinrt
 {

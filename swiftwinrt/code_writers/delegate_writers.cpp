@@ -1,5 +1,6 @@
 #include "writer_helpers.h"
 #include "delegate_writers.h"
+#include "utility/swift_codegen_utils.h"
 
 namespace swiftwinrt
 {

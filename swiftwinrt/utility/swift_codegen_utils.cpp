@@ -1,13 +1,16 @@
 #include "pch.h"
 
+#include "utility/metadata_helpers.h"
 #include "utility/swift_codegen_utils.h"
 
 #include <algorithm>
 #include <set>
+#include <cctype>
 
 #include "settings.h"
 #include "types/typedef_base.h"
 #include "type_writers.h"
+#include "attributes.h"
 
 namespace swiftwinrt
 {
@@ -149,5 +152,239 @@ namespace swiftwinrt
     std::string get_full_swift_type_name(writer const& w, metadata_type const& type)
     {
         return get_full_swift_type_name(w, &type);
+    }
+
+    // Swift naming methods
+    std::string get_swift_name(interface_info const& iface)
+    {
+        if (iface.is_default && !iface.base)
+        {
+            return "_default";
+        }
+
+        auto name = std::string("_").append(iface.type->swift_type_name());
+        if (!iface.generic_params.empty())
+        {
+            name.erase(name.find_first_of('`'));
+        }
+
+        return name;
+    }
+
+    std::string get_swift_name(winmd::reader::MethodDef const& method)
+    {
+        if (get_category(method.Parent()) == category::delegate_type && method.Name() != ".ctor")
+        {
+            return "";
+        }
+        if (is_get_overload(method) || is_put_overload(method) || is_add_overload(method))
+        {
+            return to_camel_case(method.Name().substr(sizeof("get")));
+        }
+        if (is_remove_overload(method))
+        {
+            return to_camel_case(method.Name().substr(sizeof("remove")));
+        }
+
+        return to_camel_case(method.Name());
+    }
+
+    std::string get_swift_member_name(std::string_view name)
+    {
+        return to_camel_case(name);
+    }
+
+    std::string get_swift_name(winmd::reader::Property const& property)
+    {
+        return get_swift_member_name(property.Name());
+    }
+
+    std::string get_swift_name(winmd::reader::Event const& event)
+    {
+        return get_swift_member_name(event.Name());
+    }
+
+    std::string get_swift_name(winmd::reader::Field const& field)
+    {
+        return get_swift_member_name(field.Name());
+    }
+
+    std::string get_swift_name(winmd::reader::Param const& param)
+    {
+        return put_in_backticks_if_needed(std::string(param.Name()));
+    }
+
+    std::string local_swift_param_name(std::string const& param_name)
+    {
+        std::string local_name = "_";
+        if (param_name.starts_with('`'))
+        {
+            local_name.append(param_name.substr(1, param_name.size() - 2));
+        }
+        else
+        {
+            local_name.append(param_name);
+        }
+
+        return local_name;
+    }
+
+    std::string local_swift_param_name(std::string_view param_name)
+    {
+        return local_swift_param_name(std::string(param_name));
+    }
+
+    std::string local_swift_param_name(function_param const& param)
+    {
+        return local_swift_param_name(param.def.Name());
+    }
+
+    std::string get_swift_name(function_param const& param)
+    {
+        return get_swift_name(param.def);
+    }
+
+    std::string get_swift_name(function_return_type const& return_type)
+    {
+        return get_swift_member_name(return_type.name);
+    }
+
+    std::string get_swift_name(property_def const& property)
+    {
+        return get_swift_member_name(property.def.Name());
+    }
+
+    std::string get_swift_name(function_def const& function)
+    {
+        if (get_category(function.def.Parent()) == category::delegate_type && function.def.Name() != ".ctor")
+        {
+            return "handler";
+        }
+
+        return get_swift_member_name(function.def.Name());
+    }
+
+    std::string get_swift_name(struct_member const& member)
+    {
+        return get_swift_member_name(member.field.Name());
+    }
+
+    // ABI naming methods
+    std::string_view get_abi_name(winmd::reader::MethodDef const& method)
+    {
+        if (auto overload = get_attribute(method, metadata_namespace, "OverloadAttribute"))
+        {
+            return get_attribute_value<std::string_view>(overload, 0);
+        }
+
+        return method.Name();
+    }
+
+    std::string_view get_abi_name(function_def const& method)
+    {
+        return get_abi_name(method.def);
+    }
+
+    std::string_view get_abi_name(struct_member const& member)
+    {
+        return member.field.Name();
+    }
+
+    // String transformation methods
+    std::string to_camel_case(std::string_view name)
+    {
+        std::string result(name);
+        result[0] = static_cast<char>(tolower(result[0]));
+
+        if (result.size() > 1 && (isupper(result[1]) || isdigit(result[1])))
+        {
+            result[1] = static_cast<char>(tolower(result[1]));
+            std::size_t next = 2;
+            while (next < result.size() && (isupper(result[next]) || isdigit(result[next])))
+            {
+                result[next - 1] = static_cast<char>(tolower(result[next - 1]));
+                ++next;
+            }
+
+            if (next == result.size() && isupper(result[next - 1]))
+            {
+                result[next - 1] = static_cast<char>(tolower(result[next - 1]));
+            }
+        }
+
+        return put_in_backticks_if_needed(result);
+    }
+
+    // Backtick handling methods
+    std::string put_in_backticks_if_needed(std::string name)
+    {
+        static const std::set<std::string> keywords{
+            "as", "break", "case", "catch", "class", "continue", "default", "defer", "do",
+            "else", "enum", "extension", "fallthrough", "false", "for", "func", "if",
+            "import", "in", "internal", "is", "let", "nil", "private", "protocol",
+            "public", "repeat", "rethrows", "return", "self", "static", "struct",
+            "subscript", "super", "switch", "throw", "throws", "true", "try", "var",
+            "where", "while"
+        };
+
+        if (keywords.contains(name))
+        {
+            return "`" + name + "`";
+        }
+
+        return name;
+    }
+
+    std::string_view remove_backtick(std::string_view name)
+    {
+        auto backtick = name.find('`');
+        if (backtick != name.npos)
+        {
+            return name.substr(0, backtick);
+        }
+
+        return name;
+    }
+
+    // Wrapper-related methods
+    bool needs_wrapper(param_category category)
+    {
+        return category == param_category::object_type || category == param_category::generic_type;
+    }
+
+    // ABI/impl namespace methods
+    std::string internal_namepace(std::string prefix, std::string_view ns)
+    {
+        std::string internal_namespace;
+        internal_namespace.reserve(prefix.size() + ns.size());
+        internal_namespace += prefix;
+        internal_namespace += ns;
+        std::replace(internal_namespace.begin(), internal_namespace.end(), '.', '_');
+        return internal_namespace;
+    }
+
+    std::string abi_namespace(std::string_view ns)
+    {
+        return internal_namepace("__ABI_", ns);
+    }
+
+    std::string impl_namespace(std::string_view ns)
+    {
+        return internal_namepace("__IMPL_", ns);
+    }
+
+    std::string abi_namespace(winmd::reader::TypeDef const& type)
+    {
+        return abi_namespace(type.TypeNamespace());
+    }
+
+    std::string abi_namespace(metadata_type const& type)
+    {
+        return abi_namespace(type.swift_logical_namespace());
+    }
+
+    std::string abi_namespace(metadata_type const* type)
+    {
+        return abi_namespace(type->swift_logical_namespace());
     }
 }
