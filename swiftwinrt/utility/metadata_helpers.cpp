@@ -654,6 +654,11 @@ namespace swiftwinrt
         return type.swift_full_name();
     }
 
+    std::pair<std::string_view, std::string_view> get_type_namespace_and_name(metadata_type const& type)
+    {
+        return std::make_pair(type.swift_logical_namespace(), type.swift_type_name());
+    }
+
     bool is_struct_blittable(struct_type const& type)
     {
         for (auto&& member : type.members)

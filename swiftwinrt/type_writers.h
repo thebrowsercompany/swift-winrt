@@ -26,7 +26,6 @@ namespace swiftwinrt
 
     std::string get_swift_name(function_param const&);
 
-
     template <typename First, typename...Rest>
     auto get_impl_name(First const& first, Rest const&... rest)
     {

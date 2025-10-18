@@ -3,6 +3,7 @@
 #include "../type_writers.h"
 
 #include "type_writers.h"
+#include "utility/separator.h"
 
 using namespace swiftwinrt;
 
@@ -10,7 +11,6 @@ const write_type_params write_type_params::swift{ projection_layer::swift };
 const write_type_params write_type_params::c_abi{ projection_layer::c_abi };
 const write_type_params write_type_params::swift_allow_implicit_unwrap{ projection_layer::swift, true };
 const write_type_params write_type_params::swift_omit_generics{ projection_layer::swift, false, true };
-
 
 void write_swift_type_identifier_ex(writer& w, metadata_type const& type, bool existential, bool omit_generic_args);
 

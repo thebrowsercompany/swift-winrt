@@ -36,13 +36,26 @@ namespace swiftwinrt
         return static_cast<bool>(get_attribute(row, type_namespace, type_name));
     }
 
+    inline constexpr std::pair<std::string_view, std::string_view> decompose_type(std::string_view typeName) noexcept
+    {
+        auto pos = typeName.find('<');
+        pos = typeName.rfind('.', pos);
+        if (pos == std::string_view::npos)
+        {
+            // No namespace
+            XLANG_ASSERT(false);
+            return { std::string_view{}, typeName };
+        }
+
+        return { typeName.substr(0, pos), typeName.substr(pos + 1) };
+    }
+
     coded_index<TypeDefOrRef> get_default_interface(TypeDef const& type);
     bool is_exclusive(TypeDef const& type);
     bool is_default(InterfaceImpl const& ifaceImpl);
     bool is_default(TypeDef const& type);
     bool can_mark_internal(TypeDef const& type);
     coded_index<TypeDefOrRef> get_default_interface(TypeSig const& type);
-
 
     enum class param_category
     {

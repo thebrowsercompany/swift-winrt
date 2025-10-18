@@ -121,8 +121,19 @@ namespace swiftwinrt
 
     bool operator==(type_name const& left, type_name const& right);
     bool operator==(type_name const& left, std::string_view right);
-    std::string get_full_type_name(metadata_type const& type);
-    std::string get_full_type_name(metadata_type const* type);
+
+    template<typename T>
+    inline std::string get_full_type_name(T const& type)
+    {
+        type_name name(type);
+        std::string result;
+        result.reserve(name.name_space.length() + name.name.length() + 1);
+        result += name.name_space;
+        result += '.';
+        result += name.name;
+        return result;
+    }
+    std::pair<std::string_view, std::string_view> get_type_namespace_and_name(metadata_type const& type);
 
     bool is_exclusive(interface_type const& type);
     TypeDef find_type(coded_index<winmd::reader::TypeDefOrRef> type);
@@ -170,25 +181,6 @@ namespace swiftwinrt
     bool is_struct(metadata_type const& type);
     bool needs_wrapper(param_category category);
     bool is_overridable(metadata_type const& type);
-
-    struct separator
-    {
-        writer& w;
-        std::string s = ", ";
-        bool first{ true };
-
-        void operator()()
-        {
-            if (first)
-            {
-                first = false;
-            }
-            else
-            {
-                w.write(s);
-            }
-        }
-    };
 
     std::string_view get_abi_name(winmd::reader::MethodDef const& method);
     std::string_view get_abi_name(function_def const& method);
