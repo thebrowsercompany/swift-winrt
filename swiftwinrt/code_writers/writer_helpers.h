@@ -2,11 +2,10 @@
 #include "code_writers/common_writers.h"
 #include "code_writers/type_writers.h"
 #include "code_writers/can_write.h"
+#include "utility/separator.h"
 #include "metadata_cache.h"
 namespace swiftwinrt
 {
-
-
     static void write_guid_value(writer& w, std::vector<FixedArgSig> const& args)
     {
         using std::get;
@@ -62,9 +61,6 @@ namespace swiftwinrt
             iidHash[8], iidHash[9],
             iidHash[10], iidHash[11], iidHash[12], iidHash[13], iidHash[14], iidHash[15]);
     }
-
-
-
 
     static void write_array_size_name(writer& w, Param const& param)
     {

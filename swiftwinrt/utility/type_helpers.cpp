@@ -36,7 +36,7 @@ namespace swiftwinrt
 
     bool is_generic(TypeDef const& type) noexcept
     {
-        return type.GenericParam().First() != type.GenericParam().Last();
+        return distance(type.GenericParam()) != 0;
     }
 
     bool starts_with(std::string_view value, std::string_view match) noexcept

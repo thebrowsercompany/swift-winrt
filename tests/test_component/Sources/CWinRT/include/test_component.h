@@ -2541,13 +2541,13 @@ enum __x_ABI_Ctest__component_CUnsigned
 
 struct __x_ABI_Ctest__component_CBlittableStruct
     {
-        INT32 First;
+    INT32 First;
     INT32 Second;
 };
 
 struct __x_ABI_Ctest__component_CNonBlittableBoolStruct
     {
-        boolean First;
+    boolean First;
     boolean Second;
     boolean Third;
     boolean Fourth;
@@ -2555,7 +2555,7 @@ struct __x_ABI_Ctest__component_CNonBlittableBoolStruct
 
 struct __x_ABI_Ctest__component_CNonBlittableStruct
     {
-        HSTRING First;
+    HSTRING First;
     HSTRING Second;
     INT32 Third;
     HSTRING Fourth;
@@ -2563,17 +2563,17 @@ struct __x_ABI_Ctest__component_CNonBlittableStruct
 
 struct __x_ABI_Ctest__component_CSimpleEventArgs
     {
-        INT32 Value;
+    INT32 Value;
 };
 
 struct __x_ABI_Ctest__component_CStructWithEnum
     {
-        enum __x_ABI_Ctest__component_CSwiftifiableNames Names;
+    enum __x_ABI_Ctest__component_CSwiftifiableNames Names;
 };
 
 struct __x_ABI_Ctest__component_CStructWithIReference
     {
-        __x_ABI_C__FIReference_1_int* Value1;
+    __x_ABI_C__FIReference_1_int* Value1;
     __x_ABI_C__FIReference_1_int* Value2;
 };
 

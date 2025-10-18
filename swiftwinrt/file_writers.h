@@ -16,6 +16,7 @@ namespace swiftwinrt
     {
         write_scope_guard guard{ w };
 
+        indent i{};
         w.write("@_spi(WinRTInternal)\n");
         w.write("public enum % {\n", ns);
         guard.push("}\n");
