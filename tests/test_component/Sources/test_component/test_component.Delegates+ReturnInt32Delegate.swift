@@ -59,7 +59,6 @@ extension __ABI_test_component_Delegates {
         }
     )
 }
-@_spi(WinRTInternal)
 public extension WinRTDelegateBridge where CABI == __x_ABI_Ctest__component_CDelegates_CIReturnInt32Delegate {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component_Delegates.ReturnInt32DelegateVTable) { $0 }

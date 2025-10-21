@@ -1,6 +1,7 @@
 #include "generic_writers.h"
 
 #include "writer_helpers.h"
+#include "delegate_writers.h"
 #include "interface_writers.h"
 #include "utility/swift_codegen_utils.h"
 
@@ -87,7 +88,7 @@ namespace swiftwinrt
         if (!is_winrt_ireference(type))
         {
             auto generic_params = w.push_generic_params(type);
-            do_write_interface_abi(w, *type.generic_type(), type.functions);
+            write_interface_abi_body(w, *type.generic_type(), type.functions);
         }
     }
 
@@ -203,7 +204,7 @@ namespace swiftwinrt
         if (is_delegate(type))
         {
             auto delegate_method = type.functions[0];
-            do_write_delegate_implementation(w, type, delegate_method);
+            write_delegate_implementation_body(w, type, delegate_method);
         }
         else if (!is_winrt_ireference(type))
         {
