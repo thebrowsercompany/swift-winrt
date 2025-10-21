@@ -18,7 +18,7 @@ namespace swiftwinrt
         std::string component_name;
         bool component_prefix{};
         bool component_overwrite{};
-        bool file_per_type{};
+        bool file_per_category{};
         std::string component_lib;
         bool component_opt{};
         bool component_ignore_velocity{};

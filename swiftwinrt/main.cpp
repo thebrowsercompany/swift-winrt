@@ -103,7 +103,7 @@ Where <spec> is one or more of:
         settings.brackets = args.exists("brackets");
         settings.test = args.exists("test");
         settings.output_folder = args.value("output", ".");
-        settings.file_per_type = args.exists("file-per-type");
+        settings.file_per_category = args.exists("file-per-category");
 
         settings.support = args.value("support", "WindowsFoundation");
 

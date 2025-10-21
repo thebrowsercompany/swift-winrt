@@ -194,19 +194,19 @@ namespace swiftwinrt
         {
             if (!filter.includes(member.get().type())) continue;
 
-            if (!settings.file_per_type)
+            if (settings.file_per_category)
             {
                 w.write("// MARK: - %\n\n", member.get().swift_type_name());
             }
             write_namespace_class(w, ns, member.get());
 
-            if (settings.file_per_type)
+            if (!settings.file_per_category)
             {
                 write_preamble_and_save(w, member.get());
             }
         }
 
-        if (!settings.file_per_type)
+        if (settings.file_per_category)
         {
             write_preamble_and_save(w, "Classes");
         }
@@ -250,19 +250,19 @@ namespace swiftwinrt
             // Don't write exclusive interfaces here, those are handled by the class
             if (!filter.includes(member.get().type()) || is_exclusive(member)) continue;
 
-            if (!settings.file_per_type)
+            if (settings.file_per_category)
             {
                 w.write("// MARK: - %\n\n", member.get().swift_type_name());
             }
             write_namespace_interface(w, ns, member.get());
 
-            if (settings.file_per_type)
+            if (!settings.file_per_category)
             {
                 write_preamble_and_save(w, member.get());
             }
         }   
 
-        if (!settings.file_per_type)
+        if (settings.file_per_category)
         {
             write_preamble_and_save(w, "Interfaces");
         }
@@ -299,17 +299,17 @@ namespace swiftwinrt
         {
             if (!filter.includes(member.get().type())) continue;
         
-            if (!settings.file_per_type)
+            if (settings.file_per_category)
             {
                 w.write("// MARK: - %\n\n", member.get().swift_type_name());
             }
             write_namespace_struct(w, ns, member.get());
-            if (settings.file_per_type)
+            if (!settings.file_per_category)
             {
                 write_preamble_and_save(w, member.get());
             }
         }
-        if (!settings.file_per_type)
+        if (settings.file_per_category)
         {
             write_preamble_and_save(w, "Structs");
         }
@@ -344,18 +344,18 @@ namespace swiftwinrt
         for (auto&& member : members.delegates)
         {
             if (!filter.includes(member.get().type())) continue;
-            if (!settings.file_per_type)
+            if (settings.file_per_category)
             {
                 w.write("// MARK: - %\n\n", member.get().swift_type_name());
             }
             write_namespace_delegate(w, ns, member.get());
 
-            if (settings.file_per_type)
+            if (!settings.file_per_category)
             {
                 write_preamble_and_save(w, member.get());
             }
         }   
-        if (!settings.file_per_type)
+        if (settings.file_per_category)
         {
             write_preamble_and_save(w, "Delegates");
         }
@@ -381,19 +381,19 @@ namespace swiftwinrt
         for (auto&& member : members.enums)
         {
             if (!filter.includes(member.get().type())) continue;
-            if (!settings.file_per_type)
+            if (settings.file_per_category)
             {
                 w.write("// MARK: - %\n\n", member.get().swift_type_name());
             }
             write_namespace_enum(w, ns, member.get());
 
-            if (settings.file_per_type)
+            if (!settings.file_per_category)
             {
                 write_preamble_and_save(w, member.get());
             }
         }
 
-        if (!settings.file_per_type)
+        if (settings.file_per_category)
         {
             write_preamble_and_save(w, "Enums");
         }
