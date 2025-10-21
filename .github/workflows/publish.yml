@@ -27,7 +27,7 @@ jobs:
   publish-nkpg:
     name: Swift/WinRT Publish
     runs-on: windows-latest
-    needs: [release-and-publish]
+    needs: [release-build]
     if: github.event_name != 'schedule'
     permissions:
       contents: read
@@ -56,3 +56,4 @@ jobs:
           nuget setApiKey %GITHUB_TOKEN% -Source %NUGET_PUBLISH_URL%
 
           nuget push %GITHUB_WORKSPACE%\swift-winrt-nupkg\*.nupkg -Source %NUGET_SOURCE_NAME%
+
