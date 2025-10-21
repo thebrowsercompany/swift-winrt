@@ -127,51 +127,6 @@ namespace swiftwinrt
         w.end_declaration(m_mangled_name);
     }
 
-    void generic_inst::write_swift_declaration(writer& w) const
-    {
-        auto push_param_guard = w.push_generic_params(*this);
-        w.write("internal var %VTable: %Vtbl = .init(\n",
-            mangled_name(),
-            mangled_name());
-
-        const bool is_delegate_instance = generic_type()->category() == category::delegate_type;
-        {
-            auto indent = w.push_indent();
-            write_iunknown_methods(w, *this);
-            separator s{ w, ",\n\n" };
-
-            if (!is_delegate_instance)
-            {
-                write_iinspectable_methods(w, *this);
-                s();
-            }
-
-            for (auto&& method : functions)
-            {
-                s();
-                write_vtable_method(w, method, *this);
-            }
-        }
-
-        w.write(R"(
-)
-)");
-
-        if (is_winrt_ireference(*this))
-        {
-            w.write("typealias % = ReferenceWrapperBase<%>\n",
-                bind_wrapper_name(*this),
-                bind_bridge_fullname(*this));
-        }
-        else
-        {
-            w.write("typealias % = InterfaceWrapperBase<%>\n",
-                bind_wrapper_name(*this),
-                bind_bridge_fullname(*this));
-            return;
-        }
-    }
-
     void generic_inst::write_c_abi_param(writer& w) const
     {
         w.write("%*", m_mangled_name);

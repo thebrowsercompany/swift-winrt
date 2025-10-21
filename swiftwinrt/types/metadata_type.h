@@ -44,8 +44,6 @@ namespace swiftwinrt
         virtual void write_c_forward_declaration(writer& w) const = 0;
         virtual void write_c_abi_param(writer& w) const = 0;
 
-        virtual void write_swift_declaration(writer& w) const = 0;
-
         virtual bool is_experimental() const = 0;
 
         virtual std::optional<std::size_t> contract_index(std::string_view /*typeName*/, std::size_t /*version*/) const
