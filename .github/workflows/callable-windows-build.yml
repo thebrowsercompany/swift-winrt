@@ -21,7 +21,7 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-    name: Build and Test
+    name: Build & Test
     env:
       NUGET_PACKAGE_VERSION: ${{ inputs.nuget-version }}${{inputs.version_prerelease_identifier}}
     steps:
@@ -67,3 +67,4 @@ jobs:
         with:
           name: Nuget
           path: ${{ github.workspace }}\build\${{ inputs.config }}\*.nupkg
+
