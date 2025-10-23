@@ -1,6 +1,7 @@
 #include "generic_writers.h"
 
 #include "writer_helpers.h"
+#include "delegate_writers.h"
 #include "interface_writers.h"
 #include "utility/swift_codegen_utils.h"
 

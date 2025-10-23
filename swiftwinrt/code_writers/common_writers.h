@@ -377,4 +377,19 @@ namespace swiftwinrt
             }
         }
     }
+
+    static void write_query_interface_case(writer& w, interface_info const& iface)
+    {
+        w.write("case %.IID:\n", bind_wrapper_fullname(iface.type));
+        w.write("    let wrapper = %(self)\n", bind_wrapper_fullname(iface.type));
+        w.write("    return wrapper!.queryInterface(iid)\n");
+    }
+
+    static void write_iunknown_methods(writer& w, metadata_type const& type)
+    {
+        auto wrapper_name = w.write_temp("%", bind_wrapper_name(type));
+        w.write("QueryInterface: { %.queryInterface($0, $1, $2) },\n", wrapper_name);
+        w.write("AddRef: { %.addRef($0) },\n", wrapper_name);
+        w.write("Release: { %.release($0) },\n", wrapper_name);
+    }
 }

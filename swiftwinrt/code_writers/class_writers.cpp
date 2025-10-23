@@ -1,5 +1,6 @@
 #include "writer_helpers.h"
 #include "class_writers.h"
+#include "interface_writers.h"
 #include "utility/type_helpers.h"
 #include "utility/swift_codegen_utils.h"
 namespace swiftwinrt
@@ -314,6 +315,318 @@ override % func _getABI<T>() -> UnsafeMutablePointer<T>? {
 )", bind_type_mangled(info.type),
     abi_namespace(info.type),
     info.type->swift_type_name());
+        }
+    }
+
+    void write_overrides_vtable(writer& w, class_type const& type, interface_info const& overrides, std::vector<named_interface_info> const& other_interfaces)
+    {
+        w.write("internal typealias % = UnsealedWinRTClassWrapper<%.%>\n",
+            bind_wrapper_name(overrides.type),
+            bind_bridge_fullname(type),
+            overrides.type
+        );
+        w.write("internal static var %VTable: %Vtbl = .init(\n",
+            overrides.type,
+            bind_type_mangled(overrides.type));
+
+        {
+            auto indent = w.push_indent();
+            write_iunknown_methods(w, *overrides.type);
+            write_iinspectable_methods(w, overrides.type, other_interfaces, true);
+
+            separator s{ w, ",\n\n" };
+            s(); // get first separator out of the way for no-op
+
+            if (auto iface = dynamic_cast<const interface_type*>(overrides.type))
+            {
+                for (const auto& method : iface->functions)
+                {
+                    if (method.def.Name() != ".ctor")
+                    {
+                        s();
+                        write_vtable_method(w, method, *iface);
+                    }
+                }
+            }
+
+        }
+
+        w.write(R"(
+)
+)");
+    }
+
+    void write_factory_constructors(writer& w, attributed_type const& factory, class_type const& type, metadata_type const& default_interface)
+    {
+        if (auto factoryIface = dynamic_cast<const interface_type*>(factory.type))
+        {
+            interface_info factory_info{ factoryIface };
+            auto swift_name = get_swift_name(factory_info);
+            w.write("private static let %: %.% = try! RoGetActivationFactory(\"%\")\n",
+                swift_name, abi_namespace(factoryIface), factory.type, get_full_type_name(type));
+            for (const auto& method : factoryIface->functions)
+            {
+                if (!can_write(w, method)) continue;
+
+                auto baseHasMatchingConstructor = base_has_matching_constructor(type, factory, method);
+                w.write("%public init(%) {\n",
+                    baseHasMatchingConstructor ? "override " : "",
+                    bind<write_function_params>(method, write_type_params::swift_allow_implicit_unwrap));
+                {
+                    auto indent = w.push_indent();
+                    write_factory_body(w, method, factory_info, type, default_interface);
+                }
+                w.write("}\n\n");
+            }
+        }
+        else
+        {
+            auto base_class = type.base_class;
+
+            w.write("private static let _defaultFactory: %.IActivationFactory = try! RoGetActivationFactory(\"%\")\n",
+                w.support, get_full_type_name(type));
+            w.write("%public init() {\n", has_default_constructor(base_class) ? "override " : "");
+            {
+                auto indent = w.push_indent();
+                auto activateInstance = "try! Self._defaultFactory.ActivateInstance()";
+                if (base_class)
+                {
+                    w.write("super.init(fromAbi: %)\n", activateInstance);
+                }
+                else
+                {
+                    w.write("super.init(%)\n", activateInstance);
+                }
+            }
+            w.write("}\n\n");
+        }
+    }
+
+    // every composable type needs a special composing constructor to help satisfy swift type initializer
+    // requirements. this constructor is marked as SPI so that it doesn't show up to normal developers
+    // when they are building.
+    static void write_internal_composable_constructor(writer& w, class_type const& type)
+    {
+        if (type.base_class)
+        {
+            w.write(R"(^@_spi(WinRTInternal)
+override public init<Composable: ComposableImpl>(
+    composing: Composable.Type,
+    _ createCallback: (UnsealedWinRTClassWrapper<Composable>?, inout %.IInspectable?) -> Composable.Default.SwiftABI)
+{
+    super.init(composing: composing, createCallback)
+}
+)", w.support);
+        }
+        else
+        {
+            w.write(R"(^@_spi(WinRTInternal)
+public init<Composable: ComposableImpl>(
+    composing: Composable.Type,
+    _ createCallback: (UnsealedWinRTClassWrapper<Composable>?, inout %.IInspectable?) -> Composable.Default.SwiftABI)
+{
+    super.init()
+    MakeComposed(composing: composing, (self as! Composable.Class), createCallback)
+}
+)", w.support);
+        }
+    }
+
+    void write_composable_constructor(writer& w, attributed_type const& factory, class_type const& type)
+    {
+        if (auto factoryIface = dynamic_cast<const interface_type*>(factory.type))
+        {
+            w.write("private static var _% : %.% =  try! RoGetActivationFactory(\"%\")\n\n",
+                    factory.type,
+                    abi_namespace(factoryIface),
+                    factory.type,
+                    get_full_type_name(type));
+
+            interface_info factory_info{ factoryIface };
+            for (const auto& method : factoryIface->functions)
+            {
+                if (!can_write(w, method)) continue;
+
+                auto baseHasMatchingConstructor = base_has_matching_constructor(type, factory, method);
+
+                std::vector<function_param> params = get_projected_params(factory, method);
+
+                w.write("%public init(%) {\n", baseHasMatchingConstructor ? "override " : "", bind<write_function_params2>(params, write_type_params::swift_allow_implicit_unwrap));
+                {
+                    auto indent = w.push_indent();
+                    std::string_view func_name = get_abi_name(method);
+
+                    auto return_name = method.return_type.value().name;
+                    {
+                        if (type.base_class)
+                        {
+                            w.write("super.init(composing: %.Composable.self) { baseInterface, innerInterface in \n", bind_bridge_name(type));
+                        }
+                        else
+                        {
+                            w.write("super.init()\n");
+                            w.write("MakeComposed(composing: %.Composable.self, self) { baseInterface, innerInterface in \n", bind_bridge_name(type));
+                        }
+                        w.write("    try! Self.%.%(%)\n",
+                            get_swift_name(factory_info),
+                            func_name,
+                            bind<write_implementation_args>(method));
+                        w.write("}\n");
+                    }
+                }
+                w.write("}\n\n");
+            }
+        }
+    }
+
+    void write_default_constructor_declarations(writer& w, class_type const& type, metadata_type const& default_interface)
+    {
+        auto base_class = type.base_class;
+        w.write("@_spi(WinRTInternal)\n");
+        w.write("%public init(fromAbi: %.IInspectable) {\n",
+            base_class ? "override " : "",
+            w.support);
+        {
+            auto indent = w.push_indent();
+            if (base_class)
+            {
+                w.write("super.init(fromAbi: fromAbi)\n");
+            }
+            else
+            {
+                w.write("super.init(fromAbi)\n");
+            }
+        }
+        w.write("}\n\n");
+
+        if (type.is_composable())
+        {
+            write_internal_composable_constructor(w, type);
+        }
+    }
+
+    void write_statics_body(writer& w, function_def const& method, metadata_type const& statics)
+    {
+        std::string_view func_name = get_abi_name(method);
+
+        if (method.return_type)
+        {
+            w.write("return ");
+        }
+        w.write("try _%.%(%)\n",
+            statics.swift_type_name(),
+            func_name,
+            bind<write_implementation_args>(method));
+    }
+
+    void write_static_members(writer& w, attributed_type const& statics, class_type const& type)
+    {
+        if (auto ifaceType = dynamic_cast<const interface_type*>(statics.type))
+        {
+            interface_info static_info{ statics.type };
+            static_info.attributed = true;
+
+            auto impl_name = get_swift_name(static_info);
+            w.write("private static let %: %.% = try! RoGetActivationFactory(\"%\")\n",
+                impl_name,
+                abi_namespace(statics.type),
+                statics.type->swift_type_name(),
+                get_full_type_name(type));
+
+            for (const auto& method : ifaceType->functions)
+            {
+                if (!can_write(w, method))
+                {
+                    continue;
+                }
+
+                write_documentation_comment(w, type, method.def.Name());
+                w.write("%func %(%) throws% {\n",
+                    modifier_for(type, statics, method),
+                    get_swift_name(method),
+                    bind<write_function_params>(method, write_type_params::swift_allow_implicit_unwrap),
+                    bind<write_return_type_declaration>(method, write_type_params::swift_allow_implicit_unwrap));
+                {
+                    auto indent = w.push_indent();
+                    write_statics_body(w, method, *statics.type);
+                }
+                w.write("}\n\n");
+            }
+
+            for (const auto& static_prop : ifaceType->properties)
+            {
+                write_class_impl_property(w, static_prop, static_info, type);
+            }
+
+            for (const auto& event : ifaceType->events)
+            {
+                write_class_impl_event(w, event, static_info, type);
+            }
+        }
+    }
+
+    void write_composable_impl(writer& w, class_type const& parent, metadata_type const& overrides, bool compose)
+    {
+        auto default_interface = parent.default_interface;
+        if (!default_interface)
+        {
+            throw_invalid("Could not find default interface for %s\n", parent.swift_type_name().data());
+        }
+
+        bool use_iinspectable_vtable = type_name(overrides) == type_name(*default_interface);
+
+        auto format = R"(public enum % : ComposableImpl {
+    public typealias CABI = %
+    public typealias SwiftABI = %
+    public typealias Class = %
+    public typealias SwiftProjection = WinRTClassWeakReference<Class>
+    public enum Default : AbiInterface {
+        public typealias CABI = %
+        public typealias SwiftABI = %
+    }
+}
+)";
+
+        auto composableName = w.write_temp("%", bind_type_abi(overrides));
+        // If we're composing a type without any overrides, then we'll just create an IInspectable vtable which wraps
+        // this object and provides facilities for reference counting and getting the class name of the swift object.
+        w.write(format,
+            composableName,
+            bind([&](writer& w) {
+                if (use_iinspectable_vtable)
+                {
+                    write_type_mangled(w, ElementType::Object);
+                }
+                else
+                {
+                    write_type_mangled(w, overrides);
+                }}),
+            bind([&](writer& w) {
+                if (use_iinspectable_vtable)
+                {
+                    w.write("%.IInspectable", w.support);
+                }
+                else
+                {
+                    w.write("%.%", abi_namespace(overrides), composableName);
+                }}),
+            parent,
+            bind_type_mangled(default_interface),
+            bind([&](writer& w) {
+                if (is_generic_inst(overrides))
+                {
+                    w.write("%.%", w.swift_module, composableName);
+                }
+                else
+                {
+                    w.write("%.%", abi_namespace(parent), default_interface);
+                }
+            }));
+
+        if (compose)
+        {
+            w.write("@_spi(WinRTInternal)\n");
+            w.write("public typealias Composable = %\n", composableName);
         }
     }
 }
