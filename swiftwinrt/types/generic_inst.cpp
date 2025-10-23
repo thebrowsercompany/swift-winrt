@@ -5,7 +5,7 @@
 #include "abi_writer.h"
 #include "code_writers/common_writers.h"
 #include "code_writers/writer_helpers.h"
-#include "helpers.h"
+#include "utility/metadata_helpers.h"
 #include "types/class_type.h"
 #include "types/delegate_type.h"
 #include "types/interface_type.h"

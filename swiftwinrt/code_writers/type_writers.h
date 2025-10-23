@@ -4,8 +4,8 @@
 
 #pragma once
 
-#include "type_helpers.h"
-#include "../helpers.h"
+#include "utility/type_helpers.h"
+#include "../utility/metadata_helpers.h"
 
 namespace swiftwinrt
 {

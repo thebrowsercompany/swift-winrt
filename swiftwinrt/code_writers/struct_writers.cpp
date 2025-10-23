@@ -2,9 +2,11 @@
 #include "common_writers.h"
 #include "type_writers.h"
 #include "types.h"
-#include "common.h"
+#include "utility/swift_codegen_utils.h"
 #include "can_write.h"
 #include "struct_writers.h"
+#include "utility/separator.h"
+
 namespace swiftwinrt
 {
     void write_struct_initializer_params(writer & w, struct_type const& type)

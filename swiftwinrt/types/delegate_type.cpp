@@ -3,7 +3,7 @@
 #include "types/delegate_type.h"
 
 #include "abi_writer.h"
-#include "helpers.h"
+#include "utility/metadata_helpers.h"
 #include "type_writers.h"
 #include "types/class_type.h"
 #include "types/generic_inst.h"
