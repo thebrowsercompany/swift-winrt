@@ -5,7 +5,7 @@
 #include "utility/metadata_helpers.h"
 #include "utility/type_helpers.h"
 #include "type_writers.h"
-#include "versioning.h"
+#include "utility/versioning.h"
 
 using namespace std::literals;
 using namespace winmd::reader;

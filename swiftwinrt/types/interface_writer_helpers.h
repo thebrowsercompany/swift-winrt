@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "abi_writer.h"
-#include "attributes.h"
+#include "utility/attributes.h"
 #include "utility/type_helpers.h"
 #include "types/class_type.h"
 #include "types/delegate_type.h"

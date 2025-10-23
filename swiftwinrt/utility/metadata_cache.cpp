@@ -8,7 +8,7 @@
 #include "task_group.h"
 #include "utility/metadata_helpers.h"
 #include "utility/type_helpers.h"
-#include "versioning.h"
+#include "utility/versioning.h"
 using namespace std::literals;
 using namespace winmd::reader;
 using namespace swiftwinrt;

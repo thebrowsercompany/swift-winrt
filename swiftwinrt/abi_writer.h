@@ -5,10 +5,9 @@
 #include <cctype>
 #include <cstring>
 
-#include "settings.h"
+#include "utility/settings.h"
 #include "type_writers.h"
-#include "metadata_cache.h"
-#include "settings.h"
+#include "utility/metadata_cache.h"
 #include "utility/swift_codegen_utils.h"
 #include "utility/metadata_helpers.h"
 

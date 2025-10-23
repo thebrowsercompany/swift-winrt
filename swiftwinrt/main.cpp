@@ -5,17 +5,17 @@
 #pragma warning(push)
 #pragma warning (disable: 4505)
 #include <ctime>
-#include "settings.h"
+#include "utility/metadata_cache.h"
+#include "utility/metadata_filter.h"
+#include "utility/metadata_helpers.h"
 #include "utility/type_helpers.h"
+#include "utility/settings.h"
+#include "utility/swift_codegen_utils.h"
+#include "utility/versioning.h"
 #include "types.h"
 #include "type_writers.h"
-#include "utility/metadata_helpers.h"
-#include "versioning.h"
-#include "utility/swift_codegen_utils.h"
 #include "code_writers.h"
 #include "abi_writer.h"
-#include "metadata_cache.h"
-#include "metadata_filter.h"
 #include "file_writers.h"
 #pragma warning(pop)
 

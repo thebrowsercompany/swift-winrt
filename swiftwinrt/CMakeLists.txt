@@ -48,7 +48,8 @@ add_executable(swiftwinrt "")
 target_sources(swiftwinrt PUBLIC
     main.cpp
     pch.cpp
-    metadata_cache.cpp
+    utility/metadata_cache.cpp
+    utility/metadata_filter.cpp
     utility/metadata_helpers.cpp
     utility/type_helpers.cpp
     utility/swift_codegen_utils.cpp
@@ -63,7 +64,6 @@ target_sources(swiftwinrt PUBLIC
     types/struct_type.cpp
     types/system_type.cpp
     types/typedef_base.cpp
-    metadata_filter.cpp
     code_writers/enum_writers.cpp
     code_writers/interface_writers.cpp
     code_writers/delegate_writers.cpp

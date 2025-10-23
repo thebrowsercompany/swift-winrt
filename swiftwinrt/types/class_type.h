@@ -8,7 +8,7 @@
 #include "types/attributed_type.h"
 #include "types/interface_info.h"
 #include "types/typedef_base.h"
-#include "versioning.h"
+#include "utility/versioning.h"
 
 namespace swiftwinrt
 {
