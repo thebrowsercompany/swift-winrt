@@ -1,3 +1,4 @@
+#include "interface_writers.h"
 #include "writer_helpers.h"
 #include "delegate_writers.h"
 #include "utility/swift_codegen_utils.h"
@@ -29,10 +30,11 @@ namespace swiftwinrt
     void write_delegate_abi(writer& w, delegate_type const& type)
     {
         if (type.is_generic()) return;
-        w.write("// MARK - %\n", type);
+        w.write("@_spi(WinRTInternal)\n");
         w.write("extension % {\n", abi_namespace(w.type_namespace));
         {
             auto guard(w.push_indent());
+            write_guid(w, type);
             do_write_interface_abi(w, type, type.functions);
 
             write_delegate_wrapper(w, type);

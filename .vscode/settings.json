@@ -37,6 +37,7 @@
         "xiosbase": "cpp",
         "coroutine": "cpp",
         "resumable": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "chrono": "cpp"
     }
 }

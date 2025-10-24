@@ -16,9 +16,8 @@ namespace swiftwinrt
     {
         write_scope_guard guard{ w };
 
-        indent i{};
         w.write("@_spi(WinRTInternal)\n");
-        w.write("public enum % {\n", ns);
+        w.write("extension % {\n", ns);
         guard.push("}\n");
 
         auto indent_guard = w.push_indent({1});
@@ -93,6 +92,8 @@ namespace swiftwinrt
         }
     }
 
+    // All write_namespace_abi does is define the abi enum so that all other usages can be extensions to that type. This is
+    // a temporary measure until we remove this naming scheme entirely.
     static void write_namespace_abi(std::string_view const& ns, type_cache const& members, include_only_used_filter const& filter)
     {
         writer w;
@@ -103,29 +104,83 @@ namespace swiftwinrt
         w.c_mod = settings.get_c_module_name();
         w.cache = members.cache;
 
-        w.write("%", w.filter.bind_each<write_guid>(members.interfaces));
-        w.write("%", w.filter.bind_each<write_guid>(members.delegates));
-
-        {
-            auto abi_ns = abi_namespace(ns);
-            auto [namespace_guard, indent_guard] = push_internal_namespace(abi_ns, w);
-            w.write("%", w.filter.bind_each<write_interface_abi>(members.interfaces));
-            w.write("%", w.filter.bind_each<write_struct_abi>(members.structs));
-            w.write("%", w.filter.bind_each<write_class_abi>(members.classes));
-        }
-
-        w.write("%", w.filter.bind_each<write_struct_init_extension>(members.structs));
-        w.write("%", w.filter.bind_each<write_composable_impl_extension>(members.classes));
-        w.write("%", w.filter.bind_each<write_delegate_abi>(members.delegates));
-
+        w.write("@_spi(WinRTInternal)\n");
+        w.write("public enum % {}\n", abi_namespace(ns));
         w.swap();
         write_preamble(w, /* swift_code: */ true);
-
 
         w.save_file("ABI");
     }
 
-    static void write_namespace_wrapper(std::string_view const& ns, type_cache const& members, include_only_used_filter const& filter)
+    static void write_preamble_and_save(writer& w, typedef_base const& type)
+    {
+        // Empty writer may mean no types in the namespace or they were filtered out. 
+        if (w.empty()) return;
+
+        w.swap();
+        write_preamble(w, /* swift_code: */ true);
+
+        w.save_file(remove_backtick(type.swift_type_name()));
+    }
+
+
+    static void write_preamble_and_save(writer& w, std::string_view const& extension)
+    {
+        // Empty writer may mean no types in the namespace or they were filtered out. Either way,
+        // don't write an empty file
+        if (w.empty()) return;
+
+        w.swap();
+        write_preamble(w, /* swift_code: */ true);
+
+        w.save_file(extension);
+    }
+
+    static void write_namespace_class(writer& w, std::string_view const& ns, class_type const& type)
+    {
+        write_class(w, type);
+
+        w.write("// MARK: - % Internals\n\n", type.swift_type_name());
+
+        if (type.default_interface)
+        {
+            auto impl_ns = impl_namespace(ns);
+            auto impl_guard = push_internal_namespace(impl_ns, w);
+            auto impl_names = w.push_impl_names(true);
+            write_class_bridge(w, type);
+        }
+        write_make_from_abi(w, type);
+
+        {
+            auto abi_ns = abi_namespace(ns);
+            auto [namespace_guard, indent_guard] = push_internal_namespace(abi_ns, w);
+            write_class_abi(w, type);
+
+            for (const auto& [interface_name, info] : type.required_interfaces)
+            {
+                auto iface = dynamic_cast<interface_type const*>(info.type);
+                if (iface && is_exclusive(*iface) && !info.base)
+                {
+                    write_guid(w, *iface);
+                    write_interface_abi(w, *iface);
+                }
+            }
+
+            for (const auto& [interface_name, info] : type.factories)
+            {
+                auto iface = dynamic_cast<interface_type const*>(info.type);
+                if (iface && is_exclusive(*iface))
+                {
+                    write_guid(w, *iface);
+                    write_interface_abi(w, *iface);
+                }
+            }
+        }
+
+        write_composable_impl_extension(w, type);
+    }
+
+    static void write_namespace_classes(std::string_view const& ns, type_cache const& members, include_only_used_filter const& filter)
     {
         writer w;
         w.filter = filter;
@@ -135,21 +190,217 @@ namespace swiftwinrt
         w.swift_module = get_swift_module(ns);
         w.cache = members.cache;
 
-        w.write("%", w.filter.bind_each<write_enum_def>(members.enums));
-        w.write("%", w.filter.bind_each<write_class>(members.classes));
-        w.write("%", w.filter.bind_each<write_delegate>(members.delegates));
-        w.write("%", w.filter.bind_each<write_struct>(members.structs));
-        w.write("%", w.filter.bind_each<write_interface_proto>(members.interfaces));
+        for (auto&& member : members.classes)
+        {
+            if (!filter.includes(member.get().type())) continue;
 
-        w.write("%", w.filter.bind_each<write_enum_extension>(members.enums));
+            if (settings.file_per_category)
+            {
+                w.write("// MARK: - %\n\n", member.get().swift_type_name());
+            }
+            write_namespace_class(w, ns, member.get());
 
-        w.swap();
-        write_preamble(w, /* swift_code: */ true);
+            if (!settings.file_per_category)
+            {
+                write_preamble_and_save(w, member.get());
+            }
+        }
 
-        w.save_file();
-
+        if (settings.file_per_category)
+        {
+            write_preamble_and_save(w, "Classes");
+        }
     }
 
+    static void write_namespace_interface(writer& w, std::string_view const& ns, interface_type const& type)
+    {
+        write_interface_proto(w, type);
+
+        w.write("// MARK: - % Internals\n\n", remove_backtick(type.swift_type_name()));
+
+        {
+            auto impl_ns = impl_namespace(ns);
+            auto impl_guard = push_internal_namespace(impl_ns, w);
+            auto impl_names = w.push_impl_names(true);
+            write_interface_impl(w, type);
+        }
+
+        {
+            auto abi_ns = abi_namespace(ns);
+            auto [namespace_guard, indent_guard] = push_internal_namespace(abi_ns, w);
+            write_guid(w, type);
+            write_interface_abi(w, type);
+        }
+
+        write_make_from_abi(w, type);
+    }
+
+    static void write_namespace_interfaces(std::string_view const& ns, type_cache const& members, include_only_used_filter const& filter)
+    {
+        writer w;
+        w.filter = filter;
+        w.support = settings.support;
+        w.c_mod = settings.get_c_module_name();
+        w.type_namespace = ns;
+        w.swift_module = get_swift_module(ns);
+        w.cache = members.cache;
+
+        for (auto&& member : members.interfaces)
+        {
+            // Don't write exclusive interfaces here, those are handled by the class
+            if (!filter.includes(member.get().type()) || is_exclusive(member)) continue;
+
+            if (settings.file_per_category)
+            {
+                w.write("// MARK: - %\n\n", member.get().swift_type_name());
+            }
+            write_namespace_interface(w, ns, member.get());
+
+            if (!settings.file_per_category)
+            {
+                write_preamble_and_save(w, member.get());
+            }
+        }   
+
+        if (settings.file_per_category)
+        {
+            write_preamble_and_save(w, "Interfaces");
+        }
+    }
+
+    static void write_namespace_struct(writer& w, std::string_view const& ns, struct_type const& type)
+    {
+        write_struct(w, type);
+
+        w.write("// MARK: - % Internals\n\n", type.swift_type_name());
+
+        write_struct_bridgeable(w, type);
+
+        if (!is_struct_blittable(type))
+        {
+            auto abi_ns = abi_namespace(ns);
+            auto [namespace_guard, indent_guard] = push_internal_namespace(abi_ns, w);
+            write_struct_abi(w, type);
+        }
+
+        write_struct_init_extension(w, type);
+    }
+
+    static void write_namespace_structs(std::string_view const& ns, type_cache const& members, include_only_used_filter const& filter)
+    {
+        writer w;
+        w.filter = filter;
+        w.support = settings.support;
+        w.c_mod = settings.get_c_module_name();
+        w.type_namespace = ns;
+        w.swift_module = get_swift_module(ns);
+        w.cache = members.cache; 
+        for (auto&& member : members.structs)
+        {
+            if (!filter.includes(member.get().type())) continue;
+        
+            if (settings.file_per_category)
+            {
+                w.write("// MARK: - %\n\n", member.get().swift_type_name());
+            }
+            write_namespace_struct(w, ns, member.get());
+            if (!settings.file_per_category)
+            {
+                write_preamble_and_save(w, member.get());
+            }
+        }
+        if (settings.file_per_category)
+        {
+            write_preamble_and_save(w, "Structs");
+        }
+    }
+
+    static void write_namespace_delegate(writer& w, std::string_view const& ns, delegate_type const& type)
+    {
+        write_delegate(w, type);
+        w.write("\n// MARK: - % Internals\n\n", type.swift_type_name());
+
+        if (!type.is_generic())
+        {
+            auto impl_ns = impl_namespace(ns);
+            auto impl_guard = push_internal_namespace(impl_ns, w);
+            auto impl_names = w.push_impl_names(true);
+            write_delegate_implementation(w, type);
+        }
+
+        write_delegate_abi(w, type);
+    }
+
+    static void write_namespace_delegates(std::string_view const& ns, type_cache const& members, include_only_used_filter const& filter)
+    {
+        writer w;
+        w.filter = filter;
+        w.support = settings.support;
+        w.c_mod = settings.get_c_module_name();
+        w.type_namespace = ns;
+        w.swift_module = get_swift_module(ns);
+        w.cache = members.cache;
+
+        for (auto&& member : members.delegates)
+        {
+            if (!filter.includes(member.get().type())) continue;
+            if (settings.file_per_category)
+            {
+                w.write("// MARK: - %\n\n", member.get().swift_type_name());
+            }
+            write_namespace_delegate(w, ns, member.get());
+
+            if (!settings.file_per_category)
+            {
+                write_preamble_and_save(w, member.get());
+            }
+        }   
+        if (settings.file_per_category)
+        {
+            write_preamble_and_save(w, "Delegates");
+        }
+    }
+
+    static void write_namespace_enum(writer& w, std::string_view const& ns, enum_type const& type)
+    {
+        write_enum_def(w, type);
+        w.write("\n");
+        write_enum_extension(w, type);
+    }
+
+    static void write_namespace_enums(std::string_view const& ns, type_cache const& members, include_only_used_filter const& filter)
+    {
+        writer w;
+        w.filter = filter;
+        w.support = settings.support;
+        w.c_mod = settings.get_c_module_name();
+        w.type_namespace = ns;
+        w.swift_module = get_swift_module(ns);
+        w.cache = members.cache;
+
+        for (auto&& member : members.enums)
+        {
+            if (!filter.includes(member.get().type())) continue;
+            if (settings.file_per_category)
+            {
+                w.write("// MARK: - %\n\n", member.get().swift_type_name());
+            }
+            write_namespace_enum(w, ns, member.get());
+
+            if (!settings.file_per_category)
+            {
+                write_preamble_and_save(w, member.get());
+            }
+        }
+
+        if (settings.file_per_category)
+        {
+            write_preamble_and_save(w, "Enums");
+        }
+    }
+
+    // All write_namespace_impl does is define the impl enum so that all other usages can be extensions to that type. This is
+    // a temporary measure until we remove this naming scheme entirely.
     static void write_namespace_impl(std::string_view const& ns, type_cache const& members, include_only_used_filter const& filter)
     {
         writer w;
@@ -160,21 +411,8 @@ namespace swiftwinrt
         w.swift_module = get_swift_module(ns);
         w.cache = members.cache;
 
-        {
-            auto impl_ns = impl_namespace(ns);
-            auto impl_guard = push_internal_namespace(impl_ns, w);
-            auto impl_names = w.push_impl_names(true);
-            w.write("%", w.filter.bind_each<write_interface_impl>(members.interfaces));
-            w.write("%", w.filter.bind_each<write_delegate_implementation>(members.delegates));
-            w.write("%", w.filter.bind_each<write_class_bridge>(members.classes));
-        }
-
-        w.write("%", w.filter.bind_each<write_struct_bridgeable>(members.structs));
-
-        // MakeFromAbi has to be in impl file (or main file) otherwise they get stripped away
-        w.write("%", w.filter.bind_each<write_make_from_abi>(members.interfaces));
-        w.write("%", w.filter.bind_each<write_make_from_abi>(members.classes));
-
+        w.write("@_spi(WinRTInternal)\n");
+        w.write("public enum % {}\n", impl_namespace(ns));
         w.swap();
         write_preamble(w, /* swift_code: */ true);
 

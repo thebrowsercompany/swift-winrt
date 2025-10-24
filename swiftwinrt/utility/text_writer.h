@@ -151,6 +151,10 @@ namespace swiftwinrt
             }
         }
 
+        bool empty() noexcept
+        {
+            return m_first.empty();
+        }
 
         void swap() noexcept
         {
