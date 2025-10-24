@@ -60,8 +60,6 @@ namespace swiftwinrt
         void append_signature(sha1& hash) const override;
         void write_c_forward_declaration(writer& w) const override;
         void write_c_abi_param(writer& w) const override;
-        void write_swift_declaration(writer& w) const override;
-
         bool is_experimental() const override;
 
         typedef_base const* generic_type() const noexcept

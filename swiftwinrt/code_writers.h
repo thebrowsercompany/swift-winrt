@@ -4,3 +4,4 @@
 #include "code_writers/delegate_writers.h"
 #include "code_writers/class_writers.h"
 #include "code_writers/struct_writers.h"
+#include "code_writers/generic_writers.h"

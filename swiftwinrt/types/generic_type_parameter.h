@@ -70,10 +70,6 @@ namespace swiftwinrt
             return false;
         }
 
-        void write_swift_declaration(writer&) const override
-        {
-        }
-
     private:
         std::string_view m_param_name;
     };

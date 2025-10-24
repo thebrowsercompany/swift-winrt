@@ -70,10 +70,6 @@ namespace swiftwinrt
 
         void write_c_abi_param(writer& w) const override;
 
-        void write_swift_declaration(writer&) const override
-        {
-        }
-
         bool is_experimental() const override
         {
             return false;

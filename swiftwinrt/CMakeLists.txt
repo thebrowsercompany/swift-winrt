@@ -66,6 +66,7 @@ target_sources(swiftwinrt PUBLIC
     types/typedef_base.cpp
     code_writers/enum_writers.cpp
     code_writers/interface_writers.cpp
+    code_writers/generic_writers.cpp
     code_writers/delegate_writers.cpp
     code_writers/class_writers.cpp
     code_writers/type_writers.cpp
