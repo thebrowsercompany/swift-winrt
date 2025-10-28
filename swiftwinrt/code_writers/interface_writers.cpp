@@ -29,36 +29,6 @@ namespace swiftwinrt
             bind<write_guid_comment>(guid));
     }
 
-    void write_guid_generic(writer& w, generic_inst const& type)
-    {
-        auto abi_guard = w.push_mangled_names(true);
-
-        static constexpr std::uint8_t namespaceGuidBytes[] =
-        {
-            0x11, 0xf4, 0x7a, 0xd5,
-            0x7b, 0x73,
-            0x42, 0xc0,
-            0xab, 0xae, 0x87, 0x8b, 0x1e, 0x16, 0xad, 0xee
-        };
-        sha1 signatureHash;
-        signatureHash.append(namespaceGuidBytes, std::size(namespaceGuidBytes));
-        type.append_signature(signatureHash);
-        auto iidHash = signatureHash.finalize();
-        iidHash[6] = (iidHash[6] & 0x0F) | 0x50;
-        iidHash[8] = (iidHash[8] & 0x3F) | 0x80;
-        auto format = R"(private var IID_%: %.IID {
-    .init(%)// %
-}
-
-)";
-
-        w.write(format,
-            type.mangled_name(),
-            w.support,
-            bind<write_guid_value_hash>(iidHash),
-            bind<write_guid_comment_hash>(iidHash));
-    }
-
     void write_interface_abi(writer& w, interface_type const& type)
     {
         // Don't write generic interfaces defintions at the ABI layer, we need an actual
@@ -426,41 +396,4 @@ public class %Maker: MakeFromAbi {
         }
     }
 
-    void write_interface_generic(writer& w, generic_inst const& type)
-    {
-        type.write_swift_declaration(w);
-
-        if (!is_winrt_ireference(type))
-        {
-            auto generic_params = w.push_generic_params(type);
-            do_write_interface_abi(w, *type.generic_type(), type.functions);
-        }
-    }
-
-    void write_generic_extension(writer& w, generic_inst const& inst)
-    {
-        if (is_winrt_ireference(inst))
-        {
-            write_ireference_init_extension(w, inst);
-        }
-        else if (is_delegate(inst))
-        {
-            auto guard{ w.push_generic_params(inst) };
-            write_delegate_extension(w, inst, inst.functions[0]);
-        }
-    }
-
-    void write_generic_implementation(writer& w, generic_inst const& type)
-    {
-        auto generics_guard = w.push_generic_params(type);
-        if (is_delegate(type))
-        {
-            auto delegate_method = type.functions[0];
-            do_write_delegate_implementation(w, type, delegate_method);
-        }
-        else if (!is_winrt_ireference(type))
-        {
-            write_generic_interface_implementation(w, type);
-        }
-    }
 }

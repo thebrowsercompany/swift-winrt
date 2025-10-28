@@ -72,10 +72,6 @@ namespace swiftwinrt
             return get_category(m_type);
         }
 
-        void write_swift_declaration(writer&) const override
-        {
-        }
-
         std::vector<generic_type_parameter> generic_params;
 
     protected:
