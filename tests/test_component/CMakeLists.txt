@@ -38,17 +38,57 @@ add_custom_target(KillLSP
 )
 
 # make sure build of swiftwinrt and test_component_cpp run before we kill the lsp.
-# this way the LSP doesn't have time start up again before running the GenerateBindings
+# this way the LSP doesn't have time start up again before running the generate_bindings
 # target
 add_dependencies(KillLSP swiftwinrt)
 add_dependencies(KillLSP test_component_cpp)
 
-add_custom_target(GenerateBindings
-    BYPRODUCTS ${CMAKE_CURRENT_SOURCE_DIR}/Sources/test_component/test_component.swift
+set(TEST_COMPONENT_SWIFT_OUTPUT
+    ${CMAKE_CURRENT_SOURCE_DIR}/Sources/test_component/test_component.swift)
+
+add_custom_command(
+    OUTPUT ${TEST_COMPONENT_SWIFT_OUTPUT}
     DEPENDS ${SWIFTWINRT_PARAM_FILE}
     DEPENDS ${WINMD_FILE}
     COMMAND ${CMAKE_BINARY_DIR}/swiftwinrt/swiftwinrt.exe @${SWIFTWINRT_PARAM_FILE}
-    COMMENT "Running swiftwinrt...")
-add_dependencies(GenerateBindings swiftwinrt)
-add_dependencies(GenerateBindings test_component_cpp)
-add_dependencies(GenerateBindings KillLSP)
+    COMMENT "Running swiftwinrt..."
+    VERBATIM)
+
+add_custom_target(generate_bindings
+    DEPENDS ${TEST_COMPONENT_SWIFT_OUTPUT})
+add_dependencies(generate_bindings swiftwinrt)
+add_dependencies(generate_bindings test_component_cpp)
+add_dependencies(generate_bindings KillLSP)
+
+set(C_TEST_COMPONENT_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Sources/CWinRT/include)
+
+add_library(Ctest_component STATIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/Sources/CWinRT/shim.c)
+add_dependencies(Ctest_component generate_bindings)
+target_include_directories(Ctest_component
+    PUBLIC
+        ${C_TEST_COMPONENT_INCLUDE_DIR}
+        ${CMAKE_TEST_COMPONENT_OUTPUT})
+
+file(GLOB TEST_COMPONENT_SWIFT_SOURCES CONFIGURE_DEPENDS
+    ${CMAKE_CURRENT_SOURCE_DIR}/Sources/test_component/*.swift)
+
+add_library(test_component SHARED ${TEST_COMPONENT_SWIFT_SOURCES})
+add_dependencies(test_component generate_bindings)
+set_target_properties(test_component PROPERTIES
+    Swift_MODULE_NAME test_component)
+
+target_include_directories(test_component
+    PRIVATE
+        ${C_TEST_COMPONENT_INCLUDE_DIR}
+        ${CMAKE_TEST_COMPONENT_OUTPUT})
+
+target_link_libraries(test_component
+    PRIVATE
+        Ctest_component
+        test_component_cpp)
+
+install(TARGETS test_component
+    RUNTIME DESTINATION bin
+    LIBRARY DESTINATION bin
+    ARCHIVE DESTINATION lib)
