@@ -57,7 +57,6 @@ extension __ABI_Windows_Storage {
         }
     )
 }
-@_spi(WinRTInternal)
 public extension WinRTDelegateBridge where CABI == __x_ABI_CWindows_CStorage_CIStreamedFileDataRequestedHandler {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Storage.StreamedFileDataRequestedHandlerVTable) { $0 }

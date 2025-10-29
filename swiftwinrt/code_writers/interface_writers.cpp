@@ -35,7 +35,7 @@ namespace swiftwinrt
         // instantiation of the type in order to create vtables and actual implementations
         if (!can_write(w, type) || type.is_generic()) return;
 
-        do_write_interface_abi(w, type, type.functions);
+        write_interface_abi_body(w, type, type.functions);
         if (!is_exclusive(type))
         {
             write_implementable_interface(w, type);
@@ -396,4 +396,379 @@ public class %Maker: MakeFromAbi {
         }
     }
 
+    void write_interface_abi_body(writer& w, typedef_base const& type, std::vector<function_def> const& methods)
+    {
+        auto factory_info = try_get_factory_info(w, type);
+        auto classType = try_get_exclusive_to(w, type);
+
+        if (classType && !can_write(w, classType))
+        {
+            return;
+        }
+
+        const bool isInitializer = factory_info.has_value() && (factory_info->activatable || factory_info->composable);
+        const bool composableFactory = factory_info.has_value() && factory_info->composable;
+
+        auto name = w.write_temp("%", type);
+        auto baseClass = (is_delegate(type) || !type.type().Flags().WindowsRuntime()) ? "IUnknown" : "IInspectable";
+        w.write("public class %: %.% {\n",
+            bind_type_abi(type),
+            w.support,
+            baseClass);
+
+        auto class_indent_guard = w.push_indent();
+
+        auto iid_format = "override public class var IID: %.IID { IID_% }\n\n";
+        w.write(iid_format, w.support, bind_type_mangled(type));
+
+        for (const auto& function : methods)
+        {
+            if (!can_write(w, function, true)) continue;
+            try
+            {
+                auto func_name = get_abi_name(function);
+                auto full_names = w.push_full_type_names(true);
+
+                auto returnStatement = isInitializer ?
+                    w.write_temp(" -> %", bind_type_abi(classType->default_interface)) :
+                    w.write_temp("%", bind<write_return_type_declaration>(function, write_type_params::swift));
+
+                std::vector<function_param> params = composableFactory ? get_projected_params(factory_info.value(), function) : function.params;
+                std::string written_params = w.write_temp("%", bind<write_function_params2>(params, write_type_params::swift));
+                if (composableFactory)
+                {
+                    if (params.size() > 0) written_params.append(", ");
+                    written_params.append(w.write_temp("_ baseInterface: UnsealedWinRTClassWrapper<%.Composable>?, _ innerInterface: inout %.IInspectable?", bind_bridge_name(*classType), w.support));
+                }
+
+                w.write("% func %(%) throws% {\n",
+                    is_exclusive(type) ? "public" : "open",
+                    func_name,
+                    written_params,
+                    returnStatement);
+                {
+                    auto function_indent_guard = w.push_indent();
+                    std::vector<writer::indent_guard> initialize_result_indent;
+                    if (function.return_type)
+                    {
+                        if (auto result = write_init_return_val_abi(w, function.return_type.value()))
+                        {
+                            initialize_result_indent.push_back(std::move(result.value()));
+                        }
+                    }
+
+                    {
+                        auto guard = write_local_param_wrappers(w, params);
+
+                        if (composableFactory)
+                        {
+                            w.write("let _baseInterface = baseInterface?.toIInspectableABI { $0 }\n");
+                            w.write("let (_innerInterface) = try ComPtrs.initialize { _innerInterfaceAbi in\n");
+                            guard.push_indent();
+                            guard.push("}\n");
+                            guard.push("innerInterface = %.IInspectable(_innerInterface!)\n", w.support);
+                        }
+                        w.write(R"(_ = try perform(as: %.self) { pThis in
+    try CHECKED(pThis.pointee.lpVtbl.pointee.%(%))
+}
+)",
+bind_type_mangled(type),
+func_name,
+bind<write_abi_args>(function));
+                    }
+
+                    for (auto&& guard : initialize_result_indent)
+                    {
+                        guard.end();
+                        w.write("}\n");
+                    }
+
+
+                    if (function.return_type && !isInitializer)
+                    {
+                        w.write("%\n", bind<write_consume_return_statement>(function));
+                    }
+                    else if (isInitializer)
+                    {
+                        w.write("return %(%!)\n", bind_type_abi(classType->default_interface), function.return_type->name);
+                    }
+                }
+                w.write("}\n\n");
+            }
+            catch (std::exception const& e)
+            {
+                throw_invalid(e.what(),
+                    "\n method: ", get_name(function),
+                    "\n type: ", get_full_type_name(type),
+                    "\n database: ", type.type().get_database().path());
+            }
+        }
+
+        class_indent_guard.end();
+        w.write("}\n\n");
+    }
+
+    void write_implementable_interface(writer& w, interface_type const& type)
+    {
+        write_vtable(w, type);
+
+        // Define a struct that matches a C++ object with a vtable. As background:
+        //
+        // in C++ this looks like:
+        //
+        //   class CMyObject : public IMyInterface {
+        //   {
+        //     HRESULT Foo(int number);
+        //   }
+        //
+        // in C it looks
+        //
+        //   struct __x_ABI_MyObjectVTable {
+        //     ... AddRef, Release, QI, ...
+        //     HRESULT (STDMETHODCALLTYPE * Foo)(__x_ABI_IMyInterface* pThis, int number)
+        //   }
+        //
+        //   struct __x_ABI_IMyInterface {
+        //     const __x_ABI_MyObjectVTable* lpVtbl;
+        //   }
+        //
+        // so in Swift we're using the pattern:
+        //
+        //   protocol IMyInterface
+        //   {
+        //      func Foo(number: Int32)
+        //   }
+        //
+        //   private var myInterfaceVTable: __x_ABI_MyObjectVTable {
+        //     Foo: {
+        //       // In C, 'pThis' is always the first param
+        //       guard let instance = MyInterfaceWrapper.try_unwrap_raw($0)?.takeUnretainedValue().swiftObj else {
+        //         return E_INVALIDARG
+        //       }
+        //       let number = $1
+        //       instance.Foo(number)
+        //     }
+        //   }
+        //   ...
+        //    class MyInterfaceWrapper : WinRTWrapperBase<__x_ABI_IMyInterface, IMyInterface> {
+        //       init(impl: IMyInterface) {
+        //         let abi = withUnsafeMutablePointer(to: &myInterfaceVTable) {
+        //           __x_ABI_IMyInterface(lpVtbl: $0)
+        //         }
+        //       super.init(abi, impl)
+        //    }
+        // Where the WinRTWrapperBase defines the behavior for all objects which need to wrap a
+        // swift object and pass it down to WinRT:
+        // open class WinRTWrapperBase<CInterface, Prototype> {
+        //    public struct ComObject {
+        //      public var comInterface : CInterface
+        //      public var wrapper : Unmanaged<WinRTWrapperBase>?
+        //    }
+        //    public var instance : ComObject
+        //    public var swiftObj : Prototype
+        //    ...
+        // }
+
+        w.write(R"(
+public typealias % = InterfaceWrapperBase<%>
+)",
+bind_wrapper_name(type),
+bind_bridge_fullname(type));
+    }
+
+    void write_vtable(writer& w, interface_type const& type)
+    {
+        write_vtable_body(w, type, type.required_interfaces);
+    }
+
+    void write_class_impl_property(writer& w, property_def const& prop, interface_info const& iface, typedef_base const& type_definition)
+    {
+        if (!can_write(w, prop)) return;
+
+        write_documentation_comment(w, type_definition, prop.def.Name());
+
+        auto impl = get_swift_name(iface);
+
+        if (prop.getter)
+        {
+            auto format = prop.is_array() ? "[%]" : "%";
+            auto propertyType = w.write_temp(format, bind<write_type>(*prop.getter->return_type->type, swift_write_type_params_for(*iface.type, prop.is_array())));
+            w.write("%var % : % {\n",
+                modifier_for(type_definition, iface),
+                get_swift_name(prop),
+                propertyType);
+
+            w.write("    get { try! %.%() }\n",
+                impl,
+                get_swift_name(prop.getter.value()));
+
+            // TODO: https://linear.app/the-browser-company/issue/WIN-82/support-setters-not-defined-in-same-api-contract-as-getters
+            // right now require that both getter and setter are defined in the same version
+            if (prop.setter)
+            {
+                w.write("    set { try! %.%(newValue) }\n", impl, get_swift_name(prop.setter.value()));
+
+            }
+            w.write("}\n\n");
+        }
+    }
+
+    void write_class_impl_func(writer& w, function_def const& function, interface_info const& iface, typedef_base const& type_definition)
+    {
+        if (function.def.SpecialName() || !can_write(w, function))
+        {
+            // don't write methods which are really properties
+            return;
+        }
+
+        write_documentation_comment(w, type_definition, function.def.Name());
+        auto is_no_except = is_noexcept(*iface.type, function);
+        auto type_params = swift_write_type_params_for(*iface.type);
+        auto maybe_throws = is_no_except ? "" : " throws";
+        w.write("%func %(%)%% {\n",
+            modifier_for(type_definition, iface),
+            get_swift_name(function),
+            bind<write_function_params>(function, type_params),
+            maybe_throws,
+            bind<write_return_type_declaration>(function, type_params));
+        {
+            auto indent = w.push_indent();
+            write_class_func_body(w, function, iface, is_no_except);
+        }
+        w.write("}\n\n");
+    }
+
+    void write_class_impl_event(writer& w, event_def const& def, interface_info const& iface, typedef_base const& type_definition)
+    {
+        write_documentation_comment(w, type_definition, def.def.Name());
+
+        auto event = def.def;
+        auto format = R"(%var % : Event<%> = {
+  .init(
+    add: { [weak self] in
+      guard let this = self?.% else { return .init() }
+      return try! this.add_%($0)
+    },
+    remove: { [weak self] in
+     try? self?.%.remove_%($0)
+   }
+  )
+}()
+
+)";
+
+        auto static_format = R"(%var % : Event<%> = {
+  .init(
+    add: { try! %.add_%($0) },
+    remove: { try? %.remove_%($0) }
+  )
+}()
+
+)";
+        auto type = find_type(event.EventType());
+        writer::generic_param_guard guard{};
+        function_def delegate_method{};
+        if (auto delegateType = dynamic_cast<const delegate_type*>(def.type))
+        {
+            delegate_method = delegateType->functions[0];
+        }
+        else if (auto genericInst = dynamic_cast<const generic_inst*>(def.type))
+        {
+            delegate_method = genericInst->functions[0];
+            guard = w.push_generic_params(*genericInst);
+        }
+
+        auto modifier = modifier_for(type_definition, iface, member_type::event);
+        if (!iface.attributed)
+        {
+            modifier.append("lazy ");
+        }
+        assert(delegate_method.def);
+        w.write(iface.attributed ? static_format : format,
+            modifier, // % var
+            get_swift_name(event), // var %
+            def.type, // Event<%>
+            get_swift_name(iface), // weak this = %
+            def.def.Name(), // add_&Impl
+            get_swift_name(iface), // weak this = %
+            def.def.Name() // remove_&Impl
+        );
+    }
+
+    void write_interface_impl_members(writer& w, interface_info const& info, typedef_base const& type_definition)
+    {
+        w.add_depends(*info.type);
+        bool is_class = swiftwinrt::is_class(&type_definition);
+
+        if (!info.is_default || (!is_class && info.base))
+        {
+            auto swiftAbi = w.write_temp("%.%", abi_namespace(info.type->swift_logical_namespace()), info.type->swift_type_name());
+            if (is_generic_inst(info.type))
+            {
+                auto guard{ w.push_generic_params(info) };
+                swiftAbi = w.write_temp("%", bind_type_abi(info.type));
+            }
+            w.write("private lazy var %: %! = getInterfaceForCaching()\n",
+                get_swift_name(info),
+                swiftAbi);
+        }
+
+        if (auto iface = dynamic_cast<const interface_type*>(info.type))
+        {
+            for (const auto& method : iface->functions)
+            {
+                write_class_impl_func(w, method, info, type_definition);
+            }
+
+            for (const auto& prop : iface->properties)
+            {
+                write_class_impl_property(w, prop, info, type_definition);
+            }
+
+            for (const auto& event : iface->events)
+            {
+                write_class_impl_event(w, event, info, type_definition);
+            }
+        }
+        else if (auto gti = dynamic_cast<const generic_inst*>(info.type))
+        {
+            for (const auto& method : gti->functions)
+            {
+                write_class_impl_func(w, method, info, type_definition);
+            }
+
+            for (const auto& prop : gti->properties)
+            {
+                write_class_impl_property(w, prop, info, type_definition);
+            }
+
+            for (const auto& event : gti->events)
+            {
+                write_class_impl_event(w, event, info, type_definition);
+            }
+        }
+        else if (auto systemType = dynamic_cast<const system_type*>(info.type))
+        {
+            if (systemType->swift_type_name() == "IBufferByteAccess" || systemType->swift_type_name() == "IMemoryBufferByteAccess")
+            {
+                write_bufferbyteaccess(w, info, *systemType, type_definition);
+            }
+        }
+        else
+        {
+            assert(!"Unexpected interface type.");
+        }
+    }
+    
+    void write_class_func_body(writer& w, function_def const& function, interface_info const& iface, bool is_noexcept)
+    {
+        std::string_view func_name = get_abi_name(function);
+        auto impl = get_swift_name(iface);
+        auto try_flavor = is_noexcept ? "try!" : "try";
+        w.write("% %.%(%)\n",
+            try_flavor,
+            impl,
+            func_name,
+            bind<write_implementation_args>(function));
+    }
 }

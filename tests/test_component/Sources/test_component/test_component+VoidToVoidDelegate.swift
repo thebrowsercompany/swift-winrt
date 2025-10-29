@@ -56,7 +56,6 @@ extension __ABI_test_component {
         }
     )
 }
-@_spi(WinRTInternal)
 public extension WinRTDelegateBridge where CABI == __x_ABI_Ctest__component_CIVoidToVoidDelegate {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__ABI_test_component.VoidToVoidDelegateVTable) { $0 }

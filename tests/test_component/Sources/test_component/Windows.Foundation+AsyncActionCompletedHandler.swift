@@ -60,7 +60,6 @@ extension __ABI_Windows_Foundation {
         }
     )
 }
-@_spi(WinRTInternal)
 public extension WinRTDelegateBridge where CABI == __x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandler {
     static func makeAbi() -> CABI {
         let vtblPtr = withUnsafeMutablePointer(to: &__ABI_Windows_Foundation.AsyncActionCompletedHandlerVTable) { $0 }
