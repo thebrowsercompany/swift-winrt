@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: BSD-3
 
 import WinSDK
-import C_BINDINGS_MODULE
+import CWinRT
 
 public func ==<T: Equatable>(_ lhs: (T, T, T, T, T, T, T, T),
                               _ rhs: (T, T, T, T, T, T, T, T)) -> Bool {

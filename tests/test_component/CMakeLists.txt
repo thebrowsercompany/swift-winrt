@@ -14,8 +14,6 @@ set(SWIFT_WINRT_PARAMETERS
 "-include Windows.Storage.PathIO"
 "-include Windows.Foundation.GuidHelper"
 "-input ${WINMD_FILE}"
-"-support test_component"
-"-test"
 "-log"
 "-output ${CMAKE_CURRENT_SOURCE_DIR}"
 "-reference ${CMAKE_SYSTEM_VERSION}"

@@ -2,6 +2,7 @@ import WinSDK
 import XCTest
 import test_component
 import Foundation
+import WindowsFoundation
 
 class StringableInt: IStringable {
     let value: Int32

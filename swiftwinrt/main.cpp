@@ -101,7 +101,6 @@ Where <spec> is one or more of:
 
         settings.license = args.exists("license");
         settings.brackets = args.exists("brackets");
-        settings.test = args.exists("test");
         settings.output_folder = args.value("output", ".");
         settings.file_per_category = args.exists("file-per-category");
 
@@ -348,22 +347,18 @@ Where <spec> is one or more of:
 
                         module_group.get();
 
-                        // don't write the cmake file if only building a single module
-                        if (!settings.test)
+                        if (module != settings.support)
                         {
-                            if (module != settings.support)
-                            {
-                                moduleDependencies.emplace(settings.support);
-                            }
-                            auto dependentNamespaces = mdCache.get_dependent_namespaces(namespaces, mf);
+                            moduleDependencies.emplace(settings.support);
+                        }
+                        auto dependentNamespaces = mdCache.get_dependent_namespaces(namespaces, mf);
 
-                            for (auto&& dependent_ns : dependentNamespaces)
+                        for (auto&& dependent_ns : dependentNamespaces)
+                        {
+                            auto dependent_module = get_swift_module(dependent_ns);
+                            if (dependent_module != module)
                             {
-                                auto dependent_module = get_swift_module(dependent_ns);
-                                if (dependent_module != module)
-                                {
-                                    moduleDependencies.emplace(dependent_module);
-                                }
+                                moduleDependencies.emplace(dependent_module);
                             }
                         }
                     });

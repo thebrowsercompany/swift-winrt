@@ -1,8 +1,8 @@
+import CWinRT
+import Foundation
+import test_component
 import WinSDK
 import XCTest
-import test_component
-import Ctest_component
-import Foundation
 
 class SwiftWinRTTests : XCTestCase {
   public func testBlittableStruct() throws {
@@ -141,7 +141,7 @@ class SwiftWinRTTests : XCTestCase {
     print("result: ", output)
     XCTAssertEqual(output, "First")
 
-    let fruit = try StaticClass.enumProperty
+    let fruit = StaticClass.enumProperty
     print("result: ", fruit)
     XCTAssertEqual(fruit, Fruit.orange, "expected Orange!")
 

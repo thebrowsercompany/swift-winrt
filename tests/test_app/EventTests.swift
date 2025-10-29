@@ -2,6 +2,7 @@ import WinSDK
 import XCTest
 import test_component
 import Foundation
+import WindowsFoundation
 
 extension Array where Element == Disposable {
   mutating func dispose() {

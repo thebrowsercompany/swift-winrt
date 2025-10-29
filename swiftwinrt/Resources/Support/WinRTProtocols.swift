@@ -1,4 +1,4 @@
-import C_BINDINGS_MODULE
+import CWinRT
 import Foundation
 
 // Protocols for WinRT types that are used by public APIs

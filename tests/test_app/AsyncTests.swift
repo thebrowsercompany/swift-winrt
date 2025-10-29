@@ -2,6 +2,7 @@ import WinSDK
 import XCTest
 import test_component
 import Foundation
+import WindowsFoundation
 
 class AsyncTests : XCTestCase {
   public func testAwaitAlreadyCompleted() throws {
@@ -17,7 +18,7 @@ class AsyncTests : XCTestCase {
     do {
       _ = try asyncBlock(timeout: 1) { try await asyncOperation.get() }
       XCTFail("Expected an error to be thrown")
-    } catch let error as test_component.Error {
+    } catch let error as WindowsFoundation.Error {
       XCTAssertEqual(error.hr, E_LAYOUTCYCLE)
     }
   }
@@ -36,7 +37,7 @@ class AsyncTests : XCTestCase {
     do {
       _ = try asyncBlock(timeout: 1) { try await asyncOperation.get() }
       XCTFail("Expected an error to be thrown")
-    } catch let error as test_component.Error {
+    } catch let error as WindowsFoundation.Error {
       XCTAssertEqual(error.hr, E_LAYOUTCYCLE)
     }
   }
@@ -57,7 +58,7 @@ class AsyncTests : XCTestCase {
   private func asyncBlock<Result>(timeout: TimeInterval, body: @escaping () async throws -> Result) throws -> Result {
     guard let event = WinSDK.CreateEventA(nil, false, false, nil) else {
       XCTFail("Failed to create event")
-      throw test_component.Error(hr: E_FAIL)
+      throw WindowsFoundation.Error(hr: E_FAIL)
     }
     defer { WinSDK.CloseHandle(event) }
 
@@ -75,10 +76,10 @@ class AsyncTests : XCTestCase {
       case WAIT_OBJECT_0: break
       case DWORD(WAIT_TIMEOUT):
         XCTFail("Timed out waiting for async task to complete")
-        throw test_component.Error(hr: E_FAIL)
+        throw WindowsFoundation.Error(hr: E_FAIL)
       default:
         XCTFail("Failed to wait for async task to complete")
-        throw test_component.Error(hr: E_FAIL)
+        throw WindowsFoundation.Error(hr: E_FAIL)
     }
 
     return try asyncResult.result!.get()

@@ -1,5 +1,6 @@
 import Foundation
 import test_component
+import WindowsFoundation
 import WinSDK
 
 class DoubleDelegate : IBasic, ISimpleDelegate {

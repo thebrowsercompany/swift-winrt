@@ -234,7 +234,7 @@ namespace swiftwinrt
 
             if (type_module != swift_module)
             {
-                depends.insert(type_module);
+                depends.insert(std::string(type_module));
             }
         }
 
@@ -244,7 +244,7 @@ namespace swiftwinrt
 
             if (type_module != swift_module && !type_module.empty())
             {
-                depends.insert(type_module);
+                depends.insert(std::string(type_module));
             }
         }
 
@@ -661,14 +661,7 @@ namespace swiftwinrt
 
         std::filesystem::path project_directory()
         {
-            if (settings.test)
-            {
-                return root_directory() / settings.support;
-            }
-            else
-            {
-                return root_directory() / swift_module;
-            }
+            return root_directory() / swift_module;
         }
 
         void save_file(std::string_view const& ext = "")
