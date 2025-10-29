@@ -16,6 +16,19 @@ let package = Package(
         name: "CWinRT"
       ),
       .target(
+        name: "CWindowsFoundation",
+        dependencies: [
+            "CWinRT"
+        ]
+      ),
+      .target(
+        name: "CUWP",
+        dependencies: [
+            "CWinRT",
+            "CWindowsFoundation"
+        ]
+      ),
+      .target(
         name: "test_component",
         dependencies: [
             "CWinRT",
@@ -27,6 +40,7 @@ let package = Package(
         name: "UWP",
         dependencies: [
             "CWinRT",
+            "CUWP",
             "WindowsFoundation"
         ]
       ),
@@ -34,6 +48,7 @@ let package = Package(
         name: "WindowsFoundation",
         dependencies: [
             "CWinRT",
+            "CWindowsFoundation"
         ]
       ),
     ]
