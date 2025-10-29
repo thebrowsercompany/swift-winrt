@@ -1,5 +1,20 @@
 cmake_minimum_required(VERSION 3.15.1)
-project(swiftwinrt LANGUAGES C CXX)
+project(swiftwinrt LANGUAGES C CXX Swift)
+
+if (DEFINED SWIFT_VERSION)
+    if (SWIFT_VERSION STREQUAL "0.0.0")
+        set(SWIFT_VERSION "6.3" CACHE STRING "Swift toolchain version" FORCE)
+    endif()
+else()
+    set(SWIFT_VERSION "6.3" CACHE STRING "Swift toolchain version")
+endif()
+
+# Apply the shared Swift toolchain configuration to every Swift target in the
+# project. The language version ensures the compiler front-end matches the
+# desired toolchain release, while the default module name keeps the test
+# executable consistent with its previous SPM identity.
+set(CMAKE_Swift_LANGUAGE_VERSION 6.3)
+set(CMAKE_Swift_MODULE_NAME SwiftWinRTTests)
 
 option(BUILD_SHARED_LIBS "Build shared libraries by default" YES)
 
