@@ -108,6 +108,14 @@ namespace swiftwinrt
         return !removed_types.contains(type.swift_full_name());
     }
 
+    static std::string filename_for_ns(std::string_view ns)
+    {
+        // erase periods in filenames so they don't collide with windows sdk types
+        auto fileName = std::string(ns);
+        fileName.erase(std::remove(fileName.begin(), fileName.end(), '.'), fileName.end());
+        return fileName;
+    }
+
     static void write_includes(writer& w, type_cache const& types, std::string_view fileName)
     {
         // Forced dependencies
@@ -115,11 +123,12 @@ namespace swiftwinrt
 #include <inspectable.h>
 #include <EventToken.h>
 #include <windowscontracts.h>
+#include <CWinRT.h>
 )^-^");
 
         if (fileName != winrt_foundation_namespace)
         {
-            w.write(R"^-^(#include "Windows.Foundation.h"
+            w.write(R"^-^(#include "WindowsFoundation.h"
 )^-^");
         }
         else
@@ -148,17 +157,17 @@ namespace swiftwinrt
             {
                 // Don't include ourself
             }
-            else
+            else if (w.filter.includes_ns(ns))
             {
                 w.write(R"^-^(#include "%.h"
-)^-^", ns);
+)^-^", filename_for_ns(ns));
             }
         }
 
         if (hasCollectionsDependency)
         {
             w.write(R"^-^(// Importing Collections header
-#include "Windows.Foundation.Collections.h"
+#include "WindowsFoundationCollections.h"
 )^-^");
         }
 
@@ -267,9 +276,11 @@ namespace swiftwinrt
         }
     }
 
-    inline void write_abi_header(std::string_view fileName, type_cache const& types)
+    inline void write_abi_header(std::string_view ns, type_cache const& types)
     {
         writer w;
+        w.cache = types.cache;
+        auto fileName = filename_for_ns(ns);
         w.type_namespace = fileName;
         write_preamble(w, /* swift_code: */ false);
 
@@ -281,66 +292,6 @@ namespace swiftwinrt
         write_c_dependency_forward_declarations(w, types);
         write_c_type_definitions(w, types);
 
-        w.save_header();
-    }
-
-    inline void write_include_all(std::map<std::string_view, namespace_cache> const& namespaces)
-    {
-        writer w;
-        w.c_mod = settings.get_c_module_name();
-        write_preamble(w, /* swift_code: */ false);
-        w.write(R"(#pragma once
-#include <wtypesbase.h>
-#include <minwindef.h>
-#include <winnt.h>
-#include <combaseapi.h> // IUnknown, CoCreateInstance
-#include <inspectable.h> // IInspectable
-#include <oleauto.h> // BSTR, Sys***String***
-#include <roapi.h> // Ro***
-#include "RestrictedErrorInfo.h" // IRestrictedErrorInfo (C definition)
-#include <roerrorapi.h> // GetRestrictedErrorInfo
-#include <winstring.h> // HSTRING, Windows***String***
-
-// undefine win32 apis which collide with WinRT method names
-#undef GetCurrentTime
-#undef FindText
-#undef GetClassName
-#undef GetObject
-#undef GetGlyphIndices
-
-#define ENABLE_WINRT_EXPERIMENTAL_TYPES
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wmicrosoft-enum-forward-reference"
-
-#include "CppInteropWorkaround.h" // TODO(WIN-860): Remove workaround once C++ interop issues with WinSDK.GUID are fixed.
-#include "MemoryBuffer.h" // IMemoryBufferByteAccess (C definition)
-#include "WeakReference.h" // IWeakReference[Source] (C definition)
-#include "robuffer.h" // IBufferByteAccess (C definition)
-)");
-        for (auto& [ns, members] : namespaces)
-        {
-            if (has_projected_types(members))
-            {
-                w.write("#include \"%.h\"\n", ns);
-            }
-        }
-
-        w.write("#pragma clang diagnostic pop\n");
-
-        w.type_namespace = w.c_mod;
-        w.save_header();
-    }
-
-    inline void write_modulemap()
-    {
-        writer w;
-        write_preamble(w, /* swift_code: */ false);
-        w.write(R"^_^(module % {
-    header "%.h"
-    export *
-}
-)^_^", settings.get_c_module_name(), settings.get_c_module_name());
-        w.save_modulemap();
+        w.save_header(get_swift_module(ns));
     }
 }

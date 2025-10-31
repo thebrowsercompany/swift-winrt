@@ -678,14 +678,16 @@ namespace swiftwinrt
             flush_to_file(project_directory() / filename);
         }
 
-        void save_header()
+        void save_header(std::string_view module)
         {
-            flush_to_file(root_directory() / "CWinRT" / "include" / (type_namespace + ".h"));
+            auto cmod = std::string("C").append(module);
+            flush_to_file(root_directory() / cmod / "include" / (type_namespace + ".h"));
         }
 
-        void save_modulemap()
+        void save_modulemap(std::string_view module)
         {
-            flush_to_file(root_directory() / "CWinRT" / "include" / "module.modulemap");
+            auto cmod = std::string("C").append(module);
+            flush_to_file(root_directory() / cmod / "include" / "module.modulemap");
         }
 
         void save_cmake()

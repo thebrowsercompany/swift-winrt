@@ -499,6 +499,9 @@ namespace swiftwinrt
             if (moduleAdded)
             {
                 create_directories(writer::root_directory() / module_name);
+                auto cmod = std::string("C").append(module_name);
+                create_directories(writer::root_directory() / cmod);
+                create_directories(writer::root_directory() / cmod / "include");
             }
             moduleMapItr->second.push_back(ns);
         }
