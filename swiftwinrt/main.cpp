@@ -270,34 +270,27 @@ Where <spec> is one or more of:
             path output_folder = settings.output_folder;
             for (auto&&[ns, members] : c.namespaces())
             {
-                if (!has_projected_types(members))
+                if (!has_projected_types(members) || !mf.includes_any(members))
                 {
                     continue;
                 }
 
                 group.add([&, &ns = ns]
                 {
-                    // we want the C module to contain all of the types so that incremental builds of the
-                    // projections is quick. we don't actually even need the end result of the C bindings
-                    // and so it can be discarded after the app is built - meaning the size increase doesn't
-                    // matter
-                    include_all_filter filter{c};
-                    auto types = mdCache.compile_namespaces({ ns }, filter);
+                    auto types = mdCache.compile_namespaces({ ns }, mf);
                     write_abi_header(ns, types);
                 });
 
-                if (!mf.includes_any(members))
-                {
-                    continue;
-                }
                 auto module_name = get_swift_module(ns);
-
                 auto [moduleMapItr, moduleAdded] = module_map.emplace(std::piecewise_construct,
                     std::forward_as_tuple(module_name),
                     std::forward_as_tuple());
                 if (moduleAdded)
                 {
+                    auto cmod = std::string("C").append(module_name);
                     create_directories(writer::root_directory() / module_name);
+                    create_directories(writer::root_directory() / cmod);
+                    create_directories(writer::root_directory() / cmod / "include");
                 }
                 moduleMapItr->second.push_back(ns);
             }
@@ -346,21 +339,6 @@ Where <spec> is one or more of:
                         }
 
                         module_group.get();
-
-                        if (module != settings.support)
-                        {
-                            moduleDependencies.emplace(settings.support);
-                        }
-                        auto dependentNamespaces = mdCache.get_dependent_namespaces(namespaces, mf);
-
-                        for (auto&& dependent_ns : dependentNamespaces)
-                        {
-                            auto dependent_module = get_swift_module(dependent_ns);
-                            if (dependent_module != module)
-                            {
-                                moduleDependencies.emplace(dependent_module);
-                            }
-                        }
                     });
             }
 
@@ -368,11 +346,9 @@ Where <spec> is one or more of:
 
             group.get();
 
-            write_include_all(c.namespaces());
-            write_modulemap();
             if (settings.verbose)
             {
-                //w.write(" time:  %ms\n", get_elapsed_time(start));
+               // w.write(" time:  %ms\n", get_elapsed_time(start));
             }
         }
         catch (usage_exception const&)

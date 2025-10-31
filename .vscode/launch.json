@@ -1,7 +1,7 @@
 {
     "configurations": [
         {
-            "type": "swift-lldb",
+            "type": "swift",
             "request": "launch",
             "name": "test_app",
             "program": "${workspaceFolder}\\out\\${command:cmake.activeBuildPresetName}\\bin\\test_app.exe",
@@ -17,6 +17,14 @@
             "args": [],
             "cwd": "${workspaceFolder}/tests",
             "preLaunchTask": "Install"
+        },
+        {
+            "type": "cppvsdbg",
+            "request": "launch",
+            "name": "swifwinrt",
+            "program": "${workspaceFolder}\\build\\${command:cmake.activeBuildPresetName}\\swiftwinrt\\swiftwinrt",
+            "args": ["@${workspaceFolder}\\build\\${command:cmake.activeBuildPresetName}\\tests\\test_component\\SwiftWinRT.rsp"],
+            "cwd": "${workspaceFolder}/tests",
         }
     ]
 }

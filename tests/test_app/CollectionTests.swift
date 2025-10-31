@@ -2,6 +2,7 @@ import XCTest
 import test_component
 import Foundation
 import WindowsFoundation
+
 class CollectionTests : XCTestCase {
   
   public func testVector_asInput() throws {

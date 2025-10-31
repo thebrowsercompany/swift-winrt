@@ -5,11 +5,10 @@
 #include <inspectable.h>
 #include <EventToken.h>
 #include <windowscontracts.h>
-#include "Windows.Foundation.h"
-#include "Windows.Storage.Streams.h"
-#include "test_component.Delegates.h"
+#include <CWinRT.h>
+#include "WindowsFoundation.h"
 // Importing Collections header
-#include "Windows.Foundation.Collections.h"
+#include "WindowsFoundationCollections.h"
 
 /* Forward Declarations */
 #ifndef ____x_ABI_Ctest__component_CIArrayMethodCallback_FWD_DEFINED__
