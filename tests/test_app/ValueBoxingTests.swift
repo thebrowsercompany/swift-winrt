@@ -2,6 +2,7 @@ import WinSDK
 import XCTest
 import test_component
 import Foundation
+import WindowsFoundation
 
 struct Person : Equatable
 {
@@ -57,7 +58,7 @@ class ValueBoxingTests : XCTestCase {
     var anyObj: Any?
     let classy = Class()
     try! classy.outObject(&anyObj)
-    let obj = anyObj as! test_component.IStringable
+    let obj = anyObj as! IStringable
     XCTAssertEqual("123", try! obj.toString())
   }
 

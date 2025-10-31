@@ -1,7 +1,7 @@
 // Copyright © 2021 Saleem Abdulrasool <compnerd@compnerd.org>
 // SPDX-License-Identifier: BSD-3
 
-import C_BINDINGS_MODULE
+import CWinRT
 
 // usually thrown when a call to IInspectable.GetRuntimeClassName
 // returns a class name that we cannot resolve. This should
@@ -25,7 +25,7 @@ extension IInspectable {
   }
 
   public func GetRuntimeClassName() throws -> HString {
-    var className: C_BINDINGS_MODULE.HSTRING?
+    var className: CWinRT.HSTRING?
     try self.GetRuntimeClassName(&className)
     return HString(consuming: className)
   }
@@ -44,7 +44,7 @@ struct SwiftTypeName {
 
 extension IInspectable {
   // maps the namespace to a swift module. needs to be kept in sync with
-  // get_swift_module defined in common.h in the code generator
+  // get_swift_module defined in swift_codegen_utils.cpp in the code generator
   private func GetSwiftModule(from ns: String) -> String {
     if ns.starts(with: "Windows.Foundation") {
        return "SUPPORT_MODULE"
@@ -59,9 +59,10 @@ extension IInspectable {
     } else if ns.starts(with: "Microsoft") {
       return "WinAppSDK"
     }
-    var mod: String = ns
-    mod.removeAll(where: { $0 == "." })
-    return mod
+    guard let topLevelNSIndex = ns.firstIndex(of: ".") else {
+        return ns
+    }
+    return String(ns.prefix(upTo: topLevelNSIndex))
   }
 
 

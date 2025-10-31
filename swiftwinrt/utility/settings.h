@@ -13,7 +13,6 @@ namespace swiftwinrt
         bool brackets{};
         bool verbose{};
         bool log{};
-        bool test{};
         std::filesystem::path component_folder;
         std::string component_name;
         bool component_prefix{};
@@ -32,7 +31,7 @@ namespace swiftwinrt
         bool fastabi{};
         std::map<winmd::reader::TypeDef, winmd::reader::TypeDef> fastabi_cache;
 
-        std::string get_c_module_name() const { return test ? "C" + support : "CWinRT"; }
+        std::string get_c_module_name() const { return "CWinRT"; }
     };
 
     extern settings_type settings;

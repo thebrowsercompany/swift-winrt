@@ -1,10 +1,10 @@
-import Ctest_component
+@_spi(WinRTImplements) @_spi(WinRTInternal) import WindowsFoundation
 @_spi(WinRTImplements) @_spi(WinRTInternal) import test_component
 import Foundation
 
 extension DoubleDelegate {
     @_spi(WinRTImplements)
-    public func queryInterface(_ iid: test_component.IID) -> IUnknownRef? {
+    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? {
         switch iid {
             case __ABI_test_component.IBasic.IID:
                 let iBasicWrapper = __ABI_test_component.IBasicWrapper(self)

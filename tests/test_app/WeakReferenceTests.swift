@@ -1,7 +1,6 @@
 import WinSDK
 import XCTest
 @_spi(WinRTInternal) import test_component
-import Ctest_component
 import Foundation
 
 class WeakReferenceTests : XCTestCase {

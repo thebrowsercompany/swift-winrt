@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: BSD-3
 
 import WinSDK
-import C_BINDINGS_MODULE
+import CWinRT
 
 private var IID_IActivationFactory: SUPPORT_MODULE.IID {
     .init(Data1: 0x00000035, Data2: 0x0000, Data3: 0x0000, Data4: ( 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x46 )) // 00000035-0000-0000-C000-000000000046

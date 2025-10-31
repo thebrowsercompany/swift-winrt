@@ -1,4 +1,4 @@
-import C_BINDINGS_MODULE
+import CWinRT
 import WinSDK
 
 public protocol CustomQueryInterface {

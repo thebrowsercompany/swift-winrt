@@ -1,4 +1,4 @@
-import C_BINDINGS_MODULE
+import CWinRT
 import Foundation
 
 // The WinRTClassWeakReference class is a proxy for properly managing the reference count of

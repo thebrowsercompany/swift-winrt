@@ -4,13 +4,13 @@ import Foundation
 import PackageDescription
 
 let package = Package(
-    name: "C_BINDINGS_MODULE",
+    name: "CWinRT",
     products: [
-        .library(name: "C_BINDINGS_MODULE", type: .dynamic, targets: ["C_BINDINGS_MODULE"]),
+        .library(name: "CWinRT", type: .dynamic, targets: ["CWinRT"]),
     ],
     targets: [
         .target(
-            name: "C_BINDINGS_MODULE",
+            name: "CWinRT",
             path: ".",
             linkerSettings: [
                 .unsafeFlags(["-nostartfiles"]),

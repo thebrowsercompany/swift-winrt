@@ -36,17 +36,14 @@ namespace swiftwinrt
         {
             w.write("import Foundation\n");
             auto module = w.swift_module;
-            if (!settings.test)
+            if (module != w.support)
             {
-                if (module != w.support)
-                {
-                    w.depends.emplace(w.support);
-                }
+                w.depends.emplace(w.support);
+            }
 
-                for (auto& import : w.depends)
-                {
-                    w.write("^@_spi(WinRTInternal) ^@_spi(WinRTImplements) import %\n", import);
-                }
+            for (auto& import : w.depends)
+            {
+                w.write("^@_spi(WinRTInternal) ^@_spi(WinRTImplements) import %\n", import);
             }
 
             w.write("import %\n", w.c_mod);
@@ -55,13 +52,8 @@ namespace swiftwinrt
         w.write("\n");
     }
 
-    std::string get_swift_module(std::string_view ns)
+    std::string_view get_swift_module(std::string_view ns)
     {
-        if (settings.test)
-        {
-            return settings.support;
-        }
-
         if (ns.starts_with("Windows.Foundation"))
         {
             return "WindowsFoundation";
@@ -87,30 +79,22 @@ namespace swiftwinrt
             return "WinAppSDK";
         }
 
-        auto mod = std::string(ns);
-        mod.erase(std::remove(mod.begin(), mod.end(), '.'), mod.end());
-        return mod;
+        auto first_ns_index = ns.find_first_of('.');
+        if (first_ns_index == std::string_view::npos) {
+            return ns;
+        }
+        return ns.substr(0, first_ns_index);
     }
 
-    std::string get_swift_module(winmd::reader::TypeDef const& type)
+    std::string_view get_swift_module(winmd::reader::TypeDef const& type)
     {
         return get_swift_module(type.TypeNamespace());
-    }
-
-    std::string get_swift_namespace(writer const& w, std::string_view ns)
-    {
-        return get_swift_module(ns);
-    }
-
-    std::string get_swift_namespace(writer const& w, winmd::reader::TypeDef const& type)
-    {
-        return get_swift_namespace(w, type.TypeNamespace());
     }
 
     std::string get_full_swift_type_name(writer const& w, winmd::reader::TypeDef const& type)
     {
         bool use_full_name = w.full_type_names || !w.writing_generic;
-        std::string result = use_full_name ? get_swift_namespace(w, type) : "";
+        std::string result = use_full_name ? std::string(get_swift_module(type)) : "";
         if (!result.empty())
         {
             result += '.';
@@ -131,7 +115,7 @@ namespace swiftwinrt
             auto ns = swift_full_name.substr(0, last_ns_index);
             auto type_name = swift_full_name.substr(last_ns_index + 1);
 
-            std::string result = use_full_name ? get_swift_namespace(w, ns) : "";
+            std::string result = use_full_name ? std::string(get_swift_module(ns)) : "";
             if (!result.empty())
             {
                 result += '.';

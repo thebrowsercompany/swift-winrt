@@ -2,6 +2,8 @@
 import Foundation
 import XCTest
 import test_component
+import WindowsFoundation
+import UWP
 
 extension URL {
     func asFSR() -> String {

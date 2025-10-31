@@ -1,5 +1,5 @@
 import Foundation
-import C_BINDINGS_MODULE
+import CWinRT
 import WinSDK
 
 // Handwritten implementation for PropertyValue which *doesn't* try to do the IInspectable <-> Any mapping.

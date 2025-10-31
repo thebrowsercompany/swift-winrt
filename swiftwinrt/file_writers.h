@@ -43,7 +43,6 @@ namespace swiftwinrt
     {
         // Replace the module name placeholders with regex due to no string.replace(string, string)
         std::string text{ reinterpret_cast<const char*>(data.data()), data.size() };
-        text = std::regex_replace(text, std::regex("C_BINDINGS_MODULE"), settings.get_c_module_name());
         text = std::regex_replace(text, std::regex("SUPPORT_MODULE"), settings.support);
         write_file(path, std::span(reinterpret_cast<const std::byte*>(text.data()), text.size()));
     }
