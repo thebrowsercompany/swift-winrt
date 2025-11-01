@@ -2,6 +2,7 @@
 
 #include "resources.h"
 #include "code_writers.h"
+#include "utility/metadata_helpers.h"
 #include <regex>
 #include <span>
 

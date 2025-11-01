@@ -10,13 +10,19 @@ let package = Package(
     .executable(name: "test_app", targets:["test_app"])
   ],
   dependencies: [
-    .package(path: "test_component")
+    .package(path: "test_component/Sources/CWinRT"),
+    .package(path: "test_component/Sources/test_component"),
+    .package(path: "test_component/Sources/UWP"),
+    .package(path: "test_component/Sources/WindowsFoundation"),
   ],
   targets: [
     .executableTarget(
        name: "test_app",
        dependencies: [
-        "test_component"
+        "test_component",
+        "UWP",
+        "WindowsFoundation",
+        "CWinRT"
        ],
        path: "test_app",
        exclude: [

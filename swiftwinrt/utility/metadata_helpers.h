@@ -142,6 +142,8 @@ namespace swiftwinrt
     std::string get_generated_component_filename(TypeDef const& type);
     bool is_overridable(InterfaceImpl const& iface);
     bool has_projected_types(cache::namespace_members const& members);
+    bool has_projected_types(namespace_cache const& members);
+    
     TypeDef get_exclusive_to(TypeDef const& type);
     TypeDef get_exclusive_to(typedef_base const& type);
     bool is_exclusive(typedef_base const& type);
@@ -159,6 +161,15 @@ namespace swiftwinrt
     std::string_view get_name(winmd::reader::MethodDef const& method);
     std::string_view get_name(function_def const& method);
 
+    std::map<std::string, std::vector<std::string_view>> get_swift_modules(
+        winmd::reader::cache const& cache,
+        metadata_filter const& filter);
+        
+    std::set<std::string_view> get_module_dependencies(
+        std::string_view const& module,
+        std::vector<std::string_view> const& namespaces,
+        metadata_cache const& cache,
+        metadata_filter const& filter);
     bool is_remove_overload(winmd::reader::MethodDef const& method);
     bool is_add_overload(winmd::reader::MethodDef const& method);
     bool is_get_overload(winmd::reader::MethodDef const& method);

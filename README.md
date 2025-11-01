@@ -54,6 +54,14 @@ or, for a one-liner (on powershell);
 
 While it is possible to use this one-liner for your inner-loop, there is a known issue which causes the swift-winrt build to be dirtied every time, and re-running swift-winrt in debug mode is very slow! This is why we set `CMAKE_SKIP_INSTALL_ALL_DEPENDENCY` in our [CMakePresets.json](./CMakePresets.json). So when you can building/testing in `release` mode will be quicker. Generally, this is the golden path forward for when you don't need to debug tests. However, if you need to debug tests, then you will likely want to build debug. See [below](#optimal-developer-workflow-for-debugging-tests) for optimal `debug` config workflow.
 
+### Generating Project Files with Swift/WinRT
+
+Swift/WinRT is capable of generating project files for your build system by passing `-task GenerateProjectFiles` and passing either `-spm` or `-cmake` (or both). You can execute this step via the cmake build with:
+
+`cmake --build --preset debug --target GenerateProjectFiles`
+
+It can be useful to run this when modifying the projections to add more modules.
+
 ### Debugging Tests in Visual Studio Code
 
 The test code (written in Swift) is easily buildable and debuggable in VS Code. You can build using `Ctrl+Shift+B` and then debug via the standard VSCode debug window (or press `F5`).

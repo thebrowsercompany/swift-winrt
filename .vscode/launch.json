@@ -17,6 +17,26 @@
             "args": [],
             "cwd": "${workspaceFolder}/tests",
             "preLaunchTask": "Install"
+        },
+        {
+            "type": "cppvsdbg",
+            "request": "launch",
+            "name": "swiftwinrt",
+            "program": "${workspaceFolder}\\build\\${command:cmake.activeBuildPresetName}\\swiftwinrt\\swiftwinrt",
+            "args": [
+                "@${workspaceFolder}\\build\\${command:cmake.activeBuildPresetName}\\swiftwinrt\\SwiftWinRT.rsp"
+            ],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "cppvsdbg",
+            "request": "launch",
+            "name": "swiftwinrt (GenerateProjectFiles)",
+            "program": "${workspaceFolder}\\build\\${command:cmake.activeBuildPresetName}\\swiftwinrt\\swiftwinrt",
+            "args": [
+                "@${workspaceFolder}\\build\\${command:cmake.activeBuildPresetName}\\tests\\test_component\\SwiftWinRTProjGen.rsp"
+            ],
+            "cwd": "${workspaceFolder}"
         }
     ]
 }

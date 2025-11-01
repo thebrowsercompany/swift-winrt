@@ -90,9 +90,9 @@ namespace swiftwinrt
 
         metadata_cache(winmd::reader::cache const& c);
 
-        type_cache compile_namespaces(std::vector<std::string_view> const& targetNamespaces, metadata_filter const& f);
+        type_cache compile_namespaces(std::vector<std::string_view> const& targetNamespaces, metadata_filter const& f) const;
 
-        std::set<std::string_view> get_dependent_namespaces(std::vector<std::string_view> const& targetNamespaces, metadata_filter const& f);
+        std::set<std::string_view> get_dependent_namespaces(std::vector<std::string_view> const& targetNamespaces, metadata_filter const& f) const;
 
         bool has_namespace(std::string_view typeNamespace) const
         {
