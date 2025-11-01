@@ -5,7 +5,7 @@
 #pragma once
 
 #include "utility/type_helpers.h"
-#include "../utility/metadata_helpers.h"
+#include "utility/metadata_helpers.h"
 
 namespace swiftwinrt
 {

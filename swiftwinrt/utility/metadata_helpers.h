@@ -19,7 +19,7 @@
 #include "utility/versioning.h"
 #include "types.h"
 #include "utility/metadata_cache.h"
-#include "type_writers.h"
+#include "utility/type_writers.h"
 #include "utility/settings.h"
 namespace swiftwinrt
 {

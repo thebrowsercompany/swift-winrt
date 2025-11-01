@@ -4,7 +4,7 @@
 
 #include "file_writers/abi_writer.h"
 #include "utility/metadata_helpers.h"
-#include "type_writers.h"
+#include "utility/type_writers.h"
 #include "types/class_type.h"
 #include "types/generic_inst.h"
 #include "types/interface_type.h"
