@@ -2,7 +2,7 @@
 
 #include "types/mapped_type.h"
 
-#include "abi_writer.h"
+#include "file_writers/abi_writer.h"
 #include "utility/metadata_helpers.h"
 #include "utility/type_helpers.h"
 #include "types/type_constants.h"

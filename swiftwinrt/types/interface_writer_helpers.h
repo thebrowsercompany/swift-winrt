@@ -3,7 +3,7 @@
 #include <type_traits>
 #include <vector>
 
-#include "abi_writer.h"
+#include "file_writers/abi_writer.h"
 #include "utility/attributes.h"
 #include "utility/type_helpers.h"
 #include "types/class_type.h"

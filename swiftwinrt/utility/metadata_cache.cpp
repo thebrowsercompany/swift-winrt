@@ -1,7 +1,7 @@
 #include "pch.h"
 
 #include "types.h"
-#include "abi_writer.h"
+#include "file_writers/abi_writer.h"
 #include "metadata_cache.h"
 #include "utility/type_helpers.h"
 #include "metadata_filter.h"

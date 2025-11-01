@@ -2,7 +2,7 @@
 
 #include "types/struct_type.h"
 
-#include "abi_writer.h"
+#include "file_writers/abi_writer.h"
 #include "types/type_definition_helpers.h"
 
 namespace swiftwinrt
