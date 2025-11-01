@@ -2,7 +2,7 @@
 
 #include "types/class_type.h"
 
-#include "abi_writer.h"
+#include "file_writers/abi_writer.h"
 #include "utility/metadata_helpers.h"
 #include "utility/swift_codegen_utils.h"
 #include "types/interface_type.h"

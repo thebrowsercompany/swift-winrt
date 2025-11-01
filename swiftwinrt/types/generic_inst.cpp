@@ -2,7 +2,7 @@
 
 #include "types/generic_inst.h"
 
-#include "abi_writer.h"
+#include "file_writers/abi_writer.h"
 #include "code_writers/common_writers.h"
 #include "code_writers/writer_helpers.h"
 #include "utility/metadata_helpers.h"

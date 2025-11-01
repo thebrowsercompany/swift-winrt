@@ -15,8 +15,8 @@
 #include "types.h"
 #include "type_writers.h"
 #include "code_writers.h"
-#include "abi_writer.h"
-#include "file_writers.h"
+#include "file_writers/abi_writer.h"
+#include "file_writers/file_writers.h"
 #pragma warning(pop)
 
 namespace swiftwinrt
