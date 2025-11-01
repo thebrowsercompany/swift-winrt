@@ -73,11 +73,5 @@ namespace swiftwinrt
         
             module_group.get();
         });
-       
-        group.add([&mdCache]
-        {
-            write_include_all(mdCache.namespaces);
-            write_modulemap();
-        });
     }
 }
