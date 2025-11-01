@@ -1,6 +1,6 @@
 #pragma once
 #include "types.h"
-#include "../type_writers.h"
+#include "utility/type_writers.h"
 namespace swiftwinrt
 {
     void write_guid(writer& w, typedef_base const& type);

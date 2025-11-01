@@ -6,7 +6,7 @@
 #include <cstring>
 
 #include "utility/settings.h"
-#include "type_writers.h"
+#include "utility/type_writers.h"
 #include "utility/metadata_cache.h"
 #include "utility/swift_codegen_utils.h"
 #include "utility/metadata_helpers.h"

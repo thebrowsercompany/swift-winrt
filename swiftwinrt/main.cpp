@@ -13,7 +13,7 @@
 #include "utility/swift_codegen_utils.h"
 #include "utility/versioning.h"
 #include "types.h"
-#include "type_writers.h"
+#include "utility/type_writers.h"
 #include "code_writers.h"
 #include "file_writers/abi_writer.h"
 #include "file_writers/file_writers.h"
