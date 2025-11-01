@@ -197,6 +197,41 @@ Where <spec> is one or more of:
         }
     }
 
+    static std::map<std::string, std::set<std::string_view>> get_swift_winrt_modules(
+        cache const& c,
+        metadata_filter const& filter)
+    {
+        auto dbs = c.databases();
+        std::map<std::string, std::set<std::string_view>> module_map;
+        for (auto&& db : dbs)
+        {
+            for (auto&& assembly: db.Assembly)
+            {
+                auto module_name = assembly.Name();
+                auto [moduleMapItr, moduleAdded] = module_map.emplace(std::piecewise_construct,
+                    std::forward_as_tuple(module_name),
+                    std::forward_as_tuple());
+                if (moduleAdded)
+                {
+                    auto cmod = std::string("C").append(module_name);
+                    create_directories(writer::root_directory() / module_name);
+                    create_directories(writer::root_directory() / cmod);
+                    create_directories(writer::root_directory() / cmod / "include");
+                }
+
+                for (auto&& type : db.TypeDef)
+                {
+                    if (type.Flags().value == 0 || is_nested(type) || !filter.includes(type))
+                    {
+                        continue;
+                    }
+
+                    moduleMapItr->second.insert(type.TypeNamespace());
+                }
+            }
+        }
+    }
+
     static int run(int const argc, char** argv)
     {
         int result{};
@@ -268,6 +303,7 @@ Where <spec> is one or more of:
             std::map<std::string, std::vector<std::string_view>> module_map; // map of module -> namespaces
             std::map<std::string, std::set<std::string>> module_dependencies; // module -> module dependencies
             path output_folder = settings.output_folder;
+            auto modules = get_swift_winrt_modules(c, mf);
             for (auto&&[ns, members] : c.namespaces())
             {
                 if (!has_projected_types(members) || !mf.includes_any(members))
