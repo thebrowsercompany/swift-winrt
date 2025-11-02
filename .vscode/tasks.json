@@ -19,10 +19,7 @@
 			"problemMatcher": [
 				"$swiftc"
 			],
-			"group": {
-				"isDefault": true,
-				"kind": "build"
-			},
+			"group": "build",
 			"label": "swift: Build test_app",
 			"detail": "swift build (test_app)"
 		},
@@ -49,6 +46,19 @@
 			"group": "build",
 			"label": "swift: Build test_app (pdb)",
 			"detail": "swift build (test_app) (pdb)"
+		},
+		{
+			"type": "cmake",
+			"label": "Build swiftwinrt",
+			"command": "build",
+			"targets": [
+				"swiftwinrt"
+			],
+			"group": {
+				"isDefault": true,
+				"kind": "build"
+			},
+			"detail": "build swiftwinrt"
 		},
 		{
 			"type": "cmake",
