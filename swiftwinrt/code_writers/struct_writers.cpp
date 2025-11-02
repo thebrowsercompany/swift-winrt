@@ -1,6 +1,6 @@
 #include "utility/metadata_cache.h"
 #include "common_writers.h"
-#include "type_writers.h"
+#include "utility/type_writers.h"
 #include "types.h"
 #include "utility/swift_codegen_utils.h"
 #include "can_write.h"

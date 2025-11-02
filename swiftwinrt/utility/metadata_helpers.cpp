@@ -3,7 +3,7 @@
 #include "utility/metadata_helpers.h"
 #include "utility/type_helpers.h"
 #include "utility/swift_codegen_utils.h"
-#include "type_writers.h"
+#include "utility/type_writers.h"
 
 #include <algorithm>
 #include <chrono>

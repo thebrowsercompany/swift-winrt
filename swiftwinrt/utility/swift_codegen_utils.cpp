@@ -9,7 +9,7 @@
 
 #include "utility/settings.h"
 #include "types/typedef_base.h"
-#include "type_writers.h"
+#include "utility/type_writers.h"
 #include "attributes.h"
 
 namespace swiftwinrt
