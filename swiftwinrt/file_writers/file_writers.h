@@ -83,6 +83,9 @@ namespace swiftwinrt
         auto weakreference_h_template = find_resource(RESOURCE_TYPE_OTHER_FILE_STR, RESOURCE_NAME_CWINRT_WEAKREFERENCE_H_STR);
         fill_template_placeholders_to_file(weakreference_h_template, dir_path / "include" / "WeakReference.h");
 
+        auto cwinrt_h_template = find_resource(RESOURCE_TYPE_OTHER_FILE_STR, RESOURCE_NAME_CWINRT_CWINRT_H_STR);
+        fill_template_placeholders_to_file(cwinrt_h_template, dir_path / "include" / "CWinRT.h");
+
         auto support_files = get_named_resources_of_type(
             GetModuleHandle(nullptr), RESOURCE_TYPE_C_INCLUDE_FILE_STR, /* make_lowercase: */ true);
         for (const auto& support_file : support_files)

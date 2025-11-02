@@ -36,6 +36,8 @@ namespace swiftwinrt
         {
             w.write("import Foundation\n");
             auto module = w.swift_module;
+            w.write("import C%\n", module);
+
             if (module != w.support)
             {
                 w.depends.emplace(w.support);
@@ -43,7 +45,10 @@ namespace swiftwinrt
 
             for (auto& import : w.depends)
             {
-                w.write("^@_spi(WinRTInternal) ^@_spi(WinRTImplements) import %\n", import);
+                if (import != "Foundation") {
+                    w.write("^@_spi(WinRTInternal) ^@_spi(WinRTImplements) import %\n", import);
+                    w.write("import C%\n", import);
+                }
             }
 
             w.write("import %\n", w.c_mod);

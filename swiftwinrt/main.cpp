@@ -286,7 +286,7 @@ Where <spec> is one or more of:
         
             if (settings.verbose)
             {
-                //w.write(" time:  %ms\n", get_elapsed_time(start));
+               // w.write(" time:  %ms\n", get_elapsed_time(start));
             }
         }
         catch (usage_exception const&)

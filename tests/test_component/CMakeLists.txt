@@ -23,6 +23,7 @@ set(SWIFT_WINRT_COMMON_PARAMETERS
 "-include Windows.Storage.PathIO"
 "-include Windows.Foundation.GuidHelper"
 "-input ${WINMD_FILE}"
+"-exclude Windows.Foundation.Diagnostics" # TODO: https://github.com/thebrowsercompany/swift-winrt/issues/231
 "-log"
 "-output ${CMAKE_CURRENT_SOURCE_DIR}"
 "-reference ${CMAKE_SYSTEM_VERSION}"
