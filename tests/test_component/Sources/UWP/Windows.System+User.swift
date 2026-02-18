@@ -131,7 +131,7 @@ extension __ABI_Windows_System {
             _ = try perform(as: __x_ABI_CWindows_CSystem_CIUser.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_NonRoamableId(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         public func get_AuthenticationStatus() throws -> UWP.UserAuthenticationStatus {

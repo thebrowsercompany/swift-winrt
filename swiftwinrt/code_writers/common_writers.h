@@ -323,6 +323,10 @@ namespace swiftwinrt
             auto format = "try! HString(%).detach()";
             w.write(format, name);
         }
+        else if (isOut && category == param_category::string_type)
+        {
+            w.write(".init(consuming: %)", name);
+        }
         else
         {
             auto format = ".init(from: %)";

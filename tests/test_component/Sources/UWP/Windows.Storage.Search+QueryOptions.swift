@@ -176,7 +176,7 @@ extension __ABI_Windows_Storage_Search {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIQueryOptions.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_ApplicationSearchFilter(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         public func put_ApplicationSearchFilter(_ value: String) throws {
@@ -191,7 +191,7 @@ extension __ABI_Windows_Storage_Search {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIQueryOptions.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_UserSearchFilter(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         public func put_UserSearchFilter(_ value: String) throws {
@@ -206,7 +206,7 @@ extension __ABI_Windows_Storage_Search {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIQueryOptions.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Language(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         public func put_Language(_ value: String) throws {
@@ -244,7 +244,7 @@ extension __ABI_Windows_Storage_Search {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIQueryOptions.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_GroupPropertyName(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         public func get_DateStackOption() throws -> UWP.DateStackOption {
@@ -260,7 +260,7 @@ extension __ABI_Windows_Storage_Search {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIQueryOptions.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.SaveToString(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         public func LoadFromString(_ value: String) throws {

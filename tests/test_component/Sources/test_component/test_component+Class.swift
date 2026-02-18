@@ -320,7 +320,7 @@ extension __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InInt32(pThis, value, &result))
             }
-            return .init(from: result)
+            return .init(consuming: result)
         }
 
         public func InString(_ value: String) throws -> String {
@@ -329,7 +329,7 @@ extension __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InString(pThis, _value.get(), &result))
             }
-            return .init(from: result)
+            return .init(consuming: result)
         }
 
         public func InObject(_ value: Any?) throws -> String {
@@ -339,7 +339,7 @@ extension __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InObject(pThis, _value, &result))
             }
-            return .init(from: result)
+            return .init(consuming: result)
         }
 
         public func InBlittableStructRef(_ value: test_component.BlittableStruct) throws -> String {
@@ -348,7 +348,7 @@ extension __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InBlittableStructRef(pThis, &_value, &result))
             }
-            return .init(from: result)
+            return .init(consuming: result)
         }
 
         public func InNonBlittableStructRef(_ value: test_component.NonBlittableStruct) throws -> String {
@@ -357,7 +357,7 @@ extension __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InNonBlittableStructRef(pThis, &_value.val, &result))
             }
-            return .init(from: result)
+            return .init(consuming: result)
         }
 
         public func InEnum(_ value: test_component.Signed) throws -> String {
@@ -365,7 +365,7 @@ extension __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InEnum(pThis, value, &result))
             }
-            return .init(from: result)
+            return .init(consuming: result)
         }
 
         public func OutInt32(_ value: inout Int32) throws {
@@ -482,7 +482,7 @@ extension __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.NoexceptString(pThis, &result))
             }
-            return .init(from: result)
+            return .init(consuming: result)
         }
 
         public func add_DeferrableEvent(_ handler: TypedEventHandler<test_component.Class?, test_component.DeferrableEventArgs?>?) throws -> EventRegistrationToken {
@@ -523,7 +523,7 @@ extension __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InChar(pThis, .init(from: value), &result))
             }
-            return .init(from: result)
+            return .init(consuming: result)
         }
 
         public func OutChar(_ value: inout Character) throws {

@@ -113,7 +113,7 @@ extension __ABI_Windows_Storage_FileProperties {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIDocumentProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Title(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         public func put_Title(_ value: String) throws {
@@ -137,7 +137,7 @@ extension __ABI_Windows_Storage_FileProperties {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIDocumentProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Comment(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         public func put_Comment(_ value: String) throws {

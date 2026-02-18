@@ -220,7 +220,7 @@ extension __ABI_Windows_Storage {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageFile.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_FileType(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         open func get_ContentType() throws -> String {
@@ -228,7 +228,7 @@ extension __ABI_Windows_Storage {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageFile.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_ContentType(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         open func OpenAsync(_ accessMode: UWP.FileAccessMode) throws -> WindowsFoundation.AnyIAsyncOperation<UWP.AnyIRandomAccessStream?>? {

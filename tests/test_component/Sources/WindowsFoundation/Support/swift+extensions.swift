@@ -10,6 +10,11 @@ extension String {
     self.init(decoding: UnsafeBufferPointer(start: pwszBuffer, count: Int(length)), as: UTF16.self)
   }
 
+  public init(consuming hString: HSTRING?) {
+    self.init(from: hString)
+    WindowsDeleteString(hString)
+  }
+
   public init(hString: HString) {
     var length: UINT32 = 0
     let pwszBuffer: PCWSTR = WindowsGetStringRawBuffer(hString.get(), &length)

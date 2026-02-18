@@ -188,7 +188,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_AbsoluteUri(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         public func get_DisplayUri() throws -> String {
@@ -196,7 +196,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_DisplayUri(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         public func get_Domain() throws -> String {
@@ -204,7 +204,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Domain(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         public func get_Extension() throws -> String {
@@ -212,7 +212,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Extension(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         public func get_Fragment() throws -> String {
@@ -220,7 +220,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Fragment(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         public func get_Host() throws -> String {
@@ -228,7 +228,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Host(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         public func get_Password() throws -> String {
@@ -236,7 +236,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Password(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         public func get_Path() throws -> String {
@@ -244,7 +244,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Path(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         public func get_Query() throws -> String {
@@ -252,7 +252,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Query(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         public func get_QueryParsed() throws -> WindowsFoundation.WwwFormUrlDecoder? {
@@ -269,7 +269,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_RawUri(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         public func get_SchemeName() throws -> String {
@@ -277,7 +277,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_SchemeName(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         public func get_UserName() throws -> String {
@@ -285,7 +285,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_UserName(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         public func get_Port() throws -> Int32 {
@@ -336,7 +336,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClassWithAbsoluteCanonicalUri.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_AbsoluteCanonicalUri(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         public func get_DisplayIri() throws -> String {
@@ -344,7 +344,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClassWithAbsoluteCanonicalUri.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_DisplayIri(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
     }
@@ -362,7 +362,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriEscapeStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.UnescapeComponent(pThis, _toUnescape.get(), &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         public func EscapeComponent(_ toEscape: String) throws -> String {
@@ -371,7 +371,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriEscapeStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.EscapeComponent(pThis, _toEscape.get(), &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
     }

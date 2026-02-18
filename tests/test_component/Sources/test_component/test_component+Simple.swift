@@ -300,7 +300,7 @@ extension __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_StringProperty(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         public func put_StringProperty(_ value: String) throws {

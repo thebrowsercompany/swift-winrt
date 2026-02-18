@@ -154,7 +154,7 @@ extension __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InInt32Array(pThis, _value.count, _value.start, &result))
                 }
             }
-            return .init(from: result)
+            return .init(consuming: result)
         }
 
         public func InStringArray(_ value: [String]) throws -> String {
@@ -164,7 +164,7 @@ extension __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InStringArray(pThis, _value.count, _value.start, &result))
                 }
             }
-            return .init(from: result)
+            return .init(consuming: result)
         }
 
         public func InObjectArray(_ value: [Any?]) throws -> String {
@@ -174,7 +174,7 @@ extension __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InObjectArray(pThis, _value.count, _value.start, &result))
                 }
             }
-            return .init(from: result)
+            return .init(consuming: result)
         }
 
         public func InStringableArray(_ value: [WindowsFoundation.AnyIStringable?]) throws -> String {
@@ -184,7 +184,7 @@ extension __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InStringableArray(pThis, _value.count, _value.start, &result))
                 }
             }
-            return .init(from: result)
+            return .init(consuming: result)
         }
 
         public func InStructArray(_ value: [test_component.BlittableStruct]) throws -> String {
@@ -194,7 +194,7 @@ extension __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InStructArray(pThis, _value.count, _value.start, &result))
                 }
             }
-            return .init(from: result)
+            return .init(consuming: result)
         }
 
         public func InNonBlittableStructArray(_ value: [test_component.NonBlittableStruct]) throws -> String {
@@ -204,7 +204,7 @@ extension __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InNonBlittableStructArray(pThis, _value.count, _value.start, &result))
                 }
             }
-            return .init(from: result)
+            return .init(consuming: result)
         }
 
         public func InEnumArray(_ value: [test_component.Signed]) throws -> String {
@@ -214,7 +214,7 @@ extension __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InEnumArray(pThis, _value.count, _value.start, &result))
                 }
             }
-            return .init(from: result)
+            return .init(consuming: result)
         }
 
         public func OutInt32Array(_ value: inout [Int32]) throws {

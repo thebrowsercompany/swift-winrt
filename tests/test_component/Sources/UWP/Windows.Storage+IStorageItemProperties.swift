@@ -140,7 +140,7 @@ extension __ABI_Windows_Storage {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageItemProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_DisplayName(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         open func get_DisplayType() throws -> String {
@@ -148,7 +148,7 @@ extension __ABI_Windows_Storage {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageItemProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_DisplayType(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         open func get_FolderRelativeId() throws -> String {
@@ -156,7 +156,7 @@ extension __ABI_Windows_Storage {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageItemProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_FolderRelativeId(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         open func get_Properties() throws -> UWP.StorageItemContentProperties? {

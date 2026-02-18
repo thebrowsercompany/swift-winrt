@@ -95,7 +95,7 @@ extension __ABI_Windows_Storage {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageLibraryChange.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Path(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         public func get_PreviousPath() throws -> String {
@@ -103,7 +103,7 @@ extension __ABI_Windows_Storage {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageLibraryChange.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_PreviousPath(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         public func IsOfType(_ type: UWP.StorageItemTypes) throws -> Bool {

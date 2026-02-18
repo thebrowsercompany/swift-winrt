@@ -99,7 +99,7 @@ extension __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CWithKeyword.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Struct(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         open func put_Struct(_ value: String) throws {

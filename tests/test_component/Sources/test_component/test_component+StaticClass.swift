@@ -56,7 +56,7 @@ extension __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CIStaticClassStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InEnum(pThis, value, &result))
             }
-            return .init(from: result)
+            return .init(consuming: result)
         }
 
         public func InNonBlittableStruct(_ value: test_component.NonBlittableStruct) throws -> String {
@@ -65,7 +65,7 @@ extension __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CIStaticClassStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InNonBlittableStruct(pThis, _value.val, &result))
             }
-            return .init(from: result)
+            return .init(consuming: result)
         }
 
         public func TakeBase(_ base: test_component.Base?) throws {

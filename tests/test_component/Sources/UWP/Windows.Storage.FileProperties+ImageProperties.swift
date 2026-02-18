@@ -200,7 +200,7 @@ extension __ABI_Windows_Storage_FileProperties {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Title(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         public func put_Title(_ value: String) throws {
@@ -233,7 +233,7 @@ extension __ABI_Windows_Storage_FileProperties {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_CameraManufacturer(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         public func put_CameraManufacturer(_ value: String) throws {
@@ -248,7 +248,7 @@ extension __ABI_Windows_Storage_FileProperties {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_CameraModel(pThis, &value))
             }
-            return .init(from: value)
+            return .init(consuming: value)
         }
 
         public func put_CameraModel(_ value: String) throws {

@@ -2783,7 +2783,7 @@ public class IIteratorString: WindowsFoundation.IInspectable {
         _ = try perform(as: __x_ABI_C__FIIterator_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
         }
-        return .init(from: result)
+        return .init(consuming: result)
     }
 
     open func get_HasCurrent() throws -> Bool {
@@ -4432,7 +4432,7 @@ public class IKeyValuePairString_Any: WindowsFoundation.IInspectable {
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
         }
-        return .init(from: result)
+        return .init(consuming: result)
     }
 
     open func get_Value() throws -> Any? {
@@ -4540,7 +4540,7 @@ public class IKeyValuePairString_IVectorViewTextSegment: WindowsFoundation.IInsp
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
         }
-        return .init(from: result)
+        return .init(consuming: result)
     }
 
     open func get_Value() throws -> WindowsFoundation.AnyIVectorView<UWP.TextSegment>? {
@@ -4655,7 +4655,7 @@ public class IMapChangedEventArgsString: WindowsFoundation.IInspectable {
         _ = try perform(as: __x_ABI_C__FIMapChangedEventArgs_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
         }
-        return .init(from: result)
+        return .init(consuming: result)
     }
 
 }
@@ -5711,7 +5711,7 @@ public class IVectorViewString: WindowsFoundation.IInspectable {
         _ = try perform(as: __x_ABI_C__FIVectorView_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
         }
-        return .init(from: result)
+        return .init(consuming: result)
     }
 
     open func get_Size() throws -> UInt32 {
@@ -7431,7 +7431,7 @@ public class IVectorString: WindowsFoundation.IInspectable {
         _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
         }
-        return .init(from: result)
+        return .init(consuming: result)
     }
 
     open func get_Size() throws -> UInt32 {
@@ -8875,7 +8875,7 @@ public class IAsyncOperationString: WindowsFoundation.IInspectable {
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &result))
         }
-        return .init(from: result)
+        return .init(consuming: result)
     }
 
 }
