@@ -10,8 +10,8 @@ import CWinRT
 
     public init() {
         event = .init(
-          add: { self.handlers.append($0) },
-          remove: { self.handlers.remove(token: $0) }
+          add: { [weak self] in self?.handlers.append($0) ?? .init() },
+          remove: { [weak self] in self?.handlers.remove(token: $0) }
         )
     }
 
