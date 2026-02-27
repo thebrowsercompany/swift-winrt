@@ -56,7 +56,7 @@ public func ==<T: WinRTClass>(_ lhs: T, _ rhs: T) -> Bool {
 }
 
 extension WinRTClass: IWinRTObject {
-    public var thisPtr: SUPPORT_MODULE.IInspectable { try! _inner.QueryInterface() }
+    public var thisPtr: SUPPORT_MODULE.IInspectable { _inner }
 }
 
 @_spi(WinRTInternal)
