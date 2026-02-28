@@ -27,6 +27,7 @@ MakeFromAbi RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\MakeFromAbi.sw
 Marshaler RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\Marshaler.swift"
 RawTyped RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\RawTyped.swift"
 Runtime+Swift RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\Runtime+Swift.swift"
+SRWLock RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\SRWLock.swift"
 Swift+Extensions RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\Swift+Extensions.swift"
 TrustLevel+Swift RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\TrustLevel+Swift.swift"
 IWeakReference RESOURCE_TYPE_SWIFT_SUPPORT_FILE "Resources\\Support\\IWeakReference.swift"
