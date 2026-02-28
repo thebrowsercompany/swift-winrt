@@ -71,6 +71,10 @@ target_sources(swiftwinrt PUBLIC
     code_writers/class_writers.cpp
     code_writers/type_writers.cpp
     code_writers/struct_writers.cpp
+    file_writers/spm_project_file_writer.cpp
+    file_writers/cmake_project_file_writer.cpp
+    tasks/write_project_files.cpp
+    tasks/write_code_files.cpp
     resources.rc
  )
 

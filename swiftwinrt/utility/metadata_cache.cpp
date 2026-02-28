@@ -898,7 +898,7 @@ metadata_type const& metadata_cache::find_dependent_type(init_state& state, Gene
 }
 
 template <typename T>
-static void merge_into(std::vector<T>& from, std::vector<std::reference_wrapper<T const>>& to, metadata_filter const& f)
+static void merge_into(std::vector<T> const& from, std::vector<std::reference_wrapper<T const>>& to, metadata_filter const& f)
 {
     std::vector<std::reference_wrapper<T const>> result;
     to.reserve(from.size() + to.size());
@@ -912,7 +912,7 @@ static void merge_into(std::vector<T>& from, std::vector<std::reference_wrapper<
     to.shrink_to_fit();
 }
 
-std::set<std::string_view> metadata_cache::get_dependent_namespaces(std::vector<std::string_view> const& targetNamespaces, metadata_filter const& f)
+std::set<std::string_view> metadata_cache::get_dependent_namespaces(std::vector<std::string_view> const& targetNamespaces, metadata_filter const& f) const
 {
     std::set<std::string_view> result;
     for (auto ns : targetNamespaces)
@@ -935,7 +935,7 @@ std::set<std::string_view> metadata_cache::get_dependent_namespaces(std::vector<
     return result;
 }
 
-type_cache metadata_cache::compile_namespaces(std::vector<std::string_view> const& targetNamespaces, metadata_filter const& f)
+type_cache metadata_cache::compile_namespaces(std::vector<std::string_view> const& targetNamespaces, metadata_filter const& f) const
 {
     type_cache result{ this };
 
