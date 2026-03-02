@@ -45,7 +45,7 @@ struct SwiftTypeName {
 extension IInspectable {
   // maps the namespace to a swift module. needs to be kept in sync with
   // get_swift_module defined in swift_codegen_utils.cpp in the code generator
-  private func GetSwiftModule(from ns: String) -> String {
+  static func GetSwiftModule(from ns: String) -> String {
     if ns.starts(with: "Windows.Foundation") {
        return "SUPPORT_MODULE"
     } else if ns.starts(with: "Microsoft.UI.Xaml") || ns.starts(with: "Windows.UI.Xaml") {
@@ -65,13 +65,16 @@ extension IInspectable {
     return String(ns.prefix(upTo: topLevelNSIndex))
   }
 
-
   func GetSwiftTypeName() throws -> SwiftTypeName {
     let className = try String(hString: GetRuntimeClassName())
-    let lastNsIndex = className.lastIndex(of: ".")
-    guard let lastNsIndex = lastNsIndex else {
+    guard let typeName = IInspectable.GetSwiftTypeName(from: className) else {
       throw InvalidRuntimeClassName(className: className)
     }
+    return typeName
+  }
+
+  static func GetSwiftTypeName(from className: String) -> SwiftTypeName? {
+    guard let lastNsIndex = className.lastIndex(of: ".") else { return nil }
     let ns = className.prefix(upTo: lastNsIndex)
     let lastNsIndexPlus1 = className.index(after: lastNsIndex)
     let typeName = className.suffix(from: lastNsIndexPlus1)
