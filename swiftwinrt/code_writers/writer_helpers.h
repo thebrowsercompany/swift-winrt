@@ -430,6 +430,10 @@ namespace swiftwinrt
         }
         else
         {
+            if (get_category(return_type.type) == param_category::string_type)
+            {
+                w.write("defer { WindowsDeleteString(%) }\n", return_param_name);
+            }
             w.write("return %", bind<write_consume_type>(return_type.type, return_param_name, true));
         }
 

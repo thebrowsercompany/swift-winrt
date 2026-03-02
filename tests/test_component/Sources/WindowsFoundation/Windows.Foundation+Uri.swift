@@ -188,6 +188,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_AbsoluteUri(pThis, &value))
             }
+            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -196,6 +197,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_DisplayUri(pThis, &value))
             }
+            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -204,6 +206,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Domain(pThis, &value))
             }
+            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -212,6 +215,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Extension(pThis, &value))
             }
+            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -220,6 +224,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Fragment(pThis, &value))
             }
+            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -228,6 +233,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Host(pThis, &value))
             }
+            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -236,6 +242,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Password(pThis, &value))
             }
+            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -244,6 +251,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Path(pThis, &value))
             }
+            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -252,6 +260,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Query(pThis, &value))
             }
+            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -269,6 +278,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_RawUri(pThis, &value))
             }
+            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -277,6 +287,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_SchemeName(pThis, &value))
             }
+            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -285,6 +296,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_UserName(pThis, &value))
             }
+            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -336,6 +348,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClassWithAbsoluteCanonicalUri.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_AbsoluteCanonicalUri(pThis, &value))
             }
+            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -344,6 +357,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClassWithAbsoluteCanonicalUri.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_DisplayIri(pThis, &value))
             }
+            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -362,6 +376,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriEscapeStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.UnescapeComponent(pThis, _toUnescape.get(), &value))
             }
+            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -371,6 +386,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriEscapeStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.EscapeComponent(pThis, _toEscape.get(), &value))
             }
+            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 

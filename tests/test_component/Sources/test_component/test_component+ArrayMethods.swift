@@ -154,6 +154,7 @@ extension __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InInt32Array(pThis, _value.count, _value.start, &result))
                 }
             }
+            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
@@ -164,6 +165,7 @@ extension __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InStringArray(pThis, _value.count, _value.start, &result))
                 }
             }
+            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
@@ -174,6 +176,7 @@ extension __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InObjectArray(pThis, _value.count, _value.start, &result))
                 }
             }
+            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
@@ -184,6 +187,7 @@ extension __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InStringableArray(pThis, _value.count, _value.start, &result))
                 }
             }
+            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
@@ -194,6 +198,7 @@ extension __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InStructArray(pThis, _value.count, _value.start, &result))
                 }
             }
+            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
@@ -204,6 +209,7 @@ extension __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InNonBlittableStructArray(pThis, _value.count, _value.start, &result))
                 }
             }
+            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
@@ -214,6 +220,7 @@ extension __ABI_test_component {
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InEnumArray(pThis, _value.count, _value.start, &result))
                 }
             }
+            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 

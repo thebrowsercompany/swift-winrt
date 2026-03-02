@@ -333,6 +333,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetString(pThis, &value))
             }
+            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 

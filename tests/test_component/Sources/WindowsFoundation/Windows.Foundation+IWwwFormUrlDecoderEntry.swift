@@ -77,6 +77,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderEntry.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Name(pThis, &value))
             }
+            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -85,6 +86,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderEntry.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Value(pThis, &value))
             }
+            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 

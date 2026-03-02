@@ -94,6 +94,7 @@ extension __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CIEventTester.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResult(pThis, &result))
             }
+            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 

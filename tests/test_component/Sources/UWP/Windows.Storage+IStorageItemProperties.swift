@@ -140,6 +140,7 @@ extension __ABI_Windows_Storage {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageItemProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_DisplayName(pThis, &value))
             }
+            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -148,6 +149,7 @@ extension __ABI_Windows_Storage {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageItemProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_DisplayType(pThis, &value))
             }
+            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -156,6 +158,7 @@ extension __ABI_Windows_Storage {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageItemProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_FolderRelativeId(pThis, &value))
             }
+            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 

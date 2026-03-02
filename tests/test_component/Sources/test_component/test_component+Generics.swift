@@ -1150,6 +1150,7 @@ public class IIteratorString: WindowsFoundation.IInspectable {
         _ = try perform(as: __x_ABI_C__FIIterator_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
         }
+        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 
@@ -1891,6 +1892,7 @@ public class IKeyValuePairString_String: WindowsFoundation.IInspectable {
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
         }
+        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 
@@ -1899,6 +1901,7 @@ public class IKeyValuePairString_String: WindowsFoundation.IInspectable {
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Value(pThis, &result))
         }
+        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 
@@ -1997,6 +2000,7 @@ public class IKeyValuePairString_Base: WindowsFoundation.IInspectable {
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
         }
+        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 
@@ -2127,6 +2131,7 @@ public class IMapViewString_String: WindowsFoundation.IInspectable {
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, _key.get(), &result))
         }
+        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 
@@ -2476,6 +2481,7 @@ public class IMapString_String: WindowsFoundation.IInspectable {
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, _key.get(), &result))
         }
+        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 
@@ -3687,6 +3693,7 @@ public class IVectorViewString: WindowsFoundation.IInspectable {
         _ = try perform(as: __x_ABI_C__FIVectorView_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
         }
+        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 
@@ -4997,6 +5004,7 @@ public class IVectorString: WindowsFoundation.IInspectable {
         _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
         }
+        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 

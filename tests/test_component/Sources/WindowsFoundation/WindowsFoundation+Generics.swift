@@ -776,6 +776,7 @@ public class IKeyValuePairString_Any: WindowsFoundation.IInspectable {
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
         }
+        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 
@@ -883,6 +884,7 @@ public class IKeyValuePairString_String: WindowsFoundation.IInspectable {
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
         }
+        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 
@@ -891,6 +893,7 @@ public class IKeyValuePairString_String: WindowsFoundation.IInspectable {
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Value(pThis, &result))
         }
+        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 
@@ -997,6 +1000,7 @@ public class IMapChangedEventArgsString: WindowsFoundation.IInspectable {
         _ = try perform(as: __x_ABI_C__FIMapChangedEventArgs_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
         }
+        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 
@@ -1284,6 +1288,7 @@ public class IMapViewString_String: WindowsFoundation.IInspectable {
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, _key.get(), &result))
         }
+        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 
@@ -1690,6 +1695,7 @@ public class IMapString_String: WindowsFoundation.IInspectable {
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, _key.get(), &result))
         }
+        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 
