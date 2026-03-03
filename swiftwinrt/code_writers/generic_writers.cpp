@@ -105,7 +105,7 @@ namespace swiftwinrt
     typealias SwiftProjection = %
     static var IID: %.IID { IID_% }
 
-    static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let val = abi else { return nil }
         var result: %%
         try! CHECKED(val.get().pointee.lpVtbl.pointee.get_Value(val.get(), &result))
@@ -161,7 +161,7 @@ namespace swiftwinrt
         w.write("typealias Bridge = %\n", bind_bridge_name(type));
         w.write("let _default: Bridge.SwiftABI\n");
 
-        w.write("init(_ fromAbi: ComPtr<Bridge.CABI>) {\n");
+        w.write("init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {\n");
         w.write("    _default = Bridge.SwiftABI(fromAbi)\n");
         w.write("}\n\n");
 

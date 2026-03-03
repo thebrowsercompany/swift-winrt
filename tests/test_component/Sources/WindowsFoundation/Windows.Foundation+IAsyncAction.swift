@@ -47,7 +47,7 @@ extension __IMPL_Windows_Foundation {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIAsyncAction
         public typealias SwiftABI = __ABI_Windows_Foundation.IAsyncAction
         public typealias SwiftProjection = AnyIAsyncAction
-        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+        public static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IAsyncActionImpl(abi)
         }
@@ -62,7 +62,7 @@ extension __IMPL_Windows_Foundation {
         fileprivate typealias Bridge = IAsyncActionBridge
         fileprivate let _default: Bridge.SwiftABI
         fileprivate var thisPtr: WindowsFoundation.IInspectable { _default }
-        fileprivate init(_ fromAbi: ComPtr<Bridge.CABI>) {
+        fileprivate init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
             _default = Bridge.SwiftABI(fromAbi)
         }
 

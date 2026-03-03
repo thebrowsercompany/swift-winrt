@@ -53,7 +53,7 @@ extension __IMPL_Windows_Foundation {
     public enum DeferralBridge: AbiBridge {
         public typealias SwiftProjection = Deferral
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIDeferral
-        public static func from(abi: ComPtr<__x_ABI_CWindows_CFoundation_CIDeferral>?) -> Deferral? {
+        public static func from(abi: consuming ComPtr<__x_ABI_CWindows_CFoundation_CIDeferral>?) -> Deferral? {
             guard let abi = abi else { return nil }
             return .init(fromAbi: WindowsFoundation.IInspectable(abi))
         }

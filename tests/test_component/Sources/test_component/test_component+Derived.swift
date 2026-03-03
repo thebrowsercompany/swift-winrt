@@ -49,7 +49,7 @@ extension __IMPL_test_component {
     public enum DerivedBridge: AbiBridge {
         public typealias SwiftProjection = Derived
         public typealias CABI = __x_ABI_Ctest__component_CIDerived
-        public static func from(abi: ComPtr<__x_ABI_Ctest__component_CIDerived>?) -> Derived? {
+        public static func from(abi: consuming ComPtr<__x_ABI_Ctest__component_CIDerived>?) -> Derived? {
             guard let abi = abi else { return nil }
             return .init(fromAbi: WindowsFoundation.IInspectable(abi))
         }

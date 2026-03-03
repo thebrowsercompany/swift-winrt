@@ -11,7 +11,7 @@ open class IUnknown : HasIID {
 
   open class var IID: SUPPORT_MODULE.IID { IID_IUnknown }
 
-  public required init<CInterface>(_ pointer: ComPtr<CInterface>) {
+  public required init<CInterface>(_ pointer: consuming ComPtr<CInterface>) {
     self.pUnk = .init(pointer)
   }
 

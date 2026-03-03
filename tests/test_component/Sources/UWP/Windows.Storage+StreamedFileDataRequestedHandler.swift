@@ -15,7 +15,7 @@ extension __IMPL_Windows_Storage {
         public typealias CABI = __x_ABI_CWindows_CStorage_CIStreamedFileDataRequestedHandler
         public typealias SwiftABI = __ABI_Windows_Storage.StreamedFileDataRequestedHandler
 
-        public static func from(abi: ComPtr<CABI>?) -> Handler? {
+        public static func from(abi: consuming ComPtr<CABI>?) -> Handler? {
             guard let abi = abi else { return nil }
             let _default = SwiftABI(abi)
             let handler: Handler = { (stream) in

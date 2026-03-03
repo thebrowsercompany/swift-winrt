@@ -143,7 +143,7 @@ extension __IMPL_Windows_Storage_FileProperties {
     public enum MusicPropertiesBridge: AbiBridge {
         public typealias SwiftProjection = MusicProperties
         public typealias CABI = __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties
-        public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties>?) -> MusicProperties? {
+        public static func from(abi: consuming ComPtr<__x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties>?) -> MusicProperties? {
             guard let abi = abi else { return nil }
             return .init(fromAbi: WindowsFoundation.IInspectable(abi))
         }

@@ -100,7 +100,7 @@ extension __IMPL_Windows_Storage_Search {
     public enum StorageFolderQueryResultBridge: AbiBridge {
         public typealias SwiftProjection = StorageFolderQueryResult
         public typealias CABI = __x_ABI_CWindows_CStorage_CSearch_CIStorageFolderQueryResult
-        public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CSearch_CIStorageFolderQueryResult>?) -> StorageFolderQueryResult? {
+        public static func from(abi: consuming ComPtr<__x_ABI_CWindows_CStorage_CSearch_CIStorageFolderQueryResult>?) -> StorageFolderQueryResult? {
             guard let abi = abi else { return nil }
             return .init(fromAbi: WindowsFoundation.IInspectable(abi))
         }

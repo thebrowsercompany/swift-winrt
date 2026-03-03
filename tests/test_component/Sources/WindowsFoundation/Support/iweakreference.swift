@@ -50,7 +50,7 @@ fileprivate enum IWeakReferenceBridge: AbiBridge {
         return C_IWeakReference(lpVtbl: &IWeakReferenceVTable)
     }
 
-    static func from(abi: ComPtr<C_IWeakReference>?) -> WeakReference? {
+    static func from(abi: consuming ComPtr<C_IWeakReference>?) -> WeakReference? {
         fatalError("Not needed")
     }
 }

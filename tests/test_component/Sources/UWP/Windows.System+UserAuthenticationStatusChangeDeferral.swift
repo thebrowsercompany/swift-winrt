@@ -39,7 +39,7 @@ extension __IMPL_Windows_System {
     public enum UserAuthenticationStatusChangeDeferralBridge: AbiBridge {
         public typealias SwiftProjection = UserAuthenticationStatusChangeDeferral
         public typealias CABI = __x_ABI_CWindows_CSystem_CIUserAuthenticationStatusChangeDeferral
-        public static func from(abi: ComPtr<__x_ABI_CWindows_CSystem_CIUserAuthenticationStatusChangeDeferral>?) -> UserAuthenticationStatusChangeDeferral? {
+        public static func from(abi: consuming ComPtr<__x_ABI_CWindows_CSystem_CIUserAuthenticationStatusChangeDeferral>?) -> UserAuthenticationStatusChangeDeferral? {
             guard let abi = abi else { return nil }
             return .init(fromAbi: WindowsFoundation.IInspectable(abi))
         }

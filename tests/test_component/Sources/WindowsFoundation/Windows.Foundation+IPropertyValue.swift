@@ -95,7 +95,7 @@ extension __IMPL_Windows_Foundation {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIPropertyValue
         public typealias SwiftABI = __ABI_Windows_Foundation.IPropertyValue
         public typealias SwiftProjection = AnyIPropertyValue
-        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+        public static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IPropertyValueImpl(abi)
         }
@@ -111,7 +111,7 @@ extension __IMPL_Windows_Foundation {
         var _value: Any
         var propertyType : PropertyType
 
-        fileprivate init(_ abi: ComPtr<__x_ABI_CWindows_CFoundation_CIPropertyValue>) { fatalError("not implemented") }
+        fileprivate init(_ abi: consuming ComPtr<__x_ABI_CWindows_CFoundation_CIPropertyValue>) { fatalError("not implemented") }
         public init(value: Any) {
             _value = value
             propertyType = switch value {

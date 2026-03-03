@@ -66,7 +66,7 @@ public enum __ABI_ {
             return try super.toABI(body)
         }
       }
-      public static func unwrapFrom(abi: ComPtr<C_IInspectable>?) -> Any? {
+      public static func unwrapFrom(abi: consuming ComPtr<C_IInspectable>?) -> Any? {
         guard let abi = abi else { return nil }
         if let instance = tryUnwrapFrom(abi: abi) {
           if let weakRef = instance as? AnyObjectWrapper { return weakRef.obj }
@@ -151,7 +151,7 @@ public enum __IMPL_ {
             return .init(lpVtbl: vtblPtr)
         }
 
-        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+        public static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
             guard let abi else { return nil }
             let ref = IInspectable(abi)
             return makeFrom(abi: ref) ?? ref

@@ -49,7 +49,7 @@ internal class __x_ABI_C__FIAsyncOperationCompletedHandler_1_intBridge : WinRTDe
     internal typealias CABI = __x_ABI_C__FIAsyncOperationCompletedHandler_1_int
     internal typealias SwiftABI = test_component.AsyncOperationCompletedHandlerInt32
 
-    internal static func from(abi: ComPtr<CABI>?) -> Handler? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
@@ -102,7 +102,7 @@ internal class __x_ABI_C__FIAsyncOperationProgressHandler_2_int_doubleBridge : W
     internal typealias CABI = __x_ABI_C__FIAsyncOperationProgressHandler_2_int_double
     internal typealias SwiftABI = test_component.AsyncOperationProgressHandlerInt32_Double
 
-    internal static func from(abi: ComPtr<CABI>?) -> Handler? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, progressInfo) in
@@ -155,7 +155,7 @@ internal class __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_dou
     internal typealias CABI = __x_ABI_C__FIAsyncOperationWithProgressCompletedHandler_2_int_double
     internal typealias SwiftABI = test_component.AsyncOperationWithProgressCompletedHandlerInt32_Double
 
-    internal static func from(abi: ComPtr<CABI>?) -> Handler? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (asyncInfo, asyncStatus) in
@@ -223,7 +223,7 @@ internal enum __x_ABI_C__FIIterable_1_IInspectableBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterable_1_IInspectable
     internal typealias SwiftABI = IIterableAny
     internal typealias SwiftProjection = WindowsFoundation.AnyIIterable<Any?>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterable_1_IInspectableImpl(abi)
     }
@@ -238,7 +238,7 @@ fileprivate class __x_ABI_C__FIIterable_1_IInspectableImpl : IIterable, AbiInter
     typealias T = Any?
     typealias Bridge = __x_ABI_C__FIIterable_1_IInspectableBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -310,7 +310,7 @@ internal enum __x_ABI_C__FIIterable_1_GUIDBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterable_1_GUID
     internal typealias SwiftABI = IIterableUUID
     internal typealias SwiftProjection = WindowsFoundation.AnyIIterable<Foundation.UUID>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterable_1_GUIDImpl(abi)
     }
@@ -325,7 +325,7 @@ fileprivate class __x_ABI_C__FIIterable_1_GUIDImpl : IIterable, AbiInterfaceImpl
     typealias T = Foundation.UUID
     typealias Bridge = __x_ABI_C__FIIterable_1_GUIDBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -397,7 +397,7 @@ internal enum __x_ABI_C__FIIterable_1_HSTRINGBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterable_1_HSTRING
     internal typealias SwiftABI = IIterableString
     internal typealias SwiftProjection = WindowsFoundation.AnyIIterable<String>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterable_1_HSTRINGImpl(abi)
     }
@@ -412,7 +412,7 @@ fileprivate class __x_ABI_C__FIIterable_1_HSTRINGImpl : IIterable, AbiInterfaceI
     typealias T = String
     typealias Bridge = __x_ABI_C__FIIterable_1_HSTRINGBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -484,7 +484,7 @@ internal enum __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRIN
     internal typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING
     internal typealias SwiftABI = IIterableIKeyValuePairString_String
     internal typealias SwiftProjection = WindowsFoundation.AnyIIterable<WindowsFoundation.AnyIKeyValuePair<String, String>?>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl(abi)
     }
@@ -499,7 +499,7 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HS
     typealias T = WindowsFoundation.AnyIKeyValuePair<String, String>?
     typealias Bridge = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -571,7 +571,7 @@ internal enum __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_AB
     internal typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IIterableIKeyValuePairString_Base
     internal typealias SwiftProjection = WindowsFoundation.AnyIIterable<WindowsFoundation.AnyIKeyValuePair<String, Base?>?>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
     }
@@ -586,7 +586,7 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___
     typealias T = WindowsFoundation.AnyIKeyValuePair<String, Base?>?
     typealias Bridge = __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -658,7 +658,7 @@ internal enum __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseBridge : A
     internal typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IIterableBase
     internal typealias SwiftProjection = WindowsFoundation.AnyIIterable<Base?>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
     }
@@ -673,7 +673,7 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseImpl :
     typealias T = Base?
     typealias Bridge = __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -745,7 +745,7 @@ internal enum __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicBridge :
     internal typealias CABI = __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasic
     internal typealias SwiftABI = IIterableIBasic
     internal typealias SwiftProjection = WindowsFoundation.AnyIIterable<AnyIBasic?>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicImpl(abi)
     }
@@ -760,7 +760,7 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicImpl
     typealias T = AnyIBasic?
     typealias Bridge = __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -882,7 +882,7 @@ internal enum __x_ABI_C__FIIterator_1_IInspectableBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterator_1_IInspectable
     internal typealias SwiftABI = IIteratorAny
     internal typealias SwiftProjection = WindowsFoundation.AnyIIterator<Any?>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterator_1_IInspectableImpl(abi)
     }
@@ -897,7 +897,7 @@ fileprivate class __x_ABI_C__FIIterator_1_IInspectableImpl : IIterator, AbiInter
     typealias T = Any?
     typealias Bridge = __x_ABI_C__FIIterator_1_IInspectableBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -1034,7 +1034,7 @@ internal enum __x_ABI_C__FIIterator_1_GUIDBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterator_1_GUID
     internal typealias SwiftABI = IIteratorUUID
     internal typealias SwiftProjection = WindowsFoundation.AnyIIterator<Foundation.UUID>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterator_1_GUIDImpl(abi)
     }
@@ -1049,7 +1049,7 @@ fileprivate class __x_ABI_C__FIIterator_1_GUIDImpl : IIterator, AbiInterfaceImpl
     typealias T = Foundation.UUID
     typealias Bridge = __x_ABI_C__FIIterator_1_GUIDBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -1186,7 +1186,7 @@ internal enum __x_ABI_C__FIIterator_1_HSTRINGBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIIterator_1_HSTRING
     internal typealias SwiftABI = IIteratorString
     internal typealias SwiftProjection = WindowsFoundation.AnyIIterator<String>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterator_1_HSTRINGImpl(abi)
     }
@@ -1201,7 +1201,7 @@ fileprivate class __x_ABI_C__FIIterator_1_HSTRINGImpl : IIterator, AbiInterfaceI
     typealias T = String
     typealias Bridge = __x_ABI_C__FIIterator_1_HSTRINGBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -1338,7 +1338,7 @@ internal enum __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRIN
     internal typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING
     internal typealias SwiftABI = IIteratorIKeyValuePairString_String
     internal typealias SwiftProjection = WindowsFoundation.AnyIIterator<WindowsFoundation.AnyIKeyValuePair<String, String>?>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl(abi)
     }
@@ -1353,7 +1353,7 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HS
     typealias T = WindowsFoundation.AnyIKeyValuePair<String, String>?
     typealias Bridge = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -1490,7 +1490,7 @@ internal enum __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_AB
     internal typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IIteratorIKeyValuePairString_Base
     internal typealias SwiftProjection = WindowsFoundation.AnyIIterator<WindowsFoundation.AnyIKeyValuePair<String, Base?>?>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
     }
@@ -1505,7 +1505,7 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___
     typealias T = WindowsFoundation.AnyIKeyValuePair<String, Base?>?
     typealias Bridge = __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -1641,7 +1641,7 @@ internal enum __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseBridge : A
     internal typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IIteratorBase
     internal typealias SwiftProjection = WindowsFoundation.AnyIIterator<Base?>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
     }
@@ -1656,7 +1656,7 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseImpl :
     typealias T = Base?
     typealias Bridge = __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -1793,7 +1793,7 @@ internal enum __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicBridge :
     internal typealias CABI = __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic
     internal typealias SwiftABI = IIteratorIBasic
     internal typealias SwiftProjection = WindowsFoundation.AnyIIterator<AnyIBasic?>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicImpl(abi)
     }
@@ -1808,7 +1808,7 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicImpl
     typealias T = AnyIBasic?
     typealias Bridge = __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -1908,7 +1908,7 @@ internal enum __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge : AbiInterfaceBr
     internal typealias CABI = __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING
     internal typealias SwiftABI = IKeyValuePairString_String
     internal typealias SwiftProjection = WindowsFoundation.AnyIKeyValuePair<String, String>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl(abi)
     }
@@ -1924,7 +1924,7 @@ fileprivate class __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl : IKeyValuePai
     typealias V = String
     typealias Bridge = __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -2015,7 +2015,7 @@ internal enum __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBa
     internal typealias CABI = __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IKeyValuePairString_Base
     internal typealias SwiftProjection = WindowsFoundation.AnyIKeyValuePair<String, Base?>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
     }
@@ -2031,7 +2031,7 @@ fileprivate class __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent_
     typealias V = Base?
     typealias Bridge = __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -2163,7 +2163,7 @@ internal enum __x_ABI_C__FIMapView_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge 
     internal typealias CABI = __x_ABI_C__FIMapView_2_HSTRING_HSTRING
     internal typealias SwiftABI = IMapViewString_String
     internal typealias SwiftProjection = WindowsFoundation.AnyIMapView<String, String>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl(abi)
     }
@@ -2180,7 +2180,7 @@ fileprivate class __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl : IMapView, AbiInte
     typealias V = String
     typealias Bridge = __x_ABI_C__FIMapView_2_HSTRING_HSTRINGBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -2329,7 +2329,7 @@ internal enum __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBri
     internal typealias CABI = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IMapViewString_Base
     internal typealias SwiftProjection = WindowsFoundation.AnyIMapView<String, Base?>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
     }
@@ -2346,7 +2346,7 @@ fileprivate class __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBas
     typealias V = Base?
     typealias Bridge = __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -2534,7 +2534,7 @@ internal enum __x_ABI_C__FIMap_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIMap_2_HSTRING_HSTRING
     internal typealias SwiftABI = IMapString_String
     internal typealias SwiftProjection = WindowsFoundation.AnyIMap<String, String>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIMap_2_HSTRING_HSTRINGImpl(abi)
     }
@@ -2551,7 +2551,7 @@ fileprivate class __x_ABI_C__FIMap_2_HSTRING_HSTRINGImpl : IMap, AbiInterfaceImp
     typealias V = String
     typealias Bridge = __x_ABI_C__FIMap_2_HSTRING_HSTRINGBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -2754,7 +2754,7 @@ internal enum __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge 
     internal typealias CABI = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IMapString_Base
     internal typealias SwiftProjection = WindowsFoundation.AnyIMap<String, Base?>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
     }
@@ -2771,7 +2771,7 @@ fileprivate class __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImp
     typealias V = Base?
     typealias Bridge = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -2895,7 +2895,7 @@ internal enum __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseBr
     internal typealias CABI = __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IObservableVectorBase
     internal typealias SwiftProjection = WindowsFoundation.AnyIObservableVector<Base?>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
     }
@@ -2910,7 +2910,7 @@ fileprivate class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBa
     typealias T = Base?
     typealias Bridge = __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -3103,7 +3103,7 @@ internal enum __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasic
     internal typealias CABI = __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasic
     internal typealias SwiftABI = IObservableVectorIBasic
     internal typealias SwiftProjection = WindowsFoundation.AnyIObservableVector<AnyIBasic?>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicImpl(abi)
     }
@@ -3118,7 +3118,7 @@ fileprivate class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIB
     typealias T = AnyIBasic?
     typealias Bridge = __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -3353,7 +3353,7 @@ internal enum __x_ABI_C__FIVectorView_1_IInspectableBridge : AbiInterfaceBridge 
     internal typealias CABI = __x_ABI_C__FIVectorView_1_IInspectable
     internal typealias SwiftABI = IVectorViewAny
     internal typealias SwiftProjection = WindowsFoundation.AnyIVectorView<Any?>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIVectorView_1_IInspectableImpl(abi)
     }
@@ -3368,7 +3368,7 @@ fileprivate class __x_ABI_C__FIVectorView_1_IInspectableImpl : IVectorView, AbiI
     typealias T = Any?
     typealias Bridge = __x_ABI_C__FIVectorView_1_IInspectableBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -3538,7 +3538,7 @@ internal enum __x_ABI_C__FIVectorView_1_GUIDBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIVectorView_1_GUID
     internal typealias SwiftABI = IVectorViewUUID
     internal typealias SwiftProjection = WindowsFoundation.AnyIVectorView<Foundation.UUID>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIVectorView_1_GUIDImpl(abi)
     }
@@ -3553,7 +3553,7 @@ fileprivate class __x_ABI_C__FIVectorView_1_GUIDImpl : IVectorView, AbiInterface
     typealias T = Foundation.UUID
     typealias Bridge = __x_ABI_C__FIVectorView_1_GUIDBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -3724,7 +3724,7 @@ internal enum __x_ABI_C__FIVectorView_1_HSTRINGBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIVectorView_1_HSTRING
     internal typealias SwiftABI = IVectorViewString
     internal typealias SwiftProjection = WindowsFoundation.AnyIVectorView<String>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIVectorView_1_HSTRINGImpl(abi)
     }
@@ -3739,7 +3739,7 @@ fileprivate class __x_ABI_C__FIVectorView_1_HSTRINGImpl : IVectorView, AbiInterf
     typealias T = String
     typealias Bridge = __x_ABI_C__FIVectorView_1_HSTRINGBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -3908,7 +3908,7 @@ internal enum __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseBridge :
     internal typealias CABI = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IVectorViewBase
     internal typealias SwiftProjection = WindowsFoundation.AnyIVectorView<Base?>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
     }
@@ -3923,7 +3923,7 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl
     typealias T = Base?
     typealias Bridge = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -4095,7 +4095,7 @@ internal enum __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicBridge
     internal typealias CABI = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasic
     internal typealias SwiftABI = IVectorViewIBasic
     internal typealias SwiftProjection = WindowsFoundation.AnyIVectorView<AnyIBasic?>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicImpl(abi)
     }
@@ -4110,7 +4110,7 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicIm
     typealias T = AnyIBasic?
     typealias Bridge = __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -4398,7 +4398,7 @@ internal enum __x_ABI_C__FIVector_1_IInspectableBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIVector_1_IInspectable
     internal typealias SwiftABI = IVectorAny
     internal typealias SwiftProjection = WindowsFoundation.AnyIVector<Any?>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIVector_1_IInspectableImpl(abi)
     }
@@ -4413,7 +4413,7 @@ fileprivate class __x_ABI_C__FIVector_1_IInspectableImpl : IVector, AbiInterface
     typealias T = Any?
     typealias Bridge = __x_ABI_C__FIVector_1_IInspectableBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -4742,7 +4742,7 @@ internal enum __x_ABI_C__FIVector_1_GUIDBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIVector_1_GUID
     internal typealias SwiftABI = IVectorUUID
     internal typealias SwiftProjection = WindowsFoundation.AnyIVector<Foundation.UUID>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIVector_1_GUIDImpl(abi)
     }
@@ -4757,7 +4757,7 @@ fileprivate class __x_ABI_C__FIVector_1_GUIDImpl : IVector, AbiInterfaceImpl {
     typealias T = Foundation.UUID
     typealias Bridge = __x_ABI_C__FIVector_1_GUIDBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -5090,7 +5090,7 @@ internal enum __x_ABI_C__FIVector_1_HSTRINGBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIVector_1_HSTRING
     internal typealias SwiftABI = IVectorString
     internal typealias SwiftProjection = WindowsFoundation.AnyIVector<String>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIVector_1_HSTRINGImpl(abi)
     }
@@ -5105,7 +5105,7 @@ fileprivate class __x_ABI_C__FIVector_1_HSTRINGImpl : IVector, AbiInterfaceImpl 
     typealias T = String
     typealias Bridge = __x_ABI_C__FIVector_1_HSTRINGBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -5433,7 +5433,7 @@ internal enum __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseBridge : Abi
     internal typealias CABI = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = IVectorBase
     internal typealias SwiftProjection = WindowsFoundation.AnyIVector<Base?>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl(abi)
     }
@@ -5448,7 +5448,7 @@ fileprivate class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl : I
     typealias T = Base?
     typealias Bridge = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -5785,7 +5785,7 @@ internal enum __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicBridge : A
     internal typealias CABI = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic
     internal typealias SwiftABI = IVectorIBasic
     internal typealias SwiftProjection = WindowsFoundation.AnyIVector<AnyIBasic?>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicImpl(abi)
     }
@@ -5800,7 +5800,7 @@ fileprivate class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicImpl :
     typealias T = AnyIBasic?
     typealias Bridge = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -5950,7 +5950,7 @@ internal class __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent
     internal typealias CABI = __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBase
     internal typealias SwiftABI = test_component.VectorChangedEventHandlerBase
 
-    internal static func from(abi: ComPtr<CABI>?) -> Handler? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, event) in
@@ -6005,7 +6005,7 @@ internal class __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent
     internal typealias CABI = __x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CIBasic
     internal typealias SwiftABI = test_component.VectorChangedEventHandlerIBasic
 
-    internal static func from(abi: ComPtr<CABI>?) -> Handler? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, event) in
@@ -6060,7 +6060,7 @@ internal class __x_ABI_C__FIEventHandler_1_IInspectableBridge : WinRTDelegateBri
     internal typealias CABI = __x_ABI_C__FIEventHandler_1_IInspectable
     internal typealias SwiftABI = test_component.EventHandlerAny
 
-    internal static func from(abi: ComPtr<CABI>?) -> Handler? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, args) in
@@ -6193,7 +6193,7 @@ internal enum __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleBridge : AbiIn
     internal typealias CABI = __x_ABI_C__FIAsyncOperationWithProgress_2_int_double
     internal typealias SwiftABI = IAsyncOperationWithProgressInt32_Double
     internal typealias SwiftProjection = WindowsFoundation.AnyIAsyncOperationWithProgress<Int32, Double>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleImpl(abi)
     }
@@ -6209,7 +6209,7 @@ fileprivate class __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleImpl : IAs
     typealias TProgress = Double
     typealias Bridge = __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -6352,7 +6352,7 @@ internal enum __x_ABI_C__FIAsyncOperation_1_intBridge : AbiInterfaceBridge {
     internal typealias CABI = __x_ABI_C__FIAsyncOperation_1_int
     internal typealias SwiftABI = IAsyncOperationInt32
     internal typealias SwiftProjection = WindowsFoundation.AnyIAsyncOperation<Int32>
-    internal static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return __x_ABI_C__FIAsyncOperation_1_intImpl(abi)
     }
@@ -6367,7 +6367,7 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1_intImpl : IAsyncOperation, AbiIn
     typealias TResult = Int32
     typealias Bridge = __x_ABI_C__FIAsyncOperation_1_intBridge
     let _default: Bridge.SwiftABI
-    init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 
@@ -6421,7 +6421,7 @@ internal enum __x_ABI_C__FIReference_1_GUIDBridge: ReferenceBridge {
     typealias SwiftProjection = Foundation.UUID
     static var IID: WindowsFoundation.IID { IID___x_ABI_C__FIReference_1_GUID }
 
-    static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let val = abi else { return nil }
         var result: WindowsFoundation.GUID = .init()
         try! CHECKED(val.get().pointee.lpVtbl.pointee.get_Value(val.get(), &result))
@@ -6479,7 +6479,7 @@ internal enum __x_ABI_C__FIReference_1_intBridge: ReferenceBridge {
     typealias SwiftProjection = Int32
     static var IID: WindowsFoundation.IID { IID___x_ABI_C__FIReference_1_int }
 
-    static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let val = abi else { return nil }
         var result: INT32 = 0
         try! CHECKED(val.get().pointee.lpVtbl.pointee.get_Value(val.get(), &result))
@@ -6537,7 +6537,7 @@ internal enum __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSignedBridge:
     typealias SwiftProjection = test_component.Signed
     static var IID: WindowsFoundation.IID { IID___x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned }
 
-    static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let val = abi else { return nil }
         var result: __x_ABI_Ctest__component_CSigned = .init(0)
         try! CHECKED(val.get().pointee.lpVtbl.pointee.get_Value(val.get(), &result))
@@ -6628,7 +6628,7 @@ internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClas
     internal typealias CABI = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClass___x_ABI_Ctest__zcomponent__CDeferrableEventArgs
     internal typealias SwiftABI = test_component.TypedEventHandlerClass_DeferrableEventArgs
 
-    internal static func from(abi: ComPtr<CABI>?) -> Handler? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, args) in
@@ -6679,7 +6679,7 @@ internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimp
     internal typealias CABI = __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs
     internal typealias SwiftABI = test_component.TypedEventHandlerSimple_SimpleEventArgs
 
-    internal static func from(abi: ComPtr<CABI>?) -> Handler? {
+    internal static func from(abi: consuming ComPtr<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (sender, args) in

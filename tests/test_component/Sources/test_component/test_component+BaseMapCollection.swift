@@ -73,7 +73,7 @@ extension __IMPL_test_component {
     public enum BaseMapCollectionBridge: AbiBridge {
         public typealias SwiftProjection = BaseMapCollection
         public typealias CABI = __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase
-        public static func from(abi: ComPtr<__x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?) -> BaseMapCollection? {
+        public static func from(abi: consuming ComPtr<__x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?) -> BaseMapCollection? {
             guard let abi = abi else { return nil }
             return .init(fromAbi: WindowsFoundation.IInspectable(abi))
         }

@@ -139,7 +139,7 @@ extension __IMPL_test_component {
     public enum BaseCollectionBridge: ComposableBridge {
         public typealias SwiftProjection = BaseCollection
         public typealias CABI = __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase
-        public static func from(abi: ComPtr<__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase>?) -> BaseCollection? {
+        public static func from(abi: consuming ComPtr<__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase>?) -> BaseCollection? {
             guard let abi = abi else { return nil }
             return UnsealedWinRTClassWrapper<Composable>.unwrapFrom(base: abi)
         }

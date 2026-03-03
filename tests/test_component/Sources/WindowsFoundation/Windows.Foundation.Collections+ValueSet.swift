@@ -103,7 +103,7 @@ extension __IMPL_Windows_Foundation_Collections {
     public enum ValueSetBridge: AbiBridge {
         public typealias SwiftProjection = ValueSet
         public typealias CABI = __x_ABI_CWindows_CFoundation_CCollections_CIPropertySet
-        public static func from(abi: ComPtr<__x_ABI_CWindows_CFoundation_CCollections_CIPropertySet>?) -> ValueSet? {
+        public static func from(abi: consuming ComPtr<__x_ABI_CWindows_CFoundation_CCollections_CIPropertySet>?) -> ValueSet? {
             guard let abi = abi else { return nil }
             return .init(fromAbi: WindowsFoundation.IInspectable(abi))
         }

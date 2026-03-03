@@ -24,7 +24,7 @@ public class ComPtr<CInterface> {
         self.init(ptr)
     }
 
-    fileprivate init?(takingOwnership ptr: UnsafeMutablePointer<CInterface>?) {
+    init?(consuming ptr: UnsafeMutablePointer<CInterface>?) {
         guard let ptr else { return nil }
         self.pUnk = ptr
     }
@@ -81,13 +81,13 @@ public struct ComPtrs {
     public static func initialize<I>(to: I.Type, _ body: (inout UnsafeMutableRawPointer?) throws -> ()) rethrows -> (ComPtr<I>?) {
         var ptrRaw: UnsafeMutableRawPointer?
         try body(&ptrRaw)
-        return (ComPtr(takingOwnership: ptrRaw?.assumingMemoryBound(to: I.self)))
+        return (ComPtr(consuming: ptrRaw?.assumingMemoryBound(to: I.self)))
     }
 
     public static func initialize<I>(_ body: (inout UnsafeMutablePointer<I>?) throws -> ()) rethrows -> (ComPtr<I>?) {
         var ptr: UnsafeMutablePointer<I>?
         try body(&ptr)
-        return (ComPtr(takingOwnership: ptr))
+        return (ComPtr(consuming: ptr))
     }
 
 }

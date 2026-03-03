@@ -95,7 +95,7 @@ public class %Maker: MakeFromAbi {
     % typealias CABI = %
     % typealias SwiftABI = %
     % typealias SwiftProjection = %
-    % static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    % static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let abi = abi else { return nil }
         return %(abi)
     }
@@ -132,7 +132,7 @@ public class %Maker: MakeFromAbi {
     fileprivate typealias Bridge = %
     fileprivate let _default: Bridge.SwiftABI
     fileprivate var thisPtr: %.IInspectable { _default }
-    fileprivate init(_ fromAbi: ComPtr<Bridge.CABI>) {
+    fileprivate init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
         _default = Bridge.SwiftABI(fromAbi)
     }
 

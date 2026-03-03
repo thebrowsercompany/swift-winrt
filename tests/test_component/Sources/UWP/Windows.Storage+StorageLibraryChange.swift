@@ -59,7 +59,7 @@ extension __IMPL_Windows_Storage {
     public enum StorageLibraryChangeBridge: AbiBridge {
         public typealias SwiftProjection = StorageLibraryChange
         public typealias CABI = __x_ABI_CWindows_CStorage_CIStorageLibraryChange
-        public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CIStorageLibraryChange>?) -> StorageLibraryChange? {
+        public static func from(abi: consuming ComPtr<__x_ABI_CWindows_CStorage_CIStorageLibraryChange>?) -> StorageLibraryChange? {
             guard let abi = abi else { return nil }
             return .init(fromAbi: WindowsFoundation.IInspectable(abi))
         }

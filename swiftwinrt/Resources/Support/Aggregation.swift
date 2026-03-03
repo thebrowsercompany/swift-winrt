@@ -105,7 +105,7 @@ public class UnsealedWinRTClassWrapper<Composable: ComposableImpl> : WinRTAbiBri
         super.init(abi, Composable.SwiftProjection(impl))
     }
 
-    public static func unwrapFrom(base: ComPtr<Composable.Default.CABI>) -> Composable.Class? {
+    public static func unwrapFrom(base: borrowing ComPtr<Composable.Default.CABI>) -> Composable.Class? {
         let overrides: Composable.SwiftABI = try! base.queryInterface()
         if let weakRef = tryUnwrapFrom(abi: RawPointer(overrides)) { return weakRef.instance }
         guard let instance = makeFrom(abi: overrides) else {
@@ -127,7 +127,7 @@ public class UnsealedWinRTClassWrapper<Composable: ComposableImpl> : WinRTAbiBri
 }
 
 public extension ComposableImpl {
-    static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         return nil
     }
 }

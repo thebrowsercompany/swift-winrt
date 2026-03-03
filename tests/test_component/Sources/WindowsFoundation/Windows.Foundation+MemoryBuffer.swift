@@ -53,7 +53,7 @@ extension __IMPL_Windows_Foundation {
     public enum MemoryBufferBridge: AbiBridge {
         public typealias SwiftProjection = MemoryBuffer
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIMemoryBuffer
-        public static func from(abi: ComPtr<__x_ABI_CWindows_CFoundation_CIMemoryBuffer>?) -> MemoryBuffer? {
+        public static func from(abi: consuming ComPtr<__x_ABI_CWindows_CFoundation_CIMemoryBuffer>?) -> MemoryBuffer? {
             guard let abi = abi else { return nil }
             return .init(fromAbi: WindowsFoundation.IInspectable(abi))
         }

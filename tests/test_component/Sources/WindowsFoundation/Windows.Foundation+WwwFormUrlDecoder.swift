@@ -98,7 +98,7 @@ extension __IMPL_Windows_Foundation {
     public enum WwwFormUrlDecoderBridge: AbiBridge {
         public typealias SwiftProjection = WwwFormUrlDecoder
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderRuntimeClass
-        public static func from(abi: ComPtr<__x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderRuntimeClass>?) -> WwwFormUrlDecoder? {
+        public static func from(abi: consuming ComPtr<__x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderRuntimeClass>?) -> WwwFormUrlDecoder? {
             guard let abi = abi else { return nil }
             return .init(fromAbi: WindowsFoundation.IInspectable(abi))
         }

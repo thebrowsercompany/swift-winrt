@@ -28,7 +28,7 @@ fileprivate enum IMarshalBridge: AbiBridge {
         return C_IMarshal(lpVtbl: &IMarshalVTable)
     }
 
-    static func from(abi: ComPtr<C_IMarshal>?) -> Marshaler? {
+    static func from(abi: consuming ComPtr<C_IMarshal>?) -> Marshaler? {
         guard let abi = abi else { return nil }
         return try? Marshaler(IUnknownRef(abi))
     }

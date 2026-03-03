@@ -101,7 +101,7 @@ extension __IMPL_Windows_Foundation_Collections {
     public enum StringMapBridge: AbiBridge {
         public typealias SwiftProjection = StringMap
         public typealias CABI = __x_ABI_C__FIMap_2_HSTRING_HSTRING
-        public static func from(abi: ComPtr<__x_ABI_C__FIMap_2_HSTRING_HSTRING>?) -> StringMap? {
+        public static func from(abi: consuming ComPtr<__x_ABI_C__FIMap_2_HSTRING_HSTRING>?) -> StringMap? {
             guard let abi = abi else { return nil }
             return .init(fromAbi: WindowsFoundation.IInspectable(abi))
         }
