@@ -687,15 +687,6 @@ namespace swiftwinrt
         }
     }
 
-    static void write_param_names(writer& w, std::vector<function_param> const& params, std::string_view format)
-    {
-        separator s{ w };
-        for (const auto& param : params)
-        {
-            s();
-            w.write(format, local_swift_param_name(get_swift_name(param)));
-        }
-    }
 
     // When converting from Swift <-> C we put some local variables on the stack in order to help facilitate
     // converting between the two worlds. This method will returns a scope guard which will write any necessary
@@ -704,7 +695,6 @@ namespace swiftwinrt
     {
         write_scope_guard guard{ w, w.swift_module };
 
-        std::vector<function_param> com_ptr_initialize;
         for (auto& param : params)
         {
             TypeDef signature_type{};
@@ -825,30 +815,12 @@ namespace swiftwinrt
                 }
                 else if (needs_wrapper(category))
                 {
-                    com_ptr_initialize.push_back(param);
+                    w.write("var %Abi: %\n",
+                        local_param_name,
+                        bind<write_type>(*param.type, write_type_params::c_abi));
+                    guard.push("% = %\n", param_name,
+                        bind<write_consume_type>(param.type, w.write_temp("%Abi", local_param_name), false));
                 }
-            }
-        }
-
-        // At initial writing, ComPtrs.initialize only has overloads for 5 parameters. If we have more than 5
-        // then the generated code won't compile. Rather than check for the number here, just let generated
-        // code not compile so that we can add the overload to ComPtrs.initialize later on. This would also
-        // in theory let someone add a new overload to ComPtrs.initialize with a different number of parameters
-        // on their own as a way to unblock themselves
-        if (!com_ptr_initialize.empty())
-        {
-            w.write("let (%) = try ComPtrs.initialize { (%) in\n",
-                bind<write_param_names>(com_ptr_initialize, "%"),
-                bind<write_param_names>(com_ptr_initialize, "%Abi"));
-            guard.push("}\n");
-            guard.push_indent();
-
-            for (const auto& param : com_ptr_initialize)
-            {
-                auto param_name = get_swift_name(param);
-                auto local_param_name = local_swift_param_name(param_name);
-                guard.push("% = %\n", param_name,
-                    bind<write_consume_type>(param.type, local_param_name, true));
             }
         }
 

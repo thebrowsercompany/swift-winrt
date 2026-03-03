@@ -90,37 +90,4 @@ public struct ComPtrs {
         return (ComPtr(takingOwnership: ptr))
     }
 
-    public static func initialize<I1, I2>(_ body: (inout UnsafeMutablePointer<I1>?, inout UnsafeMutablePointer<I2>?) throws -> ()) rethrows -> (ComPtr<I1>?, ComPtr<I2>?) {
-        var ptr1: UnsafeMutablePointer<I1>?
-        var ptr2: UnsafeMutablePointer<I2>?
-        try body(&ptr1, &ptr2)
-        return (ComPtr(takingOwnership: ptr1), ComPtr(takingOwnership: ptr2))
-    }
-
-    public static func initialize<I1, I2, I3>(_ body: (inout UnsafeMutablePointer<I1>?, inout UnsafeMutablePointer<I2>?, inout UnsafeMutablePointer<I3>?) throws -> ()) rethrows -> (ComPtr<I1>?, ComPtr<I2>?, ComPtr<I3>?) {
-        var ptr1: UnsafeMutablePointer<I1>?
-        var ptr2: UnsafeMutablePointer<I2>?
-        var ptr3: UnsafeMutablePointer<I3>?
-        try body(&ptr1, &ptr2, &ptr3)
-        return (ComPtr(takingOwnership: ptr1), ComPtr(takingOwnership: ptr2), ComPtr(takingOwnership: ptr3))
-    }
-
-    public static func initialize<I1, I2, I3, I4>(_ body: (inout UnsafeMutablePointer<I1>?, inout UnsafeMutablePointer<I2>?, inout UnsafeMutablePointer<I3>?, inout UnsafeMutablePointer<I4>?) throws -> ()) rethrows -> (ComPtr<I1>?, ComPtr<I2>?, ComPtr<I3>?, ComPtr<I4>?) {
-        var ptr1: UnsafeMutablePointer<I1>?
-        var ptr2: UnsafeMutablePointer<I2>?
-        var ptr3: UnsafeMutablePointer<I3>?
-        var ptr4: UnsafeMutablePointer<I4>?
-        try body(&ptr1, &ptr2, &ptr3, &ptr4)
-        return (ComPtr(takingOwnership: ptr1), ComPtr(takingOwnership: ptr2), ComPtr(takingOwnership: ptr3), ComPtr(takingOwnership: ptr4))
-    }
-
-    public static func initialize<I1, I2, I3, I4, I5>(_ body: (inout UnsafeMutablePointer<I1>?, inout UnsafeMutablePointer<I2>?, inout UnsafeMutablePointer<I3>?, inout UnsafeMutablePointer<I4>?, inout UnsafeMutablePointer<I5>?) throws -> ()) rethrows -> (ComPtr<I1>?, ComPtr<I2>?, ComPtr<I3>?, ComPtr<I4>?, ComPtr<I5>?) {
-        var ptr1: UnsafeMutablePointer<I1>?
-        var ptr2: UnsafeMutablePointer<I2>?
-        var ptr3: UnsafeMutablePointer<I3>?
-        var ptr4: UnsafeMutablePointer<I4>?
-        var ptr5: UnsafeMutablePointer<I5>?
-        try body(&ptr1, &ptr2, &ptr3, &ptr4, &ptr5)
-        return (ComPtr(takingOwnership: ptr1), ComPtr(takingOwnership: ptr2), ComPtr(takingOwnership: ptr3), ComPtr(takingOwnership: ptr4), ComPtr(takingOwnership: ptr5))
-    }
 }

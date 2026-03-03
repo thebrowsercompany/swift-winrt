@@ -4798,13 +4798,13 @@ public class IMapViewString_Any: WindowsFoundation.IInspectable {
     }
 
     open func Split(_ first: inout WindowsFoundation.AnyIMapView<String, Any?>?, _ second: inout WindowsFoundation.AnyIMapView<String, Any?>?) throws {
-        let (_first, _second) = try ComPtrs.initialize { (_firstAbi, _secondAbi) in
-            _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_IInspectable.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &_firstAbi, &_secondAbi))
-            }
+        var _firstAbi: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_IInspectable>?
+        var _secondAbi: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_IInspectable>?
+        _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_IInspectable.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &_firstAbi, &_secondAbi))
         }
-        first = UWP.__x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: _first)
-        second = UWP.__x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: _second)
+        first = UWP.__x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: ComPtr(_firstAbi))
+        second = UWP.__x_ABI_C__FIMapView_2_HSTRING_IInspectableWrapper.unwrapFrom(abi: ComPtr(_secondAbi))
     }
 
 }
@@ -4965,13 +4965,13 @@ public class IMapViewString_IVectorViewTextSegment: WindowsFoundation.IInspectab
     }
 
     open func Split(_ first: inout WindowsFoundation.AnyIMapView<String, WindowsFoundation.AnyIVectorView<UWP.TextSegment>?>?, _ second: inout WindowsFoundation.AnyIMapView<String, WindowsFoundation.AnyIVectorView<UWP.TextSegment>?>?) throws {
-        let (_first, _second) = try ComPtrs.initialize { (_firstAbi, _secondAbi) in
-            _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
-                try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &_firstAbi, &_secondAbi))
-            }
+        var _firstAbi: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment>?
+        var _secondAbi: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment>?
+        _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
+            try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &_firstAbi, &_secondAbi))
         }
-        first = UWP.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentWrapper.unwrapFrom(abi: _first)
-        second = UWP.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentWrapper.unwrapFrom(abi: _second)
+        first = UWP.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentWrapper.unwrapFrom(abi: ComPtr(_firstAbi))
+        second = UWP.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentWrapper.unwrapFrom(abi: ComPtr(_secondAbi))
     }
 
 }
