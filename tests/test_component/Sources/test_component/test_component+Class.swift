@@ -384,21 +384,19 @@ extension __ABI_test_component {
         }
 
         public func OutObject(_ value: inout Any?) throws {
-            let (_value) = try ComPtrs.initialize { (_valueAbi) in
-                _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
-                    try CHECKED(pThis.pointee.lpVtbl.pointee.OutObject(pThis, &_valueAbi))
-                }
+            var _valueAbi: UnsafeMutablePointer<C_IInspectable>?
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.OutObject(pThis, &_valueAbi))
             }
-            value = __ABI_.AnyWrapper.unwrapFrom(abi: _value)
+            value = __ABI_.AnyWrapper.unwrapFrom(abi: ComPtr(_valueAbi))
         }
 
         public func OutStringable(_ value: inout WindowsFoundation.AnyIStringable?) throws {
-            let (_value) = try ComPtrs.initialize { (_valueAbi) in
-                _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
-                    try CHECKED(pThis.pointee.lpVtbl.pointee.OutStringable(pThis, &_valueAbi))
-                }
+            var _valueAbi: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIStringable>?
+            _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.OutStringable(pThis, &_valueAbi))
             }
-            value = __ABI_Windows_Foundation.IStringableWrapper.unwrapFrom(abi: _value)
+            value = __ABI_Windows_Foundation.IStringableWrapper.unwrapFrom(abi: ComPtr(_valueAbi))
         }
 
         public func OutBlittableStruct(_ value: inout test_component.BlittableStruct) throws {
