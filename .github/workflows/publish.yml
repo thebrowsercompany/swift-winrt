@@ -42,7 +42,7 @@ jobs:
       - name: Publish NuGet Package to GHA Packages
         shell: cmd
         env:
-          GITHUB_TOKEN: ${{ secrets.NUGET_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_USERNAME: thebrowsercompany-bot2
           NUGET_PUBLISH_URL: https://nuget.pkg.github.com/thebrowsercompany/index.json
           NUGET_SOURCE_NAME: TheBrowserCompany
