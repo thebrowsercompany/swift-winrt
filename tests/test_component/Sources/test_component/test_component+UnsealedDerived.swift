@@ -89,7 +89,7 @@ extension __IMPL_test_component {
     public enum UnsealedDerivedBridge: ComposableBridge {
         public typealias SwiftProjection = UnsealedDerived
         public typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerived
-        public static func from(abi: ComPtr<__x_ABI_Ctest__component_CIUnsealedDerived>?) -> UnsealedDerived? {
+        public static func from(abi: consuming ComPtr<__x_ABI_Ctest__component_CIUnsealedDerived>?) -> UnsealedDerived? {
             guard let abi = abi else { return nil }
             return UnsealedWinRTClassWrapper<Composable>.unwrapFrom(base: abi)
         }

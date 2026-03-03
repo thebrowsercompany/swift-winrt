@@ -468,7 +468,7 @@ namespace swiftwinrt
     var _value: Any
     var propertyType : PropertyType
 
-    fileprivate init(_ abi: ComPtr<__x_ABI_CWindows_CFoundation_CIPropertyValue>) { fatalError("not implemented") }
+    fileprivate init(_ abi: consuming ComPtr<__x_ABI_CWindows_CFoundation_CIPropertyValue>) { fatalError("not implemented") }
     public init(value: Any) {
         _value = value
         propertyType = switch value {

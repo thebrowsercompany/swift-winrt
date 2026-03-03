@@ -15,7 +15,7 @@ extension __IMPL_test_component {
         public typealias CABI = __x_ABI_Ctest__component_CIVoidToVoidDelegate
         public typealias SwiftABI = __ABI_test_component.VoidToVoidDelegate
 
-        public static func from(abi: ComPtr<CABI>?) -> Handler? {
+        public static func from(abi: consuming ComPtr<CABI>?) -> Handler? {
             guard let abi = abi else { return nil }
             let _default = SwiftABI(abi)
             let handler: Handler = { () in

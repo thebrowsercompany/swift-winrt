@@ -119,7 +119,7 @@ extension __IMPL_Windows_Storage_FileProperties {
     public enum ImagePropertiesBridge: AbiBridge {
         public typealias SwiftProjection = ImageProperties
         public typealias CABI = __x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties
-        public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties>?) -> ImageProperties? {
+        public static func from(abi: consuming ComPtr<__x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties>?) -> ImageProperties? {
             guard let abi = abi else { return nil }
             return .init(fromAbi: WindowsFoundation.IInspectable(abi))
         }

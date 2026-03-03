@@ -61,7 +61,7 @@ extension __IMPL_Windows_Storage {
     public enum StreamedFileDataRequestBridge: AbiBridge {
         public typealias SwiftProjection = StreamedFileDataRequest
         public typealias CABI = __x_ABI_CWindows_CStorage_CStreams_CIOutputStream
-        public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CStreams_CIOutputStream>?) -> StreamedFileDataRequest? {
+        public static func from(abi: consuming ComPtr<__x_ABI_CWindows_CStorage_CStreams_CIOutputStream>?) -> StreamedFileDataRequest? {
             guard let abi = abi else { return nil }
             return .init(fromAbi: WindowsFoundation.IInspectable(abi))
         }

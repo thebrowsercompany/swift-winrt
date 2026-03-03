@@ -39,7 +39,7 @@ public enum IMemoryBufferByteAccessBridge: AbiInterfaceBridge {
         return CABI(lpVtbl: &IMemoryBufferByteAccessVTable)
     }
 
-    public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+    public static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         // This code path is not actually reachable since IMemoryBufferByteAccess is not a WinRT interface.
         // It is a COM interface which is implemented by any object which implements the IMemoryBufferReference interface.
         // And the IMemoryBufferReferenceImpl object will correctly have the implementation of this interface, so this isn't needed

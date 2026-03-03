@@ -46,7 +46,7 @@ extension __IMPL_Windows_System {
     public enum UserChangedEventArgsBridge: AbiBridge {
         public typealias SwiftProjection = UserChangedEventArgs
         public typealias CABI = __x_ABI_CWindows_CSystem_CIUserChangedEventArgs
-        public static func from(abi: ComPtr<__x_ABI_CWindows_CSystem_CIUserChangedEventArgs>?) -> UserChangedEventArgs? {
+        public static func from(abi: consuming ComPtr<__x_ABI_CWindows_CSystem_CIUserChangedEventArgs>?) -> UserChangedEventArgs? {
             guard let abi = abi else { return nil }
             return .init(fromAbi: WindowsFoundation.IInspectable(abi))
         }

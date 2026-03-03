@@ -55,7 +55,7 @@ extension __IMPL_test_component {
     public enum EventTesterBridge: AbiBridge {
         public typealias SwiftProjection = EventTester
         public typealias CABI = __x_ABI_Ctest__component_CIEventTester
-        public static func from(abi: ComPtr<__x_ABI_Ctest__component_CIEventTester>?) -> EventTester? {
+        public static func from(abi: consuming ComPtr<__x_ABI_Ctest__component_CIEventTester>?) -> EventTester? {
             guard let abi = abi else { return nil }
             return .init(fromAbi: WindowsFoundation.IInspectable(abi))
         }

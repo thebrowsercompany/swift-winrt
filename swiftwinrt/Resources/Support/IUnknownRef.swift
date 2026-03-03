@@ -5,10 +5,9 @@
 public final class IUnknownRef {
   private var pUnk: ComPtr<C_IUnknown>
 
-  init<C_Interface>(_ pUnk: ComPtr<C_Interface>) {
-    let pointer: UnsafeMutablePointer<C_IUnknown> =
-        UnsafeMutableRawPointer(pUnk.get()).bindMemory(to: C_IUnknown.self, capacity: 1)
-    self.pUnk = .init(pointer)
+  init<C_Interface>(_ pUnk: consuming ComPtr<C_Interface>) {
+    let raw = pUnk.detach()
+    self.pUnk = ComPtr(consuming: raw?.assumingMemoryBound(to: C_IUnknown.self))!
   }
 
   func detach() -> UnsafeMutableRawPointer? {

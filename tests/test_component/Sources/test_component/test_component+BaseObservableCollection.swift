@@ -136,7 +136,7 @@ extension __IMPL_test_component {
     public enum BaseObservableCollectionBridge: AbiBridge {
         public typealias SwiftProjection = BaseObservableCollection
         public typealias CABI = __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase
-        public static func from(abi: ComPtr<__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase>?) -> BaseObservableCollection? {
+        public static func from(abi: consuming ComPtr<__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase>?) -> BaseObservableCollection? {
             guard let abi = abi else { return nil }
             return .init(fromAbi: WindowsFoundation.IInspectable(abi))
         }

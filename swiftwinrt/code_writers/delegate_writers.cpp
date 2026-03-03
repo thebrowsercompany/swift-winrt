@@ -52,7 +52,7 @@ namespace swiftwinrt
     % typealias CABI = %
     % typealias SwiftABI = %.%
 
-    % static func from(abi: ComPtr<CABI>?) -> Handler? {
+    % static func from(abi: consuming ComPtr<CABI>?) -> Handler? {
         guard let abi = abi else { return nil }
         let _default = SwiftABI(abi)
         let handler: Handler = { (%) in

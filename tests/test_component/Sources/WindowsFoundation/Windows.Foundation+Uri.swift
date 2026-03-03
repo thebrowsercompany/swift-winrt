@@ -160,7 +160,7 @@ extension __IMPL_Windows_Foundation {
     public enum UriBridge: AbiBridge {
         public typealias SwiftProjection = Uri
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIUriRuntimeClass
-        public static func from(abi: ComPtr<__x_ABI_CWindows_CFoundation_CIUriRuntimeClass>?) -> Uri? {
+        public static func from(abi: consuming ComPtr<__x_ABI_CWindows_CFoundation_CIUriRuntimeClass>?) -> Uri? {
             guard let abi = abi else { return nil }
             return .init(fromAbi: WindowsFoundation.IInspectable(abi))
         }

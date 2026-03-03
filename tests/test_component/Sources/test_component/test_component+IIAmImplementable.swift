@@ -53,7 +53,7 @@ extension __IMPL_test_component {
         public typealias CABI = __x_ABI_Ctest__component_CIIAmImplementable
         public typealias SwiftABI = __ABI_test_component.IIAmImplementable
         public typealias SwiftProjection = AnyIIAmImplementable
-        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+        public static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IIAmImplementableImpl(abi)
         }
@@ -68,7 +68,7 @@ extension __IMPL_test_component {
         fileprivate typealias Bridge = IIAmImplementableBridge
         fileprivate let _default: Bridge.SwiftABI
         fileprivate var thisPtr: WindowsFoundation.IInspectable { _default }
-        fileprivate init(_ fromAbi: ComPtr<Bridge.CABI>) {
+        fileprivate init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
             _default = Bridge.SwiftABI(fromAbi)
         }
 

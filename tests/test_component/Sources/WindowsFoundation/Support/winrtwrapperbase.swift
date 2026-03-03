@@ -21,7 +21,7 @@ public protocol AbiInterface {
 public protocol AbiBridge {
     associatedtype CABI
     associatedtype SwiftProjection
-    static func from(abi: ComPtr<CABI>?) -> SwiftProjection?
+    static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection?
 }
 
 public protocol SwiftImplementableBridge : AbiBridge {
@@ -178,7 +178,7 @@ open class WinRTWrapperBase<CInterface, Prototype> {
 
 open class WinRTAbiBridgeWrapper<I: AbiBridge> : WinRTWrapperBase<I.CABI, I.SwiftProjection> {
 
-    public static func unwrapFrom(abi pointer: ComPtr<I.CABI>?) -> I.SwiftProjection? {
+    public static func unwrapFrom(abi pointer: consuming ComPtr<I.CABI>?) -> I.SwiftProjection? {
         guard let pointer = pointer else { return nil }
         guard let unwrapped = tryUnwrapFrom(abi: pointer) else { return I.from(abi: pointer) }
         return unwrapped

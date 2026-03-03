@@ -135,7 +135,7 @@ extension __IMPL_Windows_Storage_FileProperties {
     public enum StorageItemThumbnailBridge: AbiBridge {
         public typealias SwiftProjection = StorageItemThumbnail
         public typealias CABI = __x_ABI_CWindows_CStorage_CStreams_CIRandomAccessStreamWithContentType
-        public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CStreams_CIRandomAccessStreamWithContentType>?) -> StorageItemThumbnail? {
+        public static func from(abi: consuming ComPtr<__x_ABI_CWindows_CStorage_CStreams_CIRandomAccessStreamWithContentType>?) -> StorageItemThumbnail? {
             guard let abi = abi else { return nil }
             return .init(fromAbi: WindowsFoundation.IInspectable(abi))
         }

@@ -151,7 +151,7 @@ extension __IMPL_test_component {
     public enum SimpleBridge: AbiBridge {
         public typealias SwiftProjection = Simple
         public typealias CABI = __x_ABI_Ctest__component_CISimple
-        public static func from(abi: ComPtr<__x_ABI_Ctest__component_CISimple>?) -> Simple? {
+        public static func from(abi: consuming ComPtr<__x_ABI_Ctest__component_CISimple>?) -> Simple? {
             guard let abi = abi else { return nil }
             return .init(fromAbi: WindowsFoundation.IInspectable(abi))
         }

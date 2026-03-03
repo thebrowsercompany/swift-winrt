@@ -31,7 +31,7 @@ extension __IMPL_test_component {
         public typealias CABI = __x_ABI_Ctest__component_CWithKeyword
         public typealias SwiftABI = __ABI_test_component.WithKeyword
         public typealias SwiftProjection = AnyWithKeyword
-        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+        public static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return WithKeywordImpl(abi)
         }
@@ -46,7 +46,7 @@ extension __IMPL_test_component {
         fileprivate typealias Bridge = WithKeywordBridge
         fileprivate let _default: Bridge.SwiftABI
         fileprivate var thisPtr: WindowsFoundation.IInspectable { _default }
-        fileprivate init(_ fromAbi: ComPtr<Bridge.CABI>) {
+        fileprivate init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
             _default = Bridge.SwiftABI(fromAbi)
         }
 

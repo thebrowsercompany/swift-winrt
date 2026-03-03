@@ -30,7 +30,7 @@ extension __IMPL_Windows_Storage_Streams {
         public typealias CABI = __x_ABI_CWindows_CStorage_CStreams_CIInputStreamReference
         public typealias SwiftABI = __ABI_Windows_Storage_Streams.IInputStreamReference
         public typealias SwiftProjection = AnyIInputStreamReference
-        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+        public static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IInputStreamReferenceImpl(abi)
         }
@@ -45,7 +45,7 @@ extension __IMPL_Windows_Storage_Streams {
         fileprivate typealias Bridge = IInputStreamReferenceBridge
         fileprivate let _default: Bridge.SwiftABI
         fileprivate var thisPtr: WindowsFoundation.IInspectable { _default }
-        fileprivate init(_ fromAbi: ComPtr<Bridge.CABI>) {
+        fileprivate init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
             _default = Bridge.SwiftABI(fromAbi)
         }
 

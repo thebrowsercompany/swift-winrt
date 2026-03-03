@@ -52,7 +52,7 @@ extension __IMPL_test_component {
     public enum UnsealedDerivedFromNoConstructorBridge: ComposableBridge {
         public typealias SwiftProjection = UnsealedDerivedFromNoConstructor
         public typealias CABI = __x_ABI_Ctest__component_CIUnsealedDerivedFromNoConstructor
-        public static func from(abi: ComPtr<__x_ABI_Ctest__component_CIUnsealedDerivedFromNoConstructor>?) -> UnsealedDerivedFromNoConstructor? {
+        public static func from(abi: consuming ComPtr<__x_ABI_Ctest__component_CIUnsealedDerivedFromNoConstructor>?) -> UnsealedDerivedFromNoConstructor? {
             guard let abi = abi else { return nil }
             return UnsealedWinRTClassWrapper<Composable>.unwrapFrom(base: abi)
         }

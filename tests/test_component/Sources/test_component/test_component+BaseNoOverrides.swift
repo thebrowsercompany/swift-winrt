@@ -58,7 +58,7 @@ extension __IMPL_test_component {
     public enum BaseNoOverridesBridge: ComposableBridge {
         public typealias SwiftProjection = BaseNoOverrides
         public typealias CABI = __x_ABI_Ctest__component_CIBaseNoOverrides
-        public static func from(abi: ComPtr<__x_ABI_Ctest__component_CIBaseNoOverrides>?) -> BaseNoOverrides? {
+        public static func from(abi: consuming ComPtr<__x_ABI_Ctest__component_CIBaseNoOverrides>?) -> BaseNoOverrides? {
             guard let abi = abi else { return nil }
             return UnsealedWinRTClassWrapper<Composable>.unwrapFrom(base: abi)
         }

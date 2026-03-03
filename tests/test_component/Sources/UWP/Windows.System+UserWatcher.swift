@@ -140,7 +140,7 @@ extension __IMPL_Windows_System {
     public enum UserWatcherBridge: AbiBridge {
         public typealias SwiftProjection = UserWatcher
         public typealias CABI = __x_ABI_CWindows_CSystem_CIUserWatcher
-        public static func from(abi: ComPtr<__x_ABI_CWindows_CSystem_CIUserWatcher>?) -> UserWatcher? {
+        public static func from(abi: consuming ComPtr<__x_ABI_CWindows_CSystem_CIUserWatcher>?) -> UserWatcher? {
             guard let abi = abi else { return nil }
             return .init(fromAbi: WindowsFoundation.IInspectable(abi))
         }

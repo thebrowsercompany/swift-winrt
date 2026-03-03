@@ -219,7 +219,7 @@ override % func _getABI<T>() -> UnsafeMutablePointer<T>? {
                 w.write("public typealias CABI = %\n", bind_type_mangled(default_interface));
                 // We unwrap composable types to try and get to any derived type.
                 // If not composable, then create a new instance
-                w.write("public static func from(abi: ComPtr<%>?) -> %? {\n",
+                w.write("public static func from(abi: consuming ComPtr<%>?) -> %? {\n",
                     bind_type_mangled(default_interface), type);
                 {
                     auto indent = w.push_indent();

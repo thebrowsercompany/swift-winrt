@@ -325,7 +325,7 @@ extension __IMPL_Windows_Storage {
     public enum StorageFolderBridge: AbiBridge {
         public typealias SwiftProjection = StorageFolder
         public typealias CABI = __x_ABI_CWindows_CStorage_CIStorageFolder
-        public static func from(abi: ComPtr<__x_ABI_CWindows_CStorage_CIStorageFolder>?) -> StorageFolder? {
+        public static func from(abi: consuming ComPtr<__x_ABI_CWindows_CStorage_CIStorageFolder>?) -> StorageFolder? {
             guard let abi = abi else { return nil }
             return .init(fromAbi: WindowsFoundation.IInspectable(abi))
         }

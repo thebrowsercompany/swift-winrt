@@ -37,7 +37,7 @@ extension __IMPL_Windows_Foundation {
         public typealias CABI = __x_ABI_CWindows_CFoundation_CIAsyncInfo
         public typealias SwiftABI = __ABI_Windows_Foundation.IAsyncInfo
         public typealias SwiftProjection = AnyIAsyncInfo
-        public static func from(abi: ComPtr<CABI>?) -> SwiftProjection? {
+        public static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
             guard let abi = abi else { return nil }
             return IAsyncInfoImpl(abi)
         }
@@ -52,7 +52,7 @@ extension __IMPL_Windows_Foundation {
         fileprivate typealias Bridge = IAsyncInfoBridge
         fileprivate let _default: Bridge.SwiftABI
         fileprivate var thisPtr: WindowsFoundation.IInspectable { _default }
-        fileprivate init(_ fromAbi: ComPtr<Bridge.CABI>) {
+        fileprivate init(_ fromAbi: consuming ComPtr<Bridge.CABI>) {
             _default = Bridge.SwiftABI(fromAbi)
         }
 
