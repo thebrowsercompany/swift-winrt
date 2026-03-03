@@ -123,8 +123,7 @@ open class WinRTWrapperBase<CInterface, Prototype> {
 
     // When unwrapping from the abi, we want to see if the object has an existing implementation so we can use
     // that to get to the existing swift object. if it doesn't exist then we can create a new implementation
-    public static func tryUnwrapFrom(abi pointer: ComPtr<CInterface>?) -> Prototype? {
-        guard let pointer = pointer else { return nil }
+    public static func tryUnwrapFrom(abi pointer: borrowing ComPtr<CInterface>) -> Prototype? {
         guard let wrapper: ISwiftImplemented = try? pointer.queryInterface() else { return nil }
         let pUnk = UnsafeMutableRawPointer(wrapper.pUnk.borrow)
 
@@ -180,8 +179,8 @@ open class WinRTAbiBridgeWrapper<I: AbiBridge> : WinRTWrapperBase<I.CABI, I.Swif
 
     public static func unwrapFrom(abi pointer: consuming ComPtr<I.CABI>?) -> I.SwiftProjection? {
         guard let pointer = pointer else { return nil }
-        guard let unwrapped = tryUnwrapFrom(abi: pointer) else { return I.from(abi: pointer) }
-        return unwrapped
+        if let unwrapped = tryUnwrapFrom(abi: pointer) { return unwrapped }
+        return I.from(abi: pointer)
     }
 
     open class func queryInterface(_ pUnk: UnsafeMutablePointer<I.CABI>?, _ riid: UnsafePointer<SUPPORT_MODULE.IID>?, _ ppvObject: UnsafeMutablePointer<UnsafeMutableRawPointer?>?) -> HRESULT {
