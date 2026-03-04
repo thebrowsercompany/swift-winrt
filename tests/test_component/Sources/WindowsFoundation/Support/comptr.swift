@@ -9,7 +9,7 @@ import CWinRT
 // anywhere else in the code base.  The only place where UnsafeMutablePointer should be used is
 
 // where it's required at the ABI boundary.
-public class ComPtr<CInterface> {
+public struct ComPtr<CInterface>: ~Copyable {
     fileprivate var pUnk: UnsafeMutablePointer<CInterface>?
 
     public init(_ ptr: UnsafeMutablePointer<CInterface>) {
@@ -19,7 +19,7 @@ public class ComPtr<CInterface> {
         }
     }
 
-    public convenience init?(_ ptr: UnsafeMutablePointer<CInterface>?) {
+    public init?(_ ptr: UnsafeMutablePointer<CInterface>?) {
         guard let ptr else { return nil }
         self.init(ptr)
     }
@@ -32,13 +32,13 @@ public class ComPtr<CInterface> {
     // Release ownership of the underlying pointer and return it. This is
     // useful when assigning to an out parameter and avoids an extra Add/Ref
     // release call.
-    public func detach() -> UnsafeMutableRawPointer? {
+    public mutating func detach() -> UnsafeMutableRawPointer? {
         let result = pUnk
         pUnk = nil
         return UnsafeMutableRawPointer(result)
     }
 
-    public func get() -> UnsafeMutablePointer<CInterface> {
+    public borrowing func get() -> UnsafeMutablePointer<CInterface> {
       guard let pUnk else { preconditionFailure("get() called on nil pointer") }
       return pUnk
     }
@@ -54,14 +54,14 @@ public class ComPtr<CInterface> {
         }
     }
 
-    func asIUnknown<ResultType>(_ body: (UnsafeMutablePointer<C_IUnknown>) throws -> ResultType) rethrows -> ResultType {
+    borrowing func asIUnknown<ResultType: ~Copyable>(_ body: (UnsafeMutablePointer<C_IUnknown>) throws -> ResultType) rethrows -> ResultType {
         guard let pUnk else { preconditionFailure("asIUnknown called on nil pointer") }
         return try pUnk.withMemoryRebound(to: C_IUnknown.self, capacity: 1) { try body($0) }
     }
 }
 
 public extension ComPtr {
-    func queryInterface<Interface: IUnknown>() throws -> Interface {
+    borrowing func queryInterface<Interface: IUnknown>() throws -> Interface {
         let ptr = try self.asIUnknown { pUnk in
             var iid = Interface.IID
             return try ComPtrs.initialize(to: C_IUnknown.self) { result in

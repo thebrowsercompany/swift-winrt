@@ -58,7 +58,7 @@ fileprivate var IWeakReferenceSourceVTable: C_IWeakReferenceSourceVtbl = .init(
 fileprivate func GetWeakReference(
         _ this: UnsafeMutablePointer<C_IWeakReferenceSource>?,
         _ weakReference: UnsafeMutablePointer<UnsafeMutablePointer<C_IWeakReference>?>?) -> HRESULT {
-    guard let object = WeakReferenceSourceWrapper.tryUnwrapFrom(abi: ComPtr(this)) else { return E_FAIL }
+    guard let this, let object = WeakReferenceSourceWrapper.tryUnwrapFrom(abi: ComPtr(this)) else { return E_FAIL }
     guard let weakReference else { return E_INVALIDARG }
     do {
         var rawWeakReference: UnsafeMutableRawPointer? = nil
