@@ -7,6 +7,7 @@ set(WINMD_FILE
 set(SWIFT_WINRT_PARAMETERS
 "-ns-prefix"
 "-include test_component"
+"-include external_base"
 "-include Windows.Foundation.Collections"
 "-include Windows.Foundation.IMemoryBufferReference"
 "-include Windows.Storage.Streams.Buffer"

@@ -8,6 +8,7 @@ let package = Package(
     name: "WinRT",
     products: [
         .library(name: "test_component", type: .dynamic, targets: ["test_component"]),
+        .library(name: "external_base", type: .dynamic, targets: ["external_base"]),
         .library(name: "UWP", type: .dynamic, targets: ["UWP"]),
         .library(name: "WindowsFoundation", type: .dynamic, targets: ["WindowsFoundation"]),
     ],
@@ -19,7 +20,15 @@ let package = Package(
         name: "test_component",
         dependencies: [
             "CWinRT",
+            "external_base",
             "UWP",
+            "WindowsFoundation",
+        ]
+      ),
+      .target(
+        name: "external_base",
+        dependencies: [
+            "CWinRT",
             "WindowsFoundation",
         ]
       ),

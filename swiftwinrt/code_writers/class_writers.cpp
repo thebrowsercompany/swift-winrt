@@ -24,6 +24,7 @@ namespace swiftwinrt
         if (base_class)
         {
             w.write("% class % : %", modifier, typeName, get_full_swift_type_name(w, base_class));
+            w.add_depends(*base_class);
         }
         else if (default_interface)
         {

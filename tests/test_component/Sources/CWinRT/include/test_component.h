@@ -7,6 +7,7 @@
 #include <windowscontracts.h>
 #include "Windows.Foundation.h"
 #include "Windows.Storage.Streams.h"
+#include "external_base.h"
 #include "test_component.Delegates.h"
 // Importing Collections header
 #include "Windows.Foundation.Collections.h"
@@ -179,6 +180,12 @@ typedef interface __x_ABI_Ctest__component_CIVoidToVoidDelegate __x_ABI_Ctest__c
     typedef interface __x_ABI_Ctest__component_CIDerived __x_ABI_Ctest__component_CIDerived;
 
 #endif // ____x_ABI_Ctest__component_CIDerived_FWD_DEFINED__
+
+#ifndef ____x_ABI_Ctest__component_CIDerivedFromExternalBase_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CIDerivedFromExternalBase_FWD_DEFINED__
+    typedef interface __x_ABI_Ctest__component_CIDerivedFromExternalBase __x_ABI_Ctest__component_CIDerivedFromExternalBase;
+
+#endif // ____x_ABI_Ctest__component_CIDerivedFromExternalBase_FWD_DEFINED__
 
 #ifndef ____x_ABI_Ctest__component_CIDerivedFromNoConstructor_FWD_DEFINED__
 #define ____x_ABI_Ctest__component_CIDerivedFromNoConstructor_FWD_DEFINED__
@@ -2427,6 +2434,12 @@ typedef struct __x_ABI_CWindows_CFoundation_CDateTime __x_ABI_CWindows_CFoundati
 
 #endif // ____x_ABI_CWindows_CStorage_CStreams_CIBuffer_FWD_DEFINED__
 
+#ifndef ____x_ABI_Cexternal__base_CIExternalBase_FWD_DEFINED__
+#define ____x_ABI_Cexternal__base_CIExternalBase_FWD_DEFINED__
+    typedef interface __x_ABI_Cexternal__base_CIExternalBase __x_ABI_Cexternal__base_CIExternalBase;
+
+#endif // ____x_ABI_Cexternal__base_CIExternalBase_FWD_DEFINED__
+
 #ifndef ____x_ABI_Ctest__component_CDelegates_CIInDelegate_FWD_DEFINED__
 #define ____x_ABI_Ctest__component_CDelegates_CIInDelegate_FWD_DEFINED__
 typedef interface __x_ABI_Ctest__component_CDelegates_CIInDelegate __x_ABI_Ctest__component_CDelegates_CIInDelegate;
@@ -3794,6 +3807,41 @@ struct __x_ABI_Ctest__component_CStructWithIReference
     
     EXTERN_C const IID IID___x_ABI_Ctest__component_CIDerived;
 #endif /* !defined(____x_ABI_Ctest__component_CIDerived_INTERFACE_DEFINED__) */
+    
+#if !defined(____x_ABI_Ctest__component_CIDerivedFromExternalBase_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CIDerivedFromExternalBase_INTERFACE_DEFINED__
+    typedef struct __x_ABI_Ctest__component_CIDerivedFromExternalBaseVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CIDerivedFromExternalBase* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CIDerivedFromExternalBase* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CIDerivedFromExternalBase* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_Ctest__component_CIDerivedFromExternalBase* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_Ctest__component_CIDerivedFromExternalBase* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CIDerivedFromExternalBase* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* get_Prop)(__x_ABI_Ctest__component_CIDerivedFromExternalBase* This,
+        INT32* value);
+    HRESULT (STDMETHODCALLTYPE* put_Prop)(__x_ABI_Ctest__component_CIDerivedFromExternalBase* This,
+        INT32 value);
+
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CIDerivedFromExternalBaseVtbl;
+
+    interface __x_ABI_Ctest__component_CIDerivedFromExternalBase
+    {
+        CONST_VTBL struct __x_ABI_Ctest__component_CIDerivedFromExternalBaseVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CIDerivedFromExternalBase;
+#endif /* !defined(____x_ABI_Ctest__component_CIDerivedFromExternalBase_INTERFACE_DEFINED__) */
     
 #if !defined(____x_ABI_Ctest__component_CIDerivedFromNoConstructor_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CIDerivedFromNoConstructor_INTERFACE_DEFINED__
