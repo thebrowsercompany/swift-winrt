@@ -19,6 +19,16 @@ namespace Windows.Foundation.Metadata
     }
 }
 
+// This namespace exists in a separate Swift module from test_component to test
+// that cross-module base class inheritance correctly generates import statements.
+namespace external_base
+{
+    unsealed runtimeclass ExternalBase
+    {
+        protected ExternalBase();
+    };
+}
+
 namespace test_component
 {
         // Just defined to validate we properly generate this name
@@ -402,4 +412,12 @@ namespace test_component
         runtimeclass BaseObservableCollection: [default] IObservableVector<Base>
         {
         }
+
+        // Inherits from a class in another module (external_base) with no other
+        // references to that module. Tests that `import external_base` is emitted.
+        runtimeclass DerivedFromExternalBase : external_base.ExternalBase
+        {
+            DerivedFromExternalBase();
+            Int32 Prop;
+        };
     }

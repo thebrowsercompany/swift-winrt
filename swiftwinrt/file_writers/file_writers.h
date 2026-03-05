@@ -113,13 +113,14 @@ namespace swiftwinrt
 
     static void write_preamble_and_save(writer& w, typedef_base const& type)
     {
-        // Empty writer may mean no types in the namespace or they were filtered out. 
+        // Empty writer may mean no types in the namespace or they were filtered out.
         if (w.empty()) return;
 
         w.swap();
         write_preamble(w, /* swift_code: */ true);
 
         w.save_file(remove_backtick(type.swift_type_name()));
+        w.depends.clear();
     }
 
 
@@ -133,6 +134,7 @@ namespace swiftwinrt
         write_preamble(w, /* swift_code: */ true);
 
         w.save_file(extension);
+        w.depends.clear();
     }
 
     static void write_namespace_class(writer& w, std::string_view const& ns, class_type const& type)
