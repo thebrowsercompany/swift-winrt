@@ -176,6 +176,7 @@ extension __ABI_Windows_Storage_Search {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIQueryOptions.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_ApplicationSearchFilter(pThis, &value))
             }
+            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -191,6 +192,7 @@ extension __ABI_Windows_Storage_Search {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIQueryOptions.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_UserSearchFilter(pThis, &value))
             }
+            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -206,6 +208,7 @@ extension __ABI_Windows_Storage_Search {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIQueryOptions.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Language(pThis, &value))
             }
+            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -244,6 +247,7 @@ extension __ABI_Windows_Storage_Search {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIQueryOptions.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_GroupPropertyName(pThis, &value))
             }
+            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -260,6 +264,7 @@ extension __ABI_Windows_Storage_Search {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIQueryOptions.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.SaveToString(pThis, &value))
             }
+            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 

@@ -79,6 +79,7 @@ extension __ABI_Windows_Storage {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageProvider.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Id(pThis, &value))
             }
+            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -87,6 +88,7 @@ extension __ABI_Windows_Storage {
             _ = try perform(as: __x_ABI_CWindows_CStorage_CIStorageProvider.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_DisplayName(pThis, &value))
             }
+            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 

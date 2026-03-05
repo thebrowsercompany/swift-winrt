@@ -127,6 +127,7 @@ extension __ABI_Windows_Foundation {
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetFirstValueByName(pThis, _name.get(), &phstrValue))
             }
+            defer { WindowsDeleteString(phstrValue) }
             return .init(from: phstrValue)
         }
 

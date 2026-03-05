@@ -128,6 +128,7 @@ extension __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CICollectionTesterStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InMap(pThis, _value, &result))
             }
+            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
@@ -138,6 +139,7 @@ extension __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CICollectionTesterStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InMapView(pThis, _value, &result))
             }
+            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
@@ -148,6 +150,7 @@ extension __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CICollectionTesterStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InVector(pThis, _value, &result))
             }
+            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
@@ -158,6 +161,7 @@ extension __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CICollectionTesterStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InVectorView(pThis, _value, &result))
             }
+            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 

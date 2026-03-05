@@ -55,6 +55,7 @@ extension __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CIStaticClassStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InEnum(pThis, value, &result))
             }
+            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
@@ -64,6 +65,7 @@ extension __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CIStaticClassStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InNonBlittableStruct(pThis, _value.val, &result))
             }
+            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
