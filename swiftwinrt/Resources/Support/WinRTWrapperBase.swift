@@ -199,25 +199,28 @@ open class WinRTAbiBridgeWrapper<I: AbiBridge> : WinRTWrapperBase<I.CABI, I.Swif
 
 open class InterfaceWrapperBase<I: AbiInterfaceBridge> : WinRTAbiBridgeWrapper<I> {
     override public class var IID: SUPPORT_MODULE.IID { I.SwiftABI.IID }
+
+    // Cached ABI pointer for objects that conform to AbiInterfaceImpl, avoiding
+    // a dynamic cast (swift_dynamicCast → swift_conformsToProtocol) on every toABI call.
+    private let wrappedAbi: UnsafeMutablePointer<I.CABI>?
+
     public init?(_ impl: I.SwiftProjection?) {
         guard let impl = impl else { return nil }
         // try to see if already wrapping an ABI pointer and if so, use that
         if let internalImpl = impl as? AnyAbiInterfaceImpl<I> {
             let abi: UnsafeMutablePointer<I.CABI> = RawPointer(internalImpl)
+            self.wrappedAbi = abi
             super.init(abi.pointee, impl)
         } else {
-            let abi = I.makeAbi()
-            super.init(abi, impl)
+            self.wrappedAbi = nil
+            super.init(I.makeAbi(), impl)
         }
     }
 
     override public func toABI<ResultType>(_ body: (UnsafeMutablePointer<I.CABI>) throws -> ResultType)
         throws -> ResultType {
-        // If this is an implementation then we're holding onto a WinRT object pointer, get that pointer
-        // and return that.
-        if let internalImpl = swiftObj as? AnyAbiInterfaceImpl<I> {
-            let abi: UnsafeMutablePointer<I.CABI> = RawPointer(internalImpl._default)
-            return try body(abi)
+        if let wrappedAbi {
+            return try body(wrappedAbi)
         } else {
             return try super.toABI(body)
         }
