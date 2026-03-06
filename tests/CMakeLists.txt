@@ -18,6 +18,11 @@ set(SWIFT_BUILD_ARGS ${SWIFT_BUILD_ARGS} -c $<LOWER_CASE:${CMAKE_BUILD_TYPE}>)
 # Output to the cmake binary dir so build outputs are consolidated
 set(SWIFT_BUILD_ARGS ${SWIFT_BUILD_ARGS} --scratch-path ${CMAKE_CURRENT_BINARY_DIR})
 
+# PDB debug info for Swift targets (for ETW profiling with xperf/WPA)
+if(SWIFT_DEBUG_MODE STREQUAL "pdb")
+  set(SWIFT_BUILD_ARGS ${SWIFT_BUILD_ARGS} -Xswiftc -g -Xswiftc -debug-info-format=codeview -Xlinker -debug)
+endif()
+
 # CI machines have path issues so we pass the path to swift as part of configure
 if (DEFINED SWIFT_EXE)
   set(SWIFT_COMMAND ${SWIFT_EXE} build ${SWIFT_BUILD_ARGS})
