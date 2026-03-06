@@ -101,44 +101,6 @@ public var E_XAMLPARSEFAILED : WinSDK.HRESULT {
   HRESULT(bitPattern: 0x802B000A)
 }
 
-private func getErrorDescription(expecting hr: HRESULT) -> String? {
-  var errorInfo: UnsafeMutablePointer<IRestrictedErrorInfo>?
-  guard GetRestrictedErrorInfo(&errorInfo) == S_OK else { return nil }
-  defer {
-    _ = errorInfo?.pointee.lpVtbl.pointee.Release(errorInfo)
-  }
-
-  var errorDescription: BSTR?
-  var restrictedDescription: BSTR?
-  var capabilitySid: BSTR?
-  defer {
-    SysFreeString(errorDescription)
-    SysFreeString(restrictedDescription)
-    SysFreeString(capabilitySid)
-  }
-  var resultLocal: HRESULT = S_OK
-  _ = errorInfo?.pointee.lpVtbl.pointee.GetErrorDetails(
-    errorInfo,
-    &errorDescription,
-    &resultLocal,
-    &restrictedDescription,
-    &capabilitySid)
-
-  guard resultLocal == hr else { return nil }
-  
-  // Favor restrictedDescription as this is a more user friendly message, which
-  // is intended to be displayed to the caller to help them understand why the
-  // api call failed. If it's not set, then fallback to the generic error message
-  // for the result
-  if SysStringLen(restrictedDescription) > 0 {
-    return String(decodingCString: restrictedDescription!, as: UTF16.self)
-  } else if SysStringLen(errorDescription) > 0 {
-    return String(decodingCString: errorDescription!, as: UTF16.self)
-  } else {
-    return nil
-  }
-}
-
 private func hrToString(_ hr: HRESULT) -> String {
   let dwFlags: DWORD = DWORD(FORMAT_MESSAGE_ALLOCATE_BUFFER)
                        | DWORD(FORMAT_MESSAGE_FROM_SYSTEM)
@@ -160,14 +122,73 @@ private func hrToString(_ hr: HRESULT) -> String {
 }
 
 public struct Error : Swift.Error, CustomStringConvertible {
-  public let description: String
   public let hr: HRESULT
+  private let info: Info?
+
+  // hrToString calls FormatMessageW which is expensive (loads resource DLLs
+  // and searches localized message tables). Many WinRT patterns use try? to
+  // discard errors, so we defer formatting until description is actually read.
+  public var description: String {
+    info?.description(expectingResult: hr) ?? hrToString(hr)
+  }
 
   public init(hr: HRESULT) {
-    self.description = getErrorDescription(expecting: hr) ?? hrToString(hr)
     self.hr = hr
+
+    var errorInfo: UnsafeMutablePointer<IRestrictedErrorInfo>?
+    guard GetRestrictedErrorInfo(&errorInfo) == S_OK, let errorInfo else {
+      self.info = nil
+      return
+    }
+    self.info = Info(errorInfo)
   }
-}   
+
+  fileprivate final class Info {
+    private let ptr: UnsafeMutablePointer<IRestrictedErrorInfo>
+
+    init(_ ptr: UnsafeMutablePointer<IRestrictedErrorInfo>) {
+      self.ptr = ptr
+    }
+
+    deinit {
+      _ = ptr.pointee.lpVtbl.pointee.Release(ptr)
+    }
+
+    func description(expectingResult hr: HRESULT) -> String? {
+      var errorDescription: BSTR?
+      var restrictedDescription: BSTR?
+      var capabilitySid: BSTR?
+      var resultLocal: HRESULT = S_OK
+
+      defer {
+        SysFreeString(errorDescription)
+        SysFreeString(restrictedDescription)
+        SysFreeString(capabilitySid)
+      }
+
+      _ = ptr.pointee.lpVtbl.pointee.GetErrorDetails(
+        ptr,
+        &errorDescription,
+        &resultLocal,
+        &restrictedDescription,
+        &capabilitySid)
+
+      guard resultLocal == hr else { return nil }
+
+      // Favor restrictedDescription as this is a more user friendly message, which
+      // is intended to be displayed to the caller to help them understand why the
+      // api call failed. If it's not set, then fallback to the generic error message
+      // for the result
+      if SysStringLen(restrictedDescription) > 0 {
+        return String(decodingCString: restrictedDescription!, as: UTF16.self)
+      } else if SysStringLen(errorDescription) > 0 {
+        return String(decodingCString: errorDescription!, as: UTF16.self)
+      } else {
+        return nil
+      }
+    }
+  }
+}
 
 public func failWith(hr: HRESULT) -> HRESULT {
   return hr
