@@ -160,12 +160,22 @@ private func hrToString(_ hr: HRESULT) -> String {
 }
 
 public struct Error : Swift.Error, CustomStringConvertible {
-  public let description: String
   public let hr: HRESULT
 
+  // Captured eagerly because GetRestrictedErrorInfo is thread-local
+  // and must be read immediately after the failing COM call.
+  private let restrictedDescription: String?
+
+  // hrToString calls FormatMessageW which is expensive (loads resource DLLs
+  // and searches localized message tables). Many WinRT patterns use try? to
+  // discard errors, so we defer formatting until description is actually read.
+  public var description: String {
+    restrictedDescription ?? hrToString(hr)
+  }
+
   public init(hr: HRESULT) {
-    self.description = getErrorDescription(expecting: hr) ?? hrToString(hr)
     self.hr = hr
+    self.restrictedDescription = getErrorDescription(expecting: hr)
   }
 }   
 
