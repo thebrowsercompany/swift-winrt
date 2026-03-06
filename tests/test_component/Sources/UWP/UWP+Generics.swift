@@ -13210,9 +13210,7 @@ internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CSystem__CUser
 }
 public extension EventSource where Handler == TypedEventHandler<IStorageQueryResultBase?, Any?> {
     func invoke(_ sender: UWP.AnyIStorageQueryResultBase!, _ args: Any!) throws {
-        for handler in getInvocationList() {
-            try handler(sender, args)
-        }
+        try invokeAll { handler in try handler(sender, args) }
     }
 }
 

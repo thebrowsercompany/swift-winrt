@@ -20,6 +20,10 @@ import CWinRT
     public func getInvocationList() -> [Handler] {
       handlers.getInvocationList()
     }
+
+    public func invokeAll(_ body: (Handler) throws -> Void) rethrows {
+        try handlers.invokeAll(body)
+    }
 }
 
 extension CWinRT.EventRegistrationToken: @retroactive Hashable {
