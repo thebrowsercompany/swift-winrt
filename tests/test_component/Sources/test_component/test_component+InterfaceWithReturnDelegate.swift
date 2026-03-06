@@ -11,9 +11,7 @@ public protocol InterfaceWithReturnDelegate : WinRTInterface {
 public extension EventSource where Handler == test_component.ReturnInt32Delegate {
     @discardableResult func invoke() throws -> Int32 {
         var result:Int32 = 0
-        for handler in getInvocationList() {
-            result = try handler()
-        }
+        try invokeAll { handler in result = try handler() }
         return result
     }
 }

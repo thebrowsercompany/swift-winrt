@@ -190,9 +190,7 @@ public class %Maker: MakeFromAbi {
         if (delegate_method.return_type)
         {
             invoke_implementation = w.write_temp(R"(var result:%%
-        for handler in getInvocationList() {
-            result = try handler(%)
-        }
+        try invokeAll { handler in result = try handler(%) }
         return result)",
                 bind<write_type>(*delegate_method.return_type->type, write_type_params::swift),
                 bind<write_default_init_assignment>(*delegate_method.return_type->type, projection_layer::swift),
@@ -200,9 +198,7 @@ public class %Maker: MakeFromAbi {
         }
         else
         {
-            invoke_implementation = w.write_temp(R"(for handler in getInvocationList() {
-            try handler(%)
-        })", bind<write_comma_param_names>(delegate_method.params));
+            invoke_implementation = w.write_temp(R"(try invokeAll { handler in try handler(%) })", bind<write_comma_param_names>(delegate_method.params));
         }
 
         assert(delegate_method.def);

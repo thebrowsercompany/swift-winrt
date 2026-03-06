@@ -36,4 +36,11 @@ struct EventHandlerSubscriptions<Handler> {
       lock.unlock()
       return result
     }
+
+    func invokeAll(_ body: (Handler) throws -> Void) rethrows {
+        lock.lock()
+        let snapshot = buffer // CoW: just retains backing storage
+        lock.unlock()
+        for sub in snapshot { try body(sub.handler) }
+    }
 }

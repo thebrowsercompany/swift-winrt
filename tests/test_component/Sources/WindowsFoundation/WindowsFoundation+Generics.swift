@@ -2484,9 +2484,7 @@ internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_CWindows__CFoundation__C
 }
 public extension EventSource where Handler == TypedEventHandler<IMemoryBufferReference?, Any?> {
     func invoke(_ sender: WindowsFoundation.AnyIMemoryBufferReference!, _ args: Any!) throws {
-        for handler in getInvocationList() {
-            try handler(sender, args)
-        }
+        try invokeAll { handler in try handler(sender, args) }
     }
 }
 

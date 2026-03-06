@@ -27,9 +27,7 @@ public protocol IIAmImplementable : WinRTInterface {
 
 public extension EventSource where Handler == test_component.InDelegate {
     func invoke(_ value: String) throws {
-        for handler in getInvocationList() {
-            try handler(value)
-        }
+        try invokeAll { handler in try handler(value) }
     }
 }
 
