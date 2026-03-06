@@ -186,36 +186,27 @@ public class %Maker: MakeFromAbi {
             delegate_method = genericInst->functions[0];
             guard = w.push_generic_params(*genericInst);
         }
-        std::string invoke_implementation;
+        // Don't generate invoke for delegates with return types - multicast
+        // delegate return semantics are misleading (only the last handler's
+        // return value survives). No real WinRT delegates with return types
+        // are used as events.
+        assert(!delegate_method.return_type);
         if (delegate_method.return_type)
         {
-            invoke_implementation = w.write_temp(R"(var result:%%
-        for handler in getInvocationList() {
-            result = try handler(%)
+            return;
         }
-        return result)",
-                bind<write_type>(*delegate_method.return_type->type, write_type_params::swift),
-                bind<write_default_init_assignment>(*delegate_method.return_type->type, projection_layer::swift),
-                bind<write_comma_param_names>(delegate_method.params));
-        }
-        else
-        {
-            invoke_implementation = w.write_temp(R"(for handler in getInvocationList() {
-            try handler(%)
-        })", bind<write_comma_param_names>(delegate_method.params));
-        }
+
+        auto invoke_implementation = w.write_temp(R"(try invokeAll { handler in try handler(%) })", bind<write_comma_param_names>(delegate_method.params));
 
         assert(delegate_method.def);
         w.write(R"(% extension EventSource where Handler == % {
-    %func invoke(%) throws% {
+    func invoke(%) throws {
         %
     }
 }
 
 )", access_level, event_type,
-    delegate_method.return_type ? "@discardableResult " : "",
     bind<write_function_params>(delegate_method, write_type_params::swift_allow_implicit_unwrap),
-    bind<write_return_type_declaration>(delegate_method, write_type_params::swift_allow_implicit_unwrap),
     invoke_implementation);
     }
 
