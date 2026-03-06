@@ -3,6 +3,12 @@ project(swiftwinrt LANGUAGES C CXX)
 
 option(BUILD_SHARED_LIBS "Build shared libraries by default" YES)
 
+# PDB debug info for C++/linker targets (for ETW profiling with xperf/WPA)
+if(SWIFT_DEBUG_MODE STREQUAL "pdb")
+    add_compile_options("$<$<COMPILE_LANGUAGE:CXX>:-Zi>")
+    add_link_options(LINKER:-debug)
+endif()
+
 if(NOT EXISTS "$ENV{WindowsSdkBinPath}${CMAKE_SYSTEM_VERSION}")
     message(FATAL_ERROR "Windows SDK Version appears not to be installed:\n  Missing folder: $ENV{WindowsSdkBinPath}${CMAKE_SYSTEM_VERSION}")
 endif()

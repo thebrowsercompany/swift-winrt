@@ -44,6 +44,20 @@
                 "CMAKE_C_COMPILER": "cl",
                 "CMAKE_CXX_COMPILER": "cl"
             }
+        },
+        {
+            "name": "release-pdb",
+            "displayName": "Release (PDB)",
+            "description": "Optimized release build with PDB debug information for ETW profiling.",
+            "binaryDir": "${sourceDir}/build/release-pdb",
+            "installDir": "${sourceDir}/out/release-pdb",
+            "inherits": [ "base" ],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_C_COMPILER": "cl",
+                "CMAKE_CXX_COMPILER": "cl",
+                "SWIFT_DEBUG_MODE": "pdb"
+            }
         }
     ],
     "buildPresets": [
@@ -54,6 +68,10 @@
       {
         "name": "release",
         "configurePreset": "release"
+      },
+      {
+        "name": "release-pdb",
+        "configurePreset": "release-pdb"
       }
     ]
 }
