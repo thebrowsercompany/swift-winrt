@@ -17,6 +17,8 @@
 #include "code_writers.h"
 #include "file_writers/abi_writer.h"
 #include "file_writers/file_writers.h"
+#include "tasks/write_project_files.h"
+#include "tasks/write_code_files.h"
 #pragma warning(pop)
 
 namespace swiftwinrt
@@ -34,18 +36,16 @@ namespace swiftwinrt
         { "name", 0, 1, "<name>", "Specify explicit name for component files" },
         { "verbose", 0, 0, {}, "Show detailed progress information" },
         { "log", 0, 0, {}, "Write detailed information to log" },
-        { "ns-prefix", 0, 1, "<always|optional|never>", "Sets policy for prefixing type names with 'ABI' namespace (default: never)" },
-        { "overwrite", 0, 0, {}, "Overwrite generated component files" },
         { "support", 0, 1, "<module>", "module to include support files" },
         { "include", 0, option::no_max, "<prefix>", "One or more prefixes to include in input" },
         { "exclude", 0, option::no_max, "<prefix>", "One or more prefixes to exclude from input" },
         { "help", 0, option::no_max, {}, "Show detailed help with examples" },
         { "spm", 0, 0, "generate SPM project files"}, // generate SPM project files
+        { "task", 0, 1, "<GenerateProjectFiles|GenerateBindings>", "which task to run from the execuable (default: GenerateBindings)"},
         { "cmake", 0, 0, "generate CMake project files"}, // generate CMake project files
+        { "swift-version", 0, 1, "<version>", "Specify Swift tools version for SPM project files"},
         { "file-per-type", 0, 1, "generate files per type"},
         { "?", 0, option::no_max, {}, {} },
-        { "library", 0, 1, "<prefix>", "Specify library prefix (defaults to winrt)" },
-        { "test", 0, 0 }, // the projections are for tests and place all code into a single module
         { "filter" }, // One or more prefixes to include in input (same as -include)
         { "license", 0, 0 }, // Generate license comment
         { "brackets", 0, 0 }, // Use angle brackets for #includes (defaults to quotes)
@@ -105,7 +105,33 @@ Where <spec> is one or more of:
         settings.file_per_category = args.exists("file-per-category");
 
         settings.support = args.value("support", "WindowsFoundation");
+        if (args.exists("spm"))
+        {
+            settings.project = settings.project | project_type::spm;
+            if (!args.exists("swift-version"))
+            {
+                throw std::invalid_argument("SPM project generation requires -swift-version to be specified");
+            }
+            settings.swift_version = args.value("swift-version");
+        }
+        if (args.exists("cmake"))
+        {
+            settings.project = settings.project | project_type::cmake;
+        }
 
+        auto task_value = args.value("task", "GenerateBindings");
+        if (task_value == "GenerateBindings")
+        {
+            settings.task = task::code_gen;
+        }
+        else if (task_value == "GenerateProjectFiles")
+        {
+            settings.task = task::proj_gen;
+        }
+        else
+        {
+            throw std::invalid_argument("Invalid task specified: " + task_value);
+        }
         create_directories(settings.output_folder);
         create_directories(writer::root_directory());
         create_directories(writer::root_directory() / "CWinRT");
@@ -165,36 +191,6 @@ Where <spec> is one or more of:
         settings.projection_filter = { settings.include.empty() ? include : settings.include, settings.exclude };
 
         settings.component_filter = { settings.include.empty() ? include : settings.include, settings.exclude };
-    }
-
-    static void build_fastabi_cache(cache const& c)
-    {
-        if (!settings.fastabi)
-        {
-            return;
-        }
-
-        for (auto&& [ns, members] : c.namespaces())
-        {
-            for (auto&& type : members.classes)
-            {
-                if (!has_fastabi(type))
-                {
-                    continue;
-                }
-
-                auto default_interface = get_default_interface(type);
-
-                if (default_interface.type() == TypeDefOrRef::TypeDef)
-                {
-                    settings.fastabi_cache.try_emplace(default_interface.TypeDef(), type);
-                }
-                else
-                {
-                    settings.fastabi_cache.try_emplace(find_required(default_interface.TypeRef()), type);
-                }
-            }
-        }
     }
 
     static int run(int const argc, char** argv)
@@ -265,111 +261,29 @@ Where <spec> is one or more of:
             task_group group;
             group.synchronous(args.exists("synchronous"));
 
-            std::map<std::string, std::vector<std::string_view>> module_map; // map of module -> namespaces
-            std::map<std::string, std::set<std::string>> module_dependencies; // module -> module dependencies
-            path output_folder = settings.output_folder;
-            for (auto&&[ns, members] : c.namespaces())
-            {
-                if (!has_projected_types(members))
-                {
-                    continue;
-                }
-
-                group.add([&, &ns = ns]
-                {
-                    // we want the C module to contain all of the types so that incremental builds of the
-                    // projections is quick. we don't actually even need the end result of the C bindings
-                    // and so it can be discarded after the app is built - meaning the size increase doesn't
-                    // matter
-                    include_all_filter filter{c};
-                    auto types = mdCache.compile_namespaces({ ns }, filter);
-                    write_abi_header(ns, types);
-                });
-
-                if (!mf.includes_any(members))
-                {
-                    continue;
-                }
-                auto module_name = get_swift_module(ns);
-
-                auto [moduleMapItr, moduleAdded] = module_map.emplace(std::piecewise_construct,
-                    std::forward_as_tuple(module_name),
-                    std::forward_as_tuple());
-                if (moduleAdded)
-                {
-                    create_directories(writer::root_directory() / module_name);
-                }
-                moduleMapItr->second.push_back(ns);
-            }
+            const auto module_map = get_swift_modules(c, mf);
             for (auto&& [module, namespaces] : module_map)
             {
-                auto [moduleItr, added] = module_dependencies.emplace(std::piecewise_construct,
-                    std::forward_as_tuple(module),
-                    std::forward_as_tuple());
-                assert(added);
-                group.add([&,
-                        &module = module,
-                        &namespaces = namespaces,
-                        &moduleDependencies = moduleItr->second]
+                if (settings.task == task::code_gen)
+                {
+                    write_swift_code_files(group, module, namespaces, mdCache, mf);
+                    write_c_code_files(group, module, namespaces, mdCache, include_all_filter{ c });
+                }
+                else if (settings.task == task::proj_gen)
+                {
+                    if (settings.has_project_type(project_type::spm))
                     {
-                        swiftwinrt::task_group module_group;
-                        module_group.add([&, &namespaces = namespaces]
-                        {
-                            // generics are written on a per module basis because this helps us reduce the
-                            // amount of code that is generated.
-                            auto types = mdCache.compile_namespaces(namespaces, mf);
-                            write_module_generics(module, types, mf);
-                        });
-
-                        if (module == settings.support)
-                        {
-                            module_group.add([&]
-                            {
-                                write_swift_support_files(module);
-                            });
-                        }
-
-                        for (auto& ns : namespaces)
-                        {
-                            module_group.add([&, &ns = ns]
-
-                            {
-                                auto types = mdCache.compile_namespaces({ ns }, mf);
-                                write_namespace_abi (ns, types, mf);
-                                write_namespace_impl(ns, types, mf);
-                                write_namespace_enums(ns, types, mf);
-                                write_namespace_classes(ns, types, mf);
-                                write_namespace_structs(ns, types, mf);
-                                write_namespace_interfaces(ns, types, mf);
-                                write_namespace_delegates(ns, types, mf);
-                             });
-                        }
-
-                        module_group.get();
-
-                        if (module != settings.support)
-                        {
-                            moduleDependencies.emplace(settings.support);
-                        }
-                        auto dependentNamespaces = mdCache.get_dependent_namespaces(namespaces, mf);
-
-                        for (auto&& dependent_ns : dependentNamespaces)
-                        {
-                            auto dependent_module = get_swift_module(dependent_ns);
-                            if (dependent_module != module)
-                            {
-                                moduleDependencies.emplace(dependent_module);
-                            }
-                        }
-                    });
+                       write_spm_project_file(group, settings.swift_version, module, namespaces, mdCache, mf);
+                    }
+                    if (settings.has_project_type(project_type::cmake))
+                    {
+                        write_cmake_project_file(group, module, namespaces, mdCache, mf);
+                    }
+                }
             }
 
-            group.add([] { write_cwinrt_build_files(); });
-
             group.get();
-
-            write_include_all(c.namespaces());
-            write_modulemap();
+        
             if (settings.verbose)
             {
                 //w.write(" time:  %ms\n", get_elapsed_time(start));

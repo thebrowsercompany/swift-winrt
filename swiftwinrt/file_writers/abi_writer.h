@@ -284,7 +284,7 @@ namespace swiftwinrt
         w.save_header();
     }
 
-    inline void write_include_all(std::map<std::string_view, winmd::reader::cache::namespace_members> const& namespaces)
+    inline void write_include_all(std::map<std::string_view, namespace_cache> const& namespaces)
     {
         writer w;
         w.c_mod = settings.get_c_module_name();
@@ -323,7 +323,6 @@ namespace swiftwinrt
             if (has_projected_types(members))
             {
                 w.write("#include \"%.h\"\n", ns);
-
             }
         }
 
@@ -331,7 +330,6 @@ namespace swiftwinrt
 
         w.type_namespace = w.c_mod;
         w.save_header();
-
     }
 
     inline void write_modulemap()

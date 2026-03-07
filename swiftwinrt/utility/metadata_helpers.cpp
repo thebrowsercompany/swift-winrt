@@ -4,6 +4,7 @@
 #include "utility/type_helpers.h"
 #include "utility/swift_codegen_utils.h"
 #include "utility/type_writers.h"
+#include "utility/settings.h"
 
 #include <algorithm>
 #include <chrono>
@@ -261,6 +262,16 @@ namespace swiftwinrt
             !members.delegates.empty();
     }
 
+    bool has_projected_types(namespace_cache const& members)
+    {
+        return
+            !members.interfaces.empty() ||
+            !members.classes.empty() ||
+            !members.enums.empty() ||
+            !members.structs.empty() ||
+            !members.delegates.empty();
+    }
+
     TypeDef get_exclusive_to(TypeDef const& type)
     {
         auto attribute = get_attribute(type, metadata_namespace, "ExclusiveToAttribute");
@@ -343,11 +354,6 @@ namespace swiftwinrt
 
         return std::make_tuple(get_method, set_method);
     }
-
-
-
-
-
 
     winmd::reader::ElementType underlying_enum_type(winmd::reader::TypeDef const& type)
     {
@@ -469,5 +475,57 @@ namespace swiftwinrt
             return has_attribute(typedefBase->type(), "Windows.Foundation.Metadata", "OverridableAttribute");
         }
         return false;
+    }
+
+    std::map<std::string, std::vector<std::string_view>> get_swift_modules(winmd::reader::cache const& cache, metadata_filter const& filter)
+    {
+        std::map<std::string, std::vector<std::string_view>> module_map;
+        for (auto&&[ns, members] : cache.namespaces())
+        {
+            if (!has_projected_types(members))
+            {
+                continue;
+            }
+
+            if (!filter.includes_any(members))
+            {
+                continue;
+            }
+            auto module_name = get_swift_module(ns);
+
+            auto [moduleMapItr, moduleAdded] = module_map.emplace(std::piecewise_construct,
+                std::forward_as_tuple(module_name),
+                std::forward_as_tuple());
+            if (moduleAdded)
+            {
+                create_directories(writer::root_directory() / module_name);
+            }
+            moduleMapItr->second.push_back(ns);
+        }
+        return module_map;
+    }
+
+    std::set<std::string_view> get_module_dependencies(
+        std::string_view const& module,
+        std::vector<std::string_view> const& namespaces,
+        metadata_cache const& cache,
+        metadata_filter const& filter)
+    {
+        std::set<std::string_view> moduleDependencies;
+        if (module != settings.support)
+        {
+            moduleDependencies.emplace(settings.support);
+        }
+        auto dependentNamespaces = cache.get_dependent_namespaces(namespaces, filter);
+        
+        for (auto&& dependent_ns : dependentNamespaces)
+        {
+            auto dependent_module = get_swift_module(dependent_ns);
+            if (dependent_module != module)
+            {
+                moduleDependencies.emplace(dependent_module);
+            }
+        }
+        return moduleDependencies;
     }
 }
