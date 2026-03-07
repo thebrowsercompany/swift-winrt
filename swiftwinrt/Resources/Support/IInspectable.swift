@@ -98,6 +98,11 @@ public enum __ABI_ {
           ppvObject.pointee = result.detach()
           return S_OK
         }
+        // Fallback: check the generic interface registry (e.g. IVector, IIterable).
+        if let swiftObj, let result = GenericInterfaceRegistry.queryInterface(swiftObj, riid.pointee) {
+          ppvObject.pointee = result.detach()
+          return S_OK
+        }
         return E_NOINTERFACE
       }
     }
