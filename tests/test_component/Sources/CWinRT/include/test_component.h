@@ -247,6 +247,12 @@ typedef interface __x_ABI_Ctest__component_CIVoidToVoidDelegate __x_ABI_Ctest__c
 
 #endif // ____x_ABI_Ctest__component_CISimpleDelegate_FWD_DEFINED__
 
+#ifndef ____x_ABI_Ctest__component_CISimpleItemsControl_FWD_DEFINED__
+#define ____x_ABI_Ctest__component_CISimpleItemsControl_FWD_DEFINED__
+    typedef interface __x_ABI_Ctest__component_CISimpleItemsControl __x_ABI_Ctest__component_CISimpleItemsControl;
+
+#endif // ____x_ABI_Ctest__component_CISimpleItemsControl_FWD_DEFINED__
+
 #ifndef ____x_ABI_Ctest__component_CISimpleOverrides_FWD_DEFINED__
 #define ____x_ABI_Ctest__component_CISimpleOverrides_FWD_DEFINED__
     typedef interface __x_ABI_Ctest__component_CISimpleOverrides __x_ABI_Ctest__component_CISimpleOverrides;
@@ -4299,6 +4305,43 @@ struct __x_ABI_Ctest__component_CStructWithIReference
     
     EXTERN_C const IID IID___x_ABI_Ctest__component_CISimpleDelegate;
 #endif /* !defined(____x_ABI_Ctest__component_CISimpleDelegate_INTERFACE_DEFINED__) */
+    
+#if !defined(____x_ABI_Ctest__component_CISimpleItemsControl_INTERFACE_DEFINED__)
+    #define ____x_ABI_Ctest__component_CISimpleItemsControl_INTERFACE_DEFINED__
+    typedef struct __x_ABI_Ctest__component_CISimpleItemsControlVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_Ctest__component_CISimpleItemsControl* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_Ctest__component_CISimpleItemsControl* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_Ctest__component_CISimpleItemsControl* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_Ctest__component_CISimpleItemsControl* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_Ctest__component_CISimpleItemsControl* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_Ctest__component_CISimpleItemsControl* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* get_ItemsSource)(__x_ABI_Ctest__component_CISimpleItemsControl* This,
+        IInspectable** value);
+    HRESULT (STDMETHODCALLTYPE* put_ItemsSource)(__x_ABI_Ctest__component_CISimpleItemsControl* This,
+        IInspectable* value);
+    HRESULT (STDMETHODCALLTYPE* get_ItemCount)(__x_ABI_Ctest__component_CISimpleItemsControl* This,
+        INT32* value);
+
+        END_INTERFACE
+    } __x_ABI_Ctest__component_CISimpleItemsControlVtbl;
+
+    interface __x_ABI_Ctest__component_CISimpleItemsControl
+    {
+        CONST_VTBL struct __x_ABI_Ctest__component_CISimpleItemsControlVtbl* lpVtbl;
+    };
+
+    
+    EXTERN_C const IID IID___x_ABI_Ctest__component_CISimpleItemsControl;
+#endif /* !defined(____x_ABI_Ctest__component_CISimpleItemsControl_INTERFACE_DEFINED__) */
     
 #if !defined(____x_ABI_Ctest__component_CISimpleOverrides_INTERFACE_DEFINED__)
     #define ____x_ABI_Ctest__component_CISimpleOverrides_INTERFACE_DEFINED__

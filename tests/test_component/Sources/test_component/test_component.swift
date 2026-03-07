@@ -6412,6 +6412,102 @@ extension __ABI_test_component {
     }
 
 }
+// MARK: - SimpleItemsControl
+
+public final class SimpleItemsControl : WinRTClass {
+    private typealias SwiftABI = __ABI_test_component.ISimpleItemsControl
+    private typealias CABI = __x_ABI_Ctest__component_CISimpleItemsControl
+    private lazy var _default: SwiftABI! = getInterfaceForCaching()
+    @_spi(WinRTInternal)
+    override public func _getABI<T>() -> UnsafeMutablePointer<T>? {
+        if T.self == CABI.self {
+            return RawPointer(_default)
+        }
+        return super._getABI()
+    }
+
+    @_spi(WinRTInternal)
+    public init(fromAbi: WindowsFoundation.IInspectable) {
+        super.init(fromAbi)
+    }
+
+    private static let _defaultFactory: WindowsFoundation.IActivationFactory = try! RoGetActivationFactory("test_component.SimpleItemsControl")
+    override public init() {
+        super.init(try! Self._defaultFactory.ActivateInstance())
+    }
+
+    public var itemCount : Int32 {
+        get { try! _default.get_ItemCount() }
+    }
+
+    public var itemsSource : Any! {
+        get { try! _default.get_ItemsSource() }
+        set { try! _default.put_ItemsSource(newValue) }
+    }
+
+    deinit {
+        _default = nil
+    }
+}
+
+// MARK: - SimpleItemsControl Internals
+
+@_spi(WinRTInternal)
+extension __IMPL_test_component {
+    public enum SimpleItemsControlBridge: AbiBridge {
+        public typealias SwiftProjection = SimpleItemsControl
+        public typealias CABI = __x_ABI_Ctest__component_CISimpleItemsControl
+        public static func from(abi: consuming ComPtr<__x_ABI_Ctest__component_CISimpleItemsControl>?) -> SimpleItemsControl? {
+            guard let abi = abi else { return nil }
+            return .init(fromAbi: WindowsFoundation.IInspectable(abi))
+        }
+    }
+
+}
+@_spi(WinRTInternal)
+public class SimpleItemsControlMaker: MakeFromAbi {
+    public typealias SwiftType = SimpleItemsControl
+    public static func from(abi: WindowsFoundation.IInspectable) -> SwiftType {
+        return SimpleItemsControl(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+extension __ABI_test_component {
+    private static let IID___x_ABI_Ctest__component_CISimpleItemsControl: WindowsFoundation.IID = .init(
+        Data1: 0xF3A5C8A4, Data2: 0x02AB, Data3: 0x52BB, Data4: ( 0x87,0x57,0xDA,0x39,0xE7,0xBD,0xE2,0x78 ) // F3A5C8A4-02AB-52BB-8757-DA39E7BDE278
+    ) 
+
+    public class ISimpleItemsControl: WindowsFoundation.IInspectable {
+        override public class var IID: WindowsFoundation.IID { IID___x_ABI_Ctest__component_CISimpleItemsControl }
+
+        public func get_ItemsSource() throws -> Any? {
+            let (value) = try ComPtrs.initialize { valueAbi in
+                _ = try perform(as: __x_ABI_Ctest__component_CISimpleItemsControl.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.get_ItemsSource(pThis, &valueAbi))
+                }
+            }
+            return __ABI_.AnyWrapper.unwrapFrom(abi: value)
+        }
+
+        public func put_ItemsSource(_ value: Any?) throws {
+            let valueWrapper = __ABI_.AnyWrapper(value)
+            let _value = try! valueWrapper?.toABI { $0 }
+            _ = try perform(as: __x_ABI_Ctest__component_CISimpleItemsControl.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.put_ItemsSource(pThis, _value))
+            }
+        }
+
+        public func get_ItemCount() throws -> Int32 {
+            var value: INT32 = 0
+            _ = try perform(as: __x_ABI_Ctest__component_CISimpleItemsControl.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_ItemCount(pThis, &value))
+            }
+            return value
+        }
+
+    }
+
+}
 // MARK: - StaticClass
 
 public final class StaticClass {

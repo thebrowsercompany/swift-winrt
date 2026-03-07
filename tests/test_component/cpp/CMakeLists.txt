@@ -137,6 +137,7 @@ target_sources(test_component_cpp PRIVATE
     NullValues.cpp
     pch.cpp
     Simple.cpp
+    SimpleItemsControl.cpp
     UnsealedDerived.cpp
     UnsealedDerived2.cpp
     UnsealedDerivedNoOverrides.cpp
