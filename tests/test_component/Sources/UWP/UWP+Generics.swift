@@ -1818,6 +1818,7 @@ internal enum __x_ABI_C__FIIterable_1_HSTRINGBridge : AbiInterfaceBridge {
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1_HSTRINGVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -1837,7 +1838,6 @@ fileprivate class __x_ABI_C__FIIterable_1_HSTRINGImpl : IIterable, AbiInterfaceI
         try! _default.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CData__CText__CTextSegment: WindowsFoundation.IID {
@@ -1905,6 +1905,7 @@ internal enum __x_ABI_C__FIIterable_1___x_ABI_CWindows__CData__CText__CTextSegme
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1___x_ABI_CWindows__CData__CText__CTextSegmentVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -1924,7 +1925,6 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_CWindows__CData__CText__CTextS
         try! _default.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable: WindowsFoundation.IID {
@@ -1992,6 +1992,7 @@ internal enum __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspe
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -2011,7 +2012,6 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_II
         try! _default.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment: WindowsFoundation.IID {
@@ -2079,6 +2079,7 @@ internal enum __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_AB
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -2098,7 +2099,6 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___
         try! _default.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CIStorageItem: WindowsFoundation.IID {
@@ -2166,6 +2166,7 @@ internal enum __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CIStorageItemB
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CIStorageItemVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -2185,7 +2186,6 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CIStorageI
         try! _default.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry: WindowsFoundation.IID {
@@ -2253,6 +2253,7 @@ internal enum __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CSearch__CSort
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -2272,7 +2273,6 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CSearch__C
         try! _default.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageFile: WindowsFoundation.IID {
@@ -2340,6 +2340,7 @@ internal enum __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageFileBr
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageFileVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -2359,7 +2360,6 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageFi
         try! _default.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageFolder: WindowsFoundation.IID {
@@ -2427,6 +2427,7 @@ internal enum __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageFolder
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageFolderVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -2446,7 +2447,6 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageFo
         try! _default.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageLibraryChange: WindowsFoundation.IID {
@@ -2514,6 +2514,7 @@ internal enum __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageLibrar
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -2533,7 +2534,6 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageLi
         try! _default.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUser: WindowsFoundation.IID {
@@ -2601,6 +2601,7 @@ internal enum __x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserBridge : A
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -2620,7 +2621,6 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserImpl :
         try! _default.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKind: WindowsFoundation.IID {
@@ -2688,6 +2688,7 @@ internal enum __x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserWatcherUpd
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -2707,7 +2708,6 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserWatche
         try! _default.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterator_1_HSTRING: WindowsFoundation.IID {
@@ -2826,6 +2826,7 @@ internal enum __x_ABI_C__FIIterator_1_HSTRINGBridge : AbiInterfaceBridge {
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1_HSTRINGVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -2860,7 +2861,6 @@ fileprivate class __x_ABI_C__FIIterator_1_HSTRINGImpl : IIterator, AbiInterfaceI
         get { try! _default.get_HasCurrent() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CData__CText__CTextSegment: WindowsFoundation.IID {
@@ -2978,6 +2978,7 @@ internal enum __x_ABI_C__FIIterator_1___x_ABI_CWindows__CData__CText__CTextSegme
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1___x_ABI_CWindows__CData__CText__CTextSegmentVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -3012,7 +3013,6 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_CWindows__CData__CText__CTextS
         get { try! _default.get_HasCurrent() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable: WindowsFoundation.IID {
@@ -3130,6 +3130,7 @@ internal enum __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspe
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -3164,7 +3165,6 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_II
         get { try! _default.get_HasCurrent() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment: WindowsFoundation.IID {
@@ -3282,6 +3282,7 @@ internal enum __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_AB
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -3316,7 +3317,6 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___
         get { try! _default.get_HasCurrent() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CIStorageItem: WindowsFoundation.IID {
@@ -3434,6 +3434,7 @@ internal enum __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CIStorageItemB
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CIStorageItemVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -3468,7 +3469,6 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CIStorageI
         get { try! _default.get_HasCurrent() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry: WindowsFoundation.IID {
@@ -3587,6 +3587,7 @@ internal enum __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CSearch__CSort
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -3621,7 +3622,6 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CSearch__C
         get { try! _default.get_HasCurrent() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFile: WindowsFoundation.IID {
@@ -3738,6 +3738,7 @@ internal enum __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFileBr
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFileVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -3772,7 +3773,6 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFi
         get { try! _default.get_HasCurrent() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFolder: WindowsFoundation.IID {
@@ -3889,6 +3889,7 @@ internal enum __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFolder
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFolderVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -3923,7 +3924,6 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFo
         get { try! _default.get_HasCurrent() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageLibraryChange: WindowsFoundation.IID {
@@ -4040,6 +4040,7 @@ internal enum __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageLibrar
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -4074,7 +4075,6 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageLi
         get { try! _default.get_HasCurrent() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUser: WindowsFoundation.IID {
@@ -4191,6 +4191,7 @@ internal enum __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserBridge : A
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -4225,7 +4226,6 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserImpl :
         get { try! _default.get_HasCurrent() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKind: WindowsFoundation.IID {
@@ -4340,6 +4340,7 @@ internal enum __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWatcherUpd
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -4374,7 +4375,6 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWatche
         get { try! _default.get_HasCurrent() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable: WindowsFoundation.IID {
@@ -4458,6 +4458,7 @@ internal enum __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge : AbiInterf
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -4483,7 +4484,6 @@ fileprivate class __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableImpl : IKeyVal
         get { try! _default.get_Value() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment: WindowsFoundation.IID {
@@ -4567,6 +4567,7 @@ internal enum __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -4592,7 +4593,6 @@ fileprivate class __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1_
         get { try! _default.get_Value() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIMapChangedEventArgs_1_HSTRING: WindowsFoundation.IID {
@@ -4674,6 +4674,7 @@ internal enum __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGBridge : AbiInterfaceBri
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIMapChangedEventArgs_1_HSTRINGVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -4698,7 +4699,6 @@ fileprivate class __x_ABI_C__FIMapChangedEventArgs_1_HSTRINGImpl : IMapChangedEv
         get { try! _default.get_Key() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIMapView_2_HSTRING_IInspectable: WindowsFoundation.IID {
@@ -4823,6 +4823,7 @@ internal enum __x_ABI_C__FIMapView_2_HSTRING_IInspectableBridge : AbiInterfaceBr
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIMapView_2_HSTRING_IInspectableVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -4865,7 +4866,6 @@ fileprivate class __x_ABI_C__FIMapView_2_HSTRING_IInspectableImpl : IMapView, Ab
         try! _IIterable.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment: WindowsFoundation.IID {
@@ -4990,6 +4990,7 @@ internal enum __x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_C
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -5032,7 +5033,6 @@ fileprivate class __x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_A
         try! _IIterable.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIMap_2_HSTRING_IInspectable: WindowsFoundation.IID {
@@ -5198,6 +5198,7 @@ internal enum __x_ABI_C__FIMap_2_HSTRING_IInspectableBridge : AbiInterfaceBridge
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIMap_2_HSTRING_IInspectableVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -5255,7 +5256,6 @@ fileprivate class __x_ABI_C__FIMap_2_HSTRING_IInspectableImpl : IMap, AbiInterfa
         try! _IIterable.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIMap_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment: WindowsFoundation.IID {
@@ -5421,6 +5421,7 @@ internal enum __x_ABI_C__FIMap_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWind
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIMap_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -5478,7 +5479,6 @@ fileprivate class __x_ABI_C__FIMap_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_C
         try! _IIterable.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIObservableMap_2_HSTRING_IInspectable: WindowsFoundation.IID {
@@ -5562,6 +5562,7 @@ internal enum __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableBridge : AbiInter
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIObservableMap_2_HSTRING_IInspectableVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -5633,7 +5634,6 @@ fileprivate class __x_ABI_C__FIObservableMap_2_HSTRING_IInspectableImpl : IObser
         try! _IIterable.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIVectorView_1_HSTRING: WindowsFoundation.IID {
@@ -5759,6 +5759,7 @@ internal enum __x_ABI_C__FIVectorView_1_HSTRINGBridge : AbiInterfaceBridge {
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIVectorView_1_HSTRINGVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -5820,7 +5821,6 @@ fileprivate class __x_ABI_C__FIVectorView_1_HSTRINGImpl : IVectorView, AbiInterf
         try! _IIterable.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment: WindowsFoundation.IID {
@@ -5944,6 +5944,7 @@ internal enum __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSeg
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -6005,7 +6006,6 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTex
         try! _IIterable.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItem: WindowsFoundation.IID {
@@ -6131,6 +6131,7 @@ internal enum __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageIte
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -6192,7 +6193,6 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorag
         try! _IIterable.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry: WindowsFoundation.IID {
@@ -6318,6 +6318,7 @@ internal enum __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CSearch__CSo
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -6379,7 +6380,6 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CSearch_
         try! _IIterable.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFile: WindowsFoundation.IID {
@@ -6502,6 +6502,7 @@ internal enum __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFile
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -6563,7 +6564,6 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorage
         try! _IIterable.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolder: WindowsFoundation.IID {
@@ -6686,6 +6686,7 @@ internal enum __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFold
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -6747,7 +6748,6 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorage
         try! _IIterable.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChange: WindowsFoundation.IID {
@@ -6870,6 +6870,7 @@ internal enum __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibr
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -6931,7 +6932,6 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorage
         try! _IIterable.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUser: WindowsFoundation.IID {
@@ -7054,6 +7054,7 @@ internal enum __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserBridge :
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -7115,7 +7116,6 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserImpl
         try! _IIterable.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKind: WindowsFoundation.IID {
@@ -7236,6 +7236,7 @@ internal enum __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWatcherU
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -7297,7 +7298,6 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWatc
         try! _IIterable.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIVector_1_HSTRING: WindowsFoundation.IID {
@@ -7536,6 +7536,7 @@ internal enum __x_ABI_C__FIVector_1_HSTRINGBridge : AbiInterfaceBridge {
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIVector_1_HSTRINGVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -7646,7 +7647,6 @@ fileprivate class __x_ABI_C__FIVector_1_HSTRINGImpl : IVector, AbiInterfaceImpl 
         try! _IIterable.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry: WindowsFoundation.IID {
@@ -7885,6 +7885,7 @@ internal enum __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEn
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -7995,7 +7996,6 @@ fileprivate class __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSo
         try! _IIterable.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FMapChangedEventHandler_2_HSTRING_IInspectable: WindowsFoundation.IID {
@@ -8238,6 +8238,7 @@ internal enum __x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32Bridge : Ab
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32VTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -8296,7 +8297,6 @@ fileprivate class __x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32Impl : 
         get { try! _IAsyncInfo.get_Status() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32: WindowsFoundation.IID {
@@ -8431,6 +8431,7 @@ internal enum __x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStora
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32VTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -8489,7 +8490,6 @@ fileprivate class __x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CS
         get { try! _IAsyncInfo.get_Status() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIAsyncOperation_1_IInspectable: WindowsFoundation.IID {
@@ -8592,6 +8592,7 @@ internal enum __x_ABI_C__FIAsyncOperation_1_IInspectableBridge : AbiInterfaceBri
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1_IInspectableVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -8643,7 +8644,6 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1_IInspectableImpl : IAsyncOperati
         get { try! _IAsyncInfo.get_Status() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIAsyncOperation_1_boolean: WindowsFoundation.IID {
@@ -8744,6 +8744,7 @@ internal enum __x_ABI_C__FIAsyncOperation_1_booleanBridge : AbiInterfaceBridge {
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1_booleanVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -8795,7 +8796,6 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1_booleanImpl : IAsyncOperation, A
         get { try! _IAsyncInfo.get_Status() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIAsyncOperation_1_HSTRING: WindowsFoundation.IID {
@@ -8897,6 +8897,7 @@ internal enum __x_ABI_C__FIAsyncOperation_1_HSTRINGBridge : AbiInterfaceBridge {
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1_HSTRINGVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -8948,7 +8949,6 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1_HSTRINGImpl : IAsyncOperation, A
         get { try! _IAsyncInfo.get_Status() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIAsyncOperation_1_UINT32: WindowsFoundation.IID {
@@ -9049,6 +9049,7 @@ internal enum __x_ABI_C__FIAsyncOperation_1_UINT32Bridge : AbiInterfaceBridge {
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1_UINT32VTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -9100,7 +9101,6 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1_UINT32Impl : IAsyncOperation, Ab
         get { try! _IAsyncInfo.get_Status() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIMap_2_HSTRING_IInspectable: WindowsFoundation.IID {
@@ -9203,6 +9203,7 @@ internal enum __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIMap_2_HSTRING_IInspecta
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIMap_2_HSTRING_IInspectableVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -9254,7 +9255,6 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIMap_2_HSTRING_IInsp
         get { try! _IAsyncInfo.get_Status() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIAsyncOperation_1___x_ABI_C__F__CIPropertySet: WindowsFoundation.IID {
@@ -9357,6 +9357,7 @@ internal enum __x_ABI_C__FIAsyncOperation_1___x_ABI_C__F__CIPropertySetBridge : 
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1___x_ABI_C__F__CIPropertySetVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -9408,7 +9409,6 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_C__F__CIPropertySetImpl 
         get { try! _IAsyncInfo.get_Status() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItem: WindowsFoundation.IID {
@@ -9511,6 +9511,7 @@ internal enum __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CW
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -9562,7 +9563,6 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_AB
         get { try! _IAsyncInfo.get_Status() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFile: WindowsFoundation.IID {
@@ -9665,6 +9665,7 @@ internal enum __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CW
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -9716,7 +9717,6 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_AB
         get { try! _IAsyncInfo.get_Status() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolder: WindowsFoundation.IID {
@@ -9819,6 +9819,7 @@ internal enum __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CW
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -9870,7 +9871,6 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_AB
         get { try! _IAsyncInfo.get_Status() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChange: WindowsFoundation.IID {
@@ -9973,6 +9973,7 @@ internal enum __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CW
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -10024,7 +10025,6 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_AB
         get { try! _IAsyncInfo.get_Status() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUser: WindowsFoundation.IID {
@@ -10127,6 +10127,7 @@ internal enum __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CW
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -10178,7 +10179,6 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_AB
         get { try! _IAsyncInfo.get_Status() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVector_1_HSTRING: WindowsFoundation.IID {
@@ -10281,6 +10281,7 @@ internal enum __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVector_1_HSTRINGBridge 
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVector_1_HSTRINGVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -10332,7 +10333,6 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVector_1_HSTRINGImp
         get { try! _IAsyncInfo.get_Status() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicProperties: WindowsFoundation.IID {
@@ -10434,6 +10434,7 @@ internal enum __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFilePro
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicPropertiesVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -10485,7 +10486,6 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFil
         get { try! _IAsyncInfo.get_Status() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentProperties: WindowsFoundation.IID {
@@ -10587,6 +10587,7 @@ internal enum __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFilePro
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentPropertiesVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -10638,7 +10639,6 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFil
         get { try! _IAsyncInfo.get_Status() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CImageProperties: WindowsFoundation.IID {
@@ -10740,6 +10740,7 @@ internal enum __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFilePro
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CImagePropertiesVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -10791,7 +10792,6 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFil
         get { try! _IAsyncInfo.get_Status() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicProperties: WindowsFoundation.IID {
@@ -10893,6 +10893,7 @@ internal enum __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFilePro
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicPropertiesVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -10944,7 +10945,6 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFil
         get { try! _IAsyncInfo.get_Status() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnail: WindowsFoundation.IID {
@@ -11046,6 +11046,7 @@ internal enum __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFilePro
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -11097,7 +11098,6 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFil
         get { try! _IAsyncInfo.get_Status() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoProperties: WindowsFoundation.IID {
@@ -11199,6 +11199,7 @@ internal enum __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFilePro
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoPropertiesVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -11250,7 +11251,6 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFil
         get { try! _IAsyncInfo.get_Status() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CIStorageItem: WindowsFoundation.IID {
@@ -11353,6 +11353,7 @@ internal enum __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CIStorag
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CIStorageItemVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -11404,7 +11405,6 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CISt
         get { try! _IAsyncInfo.get_Status() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSearch__CIndexedState: WindowsFoundation.IID {
@@ -11505,6 +11505,7 @@ internal enum __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSearch_
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSearch__CIndexedStateVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -11556,7 +11557,6 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSea
         get { try! _IAsyncInfo.get_Status() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFile: WindowsFoundation.IID {
@@ -11658,6 +11658,7 @@ internal enum __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorage
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFileVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -11709,7 +11710,6 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSto
         get { try! _IAsyncInfo.get_Status() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolder: WindowsFoundation.IID {
@@ -11811,6 +11811,7 @@ internal enum __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorage
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolderVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -11862,7 +11863,6 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSto
         get { try! _IAsyncInfo.get_Status() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageStreamTransaction: WindowsFoundation.IID {
@@ -11964,6 +11964,7 @@ internal enum __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorage
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageStreamTransactionVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -12015,7 +12016,6 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSto
         get { try! _IAsyncInfo.get_Status() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIBuffer: WindowsFoundation.IID {
@@ -12118,6 +12118,7 @@ internal enum __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIBufferVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -12169,7 +12170,6 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStr
         get { try! _IAsyncInfo.get_Status() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIInputStream: WindowsFoundation.IID {
@@ -12272,6 +12272,7 @@ internal enum __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIInputStreamVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -12323,7 +12324,6 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStr
         get { try! _IAsyncInfo.get_Status() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStream: WindowsFoundation.IID {
@@ -12426,6 +12426,7 @@ internal enum __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -12477,7 +12478,6 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStr
         get { try! _IAsyncInfo.get_Status() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReference: WindowsFoundation.IID {
@@ -12580,6 +12580,7 @@ internal enum __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -12631,7 +12632,6 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStr
         get { try! _IAsyncInfo.get_Status() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentType: WindowsFoundation.IID {
@@ -12734,6 +12734,7 @@ internal enum __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentTypeVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -12785,7 +12786,6 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStr
         get { try! _IAsyncInfo.get_Status() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CSystem__CUserAgeConsentResult: WindowsFoundation.IID {
@@ -12886,6 +12886,7 @@ internal enum __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CSystem__CUserAgeC
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -12937,7 +12938,6 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CSystem__CUser
         get { try! _IAsyncInfo.get_Status() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIReference_1_double: WindowsFoundation.IID {
@@ -13212,6 +13212,88 @@ public extension EventSource where Handler == TypedEventHandler<IStorageQueryRes
     func invoke(_ sender: UWP.AnyIStorageQueryResultBase!, _ args: Any!) throws {
         for handler in getInvocationList() {
             try handler(sender, args)
+        }
+    }
+}
+
+private var _genericInterfacesOnce = WindowsFoundation.InitOnce()
+
+@inline(never)
+private func _registerGenericInterfacesIfNecessary() {
+    _genericInterfacesOnce.performOnce {
+        WindowsFoundation.GenericInterfaceRegistry.registerBatch(count: 72) {
+            $0.register(IID___x_ABI_C__FIIterable_1_HSTRING, UWP.__x_ABI_C__FIIterable_1_HSTRINGBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CData__CText__CTextSegment, UWP.__x_ABI_C__FIIterable_1___x_ABI_CWindows__CData__CText__CTextSegmentBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable, UWP.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment, UWP.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CIStorageItem, UWP.__x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CIStorageItemBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry, UWP.__x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageFile, UWP.__x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageFileBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageFolder, UWP.__x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageFolderBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageLibraryChange, UWP.__x_ABI_C__FIIterable_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUser, UWP.__x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKind, UWP.__x_ABI_C__FIIterable_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterator_1_HSTRING, UWP.__x_ABI_C__FIIterator_1_HSTRINGBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CData__CText__CTextSegment, UWP.__x_ABI_C__FIIterator_1___x_ABI_CWindows__CData__CText__CTextSegmentBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable, UWP.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment, UWP.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CIStorageItem, UWP.__x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CIStorageItemBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry, UWP.__x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFile, UWP.__x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFileBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFolder, UWP.__x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFolderBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageLibraryChange, UWP.__x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUser, UWP.__x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKind, UWP.__x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindBridge.factory)
+            $0.register(IID___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable, UWP.__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge.factory)
+            $0.register(IID___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment, UWP.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentBridge.factory)
+            $0.register(IID___x_ABI_C__FIMapChangedEventArgs_1_HSTRING, UWP.__x_ABI_C__FIMapChangedEventArgs_1_HSTRINGBridge.factory)
+            $0.register(IID___x_ABI_C__FIMapView_2_HSTRING_IInspectable, UWP.__x_ABI_C__FIMapView_2_HSTRING_IInspectableBridge.factory)
+            $0.register(IID___x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment, UWP.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentBridge.factory)
+            $0.register(IID___x_ABI_C__FIMap_2_HSTRING_IInspectable, UWP.__x_ABI_C__FIMap_2_HSTRING_IInspectableBridge.factory)
+            $0.register(IID___x_ABI_C__FIMap_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment, UWP.__x_ABI_C__FIMap_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentBridge.factory)
+            $0.register(IID___x_ABI_C__FIObservableMap_2_HSTRING_IInspectable, UWP.__x_ABI_C__FIObservableMap_2_HSTRING_IInspectableBridge.factory)
+            $0.register(IID___x_ABI_C__FIVectorView_1_HSTRING, UWP.__x_ABI_C__FIVectorView_1_HSTRINGBridge.factory)
+            $0.register(IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment, UWP.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentBridge.factory)
+            $0.register(IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItem, UWP.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemBridge.factory)
+            $0.register(IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry, UWP.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryBridge.factory)
+            $0.register(IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFile, UWP.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileBridge.factory)
+            $0.register(IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolder, UWP.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderBridge.factory)
+            $0.register(IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChange, UWP.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeBridge.factory)
+            $0.register(IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUser, UWP.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserBridge.factory)
+            $0.register(IID___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKind, UWP.__x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserWatcherUpdateKindBridge.factory)
+            $0.register(IID___x_ABI_C__FIVector_1_HSTRING, UWP.__x_ABI_C__FIVector_1_HSTRINGBridge.factory)
+            $0.register(IID___x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry, UWP.__x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntryBridge.factory)
+            $0.register(IID___x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32, UWP.__x_ABI_C__FIAsyncOperationWithProgress_2_UINT32_UINT32Bridge.factory)
+            $0.register(IID___x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32, UWP.__x_ABI_C__FIAsyncOperationWithProgress_2___x_ABI_CWindows__CStorage__CStreams__CIBuffer_UINT32Bridge.factory)
+            $0.register(IID___x_ABI_C__FIAsyncOperation_1_IInspectable, UWP.__x_ABI_C__FIAsyncOperation_1_IInspectableBridge.factory)
+            $0.register(IID___x_ABI_C__FIAsyncOperation_1_boolean, UWP.__x_ABI_C__FIAsyncOperation_1_booleanBridge.factory)
+            $0.register(IID___x_ABI_C__FIAsyncOperation_1_HSTRING, UWP.__x_ABI_C__FIAsyncOperation_1_HSTRINGBridge.factory)
+            $0.register(IID___x_ABI_C__FIAsyncOperation_1_UINT32, UWP.__x_ABI_C__FIAsyncOperation_1_UINT32Bridge.factory)
+            $0.register(IID___x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIMap_2_HSTRING_IInspectable, UWP.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIMap_2_HSTRING_IInspectableBridge.factory)
+            $0.register(IID___x_ABI_C__FIAsyncOperation_1___x_ABI_C__F__CIPropertySet, UWP.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__F__CIPropertySetBridge.factory)
+            $0.register(IID___x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItem, UWP.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItemBridge.factory)
+            $0.register(IID___x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFile, UWP.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFileBridge.factory)
+            $0.register(IID___x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolder, UWP.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolderBridge.factory)
+            $0.register(IID___x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChange, UWP.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChangeBridge.factory)
+            $0.register(IID___x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUser, UWP.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUserBridge.factory)
+            $0.register(IID___x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVector_1_HSTRING, UWP.__x_ABI_C__FIAsyncOperation_1___x_ABI_C__FIVector_1_HSTRINGBridge.factory)
+            $0.register(IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicProperties, UWP.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CBasicPropertiesBridge.factory)
+            $0.register(IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentProperties, UWP.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CDocumentPropertiesBridge.factory)
+            $0.register(IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CImageProperties, UWP.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CImagePropertiesBridge.factory)
+            $0.register(IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicProperties, UWP.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CMusicPropertiesBridge.factory)
+            $0.register(IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnail, UWP.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CStorageItemThumbnailBridge.factory)
+            $0.register(IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoProperties, UWP.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CFileProperties__CVideoPropertiesBridge.factory)
+            $0.register(IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CIStorageItem, UWP.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CIStorageItemBridge.factory)
+            $0.register(IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSearch__CIndexedState, UWP.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CSearch__CIndexedStateBridge.factory)
+            $0.register(IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFile, UWP.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFileBridge.factory)
+            $0.register(IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolder, UWP.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageFolderBridge.factory)
+            $0.register(IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageStreamTransaction, UWP.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStorageStreamTransactionBridge.factory)
+            $0.register(IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIBuffer, UWP.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIBufferBridge.factory)
+            $0.register(IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIInputStream, UWP.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIInputStreamBridge.factory)
+            $0.register(IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStream, UWP.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamBridge.factory)
+            $0.register(IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReference, UWP.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamReferenceBridge.factory)
+            $0.register(IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentType, UWP.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CStorage__CStreams__CIRandomAccessStreamWithContentTypeBridge.factory)
+            $0.register(IID___x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CSystem__CUserAgeConsentResult, UWP.__x_ABI_C__FIAsyncOperation_1___x_ABI_CWindows__CSystem__CUserAgeConsentResultBridge.factory)
         }
     }
 }
