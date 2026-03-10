@@ -85,8 +85,9 @@ extension Array {
 
     public func fill<Bridge: AbiInterfaceBridge>(abi: UnsafeMutablePointer<UnsafeMutablePointer<Bridge.CABI>?>?, abiBridge: Bridge.Type) where Element == Bridge.SwiftProjection? {
         guard let abi else { return }
-        for (index, element) in enumerated() {
-            let wrapper = InterfaceWrapperBase<Bridge>(element)
+        // Workaround for https://github.com/thebrowsercompany/swift-winrt/issues/252
+        for index in self.indices {
+            let wrapper = InterfaceWrapperBase<Bridge>(self[index])
             wrapper?.copyTo(&abi[index])
         }
     }
