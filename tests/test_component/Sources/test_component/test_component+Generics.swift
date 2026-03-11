@@ -229,6 +229,7 @@ internal enum __x_ABI_C__FIIterable_1_IInspectableBridge : AbiInterfaceBridge {
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1_IInspectableVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -248,7 +249,6 @@ fileprivate class __x_ABI_C__FIIterable_1_IInspectableImpl : IIterable, AbiInter
         try! _default.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterable_1_GUID: WindowsFoundation.IID {
@@ -316,6 +316,7 @@ internal enum __x_ABI_C__FIIterable_1_GUIDBridge : AbiInterfaceBridge {
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1_GUIDVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -335,7 +336,6 @@ fileprivate class __x_ABI_C__FIIterable_1_GUIDImpl : IIterable, AbiInterfaceImpl
         try! _default.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterable_1_HSTRING: WindowsFoundation.IID {
@@ -403,6 +403,7 @@ internal enum __x_ABI_C__FIIterable_1_HSTRINGBridge : AbiInterfaceBridge {
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1_HSTRINGVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -422,7 +423,6 @@ fileprivate class __x_ABI_C__FIIterable_1_HSTRINGImpl : IIterable, AbiInterfaceI
         try! _default.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING: WindowsFoundation.IID {
@@ -490,6 +490,7 @@ internal enum __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRIN
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -509,7 +510,6 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HS
         try! _default.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase: WindowsFoundation.IID {
@@ -577,6 +577,7 @@ internal enum __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_AB
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -596,7 +597,6 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___
         try! _default.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBase: WindowsFoundation.IID {
@@ -664,6 +664,7 @@ internal enum __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseBridge : A
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -683,7 +684,6 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseImpl :
         try! _default.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasic: WindowsFoundation.IID {
@@ -751,6 +751,7 @@ internal enum __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicBridge :
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -770,7 +771,6 @@ fileprivate class __x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicImpl
         try! _default.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterator_1_IInspectable: WindowsFoundation.IID {
@@ -888,6 +888,7 @@ internal enum __x_ABI_C__FIIterator_1_IInspectableBridge : AbiInterfaceBridge {
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1_IInspectableVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -922,7 +923,6 @@ fileprivate class __x_ABI_C__FIIterator_1_IInspectableImpl : IIterator, AbiInter
         get { try! _default.get_HasCurrent() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterator_1_GUID: WindowsFoundation.IID {
@@ -1040,6 +1040,7 @@ internal enum __x_ABI_C__FIIterator_1_GUIDBridge : AbiInterfaceBridge {
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1_GUIDVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -1074,7 +1075,6 @@ fileprivate class __x_ABI_C__FIIterator_1_GUIDImpl : IIterator, AbiInterfaceImpl
         get { try! _default.get_HasCurrent() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterator_1_HSTRING: WindowsFoundation.IID {
@@ -1193,6 +1193,7 @@ internal enum __x_ABI_C__FIIterator_1_HSTRINGBridge : AbiInterfaceBridge {
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1_HSTRINGVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -1227,7 +1228,6 @@ fileprivate class __x_ABI_C__FIIterator_1_HSTRINGImpl : IIterator, AbiInterfaceI
         get { try! _default.get_HasCurrent() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING: WindowsFoundation.IID {
@@ -1345,6 +1345,7 @@ internal enum __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRIN
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -1379,7 +1380,6 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HS
         get { try! _default.get_HasCurrent() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase: WindowsFoundation.IID {
@@ -1497,6 +1497,7 @@ internal enum __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_AB
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -1531,7 +1532,6 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___
         get { try! _default.get_HasCurrent() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase: WindowsFoundation.IID {
@@ -1648,6 +1648,7 @@ internal enum __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseBridge : A
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -1682,7 +1683,6 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseImpl :
         get { try! _default.get_HasCurrent() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic: WindowsFoundation.IID {
@@ -1800,6 +1800,7 @@ internal enum __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicBridge :
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -1834,7 +1835,6 @@ fileprivate class __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicImpl
         get { try! _default.get_HasCurrent() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING: WindowsFoundation.IID {
@@ -1917,6 +1917,7 @@ internal enum __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge : AbiInterfaceBr
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -1942,7 +1943,6 @@ fileprivate class __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGImpl : IKeyValuePai
         get { try! _default.get_Value() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase: WindowsFoundation.IID {
@@ -2025,6 +2025,7 @@ internal enum __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBa
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -2050,7 +2051,6 @@ fileprivate class __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent_
         get { try! _default.get_Value() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIMapView_2_HSTRING_HSTRING: WindowsFoundation.IID {
@@ -2174,6 +2174,7 @@ internal enum __x_ABI_C__FIMapView_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge 
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIMapView_2_HSTRING_HSTRINGVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -2216,7 +2217,6 @@ fileprivate class __x_ABI_C__FIMapView_2_HSTRING_HSTRINGImpl : IMapView, AbiInte
         try! _IIterable.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase: WindowsFoundation.IID {
@@ -2340,6 +2340,7 @@ internal enum __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBri
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -2382,7 +2383,6 @@ fileprivate class __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBas
         try! _IIterable.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIMap_2_HSTRING_HSTRING: WindowsFoundation.IID {
@@ -2546,6 +2546,7 @@ internal enum __x_ABI_C__FIMap_2_HSTRING_HSTRINGBridge : AbiInterfaceBridge {
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIMap_2_HSTRING_HSTRINGVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -2603,7 +2604,6 @@ fileprivate class __x_ABI_C__FIMap_2_HSTRING_HSTRINGImpl : IMap, AbiInterfaceImp
         try! _IIterable.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase: WindowsFoundation.IID {
@@ -2766,6 +2766,7 @@ internal enum __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge 
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -2823,7 +2824,6 @@ fileprivate class __x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseImp
         try! _IIterable.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase: WindowsFoundation.IID {
@@ -2907,6 +2907,7 @@ internal enum __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseBr
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -3031,7 +3032,6 @@ fileprivate class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBa
         try! _IIterable.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasic: WindowsFoundation.IID {
@@ -3115,6 +3115,7 @@ internal enum __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasic
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -3239,7 +3240,6 @@ fileprivate class __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIB
         try! _IIterable.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIVectorView_1_IInspectable: WindowsFoundation.IID {
@@ -3365,6 +3365,7 @@ internal enum __x_ABI_C__FIVectorView_1_IInspectableBridge : AbiInterfaceBridge 
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIVectorView_1_IInspectableVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -3426,7 +3427,6 @@ fileprivate class __x_ABI_C__FIVectorView_1_IInspectableImpl : IVectorView, AbiI
         try! _IIterable.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIVectorView_1_GUID: WindowsFoundation.IID {
@@ -3550,6 +3550,7 @@ internal enum __x_ABI_C__FIVectorView_1_GUIDBridge : AbiInterfaceBridge {
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIVectorView_1_GUIDVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -3611,7 +3612,6 @@ fileprivate class __x_ABI_C__FIVectorView_1_GUIDImpl : IVectorView, AbiInterface
         try! _IIterable.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIVectorView_1_HSTRING: WindowsFoundation.IID {
@@ -3737,6 +3737,7 @@ internal enum __x_ABI_C__FIVectorView_1_HSTRINGBridge : AbiInterfaceBridge {
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIVectorView_1_HSTRINGVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -3798,7 +3799,6 @@ fileprivate class __x_ABI_C__FIVectorView_1_HSTRINGImpl : IVectorView, AbiInterf
         try! _IIterable.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase: WindowsFoundation.IID {
@@ -3921,6 +3921,7 @@ internal enum __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseBridge :
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -3982,7 +3983,6 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseImpl
         try! _IIterable.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasic: WindowsFoundation.IID {
@@ -4108,6 +4108,7 @@ internal enum __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicBridge
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -4169,7 +4170,6 @@ fileprivate class __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicIm
         try! _IIterable.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIVector_1_IInspectable: WindowsFoundation.IID {
@@ -4411,6 +4411,7 @@ internal enum __x_ABI_C__FIVector_1_IInspectableBridge : AbiInterfaceBridge {
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIVector_1_IInspectableVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -4521,7 +4522,6 @@ fileprivate class __x_ABI_C__FIVector_1_IInspectableImpl : IVector, AbiInterface
         try! _IIterable.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIVector_1_GUID: WindowsFoundation.IID {
@@ -4755,6 +4755,7 @@ internal enum __x_ABI_C__FIVector_1_GUIDBridge : AbiInterfaceBridge {
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIVector_1_GUIDVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -4865,7 +4866,6 @@ fileprivate class __x_ABI_C__FIVector_1_GUIDImpl : IVector, AbiInterfaceImpl {
         try! _IIterable.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIVector_1_HSTRING: WindowsFoundation.IID {
@@ -5104,6 +5104,7 @@ internal enum __x_ABI_C__FIVector_1_HSTRINGBridge : AbiInterfaceBridge {
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIVector_1_HSTRINGVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -5214,7 +5215,6 @@ fileprivate class __x_ABI_C__FIVector_1_HSTRINGImpl : IVector, AbiInterfaceImpl 
         try! _IIterable.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase: WindowsFoundation.IID {
@@ -5447,6 +5447,7 @@ internal enum __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseBridge : Abi
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -5557,7 +5558,6 @@ fileprivate class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseImpl : I
         try! _IIterable.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic: WindowsFoundation.IID {
@@ -5799,6 +5799,7 @@ internal enum __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicBridge : A
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -5909,7 +5910,6 @@ fileprivate class __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicImpl :
         try! _IIterable.First()
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FVectorChangedEventHandler_1___x_ABI_Ctest__zcomponent__CBase: WindowsFoundation.IID {
@@ -6207,6 +6207,7 @@ internal enum __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleBridge : AbiIn
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -6265,7 +6266,6 @@ fileprivate class __x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleImpl : IAs
         get { try! _IAsyncInfo.get_Status() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIAsyncOperation_1_int: WindowsFoundation.IID {
@@ -6366,6 +6366,7 @@ internal enum __x_ABI_C__FIAsyncOperation_1_intBridge : AbiInterfaceBridge {
     }
 
     internal static func makeAbi() -> CABI {
+        _registerGenericInterfacesIfNecessary()
         let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIAsyncOperation_1_intVTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -6417,7 +6418,6 @@ fileprivate class __x_ABI_C__FIAsyncOperation_1_intImpl : IAsyncOperation, AbiIn
         get { try! _IAsyncInfo.get_Status() }
     }
 
-    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
 }
 
 private var IID___x_ABI_C__FIReference_1_GUID: WindowsFoundation.IID {
@@ -6700,6 +6700,50 @@ public extension EventSource where Handler == EventHandler<Any?> {
     func invoke(_ sender: Any!, _ args: Any!) throws {
         for handler in getInvocationList() {
             try handler(sender, args)
+        }
+    }
+}
+
+private var _genericInterfacesOnce = WindowsFoundation.InitOnce()
+
+@inline(never)
+private func _registerGenericInterfacesIfNecessary() {
+    _genericInterfacesOnce.performOnce {
+        WindowsFoundation.GenericInterfaceRegistry.registerBatch(count: 34) {
+            $0.register(IID___x_ABI_C__FIIterable_1_IInspectable, test_component.__x_ABI_C__FIIterable_1_IInspectableBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterable_1_GUID, test_component.__x_ABI_C__FIIterable_1_GUIDBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterable_1_HSTRING, test_component.__x_ABI_C__FIIterable_1_HSTRINGBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING, test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase, test_component.__x_ABI_C__FIIterable_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBase, test_component.__x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CBaseBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasic, test_component.__x_ABI_C__FIIterable_1___x_ABI_Ctest__zcomponent__CIBasicBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterator_1_IInspectable, test_component.__x_ABI_C__FIIterator_1_IInspectableBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterator_1_GUID, test_component.__x_ABI_C__FIIterator_1_GUIDBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterator_1_HSTRING, test_component.__x_ABI_C__FIIterator_1_HSTRINGBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING, test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase, test_component.__x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase, test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBaseBridge.factory)
+            $0.register(IID___x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic, test_component.__x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasicBridge.factory)
+            $0.register(IID___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING, test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge.factory)
+            $0.register(IID___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase, test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge.factory)
+            $0.register(IID___x_ABI_C__FIMapView_2_HSTRING_HSTRING, test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGBridge.factory)
+            $0.register(IID___x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase, test_component.__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge.factory)
+            $0.register(IID___x_ABI_C__FIMap_2_HSTRING_HSTRING, test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGBridge.factory)
+            $0.register(IID___x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBase, test_component.__x_ABI_C__FIMap_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge.factory)
+            $0.register(IID___x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBase, test_component.__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CBaseBridge.factory)
+            $0.register(IID___x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasic, test_component.__x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIBasicBridge.factory)
+            $0.register(IID___x_ABI_C__FIVectorView_1_IInspectable, test_component.__x_ABI_C__FIVectorView_1_IInspectableBridge.factory)
+            $0.register(IID___x_ABI_C__FIVectorView_1_GUID, test_component.__x_ABI_C__FIVectorView_1_GUIDBridge.factory)
+            $0.register(IID___x_ABI_C__FIVectorView_1_HSTRING, test_component.__x_ABI_C__FIVectorView_1_HSTRINGBridge.factory)
+            $0.register(IID___x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase, test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBaseBridge.factory)
+            $0.register(IID___x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasic, test_component.__x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasicBridge.factory)
+            $0.register(IID___x_ABI_C__FIVector_1_IInspectable, test_component.__x_ABI_C__FIVector_1_IInspectableBridge.factory)
+            $0.register(IID___x_ABI_C__FIVector_1_GUID, test_component.__x_ABI_C__FIVector_1_GUIDBridge.factory)
+            $0.register(IID___x_ABI_C__FIVector_1_HSTRING, test_component.__x_ABI_C__FIVector_1_HSTRINGBridge.factory)
+            $0.register(IID___x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase, test_component.__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBaseBridge.factory)
+            $0.register(IID___x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic, test_component.__x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasicBridge.factory)
+            $0.register(IID___x_ABI_C__FIAsyncOperationWithProgress_2_int_double, test_component.__x_ABI_C__FIAsyncOperationWithProgress_2_int_doubleBridge.factory)
+            $0.register(IID___x_ABI_C__FIAsyncOperation_1_int, test_component.__x_ABI_C__FIAsyncOperation_1_intBridge.factory)
         }
     }
 }

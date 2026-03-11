@@ -6,6 +6,10 @@ public protocol CustomQueryInterface {
     func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef?
 }
 
+extension CustomQueryInterface {
+    public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? { nil }
+}
+
 extension IUnknownRef {
     func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? {
         var iid = iid

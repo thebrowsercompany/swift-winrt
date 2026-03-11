@@ -91,6 +91,13 @@ public class %Maker: MakeFromAbi {
         }
 
         auto modifier = is_generic ? "internal" : "public";
+
+        // For generic bridges, inject a call to `_registerGenericInterfacesIfNecessary()` inside
+        // `makeAbi()`. This triggers registration of all generic interface bridges in
+        // the module into the global GenericInterfaceRegistry on first use. `InitOnce`
+        // (wrapping Win32 `INIT_ONCE`) ensures registration runs exactly once.
+        auto registration_call = is_generic ? "\n        _registerGenericInterfacesIfNecessary()" : "";
+
         w.write(R"(% enum % : AbiInterfaceBridge {
     % typealias CABI = %
     % typealias SwiftABI = %
@@ -100,7 +107,7 @@ public class %Maker: MakeFromAbi {
         return %(abi)
     }
 
-    % static func makeAbi() -> CABI {
+    % static func makeAbi() -> CABI {%
         let vtblPtr = withUnsafeMutablePointer(to: &%VTable) { $0 }
         return .init(lpVtbl: vtblPtr)
     }
@@ -114,6 +121,7 @@ public class %Maker: MakeFromAbi {
         modifier,
         bind_impl_name(type),
         modifier,
+        registration_call,
         vtable);
     }
 

@@ -328,6 +328,11 @@ namespace swiftwinrt
             }
         }
 
+        // Emit the lazy registration block at file scope, after all generic
+        // instantiations. Referenced by each bridge's makeAbi() to ensure the
+        // GenericInterfaceRegistry is populated before any wrapper is created.
+        write_generic_interface_registrar(w, module, members.generic_instantiations);
+
         w.swap();
         write_preamble(w, /* swift_code: */ true);
         w.save_file("Generics");

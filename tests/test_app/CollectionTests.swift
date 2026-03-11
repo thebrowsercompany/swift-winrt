@@ -43,7 +43,6 @@ class CollectionTests : XCTestCase {
   }
 
   public func testArrayVectorIsIterable() throws {
-    try XCTSkipIf(true, "TODO(#159)")
     XCTAssertNotNil(try CollectionTester.vectorAsIterable(["a", "b", "c"].toVector()))
   }
 
@@ -53,7 +52,6 @@ class CollectionTests : XCTestCase {
   // IVector<IInspectable>, then QIs that IVector for IIterable<IInspectable> to iterate.
   // SimpleItemsControl replicates this exact QI chain.
   public func testSimpleItemsControl_itemsSource() throws {
-    try XCTSkipIf(true, "TODO(#159)")
     let control = SimpleItemsControl()
     // Must be [Any?] (not [String]) because WinUI controls QI for IVector<IInspectable>,
     // which is a distinct COM interface from IVector<String>.

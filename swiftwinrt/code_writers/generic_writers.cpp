@@ -193,7 +193,6 @@ namespace swiftwinrt
             write_interface_impl_members(w, iface_info, *type.generic_type());
         }
 
-        w.write("public func queryInterface(_ iid: %.IID) -> IUnknownRef? { nil }\n", w.support);
         indent_guard.end();
         w.write("}\n\n");
     }
@@ -210,6 +209,79 @@ namespace swiftwinrt
         {
             write_generic_interface_implementation(w, type);
         }
+    }
+
+    // Generates a per-module `_registerGenericInterfacesIfNecessary()` function that registers
+    // all generic interface bridges into the global `GenericInterfaceRegistry`. This enables
+    // QueryInterface for Swift-implemented generic interfaces (e.g. IVector, IIterable).
+    //
+    // The generated Swift code looks like:
+    //
+    //   private var _genericInterfacesOnce = WindowsFoundation.InitOnce()
+    //
+    //   @inline(never)
+    //   private func _registerGenericInterfacesIfNecessary() {
+    //       _genericInterfacesOnce.performOnce {
+    //           WindowsFoundation.GenericInterfaceRegistry.registerBatch(count: N) {
+    //               $0.register(IID___x_ABI_C__FIVector_1_IInspectable,
+    //                   __x_ABI_C__FIVector_1_IInspectableBridge.factory)
+    //               ...
+    //           }
+    //       }
+    //   }
+    //
+    // Each bridge's `factory` static method (from the `AbiInterfaceBridge` extension) is
+    // a fully-specialized function pointer on concrete types — no closure context or heap
+    // allocation. The `register` method stores this directly in the dictionary.
+    //
+    // Each generic bridge's `makeAbi()` calls `_registerGenericInterfacesIfNecessary()`.
+    // `InitOnce` wraps the Win32 `INIT_ONCE` primitive (same kernel mechanism that
+    // backs `swift_once`), available through CWinRT without extra dependencies.
+    //
+    // Only interface instantiations are registered. Delegates and IReference<T> are not
+    // QI targets for Swift-implemented objects, so they don't need registry support.
+    void write_generic_interface_registrar(
+        writer &w,
+        std::string_view module_name,
+        std::map<std::string_view, std::reference_wrapper<generic_inst const>> const &generic_instantiations)
+    {
+        // Filter to only interface instantiations (skip delegates and IReference<T>)
+        std::vector<std::reference_wrapper<generic_inst const>> interface_insts;
+        for (auto& [_, inst_ref] : generic_instantiations)
+        {
+            auto& inst = inst_ref.get();
+            if (!is_delegate(inst) && !is_winrt_ireference(inst))
+            {
+                interface_insts.push_back(inst_ref);
+            }
+        }
+
+        if (interface_insts.empty()) return;
+
+        w.write("private var _genericInterfacesOnce = %.InitOnce()\n\n", w.support);
+        w.write("@inline(never)\n");
+        w.write("private func _registerGenericInterfacesIfNecessary() {\n");
+        {
+            auto indent = w.push_indent();
+            w.write("_genericInterfacesOnce.performOnce {\n");
+            {
+                auto indent2 = w.push_indent();
+                w.write("%.GenericInterfaceRegistry.registerBatch(count: %) {\n", w.support, static_cast<uint32_t>(interface_insts.size()));
+                {
+                    auto indent3 = w.push_indent();
+                    for (auto& inst_ref : interface_insts)
+                    {
+                        auto& inst = inst_ref.get();
+                        auto generic_params = w.push_generic_params(inst);
+                        w.write("$0.register(IID_%, %.factory)\n",
+                            inst.mangled_name(), bind_bridge_name(inst));
+                    }
+                }
+                w.write("}\n");
+            }
+            w.write("}\n");
+        }
+        w.write("}\n\n");
     }
 }
 
