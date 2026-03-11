@@ -164,9 +164,18 @@ open class WinRTWrapperBase<CInterface, Prototype> {
                 case IID_IWeakReferenceSource:
                     try makeWeakReferenceSource(instance as AnyObject, result)
                 default:
-                    guard let customQI = instance as? CustomQueryInterface,
-                          let iUnknownRef = customQI.queryInterface(riid.pointee) else { return E_NOINTERFACE }
-                    result.pointee = iUnknownRef.detach()
+                    // Check if the Swift object directly implements a custom QI handler
+                    if let customQI = instance as? CustomQueryInterface,
+                       let iUnknownRef = customQI.queryInterface(riid.pointee) {
+                        result.pointee = iUnknownRef.detach()
+                        return S_OK
+                    }
+                    // Fallback: check the generic interface registry (e.g. IVector, IIterable).
+                    if let iUnknownRef = GenericInterfaceRegistry.queryInterface(instance as AnyObject, riid.pointee) {
+                        result.pointee = iUnknownRef.detach()
+                        return S_OK
+                    }
+                    return E_NOINTERFACE
             }
             return S_OK
         } catch {
@@ -209,6 +218,15 @@ open class InterfaceWrapperBase<I: AbiInterfaceBridge> : WinRTAbiBridgeWrapper<I
             let abi = I.makeAbi()
             super.init(abi, impl)
         }
+    }
+
+    /// Init for pure Swift implementations that are NOT ABI wrappers.
+    /// Skips the `as? AnyAbiInterfaceImpl` check in `init(_:)` which would always
+    /// fail for these objects. Used by the interface registry's factory closures.
+    public init?(swiftImpl impl: I.SwiftProjection?) {
+        guard let impl = impl else { return nil }
+        let abi = I.makeAbi()
+        super.init(abi, impl)
     }
 
     override public func toABI<ResultType>(_ body: (UnsafeMutablePointer<I.CABI>) throws -> ResultType)

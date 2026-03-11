@@ -37,6 +37,15 @@ extension GUID: @retroactive Equatable {
    }
 }
 
+extension GUID: @retroactive Hashable {
+   public func hash(into hasher: inout Hasher) {
+      hasher.combine(Data1)
+      hasher.combine(Data2)
+      hasher.combine(Data3)
+      withUnsafeBytes(of: Data4) { hasher.combine(bytes: $0) }
+   }
+}
+
 public func ~=(_ lhs: GUID, _ rhs: GUID) -> Bool { lhs == rhs}
 
 public extension Foundation.UUID {
