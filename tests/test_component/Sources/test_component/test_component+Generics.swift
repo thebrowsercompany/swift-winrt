@@ -6698,9 +6698,7 @@ internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimp
 }
 public extension EventSource where Handler == EventHandler<Any?> {
     func invoke(_ sender: Any!, _ args: Any!) throws {
-        for handler in getInvocationList() {
-            try handler(sender, args)
-        }
+        try invokeAll { handler in try handler(sender, args) }
     }
 }
 

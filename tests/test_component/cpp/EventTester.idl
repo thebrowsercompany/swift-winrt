@@ -2,10 +2,6 @@ import "Windows.Foundation.idl";
 
 namespace test_component
 {
-    interface InterfaceWithReturnDelegate
-    {
-        event test_component.Delegates.ReturnInt32Delegate EventWithReturn;
-    };
     runtimeclass EventTester
     {
         EventTester(IIAmImplementable impl);
