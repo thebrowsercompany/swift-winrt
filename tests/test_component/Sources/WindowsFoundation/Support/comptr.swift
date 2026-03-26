@@ -9,7 +9,7 @@ import CWinRT
 // anywhere else in the code base.  The only place where UnsafeMutablePointer should be used is
 
 // where it's required at the ABI boundary.
-public final class ComPtr<CInterface> {
+public struct ComPtr<CInterface>: ~Copyable {
     fileprivate var pUnk: UnsafeMutablePointer<CInterface>?
 
     public init(_ ptr: UnsafeMutablePointer<CInterface>) {
@@ -19,7 +19,7 @@ public final class ComPtr<CInterface> {
         }
     }
 
-    public convenience init?(_ ptr: UnsafeMutablePointer<CInterface>?) {
+    public init?(_ ptr: UnsafeMutablePointer<CInterface>?) {
         guard let ptr else { return nil }
         self.init(ptr)
     }
@@ -32,7 +32,7 @@ public final class ComPtr<CInterface> {
     // Release ownership of the underlying pointer and return it. This is
     // useful when assigning to an out parameter and avoids an extra Add/Ref
     // release call.
-    public func detach() -> UnsafeMutableRawPointer? {
+    public mutating func detach() -> UnsafeMutableRawPointer? {
         let result = pUnk
         pUnk = nil
         return UnsafeMutableRawPointer(result)
@@ -54,7 +54,7 @@ public final class ComPtr<CInterface> {
         }
     }
 
-    borrowing func asIUnknown<ResultType>(_ body: (UnsafeMutablePointer<C_IUnknown>) throws -> ResultType) rethrows -> ResultType {
+    borrowing func asIUnknown<ResultType: ~Copyable>(_ body: (UnsafeMutablePointer<C_IUnknown>) throws -> ResultType) rethrows -> ResultType {
         guard let pUnk else { preconditionFailure("asIUnknown called on nil pointer") }
         return try pUnk.withMemoryRebound(to: C_IUnknown.self, capacity: 1) { try body($0) }
     }
