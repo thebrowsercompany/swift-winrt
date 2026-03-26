@@ -1,7 +1,7 @@
 import WinSDK
 
 /// A lightweight reader-writer lock wrapping the Win32 `SRWLOCK`.
-internal final class SRWLock {
+internal struct SRWLock: ~Copyable {
     enum Mode {
         case shared
         case exclusive
@@ -14,7 +14,7 @@ internal final class SRWLock {
 
     init() {}
 
-    func withLock<Result>(_ mode: Mode, _ body: () throws -> Result) rethrows -> Result {
+    mutating func withLock<Result>(_ mode: Mode, _ body: () throws -> Result) rethrows -> Result {
         switch mode {
         case .shared:
             AcquireSRWLockShared(&lock)
