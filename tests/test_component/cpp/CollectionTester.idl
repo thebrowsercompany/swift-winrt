@@ -20,6 +20,16 @@ namespace test_component
         Windows.Foundation.Collections.IMap<String, String> ReturnMapFromStringToString();
     }
 
+    // Simulates a WinUI control with an ItemsSource property. Replicates the QI chain from
+    // WinUI's InspectingDataSource used by BreadcrumbBar, ItemsRepeater, RadioButtons,
+    // NavigationView, TreeView, ItemsView, PipsPager, etc.
+    runtimeclass SimpleItemsControl
+    {
+        SimpleItemsControl();
+        Object ItemsSource;
+        Int32 ItemCount{ get; };
+    }
+
     interface WithIterableGuids
     {
         Windows.Foundation.Collections.IVector<Guid> IDs();

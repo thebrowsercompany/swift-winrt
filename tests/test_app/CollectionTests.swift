@@ -3,7 +3,7 @@ import test_component
 import Foundation
 import WindowsFoundation
 class CollectionTests : XCTestCase {
-  
+
   public func testVector_asInput() throws {
     let array = ["Hello", "Goodbye", "Goodnight"]
 
@@ -47,11 +47,26 @@ class CollectionTests : XCTestCase {
     XCTAssertNotNil(try CollectionTester.vectorAsIterable(["a", "b", "c"].toVector()))
   }
 
+  // Simulates the WinUI ItemsSource pattern. All WinUI controls with an ItemsSource
+  // property (BreadcrumbBar, ItemsRepeater, RadioButtons, NavigationView, TreeView,
+  // ItemsView, PipsPager, etc.) use InspectingDataSource which QIs the Object for
+  // IVector<IInspectable>, then QIs that IVector for IIterable<IInspectable> to iterate.
+  // SimpleItemsControl replicates this exact QI chain.
+  public func testSimpleItemsControl_itemsSource() throws {
+    try XCTSkipIf(true, "TODO(#159)")
+    let control = SimpleItemsControl()
+    // Must be [Any?] (not [String]) because WinUI controls QI for IVector<IInspectable>,
+    // which is a distinct COM interface from IVector<String>.
+    let items: [Any?] = ["alpha", "beta", "gamma"]
+    control.itemsSource = items.toVector()
+    XCTAssertEqual(control.itemCount, 3)
+  }
+
   public func testVectorObject_toCallback() throws {
     let person = Person(firstName: "John", lastName: "Doe", age: 42)
     let array:[Any?] = [person, "Goodbye", 1]
 
-    try CollectionTester.getObjectAt(array.toVector(), 0) { 
+    try CollectionTester.getObjectAt(array.toVector(), 0) {
         XCTAssertEqual($0 as! Person, person)
     }
   }
@@ -61,7 +76,7 @@ class CollectionTests : XCTestCase {
     let value = try CollectionTester.inMap(dictionary.toMap())
     XCTAssertEqual(value, "Alpha")
   }
-  
+
   public func testMap_asReturn() throws {
     let tester = CollectionTester()
     let map = try tester.returnMapFromStringToString()!
@@ -76,7 +91,7 @@ class CollectionTests : XCTestCase {
     let map = try tester.returnMapFromStringToString()!
     XCTAssert(map.hasKey("A"))
     XCTAssertEqual(map.lookup("A"), "Alpha")
-    
+
     XCTAssert(map.insert("A", "Aleph")) // Returns true if replacing
     XCTAssert(map.hasKey("A"))
     XCTAssertEqual(map.lookup("A"), "Aleph")
@@ -95,5 +110,6 @@ var collectionTests: [XCTestCaseEntry] = [
     ("testVector_mutate", CollectionTests.testVector_mutate),
     ("testArrayVectorIsIterable", CollectionTests.testArrayVectorIsIterable),
     ("testVectorObject_toCallback", CollectionTests.testVectorObject_toCallback),
+    ("testSimpleItemsControl_itemsSource", CollectionTests.testSimpleItemsControl_itemsSource),
   ])
 ]
