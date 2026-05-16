@@ -364,7 +364,7 @@ extension __ABI_Windows_Foundation {
     }
 
 
-    typealias AsyncActionCompletedHandlerWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.AsyncActionCompletedHandlerBridge>
+    public typealias AsyncActionCompletedHandlerWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.AsyncActionCompletedHandlerBridge>
     internal static var AsyncActionCompletedHandlerVTable: __x_ABI_CWindows_CFoundation_CIAsyncActionCompletedHandlerVtbl = .init(
         QueryInterface: { AsyncActionCompletedHandlerWrapper.queryInterface($0, $1, $2) },
         AddRef: { AsyncActionCompletedHandlerWrapper.addRef($0) },
@@ -446,7 +446,7 @@ extension __ABI_Windows_Foundation {
     }
 
 
-    typealias DeferralCompletedHandlerWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.DeferralCompletedHandlerBridge>
+    public typealias DeferralCompletedHandlerWrapper = InterfaceWrapperBase<__IMPL_Windows_Foundation.DeferralCompletedHandlerBridge>
     internal static var DeferralCompletedHandlerVTable: __x_ABI_CWindows_CFoundation_CIDeferralCompletedHandlerVtbl = .init(
         QueryInterface: { DeferralCompletedHandlerWrapper.queryInterface($0, $1, $2) },
         AddRef: { DeferralCompletedHandlerWrapper.addRef($0) },
