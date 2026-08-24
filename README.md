@@ -19,7 +19,7 @@ For all Swift code (3 and 4 above) - they are built with **SPM**
 ## Developer Workflow
 
 ### Swift Toolchain
-This project may require Swift toolchain builds which are more recent than the latest released version. For best results, find the release tag used by the [GitHub Actions build workflow](.github/actions/windows-build/action.yml) and download the corresponding toolchain build from [swift-build releases](https://github.com/thebrowsercompany/swift-build/releases).
+CI builds with a released Swift toolchain. The version is set in the [Windows build workflow](.github/workflows/callable-windows-build.yml), currently `6.2-RELEASE`. If you need to match a specific build rather than a release, [swift-build releases](https://github.com/thebrowsercompany/swift-build/releases) carries them.
 
 ### Initial Setup
 
@@ -29,10 +29,10 @@ git submodule init
 git submodule update --recursive
 ```
 
-Install the required version of the Windows SDK if you don't already have it, currently `10.0.17763`. Note that the WinGet package id for that version of the Windows SDK incorrectly uses `10.0.17736` as the version number.
+Install the version of the Windows SDK that the CMake presets select. [`CMakePresets.json`](CMakePresets.json) sets `CMAKE_SYSTEM_VERSION` to `10.0.26100.0`.
 
 ```
-winget install --id Microsoft.WindowsSDK.10.0.17736
+winget install --id Microsoft.WindowsSDK.10.0.26100
 ```
 
 ### Integrated Build with CMake
