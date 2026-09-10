@@ -32,7 +32,7 @@ string(APPEND CMAKE_EXE_LINKER_FLAGS_RELEASE " /DEBUG /OPT:REF /OPT:ICF /MAP")
 if (CMAKE_CXX_COMPILER MATCHES "clang-cl")
     add_compile_options(-Wno-delete-non-virtual-dtor -mcx16 -fno-delayed-template-parsing)
 else()
-    add_compile_options(/permissive- /await)
+    add_compile_options(/permissive-)
 endif()
 
 # Explicitly configure _DEBUG preprocessor macro
