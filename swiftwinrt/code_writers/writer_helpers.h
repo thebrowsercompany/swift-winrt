@@ -302,6 +302,7 @@ namespace swiftwinrt
             w.write("var %: WinRTArrayAbi<%> = (0, nil)\n",
                 signature.name,
                 bind<write_type>(*signature.type, write_type_params::c_abi));
+            write_defer_release_array(w, signature.type, signature.name, true);
             return std::optional<writer::indent_guard>();
         }
         else if (needs_wrapper(category))
@@ -312,10 +313,13 @@ namespace swiftwinrt
         else
         {
             w.write("var %: ", signature.name);
-            auto guard{ w.push_mangled_names_if_needed(category) };
-            write_type(w, *signature.type, write_type_params::c_abi);
-            write_default_init_assignment(w, *signature.type, projection_layer::c_abi);
-            w.write("\n");
+            {
+                auto guard{ w.push_mangled_names_if_needed(category) };
+                write_type(w, *signature.type, write_type_params::c_abi);
+                write_default_init_assignment(w, *signature.type, projection_layer::c_abi);
+                w.write("\n");
+            }
+            write_defer_release_abi(w, signature.type, signature.name);
             return std::optional<writer::indent_guard>();
         }
     }
@@ -425,15 +429,10 @@ namespace swiftwinrt
         auto return_param_name = put_in_backticks_if_needed(std::string(return_type.name));
         if (return_type.is_array())
         {
-            w.write("defer { CoTaskMemFree(%.start) }\n", return_param_name);
             w.write("return %\n", bind<write_convert_array_from_abi>(*return_type.type, return_param_name));
         }
         else
         {
-            if (get_category(return_type.type) == param_category::string_type)
-            {
-                w.write("defer { WindowsDeleteString(%) }\n", return_param_name);
-            }
             w.write("return %", bind<write_consume_type>(return_type.type, return_param_name, true));
         }
 
@@ -715,11 +714,34 @@ namespace swiftwinrt
                         bind<write_type>(*param.type, write_type_params::c_abi));
 
                     guard.insert_front("% = %\n", param_name, bind<write_convert_array_from_abi>(*param.type, local_param_name));
-                    guard.insert_front("defer { CoTaskMemFree(%.start) }\n", local_param_name);
+                    write_defer_release_array(w, param.type, local_param_name, true);
+                }
+                else if (!param.in() && category != param_category::enum_type && category != param_category::fundamental_type)
+                {
+                    if (needs_abi_release(param.type))
+                    {
+                        // Owned outputs must not overwrite handles allocated from input values.
+                        w.write("var %Buffer = Array<%>(repeating: %, count: %.count)\n",
+                            local_param_name,
+                            bind<write_type>(*param.type, write_type_params::c_abi),
+                            is_reference_type(param.type) || category == param_category::string_type ? "nil" : ".init()",
+                            param_name);
+                    }
+                    else
+                    {
+                        w.write("var %Buffer = %.map { $0.toABI() }\n", local_param_name, param_name);
+                    }
+                    w.write("try %Buffer.withUnsafeMutableBufferPointer { buffer in\n", local_param_name);
+                    guard.push("}\n");
+                    guard.push_indent();
+                    w.write("let %: WinRTArrayAbi<%> = (UInt32(buffer.count), buffer.baseAddress)\n",
+                        local_param_name, bind<write_type>(*param.type, write_type_params::c_abi));
+                    write_defer_release_array(w, param.type, local_param_name, false);
+                    guard.insert_front("% = %\n", param_name, bind<write_convert_array_from_abi>(*param.type, local_param_name));
                 }
                 else
                 {
-                    // Array is passed by reference, so we need to convert the input to a buffer and then pass that buffer to C, then convert the buffer back to an array
+                    // Input arrays borrow the converted elements for the duration of the call.
                     if (is_reference_type(param.type))
                     {
                         w.write("try %.toABI(abiBridge: %.self) { % in\n", param_name, bind_bridge_name(*param.type), local_param_name);
@@ -727,15 +749,6 @@ namespace swiftwinrt
                     else
                     {
                         w.write("try %.toABI { % in\n", param_name, local_param_name);
-                    }
-
-                    // Enums and fundamental (integer) types can just be copied directly into the ABI. So we can
-                    // avoid an extra copy by simply passing the array buffer to C directly
-                    if (!param.in() && category != param_category::enum_type && category != param_category::fundamental_type)
-                    {
-                        // While perhaps not the most effient to just create a new array from the elements (rather than filling an existing buffer), it is the simplest for now.
-                        // These APIs are few and far between and rarely used. If needed, we can optimize later.
-                        guard.insert_front("% = %\n", param_name, bind<write_convert_array_from_abi>(*param.type, local_param_name));
                     }
 
                     guard.push("}\n");
@@ -785,7 +798,7 @@ namespace swiftwinrt
                     guard.push("% = .init(from: %)\n",
                         param_name,
                         local_param_name);
-                    guard.push("WindowsDeleteString(%)\n", local_param_name);
+                    write_defer_release_abi(w, param.type, local_param_name);
                 }
                 else if (category == param_category::struct_type &&
                     is_struct_blittable(signature_type) &&
@@ -822,6 +835,7 @@ namespace swiftwinrt
                     w.write("var %Abi: %\n",
                         local_param_name,
                         bind<write_type>(*param.type, write_type_params::c_abi));
+                    write_defer_release_abi(w, param.type, w.write_temp("%Abi", local_param_name));
                     guard.push("% = %\n", param_name,
                         bind<write_consume_type>(param.type, w.write_temp("%Abi", local_param_name), false));
                 }

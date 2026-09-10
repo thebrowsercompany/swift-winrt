@@ -106,6 +106,73 @@ namespace winrt::test_component::implementation
             m_stringProp = value;
         }
 
+        uint32_t StoredStringReferences()
+        {
+            // Keep m_stringProp alive while inspecting the pinned C++/WinRT HSTRING layout.
+            auto header = static_cast<impl::shared_hstring_header*>(get_abi(m_stringProp));
+            return header ? static_cast<uint32_t>(header->count) : 0;
+        }
+
+        Windows::Foundation::IReference<test_component::NonBlittableStruct> BoxedStruct()
+        {
+            return test_component::NonBlittableStruct{ m_stringProp };
+        }
+
+        void OutBoxedStruct(Windows::Foundation::IReference<test_component::NonBlittableStruct>& value)
+        {
+            value = BoxedStruct();
+        }
+
+        test_component::NestedNonBlittableStruct NestedStruct()
+        {
+            return { { m_stringProp } };
+        }
+
+        Windows::Foundation::IReference<test_component::NestedNonBlittableStruct> BoxedNestedStruct()
+        {
+            return NestedStruct();
+        }
+
+        void StoreStrings(array_view<hstring const> values)
+        {
+            m_stringProp = values[0];
+        }
+
+        void StoreStructs(array_view<test_component::NonBlittableStruct const> values)
+        {
+            m_stringProp = values[0].First;
+        }
+
+        void StoreNestedStruct(test_component::NestedNonBlittableStruct const& value)
+        {
+            m_stringProp = value.Value.First;
+        }
+
+        com_array<hstring> StoredStrings()
+        {
+            return { m_stringProp, m_stringProp };
+        }
+
+        com_array<test_component::NonBlittableStruct> StoredStructs()
+        {
+            return { { m_stringProp }, { m_stringProp } };
+        }
+
+        void OutStoredStrings(com_array<hstring>& values)
+        {
+            values = StoredStrings();
+        }
+
+        void FillStoredStrings(array_view<hstring> values)
+        {
+            for (auto& value : values) value = m_stringProp;
+        }
+
+        Windows::Foundation::Collections::IVector<hstring> StoredStringVector()
+        {
+            return single_threaded_vector<hstring>({ m_stringProp, m_stringProp });
+        }
+
         winrt::event_token SignalEvent(test_component::Delegates::SignalDelegate const& handler);
         void SignalEvent(winrt::event_token const& token) noexcept;
         void FireEvent();

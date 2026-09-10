@@ -358,11 +358,20 @@ public class IIteratorIKeyValuePairString_Any: WindowsFoundation.IInspectable {
 
     open func GetMany(_ items: inout [WindowsFoundation.AnyIKeyValuePair<String, Any?>?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: WindowsFoundation.__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge.self) { _items in
+        var _itemsBuffer = Array<UnsafeMutablePointer<__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable>?>(repeating: nil, count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<UnsafeMutablePointer<__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable>?> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        _ = element?.pointee.lpVtbl.pointee.Release(element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-        items = .from(abiBridge: WindowsFoundation.__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge.self, abi: _items)
+            items = .from(abiBridge: WindowsFoundation.__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge.self, abi: _items)
         }
         return result
     }
@@ -510,11 +519,20 @@ public class IIteratorIKeyValuePairString_String: WindowsFoundation.IInspectable
 
     open func GetMany(_ items: inout [WindowsFoundation.AnyIKeyValuePair<String, String>?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: WindowsFoundation.__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge.self) { _items in
+        var _itemsBuffer = Array<UnsafeMutablePointer<__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING>?>(repeating: nil, count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<UnsafeMutablePointer<__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING>?> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        _ = element?.pointee.lpVtbl.pointee.Release(element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-        items = .from(abiBridge: WindowsFoundation.__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge.self, abi: _items)
+            items = .from(abiBridge: WindowsFoundation.__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge.self, abi: _items)
         }
         return result
     }
@@ -662,11 +680,20 @@ public class IIteratorIWwwFormUrlDecoderEntry: WindowsFoundation.IInspectable {
 
     open func GetMany(_ items: inout [WindowsFoundation.AnyIWwwFormUrlDecoderEntry?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_Windows_Foundation.IWwwFormUrlDecoderEntryBridge.self) { _items in
+        var _itemsBuffer = Array<UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderEntry>?>(repeating: nil, count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderEntry>?> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        _ = element?.pointee.lpVtbl.pointee.Release(element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntry.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-        items = .from(abiBridge: __IMPL_Windows_Foundation.IWwwFormUrlDecoderEntryBridge.self, abi: _items)
+            items = .from(abiBridge: __IMPL_Windows_Foundation.IWwwFormUrlDecoderEntryBridge.self, abi: _items)
         }
         return result
     }
@@ -773,10 +800,12 @@ public class IKeyValuePairString_Any: WindowsFoundation.IInspectable {
 
     open func get_Key() throws -> String {
         var result: HSTRING?
+        defer {
+            WindowsDeleteString(result)
+        }
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
         }
-        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 
@@ -881,19 +910,23 @@ public class IKeyValuePairString_String: WindowsFoundation.IInspectable {
 
     open func get_Key() throws -> String {
         var result: HSTRING?
+        defer {
+            WindowsDeleteString(result)
+        }
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
         }
-        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 
     open func get_Value() throws -> String {
         var result: HSTRING?
+        defer {
+            WindowsDeleteString(result)
+        }
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Value(pThis, &result))
         }
-        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 
@@ -997,10 +1030,12 @@ public class IMapChangedEventArgsString: WindowsFoundation.IInspectable {
 
     open func get_Key() throws -> String {
         var result: HSTRING?
+        defer {
+            WindowsDeleteString(result)
+        }
         _ = try perform(as: __x_ABI_C__FIMapChangedEventArgs_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
         }
-        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 
@@ -1145,7 +1180,13 @@ public class IMapViewString_Any: WindowsFoundation.IInspectable {
 
     open func Split(_ first: inout WindowsFoundation.AnyIMapView<String, Any?>?, _ second: inout WindowsFoundation.AnyIMapView<String, Any?>?) throws {
         var _firstAbi: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_IInspectable>?
+        defer {
+            _ = _firstAbi?.pointee.lpVtbl.pointee.Release(_firstAbi)
+        }
         var _secondAbi: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_IInspectable>?
+        defer {
+            _ = _secondAbi?.pointee.lpVtbl.pointee.Release(_secondAbi)
+        }
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &_firstAbi, &_secondAbi))
         }
@@ -1284,11 +1325,13 @@ public class IMapViewString_String: WindowsFoundation.IInspectable {
 
     open func Lookup(_ key: String) throws -> String {
         var result: HSTRING?
+        defer {
+            WindowsDeleteString(result)
+        }
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, _key.get(), &result))
         }
-        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 
@@ -1311,7 +1354,13 @@ public class IMapViewString_String: WindowsFoundation.IInspectable {
 
     open func Split(_ first: inout WindowsFoundation.AnyIMapView<String, String>?, _ second: inout WindowsFoundation.AnyIMapView<String, String>?) throws {
         var _firstAbi: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?
+        defer {
+            _ = _firstAbi?.pointee.lpVtbl.pointee.Release(_firstAbi)
+        }
         var _secondAbi: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?
+        defer {
+            _ = _secondAbi?.pointee.lpVtbl.pointee.Release(_secondAbi)
+        }
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &_firstAbi, &_secondAbi))
         }
@@ -1691,11 +1740,13 @@ public class IMapString_String: WindowsFoundation.IInspectable {
 
     open func Lookup(_ key: String) throws -> String {
         var result: HSTRING?
+        defer {
+            WindowsDeleteString(result)
+        }
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, _key.get(), &result))
         }
-        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 
@@ -2232,11 +2283,20 @@ public class IVectorViewIWwwFormUrlDecoderEntry: WindowsFoundation.IInspectable 
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [WindowsFoundation.AnyIWwwFormUrlDecoderEntry?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_Windows_Foundation.IWwwFormUrlDecoderEntryBridge.self) { _items in
+        var _itemsBuffer = Array<UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderEntry>?>(repeating: nil, count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderEntry>?> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        _ = element?.pointee.lpVtbl.pointee.Release(element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CFoundation__CIWwwFormUrlDecoderEntry.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-        items = .from(abiBridge: __IMPL_Windows_Foundation.IWwwFormUrlDecoderEntryBridge.self, abi: _items)
+            items = .from(abiBridge: __IMPL_Windows_Foundation.IWwwFormUrlDecoderEntryBridge.self, abi: _items)
         }
         return result
     }

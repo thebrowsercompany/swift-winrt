@@ -867,11 +867,20 @@ public class IIteratorAny: WindowsFoundation.IInspectable {
 
     open func GetMany(_ items: inout [Any?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_.AnyBridge.self) { _items in
+        var _itemsBuffer = Array<UnsafeMutablePointer<C_IInspectable>?>(repeating: nil, count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<UnsafeMutablePointer<C_IInspectable>?> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        _ = element?.pointee.lpVtbl.pointee.Release(element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIIterator_1_IInspectable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-        items = .from(abiBridge: __IMPL_.AnyBridge.self, abi: _items)
+            items = .from(abiBridge: __IMPL_.AnyBridge.self, abi: _items)
         }
         return result
     }
@@ -1019,11 +1028,13 @@ public class IIteratorUUID: WindowsFoundation.IInspectable {
 
     open func GetMany(_ items: inout [Foundation.UUID]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI { _items in
+        var _itemsBuffer = items.map { $0.toABI() }
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<WindowsFoundation.GUID> = (UInt32(buffer.count), buffer.baseAddress)
             _ = try perform(as: __x_ABI_C__FIIterator_1_GUID.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-        items = .from(abi: _items)
+            items = .from(abi: _items)
         }
         return result
     }
@@ -1147,10 +1158,12 @@ public class IIteratorString: WindowsFoundation.IInspectable {
 
     open func get_Current() throws -> String {
         var result: HSTRING?
+        defer {
+            WindowsDeleteString(result)
+        }
         _ = try perform(as: __x_ABI_C__FIIterator_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
         }
-        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 
@@ -1172,11 +1185,20 @@ public class IIteratorString: WindowsFoundation.IInspectable {
 
     open func GetMany(_ items: inout [String]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI { _items in
+        var _itemsBuffer = Array<HSTRING?>(repeating: nil, count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<HSTRING?> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        WindowsDeleteString(element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIIterator_1_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-        items = .from(abi: _items)
+            items = .from(abi: _items)
         }
         return result
     }
@@ -1324,11 +1346,20 @@ public class IIteratorIKeyValuePairString_String: WindowsFoundation.IInspectable
 
     open func GetMany(_ items: inout [WindowsFoundation.AnyIKeyValuePair<String, String>?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge.self) { _items in
+        var _itemsBuffer = Array<UnsafeMutablePointer<__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING>?>(repeating: nil, count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<UnsafeMutablePointer<__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING>?> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        _ = element?.pointee.lpVtbl.pointee.Release(element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-        items = .from(abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge.self, abi: _items)
+            items = .from(abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRINGBridge.self, abi: _items)
         }
         return result
     }
@@ -1476,11 +1507,20 @@ public class IIteratorIKeyValuePairString_Base: WindowsFoundation.IInspectable {
 
     open func GetMany(_ items: inout [WindowsFoundation.AnyIKeyValuePair<String, test_component.Base?>?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge.self) { _items in
+        var _itemsBuffer = Array<UnsafeMutablePointer<__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?>(repeating: nil, count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<UnsafeMutablePointer<__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        _ = element?.pointee.lpVtbl.pointee.Release(element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-        items = .from(abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge.self, abi: _items)
+            items = .from(abiBridge: test_component.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBaseBridge.self, abi: _items)
         }
         return result
     }
@@ -1627,11 +1667,20 @@ public class IIteratorBase: WindowsFoundation.IInspectable {
 
     open func GetMany(_ items: inout [test_component.Base?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_test_component.BaseBridge.self) { _items in
+        var _itemsBuffer = Array<UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?>(repeating: nil, count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        _ = element?.pointee.lpVtbl.pointee.Release(element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-        items = .from(abiBridge: __IMPL_test_component.BaseBridge.self, abi: _items)
+            items = .from(abiBridge: __IMPL_test_component.BaseBridge.self, abi: _items)
         }
         return result
     }
@@ -1779,11 +1828,20 @@ public class IIteratorIBasic: WindowsFoundation.IInspectable {
 
     open func GetMany(_ items: inout [test_component.AnyIBasic?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_test_component.IBasicBridge.self) { _items in
+        var _itemsBuffer = Array<UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>?>(repeating: nil, count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>?> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        _ = element?.pointee.lpVtbl.pointee.Release(element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-        items = .from(abiBridge: __IMPL_test_component.IBasicBridge.self, abi: _items)
+            items = .from(abiBridge: __IMPL_test_component.IBasicBridge.self, abi: _items)
         }
         return result
     }
@@ -1889,19 +1947,23 @@ public class IKeyValuePairString_String: WindowsFoundation.IInspectable {
 
     open func get_Key() throws -> String {
         var result: HSTRING?
+        defer {
+            WindowsDeleteString(result)
+        }
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
         }
-        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 
     open func get_Value() throws -> String {
         var result: HSTRING?
+        defer {
+            WindowsDeleteString(result)
+        }
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Value(pThis, &result))
         }
-        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 
@@ -1997,10 +2059,12 @@ public class IKeyValuePairString_Base: WindowsFoundation.IInspectable {
 
     open func get_Key() throws -> String {
         var result: HSTRING?
+        defer {
+            WindowsDeleteString(result)
+        }
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
         }
-        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 
@@ -2127,11 +2191,13 @@ public class IMapViewString_String: WindowsFoundation.IInspectable {
 
     open func Lookup(_ key: String) throws -> String {
         var result: HSTRING?
+        defer {
+            WindowsDeleteString(result)
+        }
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, _key.get(), &result))
         }
-        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 
@@ -2154,7 +2220,13 @@ public class IMapViewString_String: WindowsFoundation.IInspectable {
 
     open func Split(_ first: inout WindowsFoundation.AnyIMapView<String, String>?, _ second: inout WindowsFoundation.AnyIMapView<String, String>?) throws {
         var _firstAbi: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?
+        defer {
+            _ = _firstAbi?.pointee.lpVtbl.pointee.Release(_firstAbi)
+        }
         var _secondAbi: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_HSTRING>?
+        defer {
+            _ = _secondAbi?.pointee.lpVtbl.pointee.Release(_secondAbi)
+        }
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &_firstAbi, &_secondAbi))
         }
@@ -2320,7 +2392,13 @@ public class IMapViewString_Base: WindowsFoundation.IInspectable {
 
     open func Split(_ first: inout WindowsFoundation.AnyIMapView<String, test_component.Base?>?, _ second: inout WindowsFoundation.AnyIMapView<String, test_component.Base?>?) throws {
         var _firstAbi: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
+        defer {
+            _ = _firstAbi?.pointee.lpVtbl.pointee.Release(_firstAbi)
+        }
         var _secondAbi: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase>?
+        defer {
+            _ = _secondAbi?.pointee.lpVtbl.pointee.Release(_secondAbi)
+        }
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &_firstAbi, &_secondAbi))
         }
@@ -2477,11 +2555,13 @@ public class IMapString_String: WindowsFoundation.IInspectable {
 
     open func Lookup(_ key: String) throws -> String {
         var result: HSTRING?
+        defer {
+            WindowsDeleteString(result)
+        }
         let _key = try! HString(key)
         _ = try perform(as: __x_ABI_C__FIMap_2_HSTRING_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Lookup(pThis, _key.get(), &result))
         }
-        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 
@@ -3344,11 +3424,20 @@ public class IVectorViewAny: WindowsFoundation.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [Any?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_.AnyBridge.self) { _items in
+        var _itemsBuffer = Array<UnsafeMutablePointer<C_IInspectable>?>(repeating: nil, count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<UnsafeMutablePointer<C_IInspectable>?> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        _ = element?.pointee.lpVtbl.pointee.Release(element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIVectorView_1_IInspectable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-        items = .from(abiBridge: __IMPL_.AnyBridge.self, abi: _items)
+            items = .from(abiBridge: __IMPL_.AnyBridge.self, abi: _items)
         }
         return result
     }
@@ -3529,11 +3618,13 @@ public class IVectorViewUUID: WindowsFoundation.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [Foundation.UUID]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI { _items in
+        var _itemsBuffer = items.map { $0.toABI() }
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<WindowsFoundation.GUID> = (UInt32(buffer.count), buffer.baseAddress)
             _ = try perform(as: __x_ABI_C__FIVectorView_1_GUID.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-        items = .from(abi: _items)
+            items = .from(abi: _items)
         }
         return result
     }
@@ -3690,10 +3781,12 @@ public class IVectorViewString: WindowsFoundation.IInspectable {
 
     open func GetAt(_ index: UInt32) throws -> String {
         var result: HSTRING?
+        defer {
+            WindowsDeleteString(result)
+        }
         _ = try perform(as: __x_ABI_C__FIVectorView_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
         }
-        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 
@@ -3716,11 +3809,20 @@ public class IVectorViewString: WindowsFoundation.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [String]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI { _items in
+        var _itemsBuffer = Array<HSTRING?>(repeating: nil, count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<HSTRING?> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        WindowsDeleteString(element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIVectorView_1_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-        items = .from(abi: _items)
+            items = .from(abi: _items)
         }
         return result
     }
@@ -3900,11 +4002,20 @@ public class IVectorViewBase: WindowsFoundation.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [test_component.Base?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_test_component.BaseBridge.self) { _items in
+        var _itemsBuffer = Array<UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?>(repeating: nil, count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        _ = element?.pointee.lpVtbl.pointee.Release(element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-        items = .from(abiBridge: __IMPL_test_component.BaseBridge.self, abi: _items)
+            items = .from(abiBridge: __IMPL_test_component.BaseBridge.self, abi: _items)
         }
         return result
     }
@@ -4087,11 +4198,20 @@ public class IVectorViewIBasic: WindowsFoundation.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [test_component.AnyIBasic?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_test_component.IBasicBridge.self) { _items in
+        var _itemsBuffer = Array<UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>?>(repeating: nil, count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>?> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        _ = element?.pointee.lpVtbl.pointee.Release(element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-        items = .from(abiBridge: __IMPL_test_component.IBasicBridge.self, abi: _items)
+            items = .from(abiBridge: __IMPL_test_component.IBasicBridge.self, abi: _items)
         }
         return result
     }
@@ -4382,11 +4502,20 @@ public class IVectorAny: WindowsFoundation.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [Any?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_.AnyBridge.self) { _items in
+        var _itemsBuffer = Array<UnsafeMutablePointer<C_IInspectable>?>(repeating: nil, count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<UnsafeMutablePointer<C_IInspectable>?> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        _ = element?.pointee.lpVtbl.pointee.Release(element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIVector_1_IInspectable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-        items = .from(abiBridge: __IMPL_.AnyBridge.self, abi: _items)
+            items = .from(abiBridge: __IMPL_.AnyBridge.self, abi: _items)
         }
         return result
     }
@@ -4726,11 +4855,13 @@ public class IVectorUUID: WindowsFoundation.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [Foundation.UUID]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI { _items in
+        var _itemsBuffer = items.map { $0.toABI() }
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<WindowsFoundation.GUID> = (UInt32(buffer.count), buffer.baseAddress)
             _ = try perform(as: __x_ABI_C__FIVector_1_GUID.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-        items = .from(abi: _items)
+            items = .from(abi: _items)
         }
         return result
     }
@@ -5001,10 +5132,12 @@ public class IVectorString: WindowsFoundation.IInspectable {
 
     open func GetAt(_ index: UInt32) throws -> String {
         var result: HSTRING?
+        defer {
+            WindowsDeleteString(result)
+        }
         _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
         }
-        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 
@@ -5075,11 +5208,20 @@ public class IVectorString: WindowsFoundation.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [String]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI { _items in
+        var _itemsBuffer = Array<HSTRING?>(repeating: nil, count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<HSTRING?> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        WindowsDeleteString(element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-        items = .from(abi: _items)
+            items = .from(abi: _items)
         }
         return result
     }
@@ -5418,11 +5560,20 @@ public class IVectorBase: WindowsFoundation.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [test_component.Base?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_test_component.BaseBridge.self) { _items in
+        var _itemsBuffer = Array<UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?>(repeating: nil, count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<UnsafeMutablePointer<__x_ABI_Ctest__component_CIBase>?> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        _ = element?.pointee.lpVtbl.pointee.Release(element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CBase.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-        items = .from(abiBridge: __IMPL_test_component.BaseBridge.self, abi: _items)
+            items = .from(abiBridge: __IMPL_test_component.BaseBridge.self, abi: _items)
         }
         return result
     }
@@ -5770,11 +5921,20 @@ public class IVectorIBasic: WindowsFoundation.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [test_component.AnyIBasic?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_test_component.IBasicBridge.self) { _items in
+        var _itemsBuffer = Array<UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>?>(repeating: nil, count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<UnsafeMutablePointer<__x_ABI_Ctest__component_CIBasic>?> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        _ = element?.pointee.lpVtbl.pointee.Release(element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_Ctest__zcomponent__CIBasic.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-        items = .from(abiBridge: __IMPL_test_component.IBasicBridge.self, abi: _items)
+            items = .from(abiBridge: __IMPL_test_component.IBasicBridge.self, abi: _items)
         }
         return result
     }
@@ -6536,6 +6696,130 @@ internal var __x_ABI_C__FIReference_1_intVTable: __x_ABI_C__FIReference_1_intVtb
     }
 )
 typealias __x_ABI_C__FIReference_1_intWrapper = ReferenceWrapperBase<test_component.__x_ABI_C__FIReference_1_intBridge>
+private var IID___x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNestedNonBlittableStruct: WindowsFoundation.IID {
+    .init(Data1: 0x0506b196, Data2: 0x8fd6, Data3: 0x5dd8, Data4: ( 0xaf,0x53,0xe8,0x85,0xe5,0x2c,0xd4,0x4b ))// 0506b196-8fd6-5dd8-af53-e885e52cd44b
+}
+
+internal enum __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNestedNonBlittableStructBridge: ReferenceBridge {
+    typealias CABI = __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNestedNonBlittableStruct
+    typealias SwiftProjection = test_component.NestedNonBlittableStruct
+    static var IID: WindowsFoundation.IID { IID___x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNestedNonBlittableStruct }
+
+    static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
+        guard let val = abi else { return nil }
+        var result: __x_ABI_Ctest__component_CNestedNonBlittableStruct = .init()
+        defer {
+            test_component.NestedNonBlittableStruct.release(abi: result)
+        }
+        try! CHECKED(val.get().pointee.lpVtbl.pointee.get_Value(val.get(), &result))
+        return .from(abi: result)
+    }
+
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNestedNonBlittableStructVTable) { $0 }
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+internal var __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNestedNonBlittableStructVTable: __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNestedNonBlittableStructVtbl = .init(
+    QueryInterface: { __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNestedNonBlittableStructWrapper.queryInterface($0, $1, $2) },
+    AddRef: { __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNestedNonBlittableStructWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNestedNonBlittableStructWrapper.release($0) },
+    GetIids: {
+        let size = MemoryLayout<WindowsFoundation.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: WindowsFoundation.IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNestedNonBlittableStructWrapper.IID
+        iids[3] = __ABI_Windows_Foundation.IPropertyValueWrapper.IID
+        $1!.pointee = 4
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.IReference`1<test_component.NestedNonBlittableStruct>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    get_Value: {
+        guard let __unwrapped__instance = __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNestedNonBlittableStructWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance
+        let _result = __ABI_test_component._ABI_NestedNonBlittableStruct(from: result)
+        	$1?.initialize(to: _result.detach())
+        return S_OK
+    }
+)
+typealias __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNestedNonBlittableStructWrapper = ReferenceWrapperBase<test_component.__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNestedNonBlittableStructBridge>
+private var IID___x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStruct: WindowsFoundation.IID {
+    .init(Data1: 0xcdea55ab, Data2: 0x63e1, Data3: 0x5b31, Data4: ( 0xaf,0xbc,0xef,0xbe,0x34,0x81,0x18,0x08 ))// cdea55ab-63e1-5b31-afbc-efbe34811808
+}
+
+internal enum __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStructBridge: ReferenceBridge {
+    typealias CABI = __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStruct
+    typealias SwiftProjection = test_component.NonBlittableStruct
+    static var IID: WindowsFoundation.IID { IID___x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStruct }
+
+    static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
+        guard let val = abi else { return nil }
+        var result: __x_ABI_Ctest__component_CNonBlittableStruct = .init()
+        defer {
+            test_component.NonBlittableStruct.release(abi: result)
+        }
+        try! CHECKED(val.get().pointee.lpVtbl.pointee.get_Value(val.get(), &result))
+        return .from(abi: result)
+    }
+
+    static func makeAbi() -> CABI {
+        let vtblPtr = withUnsafeMutablePointer(to: &__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStructVTable) { $0 }
+        return .init(lpVtbl: vtblPtr)
+    }
+}
+internal var __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStructVTable: __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStructVtbl = .init(
+    QueryInterface: { __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStructWrapper.queryInterface($0, $1, $2) },
+    AddRef: { __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStructWrapper.addRef($0) },
+    Release: { __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStructWrapper.release($0) },
+    GetIids: {
+        let size = MemoryLayout<WindowsFoundation.IID>.size
+        let iids = CoTaskMemAlloc(UInt64(size) * 4).assumingMemoryBound(to: WindowsFoundation.IID.self)
+        iids[0] = IUnknown.IID
+        iids[1] = IInspectable.IID
+        iids[2] = test_component.__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStructWrapper.IID
+        iids[3] = __ABI_Windows_Foundation.IPropertyValueWrapper.IID
+        $1!.pointee = 4
+        $2!.pointee = iids
+        return S_OK
+    },
+
+    GetRuntimeClassName: {
+        _ = $0
+        let hstring = try! HString("Windows.Foundation.IReference`1<test_component.NonBlittableStruct>").detach()
+        $1!.pointee = hstring
+        return S_OK
+    },
+
+    GetTrustLevel: {
+        _ = $0
+        $1!.pointee = TrustLevel(rawValue: 0)
+        return S_OK
+    },
+
+    get_Value: {
+        guard let __unwrapped__instance = __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStructWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+        let result = __unwrapped__instance
+        let _result = __ABI_test_component._ABI_NonBlittableStruct(from: result)
+        	$1?.initialize(to: _result.detach())
+        return S_OK
+    }
+)
+typealias __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStructWrapper = ReferenceWrapperBase<test_component.__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStructBridge>
 private var IID___x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned: WindowsFoundation.IID {
     .init(Data1: 0x5888a1ed, Data2: 0xabae, Data3: 0x584f, Data4: ( 0xbf,0x08,0x13,0x1b,0x25,0x42,0x80,0x6b ))// 5888a1ed-abae-584f-bf08-131b2542806b
 }
@@ -6646,7 +6930,7 @@ internal class __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CClas
     }
 }
 private var IID___x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs: WindowsFoundation.IID {
-    .init(Data1: 0x17d0b9f7, Data2: 0xa3c3, Data3: 0x5961, Data4: ( 0x9a,0x78,0xfb,0x92,0xed,0xa1,0x58,0xc6 ))// 17d0b9f7-a3c3-5961-9a78-fb92eda158c6
+    .init(Data1: 0xfc3eee92, Data2: 0xbd2b, Data3: 0x5086, Data4: ( 0xa7,0xa6,0xe9,0xea,0xe5,0x0c,0x81,0x87 ))// fc3eee92-bd2b-5086-a7a6-e9eae50c8187
 }
 
 internal extension WinRTDelegateBridge where CABI == __x_ABI_C__FITypedEventHandler_2___x_ABI_Ctest__zcomponent__CSimple___x_ABI_Ctest__zcomponent__CSimpleEventArgs {

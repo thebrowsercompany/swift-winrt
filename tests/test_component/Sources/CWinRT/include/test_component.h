@@ -2276,6 +2276,86 @@ typedef interface __x_ABI_C__FIObservableVector_1___x_ABI_Ctest__zcomponent__CIB
     
     #endif // ____x_ABI_C__FIReference_1_int_INTERFACE_DEFINED__
     
+typedef struct __x_ABI_Ctest__component_CNestedNonBlittableStruct __x_ABI_Ctest__component_CNestedNonBlittableStruct;
+
+#if !defined(____x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNestedNonBlittableStruct_INTERFACE_DEFINED__)
+    #define ____x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNestedNonBlittableStruct_INTERFACE_DEFINED__
+
+    typedef interface __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNestedNonBlittableStruct __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNestedNonBlittableStruct;
+
+    //  Declare the parameterized interface IID.
+    EXTERN_C const IID IID___x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNestedNonBlittableStruct;
+
+    typedef struct __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNestedNonBlittableStructVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNestedNonBlittableStruct* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNestedNonBlittableStruct* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNestedNonBlittableStruct* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNestedNonBlittableStruct* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNestedNonBlittableStruct* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNestedNonBlittableStruct* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* get_Value)(__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNestedNonBlittableStruct* This,
+        struct __x_ABI_Ctest__component_CNestedNonBlittableStruct* result);
+
+        END_INTERFACE
+    } __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNestedNonBlittableStructVtbl;
+
+    interface __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNestedNonBlittableStruct
+    {
+        CONST_VTBL struct __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNestedNonBlittableStructVtbl* lpVtbl;
+    };
+
+    
+    #endif // ____x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNestedNonBlittableStruct_INTERFACE_DEFINED__
+    
+typedef struct __x_ABI_Ctest__component_CNonBlittableStruct __x_ABI_Ctest__component_CNonBlittableStruct;
+
+#if !defined(____x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStruct_INTERFACE_DEFINED__)
+    #define ____x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStruct_INTERFACE_DEFINED__
+
+    typedef interface __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStruct __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStruct;
+
+    //  Declare the parameterized interface IID.
+    EXTERN_C const IID IID___x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStruct;
+
+    typedef struct __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStructVtbl
+    {
+        BEGIN_INTERFACE
+
+        HRESULT (STDMETHODCALLTYPE* QueryInterface)(__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStruct* This,
+            REFIID riid,
+            void** ppvObject);
+        ULONG (STDMETHODCALLTYPE* AddRef)(__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStruct* This);
+        ULONG (STDMETHODCALLTYPE* Release)(__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStruct* This);
+        HRESULT (STDMETHODCALLTYPE* GetIids)(__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStruct* This,
+            ULONG* iidCount,
+            IID** iids);
+        HRESULT (STDMETHODCALLTYPE* GetRuntimeClassName)(__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStruct* This,
+            HSTRING* className);
+        HRESULT (STDMETHODCALLTYPE* GetTrustLevel)(__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStruct* This,
+            TrustLevel* trustLevel);
+        HRESULT (STDMETHODCALLTYPE* get_Value)(__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStruct* This,
+        struct __x_ABI_Ctest__component_CNonBlittableStruct* result);
+
+        END_INTERFACE
+    } __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStructVtbl;
+
+    interface __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStruct
+    {
+        CONST_VTBL struct __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStructVtbl* lpVtbl;
+    };
+
+    
+    #endif // ____x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStruct_INTERFACE_DEFINED__
+    
 typedef enum __x_ABI_Ctest__component_CSigned __x_ABI_Ctest__component_CSigned;
 
 #if !defined(____x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CSigned_INTERFACE_DEFINED__)
@@ -2458,8 +2538,6 @@ typedef enum __x_ABI_Ctest__component_CSwiftifiableNames __x_ABI_Ctest__componen
 
 typedef struct __x_ABI_Ctest__component_CBlittableStruct __x_ABI_Ctest__component_CBlittableStruct;
 
-typedef struct __x_ABI_Ctest__component_CNonBlittableStruct __x_ABI_Ctest__component_CNonBlittableStruct;
-
 typedef struct __x_ABI_Ctest__component_CStructWithIReference __x_ABI_Ctest__component_CStructWithIReference;
 
 enum __x_ABI_Ctest__component_CFruit
@@ -2546,20 +2624,25 @@ struct __x_ABI_Ctest__component_CBlittableStruct
     INT32 Second;
 };
 
-struct __x_ABI_Ctest__component_CNonBlittableBoolStruct
-    {
-    boolean First;
-    boolean Second;
-    boolean Third;
-    boolean Fourth;
-};
-
 struct __x_ABI_Ctest__component_CNonBlittableStruct
     {
     HSTRING First;
     HSTRING Second;
     INT32 Third;
     HSTRING Fourth;
+};
+
+struct __x_ABI_Ctest__component_CNestedNonBlittableStruct
+    {
+    struct __x_ABI_Ctest__component_CNonBlittableStruct Value;
+};
+
+struct __x_ABI_Ctest__component_CNonBlittableBoolStruct
+    {
+    boolean First;
+    boolean Second;
+    boolean Third;
+    boolean Fourth;
 };
 
 struct __x_ABI_Ctest__component_CSimpleEventArgs
@@ -4225,6 +4308,38 @@ struct __x_ABI_Ctest__component_CStructWithIReference
         HSTRING* value);
     HRESULT (STDMETHODCALLTYPE* put_StringProperty)(__x_ABI_Ctest__component_CISimple* This,
         HSTRING value);
+    HRESULT (STDMETHODCALLTYPE* get_StoredStringReferences)(__x_ABI_Ctest__component_CISimple* This,
+        UINT32* value);
+    HRESULT (STDMETHODCALLTYPE* BoxedStruct)(__x_ABI_Ctest__component_CISimple* This,
+        __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStruct** result);
+    HRESULT (STDMETHODCALLTYPE* OutBoxedStruct)(__x_ABI_Ctest__component_CISimple* This,
+        __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStruct** value);
+    HRESULT (STDMETHODCALLTYPE* NestedStruct)(__x_ABI_Ctest__component_CISimple* This,
+        struct __x_ABI_Ctest__component_CNestedNonBlittableStruct* result);
+    HRESULT (STDMETHODCALLTYPE* BoxedNestedStruct)(__x_ABI_Ctest__component_CISimple* This,
+        __x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNestedNonBlittableStruct** result);
+    HRESULT (STDMETHODCALLTYPE* StoreStrings)(__x_ABI_Ctest__component_CISimple* This,
+        UINT32 valuesLength,
+        HSTRING* values);
+    HRESULT (STDMETHODCALLTYPE* StoreStructs)(__x_ABI_Ctest__component_CISimple* This,
+        UINT32 valuesLength,
+        struct __x_ABI_Ctest__component_CNonBlittableStruct* values);
+    HRESULT (STDMETHODCALLTYPE* StoreNestedStruct)(__x_ABI_Ctest__component_CISimple* This,
+        struct __x_ABI_Ctest__component_CNestedNonBlittableStruct value);
+    HRESULT (STDMETHODCALLTYPE* StoredStrings)(__x_ABI_Ctest__component_CISimple* This,
+        UINT32* resultLength,
+        HSTRING** result);
+    HRESULT (STDMETHODCALLTYPE* StoredStructs)(__x_ABI_Ctest__component_CISimple* This,
+        UINT32* resultLength,
+        struct __x_ABI_Ctest__component_CNonBlittableStruct** result);
+    HRESULT (STDMETHODCALLTYPE* OutStoredStrings)(__x_ABI_Ctest__component_CISimple* This,
+        UINT32* valuesLength,
+        HSTRING** values);
+    HRESULT (STDMETHODCALLTYPE* FillStoredStrings)(__x_ABI_Ctest__component_CISimple* This,
+        UINT32 valuesLength,
+        HSTRING* values);
+    HRESULT (STDMETHODCALLTYPE* StoredStringVector)(__x_ABI_Ctest__component_CISimple* This,
+        __x_ABI_C__FIVector_1_HSTRING** result);
     HRESULT (STDMETHODCALLTYPE* add_SignalEvent)(__x_ABI_Ctest__component_CISimple* This,
         __x_ABI_Ctest__component_CDelegates_CISignalDelegate* handler,
         EventRegistrationToken* token);

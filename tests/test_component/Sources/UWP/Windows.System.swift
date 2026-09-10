@@ -277,10 +277,12 @@ extension __ABI_Windows_System {
 
         public func get_NonRoamableId() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CSystem_CIUser.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_NonRoamableId(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 

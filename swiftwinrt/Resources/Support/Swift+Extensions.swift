@@ -67,6 +67,10 @@ extension String: WinRTBridgeable {
         }
     }
 
+    public static func release(abi: HSTRING?) {
+        WindowsDeleteString(abi)
+    }
+
     public static func from(abi: HSTRING?) -> String {
         String(from: abi)
     }

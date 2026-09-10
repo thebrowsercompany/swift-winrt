@@ -17,6 +17,11 @@ namespace test_component
         String Fourth;
     };
 
+    struct NestedNonBlittableStruct
+    {
+        NonBlittableStruct Value;
+    };
+
     struct NonBlittableBoolStruct
     {
         Boolean First;

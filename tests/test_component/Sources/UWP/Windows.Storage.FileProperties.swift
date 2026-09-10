@@ -558,10 +558,12 @@ extension __ABI_Windows_Storage_FileProperties {
 
         public func get_Title() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIDocumentProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Title(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -583,10 +585,12 @@ extension __ABI_Windows_Storage_FileProperties {
 
         public func get_Comment() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIDocumentProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Comment(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -795,10 +799,12 @@ extension __ABI_Windows_Storage_FileProperties {
 
         public func get_Title() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Title(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -829,10 +835,12 @@ extension __ABI_Windows_Storage_FileProperties {
 
         public func get_CameraManufacturer() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_CameraManufacturer(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -845,10 +853,12 @@ extension __ABI_Windows_Storage_FileProperties {
 
         public func get_CameraModel() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIImageProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_CameraModel(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -1045,10 +1055,12 @@ extension __ABI_Windows_Storage_FileProperties {
 
         public func get_Album() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Album(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -1061,10 +1073,12 @@ extension __ABI_Windows_Storage_FileProperties {
 
         public func get_Artist() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Artist(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -1100,10 +1114,12 @@ extension __ABI_Windows_Storage_FileProperties {
 
         public func get_Title() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Title(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -1146,10 +1162,12 @@ extension __ABI_Windows_Storage_FileProperties {
 
         public func get_AlbumArtist() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_AlbumArtist(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -1180,10 +1198,12 @@ extension __ABI_Windows_Storage_FileProperties {
 
         public func get_Subtitle() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Subtitle(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -1205,10 +1225,12 @@ extension __ABI_Windows_Storage_FileProperties {
 
         public func get_Publisher() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIMusicProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Publisher(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -1797,10 +1819,12 @@ extension __ABI_Windows_Storage_FileProperties {
 
         public func get_Title() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Title(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -1813,10 +1837,12 @@ extension __ABI_Windows_Storage_FileProperties {
 
         public func get_Subtitle() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Subtitle(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -1838,10 +1864,12 @@ extension __ABI_Windows_Storage_FileProperties {
 
         public func get_Publisher() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CStorage_CFileProperties_CIVideoProperties.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Publisher(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 

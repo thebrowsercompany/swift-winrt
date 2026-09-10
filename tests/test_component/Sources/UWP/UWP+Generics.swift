@@ -2780,10 +2780,12 @@ public class IIteratorString: WindowsFoundation.IInspectable {
 
     open func get_Current() throws -> String {
         var result: HSTRING?
+        defer {
+            WindowsDeleteString(result)
+        }
         _ = try perform(as: __x_ABI_C__FIIterator_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
         }
-        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 
@@ -2805,11 +2807,20 @@ public class IIteratorString: WindowsFoundation.IInspectable {
 
     open func GetMany(_ items: inout [String]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI { _items in
+        var _itemsBuffer = Array<HSTRING?>(repeating: nil, count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<HSTRING?> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        WindowsDeleteString(element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIIterator_1_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-        items = .from(abi: _items)
+            items = .from(abi: _items)
         }
         return result
     }
@@ -2957,11 +2968,13 @@ public class IIteratorTextSegment: WindowsFoundation.IInspectable {
 
     open func GetMany(_ items: inout [UWP.TextSegment]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI { _items in
+        var _itemsBuffer = items.map { $0.toABI() }
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<__x_ABI_CWindows_CData_CText_CTextSegment> = (UInt32(buffer.count), buffer.baseAddress)
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-        items = .from(abi: _items)
+            items = .from(abi: _items)
         }
         return result
     }
@@ -3109,11 +3122,20 @@ public class IIteratorIKeyValuePairString_Any: WindowsFoundation.IInspectable {
 
     open func GetMany(_ items: inout [WindowsFoundation.AnyIKeyValuePair<String, Any?>?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: UWP.__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge.self) { _items in
+        var _itemsBuffer = Array<UnsafeMutablePointer<__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable>?>(repeating: nil, count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<UnsafeMutablePointer<__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable>?> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        _ = element?.pointee.lpVtbl.pointee.Release(element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-        items = .from(abiBridge: UWP.__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge.self, abi: _items)
+            items = .from(abiBridge: UWP.__x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectableBridge.self, abi: _items)
         }
         return result
     }
@@ -3261,11 +3283,20 @@ public class IIteratorIKeyValuePairString_IVectorViewTextSegment: WindowsFoundat
 
     open func GetMany(_ items: inout [WindowsFoundation.AnyIKeyValuePair<String, WindowsFoundation.AnyIVectorView<UWP.TextSegment>?>?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: UWP.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentBridge.self) { _items in
+        var _itemsBuffer = Array<UnsafeMutablePointer<__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment>?>(repeating: nil, count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<UnsafeMutablePointer<__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment>?> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        _ = element?.pointee.lpVtbl.pointee.Release(element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-        items = .from(abiBridge: UWP.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentBridge.self, abi: _items)
+            items = .from(abiBridge: UWP.__x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegmentBridge.self, abi: _items)
         }
         return result
     }
@@ -3413,11 +3444,20 @@ public class IIteratorIStorageItem: WindowsFoundation.IInspectable {
 
     open func GetMany(_ items: inout [UWP.AnyIStorageItem?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_Windows_Storage.IStorageItemBridge.self) { _items in
+        var _itemsBuffer = Array<UnsafeMutablePointer<__x_ABI_CWindows_CStorage_CIStorageItem>?>(repeating: nil, count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<UnsafeMutablePointer<__x_ABI_CWindows_CStorage_CIStorageItem>?> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        _ = element?.pointee.lpVtbl.pointee.Release(element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-        items = .from(abiBridge: __IMPL_Windows_Storage.IStorageItemBridge.self, abi: _items)
+            items = .from(abiBridge: __IMPL_Windows_Storage.IStorageItemBridge.self, abi: _items)
         }
         return result
     }
@@ -3542,6 +3582,9 @@ public class IIteratorSortEntry: WindowsFoundation.IInspectable {
 
     open func get_Current() throws -> UWP.SortEntry {
         var result: __x_ABI_CWindows_CStorage_CSearch_CSortEntry = .init()
+        defer {
+            UWP.SortEntry.release(abi: result)
+        }
         _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Current(pThis, &result))
         }
@@ -3566,11 +3609,20 @@ public class IIteratorSortEntry: WindowsFoundation.IInspectable {
 
     open func GetMany(_ items: inout [UWP.SortEntry]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI { _items in
+        var _itemsBuffer = Array<__x_ABI_CWindows_CStorage_CSearch_CSortEntry>(repeating: .init(), count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<__x_ABI_CWindows_CStorage_CSearch_CSortEntry> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        UWP.SortEntry.release(abi: element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-        items = .from(abi: _items)
+            items = .from(abi: _items)
         }
         return result
     }
@@ -3717,11 +3769,20 @@ public class IIteratorStorageFile: WindowsFoundation.IInspectable {
 
     open func GetMany(_ items: inout [UWP.StorageFile?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_Windows_Storage.StorageFileBridge.self) { _items in
+        var _itemsBuffer = Array<UnsafeMutablePointer<__x_ABI_CWindows_CStorage_CIStorageFile>?>(repeating: nil, count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<UnsafeMutablePointer<__x_ABI_CWindows_CStorage_CIStorageFile>?> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        _ = element?.pointee.lpVtbl.pointee.Release(element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-        items = .from(abiBridge: __IMPL_Windows_Storage.StorageFileBridge.self, abi: _items)
+            items = .from(abiBridge: __IMPL_Windows_Storage.StorageFileBridge.self, abi: _items)
         }
         return result
     }
@@ -3868,11 +3929,20 @@ public class IIteratorStorageFolder: WindowsFoundation.IInspectable {
 
     open func GetMany(_ items: inout [UWP.StorageFolder?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_Windows_Storage.StorageFolderBridge.self) { _items in
+        var _itemsBuffer = Array<UnsafeMutablePointer<__x_ABI_CWindows_CStorage_CIStorageFolder>?>(repeating: nil, count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<UnsafeMutablePointer<__x_ABI_CWindows_CStorage_CIStorageFolder>?> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        _ = element?.pointee.lpVtbl.pointee.Release(element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-        items = .from(abiBridge: __IMPL_Windows_Storage.StorageFolderBridge.self, abi: _items)
+            items = .from(abiBridge: __IMPL_Windows_Storage.StorageFolderBridge.self, abi: _items)
         }
         return result
     }
@@ -4019,11 +4089,20 @@ public class IIteratorStorageLibraryChange: WindowsFoundation.IInspectable {
 
     open func GetMany(_ items: inout [UWP.StorageLibraryChange?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_Windows_Storage.StorageLibraryChangeBridge.self) { _items in
+        var _itemsBuffer = Array<UnsafeMutablePointer<__x_ABI_CWindows_CStorage_CIStorageLibraryChange>?>(repeating: nil, count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<UnsafeMutablePointer<__x_ABI_CWindows_CStorage_CIStorageLibraryChange>?> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        _ = element?.pointee.lpVtbl.pointee.Release(element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CStorage__CStorageLibraryChange.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-        items = .from(abiBridge: __IMPL_Windows_Storage.StorageLibraryChangeBridge.self, abi: _items)
+            items = .from(abiBridge: __IMPL_Windows_Storage.StorageLibraryChangeBridge.self, abi: _items)
         }
         return result
     }
@@ -4170,11 +4249,20 @@ public class IIteratorUser: WindowsFoundation.IInspectable {
 
     open func GetMany(_ items: inout [UWP.User?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_Windows_System.UserBridge.self) { _items in
+        var _itemsBuffer = Array<UnsafeMutablePointer<__x_ABI_CWindows_CSystem_CIUser>?>(repeating: nil, count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<UnsafeMutablePointer<__x_ABI_CWindows_CSystem_CIUser>?> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        _ = element?.pointee.lpVtbl.pointee.Release(element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIIterator_1___x_ABI_CWindows__CSystem__CUser.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, _items.count, _items.start, &result))
             }
-        items = .from(abiBridge: __IMPL_Windows_System.UserBridge.self, abi: _items)
+            items = .from(abiBridge: __IMPL_Windows_System.UserBridge.self, abi: _items)
         }
         return result
     }
@@ -4430,10 +4518,12 @@ public class IKeyValuePairString_Any: WindowsFoundation.IInspectable {
 
     open func get_Key() throws -> String {
         var result: HSTRING?
+        defer {
+            WindowsDeleteString(result)
+        }
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
         }
-        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 
@@ -4539,10 +4629,12 @@ public class IKeyValuePairString_IVectorViewTextSegment: WindowsFoundation.IInsp
 
     open func get_Key() throws -> String {
         var result: HSTRING?
+        defer {
+            WindowsDeleteString(result)
+        }
         _ = try perform(as: __x_ABI_C__FIKeyValuePair_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
         }
-        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 
@@ -4655,10 +4747,12 @@ public class IMapChangedEventArgsString: WindowsFoundation.IInspectable {
 
     open func get_Key() throws -> String {
         var result: HSTRING?
+        defer {
+            WindowsDeleteString(result)
+        }
         _ = try perform(as: __x_ABI_C__FIMapChangedEventArgs_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.get_Key(pThis, &result))
         }
-        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 
@@ -4803,7 +4897,13 @@ public class IMapViewString_Any: WindowsFoundation.IInspectable {
 
     open func Split(_ first: inout WindowsFoundation.AnyIMapView<String, Any?>?, _ second: inout WindowsFoundation.AnyIMapView<String, Any?>?) throws {
         var _firstAbi: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_IInspectable>?
+        defer {
+            _ = _firstAbi?.pointee.lpVtbl.pointee.Release(_firstAbi)
+        }
         var _secondAbi: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING_IInspectable>?
+        defer {
+            _ = _secondAbi?.pointee.lpVtbl.pointee.Release(_secondAbi)
+        }
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING_IInspectable.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &_firstAbi, &_secondAbi))
         }
@@ -4970,7 +5070,13 @@ public class IMapViewString_IVectorViewTextSegment: WindowsFoundation.IInspectab
 
     open func Split(_ first: inout WindowsFoundation.AnyIMapView<String, WindowsFoundation.AnyIVectorView<UWP.TextSegment>?>?, _ second: inout WindowsFoundation.AnyIMapView<String, WindowsFoundation.AnyIVectorView<UWP.TextSegment>?>?) throws {
         var _firstAbi: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment>?
+        defer {
+            _ = _firstAbi?.pointee.lpVtbl.pointee.Release(_firstAbi)
+        }
         var _secondAbi: UnsafeMutablePointer<__x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment>?
+        defer {
+            _ = _secondAbi?.pointee.lpVtbl.pointee.Release(_secondAbi)
+        }
         _ = try perform(as: __x_ABI_C__FIMapView_2_HSTRING___x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.Split(pThis, &_firstAbi, &_secondAbi))
         }
@@ -5712,10 +5818,12 @@ public class IVectorViewString: WindowsFoundation.IInspectable {
 
     open func GetAt(_ index: UInt32) throws -> String {
         var result: HSTRING?
+        defer {
+            WindowsDeleteString(result)
+        }
         _ = try perform(as: __x_ABI_C__FIVectorView_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
         }
-        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 
@@ -5738,11 +5846,20 @@ public class IVectorViewString: WindowsFoundation.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [String]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI { _items in
+        var _itemsBuffer = Array<HSTRING?>(repeating: nil, count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<HSTRING?> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        WindowsDeleteString(element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIVectorView_1_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-        items = .from(abi: _items)
+            items = .from(abi: _items)
         }
         return result
     }
@@ -5923,11 +6040,13 @@ public class IVectorViewTextSegment: WindowsFoundation.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [UWP.TextSegment]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI { _items in
+        var _itemsBuffer = items.map { $0.toABI() }
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<__x_ABI_CWindows_CData_CText_CTextSegment> = (UInt32(buffer.count), buffer.baseAddress)
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CData__CText__CTextSegment.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-        items = .from(abi: _items)
+            items = .from(abi: _items)
         }
         return result
     }
@@ -6110,11 +6229,20 @@ public class IVectorViewIStorageItem: WindowsFoundation.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [UWP.AnyIStorageItem?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_Windows_Storage.IStorageItemBridge.self) { _items in
+        var _itemsBuffer = Array<UnsafeMutablePointer<__x_ABI_CWindows_CStorage_CIStorageItem>?>(repeating: nil, count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<UnsafeMutablePointer<__x_ABI_CWindows_CStorage_CIStorageItem>?> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        _ = element?.pointee.lpVtbl.pointee.Release(element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CIStorageItem.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-        items = .from(abiBridge: __IMPL_Windows_Storage.IStorageItemBridge.self, abi: _items)
+            items = .from(abiBridge: __IMPL_Windows_Storage.IStorageItemBridge.self, abi: _items)
         }
         return result
     }
@@ -6272,6 +6400,9 @@ public class IVectorViewSortEntry: WindowsFoundation.IInspectable {
 
     open func GetAt(_ index: UInt32) throws -> UWP.SortEntry {
         var result: __x_ABI_CWindows_CStorage_CSearch_CSortEntry = .init()
+        defer {
+            UWP.SortEntry.release(abi: result)
+        }
         _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
         }
@@ -6297,11 +6428,20 @@ public class IVectorViewSortEntry: WindowsFoundation.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [UWP.SortEntry]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI { _items in
+        var _itemsBuffer = Array<__x_ABI_CWindows_CStorage_CSearch_CSortEntry>(repeating: .init(), count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<__x_ABI_CWindows_CStorage_CSearch_CSortEntry> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        UWP.SortEntry.release(abi: element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-        items = .from(abi: _items)
+            items = .from(abi: _items)
         }
         return result
     }
@@ -6481,11 +6621,20 @@ public class IVectorViewStorageFile: WindowsFoundation.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [UWP.StorageFile?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_Windows_Storage.StorageFileBridge.self) { _items in
+        var _itemsBuffer = Array<UnsafeMutablePointer<__x_ABI_CWindows_CStorage_CIStorageFile>?>(repeating: nil, count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<UnsafeMutablePointer<__x_ABI_CWindows_CStorage_CIStorageFile>?> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        _ = element?.pointee.lpVtbl.pointee.Release(element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFile.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-        items = .from(abiBridge: __IMPL_Windows_Storage.StorageFileBridge.self, abi: _items)
+            items = .from(abiBridge: __IMPL_Windows_Storage.StorageFileBridge.self, abi: _items)
         }
         return result
     }
@@ -6665,11 +6814,20 @@ public class IVectorViewStorageFolder: WindowsFoundation.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [UWP.StorageFolder?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_Windows_Storage.StorageFolderBridge.self) { _items in
+        var _itemsBuffer = Array<UnsafeMutablePointer<__x_ABI_CWindows_CStorage_CIStorageFolder>?>(repeating: nil, count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<UnsafeMutablePointer<__x_ABI_CWindows_CStorage_CIStorageFolder>?> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        _ = element?.pointee.lpVtbl.pointee.Release(element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageFolder.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-        items = .from(abiBridge: __IMPL_Windows_Storage.StorageFolderBridge.self, abi: _items)
+            items = .from(abiBridge: __IMPL_Windows_Storage.StorageFolderBridge.self, abi: _items)
         }
         return result
     }
@@ -6849,11 +7007,20 @@ public class IVectorViewStorageLibraryChange: WindowsFoundation.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [UWP.StorageLibraryChange?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_Windows_Storage.StorageLibraryChangeBridge.self) { _items in
+        var _itemsBuffer = Array<UnsafeMutablePointer<__x_ABI_CWindows_CStorage_CIStorageLibraryChange>?>(repeating: nil, count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<UnsafeMutablePointer<__x_ABI_CWindows_CStorage_CIStorageLibraryChange>?> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        _ = element?.pointee.lpVtbl.pointee.Release(element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CStorage__CStorageLibraryChange.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-        items = .from(abiBridge: __IMPL_Windows_Storage.StorageLibraryChangeBridge.self, abi: _items)
+            items = .from(abiBridge: __IMPL_Windows_Storage.StorageLibraryChangeBridge.self, abi: _items)
         }
         return result
     }
@@ -7033,11 +7200,20 @@ public class IVectorViewUser: WindowsFoundation.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [UWP.User?]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI(abiBridge: __IMPL_Windows_System.UserBridge.self) { _items in
+        var _itemsBuffer = Array<UnsafeMutablePointer<__x_ABI_CWindows_CSystem_CIUser>?>(repeating: nil, count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<UnsafeMutablePointer<__x_ABI_CWindows_CSystem_CIUser>?> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        _ = element?.pointee.lpVtbl.pointee.Release(element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIVectorView_1___x_ABI_CWindows__CSystem__CUser.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-        items = .from(abiBridge: __IMPL_Windows_System.UserBridge.self, abi: _items)
+            items = .from(abiBridge: __IMPL_Windows_System.UserBridge.self, abi: _items)
         }
         return result
     }
@@ -7433,10 +7609,12 @@ public class IVectorString: WindowsFoundation.IInspectable {
 
     open func GetAt(_ index: UInt32) throws -> String {
         var result: HSTRING?
+        defer {
+            WindowsDeleteString(result)
+        }
         _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
         }
-        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 
@@ -7507,11 +7685,20 @@ public class IVectorString: WindowsFoundation.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [String]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI { _items in
+        var _itemsBuffer = Array<HSTRING?>(repeating: nil, count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<HSTRING?> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        WindowsDeleteString(element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIVector_1_HSTRING.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-        items = .from(abi: _items)
+            items = .from(abi: _items)
         }
         return result
     }
@@ -7783,6 +7970,9 @@ public class IVectorSortEntry: WindowsFoundation.IInspectable {
 
     open func GetAt(_ index: UInt32) throws -> UWP.SortEntry {
         var result: __x_ABI_CWindows_CStorage_CSearch_CSortEntry = .init()
+        defer {
+            UWP.SortEntry.release(abi: result)
+        }
         _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetAt(pThis, index, &result))
         }
@@ -7856,11 +8046,20 @@ public class IVectorSortEntry: WindowsFoundation.IInspectable {
 
     open func GetMany(_ startIndex: UInt32, _ items: inout [UWP.SortEntry]) throws -> UInt32 {
         var result: UINT32 = 0
-        try items.toABI { _items in
+        var _itemsBuffer = Array<__x_ABI_CWindows_CStorage_CSearch_CSortEntry>(repeating: .init(), count: items.count)
+        try _itemsBuffer.withUnsafeMutableBufferPointer { buffer in
+            let _items: WinRTArrayAbi<__x_ABI_CWindows_CStorage_CSearch_CSortEntry> = (UInt32(buffer.count), buffer.baseAddress)
+            defer {
+                if let start = _items.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_items.count)) {
+                        UWP.SortEntry.release(abi: element)
+                    }
+                }
+            }
             _ = try perform(as: __x_ABI_C__FIVector_1___x_ABI_CWindows__CStorage__CSearch__CSortEntry.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetMany(pThis, startIndex, _items.count, _items.start, &result))
             }
-        items = .from(abi: _items)
+            items = .from(abi: _items)
         }
         return result
     }
@@ -8878,10 +9077,12 @@ public class IAsyncOperationString: WindowsFoundation.IInspectable {
 
     open func GetResults() throws -> String {
         var result: HSTRING?
+        defer {
+            WindowsDeleteString(result)
+        }
         _ = try perform(as: __x_ABI_C__FIAsyncOperation_1_HSTRING.self) { pThis in
             try CHECKED(pThis.pointee.lpVtbl.pointee.GetResults(pThis, &result))
         }
-        defer { WindowsDeleteString(result) }
         return .init(from: result)
     }
 

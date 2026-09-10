@@ -1741,10 +1741,12 @@ extension __ABI_Windows_Foundation {
 
         open func GetString() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetString(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -1798,172 +1800,220 @@ extension __ABI_Windows_Foundation {
 
         open func GetUInt8Array(_ value: inout [UInt8]) throws {
             var _value: WinRTArrayAbi<UINT8> = (0, nil)
+            defer {
+                CoTaskMemFree(_value.start)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetUInt8Array(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value.start) }
             value = .from(abi: _value)
         }
 
         open func GetInt16Array(_ value: inout [Int16]) throws {
             var _value: WinRTArrayAbi<INT16> = (0, nil)
+            defer {
+                CoTaskMemFree(_value.start)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetInt16Array(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value.start) }
             value = .from(abi: _value)
         }
 
         open func GetUInt16Array(_ value: inout [UInt16]) throws {
             var _value: WinRTArrayAbi<UINT16> = (0, nil)
+            defer {
+                CoTaskMemFree(_value.start)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetUInt16Array(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value.start) }
             value = .from(abi: _value)
         }
 
         open func GetInt32Array(_ value: inout [Int32]) throws {
             var _value: WinRTArrayAbi<INT32> = (0, nil)
+            defer {
+                CoTaskMemFree(_value.start)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetInt32Array(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value.start) }
             value = .from(abi: _value)
         }
 
         open func GetUInt32Array(_ value: inout [UInt32]) throws {
             var _value: WinRTArrayAbi<UINT32> = (0, nil)
+            defer {
+                CoTaskMemFree(_value.start)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetUInt32Array(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value.start) }
             value = .from(abi: _value)
         }
 
         open func GetInt64Array(_ value: inout [Int64]) throws {
             var _value: WinRTArrayAbi<INT64> = (0, nil)
+            defer {
+                CoTaskMemFree(_value.start)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetInt64Array(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value.start) }
             value = .from(abi: _value)
         }
 
         open func GetUInt64Array(_ value: inout [UInt64]) throws {
             var _value: WinRTArrayAbi<UINT64> = (0, nil)
+            defer {
+                CoTaskMemFree(_value.start)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetUInt64Array(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value.start) }
             value = .from(abi: _value)
         }
 
         open func GetSingleArray(_ value: inout [Float]) throws {
             var _value: WinRTArrayAbi<FLOAT> = (0, nil)
+            defer {
+                CoTaskMemFree(_value.start)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetSingleArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value.start) }
             value = .from(abi: _value)
         }
 
         open func GetDoubleArray(_ value: inout [Double]) throws {
             var _value: WinRTArrayAbi<DOUBLE> = (0, nil)
+            defer {
+                CoTaskMemFree(_value.start)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetDoubleArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value.start) }
             value = .from(abi: _value)
         }
 
         open func GetChar16Array(_ value: inout [Character]) throws {
             var _value: WinRTArrayAbi<WCHAR> = (0, nil)
+            defer {
+                CoTaskMemFree(_value.start)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetChar16Array(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value.start) }
             value = .from(abi: _value)
         }
 
         open func GetBooleanArray(_ value: inout [Bool]) throws {
             var _value: WinRTArrayAbi<boolean> = (0, nil)
+            defer {
+                CoTaskMemFree(_value.start)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetBooleanArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value.start) }
             value = .from(abi: _value)
         }
 
         open func GetStringArray(_ value: inout [String]) throws {
             var _value: WinRTArrayAbi<HSTRING?> = (0, nil)
+            defer {
+                if let start = _value.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_value.count)) {
+                        WindowsDeleteString(element)
+                    }
+                }
+                CoTaskMemFree(_value.start)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetStringArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value.start) }
             value = .from(abi: _value)
         }
 
         open func GetInspectableArray(_ value: inout [Any?]) throws {
             var _value: WinRTArrayAbi<UnsafeMutablePointer<C_IInspectable>?> = (0, nil)
+            defer {
+                if let start = _value.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_value.count)) {
+                        _ = element?.pointee.lpVtbl.pointee.Release(element)
+                    }
+                }
+                CoTaskMemFree(_value.start)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetInspectableArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value.start) }
             value = .from(abiBridge: __IMPL_.AnyBridge.self, abi: _value)
         }
 
         open func GetGuidArray(_ value: inout [Foundation.UUID]) throws {
             var _value: WinRTArrayAbi<WindowsFoundation.GUID> = (0, nil)
+            defer {
+                CoTaskMemFree(_value.start)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetGuidArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value.start) }
             value = .from(abi: _value)
         }
 
         open func GetDateTimeArray(_ value: inout [WindowsFoundation.DateTime]) throws {
             var _value: WinRTArrayAbi<__x_ABI_CWindows_CFoundation_CDateTime> = (0, nil)
+            defer {
+                CoTaskMemFree(_value.start)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetDateTimeArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value.start) }
             value = .from(abi: _value)
         }
 
         open func GetTimeSpanArray(_ value: inout [WindowsFoundation.TimeSpan]) throws {
             var _value: WinRTArrayAbi<__x_ABI_CWindows_CFoundation_CTimeSpan> = (0, nil)
+            defer {
+                CoTaskMemFree(_value.start)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetTimeSpanArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value.start) }
             value = .from(abi: _value)
         }
 
         open func GetPointArray(_ value: inout [WindowsFoundation.Point]) throws {
             var _value: WinRTArrayAbi<__x_ABI_CWindows_CFoundation_CPoint> = (0, nil)
+            defer {
+                CoTaskMemFree(_value.start)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetPointArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value.start) }
             value = .from(abi: _value)
         }
 
         open func GetSizeArray(_ value: inout [WindowsFoundation.Size]) throws {
             var _value: WinRTArrayAbi<__x_ABI_CWindows_CFoundation_CSize> = (0, nil)
+            defer {
+                CoTaskMemFree(_value.start)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetSizeArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value.start) }
             value = .from(abi: _value)
         }
 
         open func GetRectArray(_ value: inout [WindowsFoundation.Rect]) throws {
             var _value: WinRTArrayAbi<__x_ABI_CWindows_CFoundation_CRect> = (0, nil)
+            defer {
+                CoTaskMemFree(_value.start)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIPropertyValue.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetRectArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value.start) }
             value = .from(abi: _value)
         }
 
@@ -2492,10 +2542,12 @@ extension __ABI_Windows_Foundation {
 
         open func ToString() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIStringable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ToString(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -2622,19 +2674,23 @@ extension __ABI_Windows_Foundation {
 
         open func get_Name() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderEntry.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Name(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
         open func get_Value() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderEntry.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Value(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -3130,82 +3186,100 @@ extension __ABI_Windows_Foundation {
 
         public func get_AbsoluteUri() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_AbsoluteUri(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
         public func get_DisplayUri() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_DisplayUri(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
         public func get_Domain() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Domain(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
         public func get_Extension() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Extension(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
         public func get_Fragment() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Fragment(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
         public func get_Host() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Host(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
         public func get_Password() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Password(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
         public func get_Path() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Path(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
         public func get_Query() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Query(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -3220,28 +3294,34 @@ extension __ABI_Windows_Foundation {
 
         public func get_RawUri() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_RawUri(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
         public func get_SchemeName() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_SchemeName(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
         public func get_UserName() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_UserName(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -3290,19 +3370,23 @@ extension __ABI_Windows_Foundation {
 
         public func get_AbsoluteCanonicalUri() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClassWithAbsoluteCanonicalUri.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_AbsoluteCanonicalUri(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
         public func get_DisplayIri() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriRuntimeClassWithAbsoluteCanonicalUri.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_DisplayIri(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -3317,21 +3401,25 @@ extension __ABI_Windows_Foundation {
 
         public func UnescapeComponent(_ toUnescape: String) throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             let _toUnescape = try! HString(toUnescape)
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriEscapeStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.UnescapeComponent(pThis, _toUnescape.get(), &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
         public func EscapeComponent(_ toEscape: String) throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             let _toEscape = try! HString(toEscape)
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIUriEscapeStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.EscapeComponent(pThis, _toEscape.get(), &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -3490,11 +3578,13 @@ extension __ABI_Windows_Foundation {
 
         public func GetFirstValueByName(_ name: String) throws -> String {
             var phstrValue: HSTRING?
+            defer {
+                WindowsDeleteString(phstrValue)
+            }
             let _name = try! HString(name)
             _ = try perform(as: __x_ABI_CWindows_CFoundation_CIWwwFormUrlDecoderRuntimeClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetFirstValueByName(pThis, _name.get(), &phstrValue))
             }
-            defer { WindowsDeleteString(phstrValue) }
             return .init(from: phstrValue)
         }
 
