@@ -250,56 +250,6 @@ extension __x_ABI_Ctest__component_CBlittableStruct {
         .init(First: swift.first, Second: swift.second)
     }
 }
-// MARK: - NonBlittableBoolStruct
-
-public struct NonBlittableBoolStruct: Hashable, Codable, Sendable {
-    public var first: Bool = false
-    public var second: Bool = false
-    public var third: Bool = false
-    public var fourth: Bool = false
-    public init() {}
-    public init(first: Bool, second: Bool, third: Bool, fourth: Bool) {
-        self.first = first
-        self.second = second
-        self.third = third
-        self.fourth = fourth
-    }
-}
-
-// MARK: - NonBlittableBoolStruct Internals
-
-@_spi(WinRTInternal)
-extension NonBlittableBoolStruct: WinRTBridgeable {
-    public typealias ABI = __x_ABI_Ctest__component_CNonBlittableBoolStruct
-    public static func from(abi: ABI) -> Self {
-        .init(first: .init(from: abi.First), second: .init(from: abi.Second), third: .init(from: abi.Third), fourth: .init(from: abi.Fourth))
-    }
-    public func toABI() -> ABI {
-        __ABI_test_component._ABI_NonBlittableBoolStruct(from: self).detach()
-    }
-}
-
-@_spi(WinRTInternal)
-extension __ABI_test_component {
-    public class _ABI_NonBlittableBoolStruct {
-        public var val: __x_ABI_Ctest__component_CNonBlittableBoolStruct = .init()
-        public init() { }
-        public init(from swift: test_component.NonBlittableBoolStruct) {
-            val.First = .init(from: swift.first)
-            val.Second = .init(from: swift.second)
-            val.Third = .init(from: swift.third)
-            val.Fourth = .init(from: swift.fourth)
-        }
-
-        public func detach() -> __x_ABI_Ctest__component_CNonBlittableBoolStruct {
-            let result = val
-            return result
-        }
-
-        deinit {
-        }
-    }
-}
 // MARK: - NonBlittableStruct
 
 public struct NonBlittableStruct: Hashable, Codable, Sendable {
@@ -324,6 +274,11 @@ extension NonBlittableStruct: WinRTBridgeable {
     public static func from(abi: ABI) -> Self {
         .init(first: .init(from: abi.First), second: .init(from: abi.Second), third: abi.Third, fourth: .init(from: abi.Fourth))
     }
+    public static func release(abi: ABI) {
+        WindowsDeleteString(abi.First)
+        WindowsDeleteString(abi.Second)
+        WindowsDeleteString(abi.Fourth)
+    }
     public func toABI() -> ABI {
         __ABI_test_component._ABI_NonBlittableStruct(from: self).detach()
     }
@@ -343,16 +298,112 @@ extension __ABI_test_component {
 
         public func detach() -> __x_ABI_Ctest__component_CNonBlittableStruct {
             let result = val
-            val.First = nil
-            val.Second = nil
-            val.Fourth = nil
+            val = .init()
             return result
         }
 
         deinit {
-            WindowsDeleteString(val.First)
-            WindowsDeleteString(val.Second)
-            WindowsDeleteString(val.Fourth)
+            test_component.NonBlittableStruct.release(abi: val)
+        }
+    }
+}
+// MARK: - NestedNonBlittableStruct
+
+public struct NestedNonBlittableStruct: Hashable, Codable, Sendable {
+    public var value: NonBlittableStruct = .init()
+    public init() {}
+    public init(value: NonBlittableStruct) {
+        self.value = value
+    }
+}
+
+// MARK: - NestedNonBlittableStruct Internals
+
+@_spi(WinRTInternal)
+extension NestedNonBlittableStruct: WinRTBridgeable {
+    public typealias ABI = __x_ABI_Ctest__component_CNestedNonBlittableStruct
+    public static func from(abi: ABI) -> Self {
+        .init(value: .from(abi: abi.Value))
+    }
+    public static func release(abi: ABI) {
+        test_component.NonBlittableStruct.release(abi: abi.Value)
+    }
+    public func toABI() -> ABI {
+        __ABI_test_component._ABI_NestedNonBlittableStruct(from: self).detach()
+    }
+}
+
+@_spi(WinRTInternal)
+extension __ABI_test_component {
+    public class _ABI_NestedNonBlittableStruct {
+        public var val: __x_ABI_Ctest__component_CNestedNonBlittableStruct = .init()
+        public init() { }
+        public init(from swift: test_component.NestedNonBlittableStruct) {
+            val.Value = swift.value.toABI()
+        }
+
+        public func detach() -> __x_ABI_Ctest__component_CNestedNonBlittableStruct {
+            let result = val
+            val = .init()
+            return result
+        }
+
+        deinit {
+            test_component.NestedNonBlittableStruct.release(abi: val)
+        }
+    }
+}
+// MARK: - NonBlittableBoolStruct
+
+public struct NonBlittableBoolStruct: Hashable, Codable, Sendable {
+    public var first: Bool = false
+    public var second: Bool = false
+    public var third: Bool = false
+    public var fourth: Bool = false
+    public init() {}
+    public init(first: Bool, second: Bool, third: Bool, fourth: Bool) {
+        self.first = first
+        self.second = second
+        self.third = third
+        self.fourth = fourth
+    }
+}
+
+// MARK: - NonBlittableBoolStruct Internals
+
+@_spi(WinRTInternal)
+extension NonBlittableBoolStruct: WinRTBridgeable {
+    public typealias ABI = __x_ABI_Ctest__component_CNonBlittableBoolStruct
+    public static func from(abi: ABI) -> Self {
+        .init(first: .init(from: abi.First), second: .init(from: abi.Second), third: .init(from: abi.Third), fourth: .init(from: abi.Fourth))
+    }
+    public static func release(abi: ABI) {
+    }
+    public func toABI() -> ABI {
+        __ABI_test_component._ABI_NonBlittableBoolStruct(from: self).detach()
+    }
+}
+
+@_spi(WinRTInternal)
+extension __ABI_test_component {
+    public class _ABI_NonBlittableBoolStruct {
+        public var val: __x_ABI_Ctest__component_CNonBlittableBoolStruct = .init()
+        public init() { }
+        public init(from swift: test_component.NonBlittableBoolStruct) {
+            val.First = .init(from: swift.first)
+            val.Second = .init(from: swift.second)
+            val.Third = .init(from: swift.third)
+            val.Fourth = .init(from: swift.fourth)
+        }
+
+        public func detach() -> __x_ABI_Ctest__component_CNonBlittableBoolStruct {
+            let result = val
+            val = .init()
+            return result
+        }
+
+        deinit {
+            test_component.NonBlittableBoolStruct.release(abi: val)
         }
     }
 }
@@ -432,6 +483,10 @@ extension StructWithIReference: WinRTBridgeable {
     public static func from(abi: ABI) -> Self {
         .init(value1: test_component.__x_ABI_C__FIReference_1_intWrapper.unwrapFrom(abi: ComPtr(abi.Value1)), value2: test_component.__x_ABI_C__FIReference_1_intWrapper.unwrapFrom(abi: ComPtr(abi.Value2)))
     }
+    public static func release(abi: ABI) {
+        _ = abi.Value1?.pointee.lpVtbl.pointee.Release(abi.Value1)
+        _ = abi.Value2?.pointee.lpVtbl.pointee.Release(abi.Value2)
+    }
     public func toABI() -> ABI {
         __ABI_test_component._ABI_StructWithIReference(from: self).detach()
     }
@@ -451,14 +506,12 @@ extension __ABI_test_component {
 
         public func detach() -> __x_ABI_Ctest__component_CStructWithIReference {
             let result = val
-            val.Value1 = nil
-            val.Value2 = nil
+            val = .init()
             return result
         }
 
         deinit {
-            _ = val.Value1?.pointee.lpVtbl.pointee.Release(val.Value1)
-            _ = val.Value2?.pointee.lpVtbl.pointee.Release(val.Value2)
+            test_component.StructWithIReference.release(abi: val)
         }
     }
 }
@@ -771,10 +824,12 @@ extension __ABI_test_component {
 
         open func OutArray(_ value: inout [Int32]) throws {
             var _value: WinRTArrayAbi<INT32> = (0, nil)
+            defer {
+                CoTaskMemFree(_value.start)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CIArrayScenarios.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OutArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value.start) }
             value = .from(abi: _value)
         }
 
@@ -788,20 +843,24 @@ extension __ABI_test_component {
 
         open func ReturnArray() throws -> [Int32] {
             var result: WinRTArrayAbi<INT32> = (0, nil)
+            defer {
+                CoTaskMemFree(result.start)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CIArrayScenarios.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnArray(pThis, &result.count, &result.start))
             }
-            defer { CoTaskMemFree(result.start) }
             return .from(abi: result)
 
         }
 
         open func get_ArrayProperty() throws -> [Int32] {
             var value: WinRTArrayAbi<INT32> = (0, nil)
+            defer {
+                CoTaskMemFree(value.start)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CIArrayScenarios.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_ArrayProperty(pThis, &value.count, &value.start))
             }
-            defer { CoTaskMemFree(value.start) }
             return .from(abi: value)
 
         }
@@ -827,10 +886,12 @@ extension __ABI_test_component {
         open func InAndOut(_ value: [Int32], _ results: inout [Int32]) throws {
             try value.toABI { _value in
                 var _results: WinRTArrayAbi<INT32> = (0, nil)
+                defer {
+                    CoTaskMemFree(_results.start)
+                }
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayScenarios.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InAndOut(pThis, _value.count, _value.start, &_results.count, &_results.start))
                 }
-                defer { CoTaskMemFree(_results.start) }
                 results = .from(abi: _results)
             }
         }
@@ -847,23 +908,27 @@ extension __ABI_test_component {
 
         open func InAndRefNonBlittable(_ value: [Int32], _ results: inout [Bool]) throws {
             try value.toABI { _value in
-                try results.toABI { _results in
+                var _resultsBuffer = results.map { $0.toABI() }
+                try _resultsBuffer.withUnsafeMutableBufferPointer { buffer in
+                let _results: WinRTArrayAbi<boolean> = (UInt32(buffer.count), buffer.baseAddress)
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayScenarios.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InAndRefNonBlittable(pThis, _value.count, _value.start, _results.count, _results.start))
                 }
-                results = .from(abi: _results)
+                    results = .from(abi: _results)
             }
             }
         }
 
         open func InAndReturn(_ value: [Int32]) throws -> [Int32] {
             var result: WinRTArrayAbi<INT32> = (0, nil)
+            defer {
+                CoTaskMemFree(result.start)
+            }
             try value.toABI { _value in
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayScenarios.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InAndReturn(pThis, _value.count, _value.start, &result.count, &result.start))
                 }
             }
-            defer { CoTaskMemFree(result.start) }
             return .from(abi: result)
 
         }
@@ -1084,10 +1149,17 @@ extension __ABI_test_component {
 
         open func get_Scenarios() throws -> [test_component.AnyIArrayScenarios?] {
             var value: WinRTArrayAbi<UnsafeMutablePointer<__x_ABI_Ctest__component_CIArrayScenarios>?> = (0, nil)
+            defer {
+                if let start = value.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(value.count)) {
+                        _ = element?.pointee.lpVtbl.pointee.Release(element)
+                    }
+                }
+                CoTaskMemFree(value.start)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CIArrayShouldBuild.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Scenarios(pThis, &value.count, &value.start))
             }
-            defer { CoTaskMemFree(value.start) }
             return .from(abiBridge: __IMPL_test_component.IArrayScenariosBridge.self, abi: value)
 
         }
@@ -1680,60 +1752,72 @@ extension __ABI_test_component {
 
         open func InInt32(_ value: Int32) throws -> String {
             var result: HSTRING?
+            defer {
+                WindowsDeleteString(result)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InInt32(pThis, value, &result))
             }
-            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
         open func InString(_ value: String) throws -> String {
             var result: HSTRING?
+            defer {
+                WindowsDeleteString(result)
+            }
             let _value = try! HString(value)
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InString(pThis, _value.get(), &result))
             }
-            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
         open func InObject(_ value: Any?) throws -> String {
             var result: HSTRING?
+            defer {
+                WindowsDeleteString(result)
+            }
             let valueWrapper = __ABI_.AnyWrapper(value)
             let _value = try! valueWrapper?.toABI { $0 }
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InObject(pThis, _value, &result))
             }
-            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
         open func InBlittableStructRef(_ value: test_component.BlittableStruct) throws -> String {
             var result: HSTRING?
+            defer {
+                WindowsDeleteString(result)
+            }
             var _value: __x_ABI_Ctest__component_CBlittableStruct = .from(swift: value)
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InBlittableStructRef(pThis, &_value, &result))
             }
-            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
         open func InNonBlittableStructRef(_ value: test_component.NonBlittableStruct) throws -> String {
             var result: HSTRING?
+            defer {
+                WindowsDeleteString(result)
+            }
             let _value = __ABI_test_component._ABI_NonBlittableStruct(from: value)
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InNonBlittableStructRef(pThis, &_value.val, &result))
             }
-            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
         open func InEnum(_ value: test_component.Signed) throws -> String {
             var result: HSTRING?
+            defer {
+                WindowsDeleteString(result)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InEnum(pThis, value, &result))
             }
-            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
@@ -1745,15 +1829,20 @@ extension __ABI_test_component {
 
         open func OutString(_ value: inout String) throws {
             var _value: HSTRING?
+            defer {
+                WindowsDeleteString(_value)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OutString(pThis, &_value))
             }
             value = .init(from: _value)
-            WindowsDeleteString(_value)
         }
 
         open func OutObject(_ value: inout Any?) throws {
             var _valueAbi: UnsafeMutablePointer<C_IInspectable>?
+            defer {
+                _ = _valueAbi?.pointee.lpVtbl.pointee.Release(_valueAbi)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CIIAmImplementable.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OutObject(pThis, &_valueAbi))
             }
@@ -2674,10 +2763,12 @@ extension __ABI_test_component {
 
         open func get_Struct() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CWithKeyword.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Struct(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -2944,141 +3035,189 @@ extension __ABI_test_component {
 
         public func InInt32Array(_ value: [Int32]) throws -> String {
             var result: HSTRING?
+            defer {
+                WindowsDeleteString(result)
+            }
             try value.toABI { _value in
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InInt32Array(pThis, _value.count, _value.start, &result))
                 }
             }
-            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
         public func InStringArray(_ value: [String]) throws -> String {
             var result: HSTRING?
+            defer {
+                WindowsDeleteString(result)
+            }
             try value.toABI { _value in
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InStringArray(pThis, _value.count, _value.start, &result))
                 }
             }
-            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
         public func InObjectArray(_ value: [Any?]) throws -> String {
             var result: HSTRING?
+            defer {
+                WindowsDeleteString(result)
+            }
             try value.toABI(abiBridge: __IMPL_.AnyBridge.self) { _value in
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InObjectArray(pThis, _value.count, _value.start, &result))
                 }
             }
-            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
         public func InStringableArray(_ value: [WindowsFoundation.AnyIStringable?]) throws -> String {
             var result: HSTRING?
+            defer {
+                WindowsDeleteString(result)
+            }
             try value.toABI(abiBridge: __IMPL_Windows_Foundation.IStringableBridge.self) { _value in
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InStringableArray(pThis, _value.count, _value.start, &result))
                 }
             }
-            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
         public func InStructArray(_ value: [test_component.BlittableStruct]) throws -> String {
             var result: HSTRING?
+            defer {
+                WindowsDeleteString(result)
+            }
             try value.toABI { _value in
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InStructArray(pThis, _value.count, _value.start, &result))
                 }
             }
-            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
         public func InNonBlittableStructArray(_ value: [test_component.NonBlittableStruct]) throws -> String {
             var result: HSTRING?
+            defer {
+                WindowsDeleteString(result)
+            }
             try value.toABI { _value in
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InNonBlittableStructArray(pThis, _value.count, _value.start, &result))
                 }
             }
-            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
         public func InEnumArray(_ value: [test_component.Signed]) throws -> String {
             var result: HSTRING?
+            defer {
+                WindowsDeleteString(result)
+            }
             try value.toABI { _value in
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.InEnumArray(pThis, _value.count, _value.start, &result))
                 }
             }
-            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
         public func OutInt32Array(_ value: inout [Int32]) throws {
             var _value: WinRTArrayAbi<INT32> = (0, nil)
+            defer {
+                CoTaskMemFree(_value.start)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OutInt32Array(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value.start) }
             value = .from(abi: _value)
         }
 
         public func OutStringArray(_ value: inout [String]) throws {
             var _value: WinRTArrayAbi<HSTRING?> = (0, nil)
+            defer {
+                if let start = _value.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_value.count)) {
+                        WindowsDeleteString(element)
+                    }
+                }
+                CoTaskMemFree(_value.start)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OutStringArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value.start) }
             value = .from(abi: _value)
         }
 
         public func OutObjectArray(_ value: inout [Any?]) throws {
             var _value: WinRTArrayAbi<UnsafeMutablePointer<C_IInspectable>?> = (0, nil)
+            defer {
+                if let start = _value.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_value.count)) {
+                        _ = element?.pointee.lpVtbl.pointee.Release(element)
+                    }
+                }
+                CoTaskMemFree(_value.start)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OutObjectArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value.start) }
             value = .from(abiBridge: __IMPL_.AnyBridge.self, abi: _value)
         }
 
         public func OutStringableArray(_ value: inout [WindowsFoundation.AnyIStringable?]) throws {
             var _value: WinRTArrayAbi<UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIStringable>?> = (0, nil)
+            defer {
+                if let start = _value.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_value.count)) {
+                        _ = element?.pointee.lpVtbl.pointee.Release(element)
+                    }
+                }
+                CoTaskMemFree(_value.start)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OutStringableArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value.start) }
             value = .from(abiBridge: __IMPL_Windows_Foundation.IStringableBridge.self, abi: _value)
         }
 
         public func OutStructArray(_ value: inout [test_component.BlittableStruct]) throws {
             var _value: WinRTArrayAbi<__x_ABI_Ctest__component_CBlittableStruct> = (0, nil)
+            defer {
+                CoTaskMemFree(_value.start)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OutStructArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value.start) }
             value = .from(abi: _value)
         }
 
         public func OutNonBlittableStructArray(_ value: inout [test_component.NonBlittableStruct]) throws {
             var _value: WinRTArrayAbi<__x_ABI_Ctest__component_CNonBlittableStruct> = (0, nil)
+            defer {
+                if let start = _value.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_value.count)) {
+                        test_component.NonBlittableStruct.release(abi: element)
+                    }
+                }
+                CoTaskMemFree(_value.start)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OutNonBlittableStructArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value.start) }
             value = .from(abi: _value)
         }
 
         public func OutEnumArray(_ value: inout [test_component.Signed]) throws {
             var _value: WinRTArrayAbi<__x_ABI_Ctest__component_CSigned> = (0, nil)
+            defer {
+                CoTaskMemFree(_value.start)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OutEnumArray(pThis, &_value.count, &_value.start))
             }
-            defer { CoTaskMemFree(_value.start) }
             value = .from(abi: _value)
         }
 
@@ -3091,47 +3230,85 @@ extension __ABI_test_component {
         }
 
         public func RefStringArray(_ value: inout [String]) throws {
-            try value.toABI { _value in
+            var _valueBuffer = Array<HSTRING?>(repeating: nil, count: value.count)
+            try _valueBuffer.withUnsafeMutableBufferPointer { buffer in
+                let _value: WinRTArrayAbi<HSTRING?> = (UInt32(buffer.count), buffer.baseAddress)
+                defer {
+                    if let start = _value.start {
+                        for element in UnsafeBufferPointer(start: start, count: Int(_value.count)) {
+                            WindowsDeleteString(element)
+                        }
+                    }
+                }
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.RefStringArray(pThis, _value.count, _value.start))
                 }
-            value = .from(abi: _value)
+                value = .from(abi: _value)
             }
         }
 
         public func RefObjectArray(_ value: inout [Any?]) throws {
-            try value.toABI(abiBridge: __IMPL_.AnyBridge.self) { _value in
+            var _valueBuffer = Array<UnsafeMutablePointer<C_IInspectable>?>(repeating: nil, count: value.count)
+            try _valueBuffer.withUnsafeMutableBufferPointer { buffer in
+                let _value: WinRTArrayAbi<UnsafeMutablePointer<C_IInspectable>?> = (UInt32(buffer.count), buffer.baseAddress)
+                defer {
+                    if let start = _value.start {
+                        for element in UnsafeBufferPointer(start: start, count: Int(_value.count)) {
+                            _ = element?.pointee.lpVtbl.pointee.Release(element)
+                        }
+                    }
+                }
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.RefObjectArray(pThis, _value.count, _value.start))
                 }
-            value = .from(abiBridge: __IMPL_.AnyBridge.self, abi: _value)
+                value = .from(abiBridge: __IMPL_.AnyBridge.self, abi: _value)
             }
         }
 
         public func RefStringableArray(_ value: inout [WindowsFoundation.AnyIStringable?]) throws {
-            try value.toABI(abiBridge: __IMPL_Windows_Foundation.IStringableBridge.self) { _value in
+            var _valueBuffer = Array<UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIStringable>?>(repeating: nil, count: value.count)
+            try _valueBuffer.withUnsafeMutableBufferPointer { buffer in
+                let _value: WinRTArrayAbi<UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIStringable>?> = (UInt32(buffer.count), buffer.baseAddress)
+                defer {
+                    if let start = _value.start {
+                        for element in UnsafeBufferPointer(start: start, count: Int(_value.count)) {
+                            _ = element?.pointee.lpVtbl.pointee.Release(element)
+                        }
+                    }
+                }
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.RefStringableArray(pThis, _value.count, _value.start))
                 }
-            value = .from(abiBridge: __IMPL_Windows_Foundation.IStringableBridge.self, abi: _value)
+                value = .from(abiBridge: __IMPL_Windows_Foundation.IStringableBridge.self, abi: _value)
             }
         }
 
         public func RefStructArray(_ value: inout [test_component.BlittableStruct]) throws {
-            try value.toABI { _value in
+            var _valueBuffer = value.map { $0.toABI() }
+            try _valueBuffer.withUnsafeMutableBufferPointer { buffer in
+                let _value: WinRTArrayAbi<__x_ABI_Ctest__component_CBlittableStruct> = (UInt32(buffer.count), buffer.baseAddress)
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.RefStructArray(pThis, _value.count, _value.start))
                 }
-            value = .from(abi: _value)
+                value = .from(abi: _value)
             }
         }
 
         public func RefNonBlittableStructArray(_ value: inout [test_component.NonBlittableStruct]) throws {
-            try value.toABI { _value in
+            var _valueBuffer = Array<__x_ABI_Ctest__component_CNonBlittableStruct>(repeating: .init(), count: value.count)
+            try _valueBuffer.withUnsafeMutableBufferPointer { buffer in
+                let _value: WinRTArrayAbi<__x_ABI_Ctest__component_CNonBlittableStruct> = (UInt32(buffer.count), buffer.baseAddress)
+                defer {
+                    if let start = _value.start {
+                        for element in UnsafeBufferPointer(start: start, count: Int(_value.count)) {
+                            test_component.NonBlittableStruct.release(abi: element)
+                        }
+                    }
+                }
                 _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                     try CHECKED(pThis.pointee.lpVtbl.pointee.RefNonBlittableStructArray(pThis, _value.count, _value.start))
                 }
-            value = .from(abi: _value)
+                value = .from(abi: _value)
             }
         }
 
@@ -3145,70 +3322,104 @@ extension __ABI_test_component {
 
         public func ReturnInt32Array() throws -> [Int32] {
             var result: WinRTArrayAbi<INT32> = (0, nil)
+            defer {
+                CoTaskMemFree(result.start)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnInt32Array(pThis, &result.count, &result.start))
             }
-            defer { CoTaskMemFree(result.start) }
             return .from(abi: result)
 
         }
 
         public func ReturnStringArray() throws -> [String] {
             var result: WinRTArrayAbi<HSTRING?> = (0, nil)
+            defer {
+                if let start = result.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(result.count)) {
+                        WindowsDeleteString(element)
+                    }
+                }
+                CoTaskMemFree(result.start)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnStringArray(pThis, &result.count, &result.start))
             }
-            defer { CoTaskMemFree(result.start) }
             return .from(abi: result)
 
         }
 
         public func ReturnObjectArray() throws -> [Any?] {
             var result: WinRTArrayAbi<UnsafeMutablePointer<C_IInspectable>?> = (0, nil)
+            defer {
+                if let start = result.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(result.count)) {
+                        _ = element?.pointee.lpVtbl.pointee.Release(element)
+                    }
+                }
+                CoTaskMemFree(result.start)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnObjectArray(pThis, &result.count, &result.start))
             }
-            defer { CoTaskMemFree(result.start) }
             return .from(abiBridge: __IMPL_.AnyBridge.self, abi: result)
 
         }
 
         public func ReturnStringableArray() throws -> [WindowsFoundation.AnyIStringable?] {
             var result: WinRTArrayAbi<UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIStringable>?> = (0, nil)
+            defer {
+                if let start = result.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(result.count)) {
+                        _ = element?.pointee.lpVtbl.pointee.Release(element)
+                    }
+                }
+                CoTaskMemFree(result.start)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnStringableArray(pThis, &result.count, &result.start))
             }
-            defer { CoTaskMemFree(result.start) }
             return .from(abiBridge: __IMPL_Windows_Foundation.IStringableBridge.self, abi: result)
 
         }
 
         public func ReturnStructArray() throws -> [test_component.BlittableStruct] {
             var result: WinRTArrayAbi<__x_ABI_Ctest__component_CBlittableStruct> = (0, nil)
+            defer {
+                CoTaskMemFree(result.start)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnStructArray(pThis, &result.count, &result.start))
             }
-            defer { CoTaskMemFree(result.start) }
             return .from(abi: result)
 
         }
 
         public func ReturnNonBlittableStructArray() throws -> [test_component.NonBlittableStruct] {
             var result: WinRTArrayAbi<__x_ABI_Ctest__component_CNonBlittableStruct> = (0, nil)
+            defer {
+                if let start = result.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(result.count)) {
+                        test_component.NonBlittableStruct.release(abi: element)
+                    }
+                }
+                CoTaskMemFree(result.start)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnNonBlittableStructArray(pThis, &result.count, &result.start))
             }
-            defer { CoTaskMemFree(result.start) }
             return .from(abi: result)
 
         }
 
         public func ReturnEnumArray() throws -> [test_component.Signed] {
             var result: WinRTArrayAbi<__x_ABI_Ctest__component_CSigned> = (0, nil)
+            defer {
+                CoTaskMemFree(result.start)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CIArrayMethodsStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnEnumArray(pThis, &result.count, &result.start))
             }
-            defer { CoTaskMemFree(result.start) }
             return .from(abi: result)
 
         }
@@ -4534,60 +4745,72 @@ extension __ABI_test_component {
 
         public func InInt32(_ value: Int32) throws -> String {
             var result: HSTRING?
+            defer {
+                WindowsDeleteString(result)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InInt32(pThis, value, &result))
             }
-            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
         public func InString(_ value: String) throws -> String {
             var result: HSTRING?
+            defer {
+                WindowsDeleteString(result)
+            }
             let _value = try! HString(value)
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InString(pThis, _value.get(), &result))
             }
-            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
         public func InObject(_ value: Any?) throws -> String {
             var result: HSTRING?
+            defer {
+                WindowsDeleteString(result)
+            }
             let valueWrapper = __ABI_.AnyWrapper(value)
             let _value = try! valueWrapper?.toABI { $0 }
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InObject(pThis, _value, &result))
             }
-            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
         public func InBlittableStructRef(_ value: test_component.BlittableStruct) throws -> String {
             var result: HSTRING?
+            defer {
+                WindowsDeleteString(result)
+            }
             var _value: __x_ABI_Ctest__component_CBlittableStruct = .from(swift: value)
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InBlittableStructRef(pThis, &_value, &result))
             }
-            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
         public func InNonBlittableStructRef(_ value: test_component.NonBlittableStruct) throws -> String {
             var result: HSTRING?
+            defer {
+                WindowsDeleteString(result)
+            }
             let _value = __ABI_test_component._ABI_NonBlittableStruct(from: value)
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InNonBlittableStructRef(pThis, &_value.val, &result))
             }
-            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
         public func InEnum(_ value: test_component.Signed) throws -> String {
             var result: HSTRING?
+            defer {
+                WindowsDeleteString(result)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InEnum(pThis, value, &result))
             }
-            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
@@ -4599,15 +4822,20 @@ extension __ABI_test_component {
 
         public func OutString(_ value: inout String) throws {
             var _value: HSTRING?
+            defer {
+                WindowsDeleteString(_value)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OutString(pThis, &_value))
             }
             value = .init(from: _value)
-            WindowsDeleteString(_value)
         }
 
         public func OutObject(_ value: inout Any?) throws {
             var _valueAbi: UnsafeMutablePointer<C_IInspectable>?
+            defer {
+                _ = _valueAbi?.pointee.lpVtbl.pointee.Release(_valueAbi)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OutObject(pThis, &_valueAbi))
             }
@@ -4616,6 +4844,9 @@ extension __ABI_test_component {
 
         public func OutStringable(_ value: inout WindowsFoundation.AnyIStringable?) throws {
             var _valueAbi: UnsafeMutablePointer<__x_ABI_CWindows_CFoundation_CIStringable>?
+            defer {
+                _ = _valueAbi?.pointee.lpVtbl.pointee.Release(_valueAbi)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.OutStringable(pThis, &_valueAbi))
             }
@@ -4700,10 +4931,12 @@ extension __ABI_test_component {
 
         public func NoexceptString() throws -> String {
             var result: HSTRING?
+            defer {
+                WindowsDeleteString(result)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.NoexceptString(pThis, &result))
             }
-            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
@@ -4742,10 +4975,12 @@ extension __ABI_test_component {
 
         public func InChar(_ value: Character) throws -> String {
             var result: HSTRING?
+            defer {
+                WindowsDeleteString(result)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CIClass.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InChar(pThis, .init(from: value), &result))
             }
-            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
@@ -5109,45 +5344,53 @@ extension __ABI_test_component {
 
         public func InMap(_ value: WindowsFoundation.AnyIMap<String, String>?) throws -> String {
             var result: HSTRING?
+            defer {
+                WindowsDeleteString(result)
+            }
             let valueWrapper = test_component.__x_ABI_C__FIMap_2_HSTRING_HSTRINGWrapper(value)
             let _value = try! valueWrapper?.toABI { $0 }
             _ = try perform(as: __x_ABI_Ctest__component_CICollectionTesterStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InMap(pThis, _value, &result))
             }
-            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
         public func InMapView(_ value: WindowsFoundation.AnyIMapView<String, String>?) throws -> String {
             var result: HSTRING?
+            defer {
+                WindowsDeleteString(result)
+            }
             let valueWrapper = test_component.__x_ABI_C__FIMapView_2_HSTRING_HSTRINGWrapper(value)
             let _value = try! valueWrapper?.toABI { $0 }
             _ = try perform(as: __x_ABI_Ctest__component_CICollectionTesterStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InMapView(pThis, _value, &result))
             }
-            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
         public func InVector(_ value: WindowsFoundation.AnyIVector<String>?) throws -> String {
             var result: HSTRING?
+            defer {
+                WindowsDeleteString(result)
+            }
             let valueWrapper = test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper(value)
             let _value = try! valueWrapper?.toABI { $0 }
             _ = try perform(as: __x_ABI_Ctest__component_CICollectionTesterStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InVector(pThis, _value, &result))
             }
-            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
         public func InVectorView(_ value: WindowsFoundation.AnyIVectorView<String>?) throws -> String {
             var result: HSTRING?
+            defer {
+                WindowsDeleteString(result)
+            }
             let valueWrapper = test_component.__x_ABI_C__FIVectorView_1_HSTRINGWrapper(value)
             let _value = try! valueWrapper?.toABI { $0 }
             _ = try perform(as: __x_ABI_Ctest__component_CICollectionTesterStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InVectorView(pThis, _value, &result))
             }
-            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
@@ -5597,10 +5840,12 @@ extension __ABI_test_component {
 
         public func GetResult() throws -> String {
             var result: HSTRING?
+            defer {
+                WindowsDeleteString(result)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CIEventTester.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.GetResult(pThis, &result))
             }
-            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
@@ -5924,6 +6169,54 @@ public final class Simple : WinRTClass {
         try _default.TakeNonBlittableStruct(value)
     }
 
+    public func boxedStruct() throws -> NonBlittableStruct? {
+        try _default.BoxedStruct()
+    }
+
+    public func outBoxedStruct(_ value: inout NonBlittableStruct?) throws {
+        try _default.OutBoxedStruct(&value)
+    }
+
+    public func nestedStruct() throws -> NestedNonBlittableStruct {
+        try _default.NestedStruct()
+    }
+
+    public func boxedNestedStruct() throws -> NestedNonBlittableStruct? {
+        try _default.BoxedNestedStruct()
+    }
+
+    public func storeStrings(_ values: [String]) throws {
+        try _default.StoreStrings(values)
+    }
+
+    public func storeStructs(_ values: [NonBlittableStruct]) throws {
+        try _default.StoreStructs(values)
+    }
+
+    public func storeNestedStruct(_ value: NestedNonBlittableStruct) throws {
+        try _default.StoreNestedStruct(value)
+    }
+
+    public func storedStrings() throws -> [String] {
+        try _default.StoredStrings()
+    }
+
+    public func storedStructs() throws -> [NonBlittableStruct] {
+        try _default.StoredStructs()
+    }
+
+    public func outStoredStrings(_ values: inout [String]) throws {
+        try _default.OutStoredStrings(&values)
+    }
+
+    public func fillStoredStrings(_ values: inout [String]) throws {
+        try _default.FillStoredStrings(&values)
+    }
+
+    public func storedStringVector() throws -> WindowsFoundation.AnyIVector<String>! {
+        try _default.StoredStringVector()
+    }
+
     public func fireEvent() throws {
         try _default.FireEvent()
     }
@@ -5936,6 +6229,10 @@ public final class Simple : WinRTClass {
     public var nonBlittableStructProperty : NonBlittableStruct {
         get { try! _default.get_NonBlittableStructProperty() }
         set { try! _default.put_NonBlittableStructProperty(newValue) }
+    }
+
+    public var storedStringReferences : UInt32 {
+        get { try! _default.get_StoredStringReferences() }
     }
 
     public var stringProperty : String {
@@ -6013,7 +6310,7 @@ public class SimpleMaker: MakeFromAbi {
 @_spi(WinRTInternal)
 extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CISimple: WindowsFoundation.IID = .init(
-        Data1: 0xAE7B4545, Data2: 0xD9D0, Data3: 0x5655, Data4: ( 0xB1,0xDE,0xA0,0x7D,0xA1,0x3B,0xD8,0x9B ) // AE7B4545-D9D0-5655-B1DE-A07DA13BD89B
+        Data1: 0x0AA1C540, Data2: 0x4B94, Data3: 0x5B2F, Data4: ( 0xB9,0x71,0xDC,0x00,0x72,0x1F,0x44,0x3C ) // 0AA1C540-4B94-5B2F-B971-DC00721F443C
     ) 
 
     public class ISimple: WindowsFoundation.IInspectable {
@@ -6082,6 +6379,9 @@ extension __ABI_test_component {
 
         public func ReturnStructWithReference() throws -> test_component.StructWithIReference {
             var result: __x_ABI_Ctest__component_CStructWithIReference = .init()
+            defer {
+                test_component.StructWithIReference.release(abi: result)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnStructWithReference(pThis, &result))
             }
@@ -6097,6 +6397,9 @@ extension __ABI_test_component {
 
         public func get_StructWithReferenceProperty() throws -> test_component.StructWithIReference {
             var value: __x_ABI_Ctest__component_CStructWithIReference = .init()
+            defer {
+                test_component.StructWithIReference.release(abi: value)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_StructWithReferenceProperty(pThis, &value))
             }
@@ -6112,6 +6415,9 @@ extension __ABI_test_component {
 
         public func ReturnNonBlittableStruct() throws -> test_component.NonBlittableStruct {
             var result: __x_ABI_Ctest__component_CNonBlittableStruct = .init()
+            defer {
+                test_component.NonBlittableStruct.release(abi: result)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.ReturnNonBlittableStruct(pThis, &result))
             }
@@ -6127,6 +6433,9 @@ extension __ABI_test_component {
 
         public func get_NonBlittableStructProperty() throws -> test_component.NonBlittableStruct {
             var value: __x_ABI_Ctest__component_CNonBlittableStruct = .init()
+            defer {
+                test_component.NonBlittableStruct.release(abi: value)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_NonBlittableStructProperty(pThis, &value))
             }
@@ -6142,10 +6451,12 @@ extension __ABI_test_component {
 
         public func get_StringProperty() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_StringProperty(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -6154,6 +6465,154 @@ extension __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.put_StringProperty(pThis, _value.get()))
             }
+        }
+
+        public func get_StoredStringReferences() throws -> UInt32 {
+            var value: UINT32 = 0
+            _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.get_StoredStringReferences(pThis, &value))
+            }
+            return value
+        }
+
+        public func BoxedStruct() throws -> test_component.NonBlittableStruct? {
+            let (result) = try ComPtrs.initialize { resultAbi in
+                _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.BoxedStruct(pThis, &resultAbi))
+                }
+            }
+            return test_component.__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStructWrapper.unwrapFrom(abi: result)
+        }
+
+        public func OutBoxedStruct(_ value: inout test_component.NonBlittableStruct?) throws {
+            var _valueAbi: UnsafeMutablePointer<__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStruct>?
+            defer {
+                _ = _valueAbi?.pointee.lpVtbl.pointee.Release(_valueAbi)
+            }
+            _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.OutBoxedStruct(pThis, &_valueAbi))
+            }
+            value = test_component.__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNonBlittableStructWrapper.unwrapFrom(abi: ComPtr(_valueAbi))
+        }
+
+        public func NestedStruct() throws -> test_component.NestedNonBlittableStruct {
+            var result: __x_ABI_Ctest__component_CNestedNonBlittableStruct = .init()
+            defer {
+                test_component.NestedNonBlittableStruct.release(abi: result)
+            }
+            _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.NestedStruct(pThis, &result))
+            }
+            return .from(abi: result)
+        }
+
+        public func BoxedNestedStruct() throws -> test_component.NestedNonBlittableStruct? {
+            let (result) = try ComPtrs.initialize { resultAbi in
+                _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.BoxedNestedStruct(pThis, &resultAbi))
+                }
+            }
+            return test_component.__x_ABI_C__FIReference_1___x_ABI_Ctest__zcomponent__CNestedNonBlittableStructWrapper.unwrapFrom(abi: result)
+        }
+
+        public func StoreStrings(_ values: [String]) throws {
+            try values.toABI { _values in
+                _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.StoreStrings(pThis, _values.count, _values.start))
+                }
+            }
+        }
+
+        public func StoreStructs(_ values: [test_component.NonBlittableStruct]) throws {
+            try values.toABI { _values in
+                _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.StoreStructs(pThis, _values.count, _values.start))
+                }
+            }
+        }
+
+        public func StoreNestedStruct(_ value: test_component.NestedNonBlittableStruct) throws {
+            let _value = __ABI_test_component._ABI_NestedNonBlittableStruct(from: value)
+            _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.StoreNestedStruct(pThis, _value.val))
+            }
+        }
+
+        public func StoredStrings() throws -> [String] {
+            var result: WinRTArrayAbi<HSTRING?> = (0, nil)
+            defer {
+                if let start = result.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(result.count)) {
+                        WindowsDeleteString(element)
+                    }
+                }
+                CoTaskMemFree(result.start)
+            }
+            _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.StoredStrings(pThis, &result.count, &result.start))
+            }
+            return .from(abi: result)
+
+        }
+
+        public func StoredStructs() throws -> [test_component.NonBlittableStruct] {
+            var result: WinRTArrayAbi<__x_ABI_Ctest__component_CNonBlittableStruct> = (0, nil)
+            defer {
+                if let start = result.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(result.count)) {
+                        test_component.NonBlittableStruct.release(abi: element)
+                    }
+                }
+                CoTaskMemFree(result.start)
+            }
+            _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.StoredStructs(pThis, &result.count, &result.start))
+            }
+            return .from(abi: result)
+
+        }
+
+        public func OutStoredStrings(_ values: inout [String]) throws {
+            var _values: WinRTArrayAbi<HSTRING?> = (0, nil)
+            defer {
+                if let start = _values.start {
+                    for element in UnsafeBufferPointer(start: start, count: Int(_values.count)) {
+                        WindowsDeleteString(element)
+                    }
+                }
+                CoTaskMemFree(_values.start)
+            }
+            _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.OutStoredStrings(pThis, &_values.count, &_values.start))
+            }
+            values = .from(abi: _values)
+        }
+
+        public func FillStoredStrings(_ values: inout [String]) throws {
+            var _valuesBuffer = Array<HSTRING?>(repeating: nil, count: values.count)
+            try _valuesBuffer.withUnsafeMutableBufferPointer { buffer in
+                let _values: WinRTArrayAbi<HSTRING?> = (UInt32(buffer.count), buffer.baseAddress)
+                defer {
+                    if let start = _values.start {
+                        for element in UnsafeBufferPointer(start: start, count: Int(_values.count)) {
+                            WindowsDeleteString(element)
+                        }
+                    }
+                }
+                _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.FillStoredStrings(pThis, _values.count, _values.start))
+                }
+                values = .from(abi: _values)
+            }
+        }
+
+        public func StoredStringVector() throws -> WindowsFoundation.AnyIVector<String>? {
+            let (result) = try ComPtrs.initialize { resultAbi in
+                _ = try perform(as: __x_ABI_Ctest__component_CISimple.self) { pThis in
+                    try CHECKED(pThis.pointee.lpVtbl.pointee.StoredStringVector(pThis, &resultAbi))
+                }
+            }
+            return test_component.__x_ABI_C__FIVector_1_HSTRINGWrapper.unwrapFrom(abi: result)
         }
 
         public func add_SignalEvent(_ handler: test_component.SignalDelegate?) throws -> EventRegistrationToken {
@@ -6309,20 +6768,24 @@ extension __ABI_test_component {
 
         public func InEnum(_ value: test_component.Signed) throws -> String {
             var result: HSTRING?
+            defer {
+                WindowsDeleteString(result)
+            }
             _ = try perform(as: __x_ABI_Ctest__component_CIStaticClassStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InEnum(pThis, value, &result))
             }
-            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 
         public func InNonBlittableStruct(_ value: test_component.NonBlittableStruct) throws -> String {
             var result: HSTRING?
+            defer {
+                WindowsDeleteString(result)
+            }
             let _value = __ABI_test_component._ABI_NonBlittableStruct(from: value)
             _ = try perform(as: __x_ABI_Ctest__component_CIStaticClassStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.InNonBlittableStruct(pThis, _value.val, &result))
             }
-            defer { WindowsDeleteString(result) }
             return .init(from: result)
         }
 

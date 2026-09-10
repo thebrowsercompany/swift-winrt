@@ -4,7 +4,12 @@ import Foundation
 @_spi(WinRTInternal)
 extension Array where Element: ToAbi {
     public func toABI(_ withAbi: (WinRTArrayAbi<Element.ABI>) throws -> Void) throws {
-        let abiArray: [Element.ABI] = try map { try $0.toABI() }
+        var abiArray: [Element.ABI] = []
+        abiArray.reserveCapacity(count)
+        defer { abiArray.forEach { Element.release(abi: $0) } }
+        for element in self {
+            abiArray.append(try element.toABI())
+        }
         try abiArray.withUnsafeBytes { (bytes: UnsafeRawBufferPointer) in
             let bytesPtr = bytes.baseAddress?.assumingMemoryBound(to: Element.ABI.self)
             try withAbi((count: UInt32(count), start: .init(mutating: bytesPtr)))
@@ -18,15 +23,24 @@ extension Array where Element: ToAbi {
             try fill(abi: abi.pointee)
         } catch {
             CoTaskMemFree(abi.pointee)
+            abi.pointee = nil
             throw error
         }
     }
 
     public func fill(abi: UnsafeMutablePointer<Element.ABI>?) throws {
         guard let abi else { return }
-        for (index, element) in enumerated() {
-            abi[index] = try element.toABI()
+        var converted: [Element.ABI] = []
+        converted.reserveCapacity(count)
+        do {
+            for element in self {
+                converted.append(try element.toABI())
+            }
+        } catch {
+            converted.forEach { Element.release(abi: $0) }
+            throw error
         }
+        _ = UnsafeMutableBufferPointer(start: abi, count: count).update(from: converted)
     }
 }
 
@@ -115,7 +129,11 @@ extension Array {
     public func fill<Bridge: AbiBridge>(abi: UnsafeMutablePointer<UnsafeMutablePointer<Bridge.CABI>?>?, abiBridge: Bridge.Type) where Element == Bridge.SwiftProjection?, Bridge.SwiftProjection: WinRTClass {
         guard let abi else { return }
         for (index, element) in enumerated() {
-            abi[index] = RawPointer(element)
+            if let element {
+                element.copyTo(&abi[index])
+            } else {
+                abi[index] = nil
+            }
         }
     }
 

@@ -130,6 +130,22 @@ namespace swiftwinrt
             }
             w.write("}\n");
 
+            if (!is_struct_blittable(type))
+            {
+                w.write("public static func release(abi: ABI) {\n");
+                {
+                    auto indent = w.push_indent();
+                    for (const auto& member : type.members)
+                    {
+                        if (can_write(w, member.type))
+                        {
+                            write_release_abi(w, member.type, w.write_temp("abi.%", get_abi_name(member)));
+                        }
+                    }
+                }
+                w.write("}\n");
+            }
+
             w.write("public func toABI() -> ABI {\n");
             {
                 auto from_body_indent = w.push_indent();
@@ -195,15 +211,7 @@ namespace swiftwinrt
                 auto indent = w.push_indent();
 
                 w.write("let result = val\n");
-                for (const auto& member : type.members)
-                {
-                    auto field = member.field;
-                    if (get_category(member.type) == param_category::string_type ||
-                        is_winrt_ireference(member.type))
-                    {
-                        w.write("val.% = nil\n", get_abi_name(member));
-                    }
-                }
+                w.write("val = .init()\n");
                 w.write("return result\n");
             }
             w.write("}\n\n");
@@ -211,17 +219,7 @@ namespace swiftwinrt
             w.write("deinit {\n");
             {
                 auto indent = w.push_indent();
-                for (const auto& member : type.members)
-                {
-                    if (get_category(member.type) == param_category::string_type)
-                    {
-                        w.write("WindowsDeleteString(val.%)\n", get_abi_name(member));
-                    }
-                    else if (is_winrt_ireference(member.type))
-                    {
-                        w.write("_ = val.%?.pointee.lpVtbl.pointee.Release(val.%)\n", get_abi_name(member), get_abi_name(member));
-                    }
-                }
+                w.write("%.release(abi: val)\n", get_full_swift_type_name(w, type));
             }
             w.write("}\n");
         }

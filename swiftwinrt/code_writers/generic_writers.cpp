@@ -108,7 +108,7 @@ namespace swiftwinrt
     static func from(abi: consuming ComPtr<CABI>?) -> SwiftProjection? {
         guard let val = abi else { return nil }
         var result: %%
-        try! CHECKED(val.get().pointee.lpVtbl.pointee.get_Value(val.get(), &result))
+%        try! CHECKED(val.get().pointee.lpVtbl.pointee.get_Value(val.get(), &result))
         return %
     }
 
@@ -124,6 +124,10 @@ namespace swiftwinrt
     type.mangled_name(),
     bind<write_type>(*generic_param, write_type_params::c_abi),
     bind<write_default_init_assignment>(*generic_param, projection_layer::c_abi),
+    bind([&](writer& w) {
+        auto indent = w.push_indent({2});
+        write_defer_release_abi(w, generic_param, "result");
+    }),
     bind<write_consume_type>(generic_param, "result", true),
     type.mangled_name());
     }

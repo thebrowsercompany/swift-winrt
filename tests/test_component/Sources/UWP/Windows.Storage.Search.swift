@@ -177,6 +177,9 @@ extension SortEntry: WinRTBridgeable {
     public static func from(abi: ABI) -> Self {
         .init(propertyName: .init(from: abi.PropertyName), ascendingOrder: .init(from: abi.AscendingOrder))
     }
+    public static func release(abi: ABI) {
+        WindowsDeleteString(abi.PropertyName)
+    }
     public func toABI() -> ABI {
         __ABI_Windows_Storage_Search._ABI_SortEntry(from: self).detach()
     }
@@ -194,12 +197,12 @@ extension __ABI_Windows_Storage_Search {
 
         public func detach() -> __x_ABI_CWindows_CStorage_CSearch_CSortEntry {
             let result = val
-            val.PropertyName = nil
+            val = .init()
             return result
         }
 
         deinit {
-            WindowsDeleteString(val.PropertyName)
+            UWP.SortEntry.release(abi: val)
         }
     }
 }
@@ -1233,10 +1236,12 @@ extension __ABI_Windows_Storage_Search {
 
         public func get_ApplicationSearchFilter() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIQueryOptions.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_ApplicationSearchFilter(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -1249,10 +1254,12 @@ extension __ABI_Windows_Storage_Search {
 
         public func get_UserSearchFilter() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIQueryOptions.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_UserSearchFilter(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -1265,10 +1272,12 @@ extension __ABI_Windows_Storage_Search {
 
         public func get_Language() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIQueryOptions.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_Language(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -1304,10 +1313,12 @@ extension __ABI_Windows_Storage_Search {
 
         public func get_GroupPropertyName() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIQueryOptions.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.get_GroupPropertyName(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 
@@ -1321,10 +1332,12 @@ extension __ABI_Windows_Storage_Search {
 
         public func SaveToString() throws -> String {
             var value: HSTRING?
+            defer {
+                WindowsDeleteString(value)
+            }
             _ = try perform(as: __x_ABI_CWindows_CStorage_CSearch_CIQueryOptions.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.SaveToString(pThis, &value))
             }
-            defer { WindowsDeleteString(value) }
             return .init(from: value)
         }
 

@@ -281,6 +281,73 @@ namespace swiftwinrt
         }
     }
 
+    static bool needs_abi_release(metadata_type const* type)
+    {
+        if (auto structure = dynamic_cast<const struct_type*>(type))
+        {
+            for (const auto& member : structure->members)
+            {
+                if (needs_abi_release(member.type)) return true;
+            }
+            return false;
+        }
+        return get_category(type) == param_category::string_type || is_reference_type(type);
+    }
+
+    // Keep borrowed conversions separate from cleanup of owned ABI values.
+    static void write_release_abi(writer& w, metadata_type const* type, std::string_view name)
+    {
+        auto category = get_category(type);
+        if (category == param_category::string_type)
+        {
+            w.write("WindowsDeleteString(%)\n", name);
+        }
+        else if (is_reference_type(type))
+        {
+            w.write("_ = %?.pointee.lpVtbl.pointee.Release(%)\n", name, name);
+        }
+        else if (needs_abi_release(type))
+        {
+            w.write("%.release(abi: %)\n", get_full_swift_type_name(w, type), name);
+        }
+    }
+
+    static void write_defer_release_abi(writer& w, metadata_type const* type, std::string_view name)
+    {
+        if (!needs_abi_release(type)) return;
+        w.write("defer {\n");
+        {
+            auto indent = w.push_indent();
+            write_release_abi(w, type, name);
+        }
+        w.write("}\n");
+    }
+
+    static void write_defer_release_array(writer& w, metadata_type const* type, std::string_view name, bool free_buffer)
+    {
+        if (!free_buffer && !needs_abi_release(type)) return;
+        w.write("defer {\n");
+        {
+            auto indent = w.push_indent();
+            if (needs_abi_release(type))
+            {
+                w.write("if let start = %.start {\n", name);
+                {
+                    auto buffer_indent = w.push_indent();
+                    w.write("for element in UnsafeBufferPointer(start: start, count: Int(%.count)) {\n", name);
+                    {
+                        auto loop_indent = w.push_indent();
+                        write_release_abi(w, type, "element");
+                    }
+                    w.write("}\n");
+                }
+                w.write("}\n");
+            }
+            if (free_buffer) w.write("CoTaskMemFree(%.start)\n", name);
+        }
+        w.write("}\n");
+    }
+
     static void write_consume_type(writer& w, metadata_type const* type, std::string_view const& name, bool isOut)
     {
         TypeDef signature_type{};
@@ -306,7 +373,14 @@ namespace swiftwinrt
             }
             else if (w.abi_types)
             {
-                w.write(".from(swift: %)", name);
+                if (is_struct_blittable(signature_type))
+                {
+                    w.write(".from(swift: %)", name);
+                }
+                else
+                {
+                    w.write("%.toABI()", name);
+                }
             }
             else
             {

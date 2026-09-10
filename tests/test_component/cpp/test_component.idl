@@ -105,6 +105,20 @@ namespace test_component
 
             String StringProperty;
 
+            UInt32 StoredStringReferences { get; };
+            Windows.Foundation.IReference<NonBlittableStruct> BoxedStruct();
+            void OutBoxedStruct(out Windows.Foundation.IReference<NonBlittableStruct> value);
+            NestedNonBlittableStruct NestedStruct();
+            Windows.Foundation.IReference<NestedNonBlittableStruct> BoxedNestedStruct();
+            void StoreStrings(String[] values);
+            void StoreStructs(NonBlittableStruct[] values);
+            void StoreNestedStruct(NestedNonBlittableStruct value);
+            String[] StoredStrings();
+            NonBlittableStruct[] StoredStructs();
+            void OutStoredStrings(out String[] values);
+            void FillStoredStrings(ref String[] values);
+            Windows.Foundation.Collections.IVector<String> StoredStringVector();
+
             event test_component.Delegates.SignalDelegate SignalEvent;
             event test_component.Delegates.InDelegate InEvent;
             event Windows.Foundation.TypedEventHandler<Simple, SimpleEventArgs> SimpleEvent;
