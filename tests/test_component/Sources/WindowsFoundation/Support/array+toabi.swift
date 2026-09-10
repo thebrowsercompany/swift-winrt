@@ -129,11 +129,10 @@ extension Array {
     public func fill<Bridge: AbiBridge>(abi: UnsafeMutablePointer<UnsafeMutablePointer<Bridge.CABI>?>?, abiBridge: Bridge.Type) where Element == Bridge.SwiftProjection?, Bridge.SwiftProjection: WinRTClass {
         guard let abi else { return }
         for (index, element) in enumerated() {
-            abi[index] = RawPointer(element)
-            if let pointer = abi[index] {
-                pointer.withMemoryRebound(to: C_IUnknown.self, capacity: 1) { unknown in
-                    _ = unknown.pointee.lpVtbl.pointee.AddRef(unknown)
-                }
+            if let element {
+                element.copyTo(&abi[index])
+            } else {
+                abi[index] = nil
             }
         }
     }
