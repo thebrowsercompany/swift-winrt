@@ -86,8 +86,9 @@ namespace swiftwinrt
         struct closure_type
         {
             std::map<std::string, std::span<const std::byte>> resources;
-            bool make_lowercase = make_lowercase;
+            bool make_lowercase = false;
         } closure;
+        closure.make_lowercase = make_lowercase;
 
         EnumResourceNamesExA(hModule, type,
             [](HMODULE hModule, LPCSTR lpType, LPSTR lpName, LONG_PTR lParam) -> BOOL
