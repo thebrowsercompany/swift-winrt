@@ -6,13 +6,15 @@ set(MicrosoftWindowsWinMD_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/winmd/src)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# change the warning level to 4
-string(REGEX REPLACE "/W[0-4]" "/W4" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+# change the warning level to 4. CMake 3.15+ no longer puts /W3 in CMAKE_CXX_FLAGS (policy CMP0092),
+# so add the flag directly instead of replacing it.
+add_compile_options(/W4)
 
-# change from dynamic to static CRT
-string(REPLACE "/MDd" "/MTd" CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}")
+# change from dynamic to static CRT. CMake 3.15+ selects the runtime with CMAKE_MSVC_RUNTIME_LIBRARY
+# (policy CMP0091) instead of /MD in CMAKE_CXX_FLAGS_<CONFIG>, so replacing the flag has no effect.
+set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+
 foreach(build_type RELEASE MINSIZEREL RELWITHDEBINFO)
-    string(REPLACE "/MD" "/MT" CMAKE_CXX_FLAGS_${build_type} "${CMAKE_CXX_FLAGS_${build_type}}")
     string(APPEND CMAKE_CXX_FLAGS_${build_type} " /GL")
 
     # /GL requires /LTCG
