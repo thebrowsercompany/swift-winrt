@@ -124,7 +124,7 @@ namespace swiftwinrt
                 add_ns_types_to_queue(to_process, nsIter->second.delegates);
                 add_ns_types_to_queue(to_process, nsIter->second.enums);
                 add_ns_types_to_queue(to_process, nsIter->second.structs);
-                for (const auto [name, inst] : nsIter->second.generic_instantiations)
+                for (const auto& [name, inst] : nsIter->second.generic_instantiations)
                 {
                     to_process.push(&inst);
                 }
