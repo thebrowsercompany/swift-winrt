@@ -46,7 +46,7 @@ extension __ABI_test_component_Delegates {
     }
 
 
-    typealias InDelegateWrapper = InterfaceWrapperBase<__IMPL_test_component_Delegates.InDelegateBridge>
+    public typealias InDelegateWrapper = InterfaceWrapperBase<__IMPL_test_component_Delegates.InDelegateBridge>
     internal static var InDelegateVTable: __x_ABI_Ctest__component_CDelegates_CIInDelegateVtbl = .init(
         QueryInterface: { InDelegateWrapper.queryInterface($0, $1, $2) },
         AddRef: { InDelegateWrapper.addRef($0) },
@@ -111,7 +111,7 @@ extension __ABI_test_component_Delegates {
     }
 
 
-    typealias InObjectDelegateWrapper = InterfaceWrapperBase<__IMPL_test_component_Delegates.InObjectDelegateBridge>
+    public typealias InObjectDelegateWrapper = InterfaceWrapperBase<__IMPL_test_component_Delegates.InObjectDelegateBridge>
     internal static var InObjectDelegateVTable: __x_ABI_Ctest__component_CDelegates_CIInObjectDelegateVtbl = .init(
         QueryInterface: { InObjectDelegateWrapper.queryInterface($0, $1, $2) },
         AddRef: { InObjectDelegateWrapper.addRef($0) },
@@ -174,7 +174,7 @@ extension __ABI_test_component_Delegates {
     }
 
 
-    typealias SignalDelegateWrapper = InterfaceWrapperBase<__IMPL_test_component_Delegates.SignalDelegateBridge>
+    public typealias SignalDelegateWrapper = InterfaceWrapperBase<__IMPL_test_component_Delegates.SignalDelegateBridge>
     internal static var SignalDelegateVTable: __x_ABI_Ctest__component_CDelegates_CISignalDelegateVtbl = .init(
         QueryInterface: { SignalDelegateWrapper.queryInterface($0, $1, $2) },
         AddRef: { SignalDelegateWrapper.addRef($0) },
@@ -194,4 +194,3 @@ public extension WinRTDelegateBridge where CABI == __x_ABI_Ctest__component_CDel
         return .init(lpVtbl:vtblPtr)
     }
 }
-
