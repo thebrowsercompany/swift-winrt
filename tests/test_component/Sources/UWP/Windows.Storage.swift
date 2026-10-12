@@ -234,7 +234,7 @@ extension __ABI_Windows_Storage {
     }
 
 
-    typealias StreamedFileDataRequestedHandlerWrapper = InterfaceWrapperBase<__IMPL_Windows_Storage.StreamedFileDataRequestedHandlerBridge>
+    public typealias StreamedFileDataRequestedHandlerWrapper = InterfaceWrapperBase<__IMPL_Windows_Storage.StreamedFileDataRequestedHandlerBridge>
     internal static var StreamedFileDataRequestedHandlerVTable: __x_ABI_CWindows_CStorage_CIStreamedFileDataRequestedHandlerVtbl = .init(
         QueryInterface: { StreamedFileDataRequestedHandlerWrapper.queryInterface($0, $1, $2) },
         AddRef: { StreamedFileDataRequestedHandlerWrapper.addRef($0) },

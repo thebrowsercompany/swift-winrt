@@ -558,7 +558,7 @@ extension __ABI_test_component {
     }
 
 
-    typealias ArrayMethodCallbackWrapper = InterfaceWrapperBase<__IMPL_test_component.ArrayMethodCallbackBridge>
+    public typealias ArrayMethodCallbackWrapper = InterfaceWrapperBase<__IMPL_test_component.ArrayMethodCallbackBridge>
     internal static var ArrayMethodCallbackVTable: __x_ABI_Ctest__component_CIArrayMethodCallbackVtbl = .init(
         QueryInterface: { ArrayMethodCallbackWrapper.queryInterface($0, $1, $2) },
         AddRef: { ArrayMethodCallbackWrapper.addRef($0) },
@@ -623,7 +623,7 @@ extension __ABI_test_component {
     }
 
 
-    typealias ObjectHandlerWrapper = InterfaceWrapperBase<__IMPL_test_component.ObjectHandlerBridge>
+    public typealias ObjectHandlerWrapper = InterfaceWrapperBase<__IMPL_test_component.ObjectHandlerBridge>
     internal static var ObjectHandlerVTable: __x_ABI_Ctest__component_CIObjectHandlerVtbl = .init(
         QueryInterface: { ObjectHandlerWrapper.queryInterface($0, $1, $2) },
         AddRef: { ObjectHandlerWrapper.addRef($0) },
@@ -686,7 +686,7 @@ extension __ABI_test_component {
     }
 
 
-    typealias VoidToVoidDelegateWrapper = InterfaceWrapperBase<__IMPL_test_component.VoidToVoidDelegateBridge>
+    public typealias VoidToVoidDelegateWrapper = InterfaceWrapperBase<__IMPL_test_component.VoidToVoidDelegateBridge>
     internal static var VoidToVoidDelegateVTable: __x_ABI_Ctest__component_CIVoidToVoidDelegateVtbl = .init(
         QueryInterface: { VoidToVoidDelegateWrapper.queryInterface($0, $1, $2) },
         AddRef: { VoidToVoidDelegateWrapper.addRef($0) },

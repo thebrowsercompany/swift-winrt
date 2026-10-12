@@ -110,10 +110,11 @@ namespace swiftwinrt
     {
         auto impl_name = w.write_temp("%", bind_bridge_fullname(type));
         auto wrapper_name = w.write_temp("%", bind_wrapper_name(type));
+        auto access_level = is_generic_inst(type) ? "internal" : "public";
         auto format = R"(
-typealias % = InterfaceWrapperBase<%>
+% typealias % = InterfaceWrapperBase<%>
 )";
-        w.write(format, wrapper_name, impl_name);
+        w.write(format, access_level, wrapper_name, impl_name);
     }
 
     void write_vtable(writer& w, delegate_type const& type)
