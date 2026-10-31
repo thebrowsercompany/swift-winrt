@@ -5,6 +5,11 @@ namespace test_component
         void Method();
     }
 
+    runtimeclass ReferenceTarget : [default] IReferenceTarget
+    {
+        ReferenceTarget();
+    }
+
     runtimeclass WeakReferencer
     {
         WeakReferencer(IReferenceTarget object);

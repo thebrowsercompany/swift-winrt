@@ -43,6 +43,20 @@ class ValueBoxingTests : XCTestCase {
     let classy = Class()
     let result = try! classy.inObject(derived)
     XCTAssertEqual(NSStringFromClass(Derived.self), result)
+
+    // and the class name of the WinRT base for a Swift class derived from one without overrides
+    XCTAssertEqual("test_component.BaseNoOverrides", try! classy.inObject(AppDerivedNoOverrides()))
+  }
+
+  public func testInWinRTClassKeepsIdentity() throws {
+    // The same projected object passed as two Objects reaches WinRT as one COM object
+    let classy = Class()
+    XCTAssertTrue(try StaticClass.isSameObject(classy, classy))
+    XCTAssertFalse(try StaticClass.isSameObject(classy, Class()))
+
+    // as does a Swift class derived from a projected one
+    let appDerived = AppDerived()
+    XCTAssertTrue(try StaticClass.isSameObject(appDerived, appDerived))
   }
 
   public func testInSwiftStruct() {
@@ -92,6 +106,14 @@ class ValueBoxingTests : XCTestCase {
 
     anyObj = try! classy.returnObject()
     XCTAssertEqual(anyObj as! Person, person)
+
+    // A Swift class derived from a projected one comes back as itself
+    let appDerived = AppDerived()
+    _ = try! classy.inObject(appDerived)
+    try! classy.outObject(&anyObj)
+    XCTAssertIdentical(anyObj as? AppDerived, appDerived)
+    anyObj = try! classy.returnObject()
+    XCTAssertIdentical(anyObj as? AppDerived, appDerived)
   }
 }
 
@@ -101,6 +123,7 @@ var valueBoxingTests: [XCTestCaseEntry] = [
     ("InInt", ValueBoxingTests.testInInt),
     ("InString", ValueBoxingTests.testInString),
     ("InWinRTClass", ValueBoxingTests.testInWinRTClass),
+    ("InWinRTClassKeepsIdentity", ValueBoxingTests.testInWinRTClassKeepsIdentity),
     ("InSwiftStruct", ValueBoxingTests.testInSwiftStruct),
     ("OutInterface", ValueBoxingTests.testOutInterface),
     ("testInAppImplemented", ValueBoxingTests.testInAppImplemented),

@@ -273,6 +273,7 @@ namespace test_component
             static String InNonBlittableStruct(NonBlittableStruct value);
 
             static void TakeBase(Base base);
+            static Boolean IsSameObject(Object first, Object second);
         }
         //namespace Structs
         //
