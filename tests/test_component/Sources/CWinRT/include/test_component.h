@@ -4502,6 +4502,10 @@ struct __x_ABI_Ctest__component_CStructWithIReference
         HSTRING* result);
     HRESULT (STDMETHODCALLTYPE* TakeBase)(__x_ABI_Ctest__component_CIStaticClassStatics* This,
         __x_ABI_Ctest__component_CIBase* base);
+    HRESULT (STDMETHODCALLTYPE* IsSameObject)(__x_ABI_Ctest__component_CIStaticClassStatics* This,
+        IInspectable* first,
+        IInspectable* second,
+        boolean* result);
 
         END_INTERFACE
     } __x_ABI_Ctest__component_CIStaticClassStaticsVtbl;

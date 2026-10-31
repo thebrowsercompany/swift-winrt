@@ -76,7 +76,8 @@ fileprivate func Resolve(
 
     let anyWrapper = __ABI_.AnyWrapper(target)!
     var rawObject: UnsafeMutableRawPointer? = nil
-    let result = __ABI_.AnyWrapper.queryInterface(try! anyWrapper.toABI { $0 }, riid, &rawObject)
+    // Query the object toABI gives, which can be a WinRT object rather than a Swift wrapper
+    let result = try! anyWrapper.toABI { $0.pointee.lpVtbl.pointee.QueryInterface($0, riid, &rawObject) }
     ppvObject.pointee = rawObject?.bindMemory(to: C_IInspectable.self, capacity: 1)
     return result
 }
