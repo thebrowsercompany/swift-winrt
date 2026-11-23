@@ -290,6 +290,12 @@ namespace swiftwinrt
         w.c_mod = settings.get_c_module_name();
         write_preamble(w, /* swift_code: */ false);
         w.write(R"(#pragma once
+// Newer Swift toolchains make the WinRT SDK headers textual and only expose them
+// through this shim module. It must be imported before roapi.h/roerrorapi.h/winstring.h
+// so HSTRING and friends stay visible.
+#if __has_include(<SwiftWinRT.h>)
+#include <SwiftWinRT.h>
+#endif
 #include <wtypesbase.h>
 #include <minwindef.h>
 #include <winnt.h>
