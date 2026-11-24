@@ -6093,6 +6093,66 @@ extension __ABI_test_component {
     }
 
 }
+// MARK: - ReferenceTarget
+
+public final class ReferenceTarget : WinRTClass, IReferenceTarget {
+    private typealias SwiftABI = __ABI_test_component.IReferenceTarget
+    private typealias CABI = __x_ABI_Ctest__component_CIReferenceTarget
+    private lazy var _default: SwiftABI! = getInterfaceForCaching()
+    @_spi(WinRTInternal)
+    override public func _getABI<T>() -> UnsafeMutablePointer<T>? {
+        if T.self == CABI.self {
+            return RawPointer(_default)
+        }
+        return super._getABI()
+    }
+
+    @_spi(WinRTInternal)
+    public init(fromAbi: WindowsFoundation.IInspectable) {
+        super.init(fromAbi)
+    }
+
+    override public func queryInterface(_ iid: WindowsFoundation.IID) -> IUnknownRef? {
+        return super.queryInterface(iid)
+    }
+    private static let _defaultFactory: WindowsFoundation.IActivationFactory = try! RoGetActivationFactory("test_component.ReferenceTarget")
+    override public init() {
+        super.init(try! Self._defaultFactory.ActivateInstance())
+    }
+
+    public func method() throws {
+        try _default.Method()
+    }
+
+    deinit {
+        _default = nil
+    }
+}
+
+// MARK: - ReferenceTarget Internals
+
+@_spi(WinRTInternal)
+extension __IMPL_test_component {
+    public enum ReferenceTargetBridge: AbiBridge {
+        public typealias SwiftProjection = ReferenceTarget
+        public typealias CABI = __x_ABI_Ctest__component_CIReferenceTarget
+        public static func from(abi: consuming ComPtr<__x_ABI_Ctest__component_CIReferenceTarget>?) -> ReferenceTarget? {
+            guard let abi = abi else { return nil }
+            return .init(fromAbi: WindowsFoundation.IInspectable(abi))
+        }
+    }
+
+}
+@_spi(WinRTInternal)
+public class ReferenceTargetMaker: MakeFromAbi {
+    public typealias SwiftType = ReferenceTarget
+    public static func from(abi: WindowsFoundation.IInspectable) -> SwiftType {
+        return ReferenceTarget(fromAbi: abi)
+    }
+}
+@_spi(WinRTInternal)
+extension __ABI_test_component {
+}
 // MARK: - Simple
 
 public final class Simple : WinRTClass {
@@ -6734,6 +6794,10 @@ public final class StaticClass {
         try _IStaticClassStatics.TakeBase(base)
     }
 
+    public static func isSameObject(_ first: Any!, _ second: Any!) throws -> Bool {
+        return try _IStaticClassStatics.IsSameObject(first, second)
+    }
+
     public static var enumProperty : Fruit {
         get { try! _IStaticClassStatics.get_EnumProperty() }
         set { try! _IStaticClassStatics.put_EnumProperty(newValue) }
@@ -6746,7 +6810,7 @@ public final class StaticClass {
 @_spi(WinRTInternal)
 extension __ABI_test_component {
     private static let IID___x_ABI_Ctest__component_CIStaticClassStatics: WindowsFoundation.IID = .init(
-        Data1: 0x92E618EF, Data2: 0xFF6E, Data3: 0x5975, Data4: ( 0x86,0x8C,0x99,0xAD,0xC1,0x1D,0x36,0xDE ) // 92E618EF-FF6E-5975-868C-99ADC11D36DE
+        Data1: 0x8AB6B0FF, Data2: 0x05F8, Data3: 0x5DB2, Data4: ( 0xB5,0x5C,0x8C,0x0D,0x75,0xB1,0xB8,0x1B ) // 8AB6B0FF-05F8-5DB2-B55C-8C0D75B1B81B
     ) 
 
     public class IStaticClassStatics: WindowsFoundation.IInspectable {
@@ -6793,6 +6857,18 @@ extension __ABI_test_component {
             _ = try perform(as: __x_ABI_Ctest__component_CIStaticClassStatics.self) { pThis in
                 try CHECKED(pThis.pointee.lpVtbl.pointee.TakeBase(pThis, RawPointer(base)))
             }
+        }
+
+        public func IsSameObject(_ first: Any?, _ second: Any?) throws -> Bool {
+            var result: boolean = 0
+            let firstWrapper = __ABI_.AnyWrapper(first)
+            let _first = try! firstWrapper?.toABI { $0 }
+            let secondWrapper = __ABI_.AnyWrapper(second)
+            let _second = try! secondWrapper?.toABI { $0 }
+            _ = try perform(as: __x_ABI_Ctest__component_CIStaticClassStatics.self) { pThis in
+                try CHECKED(pThis.pointee.lpVtbl.pointee.IsSameObject(pThis, _first, _second, &result))
+            }
+            return .init(from: result)
         }
 
     }

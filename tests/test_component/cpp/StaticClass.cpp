@@ -42,4 +42,10 @@ namespace winrt::test_component::implementation
     {
         base.DoTheThing();
     }
+
+    bool StaticClass::IsSameObject(Windows::Foundation::IInspectable const& first, Windows::Foundation::IInspectable const& second)
+    {
+        // C++/WinRT's == compares the objects' COM identity.
+        return first == second;
+    }
 }

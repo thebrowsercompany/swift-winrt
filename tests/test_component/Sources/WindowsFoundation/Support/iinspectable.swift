@@ -62,6 +62,11 @@ public enum __ABI_ {
         if let swiftAbi = swiftObj as? IInspectable {
            let abi: UnsafeMutablePointer<C_IInspectable> = RawPointer(swiftAbi)
            return try body(abi)
+        } else if let winrtClass = swiftObj as? WinRTClass,
+                  let abi: UnsafeMutablePointer<C_IInspectable> = winrtClass._getABI() {
+            // Pass a projected object as itself, as a parameter of its own type does, so the callee
+            // sees its COM identity rather than that of a wrapper made for this call.
+            return try body(abi)
         } else {
             return try super.toABI(body)
         }
@@ -118,7 +123,12 @@ public enum __ABI_ {
         },
 
         GetRuntimeClassName: {
-            guard let instance = AnyWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            guard var instance = AnyWrapper.tryUnwrapFrom(raw: $0) else { return E_INVALIDARG }
+            // A Swift class derived from a composable class with no overrides interface is held by a weak reference
+            if let weakRef = instance as? AnyObjectWrapper {
+                guard let obj = weakRef.obj else { return E_INVALIDARG }
+                instance = obj
+            }
             guard let winrtClass = instance as? WinRTClass else {
               let string = String(reflecting: type(of: instance))
               $1!.pointee = try! HString(string).detach()

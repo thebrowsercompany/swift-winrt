@@ -16,6 +16,14 @@ class WeakReferenceTests : XCTestCase {
     XCTAssertIdentical(roundtripped, original)
   }
 
+  public func testResolveProjectedClass() throws {
+    // A projected class passed as an interface it implements
+    let original = ReferenceTarget()
+    let weakReferencer = WeakReferencer(original)
+    let roundtripped = try XCTUnwrap(weakReferencer.resolve())
+    try roundtripped.method()
+  }
+
   public func testNotStrong() throws {
     var original: Target! = Target()
     let weakReferencer = WeakReferencer(original)
@@ -27,6 +35,7 @@ class WeakReferenceTests : XCTestCase {
 var weakReferenceTests: [XCTestCaseEntry] = [
   testCase([
     ("testCreateAndResolve", WeakReferenceTests.testCreateAndResolve),
+    ("testResolveProjectedClass", WeakReferenceTests.testResolveProjectedClass),
     ("testNotStrong", WeakReferenceTests.testNotStrong)
   ])
 ]
